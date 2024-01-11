@@ -18,7 +18,7 @@ import {
   L2NetworksCreateOrUpdateResponse,
   L2NetworksDeleteOptionalParams,
   L2NetworksUpdateOptionalParams,
-  L2NetworksUpdateResponse
+  L2NetworksUpdateResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -29,7 +29,7 @@ export interface L2Networks {
    * @param options The options parameters.
    */
   listBySubscription(
-    options?: L2NetworksListBySubscriptionOptionalParams
+    options?: L2NetworksListBySubscriptionOptionalParams,
   ): PagedAsyncIterableIterator<L2Network>;
   /**
    * Get a list of layer 2 (L2) networks in the provided resource group.
@@ -38,7 +38,7 @@ export interface L2Networks {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: L2NetworksListByResourceGroupOptionalParams
+    options?: L2NetworksListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<L2Network>;
   /**
    * Get properties of the provided layer 2 (L2) network.
@@ -49,7 +49,7 @@ export interface L2Networks {
   get(
     resourceGroupName: string,
     l2NetworkName: string,
-    options?: L2NetworksGetOptionalParams
+    options?: L2NetworksGetOptionalParams,
   ): Promise<L2NetworksGetResponse>;
   /**
    * Create a new layer 2 (L2) network or update the properties of the existing network.
@@ -62,7 +62,7 @@ export interface L2Networks {
     resourceGroupName: string,
     l2NetworkName: string,
     l2NetworkParameters: L2Network,
-    options?: L2NetworksCreateOrUpdateOptionalParams
+    options?: L2NetworksCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<L2NetworksCreateOrUpdateResponse>,
@@ -80,7 +80,7 @@ export interface L2Networks {
     resourceGroupName: string,
     l2NetworkName: string,
     l2NetworkParameters: L2Network,
-    options?: L2NetworksCreateOrUpdateOptionalParams
+    options?: L2NetworksCreateOrUpdateOptionalParams,
   ): Promise<L2NetworksCreateOrUpdateResponse>;
   /**
    * Delete the provided layer 2 (L2) network.
@@ -91,7 +91,7 @@ export interface L2Networks {
   beginDelete(
     resourceGroupName: string,
     l2NetworkName: string,
-    options?: L2NetworksDeleteOptionalParams
+    options?: L2NetworksDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Delete the provided layer 2 (L2) network.
@@ -102,7 +102,7 @@ export interface L2Networks {
   beginDeleteAndWait(
     resourceGroupName: string,
     l2NetworkName: string,
-    options?: L2NetworksDeleteOptionalParams
+    options?: L2NetworksDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Update tags associated with the provided layer 2 (L2) network.
@@ -113,6 +113,6 @@ export interface L2Networks {
   update(
     resourceGroupName: string,
     l2NetworkName: string,
-    options?: L2NetworksUpdateOptionalParams
+    options?: L2NetworksUpdateOptionalParams,
   ): Promise<L2NetworksUpdateResponse>;
 }

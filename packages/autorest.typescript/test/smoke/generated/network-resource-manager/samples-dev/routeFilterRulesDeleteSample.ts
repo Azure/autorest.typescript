@@ -30,7 +30,7 @@ async function routeFilterRuleDelete() {
   const result = await client.routeFilterRules.beginDeleteAndWait(
     resourceGroupName,
     routeFilterName,
-    ruleName
+    ruleName,
   );
   console.log(result);
 }

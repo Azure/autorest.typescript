@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   FailoverGroupUpdate,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,12 +31,12 @@ async function updateFailoverGroup() {
   const failoverGroupName = "failover-group-test-1";
   const parameters: FailoverGroupUpdate = {
     databases: [
-      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default/providers/Microsoft.Sql/servers/failover-group-primary-server/databases/testdb-1"
+      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default/providers/Microsoft.Sql/servers/failover-group-primary-server/databases/testdb-1",
     ],
     readWriteEndpoint: {
       failoverPolicy: "Automatic",
-      failoverWithDataLossGracePeriodMinutes: 120
-    }
+      failoverWithDataLossGracePeriodMinutes: 120,
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -44,7 +44,7 @@ async function updateFailoverGroup() {
     resourceGroupName,
     serverName,
     failoverGroupName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

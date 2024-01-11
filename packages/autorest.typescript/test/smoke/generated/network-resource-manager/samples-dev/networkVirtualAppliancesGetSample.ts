@@ -28,7 +28,7 @@ async function getNetworkVirtualAppliance() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkVirtualAppliances.get(
     resourceGroupName,
-    networkVirtualApplianceName
+    networkVirtualApplianceName,
   );
   console.log(result);
 }

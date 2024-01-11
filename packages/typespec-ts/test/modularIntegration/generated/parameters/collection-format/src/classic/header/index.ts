@@ -17,7 +17,7 @@ export function getHeader(context: CollectionFormatContext) {
 }
 
 export function getHeaderOperations(
-  context: CollectionFormatContext
+  context: CollectionFormatContext,
 ): HeaderOperations {
   return {
     ...getHeader(context),

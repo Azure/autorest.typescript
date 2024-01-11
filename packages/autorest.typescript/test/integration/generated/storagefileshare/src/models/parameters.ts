@@ -1,7 +1,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 
 export const accept: OperationParameter = {
@@ -11,9 +11,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const url: OperationURLParameter = {
@@ -23,10 +23,10 @@ export const url: OperationURLParameter = {
     required: true,
     xmlName: "url",
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const comp: OperationQueryParameter = {
@@ -36,23 +36,23 @@ export const comp: OperationQueryParameter = {
     isConstant: true,
     serializedName: "comp",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const timeout: OperationQueryParameter = {
   parameterPath: ["options", "timeout"],
   mapper: {
     constraints: {
-      InclusiveMinimum: 0
+      InclusiveMinimum: 0,
     },
     serializedName: "timeout",
     xmlName: "timeout",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const range: OperationParameter = {
@@ -62,9 +62,9 @@ export const range: OperationParameter = {
     required: true,
     xmlName: "x-ms-range",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const copySource: OperationParameter = {
@@ -74,9 +74,9 @@ export const copySource: OperationParameter = {
     required: true,
     xmlName: "x-ms-copy-source",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const sourceRange: OperationParameter = {
@@ -85,9 +85,9 @@ export const sourceRange: OperationParameter = {
     serializedName: "x-ms-source-range",
     xmlName: "x-ms-source-range",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const fileRangeWriteFromUrl: OperationParameter = {
@@ -97,9 +97,9 @@ export const fileRangeWriteFromUrl: OperationParameter = {
     isConstant: true,
     serializedName: "x-ms-write",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentLength: OperationParameter = {
@@ -109,9 +109,9 @@ export const contentLength: OperationParameter = {
     required: true,
     xmlName: "Content-Length",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const sourceContentCrc64: OperationParameter = {
@@ -120,39 +120,39 @@ export const sourceContentCrc64: OperationParameter = {
     serializedName: "x-ms-source-content-crc64",
     xmlName: "x-ms-source-content-crc64",
     type: {
-      name: "ByteArray"
-    }
-  }
+      name: "ByteArray",
+    },
+  },
 };
 
 export const sourceIfMatchCrc64: OperationParameter = {
   parameterPath: [
     "options",
     "sourceModifiedAccessConditions",
-    "sourceIfMatchCrc64"
+    "sourceIfMatchCrc64",
   ],
   mapper: {
     serializedName: "x-ms-source-if-match-crc64",
     xmlName: "x-ms-source-if-match-crc64",
     type: {
-      name: "ByteArray"
-    }
-  }
+      name: "ByteArray",
+    },
+  },
 };
 
 export const sourceIfNoneMatchCrc64: OperationParameter = {
   parameterPath: [
     "options",
     "sourceModifiedAccessConditions",
-    "sourceIfNoneMatchCrc64"
+    "sourceIfNoneMatchCrc64",
   ],
   mapper: {
     serializedName: "x-ms-source-if-none-match-crc64",
     xmlName: "x-ms-source-if-none-match-crc64",
     type: {
-      name: "ByteArray"
-    }
-  }
+      name: "ByteArray",
+    },
+  },
 };
 
 export const version: OperationParameter = {
@@ -162,9 +162,9 @@ export const version: OperationParameter = {
     isConstant: true,
     serializedName: "x-ms-version",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const leaseId: OperationParameter = {
@@ -173,7 +173,7 @@ export const leaseId: OperationParameter = {
     serializedName: "x-ms-lease-id",
     xmlName: "x-ms-lease-id",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };

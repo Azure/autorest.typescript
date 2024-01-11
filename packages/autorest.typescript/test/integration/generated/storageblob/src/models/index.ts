@@ -683,7 +683,7 @@ export enum KnownAccessTier {
   /** Cool */
   Cool = "Cool",
   /** Archive */
-  Archive = "Archive"
+  Archive = "Archive",
 }
 
 /**
@@ -713,7 +713,7 @@ export enum KnownArchiveStatus {
   /** RehydratePendingToHot */
   RehydratePendingToHot = "rehydrate-pending-to-hot",
   /** RehydratePendingToCool */
-  RehydratePendingToCool = "rehydrate-pending-to-cool"
+  RehydratePendingToCool = "rehydrate-pending-to-cool",
 }
 
 /**
@@ -731,7 +731,7 @@ export enum KnownRehydratePriority {
   /** High */
   High = "High",
   /** Standard */
-  Standard = "Standard"
+  Standard = "Standard",
 }
 
 /**
@@ -749,7 +749,7 @@ export enum KnownPublicAccessType {
   /** Container */
   Container = "container",
   /** Blob */
-  Blob = "blob"
+  Blob = "blob",
 }
 
 /**
@@ -769,7 +769,7 @@ export enum KnownGeoReplicationStatusType {
   /** Bootstrap */
   Bootstrap = "bootstrap",
   /** Unavailable */
-  Unavailable = "unavailable"
+  Unavailable = "unavailable",
 }
 
 /**
@@ -1008,7 +1008,7 @@ export enum KnownStorageErrorCode {
   /** AuthorizationServiceMismatch */
   AuthorizationServiceMismatch = "AuthorizationServiceMismatch",
   /** AuthorizationResourceTypeMismatch */
-  AuthorizationResourceTypeMismatch = "AuthorizationResourceTypeMismatch"
+  AuthorizationResourceTypeMismatch = "AuthorizationResourceTypeMismatch",
 }
 
 /**
@@ -1154,7 +1154,7 @@ export enum KnownPremiumPageBlobAccessTier {
   /** P70 */
   P70 = "P70",
   /** P80 */
-  P80 = "P80"
+  P80 = "P80",
 }
 
 /**
@@ -1185,7 +1185,7 @@ export enum KnownBlobExpiryOptions {
   /** RelativeToNow */
   RelativeToNow = "RelativeToNow",
   /** Absolute */
-  Absolute = "Absolute"
+  Absolute = "Absolute",
 }
 
 /**

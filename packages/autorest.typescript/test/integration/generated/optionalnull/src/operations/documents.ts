@@ -24,7 +24,7 @@ export class DocumentsImpl implements Documents {
   searchGet(options?: DocumentsSearchGetOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      searchGetOperationSpec
+      searchGetOperationSpec,
     );
   }
 }
@@ -37,5 +37,5 @@ const searchGetOperationSpec: coreClient.OperationSpec = {
   responses: { 200: {} },
   queryParameters: [Parameters.searchText, Parameters.includeTotalResultCount],
   urlParameters: [Parameters.$host],
-  serializer
+  serializer,
 };

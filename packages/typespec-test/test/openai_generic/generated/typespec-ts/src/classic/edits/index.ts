@@ -9,7 +9,7 @@ import { EditsCreateOptions } from "../../models/options.js";
 export interface EditsOperations {
   create: (
     edit: CreateEditRequest,
-    options?: EditsCreateOptions
+    options?: EditsCreateOptions,
   ) => Promise<CreateEditResponse>;
 }
 

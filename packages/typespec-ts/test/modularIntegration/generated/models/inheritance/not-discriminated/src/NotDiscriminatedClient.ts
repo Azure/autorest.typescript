@@ -32,20 +32,20 @@ export class NotDiscriminatedClient {
 
   postValid(
     input: Siamese,
-    options: PostValidOptions = { requestOptions: {} }
+    options: PostValidOptions = { requestOptions: {} },
   ): Promise<void> {
     return postValid(this._client, input, options);
   }
 
   getValid(
-    options: GetValidOptions = { requestOptions: {} }
+    options: GetValidOptions = { requestOptions: {} },
   ): Promise<Siamese> {
     return getValid(this._client, options);
   }
 
   putValid(
     input: Siamese,
-    options: PutValidOptions = { requestOptions: {} }
+    options: PutValidOptions = { requestOptions: {} },
   ): Promise<Siamese> {
     return putValid(this._client, input, options);
   }

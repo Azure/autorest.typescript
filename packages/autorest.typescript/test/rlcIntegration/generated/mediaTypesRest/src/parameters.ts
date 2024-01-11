@@ -61,9 +61,10 @@ export interface AnalyzeBodyNoAcceptHeaderMediaTypesParam {
   contentType?: "application/pdf" | "image/jpeg" | "image/png" | "image/tiff";
 }
 
-export type AnalyzeBodyNoAcceptHeaderRequestParameters = AnalyzeBodyNoAcceptHeaderMediaTypesParam &
-  AnalyzeBodyNoAcceptHeaderBodyParam &
-  RequestParameters;
+export type AnalyzeBodyNoAcceptHeaderRequestParameters =
+  AnalyzeBodyNoAcceptHeaderMediaTypesParam &
+    AnalyzeBodyNoAcceptHeaderBodyParam &
+    RequestParameters;
 
 export interface AnalyzeBodyNoAcceptHeaderBodyParam1 {
   /** Input parameter. */
@@ -75,9 +76,10 @@ export interface AnalyzeBodyNoAcceptHeaderMediaTypesParam1 {
   contentType?: "application/json";
 }
 
-export type AnalyzeBodyNoAcceptHeaderRequestParameters1 = AnalyzeBodyNoAcceptHeaderMediaTypesParam1 &
-  AnalyzeBodyNoAcceptHeaderBodyParam1 &
-  RequestParameters;
+export type AnalyzeBodyNoAcceptHeaderRequestParameters1 =
+  AnalyzeBodyNoAcceptHeaderMediaTypesParam1 &
+    AnalyzeBodyNoAcceptHeaderBodyParam1 &
+    RequestParameters;
 export type AnalyzeBodyNoAcceptHeaderParameters =
   | AnalyzeBodyNoAcceptHeaderRequestParameters
   | AnalyzeBodyNoAcceptHeaderRequestParameters1;
@@ -92,9 +94,10 @@ export interface ContentTypeWithEncodingMediaTypesParam {
   contentType?: "text/plain; charset=UTF-8";
 }
 
-export type ContentTypeWithEncodingParameters = ContentTypeWithEncodingMediaTypesParam &
-  ContentTypeWithEncodingBodyParam &
-  RequestParameters;
+export type ContentTypeWithEncodingParameters =
+  ContentTypeWithEncodingMediaTypesParam &
+    ContentTypeWithEncodingBodyParam &
+    RequestParameters;
 
 export interface BinaryBodyWithTwoContentTypesBodyParam {
   /**
@@ -114,9 +117,10 @@ export interface BinaryBodyWithTwoContentTypesMediaTypesParam {
   contentType?: "application/json" | "application/octet-stream";
 }
 
-export type BinaryBodyWithTwoContentTypesParameters = BinaryBodyWithTwoContentTypesMediaTypesParam &
-  BinaryBodyWithTwoContentTypesBodyParam &
-  RequestParameters;
+export type BinaryBodyWithTwoContentTypesParameters =
+  BinaryBodyWithTwoContentTypesMediaTypesParam &
+    BinaryBodyWithTwoContentTypesBodyParam &
+    RequestParameters;
 
 export interface BinaryBodyWithThreeContentTypesBodyParam {
   /**
@@ -136,9 +140,10 @@ export interface BinaryBodyWithThreeContentTypesMediaTypesParam {
   contentType?: "application/json" | "application/octet-stream";
 }
 
-export type BinaryBodyWithThreeContentTypesRequestParameters = BinaryBodyWithThreeContentTypesMediaTypesParam &
-  BinaryBodyWithThreeContentTypesBodyParam &
-  RequestParameters;
+export type BinaryBodyWithThreeContentTypesRequestParameters =
+  BinaryBodyWithThreeContentTypesMediaTypesParam &
+    BinaryBodyWithThreeContentTypesBodyParam &
+    RequestParameters;
 
 export interface BinaryBodyWithThreeContentTypesBodyParam1 {
   /** The payload body. */
@@ -150,9 +155,10 @@ export interface BinaryBodyWithThreeContentTypesMediaTypesParam1 {
   contentType?: "text/plain";
 }
 
-export type BinaryBodyWithThreeContentTypesRequestParameters1 = BinaryBodyWithThreeContentTypesMediaTypesParam1 &
-  BinaryBodyWithThreeContentTypesBodyParam1 &
-  RequestParameters;
+export type BinaryBodyWithThreeContentTypesRequestParameters1 =
+  BinaryBodyWithThreeContentTypesMediaTypesParam1 &
+    BinaryBodyWithThreeContentTypesBodyParam1 &
+    RequestParameters;
 export type BinaryBodyWithThreeContentTypesParameters =
   | BinaryBodyWithThreeContentTypesRequestParameters
   | BinaryBodyWithThreeContentTypesRequestParameters1;
@@ -221,9 +227,10 @@ export interface PutTextAndJsonBodyMediaTypesParam {
   contentType?: "text/plain";
 }
 
-export type PutTextAndJsonBodyRequestParameters = PutTextAndJsonBodyMediaTypesParam &
-  PutTextAndJsonBodyBodyParam &
-  RequestParameters;
+export type PutTextAndJsonBodyRequestParameters =
+  PutTextAndJsonBodyMediaTypesParam &
+    PutTextAndJsonBodyBodyParam &
+    RequestParameters;
 
 export interface PutTextAndJsonBodyBodyParam1 {
   /** The payload body. */
@@ -235,9 +242,10 @@ export interface PutTextAndJsonBodyMediaTypesParam1 {
   contentType?: "application/json";
 }
 
-export type PutTextAndJsonBodyRequestParameters1 = PutTextAndJsonBodyMediaTypesParam1 &
-  PutTextAndJsonBodyBodyParam1 &
-  RequestParameters;
+export type PutTextAndJsonBodyRequestParameters1 =
+  PutTextAndJsonBodyMediaTypesParam1 &
+    PutTextAndJsonBodyBodyParam1 &
+    RequestParameters;
 export type PutTextAndJsonBodyParameters =
   | PutTextAndJsonBodyRequestParameters
   | PutTextAndJsonBodyRequestParameters1;

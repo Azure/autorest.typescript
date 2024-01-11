@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   StorageQueue,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,7 +35,7 @@ async function queueOperationPatch() {
     resourceGroupName,
     accountName,
     queueName,
-    queue
+    queue,
   );
   console.log(result);
 }

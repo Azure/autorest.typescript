@@ -24,7 +24,7 @@ export class XmsErrorResponsesClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: XmsErrorResponsesClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-xms-error-responses/1.0.0-preview1`;
@@ -37,9 +37,9 @@ export class XmsErrorResponsesClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost"
+      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost",
     };
     super(optionsWithDefaults);
 

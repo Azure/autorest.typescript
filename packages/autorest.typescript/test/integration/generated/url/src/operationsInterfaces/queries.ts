@@ -41,7 +41,7 @@ import {
   QueriesArrayStringNoCollectionFormatEmptyOptionalParams,
   QueriesArrayStringSsvValidOptionalParams,
   QueriesArrayStringTsvValidOptionalParams,
-  QueriesArrayStringPipesValidOptionalParams
+  QueriesArrayStringPipesValidOptionalParams,
 } from "../models";
 
 /** Interface representing a Queries. */
@@ -56,7 +56,7 @@ export interface Queries {
    * @param options The options parameters.
    */
   getBooleanFalse(
-    options?: QueriesGetBooleanFalseOptionalParams
+    options?: QueriesGetBooleanFalseOptionalParams,
   ): Promise<void>;
   /**
    * Get null Boolean value on query (query string should be absent)
@@ -68,14 +68,14 @@ export interface Queries {
    * @param options The options parameters.
    */
   getIntOneMillion(
-    options?: QueriesGetIntOneMillionOptionalParams
+    options?: QueriesGetIntOneMillionOptionalParams,
   ): Promise<void>;
   /**
    * Get '-1000000' integer value
    * @param options The options parameters.
    */
   getIntNegativeOneMillion(
-    options?: QueriesGetIntNegativeOneMillionOptionalParams
+    options?: QueriesGetIntNegativeOneMillionOptionalParams,
   ): Promise<void>;
   /**
    * Get null integer value (no query parameter)
@@ -92,7 +92,7 @@ export interface Queries {
    * @param options The options parameters.
    */
   getNegativeTenBillion(
-    options?: QueriesGetNegativeTenBillionOptionalParams
+    options?: QueriesGetNegativeTenBillionOptionalParams,
   ): Promise<void>;
   /**
    * Get 'null 64 bit integer value (no query param in uri)
@@ -104,14 +104,14 @@ export interface Queries {
    * @param options The options parameters.
    */
   floatScientificPositive(
-    options?: QueriesFloatScientificPositiveOptionalParams
+    options?: QueriesFloatScientificPositiveOptionalParams,
   ): Promise<void>;
   /**
    * Get '-1.034E-20' numeric value
    * @param options The options parameters.
    */
   floatScientificNegative(
-    options?: QueriesFloatScientificNegativeOptionalParams
+    options?: QueriesFloatScientificNegativeOptionalParams,
   ): Promise<void>;
   /**
    * Get null numeric value (no query parameter)
@@ -123,14 +123,14 @@ export interface Queries {
    * @param options The options parameters.
    */
   doubleDecimalPositive(
-    options?: QueriesDoubleDecimalPositiveOptionalParams
+    options?: QueriesDoubleDecimalPositiveOptionalParams,
   ): Promise<void>;
   /**
    * Get '-9999999.999' numeric value
    * @param options The options parameters.
    */
   doubleDecimalNegative(
-    options?: QueriesDoubleDecimalNegativeOptionalParams
+    options?: QueriesDoubleDecimalNegativeOptionalParams,
   ): Promise<void>;
   /**
    * Get null numeric value (no query parameter)
@@ -147,7 +147,7 @@ export interface Queries {
    * @param options The options parameters.
    */
   stringUrlEncoded(
-    options?: QueriesStringUrlEncodedOptionalParams
+    options?: QueriesStringUrlEncodedOptionalParams,
   ): Promise<void>;
   /**
    * Get ''
@@ -210,21 +210,21 @@ export interface Queries {
    * @param options The options parameters.
    */
   arrayStringCsvValid(
-    options?: QueriesArrayStringCsvValidOptionalParams
+    options?: QueriesArrayStringCsvValidOptionalParams,
   ): Promise<void>;
   /**
    * Get a null array of string using the csv-array format
    * @param options The options parameters.
    */
   arrayStringCsvNull(
-    options?: QueriesArrayStringCsvNullOptionalParams
+    options?: QueriesArrayStringCsvNullOptionalParams,
   ): Promise<void>;
   /**
    * Get an empty array [] of string using the csv-array format
    * @param options The options parameters.
    */
   arrayStringCsvEmpty(
-    options?: QueriesArrayStringCsvEmptyOptionalParams
+    options?: QueriesArrayStringCsvEmptyOptionalParams,
   ): Promise<void>;
   /**
    * Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao',
@@ -232,7 +232,7 @@ export interface Queries {
    * @param options The options parameters.
    */
   arrayStringNoCollectionFormatEmpty(
-    options?: QueriesArrayStringNoCollectionFormatEmptyOptionalParams
+    options?: QueriesArrayStringNoCollectionFormatEmptyOptionalParams,
   ): Promise<void>;
   /**
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array
@@ -240,7 +240,7 @@ export interface Queries {
    * @param options The options parameters.
    */
   arrayStringSsvValid(
-    options?: QueriesArrayStringSsvValidOptionalParams
+    options?: QueriesArrayStringSsvValidOptionalParams,
   ): Promise<void>;
   /**
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array
@@ -248,7 +248,7 @@ export interface Queries {
    * @param options The options parameters.
    */
   arrayStringTsvValid(
-    options?: QueriesArrayStringTsvValidOptionalParams
+    options?: QueriesArrayStringTsvValidOptionalParams,
   ): Promise<void>;
   /**
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
@@ -256,6 +256,6 @@ export interface Queries {
    * @param options The options parameters.
    */
   arrayStringPipesValid(
-    options?: QueriesArrayStringPipesValidOptionalParams
+    options?: QueriesArrayStringPipesValidOptionalParams,
   ): Promise<void>;
 }

@@ -42,7 +42,7 @@ export class ServiceClient {
   constructor(
     endpoint: string,
     client: ClientType,
-    options: ServiceClientOptions = {}
+    options: ServiceClientOptions = {},
   ) {
     this._client = createService(endpoint, client, options);
     this.pipeline = this._client.pipeline;

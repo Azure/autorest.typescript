@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient, {
-  paginate
+  paginate,
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -20,7 +20,7 @@ async function scenesList() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const initialResponse = await client
     .path("/scenes")
@@ -28,8 +28,8 @@ async function scenesList() {
       queryParameters: {
         provider: "Microsoft",
         farmerId: "FARMER123",
-        boundaryId: "BOUNDARY123"
-      }
+        boundaryId: "BOUNDARY123",
+      },
     });
   const pageData = paginate(client, initialResponse);
   const result = [];

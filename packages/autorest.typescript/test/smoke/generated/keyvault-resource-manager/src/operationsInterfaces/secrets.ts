@@ -17,7 +17,7 @@ import {
   SecretsUpdateOptionalParams,
   SecretsUpdateResponse,
   SecretsGetOptionalParams,
-  SecretsGetResponse
+  SecretsGetResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -34,7 +34,7 @@ export interface Secrets {
   list(
     resourceGroupName: string,
     vaultName: string,
-    options?: SecretsListOptionalParams
+    options?: SecretsListOptionalParams,
   ): PagedAsyncIterableIterator<Secret>;
   /**
    * Create or update a secret in a key vault in the specified subscription.  NOTE: This API is intended
@@ -51,7 +51,7 @@ export interface Secrets {
     vaultName: string,
     secretName: string,
     parameters: SecretCreateOrUpdateParameters,
-    options?: SecretsCreateOrUpdateOptionalParams
+    options?: SecretsCreateOrUpdateOptionalParams,
   ): Promise<SecretsCreateOrUpdateResponse>;
   /**
    * Update a secret in the specified subscription.  NOTE: This API is intended for internal use in ARM
@@ -67,7 +67,7 @@ export interface Secrets {
     vaultName: string,
     secretName: string,
     parameters: SecretPatchParameters,
-    options?: SecretsUpdateOptionalParams
+    options?: SecretsUpdateOptionalParams,
   ): Promise<SecretsUpdateResponse>;
   /**
    * Gets the specified secret.  NOTE: This API is intended for internal use in ARM deployments. Users
@@ -81,6 +81,6 @@ export interface Secrets {
     resourceGroupName: string,
     vaultName: string,
     secretName: string,
-    options?: SecretsGetOptionalParams
+    options?: SecretsGetOptionalParams,
   ): Promise<SecretsGetResponse>;
 }

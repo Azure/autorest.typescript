@@ -23,11 +23,11 @@ export interface QueryOperations {
   rfc7231: (value: Date, options?: QueryRfc7231Options) => Promise<void>;
   unixTimestamp: (
     value: Date,
-    options?: QueryUnixTimestampOptions
+    options?: QueryUnixTimestampOptions,
   ) => Promise<void>;
   unixTimestampArray: (
     value: Date[],
-    options?: QueryUnixTimestampArrayOptions
+    options?: QueryUnixTimestampArrayOptions,
   ) => Promise<void>;
 }
 
@@ -43,7 +43,7 @@ export function getQuery(context: DatetimeContext) {
       queryUnixTimestamp(context, value, options),
     unixTimestampArray: (
       value: Date[],
-      options?: QueryUnixTimestampArrayOptions
+      options?: QueryUnixTimestampArrayOptions,
     ) => queryUnixTimestampArray(context, value, options),
   };
 }

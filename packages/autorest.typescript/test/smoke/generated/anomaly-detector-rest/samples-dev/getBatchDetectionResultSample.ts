@@ -20,7 +20,7 @@ async function getDetectionResult() {
   const client = createAnomalyDetectorRestClient(
     endpoint,
     apiVersion,
-    credential
+    credential,
   );
   const resultId = "663884e6-b117-11ea-b3de-0242ac130004";
   const result = await client

@@ -1,6 +1,6 @@
 import {
   QueueGetPropertiesOptionalParams,
-  QueueGetPropertiesResponse
+  QueueGetPropertiesResponse,
 } from "../models";
 
 /** Interface representing a Queue. */
@@ -11,6 +11,6 @@ export interface Queue {
    * @param options The options parameters.
    */
   getProperties(
-    options?: QueueGetPropertiesOptionalParams
+    options?: QueueGetPropertiesOptionalParams,
   ): Promise<QueueGetPropertiesResponse>;
 }

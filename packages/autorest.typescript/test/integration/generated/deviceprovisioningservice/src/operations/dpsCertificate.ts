@@ -16,7 +16,7 @@ import {
   DpsCertificateGenerateVerificationCodeResponse,
   VerificationCodeRequest,
   DpsCertificateVerifyCertificateOptionalParams,
-  DpsCertificateVerifyCertificateResponse
+  DpsCertificateVerifyCertificateResponse,
 } from "../models";
 
 /** Class containing DpsCertificate operations. */
@@ -42,11 +42,11 @@ export class DpsCertificateImpl implements DpsCertificate {
     certificateName: string,
     resourceGroupName: string,
     provisioningServiceName: string,
-    options?: DpsCertificateGetOptionalParams
+    options?: DpsCertificateGetOptionalParams,
   ): Promise<DpsCertificateGetResponse> {
     return this.client.sendOperationRequest(
       { certificateName, resourceGroupName, provisioningServiceName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -63,7 +63,7 @@ export class DpsCertificateImpl implements DpsCertificate {
     provisioningServiceName: string,
     certificateName: string,
     certificateDescription: CertificateBodyDescription,
-    options?: DpsCertificateCreateOrUpdateOptionalParams
+    options?: DpsCertificateCreateOrUpdateOptionalParams,
   ): Promise<DpsCertificateCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       {
@@ -71,9 +71,9 @@ export class DpsCertificateImpl implements DpsCertificate {
         provisioningServiceName,
         certificateName,
         certificateDescription,
-        options
+        options,
       },
-      createOrUpdateOperationSpec
+      createOrUpdateOperationSpec,
     );
   }
 
@@ -91,7 +91,7 @@ export class DpsCertificateImpl implements DpsCertificate {
     ifMatch: string,
     provisioningServiceName: string,
     certificateName: string,
-    options?: DpsCertificateDeleteOptionalParams
+    options?: DpsCertificateDeleteOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       {
@@ -99,9 +99,9 @@ export class DpsCertificateImpl implements DpsCertificate {
         ifMatch,
         provisioningServiceName,
         certificateName,
-        options
+        options,
       },
-      deleteOperationSpec
+      deleteOperationSpec,
     );
   }
 
@@ -114,11 +114,11 @@ export class DpsCertificateImpl implements DpsCertificate {
   list(
     resourceGroupName: string,
     provisioningServiceName: string,
-    options?: DpsCertificateListOptionalParams
+    options?: DpsCertificateListOptionalParams,
   ): Promise<DpsCertificateListResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, provisioningServiceName, options },
-      listOperationSpec
+      listOperationSpec,
     );
   }
 
@@ -137,7 +137,7 @@ export class DpsCertificateImpl implements DpsCertificate {
     ifMatch: string,
     resourceGroupName: string,
     provisioningServiceName: string,
-    options?: DpsCertificateGenerateVerificationCodeOptionalParams
+    options?: DpsCertificateGenerateVerificationCodeOptionalParams,
   ): Promise<DpsCertificateGenerateVerificationCodeResponse> {
     return this.client.sendOperationRequest(
       {
@@ -145,9 +145,9 @@ export class DpsCertificateImpl implements DpsCertificate {
         ifMatch,
         resourceGroupName,
         provisioningServiceName,
-        options
+        options,
       },
-      generateVerificationCodeOperationSpec
+      generateVerificationCodeOperationSpec,
     );
   }
 
@@ -168,7 +168,7 @@ export class DpsCertificateImpl implements DpsCertificate {
     resourceGroupName: string,
     provisioningServiceName: string,
     request: VerificationCodeRequest,
-    options?: DpsCertificateVerifyCertificateOptionalParams
+    options?: DpsCertificateVerifyCertificateOptionalParams,
   ): Promise<DpsCertificateVerifyCertificateResponse> {
     return this.client.sendOperationRequest(
       {
@@ -177,9 +177,9 @@ export class DpsCertificateImpl implements DpsCertificate {
         resourceGroupName,
         provisioningServiceName,
         request,
-        options
+        options,
       },
-      verifyCertificateOperationSpec
+      verifyCertificateOperationSpec,
     );
   }
 }
@@ -187,16 +187,15 @@ export class DpsCertificateImpl implements DpsCertificate {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates/{certificateName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates/{certificateName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.CertificateResponse
+      bodyMapper: Mappers.CertificateResponse,
     },
     default: {
-      bodyMapper: Mappers.ErrorDetails
-    }
+      bodyMapper: Mappers.ErrorDetails,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -204,22 +203,21 @@ const getOperationSpec: coreClient.OperationSpec = {
     Parameters.certificateName,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.provisioningServiceName
+    Parameters.provisioningServiceName,
   ],
   headerParameters: [Parameters.accept, Parameters.ifMatch],
-  serializer
+  serializer,
 };
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates/{certificateName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates/{certificateName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.CertificateResponse
+      bodyMapper: Mappers.CertificateResponse,
     },
     default: {
-      bodyMapper: Mappers.ErrorDetails
-    }
+      bodyMapper: Mappers.ErrorDetails,
+    },
   },
   requestBody: Parameters.certificateDescription,
   queryParameters: [Parameters.apiVersion],
@@ -228,26 +226,25 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.provisioningServiceName,
-    Parameters.certificateName1
+    Parameters.certificateName1,
   ],
   headerParameters: [
     Parameters.accept,
     Parameters.ifMatch,
-    Parameters.contentType
+    Parameters.contentType,
   ],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates/{certificateName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates/{certificateName}",
   httpMethod: "DELETE",
   responses: {
     200: {},
     204: {},
     default: {
-      bodyMapper: Mappers.ErrorDetails
-    }
+      bodyMapper: Mappers.ErrorDetails,
+    },
   },
   queryParameters: [
     Parameters.apiVersion,
@@ -258,51 +255,49 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     Parameters.certificateCreated,
     Parameters.certificateLastUpdated,
     Parameters.certificateHasPrivateKey,
-    Parameters.certificateNonce
+    Parameters.certificateNonce,
   ],
   urlParameters: [
     Parameters.$host,
     Parameters.certificateName,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.provisioningServiceName
+    Parameters.provisioningServiceName,
   ],
   headerParameters: [Parameters.accept, Parameters.ifMatch1],
-  serializer
+  serializer,
 };
 const listOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.CertificateListDescription
+      bodyMapper: Mappers.CertificateListDescription,
     },
     default: {
-      bodyMapper: Mappers.ErrorDetails
-    }
+      bodyMapper: Mappers.ErrorDetails,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.provisioningServiceName
+    Parameters.provisioningServiceName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const generateVerificationCodeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates/{certificateName}/generateVerificationCode",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates/{certificateName}/generateVerificationCode",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.VerificationCodeResponse
+      bodyMapper: Mappers.VerificationCodeResponse,
     },
     default: {
-      bodyMapper: Mappers.ErrorDetails
-    }
+      bodyMapper: Mappers.ErrorDetails,
+    },
   },
   queryParameters: [
     Parameters.apiVersion,
@@ -313,29 +308,28 @@ const generateVerificationCodeOperationSpec: coreClient.OperationSpec = {
     Parameters.certificateCreated,
     Parameters.certificateLastUpdated,
     Parameters.certificateHasPrivateKey,
-    Parameters.certificateNonce
+    Parameters.certificateNonce,
   ],
   urlParameters: [
     Parameters.$host,
     Parameters.certificateName,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.provisioningServiceName
+    Parameters.provisioningServiceName,
   ],
   headerParameters: [Parameters.accept, Parameters.ifMatch1],
-  serializer
+  serializer,
 };
 const verifyCertificateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates/{certificateName}/verify",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates/{certificateName}/verify",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.CertificateResponse
+      bodyMapper: Mappers.CertificateResponse,
     },
     default: {
-      bodyMapper: Mappers.ErrorDetails
-    }
+      bodyMapper: Mappers.ErrorDetails,
+    },
   },
   requestBody: Parameters.request,
   queryParameters: [
@@ -347,20 +341,20 @@ const verifyCertificateOperationSpec: coreClient.OperationSpec = {
     Parameters.certificateCreated,
     Parameters.certificateLastUpdated,
     Parameters.certificateHasPrivateKey,
-    Parameters.certificateNonce
+    Parameters.certificateNonce,
   ],
   urlParameters: [
     Parameters.$host,
     Parameters.certificateName,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.provisioningServiceName
+    Parameters.provisioningServiceName,
   ],
   headerParameters: [
     Parameters.accept,
     Parameters.contentType,
-    Parameters.ifMatch1
+    Parameters.ifMatch1,
   ],
   mediaType: "json",
-  serializer
+  serializer,
 };

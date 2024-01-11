@@ -26,22 +26,22 @@ export interface GetModel {
 
 export interface GetRecursiveModel {
   get(
-    options?: GetRecursiveModelParameters
+    options?: GetRecursiveModelParameters,
   ): StreamableMethod<GetRecursiveModel200Response>;
   put(
-    options: PutRecursiveModelParameters
+    options: PutRecursiveModelParameters,
   ): StreamableMethod<PutRecursiveModel204Response>;
 }
 
 export interface GetMissingDiscriminator {
   get(
-    options?: GetMissingDiscriminatorParameters
+    options?: GetMissingDiscriminatorParameters,
   ): StreamableMethod<GetMissingDiscriminator200Response>;
 }
 
 export interface GetWrongDiscriminator {
   get(
-    options?: GetWrongDiscriminatorParameters
+    options?: GetWrongDiscriminatorParameters,
   ): StreamableMethod<GetWrongDiscriminator200Response>;
 }
 
@@ -50,15 +50,15 @@ export interface Routes {
   (path: "/type/model/inheritance/nested-discriminator/model"): GetModel;
   /** Resource for '/type/model/inheritance/nested-discriminator/recursivemodel' has methods for the following verbs: get, put */
   (
-    path: "/type/model/inheritance/nested-discriminator/recursivemodel"
+    path: "/type/model/inheritance/nested-discriminator/recursivemodel",
   ): GetRecursiveModel;
   /** Resource for '/type/model/inheritance/nested-discriminator/missingdiscriminator' has methods for the following verbs: get */
   (
-    path: "/type/model/inheritance/nested-discriminator/missingdiscriminator"
+    path: "/type/model/inheritance/nested-discriminator/missingdiscriminator",
   ): GetMissingDiscriminator;
   /** Resource for '/type/model/inheritance/nested-discriminator/wrongdiscriminator' has methods for the following verbs: get */
   (
-    path: "/type/model/inheritance/nested-discriminator/wrongdiscriminator"
+    path: "/type/model/inheritance/nested-discriminator/wrongdiscriminator",
   ): GetWrongDiscriminator;
 }
 

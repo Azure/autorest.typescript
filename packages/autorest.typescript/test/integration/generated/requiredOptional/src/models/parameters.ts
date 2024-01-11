@@ -9,7 +9,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 import {
   IntWrapper as IntWrapperMapper,
@@ -20,7 +20,7 @@ import {
   ClassWrapper as ClassWrapperMapper,
   ClassOptionalWrapper as ClassOptionalWrapperMapper,
   ArrayWrapper as ArrayWrapperMapper,
-  ArrayOptionalWrapper as ArrayOptionalWrapperMapper
+  ArrayOptionalWrapper as ArrayOptionalWrapperMapper,
 } from "../models/mappers";
 
 export const accept: OperationParameter = {
@@ -30,9 +30,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -41,10 +41,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const pathParameter: OperationURLParameter = {
@@ -53,9 +53,9 @@ export const pathParameter: OperationURLParameter = {
     serializedName: "pathParameter",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const queryParameter: OperationQueryParameter = {
@@ -63,9 +63,9 @@ export const queryParameter: OperationQueryParameter = {
   mapper: {
     serializedName: "queryParameter",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const queryParameter1: OperationParameter = {
@@ -73,9 +73,9 @@ export const queryParameter1: OperationParameter = {
   mapper: {
     serializedName: "queryParameter",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentType: OperationParameter = {
@@ -85,9 +85,9 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const bodyParameter: OperationParameter = {
@@ -95,9 +95,9 @@ export const bodyParameter: OperationParameter = {
   mapper: {
     serializedName: "bodyParameter",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentType1: OperationParameter = {
@@ -107,9 +107,9 @@ export const contentType1: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const bodyParameter1: OperationParameter = {
@@ -117,9 +117,9 @@ export const bodyParameter1: OperationParameter = {
   mapper: {
     serializedName: "bodyParameter",
     type: {
-      name: "Stream"
-    }
-  }
+      name: "Stream",
+    },
+  },
 };
 
 export const accept1: OperationParameter = {
@@ -129,9 +129,9 @@ export const accept1: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const requiredGlobalPath: OperationURLParameter = {
@@ -140,9 +140,9 @@ export const requiredGlobalPath: OperationURLParameter = {
     serializedName: "required-global-path",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const requiredGlobalQuery: OperationQueryParameter = {
@@ -151,9 +151,9 @@ export const requiredGlobalQuery: OperationQueryParameter = {
     serializedName: "required-global-query",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const optionalGlobalQuery: OperationQueryParameter = {
@@ -161,9 +161,9 @@ export const optionalGlobalQuery: OperationQueryParameter = {
   mapper: {
     serializedName: "optional-global-query",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const bodyParameter2: OperationParameter = {
@@ -171,9 +171,9 @@ export const bodyParameter2: OperationParameter = {
   mapper: {
     serializedName: "bodyParameter",
     type: {
-      name: "Stream"
-    }
-  }
+      name: "Stream",
+    },
+  },
 };
 
 export const bodyParameter3: OperationParameter = {
@@ -182,9 +182,9 @@ export const bodyParameter3: OperationParameter = {
     serializedName: "bodyParameter",
     required: true,
     type: {
-      name: "Stream"
-    }
-  }
+      name: "Stream",
+    },
+  },
 };
 
 export const bodyParameter4: OperationParameter = {
@@ -193,9 +193,9 @@ export const bodyParameter4: OperationParameter = {
     serializedName: "bodyParameter",
     required: true,
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const bodyParameter5: OperationParameter = {
@@ -203,19 +203,19 @@ export const bodyParameter5: OperationParameter = {
   mapper: {
     serializedName: "bodyParameter",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const bodyParameter6: OperationParameter = {
   parameterPath: "bodyParameter",
-  mapper: IntWrapperMapper
+  mapper: IntWrapperMapper,
 };
 
 export const bodyParameter7: OperationParameter = {
   parameterPath: ["options", "bodyParameter"],
-  mapper: IntOptionalWrapperMapper
+  mapper: IntOptionalWrapperMapper,
 };
 
 export const headerParameter: OperationParameter = {
@@ -224,9 +224,9 @@ export const headerParameter: OperationParameter = {
     serializedName: "headerParameter",
     required: true,
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const headerParameter1: OperationParameter = {
@@ -234,9 +234,9 @@ export const headerParameter1: OperationParameter = {
   mapper: {
     serializedName: "headerParameter",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const bodyParameter8: OperationParameter = {
@@ -245,19 +245,19 @@ export const bodyParameter8: OperationParameter = {
     serializedName: "bodyParameter",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const bodyParameter9: OperationParameter = {
   parameterPath: "bodyParameter",
-  mapper: StringWrapperMapper
+  mapper: StringWrapperMapper,
 };
 
 export const bodyParameter10: OperationParameter = {
   parameterPath: ["options", "bodyParameter"],
-  mapper: StringOptionalWrapperMapper
+  mapper: StringOptionalWrapperMapper,
 };
 
 export const headerParameter2: OperationParameter = {
@@ -266,9 +266,9 @@ export const headerParameter2: OperationParameter = {
     serializedName: "headerParameter",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const bodyParameter11: OperationParameter = {
@@ -276,29 +276,29 @@ export const bodyParameter11: OperationParameter = {
   mapper: {
     serializedName: "bodyParameter",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const bodyParameter12: OperationParameter = {
   parameterPath: "bodyParameter",
-  mapper: ProductMapper
+  mapper: ProductMapper,
 };
 
 export const bodyParameter13: OperationParameter = {
   parameterPath: ["options", "bodyParameter"],
-  mapper: ProductMapper
+  mapper: ProductMapper,
 };
 
 export const bodyParameter14: OperationParameter = {
   parameterPath: "bodyParameter",
-  mapper: ClassWrapperMapper
+  mapper: ClassWrapperMapper,
 };
 
 export const bodyParameter15: OperationParameter = {
   parameterPath: ["options", "bodyParameter"],
-  mapper: ClassOptionalWrapperMapper
+  mapper: ClassOptionalWrapperMapper,
 };
 
 export const bodyParameter16: OperationParameter = {
@@ -310,11 +310,11 @@ export const bodyParameter16: OperationParameter = {
       name: "Sequence",
       element: {
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const bodyParameter17: OperationParameter = {
@@ -325,21 +325,21 @@ export const bodyParameter17: OperationParameter = {
       name: "Sequence",
       element: {
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const bodyParameter18: OperationParameter = {
   parameterPath: "bodyParameter",
-  mapper: ArrayWrapperMapper
+  mapper: ArrayWrapperMapper,
 };
 
 export const bodyParameter19: OperationParameter = {
   parameterPath: ["options", "bodyParameter"],
-  mapper: ArrayOptionalWrapperMapper
+  mapper: ArrayOptionalWrapperMapper,
 };
 
 export const headerParameter3: OperationParameter = {
@@ -351,11 +351,11 @@ export const headerParameter3: OperationParameter = {
       name: "Sequence",
       element: {
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const headerParameter4: OperationParameter = {
@@ -366,9 +366,9 @@ export const headerParameter4: OperationParameter = {
       name: "Sequence",
       element: {
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

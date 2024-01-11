@@ -26,77 +26,77 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface GetExtensibleModel {
   /** Receive model with extensible enum discriminator type. */
   get(
-    options?: GetExtensibleModelParameters
+    options?: GetExtensibleModelParameters,
   ): StreamableMethod<GetExtensibleModel200Response>;
   /** Send model with extensible enum discriminator type. */
   put(
-    options: PutExtensibleModelParameters
+    options: PutExtensibleModelParameters,
   ): StreamableMethod<PutExtensibleModel204Response>;
 }
 
 export interface GetExtensibleModelMissingDiscriminator {
   /** Get a model omitting the discriminator. */
   get(
-    options?: GetExtensibleModelMissingDiscriminatorParameters
+    options?: GetExtensibleModelMissingDiscriminatorParameters,
   ): StreamableMethod<GetExtensibleModelMissingDiscriminator200Response>;
 }
 
 export interface GetExtensibleModelWrongDiscriminator {
   /** Get a model containing discriminator value never defined. */
   get(
-    options?: GetExtensibleModelWrongDiscriminatorParameters
+    options?: GetExtensibleModelWrongDiscriminatorParameters,
   ): StreamableMethod<GetExtensibleModelWrongDiscriminator200Response>;
 }
 
 export interface GetFixedModel {
   /** Receive model with fixed enum discriminator type. */
   get(
-    options?: GetFixedModelParameters
+    options?: GetFixedModelParameters,
   ): StreamableMethod<GetFixedModel200Response>;
   /** Send model with fixed enum discriminator type. */
   put(
-    options: PutFixedModelParameters
+    options: PutFixedModelParameters,
   ): StreamableMethod<PutFixedModel204Response>;
 }
 
 export interface GetFixedModelMissingDiscriminator {
   /** Get a model omitting the discriminator. */
   get(
-    options?: GetFixedModelMissingDiscriminatorParameters
+    options?: GetFixedModelMissingDiscriminatorParameters,
   ): StreamableMethod<GetFixedModelMissingDiscriminator200Response>;
 }
 
 export interface GetFixedModelWrongDiscriminator {
   /** Get a model containing discriminator value never defined. */
   get(
-    options?: GetFixedModelWrongDiscriminatorParameters
+    options?: GetFixedModelWrongDiscriminatorParameters,
   ): StreamableMethod<GetFixedModelWrongDiscriminator200Response>;
 }
 
 export interface Routes {
   /** Resource for '/type/model/inheritance/enum-discriminator/extensible-enum' has methods for the following verbs: get, put */
   (
-    path: "/type/model/inheritance/enum-discriminator/extensible-enum"
+    path: "/type/model/inheritance/enum-discriminator/extensible-enum",
   ): GetExtensibleModel;
   /** Resource for '/type/model/inheritance/enum-discriminator/extensible-enum/missingdiscriminator' has methods for the following verbs: get */
   (
-    path: "/type/model/inheritance/enum-discriminator/extensible-enum/missingdiscriminator"
+    path: "/type/model/inheritance/enum-discriminator/extensible-enum/missingdiscriminator",
   ): GetExtensibleModelMissingDiscriminator;
   /** Resource for '/type/model/inheritance/enum-discriminator/extensible-enum/wrongdiscriminator' has methods for the following verbs: get */
   (
-    path: "/type/model/inheritance/enum-discriminator/extensible-enum/wrongdiscriminator"
+    path: "/type/model/inheritance/enum-discriminator/extensible-enum/wrongdiscriminator",
   ): GetExtensibleModelWrongDiscriminator;
   /** Resource for '/type/model/inheritance/enum-discriminator/fixed-enum' has methods for the following verbs: get, put */
   (
-    path: "/type/model/inheritance/enum-discriminator/fixed-enum"
+    path: "/type/model/inheritance/enum-discriminator/fixed-enum",
   ): GetFixedModel;
   /** Resource for '/type/model/inheritance/enum-discriminator/fixed-enum/missingdiscriminator' has methods for the following verbs: get */
   (
-    path: "/type/model/inheritance/enum-discriminator/fixed-enum/missingdiscriminator"
+    path: "/type/model/inheritance/enum-discriminator/fixed-enum/missingdiscriminator",
   ): GetFixedModelMissingDiscriminator;
   /** Resource for '/type/model/inheritance/enum-discriminator/fixed-enum/wrongdiscriminator' has methods for the following verbs: get */
   (
-    path: "/type/model/inheritance/enum-discriminator/fixed-enum/wrongdiscriminator"
+    path: "/type/model/inheritance/enum-discriminator/fixed-enum/wrongdiscriminator",
   ): GetFixedModelWrongDiscriminator;
 }
 

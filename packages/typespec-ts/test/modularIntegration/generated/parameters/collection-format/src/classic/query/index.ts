@@ -41,7 +41,7 @@ export function getQuery(context: CollectionFormatContext) {
 }
 
 export function getQueryOperations(
-  context: CollectionFormatContext
+  context: CollectionFormatContext,
 ): QueryOperations {
   return {
     ...getQuery(context),

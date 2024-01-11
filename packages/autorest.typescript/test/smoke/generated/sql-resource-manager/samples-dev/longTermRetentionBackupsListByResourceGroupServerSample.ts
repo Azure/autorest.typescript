@@ -33,7 +33,7 @@ async function getAllLongTermRetentionBackupsUnderTheServer() {
   for await (let item of client.longTermRetentionBackups.listByResourceGroupServer(
     resourceGroupName,
     locationName,
-    longTermRetentionServerName
+    longTermRetentionServerName,
   )) {
     resArray.push(item);
   }

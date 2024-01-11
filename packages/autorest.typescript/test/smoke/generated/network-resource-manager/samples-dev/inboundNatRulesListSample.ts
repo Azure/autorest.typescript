@@ -29,7 +29,7 @@ async function inboundNatRuleList() {
   const resArray = new Array();
   for await (let item of client.inboundNatRules.list(
     resourceGroupName,
-    loadBalancerName
+    loadBalancerName,
   )) {
     resArray.push(item);
   }

@@ -13,7 +13,7 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
 import {
   CommunityGalleryImagesGetOptionalParams,
-  CommunityGalleryImagesGetResponse
+  CommunityGalleryImagesGetResponse,
 } from "../models";
 
 /** Class containing CommunityGalleryImages operations. */
@@ -39,11 +39,11 @@ export class CommunityGalleryImagesImpl implements CommunityGalleryImages {
     location: string,
     publicGalleryName: string,
     galleryImageName: string,
-    options?: CommunityGalleryImagesGetOptionalParams
+    options?: CommunityGalleryImagesGetOptionalParams,
   ): Promise<CommunityGalleryImagesGetResponse> {
     return this.client.sendOperationRequest(
       { location, publicGalleryName, galleryImageName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 }
@@ -51,16 +51,15 @@ export class CommunityGalleryImagesImpl implements CommunityGalleryImages {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/communityGalleries/{publicGalleryName}/images/{galleryImageName}",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/communityGalleries/{publicGalleryName}/images/{galleryImageName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.CommunityGalleryImage
+      bodyMapper: Mappers.CommunityGalleryImage,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -68,8 +67,8 @@ const getOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.location,
     Parameters.galleryImageName,
-    Parameters.publicGalleryName
+    Parameters.publicGalleryName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

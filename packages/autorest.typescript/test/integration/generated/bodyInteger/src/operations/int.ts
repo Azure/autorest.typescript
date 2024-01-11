@@ -34,7 +34,7 @@ import {
   IntGetInvalidUnixTimeOptionalParams,
   IntGetInvalidUnixTimeResponse,
   IntGetNullUnixTimeOptionalParams,
-  IntGetNullUnixTimeResponse
+  IntGetNullUnixTimeResponse,
 } from "../models";
 
 /** Class containing Int operations. */
@@ -62,11 +62,11 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: IntGetInvalidOptionalParams
+    options?: IntGetInvalidOptionalParams,
   ): Promise<IntGetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getInvalidOperationSpec
+      getInvalidOperationSpec,
     );
   }
 
@@ -75,11 +75,11 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getOverflowInt32(
-    options?: IntGetOverflowInt32OptionalParams
+    options?: IntGetOverflowInt32OptionalParams,
   ): Promise<IntGetOverflowInt32Response> {
     return this.client.sendOperationRequest(
       { options },
-      getOverflowInt32OperationSpec
+      getOverflowInt32OperationSpec,
     );
   }
 
@@ -88,11 +88,11 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getUnderflowInt32(
-    options?: IntGetUnderflowInt32OptionalParams
+    options?: IntGetUnderflowInt32OptionalParams,
   ): Promise<IntGetUnderflowInt32Response> {
     return this.client.sendOperationRequest(
       { options },
-      getUnderflowInt32OperationSpec
+      getUnderflowInt32OperationSpec,
     );
   }
 
@@ -101,11 +101,11 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getOverflowInt64(
-    options?: IntGetOverflowInt64OptionalParams
+    options?: IntGetOverflowInt64OptionalParams,
   ): Promise<IntGetOverflowInt64Response> {
     return this.client.sendOperationRequest(
       { options },
-      getOverflowInt64OperationSpec
+      getOverflowInt64OperationSpec,
     );
   }
 
@@ -114,11 +114,11 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getUnderflowInt64(
-    options?: IntGetUnderflowInt64OptionalParams
+    options?: IntGetUnderflowInt64OptionalParams,
   ): Promise<IntGetUnderflowInt64Response> {
     return this.client.sendOperationRequest(
       { options },
-      getUnderflowInt64OperationSpec
+      getUnderflowInt64OperationSpec,
     );
   }
 
@@ -129,11 +129,11 @@ export class IntImpl implements Int {
    */
   putMax32(
     intBody: number,
-    options?: IntPutMax32OptionalParams
+    options?: IntPutMax32OptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { intBody, options },
-      putMax32OperationSpec
+      putMax32OperationSpec,
     );
   }
 
@@ -144,11 +144,11 @@ export class IntImpl implements Int {
    */
   putMax64(
     intBody: number,
-    options?: IntPutMax64OptionalParams
+    options?: IntPutMax64OptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { intBody, options },
-      putMax64OperationSpec
+      putMax64OperationSpec,
     );
   }
 
@@ -159,11 +159,11 @@ export class IntImpl implements Int {
    */
   putMin32(
     intBody: number,
-    options?: IntPutMin32OptionalParams
+    options?: IntPutMin32OptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { intBody, options },
-      putMin32OperationSpec
+      putMin32OperationSpec,
     );
   }
 
@@ -174,11 +174,11 @@ export class IntImpl implements Int {
    */
   putMin64(
     intBody: number,
-    options?: IntPutMin64OptionalParams
+    options?: IntPutMin64OptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { intBody, options },
-      putMin64OperationSpec
+      putMin64OperationSpec,
     );
   }
 
@@ -187,11 +187,11 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getUnixTime(
-    options?: IntGetUnixTimeOptionalParams
+    options?: IntGetUnixTimeOptionalParams,
   ): Promise<IntGetUnixTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getUnixTimeOperationSpec
+      getUnixTimeOperationSpec,
     );
   }
 
@@ -202,11 +202,11 @@ export class IntImpl implements Int {
    */
   putUnixTimeDate(
     intBody: Date,
-    options?: IntPutUnixTimeDateOptionalParams
+    options?: IntPutUnixTimeDateOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { intBody, options },
-      putUnixTimeDateOperationSpec
+      putUnixTimeDateOperationSpec,
     );
   }
 
@@ -215,11 +215,11 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getInvalidUnixTime(
-    options?: IntGetInvalidUnixTimeOptionalParams
+    options?: IntGetInvalidUnixTimeOptionalParams,
   ): Promise<IntGetInvalidUnixTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getInvalidUnixTimeOperationSpec
+      getInvalidUnixTimeOperationSpec,
     );
   }
 
@@ -228,11 +228,11 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getNullUnixTime(
-    options?: IntGetNullUnixTimeOptionalParams
+    options?: IntGetNullUnixTimeOptionalParams,
   ): Promise<IntGetNullUnixTimeResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getNullUnixTimeOperationSpec
+      getNullUnixTimeOperationSpec,
     );
   }
 }
@@ -244,90 +244,90 @@ const getNullOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getInvalidOperationSpec: coreClient.OperationSpec = {
   path: "/int/invalid",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getOverflowInt32OperationSpec: coreClient.OperationSpec = {
   path: "/int/overflowint32",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getUnderflowInt32OperationSpec: coreClient.OperationSpec = {
   path: "/int/underflowint32",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getOverflowInt64OperationSpec: coreClient.OperationSpec = {
   path: "/int/overflowint64",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getUnderflowInt64OperationSpec: coreClient.OperationSpec = {
   path: "/int/underflowint64",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putMax32OperationSpec: coreClient.OperationSpec = {
   path: "/int/max/32",
@@ -335,14 +335,14 @@ const putMax32OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.intBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const putMax64OperationSpec: coreClient.OperationSpec = {
   path: "/int/max/64",
@@ -350,14 +350,14 @@ const putMax64OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.intBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const putMin32OperationSpec: coreClient.OperationSpec = {
   path: "/int/min/32",
@@ -365,14 +365,14 @@ const putMin32OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.intBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const putMin64OperationSpec: coreClient.OperationSpec = {
   path: "/int/min/64",
@@ -380,29 +380,29 @@ const putMin64OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.intBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getUnixTimeOperationSpec: coreClient.OperationSpec = {
   path: "/int/unixtime",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "UnixTime" } }
+      bodyMapper: { type: { name: "UnixTime" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putUnixTimeDateOperationSpec: coreClient.OperationSpec = {
   path: "/int/unixtime",
@@ -410,42 +410,42 @@ const putUnixTimeDateOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.intBody1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getInvalidUnixTimeOperationSpec: coreClient.OperationSpec = {
   path: "/int/invalidunixtime",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "UnixTime" } }
+      bodyMapper: { type: { name: "UnixTime" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getNullUnixTimeOperationSpec: coreClient.OperationSpec = {
   path: "/int/nullunixtime",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "UnixTime" } }
+      bodyMapper: { type: { name: "UnixTime" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

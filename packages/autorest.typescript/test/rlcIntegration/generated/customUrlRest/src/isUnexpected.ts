@@ -3,16 +3,16 @@
 
 import {
   PathsGetEmpty200Response,
-  PathsGetEmptyDefaultResponse
+  PathsGetEmptyDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = { "GET /customuri": ["200"] };
 
 export function isUnexpected(
-  response: PathsGetEmpty200Response | PathsGetEmptyDefaultResponse
+  response: PathsGetEmpty200Response | PathsGetEmptyDefaultResponse,
 ): response is PathsGetEmptyDefaultResponse;
 export function isUnexpected(
-  response: PathsGetEmpty200Response | PathsGetEmptyDefaultResponse
+  response: PathsGetEmpty200Response | PathsGetEmptyDefaultResponse,
 ): response is PathsGetEmptyDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
@@ -62,7 +62,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

@@ -30,7 +30,7 @@ async function keyVaultListPrivateEndpointConnection() {
   const resArray = new Array();
   for await (let item of client.privateEndpointConnections.listByResource(
     resourceGroupName,
-    vaultName
+    vaultName,
   )) {
     resArray.push(item);
   }

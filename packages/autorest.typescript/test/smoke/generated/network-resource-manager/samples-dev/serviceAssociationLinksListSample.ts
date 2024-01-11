@@ -30,7 +30,7 @@ async function getServiceAssociationLinks() {
   const result = await client.serviceAssociationLinks.list(
     resourceGroupName,
     virtualNetworkName,
-    subnetName
+    subnetName,
   );
   console.log(result);
 }

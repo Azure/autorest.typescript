@@ -11,7 +11,7 @@ import { ModerationsCreateOptions } from "../../models/options.js";
 export interface ModerationsOperations {
   create: (
     content: CreateModerationRequest,
-    options?: ModerationsCreateOptions
+    options?: ModerationsCreateOptions,
   ) => Promise<CreateModerationResponse>;
 }
 
@@ -19,13 +19,13 @@ export function getModerations(context: OpenAIContext) {
   return {
     create: (
       content: CreateModerationRequest,
-      options?: ModerationsCreateOptions
+      options?: ModerationsCreateOptions,
     ) => create(context, content, options),
   };
 }
 
 export function getModerationsOperations(
-  context: OpenAIContext
+  context: OpenAIContext,
 ): ModerationsOperations {
   return {
     ...getModerations(context),

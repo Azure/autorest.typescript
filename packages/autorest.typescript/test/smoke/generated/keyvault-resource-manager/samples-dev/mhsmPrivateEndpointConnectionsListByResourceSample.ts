@@ -30,7 +30,7 @@ async function listManagedHsmPoolsInASubscription() {
   const resArray = new Array();
   for await (let item of client.mhsmPrivateEndpointConnections.listByResource(
     resourceGroupName,
-    name
+    name,
   )) {
     resArray.push(item);
   }

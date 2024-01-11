@@ -11,7 +11,7 @@ import {
   CollectionNameResponseListOutput,
   CollectionPathResponseOutput,
   ResourceSetRuleConfigOutput,
-  ResourceSetRuleConfigListOutput
+  ResourceSetRuleConfigListOutput,
 } from "./outputModels";
 
 /** Get an account */

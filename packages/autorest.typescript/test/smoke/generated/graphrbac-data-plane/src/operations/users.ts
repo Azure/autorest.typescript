@@ -29,7 +29,7 @@ import {
   UsersGetResponse,
   UserUpdateParameters,
   UsersUpdateOptionalParams,
-  UsersDeleteOptionalParams
+  UsersDeleteOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -50,7 +50,7 @@ export class UsersImpl implements Users {
    * @param options The options parameters.
    */
   public list(
-    options?: UsersListOptionalParams
+    options?: UsersListOptionalParams,
   ): PagedAsyncIterableIterator<User> {
     const iter = this.listPagingAll(options);
     return {
@@ -65,13 +65,13 @@ export class UsersImpl implements Users {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listPagingPage(
     options?: UsersListOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<User[]> {
     let result: UsersListResponse;
     let continuationToken = settings?.continuationToken;
@@ -92,7 +92,7 @@ export class UsersImpl implements Users {
   }
 
   private async *listPagingAll(
-    options?: UsersListOptionalParams
+    options?: UsersListOptionalParams,
   ): AsyncIterableIterator<User> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -108,7 +108,7 @@ export class UsersImpl implements Users {
   public listMemberGroups(
     objectId: string,
     parameters: UserGetMemberGroupsParameters,
-    options?: UsersGetMemberGroupsOptionalParams
+    options?: UsersGetMemberGroupsOptionalParams,
   ): PagedAsyncIterableIterator<string> {
     const iter = this.getMemberGroupsPagingAll(objectId, parameters, options);
     return {
@@ -126,9 +126,9 @@ export class UsersImpl implements Users {
           objectId,
           parameters,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -136,7 +136,7 @@ export class UsersImpl implements Users {
     objectId: string,
     parameters: UserGetMemberGroupsParameters,
     options?: UsersGetMemberGroupsOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<string[]> {
     let result: UsersGetMemberGroupsResponse;
     result = await this._getMemberGroups(objectId, parameters, options);
@@ -146,12 +146,12 @@ export class UsersImpl implements Users {
   private async *getMemberGroupsPagingAll(
     objectId: string,
     parameters: UserGetMemberGroupsParameters,
-    options?: UsersGetMemberGroupsOptionalParams
+    options?: UsersGetMemberGroupsOptionalParams,
   ): AsyncIterableIterator<string> {
     for await (const page of this.getMemberGroupsPagingPage(
       objectId,
       parameters,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -164,7 +164,7 @@ export class UsersImpl implements Users {
    */
   public listNext(
     nextLink: string,
-    options?: UsersListNextOptionalParams
+    options?: UsersListNextOptionalParams,
   ): PagedAsyncIterableIterator<User> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
@@ -179,14 +179,14 @@ export class UsersImpl implements Users {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listNextPagingPage(nextLink, options, settings);
-      }
+      },
     };
   }
 
   private async *listNextPagingPage(
     nextLink: string,
     options?: UsersListNextOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<User[]> {
     let result: UsersListNextResponse;
     let continuationToken = settings?.continuationToken;
@@ -208,7 +208,7 @@ export class UsersImpl implements Users {
 
   private async *listNextPagingAll(
     nextLink: string,
-    options?: UsersListNextOptionalParams
+    options?: UsersListNextOptionalParams,
   ): AsyncIterableIterator<User> {
     for await (const page of this.listNextPagingPage(nextLink, options)) {
       yield* page;
@@ -222,11 +222,11 @@ export class UsersImpl implements Users {
    */
   create(
     parameters: UserCreateParameters,
-    options?: UsersCreateOptionalParams
+    options?: UsersCreateOptionalParams,
   ): Promise<UsersCreateResponse> {
     return this.client.sendOperationRequest(
       { parameters, options },
-      createOperationSpec
+      createOperationSpec,
     );
   }
 
@@ -245,11 +245,11 @@ export class UsersImpl implements Users {
    */
   get(
     upnOrObjectId: string,
-    options?: UsersGetOptionalParams
+    options?: UsersGetOptionalParams,
   ): Promise<UsersGetResponse> {
     return this.client.sendOperationRequest(
       { upnOrObjectId, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -262,11 +262,11 @@ export class UsersImpl implements Users {
   update(
     upnOrObjectId: string,
     parameters: UserUpdateParameters,
-    options?: UsersUpdateOptionalParams
+    options?: UsersUpdateOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { upnOrObjectId, parameters, options },
-      updateOperationSpec
+      updateOperationSpec,
     );
   }
 
@@ -277,11 +277,11 @@ export class UsersImpl implements Users {
    */
   delete(
     upnOrObjectId: string,
-    options?: UsersDeleteOptionalParams
+    options?: UsersDeleteOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { upnOrObjectId, options },
-      deleteOperationSpec
+      deleteOperationSpec,
     );
   }
 
@@ -294,11 +294,11 @@ export class UsersImpl implements Users {
   private _getMemberGroups(
     objectId: string,
     parameters: UserGetMemberGroupsParameters,
-    options?: UsersGetMemberGroupsOptionalParams
+    options?: UsersGetMemberGroupsOptionalParams,
   ): Promise<UsersGetMemberGroupsResponse> {
     return this.client.sendOperationRequest(
       { objectId, parameters, options },
-      getMemberGroupsOperationSpec
+      getMemberGroupsOperationSpec,
     );
   }
 
@@ -309,11 +309,11 @@ export class UsersImpl implements Users {
    */
   private _listNext(
     nextLink: string,
-    options?: UsersListNextOptionalParams
+    options?: UsersListNextOptionalParams,
   ): Promise<UsersListNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listNextOperationSpec
+      listNextOperationSpec,
     );
   }
 }
@@ -325,58 +325,58 @@ const createOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     201: {
-      bodyMapper: Mappers.User
+      bodyMapper: Mappers.User,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   requestBody: Parameters.parameters11,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/users",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.UserListResult
+      bodyMapper: Mappers.UserListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [
     Parameters.apiVersion,
     Parameters.filter,
-    Parameters.expand
+    Parameters.expand,
   ],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/users/{upnOrObjectId}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.User
+      bodyMapper: Mappers.User,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
-    Parameters.upnOrObjectId
+    Parameters.upnOrObjectId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const updateOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/users/{upnOrObjectId}",
@@ -384,19 +384,19 @@ const updateOperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   requestBody: Parameters.parameters12,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
-    Parameters.upnOrObjectId
+    Parameters.upnOrObjectId,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/users/{upnOrObjectId}",
@@ -404,49 +404,49 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.tenantID,
-    Parameters.upnOrObjectId
+    Parameters.upnOrObjectId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMemberGroupsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/users/{objectId}/getMemberGroups",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.UserGetMemberGroupsResult
+      bodyMapper: Mappers.UserGetMemberGroupsResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   requestBody: Parameters.parameters13,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listNextOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.UserListResult
+      bodyMapper: Mappers.UserListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

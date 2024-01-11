@@ -13,7 +13,7 @@ import { Op1Options } from "../models/options.js";
 export function _op1Send(
   context: Client,
   body: A,
-  options: Op1Options = { requestOptions: {} }
+  options: Op1Options = { requestOptions: {} },
 ): StreamableMethod<Op1204Response> {
   return context
     .path("/")
@@ -34,7 +34,7 @@ export async function _op1Deserialize(result: Op1204Response): Promise<void> {
 export async function op1(
   context: Client,
   body: A,
-  options: Op1Options = { requestOptions: {} }
+  options: Op1Options = { requestOptions: {} },
 ): Promise<void> {
   const result = await _op1Send(context, body, options);
   return _op1Deserialize(result);

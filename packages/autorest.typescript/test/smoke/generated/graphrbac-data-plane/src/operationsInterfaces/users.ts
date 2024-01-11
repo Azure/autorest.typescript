@@ -20,7 +20,7 @@ import {
   UsersGetResponse,
   UserUpdateParameters,
   UsersUpdateOptionalParams,
-  UsersDeleteOptionalParams
+  UsersDeleteOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -40,7 +40,7 @@ export interface Users {
   listMemberGroups(
     objectId: string,
     parameters: UserGetMemberGroupsParameters,
-    options?: UsersGetMemberGroupsOptionalParams
+    options?: UsersGetMemberGroupsOptionalParams,
   ): PagedAsyncIterableIterator<string>;
   /**
    * Gets a list of users for the current tenant.
@@ -49,7 +49,7 @@ export interface Users {
    */
   listNext(
     nextLink: string,
-    options?: UsersListNextOptionalParams
+    options?: UsersListNextOptionalParams,
   ): PagedAsyncIterableIterator<User>;
   /**
    * Create a new user.
@@ -58,7 +58,7 @@ export interface Users {
    */
   create(
     parameters: UserCreateParameters,
-    options?: UsersCreateOptionalParams
+    options?: UsersCreateOptionalParams,
   ): Promise<UsersCreateResponse>;
   /**
    * Gets user information from the directory.
@@ -67,7 +67,7 @@ export interface Users {
    */
   get(
     upnOrObjectId: string,
-    options?: UsersGetOptionalParams
+    options?: UsersGetOptionalParams,
   ): Promise<UsersGetResponse>;
   /**
    * Updates a user.
@@ -78,7 +78,7 @@ export interface Users {
   update(
     upnOrObjectId: string,
     parameters: UserUpdateParameters,
-    options?: UsersUpdateOptionalParams
+    options?: UsersUpdateOptionalParams,
   ): Promise<void>;
   /**
    * Delete a user.
@@ -87,6 +87,6 @@ export interface Users {
    */
   delete(
     upnOrObjectId: string,
-    options?: UsersDeleteOptionalParams
+    options?: UsersDeleteOptionalParams,
   ): Promise<void>;
 }

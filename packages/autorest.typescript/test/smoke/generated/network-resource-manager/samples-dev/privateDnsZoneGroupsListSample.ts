@@ -29,7 +29,7 @@ async function listPrivateEndpointsInResourceGroup() {
   const resArray = new Array();
   for await (let item of client.privateDnsZoneGroups.list(
     privateEndpointName,
-    resourceGroupName
+    resourceGroupName,
   )) {
     resArray.push(item);
   }

@@ -18,7 +18,7 @@ import {
   TriggersUnsubscribeFromEventsOptionalParams,
   TriggersUnsubscribeFromEventsResponse,
   TriggersStartOptionalParams,
-  TriggersStopOptionalParams
+  TriggersStopOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -33,7 +33,7 @@ export interface Triggers {
   listByFactory(
     resourceGroupName: string,
     factoryName: string,
-    options?: TriggersListByFactoryOptionalParams
+    options?: TriggersListByFactoryOptionalParams,
   ): PagedAsyncIterableIterator<TriggerResource>;
   /**
    * Query triggers.
@@ -46,7 +46,7 @@ export interface Triggers {
     resourceGroupName: string,
     factoryName: string,
     filterParameters: TriggerFilterParameters,
-    options?: TriggersQueryByFactoryOptionalParams
+    options?: TriggersQueryByFactoryOptionalParams,
   ): Promise<TriggersQueryByFactoryResponse>;
   /**
    * Creates or updates a trigger.
@@ -61,7 +61,7 @@ export interface Triggers {
     factoryName: string,
     triggerName: string,
     trigger: TriggerResource,
-    options?: TriggersCreateOrUpdateOptionalParams
+    options?: TriggersCreateOrUpdateOptionalParams,
   ): Promise<TriggersCreateOrUpdateResponse>;
   /**
    * Gets a trigger.
@@ -74,7 +74,7 @@ export interface Triggers {
     resourceGroupName: string,
     factoryName: string,
     triggerName: string,
-    options?: TriggersGetOptionalParams
+    options?: TriggersGetOptionalParams,
   ): Promise<TriggersGetResponse>;
   /**
    * Deletes a trigger.
@@ -87,7 +87,7 @@ export interface Triggers {
     resourceGroupName: string,
     factoryName: string,
     triggerName: string,
-    options?: TriggersDeleteOptionalParams
+    options?: TriggersDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Subscribe event trigger to events.
@@ -100,7 +100,7 @@ export interface Triggers {
     resourceGroupName: string,
     factoryName: string,
     triggerName: string,
-    options?: TriggersSubscribeToEventsOptionalParams
+    options?: TriggersSubscribeToEventsOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<TriggersSubscribeToEventsResponse>,
@@ -118,7 +118,7 @@ export interface Triggers {
     resourceGroupName: string,
     factoryName: string,
     triggerName: string,
-    options?: TriggersSubscribeToEventsOptionalParams
+    options?: TriggersSubscribeToEventsOptionalParams,
   ): Promise<TriggersSubscribeToEventsResponse>;
   /**
    * Get a trigger's event subscription status.
@@ -131,7 +131,7 @@ export interface Triggers {
     resourceGroupName: string,
     factoryName: string,
     triggerName: string,
-    options?: TriggersGetEventSubscriptionStatusOptionalParams
+    options?: TriggersGetEventSubscriptionStatusOptionalParams,
   ): Promise<TriggersGetEventSubscriptionStatusResponse>;
   /**
    * Unsubscribe event trigger from events.
@@ -144,7 +144,7 @@ export interface Triggers {
     resourceGroupName: string,
     factoryName: string,
     triggerName: string,
-    options?: TriggersUnsubscribeFromEventsOptionalParams
+    options?: TriggersUnsubscribeFromEventsOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<TriggersUnsubscribeFromEventsResponse>,
@@ -162,7 +162,7 @@ export interface Triggers {
     resourceGroupName: string,
     factoryName: string,
     triggerName: string,
-    options?: TriggersUnsubscribeFromEventsOptionalParams
+    options?: TriggersUnsubscribeFromEventsOptionalParams,
   ): Promise<TriggersUnsubscribeFromEventsResponse>;
   /**
    * Starts a trigger.
@@ -175,7 +175,7 @@ export interface Triggers {
     resourceGroupName: string,
     factoryName: string,
     triggerName: string,
-    options?: TriggersStartOptionalParams
+    options?: TriggersStartOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Starts a trigger.
@@ -188,7 +188,7 @@ export interface Triggers {
     resourceGroupName: string,
     factoryName: string,
     triggerName: string,
-    options?: TriggersStartOptionalParams
+    options?: TriggersStartOptionalParams,
   ): Promise<void>;
   /**
    * Stops a trigger.
@@ -201,7 +201,7 @@ export interface Triggers {
     resourceGroupName: string,
     factoryName: string,
     triggerName: string,
-    options?: TriggersStopOptionalParams
+    options?: TriggersStopOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Stops a trigger.
@@ -214,6 +214,6 @@ export interface Triggers {
     resourceGroupName: string,
     factoryName: string,
     triggerName: string,
-    options?: TriggersStopOptionalParams
+    options?: TriggersStopOptionalParams,
   ): Promise<void>;
 }

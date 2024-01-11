@@ -32,7 +32,7 @@ async function getAllTargetGroupsInAnAgent() {
   for await (let item of client.jobTargetGroups.listByAgent(
     resourceGroupName,
     serverName,
-    jobAgentName
+    jobAgentName,
   )) {
     resArray.push(item);
   }

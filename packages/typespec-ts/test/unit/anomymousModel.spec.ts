@@ -45,7 +45,7 @@ describe("anonymous model", () => {
       assert.ok(models);
       const { inputModelFile } = models!;
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
       export interface Foo {
@@ -118,7 +118,7 @@ describe("anonymous model", () => {
       const { outputModelFile } = models!;
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
       // console.log(outputModelFile?.content);
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
       export interface FooOutput {
@@ -185,7 +185,7 @@ describe("anonymous model", () => {
       assert.ok(models);
       const { inputModelFile, outputModelFile } = models!;
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
       export interface FooOutput {
@@ -215,7 +215,7 @@ describe("anonymous model", () => {
       `
       );
 
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
       export interface Foo {
@@ -265,7 +265,7 @@ describe("anonymous model", () => {
       `);
       assert.ok(schemaOutput);
       // console.log(schemaOutput);
-      assertEqualContent(
+      await assertEqualContent(
         schemaOutput?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -300,7 +300,7 @@ describe("anonymous model", () => {
       assert.ok(models);
       const { outputModelFile } = models!;
       assert.ok(outputModelFile);
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
       export interface BarOutput {
@@ -309,7 +309,7 @@ describe("anonymous model", () => {
       `
       );
       // console.log(schemaOutput);
-      assertEqualContent(
+      await assertEqualContent(
         schemaOutput?.content!,
         `
         import { HttpResponse } from "@azure-rest/core-client";

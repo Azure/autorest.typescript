@@ -29,7 +29,7 @@ import {
   PolymorphismPutComplicatedOptionalParams,
   PolymorphismPutMissingDiscriminatorOptionalParams,
   PolymorphismPutMissingDiscriminatorResponse,
-  PolymorphismPutValidMissingRequiredOptionalParams
+  PolymorphismPutValidMissingRequiredOptionalParams,
 } from "../models";
 
 /** Class containing Polymorphism operations. */
@@ -49,7 +49,7 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   async getValid(
-    options?: PolymorphismGetValidOptionalParams
+    options?: PolymorphismGetValidOptionalParams,
   ): Promise<PolymorphismGetValidResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getValid",
@@ -57,9 +57,9 @@ export class PolymorphismImpl implements Polymorphism {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getValidOperationSpec
+          getValidOperationSpec,
         ) as Promise<PolymorphismGetValidResponse>;
-      }
+      },
     );
   }
 
@@ -102,7 +102,7 @@ export class PolymorphismImpl implements Polymorphism {
    */
   async putValid(
     complexBody: FishUnion,
-    options?: PolymorphismPutValidOptionalParams
+    options?: PolymorphismPutValidOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putValid",
@@ -110,9 +110,9 @@ export class PolymorphismImpl implements Polymorphism {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putValidOperationSpec
+          putValidOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 
@@ -121,7 +121,7 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   async getDotSyntax(
-    options?: PolymorphismGetDotSyntaxOptionalParams
+    options?: PolymorphismGetDotSyntaxOptionalParams,
   ): Promise<PolymorphismGetDotSyntaxResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getDotSyntax",
@@ -129,9 +129,9 @@ export class PolymorphismImpl implements Polymorphism {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getDotSyntaxOperationSpec
+          getDotSyntaxOperationSpec,
         ) as Promise<PolymorphismGetDotSyntaxResponse>;
-      }
+      },
     );
   }
 
@@ -142,7 +142,7 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   async getComposedWithDiscriminator(
-    options?: PolymorphismGetComposedWithDiscriminatorOptionalParams
+    options?: PolymorphismGetComposedWithDiscriminatorOptionalParams,
   ): Promise<PolymorphismGetComposedWithDiscriminatorResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getComposedWithDiscriminator",
@@ -150,9 +150,9 @@ export class PolymorphismImpl implements Polymorphism {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getComposedWithDiscriminatorOperationSpec
+          getComposedWithDiscriminatorOperationSpec,
         ) as Promise<PolymorphismGetComposedWithDiscriminatorResponse>;
-      }
+      },
     );
   }
 
@@ -163,7 +163,7 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   async getComposedWithoutDiscriminator(
-    options?: PolymorphismGetComposedWithoutDiscriminatorOptionalParams
+    options?: PolymorphismGetComposedWithoutDiscriminatorOptionalParams,
   ): Promise<PolymorphismGetComposedWithoutDiscriminatorResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getComposedWithoutDiscriminator",
@@ -171,9 +171,9 @@ export class PolymorphismImpl implements Polymorphism {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getComposedWithoutDiscriminatorOperationSpec
+          getComposedWithoutDiscriminatorOperationSpec,
         ) as Promise<PolymorphismGetComposedWithoutDiscriminatorResponse>;
-      }
+      },
     );
   }
 
@@ -183,7 +183,7 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   async getComplicated(
-    options?: PolymorphismGetComplicatedOptionalParams
+    options?: PolymorphismGetComplicatedOptionalParams,
   ): Promise<PolymorphismGetComplicatedResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getComplicated",
@@ -191,9 +191,9 @@ export class PolymorphismImpl implements Polymorphism {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getComplicatedOperationSpec
+          getComplicatedOperationSpec,
         ) as Promise<PolymorphismGetComplicatedResponse>;
-      }
+      },
     );
   }
 
@@ -205,7 +205,7 @@ export class PolymorphismImpl implements Polymorphism {
    */
   async putComplicated(
     complexBody: SalmonUnion,
-    options?: PolymorphismPutComplicatedOptionalParams
+    options?: PolymorphismPutComplicatedOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putComplicated",
@@ -213,9 +213,9 @@ export class PolymorphismImpl implements Polymorphism {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putComplicatedOperationSpec
+          putComplicatedOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 
@@ -226,7 +226,7 @@ export class PolymorphismImpl implements Polymorphism {
    */
   async putMissingDiscriminator(
     complexBody: SalmonUnion,
-    options?: PolymorphismPutMissingDiscriminatorOptionalParams
+    options?: PolymorphismPutMissingDiscriminatorOptionalParams,
   ): Promise<PolymorphismPutMissingDiscriminatorResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putMissingDiscriminator",
@@ -234,9 +234,9 @@ export class PolymorphismImpl implements Polymorphism {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putMissingDiscriminatorOperationSpec
+          putMissingDiscriminatorOperationSpec,
         ) as Promise<PolymorphismPutMissingDiscriminatorResponse>;
-      }
+      },
     );
   }
 
@@ -274,7 +274,7 @@ export class PolymorphismImpl implements Polymorphism {
    */
   async putValidMissingRequired(
     complexBody: FishUnion,
-    options?: PolymorphismPutValidMissingRequiredOptionalParams
+    options?: PolymorphismPutValidMissingRequiredOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putValidMissingRequired",
@@ -282,9 +282,9 @@ export class PolymorphismImpl implements Polymorphism {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putValidMissingRequiredOperationSpec
+          putValidMissingRequiredOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 }
@@ -296,15 +296,15 @@ const getValidOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Fish
+      bodyMapper: Mappers.Fish,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putValidOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphism/valid",
@@ -312,74 +312,74 @@ const putValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody15,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDotSyntaxOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphism/dotsyntax",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DotFish
+      bodyMapper: Mappers.DotFish,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getComposedWithDiscriminatorOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphism/composedWithDiscriminator",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DotFishMarket
+      bodyMapper: Mappers.DotFishMarket,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getComposedWithoutDiscriminatorOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphism/composedWithoutDiscriminator",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DotFishMarket
+      bodyMapper: Mappers.DotFishMarket,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getComplicatedOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphism/complicated",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Salmon
+      bodyMapper: Mappers.Salmon,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putComplicatedOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphism/complicated",
@@ -387,31 +387,31 @@ const putComplicatedOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody16,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const putMissingDiscriminatorOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphism/missingdiscriminator",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.Salmon
+      bodyMapper: Mappers.Salmon,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody16,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const putValidMissingRequiredOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphism/missingrequired/invalid",
@@ -419,12 +419,12 @@ const putValidMissingRequiredOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody15,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

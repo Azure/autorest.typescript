@@ -31,7 +31,7 @@ async function cancelTheManagedInstanceManagementOperation() {
   const result = await client.managedInstanceOperations.cancel(
     resourceGroupName,
     managedInstanceName,
-    operationId
+    operationId,
   );
   console.log(result);
 }

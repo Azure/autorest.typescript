@@ -7,7 +7,7 @@ import {
   MetadataRoleListOutput,
   ErrorResponseModelOutput,
   MetadataPolicyListOutput,
-  MetadataPolicyOutput
+  MetadataPolicyOutput,
 } from "./outputModels";
 
 /** Lists roles for Purview Account */

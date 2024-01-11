@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   P2SVpnProfileParameters,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -28,14 +28,14 @@ async function generateP2SVpnGatewayVpnprofile() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const gatewayName = "p2sVpnGateway1";
   const parameters: P2SVpnProfileParameters = {
-    authenticationMethod: "EAPTLS"
+    authenticationMethod: "EAPTLS",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.p2SVpnGateways.beginGenerateVpnProfileAndWait(
     resourceGroupName,
     gatewayName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

@@ -32,7 +32,7 @@ async function getAllLongTermRetentionBackupsUnderTheDatabase() {
   for await (let item of client.longTermRetentionBackups.listByDatabase(
     locationName,
     longTermRetentionServerName,
-    longTermRetentionDatabaseName
+    longTermRetentionDatabaseName,
   )) {
     resArray.push(item);
   }

@@ -13,13 +13,13 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface NoOperationParams {
   get(
-    options?: NoOperationParamsParameters
+    options?: NoOperationParamsParameters,
   ): StreamableMethod<NoOperationParams204Response>;
 }
 
 export interface WithOperationPathParam {
   get(
-    options?: WithOperationPathParamParameters
+    options?: WithOperationPathParamParameters,
   ): StreamableMethod<WithOperationPathParam204Response>;
 }
 

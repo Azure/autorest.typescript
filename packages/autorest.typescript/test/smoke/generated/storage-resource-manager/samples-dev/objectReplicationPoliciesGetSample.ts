@@ -30,7 +30,7 @@ async function storageAccountGetObjectReplicationPolicies() {
   const result = await client.objectReplicationPoliciesOperations.get(
     resourceGroupName,
     accountName,
-    objectReplicationPolicyId
+    objectReplicationPolicyId,
   );
   console.log(result);
 }

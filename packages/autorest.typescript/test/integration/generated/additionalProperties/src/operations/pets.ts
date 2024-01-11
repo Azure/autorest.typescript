@@ -29,7 +29,7 @@ import {
   PetsCreateAPInPropertiesResponse,
   PetAPInPropertiesWithAPString,
   PetsCreateAPInPropertiesWithAPStringOptionalParams,
-  PetsCreateAPInPropertiesWithAPStringResponse
+  PetsCreateAPInPropertiesWithAPStringResponse,
 } from "../models";
 
 /** Class containing Pets operations. */
@@ -51,11 +51,11 @@ export class PetsImpl implements Pets {
    */
   createAPTrue(
     createParameters: PetAPTrue,
-    options?: PetsCreateAPTrueOptionalParams
+    options?: PetsCreateAPTrueOptionalParams,
   ): Promise<PetsCreateAPTrueResponse> {
     return this.client.sendOperationRequest(
       { createParameters, options },
-      createAPTrueOperationSpec
+      createAPTrueOperationSpec,
     );
   }
 
@@ -66,11 +66,11 @@ export class PetsImpl implements Pets {
    */
   createCatAPTrue(
     createParameters: CatAPTrue,
-    options?: PetsCreateCatAPTrueOptionalParams
+    options?: PetsCreateCatAPTrueOptionalParams,
   ): Promise<PetsCreateCatAPTrueResponse> {
     return this.client.sendOperationRequest(
       { createParameters, options },
-      createCatAPTrueOperationSpec
+      createCatAPTrueOperationSpec,
     );
   }
 
@@ -81,11 +81,11 @@ export class PetsImpl implements Pets {
    */
   createAPObject(
     createParameters: PetAPObject,
-    options?: PetsCreateAPObjectOptionalParams
+    options?: PetsCreateAPObjectOptionalParams,
   ): Promise<PetsCreateAPObjectResponse> {
     return this.client.sendOperationRequest(
       { createParameters, options },
-      createAPObjectOperationSpec
+      createAPObjectOperationSpec,
     );
   }
 
@@ -96,11 +96,11 @@ export class PetsImpl implements Pets {
    */
   createAPString(
     createParameters: PetAPString,
-    options?: PetsCreateAPStringOptionalParams
+    options?: PetsCreateAPStringOptionalParams,
   ): Promise<PetsCreateAPStringResponse> {
     return this.client.sendOperationRequest(
       { createParameters, options },
-      createAPStringOperationSpec
+      createAPStringOperationSpec,
     );
   }
 
@@ -111,11 +111,11 @@ export class PetsImpl implements Pets {
    */
   createAPInProperties(
     createParameters: PetAPInProperties,
-    options?: PetsCreateAPInPropertiesOptionalParams
+    options?: PetsCreateAPInPropertiesOptionalParams,
   ): Promise<PetsCreateAPInPropertiesResponse> {
     return this.client.sendOperationRequest(
       { createParameters, options },
-      createAPInPropertiesOperationSpec
+      createAPInPropertiesOperationSpec,
     );
   }
 
@@ -126,11 +126,11 @@ export class PetsImpl implements Pets {
    */
   createAPInPropertiesWithAPString(
     createParameters: PetAPInPropertiesWithAPString,
-    options?: PetsCreateAPInPropertiesWithAPStringOptionalParams
+    options?: PetsCreateAPInPropertiesWithAPStringOptionalParams,
   ): Promise<PetsCreateAPInPropertiesWithAPStringResponse> {
     return this.client.sendOperationRequest(
       { createParameters, options },
-      createAPInPropertiesWithAPStringOperationSpec
+      createAPInPropertiesWithAPStringOperationSpec,
     );
   }
 }
@@ -142,100 +142,101 @@ const createAPTrueOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.PetAPTrue
+      bodyMapper: Mappers.PetAPTrue,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.createParameters,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const createCatAPTrueOperationSpec: coreClient.OperationSpec = {
   path: "/additionalProperties/true-subclass",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.CatAPTrue
+      bodyMapper: Mappers.CatAPTrue,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.createParameters1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const createAPObjectOperationSpec: coreClient.OperationSpec = {
   path: "/additionalProperties/type/object",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.PetAPObject
+      bodyMapper: Mappers.PetAPObject,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.createParameters2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const createAPStringOperationSpec: coreClient.OperationSpec = {
   path: "/additionalProperties/type/string",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.PetAPString
+      bodyMapper: Mappers.PetAPString,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.createParameters3,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const createAPInPropertiesOperationSpec: coreClient.OperationSpec = {
   path: "/additionalProperties/in/properties",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.PetAPInProperties
+      bodyMapper: Mappers.PetAPInProperties,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.createParameters4,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
-const createAPInPropertiesWithAPStringOperationSpec: coreClient.OperationSpec = {
-  path: "/additionalProperties/in/properties/with/additionalProperties/string",
-  httpMethod: "PUT",
-  responses: {
-    200: {
-      bodyMapper: Mappers.PetAPInPropertiesWithAPString
+const createAPInPropertiesWithAPStringOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/additionalProperties/in/properties/with/additionalProperties/string",
+    httpMethod: "PUT",
+    responses: {
+      200: {
+        bodyMapper: Mappers.PetAPInPropertiesWithAPString,
+      },
+      default: {
+        bodyMapper: Mappers.ErrorModel,
+      },
     },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  requestBody: Parameters.createParameters5,
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType, Parameters.accept],
-  mediaType: "json",
-  serializer
-};
+    requestBody: Parameters.createParameters5,
+    urlParameters: [Parameters.$host],
+    headerParameters: [Parameters.contentType, Parameters.accept],
+    mediaType: "json",
+    serializer,
+  };

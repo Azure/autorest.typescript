@@ -28,7 +28,7 @@ async function expressRoutePortDelete() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRoutePorts.beginDeleteAndWait(
     resourceGroupName,
-    expressRoutePortName
+    expressRoutePortName,
   );
   console.log(result);
 }

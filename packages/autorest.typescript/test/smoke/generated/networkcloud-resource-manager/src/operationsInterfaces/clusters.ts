@@ -23,7 +23,7 @@ import {
   ClustersDeployResponse,
   ClusterUpdateVersionParameters,
   ClustersUpdateVersionOptionalParams,
-  ClustersUpdateVersionResponse
+  ClustersUpdateVersionResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -34,7 +34,7 @@ export interface Clusters {
    * @param options The options parameters.
    */
   listBySubscription(
-    options?: ClustersListBySubscriptionOptionalParams
+    options?: ClustersListBySubscriptionOptionalParams,
   ): PagedAsyncIterableIterator<Cluster>;
   /**
    * Get a list of clusters in the provided resource group.
@@ -43,7 +43,7 @@ export interface Clusters {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: ClustersListByResourceGroupOptionalParams
+    options?: ClustersListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<Cluster>;
   /**
    * Get properties of the provided cluster.
@@ -54,7 +54,7 @@ export interface Clusters {
   get(
     resourceGroupName: string,
     clusterName: string,
-    options?: ClustersGetOptionalParams
+    options?: ClustersGetOptionalParams,
   ): Promise<ClustersGetResponse>;
   /**
    * Create a new cluster or update the properties of the cluster if it exists.
@@ -67,7 +67,7 @@ export interface Clusters {
     resourceGroupName: string,
     clusterName: string,
     clusterParameters: Cluster,
-    options?: ClustersCreateOrUpdateOptionalParams
+    options?: ClustersCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ClustersCreateOrUpdateResponse>,
@@ -85,7 +85,7 @@ export interface Clusters {
     resourceGroupName: string,
     clusterName: string,
     clusterParameters: Cluster,
-    options?: ClustersCreateOrUpdateOptionalParams
+    options?: ClustersCreateOrUpdateOptionalParams,
   ): Promise<ClustersCreateOrUpdateResponse>;
   /**
    * Delete the provided cluster.
@@ -96,7 +96,7 @@ export interface Clusters {
   beginDelete(
     resourceGroupName: string,
     clusterName: string,
-    options?: ClustersDeleteOptionalParams
+    options?: ClustersDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Delete the provided cluster.
@@ -107,7 +107,7 @@ export interface Clusters {
   beginDeleteAndWait(
     resourceGroupName: string,
     clusterName: string,
-    options?: ClustersDeleteOptionalParams
+    options?: ClustersDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Patch the properties of the provided cluster, or update the tags associated with the cluster.
@@ -119,7 +119,7 @@ export interface Clusters {
   beginUpdate(
     resourceGroupName: string,
     clusterName: string,
-    options?: ClustersUpdateOptionalParams
+    options?: ClustersUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ClustersUpdateResponse>,
@@ -136,7 +136,7 @@ export interface Clusters {
   beginUpdateAndWait(
     resourceGroupName: string,
     clusterName: string,
-    options?: ClustersUpdateOptionalParams
+    options?: ClustersUpdateOptionalParams,
   ): Promise<ClustersUpdateResponse>;
   /**
    * Deploy the cluster to the provided rack.
@@ -147,7 +147,7 @@ export interface Clusters {
   beginDeploy(
     resourceGroupName: string,
     clusterName: string,
-    options?: ClustersDeployOptionalParams
+    options?: ClustersDeployOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ClustersDeployResponse>,
@@ -163,7 +163,7 @@ export interface Clusters {
   beginDeployAndWait(
     resourceGroupName: string,
     clusterName: string,
-    options?: ClustersDeployOptionalParams
+    options?: ClustersDeployOptionalParams,
   ): Promise<ClustersDeployResponse>;
   /**
    * Update the version of the provided cluster to one of the available supported versions.
@@ -176,7 +176,7 @@ export interface Clusters {
     resourceGroupName: string,
     clusterName: string,
     clusterUpdateVersionParameters: ClusterUpdateVersionParameters,
-    options?: ClustersUpdateVersionOptionalParams
+    options?: ClustersUpdateVersionOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ClustersUpdateVersionResponse>,
@@ -194,6 +194,6 @@ export interface Clusters {
     resourceGroupName: string,
     clusterName: string,
     clusterUpdateVersionParameters: ClusterUpdateVersionParameters,
-    options?: ClustersUpdateVersionOptionalParams
+    options?: ClustersUpdateVersionOptionalParams,
   ): Promise<ClustersUpdateVersionResponse>;
 }

@@ -258,7 +258,7 @@ describe("api-version", () => {
         const expectedRes = buildDefaultReturn(true);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes);
       });
       it("in @versioned", async () => {
         const def = buildQueryDefinition({
@@ -267,7 +267,7 @@ describe("api-version", () => {
         const expectedRes = buildDefaultReturn(true);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes);
       });
     });
     describe("without default value", () => {
@@ -280,7 +280,7 @@ describe("api-version", () => {
         const expectedRes = buildDefaultReturn(false);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes);
       });
       it("no @service or @versioned", async () => {
         const def = buildQueryDefinition({
@@ -290,7 +290,7 @@ describe("api-version", () => {
         const expectedRes = buildDefaultReturn(false);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes);
       });
     });
   });
@@ -303,7 +303,7 @@ describe("api-version", () => {
         const expectedRes = buildPathReturn_WithDefault();
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes);
       });
       it("in @versioned", async () => {
         const def = buildPathDefinition({
@@ -312,7 +312,7 @@ describe("api-version", () => {
         const expectedRes = buildPathReturn_WithDefault();
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes);
       });
     });
     describe("without default value", () => {
@@ -324,7 +324,7 @@ describe("api-version", () => {
         const expectedRes = buildPathReturn_WithoutDefault();
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes);
       });
     });
   });
@@ -337,7 +337,7 @@ describe("api-version", () => {
         const expectedRes = buildPathReturn_WithDefault();
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes);
       });
       it("in @versioned", async () => {
         const def = buildMixedDefinition({
@@ -346,7 +346,7 @@ describe("api-version", () => {
         const expectedRes = buildPathReturn_WithDefault();
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes);
       });
     });
     describe("without default value", () => {
@@ -358,7 +358,7 @@ describe("api-version", () => {
         const expectedRes = buildPathReturn_WithoutDefault();
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes);
       });
     });
   });
@@ -371,7 +371,7 @@ describe("api-version", () => {
         const expectedRes = buildDefaultReturn(true);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes);
       });
       it("in @versioned", async () => {
         const def = buildDefaultDefinition({
@@ -380,7 +380,7 @@ describe("api-version", () => {
         const expectedRes = buildDefaultReturn(true);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes);
       });
     });
     describe("without default value", () => {
@@ -392,7 +392,7 @@ describe("api-version", () => {
         const expectedRes = buildDefaultReturn(false);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        assertEqualContent(models!.content, expectedRes);
+        await assertEqualContent(models!.content, expectedRes);
       });
     });
   });

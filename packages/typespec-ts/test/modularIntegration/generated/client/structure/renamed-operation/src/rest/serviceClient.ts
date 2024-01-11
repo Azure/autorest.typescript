@@ -14,7 +14,7 @@ import { ServiceContext } from "./clientDefinitions.js";
 export default function createClient(
   endpoint: string,
   clientParam: string,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): ServiceContext {
   const baseUrl =
     options.baseUrl ?? `${endpoint}/client/structure/${clientParam}`;

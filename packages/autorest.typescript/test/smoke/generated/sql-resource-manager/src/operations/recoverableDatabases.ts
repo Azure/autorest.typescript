@@ -17,7 +17,7 @@ import {
   RecoverableDatabasesListByServerOptionalParams,
   RecoverableDatabasesListByServerResponse,
   RecoverableDatabasesGetOptionalParams,
-  RecoverableDatabasesGetResponse
+  RecoverableDatabasesGetResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -43,12 +43,12 @@ export class RecoverableDatabasesImpl implements RecoverableDatabases {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: RecoverableDatabasesListByServerOptionalParams
+    options?: RecoverableDatabasesListByServerOptionalParams,
   ): PagedAsyncIterableIterator<RecoverableDatabase> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,
-      options
+      options,
     );
     return {
       next() {
@@ -65,9 +65,9 @@ export class RecoverableDatabasesImpl implements RecoverableDatabases {
           resourceGroupName,
           serverName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -75,7 +75,7 @@ export class RecoverableDatabasesImpl implements RecoverableDatabases {
     resourceGroupName: string,
     serverName: string,
     options?: RecoverableDatabasesListByServerOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<RecoverableDatabase[]> {
     let result: RecoverableDatabasesListByServerResponse;
     result = await this._listByServer(resourceGroupName, serverName, options);
@@ -85,12 +85,12 @@ export class RecoverableDatabasesImpl implements RecoverableDatabases {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: RecoverableDatabasesListByServerOptionalParams
+    options?: RecoverableDatabasesListByServerOptionalParams,
   ): AsyncIterableIterator<RecoverableDatabase> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
       serverName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -108,11 +108,11 @@ export class RecoverableDatabasesImpl implements RecoverableDatabases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: RecoverableDatabasesGetOptionalParams
+    options?: RecoverableDatabasesGetOptionalParams,
   ): Promise<RecoverableDatabasesGetResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, databaseName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -126,11 +126,11 @@ export class RecoverableDatabasesImpl implements RecoverableDatabases {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: RecoverableDatabasesListByServerOptionalParams
+    options?: RecoverableDatabasesListByServerOptionalParams,
   ): Promise<RecoverableDatabasesListByServerResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, options },
-      listByServerOperationSpec
+      listByServerOperationSpec,
     );
   }
 }
@@ -138,13 +138,12 @@ export class RecoverableDatabasesImpl implements RecoverableDatabases {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/recoverableDatabases/{databaseName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/recoverableDatabases/{databaseName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.RecoverableDatabase
-    }
+      bodyMapper: Mappers.RecoverableDatabase,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -152,27 +151,26 @@ const getOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByServerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/recoverableDatabases",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/recoverableDatabases",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.RecoverableDatabaseListResult
-    }
+      bodyMapper: Mappers.RecoverableDatabaseListResult,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName
+    Parameters.serverName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

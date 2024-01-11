@@ -28,7 +28,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface GetEmbeddings {
   /** Return the embeddings for a given prompt. */
   post(
-    options?: GetEmbeddingsParameters
+    options?: GetEmbeddingsParameters,
   ): StreamableMethod<GetEmbeddings200Response | GetEmbeddingsDefaultResponse>;
 }
 
@@ -39,7 +39,7 @@ export interface GetCompletions {
    * provided prompt data.
    */
   post(
-    options?: GetCompletionsParameters
+    options?: GetCompletionsParameters,
   ): StreamableMethod<
     GetCompletions200Response | GetCompletionsDefaultResponse
   >;
@@ -52,7 +52,7 @@ export interface GetChatCompletions {
    * provided prompt data.
    */
   post(
-    options?: GetChatCompletionsParameters
+    options?: GetChatCompletionsParameters,
   ): StreamableMethod<
     GetChatCompletions200Response | GetChatCompletionsDefaultResponse
   >;
@@ -65,7 +65,7 @@ export interface GetChatCompletionsWithAzureExtensions {
    * other augmentations to the base chat completions capabilities.
    */
   post(
-    options?: GetChatCompletionsWithAzureExtensionsParameters
+    options?: GetChatCompletionsWithAzureExtensionsParameters,
   ): StreamableMethod<
     | GetChatCompletionsWithAzureExtensions200Response
     | GetChatCompletionsWithAzureExtensionsDefaultResponse
@@ -75,7 +75,7 @@ export interface GetChatCompletionsWithAzureExtensions {
 export interface GetAzureBatchImageGenerationOperationStatus {
   /** Returns the status of the images operation */
   get(
-    options?: GetAzureBatchImageGenerationOperationStatusParameters
+    options?: GetAzureBatchImageGenerationOperationStatusParameters,
   ): StreamableMethod<
     | GetAzureBatchImageGenerationOperationStatus200Response
     | GetAzureBatchImageGenerationOperationStatusDefaultResponse
@@ -85,7 +85,7 @@ export interface GetAzureBatchImageGenerationOperationStatus {
 export interface BeginAzureBatchImageGeneration {
   /** Starts the generation of a batch of images from a text caption */
   post(
-    options?: BeginAzureBatchImageGenerationParameters
+    options?: BeginAzureBatchImageGenerationParameters,
   ): StreamableMethod<
     | BeginAzureBatchImageGeneration202Response
     | BeginAzureBatchImageGenerationDefaultResponse
@@ -96,27 +96,27 @@ export interface Routes {
   /** Resource for '/deployments/\{deploymentId\}/embeddings' has methods for the following verbs: post */
   (
     path: "/deployments/{deploymentId}/embeddings",
-    deploymentId: string
+    deploymentId: string,
   ): GetEmbeddings;
   /** Resource for '/deployments/\{deploymentId\}/completions' has methods for the following verbs: post */
   (
     path: "/deployments/{deploymentId}/completions",
-    deploymentId: string
+    deploymentId: string,
   ): GetCompletions;
   /** Resource for '/deployments/\{deploymentId\}/chat/completions' has methods for the following verbs: post */
   (
     path: "/deployments/{deploymentId}/chat/completions",
-    deploymentId: string
+    deploymentId: string,
   ): GetChatCompletions;
   /** Resource for '/deployments/\{deploymentId\}/extensions/chat/completions' has methods for the following verbs: post */
   (
     path: "/deployments/{deploymentId}/extensions/chat/completions",
-    deploymentId: string
+    deploymentId: string,
   ): GetChatCompletionsWithAzureExtensions;
   /** Resource for '/operations/images/\{operationId\}' has methods for the following verbs: get */
   (
     path: "/operations/images/{operationId}",
-    operationId: string
+    operationId: string,
   ): GetAzureBatchImageGenerationOperationStatus;
   /** Resource for '/images/generations:submit' has methods for the following verbs: post */
   (path: "/images/generations:submit"): BeginAzureBatchImageGeneration;

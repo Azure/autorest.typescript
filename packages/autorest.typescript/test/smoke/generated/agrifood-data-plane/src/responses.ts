@@ -41,7 +41,7 @@ import {
   TillageDataOutput,
   WeatherDataListResponseOutput,
   WeatherDataIngestionJobOutput,
-  WeatherDataDeleteJobOutput
+  WeatherDataDeleteJobOutput,
 } from "./outputModels";
 
 /** Returns a paginated list of application data resources under a particular farm. */

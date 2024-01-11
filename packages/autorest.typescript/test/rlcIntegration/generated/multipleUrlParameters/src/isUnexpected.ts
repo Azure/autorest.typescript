@@ -19,7 +19,7 @@ import {
   EntityDeleteByGuid200Response,
   EntityDeleteByGuidDefaultResponse,
   EntityExportGuid202Response,
-  EntityExportGuidDefaultResponse
+  EntityExportGuidDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -31,43 +31,43 @@ const responseMap: Record<string, string[]> = {
   "GET /entity/guid/{guid}": ["200"],
   "PUT /entity/guid/{guid}": ["200"],
   "DELETE /entity/guid/{guid}": ["200"],
-  "PUT /entity/guid/{guid}:export": ["202"]
+  "PUT /entity/guid/{guid}:export": ["202"],
 };
 
 export function isUnexpected(
   response:
     | EntityCreateOrUpdate200Response
-    | EntityCreateOrUpdateDefaultResponse
+    | EntityCreateOrUpdateDefaultResponse,
 ): response is EntityCreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: EntityListByGuids200Response | EntityListByGuidsDefaultResponse
+  response: EntityListByGuids200Response | EntityListByGuidsDefaultResponse,
 ): response is EntityListByGuidsDefaultResponse;
 export function isUnexpected(
   response:
     | EntityCreateOrUpdateEntities200Response
-    | EntityCreateOrUpdateEntitiesDefaultResponse
+    | EntityCreateOrUpdateEntitiesDefaultResponse,
 ): response is EntityCreateOrUpdateEntitiesDefaultResponse;
 export function isUnexpected(
-  response: EntityDeleteByGuids200Response | EntityDeleteByGuidsDefaultResponse
+  response: EntityDeleteByGuids200Response | EntityDeleteByGuidsDefaultResponse,
 ): response is EntityDeleteByGuidsDefaultResponse;
 export function isUnexpected(
   response:
     | EntityAddClassification204Response
-    | EntityAddClassificationDefaultResponse
+    | EntityAddClassificationDefaultResponse,
 ): response is EntityAddClassificationDefaultResponse;
 export function isUnexpected(
-  response: EntityGetByGuid200Response | EntityGetByGuidDefaultResponse
+  response: EntityGetByGuid200Response | EntityGetByGuidDefaultResponse,
 ): response is EntityGetByGuidDefaultResponse;
 export function isUnexpected(
   response:
     | EntityPartialUpdateEntityAttributeByGuid200Response
-    | EntityPartialUpdateEntityAttributeByGuidDefaultResponse
+    | EntityPartialUpdateEntityAttributeByGuidDefaultResponse,
 ): response is EntityPartialUpdateEntityAttributeByGuidDefaultResponse;
 export function isUnexpected(
-  response: EntityDeleteByGuid200Response | EntityDeleteByGuidDefaultResponse
+  response: EntityDeleteByGuid200Response | EntityDeleteByGuidDefaultResponse,
 ): response is EntityDeleteByGuidDefaultResponse;
 export function isUnexpected(
-  response: EntityExportGuid202Response | EntityExportGuidDefaultResponse
+  response: EntityExportGuid202Response | EntityExportGuidDefaultResponse,
 ): response is EntityExportGuidDefaultResponse;
 export function isUnexpected(
   response:
@@ -88,7 +88,7 @@ export function isUnexpected(
     | EntityDeleteByGuid200Response
     | EntityDeleteByGuidDefaultResponse
     | EntityExportGuid202Response
-    | EntityExportGuidDefaultResponse
+    | EntityExportGuidDefaultResponse,
 ): response is
   | EntityCreateOrUpdateDefaultResponse
   | EntityListByGuidsDefaultResponse
@@ -147,7 +147,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

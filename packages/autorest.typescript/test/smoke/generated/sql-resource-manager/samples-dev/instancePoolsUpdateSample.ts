@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   InstancePoolUpdate,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,7 +34,7 @@ async function patchAnInstancePool() {
   const result = await client.instancePools.beginUpdateAndWait(
     resourceGroupName,
     instancePoolName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

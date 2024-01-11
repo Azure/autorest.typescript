@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ExtendedDatabaseBlobAuditingPolicy,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,16 +32,17 @@ async function createOrUpdateAnExtendedDatabaseAzureMonitorAuditingPolicyWithMin
   const databaseName = "testdb";
   const parameters: ExtendedDatabaseBlobAuditingPolicy = {
     isAzureMonitorTargetEnabled: true,
-    state: "Enabled"
+    state: "Enabled",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
-  const result = await client.extendedDatabaseBlobAuditingPolicies.createOrUpdate(
-    resourceGroupName,
-    serverName,
-    databaseName,
-    parameters
-  );
+  const result =
+    await client.extendedDatabaseBlobAuditingPolicies.createOrUpdate(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      parameters,
+    );
   console.log(result);
 }
 
@@ -62,7 +63,7 @@ async function createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithAllParamete
     auditActionsAndGroups: [
       "DATABASE_LOGOUT_GROUP",
       "DATABASE_ROLE_MEMBER_CHANGE_GROUP",
-      "UPDATE on database::TestDatabaseName by public"
+      "UPDATE on database::TestDatabaseName by public",
     ],
     isAzureMonitorTargetEnabled: true,
     isStorageSecondaryKeyInUse: false,
@@ -73,16 +74,17 @@ async function createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithAllParamete
     storageAccountAccessKey:
       "sdlfkjabc+sdlfkjsdlkfsjdfLDKFTERLKFDFKLjsdfksjdflsdkfD2342309432849328476458/3RSD==",
     storageAccountSubscriptionId: "00000000-1234-0000-5678-000000000000",
-    storageEndpoint: "https://mystorage.blob.core.windows.net"
+    storageEndpoint: "https://mystorage.blob.core.windows.net",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
-  const result = await client.extendedDatabaseBlobAuditingPolicies.createOrUpdate(
-    resourceGroupName,
-    serverName,
-    databaseName,
-    parameters
-  );
+  const result =
+    await client.extendedDatabaseBlobAuditingPolicies.createOrUpdate(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      parameters,
+    );
   console.log(result);
 }
 
@@ -103,16 +105,17 @@ async function createOrUpdateAnExtendedDatabaseBlobAuditingPolicyWithMinimalPara
     state: "Enabled",
     storageAccountAccessKey:
       "sdlfkjabc+sdlfkjsdlkfsjdfLDKFTERLKFDFKLjsdfksjdflsdkfD2342309432849328476458/3RSD==",
-    storageEndpoint: "https://mystorage.blob.core.windows.net"
+    storageEndpoint: "https://mystorage.blob.core.windows.net",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
-  const result = await client.extendedDatabaseBlobAuditingPolicies.createOrUpdate(
-    resourceGroupName,
-    serverName,
-    databaseName,
-    parameters
-  );
+  const result =
+    await client.extendedDatabaseBlobAuditingPolicies.createOrUpdate(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      parameters,
+    );
   console.log(result);
 }
 

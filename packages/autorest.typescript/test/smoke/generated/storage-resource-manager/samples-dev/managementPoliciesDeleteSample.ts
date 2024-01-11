@@ -30,7 +30,7 @@ async function storageAccountDeleteManagementPolicies() {
   const result = await client.managementPolicies.delete(
     resourceGroupName,
     accountName,
-    managementPolicyName
+    managementPolicyName,
   );
   console.log(result);
 }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VpnGatewayNatRule,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,7 +34,7 @@ async function natRulePut() {
     internalMappings: [{ addressSpace: "10.4.0.0/24" }],
     ipConfigurationId:
       "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/cloudnet1-VNG/ipConfigurations/default",
-    mode: "EgressSnat"
+    mode: "EgressSnat",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -42,7 +42,7 @@ async function natRulePut() {
     resourceGroupName,
     gatewayName,
     natRuleName,
-    natRuleParameters
+    natRuleParameters,
   );
   console.log(result);
 }

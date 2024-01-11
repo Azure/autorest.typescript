@@ -61,7 +61,7 @@ describe("Input/output model type", () => {
     const { inputModelFile, outputModelFile } = schemaOutput!;
     // console.log(inputModelFile?.content);
     assert.strictEqual(inputModelFile?.path, "models.ts");
-    assertEqualContent(
+    await assertEqualContent(
       inputModelFile?.content!,
       `
     ${additionalImports}
@@ -73,7 +73,7 @@ describe("Input/output model type", () => {
     );
 
     assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-    assertEqualContent(
+    await assertEqualContent(
       outputModelFile?.content!,
       `
     ${additionalImports}
@@ -183,7 +183,7 @@ describe("Input/output model type", () => {
       `);
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
       export interface InputOutputModel {
@@ -195,7 +195,7 @@ describe("Input/output model type", () => {
         prop: string;
       }`
       );
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
       export interface InputOutputModelOutput {
@@ -224,7 +224,7 @@ describe("Input/output model type", () => {
       op getModel(@body input: TranslationLanguage): InputOutputModel;
       `);
       assert.ok(schemaOutput);
-      assertEqualContent(
+      await assertEqualContent(
         schemaOutput?.content!,
         `
       import { RequestParameters } from "@azure-rest/core-client";
@@ -364,7 +364,7 @@ describe("Input/output model type", () => {
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
       export interface SimpleModel { 
@@ -380,7 +380,7 @@ describe("Input/output model type", () => {
       }
       `
       );
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
       export interface SimpleModelOutput { 
@@ -444,7 +444,7 @@ describe("Input/output model type", () => {
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
       export interface SimpleModel { 
@@ -460,7 +460,7 @@ describe("Input/output model type", () => {
       }
       `
       );
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
       export interface SimpleModelOutput { 
@@ -497,7 +497,7 @@ describe("Input/output model type", () => {
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
       export interface SimpleModel { 
@@ -506,7 +506,7 @@ describe("Input/output model type", () => {
       }
       `
       );
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
       export interface SimpleModelOutput { 
@@ -760,7 +760,7 @@ describe("Input/output model type", () => {
         const { inputModelFile, outputModelFile } = schemaOutput!;
         assert.ok(!inputModelFile?.content);
         assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-        assertEqualContent(
+        await assertEqualContent(
           outputModelFile?.content!,
           `
           export interface PetOutputParent {
@@ -821,7 +821,7 @@ describe("Input/output model type", () => {
         const { inputModelFile, outputModelFile } = schemaOutput!;
         assert.ok(!inputModelFile?.content);
         assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-        assertEqualContent(
+        await assertEqualContent(
           outputModelFile?.content!,
           `
         /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
@@ -961,7 +961,7 @@ describe("Input/output model type", () => {
             const { inputModelFile, outputModelFile } = schemaOutput!;
             assert.ok(!inputModelFile?.content);
             assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-            assertEqualContent(
+            await assertEqualContent(
               outputModelFile?.content!,
               `
             export interface COutput extends BOutputParent {
@@ -982,7 +982,7 @@ describe("Input/output model type", () => {
             const { inputModelFile, outputModelFile } = schemaOutput!;
             assert.ok(!inputModelFile?.content);
             assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-            assertEqualContent(
+            await assertEqualContent(
               outputModelFile?.content!,
               `
             export interface COutput extends BOutput {
@@ -1019,7 +1019,7 @@ describe("Input/output model type", () => {
             const { inputModelFile, outputModelFile } = schemaOutput!;
             assert.ok(!inputModelFile?.content);
             assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-            assertEqualContent(
+            await assertEqualContent(
               outputModelFile?.content!,
               `
             export interface COutput extends BOutput {
@@ -1052,7 +1052,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface Vegetables {
@@ -1068,7 +1068,7 @@ describe("Input/output model type", () => {
 
       assert.ok(outputModelFile);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
@@ -1098,7 +1098,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface Vegetables {
@@ -1114,7 +1114,7 @@ describe("Input/output model type", () => {
 
       assert.ok(outputModelFile);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
@@ -1144,7 +1144,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface Vegetables {
@@ -1160,7 +1160,7 @@ describe("Input/output model type", () => {
 
       assert.ok(outputModelFile);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
@@ -1190,7 +1190,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface Vegetables {
@@ -1206,7 +1206,7 @@ describe("Input/output model type", () => {
 
       assert.ok(outputModelFile);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
@@ -1236,7 +1236,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface Vegetables {
@@ -1252,7 +1252,7 @@ describe("Input/output model type", () => {
 
       assert.ok(outputModelFile);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
@@ -1292,7 +1292,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface Vegetables {
@@ -1319,7 +1319,7 @@ describe("Input/output model type", () => {
 
       assert.ok(outputModelFile);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
@@ -1370,7 +1370,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface Vegetables {
@@ -1397,7 +1397,7 @@ describe("Input/output model type", () => {
 
       assert.ok(outputModelFile);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
@@ -1446,7 +1446,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface Vegetables {
@@ -1471,7 +1471,7 @@ describe("Input/output model type", () => {
 
       assert.ok(outputModelFile);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
@@ -1538,7 +1538,7 @@ describe("Input/output model type", () => {
         );
         assert.ok(schemaOutput);
         const { inputModelFile, outputModelFile } = schemaOutput!;
-        assertEqualContent(
+        await assertEqualContent(
           inputModelFile?.content!,
           `
         export interface SimpleModel { 
@@ -1546,7 +1546,7 @@ describe("Input/output model type", () => {
         }
         `
         );
-        assertEqualContent(
+        await assertEqualContent(
           outputModelFile?.content!,
           `
         export interface SimpleModelOutput { 
@@ -1572,7 +1572,7 @@ describe("Input/output model type", () => {
         );
         assert.ok(schemaOutput);
         const { inputModelFile, outputModelFile } = schemaOutput!;
-        assertEqualContent(
+        await assertEqualContent(
           inputModelFile?.content!,
           `
         export interface SimpleModel { 
@@ -1580,7 +1580,7 @@ describe("Input/output model type", () => {
         }
         `
         );
-        assertEqualContent(
+        await assertEqualContent(
           outputModelFile?.content!,
           `
         export interface SimpleModelOutput { 
@@ -1607,7 +1607,7 @@ describe("Input/output model type", () => {
         );
         assert.ok(schemaOutput);
         const { inputModelFile, outputModelFile } = schemaOutput!;
-        assertEqualContent(
+        await assertEqualContent(
           inputModelFile?.content!,
           `
         export interface SimpleModel { 
@@ -1615,7 +1615,7 @@ describe("Input/output model type", () => {
         }
         `
         );
-        assertEqualContent(
+        await assertEqualContent(
           outputModelFile?.content!,
           `
         export interface SimpleModelOutput { 
@@ -1634,7 +1634,7 @@ describe("Input/output model type", () => {
         op getModel(@query input: duration): NoContentResponse;
         `);
         assert.ok(schemaOutput);
-        assertEqualContent(schemaOutput?.content!, buildParameterDef("string"));
+        await assertEqualContent(schemaOutput?.content!, buildParameterDef("string"));
       });
 
       it("should handle duration with encode `seconds`", async () => {
@@ -1652,7 +1652,7 @@ describe("Input/output model type", () => {
           true
         );
         assert.ok(schemaOutput);
-        assertEqualContent(schemaOutput?.content!, buildParameterDef("number"));
+        await assertEqualContent(schemaOutput?.content!, buildParameterDef("number"));
       });
 
       it("should handle duration with encode `iso8601`", async () => {
@@ -1670,7 +1670,7 @@ describe("Input/output model type", () => {
           true
         );
         assert.ok(schemaOutput);
-        assertEqualContent(schemaOutput?.content!, buildParameterDef("string"));
+        await assertEqualContent(schemaOutput?.content!, buildParameterDef("string"));
       });
     });
   });
@@ -1721,7 +1721,7 @@ describe("Input/output model type", () => {
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
       export interface SimpleModel { 
@@ -1729,7 +1729,7 @@ describe("Input/output model type", () => {
       }
       `
       );
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
       export interface SimpleModelOutput { 
@@ -1755,7 +1755,7 @@ describe("Input/output model type", () => {
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
       export interface SimpleModel { 
@@ -1763,7 +1763,7 @@ describe("Input/output model type", () => {
       }
       `
       );
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
       export interface SimpleModelOutput { 
@@ -1790,7 +1790,7 @@ describe("Input/output model type", () => {
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
       export interface SimpleModel { 
@@ -1798,7 +1798,7 @@ describe("Input/output model type", () => {
       }
       `
       );
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
       export interface SimpleModelOutput { 
@@ -2265,7 +2265,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.ok(inputModelFile?.content);
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
       export interface A {
@@ -2274,7 +2274,7 @@ describe("Input/output model type", () => {
     }
       `
       );
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
       export interface BOutput {
@@ -2420,7 +2420,7 @@ describe("Input/output model type", () => {
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
           import { RequestParameters } from "@azure-rest/core-client";
@@ -2438,7 +2438,7 @@ describe("Input/output model type", () => {
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { HttpResponse } from "@azure-rest/core-client";
@@ -2460,7 +2460,7 @@ describe("Input/output model type", () => {
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { HttpResponse } from "@azure-rest/core-client";
@@ -2854,7 +2854,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       // console.log(inputModelFile?.content);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface DataConnectionDataParent {
@@ -2889,7 +2889,7 @@ describe("Input/output model type", () => {
       );
 
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         import { ErrorModel } from "@azure-rest/core-client";
@@ -3045,7 +3045,7 @@ describe("Input/output model type", () => {
       const { inputModelFile, outputModelFile } = schemaOutput!;
       // console.log(inputModelFile?.content);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export interface DataConnectionDataParent {
@@ -3080,7 +3080,7 @@ describe("Input/output model type", () => {
       );
 
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      assertEqualContent(
+      await assertEqualContent(
         outputModelFile?.content!,
         `
         export interface DataConnectionOutputParent {

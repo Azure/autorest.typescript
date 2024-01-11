@@ -44,38 +44,38 @@ export class SingleDiscriminatorClient {
 
   putModel(
     input: Bird,
-    options: PutModelOptions = { requestOptions: {} }
+    options: PutModelOptions = { requestOptions: {} },
   ): Promise<void> {
     return putModel(this._client, input, options);
   }
 
   getRecursiveModel(
-    options: GetRecursiveModelOptions = { requestOptions: {} }
+    options: GetRecursiveModelOptions = { requestOptions: {} },
   ): Promise<Bird> {
     return getRecursiveModel(this._client, options);
   }
 
   putRecursiveModel(
     input: Bird,
-    options: PutRecursiveModelOptions = { requestOptions: {} }
+    options: PutRecursiveModelOptions = { requestOptions: {} },
   ): Promise<void> {
     return putRecursiveModel(this._client, input, options);
   }
 
   getMissingDiscriminator(
-    options: GetMissingDiscriminatorOptions = { requestOptions: {} }
+    options: GetMissingDiscriminatorOptions = { requestOptions: {} },
   ): Promise<Bird> {
     return getMissingDiscriminator(this._client, options);
   }
 
   getWrongDiscriminator(
-    options: GetWrongDiscriminatorOptions = { requestOptions: {} }
+    options: GetWrongDiscriminatorOptions = { requestOptions: {} },
   ): Promise<Bird> {
     return getWrongDiscriminator(this._client, options);
   }
 
   getLegacyModel(
-    options: GetLegacyModelOptions = { requestOptions: {} }
+    options: GetLegacyModelOptions = { requestOptions: {} },
   ): Promise<Dinosaur> {
     return getLegacyModel(this._client, options);
   }

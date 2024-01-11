@@ -16,15 +16,15 @@ export const Product: coreClient.CompositeMapper = {
       integer: {
         serializedName: "integer",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       string: {
         serializedName: "string",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

@@ -28,7 +28,7 @@ async function deleteServiceEndpointPolicy() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.serviceEndpointPolicies.beginDeleteAndWait(
     resourceGroupName,
-    serviceEndpointPolicyName
+    serviceEndpointPolicyName,
   );
   console.log(result);
 }

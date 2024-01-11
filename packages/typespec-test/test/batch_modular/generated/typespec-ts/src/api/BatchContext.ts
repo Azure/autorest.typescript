@@ -14,7 +14,7 @@ export { BatchContext } from "../rest/index.js";
 export function createBatch(
   endpoint: string,
   credential: TokenCredential,
-  options: BatchClientOptions = {}
+  options: BatchClientOptions = {},
 ): BatchContext {
   const clientContext = getClient(endpoint, credential, options);
   return clientContext;

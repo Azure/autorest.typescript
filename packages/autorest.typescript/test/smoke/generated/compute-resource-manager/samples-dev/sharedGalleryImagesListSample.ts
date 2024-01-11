@@ -29,7 +29,7 @@ async function getAGallery() {
   const resArray = new Array();
   for await (let item of client.sharedGalleryImages.list(
     location,
-    galleryUniqueName
+    galleryUniqueName,
   )) {
     resArray.push(item);
   }

@@ -211,7 +211,7 @@ export enum KnownCMYKColors {
   /** Yellow */
   Yellow = "YELLOW",
   /** BlacK */
-  BlacK = "blacK"
+  BlacK = "blacK",
 }
 
 /**
@@ -229,7 +229,7 @@ export type CMYKColors = string;
 /** Known values of {@link MyKind} that the service accepts. */
 export enum KnownMyKind {
   /** Kind1 */
-  Kind1 = "Kind1"
+  Kind1 = "Kind1",
 }
 
 /**
@@ -252,7 +252,7 @@ export enum KnownGoblinSharkColor {
   /** Uppercase RED */
   UpperRed = "RED",
   /** Lowercase RED */
-  LowerRed = "red"
+  LowerRed = "red",
 }
 
 /**

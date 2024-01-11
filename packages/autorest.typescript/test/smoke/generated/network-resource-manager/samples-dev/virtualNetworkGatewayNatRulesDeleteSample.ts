@@ -30,7 +30,7 @@ async function virtualNetworkGatewayNatRuleDelete() {
   const result = await client.virtualNetworkGatewayNatRules.beginDeleteAndWait(
     resourceGroupName,
     virtualNetworkGatewayName,
-    natRuleName
+    natRuleName,
   );
   console.log(result);
 }

@@ -13,7 +13,7 @@ export { ApiKeyContext } from "../rest/index.js";
 /** Illustrates clients generated with ApiKey authentication. */
 export function createApiKey(
   credential: KeyCredential,
-  options: ApiKeyClientOptions = {}
+  options: ApiKeyClientOptions = {},
 ): ApiKeyContext {
   const clientContext = getClient(credential, options);
   return clientContext;

@@ -15,7 +15,7 @@ import { CosmosDBManagementClient } from "../cosmosDBManagementClient";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -53,7 +53,7 @@ import {
   GremlinResourcesMigrateGremlinGraphToAutoscaleOptionalParams,
   GremlinResourcesMigrateGremlinGraphToAutoscaleResponse,
   GremlinResourcesMigrateGremlinGraphToManualThroughputOptionalParams,
-  GremlinResourcesMigrateGremlinGraphToManualThroughputResponse
+  GremlinResourcesMigrateGremlinGraphToManualThroughputResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -78,12 +78,12 @@ export class GremlinResourcesImpl implements GremlinResources {
   public listGremlinDatabases(
     resourceGroupName: string,
     accountName: string,
-    options?: GremlinResourcesListGremlinDatabasesOptionalParams
+    options?: GremlinResourcesListGremlinDatabasesOptionalParams,
   ): PagedAsyncIterableIterator<GremlinDatabaseGetResults> {
     const iter = this.listGremlinDatabasesPagingAll(
       resourceGroupName,
       accountName,
-      options
+      options,
     );
     return {
       next() {
@@ -100,9 +100,9 @@ export class GremlinResourcesImpl implements GremlinResources {
           resourceGroupName,
           accountName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -110,13 +110,13 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     options?: GremlinResourcesListGremlinDatabasesOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<GremlinDatabaseGetResults[]> {
     let result: GremlinResourcesListGremlinDatabasesResponse;
     result = await this._listGremlinDatabases(
       resourceGroupName,
       accountName,
-      options
+      options,
     );
     yield result.value || [];
   }
@@ -124,12 +124,12 @@ export class GremlinResourcesImpl implements GremlinResources {
   private async *listGremlinDatabasesPagingAll(
     resourceGroupName: string,
     accountName: string,
-    options?: GremlinResourcesListGremlinDatabasesOptionalParams
+    options?: GremlinResourcesListGremlinDatabasesOptionalParams,
   ): AsyncIterableIterator<GremlinDatabaseGetResults> {
     for await (const page of this.listGremlinDatabasesPagingPage(
       resourceGroupName,
       accountName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -146,13 +146,13 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: GremlinResourcesListGremlinGraphsOptionalParams
+    options?: GremlinResourcesListGremlinGraphsOptionalParams,
   ): PagedAsyncIterableIterator<GremlinGraphGetResults> {
     const iter = this.listGremlinGraphsPagingAll(
       resourceGroupName,
       accountName,
       databaseName,
-      options
+      options,
     );
     return {
       next() {
@@ -170,9 +170,9 @@ export class GremlinResourcesImpl implements GremlinResources {
           accountName,
           databaseName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -181,14 +181,14 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     options?: GremlinResourcesListGremlinGraphsOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<GremlinGraphGetResults[]> {
     let result: GremlinResourcesListGremlinGraphsResponse;
     result = await this._listGremlinGraphs(
       resourceGroupName,
       accountName,
       databaseName,
-      options
+      options,
     );
     yield result.value || [];
   }
@@ -197,13 +197,13 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: GremlinResourcesListGremlinGraphsOptionalParams
+    options?: GremlinResourcesListGremlinGraphsOptionalParams,
   ): AsyncIterableIterator<GremlinGraphGetResults> {
     for await (const page of this.listGremlinGraphsPagingPage(
       resourceGroupName,
       accountName,
       databaseName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -218,11 +218,11 @@ export class GremlinResourcesImpl implements GremlinResources {
   private _listGremlinDatabases(
     resourceGroupName: string,
     accountName: string,
-    options?: GremlinResourcesListGremlinDatabasesOptionalParams
+    options?: GremlinResourcesListGremlinDatabasesOptionalParams,
   ): Promise<GremlinResourcesListGremlinDatabasesResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, options },
-      listGremlinDatabasesOperationSpec
+      listGremlinDatabasesOperationSpec,
     );
   }
 
@@ -238,11 +238,11 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: GremlinResourcesGetGremlinDatabaseOptionalParams
+    options?: GremlinResourcesGetGremlinDatabaseOptionalParams,
   ): Promise<GremlinResourcesGetGremlinDatabaseResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, databaseName, options },
-      getGremlinDatabaseOperationSpec
+      getGremlinDatabaseOperationSpec,
     );
   }
 
@@ -260,7 +260,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     createUpdateGremlinDatabaseParameters: GremlinDatabaseCreateUpdateParameters,
-    options?: GremlinResourcesCreateUpdateGremlinDatabaseOptionalParams
+    options?: GremlinResourcesCreateUpdateGremlinDatabaseOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<GremlinResourcesCreateUpdateGremlinDatabaseResponse>,
@@ -269,21 +269,20 @@ export class GremlinResourcesImpl implements GremlinResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<GremlinResourcesCreateUpdateGremlinDatabaseResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -292,8 +291,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -301,8 +300,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -313,16 +312,16 @@ export class GremlinResourcesImpl implements GremlinResources {
         accountName,
         databaseName,
         createUpdateGremlinDatabaseParameters,
-        options
+        options,
       },
-      spec: createUpdateGremlinDatabaseOperationSpec
+      spec: createUpdateGremlinDatabaseOperationSpec,
     });
     const poller = await createHttpPoller<
       GremlinResourcesCreateUpdateGremlinDatabaseResponse,
       OperationState<GremlinResourcesCreateUpdateGremlinDatabaseResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -342,14 +341,14 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     createUpdateGremlinDatabaseParameters: GremlinDatabaseCreateUpdateParameters,
-    options?: GremlinResourcesCreateUpdateGremlinDatabaseOptionalParams
+    options?: GremlinResourcesCreateUpdateGremlinDatabaseOptionalParams,
   ): Promise<GremlinResourcesCreateUpdateGremlinDatabaseResponse> {
     const poller = await this.beginCreateUpdateGremlinDatabase(
       resourceGroupName,
       accountName,
       databaseName,
       createUpdateGremlinDatabaseParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -365,25 +364,24 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: GremlinResourcesDeleteGremlinDatabaseOptionalParams
+    options?: GremlinResourcesDeleteGremlinDatabaseOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -392,8 +390,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -401,19 +399,19 @@ export class GremlinResourcesImpl implements GremlinResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, accountName, databaseName, options },
-      spec: deleteGremlinDatabaseOperationSpec
+      spec: deleteGremlinDatabaseOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -430,13 +428,13 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: GremlinResourcesDeleteGremlinDatabaseOptionalParams
+    options?: GremlinResourcesDeleteGremlinDatabaseOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDeleteGremlinDatabase(
       resourceGroupName,
       accountName,
       databaseName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -453,11 +451,11 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: GremlinResourcesGetGremlinDatabaseThroughputOptionalParams
+    options?: GremlinResourcesGetGremlinDatabaseThroughputOptionalParams,
   ): Promise<GremlinResourcesGetGremlinDatabaseThroughputResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, databaseName, options },
-      getGremlinDatabaseThroughputOperationSpec
+      getGremlinDatabaseThroughputOperationSpec,
     );
   }
 
@@ -475,7 +473,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams
+    options?: GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<GremlinResourcesUpdateGremlinDatabaseThroughputResponse>,
@@ -484,21 +482,20 @@ export class GremlinResourcesImpl implements GremlinResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<GremlinResourcesUpdateGremlinDatabaseThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -507,8 +504,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -516,8 +513,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -528,16 +525,16 @@ export class GremlinResourcesImpl implements GremlinResources {
         accountName,
         databaseName,
         updateThroughputParameters,
-        options
+        options,
       },
-      spec: updateGremlinDatabaseThroughputOperationSpec
+      spec: updateGremlinDatabaseThroughputOperationSpec,
     });
     const poller = await createHttpPoller<
       GremlinResourcesUpdateGremlinDatabaseThroughputResponse,
       OperationState<GremlinResourcesUpdateGremlinDatabaseThroughputResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -557,14 +554,14 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams
+    options?: GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams,
   ): Promise<GremlinResourcesUpdateGremlinDatabaseThroughputResponse> {
     const poller = await this.beginUpdateGremlinDatabaseThroughput(
       resourceGroupName,
       accountName,
       databaseName,
       updateThroughputParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -580,7 +577,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: GremlinResourcesMigrateGremlinDatabaseToAutoscaleOptionalParams
+    options?: GremlinResourcesMigrateGremlinDatabaseToAutoscaleOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse>,
@@ -589,21 +586,20 @@ export class GremlinResourcesImpl implements GremlinResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -612,8 +608,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -621,22 +617,22 @@ export class GremlinResourcesImpl implements GremlinResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, accountName, databaseName, options },
-      spec: migrateGremlinDatabaseToAutoscaleOperationSpec
+      spec: migrateGremlinDatabaseToAutoscaleOperationSpec,
     });
     const poller = await createHttpPoller<
       GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse,
       OperationState<GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -653,13 +649,13 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: GremlinResourcesMigrateGremlinDatabaseToAutoscaleOptionalParams
+    options?: GremlinResourcesMigrateGremlinDatabaseToAutoscaleOptionalParams,
   ): Promise<GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse> {
     const poller = await this.beginMigrateGremlinDatabaseToAutoscale(
       resourceGroupName,
       accountName,
       databaseName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -675,32 +671,29 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: GremlinResourcesMigrateGremlinDatabaseToManualThroughputOptionalParams
+    options?: GremlinResourcesMigrateGremlinDatabaseToManualThroughputOptionalParams,
   ): Promise<
     SimplePollerLike<
-      OperationState<
-        GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse
-      >,
+      OperationState<GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse>,
       GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -709,8 +702,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -718,24 +711,22 @@ export class GremlinResourcesImpl implements GremlinResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, accountName, databaseName, options },
-      spec: migrateGremlinDatabaseToManualThroughputOperationSpec
+      spec: migrateGremlinDatabaseToManualThroughputOperationSpec,
     });
     const poller = await createHttpPoller<
       GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse,
-      OperationState<
-        GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse
-      >
+      OperationState<GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -752,13 +743,13 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: GremlinResourcesMigrateGremlinDatabaseToManualThroughputOptionalParams
+    options?: GremlinResourcesMigrateGremlinDatabaseToManualThroughputOptionalParams,
   ): Promise<GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse> {
     const poller = await this.beginMigrateGremlinDatabaseToManualThroughput(
       resourceGroupName,
       accountName,
       databaseName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -774,11 +765,11 @@ export class GremlinResourcesImpl implements GremlinResources {
     resourceGroupName: string,
     accountName: string,
     databaseName: string,
-    options?: GremlinResourcesListGremlinGraphsOptionalParams
+    options?: GremlinResourcesListGremlinGraphsOptionalParams,
   ): Promise<GremlinResourcesListGremlinGraphsResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, databaseName, options },
-      listGremlinGraphsOperationSpec
+      listGremlinGraphsOperationSpec,
     );
   }
 
@@ -795,11 +786,11 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     graphName: string,
-    options?: GremlinResourcesGetGremlinGraphOptionalParams
+    options?: GremlinResourcesGetGremlinGraphOptionalParams,
   ): Promise<GremlinResourcesGetGremlinGraphResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, databaseName, graphName, options },
-      getGremlinGraphOperationSpec
+      getGremlinGraphOperationSpec,
     );
   }
 
@@ -818,7 +809,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     databaseName: string,
     graphName: string,
     createUpdateGremlinGraphParameters: GremlinGraphCreateUpdateParameters,
-    options?: GremlinResourcesCreateUpdateGremlinGraphOptionalParams
+    options?: GremlinResourcesCreateUpdateGremlinGraphOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<GremlinResourcesCreateUpdateGremlinGraphResponse>,
@@ -827,21 +818,20 @@ export class GremlinResourcesImpl implements GremlinResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<GremlinResourcesCreateUpdateGremlinGraphResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -850,8 +840,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -859,8 +849,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -872,16 +862,16 @@ export class GremlinResourcesImpl implements GremlinResources {
         databaseName,
         graphName,
         createUpdateGremlinGraphParameters,
-        options
+        options,
       },
-      spec: createUpdateGremlinGraphOperationSpec
+      spec: createUpdateGremlinGraphOperationSpec,
     });
     const poller = await createHttpPoller<
       GremlinResourcesCreateUpdateGremlinGraphResponse,
       OperationState<GremlinResourcesCreateUpdateGremlinGraphResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -902,7 +892,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     databaseName: string,
     graphName: string,
     createUpdateGremlinGraphParameters: GremlinGraphCreateUpdateParameters,
-    options?: GremlinResourcesCreateUpdateGremlinGraphOptionalParams
+    options?: GremlinResourcesCreateUpdateGremlinGraphOptionalParams,
   ): Promise<GremlinResourcesCreateUpdateGremlinGraphResponse> {
     const poller = await this.beginCreateUpdateGremlinGraph(
       resourceGroupName,
@@ -910,7 +900,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       databaseName,
       graphName,
       createUpdateGremlinGraphParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -928,25 +918,24 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     graphName: string,
-    options?: GremlinResourcesDeleteGremlinGraphOptionalParams
+    options?: GremlinResourcesDeleteGremlinGraphOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -955,8 +944,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -964,8 +953,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -976,13 +965,13 @@ export class GremlinResourcesImpl implements GremlinResources {
         accountName,
         databaseName,
         graphName,
-        options
+        options,
       },
-      spec: deleteGremlinGraphOperationSpec
+      spec: deleteGremlinGraphOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1001,14 +990,14 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     graphName: string,
-    options?: GremlinResourcesDeleteGremlinGraphOptionalParams
+    options?: GremlinResourcesDeleteGremlinGraphOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDeleteGremlinGraph(
       resourceGroupName,
       accountName,
       databaseName,
       graphName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1027,11 +1016,11 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     graphName: string,
-    options?: GremlinResourcesGetGremlinGraphThroughputOptionalParams
+    options?: GremlinResourcesGetGremlinGraphThroughputOptionalParams,
   ): Promise<GremlinResourcesGetGremlinGraphThroughputResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, accountName, databaseName, graphName, options },
-      getGremlinGraphThroughputOperationSpec
+      getGremlinGraphThroughputOperationSpec,
     );
   }
 
@@ -1051,7 +1040,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     databaseName: string,
     graphName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: GremlinResourcesUpdateGremlinGraphThroughputOptionalParams
+    options?: GremlinResourcesUpdateGremlinGraphThroughputOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<GremlinResourcesUpdateGremlinGraphThroughputResponse>,
@@ -1060,21 +1049,20 @@ export class GremlinResourcesImpl implements GremlinResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<GremlinResourcesUpdateGremlinGraphThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1083,8 +1071,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1092,8 +1080,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -1105,16 +1093,16 @@ export class GremlinResourcesImpl implements GremlinResources {
         databaseName,
         graphName,
         updateThroughputParameters,
-        options
+        options,
       },
-      spec: updateGremlinGraphThroughputOperationSpec
+      spec: updateGremlinGraphThroughputOperationSpec,
     });
     const poller = await createHttpPoller<
       GremlinResourcesUpdateGremlinGraphThroughputResponse,
       OperationState<GremlinResourcesUpdateGremlinGraphThroughputResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1136,7 +1124,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     databaseName: string,
     graphName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: GremlinResourcesUpdateGremlinGraphThroughputOptionalParams
+    options?: GremlinResourcesUpdateGremlinGraphThroughputOptionalParams,
   ): Promise<GremlinResourcesUpdateGremlinGraphThroughputResponse> {
     const poller = await this.beginUpdateGremlinGraphThroughput(
       resourceGroupName,
@@ -1144,7 +1132,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       databaseName,
       graphName,
       updateThroughputParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1162,7 +1150,7 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     graphName: string,
-    options?: GremlinResourcesMigrateGremlinGraphToAutoscaleOptionalParams
+    options?: GremlinResourcesMigrateGremlinGraphToAutoscaleOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<GremlinResourcesMigrateGremlinGraphToAutoscaleResponse>,
@@ -1171,21 +1159,20 @@ export class GremlinResourcesImpl implements GremlinResources {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<GremlinResourcesMigrateGremlinGraphToAutoscaleResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1194,8 +1181,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1203,8 +1190,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -1215,16 +1202,16 @@ export class GremlinResourcesImpl implements GremlinResources {
         accountName,
         databaseName,
         graphName,
-        options
+        options,
       },
-      spec: migrateGremlinGraphToAutoscaleOperationSpec
+      spec: migrateGremlinGraphToAutoscaleOperationSpec,
     });
     const poller = await createHttpPoller<
       GremlinResourcesMigrateGremlinGraphToAutoscaleResponse,
       OperationState<GremlinResourcesMigrateGremlinGraphToAutoscaleResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1243,14 +1230,14 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     graphName: string,
-    options?: GremlinResourcesMigrateGremlinGraphToAutoscaleOptionalParams
+    options?: GremlinResourcesMigrateGremlinGraphToAutoscaleOptionalParams,
   ): Promise<GremlinResourcesMigrateGremlinGraphToAutoscaleResponse> {
     const poller = await this.beginMigrateGremlinGraphToAutoscale(
       resourceGroupName,
       accountName,
       databaseName,
       graphName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1268,32 +1255,29 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     graphName: string,
-    options?: GremlinResourcesMigrateGremlinGraphToManualThroughputOptionalParams
+    options?: GremlinResourcesMigrateGremlinGraphToManualThroughputOptionalParams,
   ): Promise<
     SimplePollerLike<
-      OperationState<
-        GremlinResourcesMigrateGremlinGraphToManualThroughputResponse
-      >,
+      OperationState<GremlinResourcesMigrateGremlinGraphToManualThroughputResponse>,
       GremlinResourcesMigrateGremlinGraphToManualThroughputResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<GremlinResourcesMigrateGremlinGraphToManualThroughputResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1302,8 +1286,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1311,8 +1295,8 @@ export class GremlinResourcesImpl implements GremlinResources {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -1323,18 +1307,16 @@ export class GremlinResourcesImpl implements GremlinResources {
         accountName,
         databaseName,
         graphName,
-        options
+        options,
       },
-      spec: migrateGremlinGraphToManualThroughputOperationSpec
+      spec: migrateGremlinGraphToManualThroughputOperationSpec,
     });
     const poller = await createHttpPoller<
       GremlinResourcesMigrateGremlinGraphToManualThroughputResponse,
-      OperationState<
-        GremlinResourcesMigrateGremlinGraphToManualThroughputResponse
-      >
+      OperationState<GremlinResourcesMigrateGremlinGraphToManualThroughputResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1353,14 +1335,14 @@ export class GremlinResourcesImpl implements GremlinResources {
     accountName: string,
     databaseName: string,
     graphName: string,
-    options?: GremlinResourcesMigrateGremlinGraphToManualThroughputOptionalParams
+    options?: GremlinResourcesMigrateGremlinGraphToManualThroughputOptionalParams,
   ): Promise<GremlinResourcesMigrateGremlinGraphToManualThroughputResponse> {
     const poller = await this.beginMigrateGremlinGraphToManualThroughput(
       resourceGroupName,
       accountName,
       databaseName,
       graphName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1369,233 +1351,30 @@ export class GremlinResourcesImpl implements GremlinResources {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const listGremlinDatabasesOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.GremlinDatabaseListResult
-    }
+      bodyMapper: Mappers.GremlinDatabaseListResult,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.accountName
+    Parameters.accountName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getGremlinDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.GremlinDatabaseGetResults
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const createUpdateGremlinDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}",
-  httpMethod: "PUT",
-  responses: {
-    200: {
-      bodyMapper: Mappers.GremlinDatabaseGetResults
+      bodyMapper: Mappers.GremlinDatabaseGetResults,
     },
-    201: {
-      bodyMapper: Mappers.GremlinDatabaseGetResults
-    },
-    202: {
-      bodyMapper: Mappers.GremlinDatabaseGetResults
-    },
-    204: {
-      bodyMapper: Mappers.GremlinDatabaseGetResults
-    }
-  },
-  requestBody: Parameters.createUpdateGremlinDatabaseParameters,
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept, Parameters.contentType],
-  mediaType: "json",
-  serializer
-};
-const deleteGremlinDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}",
-  httpMethod: "DELETE",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName
-  ],
-  serializer
-};
-const getGremlinDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const updateGremlinDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default",
-  httpMethod: "PUT",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    201: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    202: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    204: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    }
-  },
-  requestBody: Parameters.updateThroughputParameters,
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept, Parameters.contentType],
-  mediaType: "json",
-  serializer
-};
-const migrateGremlinDatabaseToAutoscaleOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default/migrateToAutoscale",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    201: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    202: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    204: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const migrateGremlinDatabaseToManualThroughputOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default/migrateToManualThroughput",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    201: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    202: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    204: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const listGremlinGraphsOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.GremlinGraphListResult
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getGremlinGraphOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.GremlinGraphGetResults
-    }
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -1604,28 +1383,222 @@ const getGremlinGraphOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName,
     Parameters.databaseName,
-    Parameters.graphName
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const createUpdateGremlinGraphOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}",
+const createUpdateGremlinDatabaseOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.GremlinGraphGetResults
+      bodyMapper: Mappers.GremlinDatabaseGetResults,
     },
     201: {
-      bodyMapper: Mappers.GremlinGraphGetResults
+      bodyMapper: Mappers.GremlinDatabaseGetResults,
     },
     202: {
-      bodyMapper: Mappers.GremlinGraphGetResults
+      bodyMapper: Mappers.GremlinDatabaseGetResults,
     },
     204: {
-      bodyMapper: Mappers.GremlinGraphGetResults
-    }
+      bodyMapper: Mappers.GremlinDatabaseGetResults,
+    },
+  },
+  requestBody: Parameters.createUpdateGremlinDatabaseParameters,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer,
+};
+const deleteGremlinDatabaseOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}",
+  httpMethod: "DELETE",
+  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+  ],
+  serializer,
+};
+const getGremlinDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
+};
+const updateGremlinDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
+    201: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
+    202: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
+    204: {
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
+  },
+  requestBody: Parameters.updateThroughputParameters,
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+  ],
+  headerParameters: [Parameters.accept, Parameters.contentType],
+  mediaType: "json",
+  serializer,
+};
+const migrateGremlinDatabaseToAutoscaleOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default/migrateToAutoscale",
+    httpMethod: "POST",
+    responses: {
+      200: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      201: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      202: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      204: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      default: {
+        bodyMapper: Mappers.CloudError,
+      },
+    },
+    queryParameters: [Parameters.apiVersion],
+    urlParameters: [
+      Parameters.$host,
+      Parameters.subscriptionId,
+      Parameters.resourceGroupName,
+      Parameters.accountName,
+      Parameters.databaseName,
+    ],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };
+const migrateGremlinDatabaseToManualThroughputOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default/migrateToManualThroughput",
+    httpMethod: "POST",
+    responses: {
+      200: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      201: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      202: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      204: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      default: {
+        bodyMapper: Mappers.CloudError,
+      },
+    },
+    queryParameters: [Parameters.apiVersion],
+    urlParameters: [
+      Parameters.$host,
+      Parameters.subscriptionId,
+      Parameters.resourceGroupName,
+      Parameters.accountName,
+      Parameters.databaseName,
+    ],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };
+const listGremlinGraphsOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.GremlinGraphListResult,
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
+};
+const getGremlinGraphOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.GremlinGraphGetResults,
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.accountName,
+    Parameters.databaseName,
+    Parameters.graphName,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
+};
+const createUpdateGremlinGraphOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}",
+  httpMethod: "PUT",
+  responses: {
+    200: {
+      bodyMapper: Mappers.GremlinGraphGetResults,
+    },
+    201: {
+      bodyMapper: Mappers.GremlinGraphGetResults,
+    },
+    202: {
+      bodyMapper: Mappers.GremlinGraphGetResults,
+    },
+    204: {
+      bodyMapper: Mappers.GremlinGraphGetResults,
+    },
   },
   requestBody: Parameters.createUpdateGremlinGraphParameters,
   queryParameters: [Parameters.apiVersion],
@@ -1635,15 +1608,14 @@ const createUpdateGremlinGraphOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName,
     Parameters.databaseName,
-    Parameters.graphName
+    Parameters.graphName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteGremlinGraphOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
@@ -1653,18 +1625,17 @@ const deleteGremlinGraphOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName,
     Parameters.databaseName,
-    Parameters.graphName
+    Parameters.graphName,
   ],
-  serializer
+  serializer,
 };
 const getGremlinGraphThroughputOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    }
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -1673,28 +1644,27 @@ const getGremlinGraphThroughputOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName,
     Parameters.databaseName,
-    Parameters.graphName
+    Parameters.graphName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const updateGremlinGraphThroughputOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
     },
     201: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
     },
     202: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
     },
     204: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    }
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
+    },
   },
   requestBody: Parameters.updateThroughputParameters,
   queryParameters: [Parameters.apiVersion],
@@ -1704,32 +1674,31 @@ const updateGremlinGraphThroughputOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName,
     Parameters.databaseName,
-    Parameters.graphName
+    Parameters.graphName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const migrateGremlinGraphToAutoscaleOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default/migrateToAutoscale",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default/migrateToAutoscale",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
     },
     201: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
     },
     202: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
     },
     204: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
+      bodyMapper: Mappers.ThroughputSettingsGetResults,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -1738,41 +1707,41 @@ const migrateGremlinGraphToAutoscaleOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.accountName,
     Parameters.databaseName,
-    Parameters.graphName
+    Parameters.graphName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const migrateGremlinGraphToManualThroughputOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default/migrateToManualThroughput",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
+const migrateGremlinGraphToManualThroughputOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default/migrateToManualThroughput",
+    httpMethod: "POST",
+    responses: {
+      200: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      201: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      202: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      204: {
+        bodyMapper: Mappers.ThroughputSettingsGetResults,
+      },
+      default: {
+        bodyMapper: Mappers.CloudError,
+      },
     },
-    201: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    202: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    204: {
-      bodyMapper: Mappers.ThroughputSettingsGetResults
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.accountName,
-    Parameters.databaseName,
-    Parameters.graphName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
+    queryParameters: [Parameters.apiVersion],
+    urlParameters: [
+      Parameters.$host,
+      Parameters.subscriptionId,
+      Parameters.resourceGroupName,
+      Parameters.accountName,
+      Parameters.databaseName,
+      Parameters.graphName,
+    ],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };

@@ -31,7 +31,7 @@ async function storageAccountGetEncryptionScope() {
   const result = await client.encryptionScopes.get(
     resourceGroupName,
     accountName,
-    encryptionScopeName
+    encryptionScopeName,
   );
   console.log(result);
 }

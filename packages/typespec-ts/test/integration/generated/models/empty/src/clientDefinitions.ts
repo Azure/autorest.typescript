@@ -20,7 +20,7 @@ export interface PutEmpty {
 
 export interface PostRoundTripEmpty {
   post(
-    options: PostRoundTripEmptyParameters
+    options: PostRoundTripEmptyParameters,
   ): StreamableMethod<PostRoundTripEmpty200Response>;
 }
 

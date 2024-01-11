@@ -20,7 +20,7 @@ import { AudioTranslationsCreateOptions } from "../../../models/options.js";
 export function _createSend(
   context: Client,
   audio: CreateTranslationRequest,
-  options: AudioTranslationsCreateOptions = { requestOptions: {} }
+  options: AudioTranslationsCreateOptions = { requestOptions: {} },
 ): StreamableMethod<
   AudioTranslationsCreate200Response | AudioTranslationsCreateDefaultResponse
 > {
@@ -42,7 +42,7 @@ export function _createSend(
 export async function _createDeserialize(
   result:
     | AudioTranslationsCreate200Response
-    | AudioTranslationsCreateDefaultResponse
+    | AudioTranslationsCreateDefaultResponse,
 ): Promise<CreateTranslationResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -56,7 +56,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   audio: CreateTranslationRequest,
-  options: AudioTranslationsCreateOptions = { requestOptions: {} }
+  options: AudioTranslationsCreateOptions = { requestOptions: {} },
 ): Promise<CreateTranslationResponse> {
   const result = await _createSend(context, audio, options);
   return _createDeserialize(result);

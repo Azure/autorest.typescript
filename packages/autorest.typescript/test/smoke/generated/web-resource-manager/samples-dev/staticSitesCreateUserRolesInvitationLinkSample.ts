@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   StaticSiteUserInvitationRequestResource,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -28,19 +28,20 @@ async function createAnInvitationLinkForAUserForAStaticSite() {
     process.env["SUBSCRIPTION_ID"] || "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg";
   const name = "testStaticSite0";
-  const staticSiteUserRolesInvitationEnvelope: StaticSiteUserInvitationRequestResource = {
-    domain: "happy-sea-15afae3e.azurestaticwebsites.net",
-    numHoursToExpiration: 1,
-    provider: "aad",
-    roles: "admin,contributor",
-    userDetails: "username"
-  };
+  const staticSiteUserRolesInvitationEnvelope: StaticSiteUserInvitationRequestResource =
+    {
+      domain: "happy-sea-15afae3e.azurestaticwebsites.net",
+      numHoursToExpiration: 1,
+      provider: "aad",
+      roles: "admin,contributor",
+      userDetails: "username",
+    };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.createUserRolesInvitationLink(
     resourceGroupName,
     name,
-    staticSiteUserRolesInvitationEnvelope
+    staticSiteUserRolesInvitationEnvelope,
   );
   console.log(result);
 }

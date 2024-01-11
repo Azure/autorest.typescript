@@ -12,7 +12,7 @@ import { CustomUrlRestClient } from "./clientDefinitions";
  */
 export default function createClient(
   host: string,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): CustomUrlRestClient {
   const baseUrl = options.baseUrl ?? `http://{accountName}${host}`;
   const userAgentInfo = `azsdk-js-custom-url-rest/1.0.0-preview1`;
@@ -23,11 +23,11 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
-    }
+      logger: options.loggingOptions?.logger ?? logger.info,
+    },
   };
 
   const client = getClient(baseUrl, options) as CustomUrlRestClient;
@@ -37,7 +37,7 @@ export default function createClient(
     paths: {
       getEmpty: (options) => {
         return client.path("/customuri").get(options);
-      }
-    }
+      },
+    },
   };
 }

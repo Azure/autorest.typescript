@@ -22,7 +22,7 @@ export interface Output {
 
 export interface InputAndOutput {
   post(
-    options: InputAndOutputParameters
+    options: InputAndOutputParameters,
   ): StreamableMethod<InputAndOutput200Response>;
 }
 

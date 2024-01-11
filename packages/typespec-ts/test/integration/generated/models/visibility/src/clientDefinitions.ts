@@ -26,7 +26,7 @@ export interface GetModel {
   patch(options: PatchModelParameters): StreamableMethod<PatchModel204Response>;
   post(options: PostModelParameters): StreamableMethod<PostModel204Response>;
   delete(
-    options: DeleteModelParameters
+    options: DeleteModelParameters,
   ): StreamableMethod<DeleteModel204Response>;
 }
 

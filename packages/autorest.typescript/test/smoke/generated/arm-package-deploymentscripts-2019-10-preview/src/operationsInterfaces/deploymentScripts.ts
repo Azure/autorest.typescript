@@ -22,7 +22,7 @@ import {
   DeploymentScriptsGetLogsOptionalParams,
   DeploymentScriptsGetLogsResponse,
   DeploymentScriptsGetLogsDefaultOptionalParams,
-  DeploymentScriptsGetLogsDefaultResponse
+  DeploymentScriptsGetLogsDefaultResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -33,7 +33,7 @@ export interface DeploymentScripts {
    * @param options The options parameters.
    */
   listBySubscription(
-    options?: DeploymentScriptsListBySubscriptionOptionalParams
+    options?: DeploymentScriptsListBySubscriptionOptionalParams,
   ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
   /**
    * Lists deployments scripts.
@@ -42,7 +42,7 @@ export interface DeploymentScripts {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: DeploymentScriptsListByResourceGroupOptionalParams
+    options?: DeploymentScriptsListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<DeploymentScriptUnion>;
   /**
    * Creates a deployment script.
@@ -55,7 +55,7 @@ export interface DeploymentScripts {
     resourceGroupName: string,
     scriptName: string,
     deploymentScript: DeploymentScriptUnion,
-    options?: DeploymentScriptsCreateOptionalParams
+    options?: DeploymentScriptsCreateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DeploymentScriptsCreateResponse>,
@@ -73,7 +73,7 @@ export interface DeploymentScripts {
     resourceGroupName: string,
     scriptName: string,
     deploymentScript: DeploymentScriptUnion,
-    options?: DeploymentScriptsCreateOptionalParams
+    options?: DeploymentScriptsCreateOptionalParams,
   ): Promise<DeploymentScriptsCreateResponse>;
   /**
    * Updates deployment script tags with specified values.
@@ -84,7 +84,7 @@ export interface DeploymentScripts {
   update(
     resourceGroupName: string,
     scriptName: string,
-    options?: DeploymentScriptsUpdateOptionalParams
+    options?: DeploymentScriptsUpdateOptionalParams,
   ): Promise<DeploymentScriptsUpdateResponse>;
   /**
    * Gets a deployment script with a given name.
@@ -95,7 +95,7 @@ export interface DeploymentScripts {
   get(
     resourceGroupName: string,
     scriptName: string,
-    options?: DeploymentScriptsGetOptionalParams
+    options?: DeploymentScriptsGetOptionalParams,
   ): Promise<DeploymentScriptsGetResponse>;
   /**
    * Deletes a deployment script. When operation completes, status code 200 returned without content.
@@ -106,7 +106,7 @@ export interface DeploymentScripts {
   delete(
     resourceGroupName: string,
     scriptName: string,
-    options?: DeploymentScriptsDeleteOptionalParams
+    options?: DeploymentScriptsDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Gets deployment script logs for a given deployment script name.
@@ -117,7 +117,7 @@ export interface DeploymentScripts {
   getLogs(
     resourceGroupName: string,
     scriptName: string,
-    options?: DeploymentScriptsGetLogsOptionalParams
+    options?: DeploymentScriptsGetLogsOptionalParams,
   ): Promise<DeploymentScriptsGetLogsResponse>;
   /**
    * Gets deployment script logs for a given deployment script name.
@@ -128,6 +128,6 @@ export interface DeploymentScripts {
   getLogsDefault(
     resourceGroupName: string,
     scriptName: string,
-    options?: DeploymentScriptsGetLogsDefaultOptionalParams
+    options?: DeploymentScriptsGetLogsDefaultOptionalParams,
   ): Promise<DeploymentScriptsGetLogsDefaultResponse>;
 }

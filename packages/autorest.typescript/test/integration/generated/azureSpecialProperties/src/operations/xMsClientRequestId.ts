@@ -13,7 +13,7 @@ import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 import {
   XMsClientRequestIdGetOptionalParams,
-  XMsClientRequestIdParamGetOptionalParams
+  XMsClientRequestIdParamGetOptionalParams,
 } from "../models";
 
 /** Class containing XMsClientRequestId operations. */
@@ -46,11 +46,11 @@ export class XMsClientRequestIdImpl implements XMsClientRequestId {
    */
   paramGet(
     xMsClientRequestId: string,
-    options?: XMsClientRequestIdParamGetOptionalParams
+    options?: XMsClientRequestIdParamGetOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { xMsClientRequestId, options },
-      paramGetOperationSpec
+      paramGetOperationSpec,
     );
   }
 }
@@ -62,7 +62,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: { 200: {}, default: {} },
   urlParameters: [Parameters.$host],
-  serializer
+  serializer,
 };
 const paramGetOperationSpec: coreClient.OperationSpec = {
   path: "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/",
@@ -70,10 +70,10 @@ const paramGetOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.xMsClientRequestId],
-  serializer
+  serializer,
 };
