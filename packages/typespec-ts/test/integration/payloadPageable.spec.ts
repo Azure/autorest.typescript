@@ -52,16 +52,16 @@ describe("Pageable Client", () => {
       const result = await client
         .path("/payload/pageable")
         .get({ queryParameters: { maxpagesize: 3, skipToken: "wrong value" } });
-      assert.strictEqual(result.status, "500");
-      // assert.strictEqual(
-      //   (result.body as any).message,
-      //   "Unsupported skipToken query parameter"
-      // );
-      // assert.strictEqual(
-      //   (result.body as any).expected,
-      //   `Not provided for first page, "name-user7" for second page`
-      // );
-      // assert.strictEqual((result.body as any).actual, "wrong value");
+      assert.strictEqual(result.status, "400");
+      assert.strictEqual(
+        (result.body as any).message,
+        "Unsupported skipToken query parameter"
+      );
+      assert.strictEqual(
+        (result.body as any).expected,
+        `Not provided for first page, "name-user7" for second page`
+      );
+      assert.strictEqual((result.body as any).actual, "wrong value");
     } catch (err) {
       assert.fail(err as string);
     }
