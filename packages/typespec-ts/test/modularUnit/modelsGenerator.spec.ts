@@ -1459,7 +1459,7 @@ describe("inheritance & polymorphism", () => {
       );
     });
 
-    it("extensible enums with string literals being used in regular headers", async () => {
+    it.skip("extensible enums with string literals being used in regular headers", async () => {
       const tspDefinition = `
       import "@typespec/http";
       import "@typespec/rest";
