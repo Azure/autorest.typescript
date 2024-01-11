@@ -124,10 +124,11 @@ const buildMixedDefinition = (options: DefinitionOptions) => {
   `;
 };
 
-const buildDefaultReturn = (hasDefault: boolean) => {
+const buildDefaultReturn = (hasDefault: boolean, hasQueryDefinition: boolean) => {
   const defaultDef = !hasDefault
     ? ``
     : `options.apiVersion = options.apiVersion ?? "2022-05-15-preview";`;
+  const apiVersionDef = !hasQueryDefinition ? `\n    client.pipeline.removePolicy({ name: "ApiVersionPolicy" });\n    \n`: ``;
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
   import { logger } from "./logger";
@@ -160,7 +161,7 @@ const buildDefaultReturn = (hasDefault: boolean) => {
     };
   
     const client = getClient(baseUrl, options) as testClient;
-  
+    ${apiVersionDef}
     return client;
   }`;
 };
@@ -203,6 +204,8 @@ const buildPathReturn_WithDefault = () => {
     };
   
     const client = getClient(baseUrl, options) as testClient;
+
+    client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   
     return client;          
   }`;
@@ -243,6 +246,8 @@ const buildPathReturn_WithoutDefault = () => {
     };
   
     const client = getClient(baseUrl, options) as testClient;
+
+    client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   
     return client;          
   }`;
@@ -255,7 +260,7 @@ describe("api-version", () => {
         const def = buildQueryDefinition({
           "@service": true
         });
-        const expectedRes = buildDefaultReturn(true);
+        const expectedRes = buildDefaultReturn(true, true);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
         await assertEqualContent(models!.content, expectedRes);
@@ -264,7 +269,7 @@ describe("api-version", () => {
         const def = buildQueryDefinition({
           "@versioned": true
         });
-        const expectedRes = buildDefaultReturn(true);
+        const expectedRes = buildDefaultReturn(true, true);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
         await assertEqualContent(models!.content, expectedRes);
@@ -277,7 +282,7 @@ describe("api-version", () => {
           "@versioned": false,
           crossVersion: true
         });
-        const expectedRes = buildDefaultReturn(false);
+        const expectedRes = buildDefaultReturn(false, true);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
         await assertEqualContent(models!.content, expectedRes);
@@ -287,7 +292,7 @@ describe("api-version", () => {
           "@service": false,
           "@versioned": false
         });
-        const expectedRes = buildDefaultReturn(false);
+        const expectedRes = buildDefaultReturn(false, true);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
         await assertEqualContent(models!.content, expectedRes);
@@ -363,12 +368,13 @@ describe("api-version", () => {
     });
   });
   describe("without definition", () => {
+    // if there's no definition, it's pointless to add default version and have the api version policy
     describe("with default value", () => {
       it("in @serivce", async () => {
         const def = buildDefaultDefinition({
           "@service": true
         });
-        const expectedRes = buildDefaultReturn(true);
+        const expectedRes = buildDefaultReturn(false, false);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
         await assertEqualContent(models!.content, expectedRes);
@@ -377,7 +383,7 @@ describe("api-version", () => {
         const def = buildDefaultDefinition({
           "@versioned": true
         });
-        const expectedRes = buildDefaultReturn(true);
+        const expectedRes = buildDefaultReturn(false, false);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
         await assertEqualContent(models!.content, expectedRes);
@@ -389,7 +395,7 @@ describe("api-version", () => {
           "@service": false,
           "@versioned": false
         });
-        const expectedRes = buildDefaultReturn(false);
+        const expectedRes = buildDefaultReturn(false, false);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
         await assertEqualContent(models!.content, expectedRes);

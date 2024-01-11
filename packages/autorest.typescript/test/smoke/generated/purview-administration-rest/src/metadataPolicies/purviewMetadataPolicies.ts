@@ -18,7 +18,7 @@ export function createClient(
   options: ClientOptions = {},
 ): PurviewMetadataPoliciesClient {
   const baseUrl = options.baseUrl ?? `${endpoint}/policyStore`;
-  options.apiVersion = options.apiVersion ?? "2021-07-01-preview";
+
   const userAgentInfo = `azsdk-js-purview-administration-rest/1.0.0-beta.2`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -42,6 +42,8 @@ export function createClient(
     credentials,
     options,
   ) as PurviewMetadataPoliciesClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }

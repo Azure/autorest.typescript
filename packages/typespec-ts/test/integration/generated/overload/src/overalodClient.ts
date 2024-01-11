@@ -33,5 +33,7 @@ export default function createClient(
 
   const client = getClient(baseUrl, options) as OveralodClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+
   return client;
 }
