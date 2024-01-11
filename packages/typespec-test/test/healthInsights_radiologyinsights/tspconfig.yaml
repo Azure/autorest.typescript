@@ -1,28 +1,7 @@
 emit: [
-    # "@azure-tools/typespec-csharp",
-    # "@azure-tools/typespec-python",
-    # "@azure-tools/typespec-java",
     "@azure-tools/typespec-ts",
   ]
 options:
-  # "@azure-tools/typespec-python":
-  #   package-pprint-name: '"Azure Health Insights - Radiology Insights"'
-  #   package-mode: "dataplane"
-  #   package-version: 1.0.0b1
-  #   package-dir: "azure-healthinsights-radiologyinsights"
-  #   package-name: "{package-dir}"
-  #   emitter-output-dir: "{python-sdk-folder}/sdk/{service-directory-name}/{package-name}"
-  # "@azure-tools/typespec-java":
-  #   package-dir: "azure-healthinsights-radiologyinsights"
-  #   namespace: com.azure.health.insights.radiologyinsights
-  #   partial-update: true
-  #   emitter-output-dir: "{java-sdk-folder}/sdk/{service-directory-name}/azure-health-insights-radiologyinsights"
-  # "@azure-tools/typespec-csharp":
-  #   save-inputs: false
-  #   clear-output-folder: true
-  #   package-dir: "Azure.Health.Insights.RadiologyInsights"
-  #   namespace: "{package-dir}"
-  #   model-namespace: false
   "@azure-tools/typespec-ts":
     generateMetadata: true
     generateTest: true
