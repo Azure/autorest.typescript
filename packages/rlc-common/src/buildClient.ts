@@ -21,34 +21,6 @@ import {
 } from "./helpers/nameConstructors.js";
 import { getImportSpecifier } from "./helpers/importsUtil.js";
 
-function getIsKeyCredentialHelper(
-  model: RLCModel,
-  isMultipleCredential: boolean
-) {
-  if (!model.options) {
-    return;
-  }
-  const { customHttpAuthHeaderName, customHttpAuthSharedKeyPrefix } =
-    model.options;
-  const includeCustomHttpAuth =
-    customHttpAuthHeaderName && customHttpAuthSharedKeyPrefix;
-  if (isMultipleCredential && includeCustomHttpAuth) {
-    return {
-      name: "isKeyCredential",
-      parameters: [
-        { name: "credentials", type: "TokenCredential | KeyCredential" }
-      ],
-      returnType: "credentials is KeyCredential",
-      statements: [
-        `return (
-        (credentials as KeyCredential).key !== undefined &&
-        typeof (credentials as KeyCredential).key === "string"
-      );`
-      ]
-    };
-  }
-}
-
 function getClientOptionsInterface(
   clientName: string,
   optionalUrlParameters?: PathParameter[]
@@ -114,6 +86,7 @@ export function buildClient(model: RLCModel): File | undefined {
     credentialScopes,
     credentialKeyHeaderName,
     customHttpAuthHeaderName,
+    customHttpAuthSharedKeyPrefix,
     branded
   } = model.options;
   const credentialTypes = credentialScopes ? ["TokenCredential"] : [];
@@ -215,6 +188,11 @@ export function buildClient(model: RLCModel): File | undefined {
     ]);
   }
 
+  const includeKeyCredentialHelper =
+    customHttpAuthHeaderName &&
+    customHttpAuthSharedKeyPrefix &&
+    credentialTypes.length > 1 &&
+    credentialTypes.includes("KeyCredential");
   if (
     addCredentials &&
     isSecurityInfoDefined(
@@ -225,7 +203,9 @@ export function buildClient(model: RLCModel): File | undefined {
   ) {
     clientFile.addImportDeclarations([
       {
-        namedImports: credentialTypes,
+        namedImports: credentialTypes.concat(
+          includeKeyCredentialHelper ? ["isKeyCredential"] : []
+        ),
         moduleSpecifier: getImportSpecifier(
           "coreAuth",
           model.importInfo.runtimeImports
@@ -245,13 +225,6 @@ export function buildClient(model: RLCModel): File | undefined {
       )
     }
   ]);
-  const isKeyCredentialHelper = getIsKeyCredentialHelper(
-    model,
-    credentialTypes.length > 1
-  );
-  if (isKeyCredentialHelper) {
-    clientFile.addFunction(isKeyCredentialHelper);
-  }
   return { path: filePath, content: clientFile.getFullText() };
 }
 

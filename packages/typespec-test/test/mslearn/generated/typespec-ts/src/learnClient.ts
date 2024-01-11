@@ -3,7 +3,11 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { TokenCredential, KeyCredential } from "@azure/core-auth";
+import {
+  TokenCredential,
+  KeyCredential,
+  isKeyCredential,
+} from "@azure/core-auth";
 import { LearnClient } from "./clientDefinitions";
 
 /**
@@ -50,13 +54,4 @@ export default function createClient(
   }
 
   return client;
-}
-
-function isKeyCredential(
-  credentials: TokenCredential | KeyCredential
-): credentials is KeyCredential {
-  return (
-    (credentials as KeyCredential).key !== undefined &&
-    typeof (credentials as KeyCredential).key === "string"
-  );
 }
