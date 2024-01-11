@@ -28,7 +28,7 @@ async function getVirtualRouter() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualRouters.get(
     resourceGroupName,
-    virtualRouterName
+    virtualRouterName,
   );
   console.log(result);
 }

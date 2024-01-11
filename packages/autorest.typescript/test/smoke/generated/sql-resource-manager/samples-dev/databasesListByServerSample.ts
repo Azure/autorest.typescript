@@ -31,7 +31,7 @@ async function getsAListOfDatabases() {
   const resArray = new Array();
   for await (let item of client.databases.listByServer(
     resourceGroupName,
-    serverName
+    serverName,
   )) {
     resArray.push(item);
   }

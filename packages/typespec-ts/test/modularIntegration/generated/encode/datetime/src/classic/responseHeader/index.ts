@@ -20,7 +20,7 @@ export interface ResponseHeaderOperations {
   rfc3339: (options?: ResponseHeaderRfc3339Options) => Promise<void>;
   rfc7231: (options?: ResponseHeaderRfc7231Options) => Promise<void>;
   unixTimestamp: (
-    options?: ResponseHeaderUnixTimestampOptions
+    options?: ResponseHeaderUnixTimestampOptions,
   ) => Promise<void>;
 }
 
@@ -38,7 +38,7 @@ export function getResponseHeader(context: DatetimeContext) {
 }
 
 export function getResponseHeaderOperations(
-  context: DatetimeContext
+  context: DatetimeContext,
 ): ResponseHeaderOperations {
   return {
     ...getResponseHeader(context),

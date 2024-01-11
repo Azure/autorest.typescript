@@ -31,7 +31,7 @@ async function getServerDnsAlias() {
   const result = await client.serverDnsAliases.get(
     resourceGroupName,
     serverName,
-    dnsAliasName
+    dnsAliasName,
   );
   console.log(result);
 }

@@ -26,7 +26,7 @@ async function listManagementGroupNetworkManagerConnection() {
   const client = new NetworkManagementClient(credential);
   const resArray = new Array();
   for await (let item of client.managementGroupNetworkManagerConnections.list(
-    managementGroupId
+    managementGroupId,
   )) {
     resArray.push(item);
   }

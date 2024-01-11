@@ -33,7 +33,7 @@ async function getACredential() {
     resourceGroupName,
     serverName,
     jobAgentName,
-    credentialName
+    credentialName,
   );
   console.log(result);
 }

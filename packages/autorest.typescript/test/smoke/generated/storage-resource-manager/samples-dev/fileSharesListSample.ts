@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   FileSharesListOptionalParams,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,7 +35,7 @@ async function listDeletedShares() {
   for await (let item of client.fileShares.list(
     resourceGroupName,
     accountName,
-    options
+    options,
   )) {
     resArray.push(item);
   }
@@ -60,7 +60,7 @@ async function listShareSnapshots() {
   for await (let item of client.fileShares.list(
     resourceGroupName,
     accountName,
-    options
+    options,
   )) {
     resArray.push(item);
   }
@@ -82,7 +82,7 @@ async function listShares() {
   const resArray = new Array();
   for await (let item of client.fileShares.list(
     resourceGroupName,
-    accountName
+    accountName,
   )) {
     resArray.push(item);
   }

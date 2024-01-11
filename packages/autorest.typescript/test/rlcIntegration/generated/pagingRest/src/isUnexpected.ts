@@ -53,7 +53,7 @@ import {
   PagingNextFragmentWithGrouping200Response,
   PagingNextFragmentWithGroupingDefaultResponse,
   PagingGetPagingModelWithItemNameWithXMSClientName200Response,
-  PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse
+  PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -83,136 +83,136 @@ const responseMap: Record<string, string[]> = {
   "GET /paging/apiVersion/replace/1": ["200"],
   "GET /paging/multiple/fragment/{tenant}/{nextLink}": ["200"],
   "GET /paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}": ["200"],
-  "GET /paging/itemNameWithXMSClientName": ["200"]
+  "GET /paging/itemNameWithXMSClientName": ["200"],
 };
 
 export function isUnexpected(
   response:
     | PagingGetNoItemNamePages200Response
-    | PagingGetNoItemNamePagesDefaultResponse
+    | PagingGetNoItemNamePagesDefaultResponse,
 ): response is PagingGetNoItemNamePagesDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetEmptyNextLinkNamePages200Response
-    | PagingGetEmptyNextLinkNamePagesDefaultResponse
+    | PagingGetEmptyNextLinkNamePagesDefaultResponse,
 ): response is PagingGetEmptyNextLinkNamePagesDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetNullNextLinkNamePages200Response
-    | PagingGetNullNextLinkNamePagesDefaultResponse
+    | PagingGetNullNextLinkNamePagesDefaultResponse,
 ): response is PagingGetNullNextLinkNamePagesDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetSinglePages200Response
-    | PagingGetSinglePagesDefaultResponse
+    | PagingGetSinglePagesDefaultResponse,
 ): response is PagingGetSinglePagesDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetSinglePagesWithBodyParams200Response
-    | PagingGetSinglePagesWithBodyParamsDefaultResponse
+    | PagingGetSinglePagesWithBodyParamsDefaultResponse,
 ): response is PagingGetSinglePagesWithBodyParamsDefaultResponse;
 export function isUnexpected(
   response:
     | PagingFirstResponseEmpty200Response
-    | PagingFirstResponseEmptyDefaultResponse
+    | PagingFirstResponseEmptyDefaultResponse,
 ): response is PagingFirstResponseEmptyDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetMultiplePages200Response
-    | PagingGetMultiplePagesDefaultResponse
+    | PagingGetMultiplePagesDefaultResponse,
 ): response is PagingGetMultiplePagesDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetWithQueryParams200Response
-    | PagingGetWithQueryParamsDefaultResponse
+    | PagingGetWithQueryParamsDefaultResponse,
 ): response is PagingGetWithQueryParamsDefaultResponse;
 export function isUnexpected(
   response:
     | PagingDuplicateParams200Response
-    | PagingDuplicateParamsDefaultResponse
+    | PagingDuplicateParamsDefaultResponse,
 ): response is PagingDuplicateParamsDefaultResponse;
 export function isUnexpected(
   response:
     | PagingPageWithMaxPageSize200Response
-    | PagingPageWithMaxPageSizeDefaultResponse
+    | PagingPageWithMaxPageSizeDefaultResponse,
 ): response is PagingPageWithMaxPageSizeDefaultResponse;
 export function isUnexpected(
   response:
     | PagingNextOperationWithQueryParams200Response
-    | PagingNextOperationWithQueryParamsDefaultResponse
+    | PagingNextOperationWithQueryParamsDefaultResponse,
 ): response is PagingNextOperationWithQueryParamsDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetOdataMultiplePages200Response
-    | PagingGetOdataMultiplePagesDefaultResponse
+    | PagingGetOdataMultiplePagesDefaultResponse,
 ): response is PagingGetOdataMultiplePagesDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetMultiplePagesWithOffset200Response
-    | PagingGetMultiplePagesWithOffsetDefaultResponse
+    | PagingGetMultiplePagesWithOffsetDefaultResponse,
 ): response is PagingGetMultiplePagesWithOffsetDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetMultiplePagesRetryFirst200Response
-    | PagingGetMultiplePagesRetryFirstDefaultResponse
+    | PagingGetMultiplePagesRetryFirstDefaultResponse,
 ): response is PagingGetMultiplePagesRetryFirstDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetMultiplePagesRetrySecond200Response
-    | PagingGetMultiplePagesRetrySecondDefaultResponse
+    | PagingGetMultiplePagesRetrySecondDefaultResponse,
 ): response is PagingGetMultiplePagesRetrySecondDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetSinglePagesFailure200Response
-    | PagingGetSinglePagesFailureDefaultResponse
+    | PagingGetSinglePagesFailureDefaultResponse,
 ): response is PagingGetSinglePagesFailureDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetMultiplePagesFailure200Response
-    | PagingGetMultiplePagesFailureDefaultResponse
+    | PagingGetMultiplePagesFailureDefaultResponse,
 ): response is PagingGetMultiplePagesFailureDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetMultiplePagesFailureUri200Response
-    | PagingGetMultiplePagesFailureUriDefaultResponse
+    | PagingGetMultiplePagesFailureUriDefaultResponse,
 ): response is PagingGetMultiplePagesFailureUriDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetMultiplePagesFragmentNextLink200Response
-    | PagingGetMultiplePagesFragmentNextLinkDefaultResponse
+    | PagingGetMultiplePagesFragmentNextLinkDefaultResponse,
 ): response is PagingGetMultiplePagesFragmentNextLinkDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetMultiplePagesFragmentWithGroupingNextLink200Response
-    | PagingGetMultiplePagesFragmentWithGroupingNextLinkDefaultResponse
+    | PagingGetMultiplePagesFragmentWithGroupingNextLinkDefaultResponse,
 ): response is PagingGetMultiplePagesFragmentWithGroupingNextLinkDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetMultiplePagesLRO202Response
-    | PagingGetMultiplePagesLRODefaultResponse
+    | PagingGetMultiplePagesLRODefaultResponse,
 ): response is PagingGetMultiplePagesLRODefaultResponse;
 export function isUnexpected(
   response:
     | PagingAppendApiVersion200Response
-    | PagingAppendApiVersionDefaultResponse
+    | PagingAppendApiVersionDefaultResponse,
 ): response is PagingAppendApiVersionDefaultResponse;
 export function isUnexpected(
   response:
     | PagingReplaceApiVersion200Response
-    | PagingReplaceApiVersionDefaultResponse
+    | PagingReplaceApiVersionDefaultResponse,
 ): response is PagingReplaceApiVersionDefaultResponse;
 export function isUnexpected(
-  response: PagingNextFragment200Response | PagingNextFragmentDefaultResponse
+  response: PagingNextFragment200Response | PagingNextFragmentDefaultResponse,
 ): response is PagingNextFragmentDefaultResponse;
 export function isUnexpected(
   response:
     | PagingNextFragmentWithGrouping200Response
-    | PagingNextFragmentWithGroupingDefaultResponse
+    | PagingNextFragmentWithGroupingDefaultResponse,
 ): response is PagingNextFragmentWithGroupingDefaultResponse;
 export function isUnexpected(
   response:
     | PagingGetPagingModelWithItemNameWithXMSClientName200Response
-    | PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse
+    | PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse,
 ): response is PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse;
 export function isUnexpected(
   response:
@@ -267,7 +267,7 @@ export function isUnexpected(
     | PagingNextFragmentWithGrouping200Response
     | PagingNextFragmentWithGroupingDefaultResponse
     | PagingGetPagingModelWithItemNameWithXMSClientName200Response
-    | PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse
+    | PagingGetPagingModelWithItemNameWithXMSClientNameDefaultResponse,
 ): response is
   | PagingGetNoItemNamePagesDefaultResponse
   | PagingGetEmptyNextLinkNamePagesDefaultResponse
@@ -343,7 +343,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

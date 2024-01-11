@@ -31,7 +31,7 @@ async function getFtpAllowed() {
   const result = await client.webApps.getFtpAllowedSlot(
     resourceGroupName,
     name,
-    slot
+    slot,
   );
   console.log(result);
 }

@@ -20,7 +20,7 @@ export function getContinuationToken(page: unknown): string | undefined {
 
 export function setContinuationToken(
   page: unknown,
-  continuationToken: string | undefined
+  continuationToken: string | undefined,
 ): void {
   if (typeof page !== "object" || page === null || !continuationToken) {
     return;

@@ -29,7 +29,7 @@ async function vpnSiteLinkListByVpnSite() {
   const resArray = new Array();
   for await (let item of client.vpnSiteLinks.listByVpnSite(
     resourceGroupName,
-    vpnSiteName
+    vpnSiteName,
   )) {
     resArray.push(item);
   }

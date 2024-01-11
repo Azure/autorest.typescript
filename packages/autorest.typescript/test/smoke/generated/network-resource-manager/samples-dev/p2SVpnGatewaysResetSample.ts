@@ -28,7 +28,7 @@ async function resetP2SVpnGateway() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.p2SVpnGateways.beginResetAndWait(
     resourceGroupName,
-    gatewayName
+    gatewayName,
   );
   console.log(result);
 }

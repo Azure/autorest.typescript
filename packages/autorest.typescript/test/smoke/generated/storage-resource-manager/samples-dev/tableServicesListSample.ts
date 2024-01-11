@@ -28,7 +28,7 @@ async function tableServicesList() {
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.tableServices.list(
     resourceGroupName,
-    accountName
+    accountName,
   );
   console.log(result);
 }

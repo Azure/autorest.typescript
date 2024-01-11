@@ -30,7 +30,7 @@ async function natRuleGet() {
   const result = await client.natRules.get(
     resourceGroupName,
     gatewayName,
-    natRuleName
+    natRuleName,
   );
   console.log(result);
 }

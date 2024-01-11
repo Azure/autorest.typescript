@@ -24,7 +24,7 @@ import {
   TagsCreateOrUpdateOptionalParams,
   TagsCreateOrUpdateResponse,
   TagsDeleteOptionalParams,
-  TagsListNextResponse
+  TagsListNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -45,7 +45,7 @@ export class TagsImpl implements Tags {
    * @param options The options parameters.
    */
   public list(
-    options?: TagsListOptionalParams
+    options?: TagsListOptionalParams,
   ): PagedAsyncIterableIterator<TagDetails> {
     const iter = this.listPagingAll(options);
     return {
@@ -60,13 +60,13 @@ export class TagsImpl implements Tags {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listPagingPage(
     options?: TagsListOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<TagDetails[]> {
     let result: TagsListResponse;
     let continuationToken = settings?.continuationToken;
@@ -87,7 +87,7 @@ export class TagsImpl implements Tags {
   }
 
   private async *listPagingAll(
-    options?: TagsListOptionalParams
+    options?: TagsListOptionalParams,
   ): AsyncIterableIterator<TagDetails> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -103,11 +103,11 @@ export class TagsImpl implements Tags {
   deleteValue(
     tagName: string,
     tagValue: string,
-    options?: TagsDeleteValueOptionalParams
+    options?: TagsDeleteValueOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { tagName, tagValue, options },
-      deleteValueOperationSpec
+      deleteValueOperationSpec,
     );
   }
 
@@ -120,11 +120,11 @@ export class TagsImpl implements Tags {
   createOrUpdateValue(
     tagName: string,
     tagValue: string,
-    options?: TagsCreateOrUpdateValueOptionalParams
+    options?: TagsCreateOrUpdateValueOptionalParams,
   ): Promise<TagsCreateOrUpdateValueResponse> {
     return this.client.sendOperationRequest(
       { tagName, tagValue, options },
-      createOrUpdateValueOperationSpec
+      createOrUpdateValueOperationSpec,
     );
   }
 
@@ -137,11 +137,11 @@ export class TagsImpl implements Tags {
    */
   createOrUpdate(
     tagName: string,
-    options?: TagsCreateOrUpdateOptionalParams
+    options?: TagsCreateOrUpdateOptionalParams,
   ): Promise<TagsCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       { tagName, options },
-      createOrUpdateOperationSpec
+      createOrUpdateOperationSpec,
     );
   }
 
@@ -153,7 +153,7 @@ export class TagsImpl implements Tags {
   delete(tagName: string, options?: TagsDeleteOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { tagName, options },
-      deleteOperationSpec
+      deleteOperationSpec,
     );
   }
 
@@ -172,11 +172,11 @@ export class TagsImpl implements Tags {
    */
   private _listNext(
     nextLink: string,
-    options?: TagsListNextOptionalParams
+    options?: TagsListNextOptionalParams,
   ): Promise<TagsListNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listNextOperationSpec
+      listNextOperationSpec,
     );
   }
 }
@@ -184,73 +184,71 @@ export class TagsImpl implements Tags {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const deleteValueOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/tagNames/{tagName}/tagValues/{tagValue}",
+  path: "/subscriptions/{subscriptionId}/tagNames/{tagName}/tagValues/{tagValue}",
   httpMethod: "DELETE",
   responses: {
     200: {},
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.tagName,
-    Parameters.tagValue
+    Parameters.tagValue,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const createOrUpdateValueOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/tagNames/{tagName}/tagValues/{tagValue}",
+  path: "/subscriptions/{subscriptionId}/tagNames/{tagName}/tagValues/{tagValue}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.TagValue
+      bodyMapper: Mappers.TagValue,
     },
     201: {
-      bodyMapper: Mappers.TagValue
+      bodyMapper: Mappers.TagValue,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.tagName,
-    Parameters.tagValue
+    Parameters.tagValue,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/tagNames/{tagName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.TagDetails
+      bodyMapper: Mappers.TagDetails,
     },
     201: {
-      bodyMapper: Mappers.TagDetails
+      bodyMapper: Mappers.TagDetails,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.tagName
+    Parameters.tagName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/tagNames/{tagName}",
@@ -259,50 +257,50 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     200: {},
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.tagName
+    Parameters.tagName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/tagNames",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.TagsListResult
+      bodyMapper: Mappers.TagsListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.TagsListResult
+      bodyMapper: Mappers.TagsListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
-    Parameters.subscriptionId
+    Parameters.subscriptionId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

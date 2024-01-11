@@ -45,7 +45,7 @@ export interface DetectUnivariateEntireSeries {
    * user an overall status of the time series.
    */
   post(
-    options: DetectUnivariateEntireSeriesParameters
+    options: DetectUnivariateEntireSeriesParameters,
   ): StreamableMethod<
     | DetectUnivariateEntireSeries200Response
     | DetectUnivariateEntireSeriesDefaultResponse
@@ -58,7 +58,7 @@ export interface DetectUnivariateLastPoint {
    * and based on all data to determine whether the last point is anomalous.
    */
   post(
-    options: DetectUnivariateLastPointParameters
+    options: DetectUnivariateLastPointParameters,
   ): StreamableMethod<
     | DetectUnivariateLastPoint200Response
     | DetectUnivariateLastPointDefaultResponse
@@ -68,7 +68,7 @@ export interface DetectUnivariateLastPoint {
 export interface DetectUnivariateChangePoint {
   /** Evaluate change point score of every series point */
   post(
-    options: DetectUnivariateChangePointParameters
+    options: DetectUnivariateChangePointParameters,
   ): StreamableMethod<
     | DetectUnivariateChangePoint200Response
     | DetectUnivariateChangePointDefaultResponse
@@ -81,7 +81,7 @@ export interface GetMultivariateBatchDetectionResult {
    * resultId returned by the BatchDetectAnomaly api.
    */
   get(
-    options?: GetMultivariateBatchDetectionResultParameters
+    options?: GetMultivariateBatchDetectionResultParameters,
   ): StreamableMethod<
     | GetMultivariateBatchDetectionResult200Response
     | GetMultivariateBatchDetectionResultDefaultResponse
@@ -99,13 +99,13 @@ export interface TrainMultivariateModel {
    * timestamp column.
    */
   post(
-    options: TrainMultivariateModelParameters
+    options: TrainMultivariateModelParameters,
   ): StreamableMethod<
     TrainMultivariateModel201Response | TrainMultivariateModelDefaultResponse
   >;
   /** List models of a resource. */
   get(
-    options?: ListMultivariateModelsParameters
+    options?: ListMultivariateModelsParameters,
   ): StreamableMethod<
     ListMultivariateModels200Response | ListMultivariateModelsDefaultResponse
   >;
@@ -114,7 +114,7 @@ export interface TrainMultivariateModel {
 export interface DeleteMultivariateModel {
   /** Delete an existing multivariate model according to the modelId */
   delete(
-    options?: DeleteMultivariateModelParameters
+    options?: DeleteMultivariateModelParameters,
   ): StreamableMethod<
     DeleteMultivariateModel204Response | DeleteMultivariateModelDefaultResponse
   >;
@@ -123,7 +123,7 @@ export interface DeleteMultivariateModel {
    * and variables used in the model.
    */
   get(
-    options?: GetMultivariateModelParameters
+    options?: GetMultivariateModelParameters,
   ): StreamableMethod<
     GetMultivariateModel200Response | GetMultivariateModelDefaultResponse
   >;
@@ -139,7 +139,7 @@ export interface DetectMultivariateBatchAnomaly {
    * storage folder, or pointed to a CSV file in Azure blob storage.
    */
   post(
-    options: DetectMultivariateBatchAnomalyParameters
+    options: DetectMultivariateBatchAnomalyParameters,
   ): StreamableMethod<
     | DetectMultivariateBatchAnomaly202Response
     | DetectMultivariateBatchAnomalyDefaultResponse
@@ -154,7 +154,7 @@ export interface DetectMultivariateLastAnomaly {
    * immediately in the response body.
    */
   post(
-    options: DetectMultivariateLastAnomalyParameters
+    options: DetectMultivariateLastAnomalyParameters,
   ): StreamableMethod<
     | DetectMultivariateLastAnomaly200Response
     | DetectMultivariateLastAnomalyDefaultResponse
@@ -171,24 +171,24 @@ export interface Routes {
   /** Resource for '/multivariate/detect-batch/\{resultId\}' has methods for the following verbs: get */
   (
     path: "/multivariate/detect-batch/{resultId}",
-    resultId: string
+    resultId: string,
   ): GetMultivariateBatchDetectionResult;
   /** Resource for '/multivariate/models' has methods for the following verbs: post, get */
   (path: "/multivariate/models"): TrainMultivariateModel;
   /** Resource for '/multivariate/models/\{modelId\}' has methods for the following verbs: delete, get */
   (
     path: "/multivariate/models/{modelId}",
-    modelId: string
+    modelId: string,
   ): DeleteMultivariateModel;
   /** Resource for '/multivariate/models/\{modelId\}:detect-batch' has methods for the following verbs: post */
   (
     path: "/multivariate/models/{modelId}:detect-batch",
-    modelId: string
+    modelId: string,
   ): DetectMultivariateBatchAnomaly;
   /** Resource for '/multivariate/models/\{modelId\}:detect-last' has methods for the following verbs: post */
   (
     path: "/multivariate/models/{modelId}:detect-last",
-    modelId: string
+    modelId: string,
   ): DetectMultivariateLastAnomaly;
 }
 

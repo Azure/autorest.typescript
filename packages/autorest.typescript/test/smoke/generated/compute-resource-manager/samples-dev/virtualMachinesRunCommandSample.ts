@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   RunCommandInput,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,7 +34,7 @@ async function virtualMachineRunCommand() {
   const result = await client.virtualMachines.beginRunCommandAndWait(
     resourceGroupName,
     vmName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

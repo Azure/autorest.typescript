@@ -9,7 +9,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 import { BodyParam as BodyParamMapper } from "../models/mappers";
 
@@ -20,9 +20,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -31,10 +31,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const contentType: OperationParameter = {
@@ -44,14 +44,14 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const parameters: OperationParameter = {
   parameterPath: "parameters",
-  mapper: BodyParamMapper
+  mapper: BodyParamMapper,
 };
 
 export const clientRequestId: OperationParameter = {
@@ -59,9 +59,9 @@ export const clientRequestId: OperationParameter = {
   mapper: {
     serializedName: "client-request-id",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const maxresults: OperationParameter = {
@@ -69,9 +69,9 @@ export const maxresults: OperationParameter = {
   mapper: {
     serializedName: "maxresults",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const timeout: OperationParameter = {
@@ -80,9 +80,9 @@ export const timeout: OperationParameter = {
     defaultValue: 30,
     serializedName: "timeout",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const requiredQueryParameter: OperationQueryParameter = {
@@ -91,9 +91,9 @@ export const requiredQueryParameter: OperationQueryParameter = {
     serializedName: "requiredQueryParameter",
     required: true,
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const queryConstant: OperationQueryParameter = {
@@ -103,9 +103,9 @@ export const queryConstant: OperationQueryParameter = {
     isConstant: true,
     serializedName: "queryConstant",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const filter: OperationQueryParameter = {
@@ -113,9 +113,9 @@ export const filter: OperationQueryParameter = {
   mapper: {
     serializedName: "$filter",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const maxpagesize: OperationQueryParameter = {
@@ -125,23 +125,23 @@ export const maxpagesize: OperationQueryParameter = {
     isConstant: true,
     serializedName: "$maxpagesize",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const maxresults1: OperationParameter = {
   parameterPath: [
     "options",
     "pagingGetOdataMultiplePagesOptions",
-    "maxresults"
+    "maxresults",
   ],
   mapper: {
     serializedName: "maxresults",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const timeout1: OperationParameter = {
@@ -150,9 +150,9 @@ export const timeout1: OperationParameter = {
     defaultValue: 30,
     serializedName: "timeout",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const maxresults2: OperationParameter = {
@@ -160,9 +160,9 @@ export const maxresults2: OperationParameter = {
   mapper: {
     serializedName: "maxresults",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const offset: OperationURLParameter = {
@@ -171,9 +171,9 @@ export const offset: OperationURLParameter = {
     serializedName: "offset",
     required: true,
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const timeout2: OperationParameter = {
@@ -182,9 +182,9 @@ export const timeout2: OperationParameter = {
     defaultValue: 30,
     serializedName: "timeout",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const apiVersion: OperationQueryParameter = {
@@ -193,9 +193,9 @@ export const apiVersion: OperationQueryParameter = {
     serializedName: "api_version",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const tenant: OperationURLParameter = {
@@ -204,9 +204,9 @@ export const tenant: OperationURLParameter = {
     serializedName: "tenant",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const apiVersion1: OperationQueryParameter = {
@@ -215,9 +215,9 @@ export const apiVersion1: OperationQueryParameter = {
     serializedName: "api_version",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const tenant1: OperationURLParameter = {
@@ -226,9 +226,9 @@ export const tenant1: OperationURLParameter = {
     serializedName: "tenant",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const maxresults3: OperationParameter = {
@@ -236,9 +236,9 @@ export const maxresults3: OperationParameter = {
   mapper: {
     serializedName: "maxresults",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const timeout3: OperationParameter = {
@@ -247,9 +247,9 @@ export const timeout3: OperationParameter = {
     defaultValue: 30,
     serializedName: "timeout",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const apiVersion2: OperationQueryParameter = {
@@ -259,9 +259,9 @@ export const apiVersion2: OperationQueryParameter = {
     isConstant: true,
     serializedName: "api-version",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const nextLink: OperationURLParameter = {
@@ -270,8 +270,8 @@ export const nextLink: OperationURLParameter = {
     serializedName: "nextLink",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };

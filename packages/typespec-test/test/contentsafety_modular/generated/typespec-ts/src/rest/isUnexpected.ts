@@ -39,43 +39,43 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: AnalyzeText200Response | AnalyzeTextDefaultResponse
+  response: AnalyzeText200Response | AnalyzeTextDefaultResponse,
 ): response is AnalyzeTextDefaultResponse;
 export function isUnexpected(
-  response: AnalyzeImage200Response | AnalyzeImageDefaultResponse
+  response: AnalyzeImage200Response | AnalyzeImageDefaultResponse,
 ): response is AnalyzeImageDefaultResponse;
 export function isUnexpected(
-  response: GetTextBlocklist200Response | GetTextBlocklistDefaultResponse
+  response: GetTextBlocklist200Response | GetTextBlocklistDefaultResponse,
 ): response is GetTextBlocklistDefaultResponse;
 export function isUnexpected(
   response:
     | CreateOrUpdateTextBlocklist200Response
     | CreateOrUpdateTextBlocklist201Response
-    | CreateOrUpdateTextBlocklistDefaultResponse
+    | CreateOrUpdateTextBlocklistDefaultResponse,
 ): response is CreateOrUpdateTextBlocklistDefaultResponse;
 export function isUnexpected(
-  response: DeleteTextBlocklist204Response | DeleteTextBlocklistDefaultResponse
+  response: DeleteTextBlocklist204Response | DeleteTextBlocklistDefaultResponse,
 ): response is DeleteTextBlocklistDefaultResponse;
 export function isUnexpected(
-  response: ListTextBlocklists200Response | ListTextBlocklistsDefaultResponse
+  response: ListTextBlocklists200Response | ListTextBlocklistsDefaultResponse,
 ): response is ListTextBlocklistsDefaultResponse;
 export function isUnexpected(
   response:
     | AddOrUpdateBlockItems200Response
-    | AddOrUpdateBlockItemsDefaultResponse
+    | AddOrUpdateBlockItemsDefaultResponse,
 ): response is AddOrUpdateBlockItemsDefaultResponse;
 export function isUnexpected(
-  response: RemoveBlockItems204Response | RemoveBlockItemsDefaultResponse
+  response: RemoveBlockItems204Response | RemoveBlockItemsDefaultResponse,
 ): response is RemoveBlockItemsDefaultResponse;
 export function isUnexpected(
   response:
     | GetTextBlocklistItem200Response
-    | GetTextBlocklistItemDefaultResponse
+    | GetTextBlocklistItemDefaultResponse,
 ): response is GetTextBlocklistItemDefaultResponse;
 export function isUnexpected(
   response:
     | ListTextBlocklistItems200Response
-    | ListTextBlocklistItemsDefaultResponse
+    | ListTextBlocklistItemsDefaultResponse,
 ): response is ListTextBlocklistItemsDefaultResponse;
 export function isUnexpected(
   response:
@@ -99,7 +99,7 @@ export function isUnexpected(
     | GetTextBlocklistItem200Response
     | GetTextBlocklistItemDefaultResponse
     | ListTextBlocklistItems200Response
-    | ListTextBlocklistItemsDefaultResponse
+    | ListTextBlocklistItemsDefaultResponse,
 ): response is
   | AnalyzeTextDefaultResponse
   | AnalyzeImageDefaultResponse
@@ -159,7 +159,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

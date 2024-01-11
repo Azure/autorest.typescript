@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ConnectionSharedKey,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,11 +30,12 @@ async function setVirtualNetworkGatewayConnectionSharedKey() {
   const parameters: ConnectionSharedKey = { value: "AzureAbc123" };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGatewayConnections.beginSetSharedKeyAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayConnectionName,
-    parameters
-  );
+  const result =
+    await client.virtualNetworkGatewayConnections.beginSetSharedKeyAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+      parameters,
+    );
   console.log(result);
 }
 

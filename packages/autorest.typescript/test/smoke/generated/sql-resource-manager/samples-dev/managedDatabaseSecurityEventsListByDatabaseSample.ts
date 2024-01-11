@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ManagedDatabaseSecurityEventsListByDatabaseOptionalParams,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -38,7 +38,7 @@ async function getTheManagedDatabaseSecurityEventsWithMaximalParameters() {
     filter,
     skip,
     top,
-    skiptoken
+    skiptoken,
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -47,7 +47,7 @@ async function getTheManagedDatabaseSecurityEventsWithMaximalParameters() {
     resourceGroupName,
     managedInstanceName,
     databaseName,
-    options
+    options,
   )) {
     resArray.push(item);
   }
@@ -72,7 +72,7 @@ async function getTheManagedDatabaseSecurityEventsWithMinimalParameters() {
   for await (let item of client.managedDatabaseSecurityEvents.listByDatabase(
     resourceGroupName,
     managedInstanceName,
-    databaseName
+    databaseName,
   )) {
     resArray.push(item);
   }

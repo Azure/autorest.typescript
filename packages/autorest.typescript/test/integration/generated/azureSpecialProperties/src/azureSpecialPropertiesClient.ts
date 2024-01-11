@@ -10,7 +10,7 @@ import * as coreClient from "@azure/core-client";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import * as coreAuth from "@azure/core-auth";
 import {
@@ -21,7 +21,7 @@ import {
   ApiVersionLocalImpl,
   SkipUrlEncodingImpl,
   OdataImpl,
-  HeaderImpl
+  HeaderImpl,
 } from "./operations";
 import {
   XMsClientRequestId,
@@ -31,7 +31,7 @@ import {
   ApiVersionLocal,
   SkipUrlEncoding,
   Odata,
-  Header
+  Header,
 } from "./operationsInterfaces";
 import { AzureSpecialPropertiesClientOptionalParams } from "./models";
 
@@ -50,18 +50,18 @@ export class AzureSpecialPropertiesClient extends coreClient.ServiceClient {
   constructor(
     credentials: coreAuth.TokenCredential,
     subscriptionId: string,
-    options?: AzureSpecialPropertiesClientOptionalParams
+    options?: AzureSpecialPropertiesClientOptionalParams,
   );
   constructor(
     credentials: coreAuth.TokenCredential,
-    options?: AzureSpecialPropertiesClientOptionalParams
+    options?: AzureSpecialPropertiesClientOptionalParams,
   );
   constructor(
     credentials: coreAuth.TokenCredential,
     subscriptionIdOrOptions?:
       | AzureSpecialPropertiesClientOptionalParams
       | string,
-    options?: AzureSpecialPropertiesClientOptionalParams
+    options?: AzureSpecialPropertiesClientOptionalParams,
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");
@@ -81,7 +81,7 @@ export class AzureSpecialPropertiesClient extends coreClient.ServiceClient {
     }
     const defaults: AzureSpecialPropertiesClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8",
-      credential: credentials
+      credential: credentials,
     };
 
     const packageDetails = `azsdk-js-azure-special-properties/1.0.0-preview1`;
@@ -93,16 +93,16 @@ export class AzureSpecialPropertiesClient extends coreClient.ServiceClient {
     if (!options.credentialScopes) {
       options.credentialScopes = [
         "https://microsoft.com/.default",
-        "http://microsoft.com/.default"
+        "http://microsoft.com/.default",
       ];
     }
     const optionsWithDefaults = {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000"
+      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -131,7 +131,7 @@ export class AzureSpecialPropertiesClient extends coreClient.ServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -145,7 +145,7 @@ export class AzureSpecialPropertiesClient extends coreClient.ServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }

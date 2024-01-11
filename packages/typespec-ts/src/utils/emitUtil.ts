@@ -66,7 +66,7 @@ async function emitFile(
   // Format the contents if necessary
   if (isJson || isSourceCode) {
     try {
-      prettierFileContent = format(
+      prettierFileContent = await format(
         prettierFileContent,
         isJson ? prettierJSONOptions : prettierTypeScriptOptions
       );

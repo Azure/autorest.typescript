@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   TagsObject,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -28,14 +28,14 @@ async function vpnSiteUpdate() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const vpnSiteName = "vpnSite1";
   const vpnSiteParameters: TagsObject = {
-    tags: { key1: "value1", key2: "value2" }
+    tags: { key1: "value1", key2: "value2" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnSites.updateTags(
     resourceGroupName,
     vpnSiteName,
-    vpnSiteParameters
+    vpnSiteParameters,
   );
   console.log(result);
 }

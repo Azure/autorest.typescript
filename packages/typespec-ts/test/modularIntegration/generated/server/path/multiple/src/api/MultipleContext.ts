@@ -11,7 +11,7 @@ export { MultipleContext } from "../rest/index.js";
 
 export function createMultiple(
   endpoint: string,
-  options: MultipleClientOptions = {}
+  options: MultipleClientOptions = {},
 ): MultipleContext {
   const clientContext = getClient(endpoint, options);
   return clientContext;

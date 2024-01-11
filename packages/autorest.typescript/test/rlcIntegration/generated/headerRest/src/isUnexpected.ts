@@ -59,7 +59,7 @@ import {
   HeaderResponseEnum200Response,
   HeaderResponseEnumDefaultResponse,
   HeaderCustomRequestId200Response,
-  HeaderCustomRequestIdDefaultResponse
+  HeaderCustomRequestIdDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -91,121 +91,120 @@ const responseMap: Record<string, string[]> = {
   "POST /header/response/prim/byte": ["200"],
   "POST /header/param/prim/enum": ["200"],
   "POST /header/response/prim/enum": ["200"],
-  "POST /header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0": [
-    "200"
-  ]
+  "POST /header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0":
+    ["200"],
 };
 
 export function isUnexpected(
   response:
     | HeaderParamExistingKey200Response
-    | HeaderParamExistingKeyDefaultResponse
+    | HeaderParamExistingKeyDefaultResponse,
 ): response is HeaderParamExistingKeyDefaultResponse;
 export function isUnexpected(
   response:
     | HeaderResponseExistingKey200Response
-    | HeaderResponseExistingKeyDefaultResponse
+    | HeaderResponseExistingKeyDefaultResponse,
 ): response is HeaderResponseExistingKeyDefaultResponse;
 export function isUnexpected(
   response:
     | HeaderParamProtectedKey200Response
-    | HeaderParamProtectedKeyDefaultResponse
+    | HeaderParamProtectedKeyDefaultResponse,
 ): response is HeaderParamProtectedKeyDefaultResponse;
 export function isUnexpected(
   response:
     | HeaderResponseProtectedKey200Response
-    | HeaderResponseProtectedKeyDefaultResponse
+    | HeaderResponseProtectedKeyDefaultResponse,
 ): response is HeaderResponseProtectedKeyDefaultResponse;
 export function isUnexpected(
-  response: HeaderParamInteger200Response | HeaderParamIntegerDefaultResponse
+  response: HeaderParamInteger200Response | HeaderParamIntegerDefaultResponse,
 ): response is HeaderParamIntegerDefaultResponse;
 export function isUnexpected(
   response:
     | HeaderResponseInteger200Response
-    | HeaderResponseIntegerDefaultResponse
+    | HeaderResponseIntegerDefaultResponse,
 ): response is HeaderResponseIntegerDefaultResponse;
 export function isUnexpected(
-  response: HeaderParamLong200Response | HeaderParamLongDefaultResponse
+  response: HeaderParamLong200Response | HeaderParamLongDefaultResponse,
 ): response is HeaderParamLongDefaultResponse;
 export function isUnexpected(
-  response: HeaderResponseLong200Response | HeaderResponseLongDefaultResponse
+  response: HeaderResponseLong200Response | HeaderResponseLongDefaultResponse,
 ): response is HeaderResponseLongDefaultResponse;
 export function isUnexpected(
-  response: HeaderParamFloat200Response | HeaderParamFloatDefaultResponse
+  response: HeaderParamFloat200Response | HeaderParamFloatDefaultResponse,
 ): response is HeaderParamFloatDefaultResponse;
 export function isUnexpected(
-  response: HeaderResponseFloat200Response | HeaderResponseFloatDefaultResponse
+  response: HeaderResponseFloat200Response | HeaderResponseFloatDefaultResponse,
 ): response is HeaderResponseFloatDefaultResponse;
 export function isUnexpected(
-  response: HeaderParamDouble200Response | HeaderParamDoubleDefaultResponse
+  response: HeaderParamDouble200Response | HeaderParamDoubleDefaultResponse,
 ): response is HeaderParamDoubleDefaultResponse;
 export function isUnexpected(
   response:
     | HeaderResponseDouble200Response
-    | HeaderResponseDoubleDefaultResponse
+    | HeaderResponseDoubleDefaultResponse,
 ): response is HeaderResponseDoubleDefaultResponse;
 export function isUnexpected(
-  response: HeaderParamBool200Response | HeaderParamBoolDefaultResponse
+  response: HeaderParamBool200Response | HeaderParamBoolDefaultResponse,
 ): response is HeaderParamBoolDefaultResponse;
 export function isUnexpected(
-  response: HeaderResponseBool200Response | HeaderResponseBoolDefaultResponse
+  response: HeaderResponseBool200Response | HeaderResponseBoolDefaultResponse,
 ): response is HeaderResponseBoolDefaultResponse;
 export function isUnexpected(
-  response: HeaderParamString200Response | HeaderParamStringDefaultResponse
+  response: HeaderParamString200Response | HeaderParamStringDefaultResponse,
 ): response is HeaderParamStringDefaultResponse;
 export function isUnexpected(
   response:
     | HeaderResponseString200Response
-    | HeaderResponseStringDefaultResponse
+    | HeaderResponseStringDefaultResponse,
 ): response is HeaderResponseStringDefaultResponse;
 export function isUnexpected(
-  response: HeaderParamDate200Response | HeaderParamDateDefaultResponse
+  response: HeaderParamDate200Response | HeaderParamDateDefaultResponse,
 ): response is HeaderParamDateDefaultResponse;
 export function isUnexpected(
-  response: HeaderResponseDate200Response | HeaderResponseDateDefaultResponse
+  response: HeaderResponseDate200Response | HeaderResponseDateDefaultResponse,
 ): response is HeaderResponseDateDefaultResponse;
 export function isUnexpected(
-  response: HeaderParamDatetime200Response | HeaderParamDatetimeDefaultResponse
+  response: HeaderParamDatetime200Response | HeaderParamDatetimeDefaultResponse,
 ): response is HeaderParamDatetimeDefaultResponse;
 export function isUnexpected(
   response:
     | HeaderResponseDatetime200Response
-    | HeaderResponseDatetimeDefaultResponse
+    | HeaderResponseDatetimeDefaultResponse,
 ): response is HeaderResponseDatetimeDefaultResponse;
 export function isUnexpected(
   response:
     | HeaderParamDatetimeRfc1123200Response
-    | HeaderParamDatetimeRfc1123DefaultResponse
+    | HeaderParamDatetimeRfc1123DefaultResponse,
 ): response is HeaderParamDatetimeRfc1123DefaultResponse;
 export function isUnexpected(
   response:
     | HeaderResponseDatetimeRfc1123200Response
-    | HeaderResponseDatetimeRfc1123DefaultResponse
+    | HeaderResponseDatetimeRfc1123DefaultResponse,
 ): response is HeaderResponseDatetimeRfc1123DefaultResponse;
 export function isUnexpected(
-  response: HeaderParamDuration200Response | HeaderParamDurationDefaultResponse
+  response: HeaderParamDuration200Response | HeaderParamDurationDefaultResponse,
 ): response is HeaderParamDurationDefaultResponse;
 export function isUnexpected(
   response:
     | HeaderResponseDuration200Response
-    | HeaderResponseDurationDefaultResponse
+    | HeaderResponseDurationDefaultResponse,
 ): response is HeaderResponseDurationDefaultResponse;
 export function isUnexpected(
-  response: HeaderParamByte200Response | HeaderParamByteDefaultResponse
+  response: HeaderParamByte200Response | HeaderParamByteDefaultResponse,
 ): response is HeaderParamByteDefaultResponse;
 export function isUnexpected(
-  response: HeaderResponseByte200Response | HeaderResponseByteDefaultResponse
+  response: HeaderResponseByte200Response | HeaderResponseByteDefaultResponse,
 ): response is HeaderResponseByteDefaultResponse;
 export function isUnexpected(
-  response: HeaderParamEnum200Response | HeaderParamEnumDefaultResponse
+  response: HeaderParamEnum200Response | HeaderParamEnumDefaultResponse,
 ): response is HeaderParamEnumDefaultResponse;
 export function isUnexpected(
-  response: HeaderResponseEnum200Response | HeaderResponseEnumDefaultResponse
+  response: HeaderResponseEnum200Response | HeaderResponseEnumDefaultResponse,
 ): response is HeaderResponseEnumDefaultResponse;
 export function isUnexpected(
   response:
     | HeaderCustomRequestId200Response
-    | HeaderCustomRequestIdDefaultResponse
+    | HeaderCustomRequestIdDefaultResponse,
 ): response is HeaderCustomRequestIdDefaultResponse;
 export function isUnexpected(
   response:
@@ -266,7 +265,7 @@ export function isUnexpected(
     | HeaderResponseEnum200Response
     | HeaderResponseEnumDefaultResponse
     | HeaderCustomRequestId200Response
-    | HeaderCustomRequestIdDefaultResponse
+    | HeaderCustomRequestIdDefaultResponse,
 ): response is
   | HeaderParamExistingKeyDefaultResponse
   | HeaderResponseExistingKeyDefaultResponse
@@ -345,7 +344,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

@@ -13,7 +13,7 @@ import {
   PolicySetModelOptionalParams,
   PolicySetModelResponse,
   PolicyResetOptionalParams,
-  PolicyResetResponse
+  PolicyResetResponse,
 } from "../models";
 
 /** Interface representing a Policy. */
@@ -26,7 +26,7 @@ export interface Policy {
    */
   get(
     attestationType: AttestationType,
-    options?: PolicyGetOptionalParams
+    options?: PolicyGetOptionalParams,
   ): Promise<PolicyGetResponse>;
   /**
    * Sets the policy for a given attestation type.
@@ -39,7 +39,7 @@ export interface Policy {
   set(
     attestationType: AttestationType,
     newAttestationPolicy: string,
-    options?: PolicySetModelOptionalParams
+    options?: PolicySetModelOptionalParams,
   ): Promise<PolicySetModelResponse>;
   /**
    * Resets the attestation policy for the specified tenant and reverts to the default policy.
@@ -51,6 +51,6 @@ export interface Policy {
   reset(
     attestationType: AttestationType,
     policyJws: string,
-    options?: PolicyResetOptionalParams
+    options?: PolicyResetOptionalParams,
   ): Promise<PolicyResetResponse>;
 }

@@ -32,7 +32,7 @@ async function listKeyVersionsInTheVault() {
   for await (let item of client.keys.listVersions(
     resourceGroupName,
     vaultName,
-    keyName
+    keyName,
   )) {
     resArray.push(item);
   }

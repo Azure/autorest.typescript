@@ -42,22 +42,22 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface StringModelGet {
   /** get string value */
   get(
-    options?: StringModelGetParameters
+    options?: StringModelGetParameters,
   ): StreamableMethod<StringModelGet200Response>;
   /** put string value */
   put(
-    options: StringModelPutParameters
+    options: StringModelPutParameters,
   ): StreamableMethod<StringModelPut204Response>;
 }
 
 export interface BooleanModelGet {
   /** get boolean value */
   get(
-    options?: BooleanModelGetParameters
+    options?: BooleanModelGetParameters,
   ): StreamableMethod<BooleanModelGet200Response>;
   /** put boolean value */
   put(
-    options: BooleanModelPutParameters
+    options: BooleanModelPutParameters,
   ): StreamableMethod<BooleanModelPut204Response>;
 }
 
@@ -70,61 +70,61 @@ export interface UnknownGet {
 
 export interface DecimalTypeResponseBody {
   get(
-    options?: DecimalTypeResponseBodyParameters
+    options?: DecimalTypeResponseBodyParameters,
   ): StreamableMethod<DecimalTypeResponseBody200Response>;
 }
 
 export interface DecimalTypeRequestBody {
   put(
-    options: DecimalTypeRequestBodyParameters
+    options: DecimalTypeRequestBodyParameters,
   ): StreamableMethod<DecimalTypeRequestBody204Response>;
 }
 
 export interface DecimalTypeRequestParameter {
   get(
-    options: DecimalTypeRequestParameterParameters
+    options: DecimalTypeRequestParameterParameters,
   ): StreamableMethod<DecimalTypeRequestParameter204Response>;
 }
 
 export interface Decimal128TypeResponseBody {
   get(
-    options?: Decimal128TypeResponseBodyParameters
+    options?: Decimal128TypeResponseBodyParameters,
   ): StreamableMethod<Decimal128TypeResponseBody200Response>;
 }
 
 export interface Decimal128TypeRequestBody {
   put(
-    options: Decimal128TypeRequestBodyParameters
+    options: Decimal128TypeRequestBodyParameters,
   ): StreamableMethod<Decimal128TypeRequestBody204Response>;
 }
 
 export interface Decimal128TypeRequestParameter {
   get(
-    options: Decimal128TypeRequestParameterParameters
+    options: Decimal128TypeRequestParameterParameters,
   ): StreamableMethod<Decimal128TypeRequestParameter204Response>;
 }
 
 export interface DecimalVerifyPrepareVerify {
   get(
-    options?: DecimalVerifyPrepareVerifyParameters
+    options?: DecimalVerifyPrepareVerifyParameters,
   ): StreamableMethod<DecimalVerifyPrepareVerify200Response>;
 }
 
 export interface DecimalVerifyVerify {
   post(
-    options: DecimalVerifyVerifyParameters
+    options: DecimalVerifyVerifyParameters,
   ): StreamableMethod<DecimalVerifyVerify204Response>;
 }
 
 export interface Decimal128VerifyPrepareVerify {
   get(
-    options?: Decimal128VerifyPrepareVerifyParameters
+    options?: Decimal128VerifyPrepareVerifyParameters,
   ): StreamableMethod<Decimal128VerifyPrepareVerify200Response>;
 }
 
 export interface Decimal128VerifyVerify {
   post(
-    options: Decimal128VerifyVerifyParameters
+    options: Decimal128VerifyVerifyParameters,
   ): StreamableMethod<Decimal128VerifyVerify204Response>;
 }
 
@@ -147,7 +147,7 @@ export interface Routes {
   (path: "/type/scalar/decimal128/resquest_body"): Decimal128TypeRequestBody;
   /** Resource for '/type/scalar/decimal128/request_parameter' has methods for the following verbs: get */
   (
-    path: "/type/scalar/decimal128/request_parameter"
+    path: "/type/scalar/decimal128/request_parameter",
   ): Decimal128TypeRequestParameter;
   /** Resource for '/type/scalar/decimal/prepare_verify' has methods for the following verbs: get */
   (path: "/type/scalar/decimal/prepare_verify"): DecimalVerifyPrepareVerify;
@@ -155,7 +155,7 @@ export interface Routes {
   (path: "/type/scalar/decimal/verify"): DecimalVerifyVerify;
   /** Resource for '/type/scalar/decimal128/prepare_verify' has methods for the following verbs: get */
   (
-    path: "/type/scalar/decimal128/prepare_verify"
+    path: "/type/scalar/decimal128/prepare_verify",
   ): Decimal128VerifyPrepareVerify;
   /** Resource for '/type/scalar/decimal128/verify' has methods for the following verbs: post */
   (path: "/type/scalar/decimal128/verify"): Decimal128VerifyVerify;

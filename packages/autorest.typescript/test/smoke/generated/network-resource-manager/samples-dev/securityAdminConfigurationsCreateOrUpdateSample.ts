@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   SecurityAdminConfiguration,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,7 +31,7 @@ async function createNetworkManagerSecurityAdminConfiguration() {
   const configurationName = "myTestSecurityConfig";
   const securityAdminConfiguration: SecurityAdminConfiguration = {
     description: "A sample policy",
-    applyOnNetworkIntentPolicyBasedServices: ["None"]
+    applyOnNetworkIntentPolicyBasedServices: ["None"],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -39,7 +39,7 @@ async function createNetworkManagerSecurityAdminConfiguration() {
     resourceGroupName,
     networkManagerName,
     configurationName,
-    securityAdminConfiguration
+    securityAdminConfiguration,
   );
   console.log(result);
 }

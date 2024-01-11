@@ -19,7 +19,7 @@ export interface AnomalyDetectorMVClientOptions extends ClientOptions {
 export default function createClient(
   endpoint: string,
   credentials: KeyCredential,
-  options: AnomalyDetectorMVClientOptions = {}
+  options: AnomalyDetectorMVClientOptions = {},
 ): AnomalyDetectorMVClient {
   const apiVersion = options.apiVersion ?? "v1.1";
   const baseUrl =
@@ -33,22 +33,24 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
       apiKeyHeaderName:
-        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key"
-    }
+        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
+    },
   };
 
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as AnomalyDetectorMVClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }

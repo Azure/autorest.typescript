@@ -34,7 +34,7 @@ async function getAppDetectorResponse() {
     resourceGroupName,
     siteName,
     detectorName,
-    slot
+    slot,
   );
   console.log(result);
 }
@@ -59,7 +59,7 @@ async function getAppSlotDetectorResponse() {
     resourceGroupName,
     siteName,
     detectorName,
-    slot
+    slot,
   );
   console.log(result);
 }

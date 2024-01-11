@@ -27,7 +27,7 @@ async function listDDoSProtectionPlansInResourceGroup() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.ddosProtectionPlans.listByResourceGroup(
-    resourceGroupName
+    resourceGroupName,
   )) {
     resArray.push(item);
   }

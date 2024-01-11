@@ -18,7 +18,7 @@ import {
   BasicGetNullOptionalParams,
   BasicGetNullResponse,
   BasicGetNotProvidedOptionalParams,
-  BasicGetNotProvidedResponse
+  BasicGetNotProvidedResponse,
 } from "../models";
 
 /** Interface representing a Basic. */
@@ -28,7 +28,7 @@ export interface Basic {
    * @param options The options parameters.
    */
   getValid(
-    options?: BasicGetValidOptionalParams
+    options?: BasicGetValidOptionalParams,
   ): Promise<BasicGetValidResponse>;
   /**
    * Please put {id: 2, name: 'abc', color: 'Magenta'}
@@ -37,21 +37,21 @@ export interface Basic {
    */
   putValid(
     complexBody: BasicDef,
-    options?: BasicPutValidOptionalParams
+    options?: BasicPutValidOptionalParams,
   ): Promise<void>;
   /**
    * Get a basic complex type that is invalid for the local strong type
    * @param options The options parameters.
    */
   getInvalid(
-    options?: BasicGetInvalidOptionalParams
+    options?: BasicGetInvalidOptionalParams,
   ): Promise<BasicGetInvalidResponse>;
   /**
    * Get a basic complex type that is empty
    * @param options The options parameters.
    */
   getEmpty(
-    options?: BasicGetEmptyOptionalParams
+    options?: BasicGetEmptyOptionalParams,
   ): Promise<BasicGetEmptyResponse>;
   /**
    * Get a basic complex type whose properties are null
@@ -63,6 +63,6 @@ export interface Basic {
    * @param options The options parameters.
    */
   getNotProvided(
-    options?: BasicGetNotProvidedOptionalParams
+    options?: BasicGetNotProvidedOptionalParams,
   ): Promise<BasicGetNotProvidedResponse>;
 }

@@ -31,7 +31,7 @@ async function getAppSettingsOfAStaticSiteBuild() {
   const result = await client.staticSites.listStaticSiteBuildAppSettings(
     resourceGroupName,
     name,
-    environmentName
+    environmentName,
   );
   console.log(result);
 }

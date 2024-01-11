@@ -12,7 +12,7 @@ import { WidgetManagerClient } from "./clientDefinitions";
  */
 export default function createClient(
   endpoint: string,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): WidgetManagerClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "2022-11-01-preview";

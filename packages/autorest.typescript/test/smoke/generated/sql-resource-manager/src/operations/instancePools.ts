@@ -16,7 +16,7 @@ import { SqlManagementClient } from "../sqlManagementClient";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -36,7 +36,7 @@ import {
   InstancePoolsUpdateOptionalParams,
   InstancePoolsUpdateResponse,
   InstancePoolsListByResourceGroupNextResponse,
-  InstancePoolsListNextResponse
+  InstancePoolsListNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -60,7 +60,7 @@ export class InstancePoolsImpl implements InstancePools {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: InstancePoolsListByResourceGroupOptionalParams
+    options?: InstancePoolsListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<InstancePool> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -77,16 +77,16 @@ export class InstancePoolsImpl implements InstancePools {
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
     options?: InstancePoolsListByResourceGroupOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<InstancePool[]> {
     let result: InstancePoolsListByResourceGroupResponse;
     let continuationToken = settings?.continuationToken;
@@ -101,7 +101,7 @@ export class InstancePoolsImpl implements InstancePools {
       result = await this._listByResourceGroupNext(
         resourceGroupName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -112,11 +112,11 @@ export class InstancePoolsImpl implements InstancePools {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: InstancePoolsListByResourceGroupOptionalParams
+    options?: InstancePoolsListByResourceGroupOptionalParams,
   ): AsyncIterableIterator<InstancePool> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -127,7 +127,7 @@ export class InstancePoolsImpl implements InstancePools {
    * @param options The options parameters.
    */
   public list(
-    options?: InstancePoolsListOptionalParams
+    options?: InstancePoolsListOptionalParams,
   ): PagedAsyncIterableIterator<InstancePool> {
     const iter = this.listPagingAll(options);
     return {
@@ -142,13 +142,13 @@ export class InstancePoolsImpl implements InstancePools {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listPagingPage(
     options?: InstancePoolsListOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<InstancePool[]> {
     let result: InstancePoolsListResponse;
     let continuationToken = settings?.continuationToken;
@@ -169,7 +169,7 @@ export class InstancePoolsImpl implements InstancePools {
   }
 
   private async *listPagingAll(
-    options?: InstancePoolsListOptionalParams
+    options?: InstancePoolsListOptionalParams,
   ): AsyncIterableIterator<InstancePool> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -186,11 +186,11 @@ export class InstancePoolsImpl implements InstancePools {
   get(
     resourceGroupName: string,
     instancePoolName: string,
-    options?: InstancePoolsGetOptionalParams
+    options?: InstancePoolsGetOptionalParams,
   ): Promise<InstancePoolsGetResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, instancePoolName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -206,7 +206,7 @@ export class InstancePoolsImpl implements InstancePools {
     resourceGroupName: string,
     instancePoolName: string,
     parameters: InstancePool,
-    options?: InstancePoolsCreateOrUpdateOptionalParams
+    options?: InstancePoolsCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<InstancePoolsCreateOrUpdateResponse>,
@@ -215,21 +215,20 @@ export class InstancePoolsImpl implements InstancePools {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<InstancePoolsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -238,8 +237,8 @@ export class InstancePoolsImpl implements InstancePools {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -247,22 +246,22 @@ export class InstancePoolsImpl implements InstancePools {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, instancePoolName, parameters, options },
-      spec: createOrUpdateOperationSpec
+      spec: createOrUpdateOperationSpec,
     });
     const poller = await createHttpPoller<
       InstancePoolsCreateOrUpdateResponse,
       OperationState<InstancePoolsCreateOrUpdateResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -280,13 +279,13 @@ export class InstancePoolsImpl implements InstancePools {
     resourceGroupName: string,
     instancePoolName: string,
     parameters: InstancePool,
-    options?: InstancePoolsCreateOrUpdateOptionalParams
+    options?: InstancePoolsCreateOrUpdateOptionalParams,
   ): Promise<InstancePoolsCreateOrUpdateResponse> {
     const poller = await this.beginCreateOrUpdate(
       resourceGroupName,
       instancePoolName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -301,25 +300,24 @@ export class InstancePoolsImpl implements InstancePools {
   async beginDelete(
     resourceGroupName: string,
     instancePoolName: string,
-    options?: InstancePoolsDeleteOptionalParams
+    options?: InstancePoolsDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -328,8 +326,8 @@ export class InstancePoolsImpl implements InstancePools {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -337,19 +335,19 @@ export class InstancePoolsImpl implements InstancePools {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, instancePoolName, options },
-      spec: deleteOperationSpec
+      spec: deleteOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -365,12 +363,12 @@ export class InstancePoolsImpl implements InstancePools {
   async beginDeleteAndWait(
     resourceGroupName: string,
     instancePoolName: string,
-    options?: InstancePoolsDeleteOptionalParams
+    options?: InstancePoolsDeleteOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       instancePoolName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -387,7 +385,7 @@ export class InstancePoolsImpl implements InstancePools {
     resourceGroupName: string,
     instancePoolName: string,
     parameters: InstancePoolUpdate,
-    options?: InstancePoolsUpdateOptionalParams
+    options?: InstancePoolsUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<InstancePoolsUpdateResponse>,
@@ -396,21 +394,20 @@ export class InstancePoolsImpl implements InstancePools {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<InstancePoolsUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -419,8 +416,8 @@ export class InstancePoolsImpl implements InstancePools {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -428,22 +425,22 @@ export class InstancePoolsImpl implements InstancePools {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, instancePoolName, parameters, options },
-      spec: updateOperationSpec
+      spec: updateOperationSpec,
     });
     const poller = await createHttpPoller<
       InstancePoolsUpdateResponse,
       OperationState<InstancePoolsUpdateResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -461,13 +458,13 @@ export class InstancePoolsImpl implements InstancePools {
     resourceGroupName: string,
     instancePoolName: string,
     parameters: InstancePoolUpdate,
-    options?: InstancePoolsUpdateOptionalParams
+    options?: InstancePoolsUpdateOptionalParams,
   ): Promise<InstancePoolsUpdateResponse> {
     const poller = await this.beginUpdate(
       resourceGroupName,
       instancePoolName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -480,11 +477,11 @@ export class InstancePoolsImpl implements InstancePools {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: InstancePoolsListByResourceGroupOptionalParams
+    options?: InstancePoolsListByResourceGroupOptionalParams,
   ): Promise<InstancePoolsListByResourceGroupResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, options },
-      listByResourceGroupOperationSpec
+      listByResourceGroupOperationSpec,
     );
   }
 
@@ -493,7 +490,7 @@ export class InstancePoolsImpl implements InstancePools {
    * @param options The options parameters.
    */
   private _list(
-    options?: InstancePoolsListOptionalParams
+    options?: InstancePoolsListOptionalParams,
   ): Promise<InstancePoolsListResponse> {
     return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
@@ -508,11 +505,11 @@ export class InstancePoolsImpl implements InstancePools {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: InstancePoolsListByResourceGroupNextOptionalParams
+    options?: InstancePoolsListByResourceGroupNextOptionalParams,
   ): Promise<InstancePoolsListByResourceGroupNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, nextLink, options },
-      listByResourceGroupNextOperationSpec
+      listByResourceGroupNextOperationSpec,
     );
   }
 
@@ -523,11 +520,11 @@ export class InstancePoolsImpl implements InstancePools {
    */
   private _listNext(
     nextLink: string,
-    options?: InstancePoolsListNextOptionalParams
+    options?: InstancePoolsListNextOptionalParams,
   ): Promise<InstancePoolsListNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listNextOperationSpec
+      listNextOperationSpec,
     );
   }
 }
@@ -535,43 +532,41 @@ export class InstancePoolsImpl implements InstancePools {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools/{instancePoolName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools/{instancePoolName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.InstancePool
+      bodyMapper: Mappers.InstancePool,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.instancePoolName
+    Parameters.instancePoolName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools/{instancePoolName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools/{instancePoolName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.InstancePool
+      bodyMapper: Mappers.InstancePool,
     },
     201: {
-      bodyMapper: Mappers.InstancePool
+      bodyMapper: Mappers.InstancePool,
     },
     202: {
-      bodyMapper: Mappers.InstancePool
+      bodyMapper: Mappers.InstancePool,
     },
     204: {
-      bodyMapper: Mappers.InstancePool
+      bodyMapper: Mappers.InstancePool,
     },
-    default: {}
+    default: {},
   },
   requestBody: Parameters.parameters28,
   queryParameters: [Parameters.apiVersion2],
@@ -579,15 +574,14 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.instancePoolName
+    Parameters.instancePoolName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools/{instancePoolName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools/{instancePoolName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion2],
@@ -595,28 +589,27 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.instancePoolName
+    Parameters.instancePoolName,
   ],
-  serializer
+  serializer,
 };
 const updateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools/{instancePoolName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools/{instancePoolName}",
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.InstancePool
+      bodyMapper: Mappers.InstancePool,
     },
     201: {
-      bodyMapper: Mappers.InstancePool
+      bodyMapper: Mappers.InstancePool,
     },
     202: {
-      bodyMapper: Mappers.InstancePool
+      bodyMapper: Mappers.InstancePool,
     },
     204: {
-      bodyMapper: Mappers.InstancePool
+      bodyMapper: Mappers.InstancePool,
     },
-    default: {}
+    default: {},
   },
   requestBody: Parameters.parameters29,
   queryParameters: [Parameters.apiVersion2],
@@ -624,77 +617,76 @@ const updateOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.instancePoolName
+    Parameters.instancePoolName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.InstancePoolListResult
+      bodyMapper: Mappers.InstancePoolListResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/instancePools",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.InstancePoolListResult
+      bodyMapper: Mappers.InstancePoolListResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.InstancePoolListResult
+      bodyMapper: Mappers.InstancePoolListResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.nextLink
+    Parameters.nextLink,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.InstancePoolListResult
+      bodyMapper: Mappers.InstancePoolListResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink
+    Parameters.nextLink,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

@@ -17,7 +17,7 @@ import {
   DomainsListOptionalParams,
   DomainsListResponse,
   DomainsGetOptionalParams,
-  DomainsGetResponse
+  DomainsGetResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -38,7 +38,7 @@ export class DomainsImpl implements Domains {
    * @param options The options parameters.
    */
   public list(
-    options?: DomainsListOptionalParams
+    options?: DomainsListOptionalParams,
   ): PagedAsyncIterableIterator<Domain> {
     const iter = this.listPagingAll(options);
     return {
@@ -53,13 +53,13 @@ export class DomainsImpl implements Domains {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listPagingPage(
     options?: DomainsListOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<Domain[]> {
     let result: DomainsListResponse;
     result = await this._list(options);
@@ -67,7 +67,7 @@ export class DomainsImpl implements Domains {
   }
 
   private async *listPagingAll(
-    options?: DomainsListOptionalParams
+    options?: DomainsListOptionalParams,
   ): AsyncIterableIterator<Domain> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -79,7 +79,7 @@ export class DomainsImpl implements Domains {
    * @param options The options parameters.
    */
   private _list(
-    options?: DomainsListOptionalParams
+    options?: DomainsListOptionalParams,
   ): Promise<DomainsListResponse> {
     return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
@@ -91,11 +91,11 @@ export class DomainsImpl implements Domains {
    */
   get(
     domainName: string,
-    options?: DomainsGetOptionalParams
+    options?: DomainsGetOptionalParams,
   ): Promise<DomainsGetResponse> {
     return this.client.sendOperationRequest(
       { domainName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 }
@@ -107,24 +107,24 @@ const listOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DomainListResult
-    }
+      bodyMapper: Mappers.DomainListResult,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/domains/{domainName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Domain
-    }
+      bodyMapper: Mappers.Domain,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.domainName],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

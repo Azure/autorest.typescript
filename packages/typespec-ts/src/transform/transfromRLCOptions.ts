@@ -288,8 +288,8 @@ export function getCredentialInfo(
     emitterOptions.addCredentials === false
       ? false
       : securityInfo
-      ? securityInfo.addCredentials
-      : emitterOptions.addCredentials;
+        ? securityInfo.addCredentials
+        : emitterOptions.addCredentials;
   const credentialScopes =
     securityInfo && securityInfo.credentialScopes
       ? securityInfo.credentialScopes

@@ -30,7 +30,7 @@ async function getPeering() {
   const result = await client.virtualNetworkPeerings.get(
     resourceGroupName,
     virtualNetworkName,
-    virtualNetworkPeeringName
+    virtualNetworkPeeringName,
   );
   console.log(result);
 }
@@ -51,7 +51,7 @@ async function getPeeringWithRemoteVirtualNetworkEncryption() {
   const result = await client.virtualNetworkPeerings.get(
     resourceGroupName,
     virtualNetworkName,
-    virtualNetworkPeeringName
+    virtualNetworkPeeringName,
   );
   console.log(result);
 }

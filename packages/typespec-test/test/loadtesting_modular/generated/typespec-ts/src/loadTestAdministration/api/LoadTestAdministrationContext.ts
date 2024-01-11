@@ -13,7 +13,7 @@ export { AzureLoadTestingContext } from "../../rest/index.js";
 export function createLoadTestAdministration(
   endpoint: string,
   credential: TokenCredential,
-  options: LoadTestAdministrationClientOptions = {}
+  options: LoadTestAdministrationClientOptions = {},
 ): AzureLoadTestingContext {
   const clientContext = getClient(endpoint, credential, options);
   return clientContext;

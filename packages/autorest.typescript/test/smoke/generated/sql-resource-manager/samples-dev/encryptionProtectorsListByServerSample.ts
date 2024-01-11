@@ -30,7 +30,7 @@ async function listEncryptionProtectorsByServer() {
   const resArray = new Array();
   for await (let item of client.encryptionProtectors.listByServer(
     resourceGroupName,
-    serverName
+    serverName,
   )) {
     resArray.push(item);
   }

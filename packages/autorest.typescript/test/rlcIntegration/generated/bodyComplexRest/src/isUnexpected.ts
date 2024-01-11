@@ -109,7 +109,7 @@ import {
   ReadonlypropertyGetValid200Response,
   ReadonlypropertyGetValidDefaultResponse,
   ReadonlypropertyPutValid200Response,
-  ReadonlypropertyPutValidDefaultResponse
+  ReadonlypropertyPutValidDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -167,210 +167,210 @@ const responseMap: Record<string, string[]> = {
   "PUT /complex/polymorphicrecursive/valid": ["200"],
   "GET /complex/readonlyproperty/valid": ["200"],
   "PUT /complex/readonlyproperty/valid": ["200"],
-  "GET /complex/flatten/valid": ["200"]
+  "GET /complex/flatten/valid": ["200"],
 };
 
 export function isUnexpected(
-  response: BasicGetValid200Response | BasicGetValidDefaultResponse
+  response: BasicGetValid200Response | BasicGetValidDefaultResponse,
 ): response is BasicGetValidDefaultResponse;
 export function isUnexpected(
-  response: BasicPutValid200Response | BasicPutValidDefaultResponse
+  response: BasicPutValid200Response | BasicPutValidDefaultResponse,
 ): response is BasicPutValidDefaultResponse;
 export function isUnexpected(
-  response: BasicGetInvalid200Response | BasicGetInvalidDefaultResponse
+  response: BasicGetInvalid200Response | BasicGetInvalidDefaultResponse,
 ): response is BasicGetInvalidDefaultResponse;
 export function isUnexpected(
-  response: BasicGetEmpty200Response | BasicGetEmptyDefaultResponse
+  response: BasicGetEmpty200Response | BasicGetEmptyDefaultResponse,
 ): response is BasicGetEmptyDefaultResponse;
 export function isUnexpected(
-  response: BasicGetNull200Response | BasicGetNullDefaultResponse
+  response: BasicGetNull200Response | BasicGetNullDefaultResponse,
 ): response is BasicGetNullDefaultResponse;
 export function isUnexpected(
-  response: BasicGetNotProvided200Response | BasicGetNotProvidedDefaultResponse
+  response: BasicGetNotProvided200Response | BasicGetNotProvidedDefaultResponse,
 ): response is BasicGetNotProvidedDefaultResponse;
 export function isUnexpected(
-  response: PrimitiveGetInt200Response | PrimitiveGetIntDefaultResponse
+  response: PrimitiveGetInt200Response | PrimitiveGetIntDefaultResponse,
 ): response is PrimitiveGetIntDefaultResponse;
 export function isUnexpected(
-  response: PrimitivePutInt200Response | PrimitivePutIntDefaultResponse
+  response: PrimitivePutInt200Response | PrimitivePutIntDefaultResponse,
 ): response is PrimitivePutIntDefaultResponse;
 export function isUnexpected(
-  response: PrimitiveGetLong200Response | PrimitiveGetLongDefaultResponse
+  response: PrimitiveGetLong200Response | PrimitiveGetLongDefaultResponse,
 ): response is PrimitiveGetLongDefaultResponse;
 export function isUnexpected(
-  response: PrimitivePutLong200Response | PrimitivePutLongDefaultResponse
+  response: PrimitivePutLong200Response | PrimitivePutLongDefaultResponse,
 ): response is PrimitivePutLongDefaultResponse;
 export function isUnexpected(
-  response: PrimitiveGetFloat200Response | PrimitiveGetFloatDefaultResponse
+  response: PrimitiveGetFloat200Response | PrimitiveGetFloatDefaultResponse,
 ): response is PrimitiveGetFloatDefaultResponse;
 export function isUnexpected(
-  response: PrimitivePutFloat200Response | PrimitivePutFloatDefaultResponse
+  response: PrimitivePutFloat200Response | PrimitivePutFloatDefaultResponse,
 ): response is PrimitivePutFloatDefaultResponse;
 export function isUnexpected(
-  response: PrimitiveGetDouble200Response | PrimitiveGetDoubleDefaultResponse
+  response: PrimitiveGetDouble200Response | PrimitiveGetDoubleDefaultResponse,
 ): response is PrimitiveGetDoubleDefaultResponse;
 export function isUnexpected(
-  response: PrimitivePutDouble200Response | PrimitivePutDoubleDefaultResponse
+  response: PrimitivePutDouble200Response | PrimitivePutDoubleDefaultResponse,
 ): response is PrimitivePutDoubleDefaultResponse;
 export function isUnexpected(
-  response: PrimitiveGetBool200Response | PrimitiveGetBoolDefaultResponse
+  response: PrimitiveGetBool200Response | PrimitiveGetBoolDefaultResponse,
 ): response is PrimitiveGetBoolDefaultResponse;
 export function isUnexpected(
-  response: PrimitivePutBool200Response | PrimitivePutBoolDefaultResponse
+  response: PrimitivePutBool200Response | PrimitivePutBoolDefaultResponse,
 ): response is PrimitivePutBoolDefaultResponse;
 export function isUnexpected(
-  response: PrimitiveGetString200Response | PrimitiveGetStringDefaultResponse
+  response: PrimitiveGetString200Response | PrimitiveGetStringDefaultResponse,
 ): response is PrimitiveGetStringDefaultResponse;
 export function isUnexpected(
-  response: PrimitivePutString200Response | PrimitivePutStringDefaultResponse
+  response: PrimitivePutString200Response | PrimitivePutStringDefaultResponse,
 ): response is PrimitivePutStringDefaultResponse;
 export function isUnexpected(
-  response: PrimitiveGetDate200Response | PrimitiveGetDateDefaultResponse
+  response: PrimitiveGetDate200Response | PrimitiveGetDateDefaultResponse,
 ): response is PrimitiveGetDateDefaultResponse;
 export function isUnexpected(
-  response: PrimitivePutDate200Response | PrimitivePutDateDefaultResponse
+  response: PrimitivePutDate200Response | PrimitivePutDateDefaultResponse,
 ): response is PrimitivePutDateDefaultResponse;
 export function isUnexpected(
   response:
     | PrimitiveGetDateTime200Response
-    | PrimitiveGetDateTimeDefaultResponse
+    | PrimitiveGetDateTimeDefaultResponse,
 ): response is PrimitiveGetDateTimeDefaultResponse;
 export function isUnexpected(
   response:
     | PrimitivePutDateTime200Response
-    | PrimitivePutDateTimeDefaultResponse
+    | PrimitivePutDateTimeDefaultResponse,
 ): response is PrimitivePutDateTimeDefaultResponse;
 export function isUnexpected(
   response:
     | PrimitiveGetDateTimeRfc1123200Response
-    | PrimitiveGetDateTimeRfc1123DefaultResponse
+    | PrimitiveGetDateTimeRfc1123DefaultResponse,
 ): response is PrimitiveGetDateTimeRfc1123DefaultResponse;
 export function isUnexpected(
   response:
     | PrimitivePutDateTimeRfc1123200Response
-    | PrimitivePutDateTimeRfc1123DefaultResponse
+    | PrimitivePutDateTimeRfc1123DefaultResponse,
 ): response is PrimitivePutDateTimeRfc1123DefaultResponse;
 export function isUnexpected(
   response:
     | PrimitiveGetDuration200Response
-    | PrimitiveGetDurationDefaultResponse
+    | PrimitiveGetDurationDefaultResponse,
 ): response is PrimitiveGetDurationDefaultResponse;
 export function isUnexpected(
   response:
     | PrimitivePutDuration200Response
-    | PrimitivePutDurationDefaultResponse
+    | PrimitivePutDurationDefaultResponse,
 ): response is PrimitivePutDurationDefaultResponse;
 export function isUnexpected(
-  response: PrimitiveGetByte200Response | PrimitiveGetByteDefaultResponse
+  response: PrimitiveGetByte200Response | PrimitiveGetByteDefaultResponse,
 ): response is PrimitiveGetByteDefaultResponse;
 export function isUnexpected(
-  response: PrimitivePutByte200Response | PrimitivePutByteDefaultResponse
+  response: PrimitivePutByte200Response | PrimitivePutByteDefaultResponse,
 ): response is PrimitivePutByteDefaultResponse;
 export function isUnexpected(
-  response: ArrayGetValid200Response | ArrayGetValidDefaultResponse
+  response: ArrayGetValid200Response | ArrayGetValidDefaultResponse,
 ): response is ArrayGetValidDefaultResponse;
 export function isUnexpected(
-  response: ArrayPutValid200Response | ArrayPutValidDefaultResponse
+  response: ArrayPutValid200Response | ArrayPutValidDefaultResponse,
 ): response is ArrayPutValidDefaultResponse;
 export function isUnexpected(
-  response: ArrayGetEmpty200Response | ArrayGetEmptyDefaultResponse
+  response: ArrayGetEmpty200Response | ArrayGetEmptyDefaultResponse,
 ): response is ArrayGetEmptyDefaultResponse;
 export function isUnexpected(
-  response: ArrayPutEmpty200Response | ArrayPutEmptyDefaultResponse
+  response: ArrayPutEmpty200Response | ArrayPutEmptyDefaultResponse,
 ): response is ArrayPutEmptyDefaultResponse;
 export function isUnexpected(
-  response: ArrayGetNotProvided200Response | ArrayGetNotProvidedDefaultResponse
+  response: ArrayGetNotProvided200Response | ArrayGetNotProvidedDefaultResponse,
 ): response is ArrayGetNotProvidedDefaultResponse;
 export function isUnexpected(
-  response: DictionaryGetValid200Response | DictionaryGetValidDefaultResponse
+  response: DictionaryGetValid200Response | DictionaryGetValidDefaultResponse,
 ): response is DictionaryGetValidDefaultResponse;
 export function isUnexpected(
-  response: DictionaryPutValid200Response | DictionaryPutValidDefaultResponse
+  response: DictionaryPutValid200Response | DictionaryPutValidDefaultResponse,
 ): response is DictionaryPutValidDefaultResponse;
 export function isUnexpected(
-  response: DictionaryGetEmpty200Response | DictionaryGetEmptyDefaultResponse
+  response: DictionaryGetEmpty200Response | DictionaryGetEmptyDefaultResponse,
 ): response is DictionaryGetEmptyDefaultResponse;
 export function isUnexpected(
-  response: DictionaryPutEmpty200Response | DictionaryPutEmptyDefaultResponse
+  response: DictionaryPutEmpty200Response | DictionaryPutEmptyDefaultResponse,
 ): response is DictionaryPutEmptyDefaultResponse;
 export function isUnexpected(
-  response: DictionaryGetNull200Response | DictionaryGetNullDefaultResponse
+  response: DictionaryGetNull200Response | DictionaryGetNullDefaultResponse,
 ): response is DictionaryGetNullDefaultResponse;
 export function isUnexpected(
   response:
     | DictionaryGetNotProvided200Response
-    | DictionaryGetNotProvidedDefaultResponse
+    | DictionaryGetNotProvidedDefaultResponse,
 ): response is DictionaryGetNotProvidedDefaultResponse;
 export function isUnexpected(
-  response: InheritanceGetValid200Response | InheritanceGetValidDefaultResponse
+  response: InheritanceGetValid200Response | InheritanceGetValidDefaultResponse,
 ): response is InheritanceGetValidDefaultResponse;
 export function isUnexpected(
-  response: InheritancePutValid200Response | InheritancePutValidDefaultResponse
+  response: InheritancePutValid200Response | InheritancePutValidDefaultResponse,
 ): response is InheritancePutValidDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismGetValid200Response
-    | PolymorphismGetValidDefaultResponse
+    | PolymorphismGetValidDefaultResponse,
 ): response is PolymorphismGetValidDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismPutValid200Response
-    | PolymorphismPutValidDefaultResponse
+    | PolymorphismPutValidDefaultResponse,
 ): response is PolymorphismPutValidDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismGetDotSyntax200Response
-    | PolymorphismGetDotSyntaxDefaultResponse
+    | PolymorphismGetDotSyntaxDefaultResponse,
 ): response is PolymorphismGetDotSyntaxDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismGetComposedWithDiscriminator200Response
-    | PolymorphismGetComposedWithDiscriminatorDefaultResponse
+    | PolymorphismGetComposedWithDiscriminatorDefaultResponse,
 ): response is PolymorphismGetComposedWithDiscriminatorDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismGetComposedWithoutDiscriminator200Response
-    | PolymorphismGetComposedWithoutDiscriminatorDefaultResponse
+    | PolymorphismGetComposedWithoutDiscriminatorDefaultResponse,
 ): response is PolymorphismGetComposedWithoutDiscriminatorDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismGetComplicated200Response
-    | PolymorphismGetComplicatedDefaultResponse
+    | PolymorphismGetComplicatedDefaultResponse,
 ): response is PolymorphismGetComplicatedDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismPutComplicated200Response
-    | PolymorphismPutComplicatedDefaultResponse
+    | PolymorphismPutComplicatedDefaultResponse,
 ): response is PolymorphismPutComplicatedDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismPutMissingDiscriminator200Response
-    | PolymorphismPutMissingDiscriminatorDefaultResponse
+    | PolymorphismPutMissingDiscriminatorDefaultResponse,
 ): response is PolymorphismPutMissingDiscriminatorDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphismPutValidMissingRequired200Response
-    | PolymorphismPutValidMissingRequiredDefaultResponse
+    | PolymorphismPutValidMissingRequiredDefaultResponse,
 ): response is PolymorphismPutValidMissingRequiredDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphicrecursiveGetValid200Response
-    | PolymorphicrecursiveGetValidDefaultResponse
+    | PolymorphicrecursiveGetValidDefaultResponse,
 ): response is PolymorphicrecursiveGetValidDefaultResponse;
 export function isUnexpected(
   response:
     | PolymorphicrecursivePutValid200Response
-    | PolymorphicrecursivePutValidDefaultResponse
+    | PolymorphicrecursivePutValidDefaultResponse,
 ): response is PolymorphicrecursivePutValidDefaultResponse;
 export function isUnexpected(
   response:
     | ReadonlypropertyGetValid200Response
-    | ReadonlypropertyGetValidDefaultResponse
+    | ReadonlypropertyGetValidDefaultResponse,
 ): response is ReadonlypropertyGetValidDefaultResponse;
 export function isUnexpected(
   response:
     | ReadonlypropertyPutValid200Response
-    | ReadonlypropertyPutValidDefaultResponse
+    | ReadonlypropertyPutValidDefaultResponse,
 ): response is ReadonlypropertyPutValidDefaultResponse;
 export function isUnexpected(
   response:
@@ -481,7 +481,7 @@ export function isUnexpected(
     | ReadonlypropertyGetValid200Response
     | ReadonlypropertyGetValidDefaultResponse
     | ReadonlypropertyPutValid200Response
-    | ReadonlypropertyPutValidDefaultResponse
+    | ReadonlypropertyPutValidDefaultResponse,
 ): response is
   | BasicGetValidDefaultResponse
   | BasicPutValidDefaultResponse
@@ -585,7 +585,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

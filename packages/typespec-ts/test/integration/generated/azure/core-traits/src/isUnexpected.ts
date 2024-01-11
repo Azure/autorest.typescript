@@ -14,17 +14,17 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: SmokeTest200Response | SmokeTestDefaultResponse
+  response: SmokeTest200Response | SmokeTestDefaultResponse,
 ): response is SmokeTestDefaultResponse;
 export function isUnexpected(
-  response: RepeatableAction200Response | RepeatableActionDefaultResponse
+  response: RepeatableAction200Response | RepeatableActionDefaultResponse,
 ): response is RepeatableActionDefaultResponse;
 export function isUnexpected(
   response:
     | SmokeTest200Response
     | SmokeTestDefaultResponse
     | RepeatableAction200Response
-    | RepeatableActionDefaultResponse
+    | RepeatableActionDefaultResponse,
 ): response is SmokeTestDefaultResponse | RepeatableActionDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
@@ -74,7 +74,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

@@ -39,7 +39,7 @@ import {
   PathsDateTimeNullOptionalParams,
   PathsBase64UrlOptionalParams,
   PathsArrayCsvInPathOptionalParams,
-  PathsUnixTimeUrlOptionalParams
+  PathsUnixTimeUrlOptionalParams,
 } from "../models";
 
 /** Class containing Paths operations. */
@@ -61,7 +61,7 @@ export class PathsImpl implements Paths {
   getBooleanTrue(options?: PathsGetBooleanTrueOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getBooleanTrueOperationSpec
+      getBooleanTrueOperationSpec,
     );
   }
 
@@ -72,7 +72,7 @@ export class PathsImpl implements Paths {
   getBooleanFalse(options?: PathsGetBooleanFalseOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getBooleanFalseOperationSpec
+      getBooleanFalseOperationSpec,
     );
   }
 
@@ -81,11 +81,11 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   getIntOneMillion(
-    options?: PathsGetIntOneMillionOptionalParams
+    options?: PathsGetIntOneMillionOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getIntOneMillionOperationSpec
+      getIntOneMillionOperationSpec,
     );
   }
 
@@ -94,11 +94,11 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   getIntNegativeOneMillion(
-    options?: PathsGetIntNegativeOneMillionOptionalParams
+    options?: PathsGetIntNegativeOneMillionOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getIntNegativeOneMillionOperationSpec
+      getIntNegativeOneMillionOperationSpec,
     );
   }
 
@@ -109,7 +109,7 @@ export class PathsImpl implements Paths {
   getTenBillion(options?: PathsGetTenBillionOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getTenBillionOperationSpec
+      getTenBillionOperationSpec,
     );
   }
 
@@ -118,11 +118,11 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   getNegativeTenBillion(
-    options?: PathsGetNegativeTenBillionOptionalParams
+    options?: PathsGetNegativeTenBillionOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getNegativeTenBillionOperationSpec
+      getNegativeTenBillionOperationSpec,
     );
   }
 
@@ -131,11 +131,11 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   floatScientificPositive(
-    options?: PathsFloatScientificPositiveOptionalParams
+    options?: PathsFloatScientificPositiveOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      floatScientificPositiveOperationSpec
+      floatScientificPositiveOperationSpec,
     );
   }
 
@@ -144,11 +144,11 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   floatScientificNegative(
-    options?: PathsFloatScientificNegativeOptionalParams
+    options?: PathsFloatScientificNegativeOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      floatScientificNegativeOperationSpec
+      floatScientificNegativeOperationSpec,
     );
   }
 
@@ -157,11 +157,11 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   doubleDecimalPositive(
-    options?: PathsDoubleDecimalPositiveOptionalParams
+    options?: PathsDoubleDecimalPositiveOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      doubleDecimalPositiveOperationSpec
+      doubleDecimalPositiveOperationSpec,
     );
   }
 
@@ -170,11 +170,11 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   doubleDecimalNegative(
-    options?: PathsDoubleDecimalNegativeOptionalParams
+    options?: PathsDoubleDecimalNegativeOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      doubleDecimalNegativeOperationSpec
+      doubleDecimalNegativeOperationSpec,
     );
   }
 
@@ -185,7 +185,7 @@ export class PathsImpl implements Paths {
   stringUnicode(options?: PathsStringUnicodeOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      stringUnicodeOperationSpec
+      stringUnicodeOperationSpec,
     );
   }
 
@@ -194,11 +194,11 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   stringUrlEncoded(
-    options?: PathsStringUrlEncodedOptionalParams
+    options?: PathsStringUrlEncodedOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      stringUrlEncodedOperationSpec
+      stringUrlEncodedOperationSpec,
     );
   }
 
@@ -207,11 +207,11 @@ export class PathsImpl implements Paths {
    * @param options The options parameters.
    */
   stringUrlNonEncoded(
-    options?: PathsStringUrlNonEncodedOptionalParams
+    options?: PathsStringUrlNonEncodedOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      stringUrlNonEncodedOperationSpec
+      stringUrlNonEncodedOperationSpec,
     );
   }
 
@@ -222,7 +222,7 @@ export class PathsImpl implements Paths {
   stringEmpty(options?: PathsStringEmptyOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      stringEmptyOperationSpec
+      stringEmptyOperationSpec,
     );
   }
 
@@ -233,11 +233,11 @@ export class PathsImpl implements Paths {
    */
   stringNull(
     stringPath: string,
-    options?: PathsStringNullOptionalParams
+    options?: PathsStringNullOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { stringPath, options },
-      stringNullOperationSpec
+      stringNullOperationSpec,
     );
   }
 
@@ -248,11 +248,11 @@ export class PathsImpl implements Paths {
    */
   enumValid(
     enumPath: UriColor,
-    options?: PathsEnumValidOptionalParams
+    options?: PathsEnumValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { enumPath, options },
-      enumValidOperationSpec
+      enumValidOperationSpec,
     );
   }
 
@@ -263,11 +263,11 @@ export class PathsImpl implements Paths {
    */
   enumNull(
     enumPath: UriColor,
-    options?: PathsEnumNullOptionalParams
+    options?: PathsEnumNullOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { enumPath, options },
-      enumNullOperationSpec
+      enumNullOperationSpec,
     );
   }
 
@@ -278,11 +278,11 @@ export class PathsImpl implements Paths {
    */
   byteMultiByte(
     bytePath: Uint8Array,
-    options?: PathsByteMultiByteOptionalParams
+    options?: PathsByteMultiByteOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { bytePath, options },
-      byteMultiByteOperationSpec
+      byteMultiByteOperationSpec,
     );
   }
 
@@ -293,7 +293,7 @@ export class PathsImpl implements Paths {
   byteEmpty(options?: PathsByteEmptyOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      byteEmptyOperationSpec
+      byteEmptyOperationSpec,
     );
   }
 
@@ -304,11 +304,11 @@ export class PathsImpl implements Paths {
    */
   byteNull(
     bytePath: Uint8Array,
-    options?: PathsByteNullOptionalParams
+    options?: PathsByteNullOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { bytePath, options },
-      byteNullOperationSpec
+      byteNullOperationSpec,
     );
   }
 
@@ -319,7 +319,7 @@ export class PathsImpl implements Paths {
   dateValid(options?: PathsDateValidOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      dateValidOperationSpec
+      dateValidOperationSpec,
     );
   }
 
@@ -331,11 +331,11 @@ export class PathsImpl implements Paths {
    */
   dateNull(
     datePath: Date,
-    options?: PathsDateNullOptionalParams
+    options?: PathsDateNullOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { datePath, options },
-      dateNullOperationSpec
+      dateNullOperationSpec,
     );
   }
 
@@ -346,7 +346,7 @@ export class PathsImpl implements Paths {
   dateTimeValid(options?: PathsDateTimeValidOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      dateTimeValidOperationSpec
+      dateTimeValidOperationSpec,
     );
   }
 
@@ -357,11 +357,11 @@ export class PathsImpl implements Paths {
    */
   dateTimeNull(
     dateTimePath: Date,
-    options?: PathsDateTimeNullOptionalParams
+    options?: PathsDateTimeNullOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { dateTimePath, options },
-      dateTimeNullOperationSpec
+      dateTimeNullOperationSpec,
     );
   }
 
@@ -372,11 +372,11 @@ export class PathsImpl implements Paths {
    */
   base64Url(
     base64UrlPath: Uint8Array,
-    options?: PathsBase64UrlOptionalParams
+    options?: PathsBase64UrlOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { base64UrlPath, options },
-      base64UrlOperationSpec
+      base64UrlOperationSpec,
     );
   }
 
@@ -389,11 +389,11 @@ export class PathsImpl implements Paths {
    */
   arrayCsvInPath(
     arrayPath: string[],
-    options?: PathsArrayCsvInPathOptionalParams
+    options?: PathsArrayCsvInPathOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayPath, options },
-      arrayCsvInPathOperationSpec
+      arrayCsvInPathOperationSpec,
     );
   }
 
@@ -404,11 +404,11 @@ export class PathsImpl implements Paths {
    */
   unixTimeUrl(
     unixTimeUrlPath: Date,
-    options?: PathsUnixTimeUrlOptionalParams
+    options?: PathsUnixTimeUrlOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { unixTimeUrlPath, options },
-      unixTimeUrlOperationSpec
+      unixTimeUrlOperationSpec,
     );
   }
 }
@@ -421,12 +421,12 @@ const getBooleanTrueOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.boolPath],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getBooleanFalseOperationSpec: coreClient.OperationSpec = {
   path: "/paths/bool/false/{boolPath}",
@@ -434,12 +434,12 @@ const getBooleanFalseOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.boolPath1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getIntOneMillionOperationSpec: coreClient.OperationSpec = {
   path: "/paths/int/1000000/{intPath}",
@@ -447,12 +447,12 @@ const getIntOneMillionOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.intPath],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getIntNegativeOneMillionOperationSpec: coreClient.OperationSpec = {
   path: "/paths/int/-1000000/{intPath}",
@@ -460,12 +460,12 @@ const getIntNegativeOneMillionOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.intPath1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getTenBillionOperationSpec: coreClient.OperationSpec = {
   path: "/paths/long/10000000000/{longPath}",
@@ -473,12 +473,12 @@ const getTenBillionOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.longPath],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getNegativeTenBillionOperationSpec: coreClient.OperationSpec = {
   path: "/paths/long/-10000000000/{longPath}",
@@ -486,12 +486,12 @@ const getNegativeTenBillionOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.longPath1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const floatScientificPositiveOperationSpec: coreClient.OperationSpec = {
   path: "/paths/float/1.034E+20/{floatPath}",
@@ -499,12 +499,12 @@ const floatScientificPositiveOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.floatPath],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const floatScientificNegativeOperationSpec: coreClient.OperationSpec = {
   path: "/paths/float/-1.034E-20/{floatPath}",
@@ -512,12 +512,12 @@ const floatScientificNegativeOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.floatPath1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const doubleDecimalPositiveOperationSpec: coreClient.OperationSpec = {
   path: "/paths/double/9999999.999/{doublePath}",
@@ -525,12 +525,12 @@ const doubleDecimalPositiveOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.doublePath],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const doubleDecimalNegativeOperationSpec: coreClient.OperationSpec = {
   path: "/paths/double/-9999999.999/{doublePath}",
@@ -538,12 +538,12 @@ const doubleDecimalNegativeOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.doublePath1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const stringUnicodeOperationSpec: coreClient.OperationSpec = {
   path: "/paths/string/unicode/{stringPath}",
@@ -551,26 +551,25 @@ const stringUnicodeOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.stringPath],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const stringUrlEncodedOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
+  path: "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
   httpMethod: "GET",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.stringPath1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const stringUrlNonEncodedOperationSpec: coreClient.OperationSpec = {
   path: "/paths/string/begin!*'();:@&=+$,end/{stringPath}",
@@ -578,12 +577,12 @@ const stringUrlNonEncodedOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.stringPath2],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const stringEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/paths/string/empty/{stringPath}",
@@ -591,12 +590,12 @@ const stringEmptyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.stringPath3],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const stringNullOperationSpec: coreClient.OperationSpec = {
   path: "/paths/string/null/{stringPath}",
@@ -604,12 +603,12 @@ const stringNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     400: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.stringPath4],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const enumValidOperationSpec: coreClient.OperationSpec = {
   path: "/paths/enum/green%20color/{enumPath}",
@@ -617,12 +616,12 @@ const enumValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.enumPath],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const enumNullOperationSpec: coreClient.OperationSpec = {
   path: "/paths/string/null/{enumPath}",
@@ -630,12 +629,12 @@ const enumNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     400: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.enumPath],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const byteMultiByteOperationSpec: coreClient.OperationSpec = {
   path: "/paths/byte/multibyte/{bytePath}",
@@ -643,12 +642,12 @@ const byteMultiByteOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.bytePath],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const byteEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/paths/byte/empty/{bytePath}",
@@ -656,12 +655,12 @@ const byteEmptyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.bytePath1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const byteNullOperationSpec: coreClient.OperationSpec = {
   path: "/paths/byte/null/{bytePath}",
@@ -669,12 +668,12 @@ const byteNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     400: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.bytePath],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const dateValidOperationSpec: coreClient.OperationSpec = {
   path: "/paths/date/2012-01-01/{datePath}",
@@ -682,12 +681,12 @@ const dateValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.datePath],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const dateNullOperationSpec: coreClient.OperationSpec = {
   path: "/paths/date/null/{datePath}",
@@ -695,12 +694,12 @@ const dateNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     400: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.datePath1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const dateTimeValidOperationSpec: coreClient.OperationSpec = {
   path: "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
@@ -708,12 +707,12 @@ const dateTimeValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.dateTimePath],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const dateTimeNullOperationSpec: coreClient.OperationSpec = {
   path: "/paths/datetime/null/{dateTimePath}",
@@ -721,12 +720,12 @@ const dateTimeNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     400: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.dateTimePath1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const base64UrlOperationSpec: coreClient.OperationSpec = {
   path: "/paths/string/bG9yZW0/{base64UrlPath}",
@@ -734,26 +733,25 @@ const base64UrlOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.base64UrlPath],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const arrayCsvInPathOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
+  path: "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
   httpMethod: "GET",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.arrayPath],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const unixTimeUrlOperationSpec: coreClient.OperationSpec = {
   path: "/paths/int/1460505600/{unixTimeUrlPath}",
@@ -761,10 +759,10 @@ const unixTimeUrlOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.unixTimeUrlPath],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

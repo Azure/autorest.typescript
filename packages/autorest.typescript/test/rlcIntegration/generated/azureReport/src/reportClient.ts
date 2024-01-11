@@ -12,7 +12,7 @@ import * as Mappers from "./models/mappers";
 import {
   ReportClientOptionalParams,
   GetReportOptionalParams,
-  GetReportResponse
+  GetReportResponse,
 } from "./models";
 
 export class ReportClient extends coreClient.ServiceClient {
@@ -28,7 +28,7 @@ export class ReportClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: ReportClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-zzzAzureReport/1.0.0-preview1`;
@@ -41,9 +41,9 @@ export class ReportClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000"
+      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000",
     };
     super(optionsWithDefaults);
 
@@ -68,15 +68,15 @@ const getReportOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Dictionary", value: { type: { name: "Number" } } }
-      }
+        type: { name: "Dictionary", value: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.qualifier],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

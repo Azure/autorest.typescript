@@ -25,22 +25,22 @@ import {
 export interface FineTuningJobsOperations {
   create: (
     job: CreateFineTuningJobRequest,
-    options?: FineTuningJobsCreateOptions
+    options?: FineTuningJobsCreateOptions,
   ) => Promise<FineTuningJob>;
   list: (
-    options?: FineTuningJobsListOptions
+    options?: FineTuningJobsListOptions,
   ) => Promise<ListPaginatedFineTuningJobsResponse>;
   retrieve: (
     fineTuningJobId: string,
-    options?: FineTuningJobsRetrieveOptions
+    options?: FineTuningJobsRetrieveOptions,
   ) => Promise<FineTuningJob>;
   listEvents: (
     fineTuningJobId: string,
-    options?: FineTuningJobsListEventsOptions
+    options?: FineTuningJobsListEventsOptions,
   ) => Promise<ListFineTuningJobEventsResponse>;
   cancel: (
     fineTuningJobId: string,
-    options?: FineTuningJobsCancelOptions
+    options?: FineTuningJobsCancelOptions,
   ) => Promise<FineTuningJob>;
 }
 
@@ -48,16 +48,16 @@ export function getFineTuningJobs(context: OpenAIContext) {
   return {
     create: (
       job: CreateFineTuningJobRequest,
-      options?: FineTuningJobsCreateOptions
+      options?: FineTuningJobsCreateOptions,
     ) => create(context, job, options),
     list: (options?: FineTuningJobsListOptions) => list(context, options),
     retrieve: (
       fineTuningJobId: string,
-      options?: FineTuningJobsRetrieveOptions
+      options?: FineTuningJobsRetrieveOptions,
     ) => retrieve(context, fineTuningJobId, options),
     listEvents: (
       fineTuningJobId: string,
-      options?: FineTuningJobsListEventsOptions
+      options?: FineTuningJobsListEventsOptions,
     ) => listEvents(context, fineTuningJobId, options),
     cancel: (fineTuningJobId: string, options?: FineTuningJobsCancelOptions) =>
       cancel(context, fineTuningJobId, options),
@@ -65,7 +65,7 @@ export function getFineTuningJobs(context: OpenAIContext) {
 }
 
 export function getFineTuningJobsOperations(
-  context: OpenAIContext
+  context: OpenAIContext,
 ): FineTuningJobsOperations {
   return {
     ...getFineTuningJobs(context),

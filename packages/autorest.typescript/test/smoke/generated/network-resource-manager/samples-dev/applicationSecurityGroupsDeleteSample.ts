@@ -28,7 +28,7 @@ async function deleteApplicationSecurityGroup() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.applicationSecurityGroups.beginDeleteAndWait(
     resourceGroupName,
-    applicationSecurityGroupName
+    applicationSecurityGroupName,
   );
   console.log(result);
 }

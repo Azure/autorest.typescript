@@ -15,10 +15,10 @@ import { ChatProtocolContext } from "./clientDefinitions.js";
 export default function createClient(
   endpoint: string,
   credentials: TokenCredential | KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): ChatProtocolContext {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
-  options.apiVersion = options.apiVersion ?? "2023-10-01-preview";
+
   const userAgentInfo = `azsdk-js-ai-chat-protocol-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -41,8 +41,10 @@ export default function createClient(
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as ChatProtocolContext;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }

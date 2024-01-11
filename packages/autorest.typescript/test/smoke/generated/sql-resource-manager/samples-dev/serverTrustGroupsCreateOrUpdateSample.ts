@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ServerTrustGroup,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,14 +33,14 @@ async function createServerTrustGroup() {
     groupMembers: [
       {
         serverId:
-          "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default/providers/Microsoft.Sql/managedInstances/managedInstance-1"
+          "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default/providers/Microsoft.Sql/managedInstances/managedInstance-1",
       },
       {
         serverId:
-          "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default/providers/Microsoft.Sql/managedInstances/managedInstance-2"
-      }
+          "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default/providers/Microsoft.Sql/managedInstances/managedInstance-2",
+      },
     ],
-    trustScopes: ["GlobalTransactions", "ServiceBroker"]
+    trustScopes: ["GlobalTransactions", "ServiceBroker"],
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -48,7 +48,7 @@ async function createServerTrustGroup() {
     resourceGroupName,
     locationName,
     serverTrustGroupName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   OutboundFirewallRule,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -36,7 +36,7 @@ async function approveOrRejectAOutboundFirewallRuleWithAGivenName() {
     resourceGroupName,
     serverName,
     outboundRuleFqdn,
-    parameters
+    parameters,
   );
   console.log(result);
 }

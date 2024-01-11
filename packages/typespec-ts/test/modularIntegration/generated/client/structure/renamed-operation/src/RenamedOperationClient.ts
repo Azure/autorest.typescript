@@ -28,7 +28,7 @@ export class RenamedOperationClient {
   constructor(
     endpoint: string,
     client: ClientType,
-    options: RenamedOperationClientOptions = {}
+    options: RenamedOperationClientOptions = {},
   ) {
     this._client = createRenamedOperation(endpoint, client, options);
     this.pipeline = this._client.pipeline;
@@ -39,19 +39,19 @@ export class RenamedOperationClient {
   public readonly group: GroupOperations;
 
   renamedOne(
-    options: RenamedOneOptions = { requestOptions: {} }
+    options: RenamedOneOptions = { requestOptions: {} },
   ): Promise<void> {
     return renamedOne(this._client, options);
   }
 
   renamedThree(
-    options: RenamedThreeOptions = { requestOptions: {} }
+    options: RenamedThreeOptions = { requestOptions: {} },
   ): Promise<void> {
     return renamedThree(this._client, options);
   }
 
   renamedFive(
-    options: RenamedFiveOptions = { requestOptions: {} }
+    options: RenamedFiveOptions = { requestOptions: {} },
   ): Promise<void> {
     return renamedFive(this._client, options);
   }

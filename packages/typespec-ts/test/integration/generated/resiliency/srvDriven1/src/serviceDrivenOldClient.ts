@@ -18,7 +18,7 @@ export interface ServiceDrivenOldClientOptions extends ClientOptions {
 export default function createClient(
   endpoint: string,
   serviceDeploymentVersion: string,
-  options: ServiceDrivenOldClientOptions = {}
+  options: ServiceDrivenOldClientOptions = {},
 ): ServiceDrivenOldClient {
   const apiVersion = options.apiVersion ?? "v1";
   const baseUrl =
@@ -41,6 +41,8 @@ export default function createClient(
   };
 
   const client = getClient(baseUrl, options) as ServiceDrivenOldClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }

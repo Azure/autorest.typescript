@@ -29,11 +29,12 @@ async function deletesAzureActiveDirectoryOnlyAuthenticationObject() {
   const authenticationName = "Default";
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
-  const result = await client.managedInstanceAzureADOnlyAuthentications.beginDeleteAndWait(
-    resourceGroupName,
-    managedInstanceName,
-    authenticationName
-  );
+  const result =
+    await client.managedInstanceAzureADOnlyAuthentications.beginDeleteAndWait(
+      resourceGroupName,
+      managedInstanceName,
+      authenticationName,
+    );
   console.log(result);
 }
 

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VpnClientIPsecParameters,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,15 +35,16 @@ async function setVirtualNetworkGatewayVpnClientIpsecParameters() {
     ipsecIntegrity: "SHA256",
     pfsGroup: "PFS2",
     saDataSizeKilobytes: 429497,
-    saLifeTimeSeconds: 86473
+    saLifeTimeSeconds: 86473,
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGateways.beginSetVpnclientIpsecParametersAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayName,
-    vpnclientIpsecParams
-  );
+  const result =
+    await client.virtualNetworkGateways.beginSetVpnclientIpsecParametersAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      vpnclientIpsecParams,
+    );
   console.log(result);
 }
 

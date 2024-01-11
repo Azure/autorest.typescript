@@ -18,7 +18,7 @@ async function farmsGet() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const farmerId = "FARMER123";
   const farmId = "FARM123";

@@ -20,23 +20,23 @@ import {
 export interface RequestBodyOperations {
   default: (
     value: Uint8Array,
-    options?: RequestBodyDefaultOptions
+    options?: RequestBodyDefaultOptions,
   ) => Promise<void>;
   octetStream: (
     value: Uint8Array,
-    options?: RequestBodyOctetStreamOptions
+    options?: RequestBodyOctetStreamOptions,
   ) => Promise<void>;
   customContentType: (
     value: Uint8Array,
-    options?: RequestBodyCustomContentTypeOptions
+    options?: RequestBodyCustomContentTypeOptions,
   ) => Promise<void>;
   base64: (
     value: Uint8Array,
-    options?: RequestBodyBase64Options
+    options?: RequestBodyBase64Options,
   ) => Promise<void>;
   base64url: (
     value: Uint8Array,
-    options?: RequestBodyBase64urlOptions
+    options?: RequestBodyBase64urlOptions,
   ) => Promise<void>;
 }
 
@@ -48,7 +48,7 @@ export function getRequestBody(context: BytesContext) {
       requestBodyOctetStream(context, value, options),
     customContentType: (
       value: Uint8Array,
-      options?: RequestBodyCustomContentTypeOptions
+      options?: RequestBodyCustomContentTypeOptions,
     ) => requestBodyCustomContentType(context, value, options),
     base64: (value: Uint8Array, options?: RequestBodyBase64Options) =>
       requestBodyBase64(context, value, options),
@@ -58,7 +58,7 @@ export function getRequestBody(context: BytesContext) {
 }
 
 export function getRequestBodyOperations(
-  context: BytesContext
+  context: BytesContext,
 ): RequestBodyOperations {
   return {
     ...getRequestBody(context),

@@ -29,7 +29,7 @@ async function loadBalancerNetworkInterfaceListSimple() {
   const resArray = new Array();
   for await (let item of client.loadBalancerNetworkInterfaces.list(
     resourceGroupName,
-    loadBalancerName
+    loadBalancerName,
   )) {
     resArray.push(item);
   }
@@ -51,7 +51,7 @@ async function loadBalancerNetworkInterfaceListVmss() {
   const resArray = new Array();
   for await (let item of client.loadBalancerNetworkInterfaces.list(
     resourceGroupName,
-    loadBalancerName
+    loadBalancerName,
   )) {
     resArray.push(item);
   }

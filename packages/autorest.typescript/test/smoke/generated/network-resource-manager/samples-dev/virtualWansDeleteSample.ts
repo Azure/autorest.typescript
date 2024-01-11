@@ -28,7 +28,7 @@ async function virtualWanDelete() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualWans.beginDeleteAndWait(
     resourceGroupName,
-    virtualWANName
+    virtualWANName,
   );
   console.log(result);
 }

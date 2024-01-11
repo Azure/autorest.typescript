@@ -16,11 +16,11 @@ export const Animal: coreClient.CompositeMapper = {
       aniType: {
         serializedName: "aniType",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const BaseError: coreClient.CompositeMapper = {
@@ -31,11 +31,11 @@ export const BaseError: coreClient.CompositeMapper = {
       someBaseProp: {
         serializedName: "someBaseProp",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PetAction: coreClient.CompositeMapper = {
@@ -46,11 +46,11 @@ export const PetAction: coreClient.CompositeMapper = {
       actionResponse: {
         serializedName: "actionResponse",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PetDef: coreClient.CompositeMapper = {
@@ -63,11 +63,11 @@ export const PetDef: coreClient.CompositeMapper = {
         serializedName: "name",
         readOnly: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const NotFoundErrorBase: coreClient.CompositeMapper = {
@@ -78,25 +78,25 @@ export const NotFoundErrorBase: coreClient.CompositeMapper = {
     uberParent: "BaseError",
     polymorphicDiscriminator: {
       serializedName: "whatNotFound",
-      clientName: "whatNotFound"
+      clientName: "whatNotFound",
     },
     modelProperties: {
       ...BaseError.type.modelProperties,
       reason: {
         serializedName: "reason",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       whatNotFound: {
         serializedName: "whatNotFound",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PetActionError: coreClient.CompositeMapper = {
@@ -107,7 +107,7 @@ export const PetActionError: coreClient.CompositeMapper = {
     uberParent: "PetAction",
     polymorphicDiscriminator: {
       serializedName: "errorType",
-      clientName: "errorType"
+      clientName: "errorType",
     },
     modelProperties: {
       ...PetAction.type.modelProperties,
@@ -115,17 +115,17 @@ export const PetActionError: coreClient.CompositeMapper = {
         serializedName: "errorType",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       errorMessage: {
         serializedName: "errorMessage",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const LinkNotFound: coreClient.CompositeMapper = {
@@ -140,11 +140,11 @@ export const LinkNotFound: coreClient.CompositeMapper = {
       whatSubAddress: {
         serializedName: "whatSubAddress",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const AnimalNotFound: coreClient.CompositeMapper = {
@@ -159,11 +159,11 @@ export const AnimalNotFound: coreClient.CompositeMapper = {
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PetSadError: coreClient.CompositeMapper = {
@@ -174,18 +174,18 @@ export const PetSadError: coreClient.CompositeMapper = {
     uberParent: "PetActionError",
     polymorphicDiscriminator: {
       serializedName: "errorType",
-      clientName: "errorType"
+      clientName: "errorType",
     },
     modelProperties: {
       ...PetActionError.type.modelProperties,
       reason: {
         serializedName: "reason",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PetHungryOrThirstyError: coreClient.CompositeMapper = {
@@ -200,11 +200,11 @@ export const PetHungryOrThirstyError: coreClient.CompositeMapper = {
       hungryOrThirsty: {
         serializedName: "hungryOrThirsty",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export let discriminators = {
@@ -213,5 +213,5 @@ export let discriminators = {
   "NotFoundErrorBase.InvalidResourceLink": LinkNotFound,
   "NotFoundErrorBase.AnimalNotFound": AnimalNotFound,
   "PetActionError.PetSadError": PetSadError,
-  "PetSadError.PetHungryOrThirstyError": PetHungryOrThirstyError
+  "PetSadError.PetHungryOrThirstyError": PetHungryOrThirstyError,
 };

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   SecurityGroupViewParameters,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,14 +29,14 @@ async function getSecurityGroupView() {
   const networkWatcherName = "nw1";
   const parameters: SecurityGroupViewParameters = {
     targetResourceId:
-      "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Compute/virtualMachines/vm1"
+      "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Compute/virtualMachines/vm1",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkWatchers.beginGetVMSecurityRulesAndWait(
     resourceGroupName,
     networkWatcherName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

@@ -14,7 +14,7 @@ import { ListOptions } from "../models/options.js";
 
 export function _listSend(
   context: Client,
-  options: ListOptions = { requestOptions: {} }
+  options: ListOptions = { requestOptions: {} },
 ): StreamableMethod<List200Response> {
   return context
     .path("/payload/pageable")
@@ -25,7 +25,7 @@ export function _listSend(
 }
 
 export async function _listDeserialize(
-  result: List200Response
+  result: List200Response,
 ): Promise<PagedUser> {
   if (result.status !== "200") {
     throw createRestError(result);
@@ -40,12 +40,12 @@ export async function _listDeserialize(
 /** List users */
 export function list(
   context: Client,
-  options: ListOptions = { requestOptions: {} }
+  options: ListOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<User> {
   return buildPagedAsyncIterator(
     context,
     () => _listSend(context, options),
     _listDeserialize,
-    { itemName: "value", nextLinkName: "nextLink" }
+    { itemName: "value", nextLinkName: "nextLink" },
   );
 }

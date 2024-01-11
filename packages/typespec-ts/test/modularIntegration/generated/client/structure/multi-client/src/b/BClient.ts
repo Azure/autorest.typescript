@@ -27,26 +27,26 @@ export class BClient {
   constructor(
     endpoint: string,
     client: ClientType,
-    options: BClientOptions = {}
+    options: BClientOptions = {},
   ) {
     this._client = createB(endpoint, client, options);
     this.pipeline = this._client.pipeline;
   }
 
   renamedTwo(
-    options: RenamedTwoOptions = { requestOptions: {} }
+    options: RenamedTwoOptions = { requestOptions: {} },
   ): Promise<void> {
     return renamedTwo(this._client, options);
   }
 
   renamedFour(
-    options: RenamedFourOptions = { requestOptions: {} }
+    options: RenamedFourOptions = { requestOptions: {} },
   ): Promise<void> {
     return renamedFour(this._client, options);
   }
 
   renamedSix(
-    options: RenamedSixOptions = { requestOptions: {} }
+    options: RenamedSixOptions = { requestOptions: {} },
   ): Promise<void> {
     return renamedSix(this._client, options);
   }

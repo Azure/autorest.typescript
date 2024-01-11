@@ -29,25 +29,25 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: GetLanguages200Response | GetLanguagesDefaultResponse
+  response: GetLanguages200Response | GetLanguagesDefaultResponse,
 ): response is GetLanguagesDefaultResponse;
 export function isUnexpected(
-  response: Translate200Response | TranslateDefaultResponse
+  response: Translate200Response | TranslateDefaultResponse,
 ): response is TranslateDefaultResponse;
 export function isUnexpected(
-  response: Transliterate200Response | TransliterateDefaultResponse
+  response: Transliterate200Response | TransliterateDefaultResponse,
 ): response is TransliterateDefaultResponse;
 export function isUnexpected(
-  response: Detect200Response | DetectDefaultResponse
+  response: Detect200Response | DetectDefaultResponse,
 ): response is DetectDefaultResponse;
 export function isUnexpected(
-  response: BreakSentence200Response | BreakSentenceDefaultResponse
+  response: BreakSentence200Response | BreakSentenceDefaultResponse,
 ): response is BreakSentenceDefaultResponse;
 export function isUnexpected(
-  response: DictionaryLookup200Response | DictionaryLookupDefaultResponse
+  response: DictionaryLookup200Response | DictionaryLookupDefaultResponse,
 ): response is DictionaryLookupDefaultResponse;
 export function isUnexpected(
-  response: DictionaryExamples200Response | DictionaryExamplesDefaultResponse
+  response: DictionaryExamples200Response | DictionaryExamplesDefaultResponse,
 ): response is DictionaryExamplesDefaultResponse;
 export function isUnexpected(
   response:
@@ -64,7 +64,7 @@ export function isUnexpected(
     | DictionaryLookup200Response
     | DictionaryLookupDefaultResponse
     | DictionaryExamples200Response
-    | DictionaryExamplesDefaultResponse
+    | DictionaryExamplesDefaultResponse,
 ): response is
   | GetLanguagesDefaultResponse
   | TranslateDefaultResponse
@@ -121,7 +121,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

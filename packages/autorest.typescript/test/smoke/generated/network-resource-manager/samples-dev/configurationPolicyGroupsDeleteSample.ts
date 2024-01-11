@@ -30,7 +30,7 @@ async function configurationPolicyGroupDelete() {
   const result = await client.configurationPolicyGroups.beginDeleteAndWait(
     resourceGroupName,
     vpnServerConfigurationName,
-    configurationPolicyGroupName
+    configurationPolicyGroupName,
   );
   console.log(result);
 }

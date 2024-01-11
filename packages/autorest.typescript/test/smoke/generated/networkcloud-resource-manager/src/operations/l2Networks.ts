@@ -16,7 +16,7 @@ import { NetworkCloud } from "../networkCloud";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -35,7 +35,7 @@ import {
   L2NetworksUpdateOptionalParams,
   L2NetworksUpdateResponse,
   L2NetworksListBySubscriptionNextResponse,
-  L2NetworksListByResourceGroupNextResponse
+  L2NetworksListByResourceGroupNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -56,7 +56,7 @@ export class L2NetworksImpl implements L2Networks {
    * @param options The options parameters.
    */
   public listBySubscription(
-    options?: L2NetworksListBySubscriptionOptionalParams
+    options?: L2NetworksListBySubscriptionOptionalParams,
   ): PagedAsyncIterableIterator<L2Network> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
@@ -71,13 +71,13 @@ export class L2NetworksImpl implements L2Networks {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listBySubscriptionPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listBySubscriptionPagingPage(
     options?: L2NetworksListBySubscriptionOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<L2Network[]> {
     let result: L2NetworksListBySubscriptionResponse;
     let continuationToken = settings?.continuationToken;
@@ -98,7 +98,7 @@ export class L2NetworksImpl implements L2Networks {
   }
 
   private async *listBySubscriptionPagingAll(
-    options?: L2NetworksListBySubscriptionOptionalParams
+    options?: L2NetworksListBySubscriptionOptionalParams,
   ): AsyncIterableIterator<L2Network> {
     for await (const page of this.listBySubscriptionPagingPage(options)) {
       yield* page;
@@ -112,7 +112,7 @@ export class L2NetworksImpl implements L2Networks {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: L2NetworksListByResourceGroupOptionalParams
+    options?: L2NetworksListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<L2Network> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -129,16 +129,16 @@ export class L2NetworksImpl implements L2Networks {
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
     options?: L2NetworksListByResourceGroupOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<L2Network[]> {
     let result: L2NetworksListByResourceGroupResponse;
     let continuationToken = settings?.continuationToken;
@@ -153,7 +153,7 @@ export class L2NetworksImpl implements L2Networks {
       result = await this._listByResourceGroupNext(
         resourceGroupName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -164,11 +164,11 @@ export class L2NetworksImpl implements L2Networks {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: L2NetworksListByResourceGroupOptionalParams
+    options?: L2NetworksListByResourceGroupOptionalParams,
   ): AsyncIterableIterator<L2Network> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -179,11 +179,11 @@ export class L2NetworksImpl implements L2Networks {
    * @param options The options parameters.
    */
   private _listBySubscription(
-    options?: L2NetworksListBySubscriptionOptionalParams
+    options?: L2NetworksListBySubscriptionOptionalParams,
   ): Promise<L2NetworksListBySubscriptionResponse> {
     return this.client.sendOperationRequest(
       { options },
-      listBySubscriptionOperationSpec
+      listBySubscriptionOperationSpec,
     );
   }
 
@@ -194,11 +194,11 @@ export class L2NetworksImpl implements L2Networks {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: L2NetworksListByResourceGroupOptionalParams
+    options?: L2NetworksListByResourceGroupOptionalParams,
   ): Promise<L2NetworksListByResourceGroupResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, options },
-      listByResourceGroupOperationSpec
+      listByResourceGroupOperationSpec,
     );
   }
 
@@ -211,11 +211,11 @@ export class L2NetworksImpl implements L2Networks {
   get(
     resourceGroupName: string,
     l2NetworkName: string,
-    options?: L2NetworksGetOptionalParams
+    options?: L2NetworksGetOptionalParams,
   ): Promise<L2NetworksGetResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, l2NetworkName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -230,7 +230,7 @@ export class L2NetworksImpl implements L2Networks {
     resourceGroupName: string,
     l2NetworkName: string,
     l2NetworkParameters: L2Network,
-    options?: L2NetworksCreateOrUpdateOptionalParams
+    options?: L2NetworksCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<L2NetworksCreateOrUpdateResponse>,
@@ -239,21 +239,20 @@ export class L2NetworksImpl implements L2Networks {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<L2NetworksCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -262,8 +261,8 @@ export class L2NetworksImpl implements L2Networks {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -271,15 +270,15 @@ export class L2NetworksImpl implements L2Networks {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, l2NetworkName, l2NetworkParameters, options },
-      spec: createOrUpdateOperationSpec
+      spec: createOrUpdateOperationSpec,
     });
     const poller = await createHttpPoller<
       L2NetworksCreateOrUpdateResponse,
@@ -287,7 +286,7 @@ export class L2NetworksImpl implements L2Networks {
     >(lro, {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation",
     });
     await poller.poll();
     return poller;
@@ -304,13 +303,13 @@ export class L2NetworksImpl implements L2Networks {
     resourceGroupName: string,
     l2NetworkName: string,
     l2NetworkParameters: L2Network,
-    options?: L2NetworksCreateOrUpdateOptionalParams
+    options?: L2NetworksCreateOrUpdateOptionalParams,
   ): Promise<L2NetworksCreateOrUpdateResponse> {
     const poller = await this.beginCreateOrUpdate(
       resourceGroupName,
       l2NetworkName,
       l2NetworkParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -324,25 +323,24 @@ export class L2NetworksImpl implements L2Networks {
   async beginDelete(
     resourceGroupName: string,
     l2NetworkName: string,
-    options?: L2NetworksDeleteOptionalParams
+    options?: L2NetworksDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -351,8 +349,8 @@ export class L2NetworksImpl implements L2Networks {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -360,20 +358,20 @@ export class L2NetworksImpl implements L2Networks {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, l2NetworkName, options },
-      spec: deleteOperationSpec
+      spec: deleteOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "location"
+      resourceLocationConfig: "location",
     });
     await poller.poll();
     return poller;
@@ -388,12 +386,12 @@ export class L2NetworksImpl implements L2Networks {
   async beginDeleteAndWait(
     resourceGroupName: string,
     l2NetworkName: string,
-    options?: L2NetworksDeleteOptionalParams
+    options?: L2NetworksDeleteOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       l2NetworkName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -407,11 +405,11 @@ export class L2NetworksImpl implements L2Networks {
   update(
     resourceGroupName: string,
     l2NetworkName: string,
-    options?: L2NetworksUpdateOptionalParams
+    options?: L2NetworksUpdateOptionalParams,
   ): Promise<L2NetworksUpdateResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, l2NetworkName, options },
-      updateOperationSpec
+      updateOperationSpec,
     );
   }
 
@@ -422,11 +420,11 @@ export class L2NetworksImpl implements L2Networks {
    */
   private _listBySubscriptionNext(
     nextLink: string,
-    options?: L2NetworksListBySubscriptionNextOptionalParams
+    options?: L2NetworksListBySubscriptionNextOptionalParams,
   ): Promise<L2NetworksListBySubscriptionNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listBySubscriptionNextOperationSpec
+      listBySubscriptionNextOperationSpec,
     );
   }
 
@@ -439,11 +437,11 @@ export class L2NetworksImpl implements L2Networks {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: L2NetworksListByResourceGroupNextOptionalParams
+    options?: L2NetworksListByResourceGroupNextOptionalParams,
   ): Promise<L2NetworksListByResourceGroupNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, nextLink, options },
-      listByResourceGroupNextOperationSpec
+      listByResourceGroupNextOperationSpec,
     );
   }
 }
@@ -451,85 +449,81 @@ export class L2NetworksImpl implements L2Networks {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const listBySubscriptionOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/l2Networks",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/l2Networks",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.L2NetworkList
+      bodyMapper: Mappers.L2NetworkList,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.L2NetworkList
+      bodyMapper: Mappers.L2NetworkList,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.L2Network
+      bodyMapper: Mappers.ErrorResponse,
     },
-    default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.l2NetworkName
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
+};
+const getOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.L2Network,
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse,
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.l2NetworkName,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
 };
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.L2Network
+      bodyMapper: Mappers.L2Network,
     },
     201: {
-      bodyMapper: Mappers.L2Network
+      bodyMapper: Mappers.L2Network,
     },
     202: {
-      bodyMapper: Mappers.L2Network
+      bodyMapper: Mappers.L2Network,
     },
     204: {
-      bodyMapper: Mappers.L2Network
+      bodyMapper: Mappers.L2Network,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   requestBody: Parameters.l2NetworkParameters,
   queryParameters: [Parameters.apiVersion],
@@ -537,15 +531,14 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.l2NetworkName
+    Parameters.l2NetworkName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}",
   httpMethod: "DELETE",
   responses: {
     200: {},
@@ -553,30 +546,29 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     202: {},
     204: {},
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.l2NetworkName
+    Parameters.l2NetworkName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const updateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/l2Networks/{l2NetworkName}",
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.L2Network
+      bodyMapper: Mappers.L2Network,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   requestBody: Parameters.l2NetworkUpdateParameters,
   queryParameters: [Parameters.apiVersion],
@@ -584,48 +576,48 @@ const updateOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.l2NetworkName
+    Parameters.l2NetworkName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.L2NetworkList
+      bodyMapper: Mappers.L2NetworkList,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
-    Parameters.subscriptionId
+    Parameters.subscriptionId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.L2NetworkList
+      bodyMapper: Mappers.L2NetworkList,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

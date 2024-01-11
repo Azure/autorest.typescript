@@ -98,7 +98,7 @@ import {
   StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams,
   StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse,
   StaticSitesDetachUserProvidedFunctionAppFromStaticSiteOptionalParams,
-  StaticSitesCreateZipDeploymentForStaticSiteOptionalParams
+  StaticSitesCreateZipDeploymentForStaticSiteOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -109,7 +109,7 @@ export interface StaticSites {
    * @param options The options parameters.
    */
   list(
-    options?: StaticSitesListOptionalParams
+    options?: StaticSitesListOptionalParams,
   ): PagedAsyncIterableIterator<StaticSiteARMResource>;
   /**
    * Description for Gets all static sites in the specified resource group.
@@ -118,7 +118,7 @@ export interface StaticSites {
    */
   listStaticSitesByResourceGroup(
     resourceGroupName: string,
-    options?: StaticSitesGetStaticSitesByResourceGroupOptionalParams
+    options?: StaticSitesGetStaticSitesByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<StaticSiteARMResource>;
   /**
    * Description for Gets the list of users of a static site.
@@ -131,7 +131,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     authprovider: string,
-    options?: StaticSitesListStaticSiteUsersOptionalParams
+    options?: StaticSitesListStaticSiteUsersOptionalParams,
   ): PagedAsyncIterableIterator<StaticSiteUserARMResource>;
   /**
    * Description for Gets all static site builds for a particular static site.
@@ -142,7 +142,7 @@ export interface StaticSites {
   listStaticSiteBuilds(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesGetStaticSiteBuildsOptionalParams
+    options?: StaticSitesGetStaticSiteBuildsOptionalParams,
   ): PagedAsyncIterableIterator<StaticSiteBuildARMResource>;
   /**
    * Description for Gets the functions of a particular static site build.
@@ -155,7 +155,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     environmentName: string,
-    options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams
+    options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams,
   ): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource>;
   /**
    * Description for Gets the details of the user provided function apps registered with a static site
@@ -169,7 +169,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     environmentName: string,
-    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildOptionalParams
+    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteBuildOptionalParams,
   ): PagedAsyncIterableIterator<StaticSiteUserProvidedFunctionAppARMResource>;
   /**
    * Description for Gets all static site custom domains for a particular static site.
@@ -180,7 +180,7 @@ export interface StaticSites {
   listStaticSiteCustomDomains(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesListStaticSiteCustomDomainsOptionalParams
+    options?: StaticSitesListStaticSiteCustomDomainsOptionalParams,
   ): PagedAsyncIterableIterator<StaticSiteCustomDomainOverviewARMResource>;
   /**
    * Description for Gets the functions of a static site.
@@ -191,7 +191,7 @@ export interface StaticSites {
   listStaticSiteFunctions(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesListStaticSiteFunctionsOptionalParams
+    options?: StaticSitesListStaticSiteFunctionsOptionalParams,
   ): PagedAsyncIterableIterator<StaticSiteFunctionOverviewARMResource>;
   /**
    * Description for Gets the list of private endpoint connections associated with a static site
@@ -202,7 +202,7 @@ export interface StaticSites {
   listPrivateEndpointConnectionList(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesGetPrivateEndpointConnectionListOptionalParams
+    options?: StaticSitesGetPrivateEndpointConnectionListOptionalParams,
   ): PagedAsyncIterableIterator<RemotePrivateEndpointConnectionARMResource>;
   /**
    * Description for Gets the details of the user provided function apps registered with a static site
@@ -213,7 +213,7 @@ export interface StaticSites {
   listUserProvidedFunctionAppsForStaticSite(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteOptionalParams
+    options?: StaticSitesGetUserProvidedFunctionAppsForStaticSiteOptionalParams,
   ): PagedAsyncIterableIterator<StaticSiteUserProvidedFunctionAppARMResource>;
   /**
    * Description for Generates a preview workflow file for the static site
@@ -225,7 +225,7 @@ export interface StaticSites {
   previewWorkflow(
     location: string,
     staticSitesWorkflowPreviewRequest: StaticSitesWorkflowPreviewRequest,
-    options?: StaticSitesPreviewWorkflowOptionalParams
+    options?: StaticSitesPreviewWorkflowOptionalParams,
   ): Promise<StaticSitesPreviewWorkflowResponse>;
   /**
    * Description for Gets the details of a static site.
@@ -236,7 +236,7 @@ export interface StaticSites {
   getStaticSite(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesGetStaticSiteOptionalParams
+    options?: StaticSitesGetStaticSiteOptionalParams,
   ): Promise<StaticSitesGetStaticSiteResponse>;
   /**
    * Description for Creates a new static site in an existing resource group, or updates an existing
@@ -250,7 +250,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     staticSiteEnvelope: StaticSiteARMResource,
-    options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams
+    options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<StaticSitesCreateOrUpdateStaticSiteResponse>,
@@ -269,7 +269,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     staticSiteEnvelope: StaticSiteARMResource,
-    options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams
+    options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams,
   ): Promise<StaticSitesCreateOrUpdateStaticSiteResponse>;
   /**
    * Description for Deletes a static site.
@@ -280,7 +280,7 @@ export interface StaticSites {
   beginDeleteStaticSite(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesDeleteStaticSiteOptionalParams
+    options?: StaticSitesDeleteStaticSiteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Deletes a static site.
@@ -291,7 +291,7 @@ export interface StaticSites {
   beginDeleteStaticSiteAndWait(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesDeleteStaticSiteOptionalParams
+    options?: StaticSitesDeleteStaticSiteOptionalParams,
   ): Promise<void>;
   /**
    * Description for Creates a new static site in an existing resource group, or updates an existing
@@ -305,7 +305,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     staticSiteEnvelope: StaticSitePatchResource,
-    options?: StaticSitesUpdateStaticSiteOptionalParams
+    options?: StaticSitesUpdateStaticSiteOptionalParams,
   ): Promise<StaticSitesUpdateStaticSiteResponse>;
   /**
    * Description for Deletes the user entry from the static site.
@@ -320,7 +320,7 @@ export interface StaticSites {
     name: string,
     authprovider: string,
     userid: string,
-    options?: StaticSitesDeleteStaticSiteUserOptionalParams
+    options?: StaticSitesDeleteStaticSiteUserOptionalParams,
   ): Promise<void>;
   /**
    * Description for Updates a user entry with the listed roles
@@ -337,7 +337,7 @@ export interface StaticSites {
     authprovider: string,
     userid: string,
     staticSiteUserEnvelope: StaticSiteUserARMResource,
-    options?: StaticSitesUpdateStaticSiteUserOptionalParams
+    options?: StaticSitesUpdateStaticSiteUserOptionalParams,
   ): Promise<StaticSitesUpdateStaticSiteUserResponse>;
   /**
    * Description for Gets the details of a static site build.
@@ -350,7 +350,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     environmentName: string,
-    options?: StaticSitesGetStaticSiteBuildOptionalParams
+    options?: StaticSitesGetStaticSiteBuildOptionalParams,
   ): Promise<StaticSitesGetStaticSiteBuildResponse>;
   /**
    * Description for Deletes a static site build.
@@ -363,7 +363,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     environmentName: string,
-    options?: StaticSitesDeleteStaticSiteBuildOptionalParams
+    options?: StaticSitesDeleteStaticSiteBuildOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Deletes a static site build.
@@ -376,7 +376,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     environmentName: string,
-    options?: StaticSitesDeleteStaticSiteBuildOptionalParams
+    options?: StaticSitesDeleteStaticSiteBuildOptionalParams,
   ): Promise<void>;
   /**
    * Description for Creates or updates the app settings of a static site build.
@@ -391,7 +391,7 @@ export interface StaticSites {
     name: string,
     environmentName: string,
     appSettings: StringDictionary,
-    options?: StaticSitesCreateOrUpdateStaticSiteBuildAppSettingsOptionalParams
+    options?: StaticSitesCreateOrUpdateStaticSiteBuildAppSettingsOptionalParams,
   ): Promise<StaticSitesCreateOrUpdateStaticSiteBuildAppSettingsResponse>;
   /**
    * Description for Creates or updates the function app settings of a static site build.
@@ -406,10 +406,8 @@ export interface StaticSites {
     name: string,
     environmentName: string,
     appSettings: StringDictionary,
-    options?: StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams
-  ): Promise<
-    StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse
-  >;
+    options?: StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams,
+  ): Promise<StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse>;
   /**
    * Description for Gets the application settings of a static site build.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -421,7 +419,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     environmentName: string,
-    options?: StaticSitesListStaticSiteBuildAppSettingsOptionalParams
+    options?: StaticSitesListStaticSiteBuildAppSettingsOptionalParams,
   ): Promise<StaticSitesListStaticSiteBuildAppSettingsResponse>;
   /**
    * Description for Gets the application settings of a static site build.
@@ -434,7 +432,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     environmentName: string,
-    options?: StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams
+    options?: StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams,
   ): Promise<StaticSitesListStaticSiteBuildFunctionAppSettingsResponse>;
   /**
    * Description for Gets the details of the user provided function app registered with a static site
@@ -450,7 +448,7 @@ export interface StaticSites {
     name: string,
     environmentName: string,
     functionAppName: string,
-    options?: StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildOptionalParams
+    options?: StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildOptionalParams,
   ): Promise<StaticSitesGetUserProvidedFunctionAppForStaticSiteBuildResponse>;
   /**
    * Description for Register a user provided function app with a static site build
@@ -468,12 +466,10 @@ export interface StaticSites {
     environmentName: string,
     functionAppName: string,
     staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource,
-    options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams
+    options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams,
   ): Promise<
     SimplePollerLike<
-      OperationState<
-        StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse
-      >,
+      OperationState<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse>,
       StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse
     >
   >;
@@ -493,10 +489,8 @@ export interface StaticSites {
     environmentName: string,
     functionAppName: string,
     staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource,
-    options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams
-  ): Promise<
-    StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse
-  >;
+    options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildOptionalParams,
+  ): Promise<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteBuildResponse>;
   /**
    * Description for Detach the user provided function app from the static site build
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -510,7 +504,7 @@ export interface StaticSites {
     name: string,
     environmentName: string,
     functionAppName: string,
-    options?: StaticSitesDetachUserProvidedFunctionAppFromStaticSiteBuildOptionalParams
+    options?: StaticSitesDetachUserProvidedFunctionAppFromStaticSiteBuildOptionalParams,
   ): Promise<void>;
   /**
    * Description for Deploys zipped content to a specific environment of a static site.
@@ -526,7 +520,7 @@ export interface StaticSites {
     name: string,
     environmentName: string,
     staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource,
-    options?: StaticSitesCreateZipDeploymentForStaticSiteBuildOptionalParams
+    options?: StaticSitesCreateZipDeploymentForStaticSiteBuildOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Deploys zipped content to a specific environment of a static site.
@@ -542,7 +536,7 @@ export interface StaticSites {
     name: string,
     environmentName: string,
     staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource,
-    options?: StaticSitesCreateZipDeploymentForStaticSiteBuildOptionalParams
+    options?: StaticSitesCreateZipDeploymentForStaticSiteBuildOptionalParams,
   ): Promise<void>;
   /**
    * Description for Creates or updates the app settings of a static site.
@@ -555,7 +549,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     appSettings: StringDictionary,
-    options?: StaticSitesCreateOrUpdateStaticSiteAppSettingsOptionalParams
+    options?: StaticSitesCreateOrUpdateStaticSiteAppSettingsOptionalParams,
   ): Promise<StaticSitesCreateOrUpdateStaticSiteAppSettingsResponse>;
   /**
    * Description for Creates or updates the function app settings of a static site.
@@ -568,7 +562,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     appSettings: StringDictionary,
-    options?: StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsOptionalParams
+    options?: StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsOptionalParams,
   ): Promise<StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse>;
   /**
    * Description for Creates an invitation link for a user with the role
@@ -581,7 +575,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     staticSiteUserRolesInvitationEnvelope: StaticSiteUserInvitationRequestResource,
-    options?: StaticSitesCreateUserRolesInvitationLinkOptionalParams
+    options?: StaticSitesCreateUserRolesInvitationLinkOptionalParams,
   ): Promise<StaticSitesCreateUserRolesInvitationLinkResponse>;
   /**
    * Description for Gets an existing custom domain for a particular static site.
@@ -594,7 +588,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     domainName: string,
-    options?: StaticSitesGetStaticSiteCustomDomainOptionalParams
+    options?: StaticSitesGetStaticSiteCustomDomainOptionalParams,
   ): Promise<StaticSitesGetStaticSiteCustomDomainResponse>;
   /**
    * Description for Creates a new static site custom domain in an existing resource group and static
@@ -611,7 +605,7 @@ export interface StaticSites {
     name: string,
     domainName: string,
     staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource,
-    options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams
+    options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>,
@@ -633,7 +627,7 @@ export interface StaticSites {
     name: string,
     domainName: string,
     staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource,
-    options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams
+    options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams,
   ): Promise<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>;
   /**
    * Description for Deletes a custom domain.
@@ -646,7 +640,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     domainName: string,
-    options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams
+    options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Deletes a custom domain.
@@ -659,7 +653,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     domainName: string,
-    options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams
+    options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams,
   ): Promise<void>;
   /**
    * Description for Validates a particular custom domain can be added to a static site.
@@ -675,7 +669,7 @@ export interface StaticSites {
     name: string,
     domainName: string,
     staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource,
-    options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams
+    options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Validates a particular custom domain can be added to a static site.
@@ -691,7 +685,7 @@ export interface StaticSites {
     name: string,
     domainName: string,
     staticSiteCustomDomainRequestPropertiesEnvelope: StaticSiteCustomDomainRequestPropertiesARMResource,
-    options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams
+    options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams,
   ): Promise<void>;
   /**
    * Description for Detaches a static site.
@@ -702,7 +696,7 @@ export interface StaticSites {
   beginDetachStaticSite(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesDetachStaticSiteOptionalParams
+    options?: StaticSitesDetachStaticSiteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Detaches a static site.
@@ -713,7 +707,7 @@ export interface StaticSites {
   beginDetachStaticSiteAndWait(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesDetachStaticSiteOptionalParams
+    options?: StaticSitesDetachStaticSiteOptionalParams,
   ): Promise<void>;
   /**
    * Description for Gets the application settings of a static site.
@@ -724,7 +718,7 @@ export interface StaticSites {
   listStaticSiteAppSettings(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesListStaticSiteAppSettingsOptionalParams
+    options?: StaticSitesListStaticSiteAppSettingsOptionalParams,
   ): Promise<StaticSitesListStaticSiteAppSettingsResponse>;
   /**
    * Description for Lists the roles configured for the static site.
@@ -735,7 +729,7 @@ export interface StaticSites {
   listStaticSiteConfiguredRoles(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesListStaticSiteConfiguredRolesOptionalParams
+    options?: StaticSitesListStaticSiteConfiguredRolesOptionalParams,
   ): Promise<StaticSitesListStaticSiteConfiguredRolesResponse>;
   /**
    * Description for Gets the application settings of a static site.
@@ -746,7 +740,7 @@ export interface StaticSites {
   listStaticSiteFunctionAppSettings(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesListStaticSiteFunctionAppSettingsOptionalParams
+    options?: StaticSitesListStaticSiteFunctionAppSettingsOptionalParams,
   ): Promise<StaticSitesListStaticSiteFunctionAppSettingsResponse>;
   /**
    * Description for Lists the secrets for an existing static site.
@@ -757,7 +751,7 @@ export interface StaticSites {
   listStaticSiteSecrets(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesListStaticSiteSecretsOptionalParams
+    options?: StaticSitesListStaticSiteSecretsOptionalParams,
   ): Promise<StaticSitesListStaticSiteSecretsResponse>;
   /**
    * Description for Gets a private endpoint connection
@@ -770,7 +764,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
-    options?: StaticSitesGetPrivateEndpointConnectionOptionalParams
+    options?: StaticSitesGetPrivateEndpointConnectionOptionalParams,
   ): Promise<StaticSitesGetPrivateEndpointConnectionResponse>;
   /**
    * Description for Approves or rejects a private endpoint connection
@@ -785,12 +779,10 @@ export interface StaticSites {
     name: string,
     privateEndpointConnectionName: string,
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
-    options?: StaticSitesApproveOrRejectPrivateEndpointConnectionOptionalParams
+    options?: StaticSitesApproveOrRejectPrivateEndpointConnectionOptionalParams,
   ): Promise<
     SimplePollerLike<
-      OperationState<
-        StaticSitesApproveOrRejectPrivateEndpointConnectionResponse
-      >,
+      OperationState<StaticSitesApproveOrRejectPrivateEndpointConnectionResponse>,
       StaticSitesApproveOrRejectPrivateEndpointConnectionResponse
     >
   >;
@@ -807,7 +799,7 @@ export interface StaticSites {
     name: string,
     privateEndpointConnectionName: string,
     privateEndpointWrapper: PrivateLinkConnectionApprovalRequestResource,
-    options?: StaticSitesApproveOrRejectPrivateEndpointConnectionOptionalParams
+    options?: StaticSitesApproveOrRejectPrivateEndpointConnectionOptionalParams,
   ): Promise<StaticSitesApproveOrRejectPrivateEndpointConnectionResponse>;
   /**
    * Description for Deletes a private endpoint connection
@@ -820,7 +812,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
-    options?: StaticSitesDeletePrivateEndpointConnectionOptionalParams
+    options?: StaticSitesDeletePrivateEndpointConnectionOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<StaticSitesDeletePrivateEndpointConnectionResponse>,
@@ -838,7 +830,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     privateEndpointConnectionName: string,
-    options?: StaticSitesDeletePrivateEndpointConnectionOptionalParams
+    options?: StaticSitesDeletePrivateEndpointConnectionOptionalParams,
   ): Promise<StaticSitesDeletePrivateEndpointConnectionResponse>;
   /**
    * Description for Gets the private link resources
@@ -849,7 +841,7 @@ export interface StaticSites {
   getPrivateLinkResources(
     resourceGroupName: string,
     name: string,
-    options?: StaticSitesGetPrivateLinkResourcesOptionalParams
+    options?: StaticSitesGetPrivateLinkResourcesOptionalParams,
   ): Promise<StaticSitesGetPrivateLinkResourcesResponse>;
   /**
    * Description for Resets the api key for an existing static site.
@@ -862,7 +854,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     resetPropertiesEnvelope: StaticSiteResetPropertiesARMResource,
-    options?: StaticSitesResetStaticSiteApiKeyOptionalParams
+    options?: StaticSitesResetStaticSiteApiKeyOptionalParams,
   ): Promise<void>;
   /**
    * Description for Gets the details of the user provided function app registered with a static site
@@ -875,7 +867,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     functionAppName: string,
-    options?: StaticSitesGetUserProvidedFunctionAppForStaticSiteOptionalParams
+    options?: StaticSitesGetUserProvidedFunctionAppForStaticSiteOptionalParams,
   ): Promise<StaticSitesGetUserProvidedFunctionAppForStaticSiteResponse>;
   /**
    * Description for Register a user provided function app with a static site
@@ -891,12 +883,10 @@ export interface StaticSites {
     name: string,
     functionAppName: string,
     staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource,
-    options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams
+    options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams,
   ): Promise<
     SimplePollerLike<
-      OperationState<
-        StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse
-      >,
+      OperationState<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse>,
       StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse
     >
   >;
@@ -914,7 +904,7 @@ export interface StaticSites {
     name: string,
     functionAppName: string,
     staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource,
-    options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams
+    options?: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams,
   ): Promise<StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteResponse>;
   /**
    * Description for Detach the user provided function app from the static site
@@ -927,7 +917,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     functionAppName: string,
-    options?: StaticSitesDetachUserProvidedFunctionAppFromStaticSiteOptionalParams
+    options?: StaticSitesDetachUserProvidedFunctionAppFromStaticSiteOptionalParams,
   ): Promise<void>;
   /**
    * Description for Deploys zipped content to a static site.
@@ -941,7 +931,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource,
-    options?: StaticSitesCreateZipDeploymentForStaticSiteOptionalParams
+    options?: StaticSitesCreateZipDeploymentForStaticSiteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Description for Deploys zipped content to a static site.
@@ -955,6 +945,6 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     staticSiteZipDeploymentEnvelope: StaticSiteZipDeploymentARMResource,
-    options?: StaticSitesCreateZipDeploymentForStaticSiteOptionalParams
+    options?: StaticSitesCreateZipDeploymentForStaticSiteOptionalParams,
   ): Promise<void>;
 }

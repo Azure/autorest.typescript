@@ -27,11 +27,12 @@ async function storageAccountHierarchicalNamespaceMigration() {
   const requestType = "HnsOnValidationRequest";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
-  const result = await client.storageAccounts.beginHierarchicalNamespaceMigrationAndWait(
-    resourceGroupName,
-    accountName,
-    requestType
-  );
+  const result =
+    await client.storageAccounts.beginHierarchicalNamespaceMigrationAndWait(
+      resourceGroupName,
+      accountName,
+      requestType,
+    );
   console.log(result);
 }
 

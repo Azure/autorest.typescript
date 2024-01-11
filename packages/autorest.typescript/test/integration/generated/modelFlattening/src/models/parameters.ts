@@ -9,7 +9,7 @@
 import { OperationParameter, OperationURLParameter } from "@azure/core-client";
 import {
   ResourceCollection as ResourceCollectionMapper,
-  SimpleProduct as SimpleProductMapper
+  SimpleProduct as SimpleProductMapper,
 } from "../models/mappers";
 
 export const contentType: OperationParameter = {
@@ -19,9 +19,9 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const resourceArray: OperationParameter = {
@@ -33,11 +33,11 @@ export const resourceArray: OperationParameter = {
       element: {
         type: {
           name: "Composite",
-          className: "Resource"
-        }
-      }
-    }
-  }
+          className: "Resource",
+        },
+      },
+    },
+  },
 };
 
 export const accept: OperationParameter = {
@@ -47,9 +47,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -58,10 +58,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const resourceArray1: OperationParameter = {
@@ -73,11 +73,11 @@ export const resourceArray1: OperationParameter = {
       element: {
         type: {
           name: "Composite",
-          className: "WrappedProduct"
-        }
-      }
-    }
-  }
+          className: "WrappedProduct",
+        },
+      },
+    },
+  },
 };
 
 export const resourceDictionary: OperationParameter = {
@@ -86,79 +86,79 @@ export const resourceDictionary: OperationParameter = {
     serializedName: "resourceDictionary",
     type: {
       name: "Dictionary",
-      value: { type: { name: "Composite", className: "FlattenedProduct" } }
-    }
-  }
+      value: { type: { name: "Composite", className: "FlattenedProduct" } },
+    },
+  },
 };
 
 export const resourceComplexObject: OperationParameter = {
   parameterPath: ["options", "resourceComplexObject"],
-  mapper: ResourceCollectionMapper
+  mapper: ResourceCollectionMapper,
 };
 
 export const simpleBodyProduct: OperationParameter = {
   parameterPath: ["options", "simpleBodyProduct"],
-  mapper: SimpleProductMapper
+  mapper: SimpleProductMapper,
 };
 
 export const productId: OperationParameter = {
   parameterPath: "productId",
-  mapper: SimpleProductMapper
+  mapper: SimpleProductMapper,
 };
 
 export const description: OperationParameter = {
   parameterPath: ["options", "description"],
-  mapper: SimpleProductMapper
+  mapper: SimpleProductMapper,
 };
 
 export const maxProductDisplayName: OperationParameter = {
   parameterPath: ["options", "maxProductDisplayName"],
-  mapper: SimpleProductMapper
+  mapper: SimpleProductMapper,
 };
 
 export const capacity: OperationParameter = {
   parameterPath: ["options", "capacity"],
-  mapper: SimpleProductMapper
+  mapper: SimpleProductMapper,
 };
 
 export const genericValue: OperationParameter = {
   parameterPath: ["options", "genericValue"],
-  mapper: SimpleProductMapper
+  mapper: SimpleProductMapper,
 };
 
 export const odataValue: OperationParameter = {
   parameterPath: ["options", "odataValue"],
-  mapper: SimpleProductMapper
+  mapper: SimpleProductMapper,
 };
 
 export const productId1: OperationParameter = {
   parameterPath: ["flattenParameterGroup", "productId"],
-  mapper: SimpleProductMapper
+  mapper: SimpleProductMapper,
 };
 
 export const description1: OperationParameter = {
   parameterPath: ["flattenParameterGroup", "description"],
-  mapper: SimpleProductMapper
+  mapper: SimpleProductMapper,
 };
 
 export const maxProductDisplayName1: OperationParameter = {
   parameterPath: ["flattenParameterGroup", "maxProductDisplayName"],
-  mapper: SimpleProductMapper
+  mapper: SimpleProductMapper,
 };
 
 export const capacity1: OperationParameter = {
   parameterPath: ["flattenParameterGroup", "capacity"],
-  mapper: SimpleProductMapper
+  mapper: SimpleProductMapper,
 };
 
 export const genericValue1: OperationParameter = {
   parameterPath: ["flattenParameterGroup", "genericValue"],
-  mapper: SimpleProductMapper
+  mapper: SimpleProductMapper,
 };
 
 export const odataValue1: OperationParameter = {
   parameterPath: ["flattenParameterGroup", "odataValue"],
-  mapper: SimpleProductMapper
+  mapper: SimpleProductMapper,
 };
 
 export const name: OperationURLParameter = {
@@ -167,7 +167,7 @@ export const name: OperationURLParameter = {
     serializedName: "name",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };

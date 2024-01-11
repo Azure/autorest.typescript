@@ -14,7 +14,7 @@ import * as Parameters from "../models/parameters";
 import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
 import {
   FlattencomplexGetValidOptionalParams,
-  FlattencomplexGetValidResponse
+  FlattencomplexGetValidResponse,
 } from "../models";
 
 /** Class containing Flattencomplex operations. */
@@ -31,7 +31,7 @@ export class FlattencomplexImpl implements Flattencomplex {
 
   /** @param options The options parameters. */
   async getValid(
-    options?: FlattencomplexGetValidOptionalParams
+    options?: FlattencomplexGetValidOptionalParams,
   ): Promise<FlattencomplexGetValidResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getValid",
@@ -39,9 +39,9 @@ export class FlattencomplexImpl implements Flattencomplex {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getValidOperationSpec
+          getValidOperationSpec,
         ) as Promise<FlattencomplexGetValidResponse>;
-      }
+      },
     );
   }
 }
@@ -53,10 +53,10 @@ const getValidOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.MyBaseType
-    }
+      bodyMapper: Mappers.MyBaseType,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

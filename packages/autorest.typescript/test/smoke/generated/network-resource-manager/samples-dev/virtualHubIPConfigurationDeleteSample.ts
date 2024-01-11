@@ -30,7 +30,7 @@ async function virtualHubIPConfigurationDelete() {
   const result = await client.virtualHubIpConfiguration.beginDeleteAndWait(
     resourceGroupName,
     virtualHubName,
-    ipConfigName
+    ipConfigName,
   );
   console.log(result);
 }

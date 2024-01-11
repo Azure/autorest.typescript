@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   TagsObject,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,14 +29,14 @@ async function updateExpressRouteCrossConnectionTags() {
     process.env["RESOURCE_GROUP"] || "CrossConnection-SiliconValley";
   const crossConnectionName = "<circuitServiceKey>";
   const crossConnectionParameters: TagsObject = {
-    tags: { tag1: "value1", tag2: "value2" }
+    tags: { tag1: "value1", tag2: "value2" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCrossConnections.updateTags(
     resourceGroupName,
     crossConnectionName,
-    crossConnectionParameters
+    crossConnectionParameters,
   );
   console.log(result);
 }

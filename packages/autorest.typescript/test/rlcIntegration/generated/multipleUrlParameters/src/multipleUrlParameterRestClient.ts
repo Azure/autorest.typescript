@@ -17,7 +17,7 @@ export default function createClient(
   endpoint: string,
   serviceVersion: "v2" | "v1",
   credentials: TokenCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): MultipleUrlParameterRestClient {
   const baseUrl =
     options.baseUrl ??
@@ -31,21 +31,23 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
-      scopes: options.credentials?.scopes ?? ["user_impersonation"]
-    }
+      scopes: options.credentials?.scopes ?? ["user_impersonation"],
+    },
   };
 
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as MultipleUrlParameterRestClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return {
     ...client,
@@ -76,7 +78,7 @@ export default function createClient(
       },
       exportGuid: (guid, options) => {
         return client.path("/entity/guid/{guid}:export", guid).put(options);
-      }
-    }
+      },
+    },
   };
 }

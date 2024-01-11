@@ -16,7 +16,7 @@ import { NetworkCloud } from "../networkCloud";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -31,7 +31,7 @@ import {
   ConsolesDeleteOptionalParams,
   ConsolesUpdateOptionalParams,
   ConsolesUpdateResponse,
-  ConsolesListByVirtualMachineNextResponse
+  ConsolesListByVirtualMachineNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -56,12 +56,12 @@ export class ConsolesImpl implements Consoles {
   public listByVirtualMachine(
     resourceGroupName: string,
     virtualMachineName: string,
-    options?: ConsolesListByVirtualMachineOptionalParams
+    options?: ConsolesListByVirtualMachineOptionalParams,
   ): PagedAsyncIterableIterator<Console> {
     const iter = this.listByVirtualMachinePagingAll(
       resourceGroupName,
       virtualMachineName,
-      options
+      options,
     );
     return {
       next() {
@@ -78,9 +78,9 @@ export class ConsolesImpl implements Consoles {
           resourceGroupName,
           virtualMachineName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -88,7 +88,7 @@ export class ConsolesImpl implements Consoles {
     resourceGroupName: string,
     virtualMachineName: string,
     options?: ConsolesListByVirtualMachineOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Console[]> {
     let result: ConsolesListByVirtualMachineResponse;
     let continuationToken = settings?.continuationToken;
@@ -96,7 +96,7 @@ export class ConsolesImpl implements Consoles {
       result = await this._listByVirtualMachine(
         resourceGroupName,
         virtualMachineName,
-        options
+        options,
       );
       let page = result.value || [];
       continuationToken = result.nextLink;
@@ -108,7 +108,7 @@ export class ConsolesImpl implements Consoles {
         resourceGroupName,
         virtualMachineName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -120,12 +120,12 @@ export class ConsolesImpl implements Consoles {
   private async *listByVirtualMachinePagingAll(
     resourceGroupName: string,
     virtualMachineName: string,
-    options?: ConsolesListByVirtualMachineOptionalParams
+    options?: ConsolesListByVirtualMachineOptionalParams,
   ): AsyncIterableIterator<Console> {
     for await (const page of this.listByVirtualMachinePagingPage(
       resourceGroupName,
       virtualMachineName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -140,11 +140,11 @@ export class ConsolesImpl implements Consoles {
   private _listByVirtualMachine(
     resourceGroupName: string,
     virtualMachineName: string,
-    options?: ConsolesListByVirtualMachineOptionalParams
+    options?: ConsolesListByVirtualMachineOptionalParams,
   ): Promise<ConsolesListByVirtualMachineResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, virtualMachineName, options },
-      listByVirtualMachineOperationSpec
+      listByVirtualMachineOperationSpec,
     );
   }
 
@@ -159,11 +159,11 @@ export class ConsolesImpl implements Consoles {
     resourceGroupName: string,
     virtualMachineName: string,
     consoleName: string,
-    options?: ConsolesGetOptionalParams
+    options?: ConsolesGetOptionalParams,
   ): Promise<ConsolesGetResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, virtualMachineName, consoleName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -181,7 +181,7 @@ export class ConsolesImpl implements Consoles {
     virtualMachineName: string,
     consoleName: string,
     consoleParameters: Console,
-    options?: ConsolesCreateOrUpdateOptionalParams
+    options?: ConsolesCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ConsolesCreateOrUpdateResponse>,
@@ -190,21 +190,20 @@ export class ConsolesImpl implements Consoles {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<ConsolesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -213,8 +212,8 @@ export class ConsolesImpl implements Consoles {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -222,8 +221,8 @@ export class ConsolesImpl implements Consoles {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -234,9 +233,9 @@ export class ConsolesImpl implements Consoles {
         virtualMachineName,
         consoleName,
         consoleParameters,
-        options
+        options,
       },
-      spec: createOrUpdateOperationSpec
+      spec: createOrUpdateOperationSpec,
     });
     const poller = await createHttpPoller<
       ConsolesCreateOrUpdateResponse,
@@ -244,7 +243,7 @@ export class ConsolesImpl implements Consoles {
     >(lro, {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation",
     });
     await poller.poll();
     return poller;
@@ -264,14 +263,14 @@ export class ConsolesImpl implements Consoles {
     virtualMachineName: string,
     consoleName: string,
     consoleParameters: Console,
-    options?: ConsolesCreateOrUpdateOptionalParams
+    options?: ConsolesCreateOrUpdateOptionalParams,
   ): Promise<ConsolesCreateOrUpdateResponse> {
     const poller = await this.beginCreateOrUpdate(
       resourceGroupName,
       virtualMachineName,
       consoleName,
       consoleParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -287,25 +286,24 @@ export class ConsolesImpl implements Consoles {
     resourceGroupName: string,
     virtualMachineName: string,
     consoleName: string,
-    options?: ConsolesDeleteOptionalParams
+    options?: ConsolesDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -314,8 +312,8 @@ export class ConsolesImpl implements Consoles {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -323,20 +321,20 @@ export class ConsolesImpl implements Consoles {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, virtualMachineName, consoleName, options },
-      spec: deleteOperationSpec
+      spec: deleteOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "location"
+      resourceLocationConfig: "location",
     });
     await poller.poll();
     return poller;
@@ -353,13 +351,13 @@ export class ConsolesImpl implements Consoles {
     resourceGroupName: string,
     virtualMachineName: string,
     consoleName: string,
-    options?: ConsolesDeleteOptionalParams
+    options?: ConsolesDeleteOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       virtualMachineName,
       consoleName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -376,7 +374,7 @@ export class ConsolesImpl implements Consoles {
     resourceGroupName: string,
     virtualMachineName: string,
     consoleName: string,
-    options?: ConsolesUpdateOptionalParams
+    options?: ConsolesUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ConsolesUpdateResponse>,
@@ -385,21 +383,20 @@ export class ConsolesImpl implements Consoles {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<ConsolesUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -408,8 +405,8 @@ export class ConsolesImpl implements Consoles {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -417,15 +414,15 @@ export class ConsolesImpl implements Consoles {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, virtualMachineName, consoleName, options },
-      spec: updateOperationSpec
+      spec: updateOperationSpec,
     });
     const poller = await createHttpPoller<
       ConsolesUpdateResponse,
@@ -433,7 +430,7 @@ export class ConsolesImpl implements Consoles {
     >(lro, {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation",
     });
     await poller.poll();
     return poller;
@@ -451,13 +448,13 @@ export class ConsolesImpl implements Consoles {
     resourceGroupName: string,
     virtualMachineName: string,
     consoleName: string,
-    options?: ConsolesUpdateOptionalParams
+    options?: ConsolesUpdateOptionalParams,
   ): Promise<ConsolesUpdateResponse> {
     const poller = await this.beginUpdate(
       resourceGroupName,
       virtualMachineName,
       consoleName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -473,11 +470,11 @@ export class ConsolesImpl implements Consoles {
     resourceGroupName: string,
     virtualMachineName: string,
     nextLink: string,
-    options?: ConsolesListByVirtualMachineNextOptionalParams
+    options?: ConsolesListByVirtualMachineNextOptionalParams,
   ): Promise<ConsolesListByVirtualMachineNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, virtualMachineName, nextLink, options },
-      listByVirtualMachineNextOperationSpec
+      listByVirtualMachineNextOperationSpec,
     );
   }
 }
@@ -485,38 +482,15 @@ export class ConsolesImpl implements Consoles {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const listByVirtualMachineOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ConsoleList
+      bodyMapper: Mappers.ConsoleList,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.virtualMachineName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.Console
+      bodyMapper: Mappers.ErrorResponse,
     },
-    default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -524,31 +498,51 @@ const getOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.virtualMachineName,
-    Parameters.consoleName
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
+};
+const getOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Console,
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse,
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.virtualMachineName,
+    Parameters.consoleName,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
 };
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.Console
+      bodyMapper: Mappers.Console,
     },
     201: {
-      bodyMapper: Mappers.Console
+      bodyMapper: Mappers.Console,
     },
     202: {
-      bodyMapper: Mappers.Console
+      bodyMapper: Mappers.Console,
     },
     204: {
-      bodyMapper: Mappers.Console
+      bodyMapper: Mappers.Console,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   requestBody: Parameters.consoleParameters,
   queryParameters: [Parameters.apiVersion],
@@ -557,15 +551,14 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.virtualMachineName,
-    Parameters.consoleName
+    Parameters.consoleName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}",
   httpMethod: "DELETE",
   responses: {
     200: {},
@@ -573,8 +566,8 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     202: {},
     204: {},
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -582,31 +575,30 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.virtualMachineName,
-    Parameters.consoleName
+    Parameters.consoleName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const updateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines/{virtualMachineName}/consoles/{consoleName}",
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.Console
+      bodyMapper: Mappers.Console,
     },
     201: {
-      bodyMapper: Mappers.Console
+      bodyMapper: Mappers.Console,
     },
     202: {
-      bodyMapper: Mappers.Console
+      bodyMapper: Mappers.Console,
     },
     204: {
-      bodyMapper: Mappers.Console
+      bodyMapper: Mappers.Console,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   requestBody: Parameters.consoleUpdateParameters,
   queryParameters: [Parameters.apiVersion],
@@ -615,30 +607,30 @@ const updateOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.virtualMachineName,
-    Parameters.consoleName
+    Parameters.consoleName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listByVirtualMachineNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ConsoleList
+      bodyMapper: Mappers.ConsoleList,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.virtualMachineName
+    Parameters.virtualMachineName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

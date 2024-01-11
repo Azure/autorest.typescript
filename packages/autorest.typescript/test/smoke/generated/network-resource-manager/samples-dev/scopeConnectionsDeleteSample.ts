@@ -31,7 +31,7 @@ async function deleteNetworkManagerScopeConnection() {
   const result = await client.scopeConnections.delete(
     resourceGroupName,
     networkManagerName,
-    scopeConnectionName
+    scopeConnectionName,
   );
   console.log(result);
 }

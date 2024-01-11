@@ -31,7 +31,7 @@ async function getInboundNetworkDependenciesEndpoints() {
   const resArray = new Array();
   for await (let item of client.appServiceEnvironments.listInboundNetworkDependenciesEndpoints(
     resourceGroupName,
-    name
+    name,
   )) {
     resArray.push(item);
   }

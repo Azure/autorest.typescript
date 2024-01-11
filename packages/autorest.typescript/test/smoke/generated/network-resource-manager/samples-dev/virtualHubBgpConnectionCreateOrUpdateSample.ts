@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   BgpConnection,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,20 +30,20 @@ async function virtualHubRouteTableV2Put() {
   const connectionName = "conn1";
   const parameters: BgpConnection = {
     hubVirtualNetworkConnection: {
-      id:
-        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1/hubVirtualNetworkConnections/hubVnetConn1"
+      id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualHubs/hub1/hubVirtualNetworkConnections/hubVnetConn1",
     },
     peerAsn: 20000,
-    peerIp: "192.168.1.5"
+    peerIp: "192.168.1.5",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualHubBgpConnection.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    virtualHubName,
-    connectionName,
-    parameters
-  );
+  const result =
+    await client.virtualHubBgpConnection.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      virtualHubName,
+      connectionName,
+      parameters,
+    );
   console.log(result);
 }
 

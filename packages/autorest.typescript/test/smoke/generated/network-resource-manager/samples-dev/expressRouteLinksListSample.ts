@@ -29,7 +29,7 @@ async function expressRouteLinkGet() {
   const resArray = new Array();
   for await (let item of client.expressRouteLinks.list(
     resourceGroupName,
-    expressRoutePortName
+    expressRoutePortName,
   )) {
     resArray.push(item);
   }

@@ -25,7 +25,7 @@ import {
   ServersImportDatabaseResponse,
   CheckNameAvailabilityRequest,
   ServersCheckNameAvailabilityOptionalParams,
-  ServersCheckNameAvailabilityResponse
+  ServersCheckNameAvailabilityResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -39,7 +39,7 @@ export interface Servers {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: ServersListByResourceGroupOptionalParams
+    options?: ServersListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<Server>;
   /**
    * Gets a list of all servers in the subscription.
@@ -56,7 +56,7 @@ export interface Servers {
   get(
     resourceGroupName: string,
     serverName: string,
-    options?: ServersGetOptionalParams
+    options?: ServersGetOptionalParams,
   ): Promise<ServersGetResponse>;
   /**
    * Creates or updates a server.
@@ -70,7 +70,7 @@ export interface Servers {
     resourceGroupName: string,
     serverName: string,
     parameters: Server,
-    options?: ServersCreateOrUpdateOptionalParams
+    options?: ServersCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ServersCreateOrUpdateResponse>,
@@ -89,7 +89,7 @@ export interface Servers {
     resourceGroupName: string,
     serverName: string,
     parameters: Server,
-    options?: ServersCreateOrUpdateOptionalParams
+    options?: ServersCreateOrUpdateOptionalParams,
   ): Promise<ServersCreateOrUpdateResponse>;
   /**
    * Deletes a server.
@@ -101,7 +101,7 @@ export interface Servers {
   beginDelete(
     resourceGroupName: string,
     serverName: string,
-    options?: ServersDeleteOptionalParams
+    options?: ServersDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes a server.
@@ -113,7 +113,7 @@ export interface Servers {
   beginDeleteAndWait(
     resourceGroupName: string,
     serverName: string,
-    options?: ServersDeleteOptionalParams
+    options?: ServersDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Updates a server.
@@ -127,7 +127,7 @@ export interface Servers {
     resourceGroupName: string,
     serverName: string,
     parameters: ServerUpdate,
-    options?: ServersUpdateOptionalParams
+    options?: ServersUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ServersUpdateResponse>,
@@ -146,7 +146,7 @@ export interface Servers {
     resourceGroupName: string,
     serverName: string,
     parameters: ServerUpdate,
-    options?: ServersUpdateOptionalParams
+    options?: ServersUpdateOptionalParams,
   ): Promise<ServersUpdateResponse>;
   /**
    * Imports a bacpac into a new database.
@@ -160,7 +160,7 @@ export interface Servers {
     resourceGroupName: string,
     serverName: string,
     parameters: ImportNewDatabaseDefinition,
-    options?: ServersImportDatabaseOptionalParams
+    options?: ServersImportDatabaseOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ServersImportDatabaseResponse>,
@@ -179,7 +179,7 @@ export interface Servers {
     resourceGroupName: string,
     serverName: string,
     parameters: ImportNewDatabaseDefinition,
-    options?: ServersImportDatabaseOptionalParams
+    options?: ServersImportDatabaseOptionalParams,
   ): Promise<ServersImportDatabaseResponse>;
   /**
    * Determines whether a resource can be created with the specified name.
@@ -188,6 +188,6 @@ export interface Servers {
    */
   checkNameAvailability(
     parameters: CheckNameAvailabilityRequest,
-    options?: ServersCheckNameAvailabilityOptionalParams
+    options?: ServersCheckNameAvailabilityOptionalParams,
   ): Promise<ServersCheckNameAvailabilityResponse>;
 }

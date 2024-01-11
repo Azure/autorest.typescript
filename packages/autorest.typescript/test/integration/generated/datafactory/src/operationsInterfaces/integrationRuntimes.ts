@@ -33,7 +33,7 @@ import {
   IntegrationRuntimesRemoveLinksOptionalParams,
   CreateLinkedIntegrationRuntimeRequest,
   IntegrationRuntimesCreateLinkedIntegrationRuntimeOptionalParams,
-  IntegrationRuntimesCreateLinkedIntegrationRuntimeResponse
+  IntegrationRuntimesCreateLinkedIntegrationRuntimeResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -48,7 +48,7 @@ export interface IntegrationRuntimes {
   listByFactory(
     resourceGroupName: string,
     factoryName: string,
-    options?: IntegrationRuntimesListByFactoryOptionalParams
+    options?: IntegrationRuntimesListByFactoryOptionalParams,
   ): PagedAsyncIterableIterator<IntegrationRuntimeResource>;
   /**
    * Creates or updates an integration runtime.
@@ -63,7 +63,7 @@ export interface IntegrationRuntimes {
     factoryName: string,
     integrationRuntimeName: string,
     integrationRuntime: IntegrationRuntimeResource,
-    options?: IntegrationRuntimesCreateOrUpdateOptionalParams
+    options?: IntegrationRuntimesCreateOrUpdateOptionalParams,
   ): Promise<IntegrationRuntimesCreateOrUpdateResponse>;
   /**
    * Gets an integration runtime.
@@ -76,7 +76,7 @@ export interface IntegrationRuntimes {
     resourceGroupName: string,
     factoryName: string,
     integrationRuntimeName: string,
-    options?: IntegrationRuntimesGetOptionalParams
+    options?: IntegrationRuntimesGetOptionalParams,
   ): Promise<IntegrationRuntimesGetResponse>;
   /**
    * Updates an integration runtime.
@@ -91,7 +91,7 @@ export interface IntegrationRuntimes {
     factoryName: string,
     integrationRuntimeName: string,
     updateIntegrationRuntimeRequest: UpdateIntegrationRuntimeRequest,
-    options?: IntegrationRuntimesUpdateOptionalParams
+    options?: IntegrationRuntimesUpdateOptionalParams,
   ): Promise<IntegrationRuntimesUpdateResponse>;
   /**
    * Deletes an integration runtime.
@@ -104,7 +104,7 @@ export interface IntegrationRuntimes {
     resourceGroupName: string,
     factoryName: string,
     integrationRuntimeName: string,
-    options?: IntegrationRuntimesDeleteOptionalParams
+    options?: IntegrationRuntimesDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Gets detailed status information for an integration runtime.
@@ -117,7 +117,7 @@ export interface IntegrationRuntimes {
     resourceGroupName: string,
     factoryName: string,
     integrationRuntimeName: string,
-    options?: IntegrationRuntimesGetStatusOptionalParams
+    options?: IntegrationRuntimesGetStatusOptionalParams,
   ): Promise<IntegrationRuntimesGetStatusResponse>;
   /**
    * Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.
@@ -130,10 +130,8 @@ export interface IntegrationRuntimes {
     resourceGroupName: string,
     factoryName: string,
     integrationRuntimeName: string,
-    options?: IntegrationRuntimesListOutboundNetworkDependenciesEndpointsOptionalParams
-  ): Promise<
-    IntegrationRuntimesListOutboundNetworkDependenciesEndpointsResponse
-  >;
+    options?: IntegrationRuntimesListOutboundNetworkDependenciesEndpointsOptionalParams,
+  ): Promise<IntegrationRuntimesListOutboundNetworkDependenciesEndpointsResponse>;
   /**
    * Gets the on-premises integration runtime connection information for encrypting the on-premises data
    * source credentials.
@@ -146,7 +144,7 @@ export interface IntegrationRuntimes {
     resourceGroupName: string,
     factoryName: string,
     integrationRuntimeName: string,
-    options?: IntegrationRuntimesGetConnectionInfoOptionalParams
+    options?: IntegrationRuntimesGetConnectionInfoOptionalParams,
   ): Promise<IntegrationRuntimesGetConnectionInfoResponse>;
   /**
    * Regenerates the authentication key for an integration runtime.
@@ -162,7 +160,7 @@ export interface IntegrationRuntimes {
     factoryName: string,
     integrationRuntimeName: string,
     regenerateKeyParameters: IntegrationRuntimeRegenerateKeyParameters,
-    options?: IntegrationRuntimesRegenerateAuthKeyOptionalParams
+    options?: IntegrationRuntimesRegenerateAuthKeyOptionalParams,
   ): Promise<IntegrationRuntimesRegenerateAuthKeyResponse>;
   /**
    * Retrieves the authentication keys for an integration runtime.
@@ -175,7 +173,7 @@ export interface IntegrationRuntimes {
     resourceGroupName: string,
     factoryName: string,
     integrationRuntimeName: string,
-    options?: IntegrationRuntimesListAuthKeysOptionalParams
+    options?: IntegrationRuntimesListAuthKeysOptionalParams,
   ): Promise<IntegrationRuntimesListAuthKeysResponse>;
   /**
    * Starts a ManagedReserved type integration runtime.
@@ -188,7 +186,7 @@ export interface IntegrationRuntimes {
     resourceGroupName: string,
     factoryName: string,
     integrationRuntimeName: string,
-    options?: IntegrationRuntimesStartOptionalParams
+    options?: IntegrationRuntimesStartOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<IntegrationRuntimesStartResponse>,
@@ -206,7 +204,7 @@ export interface IntegrationRuntimes {
     resourceGroupName: string,
     factoryName: string,
     integrationRuntimeName: string,
-    options?: IntegrationRuntimesStartOptionalParams
+    options?: IntegrationRuntimesStartOptionalParams,
   ): Promise<IntegrationRuntimesStartResponse>;
   /**
    * Stops a ManagedReserved type integration runtime.
@@ -219,7 +217,7 @@ export interface IntegrationRuntimes {
     resourceGroupName: string,
     factoryName: string,
     integrationRuntimeName: string,
-    options?: IntegrationRuntimesStopOptionalParams
+    options?: IntegrationRuntimesStopOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Stops a ManagedReserved type integration runtime.
@@ -232,7 +230,7 @@ export interface IntegrationRuntimes {
     resourceGroupName: string,
     factoryName: string,
     integrationRuntimeName: string,
-    options?: IntegrationRuntimesStopOptionalParams
+    options?: IntegrationRuntimesStopOptionalParams,
   ): Promise<void>;
   /**
    * Force the integration runtime to synchronize credentials across integration runtime nodes, and this
@@ -248,7 +246,7 @@ export interface IntegrationRuntimes {
     resourceGroupName: string,
     factoryName: string,
     integrationRuntimeName: string,
-    options?: IntegrationRuntimesSyncCredentialsOptionalParams
+    options?: IntegrationRuntimesSyncCredentialsOptionalParams,
   ): Promise<void>;
   /**
    * Get the integration runtime monitoring data, which includes the monitor data for all the nodes under
@@ -262,7 +260,7 @@ export interface IntegrationRuntimes {
     resourceGroupName: string,
     factoryName: string,
     integrationRuntimeName: string,
-    options?: IntegrationRuntimesGetMonitoringDataOptionalParams
+    options?: IntegrationRuntimesGetMonitoringDataOptionalParams,
   ): Promise<IntegrationRuntimesGetMonitoringDataResponse>;
   /**
    * Upgrade self-hosted integration runtime to latest version if availability.
@@ -275,7 +273,7 @@ export interface IntegrationRuntimes {
     resourceGroupName: string,
     factoryName: string,
     integrationRuntimeName: string,
-    options?: IntegrationRuntimesUpgradeOptionalParams
+    options?: IntegrationRuntimesUpgradeOptionalParams,
   ): Promise<void>;
   /**
    * Remove all linked integration runtimes under specific data factory in a self-hosted integration
@@ -291,7 +289,7 @@ export interface IntegrationRuntimes {
     factoryName: string,
     integrationRuntimeName: string,
     linkedIntegrationRuntimeRequest: LinkedIntegrationRuntimeRequest,
-    options?: IntegrationRuntimesRemoveLinksOptionalParams
+    options?: IntegrationRuntimesRemoveLinksOptionalParams,
   ): Promise<void>;
   /**
    * Create a linked integration runtime entry in a shared integration runtime.
@@ -306,6 +304,6 @@ export interface IntegrationRuntimes {
     factoryName: string,
     integrationRuntimeName: string,
     createLinkedIntegrationRuntimeRequest: CreateLinkedIntegrationRuntimeRequest,
-    options?: IntegrationRuntimesCreateLinkedIntegrationRuntimeOptionalParams
+    options?: IntegrationRuntimesCreateLinkedIntegrationRuntimeOptionalParams,
   ): Promise<IntegrationRuntimesCreateLinkedIntegrationRuntimeResponse>;
 }

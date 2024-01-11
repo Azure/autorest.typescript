@@ -18,7 +18,7 @@ describe("Spread(...) and alias", () => {
           @post op read(...SimpleModel): void;
           `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
             import { RequestParameters } from "@azure-rest/core-client";
@@ -50,7 +50,7 @@ describe("Spread(...) and alias", () => {
           @post op read(...SimpleModel): void;
           `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
             import { RequestParameters } from "@azure-rest/core-client";
@@ -80,7 +80,7 @@ describe("Spread(...) and alias", () => {
           @post op read(...SimpleModel): void;
           `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
             import { RequestParameters } from "@azure-rest/core-client";
@@ -112,7 +112,7 @@ describe("Spread(...) and alias", () => {
         @post op read(...SimpleModel): void;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
               import { RequestParameters } from "@azure-rest/core-client";
@@ -140,7 +140,7 @@ describe("Spread(...) and alias", () => {
         @post op read(...SimpleModel): void;
         `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
                 import { RequestParameters } from "@azure-rest/core-client";
@@ -174,7 +174,7 @@ describe("Spread(...) and alias", () => {
           user:User;): void;
         `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
                 import { RequestParameters } from "@azure-rest/core-client";

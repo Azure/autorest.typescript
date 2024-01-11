@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   StorageAccountUpdateParameters,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,17 +35,17 @@ async function storageAccountEnableAd() {
         domainName: "adtest.com",
         domainSid: "S-1-5-21-2400535526-2334094090-2402026252",
         forestName: "adtest.com",
-        netBiosDomainName: "adtest.com"
+        netBiosDomainName: "adtest.com",
       },
-      directoryServiceOptions: "AD"
-    }
+      directoryServiceOptions: "AD",
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.update(
     resourceGroupName,
     accountName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -66,20 +66,20 @@ async function storageAccountEnableCmk() {
       keyVaultProperties: {
         keyName: "wrappingKey",
         keyVaultUri: "https://myvault8569.vault.azure.net",
-        keyVersion: ""
+        keyVersion: "",
       },
       services: {
         blob: { enabled: true, keyType: "Account" },
-        file: { enabled: true, keyType: "Account" }
-      }
-    }
+        file: { enabled: true, keyType: "Account" },
+      },
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.update(
     resourceGroupName,
     accountName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -102,8 +102,8 @@ async function storageAccountUpdate() {
       keySource: "Microsoft.Storage",
       services: {
         blob: { enabled: true, keyType: "Account" },
-        file: { enabled: true, keyType: "Account" }
-      }
+        file: { enabled: true, keyType: "Account" },
+      },
     },
     keyPolicy: { keyExpirationPeriodInDays: 20 },
     minimumTlsVersion: "TLS1_2",
@@ -113,23 +113,23 @@ async function storageAccountUpdate() {
         {
           resourceId:
             "/subscriptions/a7e99807-abbf-4642-bdec-2c809a96a8bc/resourceGroups/res9407/providers/Microsoft.Synapse/workspaces/testworkspace",
-          tenantId: "72f988bf-86f1-41af-91ab-2d7cd011db47"
-        }
-      ]
+          tenantId: "72f988bf-86f1-41af-91ab-2d7cd011db47",
+        },
+      ],
     },
     routingPreference: {
       publishInternetEndpoints: true,
       publishMicrosoftEndpoints: true,
-      routingChoice: "MicrosoftRouting"
+      routingChoice: "MicrosoftRouting",
     },
-    sasPolicy: { expirationAction: "Log", sasExpirationPeriod: "1.15:59:59" }
+    sasPolicy: { expirationAction: "Log", sasExpirationPeriod: "1.15:59:59" },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.update(
     resourceGroupName,
     accountName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -151,8 +151,8 @@ async function storageAccountUpdateDisablePublicNetworkAccess() {
       keySource: "Microsoft.Storage",
       services: {
         blob: { enabled: true, keyType: "Account" },
-        file: { enabled: true, keyType: "Account" }
-      }
+        file: { enabled: true, keyType: "Account" },
+      },
     },
     keyPolicy: { keyExpirationPeriodInDays: 20 },
     minimumTlsVersion: "TLS1_2",
@@ -162,24 +162,24 @@ async function storageAccountUpdateDisablePublicNetworkAccess() {
         {
           resourceId:
             "/subscriptions/a7e99807-abbf-4642-bdec-2c809a96a8bc/resourceGroups/res9407/providers/Microsoft.Synapse/workspaces/testworkspace",
-          tenantId: "72f988bf-86f1-41af-91ab-2d7cd011db47"
-        }
-      ]
+          tenantId: "72f988bf-86f1-41af-91ab-2d7cd011db47",
+        },
+      ],
     },
     publicNetworkAccess: "Disabled",
     routingPreference: {
       publishInternetEndpoints: true,
       publishMicrosoftEndpoints: true,
-      routingChoice: "MicrosoftRouting"
+      routingChoice: "MicrosoftRouting",
     },
-    sasPolicy: { expirationAction: "Log", sasExpirationPeriod: "1.15:59:59" }
+    sasPolicy: { expirationAction: "Log", sasExpirationPeriod: "1.15:59:59" },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.update(
     resourceGroupName,
     accountName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -198,34 +198,35 @@ async function storageAccountUpdateUserAssignedEncryptionIdentityWithCmk() {
     encryption: {
       encryptionIdentity: {
         encryptionUserAssignedIdentity:
-          "/subscriptions/{subscription-id}/resourceGroups/res9101/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{managed-identity-name}"
+          "/subscriptions/{subscription-id}/resourceGroups/res9101/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{managed-identity-name}",
       },
       keySource: "Microsoft.Keyvault",
       keyVaultProperties: {
         keyName: "wrappingKey",
         keyVaultUri: "https://myvault8569.vault.azure.net",
-        keyVersion: ""
+        keyVersion: "",
       },
       services: {
         blob: { enabled: true, keyType: "Account" },
-        file: { enabled: true, keyType: "Account" }
-      }
+        file: { enabled: true, keyType: "Account" },
+      },
     },
     identity: {
       type: "UserAssigned",
       userAssignedIdentities: {
-        "/subscriptions/{subscriptionId}/resourceGroups/res9101/providers/MicrosoftManagedIdentity/userAssignedIdentities/{managedIdentityName}": {}
-      }
+        "/subscriptions/{subscriptionId}/resourceGroups/res9101/providers/MicrosoftManagedIdentity/userAssignedIdentities/{managedIdentityName}":
+          {},
+      },
     },
     kind: "Storage",
-    sku: { name: "Standard_LRS" }
+    sku: { name: "Standard_LRS" },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.update(
     resourceGroupName,
     accountName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -246,16 +247,16 @@ async function storageAccountUpdateWithImmutabilityPolicy() {
       immutabilityPolicy: {
         allowProtectedAppendWrites: true,
         immutabilityPeriodSinceCreationInDays: 15,
-        state: "Locked"
-      }
-    }
+        state: "Locked",
+      },
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.update(
     resourceGroupName,
     accountName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

@@ -17,7 +17,7 @@ import {
   HttpFailureGetNoModelErrorOptionalParams,
   HttpFailureGetNoModelErrorResponse,
   HttpFailureGetNoModelEmptyOptionalParams,
-  HttpFailureGetNoModelEmptyResponse
+  HttpFailureGetNoModelEmptyResponse,
 } from "../models";
 
 /** Class containing HttpFailure operations. */
@@ -37,11 +37,11 @@ export class HttpFailureImpl implements HttpFailure {
    * @param options The options parameters.
    */
   getEmptyError(
-    options?: HttpFailureGetEmptyErrorOptionalParams
+    options?: HttpFailureGetEmptyErrorOptionalParams,
   ): Promise<HttpFailureGetEmptyErrorResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getEmptyErrorOperationSpec
+      getEmptyErrorOperationSpec,
     );
   }
 
@@ -50,11 +50,11 @@ export class HttpFailureImpl implements HttpFailure {
    * @param options The options parameters.
    */
   getNoModelError(
-    options?: HttpFailureGetNoModelErrorOptionalParams
+    options?: HttpFailureGetNoModelErrorOptionalParams,
   ): Promise<HttpFailureGetNoModelErrorResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getNoModelErrorOperationSpec
+      getNoModelErrorOperationSpec,
     );
   }
 
@@ -63,11 +63,11 @@ export class HttpFailureImpl implements HttpFailure {
    * @param options The options parameters.
    */
   getNoModelEmpty(
-    options?: HttpFailureGetNoModelEmptyOptionalParams
+    options?: HttpFailureGetNoModelEmptyOptionalParams,
   ): Promise<HttpFailureGetNoModelEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getNoModelEmptyOperationSpec
+      getNoModelEmptyOperationSpec,
     );
   }
 }
@@ -79,37 +79,37 @@ const getEmptyErrorOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Boolean" } }
+      bodyMapper: { type: { name: "Boolean" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getNoModelErrorOperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/nomodel/error",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Boolean" } }
-    }
+      bodyMapper: { type: { name: "Boolean" } },
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getNoModelEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/nomodel/empty",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Boolean" } }
-    }
+      bodyMapper: { type: { name: "Boolean" } },
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   JobAgentUpdate,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -36,7 +36,7 @@ async function updateAJobAgentTags() {
     resourceGroupName,
     serverName,
     jobAgentName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

@@ -30,7 +30,7 @@ async function deleteContainers() {
   const result = await client.blobContainers.delete(
     resourceGroupName,
     accountName,
-    containerName
+    containerName,
   );
   console.log(result);
 }

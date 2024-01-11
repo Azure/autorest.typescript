@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient, {
-  getLongRunningPoller
+  getLongRunningPoller,
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -20,7 +20,7 @@ async function scenesCreateSatelliteDataIngestionJob() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const jobId = "JOB123";
   const initialResponse = await client

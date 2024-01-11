@@ -35,20 +35,20 @@ export class UsageClient {
 
   input(
     inputParameter: InputRecord,
-    options: InputOptions = { requestOptions: {} }
+    options: InputOptions = { requestOptions: {} },
   ): Promise<void> {
     return input(this._client, inputParameter, options);
   }
 
   output(
-    options: OutputOptions = { requestOptions: {} }
+    options: OutputOptions = { requestOptions: {} },
   ): Promise<OutputRecord> {
     return output(this._client, options);
   }
 
   inputAndOutput(
     body: InputOutputRecord,
-    options: InputAndOutputOptions = { requestOptions: {} }
+    options: InputAndOutputOptions = { requestOptions: {} },
   ): Promise<InputOutputRecord> {
     return inputAndOutput(this._client, body, options);
   }

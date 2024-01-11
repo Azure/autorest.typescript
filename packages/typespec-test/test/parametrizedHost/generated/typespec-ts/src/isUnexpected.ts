@@ -11,10 +11,10 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: ListCollections200Response | ListCollectionsDefaultResponse
+  response: ListCollections200Response | ListCollectionsDefaultResponse,
 ): response is ListCollectionsDefaultResponse;
 export function isUnexpected(
-  response: ListCollections200Response | ListCollectionsDefaultResponse
+  response: ListCollections200Response | ListCollectionsDefaultResponse,
 ): response is ListCollectionsDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
@@ -64,7 +64,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {
