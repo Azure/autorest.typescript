@@ -82,7 +82,7 @@ importers:
       '@autorest/codemodel': 4.19.3
       '@autorest/extension-base': 3.5.2
       '@autorest/testmodeler': 2.6.1
-      '@azure-rest/core-client': 1.1.6
+      '@azure-rest/core-client': 1.1.7
       '@azure-tools/codegen': 2.9.2
       '@azure-tools/rlc-common': link:../rlc-common
       '@azure/core-auth': 1.5.0
@@ -232,7 +232,7 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       '@azure-rest/core-client': ^1.1.6
-      '@azure-tools/cadl-ranch': ^0.10.0
+      '@azure-tools/cadl-ranch': ^0.11.0
       '@azure-tools/cadl-ranch-expect': ^0.9.0
       '@azure-tools/cadl-ranch-specs': ^0.28.1
       '@azure-tools/rlc-common': workspace:^0.19.0
@@ -283,8 +283,8 @@ importers:
       ts-morph: 15.1.0
       tslib: 2.6.2
     devDependencies:
-      '@azure-rest/core-client': 1.1.6
-      '@azure-tools/cadl-ranch': 0.10.0_3hgbimueyj4cov2ejjvw37nlra
+      '@azure-rest/core-client': 1.1.7
+      '@azure-tools/cadl-ranch': 0.11.0_3hgbimueyj4cov2ejjvw37nlra
       '@azure-tools/cadl-ranch-expect': 0.9.0_34oeiyjczsyn4xxwbbzj3xeide
       '@azure-tools/cadl-ranch-specs': 0.28.1_d6rreab6h3zzjhymhpmevgdlii
       '@azure/core-auth': 1.5.0
@@ -340,8 +340,8 @@ packages:
     resolution: {integrity: sha512-7OXzYet3S/Hiow9LzHUY5qdNRnceSQd41wKEGzfcGVleyWRobYJgYxGmUEyFZP4ZSerAb+QqygSvo9yWIC3nrQ==}
     dev: false
 
-  /@azure-rest/core-client/1.1.6:
-    resolution: {integrity: sha512-f/eM9o7BHVvjz2HciCwM7LhRcUO4o+okj6NStQK/BNqeTTg5hGWC+ja2vDPfh5ldkXAcBRFC7zyiGUNQYtPyAg==}
+  /@azure-rest/core-client/1.1.7:
+    resolution: {integrity: sha512-eQdtieYrOfRwsHFuz6vNANpOT567456m8/CpE3cqdVQgLMrn1uua5O8nLS/XN727MsbTgiZP6C0rAkupt3ky7Q==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@azure/abort-controller': 1.1.0
@@ -361,23 +361,6 @@ packages:
       proper-lockfile: 2.0.1
     dev: false
 
-  /@azure-tools/cadl-ranch-api/0.4.1:
-    resolution: {integrity: sha512-SzwNRh1hSv3KegsfFhdjGOtHrB5But7Znr73umAeTOpLGp9zfq18VU4dUgjDbYFoJ1swVa36lZ/1W3qOOBo4BQ==}
-    engines: {node: '>=16.0.0'}
-    dependencies:
-      body-parser: 1.20.2
-      deep-equal: 2.2.2
-      express: 4.18.2
-      express-promise-router: 4.1.1_express@4.18.2
-      glob: 10.3.9
-      morgan: 1.10.0
-      picocolors: 1.0.0
-      winston: 3.10.0
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - '@types/express'
-    dev: true
-
   /@azure-tools/cadl-ranch-api/0.4.3:
     resolution: {integrity: sha512-1vmurkIORdQ/2j33uoKjxHFAOuRWQFaRLn7uS88hbofVj5C5DKTiMQAgawQFqGiJkaPTdZwGK3YF2qcJWebIzw==}
     engines: {node: '>=16.0.0'}
@@ -394,18 +377,6 @@ packages:
       yargs: 17.7.2
     transitivePeerDependencies:
       - '@types/express'
-    dev: true
-
-  /@azure-tools/cadl-ranch-coverage-sdk/0.5.0:
-    resolution: {integrity: sha512-6kMNQIqU59QXtk7vNZD0iFwtiGgq6SNgppLdV0VzLblXJkPuHqdkmpLlmW5HBN/u/VBkCzGfYc4uqEZESi8MGA==}
-    engines: {node: '>=16.0.0'}
-    dependencies:
-      '@azure/identity': 3.3.0
-      '@azure/storage-blob': 12.16.0
-      '@types/node': 18.18.0
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
     dev: true
 
   /@azure-tools/cadl-ranch-coverage-sdk/0.6.0:
@@ -471,41 +442,6 @@ packages:
       '@typespec/versioning': 0.50.0_@typespec+compiler@0.50.0
     transitivePeerDependencies:
       - '@types/express'
-      - encoding
-      - supports-color
-    dev: true
-
-  /@azure-tools/cadl-ranch/0.10.0_3hgbimueyj4cov2ejjvw37nlra:
-    resolution: {integrity: sha512-7KuI+URKC2NnY+UIkz4OP0H8ZO0aWtmLNomNMihnD6WpCPNILIB+hH1PFUME6htm4dct1gQ5ILBhesBnv4+3Jw==}
-    engines: {node: '>=16.0.0'}
-    hasBin: true
-    dependencies:
-      '@azure-tools/cadl-ranch-api': 0.4.1
-      '@azure-tools/cadl-ranch-coverage-sdk': 0.5.0
-      '@azure-tools/cadl-ranch-expect': 0.9.0_34oeiyjczsyn4xxwbbzj3xeide
-      '@azure/identity': 3.3.0
-      '@types/js-yaml': 4.0.6
-      '@typespec/compiler': 0.50.0
-      '@typespec/http': 0.50.0_@typespec+compiler@0.50.0
-      '@typespec/rest': 0.50.0_bd5gaxunkvodklitr22kuzoinu
-      ajv: 8.12.0
-      body-parser: 1.20.2
-      deep-equal: 2.2.2
-      express: 4.18.2
-      express-promise-router: 4.1.1_express@4.18.2
-      glob: 10.3.9
-      jackspeak: 2.1.1
-      js-yaml: 4.1.0
-      morgan: 1.10.0
-      node-fetch: 3.3.2
-      picocolors: 1.0.0
-      source-map-support: 0.5.21
-      winston: 3.10.0
-      xml2js: 0.5.0
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - '@types/express'
-      - '@typespec/versioning'
       - encoding
       - supports-color
     dev: true
