@@ -30,7 +30,7 @@ async function checkIPAddressAvailability() {
   const result = await client.virtualNetworks.checkIPAddressAvailability(
     resourceGroupName,
     virtualNetworkName,
-    ipAddress
+    ipAddress,
   );
   console.log(result);
 }

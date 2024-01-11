@@ -17,7 +17,7 @@ import {
   DictionaryGetNullOptionalParams,
   DictionaryGetNullResponse,
   DictionaryGetNotProvidedOptionalParams,
-  DictionaryGetNotProvidedResponse
+  DictionaryGetNotProvidedResponse,
 } from "../models";
 
 /** Interface representing a Dictionary. */
@@ -27,7 +27,7 @@ export interface Dictionary {
    * @param options The options parameters.
    */
   getValid(
-    options?: DictionaryGetValidOptionalParams
+    options?: DictionaryGetValidOptionalParams,
   ): Promise<DictionaryGetValidResponse>;
   /**
    * Put complex types with dictionary property
@@ -37,14 +37,14 @@ export interface Dictionary {
    */
   putValid(
     complexBody: DictionaryWrapper,
-    options?: DictionaryPutValidOptionalParams
+    options?: DictionaryPutValidOptionalParams,
   ): Promise<void>;
   /**
    * Get complex types with dictionary property which is empty
    * @param options The options parameters.
    */
   getEmpty(
-    options?: DictionaryGetEmptyOptionalParams
+    options?: DictionaryGetEmptyOptionalParams,
   ): Promise<DictionaryGetEmptyResponse>;
   /**
    * Put complex types with dictionary property which is empty
@@ -53,20 +53,20 @@ export interface Dictionary {
    */
   putEmpty(
     complexBody: DictionaryWrapper,
-    options?: DictionaryPutEmptyOptionalParams
+    options?: DictionaryPutEmptyOptionalParams,
   ): Promise<void>;
   /**
    * Get complex types with dictionary property which is null
    * @param options The options parameters.
    */
   getNull(
-    options?: DictionaryGetNullOptionalParams
+    options?: DictionaryGetNullOptionalParams,
   ): Promise<DictionaryGetNullResponse>;
   /**
    * Get complex types with dictionary property while server doesn't provide a response payload
    * @param options The options parameters.
    */
   getNotProvided(
-    options?: DictionaryGetNotProvidedOptionalParams
+    options?: DictionaryGetNotProvidedOptionalParams,
   ): Promise<DictionaryGetNotProvidedResponse>;
 }

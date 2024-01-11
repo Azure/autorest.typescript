@@ -20,7 +20,7 @@ async function trainMultivariateModel() {
   const client = createAnomalyDetectorRestClient(
     endpoint,
     apiVersion,
-    credential
+    credential,
   );
   const result = await client
     .path("/multivariate/models")
@@ -29,7 +29,7 @@ async function trainMultivariateModel() {
         alignPolicy: {
           alignMode: "Outer",
           fillNAMethod: "Linear",
-          paddingValue: 0
+          paddingValue: 0,
         },
         dataSchema: "OneTable",
         dataSource:
@@ -37,9 +37,9 @@ async function trainMultivariateModel() {
         displayName: "Devops-MultiAD",
         endTime: new Date("2019-04-02T00:00:00Z"),
         slidingWindow: 20,
-        startTime: new Date("2019-04-01T00:00:00Z")
+        startTime: new Date("2019-04-01T00:00:00Z"),
       },
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
     });
   console.log(result);
 }

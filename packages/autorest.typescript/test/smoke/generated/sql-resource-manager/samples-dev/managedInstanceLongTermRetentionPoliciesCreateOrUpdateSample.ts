@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ManagedInstanceLongTermRetentionPolicy,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,17 +35,18 @@ async function createOrUpdateTheLtrPolicyForTheManagedDatabase() {
     monthlyRetention: "P1Y",
     weekOfYear: 5,
     weeklyRetention: "P1M",
-    yearlyRetention: "P5Y"
+    yearlyRetention: "P5Y",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
-  const result = await client.managedInstanceLongTermRetentionPolicies.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    managedInstanceName,
-    databaseName,
-    policyName,
-    parameters
-  );
+  const result =
+    await client.managedInstanceLongTermRetentionPolicies.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      managedInstanceName,
+      databaseName,
+      policyName,
+      parameters,
+    );
   console.log(result);
 }
 

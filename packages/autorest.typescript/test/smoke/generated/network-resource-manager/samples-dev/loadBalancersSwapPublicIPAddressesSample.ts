@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   LoadBalancerVipSwapRequest,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,28 +29,24 @@ async function swapViPsBetweenTwoLoadBalancers() {
   const parameters: LoadBalancerVipSwapRequest = {
     frontendIPConfigurations: [
       {
-        id:
-          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb1/frontendIPConfigurations/lbfe1",
+        id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb1/frontendIPConfigurations/lbfe1",
         publicIPAddress: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Network/publicIPAddresses/pip2"
-        }
+          id: "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Network/publicIPAddresses/pip2",
+        },
       },
       {
-        id:
-          "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Network/loadBalancers/lb2/frontendIPConfigurations/lbfe2",
+        id: "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Network/loadBalancers/lb2/frontendIPConfigurations/lbfe2",
         publicIPAddress: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/publicIPAddresses/pip1"
-        }
-      }
-    ]
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/publicIPAddresses/pip1",
+        },
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.beginSwapPublicIpAddressesAndWait(
     location,
-    parameters
+    parameters,
   );
   console.log(result);
 }

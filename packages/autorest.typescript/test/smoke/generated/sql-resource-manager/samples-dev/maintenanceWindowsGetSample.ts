@@ -34,7 +34,7 @@ async function getsMaintenanceWindowSettingsForASelectedDatabase() {
     resourceGroupName,
     serverName,
     databaseName,
-    maintenanceWindowName
+    maintenanceWindowName,
   );
   console.log(result);
 }

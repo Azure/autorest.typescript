@@ -28,7 +28,7 @@ async function deleteIPGroups() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ipGroups.beginDeleteAndWait(
     resourceGroupName,
-    ipGroupsName
+    ipGroupsName,
   );
   console.log(result);
 }

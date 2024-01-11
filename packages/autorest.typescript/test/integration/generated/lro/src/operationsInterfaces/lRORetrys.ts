@@ -21,7 +21,7 @@ import {
   LRORetrysPost202Retry200OptionalParams,
   LRORetrysPost202Retry200Response,
   LRORetrysPostAsyncRelativeRetrySucceededOptionalParams,
-  LRORetrysPostAsyncRelativeRetrySucceededResponse
+  LRORetrysPostAsyncRelativeRetrySucceededResponse,
 } from "../models";
 
 /** Interface representing a LRORetrys. */
@@ -33,7 +33,7 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   beginPut201CreatingSucceeded200(
-    options?: LRORetrysPut201CreatingSucceeded200OptionalParams
+    options?: LRORetrysPut201CreatingSucceeded200OptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LRORetrysPut201CreatingSucceeded200Response>,
@@ -47,7 +47,7 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   beginPut201CreatingSucceeded200AndWait(
-    options?: LRORetrysPut201CreatingSucceeded200OptionalParams
+    options?: LRORetrysPut201CreatingSucceeded200OptionalParams,
   ): Promise<LRORetrysPut201CreatingSucceeded200Response>;
   /**
    * Long running put request, service returns a 500, then a 200 to the initial request, with an entity
@@ -56,7 +56,7 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   beginPutAsyncRelativeRetrySucceeded(
-    options?: LRORetrysPutAsyncRelativeRetrySucceededOptionalParams
+    options?: LRORetrysPutAsyncRelativeRetrySucceededOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LRORetrysPutAsyncRelativeRetrySucceededResponse>,
@@ -70,7 +70,7 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   beginPutAsyncRelativeRetrySucceededAndWait(
-    options?: LRORetrysPutAsyncRelativeRetrySucceededOptionalParams
+    options?: LRORetrysPutAsyncRelativeRetrySucceededOptionalParams,
   ): Promise<LRORetrysPutAsyncRelativeRetrySucceededResponse>;
   /**
    * Long running delete request, service returns a 500, then a  202 to the initial request, with an
@@ -79,12 +79,10 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   beginDeleteProvisioning202Accepted200Succeeded(
-    options?: LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParams
+    options?: LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParams,
   ): Promise<
     SimplePollerLike<
-      OperationState<
-        LRORetrysDeleteProvisioning202Accepted200SucceededResponse
-      >,
+      OperationState<LRORetrysDeleteProvisioning202Accepted200SucceededResponse>,
       LRORetrysDeleteProvisioning202Accepted200SucceededResponse
     >
   >;
@@ -95,7 +93,7 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   beginDeleteProvisioning202Accepted200SucceededAndWait(
-    options?: LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParams
+    options?: LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParams,
   ): Promise<LRORetrysDeleteProvisioning202Accepted200SucceededResponse>;
   /**
    * Long running delete request, service returns a 500, then a 202 to the initial request. Polls return
@@ -103,7 +101,7 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   beginDelete202Retry200(
-    options?: LRORetrysDelete202Retry200OptionalParams
+    options?: LRORetrysDelete202Retry200OptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LRORetrysDelete202Retry200Response>,
@@ -116,7 +114,7 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   beginDelete202Retry200AndWait(
-    options?: LRORetrysDelete202Retry200OptionalParams
+    options?: LRORetrysDelete202Retry200OptionalParams,
   ): Promise<LRORetrysDelete202Retry200Response>;
   /**
    * Long running delete request, service returns a 500, then a 202 to the initial request. Poll the
@@ -124,7 +122,7 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   beginDeleteAsyncRelativeRetrySucceeded(
-    options?: LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams
+    options?: LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LRORetrysDeleteAsyncRelativeRetrySucceededResponse>,
@@ -137,7 +135,7 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   beginDeleteAsyncRelativeRetrySucceededAndWait(
-    options?: LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams
+    options?: LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams,
   ): Promise<LRORetrysDeleteAsyncRelativeRetrySucceededResponse>;
   /**
    * Long running post request, service returns a 500, then a 202 to the initial request, with 'Location'
@@ -145,7 +143,7 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   beginPost202Retry200(
-    options?: LRORetrysPost202Retry200OptionalParams
+    options?: LRORetrysPost202Retry200OptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LRORetrysPost202Retry200Response>,
@@ -158,7 +156,7 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   beginPost202Retry200AndWait(
-    options?: LRORetrysPost202Retry200OptionalParams
+    options?: LRORetrysPost202Retry200OptionalParams,
   ): Promise<LRORetrysPost202Retry200Response>;
   /**
    * Long running post request, service returns a 500, then a 202 to the initial request, with an entity
@@ -167,7 +165,7 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   beginPostAsyncRelativeRetrySucceeded(
-    options?: LRORetrysPostAsyncRelativeRetrySucceededOptionalParams
+    options?: LRORetrysPostAsyncRelativeRetrySucceededOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LRORetrysPostAsyncRelativeRetrySucceededResponse>,
@@ -181,6 +179,6 @@ export interface LRORetrys {
    * @param options The options parameters.
    */
   beginPostAsyncRelativeRetrySucceededAndWait(
-    options?: LRORetrysPostAsyncRelativeRetrySucceededOptionalParams
+    options?: LRORetrysPostAsyncRelativeRetrySucceededOptionalParams,
   ): Promise<LRORetrysPostAsyncRelativeRetrySucceededResponse>;
 }

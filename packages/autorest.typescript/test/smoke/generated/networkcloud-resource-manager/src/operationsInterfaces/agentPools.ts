@@ -17,7 +17,7 @@ import {
   AgentPoolsCreateOrUpdateResponse,
   AgentPoolsDeleteOptionalParams,
   AgentPoolsUpdateOptionalParams,
-  AgentPoolsUpdateResponse
+  AgentPoolsUpdateResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -32,7 +32,7 @@ export interface AgentPools {
   listByKubernetesCluster(
     resourceGroupName: string,
     kubernetesClusterName: string,
-    options?: AgentPoolsListByKubernetesClusterOptionalParams
+    options?: AgentPoolsListByKubernetesClusterOptionalParams,
   ): PagedAsyncIterableIterator<AgentPool>;
   /**
    * Get properties of the provided Kubernetes cluster agent pool.
@@ -45,7 +45,7 @@ export interface AgentPools {
     resourceGroupName: string,
     kubernetesClusterName: string,
     agentPoolName: string,
-    options?: AgentPoolsGetOptionalParams
+    options?: AgentPoolsGetOptionalParams,
   ): Promise<AgentPoolsGetResponse>;
   /**
    * Create a new Kubernetes cluster agent pool or update the properties of the existing one.
@@ -60,7 +60,7 @@ export interface AgentPools {
     kubernetesClusterName: string,
     agentPoolName: string,
     agentPoolParameters: AgentPool,
-    options?: AgentPoolsCreateOrUpdateOptionalParams
+    options?: AgentPoolsCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<AgentPoolsCreateOrUpdateResponse>,
@@ -80,7 +80,7 @@ export interface AgentPools {
     kubernetesClusterName: string,
     agentPoolName: string,
     agentPoolParameters: AgentPool,
-    options?: AgentPoolsCreateOrUpdateOptionalParams
+    options?: AgentPoolsCreateOrUpdateOptionalParams,
   ): Promise<AgentPoolsCreateOrUpdateResponse>;
   /**
    * Delete the provided Kubernetes cluster agent pool.
@@ -93,7 +93,7 @@ export interface AgentPools {
     resourceGroupName: string,
     kubernetesClusterName: string,
     agentPoolName: string,
-    options?: AgentPoolsDeleteOptionalParams
+    options?: AgentPoolsDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Delete the provided Kubernetes cluster agent pool.
@@ -106,7 +106,7 @@ export interface AgentPools {
     resourceGroupName: string,
     kubernetesClusterName: string,
     agentPoolName: string,
-    options?: AgentPoolsDeleteOptionalParams
+    options?: AgentPoolsDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Patch the properties of the provided Kubernetes cluster agent pool, or update the tags associated
@@ -120,7 +120,7 @@ export interface AgentPools {
     resourceGroupName: string,
     kubernetesClusterName: string,
     agentPoolName: string,
-    options?: AgentPoolsUpdateOptionalParams
+    options?: AgentPoolsUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<AgentPoolsUpdateResponse>,
@@ -139,6 +139,6 @@ export interface AgentPools {
     resourceGroupName: string,
     kubernetesClusterName: string,
     agentPoolName: string,
-    options?: AgentPoolsUpdateOptionalParams
+    options?: AgentPoolsUpdateOptionalParams,
   ): Promise<AgentPoolsUpdateResponse>;
 }

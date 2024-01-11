@@ -39,91 +39,91 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface QueryDefault {
   get(
-    options: QueryDefaultParameters
+    options: QueryDefaultParameters,
   ): StreamableMethod<QueryDefault204Response>;
 }
 
 export interface QueryIso8601 {
   get(
-    options: QueryIso8601Parameters
+    options: QueryIso8601Parameters,
   ): StreamableMethod<QueryIso8601204Response>;
 }
 
 export interface QueryInt32Seconds {
   get(
-    options: QueryInt32SecondsParameters
+    options: QueryInt32SecondsParameters,
   ): StreamableMethod<QueryInt32Seconds204Response>;
 }
 
 export interface QueryFloatSeconds {
   get(
-    options: QueryFloatSecondsParameters
+    options: QueryFloatSecondsParameters,
   ): StreamableMethod<QueryFloatSeconds204Response>;
 }
 
 export interface QueryInt32SecondsArray {
   get(
-    options: QueryInt32SecondsArrayParameters
+    options: QueryInt32SecondsArrayParameters,
   ): StreamableMethod<QueryInt32SecondsArray204Response>;
 }
 
 export interface PropertyDefault {
   post(
-    options: PropertyDefaultParameters
+    options: PropertyDefaultParameters,
   ): StreamableMethod<PropertyDefault200Response>;
 }
 
 export interface PropertyIso8601 {
   post(
-    options: PropertyIso8601Parameters
+    options: PropertyIso8601Parameters,
   ): StreamableMethod<PropertyIso8601200Response>;
 }
 
 export interface PropertyInt32Seconds {
   post(
-    options: PropertyInt32SecondsParameters
+    options: PropertyInt32SecondsParameters,
   ): StreamableMethod<PropertyInt32Seconds200Response>;
 }
 
 export interface PropertyFloatSeconds {
   post(
-    options: PropertyFloatSecondsParameters
+    options: PropertyFloatSecondsParameters,
   ): StreamableMethod<PropertyFloatSeconds200Response>;
 }
 
 export interface PropertyFloatSecondsArray {
   post(
-    options: PropertyFloatSecondsArrayParameters
+    options: PropertyFloatSecondsArrayParameters,
   ): StreamableMethod<PropertyFloatSecondsArray200Response>;
 }
 
 export interface HeaderDefault {
   get(
-    options: HeaderDefaultParameters
+    options: HeaderDefaultParameters,
   ): StreamableMethod<HeaderDefault204Response>;
 }
 
 export interface HeaderIso8601 {
   get(
-    options: HeaderIso8601Parameters
+    options: HeaderIso8601Parameters,
   ): StreamableMethod<HeaderIso8601204Response>;
 }
 
 export interface HeaderIso8601Array {
   get(
-    options: HeaderIso8601ArrayParameters
+    options: HeaderIso8601ArrayParameters,
   ): StreamableMethod<HeaderIso8601Array204Response>;
 }
 
 export interface HeaderInt32Seconds {
   get(
-    options: HeaderInt32SecondsParameters
+    options: HeaderInt32SecondsParameters,
   ): StreamableMethod<HeaderInt32Seconds204Response>;
 }
 
 export interface HeaderFloatSeconds {
   get(
-    options: HeaderFloatSecondsParameters
+    options: HeaderFloatSecondsParameters,
   ): StreamableMethod<HeaderFloatSeconds204Response>;
 }
 
@@ -148,7 +148,7 @@ export interface Routes {
   (path: "/encode/duration/property/float-seconds"): PropertyFloatSeconds;
   /** Resource for '/encode/duration/property/float-seconds-array' has methods for the following verbs: post */
   (
-    path: "/encode/duration/property/float-seconds-array"
+    path: "/encode/duration/property/float-seconds-array",
   ): PropertyFloatSecondsArray;
   /** Resource for '/encode/duration/header/default' has methods for the following verbs: get */
   (path: "/encode/duration/header/default"): HeaderDefault;

@@ -13,7 +13,7 @@ import {
   GeneratedClientOptionalParams,
   LanguageBatchInput,
   LanguagesOptionalParams,
-  LanguagesResponse
+  LanguagesResponse,
 } from "./models";
 
 /** @internal */
@@ -37,7 +37,7 @@ export class GeneratedClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: GeneratedClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-constantParam/1.0.0-preview1`;
@@ -50,12 +50,12 @@ export class GeneratedClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
         options.endpoint ??
         options.baseUri ??
-        "{Endpoint}/text/analytics/{ApiVersion}"
+        "{Endpoint}/text/analytics/{ApiVersion}",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -75,11 +75,11 @@ export class GeneratedClient extends coreClient.ServiceClient {
    */
   languages(
     input: LanguageBatchInput,
-    options?: LanguagesOptionalParams
+    options?: LanguagesOptionalParams,
   ): Promise<LanguagesResponse> {
     return this.sendOperationRequest(
       { input, options },
-      languagesOperationSpec
+      languagesOperationSpec,
     );
   }
 }
@@ -91,25 +91,25 @@ const languagesOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.LanguageResult
+      bodyMapper: Mappers.LanguageResult,
     },
     400: {
       bodyMapper: Mappers.ErrorResponse,
-      isError: true
+      isError: true,
     },
     500: {
       bodyMapper: Mappers.ErrorResponse,
-      isError: true
-    }
+      isError: true,
+    },
   },
   requestBody: Parameters.input,
   queryParameters: [
     Parameters.modelVersion,
     Parameters.showStats,
-    Parameters.loggingOptOut
+    Parameters.loggingOptOut,
   ],
   urlParameters: [Parameters.endpoint, Parameters.apiVersion],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };

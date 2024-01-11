@@ -18,7 +18,7 @@ import {
   AuthorizationOperationsListNextOptionalParams,
   AuthorizationOperationsListOptionalParams,
   AuthorizationOperationsListResponse,
-  AuthorizationOperationsListNextResponse
+  AuthorizationOperationsListNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -39,7 +39,7 @@ export class AuthorizationOperationsImpl implements AuthorizationOperations {
    * @param options The options parameters.
    */
   public list(
-    options?: AuthorizationOperationsListOptionalParams
+    options?: AuthorizationOperationsListOptionalParams,
   ): PagedAsyncIterableIterator<Operation> {
     const iter = this.listPagingAll(options);
     return {
@@ -54,13 +54,13 @@ export class AuthorizationOperationsImpl implements AuthorizationOperations {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listPagingPage(
     options?: AuthorizationOperationsListOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Operation[]> {
     let result: AuthorizationOperationsListResponse;
     let continuationToken = settings?.continuationToken;
@@ -81,7 +81,7 @@ export class AuthorizationOperationsImpl implements AuthorizationOperations {
   }
 
   private async *listPagingAll(
-    options?: AuthorizationOperationsListOptionalParams
+    options?: AuthorizationOperationsListOptionalParams,
   ): AsyncIterableIterator<Operation> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -93,7 +93,7 @@ export class AuthorizationOperationsImpl implements AuthorizationOperations {
    * @param options The options parameters.
    */
   private _list(
-    options?: AuthorizationOperationsListOptionalParams
+    options?: AuthorizationOperationsListOptionalParams,
   ): Promise<AuthorizationOperationsListResponse> {
     return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
@@ -105,11 +105,11 @@ export class AuthorizationOperationsImpl implements AuthorizationOperations {
    */
   private _listNext(
     nextLink: string,
-    options?: AuthorizationOperationsListNextOptionalParams
+    options?: AuthorizationOperationsListNextOptionalParams,
   ): Promise<AuthorizationOperationsListNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listNextOperationSpec
+      listNextOperationSpec,
     );
   }
 }
@@ -121,23 +121,23 @@ const listOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OperationListResult
-    }
+      bodyMapper: Mappers.OperationListResult,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OperationListResult
-    }
+      bodyMapper: Mappers.OperationListResult,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

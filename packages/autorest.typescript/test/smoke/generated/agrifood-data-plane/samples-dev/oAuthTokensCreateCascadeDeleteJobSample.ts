@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient, {
-  getLongRunningPoller
+  getLongRunningPoller,
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -20,13 +20,13 @@ async function oAuthTokensCreateCascadeDeleteJob() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const jobId = "JOBID123";
   const initialResponse = await client
     .path("/oauth/tokens/remove/{jobId}", jobId)
     .put({
-      queryParameters: { farmerId: "FARMER123", oauthProviderId: "JOHNDEERE" }
+      queryParameters: { farmerId: "FARMER123", oauthProviderId: "JOHNDEERE" },
     });
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();

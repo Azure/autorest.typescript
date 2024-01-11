@@ -28,7 +28,7 @@ async function expressRoutePortGet() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRoutePorts.get(
     resourceGroupName,
-    expressRoutePortName
+    expressRoutePortName,
   );
   console.log(result);
 }

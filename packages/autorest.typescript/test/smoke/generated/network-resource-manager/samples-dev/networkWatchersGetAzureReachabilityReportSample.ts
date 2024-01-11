@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   AzureReachabilityReportParameters,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,15 +32,16 @@ async function getAzureReachabilityReport() {
     endTime: new Date("2017-09-10T00:00:00Z"),
     providerLocation: { country: "United States", state: "washington" },
     providers: ["Frontier Communications of America, Inc. - ASN 5650"],
-    startTime: new Date("2017-09-07T00:00:00Z")
+    startTime: new Date("2017-09-07T00:00:00Z"),
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.networkWatchers.beginGetAzureReachabilityReportAndWait(
-    resourceGroupName,
-    networkWatcherName,
-    parameters
-  );
+  const result =
+    await client.networkWatchers.beginGetAzureReachabilityReportAndWait(
+      resourceGroupName,
+      networkWatcherName,
+      parameters,
+    );
   console.log(result);
 }
 

@@ -28,7 +28,7 @@ async function deletePrivateLinkService() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.privateLinkServices.beginDeleteAndWait(
     resourceGroupName,
-    serviceName
+    serviceName,
   );
   console.log(result);
 }

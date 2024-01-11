@@ -13,7 +13,7 @@ export { CustomContext } from "../rest/index.js";
 /** Illustrates clients generated with generic HTTP auth. */
 export function createCustom(
   credential: KeyCredential,
-  options: CustomClientOptions = {}
+  options: CustomClientOptions = {},
 ): CustomContext {
   const clientContext = getClient(credential, options);
   return clientContext;

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   LoadBalancer,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,10 +33,9 @@ async function createLoadBalancer() {
       {
         name: "fe-lb",
         subnet: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb/subnets/subnetlb"
-        }
-      }
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb/subnets/subnetlb",
+        },
+      },
     ],
     inboundNatPools: [],
     inboundNatRules: [
@@ -46,37 +45,33 @@ async function createLoadBalancer() {
         enableFloatingIP: true,
         enableTcpReset: false,
         frontendIPConfiguration: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb",
         },
         frontendPort: 3389,
         idleTimeoutInMinutes: 15,
-        protocol: "Tcp"
-      }
+        protocol: "Tcp",
+      },
     ],
     loadBalancingRules: [
       {
         name: "rulelb",
         backendAddressPool: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb",
         },
         backendPort: 80,
         enableFloatingIP: true,
         enableTcpReset: false,
         frontendIPConfiguration: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb",
         },
         frontendPort: 80,
         idleTimeoutInMinutes: 15,
         loadDistribution: "Default",
         probe: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/probes/probe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/probes/probe-lb",
         },
-        protocol: "Tcp"
-      }
+        protocol: "Tcp",
+      },
     ],
     location: "eastus",
     probes: [
@@ -87,16 +82,16 @@ async function createLoadBalancer() {
         port: 80,
         probeThreshold: 1,
         requestPath: "healthcheck.aspx",
-        protocol: "Http"
-      }
-    ]
+        protocol: "Http",
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.beginCreateOrUpdateAndWait(
     resourceGroupName,
     loadBalancerName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -117,11 +112,10 @@ async function createLoadBalancerWithFrontendIPInZone1() {
       {
         name: "fe-lb",
         subnet: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb/subnets/subnetlb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb/subnets/subnetlb",
         },
-        zones: ["1"]
-      }
+        zones: ["1"],
+      },
     ],
     inboundNatPools: [],
     inboundNatRules: [
@@ -130,36 +124,32 @@ async function createLoadBalancerWithFrontendIPInZone1() {
         backendPort: 3389,
         enableFloatingIP: true,
         frontendIPConfiguration: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb",
         },
         frontendPort: 3389,
         idleTimeoutInMinutes: 15,
-        protocol: "Tcp"
-      }
+        protocol: "Tcp",
+      },
     ],
     loadBalancingRules: [
       {
         name: "rulelb",
         backendAddressPool: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb",
         },
         backendPort: 80,
         enableFloatingIP: true,
         frontendIPConfiguration: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb",
         },
         frontendPort: 80,
         idleTimeoutInMinutes: 15,
         loadDistribution: "Default",
         probe: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/probes/probe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/probes/probe-lb",
         },
-        protocol: "Tcp"
-      }
+        protocol: "Tcp",
+      },
     ],
     location: "eastus",
     outboundRules: [],
@@ -171,17 +161,17 @@ async function createLoadBalancerWithFrontendIPInZone1() {
         port: 80,
         probeThreshold: 1,
         requestPath: "healthcheck.aspx",
-        protocol: "Http"
-      }
+        protocol: "Http",
+      },
     ],
-    sku: { name: "Standard" }
+    sku: { name: "Standard" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.beginCreateOrUpdateAndWait(
     resourceGroupName,
     loadBalancerName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -202,14 +192,12 @@ async function createLoadBalancerWithGatewayLoadBalancerConsumerConfigured() {
       {
         name: "fe-lb",
         gatewayLoadBalancer: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb-provider"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb-provider",
         },
         subnet: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb/subnets/subnetlb"
-        }
-      }
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb/subnets/subnetlb",
+        },
+      },
     ],
     inboundNatPools: [],
     inboundNatRules: [
@@ -218,36 +206,32 @@ async function createLoadBalancerWithGatewayLoadBalancerConsumerConfigured() {
         backendPort: 3389,
         enableFloatingIP: true,
         frontendIPConfiguration: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb",
         },
         frontendPort: 3389,
         idleTimeoutInMinutes: 15,
-        protocol: "Tcp"
-      }
+        protocol: "Tcp",
+      },
     ],
     loadBalancingRules: [
       {
         name: "rulelb",
         backendAddressPool: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb",
         },
         backendPort: 80,
         enableFloatingIP: true,
         frontendIPConfiguration: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb",
         },
         frontendPort: 80,
         idleTimeoutInMinutes: 15,
         loadDistribution: "Default",
         probe: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/probes/probe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/probes/probe-lb",
         },
-        protocol: "Tcp"
-      }
+        protocol: "Tcp",
+      },
     ],
     location: "eastus",
     outboundRules: [],
@@ -259,17 +243,17 @@ async function createLoadBalancerWithGatewayLoadBalancerConsumerConfigured() {
         port: 80,
         probeThreshold: 1,
         requestPath: "healthcheck.aspx",
-        protocol: "Http"
-      }
+        protocol: "Http",
+      },
     ],
-    sku: { name: "Standard" }
+    sku: { name: "Standard" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.beginCreateOrUpdateAndWait(
     resourceGroupName,
     loadBalancerName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -290,18 +274,17 @@ async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithOn
         name: "be-lb",
         tunnelInterfaces: [
           { type: "Internal", identifier: 900, port: 15000, protocol: "VXLAN" },
-          { type: "Internal", identifier: 901, port: 15001, protocol: "VXLAN" }
-        ]
-      }
+          { type: "Internal", identifier: 901, port: 15001, protocol: "VXLAN" },
+        ],
+      },
     ],
     frontendIPConfigurations: [
       {
         name: "fe-lb",
         subnet: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb/subnets/subnetlb"
-        }
-      }
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb/subnets/subnetlb",
+        },
+      },
     ],
     inboundNatPools: [],
     loadBalancingRules: [
@@ -309,25 +292,22 @@ async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithOn
         name: "rulelb",
         backendAddressPools: [
           {
-            id:
-              "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb"
-          }
+            id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb",
+          },
         ],
         backendPort: 0,
         enableFloatingIP: true,
         frontendIPConfiguration: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb",
         },
         frontendPort: 0,
         idleTimeoutInMinutes: 15,
         loadDistribution: "Default",
         probe: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/probes/probe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/probes/probe-lb",
         },
-        protocol: "All"
-      }
+        protocol: "All",
+      },
     ],
     location: "eastus",
     outboundRules: [],
@@ -339,17 +319,17 @@ async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithOn
         port: 80,
         probeThreshold: 1,
         requestPath: "healthcheck.aspx",
-        protocol: "Http"
-      }
+        protocol: "Http",
+      },
     ],
-    sku: { name: "Premium" }
+    sku: { name: "Premium" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.beginCreateOrUpdateAndWait(
     resourceGroupName,
     loadBalancerName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -370,10 +350,9 @@ async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithTw
       {
         name: "fe-lb",
         subnet: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb/subnets/subnetlb"
-        }
-      }
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb/subnets/subnetlb",
+        },
+      },
     ],
     inboundNatPools: [],
     loadBalancingRules: [
@@ -382,29 +361,25 @@ async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithTw
         backendAddressPool: {},
         backendAddressPools: [
           {
-            id:
-              "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb1"
+            id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb1",
           },
           {
-            id:
-              "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb2"
-          }
+            id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb2",
+          },
         ],
         backendPort: 0,
         enableFloatingIP: true,
         frontendIPConfiguration: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb",
         },
         frontendPort: 0,
         idleTimeoutInMinutes: 15,
         loadDistribution: "Default",
         probe: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/probes/probe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/probes/probe-lb",
         },
-        protocol: "All"
-      }
+        protocol: "All",
+      },
     ],
     location: "eastus",
     outboundRules: [],
@@ -416,17 +391,17 @@ async function createLoadBalancerWithGatewayLoadBalancerProviderConfiguredWithTw
         port: 80,
         probeThreshold: 1,
         requestPath: "healthcheck.aspx",
-        protocol: "Http"
-      }
+        protocol: "Http",
+      },
     ],
-    sku: { name: "Premium" }
+    sku: { name: "Premium" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.beginCreateOrUpdateAndWait(
     resourceGroupName,
     loadBalancerName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -449,44 +424,39 @@ async function createLoadBalancerWithGlobalTierAndOneRegionalLoadBalancerInItsBa
           {
             name: "regional-lb1-address",
             loadBalancerFrontendIPConfiguration: {
-              id:
-                "/subscriptions/subid/resourceGroups/regional-lb-rg1/providers/Microsoft.Network/loadBalancers/regional-lb/frontendIPConfigurations/fe-rlb"
-            }
-          }
-        ]
-      }
+              id: "/subscriptions/subid/resourceGroups/regional-lb-rg1/providers/Microsoft.Network/loadBalancers/regional-lb/frontendIPConfigurations/fe-rlb",
+            },
+          },
+        ],
+      },
     ],
     frontendIPConfigurations: [
       {
         name: "fe-lb",
         subnet: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb/subnets/subnetlb"
-        }
-      }
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb/subnets/subnetlb",
+        },
+      },
     ],
     loadBalancingRules: [
       {
         name: "rulelb",
         backendAddressPool: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb",
         },
         backendPort: 80,
         enableFloatingIP: false,
         frontendIPConfiguration: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb",
         },
         frontendPort: 80,
         idleTimeoutInMinutes: 15,
         loadDistribution: "Default",
         probe: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/probes/probe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/probes/probe-lb",
         },
-        protocol: "Tcp"
-      }
+        protocol: "Tcp",
+      },
     ],
     location: "eastus",
     probes: [
@@ -497,17 +467,17 @@ async function createLoadBalancerWithGlobalTierAndOneRegionalLoadBalancerInItsBa
         port: 80,
         probeThreshold: 1,
         requestPath: "healthcheck.aspx",
-        protocol: "Http"
-      }
+        protocol: "Http",
+      },
     ],
-    sku: { name: "Standard", tier: "Global" }
+    sku: { name: "Standard", tier: "Global" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.beginCreateOrUpdateAndWait(
     resourceGroupName,
     loadBalancerName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -528,10 +498,9 @@ async function createLoadBalancerWithStandardSku() {
       {
         name: "fe-lb",
         subnet: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb/subnets/subnetlb"
-        }
-      }
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/vnetlb/subnets/subnetlb",
+        },
+      },
     ],
     inboundNatPools: [],
     inboundNatRules: [
@@ -540,36 +509,32 @@ async function createLoadBalancerWithStandardSku() {
         backendPort: 3389,
         enableFloatingIP: true,
         frontendIPConfiguration: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb",
         },
         frontendPort: 3389,
         idleTimeoutInMinutes: 15,
-        protocol: "Tcp"
-      }
+        protocol: "Tcp",
+      },
     ],
     loadBalancingRules: [
       {
         name: "rulelb",
         backendAddressPool: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb",
         },
         backendPort: 80,
         enableFloatingIP: true,
         frontendIPConfiguration: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb",
         },
         frontendPort: 80,
         idleTimeoutInMinutes: 15,
         loadDistribution: "Default",
         probe: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/probes/probe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/probes/probe-lb",
         },
-        protocol: "Tcp"
-      }
+        protocol: "Tcp",
+      },
     ],
     location: "eastus",
     outboundRules: [],
@@ -581,17 +546,17 @@ async function createLoadBalancerWithStandardSku() {
         port: 80,
         probeThreshold: 1,
         requestPath: "healthcheck.aspx",
-        protocol: "Http"
-      }
+        protocol: "Http",
+      },
     ],
-    sku: { name: "Standard" }
+    sku: { name: "Standard" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.beginCreateOrUpdateAndWait(
     resourceGroupName,
     loadBalancerName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -611,15 +576,13 @@ async function createLoadBalancerWithInboundNatPool() {
     frontendIPConfigurations: [
       {
         name: "test",
-        id:
-          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/test",
+        id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/test",
         privateIPAllocationMethod: "Dynamic",
         subnet: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/lbvnet/subnets/lbsubnet"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/lbvnet/subnets/lbsubnet",
         },
-        zones: []
-      }
+        zones: [],
+      },
     ],
     inboundNatPools: [
       {
@@ -628,30 +591,28 @@ async function createLoadBalancerWithInboundNatPool() {
         enableFloatingIP: true,
         enableTcpReset: true,
         frontendIPConfiguration: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/test"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/test",
         },
         frontendPortRangeEnd: 8085,
         frontendPortRangeStart: 8080,
-        id:
-          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/inboundNatPools/test",
+        id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/inboundNatPools/test",
         idleTimeoutInMinutes: 10,
-        protocol: "Tcp"
-      }
+        protocol: "Tcp",
+      },
     ],
     inboundNatRules: [],
     loadBalancingRules: [],
     location: "eastus",
     outboundRules: [],
     probes: [],
-    sku: { name: "Standard" }
+    sku: { name: "Standard" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.beginCreateOrUpdateAndWait(
     resourceGroupName,
     loadBalancerName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -672,10 +633,9 @@ async function createLoadBalancerWithOutboundRules() {
       {
         name: "fe-lb",
         publicIPAddress: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/publicIPAddresses/pip"
-        }
-      }
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/publicIPAddresses/pip",
+        },
+      },
     ],
     inboundNatPools: [],
     inboundNatRules: [
@@ -684,54 +644,48 @@ async function createLoadBalancerWithOutboundRules() {
         backendPort: 3389,
         enableFloatingIP: true,
         frontendIPConfiguration: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb",
         },
         frontendPort: 3389,
         idleTimeoutInMinutes: 15,
-        protocol: "Tcp"
-      }
+        protocol: "Tcp",
+      },
     ],
     loadBalancingRules: [
       {
         name: "rulelb",
         backendAddressPool: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb",
         },
         backendPort: 80,
         disableOutboundSnat: true,
         enableFloatingIP: true,
         frontendIPConfiguration: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb",
         },
         frontendPort: 80,
         idleTimeoutInMinutes: 15,
         loadDistribution: "Default",
         probe: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/probes/probe-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/probes/probe-lb",
         },
-        protocol: "Tcp"
-      }
+        protocol: "Tcp",
+      },
     ],
     location: "eastus",
     outboundRules: [
       {
         name: "rule1",
         backendAddressPool: {
-          id:
-            "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb"
+          id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/be-lb",
         },
         frontendIPConfigurations: [
           {
-            id:
-              "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb"
-          }
+            id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/loadBalancers/lb/frontendIPConfigurations/fe-lb",
+          },
         ],
-        protocol: "All"
-      }
+        protocol: "All",
+      },
     ],
     probes: [
       {
@@ -741,17 +695,17 @@ async function createLoadBalancerWithOutboundRules() {
         port: 80,
         probeThreshold: 1,
         requestPath: "healthcheck.aspx",
-        protocol: "Http"
-      }
+        protocol: "Http",
+      },
     ],
-    sku: { name: "Standard" }
+    sku: { name: "Standard" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.beginCreateOrUpdateAndWait(
     resourceGroupName,
     loadBalancerName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

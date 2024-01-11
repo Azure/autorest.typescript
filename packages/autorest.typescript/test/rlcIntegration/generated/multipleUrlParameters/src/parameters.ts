@@ -5,7 +5,7 @@ import { RequestParameters } from "@azure-rest/core-client";
 import {
   AtlasEntityWithExtInfo,
   AtlasEntitiesWithExtInfo,
-  ClassificationAssociateRequest
+  ClassificationAssociateRequest,
 } from "./models";
 
 export interface EntityCreateOrUpdatePathParameters {
@@ -79,10 +79,11 @@ export interface EntityCreateOrUpdateEntitiesMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type EntityCreateOrUpdateEntitiesParameters = EntityCreateOrUpdateEntitiesPathParam &
-  EntityCreateOrUpdateEntitiesMediaTypesParam &
-  EntityCreateOrUpdateEntitiesBodyParam &
-  RequestParameters;
+export type EntityCreateOrUpdateEntitiesParameters =
+  EntityCreateOrUpdateEntitiesPathParam &
+    EntityCreateOrUpdateEntitiesMediaTypesParam &
+    EntityCreateOrUpdateEntitiesBodyParam &
+    RequestParameters;
 
 export interface EntityDeleteByGuidsPathParameters {
   /** Account Name */
@@ -125,10 +126,11 @@ export interface EntityAddClassificationMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type EntityAddClassificationParameters = EntityAddClassificationPathParam &
-  EntityAddClassificationMediaTypesParam &
-  EntityAddClassificationBodyParam &
-  RequestParameters;
+export type EntityAddClassificationParameters =
+  EntityAddClassificationPathParam &
+    EntityAddClassificationMediaTypesParam &
+    EntityAddClassificationBodyParam &
+    RequestParameters;
 
 export interface EntityGetByGuidPathParameters {
   /** Account Name */
@@ -182,11 +184,12 @@ export interface EntityPartialUpdateEntityAttributeByGuidMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type EntityPartialUpdateEntityAttributeByGuidParameters = EntityPartialUpdateEntityAttributeByGuidQueryParam &
-  EntityPartialUpdateEntityAttributeByGuidPathParam &
-  EntityPartialUpdateEntityAttributeByGuidMediaTypesParam &
-  EntityPartialUpdateEntityAttributeByGuidBodyParam &
-  RequestParameters;
+export type EntityPartialUpdateEntityAttributeByGuidParameters =
+  EntityPartialUpdateEntityAttributeByGuidQueryParam &
+    EntityPartialUpdateEntityAttributeByGuidPathParam &
+    EntityPartialUpdateEntityAttributeByGuidMediaTypesParam &
+    EntityPartialUpdateEntityAttributeByGuidBodyParam &
+    RequestParameters;
 
 export interface EntityDeleteByGuidPathParameters {
   /** Account Name */

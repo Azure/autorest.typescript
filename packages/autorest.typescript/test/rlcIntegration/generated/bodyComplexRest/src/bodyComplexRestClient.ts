@@ -10,7 +10,7 @@ import { BodyComplexRestClient } from "./clientDefinitions";
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): BodyComplexRestClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "2016-02-29";
@@ -22,11 +22,11 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
-    }
+      logger: options.loggingOptions?.logger ?? logger.info,
+    },
   };
 
   const client = getClient(baseUrl, options) as BodyComplexRestClient;

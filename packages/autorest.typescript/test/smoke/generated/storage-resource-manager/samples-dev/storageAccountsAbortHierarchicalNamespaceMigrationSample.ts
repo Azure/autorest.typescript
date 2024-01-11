@@ -26,10 +26,11 @@ async function storageAccountAbortHierarchicalNamespaceMigration() {
   const accountName = "sto2434";
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
-  const result = await client.storageAccounts.beginAbortHierarchicalNamespaceMigrationAndWait(
-    resourceGroupName,
-    accountName
-  );
+  const result =
+    await client.storageAccounts.beginAbortHierarchicalNamespaceMigrationAndWait(
+      resourceGroupName,
+      accountName,
+    );
   console.log(result);
 }
 

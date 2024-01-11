@@ -46,7 +46,7 @@ export function _getEmbeddingsSend(
   context: Client,
   deploymentId: string,
   body: EmbeddingsOptions,
-  options: GetEmbeddingsOptions = { requestOptions: {} }
+  options: GetEmbeddingsOptions = { requestOptions: {} },
 ): StreamableMethod<GetEmbeddings200Response | GetEmbeddingsDefaultResponse> {
   return context
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
@@ -57,7 +57,7 @@ export function _getEmbeddingsSend(
 }
 
 export async function _getEmbeddingsDeserialize(
-  result: GetEmbeddings200Response | GetEmbeddingsDefaultResponse
+  result: GetEmbeddings200Response | GetEmbeddingsDefaultResponse,
 ): Promise<Embeddings> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -80,7 +80,7 @@ export async function getEmbeddings(
   context: Client,
   deploymentId: string,
   body: EmbeddingsOptions,
-  options: GetEmbeddingsOptions = { requestOptions: {} }
+  options: GetEmbeddingsOptions = { requestOptions: {} },
 ): Promise<Embeddings> {
   const result = await _getEmbeddingsSend(context, deploymentId, body, options);
   return _getEmbeddingsDeserialize(result);
@@ -90,7 +90,7 @@ export function _getCompletionsSend(
   context: Client,
   deploymentId: string,
   body: CompletionsOptions,
-  options: GetCompletionsOptions = { requestOptions: {} }
+  options: GetCompletionsOptions = { requestOptions: {} },
 ): StreamableMethod<GetCompletions200Response | GetCompletionsDefaultResponse> {
   return context
     .path("/deployments/{deploymentId}/completions", deploymentId)
@@ -117,7 +117,7 @@ export function _getCompletionsSend(
 }
 
 export async function _getCompletionsDeserialize(
-  result: GetCompletions200Response | GetCompletionsDefaultResponse
+  result: GetCompletions200Response | GetCompletionsDefaultResponse,
 ): Promise<Completions> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -222,13 +222,13 @@ export async function getCompletions(
   context: Client,
   deploymentId: string,
   body: CompletionsOptions,
-  options: GetCompletionsOptions = { requestOptions: {} }
+  options: GetCompletionsOptions = { requestOptions: {} },
 ): Promise<Completions> {
   const result = await _getCompletionsSend(
     context,
     deploymentId,
     body,
-    options
+    options,
   );
   return _getCompletionsDeserialize(result);
 }
@@ -237,7 +237,7 @@ export function _getChatCompletionsSend(
   context: Client,
   deploymentId: string,
   body: ChatCompletionsOptions,
-  options: GetChatCompletionsOptions = { requestOptions: {} }
+  options: GetChatCompletionsOptions = { requestOptions: {} },
 ): StreamableMethod<
   GetChatCompletions200Response | GetChatCompletionsDefaultResponse
 > {
@@ -277,7 +277,7 @@ export function _getChatCompletionsSend(
 }
 
 export async function _getChatCompletionsDeserialize(
-  result: GetChatCompletions200Response | GetChatCompletionsDefaultResponse
+  result: GetChatCompletions200Response | GetChatCompletionsDefaultResponse,
 ): Promise<ChatCompletions> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -393,13 +393,13 @@ export async function getChatCompletions(
   context: Client,
   deploymentId: string,
   body: ChatCompletionsOptions,
-  options: GetChatCompletionsOptions = { requestOptions: {} }
+  options: GetChatCompletionsOptions = { requestOptions: {} },
 ): Promise<ChatCompletions> {
   const result = await _getChatCompletionsSend(
     context,
     deploymentId,
     body,
-    options
+    options,
   );
   return _getChatCompletionsDeserialize(result);
 }
@@ -408,7 +408,9 @@ export function _getChatCompletionsWithAzureExtensionsSend(
   context: Client,
   deploymentId: string,
   body: ChatCompletionsOptions,
-  options: GetChatCompletionsWithAzureExtensionsOptions = { requestOptions: {} }
+  options: GetChatCompletionsWithAzureExtensionsOptions = {
+    requestOptions: {},
+  },
 ): StreamableMethod<
   | GetChatCompletionsWithAzureExtensions200Response
   | GetChatCompletionsWithAzureExtensionsDefaultResponse
@@ -416,7 +418,7 @@ export function _getChatCompletionsWithAzureExtensionsSend(
   return context
     .path(
       "/deployments/{deploymentId}/extensions/chat/completions",
-      deploymentId
+      deploymentId,
     )
     .post({
       ...operationOptionsToRequestParameters(options),
@@ -454,7 +456,7 @@ export function _getChatCompletionsWithAzureExtensionsSend(
 export async function _getChatCompletionsWithAzureExtensionsDeserialize(
   result:
     | GetChatCompletionsWithAzureExtensions200Response
-    | GetChatCompletionsWithAzureExtensionsDefaultResponse
+    | GetChatCompletionsWithAzureExtensionsDefaultResponse,
 ): Promise<ChatCompletions> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -570,13 +572,15 @@ export async function getChatCompletionsWithAzureExtensions(
   context: Client,
   deploymentId: string,
   body: ChatCompletionsOptions,
-  options: GetChatCompletionsWithAzureExtensionsOptions = { requestOptions: {} }
+  options: GetChatCompletionsWithAzureExtensionsOptions = {
+    requestOptions: {},
+  },
 ): Promise<ChatCompletions> {
   const result = await _getChatCompletionsWithAzureExtensionsSend(
     context,
     deploymentId,
     body,
-    options
+    options,
   );
   return _getChatCompletionsWithAzureExtensionsDeserialize(result);
 }
@@ -586,7 +590,7 @@ export function _getAzureBatchImageGenerationOperationStatusSend(
   operationId: string,
   options: GetAzureBatchImageGenerationOperationStatusOptions = {
     requestOptions: {},
-  }
+  },
 ): StreamableMethod<
   | GetAzureBatchImageGenerationOperationStatus200Response
   | GetAzureBatchImageGenerationOperationStatusDefaultResponse
@@ -599,7 +603,7 @@ export function _getAzureBatchImageGenerationOperationStatusSend(
 export async function _getAzureBatchImageGenerationOperationStatusDeserialize(
   result:
     | GetAzureBatchImageGenerationOperationStatus200Response
-    | GetAzureBatchImageGenerationOperationStatusDefaultResponse
+    | GetAzureBatchImageGenerationOperationStatusDefaultResponse,
 ): Promise<BatchImageGenerationOperationResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -626,12 +630,12 @@ export async function getAzureBatchImageGenerationOperationStatus(
   operationId: string,
   options: GetAzureBatchImageGenerationOperationStatusOptions = {
     requestOptions: {},
-  }
+  },
 ): Promise<BatchImageGenerationOperationResponse> {
   const result = await _getAzureBatchImageGenerationOperationStatusSend(
     context,
     operationId,
-    options
+    options,
   );
   return _getAzureBatchImageGenerationOperationStatusDeserialize(result);
 }
@@ -639,7 +643,7 @@ export async function getAzureBatchImageGenerationOperationStatus(
 export function _beginAzureBatchImageGenerationSend(
   context: Client,
   body: ImageGenerationOptions,
-  options: BeginAzureBatchImageGenerationOptions = { requestOptions: {} }
+  options: BeginAzureBatchImageGenerationOptions = { requestOptions: {} },
 ): StreamableMethod<
   | BeginAzureBatchImageGeneration202Response
   | BeginAzureBatchImageGenerationDefaultResponse
@@ -663,7 +667,7 @@ export async function _beginAzureBatchImageGenerationDeserialize(
   result:
     | BeginAzureBatchImageGeneration202Response
     | BeginAzureBatchImageGenerationDefaultResponse
-    | BeginAzureBatchImageGenerationLogicalResponse
+    | BeginAzureBatchImageGenerationLogicalResponse,
 ): Promise<BatchImageGenerationOperationResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -688,12 +692,12 @@ export async function _beginAzureBatchImageGenerationDeserialize(
 export async function beginAzureBatchImageGeneration(
   context: Client,
   body: ImageGenerationOptions,
-  options: BeginAzureBatchImageGenerationOptions = { requestOptions: {} }
+  options: BeginAzureBatchImageGenerationOptions = { requestOptions: {} },
 ): Promise<BatchImageGenerationOperationResponse> {
   const result = await _beginAzureBatchImageGenerationSend(
     context,
     body,
-    options
+    options,
   );
   return _beginAzureBatchImageGenerationDeserialize(result);
 }

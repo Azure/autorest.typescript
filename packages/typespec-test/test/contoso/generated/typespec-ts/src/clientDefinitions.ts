@@ -26,11 +26,11 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface GetWidget {
   /** Fetch a Widget by name. */
   get(
-    options?: GetWidgetParameters
+    options?: GetWidgetParameters,
   ): StreamableMethod<GetWidget200Response | GetWidgetDefaultResponse>;
   /** Creates or updates a Widget asynchronously. */
   patch(
-    options: CreateOrUpdateWidgetParameters
+    options: CreateOrUpdateWidgetParameters,
   ): StreamableMethod<
     | CreateOrUpdateWidget200Response
     | CreateOrUpdateWidget201Response
@@ -38,14 +38,14 @@ export interface GetWidget {
   >;
   /** Delete a Widget asynchronously. */
   delete(
-    options?: DeleteWidgetParameters
+    options?: DeleteWidgetParameters,
   ): StreamableMethod<DeleteWidget202Response | DeleteWidgetDefaultResponse>;
 }
 
 export interface GetWidgetOperationStatus {
   /** Gets status of a Widget operation. */
   get(
-    options?: GetWidgetOperationStatusParameters
+    options?: GetWidgetOperationStatusParameters,
   ): StreamableMethod<
     | GetWidgetOperationStatus200Response
     | GetWidgetOperationStatusDefaultResponse
@@ -55,7 +55,7 @@ export interface GetWidgetOperationStatus {
 export interface ListWidgets {
   /** List Widget resources */
   get(
-    options?: ListWidgetsParameters
+    options?: ListWidgetsParameters,
   ): StreamableMethod<ListWidgets200Response | ListWidgetsDefaultResponse>;
 }
 
@@ -66,7 +66,7 @@ export interface Routes {
   (
     path: "/widgets/{widgetName}/operations/{operationId}",
     widgetName: string,
-    operationId: string
+    operationId: string,
   ): GetWidgetOperationStatus;
   /** Resource for '/widgets' has methods for the following verbs: get */
   (path: "/widgets"): ListWidgets;

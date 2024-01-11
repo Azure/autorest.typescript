@@ -28,7 +28,7 @@ async function deleteVirtualNetworkGateway() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGateways.beginDeleteAndWait(
     resourceGroupName,
-    virtualNetworkGatewayName
+    virtualNetworkGatewayName,
   );
   console.log(result);
 }

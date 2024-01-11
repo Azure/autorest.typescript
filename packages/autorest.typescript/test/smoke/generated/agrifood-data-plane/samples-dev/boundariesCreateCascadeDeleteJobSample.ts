@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient, {
-  getLongRunningPoller
+  getLongRunningPoller,
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -20,13 +20,13 @@ async function boundariesCreateCascadeDeleteJob() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const jobId = "JOB123";
   const initialResponse = await client
     .path("/boundaries/cascade-delete/{jobId}", jobId)
     .put({
-      queryParameters: { farmerId: "FARMER123", boundaryId: "BOUNDARY123" }
+      queryParameters: { farmerId: "FARMER123", boundaryId: "BOUNDARY123" },
     });
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   NatGateway,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,24 +31,22 @@ async function createNatGateway() {
     location: "westus",
     publicIpAddresses: [
       {
-        id:
-          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/publicIPAddresses/PublicIpAddress1"
-      }
+        id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/publicIPAddresses/PublicIpAddress1",
+      },
     ],
     publicIpPrefixes: [
       {
-        id:
-          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/publicIPPrefixes/PublicIpPrefix1"
-      }
+        id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/publicIPPrefixes/PublicIpPrefix1",
+      },
     ],
-    sku: { name: "Standard" }
+    sku: { name: "Standard" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.natGateways.beginCreateOrUpdateAndWait(
     resourceGroupName,
     natGatewayName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

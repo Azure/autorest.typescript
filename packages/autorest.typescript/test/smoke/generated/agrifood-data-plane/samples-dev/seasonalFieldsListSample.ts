@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient, {
-  paginate
+  paginate,
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -20,7 +20,7 @@ async function seasonalFieldsList() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const initialResponse = await client.path("/seasonal-fields").get();
   const pageData = paginate(client, initialResponse);

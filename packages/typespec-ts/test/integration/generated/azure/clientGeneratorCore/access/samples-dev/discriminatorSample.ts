@@ -15,7 +15,7 @@ async function discriminatorSample() {
   const client = createAccessClient();
   const result = await client
     .path(
-      "/azure/client-generator-core/access/relativeModelInOperation/discriminator"
+      "/azure/client-generator-core/access/relativeModelInOperation/discriminator",
     )
     .get({ queryParameters: { kind: "{Your kind}" } });
   console.log(result);

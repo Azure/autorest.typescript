@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ManagedInstancesListByManagedInstanceOptionalParams,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,7 +32,7 @@ async function obtainListOfInstanceTopResourceConsumingQueries() {
   const observationMetric = "duration";
   const options: ManagedInstancesListByManagedInstanceOptionalParams = {
     interval,
-    observationMetric
+    observationMetric,
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -40,7 +40,7 @@ async function obtainListOfInstanceTopResourceConsumingQueries() {
   for await (let item of client.managedInstances.listByManagedInstance(
     resourceGroupName,
     managedInstanceName,
-    options
+    options,
   )) {
     resArray.push(item);
   }
@@ -68,7 +68,7 @@ async function obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAn
     startTime,
     endTime,
     interval,
-    observationMetric
+    observationMetric,
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -76,7 +76,7 @@ async function obtainListOfInstanceTopResourceConsumingQueriesFullBlownRequestAn
   for await (let item of client.managedInstances.listByManagedInstance(
     resourceGroupName,
     managedInstanceName,
-    options
+    options,
   )) {
     resArray.push(item);
   }
@@ -99,7 +99,7 @@ async function obtainListOfInstanceTopResourceConsumingQueriesMinimalRequestAndR
   const resArray = new Array();
   for await (let item of client.managedInstances.listByManagedInstance(
     resourceGroupName,
-    managedInstanceName
+    managedInstanceName,
   )) {
     resArray.push(item);
   }

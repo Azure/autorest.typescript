@@ -21,7 +21,7 @@ import { ChatCompletionsCreateOptions } from "../../../models/options.js";
 export function _createSend(
   context: Client,
   body: CreateChatCompletionRequest,
-  options: ChatCompletionsCreateOptions = { requestOptions: {} }
+  options: ChatCompletionsCreateOptions = { requestOptions: {} },
 ): StreamableMethod<
   ChatCompletionsCreate200Response | ChatCompletionsCreateDefaultResponse
 > {
@@ -67,7 +67,7 @@ export function _createSend(
 export async function _createDeserialize(
   result:
     | ChatCompletionsCreate200Response
-    | ChatCompletionsCreateDefaultResponse
+    | ChatCompletionsCreateDefaultResponse,
 ): Promise<CreateChatCompletionResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -105,7 +105,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   body: CreateChatCompletionRequest,
-  options: ChatCompletionsCreateOptions = { requestOptions: {} }
+  options: ChatCompletionsCreateOptions = { requestOptions: {} },
 ): Promise<CreateChatCompletionResponse> {
   const result = await _createSend(context, body, options);
   return _createDeserialize(result);

@@ -15,7 +15,7 @@ async function noDecoratorInInternalSample() {
   const client = createAccessClient();
   const result = await client
     .path(
-      "/azure/client-generator-core/access/internalOperation/noDecoratorInInternal"
+      "/azure/client-generator-core/access/internalOperation/noDecoratorInInternal",
     )
     .get({ queryParameters: { name: "{Your name}" } });
   console.log(result);

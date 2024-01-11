@@ -10,7 +10,7 @@ import {
   IntPutOptionalParams,
   IntPutResponse,
   IntGetOptionalParams,
-  IntGetResponse
+  IntGetResponse,
 } from "../models";
 
 /** Interface representing a Int. */

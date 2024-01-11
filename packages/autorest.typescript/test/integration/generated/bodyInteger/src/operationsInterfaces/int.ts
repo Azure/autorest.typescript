@@ -29,7 +29,7 @@ import {
   IntGetInvalidUnixTimeOptionalParams,
   IntGetInvalidUnixTimeResponse,
   IntGetNullUnixTimeOptionalParams,
-  IntGetNullUnixTimeResponse
+  IntGetNullUnixTimeResponse,
 } from "../models";
 
 /** Interface representing a Int. */
@@ -44,35 +44,35 @@ export interface Int {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: IntGetInvalidOptionalParams
+    options?: IntGetInvalidOptionalParams,
   ): Promise<IntGetInvalidResponse>;
   /**
    * Get overflow Int32 value
    * @param options The options parameters.
    */
   getOverflowInt32(
-    options?: IntGetOverflowInt32OptionalParams
+    options?: IntGetOverflowInt32OptionalParams,
   ): Promise<IntGetOverflowInt32Response>;
   /**
    * Get underflow Int32 value
    * @param options The options parameters.
    */
   getUnderflowInt32(
-    options?: IntGetUnderflowInt32OptionalParams
+    options?: IntGetUnderflowInt32OptionalParams,
   ): Promise<IntGetUnderflowInt32Response>;
   /**
    * Get overflow Int64 value
    * @param options The options parameters.
    */
   getOverflowInt64(
-    options?: IntGetOverflowInt64OptionalParams
+    options?: IntGetOverflowInt64OptionalParams,
   ): Promise<IntGetOverflowInt64Response>;
   /**
    * Get underflow Int64 value
    * @param options The options parameters.
    */
   getUnderflowInt64(
-    options?: IntGetUnderflowInt64OptionalParams
+    options?: IntGetUnderflowInt64OptionalParams,
   ): Promise<IntGetUnderflowInt64Response>;
   /**
    * Put max int32 value
@@ -103,7 +103,7 @@ export interface Int {
    * @param options The options parameters.
    */
   getUnixTime(
-    options?: IntGetUnixTimeOptionalParams
+    options?: IntGetUnixTimeOptionalParams,
   ): Promise<IntGetUnixTimeResponse>;
   /**
    * Put datetime encoded as Unix time
@@ -112,20 +112,20 @@ export interface Int {
    */
   putUnixTimeDate(
     intBody: Date,
-    options?: IntPutUnixTimeDateOptionalParams
+    options?: IntPutUnixTimeDateOptionalParams,
   ): Promise<void>;
   /**
    * Get invalid Unix time value
    * @param options The options parameters.
    */
   getInvalidUnixTime(
-    options?: IntGetInvalidUnixTimeOptionalParams
+    options?: IntGetInvalidUnixTimeOptionalParams,
   ): Promise<IntGetInvalidUnixTimeResponse>;
   /**
    * Get null Unix time value
    * @param options The options parameters.
    */
   getNullUnixTime(
-    options?: IntGetNullUnixTimeOptionalParams
+    options?: IntGetNullUnixTimeOptionalParams,
   ): Promise<IntGetNullUnixTimeResponse>;
 }

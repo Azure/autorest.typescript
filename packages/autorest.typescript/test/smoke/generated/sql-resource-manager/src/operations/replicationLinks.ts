@@ -16,7 +16,7 @@ import { SqlManagementClient } from "../sqlManagementClient";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -35,7 +35,7 @@ import {
   ReplicationLinksGetOptionalParams,
   ReplicationLinksGetResponse,
   ReplicationLinksListByDatabaseNextResponse,
-  ReplicationLinksListByServerNextResponse
+  ReplicationLinksListByServerNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -63,13 +63,13 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: ReplicationLinksListByDatabaseOptionalParams
+    options?: ReplicationLinksListByDatabaseOptionalParams,
   ): PagedAsyncIterableIterator<ReplicationLink> {
     const iter = this.listByDatabasePagingAll(
       resourceGroupName,
       serverName,
       databaseName,
-      options
+      options,
     );
     return {
       next() {
@@ -87,9 +87,9 @@ export class ReplicationLinksImpl implements ReplicationLinks {
           serverName,
           databaseName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -98,7 +98,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     serverName: string,
     databaseName: string,
     options?: ReplicationLinksListByDatabaseOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<ReplicationLink[]> {
     let result: ReplicationLinksListByDatabaseResponse;
     let continuationToken = settings?.continuationToken;
@@ -107,7 +107,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
         resourceGroupName,
         serverName,
         databaseName,
-        options
+        options,
       );
       let page = result.value || [];
       continuationToken = result.nextLink;
@@ -120,7 +120,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
         serverName,
         databaseName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -133,13 +133,13 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: ReplicationLinksListByDatabaseOptionalParams
+    options?: ReplicationLinksListByDatabaseOptionalParams,
   ): AsyncIterableIterator<ReplicationLink> {
     for await (const page of this.listByDatabasePagingPage(
       resourceGroupName,
       serverName,
       databaseName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -155,12 +155,12 @@ export class ReplicationLinksImpl implements ReplicationLinks {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: ReplicationLinksListByServerOptionalParams
+    options?: ReplicationLinksListByServerOptionalParams,
   ): PagedAsyncIterableIterator<ReplicationLink> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,
-      options
+      options,
     );
     return {
       next() {
@@ -177,9 +177,9 @@ export class ReplicationLinksImpl implements ReplicationLinks {
           resourceGroupName,
           serverName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -187,7 +187,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     resourceGroupName: string,
     serverName: string,
     options?: ReplicationLinksListByServerOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<ReplicationLink[]> {
     let result: ReplicationLinksListByServerResponse;
     let continuationToken = settings?.continuationToken;
@@ -203,7 +203,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
         resourceGroupName,
         serverName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -215,12 +215,12 @@ export class ReplicationLinksImpl implements ReplicationLinks {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: ReplicationLinksListByServerOptionalParams
+    options?: ReplicationLinksListByServerOptionalParams,
   ): AsyncIterableIterator<ReplicationLink> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
       serverName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -240,11 +240,11 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: ReplicationLinksDeleteOptionalParams
+    options?: ReplicationLinksDeleteOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, databaseName, linkId, options },
-      deleteOperationSpec
+      deleteOperationSpec,
     );
   }
 
@@ -262,25 +262,24 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: ReplicationLinksFailoverOptionalParams
+    options?: ReplicationLinksFailoverOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -289,8 +288,8 @@ export class ReplicationLinksImpl implements ReplicationLinks {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -298,19 +297,19 @@ export class ReplicationLinksImpl implements ReplicationLinks {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, serverName, databaseName, linkId, options },
-      spec: failoverOperationSpec
+      spec: failoverOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -330,14 +329,14 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: ReplicationLinksFailoverOptionalParams
+    options?: ReplicationLinksFailoverOptionalParams,
   ): Promise<void> {
     const poller = await this.beginFailover(
       resourceGroupName,
       serverName,
       databaseName,
       linkId,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -357,25 +356,24 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: ReplicationLinksFailoverAllowDataLossOptionalParams
+    options?: ReplicationLinksFailoverAllowDataLossOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -384,8 +382,8 @@ export class ReplicationLinksImpl implements ReplicationLinks {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -393,19 +391,19 @@ export class ReplicationLinksImpl implements ReplicationLinks {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, serverName, databaseName, linkId, options },
-      spec: failoverAllowDataLossOperationSpec
+      spec: failoverAllowDataLossOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -426,14 +424,14 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: ReplicationLinksFailoverAllowDataLossOptionalParams
+    options?: ReplicationLinksFailoverAllowDataLossOptionalParams,
   ): Promise<void> {
     const poller = await this.beginFailoverAllowDataLoss(
       resourceGroupName,
       serverName,
       databaseName,
       linkId,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -454,25 +452,24 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     databaseName: string,
     linkId: string,
     parameters: UnlinkParameters,
-    options?: ReplicationLinksUnlinkOptionalParams
+    options?: ReplicationLinksUnlinkOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -481,8 +478,8 @@ export class ReplicationLinksImpl implements ReplicationLinks {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -490,8 +487,8 @@ export class ReplicationLinksImpl implements ReplicationLinks {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -503,13 +500,13 @@ export class ReplicationLinksImpl implements ReplicationLinks {
         databaseName,
         linkId,
         parameters,
-        options
+        options,
       },
-      spec: unlinkOperationSpec
+      spec: unlinkOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -531,7 +528,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     databaseName: string,
     linkId: string,
     parameters: UnlinkParameters,
-    options?: ReplicationLinksUnlinkOptionalParams
+    options?: ReplicationLinksUnlinkOptionalParams,
   ): Promise<void> {
     const poller = await this.beginUnlink(
       resourceGroupName,
@@ -539,7 +536,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
       databaseName,
       linkId,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -556,11 +553,11 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: ReplicationLinksListByDatabaseOptionalParams
+    options?: ReplicationLinksListByDatabaseOptionalParams,
   ): Promise<ReplicationLinksListByDatabaseResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, databaseName, options },
-      listByDatabaseOperationSpec
+      listByDatabaseOperationSpec,
     );
   }
 
@@ -578,11 +575,11 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: ReplicationLinksGetOptionalParams
+    options?: ReplicationLinksGetOptionalParams,
   ): Promise<ReplicationLinksGetResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, databaseName, linkId, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -596,11 +593,11 @@ export class ReplicationLinksImpl implements ReplicationLinks {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: ReplicationLinksListByServerOptionalParams
+    options?: ReplicationLinksListByServerOptionalParams,
   ): Promise<ReplicationLinksListByServerResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, options },
-      listByServerOperationSpec
+      listByServerOperationSpec,
     );
   }
 
@@ -618,11 +615,11 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     serverName: string,
     databaseName: string,
     nextLink: string,
-    options?: ReplicationLinksListByDatabaseNextOptionalParams
+    options?: ReplicationLinksListByDatabaseNextOptionalParams,
   ): Promise<ReplicationLinksListByDatabaseNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, databaseName, nextLink, options },
-      listByDatabaseNextOperationSpec
+      listByDatabaseNextOperationSpec,
     );
   }
 
@@ -638,11 +635,11 @@ export class ReplicationLinksImpl implements ReplicationLinks {
     resourceGroupName: string,
     serverName: string,
     nextLink: string,
-    options?: ReplicationLinksListByServerNextOptionalParams
+    options?: ReplicationLinksListByServerNextOptionalParams,
   ): Promise<ReplicationLinksListByServerNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, nextLink, options },
-      listByServerNextOperationSpec
+      listByServerNextOperationSpec,
     );
   }
 }
@@ -650,8 +647,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/replicationLinks/{linkId}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/replicationLinks/{linkId}",
   httpMethod: "DELETE",
   responses: { 200: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
@@ -661,13 +657,12 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName,
     Parameters.databaseName,
-    Parameters.linkId
+    Parameters.linkId,
   ],
-  serializer
+  serializer,
 };
 const failoverOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/replicationLinks/{linkId}/failover",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/replicationLinks/{linkId}/failover",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
@@ -677,13 +672,12 @@ const failoverOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName,
     Parameters.databaseName,
-    Parameters.linkId
+    Parameters.linkId,
   ],
-  serializer
+  serializer,
 };
 const failoverAllowDataLossOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/replicationLinks/{linkId}/forceFailoverAllowDataLoss",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/replicationLinks/{linkId}/forceFailoverAllowDataLoss",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
@@ -693,13 +687,12 @@ const failoverAllowDataLossOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName,
     Parameters.databaseName,
-    Parameters.linkId
+    Parameters.linkId,
   ],
-  serializer
+  serializer,
 };
 const unlinkOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/replicationLinks/{linkId}/unlink",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/replicationLinks/{linkId}/unlink",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {} },
   requestBody: Parameters.parameters10,
@@ -710,42 +703,20 @@ const unlinkOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName,
     Parameters.databaseName,
-    Parameters.linkId
+    Parameters.linkId,
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listByDatabaseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/replicationLinks",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/replicationLinks",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ReplicationLinkListResult
+      bodyMapper: Mappers.ReplicationLinkListResult,
     },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion3],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.serverName,
-    Parameters.databaseName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/replicationLinks/{linkId}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ReplicationLink
-    },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion3],
   urlParameters: [
@@ -754,39 +725,58 @@ const getOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName,
     Parameters.databaseName,
-    Parameters.linkId
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const listByServerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/replicationLinks",
+const getOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/replicationLinks/{linkId}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ReplicationLinkListResult
+      bodyMapper: Mappers.ReplicationLink,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion3],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName
+    Parameters.serverName,
+    Parameters.databaseName,
+    Parameters.linkId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
+};
+const listByServerOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/replicationLinks",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ReplicationLinkListResult,
+    },
+    default: {},
+  },
+  queryParameters: [Parameters.apiVersion3],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.serverName,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
 };
 const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ReplicationLinkListResult
+      bodyMapper: Mappers.ReplicationLinkListResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [
     Parameters.$host,
@@ -794,27 +784,27 @@ const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName,
     Parameters.databaseName,
-    Parameters.nextLink
+    Parameters.nextLink,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByServerNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ReplicationLinkListResult
+      bodyMapper: Mappers.ReplicationLinkListResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.nextLink
+    Parameters.nextLink,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

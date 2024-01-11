@@ -30,7 +30,7 @@ async function loadBalancerWithBackendAddressPoolWithBackendAddresses() {
   const result = await client.loadBalancerBackendAddressPools.get(
     resourceGroupName,
     loadBalancerName,
-    backendAddressPoolName
+    backendAddressPoolName,
   );
   console.log(result);
 }
@@ -51,7 +51,7 @@ async function loadBalancerBackendAddressPoolGet() {
   const result = await client.loadBalancerBackendAddressPools.get(
     resourceGroupName,
     loadBalancerName,
-    backendAddressPoolName
+    backendAddressPoolName,
   );
   console.log(result);
 }

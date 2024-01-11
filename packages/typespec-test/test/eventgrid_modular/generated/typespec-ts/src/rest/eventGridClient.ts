@@ -15,7 +15,7 @@ import { EventGridContext } from "./clientDefinitions.js";
 export default function createClient(
   endpoint: string,
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): EventGridContext {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "2023-06-01-preview";

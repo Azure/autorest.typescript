@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   NetworkManager,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,15 +33,15 @@ async function putNetworkManager() {
     networkManagerScopeAccesses: ["Connectivity"],
     networkManagerScopes: {
       managementGroups: ["/Microsoft.Management/testmg"],
-      subscriptions: ["/subscriptions/00000000-0000-0000-0000-000000000000"]
-    }
+      subscriptions: ["/subscriptions/00000000-0000-0000-0000-000000000000"],
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkManagers.createOrUpdate(
     resourceGroupName,
     networkManagerName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

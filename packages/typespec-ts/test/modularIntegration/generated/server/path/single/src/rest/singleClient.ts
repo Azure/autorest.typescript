@@ -12,7 +12,7 @@ import { SingleContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   endpoint: string,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): SingleContext {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "1.0.0";

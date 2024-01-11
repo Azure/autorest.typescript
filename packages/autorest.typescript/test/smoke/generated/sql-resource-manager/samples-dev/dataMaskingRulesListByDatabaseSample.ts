@@ -32,7 +32,7 @@ async function listDataMaskingRules() {
   for await (let item of client.dataMaskingRules.listByDatabase(
     resourceGroupName,
     serverName,
-    databaseName
+    databaseName,
   )) {
     resArray.push(item);
   }

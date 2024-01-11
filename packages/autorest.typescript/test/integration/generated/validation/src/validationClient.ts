@@ -17,7 +17,7 @@ import {
   ValidationOfBodyResponse,
   GetWithConstantInPathOptionalParams,
   PostWithConstantInBodyOptionalParams,
-  PostWithConstantInBodyResponse
+  PostWithConstantInBodyResponse,
 } from "./models";
 
 export class ValidationClient extends coreClient.ServiceClient {
@@ -34,7 +34,7 @@ export class ValidationClient extends coreClient.ServiceClient {
   constructor(options?: ValidationClientOptionalParams);
   constructor(
     subscriptionIdOrOptions?: ValidationClientOptionalParams | string,
-    options?: ValidationClientOptionalParams
+    options?: ValidationClientOptionalParams,
   ) {
     let subscriptionId: string | undefined;
 
@@ -49,7 +49,7 @@ export class ValidationClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: ValidationClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-validation/1.0.0-preview1`;
@@ -62,9 +62,9 @@ export class ValidationClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000"
+      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -84,11 +84,11 @@ export class ValidationClient extends coreClient.ServiceClient {
   validationOfMethodParameters(
     resourceGroupName: string,
     id: number,
-    options?: ValidationOfMethodParametersOptionalParams
+    options?: ValidationOfMethodParametersOptionalParams,
   ): Promise<ValidationOfMethodParametersResponse> {
     return this.sendOperationRequest(
       { resourceGroupName, id, options },
-      validationOfMethodParametersOperationSpec
+      validationOfMethodParametersOperationSpec,
     );
   }
 
@@ -101,31 +101,31 @@ export class ValidationClient extends coreClient.ServiceClient {
   validationOfBody(
     resourceGroupName: string,
     id: number,
-    options?: ValidationOfBodyOptionalParams
+    options?: ValidationOfBodyOptionalParams,
   ): Promise<ValidationOfBodyResponse> {
     return this.sendOperationRequest(
       { resourceGroupName, id, options },
-      validationOfBodyOperationSpec
+      validationOfBodyOperationSpec,
     );
   }
 
   /** @param options The options parameters. */
   getWithConstantInPath(
-    options?: GetWithConstantInPathOptionalParams
+    options?: GetWithConstantInPathOptionalParams,
   ): Promise<void> {
     return this.sendOperationRequest(
       { options },
-      getWithConstantInPathOperationSpec
+      getWithConstantInPathOperationSpec,
     );
   }
 
   /** @param options The options parameters. */
   postWithConstantInBody(
-    options?: PostWithConstantInBodyOptionalParams
+    options?: PostWithConstantInBodyOptionalParams,
   ): Promise<PostWithConstantInBodyResponse> {
     return this.sendOperationRequest(
       { options },
-      postWithConstantInBodyOperationSpec
+      postWithConstantInBodyOperationSpec,
     );
   }
 }
@@ -137,32 +137,32 @@ const validationOfMethodParametersOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Product
+      bodyMapper: Mappers.Product,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.id
+    Parameters.id,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const validationOfBodyOperationSpec: coreClient.OperationSpec = {
   path: "/fakepath/{subscriptionId}/{resourceGroupName}/{id}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.Product
+      bodyMapper: Mappers.Product,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.body,
   queryParameters: [Parameters.apiVersion],
@@ -170,30 +170,30 @@ const validationOfBodyOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.id,
-    Parameters.resourceGroupName1
+    Parameters.resourceGroupName1,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getWithConstantInPathOperationSpec: coreClient.OperationSpec = {
   path: "/validation/constantsInPath/{constantParam}/value",
   httpMethod: "GET",
   responses: { 200: {} },
   urlParameters: [Parameters.$host, Parameters.constantParam],
-  serializer
+  serializer,
 };
 const postWithConstantInBodyOperationSpec: coreClient.OperationSpec = {
   path: "/validation/constantsInPath/{constantParam}/value",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.Product
-    }
+      bodyMapper: Mappers.Product,
+    },
   },
   requestBody: Parameters.body,
   urlParameters: [Parameters.$host, Parameters.constantParam],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

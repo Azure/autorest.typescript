@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   WorkloadClassifier,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -38,7 +38,7 @@ async function createAWorkloadGroupWithAllPropertiesSpecified() {
     importance: "high",
     label: "test_label",
     memberName: "dbo",
-    startTime: "12:00"
+    startTime: "12:00",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -48,7 +48,7 @@ async function createAWorkloadGroupWithAllPropertiesSpecified() {
     databaseName,
     workloadGroupName,
     workloadClassifierName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -77,7 +77,7 @@ async function createAWorkloadGroupWithTheRequiredPropertiesSpecified() {
     databaseName,
     workloadGroupName,
     workloadClassifierName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

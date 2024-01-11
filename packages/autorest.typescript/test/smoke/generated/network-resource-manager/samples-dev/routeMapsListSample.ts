@@ -29,7 +29,7 @@ async function routeMapList() {
   const resArray = new Array();
   for await (let item of client.routeMaps.list(
     resourceGroupName,
-    virtualHubName
+    virtualHubName,
   )) {
     resArray.push(item);
   }

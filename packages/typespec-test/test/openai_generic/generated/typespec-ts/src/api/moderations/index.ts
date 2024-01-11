@@ -21,7 +21,7 @@ import { ModerationsCreateOptions } from "../../models/options.js";
 export function _createSend(
   context: Client,
   content: CreateModerationRequest,
-  options: ModerationsCreateOptions = { requestOptions: {} }
+  options: ModerationsCreateOptions = { requestOptions: {} },
 ): StreamableMethod<
   ModerationsCreate200Response | ModerationsCreateDefaultResponse
 > {
@@ -34,7 +34,7 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: ModerationsCreate200Response | ModerationsCreateDefaultResponse
+  result: ModerationsCreate200Response | ModerationsCreateDefaultResponse,
 ): Promise<CreateModerationResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -78,7 +78,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   content: CreateModerationRequest,
-  options: ModerationsCreateOptions = { requestOptions: {} }
+  options: ModerationsCreateOptions = { requestOptions: {} },
 ): Promise<CreateModerationResponse> {
   const result = await _createSend(context, content, options);
   return _createDeserialize(result);

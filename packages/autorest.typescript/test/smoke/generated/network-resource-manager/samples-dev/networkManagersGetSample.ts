@@ -29,7 +29,7 @@ async function networkManagersGet() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkManagers.get(
     resourceGroupName,
-    networkManagerName
+    networkManagerName,
   );
   console.log(result);
 }

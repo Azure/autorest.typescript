@@ -12,7 +12,7 @@ import * as Parameters from "../models/parameters";
 import { MediaTypesV3Client } from "../mediaTypesV3Client";
 import {
   BarApiPostSendOnDefaultOptionalParams,
-  BarApiPostSendOnDefaultResponse
+  BarApiPostSendOnDefaultResponse,
 } from "../models";
 
 /** Class containing BarApi operations. */
@@ -34,11 +34,11 @@ export class BarApiImpl implements BarApi {
    */
   postSendOnDefault(
     data: string,
-    options?: BarApiPostSendOnDefaultOptionalParams
+    options?: BarApiPostSendOnDefaultOptionalParams,
   ): Promise<BarApiPostSendOnDefaultResponse> {
     return this.client.sendOperationRequest(
       { data, options },
-      postSendOnDefaultOperationSpec
+      postSendOnDefaultOperationSpec,
     );
   }
 }
@@ -51,13 +51,13 @@ const postSendOnDefaultOperationSpec: coreClient.OperationSpec = {
   responses: {
     202: {},
     400: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.data,
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "text",
-  serializer
+  serializer,
 };

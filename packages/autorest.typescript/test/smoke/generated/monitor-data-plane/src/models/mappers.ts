@@ -17,18 +17,18 @@ export const AzureMetricsDocument: coreClient.CompositeMapper = {
         serializedName: "time",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       data: {
         serializedName: "data",
         type: {
           name: "Composite",
-          className: "AzureMetricsData"
-        }
-      }
-    }
-  }
+          className: "AzureMetricsData",
+        },
+      },
+    },
+  },
 };
 
 export const AzureMetricsData: coreClient.CompositeMapper = {
@@ -40,11 +40,11 @@ export const AzureMetricsData: coreClient.CompositeMapper = {
         serializedName: "baseData",
         type: {
           name: "Composite",
-          className: "AzureMetricsBaseData"
-        }
-      }
-    }
-  }
+          className: "AzureMetricsBaseData",
+        },
+      },
+    },
+  },
 };
 
 export const AzureMetricsBaseData: coreClient.CompositeMapper = {
@@ -56,15 +56,15 @@ export const AzureMetricsBaseData: coreClient.CompositeMapper = {
         serializedName: "metric",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       namespace: {
         serializedName: "namespace",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       dimNames: {
         serializedName: "dimNames",
@@ -72,10 +72,10 @@ export const AzureMetricsBaseData: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "String"
-            }
-          }
-        }
+              name: "String",
+            },
+          },
+        },
       },
       series: {
         serializedName: "series",
@@ -85,13 +85,13 @@ export const AzureMetricsBaseData: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "AzureTimeSeriesData"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "AzureTimeSeriesData",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const AzureTimeSeriesData: coreClient.CompositeMapper = {
@@ -105,41 +105,41 @@ export const AzureTimeSeriesData: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "String"
-            }
-          }
-        }
+              name: "String",
+            },
+          },
+        },
       },
       min: {
         serializedName: "min",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       max: {
         serializedName: "max",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       sum: {
         serializedName: "sum",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       count: {
         serializedName: "count",
         required: true,
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const AzureMetricsResult: coreClient.CompositeMapper = {
@@ -150,18 +150,18 @@ export const AzureMetricsResult: coreClient.CompositeMapper = {
       statusCode: {
         serializedName: "statusCode",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       apiFailureResponse: {
         serializedName: "apiFailureResponse",
         type: {
           name: "Composite",
-          className: "ApiFailureResponse"
-        }
-      }
-    }
-  }
+          className: "ApiFailureResponse",
+        },
+      },
+    },
+  },
 };
 
 export const ApiFailureResponse: coreClient.CompositeMapper = {
@@ -173,11 +173,11 @@ export const ApiFailureResponse: coreClient.CompositeMapper = {
         serializedName: "error",
         type: {
           name: "Composite",
-          className: "ApiError"
-        }
-      }
-    }
-  }
+          className: "ApiError",
+        },
+      },
+    },
+  },
 };
 
 export const ApiError: coreClient.CompositeMapper = {
@@ -188,15 +188,15 @@ export const ApiError: coreClient.CompositeMapper = {
       code: {
         serializedName: "code",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       message: {
         serializedName: "message",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

@@ -11,7 +11,7 @@
 import {
   VpnGatewayPacketCaptureStartParameters,
   VpnGatewaysStartPacketCaptureOptionalParams,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,7 +30,7 @@ async function startPacketCaptureOnVpnGatewayWithFilter() {
   const gatewayName = "vpngw";
   const parameters: VpnGatewayPacketCaptureStartParameters = {
     filterData:
-      "{'TracingFlags': 11,'MaxPacketBufferSize': 120,'MaxFileSize': 200,'Filters': [{'SourceSubnets': ['20.1.1.0/24'],'DestinationSubnets': ['10.1.1.0/24'],'SourcePort': [500],'DestinationPort': [4500],'Protocol': 6,'TcpFlags': 16,'CaptureSingleDirectionTrafficOnly': true}]}"
+      "{'TracingFlags': 11,'MaxPacketBufferSize': 120,'MaxFileSize': 200,'Filters': [{'SourceSubnets': ['20.1.1.0/24'],'DestinationSubnets': ['10.1.1.0/24'],'SourcePort': [500],'DestinationPort': [4500],'Protocol': 6,'TcpFlags': 16,'CaptureSingleDirectionTrafficOnly': true}]}",
   };
   const options: VpnGatewaysStartPacketCaptureOptionalParams = { parameters };
   const credential = new DefaultAzureCredential();
@@ -38,7 +38,7 @@ async function startPacketCaptureOnVpnGatewayWithFilter() {
   const result = await client.vpnGateways.beginStartPacketCaptureAndWait(
     resourceGroupName,
     gatewayName,
-    options
+    options,
   );
   console.log(result);
 }
@@ -57,7 +57,7 @@ async function startPacketCaptureOnVpnGatewayWithoutFilter() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnGateways.beginStartPacketCaptureAndWait(
     resourceGroupName,
-    gatewayName
+    gatewayName,
   );
   console.log(result);
 }

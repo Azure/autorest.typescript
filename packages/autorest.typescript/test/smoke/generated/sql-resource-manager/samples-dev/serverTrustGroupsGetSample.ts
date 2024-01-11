@@ -31,7 +31,7 @@ async function getServerTrustGroup() {
   const result = await client.serverTrustGroups.get(
     resourceGroupName,
     locationName,
-    serverTrustGroupName
+    serverTrustGroupName,
   );
   console.log(result);
 }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   QueryInboundNatRulePortMappingRequest,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,16 +29,17 @@ async function queryInboundNatRulePortMapping() {
   const loadBalancerName = "lb1";
   const backendPoolName = "bp1";
   const parameters: QueryInboundNatRulePortMappingRequest = {
-    ipAddress: "10.0.0.4"
+    ipAddress: "10.0.0.4",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.loadBalancers.beginListInboundNatRulePortMappingsAndWait(
-    groupName,
-    loadBalancerName,
-    backendPoolName,
-    parameters
-  );
+  const result =
+    await client.loadBalancers.beginListInboundNatRulePortMappingsAndWait(
+      groupName,
+      loadBalancerName,
+      backendPoolName,
+      parameters,
+    );
   console.log(result);
 }
 

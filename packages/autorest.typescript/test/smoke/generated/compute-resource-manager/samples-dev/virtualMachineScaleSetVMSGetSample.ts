@@ -30,7 +30,7 @@ async function getVMScaleSetVMWithUserData() {
   const result = await client.virtualMachineScaleSetVMs.get(
     resourceGroupName,
     vmScaleSetName,
-    instanceId
+    instanceId,
   );
   console.log(result);
 }

@@ -38,7 +38,7 @@ async function verifyModularPropertyType(
     needAzureCore
   );
   assert.ok(modelsFile);
-  assertEqualContent(
+  await assertEqualContent(
     modelsFile?.getFullText()!,
     `
   ${additionalImports}
@@ -114,7 +114,7 @@ describe("modular encode test for property type datetime", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
       export interface Foo {
@@ -127,7 +127,7 @@ describe("modular encode test for property type datetime", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -187,7 +187,7 @@ describe("modular encode test for property type datetime", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -244,7 +244,7 @@ describe("modular encode test for property type datetime", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
       export interface Foo {
@@ -255,7 +255,7 @@ describe("modular encode test for property type datetime", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -316,7 +316,7 @@ describe("modular encode test for property type datetime", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
       export interface Foo {
@@ -327,7 +327,7 @@ describe("modular encode test for property type datetime", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -386,7 +386,7 @@ describe("modular encode test for property type datetime", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
       export interface Foo {
@@ -396,7 +396,7 @@ describe("modular encode test for property type datetime", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -454,7 +454,7 @@ describe("modular encode test for property type duration", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
       export interface Foo {
@@ -464,7 +464,7 @@ describe("modular encode test for property type duration", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -521,7 +521,7 @@ describe("modular encode test for property type duration", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
       export interface Foo {
@@ -531,7 +531,7 @@ describe("modular encode test for property type duration", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -590,7 +590,7 @@ describe("modular encode test for property type duration", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
       export interface Foo {
@@ -601,7 +601,7 @@ describe("modular encode test for property type duration", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -661,7 +661,7 @@ describe("modular encode test for property type bytes", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
       export interface Foo {
@@ -671,7 +671,7 @@ describe("modular encode test for property type bytes", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -732,7 +732,7 @@ describe("modular encode test for property type bytes", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
       export interface Foo {
@@ -742,7 +742,7 @@ describe("modular encode test for property type bytes", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -803,7 +803,7 @@ describe("modular encode test for property type bytes", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
       export interface Foo {
@@ -813,7 +813,7 @@ describe("modular encode test for property type bytes", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -883,7 +883,7 @@ describe("inheritance & polymorphism", () => {
     op read(): { @body body: Cat | Dog };
     `);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
       export interface Pet {
@@ -921,7 +921,7 @@ describe("inheritance & polymorphism", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
       export interface Pet {
@@ -937,7 +937,7 @@ describe("inheritance & polymorphism", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -996,7 +996,7 @@ describe("inheritance & polymorphism", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
       export interface Animal {
@@ -1016,7 +1016,7 @@ describe("inheritance & polymorphism", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -1079,7 +1079,7 @@ describe("inheritance & polymorphism", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
       export interface PetParent {
@@ -1105,7 +1105,7 @@ describe("inheritance & polymorphism", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -1168,7 +1168,7 @@ describe("inheritance & polymorphism", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
       export interface PetParent {
@@ -1194,7 +1194,7 @@ describe("inheritance & polymorphism", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -1253,7 +1253,7 @@ describe("inheritance & polymorphism", () => {
     `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
-    assertEqualContent(
+    await assertEqualContent(
       modelFile?.getFullText()!,
       `
       export interface Creature {
@@ -1277,7 +1277,7 @@ describe("inheritance & polymorphism", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";

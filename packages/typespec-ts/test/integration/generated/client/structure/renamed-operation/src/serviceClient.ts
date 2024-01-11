@@ -14,7 +14,7 @@ import { ServiceClient } from "./clientDefinitions";
 export default function createClient(
   endpoint: string,
   clientParam: string,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): ServiceClient {
   const baseUrl =
     options.baseUrl ?? `${endpoint}/client/structure/${clientParam}`;

@@ -13,13 +13,13 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface RequestUnionBody {
   post(
-    options: RequestUnionBodyParameters
+    options: RequestUnionBodyParameters,
   ): StreamableMethod<RequestUnionBody200Response>;
 }
 
 export interface ResponseUnionBody {
   get(
-    options?: ResponseUnionBodyParameters
+    options?: ResponseUnionBodyParameters,
   ): StreamableMethod<ResponseUnionBody200Response>;
 }
 

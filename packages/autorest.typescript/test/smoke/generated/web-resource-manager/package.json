@@ -73,7 +73,6 @@
     "pack": "npm pack 2>&1",
     "extract-api": "api-extractor run --local",
     "lint": "echo skipped",
-    "audit": "echo skipped",
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "build:node": "echo skipped",
     "build:browser": "echo skipped",

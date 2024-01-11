@@ -23,11 +23,11 @@ export interface HeaderOperations {
   rfc7231: (value: Date, options?: HeaderRfc7231Options) => Promise<void>;
   unixTimestamp: (
     value: Date,
-    options?: HeaderUnixTimestampOptions
+    options?: HeaderUnixTimestampOptions,
   ) => Promise<void>;
   unixTimestampArray: (
     value: Date[],
-    options?: HeaderUnixTimestampArrayOptions
+    options?: HeaderUnixTimestampArrayOptions,
   ) => Promise<void>;
 }
 
@@ -43,13 +43,13 @@ export function getHeader(context: DatetimeContext) {
       headerUnixTimestamp(context, value, options),
     unixTimestampArray: (
       value: Date[],
-      options?: HeaderUnixTimestampArrayOptions
+      options?: HeaderUnixTimestampArrayOptions,
     ) => headerUnixTimestampArray(context, value, options),
   };
 }
 
 export function getHeaderOperations(
-  context: DatetimeContext
+  context: DatetimeContext,
 ): HeaderOperations {
   return {
     ...getHeader(context),

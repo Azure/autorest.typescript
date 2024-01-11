@@ -30,7 +30,7 @@ async function getConnectionMonitor() {
   const result = await client.connectionMonitors.get(
     resourceGroupName,
     networkWatcherName,
-    connectionMonitorName
+    connectionMonitorName,
   );
   console.log(result);
 }

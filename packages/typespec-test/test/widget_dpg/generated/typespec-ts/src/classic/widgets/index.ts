@@ -37,35 +37,35 @@ export interface WidgetsOperations {
     value: Uint8Array,
     csvArrayHeader: Uint8Array[],
     utcDateHeader: Date,
-    options?: WidgetsListWidgetsOptions
+    options?: WidgetsListWidgetsOptions,
   ) => Promise<Widget[]>;
   listWidgetsPages: (
     page: number,
     pageSize: number,
-    options?: WidgetsListWidgetsPagesOptions
+    options?: WidgetsListWidgetsPagesOptions,
   ) => PagedAsyncIterableIterator<Widget>;
   queryWidgetsPages: (
     page: number,
     pageSize: number,
-    options?: WidgetsQueryWidgetsPagesOptions
+    options?: WidgetsQueryWidgetsPagesOptions,
   ) => PagedAsyncIterableIterator<Widget>;
   getWidget: (id: string, options?: WidgetsGetWidgetOptions) => Promise<Widget>;
   createWidget: (
     body: CreateWidget,
-    options?: WidgetsCreateWidgetOptions
+    options?: WidgetsCreateWidgetOptions,
   ) => Promise<Widget>;
   updateWidget: (
     id: string,
     body: UpdateWidget,
-    options?: WidgetsUpdateWidgetOptions
+    options?: WidgetsUpdateWidgetOptions,
   ) => Promise<Widget>;
   deleteWidget: (
     id: string,
-    options?: WidgetsDeleteWidgetOptions
+    options?: WidgetsDeleteWidgetOptions,
   ) => Promise<void>;
   analyzeWidget: (
     id: string,
-    options?: WidgetsAnalyzeWidgetOptions
+    options?: WidgetsAnalyzeWidgetOptions,
   ) => Promise<AnalyzeResult>;
 }
 
@@ -77,7 +77,7 @@ export function getWidgets(context: WidgetServiceContext) {
       value: Uint8Array,
       csvArrayHeader: Uint8Array[],
       utcDateHeader: Date,
-      options?: WidgetsListWidgetsOptions
+      options?: WidgetsListWidgetsOptions,
     ) =>
       listWidgets(
         context,
@@ -86,17 +86,17 @@ export function getWidgets(context: WidgetServiceContext) {
         value,
         csvArrayHeader,
         utcDateHeader,
-        options
+        options,
       ),
     listWidgetsPages: (
       page: number,
       pageSize: number,
-      options?: WidgetsListWidgetsPagesOptions
+      options?: WidgetsListWidgetsPagesOptions,
     ) => listWidgetsPages(context, page, pageSize, options),
     queryWidgetsPages: (
       page: number,
       pageSize: number,
-      options?: WidgetsQueryWidgetsPagesOptions
+      options?: WidgetsQueryWidgetsPagesOptions,
     ) => queryWidgetsPages(context, page, pageSize, options),
     getWidget: (id: string, options?: WidgetsGetWidgetOptions) =>
       getWidget(context, id, options),
@@ -105,7 +105,7 @@ export function getWidgets(context: WidgetServiceContext) {
     updateWidget: (
       id: string,
       body: UpdateWidget,
-      options?: WidgetsUpdateWidgetOptions
+      options?: WidgetsUpdateWidgetOptions,
     ) => updateWidget(context, id, body, options),
     deleteWidget: (id: string, options?: WidgetsDeleteWidgetOptions) =>
       deleteWidget(context, id, options),
@@ -115,7 +115,7 @@ export function getWidgets(context: WidgetServiceContext) {
 }
 
 export function getWidgetsOperations(
-  context: WidgetServiceContext
+  context: WidgetServiceContext,
 ): WidgetsOperations {
   return {
     ...getWidgets(context),

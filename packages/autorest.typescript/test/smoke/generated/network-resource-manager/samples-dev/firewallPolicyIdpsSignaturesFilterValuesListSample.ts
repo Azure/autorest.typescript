@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   SignatureOverridesFilterValuesQuery,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,14 +29,14 @@ async function querySignatureOverrides() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const firewallPolicyName = "firewallPolicy";
   const parameters: SignatureOverridesFilterValuesQuery = {
-    filterName: "severity"
+    filterName: "severity",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.firewallPolicyIdpsSignaturesFilterValues.list(
     resourceGroupName,
     firewallPolicyName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

@@ -9,7 +9,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 import {
   KeyCreateParameters as KeyCreateParametersMapper,
@@ -21,7 +21,7 @@ import {
   ManagedHsm as ManagedHsmMapper,
   MhsmPrivateEndpointConnection as MhsmPrivateEndpointConnectionMapper,
   SecretCreateOrUpdateParameters as SecretCreateOrUpdateParametersMapper,
-  SecretPatchParameters as SecretPatchParametersMapper
+  SecretPatchParameters as SecretPatchParametersMapper,
 } from "../models/mappers";
 
 export const contentType: OperationParameter = {
@@ -31,14 +31,14 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const parameters: OperationParameter = {
   parameterPath: "parameters",
-  mapper: KeyCreateParametersMapper
+  mapper: KeyCreateParametersMapper,
 };
 
 export const accept: OperationParameter = {
@@ -48,9 +48,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -59,10 +59,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const subscriptionId: OperationURLParameter = {
@@ -71,9 +71,9 @@ export const subscriptionId: OperationURLParameter = {
     serializedName: "subscriptionId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const resourceGroupName: OperationURLParameter = {
@@ -82,37 +82,37 @@ export const resourceGroupName: OperationURLParameter = {
     serializedName: "resourceGroupName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const vaultName: OperationURLParameter = {
   parameterPath: "vaultName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("^[a-zA-Z0-9-]{3,24}$")
+      Pattern: new RegExp("^[a-zA-Z0-9-]{3,24}$"),
     },
     serializedName: "vaultName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const keyName: OperationURLParameter = {
   parameterPath: "keyName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("^[a-zA-Z0-9-]{1,127}$")
+      Pattern: new RegExp("^[a-zA-Z0-9-]{1,127}$"),
     },
     serializedName: "keyName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const apiVersion: OperationQueryParameter = {
@@ -122,23 +122,23 @@ export const apiVersion: OperationQueryParameter = {
     isConstant: true,
     serializedName: "api-version",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const keyVersion: OperationURLParameter = {
   parameterPath: "keyVersion",
   mapper: {
     constraints: {
-      Pattern: new RegExp("^[a-fA-F0-9]{32}$")
+      Pattern: new RegExp("^[a-fA-F0-9]{32}$"),
     },
     serializedName: "keyVersion",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const nextLink: OperationURLParameter = {
@@ -147,20 +147,20 @@ export const nextLink: OperationURLParameter = {
     serializedName: "nextLink",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const parameters1: OperationParameter = {
   parameterPath: "parameters",
-  mapper: VaultCreateOrUpdateParametersMapper
+  mapper: VaultCreateOrUpdateParametersMapper,
 };
 
 export const parameters2: OperationParameter = {
   parameterPath: "parameters",
-  mapper: VaultPatchParametersMapper
+  mapper: VaultPatchParametersMapper,
 };
 
 export const vaultName1: OperationURLParameter = {
@@ -169,14 +169,14 @@ export const vaultName1: OperationURLParameter = {
     serializedName: "vaultName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const parameters3: OperationParameter = {
   parameterPath: "parameters",
-  mapper: VaultAccessPolicyParametersMapper
+  mapper: VaultAccessPolicyParametersMapper,
 };
 
 export const operationKind: OperationURLParameter = {
@@ -186,9 +186,9 @@ export const operationKind: OperationURLParameter = {
     required: true,
     type: {
       name: "Enum",
-      allowedValues: ["add", "replace", "remove"]
-    }
-  }
+      allowedValues: ["add", "replace", "remove"],
+    },
+  },
 };
 
 export const top: OperationQueryParameter = {
@@ -196,9 +196,9 @@ export const top: OperationQueryParameter = {
   mapper: {
     serializedName: "$top",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const location: OperationURLParameter = {
@@ -207,9 +207,9 @@ export const location: OperationURLParameter = {
     serializedName: "location",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const filter: OperationQueryParameter = {
@@ -219,9 +219,9 @@ export const filter: OperationQueryParameter = {
     isConstant: true,
     serializedName: "$filter",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const apiVersion1: OperationQueryParameter = {
@@ -231,14 +231,14 @@ export const apiVersion1: OperationQueryParameter = {
     isConstant: true,
     serializedName: "api-version",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const vaultName2: OperationParameter = {
   parameterPath: "vaultName",
-  mapper: VaultCheckNameAvailabilityParametersMapper
+  mapper: VaultCheckNameAvailabilityParametersMapper,
 };
 
 export const privateEndpointConnectionName: OperationURLParameter = {
@@ -247,19 +247,19 @@ export const privateEndpointConnectionName: OperationURLParameter = {
     serializedName: "privateEndpointConnectionName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const properties: OperationParameter = {
   parameterPath: "properties",
-  mapper: PrivateEndpointConnectionMapper
+  mapper: PrivateEndpointConnectionMapper,
 };
 
 export const parameters4: OperationParameter = {
   parameterPath: "parameters",
-  mapper: ManagedHsmMapper
+  mapper: ManagedHsmMapper,
 };
 
 export const name: OperationURLParameter = {
@@ -268,38 +268,38 @@ export const name: OperationURLParameter = {
     serializedName: "name",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const properties1: OperationParameter = {
   parameterPath: "properties",
-  mapper: MhsmPrivateEndpointConnectionMapper
+  mapper: MhsmPrivateEndpointConnectionMapper,
 };
 
 export const parameters5: OperationParameter = {
   parameterPath: "parameters",
-  mapper: SecretCreateOrUpdateParametersMapper
+  mapper: SecretCreateOrUpdateParametersMapper,
 };
 
 export const secretName: OperationURLParameter = {
   parameterPath: "secretName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("^[a-zA-Z0-9-]{1,127}$")
+      Pattern: new RegExp("^[a-zA-Z0-9-]{1,127}$"),
     },
     serializedName: "secretName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const parameters6: OperationParameter = {
   parameterPath: "parameters",
-  mapper: SecretPatchParametersMapper
+  mapper: SecretPatchParametersMapper,
 };
 
 export const secretName1: OperationURLParameter = {
@@ -308,7 +308,7 @@ export const secretName1: OperationURLParameter = {
     serializedName: "secretName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };

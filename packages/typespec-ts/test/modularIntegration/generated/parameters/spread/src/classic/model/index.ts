@@ -9,7 +9,7 @@ import { ModelSpreadAsRequestBodyOptions } from "../../models/options.js";
 export interface ModelOperations {
   spreadAsRequestBody: (
     body: BodyParameter,
-    options?: ModelSpreadAsRequestBodyOptions
+    options?: ModelSpreadAsRequestBodyOptions,
   ) => Promise<void>;
 }
 
@@ -17,7 +17,7 @@ export function getModel(context: SpreadContext) {
   return {
     spreadAsRequestBody: (
       body: BodyParameter,
-      options?: ModelSpreadAsRequestBodyOptions
+      options?: ModelSpreadAsRequestBodyOptions,
     ) => modelSpreadAsRequestBody(context, body, options),
   };
 }

@@ -1005,8 +1005,8 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
     (context.rlcOptions?.enableModelNamespace
       ? fullNamespaceName
       : effectiveName
-      ? effectiveName
-      : getName(context.program, type));
+        ? effectiveName
+        : getName(context.program, type));
   if (
     !overridedModelName &&
     type.templateMapper &&

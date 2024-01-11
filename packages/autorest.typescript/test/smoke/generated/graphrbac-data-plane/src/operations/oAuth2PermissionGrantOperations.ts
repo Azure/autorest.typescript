@@ -21,13 +21,14 @@ import {
   OAuth2PermissionGrantListNextResponse,
   OAuth2PermissionGrantCreateOptionalParams,
   OAuth2PermissionGrantCreateResponse,
-  OAuth2PermissionGrantDeleteOptionalParams
+  OAuth2PermissionGrantDeleteOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing OAuth2PermissionGrantOperations operations. */
 export class OAuth2PermissionGrantOperationsImpl
-  implements OAuth2PermissionGrantOperations {
+  implements OAuth2PermissionGrantOperations
+{
   private readonly client: GraphRbacManagementClient;
 
   /**
@@ -43,7 +44,7 @@ export class OAuth2PermissionGrantOperationsImpl
    * @param options The options parameters.
    */
   public list(
-    options?: OAuth2PermissionGrantListOptionalParams
+    options?: OAuth2PermissionGrantListOptionalParams,
   ): PagedAsyncIterableIterator<OAuth2PermissionGrant> {
     const iter = this.listPagingAll(options);
     return {
@@ -58,13 +59,13 @@ export class OAuth2PermissionGrantOperationsImpl
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listPagingPage(
     options?: OAuth2PermissionGrantListOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<OAuth2PermissionGrant[]> {
     let result: OAuth2PermissionGrantListResponse;
     let continuationToken = settings?.continuationToken;
@@ -85,7 +86,7 @@ export class OAuth2PermissionGrantOperationsImpl
   }
 
   private async *listPagingAll(
-    options?: OAuth2PermissionGrantListOptionalParams
+    options?: OAuth2PermissionGrantListOptionalParams,
   ): AsyncIterableIterator<OAuth2PermissionGrant> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -99,7 +100,7 @@ export class OAuth2PermissionGrantOperationsImpl
    */
   public listNext(
     nextLink: string,
-    options?: OAuth2PermissionGrantListNextOptionalParams
+    options?: OAuth2PermissionGrantListNextOptionalParams,
   ): PagedAsyncIterableIterator<OAuth2PermissionGrant> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
@@ -114,14 +115,14 @@ export class OAuth2PermissionGrantOperationsImpl
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listNextPagingPage(nextLink, options, settings);
-      }
+      },
     };
   }
 
   private async *listNextPagingPage(
     nextLink: string,
     options?: OAuth2PermissionGrantListNextOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<OAuth2PermissionGrant[]> {
     let result: OAuth2PermissionGrantListNextResponse;
     let continuationToken = settings?.continuationToken;
@@ -143,7 +144,7 @@ export class OAuth2PermissionGrantOperationsImpl
 
   private async *listNextPagingAll(
     nextLink: string,
-    options?: OAuth2PermissionGrantListNextOptionalParams
+    options?: OAuth2PermissionGrantListNextOptionalParams,
   ): AsyncIterableIterator<OAuth2PermissionGrant> {
     for await (const page of this.listNextPagingPage(nextLink, options)) {
       yield* page;
@@ -155,7 +156,7 @@ export class OAuth2PermissionGrantOperationsImpl
    * @param options The options parameters.
    */
   private _list(
-    options?: OAuth2PermissionGrantListOptionalParams
+    options?: OAuth2PermissionGrantListOptionalParams,
   ): Promise<OAuth2PermissionGrantListResponse> {
     return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
@@ -165,7 +166,7 @@ export class OAuth2PermissionGrantOperationsImpl
    * @param options The options parameters.
    */
   create(
-    options?: OAuth2PermissionGrantCreateOptionalParams
+    options?: OAuth2PermissionGrantCreateOptionalParams,
   ): Promise<OAuth2PermissionGrantCreateResponse> {
     return this.client.sendOperationRequest({ options }, createOperationSpec);
   }
@@ -177,11 +178,11 @@ export class OAuth2PermissionGrantOperationsImpl
    */
   delete(
     objectId: string,
-    options?: OAuth2PermissionGrantDeleteOptionalParams
+    options?: OAuth2PermissionGrantDeleteOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { objectId, options },
-      deleteOperationSpec
+      deleteOperationSpec,
     );
   }
 
@@ -192,11 +193,11 @@ export class OAuth2PermissionGrantOperationsImpl
    */
   private _listNext(
     nextLink: string,
-    options?: OAuth2PermissionGrantListNextOptionalParams
+    options?: OAuth2PermissionGrantListNextOptionalParams,
   ): Promise<OAuth2PermissionGrantListNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listNextOperationSpec
+      listNextOperationSpec,
     );
   }
 }
@@ -208,28 +209,28 @@ const listOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OAuth2PermissionGrantListResult
-    }
+      bodyMapper: Mappers.OAuth2PermissionGrantListResult,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.accept1],
-  serializer
+  serializer,
 };
 const createOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/oauth2PermissionGrants",
   httpMethod: "POST",
   responses: {
     201: {
-      bodyMapper: Mappers.OAuth2PermissionGrant
-    }
+      bodyMapper: Mappers.OAuth2PermissionGrant,
+    },
   },
   requestBody: Parameters.body,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID],
   headerParameters: [Parameters.contentType, Parameters.accept1],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/oauth2PermissionGrants/{objectId}",
@@ -237,27 +238,27 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listNextOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OAuth2PermissionGrantListResult
+      bodyMapper: Mappers.OAuth2PermissionGrantListResult,
     },
     default: {
-      bodyMapper: Mappers.GraphError
-    }
+      bodyMapper: Mappers.GraphError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

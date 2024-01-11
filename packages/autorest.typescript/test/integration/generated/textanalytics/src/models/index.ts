@@ -596,7 +596,7 @@ export enum KnownStringIndexType {
   /** Returned offset and length values will correspond to Unicode code points. Use this option if your application is written in a language that support Unicode, for example Python. */
   UnicodeCodePoint = "UnicodeCodePoint",
   /** Returned offset and length values will correspond to UTF-16 code units. Use this option if your application is written in a language that support Unicode, for example Java, JavaScript. */
-  Utf16CodeUnit = "Utf16CodeUnit"
+  Utf16CodeUnit = "Utf16CodeUnit",
 }
 
 /**
@@ -615,7 +615,7 @@ export enum KnownPiiTaskParametersDomain {
   /** Phi */
   Phi = "phi",
   /** None */
-  None = "none"
+  None = "none",
 }
 
 /**
@@ -975,7 +975,7 @@ export enum KnownPiiCategory {
   /** All */
   All = "All",
   /** Default */
-  Default = "Default"
+  Default = "Default",
 }
 
 /**
@@ -1178,7 +1178,7 @@ export enum KnownInnerErrorCodeValue {
   /** UnsupportedLanguageCode */
   UnsupportedLanguageCode = "UnsupportedLanguageCode",
   /** InvalidCountryHint */
-  InvalidCountryHint = "InvalidCountryHint"
+  InvalidCountryHint = "InvalidCountryHint",
 }
 
 /**
@@ -1203,7 +1203,7 @@ export enum KnownWarningCode {
   /** LongWordsInDocument */
   LongWordsInDocument = "LongWordsInDocument",
   /** DocumentTruncated */
-  DocumentTruncated = "DocumentTruncated"
+  DocumentTruncated = "DocumentTruncated",
 }
 
 /**
@@ -1259,7 +1259,7 @@ export enum KnownRelationType {
   /** ValueOfCondition */
   ValueOfCondition = "ValueOfCondition",
   /** ValueOfExamination */
-  ValueOfExamination = "ValueOfExamination"
+  ValueOfExamination = "ValueOfExamination",
 }
 
 /**

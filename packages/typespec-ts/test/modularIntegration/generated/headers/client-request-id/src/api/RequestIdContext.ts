@@ -11,7 +11,7 @@ export { RequestIdClientContext } from "../rest/index.js";
 
 /** Azure client request id header configurations. */
 export function createRequestId(
-  options: RequestIdClientOptions = {}
+  options: RequestIdClientOptions = {},
 ): RequestIdClientContext {
   const clientContext = getClient(options);
   return clientContext;

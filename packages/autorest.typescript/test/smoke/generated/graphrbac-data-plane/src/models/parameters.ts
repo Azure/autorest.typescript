@@ -9,7 +9,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 import {
   ApplicationCreateParameters as ApplicationCreateParametersMapper,
@@ -27,7 +27,7 @@ import {
   UserUpdateParameters as UserUpdateParametersMapper,
   UserGetMemberGroupsParameters as UserGetMemberGroupsParametersMapper,
   GetObjectsParameters as GetObjectsParametersMapper,
-  OAuth2PermissionGrant as OAuth2PermissionGrantMapper
+  OAuth2PermissionGrant as OAuth2PermissionGrantMapper,
 } from "../models/mappers";
 
 export const accept: OperationParameter = {
@@ -37,9 +37,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -48,10 +48,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const apiVersion: OperationQueryParameter = {
@@ -61,9 +61,9 @@ export const apiVersion: OperationQueryParameter = {
     isConstant: true,
     serializedName: "api-version",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const tenantID: OperationURLParameter = {
@@ -72,9 +72,9 @@ export const tenantID: OperationURLParameter = {
     serializedName: "tenantID",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const nextLink: OperationURLParameter = {
@@ -83,10 +83,10 @@ export const nextLink: OperationURLParameter = {
     serializedName: "nextLink",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const contentType: OperationParameter = {
@@ -96,14 +96,14 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const parameters: OperationParameter = {
   parameterPath: "parameters",
-  mapper: ApplicationCreateParametersMapper
+  mapper: ApplicationCreateParametersMapper,
 };
 
 export const filter: OperationQueryParameter = {
@@ -111,9 +111,9 @@ export const filter: OperationQueryParameter = {
   mapper: {
     serializedName: "$filter",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const applicationObjectId: OperationURLParameter = {
@@ -122,19 +122,19 @@ export const applicationObjectId: OperationURLParameter = {
     serializedName: "applicationObjectId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const parameters1: OperationParameter = {
   parameterPath: "parameters",
-  mapper: ApplicationUpdateParametersMapper
+  mapper: ApplicationUpdateParametersMapper,
 };
 
 export const parameters2: OperationParameter = {
   parameterPath: "parameters",
-  mapper: AddOwnerParametersMapper
+  mapper: AddOwnerParametersMapper,
 };
 
 export const ownerObjectId: OperationURLParameter = {
@@ -143,19 +143,19 @@ export const ownerObjectId: OperationURLParameter = {
     serializedName: "ownerObjectId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const parameters3: OperationParameter = {
   parameterPath: "parameters",
-  mapper: KeyCredentialsUpdateParametersMapper
+  mapper: KeyCredentialsUpdateParametersMapper,
 };
 
 export const parameters4: OperationParameter = {
   parameterPath: "parameters",
-  mapper: PasswordCredentialsUpdateParametersMapper
+  mapper: PasswordCredentialsUpdateParametersMapper,
 };
 
 export const applicationID: OperationURLParameter = {
@@ -164,9 +164,9 @@ export const applicationID: OperationURLParameter = {
     serializedName: "applicationID",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const objectId: OperationURLParameter = {
@@ -175,14 +175,14 @@ export const objectId: OperationURLParameter = {
     serializedName: "objectId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const parameters5: OperationParameter = {
   parameterPath: "parameters",
-  mapper: CheckGroupMembershipParametersMapper
+  mapper: CheckGroupMembershipParametersMapper,
 };
 
 export const groupObjectId: OperationURLParameter = {
@@ -191,9 +191,9 @@ export const groupObjectId: OperationURLParameter = {
     serializedName: "groupObjectId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const memberObjectId: OperationURLParameter = {
@@ -202,39 +202,39 @@ export const memberObjectId: OperationURLParameter = {
     serializedName: "memberObjectId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const parameters6: OperationParameter = {
   parameterPath: "parameters",
-  mapper: GroupAddMemberParametersMapper
+  mapper: GroupAddMemberParametersMapper,
 };
 
 export const parameters7: OperationParameter = {
   parameterPath: "parameters",
-  mapper: GroupCreateParametersMapper
+  mapper: GroupCreateParametersMapper,
 };
 
 export const parameters8: OperationParameter = {
   parameterPath: "parameters",
-  mapper: GroupGetMemberGroupsParametersMapper
+  mapper: GroupGetMemberGroupsParametersMapper,
 };
 
 export const parameters9: OperationParameter = {
   parameterPath: "parameters",
-  mapper: ServicePrincipalCreateParametersMapper
+  mapper: ServicePrincipalCreateParametersMapper,
 };
 
 export const parameters10: OperationParameter = {
   parameterPath: "parameters",
-  mapper: ServicePrincipalUpdateParametersMapper
+  mapper: ServicePrincipalUpdateParametersMapper,
 };
 
 export const parameters11: OperationParameter = {
   parameterPath: "parameters",
-  mapper: UserCreateParametersMapper
+  mapper: UserCreateParametersMapper,
 };
 
 export const expand: OperationQueryParameter = {
@@ -242,9 +242,9 @@ export const expand: OperationQueryParameter = {
   mapper: {
     serializedName: "$expand",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const upnOrObjectId: OperationURLParameter = {
@@ -253,24 +253,24 @@ export const upnOrObjectId: OperationURLParameter = {
     serializedName: "upnOrObjectId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const parameters12: OperationParameter = {
   parameterPath: "parameters",
-  mapper: UserUpdateParametersMapper
+  mapper: UserUpdateParametersMapper,
 };
 
 export const parameters13: OperationParameter = {
   parameterPath: "parameters",
-  mapper: UserGetMemberGroupsParametersMapper
+  mapper: UserGetMemberGroupsParametersMapper,
 };
 
 export const parameters14: OperationParameter = {
   parameterPath: "parameters",
-  mapper: GetObjectsParametersMapper
+  mapper: GetObjectsParametersMapper,
 };
 
 export const domainName: OperationURLParameter = {
@@ -279,9 +279,9 @@ export const domainName: OperationURLParameter = {
     serializedName: "domainName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const accept1: OperationParameter = {
@@ -291,12 +291,12 @@ export const accept1: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const body: OperationParameter = {
   parameterPath: ["options", "body"],
-  mapper: OAuth2PermissionGrantMapper
+  mapper: OAuth2PermissionGrantMapper,
 };

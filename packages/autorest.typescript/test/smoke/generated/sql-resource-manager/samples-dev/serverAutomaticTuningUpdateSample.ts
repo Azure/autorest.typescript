@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ServerAutomaticTuning,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,15 +34,15 @@ async function updatesServerAutomaticTuningSettingsWithAllProperties() {
     options: {
       createIndex: { desiredState: "Off" },
       dropIndex: { desiredState: "On" },
-      forceLastGoodPlan: { desiredState: "Default" }
-    }
+      forceLastGoodPlan: { desiredState: "Default" },
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.serverAutomaticTuningOperations.update(
     resourceGroupName,
     serverName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -65,7 +65,7 @@ async function updatesServerAutomaticTuningSettingsWithMinimalProperties() {
   const result = await client.serverAutomaticTuningOperations.update(
     resourceGroupName,
     serverName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

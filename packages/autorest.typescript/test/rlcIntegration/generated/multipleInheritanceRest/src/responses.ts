@@ -8,7 +8,7 @@ import {
   PetOutput,
   FelineOutput,
   CatOutput,
-  KittenOutput
+  KittenOutput,
 } from "./outputModels";
 
 /** Get a horse with name 'Fred' and isAShowHorse true */

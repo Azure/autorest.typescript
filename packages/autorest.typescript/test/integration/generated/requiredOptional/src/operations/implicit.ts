@@ -19,7 +19,7 @@ import {
   ImplicitPutOptionalBinaryBodyOptionalParams,
   ImplicitGetRequiredGlobalPathOptionalParams,
   ImplicitGetRequiredGlobalQueryOptionalParams,
-  ImplicitGetOptionalGlobalQueryOptionalParams
+  ImplicitGetOptionalGlobalQueryOptionalParams,
 } from "../models";
 
 /** Class containing Implicit operations. */
@@ -41,11 +41,11 @@ export class ImplicitImpl implements Implicit {
    */
   getRequiredPath(
     pathParameter: string,
-    options?: ImplicitGetRequiredPathOptionalParams
+    options?: ImplicitGetRequiredPathOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { pathParameter, options },
-      getRequiredPathOperationSpec
+      getRequiredPathOperationSpec,
     );
   }
 
@@ -54,11 +54,11 @@ export class ImplicitImpl implements Implicit {
    * @param options The options parameters.
    */
   putOptionalQuery(
-    options?: ImplicitPutOptionalQueryOptionalParams
+    options?: ImplicitPutOptionalQueryOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      putOptionalQueryOperationSpec
+      putOptionalQueryOperationSpec,
     );
   }
 
@@ -67,11 +67,11 @@ export class ImplicitImpl implements Implicit {
    * @param options The options parameters.
    */
   putOptionalHeader(
-    options?: ImplicitPutOptionalHeaderOptionalParams
+    options?: ImplicitPutOptionalHeaderOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      putOptionalHeaderOperationSpec
+      putOptionalHeaderOperationSpec,
     );
   }
 
@@ -80,11 +80,11 @@ export class ImplicitImpl implements Implicit {
    * @param options The options parameters.
    */
   putOptionalBody(
-    options?: ImplicitPutOptionalBodyOptionalParams
+    options?: ImplicitPutOptionalBodyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      putOptionalBodyOperationSpec
+      putOptionalBodyOperationSpec,
     );
   }
 
@@ -93,11 +93,11 @@ export class ImplicitImpl implements Implicit {
    * @param options The options parameters.
    */
   putOptionalBinaryBody(
-    options?: ImplicitPutOptionalBinaryBodyOptionalParams
+    options?: ImplicitPutOptionalBinaryBodyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      putOptionalBinaryBodyOperationSpec
+      putOptionalBinaryBodyOperationSpec,
     );
   }
 
@@ -106,11 +106,11 @@ export class ImplicitImpl implements Implicit {
    * @param options The options parameters.
    */
   getRequiredGlobalPath(
-    options?: ImplicitGetRequiredGlobalPathOptionalParams
+    options?: ImplicitGetRequiredGlobalPathOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getRequiredGlobalPathOperationSpec
+      getRequiredGlobalPathOperationSpec,
     );
   }
 
@@ -119,11 +119,11 @@ export class ImplicitImpl implements Implicit {
    * @param options The options parameters.
    */
   getRequiredGlobalQuery(
-    options?: ImplicitGetRequiredGlobalQueryOptionalParams
+    options?: ImplicitGetRequiredGlobalQueryOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getRequiredGlobalQueryOperationSpec
+      getRequiredGlobalQueryOperationSpec,
     );
   }
 
@@ -132,11 +132,11 @@ export class ImplicitImpl implements Implicit {
    * @param options The options parameters.
    */
   getOptionalGlobalQuery(
-    options?: ImplicitGetOptionalGlobalQueryOptionalParams
+    options?: ImplicitGetOptionalGlobalQueryOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getOptionalGlobalQueryOperationSpec
+      getOptionalGlobalQueryOperationSpec,
     );
   }
 }
@@ -149,12 +149,12 @@ const getRequiredPathOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.pathParameter],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putOptionalQueryOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/implicit/optional/query",
@@ -162,13 +162,13 @@ const putOptionalQueryOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.queryParameter],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putOptionalHeaderOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/implicit/optional/header",
@@ -176,12 +176,12 @@ const putOptionalHeaderOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.queryParameter1],
-  serializer
+  serializer,
 };
 const putOptionalBodyOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/implicit/optional/body",
@@ -189,14 +189,14 @@ const putOptionalBodyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const putOptionalBinaryBodyOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/implicit/optional/binary-body",
@@ -204,14 +204,14 @@ const putOptionalBinaryBodyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
-  serializer
+  serializer,
 };
 const getRequiredGlobalPathOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/global/required/path/{required-global-path}",
@@ -219,12 +219,12 @@ const getRequiredGlobalPathOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.requiredGlobalPath],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getRequiredGlobalQueryOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/global/required/query",
@@ -232,13 +232,13 @@ const getRequiredGlobalQueryOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.requiredGlobalQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getOptionalGlobalQueryOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/global/optional/query",
@@ -246,11 +246,11 @@ const getOptionalGlobalQueryOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.optionalGlobalQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

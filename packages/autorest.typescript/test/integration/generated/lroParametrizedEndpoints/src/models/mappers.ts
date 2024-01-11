@@ -16,47 +16,49 @@ export const ErrorModel: coreClient.CompositeMapper = {
       status: {
         serializedName: "status",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       message: {
         serializedName: "message",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
-export const LroParametrizedEndpointsClientPollWithParameterizedEndpointsHeaders: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className:
-      "LroParametrizedEndpointsClientPollWithParameterizedEndpointsHeaders",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
+export const LroParametrizedEndpointsClientPollWithParameterizedEndpointsHeaders: coreClient.CompositeMapper =
+  {
+    type: {
+      name: "Composite",
+      className:
+        "LroParametrizedEndpointsClientPollWithParameterizedEndpointsHeaders",
+      modelProperties: {
+        location: {
+          serializedName: "location",
+          type: {
+            name: "String",
+          },
+        },
+      },
+    },
+  };
 
-export const LroParametrizedEndpointsClientPollWithConstantParameterizedEndpointsHeaders: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className:
-      "LroParametrizedEndpointsClientPollWithConstantParameterizedEndpointsHeaders",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
+export const LroParametrizedEndpointsClientPollWithConstantParameterizedEndpointsHeaders: coreClient.CompositeMapper =
+  {
+    type: {
+      name: "Composite",
+      className:
+        "LroParametrizedEndpointsClientPollWithConstantParameterizedEndpointsHeaders",
+      modelProperties: {
+        location: {
+          serializedName: "location",
+          type: {
+            name: "String",
+          },
+        },
+      },
+    },
+  };

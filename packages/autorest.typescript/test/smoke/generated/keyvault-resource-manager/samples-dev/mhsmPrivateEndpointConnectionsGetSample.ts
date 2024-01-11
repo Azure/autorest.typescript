@@ -31,7 +31,7 @@ async function managedHsmGetPrivateEndpointConnection() {
   const result = await client.mhsmPrivateEndpointConnections.get(
     resourceGroupName,
     name,
-    privateEndpointConnectionName
+    privateEndpointConnectionName,
   );
   console.log(result);
 }

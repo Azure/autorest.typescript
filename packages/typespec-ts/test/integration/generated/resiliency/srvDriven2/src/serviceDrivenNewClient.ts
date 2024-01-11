@@ -18,7 +18,7 @@ export interface ServiceDrivenNewClientOptions extends ClientOptions {
 export default function createClient(
   endpoint: string,
   serviceDeploymentVersion: string,
-  options: ServiceDrivenNewClientOptions = {}
+  options: ServiceDrivenNewClientOptions = {},
 ): ServiceDrivenNewClient {
   const apiVersion = options.apiVersion ?? "v2";
   const baseUrl =

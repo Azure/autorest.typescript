@@ -10,7 +10,7 @@ import * as coreClient from "@azure/core-client";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import {
   BasicImpl,
@@ -21,7 +21,7 @@ import {
   PolymorphismImpl,
   PolymorphicrecursiveImpl,
   ReadonlypropertyImpl,
-  FlattencomplexImpl
+  FlattencomplexImpl,
 } from "./operations";
 import {
   Basic,
@@ -32,7 +32,7 @@ import {
   Polymorphism,
   Polymorphicrecursive,
   Readonlyproperty,
-  Flattencomplex
+  Flattencomplex,
 } from "./operationsInterfaces";
 import { BodyComplexWithTracingOptionalParams } from "./models";
 
@@ -50,7 +50,7 @@ export class BodyComplexWithTracing extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: BodyComplexWithTracingOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-body-complex-tracing/1.0.0-preview1`;
@@ -63,9 +63,9 @@ export class BodyComplexWithTracing extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000"
+      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000",
     };
     super(optionsWithDefaults);
 
@@ -93,7 +93,7 @@ export class BodyComplexWithTracing extends coreClient.ServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -107,7 +107,7 @@ export class BodyComplexWithTracing extends coreClient.ServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }

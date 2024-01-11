@@ -238,7 +238,7 @@ export enum KnownProvisioningState {
   /** Succeeded */
   Succeeded = "Succeeded",
   /** Updating */
-  Updating = "Updating"
+  Updating = "Updating",
 }
 
 /**
@@ -394,14 +394,16 @@ export interface ApplicationDefinitionsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ApplicationDefinitionsCreateOrUpdateResponse = ApplicationDefinition;
+export type ApplicationDefinitionsCreateOrUpdateResponse =
+  ApplicationDefinition;
 
 /** Optional parameters. */
 export interface ApplicationDefinitionsListByResourceGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type ApplicationDefinitionsListByResourceGroupResponse = ApplicationDefinitionListResult;
+export type ApplicationDefinitionsListByResourceGroupResponse =
+  ApplicationDefinitionListResult;
 
 /** Optional parameters. */
 export interface ApplicationDefinitionsGetByIdOptionalParams
@@ -429,14 +431,16 @@ export interface ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
 }
 
 /** Contains response data for the createOrUpdateById operation. */
-export type ApplicationDefinitionsCreateOrUpdateByIdResponse = ApplicationDefinition;
+export type ApplicationDefinitionsCreateOrUpdateByIdResponse =
+  ApplicationDefinition;
 
 /** Optional parameters. */
 export interface ApplicationDefinitionsListByResourceGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type ApplicationDefinitionsListByResourceGroupNextResponse = ApplicationDefinitionListResult;
+export type ApplicationDefinitionsListByResourceGroupNextResponse =
+  ApplicationDefinitionListResult;
 
 /** Optional parameters. */
 export interface ApplicationClientOptionalParams

@@ -30,7 +30,7 @@ async function deleteNetworkVirtualApplianceSite() {
   const result = await client.virtualApplianceSites.beginDeleteAndWait(
     resourceGroupName,
     networkVirtualApplianceName,
-    siteName
+    siteName,
   );
   console.log(result);
 }

@@ -18,7 +18,7 @@ describe("Doc generation testing", () => {
         op read(): { @body body: SimpleModel };
         `);
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.outputModelFile!.content,
         `
       /** A simple model with doc */
@@ -44,7 +44,7 @@ describe("Doc generation testing", () => {
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -69,7 +69,7 @@ describe("Doc generation testing", () => {
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -96,7 +96,7 @@ describe("Doc generation testing", () => {
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -121,7 +121,7 @@ describe("Doc generation testing", () => {
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
@@ -148,7 +148,7 @@ describe("Doc generation testing", () => {
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
       import { RequestParameters } from "@azure-rest/core-client";
@@ -174,7 +174,7 @@ describe("Doc generation testing", () => {
         `
       );
       assert.ok(clientDef);
-      assertEqualContent(
+      await assertEqualContent(
         clientDef?.content!,
         `
         import { ReadParameters } from "./parameters";

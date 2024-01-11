@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   GalleryApplicationVersionsGetOptionalParams,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -38,7 +38,7 @@ async function getAGalleryApplicationVersionWithReplicationStatus() {
     galleryName,
     galleryApplicationName,
     galleryApplicationVersionName,
-    options
+    options,
   );
   console.log(result);
 }
@@ -61,7 +61,7 @@ async function getAGalleryApplicationVersion() {
     resourceGroupName,
     galleryName,
     galleryApplicationName,
-    galleryApplicationVersionName
+    galleryApplicationVersionName,
   );
   console.log(result);
 }

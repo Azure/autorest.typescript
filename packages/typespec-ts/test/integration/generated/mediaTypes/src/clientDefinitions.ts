@@ -20,29 +20,29 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface GetByUnionOnly {
   /** Union of types map union of content types. */
   post(
-    options: GetByUnionOnlyParameters
+    options: GetByUnionOnlyParameters,
   ): StreamableMethod<GetByUnionOnly200Response>;
 }
 
 export interface GetBySharedRouteForString {
   /** Using shared route to express the mapping info - string. */
   post(
-    options: GetBySharedRouteForStringParameters
+    options: GetBySharedRouteForStringParameters,
   ): StreamableMethod<GetBySharedRouteForString200Response>;
   /** Using shared route to express the mapping info - model. */
   post(
-    options: GetBySharedRouteForModelParameters
+    options: GetBySharedRouteForModelParameters,
   ): StreamableMethod<GetBySharedRouteForModel200Response>;
   /** Using shared route to express the mapping info - bytes. */
   post(
-    options: GetBySharedRouteForBytesParameters
+    options: GetBySharedRouteForBytesParameters,
   ): StreamableMethod<GetBySharedRouteForBytes200Response>;
 }
 
 export interface GetByOverloadParent {
   /** Union of types map union of content types. Then use @overload to detailed mapping. */
   post(
-    options: GetByOverloadParentParameters
+    options: GetByOverloadParentParameters,
   ): StreamableMethod<GetByOverloadParent200Response>;
 }
 
