@@ -25,8 +25,7 @@ import {
   getImportedModelName,
   getTypeName,
   getSchemaForType,
-  getBinaryType,
-  isTransformedUnionType
+  getBinaryType
 } from "../utils/modelUtils.js";
 import {
   getOperationGroupName,
@@ -143,11 +142,10 @@ function transformHeaders(
         SchemaContext.Output
       ]) as Schema;
       const type = getTypeName(typeSchema, [SchemaContext.Output]);
-      // If the header is a union type, we need to import the model
-      // as we generate union as type alias
-      if (isTransformedUnionType(typeSchema)) {
-        importedModels.add(type);
-      }
+      getImportedModelName(typeSchema, [SchemaContext.Output])?.forEach(
+        importedModels.add,
+        importedModels
+      );
       const header: ResponseHeaderSchema = {
         name: `"${key.toLowerCase()}"`,
         type,

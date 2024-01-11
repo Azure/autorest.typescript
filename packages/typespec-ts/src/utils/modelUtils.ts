@@ -998,13 +998,6 @@ function isUnionType(type: Type) {
   return type.kind === "Union";
 }
 
-export function isTransformedUnionType(schema: Schema): boolean {
-  if (schema.type === "object" && schema.enum) {
-    return true;
-  }
-  return false;
-}
-
 function getSchemaForStdScalar(
   program: Program,
   type: Scalar,
@@ -1220,7 +1213,7 @@ export function getSerializeTypeName(
     return (
       ["string", "number", "boolean"].includes(type) ||
       (type.startsWith('"') && type.endsWith('"')) ||
-      /^[0-9]*$/.test(type) ||
+      !isNaN(Number(type)) ||
       ["true", "false"].includes(type) ||
       ["null"].includes(type)
     );

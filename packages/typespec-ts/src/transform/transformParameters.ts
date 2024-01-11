@@ -25,8 +25,7 @@ import {
   getBodyType,
   predictDefaultValue,
   enrichBinaryTypeInBody,
-  getSerializeTypeName,
-  isTransformedUnionType
+  getSerializeTypeName
 } from "../utils/modelUtils.js";
 
 import {
@@ -173,9 +172,10 @@ function getParameterMetadata(
   }
   type =
     paramType !== "query" ? getSerializeTypeName(schema, schemaContext) : type;
-  if (isTransformedUnionType(schema)) {
-    importedModels.add(type);
-  }
+  getImportedModelName(schema, schemaContext)?.forEach(
+    importedModels.add,
+    importedModels
+  );
   return {
     type: paramType,
     name,
