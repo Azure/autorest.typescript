@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 overrides:
-  '@azure/core-rest-pipeline': file:../../../azure-sdk-for-js/sdk/core/core-rest-pipeline
+  '@azure/core-rest-pipeline': 1.13.1-alpha.20240110.1
 
 importers:
 
@@ -24,7 +24,7 @@ importers:
       '@azure/core-http-compat': ^1.2.0
       '@azure/core-lro': ^2.5.4
       '@azure/core-paging': ^1.5.0
-      '@azure/core-rest-pipeline': file:C:\Users\marygao\project\azure-sdk-for-js\sdk\core\core-rest-pipeline
+      '@azure/core-rest-pipeline': 1.13.1-alpha.20240110.1
       '@azure/core-tracing': ^1.0.0
       '@azure/core-util': ^1.4.0
       '@azure/core-xml': ^1.0.0-beta.1
@@ -91,7 +91,7 @@ importers:
       '@azure/core-http-compat': 1.3.0
       '@azure/core-lro': 2.5.4
       '@azure/core-paging': 1.5.0
-      '@azure/core-rest-pipeline': file:../../../azure-sdk-for-js/sdk/core/core-rest-pipeline
+      '@azure/core-rest-pipeline': 1.13.1-alpha.20240110.1
       '@azure/core-tracing': 1.0.1
       '@azure/logger': 1.0.4
       '@types/lodash': 4.14.199
@@ -241,7 +241,7 @@ importers:
       '@azure/core-auth': ^1.3.2
       '@azure/core-lro': ^2.5.4
       '@azure/core-paging': ^1.5.0
-      '@azure/core-rest-pipeline': file:C:\Users\marygao\project\azure-sdk-for-js\sdk\core\core-rest-pipeline
+      '@azure/core-rest-pipeline': 1.13.1-alpha.20240110.1
       '@azure/core-util': ^1.4.0
       '@azure/logger': ^1.0.4
       '@types/chai': ^4.3.1
@@ -290,7 +290,7 @@ importers:
       '@azure/core-auth': 1.5.0
       '@azure/core-lro': 2.5.4
       '@azure/core-paging': 1.5.0
-      '@azure/core-rest-pipeline': file:../../../azure-sdk-for-js/sdk/core/core-rest-pipeline
+      '@azure/core-rest-pipeline': 1.13.1-alpha.20240110.1
       '@azure/core-util': 1.5.0
       '@azure/logger': 1.0.4
       '@types/chai': 4.3.6
@@ -346,7 +346,7 @@ packages:
     dependencies:
       '@azure/abort-controller': 1.1.0
       '@azure/core-auth': 1.5.0
-      '@azure/core-rest-pipeline': file:../../../azure-sdk-for-js/sdk/core/core-rest-pipeline
+      '@azure/core-rest-pipeline': 1.13.1-alpha.20240110.1
       '@azure/core-tracing': 1.0.1
       '@azure/core-util': 1.5.0
       tslib: 2.6.2
@@ -502,7 +502,7 @@ packages:
     engines: {node: '>=14.0.0'}
     dependencies:
       '@azure/core-auth': 1.5.0
-      '@azure/core-rest-pipeline': file:../../../azure-sdk-for-js/sdk/core/core-rest-pipeline
+      '@azure/core-rest-pipeline': 1.13.1-alpha.20240110.1
       '@azure/core-util': 1.5.0
       '@azure/logger': 1.0.4
     transitivePeerDependencies:
@@ -563,6 +563,12 @@ packages:
     dependencies:
       tslib: 2.6.2
 
+  /@azure/abort-controller/2.0.0:
+    resolution: {integrity: sha512-RP/mR/WJchR+g+nQFJGOec+nzeN/VvjlwbinccoqfhTsTHbb8X5+mLDp48kHT0ueyum0BNSwGm0kX0UZuIqTGg==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      tslib: 2.6.2
+
   /@azure/core-auth/1.5.0:
     resolution: {integrity: sha512-udzoBuYG1VBoHVohDTrvKjyzel34zt77Bhp7dQntVGGD0ehVq48owENbBG8fIgkHRNUBQH5k1r0hpoMu5L8+kw==}
     engines: {node: '>=14.0.0'}
@@ -577,7 +583,7 @@ packages:
     dependencies:
       '@azure/abort-controller': 1.1.0
       '@azure/core-auth': 1.5.0
-      '@azure/core-rest-pipeline': file:../../../azure-sdk-for-js/sdk/core/core-rest-pipeline
+      '@azure/core-rest-pipeline': 1.13.1-alpha.20240110.1
       '@azure/core-tracing': 1.0.1
       '@azure/core-util': 1.5.0
       '@azure/logger': 1.0.4
@@ -591,7 +597,7 @@ packages:
     dependencies:
       '@azure/abort-controller': 1.1.0
       '@azure/core-client': 1.7.3
-      '@azure/core-rest-pipeline': file:../../../azure-sdk-for-js/sdk/core/core-rest-pipeline
+      '@azure/core-rest-pipeline': 1.13.1-alpha.20240110.1
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -632,6 +638,21 @@ packages:
     dependencies:
       tslib: 2.6.2
 
+  /@azure/core-rest-pipeline/1.13.1-alpha.20240110.1:
+    resolution: {integrity: sha512-+PMEvJsL/RZ/frC4bu4eCzDR3ICSDN6um15f7UDc4wVIT92MBfgkChSu01KPrJ4QR1u8ZaW0gK2A7EaryYrnEA==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      '@azure/abort-controller': 2.0.0
+      '@azure/core-auth': 1.5.0
+      '@azure/core-tracing': 1.0.1
+      '@azure/core-util': 1.5.0
+      '@azure/logger': 1.0.4
+      http-proxy-agent: 5.0.0
+      https-proxy-agent: 5.0.1
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - supports-color
+
   /@azure/core-tracing/1.0.0-preview.13:
     resolution: {integrity: sha512-KxDlhXyMlh2Jhj2ykX6vNEU0Vou4nHr025KoSEiz7cS3BNiHNaZcdECk/DmLkEB0as5T7b/TpRcehJ5yV6NeXQ==}
     engines: {node: '>=12.0.0'}
@@ -668,7 +689,7 @@ packages:
       '@azure/abort-controller': 1.1.0
       '@azure/core-auth': 1.5.0
       '@azure/core-client': 1.7.3
-      '@azure/core-rest-pipeline': file:../../../azure-sdk-for-js/sdk/core/core-rest-pipeline
+      '@azure/core-rest-pipeline': 1.13.1-alpha.20240110.1
       '@azure/core-tracing': 1.0.1
       '@azure/core-util': 1.5.0
       '@azure/logger': 1.0.4
@@ -6180,20 +6201,3 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
-
-  file:../../../azure-sdk-for-js/sdk/core/core-rest-pipeline:
-    resolution: {directory: ../../../azure-sdk-for-js/sdk/core/core-rest-pipeline, type: directory}
-    name: '@azure/core-rest-pipeline'
-    version: 1.13.1
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      '@azure/abort-controller': 1.1.0
-      '@azure/core-auth': 1.5.0
-      '@azure/core-tracing': 1.0.1
-      '@azure/core-util': 1.5.0
-      '@azure/logger': 1.0.4
-      http-proxy-agent: 5.0.0
-      https-proxy-agent: 5.0.1
-      tslib: 2.6.2
-    transitivePeerDependencies:
-      - supports-color
