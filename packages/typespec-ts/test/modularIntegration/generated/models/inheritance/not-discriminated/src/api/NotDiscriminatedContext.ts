@@ -11,7 +11,7 @@ export { NotDiscriminatedContext } from "../rest/index.js";
 
 /** Illustrates not-discriminated inheritance model. */
 export function createNotDiscriminated(
-  options: NotDiscriminatedClientOptions = {}
+  options: NotDiscriminatedClientOptions = {},
 ): NotDiscriminatedContext {
   const clientContext = getClient(options);
   return clientContext;

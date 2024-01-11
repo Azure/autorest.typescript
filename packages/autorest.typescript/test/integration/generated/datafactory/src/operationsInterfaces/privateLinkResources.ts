@@ -1,6 +1,6 @@
 import {
   PrivateLinkResourcesGetOptionalParams,
-  PrivateLinkResourcesGetResponse
+  PrivateLinkResourcesGetResponse,
 } from "../models";
 
 /** Interface representing a PrivateLinkResources. */
@@ -14,6 +14,6 @@ export interface PrivateLinkResources {
   get(
     resourceGroupName: string,
     factoryName: string,
-    options?: PrivateLinkResourcesGetOptionalParams
+    options?: PrivateLinkResourcesGetOptionalParams,
   ): Promise<PrivateLinkResourcesGetResponse>;
 }

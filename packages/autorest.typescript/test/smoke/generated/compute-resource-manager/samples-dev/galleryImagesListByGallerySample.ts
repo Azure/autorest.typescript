@@ -29,7 +29,7 @@ async function listGalleryImagesInAGallery() {
   const resArray = new Array();
   for await (let item of client.galleryImages.listByGallery(
     resourceGroupName,
-    galleryName
+    galleryName,
   )) {
     resArray.push(item);
   }

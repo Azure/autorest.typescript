@@ -24,7 +24,7 @@ export class CustomUrlClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: CustomUrlClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-custom-url/1.0.0-preview1`;
@@ -37,10 +37,10 @@ export class CustomUrlClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
-        options.endpoint ?? options.baseUri ?? "http://{accountName}{host}"
+        options.endpoint ?? options.baseUri ?? "http://{accountName}{host}",
     };
     super(optionsWithDefaults);
 

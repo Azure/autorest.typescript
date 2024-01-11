@@ -28,7 +28,8 @@ export interface MetadataPolicyUpdateMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type MetadataPolicyUpdateParameters = MetadataPolicyUpdateMediaTypesParam &
-  MetadataPolicyUpdateBodyParam &
-  RequestParameters;
+export type MetadataPolicyUpdateParameters =
+  MetadataPolicyUpdateMediaTypesParam &
+    MetadataPolicyUpdateBodyParam &
+    RequestParameters;
 export type MetadataPolicyGetParameters = RequestParameters;

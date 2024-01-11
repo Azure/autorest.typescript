@@ -16,13 +16,13 @@ import {
 export interface AliasOperations {
   spreadAsRequestBody: (
     name: string,
-    options?: AliasSpreadAsRequestBodyOptions
+    options?: AliasSpreadAsRequestBodyOptions,
   ) => Promise<void>;
   spreadAsRequestParameter: (
     id: string,
     xMsTestHeader: string,
     name: string,
-    options?: AliasSpreadAsRequestParameterOptions
+    options?: AliasSpreadAsRequestParameterOptions,
   ) => Promise<void>;
   spreadWithMultipleParameters: (
     id: string,
@@ -33,7 +33,7 @@ export interface AliasOperations {
     prop4: string,
     prop5: string,
     prop6: string,
-    options?: AliasSpreadWithMultipleParametersOptions
+    options?: AliasSpreadWithMultipleParametersOptions,
   ) => Promise<void>;
 }
 
@@ -41,13 +41,13 @@ export function getAlias(context: SpreadContext) {
   return {
     spreadAsRequestBody: (
       name: string,
-      options?: AliasSpreadAsRequestBodyOptions
+      options?: AliasSpreadAsRequestBodyOptions,
     ) => aliasSpreadAsRequestBody(context, name, options),
     spreadAsRequestParameter: (
       id: string,
       xMsTestHeader: string,
       name: string,
-      options?: AliasSpreadAsRequestParameterOptions
+      options?: AliasSpreadAsRequestParameterOptions,
     ) =>
       aliasSpreadAsRequestParameter(context, id, xMsTestHeader, name, options),
     spreadWithMultipleParameters: (
@@ -59,7 +59,7 @@ export function getAlias(context: SpreadContext) {
       prop4: string,
       prop5: string,
       prop6: string,
-      options?: AliasSpreadWithMultipleParametersOptions
+      options?: AliasSpreadWithMultipleParametersOptions,
     ) =>
       aliasSpreadWithMultipleParameters(
         context,
@@ -71,7 +71,7 @@ export function getAlias(context: SpreadContext) {
         prop4,
         prop5,
         prop6,
-        options
+        options,
       ),
   };
 }

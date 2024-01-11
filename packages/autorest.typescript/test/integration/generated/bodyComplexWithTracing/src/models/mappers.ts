@@ -17,23 +17,23 @@ export const BasicDef: coreClient.CompositeMapper = {
         serializedName: "id",
         nullable: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       color: {
         serializedName: "color",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ErrorModel: coreClient.CompositeMapper = {
@@ -44,17 +44,17 @@ export const ErrorModel: coreClient.CompositeMapper = {
       status: {
         serializedName: "status",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       message: {
         serializedName: "message",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const IntWrapper: coreClient.CompositeMapper = {
@@ -65,17 +65,17 @@ export const IntWrapper: coreClient.CompositeMapper = {
       field1: {
         serializedName: "field1",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       field2: {
         serializedName: "field2",
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const LongWrapper: coreClient.CompositeMapper = {
@@ -86,17 +86,17 @@ export const LongWrapper: coreClient.CompositeMapper = {
       field1: {
         serializedName: "field1",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       field2: {
         serializedName: "field2",
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const FloatWrapper: coreClient.CompositeMapper = {
@@ -107,17 +107,17 @@ export const FloatWrapper: coreClient.CompositeMapper = {
       field1: {
         serializedName: "field1",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       field2: {
         serializedName: "field2",
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const DoubleWrapper: coreClient.CompositeMapper = {
@@ -128,18 +128,19 @@ export const DoubleWrapper: coreClient.CompositeMapper = {
       field1: {
         serializedName: "field1",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
-      field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose: {
-        serializedName:
-          "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+      field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose:
+        {
+          serializedName:
+            "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose",
+          type: {
+            name: "Number",
+          },
+        },
+    },
+  },
 };
 
 export const BooleanWrapper: coreClient.CompositeMapper = {
@@ -150,17 +151,17 @@ export const BooleanWrapper: coreClient.CompositeMapper = {
       fieldTrue: {
         serializedName: "field_true",
         type: {
-          name: "Boolean"
-        }
+          name: "Boolean",
+        },
       },
       fieldFalse: {
         serializedName: "field_false",
         type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
+          name: "Boolean",
+        },
+      },
+    },
+  },
 };
 
 export const StringWrapper: coreClient.CompositeMapper = {
@@ -171,23 +172,23 @@ export const StringWrapper: coreClient.CompositeMapper = {
       field: {
         serializedName: "field",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       empty: {
         serializedName: "empty",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       null: {
         serializedName: "null",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const DateWrapper: coreClient.CompositeMapper = {
@@ -198,17 +199,17 @@ export const DateWrapper: coreClient.CompositeMapper = {
       field: {
         serializedName: "field",
         type: {
-          name: "Date"
-        }
+          name: "Date",
+        },
       },
       leap: {
         serializedName: "leap",
         type: {
-          name: "Date"
-        }
-      }
-    }
-  }
+          name: "Date",
+        },
+      },
+    },
+  },
 };
 
 export const DatetimeWrapper: coreClient.CompositeMapper = {
@@ -219,17 +220,17 @@ export const DatetimeWrapper: coreClient.CompositeMapper = {
       field: {
         serializedName: "field",
         type: {
-          name: "DateTime"
-        }
+          name: "DateTime",
+        },
       },
       now: {
         serializedName: "now",
         type: {
-          name: "DateTime"
-        }
-      }
-    }
-  }
+          name: "DateTime",
+        },
+      },
+    },
+  },
 };
 
 export const Datetimerfc1123Wrapper: coreClient.CompositeMapper = {
@@ -240,17 +241,17 @@ export const Datetimerfc1123Wrapper: coreClient.CompositeMapper = {
       field: {
         serializedName: "field",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       now: {
         serializedName: "now",
         type: {
-          name: "DateTimeRfc1123"
-        }
-      }
-    }
-  }
+          name: "DateTimeRfc1123",
+        },
+      },
+    },
+  },
 };
 
 export const DurationWrapper: coreClient.CompositeMapper = {
@@ -261,11 +262,11 @@ export const DurationWrapper: coreClient.CompositeMapper = {
       field: {
         serializedName: "field",
         type: {
-          name: "TimeSpan"
-        }
-      }
-    }
-  }
+          name: "TimeSpan",
+        },
+      },
+    },
+  },
 };
 
 export const ByteWrapper: coreClient.CompositeMapper = {
@@ -276,11 +277,11 @@ export const ByteWrapper: coreClient.CompositeMapper = {
       field: {
         serializedName: "field",
         type: {
-          name: "ByteArray"
-        }
-      }
-    }
-  }
+          name: "ByteArray",
+        },
+      },
+    },
+  },
 };
 
 export const ArrayWrapper: coreClient.CompositeMapper = {
@@ -294,13 +295,13 @@ export const ArrayWrapper: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
-  }
+              name: "String",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const DictionaryWrapper: coreClient.CompositeMapper = {
@@ -313,11 +314,11 @@ export const DictionaryWrapper: coreClient.CompositeMapper = {
         nullable: true,
         type: {
           name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
-      }
-    }
-  }
+          value: { type: { name: "String" } },
+        },
+      },
+    },
+  },
 };
 
 export const Pet: coreClient.CompositeMapper = {
@@ -328,17 +329,17 @@ export const Pet: coreClient.CompositeMapper = {
       id: {
         serializedName: "id",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Fish: coreClient.CompositeMapper = {
@@ -348,28 +349,28 @@ export const Fish: coreClient.CompositeMapper = {
     uberParent: "Fish",
     polymorphicDiscriminator: {
       serializedName: "fishtype",
-      clientName: "fishtype"
+      clientName: "fishtype",
     },
     modelProperties: {
       fishtype: {
         serializedName: "fishtype",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       species: {
         serializedName: "species",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       length: {
         serializedName: "length",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       siblings: {
         serializedName: "siblings",
@@ -378,13 +379,13 @@ export const Fish: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Fish"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "Fish",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const DotFish: coreClient.CompositeMapper = {
@@ -394,24 +395,24 @@ export const DotFish: coreClient.CompositeMapper = {
     uberParent: "DotFish",
     polymorphicDiscriminator: {
       serializedName: "fish\\.type",
-      clientName: "fishType"
+      clientName: "fishType",
     },
     modelProperties: {
       fishType: {
         serializedName: "fish\\.type",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       species: {
         serializedName: "species",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const DotFishMarket: coreClient.CompositeMapper = {
@@ -423,8 +424,8 @@ export const DotFishMarket: coreClient.CompositeMapper = {
         serializedName: "sampleSalmon",
         type: {
           name: "Composite",
-          className: "DotSalmon"
-        }
+          className: "DotSalmon",
+        },
       },
       salmons: {
         serializedName: "salmons",
@@ -433,17 +434,17 @@ export const DotFishMarket: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DotSalmon"
-            }
-          }
-        }
+              className: "DotSalmon",
+            },
+          },
+        },
       },
       sampleFish: {
         serializedName: "sampleFish",
         type: {
           name: "Composite",
-          className: "DotFish"
-        }
+          className: "DotFish",
+        },
       },
       fishes: {
         serializedName: "fishes",
@@ -452,13 +453,13 @@ export const DotFishMarket: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DotFish"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "DotFish",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const ReadonlyObj: coreClient.CompositeMapper = {
@@ -470,17 +471,17 @@ export const ReadonlyObj: coreClient.CompositeMapper = {
         serializedName: "id",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       size: {
         serializedName: "size",
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const MyBaseType: coreClient.CompositeMapper = {
@@ -490,30 +491,30 @@ export const MyBaseType: coreClient.CompositeMapper = {
     uberParent: "MyBaseType",
     polymorphicDiscriminator: {
       serializedName: "kind",
-      clientName: "kind"
+      clientName: "kind",
     },
     modelProperties: {
       kind: {
         serializedName: "kind",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       propB1: {
         serializedName: "propB1",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       propBH1: {
         serializedName: "helper.propBH1",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Dog: coreClient.CompositeMapper = {
@@ -525,11 +526,11 @@ export const Dog: coreClient.CompositeMapper = {
       food: {
         serializedName: "food",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Cat: coreClient.CompositeMapper = {
@@ -541,8 +542,8 @@ export const Cat: coreClient.CompositeMapper = {
       color: {
         serializedName: "color",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       hates: {
         serializedName: "hates",
@@ -551,13 +552,13 @@ export const Cat: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Dog"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "Dog",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const Salmon: coreClient.CompositeMapper = {
@@ -568,24 +569,24 @@ export const Salmon: coreClient.CompositeMapper = {
     uberParent: "Fish",
     polymorphicDiscriminator: {
       serializedName: "fishtype",
-      clientName: "fishtype"
+      clientName: "fishtype",
     },
     modelProperties: {
       ...Fish.type.modelProperties,
       location: {
         serializedName: "location",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       iswild: {
         serializedName: "iswild",
         type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
+          name: "Boolean",
+        },
+      },
+    },
+  },
 };
 
 export const Shark: coreClient.CompositeMapper = {
@@ -596,25 +597,25 @@ export const Shark: coreClient.CompositeMapper = {
     uberParent: "Fish",
     polymorphicDiscriminator: {
       serializedName: "fishtype",
-      clientName: "fishtype"
+      clientName: "fishtype",
     },
     modelProperties: {
       ...Fish.type.modelProperties,
       age: {
         serializedName: "age",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       birthday: {
         serializedName: "birthday",
         required: true,
         type: {
-          name: "DateTime"
-        }
-      }
-    }
-  }
+          name: "DateTime",
+        },
+      },
+    },
+  },
 };
 
 export const DotSalmon: coreClient.CompositeMapper = {
@@ -629,17 +630,17 @@ export const DotSalmon: coreClient.CompositeMapper = {
       location: {
         serializedName: "location",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       iswild: {
         serializedName: "iswild",
         type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
+          name: "Boolean",
+        },
+      },
+    },
+  },
 };
 
 export const MyDerivedType: coreClient.CompositeMapper = {
@@ -654,11 +655,11 @@ export const MyDerivedType: coreClient.CompositeMapper = {
       propD1: {
         serializedName: "propD1",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Siamese: coreClient.CompositeMapper = {
@@ -670,11 +671,11 @@ export const Siamese: coreClient.CompositeMapper = {
       breed: {
         serializedName: "breed",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const SmartSalmon: coreClient.CompositeMapper = {
@@ -690,11 +691,11 @@ export const SmartSalmon: coreClient.CompositeMapper = {
       collegeDegree: {
         serializedName: "college_degree",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Sawshark: coreClient.CompositeMapper = {
@@ -709,11 +710,11 @@ export const Sawshark: coreClient.CompositeMapper = {
       picture: {
         serializedName: "picture",
         type: {
-          name: "ByteArray"
-        }
-      }
-    }
-  }
+          name: "ByteArray",
+        },
+      },
+    },
+  },
 };
 
 export const Goblinshark: coreClient.CompositeMapper = {
@@ -728,18 +729,18 @@ export const Goblinshark: coreClient.CompositeMapper = {
       jawsize: {
         serializedName: "jawsize",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       color: {
         defaultValue: "gray",
         serializedName: "color",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Cookiecuttershark: coreClient.CompositeMapper = {
@@ -750,9 +751,9 @@ export const Cookiecuttershark: coreClient.CompositeMapper = {
     uberParent: "Shark",
     polymorphicDiscriminator: Shark.type.polymorphicDiscriminator,
     modelProperties: {
-      ...Shark.type.modelProperties
-    }
-  }
+      ...Shark.type.modelProperties,
+    },
+  },
 };
 
 export let discriminators = {
@@ -766,5 +767,5 @@ export let discriminators = {
   "Salmon.smart_salmon": SmartSalmon,
   "Shark.sawshark": Sawshark,
   "Shark.goblin": Goblinshark,
-  "Shark.cookiecuttershark": Cookiecuttershark
+  "Shark.cookiecuttershark": Cookiecuttershark,
 };

@@ -13,7 +13,7 @@ import { AuthUnionClient } from "./clientDefinitions";
  */
 export default function createClient(
   credentials: TokenCredential | KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): AuthUnionClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-auth-union-rest/1.0.0`;

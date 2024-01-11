@@ -26,10 +26,11 @@ async function getDdosProtectionStatusOfAPublicIPAddress() {
   const publicIpAddressName = "test-pip";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.publicIPAddresses.beginDdosProtectionStatusAndWait(
-    resourceGroupName,
-    publicIpAddressName
-  );
+  const result =
+    await client.publicIPAddresses.beginDdosProtectionStatusAndWait(
+      resourceGroupName,
+      publicIpAddressName,
+    );
   console.log(result);
 }
 

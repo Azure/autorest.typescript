@@ -15,7 +15,7 @@ import { PurviewAccountClient } from "./clientDefinitions";
 export function createClient(
   endpoint: string,
   credentials: TokenCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): PurviewAccountClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
 
@@ -27,22 +27,22 @@ export function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
       scopes: options.credentials?.scopes ?? [
-        "https://purview.azure.net/.default"
-      ]
-    }
+        "https://purview.azure.net/.default",
+      ],
+    },
   };
 
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as PurviewAccountClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

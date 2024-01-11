@@ -50,40 +50,40 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface ExtendsUnknownGet {
   /** Get call */
   get(
-    options?: ExtendsUnknownGetParameters
+    options?: ExtendsUnknownGetParameters,
   ): StreamableMethod<ExtendsUnknownGet200Response>;
   /** Put operation */
   put(
-    options: ExtendsUnknownPutParameters
+    options: ExtendsUnknownPutParameters,
   ): StreamableMethod<ExtendsUnknownPut204Response>;
 }
 
 export interface IsUnknownGet {
   /** Get call */
   get(
-    options?: IsUnknownGetParameters
+    options?: IsUnknownGetParameters,
   ): StreamableMethod<IsUnknownGet200Response>;
   /** Put operation */
   put(
-    options: IsUnknownPutParameters
+    options: IsUnknownPutParameters,
   ): StreamableMethod<IsUnknownPut204Response>;
 }
 
 export interface ExtendsStringGet {
   /** Get call */
   get(
-    options?: ExtendsStringGetParameters
+    options?: ExtendsStringGetParameters,
   ): StreamableMethod<ExtendsStringGet200Response>;
   /** Put operation */
   put(
-    options: ExtendsStringPutParameters
+    options: ExtendsStringPutParameters,
   ): StreamableMethod<ExtendsStringPut204Response>;
 }
 
 export interface IsStringGet {
   /** Get call */
   get(
-    options?: IsStringGetParameters
+    options?: IsStringGetParameters,
   ): StreamableMethod<IsStringGet200Response>;
   /** Put operation */
   put(options: IsStringPutParameters): StreamableMethod<IsStringPut204Response>;
@@ -92,11 +92,11 @@ export interface IsStringGet {
 export interface ExtendsFloatGet {
   /** Get call */
   get(
-    options?: ExtendsFloatGetParameters
+    options?: ExtendsFloatGetParameters,
   ): StreamableMethod<ExtendsFloatGet200Response>;
   /** Put operation */
   put(
-    options: ExtendsFloatPutParameters
+    options: ExtendsFloatPutParameters,
   ): StreamableMethod<ExtendsFloatPut204Response>;
 }
 
@@ -110,11 +110,11 @@ export interface IsFloatGet {
 export interface ExtendsModelGet {
   /** Get call */
   get(
-    options?: ExtendsModelGetParameters
+    options?: ExtendsModelGetParameters,
   ): StreamableMethod<ExtendsModelGet200Response>;
   /** Put operation */
   put(
-    options: ExtendsModelPutParameters
+    options: ExtendsModelPutParameters,
   ): StreamableMethod<ExtendsModelPut204Response>;
 }
 
@@ -128,57 +128,57 @@ export interface IsModelGet {
 export interface ExtendsModelArrayGet {
   /** Get call */
   get(
-    options?: ExtendsModelArrayGetParameters
+    options?: ExtendsModelArrayGetParameters,
   ): StreamableMethod<ExtendsModelArrayGet200Response>;
   /** Put operation */
   put(
-    options: ExtendsModelArrayPutParameters
+    options: ExtendsModelArrayPutParameters,
   ): StreamableMethod<ExtendsModelArrayPut204Response>;
 }
 
 export interface IsModelArrayGet {
   /** Get call */
   get(
-    options?: IsModelArrayGetParameters
+    options?: IsModelArrayGetParameters,
   ): StreamableMethod<IsModelArrayGet200Response>;
   /** Put operation */
   put(
-    options: IsModelArrayPutParameters
+    options: IsModelArrayPutParameters,
   ): StreamableMethod<IsModelArrayPut204Response>;
 }
 
 export interface Routes {
   /** Resource for '/type/property/additionalProperties/extendsRecordUnknown' has methods for the following verbs: get, put */
   (
-    path: "/type/property/additionalProperties/extendsRecordUnknown"
+    path: "/type/property/additionalProperties/extendsRecordUnknown",
   ): ExtendsUnknownGet;
   /** Resource for '/type/property/additionalProperties/isRecordUnknown' has methods for the following verbs: get, put */
   (path: "/type/property/additionalProperties/isRecordUnknown"): IsUnknownGet;
   /** Resource for '/type/property/additionalProperties/extendsRecordString' has methods for the following verbs: get, put */
   (
-    path: "/type/property/additionalProperties/extendsRecordString"
+    path: "/type/property/additionalProperties/extendsRecordString",
   ): ExtendsStringGet;
   /** Resource for '/type/property/additionalProperties/isRecordstring' has methods for the following verbs: get, put */
   (path: "/type/property/additionalProperties/isRecordstring"): IsStringGet;
   /** Resource for '/type/property/additionalProperties/extendsRecordFloat' has methods for the following verbs: get, put */
   (
-    path: "/type/property/additionalProperties/extendsRecordFloat"
+    path: "/type/property/additionalProperties/extendsRecordFloat",
   ): ExtendsFloatGet;
   /** Resource for '/type/property/additionalProperties/isRecordFloat' has methods for the following verbs: get, put */
   (path: "/type/property/additionalProperties/isRecordFloat"): IsFloatGet;
   /** Resource for '/type/property/additionalProperties/extendsRecordModel' has methods for the following verbs: get, put */
   (
-    path: "/type/property/additionalProperties/extendsRecordModel"
+    path: "/type/property/additionalProperties/extendsRecordModel",
   ): ExtendsModelGet;
   /** Resource for '/type/property/additionalProperties/isRecordModel' has methods for the following verbs: get, put */
   (path: "/type/property/additionalProperties/isRecordModel"): IsModelGet;
   /** Resource for '/type/property/additionalProperties/extendsRecordModelArray' has methods for the following verbs: get, put */
   (
-    path: "/type/property/additionalProperties/extendsRecordModelArray"
+    path: "/type/property/additionalProperties/extendsRecordModelArray",
   ): ExtendsModelArrayGet;
   /** Resource for '/type/property/additionalProperties/isRecordModelArray' has methods for the following verbs: get, put */
   (
-    path: "/type/property/additionalProperties/isRecordModelArray"
+    path: "/type/property/additionalProperties/isRecordModelArray",
   ): IsModelArrayGet;
 }
 

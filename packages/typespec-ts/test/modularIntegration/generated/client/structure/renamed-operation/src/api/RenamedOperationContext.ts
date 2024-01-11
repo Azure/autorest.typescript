@@ -13,7 +13,7 @@ export { ServiceContext } from "../rest/index.js";
 export function createRenamedOperation(
   endpoint: string,
   client: ClientType,
-  options: RenamedOperationClientOptions = {}
+  options: RenamedOperationClientOptions = {},
 ): ServiceContext {
   const clientContext = getClient(endpoint, client, options);
   return clientContext;

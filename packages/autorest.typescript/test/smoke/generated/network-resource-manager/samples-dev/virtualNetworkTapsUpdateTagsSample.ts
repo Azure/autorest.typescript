@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   TagsObject,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -28,14 +28,14 @@ async function updateVirtualNetworkTapTags() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const tapName = "test-vtap";
   const tapParameters: TagsObject = {
-    tags: { tag1: "value1", tag2: "value2" }
+    tags: { tag1: "value1", tag2: "value2" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkTaps.updateTags(
     resourceGroupName,
     tapName,
-    tapParameters
+    tapParameters,
   );
   console.log(result);
 }

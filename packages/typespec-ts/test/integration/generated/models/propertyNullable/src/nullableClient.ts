@@ -10,7 +10,7 @@ import { NullableClient } from "./clientDefinitions";
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): NullableClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-nullable-property-rest/1.0.0`;

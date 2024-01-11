@@ -15,7 +15,7 @@ import { ChatProtocolContext } from "./clientDefinitions.js";
 export default function createClient(
   endpoint: string,
   credentials: TokenCredential | KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): ChatProtocolContext {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
 
@@ -41,7 +41,7 @@ export default function createClient(
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as ChatProtocolContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

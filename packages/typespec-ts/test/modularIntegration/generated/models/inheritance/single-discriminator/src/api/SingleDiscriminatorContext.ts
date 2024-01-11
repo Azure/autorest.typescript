@@ -11,7 +11,7 @@ export { SingleDiscriminatorContext } from "../rest/index.js";
 
 /** Illustrates inheritance with single discriminator. */
 export function createSingleDiscriminator(
-  options: SingleDiscriminatorClientOptions = {}
+  options: SingleDiscriminatorClientOptions = {},
 ): SingleDiscriminatorContext {
   const clientContext = getClient(options);
   return clientContext;

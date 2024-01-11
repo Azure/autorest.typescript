@@ -17,7 +17,7 @@ import {
   FilesGetFileLargeOptionalParams,
   FilesGetFileLargeResponse,
   FilesGetEmptyFileOptionalParams,
-  FilesGetEmptyFileResponse
+  FilesGetEmptyFileResponse,
 } from "../models";
 
 /** Class containing Files operations. */
@@ -45,11 +45,11 @@ export class FilesImpl implements Files {
    * @param options The options parameters.
    */
   getFileLarge(
-    options?: FilesGetFileLargeOptionalParams
+    options?: FilesGetFileLargeOptionalParams,
   ): Promise<FilesGetFileLargeResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getFileLargeOperationSpec
+      getFileLargeOperationSpec,
     );
   }
 
@@ -58,11 +58,11 @@ export class FilesImpl implements Files {
    * @param options The options parameters.
    */
   getEmptyFile(
-    options?: FilesGetEmptyFileOptionalParams
+    options?: FilesGetEmptyFileOptionalParams,
   ): Promise<FilesGetEmptyFileResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getEmptyFileOperationSpec
+      getEmptyFileOperationSpec,
     );
   }
 }
@@ -74,43 +74,52 @@ const getFileOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
+      bodyMapper: {
+        type: { name: "Stream" },
+        serializedName: "parsedResponse",
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getFileLargeOperationSpec: coreClient.OperationSpec = {
   path: "/files/stream/verylarge",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
+      bodyMapper: {
+        type: { name: "Stream" },
+        serializedName: "parsedResponse",
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getEmptyFileOperationSpec: coreClient.OperationSpec = {
   path: "/files/stream/empty",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
+      bodyMapper: {
+        type: { name: "Stream" },
+        serializedName: "parsedResponse",
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

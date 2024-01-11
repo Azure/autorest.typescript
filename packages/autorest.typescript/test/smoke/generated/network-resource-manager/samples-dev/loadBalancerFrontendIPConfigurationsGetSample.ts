@@ -30,7 +30,7 @@ async function loadBalancerFrontendIPConfigurationGet() {
   const result = await client.loadBalancerFrontendIPConfigurations.get(
     resourceGroupName,
     loadBalancerName,
-    frontendIPConfigurationName
+    frontendIPConfigurationName,
   );
   console.log(result);
 }

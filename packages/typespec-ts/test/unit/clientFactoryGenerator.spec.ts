@@ -15,7 +15,7 @@ describe("Client Factory generation", () => {
       namespace PetStore;
       `);
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
@@ -68,7 +68,7 @@ describe("Client Factory generation", () => {
           scalar Endpoint extends string;
           `);
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
           import { getClient, ClientOptions } from "@azure-rest/core-client";
@@ -139,7 +139,7 @@ describe("Client Factory generation", () => {
         true
       );
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
@@ -208,7 +208,7 @@ describe("Client Factory generation", () => {
         true
       );
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
@@ -278,7 +278,7 @@ describe("Client Factory generation", () => {
         true
       );
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
@@ -334,7 +334,7 @@ describe("Client Factory generation", () => {
       namespace PetStore;
       `);
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
@@ -421,7 +421,7 @@ describe("Client Factory generation", () => {
 
       assert.ok(factoryFile);
       // console.log(factoryFile!.content);
-      assertEqualContent(
+      await assertEqualContent(
         factoryFile!.content,
         `
       import { getClient, ClientOptions } from "@azure-rest/core-client";
@@ -476,7 +476,7 @@ describe("Client Factory generation", () => {
       namespace PetStore;
       `);
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";

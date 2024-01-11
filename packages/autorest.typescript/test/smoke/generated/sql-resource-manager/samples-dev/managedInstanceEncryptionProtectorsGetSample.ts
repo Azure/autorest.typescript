@@ -31,7 +31,7 @@ async function getTheEncryptionProtector() {
   const result = await client.managedInstanceEncryptionProtectors.get(
     resourceGroupName,
     managedInstanceName,
-    encryptionProtectorName
+    encryptionProtectorName,
   );
   console.log(result);
 }

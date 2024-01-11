@@ -31,7 +31,7 @@ export enum KnownDaysOfWeekExtensibleEnum {
   /** Saturday */
   Saturday = "Saturday",
   /** Sunday */
-  Sunday = "Sunday"
+  Sunday = "Sunday",
 }
 
 /**
@@ -56,7 +56,7 @@ export enum KnownIntEnum {
   /** two */
   Two = "2",
   /** three */
-  Three = "3"
+  Three = "3",
 }
 
 /**

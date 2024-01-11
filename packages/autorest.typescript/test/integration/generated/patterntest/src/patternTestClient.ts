@@ -12,7 +12,7 @@ import * as Parameters from "./models/parameters";
 import {
   PatternTestClientOptionalParams,
   HomeOptionalParams,
-  HomeResponse
+  HomeResponse,
 } from "./models";
 
 export class PatternTestClient extends coreHttpCompat.ExtendedServiceClient {
@@ -33,7 +33,7 @@ export class PatternTestClient extends coreHttpCompat.ExtendedServiceClient {
       options = {};
     }
     const defaults: PatternTestClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-pattern-test/1.0.0-preview1`;
@@ -46,9 +46,9 @@ export class PatternTestClient extends coreHttpCompat.ExtendedServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "{$host}"
+      endpoint: options.endpoint ?? options.baseUri ?? "{$host}",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -71,10 +71,10 @@ const homeOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

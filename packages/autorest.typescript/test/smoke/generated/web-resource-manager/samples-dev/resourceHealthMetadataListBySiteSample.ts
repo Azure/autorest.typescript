@@ -31,7 +31,7 @@ async function listResourceHealthMetadataForASite() {
   const resArray = new Array();
   for await (let item of client.resourceHealthMetadataOperations.listBySite(
     resourceGroupName,
-    name
+    name,
   )) {
     resArray.push(item);
   }

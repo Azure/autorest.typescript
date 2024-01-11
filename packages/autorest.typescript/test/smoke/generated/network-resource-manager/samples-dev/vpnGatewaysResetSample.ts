@@ -28,7 +28,7 @@ async function resetVpnGateway() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnGateways.beginResetAndWait(
     resourceGroupName,
-    gatewayName
+    gatewayName,
   );
   console.log(result);
 }

@@ -2,19 +2,19 @@ import * as coreClient from "@azure/core-client";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import {
   DomainServiceOperationsImpl,
   DomainServicesImpl,
   OuContainerOperationsImpl,
-  OuContainerOperationGrpImpl
+  OuContainerOperationGrpImpl,
 } from "./operations";
 import {
   DomainServiceOperations,
   DomainServices,
   OuContainerOperations,
-  OuContainerOperationGrp
+  OuContainerOperationGrp,
 } from "./operationsInterfaces";
 import { DomainServicesClientOptionalParams } from "./models";
 
@@ -31,12 +31,12 @@ export class DomainServicesClient extends coreClient.ServiceClient {
    */
   constructor(
     subscriptionId: string,
-    options?: DomainServicesClientOptionalParams
+    options?: DomainServicesClientOptionalParams,
   );
   constructor(options?: DomainServicesClientOptionalParams);
   constructor(
     subscriptionIdOrOptions?: DomainServicesClientOptionalParams | string,
-    options?: DomainServicesClientOptionalParams
+    options?: DomainServicesClientOptionalParams,
   ) {
     let subscriptionId: string | undefined;
 
@@ -51,7 +51,7 @@ export class DomainServicesClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: DomainServicesClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-domainservices/1.0.0-preview1`;
@@ -64,10 +64,10 @@ export class DomainServicesClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
-        options.endpoint ?? options.baseUri ?? "https://management.azure.com"
+        options.endpoint ?? options.baseUri ?? "https://management.azure.com",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -92,7 +92,7 @@ export class DomainServicesClient extends coreClient.ServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -106,7 +106,7 @@ export class DomainServicesClient extends coreClient.ServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }

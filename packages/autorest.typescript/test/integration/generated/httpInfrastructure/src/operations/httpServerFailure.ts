@@ -15,7 +15,7 @@ import {
   HttpServerFailureHead501OptionalParams,
   HttpServerFailureGet501OptionalParams,
   HttpServerFailurePost505OptionalParams,
-  HttpServerFailureDelete505OptionalParams
+  HttpServerFailureDelete505OptionalParams,
 } from "../models";
 
 /** Class containing HttpServerFailure operations. */
@@ -61,7 +61,7 @@ export class HttpServerFailureImpl implements HttpServerFailure {
   delete505(options?: HttpServerFailureDelete505OptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      delete505OperationSpec
+      delete505OperationSpec,
     );
   }
 }
@@ -73,50 +73,50 @@ const head501OperationSpec: coreClient.OperationSpec = {
   httpMethod: "HEAD",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const get501OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/server/501",
   httpMethod: "GET",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const post505OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/server/505",
   httpMethod: "POST",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const delete505OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/server/505",
   httpMethod: "DELETE",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

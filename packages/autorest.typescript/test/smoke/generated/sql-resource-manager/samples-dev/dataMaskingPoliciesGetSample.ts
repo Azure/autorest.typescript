@@ -31,7 +31,7 @@ async function getDataMaskingPolicy() {
   const result = await client.dataMaskingPolicies.get(
     resourceGroupName,
     serverName,
-    databaseName
+    databaseName,
   );
   console.log(result);
 }

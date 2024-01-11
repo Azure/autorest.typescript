@@ -28,7 +28,7 @@ async function getVirtualNetworkGatewayConnectionSharedKey() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkGatewayConnections.getSharedKey(
     resourceGroupName,
-    virtualNetworkGatewayConnectionName
+    virtualNetworkGatewayConnectionName,
   );
   console.log(result);
 }

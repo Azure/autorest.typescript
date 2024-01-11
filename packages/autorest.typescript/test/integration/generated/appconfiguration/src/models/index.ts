@@ -209,7 +209,7 @@ export enum KnownGet6ItemsItem {
   /** Locked */
   Locked = "locked",
   /** Etag */
-  Etag = "etag"
+  Etag = "etag",
 }
 
 /**
@@ -245,7 +245,7 @@ export enum KnownHead6ItemsItem {
   /** Locked */
   Locked = "locked",
   /** Etag */
-  Etag = "etag"
+  Etag = "etag",
 }
 
 /**
@@ -281,7 +281,7 @@ export enum KnownGet7ItemsItem {
   /** Locked */
   Locked = "locked",
   /** Etag */
-  Etag = "etag"
+  Etag = "etag",
 }
 
 /**
@@ -317,7 +317,7 @@ export enum KnownHead7ItemsItem {
   /** Locked */
   Locked = "locked",
   /** Etag */
-  Etag = "etag"
+  Etag = "etag",
 }
 
 /**
@@ -353,7 +353,7 @@ export enum KnownEnum4 {
   /** Locked */
   Locked = "locked",
   /** Etag */
-  Etag = "etag"
+  Etag = "etag",
 }
 
 /**
@@ -389,7 +389,7 @@ export enum KnownEnum5 {
   /** Locked */
   Locked = "locked",
   /** Etag */
-  Etag = "etag"
+  Etag = "etag",
 }
 
 /**
@@ -470,7 +470,8 @@ export interface CheckKeyValuesOptionalParams
 }
 
 /** Contains response data for the checkKeyValues operation. */
-export type CheckKeyValuesResponse = AppConfigurationClientCheckKeyValuesHeaders;
+export type CheckKeyValuesResponse =
+  AppConfigurationClientCheckKeyValuesHeaders;
 
 /** Optional parameters. */
 export interface GetKeyValueOptionalParams extends coreClient.OperationOptions {
@@ -516,8 +517,8 @@ export interface DeleteKeyValueOptionalParams
 }
 
 /** Contains response data for the deleteKeyValue operation. */
-export type DeleteKeyValueResponse = AppConfigurationClientDeleteKeyValueHeaders &
-  KeyValue;
+export type DeleteKeyValueResponse =
+  AppConfigurationClientDeleteKeyValueHeaders & KeyValue;
 
 /** Optional parameters. */
 export interface CheckKeyValueOptionalParams
@@ -630,7 +631,8 @@ export interface CheckRevisionsOptionalParams
 }
 
 /** Contains response data for the checkRevisions operation. */
-export type CheckRevisionsResponse = AppConfigurationClientCheckRevisionsHeaders;
+export type CheckRevisionsResponse =
+  AppConfigurationClientCheckRevisionsHeaders;
 
 /** Optional parameters. */
 export interface GetKeysNextOptionalParams extends coreClient.OperationOptions {
@@ -650,8 +652,8 @@ export interface GetKeyValuesNextOptionalParams
 }
 
 /** Contains response data for the getKeyValuesNext operation. */
-export type GetKeyValuesNextResponse = AppConfigurationClientGetKeyValuesNextHeaders &
-  KeyValueListResult;
+export type GetKeyValuesNextResponse =
+  AppConfigurationClientGetKeyValuesNextHeaders & KeyValueListResult;
 
 /** Optional parameters. */
 export interface GetLabelsNextOptionalParams
@@ -672,8 +674,8 @@ export interface GetRevisionsNextOptionalParams
 }
 
 /** Contains response data for the getRevisionsNext operation. */
-export type GetRevisionsNextResponse = AppConfigurationClientGetRevisionsNextHeaders &
-  KeyValueListResult;
+export type GetRevisionsNextResponse =
+  AppConfigurationClientGetRevisionsNextHeaders & KeyValueListResult;
 
 /** Optional parameters. */
 export interface AppConfigurationClientOptionalParams

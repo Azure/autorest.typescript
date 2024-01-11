@@ -30,7 +30,7 @@ async function deletePacketCapture() {
   const result = await client.packetCaptures.beginDeleteAndWait(
     resourceGroupName,
     networkWatcherName,
-    packetCaptureName
+    packetCaptureName,
   );
   console.log(result);
 }

@@ -14,7 +14,7 @@ import { UrlMultiClient } from "../urlMultiClient";
 import {
   QueriesArrayStringMultiNullOptionalParams,
   QueriesArrayStringMultiEmptyOptionalParams,
-  QueriesArrayStringMultiValidOptionalParams
+  QueriesArrayStringMultiValidOptionalParams,
 } from "../models";
 
 /** Class containing Queries operations. */
@@ -34,11 +34,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   arrayStringMultiNull(
-    options?: QueriesArrayStringMultiNullOptionalParams
+    options?: QueriesArrayStringMultiNullOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      arrayStringMultiNullOperationSpec
+      arrayStringMultiNullOperationSpec,
     );
   }
 
@@ -47,11 +47,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   arrayStringMultiEmpty(
-    options?: QueriesArrayStringMultiEmptyOptionalParams
+    options?: QueriesArrayStringMultiEmptyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      arrayStringMultiEmptyOperationSpec
+      arrayStringMultiEmptyOperationSpec,
     );
   }
 
@@ -61,11 +61,11 @@ export class QueriesImpl implements Queries {
    * @param options The options parameters.
    */
   arrayStringMultiValid(
-    options?: QueriesArrayStringMultiValidOptionalParams
+    options?: QueriesArrayStringMultiValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      arrayStringMultiValidOperationSpec
+      arrayStringMultiValidOperationSpec,
     );
   }
 }
@@ -78,13 +78,13 @@ const arrayStringMultiNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.arrayQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const arrayStringMultiEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/queries/array/multi/string/empty",
@@ -92,13 +92,13 @@ const arrayStringMultiEmptyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.arrayQuery],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const arrayStringMultiValidOperationSpec: coreClient.OperationSpec = {
   path: "/queries/array/multi/string/valid",
@@ -106,11 +106,11 @@ const arrayStringMultiValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.arrayQuery1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

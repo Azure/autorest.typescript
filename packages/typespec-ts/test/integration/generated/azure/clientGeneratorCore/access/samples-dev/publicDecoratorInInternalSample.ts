@@ -15,7 +15,7 @@ async function publicDecoratorInInternalSample() {
   const client = createAccessClient();
   const result = await client
     .path(
-      "/azure/client-generator-core/access/internalOperation/publicDecoratorInInternal"
+      "/azure/client-generator-core/access/internalOperation/publicDecoratorInInternal",
     )
     .get({ queryParameters: { name: "{Your name}" } });
   console.log(result);

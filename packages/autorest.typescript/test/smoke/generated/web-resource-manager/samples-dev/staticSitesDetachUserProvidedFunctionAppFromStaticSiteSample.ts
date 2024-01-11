@@ -28,11 +28,12 @@ async function detachTheUserProvidedFunctionAppFromTheStaticSite() {
   const functionAppName = "testFunctionApp";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
-  const result = await client.staticSites.detachUserProvidedFunctionAppFromStaticSite(
-    resourceGroupName,
-    name,
-    functionAppName
-  );
+  const result =
+    await client.staticSites.detachUserProvidedFunctionAppFromStaticSite(
+      resourceGroupName,
+      name,
+      functionAppName,
+    );
   console.log(result);
 }
 

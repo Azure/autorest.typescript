@@ -16,7 +16,7 @@ export function _immediateSuccessSend(
   context: Client,
   repeatabilityRequestID: string,
   repeatabilityFirstSent: Date,
-  options: ImmediateSuccessOptions = { requestOptions: {} }
+  options: ImmediateSuccessOptions = { requestOptions: {} },
 ): StreamableMethod<ImmediateSuccess204Response> {
   return context
     .path("/special-headers/repeatability/immediateSuccess")
@@ -30,7 +30,7 @@ export function _immediateSuccessSend(
 }
 
 export async function _immediateSuccessDeserialize(
-  result: ImmediateSuccess204Response
+  result: ImmediateSuccess204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -44,13 +44,13 @@ export async function immediateSuccess(
   context: Client,
   repeatabilityRequestID: string,
   repeatabilityFirstSent: Date,
-  options: ImmediateSuccessOptions = { requestOptions: {} }
+  options: ImmediateSuccessOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _immediateSuccessSend(
     context,
     repeatabilityRequestID,
     repeatabilityFirstSent,
-    options
+    options,
   );
   return _immediateSuccessDeserialize(result);
 }

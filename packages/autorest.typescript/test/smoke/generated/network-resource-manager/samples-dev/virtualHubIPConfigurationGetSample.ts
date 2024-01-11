@@ -30,7 +30,7 @@ async function virtualHubVirtualHubRouteTableV2Get() {
   const result = await client.virtualHubIpConfiguration.get(
     resourceGroupName,
     virtualHubName,
-    ipConfigName
+    ipConfigName,
   );
   console.log(result);
 }

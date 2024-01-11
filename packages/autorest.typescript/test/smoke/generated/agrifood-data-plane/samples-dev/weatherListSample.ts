@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import createAzureAgriFoodPlatformDataPlaneServiceClient, {
-  paginate
+  paginate,
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -20,7 +20,7 @@ async function weatherList() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const initialResponse = await client
     .path("/weather")
@@ -30,8 +30,8 @@ async function weatherList() {
         boundaryId: "BOUNDARY123",
         extensionId: "DTN.ClearAg",
         weatherDataType: "Historical",
-        granularity: "Daily"
-      }
+        granularity: "Daily",
+      },
     });
   const pageData = paginate(client, initialResponse);
   const result = [];

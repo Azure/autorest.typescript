@@ -30,7 +30,7 @@ async function listServerTrustGroups() {
   const resArray = new Array();
   for await (let item of client.serverTrustGroups.listByLocation(
     resourceGroupName,
-    locationName
+    locationName,
   )) {
     resArray.push(item);
   }

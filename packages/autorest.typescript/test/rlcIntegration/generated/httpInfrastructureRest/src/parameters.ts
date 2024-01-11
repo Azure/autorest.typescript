@@ -62,9 +62,10 @@ export interface HttpSuccessDelete200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpSuccessDelete200Parameters = HttpSuccessDelete200MediaTypesParam &
-  HttpSuccessDelete200BodyParam &
-  RequestParameters;
+export type HttpSuccessDelete200Parameters =
+  HttpSuccessDelete200MediaTypesParam &
+    HttpSuccessDelete200BodyParam &
+    RequestParameters;
 
 export interface HttpSuccessPut201BodyParam {
   /** Simple boolean value true */
@@ -146,9 +147,10 @@ export interface HttpSuccessDelete202MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpSuccessDelete202Parameters = HttpSuccessDelete202MediaTypesParam &
-  HttpSuccessDelete202BodyParam &
-  RequestParameters;
+export type HttpSuccessDelete202Parameters =
+  HttpSuccessDelete202MediaTypesParam &
+    HttpSuccessDelete202BodyParam &
+    RequestParameters;
 export type HttpSuccessHead204Parameters = RequestParameters;
 
 export interface HttpSuccessPut204BodyParam {
@@ -203,9 +205,10 @@ export interface HttpSuccessDelete204MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpSuccessDelete204Parameters = HttpSuccessDelete204MediaTypesParam &
-  HttpSuccessDelete204BodyParam &
-  RequestParameters;
+export type HttpSuccessDelete204Parameters =
+  HttpSuccessDelete204MediaTypesParam &
+    HttpSuccessDelete204BodyParam &
+    RequestParameters;
 export type HttpSuccessHead404Parameters = RequestParameters;
 export type HttpRedirectsHead300Parameters = RequestParameters;
 export type HttpRedirectsGet300Parameters = RequestParameters;
@@ -238,9 +241,10 @@ export interface HttpRedirectsPatch302MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpRedirectsPatch302Parameters = HttpRedirectsPatch302MediaTypesParam &
-  HttpRedirectsPatch302BodyParam &
-  RequestParameters;
+export type HttpRedirectsPatch302Parameters =
+  HttpRedirectsPatch302MediaTypesParam &
+    HttpRedirectsPatch302BodyParam &
+    RequestParameters;
 
 export interface HttpRedirectsPost303BodyParam {
   /** Simple boolean value true */
@@ -252,9 +256,10 @@ export interface HttpRedirectsPost303MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpRedirectsPost303Parameters = HttpRedirectsPost303MediaTypesParam &
-  HttpRedirectsPost303BodyParam &
-  RequestParameters;
+export type HttpRedirectsPost303Parameters =
+  HttpRedirectsPost303MediaTypesParam &
+    HttpRedirectsPost303BodyParam &
+    RequestParameters;
 export type HttpRedirectsHead307Parameters = RequestParameters;
 export type HttpRedirectsGet307Parameters = RequestParameters;
 export type HttpRedirectsOptions307Parameters = RequestParameters;
@@ -283,9 +288,10 @@ export interface HttpRedirectsPatch307MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpRedirectsPatch307Parameters = HttpRedirectsPatch307MediaTypesParam &
-  HttpRedirectsPatch307BodyParam &
-  RequestParameters;
+export type HttpRedirectsPatch307Parameters =
+  HttpRedirectsPatch307MediaTypesParam &
+    HttpRedirectsPatch307BodyParam &
+    RequestParameters;
 
 export interface HttpRedirectsPost307BodyParam {
   /** Simple boolean value true */
@@ -297,9 +303,10 @@ export interface HttpRedirectsPost307MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpRedirectsPost307Parameters = HttpRedirectsPost307MediaTypesParam &
-  HttpRedirectsPost307BodyParam &
-  RequestParameters;
+export type HttpRedirectsPost307Parameters =
+  HttpRedirectsPost307MediaTypesParam &
+    HttpRedirectsPost307BodyParam &
+    RequestParameters;
 
 export interface HttpRedirectsDelete307BodyParam {
   /** Simple boolean value true */
@@ -311,9 +318,10 @@ export interface HttpRedirectsDelete307MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpRedirectsDelete307Parameters = HttpRedirectsDelete307MediaTypesParam &
-  HttpRedirectsDelete307BodyParam &
-  RequestParameters;
+export type HttpRedirectsDelete307Parameters =
+  HttpRedirectsDelete307MediaTypesParam &
+    HttpRedirectsDelete307BodyParam &
+    RequestParameters;
 export type HttpClientFailureHead400Parameters = RequestParameters;
 export type HttpClientFailureGet400Parameters = RequestParameters;
 export type HttpClientFailureOptions400Parameters = RequestParameters;
@@ -328,9 +336,10 @@ export interface HttpClientFailurePut400MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpClientFailurePut400Parameters = HttpClientFailurePut400MediaTypesParam &
-  HttpClientFailurePut400BodyParam &
-  RequestParameters;
+export type HttpClientFailurePut400Parameters =
+  HttpClientFailurePut400MediaTypesParam &
+    HttpClientFailurePut400BodyParam &
+    RequestParameters;
 
 export interface HttpClientFailurePatch400BodyParam {
   /** Simple boolean value true */
@@ -342,9 +351,10 @@ export interface HttpClientFailurePatch400MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpClientFailurePatch400Parameters = HttpClientFailurePatch400MediaTypesParam &
-  HttpClientFailurePatch400BodyParam &
-  RequestParameters;
+export type HttpClientFailurePatch400Parameters =
+  HttpClientFailurePatch400MediaTypesParam &
+    HttpClientFailurePatch400BodyParam &
+    RequestParameters;
 
 export interface HttpClientFailurePost400BodyParam {
   /** Simple boolean value true */
@@ -356,9 +366,10 @@ export interface HttpClientFailurePost400MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpClientFailurePost400Parameters = HttpClientFailurePost400MediaTypesParam &
-  HttpClientFailurePost400BodyParam &
-  RequestParameters;
+export type HttpClientFailurePost400Parameters =
+  HttpClientFailurePost400MediaTypesParam &
+    HttpClientFailurePost400BodyParam &
+    RequestParameters;
 
 export interface HttpClientFailureDelete400BodyParam {
   /** Simple boolean value true */
@@ -370,9 +381,10 @@ export interface HttpClientFailureDelete400MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpClientFailureDelete400Parameters = HttpClientFailureDelete400MediaTypesParam &
-  HttpClientFailureDelete400BodyParam &
-  RequestParameters;
+export type HttpClientFailureDelete400Parameters =
+  HttpClientFailureDelete400MediaTypesParam &
+    HttpClientFailureDelete400BodyParam &
+    RequestParameters;
 export type HttpClientFailureHead401Parameters = RequestParameters;
 export type HttpClientFailureGet402Parameters = RequestParameters;
 export type HttpClientFailureOptions403Parameters = RequestParameters;
@@ -388,9 +400,10 @@ export interface HttpClientFailurePut404MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpClientFailurePut404Parameters = HttpClientFailurePut404MediaTypesParam &
-  HttpClientFailurePut404BodyParam &
-  RequestParameters;
+export type HttpClientFailurePut404Parameters =
+  HttpClientFailurePut404MediaTypesParam &
+    HttpClientFailurePut404BodyParam &
+    RequestParameters;
 
 export interface HttpClientFailurePatch405BodyParam {
   /** Simple boolean value true */
@@ -402,9 +415,10 @@ export interface HttpClientFailurePatch405MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpClientFailurePatch405Parameters = HttpClientFailurePatch405MediaTypesParam &
-  HttpClientFailurePatch405BodyParam &
-  RequestParameters;
+export type HttpClientFailurePatch405Parameters =
+  HttpClientFailurePatch405MediaTypesParam &
+    HttpClientFailurePatch405BodyParam &
+    RequestParameters;
 
 export interface HttpClientFailurePost406BodyParam {
   /** Simple boolean value true */
@@ -416,9 +430,10 @@ export interface HttpClientFailurePost406MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpClientFailurePost406Parameters = HttpClientFailurePost406MediaTypesParam &
-  HttpClientFailurePost406BodyParam &
-  RequestParameters;
+export type HttpClientFailurePost406Parameters =
+  HttpClientFailurePost406MediaTypesParam &
+    HttpClientFailurePost406BodyParam &
+    RequestParameters;
 
 export interface HttpClientFailureDelete407BodyParam {
   /** Simple boolean value true */
@@ -430,9 +445,10 @@ export interface HttpClientFailureDelete407MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpClientFailureDelete407Parameters = HttpClientFailureDelete407MediaTypesParam &
-  HttpClientFailureDelete407BodyParam &
-  RequestParameters;
+export type HttpClientFailureDelete407Parameters =
+  HttpClientFailureDelete407MediaTypesParam &
+    HttpClientFailureDelete407BodyParam &
+    RequestParameters;
 
 export interface HttpClientFailurePut409BodyParam {
   /** Simple boolean value true */
@@ -444,9 +460,10 @@ export interface HttpClientFailurePut409MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpClientFailurePut409Parameters = HttpClientFailurePut409MediaTypesParam &
-  HttpClientFailurePut409BodyParam &
-  RequestParameters;
+export type HttpClientFailurePut409Parameters =
+  HttpClientFailurePut409MediaTypesParam &
+    HttpClientFailurePut409BodyParam &
+    RequestParameters;
 export type HttpClientFailureHead410Parameters = RequestParameters;
 export type HttpClientFailureGet411Parameters = RequestParameters;
 export type HttpClientFailureOptions412Parameters = RequestParameters;
@@ -462,9 +479,10 @@ export interface HttpClientFailurePut413MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpClientFailurePut413Parameters = HttpClientFailurePut413MediaTypesParam &
-  HttpClientFailurePut413BodyParam &
-  RequestParameters;
+export type HttpClientFailurePut413Parameters =
+  HttpClientFailurePut413MediaTypesParam &
+    HttpClientFailurePut413BodyParam &
+    RequestParameters;
 
 export interface HttpClientFailurePatch414BodyParam {
   /** Simple boolean value true */
@@ -476,9 +494,10 @@ export interface HttpClientFailurePatch414MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpClientFailurePatch414Parameters = HttpClientFailurePatch414MediaTypesParam &
-  HttpClientFailurePatch414BodyParam &
-  RequestParameters;
+export type HttpClientFailurePatch414Parameters =
+  HttpClientFailurePatch414MediaTypesParam &
+    HttpClientFailurePatch414BodyParam &
+    RequestParameters;
 
 export interface HttpClientFailurePost415BodyParam {
   /** Simple boolean value true */
@@ -490,9 +509,10 @@ export interface HttpClientFailurePost415MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpClientFailurePost415Parameters = HttpClientFailurePost415MediaTypesParam &
-  HttpClientFailurePost415BodyParam &
-  RequestParameters;
+export type HttpClientFailurePost415Parameters =
+  HttpClientFailurePost415MediaTypesParam &
+    HttpClientFailurePost415BodyParam &
+    RequestParameters;
 export type HttpClientFailureGet416Parameters = RequestParameters;
 
 export interface HttpClientFailureDelete417BodyParam {
@@ -505,9 +525,10 @@ export interface HttpClientFailureDelete417MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpClientFailureDelete417Parameters = HttpClientFailureDelete417MediaTypesParam &
-  HttpClientFailureDelete417BodyParam &
-  RequestParameters;
+export type HttpClientFailureDelete417Parameters =
+  HttpClientFailureDelete417MediaTypesParam &
+    HttpClientFailureDelete417BodyParam &
+    RequestParameters;
 export type HttpClientFailureHead429Parameters = RequestParameters;
 export type HttpServerFailureHead501Parameters = RequestParameters;
 export type HttpServerFailureGet501Parameters = RequestParameters;
@@ -522,9 +543,10 @@ export interface HttpServerFailurePost505MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpServerFailurePost505Parameters = HttpServerFailurePost505MediaTypesParam &
-  HttpServerFailurePost505BodyParam &
-  RequestParameters;
+export type HttpServerFailurePost505Parameters =
+  HttpServerFailurePost505MediaTypesParam &
+    HttpServerFailurePost505BodyParam &
+    RequestParameters;
 
 export interface HttpServerFailureDelete505BodyParam {
   /** Simple boolean value true */
@@ -536,9 +558,10 @@ export interface HttpServerFailureDelete505MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type HttpServerFailureDelete505Parameters = HttpServerFailureDelete505MediaTypesParam &
-  HttpServerFailureDelete505BodyParam &
-  RequestParameters;
+export type HttpServerFailureDelete505Parameters =
+  HttpServerFailureDelete505MediaTypesParam &
+    HttpServerFailureDelete505BodyParam &
+    RequestParameters;
 export type HttpRetryHead408Parameters = RequestParameters;
 
 export interface HttpRetryPut500BodyParam {
@@ -626,37 +649,66 @@ export interface HttpRetryPatch504MediaTypesParam {
 export type HttpRetryPatch504Parameters = HttpRetryPatch504MediaTypesParam &
   HttpRetryPatch504BodyParam &
   RequestParameters;
-export type MultipleResponsesGet200Model204NoModelDefaultError200ValidParameters = RequestParameters;
-export type MultipleResponsesGet200Model204NoModelDefaultError204ValidParameters = RequestParameters;
-export type MultipleResponsesGet200Model204NoModelDefaultError201InvalidParameters = RequestParameters;
-export type MultipleResponsesGet200Model204NoModelDefaultError202NoneParameters = RequestParameters;
-export type MultipleResponsesGet200Model204NoModelDefaultError400ValidParameters = RequestParameters;
-export type MultipleResponsesGet200Model201ModelDefaultError200ValidParameters = RequestParameters;
-export type MultipleResponsesGet200Model201ModelDefaultError201ValidParameters = RequestParameters;
-export type MultipleResponsesGet200Model201ModelDefaultError400ValidParameters = RequestParameters;
-export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidParameters = RequestParameters;
-export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidParameters = RequestParameters;
-export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidParameters = RequestParameters;
-export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidParameters = RequestParameters;
-export type MultipleResponsesGet202None204NoneDefaultError202NoneParameters = RequestParameters;
-export type MultipleResponsesGet202None204NoneDefaultError204NoneParameters = RequestParameters;
-export type MultipleResponsesGet202None204NoneDefaultError400ValidParameters = RequestParameters;
-export type MultipleResponsesGet202None204NoneDefaultNone202InvalidParameters = RequestParameters;
-export type MultipleResponsesGet202None204NoneDefaultNone204NoneParameters = RequestParameters;
-export type MultipleResponsesGet202None204NoneDefaultNone400NoneParameters = RequestParameters;
-export type MultipleResponsesGet202None204NoneDefaultNone400InvalidParameters = RequestParameters;
-export type MultipleResponsesGetDefaultModelA200ValidParameters = RequestParameters;
-export type MultipleResponsesGetDefaultModelA200NoneParameters = RequestParameters;
-export type MultipleResponsesGetDefaultModelA400ValidParameters = RequestParameters;
-export type MultipleResponsesGetDefaultModelA400NoneParameters = RequestParameters;
-export type MultipleResponsesGetDefaultNone200InvalidParameters = RequestParameters;
-export type MultipleResponsesGetDefaultNone200NoneParameters = RequestParameters;
-export type MultipleResponsesGetDefaultNone400InvalidParameters = RequestParameters;
-export type MultipleResponsesGetDefaultNone400NoneParameters = RequestParameters;
+export type MultipleResponsesGet200Model204NoModelDefaultError200ValidParameters =
+  RequestParameters;
+export type MultipleResponsesGet200Model204NoModelDefaultError204ValidParameters =
+  RequestParameters;
+export type MultipleResponsesGet200Model204NoModelDefaultError201InvalidParameters =
+  RequestParameters;
+export type MultipleResponsesGet200Model204NoModelDefaultError202NoneParameters =
+  RequestParameters;
+export type MultipleResponsesGet200Model204NoModelDefaultError400ValidParameters =
+  RequestParameters;
+export type MultipleResponsesGet200Model201ModelDefaultError200ValidParameters =
+  RequestParameters;
+export type MultipleResponsesGet200Model201ModelDefaultError201ValidParameters =
+  RequestParameters;
+export type MultipleResponsesGet200Model201ModelDefaultError400ValidParameters =
+  RequestParameters;
+export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidParameters =
+  RequestParameters;
+export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidParameters =
+  RequestParameters;
+export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidParameters =
+  RequestParameters;
+export type MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidParameters =
+  RequestParameters;
+export type MultipleResponsesGet202None204NoneDefaultError202NoneParameters =
+  RequestParameters;
+export type MultipleResponsesGet202None204NoneDefaultError204NoneParameters =
+  RequestParameters;
+export type MultipleResponsesGet202None204NoneDefaultError400ValidParameters =
+  RequestParameters;
+export type MultipleResponsesGet202None204NoneDefaultNone202InvalidParameters =
+  RequestParameters;
+export type MultipleResponsesGet202None204NoneDefaultNone204NoneParameters =
+  RequestParameters;
+export type MultipleResponsesGet202None204NoneDefaultNone400NoneParameters =
+  RequestParameters;
+export type MultipleResponsesGet202None204NoneDefaultNone400InvalidParameters =
+  RequestParameters;
+export type MultipleResponsesGetDefaultModelA200ValidParameters =
+  RequestParameters;
+export type MultipleResponsesGetDefaultModelA200NoneParameters =
+  RequestParameters;
+export type MultipleResponsesGetDefaultModelA400ValidParameters =
+  RequestParameters;
+export type MultipleResponsesGetDefaultModelA400NoneParameters =
+  RequestParameters;
+export type MultipleResponsesGetDefaultNone200InvalidParameters =
+  RequestParameters;
+export type MultipleResponsesGetDefaultNone200NoneParameters =
+  RequestParameters;
+export type MultipleResponsesGetDefaultNone400InvalidParameters =
+  RequestParameters;
+export type MultipleResponsesGetDefaultNone400NoneParameters =
+  RequestParameters;
 export type MultipleResponsesGet200ModelA200NoneParameters = RequestParameters;
 export type MultipleResponsesGet200ModelA200ValidParameters = RequestParameters;
-export type MultipleResponsesGet200ModelA200InvalidParameters = RequestParameters;
+export type MultipleResponsesGet200ModelA200InvalidParameters =
+  RequestParameters;
 export type MultipleResponsesGet200ModelA400NoneParameters = RequestParameters;
 export type MultipleResponsesGet200ModelA400ValidParameters = RequestParameters;
-export type MultipleResponsesGet200ModelA400InvalidParameters = RequestParameters;
+export type MultipleResponsesGet200ModelA400InvalidParameters =
+  RequestParameters;
 export type MultipleResponsesGet200ModelA202ValidParameters = RequestParameters;

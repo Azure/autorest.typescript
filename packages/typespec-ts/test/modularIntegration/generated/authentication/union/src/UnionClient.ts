@@ -22,7 +22,7 @@ export class UnionClient {
   /** Illustrates clients generated with ApiKey and OAuth2 authentication. */
   constructor(
     credential: KeyCredential | TokenCredential,
-    options: UnionClientOptions = {}
+    options: UnionClientOptions = {},
   ) {
     this._client = createUnion(credential, options);
     this.pipeline = this._client.pipeline;
@@ -35,7 +35,7 @@ export class UnionClient {
 
   /** Check whether client is authenticated */
   validToken(
-    options: ValidTokenOptions = { requestOptions: {} }
+    options: ValidTokenOptions = { requestOptions: {} },
   ): Promise<void> {
     return validToken(this._client, options);
   }

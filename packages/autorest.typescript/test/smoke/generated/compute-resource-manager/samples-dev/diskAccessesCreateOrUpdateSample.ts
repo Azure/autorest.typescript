@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   DiskAccess,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,7 +33,7 @@ async function createADiskAccessResource() {
   const result = await client.diskAccesses.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskAccessName,
-    diskAccess
+    diskAccess,
   );
   console.log(result);
 }

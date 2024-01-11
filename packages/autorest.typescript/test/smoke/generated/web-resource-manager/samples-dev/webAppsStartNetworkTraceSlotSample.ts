@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   WebAppsStartNetworkTraceSlotOptionalParams,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,7 +31,7 @@ async function startANewNetworkTraceOperationForASite() {
   const durationInSeconds = 60;
   const slot = "Production";
   const options: WebAppsStartNetworkTraceSlotOptionalParams = {
-    durationInSeconds
+    durationInSeconds,
   };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
@@ -39,7 +39,7 @@ async function startANewNetworkTraceOperationForASite() {
     resourceGroupName,
     name,
     slot,
-    options
+    options,
   );
   console.log(result);
 }

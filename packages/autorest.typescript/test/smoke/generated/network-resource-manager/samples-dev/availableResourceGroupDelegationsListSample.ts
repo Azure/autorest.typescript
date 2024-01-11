@@ -29,7 +29,7 @@ async function getAvailableDelegationsInTheResourceGroup() {
   const resArray = new Array();
   for await (let item of client.availableResourceGroupDelegations.list(
     location,
-    resourceGroupName
+    resourceGroupName,
   )) {
     resArray.push(item);
   }

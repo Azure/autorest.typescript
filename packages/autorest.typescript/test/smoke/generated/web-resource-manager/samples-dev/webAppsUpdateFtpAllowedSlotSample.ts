@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   CsmPublishingCredentialsPoliciesEntity,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,16 +29,15 @@ async function updateFtpAllowed() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg";
   const name = "testSite";
   const slot = "stage";
-  const csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity = {
-    allow: true
-  };
+  const csmPublishingAccessPoliciesEntity: CsmPublishingCredentialsPoliciesEntity =
+    { allow: true };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.webApps.updateFtpAllowedSlot(
     resourceGroupName,
     name,
     slot,
-    csmPublishingAccessPoliciesEntity
+    csmPublishingAccessPoliciesEntity,
   );
   console.log(result);
 }

@@ -22,7 +22,7 @@ async function getDeploymentSample() {
     .path(
       "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}",
       projectName,
-      deploymentName
+      deploymentName,
     )
     .get();
   console.log(result);

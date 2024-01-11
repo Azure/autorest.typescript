@@ -595,7 +595,7 @@ export enum KnownQueryLanguage {
   /** Query language value for Telugu (India). */
   TeIn = "te-in",
   /** Query language value for Urdu (Pakistan). */
-  UrPk = "ur-pk"
+  UrPk = "ur-pk",
 }
 
 /**
@@ -683,7 +683,7 @@ export enum KnownSpeller {
   /** Speller not enabled. */
   None = "none",
   /** Speller corrects individual query terms using a static lexicon for the language specified by the queryLanguage parameter. */
-  Lexicon = "lexicon"
+  Lexicon = "lexicon",
 }
 
 /**
@@ -701,7 +701,7 @@ export enum KnownAnswers {
   /** Do not return answers for the query. */
   None = "none",
   /** Extracts answer candidates from the contents of the documents returned in response to a query expressed as a question in natural language. */
-  Extractive = "extractive"
+  Extractive = "extractive",
 }
 
 /**
@@ -719,7 +719,7 @@ export enum KnownCaptions {
   /** Do not return captions for the query. */
   None = "none",
   /** Extracts captions from the matching documents that contain passages relevant to the search query. */
-  Extractive = "extractive"
+  Extractive = "extractive",
 }
 
 /**
@@ -737,7 +737,7 @@ export enum KnownQuerySpellerType {
   /** Speller not enabled. */
   None = "none",
   /** Speller corrects individual query terms using a static lexicon for the language specified by the queryLanguage parameter. */
-  Lexicon = "lexicon"
+  Lexicon = "lexicon",
 }
 
 /**
@@ -755,7 +755,7 @@ export enum KnownQueryAnswerType {
   /** Do not return answers for the query. */
   None = "none",
   /** Extracts answer candidates from the contents of the documents returned in response to a query expressed as a question in natural language. */
-  Extractive = "extractive"
+  Extractive = "extractive",
 }
 
 /**
@@ -773,7 +773,7 @@ export enum KnownQueryCaptionType {
   /** Do not return captions for the query. */
   None = "none",
   /** Extracts captions from the matching documents that contain passages relevant to the search query. */
-  Extractive = "extractive"
+  Extractive = "extractive",
 }
 
 /**

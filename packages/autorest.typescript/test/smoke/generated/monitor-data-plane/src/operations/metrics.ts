@@ -14,7 +14,7 @@ import { MonitorClient } from "../monitorClient";
 import {
   AzureMetricsDocument,
   MetricsCreateOptionalParams,
-  MetricsCreateResponse
+  MetricsCreateResponse,
 } from "../models";
 
 /** Class containing Metrics operations. */
@@ -53,7 +53,7 @@ export class MetricsImpl implements Metrics {
     resourceTypeName: string,
     resourceName: string,
     body: AzureMetricsDocument,
-    options?: MetricsCreateOptionalParams
+    options?: MetricsCreateOptionalParams,
   ): Promise<MetricsCreateResponse> {
     return this.client.sendOperationRequest(
       {
@@ -66,9 +66,9 @@ export class MetricsImpl implements Metrics {
         resourceTypeName,
         resourceName,
         body,
-        options
+        options,
       },
-      createOperationSpec
+      createOperationSpec,
     );
   }
 }
@@ -76,16 +76,15 @@ export class MetricsImpl implements Metrics {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const createOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProvider}/{resourceTypeName}/{resourceName}/metrics",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProvider}/{resourceTypeName}/{resourceName}/metrics",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.AzureMetricsResult
+      bodyMapper: Mappers.AzureMetricsResult,
     },
     default: {
-      bodyMapper: Mappers.AzureMetricsResult
-    }
+      bodyMapper: Mappers.AzureMetricsResult,
+    },
   },
   requestBody: Parameters.body,
   urlParameters: [
@@ -94,14 +93,14 @@ const createOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.resourceProvider,
     Parameters.resourceTypeName,
-    Parameters.resourceName
+    Parameters.resourceName,
   ],
   headerParameters: [
     Parameters.accept,
     Parameters.contentType,
     Parameters.contentLength,
-    Parameters.authorization
+    Parameters.authorization,
   ],
   mediaType: "json",
-  serializer
+  serializer,
 };

@@ -13,7 +13,7 @@ import {
   SkipUrlEncodingGetMethodQueryValidOptionalParams,
   SkipUrlEncodingGetMethodQueryNullOptionalParams,
   SkipUrlEncodingGetPathQueryValidOptionalParams,
-  SkipUrlEncodingGetSwaggerQueryValidOptionalParams
+  SkipUrlEncodingGetSwaggerQueryValidOptionalParams,
 } from "../models";
 
 /** Interface representing a SkipUrlEncoding. */
@@ -25,7 +25,7 @@ export interface SkipUrlEncoding {
    */
   getMethodPathValid(
     unencodedPathParam: string,
-    options?: SkipUrlEncodingGetMethodPathValidOptionalParams
+    options?: SkipUrlEncodingGetMethodPathValidOptionalParams,
   ): Promise<void>;
   /**
    * Get method with unencoded path parameter with value 'path1/path2/path3'
@@ -34,14 +34,14 @@ export interface SkipUrlEncoding {
    */
   getPathValid(
     unencodedPathParam: string,
-    options?: SkipUrlEncodingGetPathValidOptionalParams
+    options?: SkipUrlEncodingGetPathValidOptionalParams,
   ): Promise<void>;
   /**
    * Get method with unencoded path parameter with value 'path1/path2/path3'
    * @param options The options parameters.
    */
   getSwaggerPathValid(
-    options?: SkipUrlEncodingGetSwaggerPathValidOptionalParams
+    options?: SkipUrlEncodingGetSwaggerPathValidOptionalParams,
   ): Promise<void>;
   /**
    * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
@@ -50,14 +50,14 @@ export interface SkipUrlEncoding {
    */
   getMethodQueryValid(
     q1: string,
-    options?: SkipUrlEncodingGetMethodQueryValidOptionalParams
+    options?: SkipUrlEncodingGetMethodQueryValidOptionalParams,
   ): Promise<void>;
   /**
    * Get method with unencoded query parameter with value null
    * @param options The options parameters.
    */
   getMethodQueryNull(
-    options?: SkipUrlEncodingGetMethodQueryNullOptionalParams
+    options?: SkipUrlEncodingGetMethodQueryNullOptionalParams,
   ): Promise<void>;
   /**
    * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
@@ -66,13 +66,13 @@ export interface SkipUrlEncoding {
    */
   getPathQueryValid(
     q1: string,
-    options?: SkipUrlEncodingGetPathQueryValidOptionalParams
+    options?: SkipUrlEncodingGetPathQueryValidOptionalParams,
   ): Promise<void>;
   /**
    * Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'
    * @param options The options parameters.
    */
   getSwaggerQueryValid(
-    options?: SkipUrlEncodingGetSwaggerQueryValidOptionalParams
+    options?: SkipUrlEncodingGetSwaggerQueryValidOptionalParams,
   ): Promise<void>;
 }

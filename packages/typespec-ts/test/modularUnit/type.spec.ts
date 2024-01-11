@@ -12,7 +12,7 @@ describe("model type", () => {
         op read(@body body: Test): void;
         `);
       assert.ok(modelFile);
-      assertEqualContent(
+      await assertEqualContent(
         modelFile!.getFullText()!,
         `
         export interface Test {
@@ -33,7 +33,7 @@ describe("model type", () => {
         op read(@body body: Test): void;
         `);
       assert.ok(modelFile);
-      assertEqualContent(
+      await assertEqualContent(
         modelFile!.getFullText()!,
         `
         export interface Test {
@@ -50,7 +50,7 @@ describe("model type", () => {
         op read(@body body: Test): void;
         `);
       assert.ok(modelFile);
-      assertEqualContent(
+      await assertEqualContent(
         modelFile!.getFullText()!,
         `
         export interface Test {
@@ -67,7 +67,7 @@ describe("model type", () => {
         op read(@body body: Test): void;
         `);
       assert.ok(modelFile);
-      assertEqualContent(
+      await assertEqualContent(
         modelFile!.getFullText()!,
         `
         export interface Test {
@@ -86,7 +86,7 @@ describe("model type", () => {
         op read(@body body: Test): void;
         `);
       assert.ok(modelFile);
-      assertEqualContent(
+      await assertEqualContent(
         modelFile!.getFullText()!,
         `
         export interface Test {
@@ -107,7 +107,7 @@ describe("model type", () => {
         op read(@body body: Test): void;
         `);
       assert.ok(modelFile);
-      assertEqualContent(
+      await assertEqualContent(
         modelFile!.getFullText()!,
         `
         export interface Test {
@@ -124,7 +124,7 @@ describe("model type", () => {
         op read(@body body: Test): void;
         `);
       assert.ok(modelFile);
-      assertEqualContent(
+      await assertEqualContent(
         modelFile!.getFullText()!,
         `
         export interface Test {
@@ -141,7 +141,7 @@ describe("model type", () => {
         op read(@body body: Test): void;
         `);
       assert.ok(modelFile);
-      assertEqualContent(
+      await assertEqualContent(
         modelFile!.getFullText()!,
         `
         export interface Test {

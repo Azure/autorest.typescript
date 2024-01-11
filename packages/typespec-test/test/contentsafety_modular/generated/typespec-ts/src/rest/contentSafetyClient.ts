@@ -16,7 +16,7 @@ import { ContentSafetyContext } from "./clientDefinitions.js";
 export default function createClient(
   endpoint: string,
   credentials: TokenCredential | KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): ContentSafetyContext {
   const baseUrl = options.baseUrl ?? `${endpoint}/contentsafety`;
   options.apiVersion = options.apiVersion ?? "2023-10-01";
@@ -45,7 +45,7 @@ export default function createClient(
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as ContentSafetyContext;
 
   return client;

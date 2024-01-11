@@ -10,7 +10,7 @@ import { CollectionFormatContext } from "./clientDefinitions.js";
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): CollectionFormatContext {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-azure-collection-format-rest/1.0.0-beta.1`;

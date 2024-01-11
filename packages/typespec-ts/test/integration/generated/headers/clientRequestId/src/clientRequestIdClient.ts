@@ -10,7 +10,7 @@ import { ClientRequestIdClient } from "./clientDefinitions";
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): ClientRequestIdClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-client-request-id-rest/1.0.0-beta.1`;

@@ -30,7 +30,7 @@ async function getVirtualRouterPeering() {
   const result = await client.virtualRouterPeerings.get(
     resourceGroupName,
     virtualRouterName,
-    peeringName
+    peeringName,
   );
   console.log(result);
 }

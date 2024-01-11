@@ -46,7 +46,7 @@ export function extractDefinedPosition(
   } else if (operationApiVersion?.definedPosition) {
     pos = operationApiVersion.definedPosition!;
   } else if (urlVersionDetail) {
-    pos = "url";
+    pos = "baseurl";
   }
   return pos;
 }

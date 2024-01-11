@@ -13,7 +13,7 @@ import { AuthHttpCustomClient } from "./clientDefinitions";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): AuthHttpCustomClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-auth-httpcustom-rest/1.0.0`;
@@ -40,7 +40,7 @@ export default function createClient(
     async sendRequest(request, next) {
       request.headers.set(
         "Authorization",
-        "SharedAccessKey " + credentials.key
+        "SharedAccessKey " + credentials.key,
       );
       return next(request);
     },

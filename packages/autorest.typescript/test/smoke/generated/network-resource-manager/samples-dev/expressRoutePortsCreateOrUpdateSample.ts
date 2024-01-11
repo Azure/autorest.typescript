@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ExpressRoutePort,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,14 +32,14 @@ async function expressRoutePortCreate() {
     billingType: "UnlimitedData",
     encapsulation: "QinQ",
     location: "westus",
-    peeringLocation: "peeringLocationName"
+    peeringLocation: "peeringLocationName",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRoutePorts.beginCreateOrUpdateAndWait(
     resourceGroupName,
     expressRoutePortName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -60,14 +60,14 @@ async function expressRoutePortUpdateLink() {
     encapsulation: "QinQ",
     links: [{ name: "link1", adminState: "Enabled" }],
     location: "westus",
-    peeringLocation: "peeringLocationName"
+    peeringLocation: "peeringLocationName",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRoutePorts.beginCreateOrUpdateAndWait(
     resourceGroupName,
     expressRoutePortName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

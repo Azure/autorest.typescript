@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ActiveConfigurationParameter,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,14 +30,14 @@ async function listActiveConnectivityConfigurations() {
   const networkManagerName = "testNetworkManager";
   const parameters: ActiveConfigurationParameter = {
     regions: ["westus"],
-    skipToken: "fakeSkipTokenCode"
+    skipToken: "fakeSkipTokenCode",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.listActiveConnectivityConfigurations(
     resourceGroupName,
     networkManagerName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

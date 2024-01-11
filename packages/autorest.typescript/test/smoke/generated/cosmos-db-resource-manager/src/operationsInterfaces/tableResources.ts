@@ -25,7 +25,7 @@ import {
   TableResourcesMigrateTableToAutoscaleOptionalParams,
   TableResourcesMigrateTableToAutoscaleResponse,
   TableResourcesMigrateTableToManualThroughputOptionalParams,
-  TableResourcesMigrateTableToManualThroughputResponse
+  TableResourcesMigrateTableToManualThroughputResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -40,7 +40,7 @@ export interface TableResources {
   listTables(
     resourceGroupName: string,
     accountName: string,
-    options?: TableResourcesListTablesOptionalParams
+    options?: TableResourcesListTablesOptionalParams,
   ): PagedAsyncIterableIterator<TableGetResults>;
   /**
    * Gets the Tables under an existing Azure Cosmos DB database account with the provided name.
@@ -53,7 +53,7 @@ export interface TableResources {
     resourceGroupName: string,
     accountName: string,
     tableName: string,
-    options?: TableResourcesGetTableOptionalParams
+    options?: TableResourcesGetTableOptionalParams,
   ): Promise<TableResourcesGetTableResponse>;
   /**
    * Create or update an Azure Cosmos DB Table
@@ -68,7 +68,7 @@ export interface TableResources {
     accountName: string,
     tableName: string,
     createUpdateTableParameters: TableCreateUpdateParameters,
-    options?: TableResourcesCreateUpdateTableOptionalParams
+    options?: TableResourcesCreateUpdateTableOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<TableResourcesCreateUpdateTableResponse>,
@@ -88,7 +88,7 @@ export interface TableResources {
     accountName: string,
     tableName: string,
     createUpdateTableParameters: TableCreateUpdateParameters,
-    options?: TableResourcesCreateUpdateTableOptionalParams
+    options?: TableResourcesCreateUpdateTableOptionalParams,
   ): Promise<TableResourcesCreateUpdateTableResponse>;
   /**
    * Deletes an existing Azure Cosmos DB Table.
@@ -101,7 +101,7 @@ export interface TableResources {
     resourceGroupName: string,
     accountName: string,
     tableName: string,
-    options?: TableResourcesDeleteTableOptionalParams
+    options?: TableResourcesDeleteTableOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB Table.
@@ -114,7 +114,7 @@ export interface TableResources {
     resourceGroupName: string,
     accountName: string,
     tableName: string,
-    options?: TableResourcesDeleteTableOptionalParams
+    options?: TableResourcesDeleteTableOptionalParams,
   ): Promise<void>;
   /**
    * Gets the RUs per second of the Table under an existing Azure Cosmos DB database account with the
@@ -128,7 +128,7 @@ export interface TableResources {
     resourceGroupName: string,
     accountName: string,
     tableName: string,
-    options?: TableResourcesGetTableThroughputOptionalParams
+    options?: TableResourcesGetTableThroughputOptionalParams,
   ): Promise<TableResourcesGetTableThroughputResponse>;
   /**
    * Update RUs per second of an Azure Cosmos DB Table
@@ -144,7 +144,7 @@ export interface TableResources {
     accountName: string,
     tableName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: TableResourcesUpdateTableThroughputOptionalParams
+    options?: TableResourcesUpdateTableThroughputOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<TableResourcesUpdateTableThroughputResponse>,
@@ -165,7 +165,7 @@ export interface TableResources {
     accountName: string,
     tableName: string,
     updateThroughputParameters: ThroughputSettingsUpdateParameters,
-    options?: TableResourcesUpdateTableThroughputOptionalParams
+    options?: TableResourcesUpdateTableThroughputOptionalParams,
   ): Promise<TableResourcesUpdateTableThroughputResponse>;
   /**
    * Migrate an Azure Cosmos DB Table from manual throughput to autoscale
@@ -178,7 +178,7 @@ export interface TableResources {
     resourceGroupName: string,
     accountName: string,
     tableName: string,
-    options?: TableResourcesMigrateTableToAutoscaleOptionalParams
+    options?: TableResourcesMigrateTableToAutoscaleOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<TableResourcesMigrateTableToAutoscaleResponse>,
@@ -196,7 +196,7 @@ export interface TableResources {
     resourceGroupName: string,
     accountName: string,
     tableName: string,
-    options?: TableResourcesMigrateTableToAutoscaleOptionalParams
+    options?: TableResourcesMigrateTableToAutoscaleOptionalParams,
   ): Promise<TableResourcesMigrateTableToAutoscaleResponse>;
   /**
    * Migrate an Azure Cosmos DB Table from autoscale to manual throughput
@@ -209,7 +209,7 @@ export interface TableResources {
     resourceGroupName: string,
     accountName: string,
     tableName: string,
-    options?: TableResourcesMigrateTableToManualThroughputOptionalParams
+    options?: TableResourcesMigrateTableToManualThroughputOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<TableResourcesMigrateTableToManualThroughputResponse>,
@@ -227,6 +227,6 @@ export interface TableResources {
     resourceGroupName: string,
     accountName: string,
     tableName: string,
-    options?: TableResourcesMigrateTableToManualThroughputOptionalParams
+    options?: TableResourcesMigrateTableToManualThroughputOptionalParams,
   ): Promise<TableResourcesMigrateTableToManualThroughputResponse>;
 }

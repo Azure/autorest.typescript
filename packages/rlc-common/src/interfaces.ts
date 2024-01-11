@@ -106,7 +106,7 @@ export interface ApiVersionInfo {
   isCrossedVersion?: boolean;
 }
 
-export type ApiVersionPosition = "path" | "query" | "url" | "duplicate" | "none";
+export type ApiVersionPosition = "path" | "query" | "baseurl" | "duplicate" | "none";
 export interface HelperFunctionDetails {
   hasPaging?: boolean;
   hasLongRunning?: boolean;

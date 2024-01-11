@@ -10,7 +10,7 @@ import {
   FloatPutOptionalParams,
   FloatPutResponse,
   FloatGetOptionalParams,
-  FloatGetResponse
+  FloatGetResponse,
 } from "../models";
 
 /** Interface representing a Float. */

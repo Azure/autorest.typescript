@@ -12,7 +12,7 @@ import { SingleParamInServerPathClient } from "./clientDefinitions";
  */
 export default function createClient(
   endpoint: string,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): SingleParamInServerPathClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
 

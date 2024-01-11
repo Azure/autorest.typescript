@@ -10,7 +10,7 @@ import {
   ApiVersionLocalGetMethodLocalValidOptionalParams,
   ApiVersionLocalGetMethodLocalNullOptionalParams,
   ApiVersionLocalGetPathLocalValidOptionalParams,
-  ApiVersionLocalGetSwaggerLocalValidOptionalParams
+  ApiVersionLocalGetSwaggerLocalValidOptionalParams,
 } from "../models";
 
 /** Interface representing a ApiVersionLocal. */
@@ -20,27 +20,27 @@ export interface ApiVersionLocal {
    * @param options The options parameters.
    */
   getMethodLocalValid(
-    options?: ApiVersionLocalGetMethodLocalValidOptionalParams
+    options?: ApiVersionLocalGetMethodLocalValidOptionalParams,
   ): Promise<void>;
   /**
    * Get method with api-version modeled in the method.  pass in api-version = null to succeed
    * @param options The options parameters.
    */
   getMethodLocalNull(
-    options?: ApiVersionLocalGetMethodLocalNullOptionalParams
+    options?: ApiVersionLocalGetMethodLocalNullOptionalParams,
   ): Promise<void>;
   /**
    * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
    * @param options The options parameters.
    */
   getPathLocalValid(
-    options?: ApiVersionLocalGetPathLocalValidOptionalParams
+    options?: ApiVersionLocalGetPathLocalValidOptionalParams,
   ): Promise<void>;
   /**
    * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
    * @param options The options parameters.
    */
   getSwaggerLocalValid(
-    options?: ApiVersionLocalGetSwaggerLocalValidOptionalParams
+    options?: ApiVersionLocalGetSwaggerLocalValidOptionalParams,
   ): Promise<void>;
 }

@@ -10,7 +10,7 @@ import { EnumDiscriminatorClient } from "./clientDefinitions";
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): EnumDiscriminatorClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-model-inheritance-enum-discriminator-rest/1.0.0`;

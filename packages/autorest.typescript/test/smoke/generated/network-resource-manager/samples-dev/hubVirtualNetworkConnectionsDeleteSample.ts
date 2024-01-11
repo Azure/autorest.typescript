@@ -30,7 +30,7 @@ async function hubVirtualNetworkConnectionDelete() {
   const result = await client.hubVirtualNetworkConnections.beginDeleteAndWait(
     resourceGroupName,
     virtualHubName,
-    connectionName
+    connectionName,
   );
   console.log(result);
 }

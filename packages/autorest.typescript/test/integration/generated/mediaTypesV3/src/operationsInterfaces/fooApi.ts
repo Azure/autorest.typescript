@@ -13,7 +13,7 @@ import {
   FooApiPostSendOnDefaultResponse,
   FooApiPostSend$binaryOptionalParams,
   FooApiPostSend$textOptionalParams,
-  FooApiPostSendResponse
+  FooApiPostSendResponse,
 } from "../models";
 
 /** Interface representing a FooApi. */
@@ -27,7 +27,7 @@ export interface FooApi {
       | [
           "application/octet-stream",
           coreRestPipeline.RequestBodyType,
-          FooApiPostSendOnDefault$binaryOptionalParams?
+          FooApiPostSendOnDefault$binaryOptionalParams?,
         ]
       | ["text/plain", string, FooApiPostSendOnDefault$textOptionalParams?]
   ): Promise<FooApiPostSendOnDefaultResponse>;
@@ -41,7 +41,7 @@ export interface FooApi {
           string,
           "application/octet-stream",
           coreRestPipeline.RequestBodyType,
-          FooApiPostSend$binaryOptionalParams?
+          FooApiPostSend$binaryOptionalParams?,
         ]
       | [string, "text/plain", string, FooApiPostSend$textOptionalParams?]
   ): Promise<FooApiPostSendResponse>;

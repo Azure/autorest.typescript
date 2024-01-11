@@ -16,7 +16,7 @@ export interface MultipleParamInServerPathClientOptions extends ClientOptions {
  */
 export default function createClient(
   endpoint: string,
-  options: MultipleParamInServerPathClientOptions = {}
+  options: MultipleParamInServerPathClientOptions = {},
 ): MultipleParamInServerPathClient {
   const apiVersion = options.apiVersion ?? "v1.0";
   const baseUrl =

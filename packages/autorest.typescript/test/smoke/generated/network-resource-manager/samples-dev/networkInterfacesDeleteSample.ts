@@ -28,7 +28,7 @@ async function deleteNetworkInterface() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkInterfaces.beginDeleteAndWait(
     resourceGroupName,
-    networkInterfaceName
+    networkInterfaceName,
   );
   console.log(result);
 }

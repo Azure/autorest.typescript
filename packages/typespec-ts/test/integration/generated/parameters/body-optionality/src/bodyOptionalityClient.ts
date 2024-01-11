@@ -10,7 +10,7 @@ import { BodyOptionalityClient } from "./clientDefinitions";
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): BodyOptionalityClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-collectionFormat-rest/1.0.0-beta.1`;

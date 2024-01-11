@@ -28,12 +28,13 @@ async function listRouteTableSummary() {
   const devicePath = "devicePath";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.expressRouteCircuits.beginListRoutesTableSummaryAndWait(
-    resourceGroupName,
-    circuitName,
-    peeringName,
-    devicePath
-  );
+  const result =
+    await client.expressRouteCircuits.beginListRoutesTableSummaryAndWait(
+      resourceGroupName,
+      circuitName,
+      peeringName,
+      devicePath,
+    );
   console.log(result);
 }
 

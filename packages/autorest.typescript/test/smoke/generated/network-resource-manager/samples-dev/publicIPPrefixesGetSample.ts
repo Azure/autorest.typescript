@@ -28,7 +28,7 @@ async function getPublicIPPrefix() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.publicIPPrefixes.get(
     resourceGroupName,
-    publicIpPrefixName
+    publicIpPrefixName,
   );
   console.log(result);
 }

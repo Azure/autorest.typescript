@@ -7,23 +7,23 @@ import {
   FilesGetFileLarge200Response,
   FilesGetFileLargeDefaultResponse,
   FilesGetEmptyFile200Response,
-  FilesGetEmptyFileDefaultResponse
+  FilesGetEmptyFileDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
   "GET /files/stream/nonempty": ["200"],
   "GET /files/stream/verylarge": ["200"],
-  "GET /files/stream/empty": ["200"]
+  "GET /files/stream/empty": ["200"],
 };
 
 export function isUnexpected(
-  response: FilesGetFile200Response | FilesGetFileDefaultResponse
+  response: FilesGetFile200Response | FilesGetFileDefaultResponse,
 ): response is FilesGetFileDefaultResponse;
 export function isUnexpected(
-  response: FilesGetFileLarge200Response | FilesGetFileLargeDefaultResponse
+  response: FilesGetFileLarge200Response | FilesGetFileLargeDefaultResponse,
 ): response is FilesGetFileLargeDefaultResponse;
 export function isUnexpected(
-  response: FilesGetEmptyFile200Response | FilesGetEmptyFileDefaultResponse
+  response: FilesGetEmptyFile200Response | FilesGetEmptyFileDefaultResponse,
 ): response is FilesGetEmptyFileDefaultResponse;
 export function isUnexpected(
   response:
@@ -32,7 +32,7 @@ export function isUnexpected(
     | FilesGetFileLarge200Response
     | FilesGetFileLargeDefaultResponse
     | FilesGetEmptyFile200Response
-    | FilesGetEmptyFileDefaultResponse
+    | FilesGetEmptyFileDefaultResponse,
 ): response is
   | FilesGetFileDefaultResponse
   | FilesGetFileLargeDefaultResponse
@@ -85,7 +85,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

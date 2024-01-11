@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   RecommendedAction,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -41,7 +41,7 @@ async function updateDatabaseRecommendedAction() {
     databaseName,
     advisorName,
     recommendedActionName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

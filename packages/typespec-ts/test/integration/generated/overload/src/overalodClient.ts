@@ -12,7 +12,7 @@ import { OveralodClient } from "./clientDefinitions";
  */
 export default function createClient(
   $host: string,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): OveralodClient {
   const baseUrl = options.baseUrl ?? `${$host}`;
 

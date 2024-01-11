@@ -18,7 +18,7 @@ async function farmOperationsGetDataIngestionJobDetails() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const jobId = "JOB123";
   const result = await client

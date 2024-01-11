@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   RouteFilter,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,17 +34,17 @@ async function routeFilterCreate() {
         name: "ruleName",
         access: "Allow",
         communities: ["12076:5030", "12076:5040"],
-        routeFilterRuleType: "Community"
-      }
+        routeFilterRuleType: "Community",
+      },
     ],
-    tags: { key1: "value1" }
+    tags: { key1: "value1" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.routeFilters.beginCreateOrUpdateAndWait(
     resourceGroupName,
     routeFilterName,
-    routeFilterParameters
+    routeFilterParameters,
   );
   console.log(result);
 }

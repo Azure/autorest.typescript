@@ -18,7 +18,7 @@ import {
   ProvidersGetOptionalParams,
   ProvidersGetResponse,
   ProvidersGetAtTenantScopeOptionalParams,
-  ProvidersGetAtTenantScopeResponse
+  ProvidersGetAtTenantScopeResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -29,14 +29,14 @@ export interface Providers {
    * @param options The options parameters.
    */
   list(
-    options?: ProvidersListOptionalParams
+    options?: ProvidersListOptionalParams,
   ): PagedAsyncIterableIterator<Provider>;
   /**
    * Gets all resource providers for the tenant.
    * @param options The options parameters.
    */
   listAtTenantScope(
-    options?: ProvidersListAtTenantScopeOptionalParams
+    options?: ProvidersListAtTenantScopeOptionalParams,
   ): PagedAsyncIterableIterator<Provider>;
   /**
    * Unregisters a subscription from a resource provider.
@@ -45,7 +45,7 @@ export interface Providers {
    */
   unregister(
     resourceProviderNamespace: string,
-    options?: ProvidersUnregisterOptionalParams
+    options?: ProvidersUnregisterOptionalParams,
   ): Promise<ProvidersUnregisterResponse>;
   /**
    * Registers a subscription with a resource provider.
@@ -54,7 +54,7 @@ export interface Providers {
    */
   register(
     resourceProviderNamespace: string,
-    options?: ProvidersRegisterOptionalParams
+    options?: ProvidersRegisterOptionalParams,
   ): Promise<ProvidersRegisterResponse>;
   /**
    * Gets the specified resource provider.
@@ -63,7 +63,7 @@ export interface Providers {
    */
   get(
     resourceProviderNamespace: string,
-    options?: ProvidersGetOptionalParams
+    options?: ProvidersGetOptionalParams,
   ): Promise<ProvidersGetResponse>;
   /**
    * Gets the specified resource provider at the tenant level.
@@ -72,6 +72,6 @@ export interface Providers {
    */
   getAtTenantScope(
     resourceProviderNamespace: string,
-    options?: ProvidersGetAtTenantScopeOptionalParams
+    options?: ProvidersGetAtTenantScopeOptionalParams,
   ): Promise<ProvidersGetAtTenantScopeResponse>;
 }

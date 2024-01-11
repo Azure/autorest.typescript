@@ -18,7 +18,7 @@ async function oAuthProvidersGet() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const oauthProviderId = "JOHNDEERE";
   const result = await client

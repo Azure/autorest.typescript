@@ -28,7 +28,7 @@ async function getStaticSitesForAResourceGroup() {
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.staticSites.listStaticSitesByResourceGroup(
-    resourceGroupName
+    resourceGroupName,
   )) {
     resArray.push(item);
   }

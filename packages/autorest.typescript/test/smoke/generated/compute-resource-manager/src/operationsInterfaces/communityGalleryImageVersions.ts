@@ -8,7 +8,7 @@
 
 import {
   CommunityGalleryImageVersionsGetOptionalParams,
-  CommunityGalleryImageVersionsGetResponse
+  CommunityGalleryImageVersionsGetResponse,
 } from "../models";
 
 /** Interface representing a CommunityGalleryImageVersions. */
@@ -28,6 +28,6 @@ export interface CommunityGalleryImageVersions {
     publicGalleryName: string,
     galleryImageName: string,
     galleryImageVersionName: string,
-    options?: CommunityGalleryImageVersionsGetOptionalParams
+    options?: CommunityGalleryImageVersionsGetOptionalParams,
   ): Promise<CommunityGalleryImageVersionsGetResponse>;
 }

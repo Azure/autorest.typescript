@@ -28,12 +28,13 @@ async function getVirtualMachineScaleSetNetworkInterface() {
   const networkInterfaceName = "nic1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.networkInterfaces.getVirtualMachineScaleSetNetworkInterface(
-    resourceGroupName,
-    virtualMachineScaleSetName,
-    virtualmachineIndex,
-    networkInterfaceName
-  );
+  const result =
+    await client.networkInterfaces.getVirtualMachineScaleSetNetworkInterface(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      networkInterfaceName,
+    );
   console.log(result);
 }
 

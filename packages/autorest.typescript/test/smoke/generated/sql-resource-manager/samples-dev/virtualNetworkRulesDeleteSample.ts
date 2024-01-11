@@ -31,7 +31,7 @@ async function deleteAVirtualNetworkRule() {
   const result = await client.virtualNetworkRules.beginDeleteAndWait(
     resourceGroupName,
     serverName,
-    virtualNetworkRuleName
+    virtualNetworkRuleName,
   );
   console.log(result);
 }

@@ -20,11 +20,11 @@ export interface QueryOperations {
   base64: (value: Uint8Array, options?: QueryBase64Options) => Promise<void>;
   base64url: (
     value: Uint8Array,
-    options?: QueryBase64urlOptions
+    options?: QueryBase64urlOptions,
   ) => Promise<void>;
   base64urlArray: (
     value: Uint8Array[],
-    options?: QueryBase64urlArrayOptions
+    options?: QueryBase64urlArrayOptions,
   ) => Promise<void>;
 }
 
@@ -38,7 +38,7 @@ export function getQuery(context: BytesContext) {
       queryBase64url(context, value, options),
     base64urlArray: (
       value: Uint8Array[],
-      options?: QueryBase64urlArrayOptions
+      options?: QueryBase64urlArrayOptions,
     ) => queryBase64urlArray(context, value, options),
   };
 }

@@ -12,7 +12,7 @@ import { FooContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   endpoint: string,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): FooContext {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
 

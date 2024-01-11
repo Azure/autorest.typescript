@@ -28,7 +28,7 @@ async function deleteExpressRouteCircuit() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCircuits.beginDeleteAndWait(
     resourceGroupName,
-    circuitName
+    circuitName,
   );
   console.log(result);
 }

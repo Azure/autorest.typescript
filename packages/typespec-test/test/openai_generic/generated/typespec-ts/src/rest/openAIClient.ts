@@ -13,7 +13,7 @@ import { OpenAIContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): OpenAIContext {
   const baseUrl = options.baseUrl ?? `https://api.openai.com/v1`;
   const userAgentInfo = `azsdk-js-openai-generic-rest/1.0.0-beta.1`;

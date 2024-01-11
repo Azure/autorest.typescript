@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   BlobRestoreParameters,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,16 +30,16 @@ async function blobRangesRestore() {
   const parameters: BlobRestoreParameters = {
     blobRanges: [
       { endRange: "container/blobpath2", startRange: "container/blobpath1" },
-      { endRange: "", startRange: "container2/blobpath3" }
+      { endRange: "", startRange: "container2/blobpath3" },
     ],
-    timeToRestore: new Date("2019-04-20T15:30:00.0000000Z")
+    timeToRestore: new Date("2019-04-20T15:30:00.0000000Z"),
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.beginRestoreBlobRangesAndWait(
     resourceGroupName,
     accountName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

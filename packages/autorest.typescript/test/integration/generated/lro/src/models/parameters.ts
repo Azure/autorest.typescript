@@ -10,7 +10,7 @@ import { OperationParameter, OperationURLParameter } from "@azure/core-client";
 import {
   Product as ProductMapper,
   Sku as SkuMapper,
-  SubProduct as SubProductMapper
+  SubProduct as SubProductMapper,
 } from "../models/mappers";
 
 export const contentType: OperationParameter = {
@@ -20,14 +20,14 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const product: OperationParameter = {
   parameterPath: ["options", "product"],
-  mapper: ProductMapper
+  mapper: ProductMapper,
 };
 
 export const accept: OperationParameter = {
@@ -37,9 +37,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -48,18 +48,18 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const sku: OperationParameter = {
   parameterPath: ["options", "sku"],
-  mapper: SkuMapper
+  mapper: SkuMapper,
 };
 
 export const product1: OperationParameter = {
   parameterPath: ["options", "product"],
-  mapper: SubProductMapper
+  mapper: SubProductMapper,
 };

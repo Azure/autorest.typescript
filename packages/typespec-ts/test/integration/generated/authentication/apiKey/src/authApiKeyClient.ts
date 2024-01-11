@@ -13,7 +13,7 @@ import { AuthApiKeyClient } from "./clientDefinitions";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): AuthApiKeyClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-auth-apikey-rest/1.0.0`;

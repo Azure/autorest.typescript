@@ -20,7 +20,7 @@ async function deleteMultivariateModel() {
   const client = createAnomalyDetectorRestClient(
     endpoint,
     apiVersion,
-    credential
+    credential,
   );
   const modelId = "45aad126-aafd-11ea-b8fb-d89ef3400c5f";
   const result = await client

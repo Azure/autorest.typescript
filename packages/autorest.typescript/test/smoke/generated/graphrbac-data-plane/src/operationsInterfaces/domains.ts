@@ -11,7 +11,7 @@ import {
   Domain,
   DomainsListOptionalParams,
   DomainsGetOptionalParams,
-  DomainsGetResponse
+  DomainsGetResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -29,6 +29,6 @@ export interface Domains {
    */
   get(
     domainName: string,
-    options?: DomainsGetOptionalParams
+    options?: DomainsGetOptionalParams,
   ): Promise<DomainsGetResponse>;
 }

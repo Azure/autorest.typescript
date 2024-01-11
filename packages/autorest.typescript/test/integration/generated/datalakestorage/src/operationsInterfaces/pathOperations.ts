@@ -22,7 +22,7 @@ import {
   PathGetPropertiesOptionalParams,
   PathGetPropertiesResponse,
   PathDeleteOptionalParams,
-  PathDeleteResponse
+  PathDeleteResponse,
 } from "../models";
 
 /** Interface representing a PathOperations. */
@@ -60,7 +60,7 @@ export interface PathOperations {
     action: PathUpdateAction,
     mode: PathSetAccessControlRecursiveMode,
     body: coreRestPipeline.RequestBodyType,
-    options?: PathUpdateOptionalParams
+    options?: PathUpdateOptionalParams,
   ): Promise<PathUpdateResponse>;
   /**
    * Create and manage a lease to restrict write and delete access to the path. This operation supports
@@ -80,7 +80,7 @@ export interface PathOperations {
    */
   lease(
     xMsLeaseAction: PathLeaseAction,
-    options?: PathLeaseOptionalParams
+    options?: PathLeaseOptionalParams,
   ): Promise<PathLeaseResponse>;
   /**
    * Read the contents of a file.  For read operations, range requests are supported. This operation
@@ -99,7 +99,7 @@ export interface PathOperations {
    * @param options The options parameters.
    */
   getProperties(
-    options?: PathGetPropertiesOptionalParams
+    options?: PathGetPropertiesOptionalParams,
   ): Promise<PathGetPropertiesResponse>;
   /**
    * Delete the file or directory. This operation supports conditional HTTP requests.  For more
