@@ -16,7 +16,7 @@ import { FaceClient } from "./clientDefinitions";
 export default function createClient(
   endpoint: string,
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): FaceClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
 

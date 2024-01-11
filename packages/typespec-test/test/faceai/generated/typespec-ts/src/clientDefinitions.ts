@@ -43,13 +43,13 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface CreateLivenessSession {
   /** Operation that applies to a collection of resources. */
   post(
-    options?: CreateLivenessSessionParameters
+    options?: CreateLivenessSessionParameters,
   ): StreamableMethod<
     CreateLivenessSession200Response | CreateLivenessSessionDefaultResponse
   >;
   /** Operation that lists resources in a paginated way. */
   get(
-    options?: ListLivenessSessionsParameters
+    options?: ListLivenessSessionsParameters,
   ): StreamableMethod<
     ListLivenessSessions200Response | ListLivenessSessionsDefaultResponse
   >;
@@ -58,13 +58,13 @@ export interface CreateLivenessSession {
 export interface GetLivenessSession {
   /** Resource read operation template. */
   get(
-    options?: GetLivenessSessionParameters
+    options?: GetLivenessSessionParameters,
   ): StreamableMethod<
     GetLivenessSession200Response | GetLivenessSessionDefaultResponse
   >;
   /** The most basic operation that applies to a resource. */
   delete(
-    options?: DeleteLivenessSessionParameters
+    options?: DeleteLivenessSessionParameters,
   ): StreamableMethod<
     DeleteLivenessSession200Response | DeleteLivenessSessionDefaultResponse
   >;
@@ -73,7 +73,7 @@ export interface GetLivenessSession {
 export interface ListLivenessSessionAuditEntries {
   /** Operation that lists resources in a non-paginated way. */
   get(
-    options?: ListLivenessSessionAuditEntriesParameters
+    options?: ListLivenessSessionAuditEntriesParameters,
   ): StreamableMethod<
     | ListLivenessSessionAuditEntries200Response
     | ListLivenessSessionAuditEntriesDefaultResponse
@@ -83,21 +83,21 @@ export interface ListLivenessSessionAuditEntries {
 export interface CreateLivenessWithVerifySessionByJson {
   /** Operation that applies to a collection of resources. */
   post(
-    options?: CreateLivenessWithVerifySessionByJsonParameters
+    options?: CreateLivenessWithVerifySessionByJsonParameters,
   ): StreamableMethod<
     | CreateLivenessWithVerifySessionByJson200Response
     | CreateLivenessWithVerifySessionByJsonDefaultResponse
   >;
   /** Operation that applies to a collection of resources. */
   post(
-    options: CreateLivenessWithVerifySessionByFormDataParameters
+    options: CreateLivenessWithVerifySessionByFormDataParameters,
   ): StreamableMethod<
     | CreateLivenessWithVerifySessionByFormData200Response
     | CreateLivenessWithVerifySessionByFormDataDefaultResponse
   >;
   /** Operation that lists resources in a paginated way. */
   get(
-    options?: ListLivenessWithVerifySessionsParameters
+    options?: ListLivenessWithVerifySessionsParameters,
   ): StreamableMethod<
     | ListLivenessWithVerifySessions200Response
     | ListLivenessWithVerifySessionsDefaultResponse
@@ -107,14 +107,14 @@ export interface CreateLivenessWithVerifySessionByJson {
 export interface GetLivenessWithVerifySession {
   /** Resource read operation template. */
   get(
-    options?: GetLivenessWithVerifySessionParameters
+    options?: GetLivenessWithVerifySessionParameters,
   ): StreamableMethod<
     | GetLivenessWithVerifySession200Response
     | GetLivenessWithVerifySessionDefaultResponse
   >;
   /** The most basic operation that applies to a resource. */
   delete(
-    options?: DeleteLivenessWithVerifySessionParameters
+    options?: DeleteLivenessWithVerifySessionParameters,
   ): StreamableMethod<
     | DeleteLivenessWithVerifySession200Response
     | DeleteLivenessWithVerifySessionDefaultResponse
@@ -124,7 +124,7 @@ export interface GetLivenessWithVerifySession {
 export interface ListLivenessWithVerifySessionAuditEntries {
   /** Operation that lists resources in a non-paginated way. */
   get(
-    options?: ListLivenessWithVerifySessionAuditEntriesParameters
+    options?: ListLivenessWithVerifySessionAuditEntriesParameters,
   ): StreamableMethod<
     | ListLivenessWithVerifySessionAuditEntries200Response
     | ListLivenessWithVerifySessionAuditEntriesDefaultResponse
@@ -135,36 +135,36 @@ export interface Routes {
   /** Resource for '/face/\{apiVersion\}/detectLiveness/singleModal/sessions' has methods for the following verbs: post, get */
   (
     path: "/face/{apiVersion}/detectLiveness/singleModal/sessions",
-    apiVersion: string
+    apiVersion: string,
   ): CreateLivenessSession;
   /** Resource for '/face/\{apiVersion\}/detectLiveness/singleModal/sessions/\{sessionId\}' has methods for the following verbs: get, delete */
   (
     path: "/face/{apiVersion}/detectLiveness/singleModal/sessions/{sessionId}",
     apiVersion: string,
-    sessionId: string
+    sessionId: string,
   ): GetLivenessSession;
   /** Resource for '/face/\{apiVersion\}/detectLiveness/singleModal/sessions/\{sessionId\}/audit' has methods for the following verbs: get */
   (
     path: "/face/{apiVersion}/detectLiveness/singleModal/sessions/{sessionId}/audit",
     apiVersion: string,
-    sessionId: string
+    sessionId: string,
   ): ListLivenessSessionAuditEntries;
   /** Resource for '/face/\{apiVersion\}/detectLivenessWithVerify/singleModal/sessions' has methods for the following verbs: post, get */
   (
     path: "/face/{apiVersion}/detectLivenessWithVerify/singleModal/sessions",
-    apiVersion: string
+    apiVersion: string,
   ): CreateLivenessWithVerifySessionByJson;
   /** Resource for '/face/\{apiVersion\}/detectLivenessWithVerify/singleModal/sessions/\{sessionId\}' has methods for the following verbs: get, delete */
   (
     path: "/face/{apiVersion}/detectLivenessWithVerify/singleModal/sessions/{sessionId}",
     apiVersion: string,
-    sessionId: string
+    sessionId: string,
   ): GetLivenessWithVerifySession;
   /** Resource for '/face/\{apiVersion\}/detectLivenessWithVerify/singleModal/sessions/\{sessionId\}/audit' has methods for the following verbs: get */
   (
     path: "/face/{apiVersion}/detectLivenessWithVerify/singleModal/sessions/{sessionId}/audit",
     apiVersion: string,
-    sessionId: string
+    sessionId: string,
   ): ListLivenessWithVerifySessionAuditEntries;
 }
 

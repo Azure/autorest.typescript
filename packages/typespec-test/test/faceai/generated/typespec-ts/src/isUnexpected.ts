@@ -53,51 +53,51 @@ const responseMap: Record<string, string[]> = {
 export function isUnexpected(
   response:
     | CreateLivenessSession200Response
-    | CreateLivenessSessionDefaultResponse
+    | CreateLivenessSessionDefaultResponse,
 ): response is CreateLivenessSessionDefaultResponse;
 export function isUnexpected(
   response:
     | ListLivenessSessions200Response
-    | ListLivenessSessionsDefaultResponse
+    | ListLivenessSessionsDefaultResponse,
 ): response is ListLivenessSessionsDefaultResponse;
 export function isUnexpected(
-  response: GetLivenessSession200Response | GetLivenessSessionDefaultResponse
+  response: GetLivenessSession200Response | GetLivenessSessionDefaultResponse,
 ): response is GetLivenessSessionDefaultResponse;
 export function isUnexpected(
   response:
     | DeleteLivenessSession200Response
-    | DeleteLivenessSessionDefaultResponse
+    | DeleteLivenessSessionDefaultResponse,
 ): response is DeleteLivenessSessionDefaultResponse;
 export function isUnexpected(
   response:
     | ListLivenessSessionAuditEntries200Response
-    | ListLivenessSessionAuditEntriesDefaultResponse
+    | ListLivenessSessionAuditEntriesDefaultResponse,
 ): response is ListLivenessSessionAuditEntriesDefaultResponse;
 export function isUnexpected(
   response:
     | CreateLivenessWithVerifySessionByJson200Response
     | CreateLivenessWithVerifySessionByFormData200Response
-    | CreateLivenessWithVerifySessionByJsonDefaultResponse
+    | CreateLivenessWithVerifySessionByJsonDefaultResponse,
 ): response is CreateLivenessWithVerifySessionByJsonDefaultResponse;
 export function isUnexpected(
   response:
     | ListLivenessWithVerifySessions200Response
-    | ListLivenessWithVerifySessionsDefaultResponse
+    | ListLivenessWithVerifySessionsDefaultResponse,
 ): response is ListLivenessWithVerifySessionsDefaultResponse;
 export function isUnexpected(
   response:
     | GetLivenessWithVerifySession200Response
-    | GetLivenessWithVerifySessionDefaultResponse
+    | GetLivenessWithVerifySessionDefaultResponse,
 ): response is GetLivenessWithVerifySessionDefaultResponse;
 export function isUnexpected(
   response:
     | DeleteLivenessWithVerifySession200Response
-    | DeleteLivenessWithVerifySessionDefaultResponse
+    | DeleteLivenessWithVerifySessionDefaultResponse,
 ): response is DeleteLivenessWithVerifySessionDefaultResponse;
 export function isUnexpected(
   response:
     | ListLivenessWithVerifySessionAuditEntries200Response
-    | ListLivenessWithVerifySessionAuditEntriesDefaultResponse
+    | ListLivenessWithVerifySessionAuditEntriesDefaultResponse,
 ): response is ListLivenessWithVerifySessionAuditEntriesDefaultResponse;
 export function isUnexpected(
   response:
@@ -121,7 +121,7 @@ export function isUnexpected(
     | DeleteLivenessWithVerifySession200Response
     | DeleteLivenessWithVerifySessionDefaultResponse
     | ListLivenessWithVerifySessionAuditEntries200Response
-    | ListLivenessWithVerifySessionAuditEntriesDefaultResponse
+    | ListLivenessWithVerifySessionAuditEntriesDefaultResponse,
 ): response is
   | CreateLivenessSessionDefaultResponse
   | ListLivenessSessionsDefaultResponse
@@ -181,7 +181,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {
