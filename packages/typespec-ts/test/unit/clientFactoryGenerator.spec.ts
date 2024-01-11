@@ -524,7 +524,7 @@ describe("Client Factory generation", () => {
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
         import { logger } from "./logger";
-        import { TokenCredential, KeyCredential } from "@azure/core-auth";
+        import { TokenCredential, KeyCredential, isKeyCredential } from "@azure/core-auth";
         import { testClient } from "./clientDefinitions";
         
         /**
@@ -567,15 +567,6 @@ describe("Client Factory generation", () => {
         }
         
         return client;
-    }
-
-    function isKeyCredential(
-      credentials: TokenCredential | KeyCredential
-    ): credentials is KeyCredential {
-      return (
-        (credentials as KeyCredential).key !== undefined &&
-        typeof (credentials as KeyCredential).key === "string"
-      );
     }
     `
       );
