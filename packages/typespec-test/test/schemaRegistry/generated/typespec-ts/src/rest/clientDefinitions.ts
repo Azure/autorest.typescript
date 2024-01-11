@@ -28,7 +28,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface ListSchemaGroups {
   /** Gets the list of schema groups user is authorized to access. */
   get(
-    options?: ListSchemaGroupsParameters
+    options?: ListSchemaGroupsParameters,
   ): StreamableMethod<
     ListSchemaGroups200Response | ListSchemaGroupsDefaultResponse
   >;
@@ -37,14 +37,14 @@ export interface ListSchemaGroups {
 export interface GetSchemaById {
   /** Gets a registered schema by its unique ID.  Azure Schema Registry guarantees that ID is unique within a namespace. Operation response type is based on serialization of schema requested. */
   get(
-    options?: GetSchemaByIdParameters
+    options?: GetSchemaByIdParameters,
   ): StreamableMethod<GetSchemaById200Response | GetSchemaByIdDefaultResponse>;
 }
 
 export interface ListSchemaVersions {
   /** Gets the list of all versions of one schema. */
   get(
-    options?: ListSchemaVersionsParameters
+    options?: ListSchemaVersionsParameters,
   ): StreamableMethod<
     ListSchemaVersions200Response | ListSchemaVersionsDefaultResponse
   >;
@@ -53,7 +53,7 @@ export interface ListSchemaVersions {
 export interface GetSchemaByVersion {
   /** Gets one specific version of one schema. */
   get(
-    options?: GetSchemaByVersionParameters
+    options?: GetSchemaByVersionParameters,
   ): StreamableMethod<
     GetSchemaByVersion200Response | GetSchemaByVersionDefaultResponse
   >;
@@ -62,7 +62,7 @@ export interface GetSchemaByVersion {
 export interface GetSchemaIdByContent {
   /** Gets the ID referencing an existing schema within the specified schema group, as matched by schema content comparison. */
   post(
-    options: GetSchemaIdByContentParameters
+    options: GetSchemaIdByContentParameters,
   ): StreamableMethod<
     GetSchemaIdByContent204Response | GetSchemaIdByContentDefaultResponse
   >;
@@ -71,7 +71,7 @@ export interface GetSchemaIdByContent {
 export interface RegisterSchema {
   /** Register new schema. If schema of specified name does not exist in specified group, schema is created at version 1. If schema of specified name exists already in specified group, schema is created at latest version + 1. */
   put(
-    options: RegisterSchemaParameters
+    options: RegisterSchemaParameters,
   ): StreamableMethod<
     RegisterSchema204Response | RegisterSchemaDefaultResponse
   >;
@@ -86,26 +86,26 @@ export interface Routes {
   (
     path: "/$schemaGroups/{groupName}/schemas/{name}/versions",
     groupName: string,
-    name: string
+    name: string,
   ): ListSchemaVersions;
   /** Resource for '/$schemaGroups/\{groupName\}/schemas/\{name\}/versions/\{schemaVersion\}' has methods for the following verbs: get */
   (
     path: "/$schemaGroups/{groupName}/schemas/{name}/versions/{schemaVersion}",
     groupName: string,
     name: string,
-    schemaVersion: number
+    schemaVersion: number,
   ): GetSchemaByVersion;
   /** Resource for '/$schemaGroups/\{groupName\}/schemas/\{name\}:get-id' has methods for the following verbs: post */
   (
     path: "/$schemaGroups/{groupName}/schemas/{name}:get-id",
     groupName: string,
-    name: string
+    name: string,
   ): GetSchemaIdByContent;
   /** Resource for '/$schemaGroups/\{groupName\}/schemas/\{name\}' has methods for the following verbs: put */
   (
     path: "/$schemaGroups/{groupName}/schemas/{name}",
     groupName: string,
-    name: string
+    name: string,
   ): RegisterSchema;
 }
 

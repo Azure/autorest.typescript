@@ -28,24 +28,24 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: ListSchemaGroups200Response | ListSchemaGroupsDefaultResponse
+  response: ListSchemaGroups200Response | ListSchemaGroupsDefaultResponse,
 ): response is ListSchemaGroupsDefaultResponse;
 export function isUnexpected(
-  response: GetSchemaById200Response | GetSchemaByIdDefaultResponse
+  response: GetSchemaById200Response | GetSchemaByIdDefaultResponse,
 ): response is GetSchemaByIdDefaultResponse;
 export function isUnexpected(
-  response: ListSchemaVersions200Response | ListSchemaVersionsDefaultResponse
+  response: ListSchemaVersions200Response | ListSchemaVersionsDefaultResponse,
 ): response is ListSchemaVersionsDefaultResponse;
 export function isUnexpected(
-  response: GetSchemaByVersion200Response | GetSchemaByVersionDefaultResponse
+  response: GetSchemaByVersion200Response | GetSchemaByVersionDefaultResponse,
 ): response is GetSchemaByVersionDefaultResponse;
 export function isUnexpected(
   response:
     | GetSchemaIdByContent204Response
-    | GetSchemaIdByContentDefaultResponse
+    | GetSchemaIdByContentDefaultResponse,
 ): response is GetSchemaIdByContentDefaultResponse;
 export function isUnexpected(
-  response: RegisterSchema204Response | RegisterSchemaDefaultResponse
+  response: RegisterSchema204Response | RegisterSchemaDefaultResponse,
 ): response is RegisterSchemaDefaultResponse;
 export function isUnexpected(
   response:
@@ -60,7 +60,7 @@ export function isUnexpected(
     | GetSchemaIdByContent204Response
     | GetSchemaIdByContentDefaultResponse
     | RegisterSchema204Response
-    | RegisterSchemaDefaultResponse
+    | RegisterSchemaDefaultResponse,
 ): response is
   | ListSchemaGroupsDefaultResponse
   | GetSchemaByIdDefaultResponse
@@ -116,7 +116,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

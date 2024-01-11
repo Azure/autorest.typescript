@@ -24,12 +24,12 @@ export class SchemaRegistryClient {
   constructor(
     fullyQualifiedNamespace: string,
     credential: TokenCredential,
-    options: SchemaRegistryClientOptions = {}
+    options: SchemaRegistryClientOptions = {},
   ) {
     this._client = createSchemaRegistry(
       fullyQualifiedNamespace,
       credential,
-      options
+      options,
     );
     this.pipeline = this._client.pipeline;
     this.schemaOperations = getSchemaOperationsOperations(this._client);

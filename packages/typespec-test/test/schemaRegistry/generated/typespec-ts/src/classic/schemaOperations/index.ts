@@ -27,36 +27,36 @@ import {
 
 export interface SchemaOperationsOperations {
   listSchemaGroups: (
-    options?: SchemaOperationsListSchemaGroupsOptions
+    options?: SchemaOperationsListSchemaGroupsOptions,
   ) => PagedAsyncIterableIterator<SchemaGroup>;
   getSchemaById: (
     id: string,
-    options?: SchemaOperationsGetSchemaByIdOptions
+    options?: SchemaOperationsGetSchemaByIdOptions,
   ) => Promise<Uint8Array>;
   listSchemaVersions: (
     groupName: string,
     name: string,
-    options?: SchemaOperationsListSchemaVersionsOptions
+    options?: SchemaOperationsListSchemaVersionsOptions,
   ) => PagedAsyncIterableIterator<SchemaVersion>;
   getSchemaByVersion: (
     groupName: string,
     name: string,
     schemaVersion: number,
-    options?: SchemaOperationsGetSchemaByVersionOptions
+    options?: SchemaOperationsGetSchemaByVersionOptions,
   ) => Promise<Uint8Array>;
   getSchemaIdByContent: (
     groupName: string,
     name: string,
     contentType: SchemaContentTypeValues,
     schemaContent: Uint8Array,
-    options?: SchemaOperationsGetSchemaIdByContentOptions
+    options?: SchemaOperationsGetSchemaIdByContentOptions,
   ) => Promise<void>;
   registerSchema: (
     groupName: string,
     name: string,
     contentType: SchemaContentTypeValues,
     content: Uint8Array,
-    options?: SchemaOperationsRegisterSchemaOptions
+    options?: SchemaOperationsRegisterSchemaOptions,
   ) => Promise<void>;
 }
 
@@ -66,25 +66,25 @@ export function getSchemaOperations(context: SchemaRegistryContext) {
       listSchemaGroups(context, options),
     getSchemaById: (
       id: string,
-      options?: SchemaOperationsGetSchemaByIdOptions
+      options?: SchemaOperationsGetSchemaByIdOptions,
     ) => getSchemaById(context, id, options),
     listSchemaVersions: (
       groupName: string,
       name: string,
-      options?: SchemaOperationsListSchemaVersionsOptions
+      options?: SchemaOperationsListSchemaVersionsOptions,
     ) => listSchemaVersions(context, groupName, name, options),
     getSchemaByVersion: (
       groupName: string,
       name: string,
       schemaVersion: number,
-      options?: SchemaOperationsGetSchemaByVersionOptions
+      options?: SchemaOperationsGetSchemaByVersionOptions,
     ) => getSchemaByVersion(context, groupName, name, schemaVersion, options),
     getSchemaIdByContent: (
       groupName: string,
       name: string,
       contentType: SchemaContentTypeValues,
       schemaContent: Uint8Array,
-      options?: SchemaOperationsGetSchemaIdByContentOptions
+      options?: SchemaOperationsGetSchemaIdByContentOptions,
     ) =>
       getSchemaIdByContent(
         context,
@@ -92,21 +92,21 @@ export function getSchemaOperations(context: SchemaRegistryContext) {
         name,
         contentType,
         schemaContent,
-        options
+        options,
       ),
     registerSchema: (
       groupName: string,
       name: string,
       contentType: SchemaContentTypeValues,
       content: Uint8Array,
-      options?: SchemaOperationsRegisterSchemaOptions
+      options?: SchemaOperationsRegisterSchemaOptions,
     ) =>
       registerSchema(context, groupName, name, contentType, content, options),
   };
 }
 
 export function getSchemaOperationsOperations(
-  context: SchemaRegistryContext
+  context: SchemaRegistryContext,
 ): SchemaOperationsOperations {
   return {
     ...getSchemaOperations(context),

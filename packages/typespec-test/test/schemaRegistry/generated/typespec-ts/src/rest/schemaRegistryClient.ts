@@ -15,7 +15,7 @@ import { SchemaRegistryContext } from "./clientDefinitions.js";
 export default function createClient(
   fullyQualifiedNamespace: string,
   credentials: TokenCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): SchemaRegistryContext {
   const baseUrl = options.baseUrl ?? `${fullyQualifiedNamespace}`;
   options.apiVersion = options.apiVersion ?? "2023-07-01";
@@ -42,7 +42,7 @@ export default function createClient(
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as SchemaRegistryContext;
 
   return client;

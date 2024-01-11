@@ -14,7 +14,7 @@ export { SchemaRegistryContext } from "../rest/index.js";
 export function createSchemaRegistry(
   fullyQualifiedNamespace: string,
   credential: TokenCredential,
-  options: SchemaRegistryClientOptions = {}
+  options: SchemaRegistryClientOptions = {},
 ): SchemaRegistryContext {
   const clientContext = getClient(fullyQualifiedNamespace, credential, options);
   return clientContext;
