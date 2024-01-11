@@ -3,6 +3,6 @@
   "useWorkspaces": true,
   "strictPeerDependencies": false,
   "globalOverrides": {
-    "@azure/core-rest-pipeline": "1.13.0"
+    "@azure/core-rest-pipeline": "1.13.1-alpha.20240110.1"
   }
 }

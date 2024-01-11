@@ -19,8 +19,8 @@ describe.only("MultiPartClient Rest Client", () => {
 
   it("client should be created", async () => {
     const root = resolvePath(fileURLToPath(import.meta.url), "../../../temp");
-    console.log(resolve(root, "./assets/image.png"));
-    const path = resolve(root, "./assets/image.png");
+    console.log(resolve(root, "./assets/image.jpg"));
+    const path = resolve(root, "./assets/image.jpg");
     const file = await readFile(path);
     // const blob = new File([file]) as any;
     // blob.name = "image.png";
