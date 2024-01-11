@@ -1206,22 +1206,20 @@ export function getSerializeTypeName(
     "Date | string",
     "string"
   );
-  const allTypes = formattedName.includes(" | ")
-    ? formattedName.split(" | ")
-    : formattedName.split("|");
-  const canSerialize = allTypes.every((type) => {
-    return (
-      ["string", "number", "boolean"].includes(type) ||
-      (type.startsWith('"') && type.endsWith('"')) ||
-      !isNaN(Number(type)) ||
-      ["true", "false"].includes(type) ||
-      ["null"].includes(type)
-    );
-  });
+  const canSerialize = schema.enum
+    ? schema.enum.every((type) => {
+        return isSerializable(type);
+      })
+    : isSerializable(schema);
   if (canSerialize) {
     return schema.alias ? typeName : formattedName;
   }
   return "string";
+  function isSerializable(type: any) {
+    return (
+      ["string", "number", "boolean"].includes(type.type) || type.isConstant
+    );
+  }
 }
 
 export function getImportedModelName(
