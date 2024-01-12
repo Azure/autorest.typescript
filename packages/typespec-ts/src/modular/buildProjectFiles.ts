@@ -303,7 +303,7 @@ function emitBrandedPackage(
     sideEffects: false,
     autoPublish: false,
     dependencies: {
-      "@azure/core-auth": "^1.3.0",
+      "@azure/core-auth": "^1.5.0",
       "@azure-rest/core-client": "^1.1.6",
       "@azure/core-rest-pipeline": "^1.12.0",
       "@azure/logger": "^1.0.0",

@@ -91,7 +91,7 @@ function regularAutorestPackage(
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.2.0" }),
       ...(!useCoreV2 && { "@azure/core-http": "^3.0.0" }),
       ...(useCoreV2 && { "@azure/core-client": "^1.7.0" }),
-      ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.3.0" }),
+      ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.5.0" }),
       ...(useCoreV2 &&
         coreHttpCompatMode && { "@azure/core-http-compat": "^1.2.0" }),
       ...(useCoreV2 && {
