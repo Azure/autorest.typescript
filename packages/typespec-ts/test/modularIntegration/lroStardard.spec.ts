@@ -12,7 +12,7 @@ describe.only("LROStandardClient Classical Client", () => {
   });
 
   describe("createOrReplace", () => {
-    it.only("should await poller result directly", async () => {
+    it("should await poller result directly", async () => {
       try {
         const result = await client.createOrReplace("madge", {
           role: "contributor"
@@ -70,8 +70,8 @@ describe.only("LROStandardClient Classical Client", () => {
       //              "mode":"OperationLocation"
       //           },
       //           "operationLocation":"http://localhost:3000/azure/core/lro/standard/users/madge/operations/operation1",
-      //           "resourceLocation":"/azure/core/lro/standard/users/{name}",
-      //           "initialUrl":"/azure/core/lro/standard/users/{name}",
+      //           "resourceLocation":"http://localhost:3000/azure/core/lro/standard/users/madge?api-version=2022-12-01-preview",
+      //           "initialUri":"http://localhost:3000/azure/core/lro/standard/users/madge?api-version=2022-12-01-preview",
       //           "requestMethod":"PUT"
       //        }
       //     }
@@ -193,12 +193,12 @@ describe.only("LROStandardClient Classical Client", () => {
       //              "mode":"OperationLocation"
       //           },
       //           "operationLocation":"http://localhost:3000/azure/core/lro/standard/users/madge/operations/operation3",
-      //           "initialUrl":"/azure/core/lro/standard/users/{name}",
-      //           "requestMethod":"GET"
+      //           "initialUri":"http://localhost:3000/azure/core/lro/standard/users/madge:export?format=json&api-version=2022-12-01-preview",
+      //           "requestMethod":"POST"
       //        }
       //     }
       //  }
-      // console.log(restoredPoller);
+      console.log(restoredPoller);
       const newPoller = restorePoller(
         client,
         restoredPoller,
@@ -206,17 +206,10 @@ describe.only("LROStandardClient Classical Client", () => {
       );
       const result = await newPoller.pollUntilDone();
       console.log(result);
-      setTimeout(async () => {
-        const newPoller = restorePoller(
-          client,
-          restoredPoller,
-          client.exportOperation
-        );
-        const result = await newPoller.pollUntilDone();
-        console.log(result);
-        assert.strictEqual(result.name, "madge");
-        assert.strictEqual(result.resourceUri, "/users/madge");
-      }, 1000);
+      assert.deepEqual(result, {
+        name: "madge",
+        resourceUri: "/users/madge"
+      });
     });
   });
 });

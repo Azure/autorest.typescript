@@ -1,6 +1,6 @@
 import { HttpResponse, OperationOptions } from "@azure-rest/core-client";
 import { StandardContext } from "./rest/clientDefinitions.js";
-import { OperationState, PollerLike } from "@azure/core-lro/next";
+import { CoreNext } from "@azure/core-lro";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import { StandardClient } from "./StandardClient.js";
 import {
@@ -20,7 +20,7 @@ export interface RestorePollerOptions<
 }
 
 const deserializeMap: Record<string, Function> = {
-  "GET /azure/core/lro/standard/users/{name}": _exportOperationDeserialize,
+  "POST /azure/core/lro/standard/users/{name}": _exportOperationDeserialize,
   "PUT /azure/core/lro/standard/users/{name}": _createOrReplaceDeserialize,
   "DELETE /azure/core/lro/standard/users/{name}": _deleteOperationDeserialize
 };
@@ -33,49 +33,48 @@ const deserializeMap: Record<string, Function> = {
 export function restorePoller<TResponse extends HttpResponse, TResult>(
   client: StandardContext | StandardClient,
   serializedState: string,
-  _sourceOperation: (
+  sourceOperation: (
     ...args: any[]
-  ) => PollerLike<OperationState<TResult>, TResult>,
+  ) => CoreNext.PollerLike<CoreNext.OperationState<TResult>, TResult>,
   options?: RestorePollerOptions<TResult>
-): PollerLike<OperationState<TResult>, TResult> {
-  const requestUrl = JSON.parse(serializedState).state.config.initialUrl;
-  const requestMethod =
-    JSON.parse(serializedState).state.config.requestMethod.toUpperCase();
-  const url = new URL(requestUrl);
-  const deserializeHelper = getParametrizedPathSuccess(
-    requestMethod,
-    url.pathname
-  );
-  if (deserializeHelper === undefined) {
+): CoreNext.PollerLike<CoreNext.OperationState<TResult>, TResult> {
+  const pollerConfig = CoreNext.deserializeState(serializedState);
+  const initialUri = pollerConfig.config.initialUri;
+  const requestMethod = pollerConfig.config.requestMethod;
+  if (!initialUri || !requestMethod) {
     throw new Error(
-      `deserializeHelper is undefined for ${requestMethod} ${url.pathname}`
+      `Invalid serialized state: ${serializedState} for sourceOperation ${sourceOperation?.name}`
     );
   }
-  console.log(requestUrl);
+  const deserializeHelper = getDeserializationHelper(initialUri, requestMethod);
+  if (!deserializeHelper) {
+    throw new Error(
+      `Please ensure the source operation is in this client! We can't find its deserializeHelper for ${requestMethod} ${initialUri}.`
+    );
+  }
   return getLongRunningPoller(
     (client as any)["_client"] ?? client,
-    () => void 0 as any,
     deserializeHelper as (result: TResponse) => PromiseLike<TResult>,
     {
-      method: requestMethod,
-      url: requestUrl,
       updateIntervalInMs: options?.updateIntervalInMs,
-      restoreFrom: serializedState
+      restoreFrom: serializedState,
+      initialUri: initialUri
     }
-  ) as PollerLike<OperationState<TResult>, TResult>;
+  );
 }
 
-function getParametrizedPathSuccess(
-  method: string,
-  path: string
-): Function | undefined {
+function getDeserializationHelper(
+  urlStr: string,
+  method: string
+): ((result: unknown) => PromiseLike<unknown>) | undefined {
+  const path = new URL(urlStr).pathname;
   const pathParts = path.split("/");
 
   // Traverse list to match the longest candidate
   // matchedLen: the length of candidate path
   // matchedValue: the matched status code array
   let matchedLen = -1,
-    matchedValue: Function | undefined;
+    matchedValue: ((result: unknown) => PromiseLike<unknown>) | undefined;
 
   // Iterate the responseMap to find a match
   for (const [key, value] of Object.entries(deserializeMap)) {
@@ -129,7 +128,7 @@ function getParametrizedPathSuccess(
     // Update the matched value if and only if we found the longer pattern
     if (found && candidatePath.length > matchedLen) {
       matchedLen = candidatePath.length;
-      matchedValue = value;
+      matchedValue = value as (result: unknown) => PromiseLike<unknown>;
     }
   }
 

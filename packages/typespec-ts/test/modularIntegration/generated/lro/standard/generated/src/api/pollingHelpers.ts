@@ -1,69 +1,64 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  LongRunningOperation,
-  LroResourceLocationConfig,
-  LroResponse,
-  OperationState,
-  PollerLike,
-  createHttpPoller
-} from "@azure/core-lro/next";
+import { CoreNext } from "@azure/core-lro";
 import { Client, HttpResponse, createRestError } from "@azure-rest/core-client";
 
-export interface GetLongRunningPollerOptions {
-  method: string;
-  url: string;
+export interface GetLongRunningPollerOptions<TResponse> {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /**
    * The potential location of the result of the LRO if specified by the LRO extension in the swagger.
    */
-  resourceLocationConfig?: LroResourceLocationConfig;
+  resourceLocationConfig?: CoreNext.ResourceLocationConfig;
   /**
    * A serialized poller which can be used to resume an existing paused Long-Running-Operation.
    */
   restoreFrom?: string;
+  /**
+   * The function to get the initial response
+   */
+  getInitialResponse?: () => PromiseLike<TResponse>;
+  /**
+   * The original url of the LRO
+   */
+  initialUri?: string;
 }
 export function getLongRunningPoller<
   TResponse extends HttpResponse,
   TResult = void
 >(
   client: Client,
-  getInitialResponse: () => PromiseLike<TResponse>,
   processResponseBody: (result: TResponse) => PromiseLike<TResult>,
-  options: GetLongRunningPollerOptions
-): PollerLike<OperationState<TResult>, TResult> {
-  let initialResponse: TResponse;
-  const poller: LongRunningOperation<TResponse> = {
-    requestMethod: options.method,
-    requestPath: options.url,
+  options: GetLongRunningPollerOptions<TResponse>
+): CoreNext.PollerLike<CoreNext.OperationState<TResult>, TResult> {
+  const { restoreFrom, getInitialResponse } = options;
+  if (!restoreFrom && !getInitialResponse) {
+    throw new Error(
+      "Either restoreFrom or getInitialResponse must be specified"
+    );
+  }
+  let initialResponse: TResponse | undefined = undefined;
+  const poller: CoreNext.LongRunningOperation<TResponse> = {
     sendInitialRequest: async () => {
-      initialResponse = (await getInitialResponse()) as TResponse;
-      console.log(`Initial request url ${initialResponse.request.url}`);
+      if (!getInitialResponse) {
+        throw new Error("getInitialResponse is required if init a new poller");
+      }
+      initialResponse = await getInitialResponse();
       return getLroResponse(initialResponse);
     },
     sendPollRequest: async (path: string) => {
-      // This is the callback that is going to be called to poll the service
-      // to get the latest status. We use the client provided and the polling path
-      // which is an opaque URL provided by caller, the service sends this in one of the following headers: operation-location, azure-asyncoperation or location
-      // depending on the lro pattern that the service implements. If non is provided we default to the initial path.
-      if (path === options.url) {
-        path = initialResponse.request.url ?? options.url;
-      }
-      console.log(`Initial request url ${initialResponse?.request?.url}`);
       const response = await client.pathUnchecked(path).get();
       response.headers["x-ms-original-url"] =
-        initialResponse?.request?.url ?? options.url;
-      const lroResponse = getLroResponse(response as TResponse);
-      return lroResponse;
+        options.initialUri ?? initialResponse?.request?.url ?? "";
+      return getLroResponse(response as TResponse);
     }
   };
-  return createHttpPoller(poller, {
+  return CoreNext.createHttpPoller(poller, {
     intervalInMs: options?.updateIntervalInMs,
     resourceLocationConfig: options?.resourceLocationConfig,
     restoreFrom: options?.restoreFrom,
-    processResult: (result: unknown, _state: OperationState<unknown>) => {
+    processResult: (result: unknown) => {
       return processResponseBody(result as TResponse) as TResult;
     }
   });
@@ -76,7 +71,7 @@ export function getLongRunningPoller<
  */
 function getLroResponse<TResponse extends HttpResponse>(
   response: TResponse
-): LroResponse<TResponse> {
+): CoreNext.OperationResponse<TResponse> {
   if (Number.isNaN(response.status)) {
     createRestError(
       `Status code of the response is not a number. Value: ${response.status}`,

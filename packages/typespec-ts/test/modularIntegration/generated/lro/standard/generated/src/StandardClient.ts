@@ -16,7 +16,7 @@ import {
   StandardClientOptions,
   StandardContext
 } from "./api/index.js";
-import { OperationState, PollerLike } from "@azure/core-lro/next";
+import { CoreNext } from "@azure/core-lro";
 
 export { StandardClientOptions } from "./api/StandardContext.js";
 
@@ -36,7 +36,7 @@ export class StandardClient {
     name: string,
     resource: User,
     options: CreateOrReplaceOptions = { requestOptions: {} }
-  ): PollerLike<OperationState<User>, User> {
+  ): CoreNext.PollerLike<CoreNext.OperationState<User>, User> {
     return createOrReplace(this._client, name, resource, options);
   }
 
@@ -44,7 +44,7 @@ export class StandardClient {
   deleteOperation(
     name: string,
     options: DeleteOperationOptions = { requestOptions: {} }
-  ): PollerLike<OperationState<void>, void> {
+  ): CoreNext.PollerLike<CoreNext.OperationState<void>, void> {
     return deleteOperation(this._client, name, options);
   }
 
@@ -53,7 +53,7 @@ export class StandardClient {
     name: string,
     format: string,
     options: ExportOperationOptions = { requestOptions: {} }
-  ): PollerLike<OperationState<ExportedUser>, ExportedUser> {
+  ): CoreNext.PollerLike<CoreNext.OperationState<ExportedUser>, ExportedUser> {
     return exportOperation(this._client, name, format, options);
   }
 }

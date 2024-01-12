@@ -26,7 +26,7 @@ import {
   DeleteOperationOptions,
   ExportOperationOptions
 } from "../models/options.js";
-import { OperationState, PollerLike } from "@azure/core-lro/next";
+import { CoreNext } from "@azure/core-lro";
 import { getLongRunningPoller } from "./pollingHelpers.js";
 
 export function _createOrReplaceSend(
@@ -69,17 +69,12 @@ export function createOrReplace(
   name: string,
   resource: User,
   options: CreateOrReplaceOptions = { requestOptions: {} }
-): PollerLike<OperationState<User>, User> {
-  return getLongRunningPoller(
-    context,
-    () => _createOrReplaceSend(context, name, resource, options),
-    _createOrReplaceDeserialize,
-    {
-      method: "PUT",
-      url: "/azure/core/lro/standard/users/{name}",
-      updateIntervalInMs: options?.updateIntervalInMs
-    }
-  ) as PollerLike<OperationState<User>, User>;
+): CoreNext.PollerLike<CoreNext.OperationState<User>, User> {
+  return getLongRunningPoller(context, _createOrReplaceDeserialize, {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    getInitialResponse: () =>
+      _createOrReplaceSend(context, name, resource, options)
+  }) as CoreNext.PollerLike<CoreNext.OperationState<User>, User>;
 }
 
 export function _deleteOperationSend(
@@ -114,17 +109,11 @@ export function deleteOperation(
   context: Client,
   name: string,
   options: DeleteOperationOptions = { requestOptions: {} }
-): PollerLike<OperationState<void>, void> {
-  return getLongRunningPoller(
-    context,
-    () => _deleteOperationSend(context, name, options),
-    _deleteOperationDeserialize,
-    {
-      method: "DELETE",
-      url: "/azure/core/lro/standard/users/{name}",
-      updateIntervalInMs: options?.updateIntervalInMs
-    }
-  ) as PollerLike<OperationState<void>, void>;
+): CoreNext.PollerLike<CoreNext.OperationState<void>, void> {
+  return getLongRunningPoller(context, _deleteOperationDeserialize, {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    getInitialResponse: () => _deleteOperationSend(context, name, options)
+  }) as CoreNext.PollerLike<CoreNext.OperationState<void>, void>;
 }
 
 export function _exportOperationSend(
@@ -154,7 +143,6 @@ export async function _exportOperationDeserialize(
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
-
   return result.body.result as ExportedUser;
 }
 
@@ -164,15 +152,13 @@ export function exportOperation(
   name: string,
   format: string,
   options: ExportOperationOptions = { requestOptions: {} }
-): PollerLike<OperationState<ExportedUser>, ExportedUser> {
-  return getLongRunningPoller(
-    context,
-    () => _exportOperationSend(context, name, format, options),
-    _exportOperationDeserialize,
-    {
-      method: "GET",
-      url: "/azure/core/lro/standard/users/{name}",
-      updateIntervalInMs: options?.updateIntervalInMs
-    }
-  ) as PollerLike<OperationState<ExportedUser>, ExportedUser>;
+): CoreNext.PollerLike<CoreNext.OperationState<ExportedUser>, ExportedUser> {
+  return getLongRunningPoller(context, _exportOperationDeserialize, {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    getInitialResponse: () =>
+      _exportOperationSend(context, name, format, options)
+  }) as CoreNext.PollerLike<
+    CoreNext.OperationState<ExportedUser>,
+    ExportedUser
+  >;
 }
