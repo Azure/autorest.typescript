@@ -191,7 +191,7 @@ export function getSchemaForType(
   } else if (type.kind === "UnionVariant") {
     return getSchemaForUnionVariant(dpgContext, type, usage);
   } else if (type.kind === "Enum") {
-    return getSchemaForEnum(program, type);
+    return getSchemaForEnum(dpgContext, type);
   } else if (type.kind === "Scalar") {
     return getSchemaForScalar(dpgContext, type, relevantProperty);
   } else if (type.kind === "EnumMember") {
@@ -819,26 +819,28 @@ function getSchemaForEnumMember(program: Program, e: EnumMember) {
   return { type, description: getDoc(program, e), isConstant: true };
 }
 
-function getSchemaForEnum(program: Program, e: Enum) {
+function getSchemaForEnum(dpgContext: SdkContext, e: Enum) {
   const values = [];
   const type = enumMemberType(e.members.values().next().value);
   for (const option of e.members.values()) {
     if (type !== enumMemberType(option)) {
-      reportDiagnostic(program, { code: "union-unsupported", target: e });
+      reportDiagnostic(dpgContext.program, {
+        code: "union-unsupported",
+        target: e
+      });
       continue;
     }
 
-    values.push(option.value ?? option.name);
+    values.push(getSchemaForType(dpgContext, option));
   }
 
-  const schema: any = { type, description: getDoc(program, e) };
+  const schema: any = { type, description: getDoc(dpgContext.program, e) };
   if (values.length > 0) {
     schema.enum = values;
-    schema.type =
-      type === "string"
-        ? values.map((item) => `"${item}"`).join("|")
-        : values.map((item) => `${item}`).join("|");
-    if (!isFixed(program, e)) {
+    schema.type = values
+      .map((item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`)
+      .join(" | ");
+    if (!isFixed(dpgContext.program, e)) {
       schema.name = "string";
       schema.typeName = "string";
     }
@@ -1295,7 +1297,11 @@ function getPriorityName(schema: Schema, usage?: SchemaContext[]): string {
 
 function getEnumStringDescription(type: any) {
   if (type.name === "string" && type.enum && type.enum.length > 0) {
-    return `Possible values: ${type.enum.join(", ")}`;
+    return `Possible values: ${type.enum
+      .map((e: Schema) => {
+        return e.type;
+      })
+      .join(", ")}`;
   }
   return undefined;
 }

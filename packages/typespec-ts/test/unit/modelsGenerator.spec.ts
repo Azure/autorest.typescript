@@ -191,7 +191,7 @@ describe("Input/output model type", () => {
         /**
          * Property description
          *
-         * Possible values: English, Chinese
+         * Possible values: "English", "Chinese"
          */
         prop: string;
       }`
@@ -203,7 +203,7 @@ describe("Input/output model type", () => {
         /**
          * Property description
          *
-         * Possible values: English, Chinese
+         * Possible values: "English", "Chinese"
          */
         prop: string;
       }`
@@ -231,7 +231,7 @@ describe("Input/output model type", () => {
       import { RequestParameters } from "@azure-rest/core-client";
       
       export interface GetModelBodyParam {
-        /** Possible values: English, Chinese */
+        /** Possible values: "English", "Chinese" */
         body: string;
       }
       
@@ -991,7 +991,7 @@ describe("Input/output model type", () => {
             }
     
             export interface BOutput {
-              /** Possible values: AA, BB */
+              /** Possible values: "AA", "BB" */
               a: string;
             }`
             );

@@ -89,8 +89,13 @@ function mockEnumValues(
 ) {
   const schema = schemaMap.get(type);
   if (schema && schema.enum && schema.enum.length > 0) {
-    const first = schema.enum[0];
-    return typeof first === "string" ? `"${first}"` : `${first}`;
+    addToSchemaMap(schemaMap, schema.enum[0]);
+    return generateParameterTypeValue(
+      getAccurateTypeName(schema.enum[0]) ?? schema.enum[0],
+      parameterName,
+      schemaMap,
+      path
+    );
   }
   return generateParameterTypeValue(
     getUnionType(type),
