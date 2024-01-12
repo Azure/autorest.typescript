@@ -171,7 +171,9 @@ function getParameterMetadata(
     }
   }
   type =
-    paramType !== "query" ? getSerializeTypeName(schema, schemaContext) : type;
+    paramType !== "query"
+      ? getSerializeTypeName(dpgContext.program, schema, schemaContext)
+      : type;
   getImportedModelName(schema, schemaContext)?.forEach(
     importedModels.add,
     importedModels

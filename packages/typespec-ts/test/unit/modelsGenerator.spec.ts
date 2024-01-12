@@ -5,6 +5,7 @@ import {
   emitResponsesFromTypeSpec
 } from "../util/emitUtil.js";
 import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
+import { Diagnostic } from "@typespec/compiler";
 
 describe("Input/output model type", () => {
   it("shouldn't generate models if there is no operations", async () => {
@@ -3370,7 +3371,7 @@ describe("Input/output model type", () => {
         
         export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
         `);
-    })
+    });
 
     it("fixed enums with number literals being used in regular headers", async () => {
       const tspDefinition = `
@@ -3427,6 +3428,52 @@ describe("Input/output model type", () => {
         
         export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
         `);
-    })
+    });
+
+    it("unable to serialized type header would report diagnostic", async () => {
+      try {
+        const tspContent = `
+        import "@typespec/http";
+        import "@typespec/rest";
+  
+        @service({
+          title: "Widget Service",
+        })
+        namespace DemoService;
+        
+        using TypeSpec.Http;
+        using TypeSpec.Rest;
+        
+        model SchemaContentTypeValues {
+          avro: "application/json; serialization=Avro",
+          json: "application/json; serialization=json",
+          custom: "text/plain; charset=utf-8",
+          protobuf: "text/vnd.ms.protobuf",
+        }
+        
+        op get(
+          @header("test-header") testHeader: SchemaContentTypeValues,
+          @body body: string,
+        ): NoContentResponse;
+        `;
+        
+        const schemaOutput = await emitModelsFromTypeSpec(tspContent, false, false, true, true);
+        assert.ok(schemaOutput);
+        const { inputModelFile, outputModelFile}  = schemaOutput!;
+        assert.ok(inputModelFile);
+        assert.isUndefined(outputModelFile);
+        const paramOutput = await emitParameterFromTypeSpec(tspContent, false, false, false, true, true);
+        assert.ok(paramOutput);
+        assert.fail("Should throw diagnostic warnings");
+      } catch (e) {
+        const diagnostics = e as Diagnostic[];
+        assert.equal(diagnostics.length, 1);
+        assert.equal(
+          diagnostics[0]?.code,
+          "@azure-tools/typespec-ts/unable-serialized-type"
+        );
+        assert.equal(diagnostics[0]?.severity, "warning");
+      }
+    });
   })
 });

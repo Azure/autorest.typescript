@@ -1198,6 +1198,7 @@ export function getTypeName(schema: Schema, usage?: SchemaContext[]): string {
 }
 
 export function getSerializeTypeName(
+  program: Program,
   schema: Schema,
   usage?: SchemaContext[]
 ): string {
@@ -1214,6 +1215,11 @@ export function getSerializeTypeName(
   if (canSerialize) {
     return schema.alias ? typeName : formattedName;
   }
+  reportDiagnostic(program, {
+    code: "unable-serialized-type",
+    format: { type: typeName },
+    target: NoTarget
+  });
   return "string";
   function isSerializable(type: any) {
     return (

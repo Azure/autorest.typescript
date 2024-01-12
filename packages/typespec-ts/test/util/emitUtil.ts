@@ -132,6 +132,7 @@ export async function emitParameterFromTypeSpec(
   ignoreClientApiVersion: boolean = false,
   needTCGC: boolean = false,
   withRawContent: boolean = false,
+  mustEmptyDiagnostic: boolean = true
 ) {
   const context = await rlcEmitterFor(
     tspContent,
@@ -148,7 +149,9 @@ export async function emitParameterFromTypeSpec(
   if (clients && clients[0]) {
     parameters = transformToParameterTypes(importSet, clients[0], dpgContext);
   }
-  expectDiagnosticEmpty(dpgContext.program.diagnostics);
+  if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
+    throw dpgContext.program.diagnostics;
+  }
   return buildParameterTypes({
     srcPath: "",
     paths: {},
