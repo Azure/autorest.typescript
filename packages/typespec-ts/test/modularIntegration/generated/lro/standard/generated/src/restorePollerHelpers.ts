@@ -38,9 +38,12 @@ export function restorePoller<TResponse extends HttpResponse, TResult>(
   ) => CoreNext.PollerLike<CoreNext.OperationState<TResult>, TResult>,
   options?: RestorePollerOptions<TResult>
 ): CoreNext.PollerLike<CoreNext.OperationState<TResult>, TResult> {
-  const pollerConfig = CoreNext.deserializeState(serializedState);
-  const initialUri = pollerConfig.config.initialUri;
-  const requestMethod = pollerConfig.config.requestMethod;
+  const pollerConfig = CoreNext.deserializeState(serializedState).config;
+  const initialUri = pollerConfig.initialUri;
+  const requestMethod = pollerConfig.requestMethod;
+  const resourceLocationConfig = pollerConfig?.metadata?.[
+    "resourceLocationConfig"
+  ] as CoreNext.ResourceLocationConfig | undefined;
   if (!initialUri || !requestMethod) {
     throw new Error(
       `Invalid serialized state: ${serializedState} for sourceOperation ${sourceOperation?.name}`
@@ -57,6 +60,7 @@ export function restorePoller<TResponse extends HttpResponse, TResult>(
     deserializeHelper as (result: TResponse) => PromiseLike<TResult>,
     {
       updateIntervalInMs: options?.updateIntervalInMs,
+      resourceLocationConfig,
       restoreFrom: serializedState,
       initialUri: initialUri
     }
