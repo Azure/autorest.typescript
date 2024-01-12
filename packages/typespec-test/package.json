@@ -24,6 +24,7 @@
   "scripts": {
     "smoke-test": "node ./eng/smoke-test.js",
     "build": "echo skip",
+    "regen-test-baselines": "npm run smoke-test",
     "check:tree": "node ./eng/check-clean-tree.js"
   },
   "private": true
