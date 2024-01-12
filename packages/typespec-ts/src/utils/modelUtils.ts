@@ -1208,7 +1208,7 @@ export function getSerializeTypeName(
   );
   const canSerialize = schema.enum
     ? schema.enum.every((type) => {
-        return isSerializable(type);
+        return isSerializable(type) || type.type === "null";
       })
     : isSerializable(schema);
   if (canSerialize) {
