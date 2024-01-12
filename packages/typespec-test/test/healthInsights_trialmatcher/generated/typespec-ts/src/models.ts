@@ -23,13 +23,13 @@ export interface ClinicalTrialMetadata {
   /**
    * Possible study types of a clinical trial.
    *
-   * Possible values: interventional, observational, expandedAccess, patientRegistries
+   * Possible values: "interventional", "observational", "expandedAccess", "patientRegistries"
    */
   studyType?: string;
   /**
    * Possible recruitment status of a clinical trial.
    *
-   * Possible values: unknownStatus, notYetRecruiting, recruiting, enrollingByInvitation
+   * Possible values: "unknownStatus", "notYetRecruiting", "recruiting", "enrollingByInvitation"
    */
   recruitmentStatus?: string;
   /** Medical conditions and their synonyms which are relevant for the clinical trial, given as strings. */
@@ -87,7 +87,7 @@ export interface PatientInfo {
   /**
    * The patient's sex.
    *
-   * Possible values: female, male, unspecified
+   * Possible values: "female", "male", "unspecified"
    */
   sex?: string;
   /** The patient's date of birth. */
@@ -101,13 +101,13 @@ export interface PatientDocument {
   /**
    * The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document).
    *
-   * Possible values: note, fhirBundle, dicom, genomicSequencing
+   * Possible values: "note", "fhirBundle", "dicom", "genomicSequencing"
    */
   type: string;
   /**
    * The type of the clinical document.
    *
-   * Possible values: consultation, dischargeSummary, historyAndPhysical, procedure, progress, imaging, laboratory, pathology
+   * Possible values: "consultation", "dischargeSummary", "historyAndPhysical", "procedure", "progress", "imaging", "laboratory", "pathology"
    */
   clinicalType?: string;
   /** A given identifier for the document. Has to be unique across all documents for a single patient. */
@@ -127,7 +127,7 @@ export interface DocumentContent {
    * In case the source type is 'inline', the content is given as a string (for instance, text).
    * In case the source type is 'reference', the content is given as a URI.
    *
-   * Possible values: inline, reference
+   * Possible values: "inline", "reference"
    */
   sourceType: string;
   /** The content of the document, given either inline (as a string) or as a reference (URI). */
@@ -181,7 +181,7 @@ export interface ClinicalTrialDemographics {
   /**
    * Indication of the sex of people who may participate in the clinical trial.
    *
-   * Possible values: all, female, male
+   * Possible values: "all", "female", "male"
    */
   acceptedSex?: string;
   /** A definition of the range of ages accepted by a clinical trial. Contains a minimum age and/or a maximum age. */
@@ -201,7 +201,7 @@ export interface AcceptedAge {
   /**
    * Possible units for a person's age.
    *
-   * Possible values: years, months, days
+   * Possible values: "years", "months", "days"
    */
   unit: string;
   /** The number of years/months/days that represents the person's age. */
@@ -286,7 +286,7 @@ export interface GeographicArea {
   /**
    * `GeoJSON` type.
    *
-   * Possible values: Feature
+   * Possible values: "Feature"
    */
   type: string;
   /** `GeoJSON` geometry, representing the area circle's center. */
@@ -300,7 +300,7 @@ export interface AreaGeometry {
   /**
    * `GeoJSON` geometry type.
    *
-   * Possible values: Point
+   * Possible values: "Point"
    */
   type: string;
   /**
@@ -315,7 +315,7 @@ export interface AreaProperties {
   /**
    * `GeoJSON` object sub-type.
    *
-   * Possible values: Circle
+   * Possible values: "Circle"
    */
   subType: string;
   /** The radius of the area's circle, in meters. */

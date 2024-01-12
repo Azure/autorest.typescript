@@ -14,7 +14,7 @@ export interface AnalyzeTextOptions {
   /**
    * The type of text analysis output. If not assigned, the default value is "FourLevels".
    *
-   * Possible values: FourLevels, EightLevels
+   * Possible values: "FourLevels", "EightLevels"
    */
   outputType?: string;
 }
@@ -28,7 +28,7 @@ export interface AnalyzeImageOptions {
   /**
    * The type of image analysis output. If not assigned, the default value is "FourLevels".
    *
-   * Possible values: FourLevels
+   * Possible values: "FourLevels"
    */
   outputType?: string;
 }
