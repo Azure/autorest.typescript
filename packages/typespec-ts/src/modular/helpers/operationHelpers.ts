@@ -1133,7 +1133,10 @@ export function isLROOperation(op: Operation): boolean {
 }
 
 export function hasPagingOperation(client: Client, needRLC?: boolean): boolean;
-export function hasPagingOperation(codeModel: ModularCodeModel, needRLC?: boolean): boolean;
+export function hasPagingOperation(
+  codeModel: ModularCodeModel,
+  needRLC?: boolean
+): boolean;
 export function hasPagingOperation(
   clientOrCodeModel: Client | ModularCodeModel,
   needRLC: boolean = false
@@ -1146,7 +1149,7 @@ export function hasPagingOperation(
   }
   return clients.some(
     (c) =>
-      (needRLC ? c.rlcHelperDetails.hasPaging: false) ||
+      (needRLC ? c.rlcHelperDetails.hasPaging : false) ||
       (c.operationGroups ?? []).some((og) =>
         (og.operations ?? []).some(isPagingOperation)
       )
