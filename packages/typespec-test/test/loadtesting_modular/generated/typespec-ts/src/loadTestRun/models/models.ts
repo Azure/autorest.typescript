@@ -543,5 +543,5 @@ export interface PagedDimensionValueList {
 }
 
 export interface DimensionValueList {
-  readonly value: string[];
+  value: string[];
 }

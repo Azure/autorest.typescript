@@ -84,7 +84,7 @@ export interface ExtensibleEnumProperty {
   /**
    * Property
    *
-   * Possible values: ValueOne, ValueTwo
+   * Possible values: "ValueOne", "ValueTwo"
    */
   property: string;
 }

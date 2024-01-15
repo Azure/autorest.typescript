@@ -217,7 +217,7 @@ export interface ChatMessage {
   /**
    * The role associated with this message payload.
    *
-   * Possible values: system, assistant, user, function, tool
+   * Possible values: "system", "assistant", "user", "function", "tool"
    */
   role: string;
   /** The text associated with this message payload. */
@@ -299,7 +299,7 @@ export interface AzureChatExtensionConfiguration {
    *   The label for the type of an Azure chat extension. This typically corresponds to a matching Azure resource.
    *   Azure chat extensions are only compatible with Azure OpenAI.
    *
-   * Possible values: AzureCognitiveSearch
+   * Possible values: "AzureCognitiveSearch"
    */
   type: string;
   /**
@@ -319,14 +319,14 @@ export interface ImageGenerationOptions {
   /**
    * The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024 (defaults to 1024x1024).
    *
-   * Possible values: 256x256, 512x512, 1024x1024
+   * Possible values: "256x256", "512x512", "1024x1024"
    */
   size?: string;
   /**
    *   The format in which image generation response items should be presented.
    *   Azure OpenAI only supports URL response items.
    *
-   * Possible values: url, b64_json
+   * Possible values: "url", "b64_json"
    */
   response_format?: string;
   /** A unique identifier representing your end-user, which can help to monitor and detect abuse. */

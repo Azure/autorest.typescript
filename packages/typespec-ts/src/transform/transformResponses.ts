@@ -86,7 +86,7 @@ export function transformToResponseTypes(
         description: resp.description
       };
       // transform header
-      const headers = transformHeaders(dpgContext, resp);
+      const headers = transformHeaders(dpgContext, resp, inputImportedSet);
       // transform body
       const body = transformBody(dpgContext, resp, inputImportedSet);
       rlcOperationUnit.responses.push({
@@ -116,7 +116,8 @@ export function transformToResponseTypes(
  */
 function transformHeaders(
   dpgContext: SdkContext,
-  response: HttpOperationResponse
+  response: HttpOperationResponse,
+  importedModels: Set<string>
 ): ResponseHeaderSchema[] | undefined {
   if (!response.responses.length) {
     return;
@@ -140,7 +141,11 @@ function transformHeaders(
       const typeSchema = getSchemaForType(dpgContext, value!.type, [
         SchemaContext.Output
       ]) as Schema;
-      const type = getTypeName(typeSchema);
+      const type = getTypeName(typeSchema, [SchemaContext.Output]);
+      getImportedModelName(typeSchema, [SchemaContext.Output])?.forEach(
+        importedModels.add,
+        importedModels
+      );
       const header: ResponseHeaderSchema = {
         name: `"${key.toLowerCase()}"`,
         type,

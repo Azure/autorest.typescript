@@ -36,7 +36,7 @@ export interface Cobra extends SnakeParent {
 /** fixed enum type for discriminator */
 /** */
 export type SnakeKind = "cobra";
-/** Base type for Dog */
+/** Alias for Dog */
 export type Dog = Golden | DogParent;
-/** Base type for Snake */
+/** Alias for Snake */
 export type Snake = Cobra | SnakeParent;

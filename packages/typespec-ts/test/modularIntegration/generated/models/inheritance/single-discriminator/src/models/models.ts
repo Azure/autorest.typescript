@@ -43,7 +43,7 @@ export interface TRex extends DinosaurParent {
   kind: "t-rex";
 }
 
-/** Base type for Bird */
+/** Alias for Bird */
 export type Bird = SeaGull | Sparrow | Goose | Eagle | BirdParent;
-/** Base type for Dinosaur */
+/** Alias for Dinosaur */
 export type Dinosaur = TRex | DinosaurParent;
