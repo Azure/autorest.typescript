@@ -51,6 +51,11 @@ function extractModels(codeModel: ModularCodeModel): Type[] {
   return models;
 }
 
+/**
+ * Extracts all the aliases from the code model
+ * 1. alias from polymorphic base model, where we need to use typescript union to combine all the sub models
+ * 2. alias from unions, where we also need to use typescript union to combine all the union variants
+ */
 export function extractAliases(codeModel: ModularCodeModel): Type[] {
   const models = codeModel.types.filter(
     (t) =>

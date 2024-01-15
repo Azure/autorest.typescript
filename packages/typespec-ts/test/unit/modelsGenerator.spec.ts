@@ -1635,7 +1635,10 @@ describe("Input/output model type", () => {
         op getModel(@query input: duration): NoContentResponse;
         `);
         assert.ok(schemaOutput);
-        await assertEqualContent(schemaOutput?.content!, buildParameterDef("string"));
+        await assertEqualContent(
+          schemaOutput?.content!,
+          buildParameterDef("string")
+        );
       });
 
       it("should handle duration with encode `seconds`", async () => {
@@ -1653,7 +1656,10 @@ describe("Input/output model type", () => {
           true
         );
         assert.ok(schemaOutput);
-        await assertEqualContent(schemaOutput?.content!, buildParameterDef("number"));
+        await assertEqualContent(
+          schemaOutput?.content!,
+          buildParameterDef("number")
+        );
       });
 
       it("should handle duration with encode `iso8601`", async () => {
@@ -1671,7 +1677,10 @@ describe("Input/output model type", () => {
           true
         );
         assert.ok(schemaOutput);
-        await assertEqualContent(schemaOutput?.content!, buildParameterDef("string"));
+        await assertEqualContent(
+          schemaOutput?.content!,
+          buildParameterDef("string")
+        );
       });
     });
   });
@@ -3133,7 +3142,6 @@ describe("Input/output model type", () => {
 
   describe("should generate models for header parameters", () => {
     it("union variants with string literals being used in contentType headers", async () => {
-   
       const tspDefinition = `
       import "@typespec/http";
       import "@typespec/rest";
@@ -3158,13 +3166,18 @@ describe("Input/output model type", () => {
         @body body: string,
       ): NoContentResponse;
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, false, false, true);
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        false,
+        true
+      );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.isUndefined(outputModelFile);
       assert.ok(inputModelFile?.content);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export type SchemaContentTypeValues =
@@ -3173,10 +3186,10 @@ describe("Input/output model type", () => {
           | "text/plain; charset=utf-8"
           | "text/vnd.ms.protobuf";
         `
-      );  
-    })
+      );
+    });
 
-    it("union variants with string literals being used in regular headers", async () => {
+    it("named union with string literals being used in regular headers", async () => {
       const tspDefinition = `
       import "@typespec/http";
       import "@typespec/rest";
@@ -3199,15 +3212,21 @@ describe("Input/output model type", () => {
       op get(
         @header("test-header") testHeader: SchemaContentTypeValues,
         @body body: string,
-      ): NoContentResponse;
+      ): { @header("test-header") testHeader: SchemaContentTypeValues };
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, false, false, true);
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        false,
+        true
+      );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
-      assert.isUndefined(outputModelFile);
       assert.ok(inputModelFile?.content);
+      assert.ok(outputModelFile?.content);
       assert.strictEqual(inputModelFile?.path, "models.ts");
-      assertEqualContent(
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      await assertEqualContent(
         inputModelFile?.content!,
         `
         export type SchemaContentTypeValues =
@@ -3216,8 +3235,159 @@ describe("Input/output model type", () => {
           | "text/plain; charset=utf-8"
           | "text/vnd.ms.protobuf";
         `
-      );  
-    })
+      );
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+        export type SchemaContentTypeValuesOutput =
+          | "application/json; serialization=Avro"
+          | "application/json; serialization=json"
+          | "text/plain; charset=utf-8"
+          | "text/vnd.ms.protobuf";
+        `
+      );
+
+      const paramOutput = await emitParameterFromTypeSpec(
+        tspDefinition,
+        false,
+        false,
+        false,
+        true
+      );
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.path, "parameters.ts");
+      await assertEqualContent(
+        paramOutput?.content!,
+        `
+        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import { RequestParameters } from "@azure-rest/core-client";
+        import { SchemaContentTypeValues } from "./models";
+        
+        export interface GetHeaders {
+          "test-header": SchemaContentTypeValues;
+        }
+        
+        export interface GetBodyParam {
+          body: string;
+        }
+        
+        export interface GetHeaderParam {
+          headers: RawHttpHeadersInput & GetHeaders;
+        }
+        
+        export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
+        `
+      );
+      const responseOutput = await emitResponsesFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.ok(responseOutput);
+      assert.strictEqual(responseOutput?.path, "responses.ts");
+      await assertEqualContent(
+        responseOutput?.content!,
+        `
+        import { RawHttpHeaders } from "@azure/core-rest-pipeline";
+        import { HttpResponse } from "@azure-rest/core-client";
+        import { SchemaContentTypeValuesOutput } from "./outputModels";
+        
+        export interface Get204Headers {
+          "test-header": SchemaContentTypeValuesOutput;
+        }
+        
+        /** There is no content to send for this request, but the headers may be useful. */
+        export interface Get204Response extends HttpResponse {
+          status: "204";
+          headers: RawHttpHeaders & Get204Headers;
+        }
+        `
+      );
+    });
+
+    it("anonymous union with string literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      
+      op get(
+        @header("test-header") testHeader: "A" | "B",
+        @body body: string,
+      ): { @header("test-header") testHeader: "A" | "B" };
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.isUndefined(inputModelFile);
+      assert.isUndefined(outputModelFile);
+      const paramOutput = await emitParameterFromTypeSpec(
+        tspDefinition,
+        false,
+        false,
+        false,
+        true
+      );
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.path, "parameters.ts");
+      await assertEqualContent(
+        paramOutput?.content!,
+        `
+        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import { RequestParameters } from "@azure-rest/core-client";
+        
+        export interface GetHeaders {
+          "test-header": "A" | "B";
+        }
+        
+        export interface GetBodyParam {
+          body: string;
+        }
+        
+        export interface GetHeaderParam {
+          headers: RawHttpHeadersInput & GetHeaders;
+        }
+        
+        export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
+        `
+      );
+      const responseOutput = await emitResponsesFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.ok(responseOutput);
+      assert.strictEqual(responseOutput?.path, "responses.ts");
+      await assertEqualContent(
+        responseOutput?.content!,
+        `
+        import { RawHttpHeaders } from "@azure/core-rest-pipeline";
+        import { HttpResponse } from "@azure-rest/core-client";
+        
+        export interface Get204Headers {
+          "test-header": "A" | "B";
+        }
+        
+        /** There is no content to send for this request, but the headers may be useful. */
+        export interface Get204Response extends HttpResponse {
+          status: "204";
+          headers: RawHttpHeaders & Get204Headers;
+        }
+        `
+      );
+    });
 
     it("extensible enums with string literals being used in regular headers", async () => {
       const tspDefinition = `
@@ -3244,12 +3414,17 @@ describe("Input/output model type", () => {
         @body body: string,
       ): NoContentResponse;
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, false, false, true);
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        false,
+        true
+      );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.isUndefined(outputModelFile);
       assert.isUndefined(inputModelFile);
-    })
+    });
 
     it("fixed enums with string literals being used in regular headers", async () => {
       const tspDefinition = `
@@ -3279,15 +3454,27 @@ describe("Input/output model type", () => {
         @body body: string,
       ): NoContentResponse;
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, true, false, true);
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        true,
+        false,
+        true
+      );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.isUndefined(outputModelFile);
       assert.isUndefined(inputModelFile);
-      const paramOutput = await emitParameterFromTypeSpec(tspDefinition, false, false, false, true);
+      const paramOutput = await emitParameterFromTypeSpec(
+        tspDefinition,
+        false,
+        false,
+        false,
+        true
+      );
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.path, "parameters.ts");
-      assertEqualContent(paramOutput?.content!, 
+      await assertEqualContent(
+        paramOutput?.content!,
         `
         import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
         import { RequestParameters } from "@azure-rest/core-client";
@@ -3309,8 +3496,9 @@ describe("Input/output model type", () => {
         }
         
         export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
-        `);
-    })
+        `
+      );
+    });
 
     it("fixed enums with string literals being used in regular headers", async () => {
       const tspDefinition = `
@@ -3340,15 +3528,27 @@ describe("Input/output model type", () => {
         @body body: string,
       ): NoContentResponse;
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, true, false, true);
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        true,
+        false,
+        true
+      );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.isUndefined(outputModelFile);
       assert.isUndefined(inputModelFile);
-      const paramOutput = await emitParameterFromTypeSpec(tspDefinition, false, false, false, true);
+      const paramOutput = await emitParameterFromTypeSpec(
+        tspDefinition,
+        false,
+        false,
+        false,
+        true
+      );
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.path, "parameters.ts");
-      assertEqualContent(paramOutput?.content!, 
+      await assertEqualContent(
+        paramOutput?.content!,
         `
         import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
         import { RequestParameters } from "@azure-rest/core-client";
@@ -3370,7 +3570,8 @@ describe("Input/output model type", () => {
         }
         
         export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
-        `);
+        `
+      );
     });
 
     it("fixed enums with number literals being used in regular headers", async () => {
@@ -3401,15 +3602,27 @@ describe("Input/output model type", () => {
         @body body: string,
       ): NoContentResponse;
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, true, false, true);
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        true,
+        false,
+        true
+      );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       assert.isUndefined(outputModelFile);
       assert.isUndefined(inputModelFile);
-      const paramOutput = await emitParameterFromTypeSpec(tspDefinition, false, false, false, true);
+      const paramOutput = await emitParameterFromTypeSpec(
+        tspDefinition,
+        false,
+        false,
+        false,
+        true
+      );
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.path, "parameters.ts");
-      assertEqualContent(paramOutput?.content!, 
+      await assertEqualContent(
+        paramOutput?.content!,
         `
         import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
         import { RequestParameters } from "@azure-rest/core-client";
@@ -3427,7 +3640,8 @@ describe("Input/output model type", () => {
         }
         
         export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
-        `);
+        `
+      );
     });
 
     it("unable to serialized type header would report diagnostic", async () => {
@@ -3456,13 +3670,26 @@ describe("Input/output model type", () => {
           @body body: string,
         ): NoContentResponse;
         `;
-        
-        const schemaOutput = await emitModelsFromTypeSpec(tspContent, false, false, true, true);
+
+        const schemaOutput = await emitModelsFromTypeSpec(
+          tspContent,
+          false,
+          false,
+          true,
+          true
+        );
         assert.ok(schemaOutput);
-        const { inputModelFile, outputModelFile}  = schemaOutput!;
+        const { inputModelFile, outputModelFile } = schemaOutput!;
         assert.ok(inputModelFile);
         assert.isUndefined(outputModelFile);
-        const paramOutput = await emitParameterFromTypeSpec(tspContent, false, false, false, true, true);
+        const paramOutput = await emitParameterFromTypeSpec(
+          tspContent,
+          false,
+          false,
+          false,
+          true,
+          true
+        );
         assert.ok(paramOutput);
         assert.fail("Should throw diagnostic warnings");
       } catch (e) {
@@ -3475,5 +3702,5 @@ describe("Input/output model type", () => {
         assert.equal(diagnostics[0]?.severity, "warning");
       }
     });
-  })
+  });
 });

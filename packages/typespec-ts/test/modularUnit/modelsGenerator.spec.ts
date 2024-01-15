@@ -1349,7 +1349,7 @@ describe("inheritance & polymorphism", () => {
         true
       );
       assert.ok(schemaOutput);
-      assertEqualContent(
+      await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
         /** Alias for SchemaContentTypeValues */
@@ -1369,7 +1369,7 @@ describe("inheritance & polymorphism", () => {
       );
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         paramOutput?.[0]?.getFullText()!,
         `
         import { DemoServiceContext as Client } from "../rest/index.js";
@@ -1415,7 +1415,7 @@ describe("inheritance & polymorphism", () => {
       );
     });
 
-    it("union variants with string literals being used in regular headers", async () => {
+    it("named union with string literals being used in regular headers", async () => {
       const tspDefinition = `
       import "@typespec/http";
       import "@typespec/rest";
@@ -1438,7 +1438,7 @@ describe("inheritance & polymorphism", () => {
       op get(
         @header("test-header") testHeader: SchemaContentTypeValues,
         @body body: string,
-      ): NoContentResponse;
+      ): { @header("test-header") testHeader: SchemaContentTypeValues };
       `;
       const schemaOutput = await emitModularModelsFromTypeSpec(
         tspDefinition,
@@ -1446,7 +1446,7 @@ describe("inheritance & polymorphism", () => {
         true
       );
       assert.ok(schemaOutput);
-      assertEqualContent(
+      await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
         /** Alias for SchemaContentTypeValues */
@@ -1456,6 +1456,83 @@ describe("inheritance & polymorphism", () => {
           | "text/plain; charset=utf-8"
           | "text/vnd.ms.protobuf";
         `
+      );
+    });
+
+    it("anonymous union with string literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      
+      op get(
+        @header("test-header") testHeader: "A" | "B",
+        @body body: string,
+      ): { @header("test-header") testHeader: "A" | "B" };
+      `;
+      const schemaOutput = await emitModularModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.isUndefined(schemaOutput);
+
+      const paramOutput = await emitModularOperationsFromTypeSpec(
+        tspDefinition,
+        true,
+        false,
+        false,
+        true
+      );
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.length, 1);
+      const operationContent = paramOutput?.[0]?.getFullText()!;
+      await assertEqualContent(
+        operationContent,
+        `
+        import { DemoServiceContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+          createRestError,
+        } from "@azure-rest/core-client";
+        export function _getSend(
+          context: Client,
+          testHeader: "A" | "B",
+          body: string,
+          options: GetOptions = { requestOptions: {} },
+        ): StreamableMethod<Get204Response> {
+          return context
+            .path("/")
+            .post({
+              ...operationOptionsToRequestParameters(options),
+              headers: { "test-header": testHeader },
+            });
+        }
+        export async function _getDeserialize(result: Get204Response): Promise<void> {
+          if (result.status !== "204") {
+            throw createRestError(result);
+          }
+          return;
+        }
+        export async function get(
+          context: Client,
+          testHeader: "A" | "B",
+          body: string,
+          options: GetOptions = { requestOptions: {} },
+        ): Promise<void> {
+          const result = await _getSend(context, testHeader, body, options);
+          return _getDeserialize(result);
+        }
+        `,
+        true
       );
     });
 
@@ -1531,7 +1608,7 @@ describe("inheritance & polymorphism", () => {
       );
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         paramOutput?.[0]?.getFullText()!,
         `
         import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
@@ -1592,7 +1669,7 @@ describe("inheritance & polymorphism", () => {
         true
       );
       assert.ok(schemaOutput);
-      assertEqualContent(
+      await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
       /** */
@@ -1608,7 +1685,7 @@ describe("inheritance & polymorphism", () => {
       );
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         paramOutput?.[0]?.getFullText()!,
         `
         import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
@@ -1678,7 +1755,7 @@ describe("inheritance & polymorphism", () => {
       );
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         paramOutput?.[0]?.getFullText()!,
         `
         import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";

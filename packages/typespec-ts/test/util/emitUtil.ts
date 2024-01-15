@@ -240,9 +240,17 @@ export async function emitClientFactoryFromTypeSpec(
 
 export async function emitResponsesFromTypeSpec(
   tspContent: string,
-  needAzureCore: boolean = false
+  needAzureCore: boolean = false,
+  withRawContent: boolean = false
 ) {
-  const context = await rlcEmitterFor(tspContent, true, needAzureCore);
+  const context = await rlcEmitterFor(
+    tspContent,
+    true,
+    needAzureCore,
+    false,
+    false,
+    withRawContent
+  );
   const dpgContext = createDpgContextTestHelper(context.program);
   const importSet = initInternalImports();
   const clients = getRLCClients(dpgContext);
@@ -284,7 +292,14 @@ export async function emitModularModelsFromTypeSpec(
   needOptions: boolean = false,
   withRawContent: boolean = false
 ) {
-  const context = await rlcEmitterFor(tspContent, true, false, false, false, withRawContent);
+  const context = await rlcEmitterFor(
+    tspContent,
+    true,
+    false,
+    false,
+    false,
+    withRawContent
+  );
   const dpgContext = createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,

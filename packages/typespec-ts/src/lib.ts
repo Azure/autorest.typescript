@@ -210,7 +210,7 @@ const libDef = {
       messages: {
         default: paramMessage`Please note the header ${"type"} is not serializable.`
       }
-    },
+    }
   },
   emitter: {
     options: RLCOptionsSchema
