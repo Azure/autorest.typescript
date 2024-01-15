@@ -15,7 +15,7 @@ import {
   TimeGetOptionalParams,
   TimeGetResponse,
   TimePutOptionalParams,
-  TimePutResponse
+  TimePutResponse,
 } from "../models";
 
 /** Class containing Time operations. */
@@ -47,11 +47,11 @@ export class TimeImpl implements Time {
    */
   put(
     timeBody: string,
-    options?: TimePutOptionalParams
+    options?: TimePutOptionalParams,
   ): Promise<TimePutResponse> {
     return this.client.sendOperationRequest(
       { timeBody, options },
-      putOperationSpec
+      putOperationSpec,
     );
   }
 }
@@ -63,30 +63,30 @@ const getOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
+      bodyMapper: { type: { name: "String" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putOperationSpec: coreClient.OperationSpec = {
   path: "/time/put",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
+      bodyMapper: { type: { name: "String" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.timeBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

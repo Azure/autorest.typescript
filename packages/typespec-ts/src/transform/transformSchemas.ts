@@ -54,6 +54,11 @@ export function transformSchemas(
     transformSchemaForRoute(route);
   }
   function transformSchemaForRoute(route: HttpOperation) {
+    if (route.parameters) {
+      for (const param of route.parameters.parameters) {
+        getGeneratedModels(param.param, SchemaContext.Input);
+      }
+    }
     const bodyModel = getBodyType(program, route);
     if (
       bodyModel &&
@@ -66,6 +71,13 @@ export function transformSchemas(
         continue;
       }
       for (const resps of resp.responses) {
+        const headers = resps?.headers;
+        if (headers && Object.keys(headers).length) {
+          for (const value of Object.values(headers)) {
+            getGeneratedModels(value, SchemaContext.Output);
+          }
+        }
+
         const respModel = resps.body;
         if (!respModel) {
           continue;
@@ -125,28 +137,31 @@ export function transformSchemas(
       if (
         indexer?.value &&
         (!program.stateMap(modelKey).get(indexer?.value) ||
-          !program.stateMap(modelKey).get(indexer?.value)?.includes(context))
+          !program
+            .stateMap(modelKey)
+            .get(indexer?.value)
+            ?.includes(context))
       ) {
         getGeneratedModels(indexer.value, context);
       }
       for (const prop of model.properties) {
+        const [, propType] = prop;
         if (
-          prop[1].type.kind === "Model" &&
-          (!program.stateMap(modelKey).get(prop[1].type) ||
-            !program.stateMap(modelKey).get(prop[1].type)?.includes(context))
+          propType.type.kind === "Model" &&
+          (!program.stateMap(modelKey).get(propType.type) ||
+            !program.stateMap(modelKey).get(propType.type)?.includes(context))
         ) {
-          if (isAzureCoreErrorType(prop[1].type)) {
+          if (isAzureCoreErrorType(propType.type)) {
             continue;
           }
-          getGeneratedModels(prop[1].type, context);
+          getGeneratedModels(propType.type, context);
         }
         if (
-          prop[1].type.kind === "Union" &&
-          (!program.stateMap(modelKey).get(prop[1].type) ||
-            !program.stateMap(modelKey).get(prop[1].type)?.includes(context))
+          propType.type.kind === "Union" &&
+          (!program.stateMap(modelKey).get(propType.type) ||
+            !program.stateMap(modelKey).get(propType.type)?.includes(context))
         ) {
-          const variants = Array.from(prop[1].type.variants.values());
-          let hasModels = false;
+          const variants = Array.from(propType.type.variants.values());
           for (const variant of variants) {
             if (
               (variant.type.kind === "Model" ||
@@ -157,12 +172,12 @@ export function transformSchemas(
                   .get(variant.type)
                   ?.includes(context))
             ) {
-              hasModels = true;
               getGeneratedModels(variant.type, context);
             }
           }
-          if (hasModels) {
-            setModelMap(prop[1].type, context);
+          // build type details for named union
+          if (!propType.type.expression) {
+            setModelMap(propType.type, context);
           }
         }
       }
@@ -189,20 +204,21 @@ export function transformSchemas(
       }
     } else if (model.kind === "Union") {
       const variants = Array.from(model.variants.values());
-      let hasModels = false;
       for (const variant of variants) {
         if (
           (variant.type.kind === "Model" || variant.type.kind === "Union") &&
           (!program.stateMap(modelKey).get(variant.type) ||
             !program.stateMap(modelKey).get(variant.type)?.includes(context))
         ) {
-          hasModels = true;
           getGeneratedModels(variant.type, context);
         }
       }
-      if (hasModels) {
+      // build type details for named union
+      if (!model.expression) {
         setModelMap(model, context);
       }
+    } else if (model.kind === "ModelProperty") {
+      getGeneratedModels(model.type, context);
     }
   }
   const allSchemas = Array.from(schemas, function (item) {

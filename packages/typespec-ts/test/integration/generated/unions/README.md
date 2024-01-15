@@ -1,6 +1,6 @@
 # Unions REST client library for JavaScript
 
-Test for type of union.
+Describe scenarios for various combinations of unions.
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 

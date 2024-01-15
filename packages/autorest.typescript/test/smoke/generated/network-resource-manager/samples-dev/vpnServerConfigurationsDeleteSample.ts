@@ -28,7 +28,7 @@ async function vpnServerConfigurationDelete() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnServerConfigurations.beginDeleteAndWait(
     resourceGroupName,
-    vpnServerConfigurationName
+    vpnServerConfigurationName,
   );
   console.log(result);
 }

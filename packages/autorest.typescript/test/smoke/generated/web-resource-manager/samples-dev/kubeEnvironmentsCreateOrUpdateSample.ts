@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   KubeEnvironment,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,14 +30,14 @@ async function createKubeEnvironments() {
   const name = "testkubeenv";
   const kubeEnvironmentEnvelope: KubeEnvironment = {
     location: "East US",
-    staticIp: "1.2.3.4"
+    staticIp: "1.2.3.4",
   };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.kubeEnvironments.beginCreateOrUpdateAndWait(
     resourceGroupName,
     name,
-    kubeEnvironmentEnvelope
+    kubeEnvironmentEnvelope,
   );
   console.log(result);
 }

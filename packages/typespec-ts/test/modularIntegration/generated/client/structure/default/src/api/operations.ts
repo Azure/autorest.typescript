@@ -13,6 +13,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   OneOptions,
@@ -25,7 +26,7 @@ import {
 
 export function _oneSend(
   context: Client,
-  options: OneOptions = { requestOptions: {} }
+  options: OneOptions = { requestOptions: {} },
 ): StreamableMethod<One204Response> {
   return context
     .path("/one")
@@ -34,7 +35,7 @@ export function _oneSend(
 
 export async function _oneDeserialize(result: One204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -42,7 +43,7 @@ export async function _oneDeserialize(result: One204Response): Promise<void> {
 
 export async function one(
   context: Client,
-  options: OneOptions = { requestOptions: {} }
+  options: OneOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _oneSend(context, options);
   return _oneDeserialize(result);
@@ -50,7 +51,7 @@ export async function one(
 
 export function _twoSend(
   context: Client,
-  options: TwoOptions = { requestOptions: {} }
+  options: TwoOptions = { requestOptions: {} },
 ): StreamableMethod<Two204Response> {
   return context
     .path("/two")
@@ -59,7 +60,7 @@ export function _twoSend(
 
 export async function _twoDeserialize(result: Two204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -67,7 +68,7 @@ export async function _twoDeserialize(result: Two204Response): Promise<void> {
 
 export async function two(
   context: Client,
-  options: TwoOptions = { requestOptions: {} }
+  options: TwoOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _twoSend(context, options);
   return _twoDeserialize(result);
@@ -75,7 +76,7 @@ export async function two(
 
 export function _threeSend(
   context: Client,
-  options: ThreeOptions = { requestOptions: {} }
+  options: ThreeOptions = { requestOptions: {} },
 ): StreamableMethod<Three204Response> {
   return context
     .path("/three")
@@ -83,10 +84,10 @@ export function _threeSend(
 }
 
 export async function _threeDeserialize(
-  result: Three204Response
+  result: Three204Response,
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -94,7 +95,7 @@ export async function _threeDeserialize(
 
 export async function three(
   context: Client,
-  options: ThreeOptions = { requestOptions: {} }
+  options: ThreeOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _threeSend(context, options);
   return _threeDeserialize(result);
@@ -102,7 +103,7 @@ export async function three(
 
 export function _fourSend(
   context: Client,
-  options: FourOptions = { requestOptions: {} }
+  options: FourOptions = { requestOptions: {} },
 ): StreamableMethod<Four204Response> {
   return context
     .path("/four")
@@ -111,7 +112,7 @@ export function _fourSend(
 
 export async function _fourDeserialize(result: Four204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -119,7 +120,7 @@ export async function _fourDeserialize(result: Four204Response): Promise<void> {
 
 export async function four(
   context: Client,
-  options: FourOptions = { requestOptions: {} }
+  options: FourOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _fourSend(context, options);
   return _fourDeserialize(result);
@@ -127,7 +128,7 @@ export async function four(
 
 export function _fiveSend(
   context: Client,
-  options: FiveOptions = { requestOptions: {} }
+  options: FiveOptions = { requestOptions: {} },
 ): StreamableMethod<Five204Response> {
   return context
     .path("/five")
@@ -136,7 +137,7 @@ export function _fiveSend(
 
 export async function _fiveDeserialize(result: Five204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -144,7 +145,7 @@ export async function _fiveDeserialize(result: Five204Response): Promise<void> {
 
 export async function five(
   context: Client,
-  options: FiveOptions = { requestOptions: {} }
+  options: FiveOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _fiveSend(context, options);
   return _fiveDeserialize(result);
@@ -152,7 +153,7 @@ export async function five(
 
 export function _sixSend(
   context: Client,
-  options: SixOptions = { requestOptions: {} }
+  options: SixOptions = { requestOptions: {} },
 ): StreamableMethod<Six204Response> {
   return context
     .path("/six")
@@ -161,7 +162,7 @@ export function _sixSend(
 
 export async function _sixDeserialize(result: Six204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -169,7 +170,7 @@ export async function _sixDeserialize(result: Six204Response): Promise<void> {
 
 export async function six(
   context: Client,
-  options: SixOptions = { requestOptions: {} }
+  options: SixOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _sixSend(context, options);
   return _sixDeserialize(result);

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   DedicatedHost,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,7 +32,7 @@ async function createOrUpdateADedicatedHost() {
     location: "westus",
     platformFaultDomain: 1,
     sku: { name: "DSv3-Type1" },
-    tags: { department: "HR" }
+    tags: { department: "HR" },
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -40,7 +40,7 @@ async function createOrUpdateADedicatedHost() {
     resourceGroupName,
     hostGroupName,
     hostName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

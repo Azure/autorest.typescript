@@ -9,13 +9,14 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { BECOp1Options } from "../../../../models/options.js";
 
 export function _op1Send(
   context: Client,
   body: BEA,
-  options: BECOp1Options = { requestOptions: {} }
+  options: BECOp1Options = { requestOptions: {} },
 ): StreamableMethod<BecOp1204Response> {
   return context
     .path("/b/e")
@@ -26,10 +27,10 @@ export function _op1Send(
 }
 
 export async function _op1Deserialize(
-  result: BecOp1204Response
+  result: BecOp1204Response,
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -38,7 +39,7 @@ export async function _op1Deserialize(
 export async function op1(
   context: Client,
   body: BEA,
-  options: BECOp1Options = { requestOptions: {} }
+  options: BECOp1Options = { requestOptions: {} },
 ): Promise<void> {
   const result = await _op1Send(context, body, options);
   return _op1Deserialize(result);

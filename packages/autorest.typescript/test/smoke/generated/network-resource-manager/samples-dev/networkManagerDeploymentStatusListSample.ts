@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   NetworkManagerDeploymentStatusParameter,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,14 +32,14 @@ async function networkManagerDeploymentStatusList() {
   const parameters: NetworkManagerDeploymentStatusParameter = {
     deploymentTypes: ["Connectivity", "AdminPolicy"],
     regions: ["eastus", "westus"],
-    skipToken: "FakeSkipTokenCode"
+    skipToken: "FakeSkipTokenCode",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkManagerDeploymentStatusOperations.list(
     resourceGroupName,
     networkManagerName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

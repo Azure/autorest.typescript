@@ -16,7 +16,7 @@ import { DeploymentScriptsClient } from "../deploymentScriptsClient";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -39,7 +39,7 @@ import {
   DeploymentScriptsGetLogsDefaultOptionalParams,
   DeploymentScriptsGetLogsDefaultResponse,
   DeploymentScriptsListBySubscriptionNextResponse,
-  DeploymentScriptsListByResourceGroupNextResponse
+  DeploymentScriptsListByResourceGroupNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -60,7 +60,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
    * @param options The options parameters.
    */
   public listBySubscription(
-    options?: DeploymentScriptsListBySubscriptionOptionalParams
+    options?: DeploymentScriptsListBySubscriptionOptionalParams,
   ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
@@ -75,13 +75,13 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listBySubscriptionPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listBySubscriptionPagingPage(
     options?: DeploymentScriptsListBySubscriptionOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<DeploymentScriptUnion[]> {
     let result: DeploymentScriptsListBySubscriptionResponse;
     let continuationToken = settings?.continuationToken;
@@ -102,7 +102,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
   }
 
   private async *listBySubscriptionPagingAll(
-    options?: DeploymentScriptsListBySubscriptionOptionalParams
+    options?: DeploymentScriptsListBySubscriptionOptionalParams,
   ): AsyncIterableIterator<DeploymentScriptUnion> {
     for await (const page of this.listBySubscriptionPagingPage(options)) {
       yield* page;
@@ -116,7 +116,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: DeploymentScriptsListByResourceGroupOptionalParams
+    options?: DeploymentScriptsListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<DeploymentScriptUnion> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -133,16 +133,16 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
     options?: DeploymentScriptsListByResourceGroupOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<DeploymentScriptUnion[]> {
     let result: DeploymentScriptsListByResourceGroupResponse;
     let continuationToken = settings?.continuationToken;
@@ -157,7 +157,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
       result = await this._listByResourceGroupNext(
         resourceGroupName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -168,11 +168,11 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: DeploymentScriptsListByResourceGroupOptionalParams
+    options?: DeploymentScriptsListByResourceGroupOptionalParams,
   ): AsyncIterableIterator<DeploymentScriptUnion> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -189,7 +189,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
     resourceGroupName: string,
     scriptName: string,
     deploymentScript: DeploymentScriptUnion,
-    options?: DeploymentScriptsCreateOptionalParams
+    options?: DeploymentScriptsCreateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DeploymentScriptsCreateResponse>,
@@ -198,21 +198,20 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<DeploymentScriptsCreateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -221,8 +220,8 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -230,22 +229,22 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, scriptName, deploymentScript, options },
-      spec: createOperationSpec
+      spec: createOperationSpec,
     });
     const poller = await createHttpPoller<
       DeploymentScriptsCreateResponse,
       OperationState<DeploymentScriptsCreateResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -262,13 +261,13 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
     resourceGroupName: string,
     scriptName: string,
     deploymentScript: DeploymentScriptUnion,
-    options?: DeploymentScriptsCreateOptionalParams
+    options?: DeploymentScriptsCreateOptionalParams,
   ): Promise<DeploymentScriptsCreateResponse> {
     const poller = await this.beginCreate(
       resourceGroupName,
       scriptName,
       deploymentScript,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -282,11 +281,11 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
   update(
     resourceGroupName: string,
     scriptName: string,
-    options?: DeploymentScriptsUpdateOptionalParams
+    options?: DeploymentScriptsUpdateOptionalParams,
   ): Promise<DeploymentScriptsUpdateResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, scriptName, options },
-      updateOperationSpec
+      updateOperationSpec,
     );
   }
 
@@ -299,11 +298,11 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
   get(
     resourceGroupName: string,
     scriptName: string,
-    options?: DeploymentScriptsGetOptionalParams
+    options?: DeploymentScriptsGetOptionalParams,
   ): Promise<DeploymentScriptsGetResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, scriptName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -316,11 +315,11 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
   delete(
     resourceGroupName: string,
     scriptName: string,
-    options?: DeploymentScriptsDeleteOptionalParams
+    options?: DeploymentScriptsDeleteOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { resourceGroupName, scriptName, options },
-      deleteOperationSpec
+      deleteOperationSpec,
     );
   }
 
@@ -329,11 +328,11 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
    * @param options The options parameters.
    */
   private _listBySubscription(
-    options?: DeploymentScriptsListBySubscriptionOptionalParams
+    options?: DeploymentScriptsListBySubscriptionOptionalParams,
   ): Promise<DeploymentScriptsListBySubscriptionResponse> {
     return this.client.sendOperationRequest(
       { options },
-      listBySubscriptionOperationSpec
+      listBySubscriptionOperationSpec,
     );
   }
 
@@ -346,11 +345,11 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
   getLogs(
     resourceGroupName: string,
     scriptName: string,
-    options?: DeploymentScriptsGetLogsOptionalParams
+    options?: DeploymentScriptsGetLogsOptionalParams,
   ): Promise<DeploymentScriptsGetLogsResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, scriptName, options },
-      getLogsOperationSpec
+      getLogsOperationSpec,
     );
   }
 
@@ -363,11 +362,11 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
   getLogsDefault(
     resourceGroupName: string,
     scriptName: string,
-    options?: DeploymentScriptsGetLogsDefaultOptionalParams
+    options?: DeploymentScriptsGetLogsDefaultOptionalParams,
   ): Promise<DeploymentScriptsGetLogsDefaultResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, scriptName, options },
-      getLogsDefaultOperationSpec
+      getLogsDefaultOperationSpec,
     );
   }
 
@@ -378,11 +377,11 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: DeploymentScriptsListByResourceGroupOptionalParams
+    options?: DeploymentScriptsListByResourceGroupOptionalParams,
   ): Promise<DeploymentScriptsListByResourceGroupResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, options },
-      listByResourceGroupOperationSpec
+      listByResourceGroupOperationSpec,
     );
   }
 
@@ -393,11 +392,11 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
    */
   private _listBySubscriptionNext(
     nextLink: string,
-    options?: DeploymentScriptsListBySubscriptionNextOptionalParams
+    options?: DeploymentScriptsListBySubscriptionNextOptionalParams,
   ): Promise<DeploymentScriptsListBySubscriptionNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listBySubscriptionNextOperationSpec
+      listBySubscriptionNextOperationSpec,
     );
   }
 
@@ -410,11 +409,11 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: DeploymentScriptsListByResourceGroupNextOptionalParams
+    options?: DeploymentScriptsListByResourceGroupNextOptionalParams,
   ): Promise<DeploymentScriptsListByResourceGroupNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, nextLink, options },
-      listByResourceGroupNextOperationSpec
+      listByResourceGroupNextOperationSpec,
     );
   }
 }
@@ -422,25 +421,24 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const createOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentScript
+      bodyMapper: Mappers.DeploymentScript,
     },
     201: {
-      bodyMapper: Mappers.DeploymentScript
+      bodyMapper: Mappers.DeploymentScript,
     },
     202: {
-      bodyMapper: Mappers.DeploymentScript
+      bodyMapper: Mappers.DeploymentScript,
     },
     204: {
-      bodyMapper: Mappers.DeploymentScript
+      bodyMapper: Mappers.DeploymentScript,
     },
     default: {
-      bodyMapper: Mappers.DeploymentScriptsError
-    }
+      bodyMapper: Mappers.DeploymentScriptsError,
+    },
   },
   requestBody: Parameters.deploymentScript,
   queryParameters: [Parameters.apiVersion],
@@ -448,23 +446,22 @@ const createOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.scriptName
+    Parameters.scriptName,
   ],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const updateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}",
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentScript
+      bodyMapper: Mappers.DeploymentScript,
     },
     default: {
-      bodyMapper: Mappers.DeploymentScriptsError
-    }
+      bodyMapper: Mappers.DeploymentScriptsError,
+    },
   },
   requestBody: Parameters.deploymentScript1,
   queryParameters: [Parameters.apiVersion],
@@ -472,173 +469,167 @@ const updateOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.scriptName
+    Parameters.scriptName,
   ],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentScript
+      bodyMapper: Mappers.DeploymentScript,
     },
     default: {
-      bodyMapper: Mappers.DeploymentScriptsError
-    }
+      bodyMapper: Mappers.DeploymentScriptsError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.scriptName
+    Parameters.scriptName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}",
   httpMethod: "DELETE",
   responses: {
     200: {},
     204: {},
     default: {
-      bodyMapper: Mappers.DeploymentScriptsError
-    }
+      bodyMapper: Mappers.DeploymentScriptsError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.scriptName
+    Parameters.scriptName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listBySubscriptionOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deploymentScripts",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deploymentScripts",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentScriptListResult
+      bodyMapper: Mappers.DeploymentScriptListResult,
     },
     default: {
-      bodyMapper: Mappers.DeploymentScriptsError
-    }
+      bodyMapper: Mappers.DeploymentScriptsError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getLogsOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}/logs",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}/logs",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ScriptLogsList
+      bodyMapper: Mappers.ScriptLogsList,
     },
     default: {
-      bodyMapper: Mappers.DeploymentScriptsError
-    }
+      bodyMapper: Mappers.DeploymentScriptsError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.scriptName
+    Parameters.scriptName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getLogsDefaultOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}/logs/default",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}/logs/default",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ScriptLog
+      bodyMapper: Mappers.ScriptLog,
     },
     default: {
-      bodyMapper: Mappers.DeploymentScriptsError
-    }
+      bodyMapper: Mappers.DeploymentScriptsError,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.tail],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.scriptName
+    Parameters.scriptName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentScriptListResult
+      bodyMapper: Mappers.DeploymentScriptListResult,
     },
     default: {
-      bodyMapper: Mappers.DeploymentScriptsError
-    }
+      bodyMapper: Mappers.DeploymentScriptsError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentScriptListResult
+      bodyMapper: Mappers.DeploymentScriptListResult,
     },
     default: {
-      bodyMapper: Mappers.DeploymentScriptsError
-    }
+      bodyMapper: Mappers.DeploymentScriptsError,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink
+    Parameters.nextLink,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentScriptListResult
+      bodyMapper: Mappers.DeploymentScriptListResult,
     },
     default: {
-      bodyMapper: Mappers.DeploymentScriptsError
-    }
+      bodyMapper: Mappers.DeploymentScriptsError,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.nextLink
+    Parameters.nextLink,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

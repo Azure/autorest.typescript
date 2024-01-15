@@ -29,7 +29,7 @@ async function getAvailablePrivateEndpointTypesInTheResourceGroup() {
   const resArray = new Array();
   for await (let item of client.availablePrivateEndpointTypes.listByResourceGroup(
     location,
-    resourceGroupName
+    resourceGroupName,
   )) {
     resArray.push(item);
   }

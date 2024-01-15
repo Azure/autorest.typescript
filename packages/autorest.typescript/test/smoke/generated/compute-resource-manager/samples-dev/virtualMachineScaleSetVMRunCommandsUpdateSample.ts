@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualMachineRunCommandUpdate,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,17 +30,18 @@ async function updateVirtualMachineScaleSetVMRunCommand() {
   const instanceId = "0";
   const runCommandName = "myRunCommand";
   const runCommand: VirtualMachineRunCommandUpdate = {
-    source: { script: "Write-Host Script Source Updated!" }
+    source: { script: "Write-Host Script Source Updated!" },
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
-  const result = await client.virtualMachineScaleSetVMRunCommands.beginUpdateAndWait(
-    resourceGroupName,
-    vmScaleSetName,
-    instanceId,
-    runCommandName,
-    runCommand
-  );
+  const result =
+    await client.virtualMachineScaleSetVMRunCommands.beginUpdateAndWait(
+      resourceGroupName,
+      vmScaleSetName,
+      instanceId,
+      runCommandName,
+      runCommand,
+    );
   console.log(result);
 }
 

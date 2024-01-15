@@ -8,7 +8,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface ImmediateSuccess {
   /** Check we recognize Repeatability-Request-ID and Repeatability-First-Sent. */
   post(
-    options: ImmediateSuccessParameters
+    options: ImmediateSuccessParameters,
   ): StreamableMethod<ImmediateSuccess204Response>;
 }
 

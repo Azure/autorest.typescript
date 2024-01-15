@@ -32,7 +32,7 @@ export class OdataImpl implements Odata {
   getWithFilter(options?: OdataGetWithFilterOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      getWithFilterOperationSpec
+      getWithFilterOperationSpec,
     );
   }
 }
@@ -45,11 +45,11 @@ const getWithFilterOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.filter, Parameters.top, Parameters.orderby],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

@@ -114,6 +114,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "type/property/value-types"
   },
   {
+    outputPath: "models/propertyAdditional",
+    inputPath: "type/property/additional-properties"
+  },
+  {
     outputPath: "models/visibility",
     inputPath: "type/model/visibility"
   },
@@ -184,6 +188,22 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "client/structure/two-operation-group",
     inputPath: "client/structure/two-operation-group"
+  },
+  {
+    outputPath: "scalar",
+    inputPath: "type/scalar"
+  },
+  {
+    outputPath: "azure/clientGeneratorCore/access",
+    inputPath: "azure/client-generator-core/access"
+  },
+  {
+    outputPath: "azure/clientGeneratorCore/usage",
+    inputPath: "azure/client-generator-core/usage"
+  },
+  {
+    outputPath: "payload/pageable",
+    inputPath: "payload/pageable"
   }
 ];
 
@@ -228,6 +248,26 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     inputPath: "azure/core/basic"
   },
   {
+    outputPath: "models/inheritance/nested-discriminator",
+    inputPath: "type/model/inheritance/nested-discriminator"
+  },
+  {
+    outputPath: "models/inheritance/not-discriminated",
+    inputPath: "type/model/inheritance/not-discriminated"
+  },
+  {
+    outputPath: "models/inheritance/enum-discriminator",
+    inputPath: "type/model/inheritance/enum-discriminator"
+  },
+  {
+    outputPath: "models/inheritance/single-discriminator",
+    inputPath: "type/model/inheritance/single-discriminator"
+  },
+  {
+    outputPath: "payload/pageable",
+    inputPath: "payload/pageable"
+  },
+  {
     outputPath: "encode/bytes",
     inputPath: "encode/bytes"
   },
@@ -270,6 +310,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "headers/repeatability",
     inputPath: "special-headers/repeatability"
+  },
+  {
+    outputPath: "azure/core-traits",
+    inputPath: "azure/core/traits"
   },
   {
     outputPath: "enums/fixed",

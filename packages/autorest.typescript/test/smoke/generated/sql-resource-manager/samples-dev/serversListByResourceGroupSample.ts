@@ -28,7 +28,7 @@ async function listServersByResourceGroup() {
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.servers.listByResourceGroup(
-    resourceGroupName
+    resourceGroupName,
   )) {
     resArray.push(item);
   }
@@ -49,7 +49,7 @@ async function listServersByResourceGroupWithExpandAdministrators() {
   const client = new SqlManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.servers.listByResourceGroup(
-    resourceGroupName
+    resourceGroupName,
   )) {
     resArray.push(item);
   }

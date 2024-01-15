@@ -31,7 +31,7 @@ async function getScmAllowed() {
   const result = await client.webApps.getScmAllowedSlot(
     resourceGroupName,
     name,
-    slot
+    slot,
   );
   console.log(result);
 }

@@ -15,7 +15,7 @@ import {
   PetGetByPetIdOptionalParams,
   PetGetByPetIdResponse,
   PetAddPetOptionalParams,
-  PetAddPetResponse
+  PetAddPetResponse,
 } from "../models";
 
 /** Class containing Pet operations. */
@@ -37,11 +37,11 @@ export class PetImpl implements Pet {
    */
   getByPetId(
     petId: string,
-    options?: PetGetByPetIdOptionalParams
+    options?: PetGetByPetIdOptionalParams,
   ): Promise<PetGetByPetIdResponse> {
     return this.client.sendOperationRequest(
       { petId, options },
-      getByPetIdOperationSpec
+      getByPetIdOperationSpec,
     );
   }
 
@@ -61,24 +61,24 @@ const getByPetIdOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.PetDef
-    }
+      bodyMapper: Mappers.PetDef,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.petId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const addPetOperationSpec: coreClient.OperationSpec = {
   path: "/extensibleenums/pet/addPet",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.PetDef
-    }
+      bodyMapper: Mappers.PetDef,
+    },
   },
   requestBody: Parameters.petParam,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

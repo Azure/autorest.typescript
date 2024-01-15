@@ -13,7 +13,7 @@ import { SecurityAADRestClient } from "./clientDefinitions";
  */
 export default function createClient(
   credentials: TokenCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): SecurityAADRestClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-security-aad-rest/1.0.0-preview1`;
@@ -24,30 +24,31 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
       scopes: options.credentials?.scopes ?? [
-        "https://security.microsoft.com/.default"
-      ]
-    }
+        "https://security.microsoft.com/.default",
+      ],
+    },
   };
 
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as SecurityAADRestClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return {
     ...client,
     ...{
       head: (options) => {
         return client.path("/securityaad").head(options);
-      }
-    }
+      },
+    },
   };
 }

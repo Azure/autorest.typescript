@@ -13,13 +13,14 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@typespec/ts-http-runtime";
 import { ModerationsCreateOptions } from "../../models/options.js";
 
 export function _createSend(
   context: Client,
   content: CreateModerationRequest,
-  options: ModerationsCreateOptions = { requestOptions: {} }
+  options: ModerationsCreateOptions = { requestOptions: {} },
 ): StreamableMethod<
   ModerationsCreate200Response | ModerationsCreateDefaultResponse
 > {
@@ -32,16 +33,16 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: ModerationsCreate200Response | ModerationsCreateDefaultResponse
+  result: ModerationsCreate200Response | ModerationsCreateDefaultResponse,
 ): Promise<CreateModerationResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
     id: result.body["id"],
     model: result.body["model"],
-    results: (result.body["results"] ?? []).map((p) => ({
+    results: result.body["results"].map((p) => ({
       flagged: p["flagged"],
       categories: {
         hate: p.categories["hate"],
@@ -76,7 +77,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   content: CreateModerationRequest,
-  options: ModerationsCreateOptions = { requestOptions: {} }
+  options: ModerationsCreateOptions = { requestOptions: {} },
 ): Promise<CreateModerationResponse> {
   const result = await _createSend(context, content, options);
   return _createDeserialize(result);

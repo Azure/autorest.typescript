@@ -9,6 +9,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   NoOperationParamsOptions,
@@ -17,7 +18,7 @@ import {
 
 export function _noOperationParamsSend(
   context: Client,
-  options: NoOperationParamsOptions = { requestOptions: {} }
+  options: NoOperationParamsOptions = { requestOptions: {} },
 ): StreamableMethod<NoOperationParams204Response> {
   return context
     .path("/")
@@ -25,10 +26,10 @@ export function _noOperationParamsSend(
 }
 
 export async function _noOperationParamsDeserialize(
-  result: NoOperationParams204Response
+  result: NoOperationParams204Response,
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -36,7 +37,7 @@ export async function _noOperationParamsDeserialize(
 
 export async function noOperationParams(
   context: Client,
-  options: NoOperationParamsOptions = { requestOptions: {} }
+  options: NoOperationParamsOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _noOperationParamsSend(context, options);
   return _noOperationParamsDeserialize(result);
@@ -45,7 +46,7 @@ export async function noOperationParams(
 export function _withOperationPathParamSend(
   context: Client,
   keyword: string,
-  options: WithOperationPathParamOptions = { requestOptions: {} }
+  options: WithOperationPathParamOptions = { requestOptions: {} },
 ): StreamableMethod<WithOperationPathParam204Response> {
   return context
     .path("/{keyword}", keyword)
@@ -53,10 +54,10 @@ export function _withOperationPathParamSend(
 }
 
 export async function _withOperationPathParamDeserialize(
-  result: WithOperationPathParam204Response
+  result: WithOperationPathParam204Response,
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -65,7 +66,7 @@ export async function _withOperationPathParamDeserialize(
 export async function withOperationPathParam(
   context: Client,
   keyword: string,
-  options: WithOperationPathParamOptions = { requestOptions: {} }
+  options: WithOperationPathParamOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _withOperationPathParamSend(context, keyword, options);
   return _withOperationPathParamDeserialize(result);

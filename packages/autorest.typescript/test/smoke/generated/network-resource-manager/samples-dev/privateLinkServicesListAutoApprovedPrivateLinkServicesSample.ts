@@ -27,7 +27,7 @@ async function getListOfPrivateLinkServiceIdThatCanBeLinkedToAPrivateEndPointWit
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.privateLinkServices.listAutoApprovedPrivateLinkServices(
-    location
+    location,
   )) {
     resArray.push(item);
   }

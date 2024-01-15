@@ -9,12 +9,13 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { ValidKeyOptions, ValidTokenOptions } from "../models/options.js";
 
 export function _validKeySend(
   context: Client,
-  options: ValidKeyOptions = { requestOptions: {} }
+  options: ValidKeyOptions = { requestOptions: {} },
 ): StreamableMethod<ValidKey204Response> {
   return context
     .path("/authentication/union/validkey")
@@ -22,10 +23,10 @@ export function _validKeySend(
 }
 
 export async function _validKeyDeserialize(
-  result: ValidKey204Response
+  result: ValidKey204Response,
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -34,7 +35,7 @@ export async function _validKeyDeserialize(
 /** Check whether client is authenticated */
 export async function validKey(
   context: Client,
-  options: ValidKeyOptions = { requestOptions: {} }
+  options: ValidKeyOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _validKeySend(context, options);
   return _validKeyDeserialize(result);
@@ -42,7 +43,7 @@ export async function validKey(
 
 export function _validTokenSend(
   context: Client,
-  options: ValidTokenOptions = { requestOptions: {} }
+  options: ValidTokenOptions = { requestOptions: {} },
 ): StreamableMethod<ValidToken204Response> {
   return context
     .path("/authentication/union/validtoken")
@@ -50,10 +51,10 @@ export function _validTokenSend(
 }
 
 export async function _validTokenDeserialize(
-  result: ValidToken204Response
+  result: ValidToken204Response,
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -62,7 +63,7 @@ export async function _validTokenDeserialize(
 /** Check whether client is authenticated */
 export async function validToken(
   context: Client,
-  options: ValidTokenOptions = { requestOptions: {} }
+  options: ValidTokenOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _validTokenSend(context, options);
   return _validTokenDeserialize(result);

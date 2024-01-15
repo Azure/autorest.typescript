@@ -18,7 +18,7 @@ async function cropVarietiesDelete() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const cropId = "CORN123";
   const cropVarietyId = "SEED123";
@@ -26,7 +26,7 @@ async function cropVarietiesDelete() {
     .path(
       "/crops/{cropId}/crop-varieties/{cropVarietyId}",
       cropId,
-      cropVarietyId
+      cropVarietyId,
     )
     .delete();
   console.log(result);

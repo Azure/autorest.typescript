@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   KeyCreateParameters,
-  KeyVaultManagementClient
+  KeyVaultManagementClient,
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -36,7 +36,7 @@ async function createAKey() {
     resourceGroupName,
     vaultName,
     keyName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

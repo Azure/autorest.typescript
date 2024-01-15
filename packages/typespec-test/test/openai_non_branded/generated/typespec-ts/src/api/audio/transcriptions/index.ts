@@ -13,13 +13,14 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@typespec/ts-http-runtime";
 import { AudioTranscriptionsCreateOptions } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,
   audio: CreateTranscriptionRequest,
-  options: AudioTranscriptionsCreateOptions = { requestOptions: {} }
+  options: AudioTranscriptionsCreateOptions = { requestOptions: {} },
 ): StreamableMethod<
   | AudioTranscriptionsCreate200Response
   | AudioTranscriptionsCreateDefaultResponse
@@ -43,10 +44,10 @@ export function _createSend(
 export async function _createDeserialize(
   result:
     | AudioTranscriptionsCreate200Response
-    | AudioTranscriptionsCreateDefaultResponse
+    | AudioTranscriptionsCreateDefaultResponse,
 ): Promise<CreateTranscriptionResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -57,7 +58,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   audio: CreateTranscriptionRequest,
-  options: AudioTranscriptionsCreateOptions = { requestOptions: {} }
+  options: AudioTranscriptionsCreateOptions = { requestOptions: {} },
 ): Promise<CreateTranscriptionResponse> {
   const result = await _createSend(context, audio, options);
   return _createDeserialize(result);

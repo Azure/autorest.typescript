@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   LedgerDigestUploads,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,17 +31,18 @@ async function enablesLedgerDigestUploadConfigurationForADatabase() {
   const databaseName = "testdb";
   const ledgerDigestUploads = "current";
   const parameters: LedgerDigestUploads = {
-    digestStorageEndpoint: "https://MyAccount.blob.core.windows.net"
+    digestStorageEndpoint: "https://MyAccount.blob.core.windows.net",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
-  const result = await client.ledgerDigestUploadsOperations.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    serverName,
-    databaseName,
-    ledgerDigestUploads,
-    parameters
-  );
+  const result =
+    await client.ledgerDigestUploadsOperations.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      ledgerDigestUploads,
+      parameters,
+    );
   console.log(result);
 }
 

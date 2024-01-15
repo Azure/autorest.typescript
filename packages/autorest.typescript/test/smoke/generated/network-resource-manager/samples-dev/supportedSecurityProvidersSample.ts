@@ -28,7 +28,7 @@ async function supportedSecurityProviders() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.supportedSecurityProviders(
     resourceGroupName,
-    virtualWANName
+    virtualWANName,
   );
   console.log(result);
 }

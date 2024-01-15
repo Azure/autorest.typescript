@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   LegalHold,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,7 +35,7 @@ async function setLegalHoldContainers() {
     resourceGroupName,
     accountName,
     containerName,
-    legalHold
+    legalHold,
   );
   console.log(result);
 }
@@ -53,7 +53,7 @@ async function setLegalHoldContainersWithAllowProtectedAppendWritesAll() {
   const containerName = "container8723";
   const legalHold: LegalHold = {
     allowProtectedAppendWritesAll: true,
-    tags: ["tag1", "tag2", "tag3"]
+    tags: ["tag1", "tag2", "tag3"],
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -61,7 +61,7 @@ async function setLegalHoldContainersWithAllowProtectedAppendWritesAll() {
     resourceGroupName,
     accountName,
     containerName,
-    legalHold
+    legalHold,
   );
   console.log(result);
 }

@@ -55,13 +55,14 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
-import { getResourceOperation } from "@typespec/rest";
 import {
   getHeaderFieldName,
   getPathParamName,
   getQueryParamName,
   isStatusCode,
-  HttpOperation
+  HttpOperation,
+  createMetadataInfo,
+  Visibility
 } from "@typespec/http";
 import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
 import { extractPagedMetadataNested } from "./operationUtil.js";
@@ -190,7 +191,7 @@ export function getSchemaForType(
   } else if (type.kind === "UnionVariant") {
     return getSchemaForUnionVariant(dpgContext, type, usage);
   } else if (type.kind === "Enum") {
-    return getSchemaForEnum(program, type);
+    return getSchemaForEnum(dpgContext, type);
   } else if (type.kind === "Scalar") {
     return getSchemaForScalar(dpgContext, type, relevantProperty);
   } else if (type.kind === "EnumMember") {
@@ -634,9 +635,9 @@ function getSchemaForModel(
     modelSchema.discriminator = {
       name: propertyName,
       type: "string",
-      required: true,
       description: `Discriminator property for ${model.name}.`
     };
+    modelSchema.discriminatorValue = propertyName;
 
     modelSchema.isPolyParent = true;
   }
@@ -678,15 +679,18 @@ function getSchemaForModel(
       propSchema
     );
     propSchema.usage = usage;
-    // Use the description from ModelProperty not devired from Model Type
+    // Use the description from ModelProperty not derived from Model Type
     propSchema.description = propertyDescription;
     modelSchema.properties[name] = propSchema;
     // if this property is a discriminator property, remove it to keep autorest validation happy
-    if (model.baseModel) {
-      const { propertyName } = getDiscriminator(program, model.baseModel) || {};
-      if (propertyName && name === `"${propertyName}"`) {
-        continue;
-      }
+    const { propertyName } = getDiscriminator(program, model) || {};
+    if (
+      propertyName &&
+      name === `"${propertyName}"` &&
+      modelSchema.discriminator
+    ) {
+      modelSchema.discriminator.type = propSchema.typeName ?? propSchema.type;
+      continue;
     }
 
     // Apply decorators on the property to the type's schema
@@ -815,26 +819,28 @@ function getSchemaForEnumMember(program: Program, e: EnumMember) {
   return { type, description: getDoc(program, e), isConstant: true };
 }
 
-function getSchemaForEnum(program: Program, e: Enum) {
+function getSchemaForEnum(dpgContext: SdkContext, e: Enum) {
   const values = [];
   const type = enumMemberType(e.members.values().next().value);
   for (const option of e.members.values()) {
     if (type !== enumMemberType(option)) {
-      reportDiagnostic(program, { code: "union-unsupported", target: e });
+      reportDiagnostic(dpgContext.program, {
+        code: "union-unsupported",
+        target: e
+      });
       continue;
     }
 
-    values.push(option.value ?? option.name);
+    values.push(getSchemaForType(dpgContext, option));
   }
 
-  const schema: any = { type, description: getDoc(program, e) };
+  const schema: any = { type, description: getDoc(dpgContext.program, e) };
   if (values.length > 0) {
     schema.enum = values;
-    schema.type =
-      type === "string"
-        ? values.map((item) => `"${item}"`).join("|")
-        : values.map((item) => `${item}`).join("|");
-    if (!isFixed(program, e)) {
+    schema.type = values
+      .map((item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`)
+      .join(" | ");
+    if (!isFixed(dpgContext.program, e)) {
       schema.name = "string";
       schema.typeName = "string";
     }
@@ -1048,7 +1054,7 @@ function getSchemaForStdScalar(
     case "safeint":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "int64"
+        format: "safeint"
       });
     case "uint8":
       return applyIntrinsicDecorators(program, type, {
@@ -1073,17 +1079,43 @@ function getSchemaForStdScalar(
     case "float64":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "double"
+        format: "float64"
       });
     case "float32":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "float"
+        format: "float32"
       });
     case "float":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "float"
+      });
+    case "decimal":
+      reportDiagnostic(program, {
+        code: "decimal-to-number",
+        format: {
+          propertyName: relevantProperty?.name ?? ""
+        },
+        target: relevantProperty ?? type
+      });
+      return applyIntrinsicDecorators(program, type, {
+        type: "number",
+        format: "decimal",
+        description: "decimal"
+      });
+    case "decimal128":
+      reportDiagnostic(program, {
+        code: "decimal-to-number",
+        format: {
+          propertyName: relevantProperty?.name ?? ""
+        },
+        target: relevantProperty ?? type
+      });
+      return applyIntrinsicDecorators(program, type, {
+        type: "number",
+        format: "decimal128",
+        description: "decimal128"
       });
     case "string":
       if (format === "binary") {
@@ -1167,6 +1199,37 @@ export function getTypeName(schema: Schema, usage?: SchemaContext[]): string {
   return getPriorityName(schema, usage) ?? schema.type ?? "any";
 }
 
+export function getSerializeTypeName(
+  program: Program,
+  schema: Schema,
+  usage?: SchemaContext[]
+): string {
+  const typeName = getTypeName(schema, usage);
+  const formattedName = (schema.alias ?? typeName).replace(
+    "Date | string",
+    "string"
+  );
+  const canSerialize = schema.enum
+    ? schema.enum.every((type) => {
+        return isSerializable(type) || type.type === "null";
+      })
+    : isSerializable(schema);
+  if (canSerialize) {
+    return schema.alias ? typeName : formattedName;
+  }
+  reportDiagnostic(program, {
+    code: "unable-serialized-type",
+    format: { type: typeName },
+    target: NoTarget
+  });
+  return "string";
+  function isSerializable(type: any) {
+    return (
+      ["string", "number", "boolean"].includes(type.type) || type.isConstant
+    );
+  }
+}
+
 export function getImportedModelName(
   schema: Schema,
   usage?: SchemaContext[]
@@ -1234,7 +1297,26 @@ function getPriorityName(schema: Schema, usage?: SchemaContext[]): string {
 
 function getEnumStringDescription(type: any) {
   if (type.name === "string" && type.enum && type.enum.length > 0) {
-    return `Possible values: ${type.enum.join(", ")}`;
+    return `Possible values: ${type.enum
+      .map((e: Schema) => {
+        return e.type;
+      })
+      .join(", ")}`;
+  }
+  return undefined;
+}
+
+function getDecimalDescription(type: any) {
+  if (
+    (type.format === "decimal" || type.format === "decimal128") &&
+    type.type === "number"
+  ) {
+    return `NOTE: This property is represented as a 'number' in JavaScript, but it corresponds to a 'decimal' type in other languages.
+Due to the inherent limitations of floating-point arithmetic in JavaScript, precision issues may arise when performing arithmetic operations.
+If your application requires high precision for arithmetic operations or when round-tripping data back to other languages, consider using a library like decimal.js, which provides an arbitrary-precision Decimal type.
+For simpler cases, where you need to control the number of decimal places for display purposes, you can use the 'toFixed()' method. However, be aware that 'toFixed()' returns a string and may not be suitable for all arithmetic precision requirements.
+Always be cautious with direct arithmetic operations and consider implementing appropriate rounding strategies to maintain accuracy.
+   `;
   }
   return undefined;
 }
@@ -1246,7 +1328,8 @@ export function getFormattedPropertyDoc(
   sperator: string = "\n\n"
 ) {
   const propertyDoc = getDoc(program, type);
-  const enhancedDocFromType = getEnumStringDescription(schemaType);
+  const enhancedDocFromType =
+    getEnumStringDescription(schemaType) ?? getDecimalDescription(schemaType);
   if (propertyDoc && enhancedDocFromType) {
     return `${propertyDoc}${sperator}${enhancedDocFromType}`;
   }
@@ -1257,41 +1340,14 @@ export function getBodyType(
   program: Program,
   route: HttpOperation
 ): Type | undefined {
-  let bodyModel = route.parameters.bodyType;
-  if (bodyModel && bodyModel.kind === "Model" && route.operation) {
-    const resourceType = getResourceOperation(
-      program,
-      route.operation
-    )?.resourceType;
-    if (resourceType && route.responses && route.responses.length > 0) {
-      const resp = route.responses[0];
-      if (resp && resp.responses && resp.responses.length > 0) {
-        const responseBody = resp.responses[0]?.body;
-        if (responseBody) {
-          const bodyTypeInResponse = getEffectiveModelFromType(
-            program,
-
-            responseBody.type
-          );
-          // response body type is reosurce type, and request body type (if templated) contains resource type
-          if (
-            bodyTypeInResponse === resourceType &&
-            bodyModel.templateMapper &&
-            bodyModel.templateMapper.args &&
-            bodyModel.templateMapper.args.some((it) => {
-              return it.kind === "Model" || it.kind === "Union"
-                ? it === bodyTypeInResponse
-                : false;
-            })
-          ) {
-            bodyModel = resourceType;
-          }
-        }
-      }
-    }
-    if (resourceType && bodyModel.name === "") {
-      bodyModel = resourceType;
-    }
+  const bodyModel = route.parameters.body?.type;
+  if (bodyModel) {
+    const metadataInfo = createMetadataInfo(program);
+    const payloadType = metadataInfo.getEffectivePayloadType(
+      bodyModel,
+      Visibility.All
+    );
+    return payloadType;
   }
   return bodyModel;
 }
@@ -1444,7 +1500,7 @@ export function getModelInlineSigniture(
   schema: ObjectSchema,
   options: { importedModels?: Set<string>; usage?: SchemaContext[] } = {}
 ) {
-  let schemaSigiture = `{`;
+  let schemaSignature = `{`;
   for (const propName in schema.properties) {
     const propType = schema.properties[propName]!;
     const propTypeName = getTypeName(propType, options.usage);
@@ -1461,9 +1517,9 @@ export function getModelInlineSigniture(
       }
     }
     const isOptional = propType.required ? "" : "?";
-    schemaSigiture += `${propName}${isOptional}: ${propTypeName};`;
+    schemaSignature += `${propName}${isOptional}: ${propTypeName};`;
   }
 
-  schemaSigiture += `}`;
-  return schemaSigiture;
+  schemaSignature += `}`;
+  return schemaSignature;
 }

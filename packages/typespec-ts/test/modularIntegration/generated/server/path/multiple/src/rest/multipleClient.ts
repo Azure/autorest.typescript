@@ -16,7 +16,7 @@ export interface MultipleContextOptions extends ClientOptions {
  */
 export default function createClient(
   endpoint: string,
-  options: MultipleContextOptions = {}
+  options: MultipleContextOptions = {},
 ): MultipleContext {
   const apiVersion = options.apiVersion ?? "v1.0";
   const baseUrl =
@@ -38,6 +38,8 @@ export default function createClient(
   };
 
   const client = getClient(baseUrl, options) as MultipleContext;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }

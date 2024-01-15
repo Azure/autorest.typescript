@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   NetworkConfigurationDiagnosticParameters,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,19 +34,20 @@ async function networkConfigurationDiagnostic() {
         destinationPort: "12100",
         direction: "Inbound",
         source: "10.1.0.4",
-        protocol: "TCP"
-      }
+        protocol: "TCP",
+      },
     ],
     targetResourceId:
-      "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Compute/virtualMachines/vm1"
+      "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Compute/virtualMachines/vm1",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.networkWatchers.beginGetNetworkConfigurationDiagnosticAndWait(
-    resourceGroupName,
-    networkWatcherName,
-    parameters
-  );
+  const result =
+    await client.networkWatchers.beginGetNetworkConfigurationDiagnosticAndWait(
+      resourceGroupName,
+      networkWatcherName,
+      parameters,
+    );
   console.log(result);
 }
 

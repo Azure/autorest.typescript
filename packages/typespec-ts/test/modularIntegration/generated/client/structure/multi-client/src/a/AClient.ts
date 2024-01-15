@@ -27,26 +27,26 @@ export class AClient {
   constructor(
     endpoint: string,
     client: ClientType,
-    options: AClientOptions = {}
+    options: AClientOptions = {},
   ) {
     this._client = createA(endpoint, client, options);
     this.pipeline = this._client.pipeline;
   }
 
   renamedOne(
-    options: RenamedOneOptions = { requestOptions: {} }
+    options: RenamedOneOptions = { requestOptions: {} },
   ): Promise<void> {
     return renamedOne(this._client, options);
   }
 
   renamedThree(
-    options: RenamedThreeOptions = { requestOptions: {} }
+    options: RenamedThreeOptions = { requestOptions: {} },
   ): Promise<void> {
     return renamedThree(this._client, options);
   }
 
   renamedFive(
-    options: RenamedFiveOptions = { requestOptions: {} }
+    options: RenamedFiveOptions = { requestOptions: {} },
   ): Promise<void> {
     return renamedFive(this._client, options);
   }

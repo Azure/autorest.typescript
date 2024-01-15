@@ -12,15 +12,18 @@ describe("api operations in Modular", () => {
         @body body: bytes
       ): void;
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "../rest/index.js";
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
          export function _uploadFileViaBodySend(
            context: Client,
@@ -39,7 +42,7 @@ describe("api operations in Modular", () => {
            result: UploadFileViaBody204Response
          ): Promise<void> {
            if (result.status !== "204") {
-             throw result.body;
+             throw createRestError(result);
            }
            return;
          }
@@ -54,7 +57,7 @@ describe("api operations in Modular", () => {
         true
       );
     });
-  
+
     it("should handle contentTypes has binary data if self defined scalar", async () => {
       const tspContent = `
       @encode("binary")
@@ -66,15 +69,18 @@ describe("api operations in Modular", () => {
         @body body: BinaryBytes
       ): void;
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "../rest/index.js";
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
          export function _uploadFileViaBodySend(
            context: Client,
@@ -93,7 +99,7 @@ describe("api operations in Modular", () => {
            result: UploadFileViaBody204Response
          ): Promise<void> {
            if (result.status !== "204") {
-             throw result.body;
+            throw createRestError(result);
            }
            return;
          }
@@ -108,7 +114,7 @@ describe("api operations in Modular", () => {
         true
       );
     });
-  
+
     it("should handle contentTypes has multiple form data", async () => {
       const tspContent = `
       @route("/uploadFile")
@@ -121,15 +127,18 @@ describe("api operations in Modular", () => {
         }
       ): void;
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "../rest/index.js";
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
          export function _uploadFileSend(
            context: Client,
@@ -149,7 +158,7 @@ describe("api operations in Modular", () => {
            result: UploadFile204Response
          ): Promise<void> {
            if (result.status !== "204") {
-             throw result.body;
+             throw createRestError(result);
            }
            return;
          }
@@ -165,8 +174,7 @@ describe("api operations in Modular", () => {
         true
       );
     });
-  
-    
+
     it("should handle contentTypes has multiple form data array", async () => {
       const tspContent = `
       @encode("binary")
@@ -180,15 +188,18 @@ describe("api operations in Modular", () => {
         }
       ): void;
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "../rest/index.js";
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
          export function _uploadFilesSend(
            context: Client,
@@ -200,14 +211,14 @@ describe("api operations in Modular", () => {
              .post({
                ...operationOptionsToRequestParameters(options),
                contentType: (options.contentType as any) ?? "multipart/form-data",
-               body: { files: (files ?? []).map((p) => p) },
+               body: { files: files.map((p) => p) },
              });
          }
          export async function _uploadFilesDeserialize(
            result: UploadFiles204Response
          ): Promise<void> {
            if (result.status !== "204") {
-             throw result.body;
+             throw createRestError(result);
            }
            return;
          }
@@ -234,15 +245,18 @@ describe("api operations in Modular", () => {
         @body body: bytes;
       };
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "../rest/index.js";
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
@@ -256,7 +270,7 @@ describe("api operations in Modular", () => {
            result: DownloadFile200Response
          ): Promise<Uint8Array> {
            if (result.status !== "200") {
-             throw result.body;
+             throw createRestError(result);
            }
            return result.body;
          }
@@ -270,7 +284,7 @@ describe("api operations in Modular", () => {
         true
       );
     });
-  
+
     it("should handle contentTypes has binary data if self defined scalar", async () => {
       const tspContent = `
       @encode("binary")
@@ -283,15 +297,18 @@ describe("api operations in Modular", () => {
         @body body: BinaryBytes;
       };
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "../rest/index.js";
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
@@ -305,7 +322,7 @@ describe("api operations in Modular", () => {
            result: DownloadFile200Response
          ): Promise<Uint8Array> {
            if (result.status !== "200") {
-             throw result.body;
+             throw createRestError(result);
            }
            return result.body;
          }
@@ -319,7 +336,7 @@ describe("api operations in Modular", () => {
         true
       );
     });
-  
+
     it("should handle contentTypes has multiple form data", async () => {
       const tspContent = `
       @route("/downloadFile")
@@ -334,15 +351,18 @@ describe("api operations in Modular", () => {
         };
       };
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "../rest/index.js";
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
@@ -356,7 +376,7 @@ describe("api operations in Modular", () => {
            result: DownloadFile200Response
          ): Promise<{ name: string; file: Uint8Array }> {
            if (result.status !== "200") {
-             throw result.body;
+             throw createRestError(result);
            }
            return { name: result.body["name"], file: result.body["file"] };
          }
@@ -370,8 +390,7 @@ describe("api operations in Modular", () => {
         true
       );
     });
-  
-    
+
     it("should handle contentTypes has multiple form data array", async () => {
       const tspContent = `
       @encode("binary")
@@ -387,15 +406,18 @@ describe("api operations in Modular", () => {
         };
       };
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "../rest/index.js";
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
@@ -409,11 +431,11 @@ describe("api operations in Modular", () => {
            result: DownloadFile200Response
          ): Promise<{ name: string; file: Uint8Array[] }> {
            if (result.status !== "200") {
-             throw result.body;
+              throw createRestError(result);
            }
            return {
              name: result.body["name"],
-             file: (result.body["file"] ?? []).map((p) => p),
+             file: result.body["file"].map((p) => p),
            };
          }
          export async function downloadFile(

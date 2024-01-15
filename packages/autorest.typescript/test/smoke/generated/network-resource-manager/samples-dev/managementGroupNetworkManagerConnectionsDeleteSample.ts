@@ -27,7 +27,7 @@ async function deleteManagementGroupNetworkManagerConnection() {
   const client = new NetworkManagementClient(credential);
   const result = await client.managementGroupNetworkManagerConnections.delete(
     managementGroupId,
-    networkManagerConnectionName
+    networkManagerConnectionName,
   );
   console.log(result);
 }

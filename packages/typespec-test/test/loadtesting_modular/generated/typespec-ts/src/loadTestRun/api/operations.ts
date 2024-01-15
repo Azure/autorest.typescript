@@ -10,9 +10,13 @@ import {
   MetricNamespaceCollection,
   MetricRequestPayload,
   PagedTimeSeriesElement,
+  TimeSeriesElement,
   PagedTestRun,
   PagedDimensionValueList,
+  DimensionValueList,
 } from "../models/models.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
+import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
   isUnexpected,
   AzureLoadTestingContext as Client,
@@ -52,6 +56,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   TestRunOptions,
@@ -74,7 +79,7 @@ export function _testRunSend(
   context: Client,
   testRunId: string,
   resource: TestRun,
-  options: TestRunOptions = { requestOptions: {} }
+  options: TestRunOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunCreateOrUpdateTestRun200Response
   | LoadTestRunCreateOrUpdateTestRun201Response
@@ -143,10 +148,10 @@ export async function _testRunDeserialize(
     | LoadTestRunCreateOrUpdateTestRun200Response
     | LoadTestRunCreateOrUpdateTestRun201Response
     | LoadTestRunCreateOrUpdateTestRunDefaultResponse
-    | LoadTestRunCreateOrUpdateTestRunLogicalResponse
+    | LoadTestRunCreateOrUpdateTestRunLogicalResponse,
 ): Promise<TestRun> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -163,9 +168,9 @@ export async function _testRunDeserialize(
           name: result.body.certificate?.["name"],
         },
     environmentVariables: result.body["environmentVariables"],
-    errorDetails: (result.body["errorDetails"] ?? []).map((p) => ({
-      message: p["message"],
-    })),
+    errorDetails: !result.body["errorDetails"]
+      ? result.body["errorDetails"]
+      : result.body["errorDetails"].map((p) => ({ message: p["message"] })),
     testRunStatistics: result.body["testRunStatistics"],
     loadTestConfiguration: !result.body.loadTestConfiguration
       ? undefined
@@ -292,18 +297,21 @@ export async function _testRunDeserialize(
                           "validationFailureDetails"
                         ],
                     },
-                additionalFileInfo: (
-                  result.body.testArtifacts?.inputArtifacts?.[
-                    "additionalFileInfo"
-                  ] ?? []
-                ).map((p) => ({
-                  url: p["url"],
-                  fileName: p["fileName"],
-                  fileType: p["fileType"],
-                  expireDateTime: p["expireDateTime"],
-                  validationStatus: p["validationStatus"],
-                  validationFailureDetails: p["validationFailureDetails"],
-                })),
+                additionalFileInfo: !result.body.testArtifacts
+                  ?.inputArtifacts?.["additionalFileInfo"]
+                  ? result.body.testArtifacts?.inputArtifacts?.[
+                      "additionalFileInfo"
+                    ]
+                  : result.body.testArtifacts?.inputArtifacts?.[
+                      "additionalFileInfo"
+                    ].map((p) => ({
+                      url: p["url"],
+                      fileName: p["fileName"],
+                      fileType: p["fileType"],
+                      expireDateTime: p["expireDateTime"],
+                      validationStatus: p["validationStatus"],
+                      validationFailureDetails: p["validationFailureDetails"],
+                    })),
               },
           outputArtifacts: !result.body.testArtifacts?.outputArtifacts
             ? undefined
@@ -378,7 +386,7 @@ export async function testRun(
   context: Client,
   testRunId: string,
   resource: TestRun,
-  options: TestRunOptions = { requestOptions: {} }
+  options: TestRunOptions = { requestOptions: {} },
 ): Promise<TestRun> {
   const result = await _testRunSend(context, testRunId, resource, options);
   return _testRunDeserialize(result);
@@ -388,7 +396,7 @@ export function _createOrUpdateAppComponentsSend(
   context: Client,
   testRunId: string,
   body: TestRunAppComponents,
-  options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
+  options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunCreateOrUpdateAppComponents200Response
   | LoadTestRunCreateOrUpdateAppComponents201Response
@@ -408,10 +416,10 @@ export async function _createOrUpdateAppComponentsDeserialize(
   result:
     | LoadTestRunCreateOrUpdateAppComponents200Response
     | LoadTestRunCreateOrUpdateAppComponents201Response
-    | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
+    | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse,
 ): Promise<TestRunAppComponents> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -429,13 +437,13 @@ export async function createOrUpdateAppComponents(
   context: Client,
   testRunId: string,
   body: TestRunAppComponents,
-  options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
+  options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} },
 ): Promise<TestRunAppComponents> {
   const result = await _createOrUpdateAppComponentsSend(
     context,
     testRunId,
     body,
-    options
+    options,
   );
   return _createOrUpdateAppComponentsDeserialize(result);
 }
@@ -444,7 +452,7 @@ export function _createOrUpdateServerMetricsConfigSend(
   context: Client,
   testRunId: string,
   body: TestRunServerMetricConfig,
-  options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
+  options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
   | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
@@ -464,10 +472,10 @@ export async function _createOrUpdateServerMetricsConfigDeserialize(
   result:
     | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
     | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
-    | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
+    | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse,
 ): Promise<TestRunServerMetricConfig> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -485,13 +493,13 @@ export async function createOrUpdateServerMetricsConfig(
   context: Client,
   testRunId: string,
   body: TestRunServerMetricConfig,
-  options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
+  options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} },
 ): Promise<TestRunServerMetricConfig> {
   const result = await _createOrUpdateServerMetricsConfigSend(
     context,
     testRunId,
     body,
-    options
+    options,
   );
   return _createOrUpdateServerMetricsConfigDeserialize(result);
 }
@@ -499,7 +507,7 @@ export async function createOrUpdateServerMetricsConfig(
 export function _deleteTestRunSend(
   context: Client,
   testRunId: string,
-  options: DeleteTestRunOptions = { requestOptions: {} }
+  options: DeleteTestRunOptions = { requestOptions: {} },
 ): StreamableMethod<
   LoadTestRunDeleteTestRun204Response | LoadTestRunDeleteTestRunDefaultResponse
 > {
@@ -511,10 +519,10 @@ export function _deleteTestRunSend(
 export async function _deleteTestRunDeserialize(
   result:
     | LoadTestRunDeleteTestRun204Response
-    | LoadTestRunDeleteTestRunDefaultResponse
+    | LoadTestRunDeleteTestRunDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -524,7 +532,7 @@ export async function _deleteTestRunDeserialize(
 export async function deleteTestRun(
   context: Client,
   testRunId: string,
-  options: DeleteTestRunOptions = { requestOptions: {} }
+  options: DeleteTestRunOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteTestRunSend(context, testRunId, options);
   return _deleteTestRunDeserialize(result);
@@ -533,7 +541,7 @@ export async function deleteTestRun(
 export function _getAppComponentsSend(
   context: Client,
   testRunId: string,
-  options: GetAppComponentsOptions = { requestOptions: {} }
+  options: GetAppComponentsOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunGetAppComponents200Response
   | LoadTestRunGetAppComponentsDefaultResponse
@@ -546,10 +554,10 @@ export function _getAppComponentsSend(
 export async function _getAppComponentsDeserialize(
   result:
     | LoadTestRunGetAppComponents200Response
-    | LoadTestRunGetAppComponentsDefaultResponse
+    | LoadTestRunGetAppComponentsDefaultResponse,
 ): Promise<TestRunAppComponents> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -569,7 +577,7 @@ export async function _getAppComponentsDeserialize(
 export async function getAppComponents(
   context: Client,
   testRunId: string,
-  options: GetAppComponentsOptions = { requestOptions: {} }
+  options: GetAppComponentsOptions = { requestOptions: {} },
 ): Promise<TestRunAppComponents> {
   const result = await _getAppComponentsSend(context, testRunId, options);
   return _getAppComponentsDeserialize(result);
@@ -578,7 +586,7 @@ export async function getAppComponents(
 export function _getServerMetricsConfigSend(
   context: Client,
   testRunId: string,
-  options: GetServerMetricsConfigOptions = { requestOptions: {} }
+  options: GetServerMetricsConfigOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunTestRunListServerMetricsConfig200Response
   | LoadTestRunTestRunListServerMetricsConfigDefaultResponse
@@ -591,10 +599,10 @@ export function _getServerMetricsConfigSend(
 export async function _getServerMetricsConfigDeserialize(
   result:
     | LoadTestRunTestRunListServerMetricsConfig200Response
-    | LoadTestRunTestRunListServerMetricsConfigDefaultResponse
+    | LoadTestRunTestRunListServerMetricsConfigDefaultResponse,
 ): Promise<TestRunServerMetricConfig> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -611,7 +619,7 @@ export async function _getServerMetricsConfigDeserialize(
 export async function getServerMetricsConfig(
   context: Client,
   testRunId: string,
-  options: GetServerMetricsConfigOptions = { requestOptions: {} }
+  options: GetServerMetricsConfigOptions = { requestOptions: {} },
 ): Promise<TestRunServerMetricConfig> {
   const result = await _getServerMetricsConfigSend(context, testRunId, options);
   return _getServerMetricsConfigDeserialize(result);
@@ -620,7 +628,7 @@ export async function getServerMetricsConfig(
 export function _getTestRunSend(
   context: Client,
   testRunId: string,
-  options: GetTestRunOptions = { requestOptions: {} }
+  options: GetTestRunOptions = { requestOptions: {} },
 ): StreamableMethod<
   LoadTestRunGetTestRun200Response | LoadTestRunGetTestRunDefaultResponse
 > {
@@ -632,10 +640,10 @@ export function _getTestRunSend(
 export async function _getTestRunDeserialize(
   result:
     | LoadTestRunGetTestRun200Response
-    | LoadTestRunGetTestRunDefaultResponse
+    | LoadTestRunGetTestRunDefaultResponse,
 ): Promise<TestRun> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -652,9 +660,9 @@ export async function _getTestRunDeserialize(
           name: result.body.certificate?.["name"],
         },
     environmentVariables: result.body["environmentVariables"],
-    errorDetails: (result.body["errorDetails"] ?? []).map((p) => ({
-      message: p["message"],
-    })),
+    errorDetails: !result.body["errorDetails"]
+      ? result.body["errorDetails"]
+      : result.body["errorDetails"].map((p) => ({ message: p["message"] })),
     testRunStatistics: result.body["testRunStatistics"],
     loadTestConfiguration: !result.body.loadTestConfiguration
       ? undefined
@@ -781,18 +789,21 @@ export async function _getTestRunDeserialize(
                           "validationFailureDetails"
                         ],
                     },
-                additionalFileInfo: (
-                  result.body.testArtifacts?.inputArtifacts?.[
-                    "additionalFileInfo"
-                  ] ?? []
-                ).map((p) => ({
-                  url: p["url"],
-                  fileName: p["fileName"],
-                  fileType: p["fileType"],
-                  expireDateTime: p["expireDateTime"],
-                  validationStatus: p["validationStatus"],
-                  validationFailureDetails: p["validationFailureDetails"],
-                })),
+                additionalFileInfo: !result.body.testArtifacts
+                  ?.inputArtifacts?.["additionalFileInfo"]
+                  ? result.body.testArtifacts?.inputArtifacts?.[
+                      "additionalFileInfo"
+                    ]
+                  : result.body.testArtifacts?.inputArtifacts?.[
+                      "additionalFileInfo"
+                    ].map((p) => ({
+                      url: p["url"],
+                      fileName: p["fileName"],
+                      fileType: p["fileType"],
+                      expireDateTime: p["expireDateTime"],
+                      validationStatus: p["validationStatus"],
+                      validationFailureDetails: p["validationFailureDetails"],
+                    })),
               },
           outputArtifacts: !result.body.testArtifacts?.outputArtifacts
             ? undefined
@@ -866,7 +877,7 @@ export async function _getTestRunDeserialize(
 export async function getTestRun(
   context: Client,
   testRunId: string,
-  options: GetTestRunOptions = { requestOptions: {} }
+  options: GetTestRunOptions = { requestOptions: {} },
 ): Promise<TestRun> {
   const result = await _getTestRunSend(context, testRunId, options);
   return _getTestRunDeserialize(result);
@@ -876,7 +887,7 @@ export function _getTestRunFileSend(
   context: Client,
   testRunId: string,
   fileName: string,
-  options: GetTestRunFileOptions = { requestOptions: {} }
+  options: GetTestRunFileOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunGetTestRunFile200Response
   | LoadTestRunGetTestRunFileDefaultResponse
@@ -889,10 +900,10 @@ export function _getTestRunFileSend(
 export async function _getTestRunFileDeserialize(
   result:
     | LoadTestRunGetTestRunFile200Response
-    | LoadTestRunGetTestRunFileDefaultResponse
+    | LoadTestRunGetTestRunFileDefaultResponse,
 ): Promise<FileInfo> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -910,13 +921,13 @@ export async function getTestRunFile(
   context: Client,
   testRunId: string,
   fileName: string,
-  options: GetTestRunFileOptions = { requestOptions: {} }
+  options: GetTestRunFileOptions = { requestOptions: {} },
 ): Promise<FileInfo> {
   const result = await _getTestRunFileSend(
     context,
     testRunId,
     fileName,
-    options
+    options,
   );
   return _getTestRunFileDeserialize(result);
 }
@@ -926,7 +937,7 @@ export function _listMetricDimensionValuesSend(
   testRunId: string,
   name: string,
   metricNamespace: string,
-  options: ListMetricDimensionValuesOptions = { requestOptions: {} }
+  options: ListMetricDimensionValuesOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunListMetricDimensionValues200Response
   | LoadTestRunListMetricDimensionValuesDefaultResponse
@@ -935,7 +946,7 @@ export function _listMetricDimensionValuesSend(
     .path(
       "/test-runs/{testRunId}/metric-dimensions/{name}/values",
       testRunId,
-      name
+      name,
     )
     .get({
       ...operationOptionsToRequestParameters(options),
@@ -951,40 +962,45 @@ export function _listMetricDimensionValuesSend(
 export async function _listMetricDimensionValuesDeserialize(
   result:
     | LoadTestRunListMetricDimensionValues200Response
-    | LoadTestRunListMetricDimensionValuesDefaultResponse
+    | LoadTestRunListMetricDimensionValuesDefaultResponse,
 ): Promise<PagedDimensionValueList> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({ value: p["value"] })),
+    value: result.body["value"].map((p) => ({ value: p["value"] })),
     nextLink: result.body["nextLink"],
   };
 }
 
 /** List the dimension values for the given metric dimension name. */
-export async function listMetricDimensionValues(
+export function listMetricDimensionValues(
   context: Client,
   testRunId: string,
   name: string,
   metricNamespace: string,
-  options: ListMetricDimensionValuesOptions = { requestOptions: {} }
-): Promise<PagedDimensionValueList> {
-  const result = await _listMetricDimensionValuesSend(
+  options: ListMetricDimensionValuesOptions = { requestOptions: {} },
+): PagedAsyncIterableIterator<DimensionValueList> {
+  return buildPagedAsyncIterator(
     context,
-    testRunId,
-    name,
-    metricNamespace,
-    options
+    () =>
+      _listMetricDimensionValuesSend(
+        context,
+        testRunId,
+        name,
+        metricNamespace,
+        options,
+      ),
+    _listMetricDimensionValuesDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" },
   );
-  return _listMetricDimensionValuesDeserialize(result);
 }
 
 export function _listMetricDefinitionsSend(
   context: Client,
   testRunId: string,
-  options: ListMetricDefinitionsOptions = { requestOptions: {} }
+  options: ListMetricDefinitionsOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunListMetricDefinitions200Response
   | LoadTestRunListMetricDefinitionsDefaultResponse
@@ -1000,27 +1016,29 @@ export function _listMetricDefinitionsSend(
 export async function _listMetricDefinitionsDeserialize(
   result:
     | LoadTestRunListMetricDefinitions200Response
-    | LoadTestRunListMetricDefinitionsDefaultResponse
+    | LoadTestRunListMetricDefinitionsDefaultResponse,
 ): Promise<MetricDefinitionCollection> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      dimensions: (p["dimensions"] ?? []).map((p) => ({
-        description: p["description"],
-        name: p["name"],
-      })),
+    value: result.body["value"].map((p) => ({
+      dimensions: !p["dimensions"]
+        ? p["dimensions"]
+        : p["dimensions"].map((p) => ({
+            description: p["description"],
+            name: p["name"],
+          })),
       description: p["description"],
       name: p["name"],
       namespace: p["namespace"],
       primaryAggregationType: p["primaryAggregationType"],
       supportedAggregationTypes: p["supportedAggregationTypes"],
       unit: p["unit"],
-      metricAvailabilities: (p["metricAvailabilities"] ?? []).map((p) => ({
-        timeGrain: p["timeGrain"],
-      })),
+      metricAvailabilities: !p["metricAvailabilities"]
+        ? p["metricAvailabilities"]
+        : p["metricAvailabilities"].map((p) => ({ timeGrain: p["timeGrain"] })),
     })),
   };
 }
@@ -1029,7 +1047,7 @@ export async function _listMetricDefinitionsDeserialize(
 export async function listMetricDefinitions(
   context: Client,
   testRunId: string,
-  options: ListMetricDefinitionsOptions = { requestOptions: {} }
+  options: ListMetricDefinitionsOptions = { requestOptions: {} },
 ): Promise<MetricDefinitionCollection> {
   const result = await _listMetricDefinitionsSend(context, testRunId, options);
   return _listMetricDefinitionsDeserialize(result);
@@ -1038,7 +1056,7 @@ export async function listMetricDefinitions(
 export function _listMetricNamespacesSend(
   context: Client,
   testRunId: string,
-  options: ListMetricNamespacesOptions = { requestOptions: {} }
+  options: ListMetricNamespacesOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestRunListMetricNamespaces200Response
   | LoadTestRunListMetricNamespacesDefaultResponse
@@ -1051,14 +1069,14 @@ export function _listMetricNamespacesSend(
 export async function _listMetricNamespacesDeserialize(
   result:
     | LoadTestRunListMetricNamespaces200Response
-    | LoadTestRunListMetricNamespacesDefaultResponse
+    | LoadTestRunListMetricNamespacesDefaultResponse,
 ): Promise<MetricNamespaceCollection> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
+    value: result.body["value"].map((p) => ({
       description: p["description"],
       name: p["name"],
     })),
@@ -1069,7 +1087,7 @@ export async function _listMetricNamespacesDeserialize(
 export async function listMetricNamespaces(
   context: Client,
   testRunId: string,
-  options: ListMetricNamespacesOptions = { requestOptions: {} }
+  options: ListMetricNamespacesOptions = { requestOptions: {} },
 ): Promise<MetricNamespaceCollection> {
   const result = await _listMetricNamespacesSend(context, testRunId, options);
   return _listMetricNamespacesDeserialize(result);
@@ -1079,7 +1097,7 @@ export function _listMetricsSend(
   context: Client,
   testRunId: string,
   body: MetricRequestPayload,
-  options: ListMetricsOptions = { requestOptions: {} }
+  options: ListMetricsOptions = { requestOptions: {} },
 ): StreamableMethod<
   LoadTestRunListMetrics200Response | LoadTestRunListMetricsDefaultResponse
 > {
@@ -1095,10 +1113,12 @@ export function _listMetricsSend(
         timespan: options?.timespan,
       },
       body: {
-        filters: (body["filters"] ?? []).map((p) => ({
-          name: p["name"],
-          values: p["values"],
-        })),
+        filters: !body["filters"]
+          ? body["filters"]
+          : body["filters"].map((p) => ({
+              name: p["name"],
+              values: p["values"],
+            })),
       },
     });
 }
@@ -1106,41 +1126,49 @@ export function _listMetricsSend(
 export async function _listMetricsDeserialize(
   result:
     | LoadTestRunListMetrics200Response
-    | LoadTestRunListMetricsDefaultResponse
+    | LoadTestRunListMetricsDefaultResponse,
 ): Promise<PagedTimeSeriesElement> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      data: (p["data"] ?? []).map((p) => ({
-        timestamp: p["timestamp"],
-        value: p["value"],
-      })),
-      dimensionValues: (p["dimensionValues"] ?? []).map((p) => ({
-        name: p["name"],
-        value: p["value"],
-      })),
+    value: result.body["value"].map((p) => ({
+      data: !p["data"]
+        ? p["data"]
+        : p["data"].map((p) => ({
+            timestamp: p["timestamp"],
+            value: p["value"],
+          })),
+      dimensionValues: !p["dimensionValues"]
+        ? p["dimensionValues"]
+        : p["dimensionValues"].map((p) => ({
+            name: p["name"],
+            value: p["value"],
+          })),
     })),
     nextLink: result.body["nextLink"],
   };
 }
 
 /** List the metric values for a load test run. */
-export async function listMetrics(
+export function listMetrics(
   context: Client,
   testRunId: string,
   body: MetricRequestPayload,
-  options: ListMetricsOptions = { requestOptions: {} }
-): Promise<PagedTimeSeriesElement> {
-  const result = await _listMetricsSend(context, testRunId, body, options);
-  return _listMetricsDeserialize(result);
+  options: ListMetricsOptions = { requestOptions: {} },
+): PagedAsyncIterableIterator<TimeSeriesElement> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listMetricsSend(context, testRunId, body, options),
+    _listMetricsDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" },
+  );
 }
 
 export function _listTestRunsSend(
   context: Client,
-  options: ListTestRunsOptions = { requestOptions: {} }
+  options: ListTestRunsOptions = { requestOptions: {} },
 ): StreamableMethod<
   LoadTestRunListTestRuns200Response | LoadTestRunListTestRunsDefaultResponse
 > {
@@ -1163,14 +1191,14 @@ export function _listTestRunsSend(
 export async function _listTestRunsDeserialize(
   result:
     | LoadTestRunListTestRuns200Response
-    | LoadTestRunListTestRunsDefaultResponse
+    | LoadTestRunListTestRunsDefaultResponse,
 ): Promise<PagedTestRun> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
+    value: result.body["value"].map((p) => ({
       testRunId: p["testRunId"],
       passFailCriteria: !p.passFailCriteria
         ? undefined
@@ -1184,9 +1212,9 @@ export async function _listTestRunsDeserialize(
             name: p.certificate?.["name"],
           },
       environmentVariables: p["environmentVariables"],
-      errorDetails: (p["errorDetails"] ?? []).map((p) => ({
-        message: p["message"],
-      })),
+      errorDetails: !p["errorDetails"]
+        ? p["errorDetails"]
+        : p["errorDetails"].map((p) => ({ message: p["message"] })),
       testRunStatistics: p["testRunStatistics"],
       loadTestConfiguration: !p.loadTestConfiguration
         ? undefined
@@ -1328,17 +1356,20 @@ export async function _listTestRunsDeserialize(
                             "validationFailureDetails"
                           ],
                       },
-                  additionalFileInfo: (
-                    p.testArtifacts?.inputArtifacts?.["additionalFileInfo"] ??
-                    []
-                  ).map((p) => ({
-                    url: p["url"],
-                    fileName: p["fileName"],
-                    fileType: p["fileType"],
-                    expireDateTime: p["expireDateTime"],
-                    validationStatus: p["validationStatus"],
-                    validationFailureDetails: p["validationFailureDetails"],
-                  })),
+                  additionalFileInfo: !p.testArtifacts?.inputArtifacts?.[
+                    "additionalFileInfo"
+                  ]
+                    ? p.testArtifacts?.inputArtifacts?.["additionalFileInfo"]
+                    : p.testArtifacts?.inputArtifacts?.[
+                        "additionalFileInfo"
+                      ].map((p) => ({
+                        url: p["url"],
+                        fileName: p["fileName"],
+                        fileType: p["fileType"],
+                        expireDateTime: p["expireDateTime"],
+                        validationStatus: p["validationStatus"],
+                        validationFailureDetails: p["validationFailureDetails"],
+                      })),
                 },
             outputArtifacts: !p.testArtifacts?.outputArtifacts
               ? undefined
@@ -1422,18 +1453,22 @@ export async function _listTestRunsDeserialize(
 }
 
 /** Get all test runs with given filters */
-export async function listTestRuns(
+export function listTestRuns(
   context: Client,
-  options: ListTestRunsOptions = { requestOptions: {} }
-): Promise<PagedTestRun> {
-  const result = await _listTestRunsSend(context, options);
-  return _listTestRunsDeserialize(result);
+  options: ListTestRunsOptions = { requestOptions: {} },
+): PagedAsyncIterableIterator<TestRun> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listTestRunsSend(context, options),
+    _listTestRunsDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" },
+  );
 }
 
 export function _stopTestRunSend(
   context: Client,
   testRunId: string,
-  options: StopTestRunOptions = { requestOptions: {} }
+  options: StopTestRunOptions = { requestOptions: {} },
 ): StreamableMethod<
   LoadTestRunStopTestRun200Response | LoadTestRunStopTestRunDefaultResponse
 > {
@@ -1445,10 +1480,10 @@ export function _stopTestRunSend(
 export async function _stopTestRunDeserialize(
   result:
     | LoadTestRunStopTestRun200Response
-    | LoadTestRunStopTestRunDefaultResponse
+    | LoadTestRunStopTestRunDefaultResponse,
 ): Promise<TestRun> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -1465,9 +1500,9 @@ export async function _stopTestRunDeserialize(
           name: result.body.certificate?.["name"],
         },
     environmentVariables: result.body["environmentVariables"],
-    errorDetails: (result.body["errorDetails"] ?? []).map((p) => ({
-      message: p["message"],
-    })),
+    errorDetails: !result.body["errorDetails"]
+      ? result.body["errorDetails"]
+      : result.body["errorDetails"].map((p) => ({ message: p["message"] })),
     testRunStatistics: result.body["testRunStatistics"],
     loadTestConfiguration: !result.body.loadTestConfiguration
       ? undefined
@@ -1594,18 +1629,21 @@ export async function _stopTestRunDeserialize(
                           "validationFailureDetails"
                         ],
                     },
-                additionalFileInfo: (
-                  result.body.testArtifacts?.inputArtifacts?.[
-                    "additionalFileInfo"
-                  ] ?? []
-                ).map((p) => ({
-                  url: p["url"],
-                  fileName: p["fileName"],
-                  fileType: p["fileType"],
-                  expireDateTime: p["expireDateTime"],
-                  validationStatus: p["validationStatus"],
-                  validationFailureDetails: p["validationFailureDetails"],
-                })),
+                additionalFileInfo: !result.body.testArtifacts
+                  ?.inputArtifacts?.["additionalFileInfo"]
+                  ? result.body.testArtifacts?.inputArtifacts?.[
+                      "additionalFileInfo"
+                    ]
+                  : result.body.testArtifacts?.inputArtifacts?.[
+                      "additionalFileInfo"
+                    ].map((p) => ({
+                      url: p["url"],
+                      fileName: p["fileName"],
+                      fileType: p["fileType"],
+                      expireDateTime: p["expireDateTime"],
+                      validationStatus: p["validationStatus"],
+                      validationFailureDetails: p["validationFailureDetails"],
+                    })),
               },
           outputArtifacts: !result.body.testArtifacts?.outputArtifacts
             ? undefined
@@ -1679,7 +1717,7 @@ export async function _stopTestRunDeserialize(
 export async function stopTestRun(
   context: Client,
   testRunId: string,
-  options: StopTestRunOptions = { requestOptions: {} }
+  options: StopTestRunOptions = { requestOptions: {} },
 ): Promise<TestRun> {
   const result = await _stopTestRunSend(context, testRunId, options);
   return _stopTestRunDeserialize(result);

@@ -18,7 +18,7 @@ async function harvestDataGet() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const farmerId = "FARMER123";
   const harvestDataId = "HARVESTOP123";
@@ -26,7 +26,7 @@ async function harvestDataGet() {
     .path(
       "/farmers/{farmerId}/harvest-data/{harvestDataId}",
       farmerId,
-      harvestDataId
+      harvestDataId,
     )
     .get();
   console.log(result);

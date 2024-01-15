@@ -13,7 +13,7 @@ import * as Parameters from "../models/parameters";
 import { ResourcesClient } from "../resourcesClient";
 import {
   ResourceGroupsCheckExistenceOptionalParams,
-  ResourceGroupsCheckExistenceResponse
+  ResourceGroupsCheckExistenceResponse,
 } from "../models";
 
 /** Class containing ResourceGroups operations. */
@@ -35,11 +35,11 @@ export class ResourceGroupsImpl implements ResourceGroups {
    */
   checkExistence(
     resourceGroupName: string,
-    options?: ResourceGroupsCheckExistenceOptionalParams
+    options?: ResourceGroupsCheckExistenceOptionalParams,
   ): Promise<ResourceGroupsCheckExistenceResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, options },
-      checkExistenceOperationSpec
+      checkExistenceOperationSpec,
     );
   }
 }
@@ -53,15 +53,15 @@ const checkExistenceOperationSpec: coreClient.OperationSpec = {
     204: {},
     404: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.resourceGroupName,
-    Parameters.subscriptionId
+    Parameters.subscriptionId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

@@ -89,7 +89,7 @@ function regularAutorestPackage(
       ...(hasLro && { "@azure/core-lro": "^2.5.4" }),
       ...(hasLro && { "@azure/abort-controller": "^1.0.0" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.2.0" }),
-      ...(!useCoreV2 && { "@azure/core-http": "^2.0.0" }),
+      ...(!useCoreV2 && { "@azure/core-http": "^3.0.0" }),
       ...(useCoreV2 && { "@azure/core-client": "^1.7.0" }),
       ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.3.0" }),
       ...(useCoreV2 &&
@@ -147,7 +147,6 @@ function regularAutorestPackage(
       pack: "npm pack 2>&1",
       "extract-api": "api-extractor run --local",
       lint: "echo skipped",
-      audit: "echo skipped",
       clean:
         "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
       "build:node": "echo skipped",

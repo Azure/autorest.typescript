@@ -31,7 +31,7 @@ async function getPrivateLinkResourcesOfASite() {
   const result = await client.webApps.getPrivateLinkResourcesSlot(
     resourceGroupName,
     name,
-    slot
+    slot,
   );
   console.log(result);
 }

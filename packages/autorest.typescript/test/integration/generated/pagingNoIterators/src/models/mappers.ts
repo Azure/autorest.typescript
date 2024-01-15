@@ -20,19 +20,19 @@ export const ProductResultValue: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Product"
-            }
-          }
-        }
+              className: "Product",
+            },
+          },
+        },
       },
       nextLink: {
         serializedName: "nextLink",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Product: coreClient.CompositeMapper = {
@@ -44,11 +44,11 @@ export const Product: coreClient.CompositeMapper = {
         serializedName: "properties",
         type: {
           name: "Composite",
-          className: "ProductProperties"
-        }
-      }
-    }
-  }
+          className: "ProductProperties",
+        },
+      },
+    },
+  },
 };
 
 export const ProductProperties: coreClient.CompositeMapper = {
@@ -59,17 +59,17 @@ export const ProductProperties: coreClient.CompositeMapper = {
       id: {
         serializedName: "id",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ProductResult: coreClient.CompositeMapper = {
@@ -84,19 +84,19 @@ export const ProductResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Product"
-            }
-          }
-        }
+              className: "Product",
+            },
+          },
+        },
       },
       nextLink: {
         serializedName: "nextLink",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const BodyParam: coreClient.CompositeMapper = {
@@ -107,11 +107,11 @@ export const BodyParam: coreClient.CompositeMapper = {
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const OdataProductResult: coreClient.CompositeMapper = {
@@ -126,19 +126,19 @@ export const OdataProductResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Product"
-            }
-          }
-        }
+              className: "Product",
+            },
+          },
+        },
       },
       odataNextLink: {
         serializedName: "odata\\.nextLink",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ProductResultValueWithXMSClientName: coreClient.CompositeMapper = {
@@ -153,19 +153,19 @@ export const ProductResultValueWithXMSClientName: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Product"
-            }
-          }
-        }
+              className: "Product",
+            },
+          },
+        },
       },
       nextLink: {
         serializedName: "nextLink",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const OperationResult: coreClient.CompositeMapper = {
@@ -176,9 +176,9 @@ export const OperationResult: coreClient.CompositeMapper = {
       status: {
         serializedName: "status",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

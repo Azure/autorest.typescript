@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   SyncAgent,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,7 +32,7 @@ async function createANewSyncAgent() {
   const syncAgentName = "syncagentcrud-3187";
   const parameters: SyncAgent = {
     syncDatabaseId:
-      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-Onebox/providers/Microsoft.Sql/servers/syncagentcrud-8475/databases/sync"
+      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-Onebox/providers/Microsoft.Sql/servers/syncagentcrud-8475/databases/sync",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -40,7 +40,7 @@ async function createANewSyncAgent() {
     resourceGroupName,
     serverName,
     syncAgentName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -60,7 +60,7 @@ async function updateASyncAgent() {
   const syncAgentName = "syncagentcrud-3187";
   const parameters: SyncAgent = {
     syncDatabaseId:
-      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-Onebox/providers/Microsoft.Sql/servers/syncagentcrud-8475/databases/sync"
+      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-Onebox/providers/Microsoft.Sql/servers/syncagentcrud-8475/databases/sync",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -68,7 +68,7 @@ async function updateASyncAgent() {
     resourceGroupName,
     serverName,
     syncAgentName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

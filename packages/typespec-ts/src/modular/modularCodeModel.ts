@@ -41,7 +41,6 @@ export interface BodyParameter {
   description: string;
   clientName: string;
   inOverload: boolean;
-  defaultContentType: string;
   isBinaryPayload: boolean;
 }
 
@@ -99,6 +98,8 @@ export interface Type {
   properties?: Property[];
   types?: Type[];
   isCoreErrorType?: boolean;
+  alias?: string;
+  aliasType?: string;
 }
 
 export interface Client {

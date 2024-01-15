@@ -28,7 +28,7 @@ async function storageAccountDelete() {
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.delete(
     resourceGroupName,
-    accountName
+    accountName,
   );
   console.log(result);
 }

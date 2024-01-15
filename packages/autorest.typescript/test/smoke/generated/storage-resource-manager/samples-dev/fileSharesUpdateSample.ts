@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   FileShare,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,11 +34,11 @@ async function updateShareAcls() {
         accessPolicy: {
           expiryTime: new Date("2021-05-01T08:49:37.0000000Z"),
           permission: "rwd",
-          startTime: new Date("2021-04-01T08:49:37.0000000Z")
+          startTime: new Date("2021-04-01T08:49:37.0000000Z"),
         },
-        id: "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI"
-      }
-    ]
+        id: "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI",
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -46,7 +46,7 @@ async function updateShareAcls() {
     resourceGroupName,
     accountName,
     shareName,
-    fileShare
+    fileShare,
   );
   console.log(result);
 }
@@ -69,7 +69,7 @@ async function updateShares() {
     resourceGroupName,
     accountName,
     shareName,
-    fileShare
+    fileShare,
   );
   console.log(result);
 }

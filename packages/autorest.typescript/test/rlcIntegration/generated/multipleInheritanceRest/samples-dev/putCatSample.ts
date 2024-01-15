@@ -17,7 +17,7 @@ async function putCatSample() {
     .path("/multipleInheritance/cat")
     .put({
       body: { name: "{Your name}", meows: true, hisses: true, likesMilk: true },
-      contentType: "application/json"
+      contentType: "application/json",
     });
   console.log(result);
 }

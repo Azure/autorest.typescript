@@ -9,31 +9,31 @@ import {
   MetadataPolicyUpdate200Response,
   MetadataPolicyUpdateDefaultResponse,
   MetadataPolicyGet200Response,
-  MetadataPolicyGetDefaultResponse
+  MetadataPolicyGetDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
   "GET /metadataRoles": ["200"],
   "GET /metadataPolicies": ["200"],
   "PUT /metadataPolicies/{policyId}": ["200"],
-  "GET /metadataPolicies/{policyId}": ["200"]
+  "GET /metadataPolicies/{policyId}": ["200"],
 };
 
 export function isUnexpected(
-  response: MetadataRolesList200Response | MetadataRolesListDefaultResponse
+  response: MetadataRolesList200Response | MetadataRolesListDefaultResponse,
 ): response is MetadataRolesListDefaultResponse;
 export function isUnexpected(
   response:
     | MetadataPolicyListAll200Response
-    | MetadataPolicyListAllDefaultResponse
+    | MetadataPolicyListAllDefaultResponse,
 ): response is MetadataPolicyListAllDefaultResponse;
 export function isUnexpected(
   response:
     | MetadataPolicyUpdate200Response
-    | MetadataPolicyUpdateDefaultResponse
+    | MetadataPolicyUpdateDefaultResponse,
 ): response is MetadataPolicyUpdateDefaultResponse;
 export function isUnexpected(
-  response: MetadataPolicyGet200Response | MetadataPolicyGetDefaultResponse
+  response: MetadataPolicyGet200Response | MetadataPolicyGetDefaultResponse,
 ): response is MetadataPolicyGetDefaultResponse;
 export function isUnexpected(
   response:
@@ -44,7 +44,7 @@ export function isUnexpected(
     | MetadataPolicyUpdate200Response
     | MetadataPolicyUpdateDefaultResponse
     | MetadataPolicyGet200Response
-    | MetadataPolicyGetDefaultResponse
+    | MetadataPolicyGetDefaultResponse,
 ): response is
   | MetadataRolesListDefaultResponse
   | MetadataPolicyListAllDefaultResponse
@@ -98,7 +98,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

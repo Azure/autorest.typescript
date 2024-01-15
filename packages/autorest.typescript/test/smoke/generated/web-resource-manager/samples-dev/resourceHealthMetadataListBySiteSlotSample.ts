@@ -33,7 +33,7 @@ async function listResourceHealthMetadataForASite() {
   for await (let item of client.resourceHealthMetadataOperations.listBySiteSlot(
     resourceGroupName,
     name,
-    slot
+    slot,
   )) {
     resArray.push(item);
   }

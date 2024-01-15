@@ -94,106 +94,106 @@ const responseMap: Record<string, string[]> = {
 export function isUnexpected(
   response:
     | AudioTranscriptionsCreate200Response
-    | AudioTranscriptionsCreateDefaultResponse
+    | AudioTranscriptionsCreateDefaultResponse,
 ): response is AudioTranscriptionsCreateDefaultResponse;
 export function isUnexpected(
   response:
     | AudioTranslationsCreate200Response
-    | AudioTranslationsCreateDefaultResponse
+    | AudioTranslationsCreateDefaultResponse,
 ): response is AudioTranslationsCreateDefaultResponse;
 export function isUnexpected(
   response:
     | ChatCompletionsCreate200Response
-    | ChatCompletionsCreateDefaultResponse
+    | ChatCompletionsCreateDefaultResponse,
 ): response is ChatCompletionsCreateDefaultResponse;
 export function isUnexpected(
   response:
     | FineTuningJobsCreate200Response
-    | FineTuningJobsCreateDefaultResponse
+    | FineTuningJobsCreateDefaultResponse,
 ): response is FineTuningJobsCreateDefaultResponse;
 export function isUnexpected(
-  response: FineTuningJobsList200Response | FineTuningJobsListDefaultResponse
+  response: FineTuningJobsList200Response | FineTuningJobsListDefaultResponse,
 ): response is FineTuningJobsListDefaultResponse;
 export function isUnexpected(
   response:
     | FineTuningJobsRetrieve200Response
-    | FineTuningJobsRetrieveDefaultResponse
+    | FineTuningJobsRetrieveDefaultResponse,
 ): response is FineTuningJobsRetrieveDefaultResponse;
 export function isUnexpected(
   response:
     | FineTuningJobsListEvents200Response
-    | FineTuningJobsListEventsDefaultResponse
+    | FineTuningJobsListEventsDefaultResponse,
 ): response is FineTuningJobsListEventsDefaultResponse;
 export function isUnexpected(
   response:
     | FineTuningJobsCancel200Response
-    | FineTuningJobsCancelDefaultResponse
+    | FineTuningJobsCancelDefaultResponse,
 ): response is FineTuningJobsCancelDefaultResponse;
 export function isUnexpected(
-  response: CompletionsCreate200Response | CompletionsCreateDefaultResponse
+  response: CompletionsCreate200Response | CompletionsCreateDefaultResponse,
 ): response is CompletionsCreateDefaultResponse;
 export function isUnexpected(
-  response: EditsCreate200Response | EditsCreateDefaultResponse
+  response: EditsCreate200Response | EditsCreateDefaultResponse,
 ): response is EditsCreateDefaultResponse;
 export function isUnexpected(
-  response: EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse
+  response: EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse,
 ): response is EmbeddingsCreateDefaultResponse;
 export function isUnexpected(
-  response: FilesList200Response | FilesListDefaultResponse
+  response: FilesList200Response | FilesListDefaultResponse,
 ): response is FilesListDefaultResponse;
 export function isUnexpected(
-  response: FilesCreate200Response | FilesCreateDefaultResponse
+  response: FilesCreate200Response | FilesCreateDefaultResponse,
 ): response is FilesCreateDefaultResponse;
 export function isUnexpected(
-  response: FilesRetrieve200Response | FilesRetrieveDefaultResponse
+  response: FilesRetrieve200Response | FilesRetrieveDefaultResponse,
 ): response is FilesRetrieveDefaultResponse;
 export function isUnexpected(
   response:
     | FilesDeleteOperation200Response
-    | FilesDeleteOperationDefaultResponse
+    | FilesDeleteOperationDefaultResponse,
 ): response is FilesDeleteOperationDefaultResponse;
 export function isUnexpected(
-  response: FilesDownload200Response | FilesDownloadDefaultResponse
+  response: FilesDownload200Response | FilesDownloadDefaultResponse,
 ): response is FilesDownloadDefaultResponse;
 export function isUnexpected(
-  response: FineTunesCreate200Response | FineTunesCreateDefaultResponse
+  response: FineTunesCreate200Response | FineTunesCreateDefaultResponse,
 ): response is FineTunesCreateDefaultResponse;
 export function isUnexpected(
-  response: FineTunesList200Response | FineTunesListDefaultResponse
+  response: FineTunesList200Response | FineTunesListDefaultResponse,
 ): response is FineTunesListDefaultResponse;
 export function isUnexpected(
-  response: FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse
+  response: FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse,
 ): response is FineTunesRetrieveDefaultResponse;
 export function isUnexpected(
-  response: FineTunesListEvents200Response | FineTunesListEventsDefaultResponse
+  response: FineTunesListEvents200Response | FineTunesListEventsDefaultResponse,
 ): response is FineTunesListEventsDefaultResponse;
 export function isUnexpected(
-  response: FineTunesCancel200Response | FineTunesCancelDefaultResponse
+  response: FineTunesCancel200Response | FineTunesCancelDefaultResponse,
 ): response is FineTunesCancelDefaultResponse;
 export function isUnexpected(
-  response: ModelsList200Response | ModelsListDefaultResponse
+  response: ModelsList200Response | ModelsListDefaultResponse,
 ): response is ModelsListDefaultResponse;
 export function isUnexpected(
-  response: ModelsRetrieve200Response | ModelsRetrieveDefaultResponse
+  response: ModelsRetrieve200Response | ModelsRetrieveDefaultResponse,
 ): response is ModelsRetrieveDefaultResponse;
 export function isUnexpected(
   response:
     | ModelsDeleteOperation200Response
-    | ModelsDeleteOperationDefaultResponse
+    | ModelsDeleteOperationDefaultResponse,
 ): response is ModelsDeleteOperationDefaultResponse;
 export function isUnexpected(
-  response: ImagesCreate200Response | ImagesCreateDefaultResponse
+  response: ImagesCreate200Response | ImagesCreateDefaultResponse,
 ): response is ImagesCreateDefaultResponse;
 export function isUnexpected(
-  response: ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
+  response: ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse,
 ): response is ImagesCreateEditDefaultResponse;
 export function isUnexpected(
   response:
     | ImagesCreateVariation200Response
-    | ImagesCreateVariationDefaultResponse
+    | ImagesCreateVariationDefaultResponse,
 ): response is ImagesCreateVariationDefaultResponse;
 export function isUnexpected(
-  response: ModerationsCreate200Response | ModerationsCreateDefaultResponse
+  response: ModerationsCreate200Response | ModerationsCreateDefaultResponse,
 ): response is ModerationsCreateDefaultResponse;
 export function isUnexpected(
   response:
@@ -252,7 +252,7 @@ export function isUnexpected(
     | ImagesCreateVariation200Response
     | ImagesCreateVariationDefaultResponse
     | ModerationsCreate200Response
-    | ModerationsCreateDefaultResponse
+    | ModerationsCreateDefaultResponse,
 ): response is
   | AudioTranscriptionsCreateDefaultResponse
   | AudioTranslationsCreateDefaultResponse
@@ -330,7 +330,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

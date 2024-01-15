@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   Route,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,7 +30,7 @@ async function createRoute() {
   const routeName = "route1";
   const routeParameters: Route = {
     addressPrefix: "10.0.3.0/24",
-    nextHopType: "VirtualNetworkGateway"
+    nextHopType: "VirtualNetworkGateway",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -38,7 +38,7 @@ async function createRoute() {
     resourceGroupName,
     routeTableName,
     routeName,
-    routeParameters
+    routeParameters,
   );
   console.log(result);
 }

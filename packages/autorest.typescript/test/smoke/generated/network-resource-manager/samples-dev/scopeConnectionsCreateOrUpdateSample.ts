@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ScopeConnection,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,7 +32,7 @@ async function createOrUpdateNetworkManagerScopeConnection() {
   const parameters: ScopeConnection = {
     description: "This is a scope connection to a cross tenant subscription.",
     resourceId: "subscriptions/f0dc2b34-dfad-40e4-83e0-2309fed8d00b",
-    tenantId: "6babcaad-604b-40ac-a9d7-9fd97c0b779f"
+    tenantId: "6babcaad-604b-40ac-a9d7-9fd97c0b779f",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -40,7 +40,7 @@ async function createOrUpdateNetworkManagerScopeConnection() {
     resourceGroupName,
     networkManagerName,
     scopeConnectionName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

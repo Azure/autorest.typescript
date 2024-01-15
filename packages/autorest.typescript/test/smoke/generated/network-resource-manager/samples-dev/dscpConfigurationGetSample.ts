@@ -28,7 +28,7 @@ async function getDscpConfiguration() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.dscpConfigurationOperations.get(
     resourceGroupName,
-    dscpConfigurationName
+    dscpConfigurationName,
   );
   console.log(result);
 }

@@ -12,7 +12,7 @@ describe("Client definition generation", () => {
       `
     );
     assert.ok(clientDef);
-    assertEqualContent(
+    await assertEqualContent(
       clientDef?.content!,
       `
       import { ReadParameters } from "./parameters";
@@ -45,7 +45,7 @@ describe("Client definition generation", () => {
       `
     );
     assert.ok(clientDef);
-    assertEqualContent(
+    await assertEqualContent(
       clientDef?.content!,
       `
       import { ReadParameters } from "./parameters";

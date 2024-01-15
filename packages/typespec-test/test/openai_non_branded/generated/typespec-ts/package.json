@@ -97,13 +97,13 @@
   "autoPublish": false,
   "dependencies": {
     "tslib": "^2.2.0",
-    "@typespec/ts-http-runtime": "1.0.0-alpha.20231103.1"
+    "@typespec/ts-http-runtime": "1.0.0-alpha.20231129.4"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.31.1",
     "@types/node": "^18.0.0",
     "mkdirp": "^2.1.2",
-    "prettier": "^2.5.1",
+    "prettier": "^3.1.0",
     "rimraf": "^5.0.0",
     "source-map-support": "^0.5.9",
     "typescript": "~5.2.0",

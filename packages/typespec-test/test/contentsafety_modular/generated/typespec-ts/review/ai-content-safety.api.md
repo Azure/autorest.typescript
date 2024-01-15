@@ -75,8 +75,8 @@ export class ContentSafetyClient {
     deleteTextBlocklist(blocklistName: string, options?: DeleteTextBlocklistOptions): Promise<void>;
     getTextBlocklist(blocklistName: string, options?: GetTextBlocklistOptions): Promise<TextBlocklist>;
     getTextBlocklistItem(blocklistName: string, blockItemId: string, options?: GetTextBlocklistItemOptions): Promise<TextBlockItem>;
-    listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptions): Promise<PagedTextBlockItem>;
-    listTextBlocklists(options?: ListTextBlocklistsOptions): Promise<PagedTextBlocklist>;
+    listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptions): PagedAsyncIterableIterator<TextBlockItem>;
+    listTextBlocklists(options?: ListTextBlocklistsOptions): PagedAsyncIterableIterator<TextBlocklist>;
     readonly pipeline: Pipeline;
     removeBlockItems(blocklistName: string, body: RemoveBlockItemsOptions, options?: RemoveBlockItemsRequestOptions): Promise<void>;
 }
@@ -84,6 +84,11 @@ export class ContentSafetyClient {
 // @public (undocumented)
 export interface ContentSafetyClientOptions extends ClientOptions {
 }
+
+// @public
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
 
 // @public (undocumented)
 export interface CreateOrUpdateTextBlocklistOptions extends OperationOptions {
@@ -130,6 +135,13 @@ export interface ListTextBlocklistsOptions extends OperationOptions {
 }
 
 // @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
 export interface PagedTextBlockItem {
     nextLink?: string;
     value: TextBlockItem[];
@@ -139,6 +151,11 @@ export interface PagedTextBlockItem {
 export interface PagedTextBlocklist {
     nextLink?: string;
     value: TextBlocklist[];
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
 }
 
 // @public

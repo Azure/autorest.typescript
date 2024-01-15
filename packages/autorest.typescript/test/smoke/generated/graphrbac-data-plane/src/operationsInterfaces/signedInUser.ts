@@ -12,7 +12,7 @@ import {
   SignedInUserListOwnedObjectsNextOptionalParams,
   SignedInUserListOwnedObjectsOptionalParams,
   SignedInUserGetOptionalParams,
-  SignedInUserGetResponse
+  SignedInUserGetResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -23,7 +23,7 @@ export interface SignedInUser {
    * @param options The options parameters.
    */
   listOwnedObjects(
-    options?: SignedInUserListOwnedObjectsOptionalParams
+    options?: SignedInUserListOwnedObjectsOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
   /**
    * Get the list of directory objects that are owned by the user.
@@ -32,13 +32,13 @@ export interface SignedInUser {
    */
   listOwnedObjectsNext(
     nextLink: string,
-    options?: SignedInUserListOwnedObjectsNextOptionalParams
+    options?: SignedInUserListOwnedObjectsNextOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
   /**
    * Gets the details for the currently logged-in user.
    * @param options The options parameters.
    */
   get(
-    options?: SignedInUserGetOptionalParams
+    options?: SignedInUserGetOptionalParams,
   ): Promise<SignedInUserGetResponse>;
 }

@@ -13,7 +13,7 @@ export { ServiceContext } from "../../rest/index.js";
 export function createB(
   endpoint: string,
   client: ClientType,
-  options: BClientOptions = {}
+  options: BClientOptions = {},
 ): ServiceContext {
   const clientContext = getClient(endpoint, client, options);
   return clientContext;

@@ -6,33 +6,34 @@ import {
   EmptyContext as Client,
   GetEmpty200Response,
   PostRoundTripEmpty200Response,
-  PutEmpty204Response
+  PutEmpty204Response,
 } from "../rest/index.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   PutEmptyOptions,
   GetEmptyOptions,
-  PostRoundTripEmptyOptions
+  PostRoundTripEmptyOptions,
 } from "../models/options.js";
 
 export function _putEmptySend(
   context: Client,
-  body: EmptyInputOutput,
-  options: PutEmptyOptions = { requestOptions: {} }
+  input: EmptyInput,
+  options: PutEmptyOptions = { requestOptions: {} },
 ): StreamableMethod<PutEmpty204Response> {
   return context
     .path("/type/model/empty/alone")
-    .put({ ...operationOptionsToRequestParameters(options), body });
+    .put({ ...operationOptionsToRequestParameters(options), body: input });
 }
 
 export async function _putEmptyDeserialize(
-  result: PutEmpty204Response
+  result: PutEmpty204Response,
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -41,7 +42,7 @@ export async function _putEmptyDeserialize(
 export async function putEmpty(
   context: Client,
   input: EmptyInput,
-  options: PutEmptyOptions = { requestOptions: {} }
+  options: PutEmptyOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putEmptySend(context, input, options);
   return _putEmptyDeserialize(result);
@@ -49,7 +50,7 @@ export async function putEmpty(
 
 export function _getEmptySend(
   context: Client,
-  options: GetEmptyOptions = { requestOptions: {} }
+  options: GetEmptyOptions = { requestOptions: {} },
 ): StreamableMethod<GetEmpty200Response> {
   return context
     .path("/type/model/empty/alone")
@@ -57,10 +58,10 @@ export function _getEmptySend(
 }
 
 export async function _getEmptyDeserialize(
-  result: GetEmpty200Response
+  result: GetEmpty200Response,
 ): Promise<EmptyOutput> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return result.body;
@@ -68,7 +69,7 @@ export async function _getEmptyDeserialize(
 
 export async function getEmpty(
   context: Client,
-  options: GetEmptyOptions = { requestOptions: {} }
+  options: GetEmptyOptions = { requestOptions: {} },
 ): Promise<EmptyOutput> {
   const result = await _getEmptySend(context, options);
   return _getEmptyDeserialize(result);
@@ -77,18 +78,18 @@ export async function getEmpty(
 export function _postRoundTripEmptySend(
   context: Client,
   body: EmptyInputOutput,
-  options: PostRoundTripEmptyOptions = { requestOptions: {} }
+  options: PostRoundTripEmptyOptions = { requestOptions: {} },
 ): StreamableMethod<PostRoundTripEmpty200Response> {
   return context
     .path("/type/model/empty/round-trip")
-    .post({ ...operationOptionsToRequestParameters(options), body });
+    .post({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _postRoundTripEmptyDeserialize(
-  result: PostRoundTripEmpty200Response
+  result: PostRoundTripEmpty200Response,
 ): Promise<EmptyInputOutput> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return result.body;
@@ -97,7 +98,7 @@ export async function _postRoundTripEmptyDeserialize(
 export async function postRoundTripEmpty(
   context: Client,
   body: EmptyInputOutput,
-  options: PostRoundTripEmptyOptions = { requestOptions: {} }
+  options: PostRoundTripEmptyOptions = { requestOptions: {} },
 ): Promise<EmptyInputOutput> {
   const result = await _postRoundTripEmptySend(context, body, options);
   return _postRoundTripEmptyDeserialize(result);

@@ -28,7 +28,7 @@ async function getNetworkProfile() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkProfiles.get(
     resourceGroupName,
-    networkProfileName
+    networkProfileName,
   );
   console.log(result);
 }
@@ -47,7 +47,7 @@ async function getNetworkProfileWithContainerNetworkInterfaces() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkProfiles.get(
     resourceGroupName,
-    networkProfileName
+    networkProfileName,
   );
   console.log(result);
 }

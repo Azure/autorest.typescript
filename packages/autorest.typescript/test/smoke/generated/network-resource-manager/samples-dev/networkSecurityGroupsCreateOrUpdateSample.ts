@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   NetworkSecurityGroup,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,7 +33,7 @@ async function createNetworkSecurityGroup() {
   const result = await client.networkSecurityGroups.beginCreateOrUpdateAndWait(
     resourceGroupName,
     networkSecurityGroupName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -60,16 +60,16 @@ async function createNetworkSecurityGroupWithRule() {
         priority: 130,
         sourceAddressPrefix: "*",
         sourcePortRange: "*",
-        protocol: "*"
-      }
-    ]
+        protocol: "*",
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkSecurityGroups.beginCreateOrUpdateAndWait(
     resourceGroupName,
     networkSecurityGroupName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

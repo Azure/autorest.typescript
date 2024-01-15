@@ -30,7 +30,7 @@ async function loadBalancerProbeGet() {
   const result = await client.loadBalancerProbes.get(
     resourceGroupName,
     loadBalancerName,
-    probeName
+    probeName,
   );
   console.log(result);
 }

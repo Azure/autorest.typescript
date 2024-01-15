@@ -48,52 +48,52 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: ListCollections200Response | ListCollectionsDefaultResponse
+  response: ListCollections200Response | ListCollectionsDefaultResponse,
 ): response is ListCollectionsDefaultResponse;
 export function isUnexpected(
-  response: GetEnclaveQuotes200Response | GetEnclaveQuotesDefaultResponse
+  response: GetEnclaveQuotes200Response | GetEnclaveQuotesDefaultResponse,
 ): response is GetEnclaveQuotesDefaultResponse;
 export function isUnexpected(
-  response: GetConstitution200Response | GetConstitutionDefaultResponse
+  response: GetConstitution200Response | GetConstitutionDefaultResponse,
 ): response is GetConstitutionDefaultResponse;
 export function isUnexpected(
   response:
     | GetConsortiumMembers200Response
-    | GetConsortiumMembersDefaultResponse
+    | GetConsortiumMembersDefaultResponse,
 ): response is GetConsortiumMembersDefaultResponse;
 export function isUnexpected(
-  response: ListLedgerEntries200Response | ListLedgerEntriesDefaultResponse
+  response: ListLedgerEntries200Response | ListLedgerEntriesDefaultResponse,
 ): response is ListLedgerEntriesDefaultResponse;
 export function isUnexpected(
-  response: CreateLedgerEntry201Response | CreateLedgerEntryDefaultResponse
+  response: CreateLedgerEntry201Response | CreateLedgerEntryDefaultResponse,
 ): response is CreateLedgerEntryDefaultResponse;
 export function isUnexpected(
-  response: GetLedgerEntry200Response | GetLedgerEntryDefaultResponse
+  response: GetLedgerEntry200Response | GetLedgerEntryDefaultResponse,
 ): response is GetLedgerEntryDefaultResponse;
 export function isUnexpected(
-  response: GetReceipt200Response | GetReceiptDefaultResponse
+  response: GetReceipt200Response | GetReceiptDefaultResponse,
 ): response is GetReceiptDefaultResponse;
 export function isUnexpected(
   response:
     | GetTransactionStatus200Response
-    | GetTransactionStatusDefaultResponse
+    | GetTransactionStatusDefaultResponse,
 ): response is GetTransactionStatusDefaultResponse;
 export function isUnexpected(
   response:
     | GetCurrentLedgerEntry200Response
-    | GetCurrentLedgerEntryDefaultResponse
+    | GetCurrentLedgerEntryDefaultResponse,
 ): response is GetCurrentLedgerEntryDefaultResponse;
 export function isUnexpected(
-  response: DeleteUser204Response | DeleteUserDefaultResponse
+  response: DeleteUser204Response | DeleteUserDefaultResponse,
 ): response is DeleteUserDefaultResponse;
 export function isUnexpected(
-  response: GetUser200Response | GetUserDefaultResponse
+  response: GetUser200Response | GetUserDefaultResponse,
 ): response is GetUserDefaultResponse;
 export function isUnexpected(
   response:
     | CreateOrUpdateUser200Response
     | CreateOrUpdateUser201Response
-    | CreateOrUpdateUserDefaultResponse
+    | CreateOrUpdateUserDefaultResponse,
 ): response is CreateOrUpdateUserDefaultResponse;
 export function isUnexpected(
   response:
@@ -123,7 +123,7 @@ export function isUnexpected(
     | GetUserDefaultResponse
     | CreateOrUpdateUser200Response
     | CreateOrUpdateUser201Response
-    | CreateOrUpdateUserDefaultResponse
+    | CreateOrUpdateUserDefaultResponse,
 ): response is
   | ListCollectionsDefaultResponse
   | GetEnclaveQuotesDefaultResponse
@@ -186,7 +186,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

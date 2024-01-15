@@ -2,17 +2,26 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { User, UserListResults, PagedUser } from "./models/models.js";
+import {
+  User,
+  ListItemInputBody,
+  FirstItem,
+  SecondItem,
+} from "./models/models.js";
 import {
   CreateOrUpdateOptions,
   CreateOrReplaceOptions,
   GetOptions,
   ListOptions,
   ListWithPageOptions,
+  ListWithParametersOptions,
   ListWithCustomPageModelOptions,
   DeleteOperationOptions,
   ExportOperationOptions,
+  ListFirstItemOptions,
+  ListSecondItemOptions,
 } from "./models/options.js";
+import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createBasic,
   BasicClientOptions,
@@ -22,9 +31,12 @@ import {
   get,
   list,
   listWithPage,
+  listWithParameters,
   listWithCustomPageModel,
   deleteOperation,
   exportOperation,
+  listFirstItem,
+  listSecondItem,
 } from "./api/index.js";
 
 export { BasicClientOptions } from "./api/BasicContext.js";
@@ -44,7 +56,7 @@ export class BasicClient {
   createOrUpdate(
     id: number,
     resource: User,
-    options: CreateOrUpdateOptions = { requestOptions: {} }
+    options: CreateOrUpdateOptions = { requestOptions: {} },
   ): Promise<User> {
     return createOrUpdate(this._client, id, resource, options);
   }
@@ -53,7 +65,7 @@ export class BasicClient {
   createOrReplace(
     id: number,
     resource: User,
-    options: CreateOrReplaceOptions = { requestOptions: {} }
+    options: CreateOrReplaceOptions = { requestOptions: {} },
   ): Promise<User> {
     return createOrReplace(this._client, id, resource, options);
   }
@@ -64,28 +76,38 @@ export class BasicClient {
   }
 
   /** Lists all Users */
-  list(options: ListOptions = { requestOptions: {} }): Promise<PagedUser> {
+  list(
+    options: ListOptions = { requestOptions: {} },
+  ): PagedAsyncIterableIterator<User> {
     return list(this._client, options);
   }
 
   /** List with Azure.Core.Page<>. */
   listWithPage(
-    options: ListWithPageOptions = { requestOptions: {} }
-  ): Promise<PagedUser> {
+    options: ListWithPageOptions = { requestOptions: {} },
+  ): PagedAsyncIterableIterator<User> {
     return listWithPage(this._client, options);
+  }
+
+  /** List with extensible enum parameter Azure.Core.Page<>. */
+  listWithParameters(
+    bodyInput: ListItemInputBody,
+    options: ListWithParametersOptions = { requestOptions: {} },
+  ): PagedAsyncIterableIterator<User> {
+    return listWithParameters(this._client, bodyInput, options);
   }
 
   /** List with custom page model. */
   listWithCustomPageModel(
-    options: ListWithCustomPageModelOptions = { requestOptions: {} }
-  ): Promise<UserListResults> {
+    options: ListWithCustomPageModelOptions = { requestOptions: {} },
+  ): PagedAsyncIterableIterator<User> {
     return listWithCustomPageModel(this._client, options);
   }
 
   /** Deletes a User */
   deleteOperation(
     id: number,
-    options: DeleteOperationOptions = { requestOptions: {} }
+    options: DeleteOperationOptions = { requestOptions: {} },
   ): Promise<void> {
     return deleteOperation(this._client, id, options);
   }
@@ -94,8 +116,22 @@ export class BasicClient {
   exportOperation(
     id: number,
     format: string,
-    options: ExportOperationOptions = { requestOptions: {} }
+    options: ExportOperationOptions = { requestOptions: {} },
   ): Promise<User> {
     return exportOperation(this._client, id, format, options);
+  }
+
+  /** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
+  listFirstItem(
+    options: ListFirstItemOptions = { requestOptions: {} },
+  ): PagedAsyncIterableIterator<FirstItem> {
+    return listFirstItem(this._client, options);
+  }
+
+  /** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
+  listSecondItem(
+    options: ListSecondItemOptions = { requestOptions: {} },
+  ): PagedAsyncIterableIterator<SecondItem> {
+    return listSecondItem(this._client, options);
   }
 }

@@ -32,6 +32,14 @@ const testedTypes: TypeDetail[] = [
     defaultValue: 42.42
   },
   {
+    type: "decimal",
+    defaultValue: 0.33333
+  },
+  {
+    type: "decimal128",
+    defaultValue: 0.33333
+  },
+  {
     type: "datetime",
     defaultValue: "2022-08-26T18:38:00Z",
     convertedToFn: (value: string) => new Date(value).toISOString()
@@ -87,6 +95,34 @@ const testedTypes: TypeDetail[] = [
   {
     type: "unknown/array",
     defaultValue: ["hello", "world"]
+  },
+  {
+    type: "string/literal",
+    defaultValue: "hello"
+  },
+  {
+    type: "int/literal",
+    defaultValue: 42
+  },
+  {
+    type: "float/literal",
+    defaultValue: 42.42
+  },
+  {
+    type: "boolean/literal",
+    defaultValue: true
+  },
+  {
+    type: "union/string/literal",
+    defaultValue: "world"
+  },
+  {
+    type: "union/int/literal",
+    defaultValue: 42
+  },
+  {
+    type: "union/float/literal",
+    defaultValue: 43.43
   }
 ];
 describe("ModelsPropertyTypesClient Rest Client", () => {

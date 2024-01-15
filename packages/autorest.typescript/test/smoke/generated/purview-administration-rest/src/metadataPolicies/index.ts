@@ -17,5 +17,5 @@ export {
   Models,
   OutputModels,
   PaginateHelper,
-  UnexpectedHelper
+  UnexpectedHelper,
 };

@@ -30,7 +30,7 @@ async function deleteExpressRoutePortAuthorization() {
   const result = await client.expressRoutePortAuthorizations.beginDeleteAndWait(
     resourceGroupName,
     expressRoutePortName,
-    authorizationName
+    authorizationName,
   );
   console.log(result);
 }

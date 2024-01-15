@@ -30,7 +30,7 @@ async function expressRouteLinkGet() {
   const result = await client.expressRouteLinks.get(
     resourceGroupName,
     expressRoutePortName,
-    linkName
+    linkName,
   );
   console.log(result);
 }

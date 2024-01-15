@@ -179,7 +179,7 @@ export interface DataDiskOutput {
   /**
    * The type of caching to be enabled for the data disks. The default value for caching is readwrite. For information about the caching options see: https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/27/exploring-windows-azure-drives-disks-and-images/.
    *
-   * Possible values: none, readonly, readwrite
+   * Possible values: "none", "readonly", "readwrite"
    */
   caching?: string;
   /** The initial disk size in gigabytes. */
@@ -187,7 +187,7 @@ export interface DataDiskOutput {
   /**
    * The storage Account type to be used for the data disk. If omitted, the default is "standard_lrs".
    *
-   * Possible values: standard_lrs, premium_lrs
+   * Possible values: "standard_lrs", "premium_lrs"
    */
   storageAccountType?: string;
 }
@@ -197,7 +197,7 @@ export interface ContainerConfigurationOutput {
   /**
    * The container technology to be used.
    *
-   * Possible values: dockerCompatible, criCompatible
+   * Possible values: "dockerCompatible", "criCompatible"
    */
   type: string;
   /** The collection of container Image names. This is the full Image reference, as would be specified to "docker pull". An Image will be sourced from the default Docker registry unless the Image is fully qualified with an alternative registry. */
@@ -246,7 +246,7 @@ export interface NodePlacementConfigurationOutput {
   /**
    * Node placement Policy type on Batch Pools. Allocation policy used by Batch Service to provision the nodes. If not specified, Batch will use the regional policy.
    *
-   * Possible values: regional, zonal
+   * Possible values: "regional", "zonal"
    */
   policy?: string;
 }
@@ -287,7 +287,7 @@ export interface DiffDiskSettingsOutput {
   /**
    * Specifies the ephemeral disk placement for operating system disk for all VMs in the pool. This property can be used by user in the request to choose the location e.g., cache disk space for Ephemeral OS disk provisioning. For more information on Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size requirements for Windows VMs at https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements and Linux VMs at https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements.
    *
-   * Possible values: cachedisk
+   * Possible values: "cachedisk"
    */
   placement?: string;
 }
@@ -299,7 +299,7 @@ export interface NetworkConfigurationOutput {
   /**
    * The scope of dynamic vnet assignment.
    *
-   * Possible values: none, job
+   * Possible values: "none", "job"
    */
   dynamicVNetAssignmentScope?: string;
   /** The configuration for endpoints on Compute Nodes in the Batch Pool. Pool endpoint configuration is only supported on Pools with the virtualMachineConfiguration property. */
@@ -326,7 +326,7 @@ export interface InboundNATPoolOutput {
   /**
    * The protocol of the endpoint.
    *
-   * Possible values: tcp, udp
+   * Possible values: "tcp", "udp"
    */
   protocol: string;
   /** The port number on the Compute Node. This must be unique within a Batch Pool. Acceptable values are between 1 and 65535 except for 22, 3389, 29876 and 29877 as these are reserved. If any reserved values are provided the request fails with HTTP status code 400. */
@@ -346,7 +346,7 @@ export interface NetworkSecurityGroupRuleOutput {
   /**
    * The action that should be taken for a specified IP address, subnet range or tag.
    *
-   * Possible values: allow, deny
+   * Possible values: "allow", "deny"
    */
   access: string;
   /** The source address prefix or tag to match for the rule. Valid values are a single IP address (i.e. 10.10.10.10), IP subnet (i.e. 192.168.1.0/24), default tag, or * (for all addresses).  If any other values are provided the request fails with HTTP status code 400. */
@@ -360,7 +360,7 @@ export interface PublicIPAddressConfigurationOutput {
   /**
    * The provisioning type for Public IP Addresses for the Pool. The default value is BatchManaged.
    *
-   * Possible values: batchmanaged, usermanaged, nopublicipaddresses
+   * Possible values: "batchmanaged", "usermanaged", "nopublicipaddresses"
    */
   provision?: string;
   /** The list of public IPs which the Batch service will use when provisioning Compute Nodes. The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100 Spot/Low-priority nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would need at least 3 public IPs specified. Each element of this collection is of the form: /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}. */
@@ -410,7 +410,7 @@ export interface TaskContainerSettingsOutput {
   /**
    * The location of the container Task working directory. The default is 'taskWorkingDirectory'.
    *
-   * Possible values: taskWorkingDirectory, containerImageDefault
+   * Possible values: "taskWorkingDirectory", "containerImageDefault"
    */
   workingDirectory?: string;
 }
@@ -454,13 +454,13 @@ export interface AutoUserSpecificationOutput {
   /**
    * The scope for the auto user. The default value is pool. If the pool is running Windows a value of Task should be specified if stricter isolation between tasks is required. For example, if the task mutates the registry in a way which could impact other tasks, or if certificates have been specified on the pool which should not be accessible by normal tasks but should be accessible by StartTasks.
    *
-   * Possible values: task, pool
+   * Possible values: "task", "pool"
    */
   scope?: string;
   /**
    * The elevation level of the auto user. The default value is nonAdmin.
    *
-   * Possible values: nonadmin, admin
+   * Possible values: "nonadmin", "admin"
    */
   elevationLevel?: string;
 }
@@ -474,7 +474,7 @@ export interface CertificateReferenceOutput {
   /**
    * The location of the Certificate store on the Compute Node into which to install the Certificate. The default value is currentuser. This property is applicable only for Pools configured with Windows Compute Nodes (that is, created with cloudServiceConfiguration, or with virtualMachineConfiguration using a Windows Image reference). For Linux Compute Nodes, the Certificates are stored in a directory inside the Task working directory and an environment variable AZ_BATCH_CERTIFICATES_DIR is supplied to the Task to query for this location. For Certificates with visibility of 'remoteUser', a 'certs' directory is created in the user's home directory (e.g., /home/{user-name}/certs) and Certificates are placed in that directory.
    *
-   * Possible values: currentuser, localmachine
+   * Possible values: "currentuser", "localmachine"
    */
   storeLocation?: string;
   /** The name of the Certificate store on the Compute Node into which to install the Certificate. This property is applicable only for Pools configured with Windows Compute Nodes (that is, created with cloudServiceConfiguration, or with virtualMachineConfiguration using a Windows Image reference). Common store names include: My, Root, CA, Trust, Disallowed, TrustedPeople, TrustedPublisher, AuthRoot, AddressBook, but any custom store name can also be used. The default value is My. */
@@ -496,7 +496,7 @@ export interface TaskSchedulingPolicyOutput {
   /**
    * How Tasks are distributed across Compute Nodes in a Pool. If not specified, the default is spread.
    *
-   * Possible values: spread, pack
+   * Possible values: "spread", "pack"
    */
   nodeFillType: string;
 }
@@ -513,7 +513,7 @@ export interface UserAccountOutput {
   /**
    * The elevation level of the user Account. The default value is nonAdmin.
    *
-   * Possible values: nonadmin, admin
+   * Possible values: "nonadmin", "admin"
    */
   elevationLevel?: string;
   /** The Linux-specific user configuration for the user Account. This property is ignored if specified on a Windows Pool. If not specified, the user is created with the default options. */
@@ -537,7 +537,7 @@ export interface WindowsUserConfigurationOutput {
   /**
    * The login mode for the user. The default value for VirtualMachineConfiguration Pools is 'batch' and for CloudServiceConfiguration Pools is 'interactive'.
    *
-   * Possible values: batch, interactive
+   * Possible values: "batch", "interactive"
    */
   loginMode?: string;
 }
@@ -646,7 +646,7 @@ export interface BatchPoolOutput {
   /**
    * The current state of the Pool.
    *
-   * Possible values: active, deleting
+   * Possible values: "active", "deleting"
    */
   readonly state?: string;
   /** The time at which the Pool entered its current state. */
@@ -654,7 +654,7 @@ export interface BatchPoolOutput {
   /**
    * Whether the Pool is resizing.
    *
-   * Possible values: steady, resizing, stopping
+   * Possible values: "steady", "resizing", "stopping"
    */
   readonly allocationState?: string;
   /** The time at which the Pool entered its current allocation state. */
@@ -719,13 +719,13 @@ export interface BatchPoolOutput {
   /**
    * The desired node communication mode for the pool. If omitted, the default value is Default.
    *
-   * Possible values: default, classic, simplified
+   * Possible values: "default", "classic", "simplified"
    */
   targetNodeCommunicationMode?: string;
   /**
    * The current state of the pool communication mode.
    *
-   * Possible values: default, classic, simplified
+   * Possible values: "default", "classic", "simplified"
    */
   readonly currentNodeCommunicationMode?: string;
 }
@@ -827,7 +827,7 @@ export interface BatchPoolIdentityOutput {
   /**
    * The identity of the Batch pool, if configured. The list of user identities associated with the Batch pool. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
    *
-   * Possible values: UserAssigned, None
+   * Possible values: "UserAssigned", "None"
    */
   type: string;
   /** The list of user identities associated with the Batch account. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
@@ -870,7 +870,7 @@ export interface ImageInformationOutput {
   /**
    * The type of operating system (e.g. Windows or Linux) of the Image.
    *
-   * Possible values: linux, windows
+   * Possible values: "linux", "windows"
    */
   osType: string;
   /** The capabilities or features which the Image supports. Not every capability of the Image is listed. Capabilities in this list are considered of special interest and are generally related to integration with other features in the Azure Batch service. */
@@ -880,7 +880,7 @@ export interface ImageInformationOutput {
   /**
    * Whether the Azure Batch service actively verifies that the Image is compatible with the associated Compute Node agent SKU.
    *
-   * Possible values: verified, unverified
+   * Possible values: "verified", "unverified"
    */
   verificationType: string;
 }
@@ -954,7 +954,7 @@ export interface BatchJobOutput {
   /**
    * The current state of the Job.
    *
-   * Possible values: active, disabling, disabled, enabling, terminating, completed, deleting
+   * Possible values: "active", "disabling", "disabled", "enabling", "terminating", "completed", "deleting"
    */
   readonly state?: string;
   /** The time at which the Job entered its current state. */
@@ -962,7 +962,7 @@ export interface BatchJobOutput {
   /**
    * The previous state of the Job. This property is not set if the Job is in its initial Active state.
    *
-   * Possible values: active, disabling, disabled, enabling, terminating, completed, deleting
+   * Possible values: "active", "disabling", "disabled", "enabling", "terminating", "completed", "deleting"
    */
   readonly previousState?: string;
   /** The time at which the Job entered its previous state. This property is not set if the Job is in its initial Active state. */
@@ -988,13 +988,13 @@ export interface BatchJobOutput {
   /**
    * The action the Batch service should take when all Tasks in the Job are in the completed state. The default is noaction.
    *
-   * Possible values: noaction, terminatejob
+   * Possible values: "noaction", "terminatejob"
    */
   onAllTasksComplete?: string;
   /**
    * The action the Batch service should take when any Task in the Job fails. A Task is considered to have failed if has a failureInfo. A failureInfo is set if the Task completes with a non-zero exit code after exhausting its retry count, or if there was an error starting the Task, for example due to a resource file download error. The default is noaction.
    *
-   * Possible values: noaction, performexitoptionsjobaction
+   * Possible values: "noaction", "performexitoptionsjobaction"
    */
   readonly onTaskFailure?: string;
   /** The network configuration for the Job. */
@@ -1126,7 +1126,7 @@ export interface OutputFileUploadOptionsOutput {
   /**
    * The conditions under which the Task output file or set of files should be uploaded. The default is taskcompletion.
    *
-   * Possible values: tasksuccess, taskfailure, taskcompletion
+   * Possible values: "tasksuccess", "taskfailure", "taskcompletion"
    */
   uploadCondition: string;
 }
@@ -1254,7 +1254,7 @@ export interface AutoPoolSpecificationOutput {
   /**
    * The minimum lifetime of created auto Pools, and how multiple Jobs on a schedule are assigned to Pools.
    *
-   * Possible values: jobschedule, job
+   * Possible values: "jobschedule", "job"
    */
   poolLifetimeOption: string;
   /** Whether to keep an auto Pool alive after its lifetime expires. If false, the Batch service deletes the Pool once its lifetime (as determined by the poolLifetimeOption setting) expires; that is, when the Job or Job Schedule completes. If true, the Batch service does not delete the Pool automatically. It is up to the user to delete auto Pools created with this option. */
@@ -1314,7 +1314,7 @@ export interface PoolSpecificationOutput {
   /**
    * The desired node communication mode for the pool. If omitted, the default value is Default.
    *
-   * Possible values: default, classic, simplified
+   * Possible values: "default", "classic", "simplified"
    */
   targetNodeCommunicationMode?: string;
 }
@@ -1344,7 +1344,7 @@ export interface JobSchedulingErrorOutput {
   /**
    * The category of the Job scheduling error.
    *
-   * Possible values: usererror, servererror
+   * Possible values: "usererror", "servererror"
    */
   category: string;
   /** An identifier for the Job scheduling error. Codes are invariant and are intended to be consumed programmatically. */
@@ -1432,7 +1432,7 @@ export interface JobPreparationTaskExecutionInformationOutput {
   /**
    * The current state of the Job Preparation Task on the Compute Node.
    *
-   * Possible values: running, completed
+   * Possible values: "running", "completed"
    */
   state: string;
   /** The root directory of the Job Preparation Task on the Compute Node. You can use this path to retrieve files created by the Task, such as log files. */
@@ -1452,7 +1452,7 @@ export interface JobPreparationTaskExecutionInformationOutput {
   /**
    * The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property.
    *
-   * Possible values: success, failure
+   * Possible values: "success", "failure"
    */
   result?: string;
 }
@@ -1472,7 +1472,7 @@ export interface TaskFailureInformationOutput {
   /**
    * The category of the Task error.
    *
-   * Possible values: usererror, servererror
+   * Possible values: "usererror", "servererror"
    */
   category: string;
   /** An identifier for the Task error. Codes are invariant and are intended to be consumed programmatically. */
@@ -1495,7 +1495,7 @@ export interface JobReleaseTaskExecutionInformationOutput {
   /**
    * The current state of the Job Release Task on the Compute Node.
    *
-   * Possible values: running, completed
+   * Possible values: "running", "completed"
    */
   state: string;
   /** The root directory of the Job Release Task on the Compute Node. You can use this path to retrieve files created by the Task, such as log files. */
@@ -1511,7 +1511,7 @@ export interface JobReleaseTaskExecutionInformationOutput {
   /**
    * The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property.
    *
-   * Possible values: success, failure
+   * Possible values: "success", "failure"
    */
   result?: string;
 }
@@ -1566,7 +1566,7 @@ export interface BatchCertificateOutput {
   /**
    * The state of the Certificate.
    *
-   * Possible values: active, deleting, deletefailed
+   * Possible values: "active", "deleting", "deletefailed"
    */
   readonly state?: string;
   /** The time at which the Certificate entered its current state. */
@@ -1574,7 +1574,7 @@ export interface BatchCertificateOutput {
   /**
    * The previous state of the Certificate. This property is not set if the Certificate is in its initial active state.
    *
-   * Possible values: active, deleting, deletefailed
+   * Possible values: "active", "deleting", "deletefailed"
    */
   readonly previousState?: string;
   /** The time at which the Certificate entered its previous state. This property is not set if the Certificate is in its initial Active state. */
@@ -1588,7 +1588,7 @@ export interface BatchCertificateOutput {
   /**
    * The format of the Certificate data.
    *
-   * Possible values: pfx, cer
+   * Possible values: "pfx", "cer"
    */
   certificateFormat?: string;
   /** The password to access the Certificate's private key. This must be omitted if the Certificate format is cer. */
@@ -1633,7 +1633,7 @@ export interface BatchJobScheduleOutput {
   /**
    * The current state of the Job Schedule.
    *
-   * Possible values: active, completed, disabled, terminating, deleting
+   * Possible values: "active", "completed", "disabled", "terminating", "deleting"
    */
   readonly state?: string;
   /** The time at which the Job Schedule entered the current state. */
@@ -1641,7 +1641,7 @@ export interface BatchJobScheduleOutput {
   /**
    * The previous state of the Job Schedule. This property is not present if the Job Schedule is in its initial active state.
    *
-   * Possible values: active, completed, disabled, terminating, deleting
+   * Possible values: "active", "completed", "disabled", "terminating", "deleting"
    */
   readonly previousState?: string;
   /** The time at which the Job Schedule entered its previous state. This property is not present if the Job Schedule is in its initial active state. */
@@ -1688,13 +1688,13 @@ export interface JobSpecificationOutput {
   /**
    * The action the Batch service should take when all Tasks in a Job created under this schedule are in the completed state. Note that if a Job contains no Tasks, then all Tasks are considered complete. This option is therefore most commonly used with a Job Manager task; if you want to use automatic Job termination without a Job Manager, you should initially set onAllTasksComplete to noaction and update the Job properties to set onAllTasksComplete to terminatejob once you have finished adding Tasks. The default is noaction.
    *
-   * Possible values: noaction, terminatejob
+   * Possible values: "noaction", "terminatejob"
    */
   onAllTasksComplete?: string;
   /**
    * The action the Batch service should take when any Task fails in a Job created under this schedule. A Task is considered to have failed if it have failed if has a failureInfo. A failureInfo is set if the Task completes with a non-zero exit code after exhausting its retry count, or if there was an error starting the Task, for example due to a resource file download error. The default is noaction.
    *
-   * Possible values: noaction, performexitoptionsjobaction
+   * Possible values: "noaction", "performexitoptionsjobaction"
    */
   onTaskFailure?: string;
   /** The network configuration for the Job. */
@@ -1842,13 +1842,13 @@ export interface ExitOptionsOutput {
   /**
    * An action to take on the Job containing the Task, if the Task completes with the given exit condition and the Job's onTaskFailed property is 'performExitOptionsJobAction'. The default is none for exit code 0 and terminate for all other exit conditions. If the Job's onTaskFailed property is noaction, then specifying this property returns an error and the add Task request fails with an invalid property value error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request).
    *
-   * Possible values: none, disable, terminate
+   * Possible values: "none", "disable", "terminate"
    */
   jobAction?: string;
   /**
    * An action that the Batch service performs on Tasks that depend on this Task. Possible values are 'satisfy' (allowing dependent tasks to progress) and 'block' (dependent tasks continue to wait). Batch does not yet support cancellation of dependent tasks.
    *
-   * Possible values: satisfy, block
+   * Possible values: "satisfy", "block"
    */
   dependencyAction?: string;
 }
@@ -1950,7 +1950,7 @@ export interface BatchTaskOutput {
   /**
    * The current state of the Task.
    *
-   * Possible values: active, preparing, running, completed
+   * Possible values: "active", "preparing", "running", "completed"
    */
   readonly state?: string;
   /** The time at which the Task entered its current state. */
@@ -1958,7 +1958,7 @@ export interface BatchTaskOutput {
   /**
    * The previous state of the Task. This property is not set if the Task is in its initial Active state.
    *
-   * Possible values: active, preparing, running, completed
+   * Possible values: "active", "preparing", "running", "completed"
    */
   readonly previousState?: string;
   /** The time at which the Task entered its previous state. This property is not set if the Task is in its initial Active state. */
@@ -2020,7 +2020,7 @@ export interface TaskExecutionInformationOutput {
   /**
    * The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property.
    *
-   * Possible values: success, failure
+   * Possible values: "success", "failure"
    */
   result?: string;
 }
@@ -2084,7 +2084,7 @@ export interface TaskAddResultOutput {
   /**
    * The status of the add Task request.
    *
-   * Possible values: Success, clienterror, servererror
+   * Possible values: "Success", "clienterror", "servererror"
    */
   status: string;
   /** The ID of the Task for which this is the result. */
@@ -2124,7 +2124,7 @@ export interface SubtaskInformationOutput {
   /**
    * The current state of the subtask.
    *
-   * Possible values: preparing, running, completed
+   * Possible values: "preparing", "running", "completed"
    */
   state?: string;
   /** The time at which the subtask entered its current state. */
@@ -2132,7 +2132,7 @@ export interface SubtaskInformationOutput {
   /**
    * The previous state of the subtask. This property is not set if the subtask is in its initial running state.
    *
-   * Possible values: preparing, running, completed
+   * Possible values: "preparing", "running", "completed"
    */
   previousState?: string;
   /** The time at which the subtask entered its previous state. This property is not set if the subtask is in its initial running state. */
@@ -2140,7 +2140,7 @@ export interface SubtaskInformationOutput {
   /**
    * The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property.
    *
-   * Possible values: success, failure
+   * Possible values: "success", "failure"
    */
   result?: string;
 }
@@ -2191,13 +2191,13 @@ export interface BatchNodeOutput {
   /**
    * The current state of the Compute Node. The Spot/Low-priority Compute Node has been preempted. Tasks which were running on the Compute Node when it was preempted will be rescheduled when another Compute Node becomes available.
    *
-   * Possible values: idle, rebooting, reimaging, running, unusable, creating, starting, waitingforstarttask, starttaskfailed, unknown, leavingpool, offline, preempted
+   * Possible values: "idle", "rebooting", "reimaging", "running", "unusable", "creating", "starting", "waitingforstarttask", "starttaskfailed", "unknown", "leavingpool", "offline", "preempted"
    */
   state?: string;
   /**
    * Whether the Compute Node is available for Task scheduling.
    *
-   * Possible values: enabled, disabled
+   * Possible values: "enabled", "disabled"
    */
   schedulingState?: string;
   /** The time at which the Compute Node entered its current state. */
@@ -2258,7 +2258,7 @@ export interface TaskInformationOutput {
   /**
    * The current state of the Task.
    *
-   * Possible values: active, preparing, running, completed
+   * Possible values: "active", "preparing", "running", "completed"
    */
   taskState: string;
   /** Information about the execution of the Task. */
@@ -2270,7 +2270,7 @@ export interface StartTaskInformationOutput {
   /**
    * The state of the StartTask on the Compute Node.
    *
-   * Possible values: running, completed
+   * Possible values: "running", "completed"
    */
   state: string;
   /** The time at which the StartTask started running. This value is reset every time the Task is restarted or retried (that is, this is the most recent time at which the StartTask started running). */
@@ -2290,7 +2290,7 @@ export interface StartTaskInformationOutput {
   /**
    * The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property.
    *
-   * Possible values: success, failure
+   * Possible values: "success", "failure"
    */
   result?: string;
 }
@@ -2318,7 +2318,7 @@ export interface InboundEndpointOutput {
   /**
    * The protocol of the endpoint.
    *
-   * Possible values: tcp, udp
+   * Possible values: "tcp", "udp"
    */
   protocol: string;
   /** The public IP address of the Compute Node. */
@@ -2413,7 +2413,7 @@ export interface InstanceViewStatusOutput {
   /**
    * Level code.
    *
-   * Possible values: Error, Info, Warning
+   * Possible values: "Error", "Info", "Warning"
    */
   level?: string;
   /** The detailed status message. */

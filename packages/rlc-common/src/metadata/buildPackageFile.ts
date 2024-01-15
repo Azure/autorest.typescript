@@ -111,8 +111,6 @@ function restLevelPackage(model: RLCModel) {
       node: ">=18.0.0"
     },
     scripts: {
-      audit:
-        "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
       "build:browser": "echo skipped.",
       "build:node": "echo skipped.",
       "build:samples": "echo skipped.",
@@ -156,7 +154,7 @@ function restLevelPackage(model: RLCModel) {
     autoPublish: false,
     dependencies: {
       "@azure/core-auth": "^1.3.0",
-      "@azure-rest/core-client": "^1.1.4",
+      "@azure-rest/core-client": "^1.1.6",
       "@azure/core-rest-pipeline": "^1.12.0",
       "@azure/logger": "^1.0.0",
       tslib: "^2.2.0",
@@ -178,7 +176,7 @@ function restLevelPackage(model: RLCModel) {
       dotenv: "^16.0.0",
       eslint: "^8.0.0",
       mkdirp: "^2.1.2",
-      prettier: "^2.5.1",
+      prettier: "^3.1.0",
       rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
       typescript: "~5.2.0"
@@ -214,12 +212,18 @@ function restLevelPackage(model: RLCModel) {
     packageInfo.scripts["build:node"] = "tsc -p . && dev-tool run bundle";
     packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
     packageInfo.devDependencies["@azure/eslint-plugin-azure-sdk"] = "^3.0.0";
+    // azsdkjs repo use dev-tool to run vendored prettier
+    const dtxPrettierCmd = "dev-tool run vendored ";
+    packageInfo.scripts["check-format"] =
+      dtxPrettierCmd + packageInfo.scripts["check-format"];
+    packageInfo.scripts["format"] =
+      dtxPrettierCmd + packageInfo.scripts["format"];
+    delete packageInfo.devDependencies.prettier;
   } else {
     packageInfo.scripts["build"] =
       "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api";
-    packageInfo.scripts[
-      "minify"
-    ] = `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`;
+    packageInfo.scripts["minify"] =
+      `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`;
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
     packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";
     packageInfo.devDependencies["@rollup/plugin-multi-entry"] = "^6.0.0";
@@ -241,7 +245,6 @@ function restLevelPackage(model: RLCModel) {
     packageInfo.devDependencies["mocha"] = "^10.0.0";
     packageInfo.devDependencies["esm"] = "^3.2.18";
     packageInfo.devDependencies["@types/mocha"] = "^10.0.0";
-    packageInfo.devDependencies["mocha-junit-reporter"] = "^1.18.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";
     packageInfo.devDependencies["chai"] = "^4.2.0";
@@ -272,10 +275,9 @@ function restLevelPackage(model: RLCModel) {
     packageInfo.scripts["build:test"] = "tsc -p . && rollup -c 2>&1";
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";
-    packageInfo.scripts[
-      "unit-test:node"
+    packageInfo.scripts["unit-test:node"] =
       // eslint-disable-next-line no-useless-escape
-    ] = `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"`;
+      `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"`;
     packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
     packageInfo.scripts["integration-test:browser"] =
       "karma start --single-run";

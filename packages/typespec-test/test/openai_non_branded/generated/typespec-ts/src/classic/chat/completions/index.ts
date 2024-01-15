@@ -11,7 +11,7 @@ import { ChatCompletionsCreateOptions } from "../../../models/options.js";
 export interface ChatCompletionsOperations {
   create: (
     body: CreateChatCompletionRequest,
-    options?: ChatCompletionsCreateOptions
+    options?: ChatCompletionsCreateOptions,
   ) => Promise<CreateChatCompletionResponse>;
 }
 
@@ -19,13 +19,13 @@ export function getChatCompletions(context: OpenAIContext) {
   return {
     create: (
       body: CreateChatCompletionRequest,
-      options?: ChatCompletionsCreateOptions
+      options?: ChatCompletionsCreateOptions,
     ) => create(context, body, options),
   };
 }
 
 export function getChatCompletionsOperations(
-  context: OpenAIContext
+  context: OpenAIContext,
 ): ChatCompletionsOperations {
   return {
     ...getChatCompletions(context),

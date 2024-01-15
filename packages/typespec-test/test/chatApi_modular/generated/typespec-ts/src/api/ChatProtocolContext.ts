@@ -14,7 +14,7 @@ export { ChatProtocolContext } from "../rest/index.js";
 export function createChatProtocol(
   endpoint: string,
   credential: KeyCredential | TokenCredential,
-  options: ChatProtocolClientOptions = {}
+  options: ChatProtocolClientOptions = {},
 ): ChatProtocolContext {
   const clientContext = getClient(endpoint, credential, options);
   return clientContext;

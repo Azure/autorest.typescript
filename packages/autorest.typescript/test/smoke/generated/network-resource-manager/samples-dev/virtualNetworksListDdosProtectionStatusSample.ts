@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualNetworksListDdosProtectionStatusOptionalParams,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,7 +29,7 @@ async function getDdosProtectionStatusOfAVirtualNetwork() {
   const virtualNetworkName = "test-vnet";
   const top = 75;
   const options: VirtualNetworksListDdosProtectionStatusOptionalParams = {
-    top
+    top,
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -37,7 +37,7 @@ async function getDdosProtectionStatusOfAVirtualNetwork() {
   for await (let item of client.virtualNetworks.beginListDdosProtectionStatusAndWait(
     resourceGroupName,
     virtualNetworkName,
-    options
+    options,
   )) {
     resArray.push(item);
   }

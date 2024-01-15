@@ -8,6 +8,8 @@ import {
   BytesPropertyOutput,
   IntPropertyOutput,
   FloatPropertyOutput,
+  DecimalPropertyOutput,
+  Decimal128PropertyOutput,
   DatetimePropertyOutput,
   DurationPropertyOutput,
   EnumPropertyOutput,
@@ -22,6 +24,13 @@ import {
   UnknownIntPropertyOutput,
   UnknownDictPropertyOutput,
   UnknownArrayPropertyOutput,
+  StringLiteralPropertyOutput,
+  IntLiteralPropertyOutput,
+  FloatLiteralPropertyOutput,
+  BooleanLiteralPropertyOutput,
+  UnionStringLiteralPropertyOutput,
+  UnionIntLiteralPropertyOutput,
+  UnionFloatLiteralPropertyOutput,
 } from "./outputModels";
 
 /** The request has succeeded. */
@@ -76,6 +85,28 @@ export interface FloatGet200Response extends HttpResponse {
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface FloatPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface DecimalGet200Response extends HttpResponse {
+  status: "200";
+  body: DecimalPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface DecimalPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface Decimal128Get200Response extends HttpResponse {
+  status: "200";
+  body: Decimal128PropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface Decimal128Put204Response extends HttpResponse {
   status: "204";
 }
 
@@ -230,5 +261,82 @@ export interface UnknownArrayGet200Response extends HttpResponse {
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface UnknownArrayPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface StringLiteralGet200Response extends HttpResponse {
+  status: "200";
+  body: StringLiteralPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface StringLiteralPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface IntLiteralGet200Response extends HttpResponse {
+  status: "200";
+  body: IntLiteralPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface IntLiteralPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface FloatLiteralGet200Response extends HttpResponse {
+  status: "200";
+  body: FloatLiteralPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface FloatLiteralPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface BooleanLiteralGet200Response extends HttpResponse {
+  status: "200";
+  body: BooleanLiteralPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface BooleanLiteralPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface UnionStringLiteralGet200Response extends HttpResponse {
+  status: "200";
+  body: UnionStringLiteralPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface UnionStringLiteralPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface UnionIntLiteralGet200Response extends HttpResponse {
+  status: "200";
+  body: UnionIntLiteralPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface UnionIntLiteralPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface UnionFloatLiteralGet200Response extends HttpResponse {
+  status: "200";
+  body: UnionFloatLiteralPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface UnionFloatLiteralPut204Response extends HttpResponse {
   status: "204";
 }

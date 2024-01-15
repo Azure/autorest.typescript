@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   InboundNatRule,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,12 +33,11 @@ async function inboundNatRuleCreate() {
     enableFloatingIP: false,
     enableTcpReset: false,
     frontendIPConfiguration: {
-      id:
-        "/subscriptions/subid/resourceGroups/testrg/providers/Microsoft.Network/loadBalancers/lb1/frontendIPConfigurations/ip1"
+      id: "/subscriptions/subid/resourceGroups/testrg/providers/Microsoft.Network/loadBalancers/lb1/frontendIPConfigurations/ip1",
     },
     frontendPort: 3390,
     idleTimeoutInMinutes: 4,
-    protocol: "Tcp"
+    protocol: "Tcp",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -46,7 +45,7 @@ async function inboundNatRuleCreate() {
     resourceGroupName,
     loadBalancerName,
     inboundNatRuleName,
-    inboundNatRuleParameters
+    inboundNatRuleParameters,
   );
   console.log(result);
 }

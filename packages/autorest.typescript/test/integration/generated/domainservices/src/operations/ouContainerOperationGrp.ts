@@ -8,7 +8,7 @@ import { DomainServicesClient } from "../domainServicesClient";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -24,7 +24,7 @@ import {
   OuContainerDeleteOptionalParams,
   OuContainerUpdateOptionalParams,
   OuContainerUpdateResponse,
-  OuContainerListNextResponse
+  OuContainerListNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -50,12 +50,12 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
   public list(
     resourceGroupName: string,
     domainServiceName: string,
-    options?: OuContainerListOptionalParams
+    options?: OuContainerListOptionalParams,
   ): PagedAsyncIterableIterator<OuContainer> {
     const iter = this.listPagingAll(
       resourceGroupName,
       domainServiceName,
-      options
+      options,
     );
     return {
       next() {
@@ -72,9 +72,9 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
           resourceGroupName,
           domainServiceName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -82,7 +82,7 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
     resourceGroupName: string,
     domainServiceName: string,
     options?: OuContainerListOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<OuContainer[]> {
     let result: OuContainerListResponse;
     let continuationToken = settings?.continuationToken;
@@ -98,7 +98,7 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
         resourceGroupName,
         domainServiceName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -110,12 +110,12 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
   private async *listPagingAll(
     resourceGroupName: string,
     domainServiceName: string,
-    options?: OuContainerListOptionalParams
+    options?: OuContainerListOptionalParams,
   ): AsyncIterableIterator<OuContainer> {
     for await (const page of this.listPagingPage(
       resourceGroupName,
       domainServiceName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -131,11 +131,11 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
   private _list(
     resourceGroupName: string,
     domainServiceName: string,
-    options?: OuContainerListOptionalParams
+    options?: OuContainerListOptionalParams,
   ): Promise<OuContainerListResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, domainServiceName, options },
-      listOperationSpec
+      listOperationSpec,
     );
   }
 
@@ -151,11 +151,11 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
     resourceGroupName: string,
     domainServiceName: string,
     ouContainerName: string,
-    options?: OuContainerGetOptionalParams
+    options?: OuContainerGetOptionalParams,
   ): Promise<OuContainerGetResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, domainServiceName, ouContainerName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -174,7 +174,7 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
     domainServiceName: string,
     ouContainerName: string,
     containerAccount: ContainerAccount,
-    options?: OuContainerCreateOptionalParams
+    options?: OuContainerCreateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<OuContainerCreateResponse>,
@@ -183,21 +183,20 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<OuContainerCreateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -206,8 +205,8 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -215,8 +214,8 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -227,16 +226,16 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
         domainServiceName,
         ouContainerName,
         containerAccount,
-        options
+        options,
       },
-      spec: createOperationSpec
+      spec: createOperationSpec,
     });
     const poller = await createHttpPoller<
       OuContainerCreateResponse,
       OperationState<OuContainerCreateResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -257,14 +256,14 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
     domainServiceName: string,
     ouContainerName: string,
     containerAccount: ContainerAccount,
-    options?: OuContainerCreateOptionalParams
+    options?: OuContainerCreateOptionalParams,
   ): Promise<OuContainerCreateResponse> {
     const poller = await this.beginCreate(
       resourceGroupName,
       domainServiceName,
       ouContainerName,
       containerAccount,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -281,25 +280,24 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
     resourceGroupName: string,
     domainServiceName: string,
     ouContainerName: string,
-    options?: OuContainerDeleteOptionalParams
+    options?: OuContainerDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -308,8 +306,8 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -317,19 +315,19 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, domainServiceName, ouContainerName, options },
-      spec: deleteOperationSpec
+      spec: deleteOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -347,13 +345,13 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
     resourceGroupName: string,
     domainServiceName: string,
     ouContainerName: string,
-    options?: OuContainerDeleteOptionalParams
+    options?: OuContainerDeleteOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       domainServiceName,
       ouContainerName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -372,7 +370,7 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
     domainServiceName: string,
     ouContainerName: string,
     containerAccount: ContainerAccount,
-    options?: OuContainerUpdateOptionalParams
+    options?: OuContainerUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<OuContainerUpdateResponse>,
@@ -381,21 +379,20 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<OuContainerUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -404,8 +401,8 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -413,8 +410,8 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -425,16 +422,16 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
         domainServiceName,
         ouContainerName,
         containerAccount,
-        options
+        options,
       },
-      spec: updateOperationSpec
+      spec: updateOperationSpec,
     });
     const poller = await createHttpPoller<
       OuContainerUpdateResponse,
       OperationState<OuContainerUpdateResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -454,14 +451,14 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
     domainServiceName: string,
     ouContainerName: string,
     containerAccount: ContainerAccount,
-    options?: OuContainerUpdateOptionalParams
+    options?: OuContainerUpdateOptionalParams,
   ): Promise<OuContainerUpdateResponse> {
     const poller = await this.beginUpdate(
       resourceGroupName,
       domainServiceName,
       ouContainerName,
       containerAccount,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -478,11 +475,11 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
     resourceGroupName: string,
     domainServiceName: string,
     nextLink: string,
-    options?: OuContainerListNextOptionalParams
+    options?: OuContainerListNextOptionalParams,
   ): Promise<OuContainerListNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, domainServiceName, nextLink, options },
-      listNextOperationSpec
+      listNextOperationSpec,
     );
   }
 }
@@ -490,38 +487,15 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const listOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OuContainerListResult
+      bodyMapper: Mappers.OuContainerListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName,
-    Parameters.domainServiceName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.OuContainer
+      bodyMapper: Mappers.CloudError,
     },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -529,31 +503,51 @@ const getOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName,
-    Parameters.ouContainerName
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
+};
+const getOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.OuContainer,
+    },
+    default: {
+      bodyMapper: Mappers.CloudError,
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.domainServiceName,
+    Parameters.ouContainerName,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
 };
 const createOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.OuContainer
+      bodyMapper: Mappers.OuContainer,
     },
     201: {
-      bodyMapper: Mappers.OuContainer
+      bodyMapper: Mappers.OuContainer,
     },
     202: {
-      bodyMapper: Mappers.OuContainer
+      bodyMapper: Mappers.OuContainer,
     },
     204: {
-      bodyMapper: Mappers.OuContainer
+      bodyMapper: Mappers.OuContainer,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.containerAccount,
   queryParameters: [Parameters.apiVersion],
@@ -562,15 +556,14 @@ const createOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName,
-    Parameters.ouContainerName
+    Parameters.ouContainerName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
   httpMethod: "DELETE",
   responses: {
     200: {},
@@ -578,8 +571,8 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     202: {},
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -587,31 +580,30 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName,
-    Parameters.ouContainerName
+    Parameters.ouContainerName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const updateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.OuContainer
+      bodyMapper: Mappers.OuContainer,
     },
     201: {
-      bodyMapper: Mappers.OuContainer
+      bodyMapper: Mappers.OuContainer,
     },
     202: {
-      bodyMapper: Mappers.OuContainer
+      bodyMapper: Mappers.OuContainer,
     },
     204: {
-      bodyMapper: Mappers.OuContainer
+      bodyMapper: Mappers.OuContainer,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.containerAccount,
   queryParameters: [Parameters.apiVersion],
@@ -620,30 +612,30 @@ const updateOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName,
-    Parameters.ouContainerName
+    Parameters.ouContainerName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OuContainerListResult
+      bodyMapper: Mappers.OuContainerListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.domainServiceName
+    Parameters.domainServiceName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

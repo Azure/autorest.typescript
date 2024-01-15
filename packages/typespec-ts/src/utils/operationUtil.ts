@@ -179,17 +179,22 @@ export function isDefinedStatusCode(statusCodes: HttpStatusCodesEntry) {
 export function isBinaryPayload(
   dpgContext: SdkContext,
   body: Type,
-  contentType: string
+  contentType: string | string[]
 ) {
-  contentType = `"${contentType}"`;
-  if (
-    contentType !== `"application/json"` &&
-    contentType !== `"text/plain"` &&
-    contentType !== `"application/json" | "text/plain"` &&
-    contentType !== `"text/plain" | "application/json"` &&
-    isByteOrByteUnion(dpgContext, body)
-  ) {
-    return true;
+  const allContentTypes = Array.isArray(contentType)
+    ? contentType
+    : [contentType];
+  for (const type of allContentTypes) {
+    const contentType = `"${type}"`;
+    if (
+      contentType !== `"application/json"` &&
+      contentType !== `"text/plain"` &&
+      contentType !== `"application/json" | "text/plain"` &&
+      contentType !== `"text/plain" | "application/json"` &&
+      isByteOrByteUnion(dpgContext, body)
+    ) {
+      return true;
+    }
   }
   return false;
 }
@@ -529,4 +534,15 @@ export function isIgnoredHeaderParam(param: HttpOperationParameter) {
         param.name.toLowerCase()
       ))
   );
+}
+
+export function parseNextLinkName(
+  paged: PagedResultMetadata
+): string | undefined {
+  return paged.nextLinkProperty?.name;
+}
+
+export function parseItemName(paged: PagedResultMetadata): string | undefined {
+  // TODO: support the nested item names
+  return (paged.itemsSegments ?? [])[0];
 }

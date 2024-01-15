@@ -21,7 +21,7 @@ import {
   KubernetesClustersUpdateResponse,
   KubernetesClusterRestartNodeParameters,
   KubernetesClustersRestartNodeOptionalParams,
-  KubernetesClustersRestartNodeResponse
+  KubernetesClustersRestartNodeResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -32,7 +32,7 @@ export interface KubernetesClusters {
    * @param options The options parameters.
    */
   listBySubscription(
-    options?: KubernetesClustersListBySubscriptionOptionalParams
+    options?: KubernetesClustersListBySubscriptionOptionalParams,
   ): PagedAsyncIterableIterator<KubernetesCluster>;
   /**
    * Get a list of Kubernetes clusters in the provided resource group.
@@ -41,7 +41,7 @@ export interface KubernetesClusters {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: KubernetesClustersListByResourceGroupOptionalParams
+    options?: KubernetesClustersListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<KubernetesCluster>;
   /**
    * Get properties of the provided the Kubernetes cluster.
@@ -52,7 +52,7 @@ export interface KubernetesClusters {
   get(
     resourceGroupName: string,
     kubernetesClusterName: string,
-    options?: KubernetesClustersGetOptionalParams
+    options?: KubernetesClustersGetOptionalParams,
   ): Promise<KubernetesClustersGetResponse>;
   /**
    * Create a new Kubernetes cluster or update the properties of the existing one.
@@ -65,7 +65,7 @@ export interface KubernetesClusters {
     resourceGroupName: string,
     kubernetesClusterName: string,
     kubernetesClusterParameters: KubernetesCluster,
-    options?: KubernetesClustersCreateOrUpdateOptionalParams
+    options?: KubernetesClustersCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<KubernetesClustersCreateOrUpdateResponse>,
@@ -83,7 +83,7 @@ export interface KubernetesClusters {
     resourceGroupName: string,
     kubernetesClusterName: string,
     kubernetesClusterParameters: KubernetesCluster,
-    options?: KubernetesClustersCreateOrUpdateOptionalParams
+    options?: KubernetesClustersCreateOrUpdateOptionalParams,
   ): Promise<KubernetesClustersCreateOrUpdateResponse>;
   /**
    * Delete the provided Kubernetes cluster.
@@ -94,7 +94,7 @@ export interface KubernetesClusters {
   beginDelete(
     resourceGroupName: string,
     kubernetesClusterName: string,
-    options?: KubernetesClustersDeleteOptionalParams
+    options?: KubernetesClustersDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Delete the provided Kubernetes cluster.
@@ -105,7 +105,7 @@ export interface KubernetesClusters {
   beginDeleteAndWait(
     resourceGroupName: string,
     kubernetesClusterName: string,
-    options?: KubernetesClustersDeleteOptionalParams
+    options?: KubernetesClustersDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Patch the properties of the provided Kubernetes cluster, or update the tags associated with the
@@ -117,7 +117,7 @@ export interface KubernetesClusters {
   beginUpdate(
     resourceGroupName: string,
     kubernetesClusterName: string,
-    options?: KubernetesClustersUpdateOptionalParams
+    options?: KubernetesClustersUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<KubernetesClustersUpdateResponse>,
@@ -134,7 +134,7 @@ export interface KubernetesClusters {
   beginUpdateAndWait(
     resourceGroupName: string,
     kubernetesClusterName: string,
-    options?: KubernetesClustersUpdateOptionalParams
+    options?: KubernetesClustersUpdateOptionalParams,
   ): Promise<KubernetesClustersUpdateResponse>;
   /**
    * Restart a targeted node of a Kubernetes cluster.
@@ -147,7 +147,7 @@ export interface KubernetesClusters {
     resourceGroupName: string,
     kubernetesClusterName: string,
     kubernetesClusterRestartNodeParameters: KubernetesClusterRestartNodeParameters,
-    options?: KubernetesClustersRestartNodeOptionalParams
+    options?: KubernetesClustersRestartNodeOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<KubernetesClustersRestartNodeResponse>,
@@ -165,6 +165,6 @@ export interface KubernetesClusters {
     resourceGroupName: string,
     kubernetesClusterName: string,
     kubernetesClusterRestartNodeParameters: KubernetesClusterRestartNodeParameters,
-    options?: KubernetesClustersRestartNodeOptionalParams
+    options?: KubernetesClustersRestartNodeOptionalParams,
   ): Promise<KubernetesClustersRestartNodeResponse>;
 }

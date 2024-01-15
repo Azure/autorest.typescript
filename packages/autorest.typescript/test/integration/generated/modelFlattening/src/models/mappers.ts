@@ -17,38 +17,38 @@ export const Resource: coreClient.CompositeMapper = {
         serializedName: "id",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       type: {
         serializedName: "type",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       tags: {
         serializedName: "tags",
         type: {
           name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
+          value: { type: { name: "String" } },
+        },
       },
       location: {
         serializedName: "location",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       name: {
         serializedName: "name",
         readOnly: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ErrorModel: coreClient.CompositeMapper = {
@@ -59,24 +59,24 @@ export const ErrorModel: coreClient.CompositeMapper = {
       status: {
         serializedName: "status",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       message: {
         serializedName: "message",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       parentError: {
         serializedName: "parentError",
         type: {
           name: "Composite",
-          className: "ErrorModel"
-        }
-      }
-    }
-  }
+          className: "ErrorModel",
+        },
+      },
+    },
+  },
 };
 
 export const WrappedProduct: coreClient.CompositeMapper = {
@@ -87,11 +87,11 @@ export const WrappedProduct: coreClient.CompositeMapper = {
       value: {
         serializedName: "value",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ProductWrapper: coreClient.CompositeMapper = {
@@ -102,11 +102,11 @@ export const ProductWrapper: coreClient.CompositeMapper = {
       value: {
         serializedName: "property.value",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ResourceCollection: coreClient.CompositeMapper = {
@@ -118,8 +118,8 @@ export const ResourceCollection: coreClient.CompositeMapper = {
         serializedName: "productresource",
         type: {
           name: "Composite",
-          className: "FlattenedProduct"
-        }
+          className: "FlattenedProduct",
+        },
       },
       arrayofresources: {
         serializedName: "arrayofresources",
@@ -128,20 +128,20 @@ export const ResourceCollection: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "FlattenedProduct"
-            }
-          }
-        }
+              className: "FlattenedProduct",
+            },
+          },
+        },
       },
       dictionaryofresources: {
         serializedName: "dictionaryofresources",
         type: {
           name: "Dictionary",
-          value: { type: { name: "Composite", className: "FlattenedProduct" } }
-        }
-      }
-    }
-  }
+          value: { type: { name: "Composite", className: "FlattenedProduct" } },
+        },
+      },
+    },
+  },
 };
 
 export const GenericUrl: coreClient.CompositeMapper = {
@@ -152,11 +152,11 @@ export const GenericUrl: coreClient.CompositeMapper = {
       genericValue: {
         serializedName: "generic_value",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const BaseProduct: coreClient.CompositeMapper = {
@@ -168,17 +168,17 @@ export const BaseProduct: coreClient.CompositeMapper = {
         serializedName: "base_product_id",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       description: {
         serializedName: "base_product_description",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const FlattenedProduct: coreClient.CompositeMapper = {
@@ -190,30 +190,30 @@ export const FlattenedProduct: coreClient.CompositeMapper = {
       pName: {
         serializedName: "properties.p\\.name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       typePropertiesType: {
         serializedName: "properties.type",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       provisioningStateValues: {
         serializedName: "properties.provisioningStateValues",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       provisioningState: {
         serializedName: "properties.provisioningState",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ProductUrl: coreClient.CompositeMapper = {
@@ -225,11 +225,11 @@ export const ProductUrl: coreClient.CompositeMapper = {
       odataValue: {
         serializedName: "@odata\\.value",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const SimpleProduct: coreClient.CompositeMapper = {
@@ -241,29 +241,29 @@ export const SimpleProduct: coreClient.CompositeMapper = {
       maxProductDisplayName: {
         serializedName: "details.max_product_display_name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       capacity: {
         defaultValue: "Large",
         isConstant: true,
         serializedName: "details.max_product_capacity",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       genericValue: {
         serializedName: "details.max_product_image.generic_value",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       odataValue: {
         serializedName: "details.max_product_image.@odata\\.value",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

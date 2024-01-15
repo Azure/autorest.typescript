@@ -10,7 +10,7 @@ import {
   ReadonlypropertyGetValidOptionalParams,
   ReadonlypropertyGetValidResponse,
   ReadonlyObj,
-  ReadonlypropertyPutValidOptionalParams
+  ReadonlypropertyPutValidOptionalParams,
 } from "../models";
 
 /** Interface representing a Readonlyproperty. */
@@ -20,7 +20,7 @@ export interface Readonlyproperty {
    * @param options The options parameters.
    */
   getValid(
-    options?: ReadonlypropertyGetValidOptionalParams
+    options?: ReadonlypropertyGetValidOptionalParams,
   ): Promise<ReadonlypropertyGetValidResponse>;
   /**
    * Put complex types that have readonly properties
@@ -29,6 +29,6 @@ export interface Readonlyproperty {
    */
   putValid(
     complexBody: ReadonlyObj,
-    options?: ReadonlypropertyPutValidOptionalParams
+    options?: ReadonlypropertyPutValidOptionalParams,
   ): Promise<void>;
 }

@@ -10,17 +10,17 @@ export const CaptionResult: coreClient.CompositeMapper = {
         serializedName: "text",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       highlights: {
         serializedName: "highlights",
         readOnly: true,
         nullable: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

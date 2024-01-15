@@ -28,11 +28,12 @@ async function getFunctionAppSettingsOfAStaticSiteBuild() {
   const environmentName = "12";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
-  const result = await client.staticSites.listStaticSiteBuildFunctionAppSettings(
-    resourceGroupName,
-    name,
-    environmentName
-  );
+  const result =
+    await client.staticSites.listStaticSiteBuildFunctionAppSettings(
+      resourceGroupName,
+      name,
+      environmentName,
+    );
   console.log(result);
 }
 

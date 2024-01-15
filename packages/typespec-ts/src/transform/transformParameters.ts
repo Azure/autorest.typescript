@@ -24,7 +24,8 @@ import {
   getFormattedPropertyDoc,
   getBodyType,
   predictDefaultValue,
-  enrichBinaryTypeInBody
+  enrichBinaryTypeInBody,
+  getSerializeTypeName
 } from "../utils/modelUtils.js";
 
 import {
@@ -87,11 +88,19 @@ export function transformToParameterTypes(
       parameters: []
     };
     // transform query param
-    const queryParams = transformQueryParameters(dpgContext, parameters);
+    const queryParams = transformQueryParameters(
+      dpgContext,
+      parameters,
+      outputImportedSet
+    );
     // transform path param
     const pathParams = transformPathParameters();
-    // transform header param includeing content-type
-    const headerParams = transformHeaderParameters(dpgContext, parameters);
+    // transform header param including content-type
+    const headerParams = transformHeaderParameters(
+      dpgContext,
+      parameters,
+      outputImportedSet
+    );
     // transform body
     const bodyType = getBodyType(program, route);
     let bodyParameter = undefined;
@@ -116,7 +125,8 @@ export function transformToParameterTypes(
 function getParameterMetadata(
   dpgContext: SdkContext,
   paramType: "query" | "path" | "header",
-  parameter: HttpOperationParameter
+  parameter: HttpOperationParameter,
+  importedModels: Set<string>
 ): ParameterMetadata {
   const program = dpgContext.program;
   const schemaContext = [SchemaContext.Exception, SchemaContext.Input];
@@ -127,10 +137,7 @@ function getParameterMetadata(
     false,
     parameter.param
   ) as Schema;
-  let type =
-    paramType === "query"
-      ? getTypeName(schema, schemaContext)
-      : getTypeName(schema);
+  let type = getTypeName(schema, schemaContext);
   const name = getParameterName(parameter.name);
   let description =
     getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
@@ -163,6 +170,14 @@ function getParameterMetadata(
       }`;
     }
   }
+  type =
+    paramType !== "query" && type !== "string"
+      ? getSerializeTypeName(dpgContext.program, schema, schemaContext)
+      : type;
+  getImportedModelName(schema, schemaContext)?.forEach(
+    importedModels.add,
+    importedModels
+  );
   return {
     type: paramType,
     name,
@@ -184,7 +199,8 @@ function getParameterName(name: string) {
 
 function transformQueryParameters(
   dpgContext: SdkContext,
-  parameters: HttpOperationParameters
+  parameters: HttpOperationParameters,
+  importModels: Set<string> = new Set<string>()
 ): ParameterMetadata[] {
   const queryParameters = parameters.parameters.filter(
     (p) =>
@@ -195,7 +211,7 @@ function transformQueryParameters(
     return [];
   }
   return queryParameters.map((qp) =>
-    getParameterMetadata(dpgContext, "query", qp)
+    getParameterMetadata(dpgContext, "query", qp, importModels)
   );
 }
 
@@ -211,7 +227,8 @@ function transformPathParameters() {
 
 function transformHeaderParameters(
   dpgContext: SdkContext,
-  parameters: HttpOperationParameters
+  parameters: HttpOperationParameters,
+  importedModels: Set<string>
 ): ParameterMetadata[] {
   const headerParameters = parameters.parameters.filter(
     (p) => p.type === "header"
@@ -220,7 +237,7 @@ function transformHeaderParameters(
     return [];
   }
   return headerParameters.map((qp) =>
-    getParameterMetadata(dpgContext, "header", qp)
+    getParameterMetadata(dpgContext, "header", qp, importedModels)
   );
 }
 
@@ -302,7 +319,9 @@ function getBodyDetail(
 ) {
   const contentTypes: string[] = headers
     .filter((h) => h.name === "contentType")
-    .map((h) => h.param.type);
+    .map((h) => {
+      return getTypeName(h.param, [SchemaContext.Input]);
+    });
   const hasBinaryContent = contentTypes.some((c) =>
     isBinaryPayload(dpgContext, bodyType, c)
   );

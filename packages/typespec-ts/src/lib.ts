@@ -192,6 +192,24 @@ const libDef = {
         default:
           "Required header cannot be nullable. Please remove the nullable modifier."
       }
+    },
+    "no-paging-items-defined": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Please specify @items property for the paging operation - ${"operationName"}.`
+      }
+    },
+    "decimal-to-number": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Please note the decimal type will be converted to number. If you strongly care about precision you can use @encode to encode it as a string for the property - ${"propertyName"}.`
+      }
+    },
+    "unable-serialized-type": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Please note the header ${"type"} is not serializable.`
+      }
     }
   },
   emitter: {

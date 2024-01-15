@@ -15,13 +15,13 @@ export const SourcePath: coreClient.CompositeMapper = {
     modelProperties: {
       source: {
         constraints: {
-          MaxLength: 2048
+          MaxLength: 2048,
         },
         serializedName: "source",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

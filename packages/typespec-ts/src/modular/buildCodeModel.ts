@@ -20,7 +20,6 @@ import {
   getEffectiveModelType,
   getDiscriminator,
   Operation,
-  isKey,
   Scalar,
   IntrinsicScalarName,
   isStringType,
@@ -69,7 +68,6 @@ import {
   getClientType,
   SdkEnumValueType
 } from "@azure-tools/typespec-client-generator-core";
-import { getResourceOperation } from "@typespec/rest";
 import {
   ModularCodeModel,
   Client as HrlcClient,
@@ -78,9 +76,11 @@ import {
   OperationGroup,
   Response,
   Type as HrlcType,
-  Header
+  Header,
+  Property
 } from "./modularCodeModel.js";
 import {
+  getBodyType,
   getEnrichedDefaultApiVersion,
   isAzureCoreErrorType
 } from "../utils/modelUtils.js";
@@ -96,7 +96,9 @@ import {
   getOperationName,
   isBinaryPayload,
   isIgnoredHeaderParam,
-  isLongRunningOperation
+  isLongRunningOperation,
+  parseItemName,
+  parseNextLinkName
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { Project } from "ts-morph";
@@ -105,6 +107,8 @@ import {
   getModelNamespaceName,
   getOperationNamespaceInterfaceName
 } from "../utils/namespaceUtils.js";
+import { reportDiagnostic } from "../lib.js";
+import { getType as getTypeName } from "./helpers/typeHelpers.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -194,8 +198,10 @@ function handleDiscriminator(context: SdkContext, type: Model) {
   const discriminator = getDiscriminator(context.program, type);
   if (discriminator) {
     const discriminatorValues: string[] = [];
+    const aliases: string[] = [];
     for (const childModel of type.derivedModels) {
       const modelType = getType(context, childModel);
+      aliases.push(modelType.name);
       for (const property of modelType.properties) {
         if (property.restApiName === discriminator.propertyName) {
           modelType.discriminatorValue = property.type.value;
@@ -203,17 +209,22 @@ function handleDiscriminator(context: SdkContext, type: Model) {
         }
       }
     }
-    // it is not included in properties of typespec but needed by python codegen
-    if (discriminatorValues.length > 0) {
-      const discriminatorInfo = {
-        description: `the discriminator possible values ${discriminatorValues.join(
-          ", "
-        )}`,
-        isPolymorphic: true,
-        isDiscriminator: true
-      };
-      return discriminatorInfo;
-    }
+    const discriminatorInfo = {
+      description:
+        discriminatorValues.length > 0
+          ? `the discriminator possible values: ${discriminatorValues.join(
+              ", "
+            )}`
+          : "discriminator property",
+      type: { type: "string" },
+      restApiName: discriminator.propertyName,
+      clientName: discriminator.propertyName,
+      name: discriminator.propertyName,
+      isPolymorphic: true,
+      isDiscriminator: true,
+      aliases
+    };
+    return discriminatorInfo;
   }
   return undefined;
 }
@@ -260,6 +271,8 @@ function processModelProperties(
   model: Model
 ) {
   // need to do properties after insertion to avoid infinite recursion
+  const discriminatorInfo = handleDiscriminator(context, model);
+  let hasDiscriminator = false;
   for (const property of model.properties.values()) {
     if (!isSchemaProperty(context.program, property)) {
       continue;
@@ -269,12 +282,24 @@ function processModelProperties(
     }
     let newProperty = emitProperty(context, property);
     if (isDiscriminator(context, model, property.name)) {
-      newProperty = { ...newProperty, ...handleDiscriminator(context, model) };
+      hasDiscriminator = true;
+      newProperty = {
+        ...newProperty,
+        ...discriminatorInfo,
+        type: newProperty["type"]
+      };
     }
     newValue.properties.push(newProperty);
   }
-  // need to do discriminator outside `emitModel` to avoid infinite recursion
-  // handleDiscriminator(context, model, newValue);
+  if (discriminatorInfo) {
+    if (!hasDiscriminator) {
+      newValue.properties.push({ ...discriminatorInfo });
+    }
+    newValue.alias = `${newValue.name}Parent`;
+    newValue.isPolyBaseModel = true;
+    discriminatorInfo?.aliases.push(`${newValue.alias}`);
+    newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
+  }
 }
 
 function isEmptyAnonymousModel(type: EmitterType): boolean {
@@ -396,48 +421,9 @@ type BodyParameter = ParamBase & {
   type: Type;
   restApiName: string;
   location: "body";
-  defaultContentType: string;
+  // defaultContentType: string;
   isBinaryPayload: boolean;
 };
-
-function getBodyType(program: Program, route: HttpOperation): Type {
-  let bodyModel = route.parameters.body?.type;
-  if (bodyModel && bodyModel.kind === "Model" && route.operation) {
-    const resourceType = getResourceOperation(
-      program,
-      route.operation
-    )?.resourceType;
-    if (resourceType && route.responses && route.responses.length > 0) {
-      const resp = route.responses[0];
-      if (resp && resp.responses && resp.responses.length > 0) {
-        const responseBody = resp.responses[0]?.body;
-        if (responseBody?.type?.kind === "Model") {
-          const bodyTypeInResponse = getEffectiveSchemaType(
-            program,
-            responseBody.type
-          );
-          // response body type is reosurce type, and request body type (if templated) contains resource type
-          if (
-            bodyTypeInResponse === resourceType &&
-            bodyModel.templateMapper &&
-            bodyModel.templateMapper.args &&
-            bodyModel.templateMapper.args.some((it) => {
-              return it.kind === "Model" || it.kind === "Union"
-                ? it === bodyTypeInResponse
-                : false;
-            })
-          ) {
-            bodyModel = resourceType;
-          }
-        }
-      }
-    }
-    if (resourceType && bodyModel.name === "") {
-      bodyModel = resourceType;
-    }
-  }
-  return bodyModel!;
-}
 
 function emitBodyParameter(
   context: SdkContext,
@@ -450,25 +436,17 @@ function emitBodyParameter(
   if (contentTypes.length === 0) {
     contentTypes = ["application/json"];
   }
-  if (contentTypes.length !== 1) {
-    throw Error("Currently only one kind of content-type!");
-  }
-  const type = getType(context, getBodyType(context.program, httpOperation), {
+  const type = getType(context, getBodyType(context.program, httpOperation)!, {
     disableEffectiveModel: true
   });
 
-  const defaultContentType =
-    body.parameter?.default ?? contentTypes.includes("application/json")
-      ? "application/json"
-      : contentTypes[0]!;
   return {
     contentTypes,
     type,
     restApiName: body.parameter?.name ?? "body",
     location: "body",
     ...base,
-    defaultContentType,
-    isBinaryPayload: isBinaryPayload(context, body.type, defaultContentType)
+    isBinaryPayload: isBinaryPayload(context, body.type, contentTypes)
   };
 }
 
@@ -639,11 +617,39 @@ function emitOperation(
   operationGroupName: string,
   rlcModels: RLCModel
 ): HrlcOperation {
+  const isBranded = rlcModels.options?.branded ?? true;
+  // Skip to extract paging and lro information for non-branded clients.
+  if (!isBranded) {
+    return emitBasicOperation(
+      context,
+      operation,
+      operationGroupName,
+      rlcModels
+    );
+  }
   const lro = isLongRunningOperation(
     context.program,
     ignoreDiagnostics(getHttpOperation(context.program, operation))
   );
-  const paging = getPagedResult(context.program, operation);
+  const pagingMetadata = getPagedResult(context.program, operation);
+  // Disable the paging feature if no itemsSegments is found.
+  const paging =
+    pagingMetadata &&
+    pagingMetadata.itemsSegments &&
+    pagingMetadata.itemsSegments.length > 0;
+  if (
+    pagingMetadata &&
+    (!pagingMetadata.itemsSegments || pagingMetadata.itemsSegments.length === 0)
+  ) {
+    reportDiagnostic(context.program, {
+      code: "no-paging-items-defined",
+      format: {
+        operationName: operation.name
+      },
+      target: operation
+    });
+  }
+
   if (lro && paging) {
     return emitLroPagingOperation(
       context,
@@ -680,8 +686,8 @@ function addPagingInformation(
       "Trying to add paging information, but not paging metadata for this operation"
     );
   }
-  emittedOperation["itemName"] = pagedResult.itemsPath;
-  emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
+  emittedOperation["itemName"] = parseItemName(pagedResult);
+  emittedOperation["continuationTokenName"] = parseNextLinkName(pagedResult);
 }
 
 function emitLroPagingOperation(
@@ -939,8 +945,7 @@ function emitProperty(
     optional: property.optional,
     description: getDocStr(context.program, property),
     addedOn: getAddedOnVersion(context.program, property),
-    readonly:
-      isReadOnly(context.program, property) || isKey(context.program, property),
+    readonly: isReadOnly(context.program, property),
     clientDefaultValue: clientDefaultValue,
     format: newProperty.format
   };
@@ -992,8 +997,8 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
     (context.rlcOptions?.enableModelNamespace
       ? fullNamespaceName
       : effectiveName
-      ? effectiveName
-      : getName(context.program, type));
+        ? effectiveName
+        : getName(context.program, type));
   if (
     !overridedModelName &&
     type.templateMapper &&
@@ -1312,14 +1317,32 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
   }
   if (sdkType.kind === "union") {
     const unionName = type.name;
+    const discriminatorPropertyName = getDiscriminator(context.program, type)
+      ?.propertyName;
+    const variantTypes = sdkType.values.map((x) => {
+      const valueType = getType(context, x.__raw!);
+      if (valueType.properties && discriminatorPropertyName) {
+        valueType.discriminatorValue = valueType.properties.filter(
+          (p: Property) => p.clientName === discriminatorPropertyName
+        )[0].type.value;
+      }
+      return valueType;
+    });
     return {
       nullable: sdkType.nullable,
       name: unionName,
       description: `Type of ${unionName}`,
       internal: true,
       type: "combined",
-      types: sdkType.values.map((x) => getType(context, x.__raw!)),
-      xmlMetadata: {}
+      types: variantTypes,
+      xmlMetadata: {},
+      discriminator: discriminatorPropertyName,
+      alias:
+        unionName === "" || unionName === undefined ? undefined : unionName,
+      aliasType:
+        unionName === "" || unionName === undefined
+          ? undefined
+          : variantTypes.map((x) => getTypeName(x).name).join(" | ")
     };
   } else if (sdkType.kind === "enum") {
     return {

@@ -7391,7 +7391,7 @@ export interface FirewallRule extends ProxyResourceWithWritableName {
 /** Known values of {@link GeoBackupPolicyName} that the service accepts. */
 export enum KnownGeoBackupPolicyName {
   /** Default */
-  Default = "Default"
+  Default = "Default",
 }
 
 /**
@@ -7416,7 +7416,7 @@ export enum KnownUnitType {
   /** CountPerSecond */
   CountPerSecond = "countPerSecond",
   /** BytesPerSecond */
-  BytesPerSecond = "bytesPerSecond"
+  BytesPerSecond = "bytesPerSecond",
 }
 
 /**
@@ -7446,7 +7446,7 @@ export enum KnownPrimaryAggregationType {
   /** Maximum */
   Maximum = "Maximum",
   /** Total */
-  Total = "Total"
+  Total = "Total",
 }
 
 /**
@@ -7476,7 +7476,7 @@ export enum KnownUnitDefinitionType {
   /** CountPerSecond */
   CountPerSecond = "CountPerSecond",
   /** BytesPerSecond */
-  BytesPerSecond = "BytesPerSecond"
+  BytesPerSecond = "BytesPerSecond",
 }
 
 /**
@@ -7522,7 +7522,7 @@ export enum KnownRecommendedActionCurrentState {
   /** Success */
   Success = "Success",
   /** Error */
-  Error = "Error"
+  Error = "Error",
 }
 
 /**
@@ -7616,7 +7616,7 @@ export enum KnownColumnDataType {
   /** Xml */
   Xml = "xml",
   /** Sysname */
-  Sysname = "sysname"
+  Sysname = "sysname",
 }
 
 /**
@@ -7668,7 +7668,7 @@ export enum KnownTableTemporalType {
   /** HistoryTable */
   HistoryTable = "HistoryTable",
   /** SystemVersionedTemporalTable */
-  SystemVersionedTemporalTable = "SystemVersionedTemporalTable"
+  SystemVersionedTemporalTable = "SystemVersionedTemporalTable",
 }
 
 /**
@@ -7685,7 +7685,7 @@ export type TableTemporalType = string;
 /** Known values of {@link SecurityAlertPolicyName} that the service accepts. */
 export enum KnownSecurityAlertPolicyName {
   /** Default */
-  Default = "Default"
+  Default = "Default",
 }
 
 /**
@@ -7706,7 +7706,7 @@ export enum KnownCreatedByType {
   /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
   /** Key */
-  Key = "Key"
+  Key = "Key",
 }
 
 /**
@@ -7724,7 +7724,7 @@ export type CreatedByType = string;
 /** Known values of {@link VulnerabilityAssessmentName} that the service accepts. */
 export enum KnownVulnerabilityAssessmentName {
   /** Default */
-  Default = "default"
+  Default = "default",
 }
 
 /**
@@ -7741,7 +7741,7 @@ export enum KnownVulnerabilityAssessmentScanTriggerType {
   /** OnDemand */
   OnDemand = "OnDemand",
   /** Recurring */
-  Recurring = "Recurring"
+  Recurring = "Recurring",
 }
 
 /**
@@ -7763,7 +7763,7 @@ export enum KnownVulnerabilityAssessmentScanState {
   /** FailedToRun */
   FailedToRun = "FailedToRun",
   /** InProgress */
-  InProgress = "InProgress"
+  InProgress = "InProgress",
 }
 
 /**
@@ -7781,7 +7781,7 @@ export type VulnerabilityAssessmentScanState = string;
 /** Known values of {@link DataWarehouseUserActivityName} that the service accepts. */
 export enum KnownDataWarehouseUserActivityName {
   /** Current */
-  Current = "current"
+  Current = "current",
 }
 
 /**
@@ -7800,7 +7800,7 @@ export enum KnownElasticPoolState {
   /** Ready */
   Ready = "Ready",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -7819,7 +7819,7 @@ export enum KnownElasticPoolLicenseType {
   /** LicenseIncluded */
   LicenseIncluded = "LicenseIncluded",
   /** BasePrice */
-  BasePrice = "BasePrice"
+  BasePrice = "BasePrice",
 }
 
 /**
@@ -7837,7 +7837,7 @@ export enum KnownServerKeyType {
   /** ServiceManaged */
   ServiceManaged = "ServiceManaged",
   /** AzureKeyVault */
-  AzureKeyVault = "AzureKeyVault"
+  AzureKeyVault = "AzureKeyVault",
 }
 
 /**
@@ -7853,7 +7853,7 @@ export type ServerKeyType = string;
 /** Known values of {@link EncryptionProtectorName} that the service accepts. */
 export enum KnownEncryptionProtectorName {
   /** Current */
-  Current = "current"
+  Current = "current",
 }
 
 /**
@@ -7870,7 +7870,7 @@ export enum KnownReadWriteEndpointFailoverPolicy {
   /** Manual */
   Manual = "Manual",
   /** Automatic */
-  Automatic = "Automatic"
+  Automatic = "Automatic",
 }
 
 /**
@@ -7888,7 +7888,7 @@ export enum KnownReadOnlyEndpointFailoverPolicy {
   /** Disabled */
   Disabled = "Disabled",
   /** Enabled */
-  Enabled = "Enabled"
+  Enabled = "Enabled",
 }
 
 /**
@@ -7906,7 +7906,7 @@ export enum KnownFailoverGroupReplicationRole {
   /** Primary */
   Primary = "Primary",
   /** Secondary */
-  Secondary = "Secondary"
+  Secondary = "Secondary",
 }
 
 /**
@@ -7924,7 +7924,7 @@ export enum KnownInstanceFailoverGroupReplicationRole {
   /** Primary */
   Primary = "Primary",
   /** Secondary */
-  Secondary = "Secondary"
+  Secondary = "Secondary",
 }
 
 /**
@@ -7942,7 +7942,7 @@ export enum KnownInstancePoolLicenseType {
   /** LicenseIncluded */
   LicenseIncluded = "LicenseIncluded",
   /** BasePrice */
-  BasePrice = "BasePrice"
+  BasePrice = "BasePrice",
 }
 
 /**
@@ -7966,7 +7966,7 @@ export enum KnownJobAgentState {
   /** Deleting */
   Deleting = "Deleting",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -8003,7 +8003,7 @@ export enum KnownJobExecutionLifecycle {
   /** Canceled */
   Canceled = "Canceled",
   /** Skipped */
-  Skipped = "Skipped"
+  Skipped = "Skipped",
 }
 
 /**
@@ -8035,7 +8035,7 @@ export enum KnownProvisioningState {
   /** Failed */
   Failed = "Failed",
   /** Canceled */
-  Canceled = "Canceled"
+  Canceled = "Canceled",
 }
 
 /**
@@ -8062,7 +8062,7 @@ export enum KnownJobTargetType {
   /** SqlShardMap */
   SqlShardMap = "SqlShardMap",
   /** SqlServer */
-  SqlServer = "SqlServer"
+  SqlServer = "SqlServer",
 }
 
 /**
@@ -8081,7 +8081,7 @@ export type JobTargetType = string;
 /** Known values of {@link JobStepActionType} that the service accepts. */
 export enum KnownJobStepActionType {
   /** TSql */
-  TSql = "TSql"
+  TSql = "TSql",
 }
 
 /**
@@ -8096,7 +8096,7 @@ export type JobStepActionType = string;
 /** Known values of {@link JobStepActionSource} that the service accepts. */
 export enum KnownJobStepActionSource {
   /** Inline */
-  Inline = "Inline"
+  Inline = "Inline",
 }
 
 /**
@@ -8111,7 +8111,7 @@ export type JobStepActionSource = string;
 /** Known values of {@link JobStepOutputType} that the service accepts. */
 export enum KnownJobStepOutputType {
   /** SqlDatabase */
-  SqlDatabase = "SqlDatabase"
+  SqlDatabase = "SqlDatabase",
 }
 
 /**
@@ -8134,7 +8134,7 @@ export enum KnownCapabilityGroup {
   /** SupportedInstancePoolEditions */
   SupportedInstancePoolEditions = "supportedInstancePoolEditions",
   /** SupportedManagedInstanceEditions */
-  SupportedManagedInstanceEditions = "supportedManagedInstanceEditions"
+  SupportedManagedInstanceEditions = "supportedManagedInstanceEditions",
 }
 
 /**
@@ -8159,7 +8159,7 @@ export enum KnownMaxSizeUnit {
   /** Terabytes */
   Terabytes = "Terabytes",
   /** Petabytes */
-  Petabytes = "Petabytes"
+  Petabytes = "Petabytes",
 }
 
 /**
@@ -8185,7 +8185,7 @@ export enum KnownLogSizeUnit {
   /** Petabytes */
   Petabytes = "Petabytes",
   /** Percent */
-  Percent = "Percent"
+  Percent = "Percent",
 }
 
 /**
@@ -8206,7 +8206,7 @@ export enum KnownPerformanceLevelUnit {
   /** DTU */
   DTU = "DTU",
   /** VCores */
-  VCores = "VCores"
+  VCores = "VCores",
 }
 
 /**
@@ -8222,7 +8222,7 @@ export type PerformanceLevelUnit = string;
 /** Known values of {@link PauseDelayTimeUnit} that the service accepts. */
 export enum KnownPauseDelayTimeUnit {
   /** Minutes */
-  Minutes = "Minutes"
+  Minutes = "Minutes",
 }
 
 /**
@@ -8241,7 +8241,7 @@ export enum KnownStorageCapabilityStorageAccountType {
   /** LRS */
   LRS = "LRS",
   /** ZRS */
-  ZRS = "ZRS"
+  ZRS = "ZRS",
 }
 
 /**
@@ -8258,7 +8258,7 @@ export type StorageCapabilityStorageAccountType = string;
 /** Known values of {@link LongTermRetentionPolicyName} that the service accepts. */
 export enum KnownLongTermRetentionPolicyName {
   /** Default */
-  Default = "default"
+  Default = "default",
 }
 
 /**
@@ -8285,7 +8285,7 @@ export enum KnownDayOfWeek {
   /** Friday */
   Friday = "Friday",
   /** Saturday */
-  Saturday = "Saturday"
+  Saturday = "Saturday",
 }
 
 /**
@@ -8306,7 +8306,7 @@ export type DayOfWeek = string;
 /** Known values of {@link ManagedShortTermRetentionPolicyName} that the service accepts. */
 export enum KnownManagedShortTermRetentionPolicyName {
   /** Default */
-  Default = "default"
+  Default = "default",
 }
 
 /**
@@ -8323,7 +8323,7 @@ export enum KnownQueryTimeGrainType {
   /** PT1H */
   PT1H = "PT1H",
   /** P1D */
-  P1D = "P1D"
+  P1D = "P1D",
 }
 
 /**
@@ -8345,7 +8345,7 @@ export enum KnownQueryMetricUnitType {
   /** Microseconds */
   Microseconds = "microseconds",
   /** Count */
-  Count = "count"
+  Count = "count",
 }
 
 /**
@@ -8363,7 +8363,7 @@ export type QueryMetricUnitType = string;
 /** Known values of {@link RestoreDetailsName} that the service accepts. */
 export enum KnownRestoreDetailsName {
   /** Default */
-  Default = "Default"
+  Default = "Default",
 }
 
 /**
@@ -8390,7 +8390,7 @@ export enum KnownManagedDatabaseStatus {
   /** Restoring */
   Restoring = "Restoring",
   /** Updating */
-  Updating = "Updating"
+  Updating = "Updating",
 }
 
 /**
@@ -8413,7 +8413,7 @@ export enum KnownCatalogCollationType {
   /** DatabaseDefault */
   DatabaseDefault = "DATABASE_DEFAULT",
   /** SQLLatin1GeneralCP1CIAS */
-  SQLLatin1GeneralCP1CIAS = "SQL_Latin1_General_CP1_CI_AS"
+  SQLLatin1GeneralCP1CIAS = "SQL_Latin1_General_CP1_CI_AS",
 }
 
 /**
@@ -8437,7 +8437,7 @@ export enum KnownManagedDatabaseCreateMode {
   /** Recovery */
   Recovery = "Recovery",
   /** RestoreLongTermRetentionBackup */
-  RestoreLongTermRetentionBackup = "RestoreLongTermRetentionBackup"
+  RestoreLongTermRetentionBackup = "RestoreLongTermRetentionBackup",
 }
 
 /**
@@ -8456,7 +8456,7 @@ export type ManagedDatabaseCreateMode = string;
 /** Known values of {@link TransparentDataEncryptionName} that the service accepts. */
 export enum KnownTransparentDataEncryptionName {
   /** Current */
-  Current = "current"
+  Current = "current",
 }
 
 /**
@@ -8471,7 +8471,7 @@ export type TransparentDataEncryptionName = string;
 /** Known values of {@link ManagedInstanceAdministratorType} that the service accepts. */
 export enum KnownManagedInstanceAdministratorType {
   /** ActiveDirectory */
-  ActiveDirectory = "ActiveDirectory"
+  ActiveDirectory = "ActiveDirectory",
 }
 
 /**
@@ -8486,7 +8486,7 @@ export type ManagedInstanceAdministratorType = string;
 /** Known values of {@link AdministratorName} that the service accepts. */
 export enum KnownAdministratorName {
   /** ActiveDirectory */
-  ActiveDirectory = "ActiveDirectory"
+  ActiveDirectory = "ActiveDirectory",
 }
 
 /**
@@ -8501,7 +8501,7 @@ export type AdministratorName = string;
 /** Known values of {@link AuthenticationName} that the service accepts. */
 export enum KnownAuthenticationName {
   /** Default */
-  Default = "Default"
+  Default = "Default",
 }
 
 /**
@@ -8516,7 +8516,7 @@ export type AuthenticationName = string;
 /** Known values of {@link ManagedInstanceLongTermRetentionPolicyName} that the service accepts. */
 export enum KnownManagedInstanceLongTermRetentionPolicyName {
   /** Default */
-  Default = "default"
+  Default = "default",
 }
 
 /**
@@ -8541,7 +8541,7 @@ export enum KnownManagementOperationState {
   /** CancelInProgress */
   CancelInProgress = "CancelInProgress",
   /** Cancelled */
-  Cancelled = "Cancelled"
+  Cancelled = "Cancelled",
 }
 
 /**
@@ -8571,7 +8571,7 @@ export enum KnownUpsertManagedServerOperationStepStatus {
   /** Failed */
   Failed = "Failed",
   /** Canceled */
-  Canceled = "Canceled"
+  Canceled = "Canceled",
 }
 
 /**
@@ -8593,7 +8593,7 @@ export enum KnownOperationOrigin {
   /** User */
   User = "user",
   /** System */
-  System = "system"
+  System = "system",
 }
 
 /**
@@ -8615,7 +8615,7 @@ export enum KnownPrivateLinkServiceConnectionStateStatus {
   /** Rejected */
   Rejected = "Rejected",
   /** Disconnected */
-  Disconnected = "Disconnected"
+  Disconnected = "Disconnected",
 }
 
 /**
@@ -8633,7 +8633,7 @@ export type PrivateLinkServiceConnectionStateStatus = string;
 /** Known values of {@link PrivateLinkServiceConnectionStateActionsRequire} that the service accepts. */
 export enum KnownPrivateLinkServiceConnectionStateActionsRequire {
   /** None */
-  None = "None"
+  None = "None",
 }
 
 /**
@@ -8656,7 +8656,7 @@ export enum KnownPrivateEndpointProvisioningState {
   /** Failed */
   Failed = "Failed",
   /** Rejecting */
-  Rejecting = "Rejecting"
+  Rejecting = "Rejecting",
 }
 
 /**
@@ -8675,7 +8675,7 @@ export type PrivateEndpointProvisioningState = string;
 /** Known values of {@link AdministratorType} that the service accepts. */
 export enum KnownAdministratorType {
   /** ActiveDirectory */
-  ActiveDirectory = "ActiveDirectory"
+  ActiveDirectory = "ActiveDirectory",
 }
 
 /**
@@ -8692,7 +8692,7 @@ export enum KnownServerTrustGroupPropertiesTrustScopesItem {
   /** GlobalTransactions */
   GlobalTransactions = "GlobalTransactions",
   /** ServiceBroker */
-  ServiceBroker = "ServiceBroker"
+  ServiceBroker = "ServiceBroker",
 }
 
 /**
@@ -8710,7 +8710,7 @@ export enum KnownSqlAgentConfigurationPropertiesState {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -8730,7 +8730,7 @@ export enum KnownSyncAgentState {
   /** Offline */
   Offline = "Offline",
   /** NeverConnected */
-  NeverConnected = "NeverConnected"
+  NeverConnected = "NeverConnected",
 }
 
 /**
@@ -8749,7 +8749,7 @@ export enum KnownSyncMemberDbType {
   /** AzureSqlDatabase */
   AzureSqlDatabase = "AzureSqlDatabase",
   /** SqlServerDatabase */
-  SqlServerDatabase = "SqlServerDatabase"
+  SqlServerDatabase = "SqlServerDatabase",
 }
 
 /**
@@ -8771,7 +8771,7 @@ export enum KnownSyncGroupsType {
   /** Warning */
   Warning = "Warning",
   /** Success */
-  Success = "Success"
+  Success = "Success",
 }
 
 /**
@@ -8795,7 +8795,7 @@ export enum KnownSyncGroupLogType {
   /** Warning */
   Warning = "Warning",
   /** Success */
-  Success = "Success"
+  Success = "Success",
 }
 
 /**
@@ -8815,7 +8815,7 @@ export enum KnownSyncConflictResolutionPolicy {
   /** HubWin */
   HubWin = "HubWin",
   /** MemberWin */
-  MemberWin = "MemberWin"
+  MemberWin = "MemberWin",
 }
 
 /**
@@ -8839,7 +8839,7 @@ export enum KnownSyncGroupState {
   /** Progressing */
   Progressing = "Progressing",
   /** Good */
-  Good = "Good"
+  Good = "Good",
 }
 
 /**
@@ -8862,7 +8862,7 @@ export enum KnownSyncDirection {
   /** OneWayMemberToHub */
   OneWayMemberToHub = "OneWayMemberToHub",
   /** OneWayHubToMember */
-  OneWayHubToMember = "OneWayHubToMember"
+  OneWayHubToMember = "OneWayHubToMember",
 }
 
 /**
@@ -8913,7 +8913,7 @@ export enum KnownSyncMemberState {
   /** ReprovisionFailed */
   ReprovisionFailed = "ReprovisionFailed",
   /** UnReprovisioned */
-  UnReprovisioned = "UnReprovisioned"
+  UnReprovisioned = "UnReprovisioned",
 }
 
 /**
@@ -8947,7 +8947,7 @@ export enum KnownDnsRefreshConfigurationPropertiesStatus {
   /** Succeeded */
   Succeeded = "Succeeded",
   /** Failed */
-  Failed = "Failed"
+  Failed = "Failed",
 }
 
 /**
@@ -8973,7 +8973,7 @@ export enum KnownVirtualNetworkRuleState {
   /** Deleting */
   Deleting = "Deleting",
   /** Unknown */
-  Unknown = "Unknown"
+  Unknown = "Unknown",
 }
 
 /**
@@ -8993,7 +8993,7 @@ export type VirtualNetworkRuleState = string;
 /** Known values of {@link ShortTermRetentionPolicyName} that the service accepts. */
 export enum KnownShortTermRetentionPolicyName {
   /** Default */
-  Default = "default"
+  Default = "default",
 }
 
 /**
@@ -9010,7 +9010,7 @@ export enum KnownDiffBackupIntervalInHours {
   /** Twelve */
   Twelve = 12,
   /** TwentyFour */
-  TwentyFour = 24
+  TwentyFour = 24,
 }
 
 /**
@@ -9026,7 +9026,7 @@ export type DiffBackupIntervalInHours = number;
 /** Known values of {@link OperationMode} that the service accepts. */
 export enum KnownOperationMode {
   /** PolybaseImport */
-  PolybaseImport = "PolybaseImport"
+  PolybaseImport = "PolybaseImport",
 }
 
 /**
@@ -9043,7 +9043,7 @@ export enum KnownStorageKeyType {
   /** SharedAccessKey */
   SharedAccessKey = "SharedAccessKey",
   /** StorageAccessKey */
-  StorageAccessKey = "StorageAccessKey"
+  StorageAccessKey = "StorageAccessKey",
 }
 
 /**
@@ -9059,7 +9059,7 @@ export type StorageKeyType = string;
 /** Known values of {@link LedgerDigestUploadsName} that the service accepts. */
 export enum KnownLedgerDigestUploadsName {
   /** Current */
-  Current = "current"
+  Current = "current",
 }
 
 /**
@@ -9080,7 +9080,7 @@ export enum KnownReplicationState {
   /** CatchUP */
   CatchUP = "CATCH_UP",
   /** Suspended */
-  Suspended = "SUSPENDED"
+  Suspended = "SUSPENDED",
 }
 
 /**
@@ -9100,7 +9100,7 @@ export enum KnownReplicationLinkType {
   /** GEO */
   GEO = "GEO",
   /** Named */
-  Named = "NAMED"
+  Named = "NAMED",
 }
 
 /**
@@ -9122,7 +9122,7 @@ export enum KnownIdentityType {
   /** UserAssigned */
   UserAssigned = "UserAssigned",
   /** SystemAssignedUserAssigned */
-  SystemAssignedUserAssigned = "SystemAssigned,UserAssigned"
+  SystemAssignedUserAssigned = "SystemAssigned,UserAssigned",
 }
 
 /**
@@ -9142,7 +9142,7 @@ export enum KnownServerNetworkAccessFlag {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -9160,7 +9160,7 @@ export enum KnownServerWorkspaceFeature {
   /** Connected */
   Connected = "Connected",
   /** Disconnected */
-  Disconnected = "Disconnected"
+  Disconnected = "Disconnected",
 }
 
 /**
@@ -9180,7 +9180,7 @@ export enum KnownPrincipalType {
   /** Group */
   Group = "Group",
   /** Application */
-  Application = "Application"
+  Application = "Application",
 }
 
 /**
@@ -9199,7 +9199,7 @@ export enum KnownDatabaseIdentityType {
   /** None */
   None = "None",
   /** UserAssigned */
-  UserAssigned = "UserAssigned"
+  UserAssigned = "UserAssigned",
 }
 
 /**
@@ -9233,7 +9233,7 @@ export enum KnownCreateMode {
   /** RestoreLongTermRetentionBackup */
   RestoreLongTermRetentionBackup = "RestoreLongTermRetentionBackup",
   /** OnlineSecondary */
-  OnlineSecondary = "OnlineSecondary"
+  OnlineSecondary = "OnlineSecondary",
 }
 
 /**
@@ -9261,7 +9261,7 @@ export enum KnownSampleName {
   /** WideWorldImportersStd */
   WideWorldImportersStd = "WideWorldImportersStd",
   /** WideWorldImportersFull */
-  WideWorldImportersFull = "WideWorldImportersFull"
+  WideWorldImportersFull = "WideWorldImportersFull",
 }
 
 /**
@@ -9324,7 +9324,7 @@ export enum KnownDatabaseStatus {
   /** Stopped */
   Stopped = "Stopped",
   /** Starting */
-  Starting = "Starting"
+  Starting = "Starting",
 }
 
 /**
@@ -9364,7 +9364,7 @@ export enum KnownDatabaseLicenseType {
   /** LicenseIncluded */
   LicenseIncluded = "LicenseIncluded",
   /** BasePrice */
-  BasePrice = "BasePrice"
+  BasePrice = "BasePrice",
 }
 
 /**
@@ -9382,7 +9382,7 @@ export enum KnownDatabaseReadScale {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -9400,7 +9400,7 @@ export enum KnownSecondaryType {
   /** Geo */
   Geo = "Geo",
   /** Named */
-  Named = "Named"
+  Named = "Named",
 }
 
 /**
@@ -9422,7 +9422,7 @@ export enum KnownBackupStorageRedundancy {
   /** Zone */
   Zone = "Zone",
   /** GeoZone */
-  GeoZone = "GeoZone"
+  GeoZone = "GeoZone",
 }
 
 /**
@@ -9442,7 +9442,7 @@ export enum KnownReplicaType {
   /** Primary */
   Primary = "Primary",
   /** ReadableSecondary */
-  ReadableSecondary = "ReadableSecondary"
+  ReadableSecondary = "ReadableSecondary",
 }
 
 /**
@@ -9462,7 +9462,7 @@ export enum KnownDatabaseState {
   /** Live */
   Live = "Live",
   /** Deleted */
-  Deleted = "Deleted"
+  Deleted = "Deleted",
 }
 
 /**
@@ -9507,7 +9507,7 @@ export enum KnownManagedInstancePropertiesProvisioningState {
   /** Registering */
   Registering = "Registering",
   /** TimedOut */
-  TimedOut = "TimedOut"
+  TimedOut = "TimedOut",
 }
 
 /**
@@ -9538,7 +9538,7 @@ export enum KnownManagedServerCreateMode {
   /** Default */
   Default = "Default",
   /** PointInTimeRestore */
-  PointInTimeRestore = "PointInTimeRestore"
+  PointInTimeRestore = "PointInTimeRestore",
 }
 
 /**
@@ -9556,7 +9556,7 @@ export enum KnownManagedInstanceLicenseType {
   /** LicenseIncluded */
   LicenseIncluded = "LicenseIncluded",
   /** BasePrice */
-  BasePrice = "BasePrice"
+  BasePrice = "BasePrice",
 }
 
 /**
@@ -9576,7 +9576,7 @@ export enum KnownManagedInstanceProxyOverride {
   /** Redirect */
   Redirect = "Redirect",
   /** Default */
-  Default = "Default"
+  Default = "Default",
 }
 
 /**
@@ -9595,7 +9595,7 @@ export enum KnownServicePrincipalType {
   /** None */
   None = "None",
   /** SystemAssigned */
-  SystemAssigned = "SystemAssigned"
+  SystemAssigned = "SystemAssigned",
 }
 
 /**
@@ -9619,7 +9619,7 @@ export enum KnownAggregationFunctionType {
   /** Stdev */
   Stdev = "stdev",
   /** Sum */
-  Sum = "sum"
+  Sum = "sum",
 }
 
 /**
@@ -9646,7 +9646,7 @@ export enum KnownMetricType {
   /** Duration */
   Duration = "duration",
   /** Dtu */
-  Dtu = "dtu"
+  Dtu = "dtu",
 }
 
 /**
@@ -9665,7 +9665,7 @@ export type MetricType = string;
 /** Known values of {@link ConnectionPolicyName} that the service accepts. */
 export enum KnownConnectionPolicyName {
   /** Default */
-  Default = "default"
+  Default = "default",
 }
 
 /**
@@ -9684,7 +9684,7 @@ export enum KnownServerConnectionType {
   /** Redirect */
   Redirect = "Redirect",
   /** Proxy */
-  Proxy = "Proxy"
+  Proxy = "Proxy",
 }
 
 /**
@@ -9829,7 +9829,7 @@ export enum KnownServiceObjectiveName {
   /** DS2000 */
   DS2000 = "DS2000",
   /** ElasticPool */
-  ElasticPool = "ElasticPool"
+  ElasticPool = "ElasticPool",
 }
 
 /**
@@ -10021,7 +10021,8 @@ export interface RecoverableDatabasesListByServerOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
-export type RecoverableDatabasesListByServerResponse = RecoverableDatabaseListResult;
+export type RecoverableDatabasesListByServerResponse =
+  RecoverableDatabaseListResult;
 
 /** Optional parameters. */
 export interface DataMaskingPoliciesCreateOrUpdateOptionalParams
@@ -10254,7 +10255,8 @@ export interface ElasticPoolsListMetricDefinitionsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMetricDefinitions operation. */
-export type ElasticPoolsListMetricDefinitionsResponse = MetricDefinitionListResult;
+export type ElasticPoolsListMetricDefinitionsResponse =
+  MetricDefinitionListResult;
 
 /** Optional parameters. */
 export interface ElasticPoolsListByServerOptionalParams
@@ -10379,14 +10381,16 @@ export interface ReplicationLinksListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type ReplicationLinksListByDatabaseNextResponse = ReplicationLinkListResult;
+export type ReplicationLinksListByDatabaseNextResponse =
+  ReplicationLinkListResult;
 
 /** Optional parameters. */
 export interface ReplicationLinksListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type ReplicationLinksListByServerNextResponse = ReplicationLinkListResult;
+export type ReplicationLinksListByServerNextResponse =
+  ReplicationLinkListResult;
 
 /** Optional parameters. */
 export interface ServerCommunicationLinksDeleteOptionalParams
@@ -10409,14 +10413,16 @@ export interface ServerCommunicationLinksCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ServerCommunicationLinksCreateOrUpdateResponse = ServerCommunicationLink;
+export type ServerCommunicationLinksCreateOrUpdateResponse =
+  ServerCommunicationLink;
 
 /** Optional parameters. */
 export interface ServerCommunicationLinksListByServerOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
-export type ServerCommunicationLinksListByServerResponse = ServerCommunicationLinkListResult;
+export type ServerCommunicationLinksListByServerResponse =
+  ServerCommunicationLinkListResult;
 
 /** Optional parameters. */
 export interface ServiceObjectivesGetOptionalParams
@@ -10437,14 +10443,16 @@ export interface ElasticPoolActivitiesListByElasticPoolOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByElasticPool operation. */
-export type ElasticPoolActivitiesListByElasticPoolResponse = ElasticPoolActivityListResult;
+export type ElasticPoolActivitiesListByElasticPoolResponse =
+  ElasticPoolActivityListResult;
 
 /** Optional parameters. */
 export interface ElasticPoolDatabaseActivitiesListByElasticPoolOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByElasticPool operation. */
-export type ElasticPoolDatabaseActivitiesListByElasticPoolResponse = ElasticPoolDatabaseActivityListResult;
+export type ElasticPoolDatabaseActivitiesListByElasticPoolResponse =
+  ElasticPoolDatabaseActivityListResult;
 
 /** Optional parameters. */
 export interface ServerUsagesListByServerOptionalParams
@@ -10458,35 +10466,40 @@ export interface ExtendedDatabaseBlobAuditingPoliciesGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ExtendedDatabaseBlobAuditingPoliciesGetResponse = ExtendedDatabaseBlobAuditingPolicy;
+export type ExtendedDatabaseBlobAuditingPoliciesGetResponse =
+  ExtendedDatabaseBlobAuditingPolicy;
 
 /** Optional parameters. */
 export interface ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateResponse = ExtendedDatabaseBlobAuditingPolicy;
+export type ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdateResponse =
+  ExtendedDatabaseBlobAuditingPolicy;
 
 /** Optional parameters. */
 export interface ExtendedDatabaseBlobAuditingPoliciesListByDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseResponse = ExtendedDatabaseBlobAuditingPolicyListResult;
+export type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseResponse =
+  ExtendedDatabaseBlobAuditingPolicyListResult;
 
 /** Optional parameters. */
 export interface ExtendedDatabaseBlobAuditingPoliciesListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseNextResponse = ExtendedDatabaseBlobAuditingPolicyListResult;
+export type ExtendedDatabaseBlobAuditingPoliciesListByDatabaseNextResponse =
+  ExtendedDatabaseBlobAuditingPolicyListResult;
 
 /** Optional parameters. */
 export interface ExtendedServerBlobAuditingPoliciesGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ExtendedServerBlobAuditingPoliciesGetResponse = ExtendedServerBlobAuditingPolicy;
+export type ExtendedServerBlobAuditingPoliciesGetResponse =
+  ExtendedServerBlobAuditingPolicy;
 
 /** Optional parameters. */
 export interface ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
@@ -10498,21 +10511,24 @@ export interface ExtendedServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse = ExtendedServerBlobAuditingPolicy;
+export type ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse =
+  ExtendedServerBlobAuditingPolicy;
 
 /** Optional parameters. */
 export interface ExtendedServerBlobAuditingPoliciesListByServerOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
-export type ExtendedServerBlobAuditingPoliciesListByServerResponse = ExtendedServerBlobAuditingPolicyListResult;
+export type ExtendedServerBlobAuditingPoliciesListByServerResponse =
+  ExtendedServerBlobAuditingPolicyListResult;
 
 /** Optional parameters. */
 export interface ExtendedServerBlobAuditingPoliciesListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type ExtendedServerBlobAuditingPoliciesListByServerNextResponse = ExtendedServerBlobAuditingPolicyListResult;
+export type ExtendedServerBlobAuditingPoliciesListByServerNextResponse =
+  ExtendedServerBlobAuditingPolicyListResult;
 
 /** Optional parameters. */
 export interface ServerBlobAuditingPoliciesGetOptionalParams
@@ -10531,49 +10547,56 @@ export interface ServerBlobAuditingPoliciesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ServerBlobAuditingPoliciesCreateOrUpdateResponse = ServerBlobAuditingPolicy;
+export type ServerBlobAuditingPoliciesCreateOrUpdateResponse =
+  ServerBlobAuditingPolicy;
 
 /** Optional parameters. */
 export interface ServerBlobAuditingPoliciesListByServerOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
-export type ServerBlobAuditingPoliciesListByServerResponse = ServerBlobAuditingPolicyListResult;
+export type ServerBlobAuditingPoliciesListByServerResponse =
+  ServerBlobAuditingPolicyListResult;
 
 /** Optional parameters. */
 export interface ServerBlobAuditingPoliciesListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type ServerBlobAuditingPoliciesListByServerNextResponse = ServerBlobAuditingPolicyListResult;
+export type ServerBlobAuditingPoliciesListByServerNextResponse =
+  ServerBlobAuditingPolicyListResult;
 
 /** Optional parameters. */
 export interface DatabaseBlobAuditingPoliciesGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type DatabaseBlobAuditingPoliciesGetResponse = DatabaseBlobAuditingPolicy;
+export type DatabaseBlobAuditingPoliciesGetResponse =
+  DatabaseBlobAuditingPolicy;
 
 /** Optional parameters. */
 export interface DatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type DatabaseBlobAuditingPoliciesCreateOrUpdateResponse = DatabaseBlobAuditingPolicy;
+export type DatabaseBlobAuditingPoliciesCreateOrUpdateResponse =
+  DatabaseBlobAuditingPolicy;
 
 /** Optional parameters. */
 export interface DatabaseBlobAuditingPoliciesListByDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type DatabaseBlobAuditingPoliciesListByDatabaseResponse = DatabaseBlobAuditingPolicyListResult;
+export type DatabaseBlobAuditingPoliciesListByDatabaseResponse =
+  DatabaseBlobAuditingPolicyListResult;
 
 /** Optional parameters. */
 export interface DatabaseBlobAuditingPoliciesListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type DatabaseBlobAuditingPoliciesListByDatabaseNextResponse = DatabaseBlobAuditingPolicyListResult;
+export type DatabaseBlobAuditingPoliciesListByDatabaseNextResponse =
+  DatabaseBlobAuditingPolicyListResult;
 
 /** Optional parameters. */
 export interface DatabaseAdvisorsListByDatabaseOptionalParams
@@ -10653,7 +10676,8 @@ export interface DatabaseColumnsListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type DatabaseColumnsListByDatabaseNextResponse = DatabaseColumnListResult;
+export type DatabaseColumnsListByDatabaseNextResponse =
+  DatabaseColumnListResult;
 
 /** Optional parameters. */
 export interface DatabaseColumnsListByTableNextOptionalParams
@@ -10667,7 +10691,8 @@ export interface DatabaseRecommendedActionsListByDatabaseAdvisorOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseAdvisor operation. */
-export type DatabaseRecommendedActionsListByDatabaseAdvisorResponse = RecommendedAction[];
+export type DatabaseRecommendedActionsListByDatabaseAdvisorResponse =
+  RecommendedAction[];
 
 /** Optional parameters. */
 export interface DatabaseRecommendedActionsGetOptionalParams
@@ -10705,35 +10730,40 @@ export interface DatabaseSchemasListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type DatabaseSchemasListByDatabaseNextResponse = DatabaseSchemaListResult;
+export type DatabaseSchemasListByDatabaseNextResponse =
+  DatabaseSchemaListResult;
 
 /** Optional parameters. */
 export interface DatabaseSecurityAlertPoliciesGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type DatabaseSecurityAlertPoliciesGetResponse = DatabaseSecurityAlertPolicy;
+export type DatabaseSecurityAlertPoliciesGetResponse =
+  DatabaseSecurityAlertPolicy;
 
 /** Optional parameters. */
 export interface DatabaseSecurityAlertPoliciesCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type DatabaseSecurityAlertPoliciesCreateOrUpdateResponse = DatabaseSecurityAlertPolicy;
+export type DatabaseSecurityAlertPoliciesCreateOrUpdateResponse =
+  DatabaseSecurityAlertPolicy;
 
 /** Optional parameters. */
 export interface DatabaseSecurityAlertPoliciesListByDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type DatabaseSecurityAlertPoliciesListByDatabaseResponse = DatabaseSecurityAlertListResult;
+export type DatabaseSecurityAlertPoliciesListByDatabaseResponse =
+  DatabaseSecurityAlertListResult;
 
 /** Optional parameters. */
 export interface DatabaseSecurityAlertPoliciesListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type DatabaseSecurityAlertPoliciesListByDatabaseNextResponse = DatabaseSecurityAlertListResult;
+export type DatabaseSecurityAlertPoliciesListByDatabaseNextResponse =
+  DatabaseSecurityAlertListResult;
 
 /** Optional parameters. */
 export interface DatabaseTablesListBySchemaOptionalParams
@@ -10764,14 +10794,16 @@ export interface DatabaseVulnerabilityAssessmentRuleBaselinesGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type DatabaseVulnerabilityAssessmentRuleBaselinesGetResponse = DatabaseVulnerabilityAssessmentRuleBaseline;
+export type DatabaseVulnerabilityAssessmentRuleBaselinesGetResponse =
+  DatabaseVulnerabilityAssessmentRuleBaseline;
 
 /** Optional parameters. */
 export interface DatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type DatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse = DatabaseVulnerabilityAssessmentRuleBaseline;
+export type DatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse =
+  DatabaseVulnerabilityAssessmentRuleBaseline;
 
 /** Optional parameters. */
 export interface DatabaseVulnerabilityAssessmentRuleBaselinesDeleteOptionalParams
@@ -10782,14 +10814,16 @@ export interface DatabaseVulnerabilityAssessmentsGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type DatabaseVulnerabilityAssessmentsGetResponse = DatabaseVulnerabilityAssessment;
+export type DatabaseVulnerabilityAssessmentsGetResponse =
+  DatabaseVulnerabilityAssessment;
 
 /** Optional parameters. */
 export interface DatabaseVulnerabilityAssessmentsCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type DatabaseVulnerabilityAssessmentsCreateOrUpdateResponse = DatabaseVulnerabilityAssessment;
+export type DatabaseVulnerabilityAssessmentsCreateOrUpdateResponse =
+  DatabaseVulnerabilityAssessment;
 
 /** Optional parameters. */
 export interface DatabaseVulnerabilityAssessmentsDeleteOptionalParams
@@ -10800,14 +10834,16 @@ export interface DatabaseVulnerabilityAssessmentsListByDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type DatabaseVulnerabilityAssessmentsListByDatabaseResponse = DatabaseVulnerabilityAssessmentListResult;
+export type DatabaseVulnerabilityAssessmentsListByDatabaseResponse =
+  DatabaseVulnerabilityAssessmentListResult;
 
 /** Optional parameters. */
 export interface DatabaseVulnerabilityAssessmentsListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type DatabaseVulnerabilityAssessmentsListByDatabaseNextResponse = DatabaseVulnerabilityAssessmentListResult;
+export type DatabaseVulnerabilityAssessmentsListByDatabaseNextResponse =
+  DatabaseVulnerabilityAssessmentListResult;
 
 /** Optional parameters. */
 export interface DatabaseVulnerabilityAssessmentScansInitiateScanOptionalParams
@@ -10823,49 +10859,56 @@ export interface DatabaseVulnerabilityAssessmentScansListByDatabaseOptionalParam
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type DatabaseVulnerabilityAssessmentScansListByDatabaseResponse = VulnerabilityAssessmentScanRecordListResult;
+export type DatabaseVulnerabilityAssessmentScansListByDatabaseResponse =
+  VulnerabilityAssessmentScanRecordListResult;
 
 /** Optional parameters. */
 export interface DatabaseVulnerabilityAssessmentScansGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type DatabaseVulnerabilityAssessmentScansGetResponse = VulnerabilityAssessmentScanRecord;
+export type DatabaseVulnerabilityAssessmentScansGetResponse =
+  VulnerabilityAssessmentScanRecord;
 
 /** Optional parameters. */
 export interface DatabaseVulnerabilityAssessmentScansExportOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the export operation. */
-export type DatabaseVulnerabilityAssessmentScansExportResponse = DatabaseVulnerabilityAssessmentScansExport;
+export type DatabaseVulnerabilityAssessmentScansExportResponse =
+  DatabaseVulnerabilityAssessmentScansExport;
 
 /** Optional parameters. */
 export interface DatabaseVulnerabilityAssessmentScansListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type DatabaseVulnerabilityAssessmentScansListByDatabaseNextResponse = VulnerabilityAssessmentScanRecordListResult;
+export type DatabaseVulnerabilityAssessmentScansListByDatabaseNextResponse =
+  VulnerabilityAssessmentScanRecordListResult;
 
 /** Optional parameters. */
 export interface DataWarehouseUserActivitiesGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type DataWarehouseUserActivitiesGetResponse = DataWarehouseUserActivities;
+export type DataWarehouseUserActivitiesGetResponse =
+  DataWarehouseUserActivities;
 
 /** Optional parameters. */
 export interface DataWarehouseUserActivitiesListByDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type DataWarehouseUserActivitiesListByDatabaseResponse = DataWarehouseUserActivitiesListResult;
+export type DataWarehouseUserActivitiesListByDatabaseResponse =
+  DataWarehouseUserActivitiesListResult;
 
 /** Optional parameters. */
 export interface DataWarehouseUserActivitiesListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type DataWarehouseUserActivitiesListByDatabaseNextResponse = DataWarehouseUserActivitiesListResult;
+export type DataWarehouseUserActivitiesListByDatabaseNextResponse =
+  DataWarehouseUserActivitiesListResult;
 
 /** Optional parameters. */
 export interface DeletedServersListOptionalParams
@@ -10923,21 +10966,24 @@ export interface ElasticPoolOperationsListByElasticPoolOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByElasticPool operation. */
-export type ElasticPoolOperationsListByElasticPoolResponse = ElasticPoolOperationListResult;
+export type ElasticPoolOperationsListByElasticPoolResponse =
+  ElasticPoolOperationListResult;
 
 /** Optional parameters. */
 export interface ElasticPoolOperationsListByElasticPoolNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByElasticPoolNext operation. */
-export type ElasticPoolOperationsListByElasticPoolNextResponse = ElasticPoolOperationListResult;
+export type ElasticPoolOperationsListByElasticPoolNextResponse =
+  ElasticPoolOperationListResult;
 
 /** Optional parameters. */
 export interface EncryptionProtectorsListByServerOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
-export type EncryptionProtectorsListByServerResponse = EncryptionProtectorListResult;
+export type EncryptionProtectorsListByServerResponse =
+  EncryptionProtectorListResult;
 
 /** Optional parameters. */
 export interface EncryptionProtectorsGetOptionalParams
@@ -10972,7 +11018,8 @@ export interface EncryptionProtectorsListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type EncryptionProtectorsListByServerNextResponse = EncryptionProtectorListResult;
+export type EncryptionProtectorsListByServerNextResponse =
+  EncryptionProtectorListResult;
 
 /** Optional parameters. */
 export interface FailoverGroupsGetOptionalParams
@@ -11108,7 +11155,8 @@ export interface InstanceFailoverGroupsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type InstanceFailoverGroupsCreateOrUpdateResponse = InstanceFailoverGroup;
+export type InstanceFailoverGroupsCreateOrUpdateResponse =
+  InstanceFailoverGroup;
 
 /** Optional parameters. */
 export interface InstanceFailoverGroupsDeleteOptionalParams
@@ -11124,7 +11172,8 @@ export interface InstanceFailoverGroupsListByLocationOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByLocation operation. */
-export type InstanceFailoverGroupsListByLocationResponse = InstanceFailoverGroupListResult;
+export type InstanceFailoverGroupsListByLocationResponse =
+  InstanceFailoverGroupListResult;
 
 /** Optional parameters. */
 export interface InstanceFailoverGroupsFailoverOptionalParams
@@ -11148,14 +11197,16 @@ export interface InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams
 }
 
 /** Contains response data for the forceFailoverAllowDataLoss operation. */
-export type InstanceFailoverGroupsForceFailoverAllowDataLossResponse = InstanceFailoverGroup;
+export type InstanceFailoverGroupsForceFailoverAllowDataLossResponse =
+  InstanceFailoverGroup;
 
 /** Optional parameters. */
 export interface InstanceFailoverGroupsListByLocationNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByLocationNext operation. */
-export type InstanceFailoverGroupsListByLocationNextResponse = InstanceFailoverGroupListResult;
+export type InstanceFailoverGroupsListByLocationNextResponse =
+  InstanceFailoverGroupListResult;
 
 /** Optional parameters. */
 export interface InstancePoolsGetOptionalParams
@@ -11216,7 +11267,8 @@ export interface InstancePoolsListByResourceGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type InstancePoolsListByResourceGroupNextResponse = InstancePoolListResult;
+export type InstancePoolsListByResourceGroupNextResponse =
+  InstancePoolListResult;
 
 /** Optional parameters. */
 export interface InstancePoolsListNextOptionalParams
@@ -11454,7 +11506,8 @@ export interface JobStepExecutionsListByJobExecutionOptionalParams
 }
 
 /** Contains response data for the listByJobExecution operation. */
-export type JobStepExecutionsListByJobExecutionResponse = JobExecutionListResult;
+export type JobStepExecutionsListByJobExecutionResponse =
+  JobExecutionListResult;
 
 /** Optional parameters. */
 export interface JobStepExecutionsGetOptionalParams
@@ -11468,7 +11521,8 @@ export interface JobStepExecutionsListByJobExecutionNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByJobExecutionNext operation. */
-export type JobStepExecutionsListByJobExecutionNextResponse = JobExecutionListResult;
+export type JobStepExecutionsListByJobExecutionNextResponse =
+  JobExecutionListResult;
 
 /** Optional parameters. */
 export interface JobStepsListByVersionOptionalParams
@@ -11543,7 +11597,8 @@ export interface JobTargetExecutionsListByJobExecutionOptionalParams
 }
 
 /** Contains response data for the listByJobExecution operation. */
-export type JobTargetExecutionsListByJobExecutionResponse = JobExecutionListResult;
+export type JobTargetExecutionsListByJobExecutionResponse =
+  JobExecutionListResult;
 
 /** Optional parameters. */
 export interface JobTargetExecutionsListByStepOptionalParams
@@ -11579,7 +11634,8 @@ export interface JobTargetExecutionsListByJobExecutionNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByJobExecutionNext operation. */
-export type JobTargetExecutionsListByJobExecutionNextResponse = JobExecutionListResult;
+export type JobTargetExecutionsListByJobExecutionNextResponse =
+  JobExecutionListResult;
 
 /** Optional parameters. */
 export interface JobTargetExecutionsListByStepNextOptionalParams
@@ -11668,21 +11724,24 @@ export interface LongTermRetentionPoliciesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type LongTermRetentionPoliciesCreateOrUpdateResponse = LongTermRetentionPolicy;
+export type LongTermRetentionPoliciesCreateOrUpdateResponse =
+  LongTermRetentionPolicy;
 
 /** Optional parameters. */
 export interface LongTermRetentionPoliciesListByDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type LongTermRetentionPoliciesListByDatabaseResponse = LongTermRetentionPolicyListResult;
+export type LongTermRetentionPoliciesListByDatabaseResponse =
+  LongTermRetentionPolicyListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionPoliciesListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type LongTermRetentionPoliciesListByDatabaseNextResponse = LongTermRetentionPolicyListResult;
+export type LongTermRetentionPoliciesListByDatabaseNextResponse =
+  LongTermRetentionPolicyListResult;
 
 /** Optional parameters. */
 export interface MaintenanceWindowOptionsGetOptionalParams
@@ -11707,7 +11766,8 @@ export interface ManagedBackupShortTermRetentionPoliciesGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagedBackupShortTermRetentionPoliciesGetResponse = ManagedBackupShortTermRetentionPolicy;
+export type ManagedBackupShortTermRetentionPoliciesGetResponse =
+  ManagedBackupShortTermRetentionPolicy;
 
 /** Optional parameters. */
 export interface ManagedBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
@@ -11719,7 +11779,8 @@ export interface ManagedBackupShortTermRetentionPoliciesCreateOrUpdateOptionalPa
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse = ManagedBackupShortTermRetentionPolicy;
+export type ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse =
+  ManagedBackupShortTermRetentionPolicy;
 
 /** Optional parameters. */
 export interface ManagedBackupShortTermRetentionPoliciesUpdateOptionalParams
@@ -11731,21 +11792,24 @@ export interface ManagedBackupShortTermRetentionPoliciesUpdateOptionalParams
 }
 
 /** Contains response data for the update operation. */
-export type ManagedBackupShortTermRetentionPoliciesUpdateResponse = ManagedBackupShortTermRetentionPolicy;
+export type ManagedBackupShortTermRetentionPoliciesUpdateResponse =
+  ManagedBackupShortTermRetentionPolicy;
 
 /** Optional parameters. */
 export interface ManagedBackupShortTermRetentionPoliciesListByDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type ManagedBackupShortTermRetentionPoliciesListByDatabaseResponse = ManagedBackupShortTermRetentionPolicyListResult;
+export type ManagedBackupShortTermRetentionPoliciesListByDatabaseResponse =
+  ManagedBackupShortTermRetentionPolicyListResult;
 
 /** Optional parameters. */
 export interface ManagedBackupShortTermRetentionPoliciesListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type ManagedBackupShortTermRetentionPoliciesListByDatabaseNextResponse = ManagedBackupShortTermRetentionPolicyListResult;
+export type ManagedBackupShortTermRetentionPoliciesListByDatabaseNextResponse =
+  ManagedBackupShortTermRetentionPolicyListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseColumnsListByDatabaseOptionalParams
@@ -11763,7 +11827,8 @@ export interface ManagedDatabaseColumnsListByDatabaseOptionalParams
 }
 
 /** Contains response data for the listByDatabase operation. */
-export type ManagedDatabaseColumnsListByDatabaseResponse = DatabaseColumnListResult;
+export type ManagedDatabaseColumnsListByDatabaseResponse =
+  DatabaseColumnListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseColumnsListByTableOptionalParams
@@ -11773,7 +11838,8 @@ export interface ManagedDatabaseColumnsListByTableOptionalParams
 }
 
 /** Contains response data for the listByTable operation. */
-export type ManagedDatabaseColumnsListByTableResponse = DatabaseColumnListResult;
+export type ManagedDatabaseColumnsListByTableResponse =
+  DatabaseColumnListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseColumnsGetOptionalParams
@@ -11787,14 +11853,16 @@ export interface ManagedDatabaseColumnsListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type ManagedDatabaseColumnsListByDatabaseNextResponse = DatabaseColumnListResult;
+export type ManagedDatabaseColumnsListByDatabaseNextResponse =
+  DatabaseColumnListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseColumnsListByTableNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByTableNext operation. */
-export type ManagedDatabaseColumnsListByTableNextResponse = DatabaseColumnListResult;
+export type ManagedDatabaseColumnsListByTableNextResponse =
+  DatabaseColumnListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseQueriesGetOptionalParams
@@ -11815,21 +11883,24 @@ export interface ManagedDatabaseQueriesListByQueryOptionalParams
 }
 
 /** Contains response data for the listByQuery operation. */
-export type ManagedDatabaseQueriesListByQueryResponse = ManagedInstanceQueryStatistics;
+export type ManagedDatabaseQueriesListByQueryResponse =
+  ManagedInstanceQueryStatistics;
 
 /** Optional parameters. */
 export interface ManagedDatabaseQueriesListByQueryNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByQueryNext operation. */
-export type ManagedDatabaseQueriesListByQueryNextResponse = ManagedInstanceQueryStatistics;
+export type ManagedDatabaseQueriesListByQueryNextResponse =
+  ManagedInstanceQueryStatistics;
 
 /** Optional parameters. */
 export interface ManagedDatabaseRestoreDetailsGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagedDatabaseRestoreDetailsGetResponse = ManagedDatabaseRestoreDetailsResult;
+export type ManagedDatabaseRestoreDetailsGetResponse =
+  ManagedDatabaseRestoreDetailsResult;
 
 /** Optional parameters. */
 export interface ManagedDatabasesListByInstanceOptionalParams
@@ -11892,21 +11963,24 @@ export interface ManagedDatabasesListInaccessibleByInstanceOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInaccessibleByInstance operation. */
-export type ManagedDatabasesListInaccessibleByInstanceResponse = ManagedDatabaseListResult;
+export type ManagedDatabasesListInaccessibleByInstanceResponse =
+  ManagedDatabaseListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabasesListByInstanceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
-export type ManagedDatabasesListByInstanceNextResponse = ManagedDatabaseListResult;
+export type ManagedDatabasesListByInstanceNextResponse =
+  ManagedDatabaseListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabasesListInaccessibleByInstanceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInaccessibleByInstanceNext operation. */
-export type ManagedDatabasesListInaccessibleByInstanceNextResponse = ManagedDatabaseListResult;
+export type ManagedDatabasesListInaccessibleByInstanceNextResponse =
+  ManagedDatabaseListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseSchemasListByDatabaseOptionalParams
@@ -11916,7 +11990,8 @@ export interface ManagedDatabaseSchemasListByDatabaseOptionalParams
 }
 
 /** Contains response data for the listByDatabase operation. */
-export type ManagedDatabaseSchemasListByDatabaseResponse = DatabaseSchemaListResult;
+export type ManagedDatabaseSchemasListByDatabaseResponse =
+  DatabaseSchemaListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseSchemasGetOptionalParams
@@ -11930,35 +12005,40 @@ export interface ManagedDatabaseSchemasListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type ManagedDatabaseSchemasListByDatabaseNextResponse = DatabaseSchemaListResult;
+export type ManagedDatabaseSchemasListByDatabaseNextResponse =
+  DatabaseSchemaListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseSecurityAlertPoliciesGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagedDatabaseSecurityAlertPoliciesGetResponse = ManagedDatabaseSecurityAlertPolicy;
+export type ManagedDatabaseSecurityAlertPoliciesGetResponse =
+  ManagedDatabaseSecurityAlertPolicy;
 
 /** Optional parameters. */
 export interface ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse = ManagedDatabaseSecurityAlertPolicy;
+export type ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse =
+  ManagedDatabaseSecurityAlertPolicy;
 
 /** Optional parameters. */
 export interface ManagedDatabaseSecurityAlertPoliciesListByDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type ManagedDatabaseSecurityAlertPoliciesListByDatabaseResponse = ManagedDatabaseSecurityAlertPolicyListResult;
+export type ManagedDatabaseSecurityAlertPoliciesListByDatabaseResponse =
+  ManagedDatabaseSecurityAlertPolicyListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextResponse = ManagedDatabaseSecurityAlertPolicyListResult;
+export type ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextResponse =
+  ManagedDatabaseSecurityAlertPolicyListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseSecurityEventsListByDatabaseOptionalParams
@@ -11974,14 +12054,16 @@ export interface ManagedDatabaseSecurityEventsListByDatabaseOptionalParams
 }
 
 /** Contains response data for the listByDatabase operation. */
-export type ManagedDatabaseSecurityEventsListByDatabaseResponse = SecurityEventCollection;
+export type ManagedDatabaseSecurityEventsListByDatabaseResponse =
+  SecurityEventCollection;
 
 /** Optional parameters. */
 export interface ManagedDatabaseSecurityEventsListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type ManagedDatabaseSecurityEventsListByDatabaseNextResponse = SecurityEventCollection;
+export type ManagedDatabaseSecurityEventsListByDatabaseNextResponse =
+  SecurityEventCollection;
 
 /** Optional parameters. */
 export interface ManagedDatabaseSensitivityLabelsGetOptionalParams
@@ -11995,7 +12077,8 @@ export interface ManagedDatabaseSensitivityLabelsCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse = SensitivityLabel;
+export type ManagedDatabaseSensitivityLabelsCreateOrUpdateResponse =
+  SensitivityLabel;
 
 /** Optional parameters. */
 export interface ManagedDatabaseSensitivityLabelsDeleteOptionalParams
@@ -12019,7 +12102,8 @@ export interface ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalPa
 }
 
 /** Contains response data for the listCurrentByDatabase operation. */
-export type ManagedDatabaseSensitivityLabelsListCurrentByDatabaseResponse = SensitivityLabelListResult;
+export type ManagedDatabaseSensitivityLabelsListCurrentByDatabaseResponse =
+  SensitivityLabelListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseSensitivityLabelsUpdateOptionalParams
@@ -12036,21 +12120,24 @@ export interface ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseOption
 }
 
 /** Contains response data for the listRecommendedByDatabase operation. */
-export type ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseResponse = SensitivityLabelListResult;
+export type ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseResponse =
+  SensitivityLabelListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listCurrentByDatabaseNext operation. */
-export type ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextResponse = SensitivityLabelListResult;
+export type ManagedDatabaseSensitivityLabelsListCurrentByDatabaseNextResponse =
+  SensitivityLabelListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listRecommendedByDatabaseNext operation. */
-export type ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextResponse = SensitivityLabelListResult;
+export type ManagedDatabaseSensitivityLabelsListRecommendedByDatabaseNextResponse =
+  SensitivityLabelListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseRecommendedSensitivityLabelsUpdateOptionalParams
@@ -12078,49 +12165,56 @@ export interface ManagedDatabaseTablesListBySchemaNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySchemaNext operation. */
-export type ManagedDatabaseTablesListBySchemaNextResponse = DatabaseTableListResult;
+export type ManagedDatabaseTablesListBySchemaNextResponse =
+  DatabaseTableListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseTransparentDataEncryptionGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagedDatabaseTransparentDataEncryptionGetResponse = ManagedTransparentDataEncryption;
+export type ManagedDatabaseTransparentDataEncryptionGetResponse =
+  ManagedTransparentDataEncryption;
 
 /** Optional parameters. */
 export interface ManagedDatabaseTransparentDataEncryptionCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagedDatabaseTransparentDataEncryptionCreateOrUpdateResponse = ManagedTransparentDataEncryption;
+export type ManagedDatabaseTransparentDataEncryptionCreateOrUpdateResponse =
+  ManagedTransparentDataEncryption;
 
 /** Optional parameters. */
 export interface ManagedDatabaseTransparentDataEncryptionListByDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type ManagedDatabaseTransparentDataEncryptionListByDatabaseResponse = ManagedTransparentDataEncryptionListResult;
+export type ManagedDatabaseTransparentDataEncryptionListByDatabaseResponse =
+  ManagedTransparentDataEncryptionListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseTransparentDataEncryptionListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type ManagedDatabaseTransparentDataEncryptionListByDatabaseNextResponse = ManagedTransparentDataEncryptionListResult;
+export type ManagedDatabaseTransparentDataEncryptionListByDatabaseNextResponse =
+  ManagedTransparentDataEncryptionListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseVulnerabilityAssessmentRuleBaselinesGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagedDatabaseVulnerabilityAssessmentRuleBaselinesGetResponse = DatabaseVulnerabilityAssessmentRuleBaseline;
+export type ManagedDatabaseVulnerabilityAssessmentRuleBaselinesGetResponse =
+  DatabaseVulnerabilityAssessmentRuleBaseline;
 
 /** Optional parameters. */
 export interface ManagedDatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagedDatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse = DatabaseVulnerabilityAssessmentRuleBaseline;
+export type ManagedDatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdateResponse =
+  DatabaseVulnerabilityAssessmentRuleBaseline;
 
 /** Optional parameters. */
 export interface ManagedDatabaseVulnerabilityAssessmentRuleBaselinesDeleteOptionalParams
@@ -12131,14 +12225,16 @@ export interface ManagedDatabaseVulnerabilityAssessmentsGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagedDatabaseVulnerabilityAssessmentsGetResponse = DatabaseVulnerabilityAssessment;
+export type ManagedDatabaseVulnerabilityAssessmentsGetResponse =
+  DatabaseVulnerabilityAssessment;
 
 /** Optional parameters. */
 export interface ManagedDatabaseVulnerabilityAssessmentsCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagedDatabaseVulnerabilityAssessmentsCreateOrUpdateResponse = DatabaseVulnerabilityAssessment;
+export type ManagedDatabaseVulnerabilityAssessmentsCreateOrUpdateResponse =
+  DatabaseVulnerabilityAssessment;
 
 /** Optional parameters. */
 export interface ManagedDatabaseVulnerabilityAssessmentsDeleteOptionalParams
@@ -12149,14 +12245,16 @@ export interface ManagedDatabaseVulnerabilityAssessmentsListByDatabaseOptionalPa
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type ManagedDatabaseVulnerabilityAssessmentsListByDatabaseResponse = DatabaseVulnerabilityAssessmentListResult;
+export type ManagedDatabaseVulnerabilityAssessmentsListByDatabaseResponse =
+  DatabaseVulnerabilityAssessmentListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseVulnerabilityAssessmentsListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type ManagedDatabaseVulnerabilityAssessmentsListByDatabaseNextResponse = DatabaseVulnerabilityAssessmentListResult;
+export type ManagedDatabaseVulnerabilityAssessmentsListByDatabaseNextResponse =
+  DatabaseVulnerabilityAssessmentListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseVulnerabilityAssessmentScansInitiateScanOptionalParams
@@ -12172,42 +12270,48 @@ export interface ManagedDatabaseVulnerabilityAssessmentScansExportOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the export operation. */
-export type ManagedDatabaseVulnerabilityAssessmentScansExportResponse = DatabaseVulnerabilityAssessmentScansExport;
+export type ManagedDatabaseVulnerabilityAssessmentScansExportResponse =
+  DatabaseVulnerabilityAssessmentScansExport;
 
 /** Optional parameters. */
 export interface ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseResponse = VulnerabilityAssessmentScanRecordListResult;
+export type ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseResponse =
+  VulnerabilityAssessmentScanRecordListResult;
 
 /** Optional parameters. */
 export interface ManagedDatabaseVulnerabilityAssessmentScansGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagedDatabaseVulnerabilityAssessmentScansGetResponse = VulnerabilityAssessmentScanRecord;
+export type ManagedDatabaseVulnerabilityAssessmentScansGetResponse =
+  VulnerabilityAssessmentScanRecord;
 
 /** Optional parameters. */
 export interface ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseNextResponse = VulnerabilityAssessmentScanRecordListResult;
+export type ManagedDatabaseVulnerabilityAssessmentScansListByDatabaseNextResponse =
+  VulnerabilityAssessmentScanRecordListResult;
 
 /** Optional parameters. */
 export interface ManagedInstanceAdministratorsListByInstanceOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstance operation. */
-export type ManagedInstanceAdministratorsListByInstanceResponse = ManagedInstanceAdministratorListResult;
+export type ManagedInstanceAdministratorsListByInstanceResponse =
+  ManagedInstanceAdministratorListResult;
 
 /** Optional parameters. */
 export interface ManagedInstanceAdministratorsGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagedInstanceAdministratorsGetResponse = ManagedInstanceAdministrator;
+export type ManagedInstanceAdministratorsGetResponse =
+  ManagedInstanceAdministrator;
 
 /** Optional parameters. */
 export interface ManagedInstanceAdministratorsCreateOrUpdateOptionalParams
@@ -12219,7 +12323,8 @@ export interface ManagedInstanceAdministratorsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagedInstanceAdministratorsCreateOrUpdateResponse = ManagedInstanceAdministrator;
+export type ManagedInstanceAdministratorsCreateOrUpdateResponse =
+  ManagedInstanceAdministrator;
 
 /** Optional parameters. */
 export interface ManagedInstanceAdministratorsDeleteOptionalParams
@@ -12235,14 +12340,16 @@ export interface ManagedInstanceAdministratorsListByInstanceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
-export type ManagedInstanceAdministratorsListByInstanceNextResponse = ManagedInstanceAdministratorListResult;
+export type ManagedInstanceAdministratorsListByInstanceNextResponse =
+  ManagedInstanceAdministratorListResult;
 
 /** Optional parameters. */
 export interface ManagedInstanceAzureADOnlyAuthenticationsGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagedInstanceAzureADOnlyAuthenticationsGetResponse = ManagedInstanceAzureADOnlyAuthentication;
+export type ManagedInstanceAzureADOnlyAuthenticationsGetResponse =
+  ManagedInstanceAzureADOnlyAuthentication;
 
 /** Optional parameters. */
 export interface ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateOptionalParams
@@ -12254,7 +12361,8 @@ export interface ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateOptional
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateResponse = ManagedInstanceAzureADOnlyAuthentication;
+export type ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdateResponse =
+  ManagedInstanceAzureADOnlyAuthentication;
 
 /** Optional parameters. */
 export interface ManagedInstanceAzureADOnlyAuthenticationsDeleteOptionalParams
@@ -12270,14 +12378,16 @@ export interface ManagedInstanceAzureADOnlyAuthenticationsListByInstanceOptional
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstance operation. */
-export type ManagedInstanceAzureADOnlyAuthenticationsListByInstanceResponse = ManagedInstanceAzureADOnlyAuthListResult;
+export type ManagedInstanceAzureADOnlyAuthenticationsListByInstanceResponse =
+  ManagedInstanceAzureADOnlyAuthListResult;
 
 /** Optional parameters. */
 export interface ManagedInstanceAzureADOnlyAuthenticationsListByInstanceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
-export type ManagedInstanceAzureADOnlyAuthenticationsListByInstanceNextResponse = ManagedInstanceAzureADOnlyAuthListResult;
+export type ManagedInstanceAzureADOnlyAuthenticationsListByInstanceNextResponse =
+  ManagedInstanceAzureADOnlyAuthListResult;
 
 /** Optional parameters. */
 export interface ManagedInstanceEncryptionProtectorsRevalidateOptionalParams
@@ -12293,14 +12403,16 @@ export interface ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstance operation. */
-export type ManagedInstanceEncryptionProtectorsListByInstanceResponse = ManagedInstanceEncryptionProtectorListResult;
+export type ManagedInstanceEncryptionProtectorsListByInstanceResponse =
+  ManagedInstanceEncryptionProtectorListResult;
 
 /** Optional parameters. */
 export interface ManagedInstanceEncryptionProtectorsGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagedInstanceEncryptionProtectorsGetResponse = ManagedInstanceEncryptionProtector;
+export type ManagedInstanceEncryptionProtectorsGetResponse =
+  ManagedInstanceEncryptionProtector;
 
 /** Optional parameters. */
 export interface ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams
@@ -12312,14 +12424,16 @@ export interface ManagedInstanceEncryptionProtectorsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse = ManagedInstanceEncryptionProtector;
+export type ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse =
+  ManagedInstanceEncryptionProtector;
 
 /** Optional parameters. */
 export interface ManagedInstanceEncryptionProtectorsListByInstanceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
-export type ManagedInstanceEncryptionProtectorsListByInstanceNextResponse = ManagedInstanceEncryptionProtectorListResult;
+export type ManagedInstanceEncryptionProtectorsListByInstanceNextResponse =
+  ManagedInstanceEncryptionProtectorListResult;
 
 /** Optional parameters. */
 export interface ManagedInstanceKeysListByInstanceOptionalParams
@@ -12329,7 +12443,8 @@ export interface ManagedInstanceKeysListByInstanceOptionalParams
 }
 
 /** Contains response data for the listByInstance operation. */
-export type ManagedInstanceKeysListByInstanceResponse = ManagedInstanceKeyListResult;
+export type ManagedInstanceKeysListByInstanceResponse =
+  ManagedInstanceKeyListResult;
 
 /** Optional parameters. */
 export interface ManagedInstanceKeysGetOptionalParams
@@ -12364,14 +12479,16 @@ export interface ManagedInstanceKeysListByInstanceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
-export type ManagedInstanceKeysListByInstanceNextResponse = ManagedInstanceKeyListResult;
+export type ManagedInstanceKeysListByInstanceNextResponse =
+  ManagedInstanceKeyListResult;
 
 /** Optional parameters. */
 export interface ManagedInstanceLongTermRetentionPoliciesGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagedInstanceLongTermRetentionPoliciesGetResponse = ManagedInstanceLongTermRetentionPolicy;
+export type ManagedInstanceLongTermRetentionPoliciesGetResponse =
+  ManagedInstanceLongTermRetentionPolicy;
 
 /** Optional parameters. */
 export interface ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateOptionalParams
@@ -12383,28 +12500,32 @@ export interface ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateOptionalP
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse = ManagedInstanceLongTermRetentionPolicy;
+export type ManagedInstanceLongTermRetentionPoliciesCreateOrUpdateResponse =
+  ManagedInstanceLongTermRetentionPolicy;
 
 /** Optional parameters. */
 export interface ManagedInstanceLongTermRetentionPoliciesListByDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type ManagedInstanceLongTermRetentionPoliciesListByDatabaseResponse = ManagedInstanceLongTermRetentionPolicyListResult;
+export type ManagedInstanceLongTermRetentionPoliciesListByDatabaseResponse =
+  ManagedInstanceLongTermRetentionPolicyListResult;
 
 /** Optional parameters. */
 export interface ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextResponse = ManagedInstanceLongTermRetentionPolicyListResult;
+export type ManagedInstanceLongTermRetentionPoliciesListByDatabaseNextResponse =
+  ManagedInstanceLongTermRetentionPolicyListResult;
 
 /** Optional parameters. */
 export interface ManagedInstanceOperationsListByManagedInstanceOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByManagedInstance operation. */
-export type ManagedInstanceOperationsListByManagedInstanceResponse = ManagedInstanceOperationListResult;
+export type ManagedInstanceOperationsListByManagedInstanceResponse =
+  ManagedInstanceOperationListResult;
 
 /** Optional parameters. */
 export interface ManagedInstanceOperationsGetOptionalParams
@@ -12422,14 +12543,16 @@ export interface ManagedInstanceOperationsListByManagedInstanceNextOptionalParam
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByManagedInstanceNext operation. */
-export type ManagedInstanceOperationsListByManagedInstanceNextResponse = ManagedInstanceOperationListResult;
+export type ManagedInstanceOperationsListByManagedInstanceNextResponse =
+  ManagedInstanceOperationListResult;
 
 /** Optional parameters. */
 export interface ManagedInstancePrivateEndpointConnectionsGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagedInstancePrivateEndpointConnectionsGetResponse = ManagedInstancePrivateEndpointConnection;
+export type ManagedInstancePrivateEndpointConnectionsGetResponse =
+  ManagedInstancePrivateEndpointConnection;
 
 /** Optional parameters. */
 export interface ManagedInstancePrivateEndpointConnectionsCreateOrUpdateOptionalParams
@@ -12441,7 +12564,8 @@ export interface ManagedInstancePrivateEndpointConnectionsCreateOrUpdateOptional
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagedInstancePrivateEndpointConnectionsCreateOrUpdateResponse = ManagedInstancePrivateEndpointConnection;
+export type ManagedInstancePrivateEndpointConnectionsCreateOrUpdateResponse =
+  ManagedInstancePrivateEndpointConnection;
 
 /** Optional parameters. */
 export interface ManagedInstancePrivateEndpointConnectionsDeleteOptionalParams
@@ -12457,35 +12581,40 @@ export interface ManagedInstancePrivateEndpointConnectionsListByManagedInstanceO
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByManagedInstance operation. */
-export type ManagedInstancePrivateEndpointConnectionsListByManagedInstanceResponse = ManagedInstancePrivateEndpointConnectionListResult;
+export type ManagedInstancePrivateEndpointConnectionsListByManagedInstanceResponse =
+  ManagedInstancePrivateEndpointConnectionListResult;
 
 /** Optional parameters. */
 export interface ManagedInstancePrivateEndpointConnectionsListByManagedInstanceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByManagedInstanceNext operation. */
-export type ManagedInstancePrivateEndpointConnectionsListByManagedInstanceNextResponse = ManagedInstancePrivateEndpointConnectionListResult;
+export type ManagedInstancePrivateEndpointConnectionsListByManagedInstanceNextResponse =
+  ManagedInstancePrivateEndpointConnectionListResult;
 
 /** Optional parameters. */
 export interface ManagedInstancePrivateLinkResourcesListByManagedInstanceOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByManagedInstance operation. */
-export type ManagedInstancePrivateLinkResourcesListByManagedInstanceResponse = ManagedInstancePrivateLinkListResult;
+export type ManagedInstancePrivateLinkResourcesListByManagedInstanceResponse =
+  ManagedInstancePrivateLinkListResult;
 
 /** Optional parameters. */
 export interface ManagedInstancePrivateLinkResourcesGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagedInstancePrivateLinkResourcesGetResponse = ManagedInstancePrivateLink;
+export type ManagedInstancePrivateLinkResourcesGetResponse =
+  ManagedInstancePrivateLink;
 
 /** Optional parameters. */
 export interface ManagedInstancePrivateLinkResourcesListByManagedInstanceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByManagedInstanceNext operation. */
-export type ManagedInstancePrivateLinkResourcesListByManagedInstanceNextResponse = ManagedInstancePrivateLinkListResult;
+export type ManagedInstancePrivateLinkResourcesListByManagedInstanceNextResponse =
+  ManagedInstancePrivateLinkListResult;
 
 /** Optional parameters. */
 export interface ManagedInstanceTdeCertificatesCreateOptionalParams
@@ -12501,14 +12630,16 @@ export interface ManagedInstanceVulnerabilityAssessmentsGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagedInstanceVulnerabilityAssessmentsGetResponse = ManagedInstanceVulnerabilityAssessment;
+export type ManagedInstanceVulnerabilityAssessmentsGetResponse =
+  ManagedInstanceVulnerabilityAssessment;
 
 /** Optional parameters. */
 export interface ManagedInstanceVulnerabilityAssessmentsCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagedInstanceVulnerabilityAssessmentsCreateOrUpdateResponse = ManagedInstanceVulnerabilityAssessment;
+export type ManagedInstanceVulnerabilityAssessmentsCreateOrUpdateResponse =
+  ManagedInstanceVulnerabilityAssessment;
 
 /** Optional parameters. */
 export interface ManagedInstanceVulnerabilityAssessmentsDeleteOptionalParams
@@ -12519,21 +12650,24 @@ export interface ManagedInstanceVulnerabilityAssessmentsListByInstanceOptionalPa
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstance operation. */
-export type ManagedInstanceVulnerabilityAssessmentsListByInstanceResponse = ManagedInstanceVulnerabilityAssessmentListResult;
+export type ManagedInstanceVulnerabilityAssessmentsListByInstanceResponse =
+  ManagedInstanceVulnerabilityAssessmentListResult;
 
 /** Optional parameters. */
 export interface ManagedInstanceVulnerabilityAssessmentsListByInstanceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
-export type ManagedInstanceVulnerabilityAssessmentsListByInstanceNextResponse = ManagedInstanceVulnerabilityAssessmentListResult;
+export type ManagedInstanceVulnerabilityAssessmentsListByInstanceNextResponse =
+  ManagedInstanceVulnerabilityAssessmentListResult;
 
 /** Optional parameters. */
 export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse = ManagedBackupShortTermRetentionPolicy;
+export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesGetResponse =
+  ManagedBackupShortTermRetentionPolicy;
 
 /** Optional parameters. */
 export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
@@ -12545,7 +12679,8 @@ export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicie
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse = ManagedBackupShortTermRetentionPolicy;
+export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdateResponse =
+  ManagedBackupShortTermRetentionPolicy;
 
 /** Optional parameters. */
 export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateOptionalParams
@@ -12557,28 +12692,32 @@ export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicie
 }
 
 /** Contains response data for the update operation. */
-export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse = ManagedBackupShortTermRetentionPolicy;
+export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesUpdateResponse =
+  ManagedBackupShortTermRetentionPolicy;
 
 /** Optional parameters. */
 export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByRestorableDroppedDatabase operation. */
-export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseResponse = ManagedBackupShortTermRetentionPolicyListResult;
+export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseResponse =
+  ManagedBackupShortTermRetentionPolicyListResult;
 
 /** Optional parameters. */
 export interface ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByRestorableDroppedDatabaseNext operation. */
-export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseNextResponse = ManagedBackupShortTermRetentionPolicyListResult;
+export type ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesListByRestorableDroppedDatabaseNextResponse =
+  ManagedBackupShortTermRetentionPolicyListResult;
 
 /** Optional parameters. */
 export interface ManagedServerSecurityAlertPoliciesGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagedServerSecurityAlertPoliciesGetResponse = ManagedServerSecurityAlertPolicy;
+export type ManagedServerSecurityAlertPoliciesGetResponse =
+  ManagedServerSecurityAlertPolicy;
 
 /** Optional parameters. */
 export interface ManagedServerSecurityAlertPoliciesCreateOrUpdateOptionalParams
@@ -12590,21 +12729,24 @@ export interface ManagedServerSecurityAlertPoliciesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse = ManagedServerSecurityAlertPolicy;
+export type ManagedServerSecurityAlertPoliciesCreateOrUpdateResponse =
+  ManagedServerSecurityAlertPolicy;
 
 /** Optional parameters. */
 export interface ManagedServerSecurityAlertPoliciesListByInstanceOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstance operation. */
-export type ManagedServerSecurityAlertPoliciesListByInstanceResponse = ManagedServerSecurityAlertPolicyListResult;
+export type ManagedServerSecurityAlertPoliciesListByInstanceResponse =
+  ManagedServerSecurityAlertPolicyListResult;
 
 /** Optional parameters. */
 export interface ManagedServerSecurityAlertPoliciesListByInstanceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
-export type ManagedServerSecurityAlertPoliciesListByInstanceNextResponse = ManagedServerSecurityAlertPolicyListResult;
+export type ManagedServerSecurityAlertPoliciesListByInstanceNextResponse =
+  ManagedServerSecurityAlertPolicyListResult;
 
 /** Optional parameters. */
 export interface OperationsListOptionalParams
@@ -12637,7 +12779,8 @@ export interface PrivateEndpointConnectionsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type PrivateEndpointConnectionsCreateOrUpdateResponse = PrivateEndpointConnection;
+export type PrivateEndpointConnectionsCreateOrUpdateResponse =
+  PrivateEndpointConnection;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionsDeleteOptionalParams
@@ -12653,21 +12796,24 @@ export interface PrivateEndpointConnectionsListByServerOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
-export type PrivateEndpointConnectionsListByServerResponse = PrivateEndpointConnectionListResult;
+export type PrivateEndpointConnectionsListByServerResponse =
+  PrivateEndpointConnectionListResult;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionsListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type PrivateEndpointConnectionsListByServerNextResponse = PrivateEndpointConnectionListResult;
+export type PrivateEndpointConnectionsListByServerNextResponse =
+  PrivateEndpointConnectionListResult;
 
 /** Optional parameters. */
 export interface PrivateLinkResourcesListByServerOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
-export type PrivateLinkResourcesListByServerResponse = PrivateLinkResourceListResult;
+export type PrivateLinkResourcesListByServerResponse =
+  PrivateLinkResourceListResult;
 
 /** Optional parameters. */
 export interface PrivateLinkResourcesGetOptionalParams
@@ -12681,14 +12827,16 @@ export interface PrivateLinkResourcesListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type PrivateLinkResourcesListByServerNextResponse = PrivateLinkResourceListResult;
+export type PrivateLinkResourcesListByServerNextResponse =
+  PrivateLinkResourceListResult;
 
 /** Optional parameters. */
 export interface RecoverableManagedDatabasesListByInstanceOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstance operation. */
-export type RecoverableManagedDatabasesListByInstanceResponse = RecoverableManagedDatabaseListResult;
+export type RecoverableManagedDatabasesListByInstanceResponse =
+  RecoverableManagedDatabaseListResult;
 
 /** Optional parameters. */
 export interface RecoverableManagedDatabasesGetOptionalParams
@@ -12702,7 +12850,8 @@ export interface RecoverableManagedDatabasesListByInstanceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
-export type RecoverableManagedDatabasesListByInstanceNextResponse = RecoverableManagedDatabaseListResult;
+export type RecoverableManagedDatabasesListByInstanceNextResponse =
+  RecoverableManagedDatabaseListResult;
 
 /** Optional parameters. */
 export interface RestorePointsListByDatabaseOptionalParams
@@ -12751,7 +12900,8 @@ export interface SensitivityLabelsListCurrentByDatabaseOptionalParams
 }
 
 /** Contains response data for the listCurrentByDatabase operation. */
-export type SensitivityLabelsListCurrentByDatabaseResponse = SensitivityLabelListResult;
+export type SensitivityLabelsListCurrentByDatabaseResponse =
+  SensitivityLabelListResult;
 
 /** Optional parameters. */
 export interface SensitivityLabelsUpdateOptionalParams
@@ -12768,7 +12918,8 @@ export interface SensitivityLabelsListRecommendedByDatabaseOptionalParams
 }
 
 /** Contains response data for the listRecommendedByDatabase operation. */
-export type SensitivityLabelsListRecommendedByDatabaseResponse = SensitivityLabelListResult;
+export type SensitivityLabelsListRecommendedByDatabaseResponse =
+  SensitivityLabelListResult;
 
 /** Optional parameters. */
 export interface SensitivityLabelsEnableRecommendationOptionalParams
@@ -12801,14 +12952,16 @@ export interface SensitivityLabelsListCurrentByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listCurrentByDatabaseNext operation. */
-export type SensitivityLabelsListCurrentByDatabaseNextResponse = SensitivityLabelListResult;
+export type SensitivityLabelsListCurrentByDatabaseNextResponse =
+  SensitivityLabelListResult;
 
 /** Optional parameters. */
 export interface SensitivityLabelsListRecommendedByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listRecommendedByDatabaseNext operation. */
-export type SensitivityLabelsListRecommendedByDatabaseNextResponse = SensitivityLabelListResult;
+export type SensitivityLabelsListRecommendedByDatabaseNextResponse =
+  SensitivityLabelListResult;
 
 /** Optional parameters. */
 export interface RecommendedSensitivityLabelsUpdateOptionalParams
@@ -12869,7 +13022,8 @@ export interface ServerAzureADAdministratorsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ServerAzureADAdministratorsCreateOrUpdateResponse = ServerAzureADAdministrator;
+export type ServerAzureADAdministratorsCreateOrUpdateResponse =
+  ServerAzureADAdministrator;
 
 /** Optional parameters. */
 export interface ServerAzureADAdministratorsDeleteOptionalParams
@@ -12885,21 +13039,24 @@ export interface ServerAzureADAdministratorsListByServerOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
-export type ServerAzureADAdministratorsListByServerResponse = AdministratorListResult;
+export type ServerAzureADAdministratorsListByServerResponse =
+  AdministratorListResult;
 
 /** Optional parameters. */
 export interface ServerAzureADAdministratorsListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type ServerAzureADAdministratorsListByServerNextResponse = AdministratorListResult;
+export type ServerAzureADAdministratorsListByServerNextResponse =
+  AdministratorListResult;
 
 /** Optional parameters. */
 export interface ServerAzureADOnlyAuthenticationsGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ServerAzureADOnlyAuthenticationsGetResponse = ServerAzureADOnlyAuthentication;
+export type ServerAzureADOnlyAuthenticationsGetResponse =
+  ServerAzureADOnlyAuthentication;
 
 /** Optional parameters. */
 export interface ServerAzureADOnlyAuthenticationsCreateOrUpdateOptionalParams
@@ -12911,7 +13068,8 @@ export interface ServerAzureADOnlyAuthenticationsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ServerAzureADOnlyAuthenticationsCreateOrUpdateResponse = ServerAzureADOnlyAuthentication;
+export type ServerAzureADOnlyAuthenticationsCreateOrUpdateResponse =
+  ServerAzureADOnlyAuthentication;
 
 /** Optional parameters. */
 export interface ServerAzureADOnlyAuthenticationsDeleteOptionalParams
@@ -12927,14 +13085,16 @@ export interface ServerAzureADOnlyAuthenticationsListByServerOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
-export type ServerAzureADOnlyAuthenticationsListByServerResponse = AzureADOnlyAuthListResult;
+export type ServerAzureADOnlyAuthenticationsListByServerResponse =
+  AzureADOnlyAuthListResult;
 
 /** Optional parameters. */
 export interface ServerAzureADOnlyAuthenticationsListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type ServerAzureADOnlyAuthenticationsListByServerNextResponse = AzureADOnlyAuthListResult;
+export type ServerAzureADOnlyAuthenticationsListByServerNextResponse =
+  AzureADOnlyAuthListResult;
 
 /** Optional parameters. */
 export interface ServerDevOpsAuditSettingsGetOptionalParams
@@ -12953,21 +13113,24 @@ export interface ServerDevOpsAuditSettingsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ServerDevOpsAuditSettingsCreateOrUpdateResponse = ServerDevOpsAuditingSettings;
+export type ServerDevOpsAuditSettingsCreateOrUpdateResponse =
+  ServerDevOpsAuditingSettings;
 
 /** Optional parameters. */
 export interface ServerDevOpsAuditSettingsListByServerOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
-export type ServerDevOpsAuditSettingsListByServerResponse = ServerDevOpsAuditSettingsListResult;
+export type ServerDevOpsAuditSettingsListByServerResponse =
+  ServerDevOpsAuditSettingsListResult;
 
 /** Optional parameters. */
 export interface ServerDevOpsAuditSettingsListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type ServerDevOpsAuditSettingsListByServerNextResponse = ServerDevOpsAuditSettingsListResult;
+export type ServerDevOpsAuditSettingsListByServerNextResponse =
+  ServerDevOpsAuditSettingsListResult;
 
 /** Optional parameters. */
 export interface ServerDnsAliasesGetOptionalParams
@@ -13077,7 +13240,8 @@ export interface ServerOperationsListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type ServerOperationsListByServerNextResponse = ServerOperationListResult;
+export type ServerOperationsListByServerNextResponse =
+  ServerOperationListResult;
 
 /** Optional parameters. */
 export interface ServerSecurityAlertPoliciesGetOptionalParams
@@ -13096,21 +13260,24 @@ export interface ServerSecurityAlertPoliciesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ServerSecurityAlertPoliciesCreateOrUpdateResponse = ServerSecurityAlertPolicy;
+export type ServerSecurityAlertPoliciesCreateOrUpdateResponse =
+  ServerSecurityAlertPolicy;
 
 /** Optional parameters. */
 export interface ServerSecurityAlertPoliciesListByServerOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
-export type ServerSecurityAlertPoliciesListByServerResponse = LogicalServerSecurityAlertPolicyListResult;
+export type ServerSecurityAlertPoliciesListByServerResponse =
+  LogicalServerSecurityAlertPolicyListResult;
 
 /** Optional parameters. */
 export interface ServerSecurityAlertPoliciesListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type ServerSecurityAlertPoliciesListByServerNextResponse = LogicalServerSecurityAlertPolicyListResult;
+export type ServerSecurityAlertPoliciesListByServerNextResponse =
+  LogicalServerSecurityAlertPolicyListResult;
 
 /** Optional parameters. */
 export interface ServerTrustGroupsGetOptionalParams
@@ -13145,42 +13312,48 @@ export interface ServerTrustGroupsListByLocationOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByLocation operation. */
-export type ServerTrustGroupsListByLocationResponse = ServerTrustGroupListResult;
+export type ServerTrustGroupsListByLocationResponse =
+  ServerTrustGroupListResult;
 
 /** Optional parameters. */
 export interface ServerTrustGroupsListByInstanceOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstance operation. */
-export type ServerTrustGroupsListByInstanceResponse = ServerTrustGroupListResult;
+export type ServerTrustGroupsListByInstanceResponse =
+  ServerTrustGroupListResult;
 
 /** Optional parameters. */
 export interface ServerTrustGroupsListByLocationNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByLocationNext operation. */
-export type ServerTrustGroupsListByLocationNextResponse = ServerTrustGroupListResult;
+export type ServerTrustGroupsListByLocationNextResponse =
+  ServerTrustGroupListResult;
 
 /** Optional parameters. */
 export interface ServerTrustGroupsListByInstanceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
-export type ServerTrustGroupsListByInstanceNextResponse = ServerTrustGroupListResult;
+export type ServerTrustGroupsListByInstanceNextResponse =
+  ServerTrustGroupListResult;
 
 /** Optional parameters. */
 export interface ServerVulnerabilityAssessmentsGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ServerVulnerabilityAssessmentsGetResponse = ServerVulnerabilityAssessment;
+export type ServerVulnerabilityAssessmentsGetResponse =
+  ServerVulnerabilityAssessment;
 
 /** Optional parameters. */
 export interface ServerVulnerabilityAssessmentsCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type ServerVulnerabilityAssessmentsCreateOrUpdateResponse = ServerVulnerabilityAssessment;
+export type ServerVulnerabilityAssessmentsCreateOrUpdateResponse =
+  ServerVulnerabilityAssessment;
 
 /** Optional parameters. */
 export interface ServerVulnerabilityAssessmentsDeleteOptionalParams
@@ -13191,14 +13364,16 @@ export interface ServerVulnerabilityAssessmentsListByServerOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
-export type ServerVulnerabilityAssessmentsListByServerResponse = ServerVulnerabilityAssessmentListResult;
+export type ServerVulnerabilityAssessmentsListByServerResponse =
+  ServerVulnerabilityAssessmentListResult;
 
 /** Optional parameters. */
 export interface ServerVulnerabilityAssessmentsListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type ServerVulnerabilityAssessmentsListByServerNextResponse = ServerVulnerabilityAssessmentListResult;
+export type ServerVulnerabilityAssessmentsListByServerNextResponse =
+  ServerVulnerabilityAssessmentListResult;
 
 /** Optional parameters. */
 export interface SqlAgentGetOptionalParams
@@ -13219,7 +13394,8 @@ export interface SubscriptionUsagesListByLocationOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByLocation operation. */
-export type SubscriptionUsagesListByLocationResponse = SubscriptionUsageListResult;
+export type SubscriptionUsagesListByLocationResponse =
+  SubscriptionUsageListResult;
 
 /** Optional parameters. */
 export interface SubscriptionUsagesGetOptionalParams
@@ -13233,7 +13409,8 @@ export interface SubscriptionUsagesListByLocationNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByLocationNext operation. */
-export type SubscriptionUsagesListByLocationNextResponse = SubscriptionUsageListResult;
+export type SubscriptionUsagesListByLocationNextResponse =
+  SubscriptionUsageListResult;
 
 /** Optional parameters. */
 export interface SyncAgentsGetOptionalParams
@@ -13282,7 +13459,8 @@ export interface SyncAgentsListLinkedDatabasesOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listLinkedDatabases operation. */
-export type SyncAgentsListLinkedDatabasesResponse = SyncAgentLinkedDatabaseListResult;
+export type SyncAgentsListLinkedDatabasesResponse =
+  SyncAgentLinkedDatabaseListResult;
 
 /** Optional parameters. */
 export interface SyncAgentsListByServerNextOptionalParams
@@ -13296,7 +13474,8 @@ export interface SyncAgentsListLinkedDatabasesNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listLinkedDatabasesNext operation. */
-export type SyncAgentsListLinkedDatabasesNextResponse = SyncAgentLinkedDatabaseListResult;
+export type SyncAgentsListLinkedDatabasesNextResponse =
+  SyncAgentLinkedDatabaseListResult;
 
 /** Optional parameters. */
 export interface SyncGroupsListSyncDatabaseIdsOptionalParams
@@ -13319,7 +13498,8 @@ export interface SyncGroupsListHubSchemasOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHubSchemas operation. */
-export type SyncGroupsListHubSchemasResponse = SyncFullSchemaPropertiesListResult;
+export type SyncGroupsListHubSchemasResponse =
+  SyncFullSchemaPropertiesListResult;
 
 /** Optional parameters. */
 export interface SyncGroupsListLogsOptionalParams
@@ -13391,14 +13571,16 @@ export interface SyncGroupsListSyncDatabaseIdsNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSyncDatabaseIdsNext operation. */
-export type SyncGroupsListSyncDatabaseIdsNextResponse = SyncDatabaseIdListResult;
+export type SyncGroupsListSyncDatabaseIdsNextResponse =
+  SyncDatabaseIdListResult;
 
 /** Optional parameters. */
 export interface SyncGroupsListHubSchemasNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHubSchemasNext operation. */
-export type SyncGroupsListHubSchemasNextResponse = SyncFullSchemaPropertiesListResult;
+export type SyncGroupsListHubSchemasNextResponse =
+  SyncFullSchemaPropertiesListResult;
 
 /** Optional parameters. */
 export interface SyncGroupsListLogsNextOptionalParams
@@ -13466,7 +13648,8 @@ export interface SyncMembersListMemberSchemasOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMemberSchemas operation. */
-export type SyncMembersListMemberSchemasResponse = SyncFullSchemaPropertiesListResult;
+export type SyncMembersListMemberSchemasResponse =
+  SyncFullSchemaPropertiesListResult;
 
 /** Optional parameters. */
 export interface SyncMembersRefreshMemberSchemaOptionalParams
@@ -13489,7 +13672,8 @@ export interface SyncMembersListMemberSchemasNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMemberSchemasNext operation. */
-export type SyncMembersListMemberSchemasNextResponse = SyncFullSchemaPropertiesListResult;
+export type SyncMembersListMemberSchemasNextResponse =
+  SyncFullSchemaPropertiesListResult;
 
 /** Optional parameters. */
 export interface TdeCertificatesCreateOptionalParams
@@ -13526,7 +13710,8 @@ export interface VirtualClustersUpdateDnsServersOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateDnsServers operation. */
-export type VirtualClustersUpdateDnsServersResponse = UpdateManagedInstanceDnsServersOperation;
+export type VirtualClustersUpdateDnsServersResponse =
+  UpdateManagedInstanceDnsServersOperation;
 
 /** Optional parameters. */
 export interface VirtualClustersListOptionalParams
@@ -13540,7 +13725,8 @@ export interface VirtualClustersListByResourceGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type VirtualClustersListByResourceGroupResponse = VirtualClusterListResult;
+export type VirtualClustersListByResourceGroupResponse =
+  VirtualClusterListResult;
 
 /** Optional parameters. */
 export interface VirtualClustersGetOptionalParams
@@ -13582,7 +13768,8 @@ export interface VirtualClustersListByResourceGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type VirtualClustersListByResourceGroupNextResponse = VirtualClusterListResult;
+export type VirtualClustersListByResourceGroupNextResponse =
+  VirtualClusterListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkRulesGetOptionalParams
@@ -13617,14 +13804,16 @@ export interface VirtualNetworkRulesListByServerOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
-export type VirtualNetworkRulesListByServerResponse = VirtualNetworkRuleListResult;
+export type VirtualNetworkRulesListByServerResponse =
+  VirtualNetworkRuleListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkRulesListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type VirtualNetworkRulesListByServerNextResponse = VirtualNetworkRuleListResult;
+export type VirtualNetworkRulesListByServerNextResponse =
+  VirtualNetworkRuleListResult;
 
 /** Optional parameters. */
 export interface WorkloadClassifiersGetOptionalParams
@@ -13659,14 +13848,16 @@ export interface WorkloadClassifiersListByWorkloadGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByWorkloadGroup operation. */
-export type WorkloadClassifiersListByWorkloadGroupResponse = WorkloadClassifierListResult;
+export type WorkloadClassifiersListByWorkloadGroupResponse =
+  WorkloadClassifierListResult;
 
 /** Optional parameters. */
 export interface WorkloadClassifiersListByWorkloadGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByWorkloadGroupNext operation. */
-export type WorkloadClassifiersListByWorkloadGroupNextResponse = WorkloadClassifierListResult;
+export type WorkloadClassifiersListByWorkloadGroupNextResponse =
+  WorkloadClassifierListResult;
 
 /** Optional parameters. */
 export interface WorkloadGroupsGetOptionalParams
@@ -13715,35 +13906,40 @@ export interface TransparentDataEncryptionsGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type TransparentDataEncryptionsGetResponse = LogicalDatabaseTransparentDataEncryption;
+export type TransparentDataEncryptionsGetResponse =
+  LogicalDatabaseTransparentDataEncryption;
 
 /** Optional parameters. */
 export interface TransparentDataEncryptionsCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type TransparentDataEncryptionsCreateOrUpdateResponse = LogicalDatabaseTransparentDataEncryption;
+export type TransparentDataEncryptionsCreateOrUpdateResponse =
+  LogicalDatabaseTransparentDataEncryption;
 
 /** Optional parameters. */
 export interface TransparentDataEncryptionsListByDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type TransparentDataEncryptionsListByDatabaseResponse = LogicalDatabaseTransparentDataEncryptionListResult;
+export type TransparentDataEncryptionsListByDatabaseResponse =
+  LogicalDatabaseTransparentDataEncryptionListResult;
 
 /** Optional parameters. */
 export interface TransparentDataEncryptionsListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type TransparentDataEncryptionsListByDatabaseNextResponse = LogicalDatabaseTransparentDataEncryptionListResult;
+export type TransparentDataEncryptionsListByDatabaseNextResponse =
+  LogicalDatabaseTransparentDataEncryptionListResult;
 
 /** Optional parameters. */
 export interface BackupShortTermRetentionPoliciesGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type BackupShortTermRetentionPoliciesGetResponse = BackupShortTermRetentionPolicy;
+export type BackupShortTermRetentionPoliciesGetResponse =
+  BackupShortTermRetentionPolicy;
 
 /** Optional parameters. */
 export interface BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
@@ -13755,7 +13951,8 @@ export interface BackupShortTermRetentionPoliciesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type BackupShortTermRetentionPoliciesCreateOrUpdateResponse = BackupShortTermRetentionPolicy;
+export type BackupShortTermRetentionPoliciesCreateOrUpdateResponse =
+  BackupShortTermRetentionPolicy;
 
 /** Optional parameters. */
 export interface BackupShortTermRetentionPoliciesUpdateOptionalParams
@@ -13767,21 +13964,24 @@ export interface BackupShortTermRetentionPoliciesUpdateOptionalParams
 }
 
 /** Contains response data for the update operation. */
-export type BackupShortTermRetentionPoliciesUpdateResponse = BackupShortTermRetentionPolicy;
+export type BackupShortTermRetentionPoliciesUpdateResponse =
+  BackupShortTermRetentionPolicy;
 
 /** Optional parameters. */
 export interface BackupShortTermRetentionPoliciesListByDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type BackupShortTermRetentionPoliciesListByDatabaseResponse = BackupShortTermRetentionPolicyListResult;
+export type BackupShortTermRetentionPoliciesListByDatabaseResponse =
+  BackupShortTermRetentionPolicyListResult;
 
 /** Optional parameters. */
 export interface BackupShortTermRetentionPoliciesListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type BackupShortTermRetentionPoliciesListByDatabaseNextResponse = BackupShortTermRetentionPolicyListResult;
+export type BackupShortTermRetentionPoliciesListByDatabaseNextResponse =
+  BackupShortTermRetentionPolicyListResult;
 
 /** Optional parameters. */
 export interface DatabaseExtensionsGetOptionalParams
@@ -13797,21 +13997,24 @@ export interface DatabaseExtensionsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type DatabaseExtensionsCreateOrUpdateResponse = ImportExportExtensionsOperationResult;
+export type DatabaseExtensionsCreateOrUpdateResponse =
+  ImportExportExtensionsOperationResult;
 
 /** Optional parameters. */
 export interface DatabaseExtensionsListByDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type DatabaseExtensionsListByDatabaseResponse = ImportExportExtensionsOperationListResult;
+export type DatabaseExtensionsListByDatabaseResponse =
+  ImportExportExtensionsOperationListResult;
 
 /** Optional parameters. */
 export interface DatabaseExtensionsListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type DatabaseExtensionsListByDatabaseNextResponse = ImportExportExtensionsOperationListResult;
+export type DatabaseExtensionsListByDatabaseNextResponse =
+  ImportExportExtensionsOperationListResult;
 
 /** Optional parameters. */
 export interface DatabaseOperationsCancelOptionalParams
@@ -13822,14 +14025,16 @@ export interface DatabaseOperationsListByDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type DatabaseOperationsListByDatabaseResponse = DatabaseOperationListResult;
+export type DatabaseOperationsListByDatabaseResponse =
+  DatabaseOperationListResult;
 
 /** Optional parameters. */
 export interface DatabaseOperationsListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type DatabaseOperationsListByDatabaseNextResponse = DatabaseOperationListResult;
+export type DatabaseOperationsListByDatabaseNextResponse =
+  DatabaseOperationListResult;
 
 /** Optional parameters. */
 export interface DatabaseUsagesListByDatabaseOptionalParams
@@ -13869,7 +14074,8 @@ export interface LedgerDigestUploadsListByDatabaseOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabase operation. */
-export type LedgerDigestUploadsListByDatabaseResponse = LedgerDigestUploadsListResult;
+export type LedgerDigestUploadsListByDatabaseResponse =
+  LedgerDigestUploadsListResult;
 
 /** Optional parameters. */
 export interface LedgerDigestUploadsDisableOptionalParams
@@ -13888,7 +14094,8 @@ export interface LedgerDigestUploadsListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type LedgerDigestUploadsListByDatabaseNextResponse = LedgerDigestUploadsListResult;
+export type LedgerDigestUploadsListByDatabaseNextResponse =
+  LedgerDigestUploadsListResult;
 
 /** Optional parameters. */
 export interface OutboundFirewallRulesGetOptionalParams
@@ -13923,14 +14130,16 @@ export interface OutboundFirewallRulesListByServerOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
-export type OutboundFirewallRulesListByServerResponse = OutboundFirewallRuleListResult;
+export type OutboundFirewallRulesListByServerResponse =
+  OutboundFirewallRuleListResult;
 
 /** Optional parameters. */
 export interface OutboundFirewallRulesListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type OutboundFirewallRulesListByServerNextResponse = OutboundFirewallRuleListResult;
+export type OutboundFirewallRulesListByServerNextResponse =
+  OutboundFirewallRuleListResult;
 
 /** Optional parameters. */
 export interface ServersListByResourceGroupOptionalParams
@@ -14010,7 +14219,8 @@ export interface ServersCheckNameAvailabilityOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the checkNameAvailability operation. */
-export type ServersCheckNameAvailabilityResponse = CheckNameAvailabilityResponse;
+export type ServersCheckNameAvailabilityResponse =
+  CheckNameAvailabilityResponse;
 
 /** Optional parameters. */
 export interface ServersListByResourceGroupNextOptionalParams
@@ -14053,7 +14263,8 @@ export interface LongTermRetentionBackupsCopyOptionalParams
 }
 
 /** Contains response data for the copy operation. */
-export type LongTermRetentionBackupsCopyResponse = LongTermRetentionBackupOperationResult;
+export type LongTermRetentionBackupsCopyResponse =
+  LongTermRetentionBackupOperationResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsUpdateOptionalParams
@@ -14065,7 +14276,8 @@ export interface LongTermRetentionBackupsUpdateOptionalParams
 }
 
 /** Contains response data for the update operation. */
-export type LongTermRetentionBackupsUpdateResponse = LongTermRetentionBackupOperationResult;
+export type LongTermRetentionBackupsUpdateResponse =
+  LongTermRetentionBackupOperationResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsGetOptionalParams
@@ -14093,7 +14305,8 @@ export interface LongTermRetentionBackupsListByDatabaseOptionalParams
 }
 
 /** Contains response data for the listByDatabase operation. */
-export type LongTermRetentionBackupsListByDatabaseResponse = LongTermRetentionBackupListResult;
+export type LongTermRetentionBackupsListByDatabaseResponse =
+  LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByLocationOptionalParams
@@ -14105,7 +14318,8 @@ export interface LongTermRetentionBackupsListByLocationOptionalParams
 }
 
 /** Contains response data for the listByLocation operation. */
-export type LongTermRetentionBackupsListByLocationResponse = LongTermRetentionBackupListResult;
+export type LongTermRetentionBackupsListByLocationResponse =
+  LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByServerOptionalParams
@@ -14117,7 +14331,8 @@ export interface LongTermRetentionBackupsListByServerOptionalParams
 }
 
 /** Contains response data for the listByServer operation. */
-export type LongTermRetentionBackupsListByServerResponse = LongTermRetentionBackupListResult;
+export type LongTermRetentionBackupsListByServerResponse =
+  LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsCopyByResourceGroupOptionalParams
@@ -14129,7 +14344,8 @@ export interface LongTermRetentionBackupsCopyByResourceGroupOptionalParams
 }
 
 /** Contains response data for the copyByResourceGroup operation. */
-export type LongTermRetentionBackupsCopyByResourceGroupResponse = LongTermRetentionBackupOperationResult;
+export type LongTermRetentionBackupsCopyByResourceGroupResponse =
+  LongTermRetentionBackupOperationResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsUpdateByResourceGroupOptionalParams
@@ -14141,14 +14357,16 @@ export interface LongTermRetentionBackupsUpdateByResourceGroupOptionalParams
 }
 
 /** Contains response data for the updateByResourceGroup operation. */
-export type LongTermRetentionBackupsUpdateByResourceGroupResponse = LongTermRetentionBackupOperationResult;
+export type LongTermRetentionBackupsUpdateByResourceGroupResponse =
+  LongTermRetentionBackupOperationResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsGetByResourceGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getByResourceGroup operation. */
-export type LongTermRetentionBackupsGetByResourceGroupResponse = LongTermRetentionBackup;
+export type LongTermRetentionBackupsGetByResourceGroupResponse =
+  LongTermRetentionBackup;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsDeleteByResourceGroupOptionalParams
@@ -14169,7 +14387,8 @@ export interface LongTermRetentionBackupsListByResourceGroupDatabaseOptionalPara
 }
 
 /** Contains response data for the listByResourceGroupDatabase operation. */
-export type LongTermRetentionBackupsListByResourceGroupDatabaseResponse = LongTermRetentionBackupListResult;
+export type LongTermRetentionBackupsListByResourceGroupDatabaseResponse =
+  LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByResourceGroupLocationOptionalParams
@@ -14181,7 +14400,8 @@ export interface LongTermRetentionBackupsListByResourceGroupLocationOptionalPara
 }
 
 /** Contains response data for the listByResourceGroupLocation operation. */
-export type LongTermRetentionBackupsListByResourceGroupLocationResponse = LongTermRetentionBackupListResult;
+export type LongTermRetentionBackupsListByResourceGroupLocationResponse =
+  LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByResourceGroupServerOptionalParams
@@ -14193,56 +14413,64 @@ export interface LongTermRetentionBackupsListByResourceGroupServerOptionalParams
 }
 
 /** Contains response data for the listByResourceGroupServer operation. */
-export type LongTermRetentionBackupsListByResourceGroupServerResponse = LongTermRetentionBackupListResult;
+export type LongTermRetentionBackupsListByResourceGroupServerResponse =
+  LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type LongTermRetentionBackupsListByDatabaseNextResponse = LongTermRetentionBackupListResult;
+export type LongTermRetentionBackupsListByDatabaseNextResponse =
+  LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByLocationNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByLocationNext operation. */
-export type LongTermRetentionBackupsListByLocationNextResponse = LongTermRetentionBackupListResult;
+export type LongTermRetentionBackupsListByLocationNextResponse =
+  LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type LongTermRetentionBackupsListByServerNextResponse = LongTermRetentionBackupListResult;
+export type LongTermRetentionBackupsListByServerNextResponse =
+  LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByResourceGroupDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupDatabaseNext operation. */
-export type LongTermRetentionBackupsListByResourceGroupDatabaseNextResponse = LongTermRetentionBackupListResult;
+export type LongTermRetentionBackupsListByResourceGroupDatabaseNextResponse =
+  LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByResourceGroupLocationNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupLocationNext operation. */
-export type LongTermRetentionBackupsListByResourceGroupLocationNextResponse = LongTermRetentionBackupListResult;
+export type LongTermRetentionBackupsListByResourceGroupLocationNextResponse =
+  LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionBackupsListByResourceGroupServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupServerNext operation. */
-export type LongTermRetentionBackupsListByResourceGroupServerNextResponse = LongTermRetentionBackupListResult;
+export type LongTermRetentionBackupsListByResourceGroupServerNextResponse =
+  LongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type LongTermRetentionManagedInstanceBackupsGetResponse = ManagedInstanceLongTermRetentionBackup;
+export type LongTermRetentionManagedInstanceBackupsGetResponse =
+  ManagedInstanceLongTermRetentionBackup;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsDeleteOptionalParams
@@ -14263,7 +14491,8 @@ export interface LongTermRetentionManagedInstanceBackupsListByDatabaseOptionalPa
 }
 
 /** Contains response data for the listByDatabase operation. */
-export type LongTermRetentionManagedInstanceBackupsListByDatabaseResponse = ManagedInstanceLongTermRetentionBackupListResult;
+export type LongTermRetentionManagedInstanceBackupsListByDatabaseResponse =
+  ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByInstanceOptionalParams
@@ -14275,7 +14504,8 @@ export interface LongTermRetentionManagedInstanceBackupsListByInstanceOptionalPa
 }
 
 /** Contains response data for the listByInstance operation. */
-export type LongTermRetentionManagedInstanceBackupsListByInstanceResponse = ManagedInstanceLongTermRetentionBackupListResult;
+export type LongTermRetentionManagedInstanceBackupsListByInstanceResponse =
+  ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByLocationOptionalParams
@@ -14287,14 +14517,16 @@ export interface LongTermRetentionManagedInstanceBackupsListByLocationOptionalPa
 }
 
 /** Contains response data for the listByLocation operation. */
-export type LongTermRetentionManagedInstanceBackupsListByLocationResponse = ManagedInstanceLongTermRetentionBackupListResult;
+export type LongTermRetentionManagedInstanceBackupsListByLocationResponse =
+  ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsGetByResourceGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getByResourceGroup operation. */
-export type LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse = ManagedInstanceLongTermRetentionBackup;
+export type LongTermRetentionManagedInstanceBackupsGetByResourceGroupResponse =
+  ManagedInstanceLongTermRetentionBackup;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsDeleteByResourceGroupOptionalParams
@@ -14315,7 +14547,8 @@ export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupDatab
 }
 
 /** Contains response data for the listByResourceGroupDatabase operation. */
-export type LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseResponse = ManagedInstanceLongTermRetentionBackupListResult;
+export type LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseResponse =
+  ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceOptionalParams
@@ -14327,7 +14560,8 @@ export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupInsta
 }
 
 /** Contains response data for the listByResourceGroupInstance operation. */
-export type LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceResponse = ManagedInstanceLongTermRetentionBackupListResult;
+export type LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceResponse =
+  ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationOptionalParams
@@ -14339,49 +14573,56 @@ export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupLocat
 }
 
 /** Contains response data for the listByResourceGroupLocation operation. */
-export type LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationResponse = ManagedInstanceLongTermRetentionBackupListResult;
+export type LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationResponse =
+  ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByDatabaseNext operation. */
-export type LongTermRetentionManagedInstanceBackupsListByDatabaseNextResponse = ManagedInstanceLongTermRetentionBackupListResult;
+export type LongTermRetentionManagedInstanceBackupsListByDatabaseNextResponse =
+  ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByInstanceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
-export type LongTermRetentionManagedInstanceBackupsListByInstanceNextResponse = ManagedInstanceLongTermRetentionBackupListResult;
+export type LongTermRetentionManagedInstanceBackupsListByInstanceNextResponse =
+  ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByLocationNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByLocationNext operation. */
-export type LongTermRetentionManagedInstanceBackupsListByLocationNextResponse = ManagedInstanceLongTermRetentionBackupListResult;
+export type LongTermRetentionManagedInstanceBackupsListByLocationNextResponse =
+  ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupDatabaseNext operation. */
-export type LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseNextResponse = ManagedInstanceLongTermRetentionBackupListResult;
+export type LongTermRetentionManagedInstanceBackupsListByResourceGroupDatabaseNextResponse =
+  ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupInstanceNext operation. */
-export type LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceNextResponse = ManagedInstanceLongTermRetentionBackupListResult;
+export type LongTermRetentionManagedInstanceBackupsListByResourceGroupInstanceNextResponse =
+  ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupLocationNext operation. */
-export type LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationNextResponse = ManagedInstanceLongTermRetentionBackupListResult;
+export type LongTermRetentionManagedInstanceBackupsListByResourceGroupLocationNextResponse =
+  ManagedInstanceLongTermRetentionBackupListResult;
 
 /** Optional parameters. */
 export interface ManagedInstancesListByInstancePoolOptionalParams
@@ -14391,7 +14632,8 @@ export interface ManagedInstancesListByInstancePoolOptionalParams
 }
 
 /** Contains response data for the listByInstancePool operation. */
-export type ManagedInstancesListByInstancePoolResponse = ManagedInstanceListResult;
+export type ManagedInstancesListByInstancePoolResponse =
+  ManagedInstanceListResult;
 
 /** Optional parameters. */
 export interface ManagedInstancesListOptionalParams
@@ -14411,7 +14653,8 @@ export interface ManagedInstancesListByResourceGroupOptionalParams
 }
 
 /** Contains response data for the listByResourceGroup operation. */
-export type ManagedInstancesListByResourceGroupResponse = ManagedInstanceListResult;
+export type ManagedInstancesListByResourceGroupResponse =
+  ManagedInstanceListResult;
 
 /** Optional parameters. */
 export interface ManagedInstancesGetOptionalParams
@@ -14476,7 +14719,8 @@ export interface ManagedInstancesListByManagedInstanceOptionalParams
 }
 
 /** Contains response data for the listByManagedInstance operation. */
-export type ManagedInstancesListByManagedInstanceResponse = TopQueriesListResult;
+export type ManagedInstancesListByManagedInstanceResponse =
+  TopQueriesListResult;
 
 /** Optional parameters. */
 export interface ManagedInstancesFailoverOptionalParams
@@ -14494,7 +14738,8 @@ export interface ManagedInstancesListByInstancePoolNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstancePoolNext operation. */
-export type ManagedInstancesListByInstancePoolNextResponse = ManagedInstanceListResult;
+export type ManagedInstancesListByInstancePoolNextResponse =
+  ManagedInstanceListResult;
 
 /** Optional parameters. */
 export interface ManagedInstancesListNextOptionalParams
@@ -14508,21 +14753,24 @@ export interface ManagedInstancesListByResourceGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type ManagedInstancesListByResourceGroupNextResponse = ManagedInstanceListResult;
+export type ManagedInstancesListByResourceGroupNextResponse =
+  ManagedInstanceListResult;
 
 /** Optional parameters. */
 export interface ManagedInstancesListByManagedInstanceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByManagedInstanceNext operation. */
-export type ManagedInstancesListByManagedInstanceNextResponse = TopQueriesListResult;
+export type ManagedInstancesListByManagedInstanceNextResponse =
+  TopQueriesListResult;
 
 /** Optional parameters. */
 export interface RestorableDroppedDatabasesListByServerOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
-export type RestorableDroppedDatabasesListByServerResponse = RestorableDroppedDatabaseListResult;
+export type RestorableDroppedDatabasesListByServerResponse =
+  RestorableDroppedDatabaseListResult;
 
 /** Optional parameters. */
 export interface RestorableDroppedDatabasesGetOptionalParams
@@ -14536,28 +14784,32 @@ export interface RestorableDroppedDatabasesListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type RestorableDroppedDatabasesListByServerNextResponse = RestorableDroppedDatabaseListResult;
+export type RestorableDroppedDatabasesListByServerNextResponse =
+  RestorableDroppedDatabaseListResult;
 
 /** Optional parameters. */
 export interface RestorableDroppedManagedDatabasesListByInstanceOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstance operation. */
-export type RestorableDroppedManagedDatabasesListByInstanceResponse = RestorableDroppedManagedDatabaseListResult;
+export type RestorableDroppedManagedDatabasesListByInstanceResponse =
+  RestorableDroppedManagedDatabaseListResult;
 
 /** Optional parameters. */
 export interface RestorableDroppedManagedDatabasesGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type RestorableDroppedManagedDatabasesGetResponse = RestorableDroppedManagedDatabase;
+export type RestorableDroppedManagedDatabasesGetResponse =
+  RestorableDroppedManagedDatabase;
 
 /** Optional parameters. */
 export interface RestorableDroppedManagedDatabasesListByInstanceNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByInstanceNext operation. */
-export type RestorableDroppedManagedDatabasesListByInstanceNextResponse = RestorableDroppedManagedDatabaseListResult;
+export type RestorableDroppedManagedDatabasesListByInstanceNextResponse =
+  RestorableDroppedManagedDatabaseListResult;
 
 /** Optional parameters. */
 export interface ServerConnectionPoliciesGetOptionalParams
@@ -14576,21 +14828,24 @@ export interface ServerConnectionPoliciesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ServerConnectionPoliciesCreateOrUpdateResponse = ServerConnectionPolicy;
+export type ServerConnectionPoliciesCreateOrUpdateResponse =
+  ServerConnectionPolicy;
 
 /** Optional parameters. */
 export interface ServerConnectionPoliciesListByServerOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServer operation. */
-export type ServerConnectionPoliciesListByServerResponse = ServerConnectionPolicyListResult;
+export type ServerConnectionPoliciesListByServerResponse =
+  ServerConnectionPolicyListResult;
 
 /** Optional parameters. */
 export interface ServerConnectionPoliciesListByServerNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByServerNext operation. */
-export type ServerConnectionPoliciesListByServerNextResponse = ServerConnectionPolicyListResult;
+export type ServerConnectionPoliciesListByServerNextResponse =
+  ServerConnectionPolicyListResult;
 
 /** Optional parameters. */
 export interface SqlManagementClientOptionalParams

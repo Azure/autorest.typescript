@@ -11,7 +11,7 @@
 import {
   StaticSiteUserProvidedFunctionAppARMResource,
   StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,23 +31,24 @@ async function registerAUserProvidedFunctionAppWithAStaticSite() {
   const name = "testStaticSite0";
   const functionAppName = "testFunctionApp";
   const isForced = true;
-  const staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource = {
-    functionAppRegion: "West US 2",
-    functionAppResourceId:
-      "/subscription/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/functionRG/providers/Microsoft.Web/sites/testFunctionApp"
-  };
-  const options: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams = {
-    isForced
-  };
+  const staticSiteUserProvidedFunctionEnvelope: StaticSiteUserProvidedFunctionAppARMResource =
+    {
+      functionAppRegion: "West US 2",
+      functionAppResourceId:
+        "/subscription/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/functionRG/providers/Microsoft.Web/sites/testFunctionApp",
+    };
+  const options: StaticSitesRegisterUserProvidedFunctionAppWithStaticSiteOptionalParams =
+    { isForced };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
-  const result = await client.staticSites.beginRegisterUserProvidedFunctionAppWithStaticSiteAndWait(
-    resourceGroupName,
-    name,
-    functionAppName,
-    staticSiteUserProvidedFunctionEnvelope,
-    options
-  );
+  const result =
+    await client.staticSites.beginRegisterUserProvidedFunctionAppWithStaticSiteAndWait(
+      resourceGroupName,
+      name,
+      functionAppName,
+      staticSiteUserProvidedFunctionEnvelope,
+      options,
+    );
   console.log(result);
 }
 

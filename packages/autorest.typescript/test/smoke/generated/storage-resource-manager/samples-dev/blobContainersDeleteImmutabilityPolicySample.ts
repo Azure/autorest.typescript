@@ -32,7 +32,7 @@ async function deleteImmutabilityPolicy() {
     resourceGroupName,
     accountName,
     containerName,
-    ifMatch
+    ifMatch,
   );
   console.log(result);
 }

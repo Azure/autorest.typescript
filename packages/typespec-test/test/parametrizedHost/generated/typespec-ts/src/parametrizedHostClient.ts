@@ -20,7 +20,7 @@ export interface ParametrizedHostClientOptions extends ClientOptions {
  */
 export default function createClient(
   credentials: TokenCredential,
-  options: ParametrizedHostClientOptions = {}
+  options: ParametrizedHostClientOptions = {},
 ): ParametrizedHostClient {
   const host = options.host ?? "one";
   const subdomain = options.subdomain ?? "two";
@@ -52,8 +52,10 @@ export default function createClient(
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as ParametrizedHostClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }

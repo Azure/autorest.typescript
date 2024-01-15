@@ -4,7 +4,7 @@
 import { PathsGetEmptyParameters } from "./parameters";
 import {
   PathsGetEmpty200Response,
-  PathsGetEmptyDefaultResponse
+  PathsGetEmptyDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -12,14 +12,14 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface PathsOperations {
   /** Get a 200 to test a valid base uri */
   getEmpty(
-    options: PathsGetEmptyParameters
+    options: PathsGetEmptyParameters,
   ): StreamableMethod<PathsGetEmpty200Response | PathsGetEmptyDefaultResponse>;
 }
 
 export interface GetEmpty {
   /** Get a 200 to test a valid base uri */
   get(
-    options: PathsGetEmptyParameters
+    options: PathsGetEmptyParameters,
   ): StreamableMethod<PathsGetEmpty200Response | PathsGetEmptyDefaultResponse>;
 }
 

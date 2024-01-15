@@ -31,7 +31,7 @@ async function createServerDnsAlias() {
   const result = await client.serverDnsAliases.beginCreateOrUpdateAndWait(
     resourceGroupName,
     serverName,
-    dnsAliasName
+    dnsAliasName,
   );
   console.log(result);
 }

@@ -32,20 +32,20 @@ export class EmptyClient {
 
   putEmpty(
     input: EmptyInput,
-    options: PutEmptyOptions = { requestOptions: {} }
+    options: PutEmptyOptions = { requestOptions: {} },
   ): Promise<void> {
     return putEmpty(this._client, input, options);
   }
 
   getEmpty(
-    options: GetEmptyOptions = { requestOptions: {} }
+    options: GetEmptyOptions = { requestOptions: {} },
   ): Promise<EmptyOutput> {
     return getEmpty(this._client, options);
   }
 
   postRoundTripEmpty(
     body: EmptyInputOutput,
-    options: PostRoundTripEmptyOptions = { requestOptions: {} }
+    options: PostRoundTripEmptyOptions = { requestOptions: {} },
   ): Promise<EmptyInputOutput> {
     return postRoundTripEmpty(this._client, body, options);
   }

@@ -26,7 +26,7 @@ export class UserAgentCoreV1Client extends coreHttp.ServiceClient {
    */
   constructor(
     subscriptionId: string,
-    options?: UserAgentCoreV1ClientOptionalParams
+    options?: UserAgentCoreV1ClientOptionalParams,
   ) {
     if (subscriptionId === undefined) {
       throw new Error("'subscriptionId' cannot be null");
@@ -39,14 +39,14 @@ export class UserAgentCoreV1Client extends coreHttp.ServiceClient {
 
     const defaultUserAgent = `azsdk-js-${packageName.replace(
       /@.*\//,
-      ""
+      "",
     )}/${packageVersion} ${coreHttp.getDefaultUserAgentValue()}`;
 
     super(undefined, {
       ...options,
       userAgent: options.userAgent
         ? `${options.userAgent} ${defaultUserAgent}`
-        : `${defaultUserAgent}`
+        : `${defaultUserAgent}`,
     });
 
     this.requestContentType = "application/json; charset=utf-8";

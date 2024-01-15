@@ -51,6 +51,18 @@ function extractModels(codeModel: ModularCodeModel): Type[] {
   return models;
 }
 
+/**
+ * Extracts all the aliases from the code model
+ * 1. alias from polymorphic base model, where we need to use typescript union to combine all the sub models
+ * 2. alias from unions, where we also need to use typescript union to combine all the union variants
+ */
+export function extractAliases(codeModel: ModularCodeModel): Type[] {
+  const models = codeModel.types.filter(
+    (t) =>
+      (t.type === "model" || t.type === "combined") && t.alias && t.aliasType
+  );
+  return models;
+}
 // ====== TYPE BUILDERS ======
 function buildEnumModel(
   model: Type
@@ -78,13 +90,13 @@ type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends: string[];
 };
 
-function buildModelInterface(
+export function buildModelInterface(
   model: Type,
   cache: { coreClientTypes: Set<string> }
 ): InterfaceStructure {
   const modelProperties = model.properties ?? [];
   const modelInterface = {
-    name: model.name ?? "FIXMYNAME",
+    name: model.alias ?? model.name ?? "FIXMYNAME",
     isExported: true,
     docs: getDocsFromDescription(model.description),
     extends: [] as string[],
@@ -121,9 +133,9 @@ export function buildModels(
   // We are generating both models and enums here
   const coreClientTypes = new Set<string>();
   const models = extractModels(codeModel);
-
+  const aliases = extractAliases(codeModel);
   // Skip to generate models.ts if there is no any models
-  if (models.length === 0) {
+  if (models.length === 0 && aliases.length === 0) {
     return;
   }
   const srcPath = codeModel.modularOptions.sourceRoot;
@@ -147,7 +159,7 @@ export function buildModels(
       const modelInterface = buildModelInterface(model, { coreClientTypes });
       model.type === "model"
         ? model.parents?.forEach((p) =>
-            modelInterface.extends.push(getType(p, p.format).name)
+            modelInterface.extends.push(p.alias ?? getType(p, p.format).name)
           )
         : undefined;
       modelsFile.addInterface(modelInterface);
@@ -166,7 +178,19 @@ export function buildModels(
     ]);
   }
 
+  aliases.forEach((alias) => {
+    modelsFile.addTypeAlias(buildModelTypeAlias(alias));
+  });
   return modelsFile;
+}
+
+export function buildModelTypeAlias(model: Type) {
+  return {
+    name: model.name!,
+    isExported: true,
+    docs: ["Alias for " + model.name],
+    type: model.aliasType!
+  };
 }
 
 export function buildModelsOptions(

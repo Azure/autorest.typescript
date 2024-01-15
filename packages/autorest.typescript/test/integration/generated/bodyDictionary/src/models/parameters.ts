@@ -15,9 +15,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -26,10 +26,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const contentType: OperationParameter = {
@@ -39,9 +39,9 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const arrayBody: OperationParameter = {
@@ -51,9 +51,9 @@ export const arrayBody: OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "String" } }
-    }
-  }
+      value: { type: { name: "String" } },
+    },
+  },
 };
 
 export const arrayBody1: OperationParameter = {
@@ -63,9 +63,9 @@ export const arrayBody1: OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "Boolean" } }
-    }
-  }
+      value: { type: { name: "Boolean" } },
+    },
+  },
 };
 
 export const arrayBody2: OperationParameter = {
@@ -75,9 +75,9 @@ export const arrayBody2: OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "Number" } }
-    }
-  }
+      value: { type: { name: "Number" } },
+    },
+  },
 };
 
 export const arrayBody3: OperationParameter = {
@@ -87,9 +87,9 @@ export const arrayBody3: OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "Date" } }
-    }
-  }
+      value: { type: { name: "Date" } },
+    },
+  },
 };
 
 export const arrayBody4: OperationParameter = {
@@ -99,9 +99,9 @@ export const arrayBody4: OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "DateTime" } }
-    }
-  }
+      value: { type: { name: "DateTime" } },
+    },
+  },
 };
 
 export const arrayBody5: OperationParameter = {
@@ -111,9 +111,9 @@ export const arrayBody5: OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "DateTimeRfc1123" } }
-    }
-  }
+      value: { type: { name: "DateTimeRfc1123" } },
+    },
+  },
 };
 
 export const arrayBody6: OperationParameter = {
@@ -123,9 +123,9 @@ export const arrayBody6: OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "TimeSpan" } }
-    }
-  }
+      value: { type: { name: "TimeSpan" } },
+    },
+  },
 };
 
 export const arrayBody7: OperationParameter = {
@@ -135,9 +135,9 @@ export const arrayBody7: OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "ByteArray" } }
-    }
-  }
+      value: { type: { name: "ByteArray" } },
+    },
+  },
 };
 
 export const arrayBody8: OperationParameter = {
@@ -147,9 +147,9 @@ export const arrayBody8: OperationParameter = {
     required: true,
     type: {
       name: "Dictionary",
-      value: { type: { name: "Composite", className: "Widget" } }
-    }
-  }
+      value: { type: { name: "Composite", className: "Widget" } },
+    },
+  },
 };
 
 export const arrayBody9: OperationParameter = {
@@ -160,10 +160,10 @@ export const arrayBody9: OperationParameter = {
     type: {
       name: "Dictionary",
       value: {
-        type: { name: "Sequence", element: { type: { name: "String" } } }
-      }
-    }
-  }
+        type: { name: "Sequence", element: { type: { name: "String" } } },
+      },
+    },
+  },
 };
 
 export const arrayBody10: OperationParameter = {
@@ -174,8 +174,8 @@ export const arrayBody10: OperationParameter = {
     type: {
       name: "Dictionary",
       value: {
-        type: { name: "Dictionary", value: { type: { name: "String" } } }
-      }
-    }
-  }
+        type: { name: "Dictionary", value: { type: { name: "String" } } },
+      },
+    },
+  },
 };

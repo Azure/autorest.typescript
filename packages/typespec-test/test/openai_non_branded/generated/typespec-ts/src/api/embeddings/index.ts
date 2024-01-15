@@ -13,13 +13,14 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@typespec/ts-http-runtime";
 import { EmbeddingsCreateOptions } from "../../models/options.js";
 
 export function _createSend(
   context: Client,
   embedding: CreateEmbeddingRequest,
-  options: EmbeddingsCreateOptions = { requestOptions: {} }
+  options: EmbeddingsCreateOptions = { requestOptions: {} },
 ): StreamableMethod<
   EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse
 > {
@@ -36,16 +37,16 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse
+  result: EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse,
 ): Promise<CreateEmbeddingResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
     object: result.body["object"],
     model: result.body["model"],
-    data: (result.body["data"] ?? []).map((p) => ({
+    data: result.body["data"].map((p) => ({
       index: p["index"],
       object: p["object"],
       embedding: p["embedding"],
@@ -60,7 +61,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   embedding: CreateEmbeddingRequest,
-  options: EmbeddingsCreateOptions = { requestOptions: {} }
+  options: EmbeddingsCreateOptions = { requestOptions: {} },
 ): Promise<CreateEmbeddingResponse> {
   const result = await _createSend(context, embedding, options);
   return _createDeserialize(result);

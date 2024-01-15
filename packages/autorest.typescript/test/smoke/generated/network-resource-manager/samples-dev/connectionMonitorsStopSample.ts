@@ -30,7 +30,7 @@ async function stopConnectionMonitor() {
   const result = await client.connectionMonitors.beginStopAndWait(
     resourceGroupName,
     networkWatcherName,
-    connectionMonitorName
+    connectionMonitorName,
   );
   console.log(result);
 }

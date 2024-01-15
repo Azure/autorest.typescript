@@ -32,7 +32,7 @@ async function deleteAdministratorOfManagedInstance() {
   const result = await client.managedInstanceAdministrators.beginDeleteAndWait(
     resourceGroupName,
     managedInstanceName,
-    administratorName
+    administratorName,
   );
   console.log(result);
 }

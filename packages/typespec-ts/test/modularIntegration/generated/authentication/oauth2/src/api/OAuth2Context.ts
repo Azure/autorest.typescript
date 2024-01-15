@@ -13,7 +13,7 @@ export { OAuth2Context } from "../rest/index.js";
 /** Illustrates clients generated with OAuth2 authentication. */
 export function createOAuth2(
   credential: TokenCredential,
-  options: OAuth2ClientOptions = {}
+  options: OAuth2ClientOptions = {},
 ): OAuth2Context {
   const clientContext = getClient(credential, options);
   return clientContext;

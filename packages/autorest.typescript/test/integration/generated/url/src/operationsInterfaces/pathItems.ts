@@ -10,7 +10,7 @@ import {
   PathItemsGetAllWithValuesOptionalParams,
   PathItemsGetGlobalQueryNullOptionalParams,
   PathItemsGetGlobalAndLocalQueryNullOptionalParams,
-  PathItemsGetLocalPathItemQueryNullOptionalParams
+  PathItemsGetLocalPathItemQueryNullOptionalParams,
 } from "../models";
 
 /** Interface representing a PathItems. */
@@ -26,7 +26,7 @@ export interface PathItems {
   getAllWithValues(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: PathItemsGetAllWithValuesOptionalParams
+    options?: PathItemsGetAllWithValuesOptionalParams,
   ): Promise<void>;
   /**
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
@@ -39,7 +39,7 @@ export interface PathItems {
   getGlobalQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: PathItemsGetGlobalQueryNullOptionalParams
+    options?: PathItemsGetGlobalQueryNullOptionalParams,
   ): Promise<void>;
   /**
    * send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
@@ -52,7 +52,7 @@ export interface PathItems {
   getGlobalAndLocalQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: PathItemsGetGlobalAndLocalQueryNullOptionalParams
+    options?: PathItemsGetGlobalAndLocalQueryNullOptionalParams,
   ): Promise<void>;
   /**
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
@@ -65,6 +65,6 @@ export interface PathItems {
   getLocalPathItemQueryNull(
     pathItemStringPath: string,
     localStringPath: string,
-    options?: PathItemsGetLocalPathItemQueryNullOptionalParams
+    options?: PathItemsGetLocalPathItemQueryNullOptionalParams,
   ): Promise<void>;
 }

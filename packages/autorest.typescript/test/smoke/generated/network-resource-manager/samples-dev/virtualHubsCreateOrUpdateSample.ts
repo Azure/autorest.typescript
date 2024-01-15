@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualHub,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,16 +33,15 @@ async function virtualHubPut() {
     sku: "Basic",
     tags: { key1: "value1" },
     virtualWan: {
-      id:
-        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualWans/virtualWan1"
-    }
+      id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualWans/virtualWan1",
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualHubs.beginCreateOrUpdateAndWait(
     resourceGroupName,
     virtualHubName,
-    virtualHubParameters
+    virtualHubParameters,
   );
   console.log(result);
 }

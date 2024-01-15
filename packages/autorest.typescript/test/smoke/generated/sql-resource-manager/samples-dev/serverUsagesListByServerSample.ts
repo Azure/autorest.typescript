@@ -30,7 +30,7 @@ async function listServersUsages() {
   const resArray = new Array();
   for await (let item of client.serverUsages.listByServer(
     resourceGroupName,
-    serverName
+    serverName,
   )) {
     resArray.push(item);
   }

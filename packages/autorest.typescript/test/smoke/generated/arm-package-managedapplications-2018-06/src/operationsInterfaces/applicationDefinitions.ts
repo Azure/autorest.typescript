@@ -20,7 +20,7 @@ import {
   ApplicationDefinitionsGetByIdResponse,
   ApplicationDefinitionsDeleteByIdOptionalParams,
   ApplicationDefinitionsCreateOrUpdateByIdOptionalParams,
-  ApplicationDefinitionsCreateOrUpdateByIdResponse
+  ApplicationDefinitionsCreateOrUpdateByIdResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -33,7 +33,7 @@ export interface ApplicationDefinitions {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: ApplicationDefinitionsListByResourceGroupOptionalParams
+    options?: ApplicationDefinitionsListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<ApplicationDefinition>;
   /**
    * Gets the managed application definition.
@@ -44,7 +44,7 @@ export interface ApplicationDefinitions {
   get(
     resourceGroupName: string,
     applicationDefinitionName: string,
-    options?: ApplicationDefinitionsGetOptionalParams
+    options?: ApplicationDefinitionsGetOptionalParams,
   ): Promise<ApplicationDefinitionsGetResponse>;
   /**
    * Deletes the managed application definition.
@@ -55,7 +55,7 @@ export interface ApplicationDefinitions {
   beginDelete(
     resourceGroupName: string,
     applicationDefinitionName: string,
-    options?: ApplicationDefinitionsDeleteOptionalParams
+    options?: ApplicationDefinitionsDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes the managed application definition.
@@ -66,7 +66,7 @@ export interface ApplicationDefinitions {
   beginDeleteAndWait(
     resourceGroupName: string,
     applicationDefinitionName: string,
-    options?: ApplicationDefinitionsDeleteOptionalParams
+    options?: ApplicationDefinitionsDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Creates a new managed application definition.
@@ -79,7 +79,7 @@ export interface ApplicationDefinitions {
     resourceGroupName: string,
     applicationDefinitionName: string,
     parameters: ApplicationDefinition,
-    options?: ApplicationDefinitionsCreateOrUpdateOptionalParams
+    options?: ApplicationDefinitionsCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ApplicationDefinitionsCreateOrUpdateResponse>,
@@ -97,7 +97,7 @@ export interface ApplicationDefinitions {
     resourceGroupName: string,
     applicationDefinitionName: string,
     parameters: ApplicationDefinition,
-    options?: ApplicationDefinitionsCreateOrUpdateOptionalParams
+    options?: ApplicationDefinitionsCreateOrUpdateOptionalParams,
   ): Promise<ApplicationDefinitionsCreateOrUpdateResponse>;
   /**
    * Gets the managed application definition.
@@ -109,7 +109,7 @@ export interface ApplicationDefinitions {
    */
   getById(
     applicationDefinitionId: string,
-    options?: ApplicationDefinitionsGetByIdOptionalParams
+    options?: ApplicationDefinitionsGetByIdOptionalParams,
   ): Promise<ApplicationDefinitionsGetByIdResponse>;
   /**
    * Deletes the managed application definition.
@@ -121,7 +121,7 @@ export interface ApplicationDefinitions {
    */
   beginDeleteById(
     applicationDefinitionId: string,
-    options?: ApplicationDefinitionsDeleteByIdOptionalParams
+    options?: ApplicationDefinitionsDeleteByIdOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes the managed application definition.
@@ -133,7 +133,7 @@ export interface ApplicationDefinitions {
    */
   beginDeleteByIdAndWait(
     applicationDefinitionId: string,
-    options?: ApplicationDefinitionsDeleteByIdOptionalParams
+    options?: ApplicationDefinitionsDeleteByIdOptionalParams,
   ): Promise<void>;
   /**
    * Creates a new managed application definition.
@@ -147,7 +147,7 @@ export interface ApplicationDefinitions {
   beginCreateOrUpdateById(
     applicationDefinitionId: string,
     parameters: ApplicationDefinition,
-    options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
+    options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>,
@@ -166,6 +166,6 @@ export interface ApplicationDefinitions {
   beginCreateOrUpdateByIdAndWait(
     applicationDefinitionId: string,
     parameters: ApplicationDefinition,
-    options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
+    options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams,
   ): Promise<ApplicationDefinitionsCreateOrUpdateByIdResponse>;
 }

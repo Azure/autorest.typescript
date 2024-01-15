@@ -26,19 +26,19 @@ import {
 export async function getLongRunningPoller<
   TResult extends
     | LoadTestRunCreateOrUpdateTestRunLogicalResponse
-    | LoadTestRunCreateOrUpdateTestRunDefaultResponse
+    | LoadTestRunCreateOrUpdateTestRunDefaultResponse,
 >(
   client: Client,
   initialResponse:
     | LoadTestRunCreateOrUpdateTestRun200Response
     | LoadTestRunCreateOrUpdateTestRun201Response
     | LoadTestRunCreateOrUpdateTestRunDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(
   client: Client,
   initialResponse: TResult,
-  options: CreateHttpPollerOptions<TResult, OperationState<TResult>> = {}
+  options: CreateHttpPollerOptions<TResult, OperationState<TResult>> = {},
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>> {
   const poller: LongRunningOperation<TResult> = {
     requestMethod: initialResponse.request.method,
@@ -74,11 +74,11 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
  * @returns - An LRO response that the LRO implementation understands
  */
 function getLroResponse<TResult extends HttpResponse>(
-  response: TResult
+  response: TResult,
 ): LroResponse<TResult> {
   if (Number.isNaN(response.status)) {
     throw new TypeError(
-      `Status code of the response is not a number. Value: ${response.status}`
+      `Status code of the response is not a number. Value: ${response.status}`,
     );
   }
 

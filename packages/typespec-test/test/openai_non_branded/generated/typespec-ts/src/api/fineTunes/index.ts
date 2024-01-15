@@ -23,6 +23,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@typespec/ts-http-runtime";
 import {
   FineTunesCreateOptions,
@@ -35,7 +36,7 @@ import {
 export function _createSend(
   context: Client,
   fineTune: CreateFineTuneRequest,
-  options: FineTunesCreateOptions = { requestOptions: {} }
+  options: FineTunesCreateOptions = { requestOptions: {} },
 ): StreamableMethod<
   FineTunesCreate200Response | FineTunesCreateDefaultResponse
 > {
@@ -62,10 +63,10 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: FineTunesCreate200Response | FineTunesCreateDefaultResponse
+  result: FineTunesCreate200Response | FineTunesCreateDefaultResponse,
 ): Promise<FineTune> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -90,7 +91,7 @@ export async function _createDeserialize(
       classificationNClasses:
         result.body.hyperparams["classification_n_classes"],
     },
-    trainingFiles: (result.body["training_files"] ?? []).map((p) => ({
+    trainingFiles: result.body["training_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -100,7 +101,7 @@ export async function _createDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    validationFiles: (result.body["validation_files"] ?? []).map((p) => ({
+    validationFiles: result.body["validation_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -110,7 +111,7 @@ export async function _createDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    resultFiles: (result.body["result_files"] ?? []).map((p) => ({
+    resultFiles: result.body["result_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -120,19 +121,21 @@ export async function _createDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    events: (result.body["events"] ?? []).map((p) => ({
-      object: p["object"],
-      createdAt: new Date(p["created_at"]),
-      level: p["level"],
-      message: p["message"],
-    })),
+    events: !result.body["events"]
+      ? result.body["events"]
+      : result.body["events"].map((p) => ({
+          object: p["object"],
+          createdAt: new Date(p["created_at"]),
+          level: p["level"],
+          message: p["message"],
+        })),
   };
 }
 
 export async function create(
   context: Client,
   fineTune: CreateFineTuneRequest,
-  options: FineTunesCreateOptions = { requestOptions: {} }
+  options: FineTunesCreateOptions = { requestOptions: {} },
 ): Promise<FineTune> {
   const result = await _createSend(context, fineTune, options);
   return _createDeserialize(result);
@@ -140,7 +143,7 @@ export async function create(
 
 export function _listSend(
   context: Client,
-  options: FineTunesListOptions = { requestOptions: {} }
+  options: FineTunesListOptions = { requestOptions: {} },
 ): StreamableMethod<FineTunesList200Response | FineTunesListDefaultResponse> {
   return context
     .path("/fine-tunes")
@@ -148,15 +151,15 @@ export function _listSend(
 }
 
 export async function _listDeserialize(
-  result: FineTunesList200Response | FineTunesListDefaultResponse
+  result: FineTunesList200Response | FineTunesListDefaultResponse,
 ): Promise<ListFineTunesResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
     object: result.body["object"],
-    data: (result.body["data"] ?? []).map((p) => ({
+    data: result.body["data"].map((p) => ({
       id: p["id"],
       object: p["object"],
       createdAt: new Date(p["created_at"]),
@@ -176,7 +179,7 @@ export async function _listDeserialize(
           p.hyperparams["classification_positive_class"],
         classificationNClasses: p.hyperparams["classification_n_classes"],
       },
-      trainingFiles: (p["training_files"] ?? []).map((p) => ({
+      trainingFiles: p["training_files"].map((p) => ({
         id: p["id"],
         object: p["object"],
         bytes: p["bytes"],
@@ -186,7 +189,7 @@ export async function _listDeserialize(
         status: p["status"] as any,
         statusDetails: p["status_details"],
       })),
-      validationFiles: (p["validation_files"] ?? []).map((p) => ({
+      validationFiles: p["validation_files"].map((p) => ({
         id: p["id"],
         object: p["object"],
         bytes: p["bytes"],
@@ -196,7 +199,7 @@ export async function _listDeserialize(
         status: p["status"] as any,
         statusDetails: p["status_details"],
       })),
-      resultFiles: (p["result_files"] ?? []).map((p) => ({
+      resultFiles: p["result_files"].map((p) => ({
         id: p["id"],
         object: p["object"],
         bytes: p["bytes"],
@@ -206,19 +209,21 @@ export async function _listDeserialize(
         status: p["status"] as any,
         statusDetails: p["status_details"],
       })),
-      events: (p["events"] ?? []).map((p) => ({
-        object: p["object"],
-        createdAt: new Date(p["created_at"]),
-        level: p["level"],
-        message: p["message"],
-      })),
+      events: !p["events"]
+        ? p["events"]
+        : p["events"].map((p) => ({
+            object: p["object"],
+            createdAt: new Date(p["created_at"]),
+            level: p["level"],
+            message: p["message"],
+          })),
     })),
   };
 }
 
 export async function list(
   context: Client,
-  options: FineTunesListOptions = { requestOptions: {} }
+  options: FineTunesListOptions = { requestOptions: {} },
 ): Promise<ListFineTunesResponse> {
   const result = await _listSend(context, options);
   return _listDeserialize(result);
@@ -227,7 +232,7 @@ export async function list(
 export function _retrieveSend(
   context: Client,
   fineTuneId: string,
-  options: FineTunesRetrieveOptions = { requestOptions: {} }
+  options: FineTunesRetrieveOptions = { requestOptions: {} },
 ): StreamableMethod<
   FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse
 > {
@@ -237,10 +242,10 @@ export function _retrieveSend(
 }
 
 export async function _retrieveDeserialize(
-  result: FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse
+  result: FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse,
 ): Promise<FineTune> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -265,7 +270,7 @@ export async function _retrieveDeserialize(
       classificationNClasses:
         result.body.hyperparams["classification_n_classes"],
     },
-    trainingFiles: (result.body["training_files"] ?? []).map((p) => ({
+    trainingFiles: result.body["training_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -275,7 +280,7 @@ export async function _retrieveDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    validationFiles: (result.body["validation_files"] ?? []).map((p) => ({
+    validationFiles: result.body["validation_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -285,7 +290,7 @@ export async function _retrieveDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    resultFiles: (result.body["result_files"] ?? []).map((p) => ({
+    resultFiles: result.body["result_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -295,19 +300,21 @@ export async function _retrieveDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    events: (result.body["events"] ?? []).map((p) => ({
-      object: p["object"],
-      createdAt: new Date(p["created_at"]),
-      level: p["level"],
-      message: p["message"],
-    })),
+    events: !result.body["events"]
+      ? result.body["events"]
+      : result.body["events"].map((p) => ({
+          object: p["object"],
+          createdAt: new Date(p["created_at"]),
+          level: p["level"],
+          message: p["message"],
+        })),
   };
 }
 
 export async function retrieve(
   context: Client,
   fineTuneId: string,
-  options: FineTunesRetrieveOptions = { requestOptions: {} }
+  options: FineTunesRetrieveOptions = { requestOptions: {} },
 ): Promise<FineTune> {
   const result = await _retrieveSend(context, fineTuneId, options);
   return _retrieveDeserialize(result);
@@ -316,7 +323,7 @@ export async function retrieve(
 export function _listEventsSend(
   context: Client,
   fineTuneId: string,
-  options: FineTunesListEventsOptions = { requestOptions: {} }
+  options: FineTunesListEventsOptions = { requestOptions: {} },
 ): StreamableMethod<
   FineTunesListEvents200Response | FineTunesListEventsDefaultResponse
 > {
@@ -329,15 +336,15 @@ export function _listEventsSend(
 }
 
 export async function _listEventsDeserialize(
-  result: FineTunesListEvents200Response | FineTunesListEventsDefaultResponse
+  result: FineTunesListEvents200Response | FineTunesListEventsDefaultResponse,
 ): Promise<ListFineTuneEventsResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
     object: result.body["object"],
-    data: (result.body["data"] ?? []).map((p) => ({
+    data: result.body["data"].map((p) => ({
       object: p["object"],
       createdAt: new Date(p["created_at"]),
       level: p["level"],
@@ -349,7 +356,7 @@ export async function _listEventsDeserialize(
 export async function listEvents(
   context: Client,
   fineTuneId: string,
-  options: FineTunesListEventsOptions = { requestOptions: {} }
+  options: FineTunesListEventsOptions = { requestOptions: {} },
 ): Promise<ListFineTuneEventsResponse> {
   const result = await _listEventsSend(context, fineTuneId, options);
   return _listEventsDeserialize(result);
@@ -358,7 +365,7 @@ export async function listEvents(
 export function _cancelSend(
   context: Client,
   fineTuneId: string,
-  options: FineTunesCancelOptions = { requestOptions: {} }
+  options: FineTunesCancelOptions = { requestOptions: {} },
 ): StreamableMethod<
   FineTunesCancel200Response | FineTunesCancelDefaultResponse
 > {
@@ -368,10 +375,10 @@ export function _cancelSend(
 }
 
 export async function _cancelDeserialize(
-  result: FineTunesCancel200Response | FineTunesCancelDefaultResponse
+  result: FineTunesCancel200Response | FineTunesCancelDefaultResponse,
 ): Promise<FineTune> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -396,7 +403,7 @@ export async function _cancelDeserialize(
       classificationNClasses:
         result.body.hyperparams["classification_n_classes"],
     },
-    trainingFiles: (result.body["training_files"] ?? []).map((p) => ({
+    trainingFiles: result.body["training_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -406,7 +413,7 @@ export async function _cancelDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    validationFiles: (result.body["validation_files"] ?? []).map((p) => ({
+    validationFiles: result.body["validation_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -416,7 +423,7 @@ export async function _cancelDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    resultFiles: (result.body["result_files"] ?? []).map((p) => ({
+    resultFiles: result.body["result_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -426,19 +433,21 @@ export async function _cancelDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    events: (result.body["events"] ?? []).map((p) => ({
-      object: p["object"],
-      createdAt: new Date(p["created_at"]),
-      level: p["level"],
-      message: p["message"],
-    })),
+    events: !result.body["events"]
+      ? result.body["events"]
+      : result.body["events"].map((p) => ({
+          object: p["object"],
+          createdAt: new Date(p["created_at"]),
+          level: p["level"],
+          message: p["message"],
+        })),
   };
 }
 
 export async function cancel(
   context: Client,
   fineTuneId: string,
-  options: FineTunesCancelOptions = { requestOptions: {} }
+  options: FineTunesCancelOptions = { requestOptions: {} },
 ): Promise<FineTune> {
   const result = await _cancelSend(context, fineTuneId, options);
   return _cancelDeserialize(result);

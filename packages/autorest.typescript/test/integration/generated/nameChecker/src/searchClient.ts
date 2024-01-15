@@ -2,7 +2,7 @@ import * as coreClient from "@azure/core-client";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import { DocumentsImpl } from "./operations";
 import { Documents } from "./operationsInterfaces";
@@ -22,7 +22,7 @@ export class SearchClient extends coreClient.ServiceClient {
   constructor(
     endpoint: string,
     indexName: string,
-    options?: SearchClientOptionalParams
+    options?: SearchClientOptionalParams,
   ) {
     if (endpoint === undefined) {
       throw new Error("'endpoint' cannot be null");
@@ -36,7 +36,7 @@ export class SearchClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: SearchClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-search-documents/1.0.0-preview1`;
@@ -49,12 +49,12 @@ export class SearchClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
         options.endpoint ??
         options.baseUri ??
-        "{endpoint}/indexes('{indexName}')"
+        "{endpoint}/indexes('{indexName}')",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -76,7 +76,7 @@ export class SearchClient extends coreClient.ServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -90,7 +90,7 @@ export class SearchClient extends coreClient.ServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   DedicatedHostGroup,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,14 +32,14 @@ async function createOrUpdateADedicatedHostGroup() {
     platformFaultDomainCount: 3,
     supportAutomaticPlacement: true,
     tags: { department: "finance" },
-    zones: ["1"]
+    zones: ["1"],
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.dedicatedHostGroups.createOrUpdate(
     resourceGroupName,
     hostGroupName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

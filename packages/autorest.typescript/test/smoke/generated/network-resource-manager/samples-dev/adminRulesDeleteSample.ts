@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   AdminRulesDeleteOptionalParams,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -41,7 +41,7 @@ async function deletesAnAdminRule() {
     configurationName,
     ruleCollectionName,
     ruleName,
-    options
+    options,
   );
   console.log(result);
 }

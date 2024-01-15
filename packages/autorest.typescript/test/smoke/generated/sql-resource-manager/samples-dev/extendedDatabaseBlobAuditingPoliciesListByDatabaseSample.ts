@@ -33,7 +33,7 @@ async function listExtendedAuditingSettingsOfADatabase() {
   for await (let item of client.extendedDatabaseBlobAuditingPolicies.listByDatabase(
     resourceGroupName,
     serverName,
-    databaseName
+    databaseName,
   )) {
     resArray.push(item);
   }

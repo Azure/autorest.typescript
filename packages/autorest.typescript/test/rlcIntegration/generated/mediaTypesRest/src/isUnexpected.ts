@@ -3,7 +3,7 @@
 
 import {
   AnalyzeBodyNoAcceptHeader202Response,
-  AnalyzeBodyNoAcceptHeaderDefaultResponse
+  AnalyzeBodyNoAcceptHeaderDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -13,18 +13,18 @@ const responseMap: Record<string, string[]> = {
   "POST /mediatypes/binaryBodyTwoContentTypes": ["200"],
   "POST /mediatypes/binaryBodyThreeContentTypes": ["200"],
   "POST /mediatypes/bodyThreeTypes": ["200"],
-  "POST /mediatypes/textAndJson": ["200"]
+  "POST /mediatypes/textAndJson": ["200"],
 };
 
 export function isUnexpected(
   response:
     | AnalyzeBodyNoAcceptHeader202Response
-    | AnalyzeBodyNoAcceptHeaderDefaultResponse
+    | AnalyzeBodyNoAcceptHeaderDefaultResponse,
 ): response is AnalyzeBodyNoAcceptHeaderDefaultResponse;
 export function isUnexpected(
   response:
     | AnalyzeBodyNoAcceptHeader202Response
-    | AnalyzeBodyNoAcceptHeaderDefaultResponse
+    | AnalyzeBodyNoAcceptHeaderDefaultResponse,
 ): response is AnalyzeBodyNoAcceptHeaderDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
@@ -74,7 +74,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

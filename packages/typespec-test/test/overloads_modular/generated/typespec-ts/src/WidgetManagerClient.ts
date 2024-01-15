@@ -23,7 +23,7 @@ export class WidgetManagerClient {
   constructor(
     endpoint: string,
     credential: KeyCredential | TokenCredential,
-    options: WidgetManagerClientOptions = {}
+    options: WidgetManagerClientOptions = {},
   ) {
     this._client = createWidgetManager(endpoint, credential, options);
     this.pipeline = this._client.pipeline;

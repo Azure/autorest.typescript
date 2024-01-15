@@ -30,7 +30,7 @@ async function listCustomDomainsForAStaticSite() {
   const resArray = new Array();
   for await (let item of client.staticSites.listStaticSiteCustomDomains(
     resourceGroupName,
-    name
+    name,
   )) {
     resArray.push(item);
   }

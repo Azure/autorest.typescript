@@ -9,6 +9,8 @@ import {
   PagedFileInfo,
   PagedTest,
 } from "../models/models.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
+import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
   isUnexpected,
   AzureLoadTestingContext as Client,
@@ -43,6 +45,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   CreateOrUpdateTestOptions,
@@ -63,7 +66,7 @@ export function _createOrUpdateTestSend(
   context: Client,
   testId: string,
   body: Test,
-  options: CreateOrUpdateTestOptions = { requestOptions: {} }
+  options: CreateOrUpdateTestOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestAdministrationCreateOrUpdateTest200Response
   | LoadTestAdministrationCreateOrUpdateTest201Response
@@ -129,10 +132,10 @@ export async function _createOrUpdateTestDeserialize(
   result:
     | LoadTestAdministrationCreateOrUpdateTest200Response
     | LoadTestAdministrationCreateOrUpdateTest201Response
-    | LoadTestAdministrationCreateOrUpdateTestDefaultResponse
+    | LoadTestAdministrationCreateOrUpdateTestDefaultResponse,
 ): Promise<Test> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -271,16 +274,18 @@ export async function _createOrUpdateTestDeserialize(
                     "validationFailureDetails"
                   ],
               },
-          additionalFileInfo: (
-            result.body.inputArtifacts?.["additionalFileInfo"] ?? []
-          ).map((p) => ({
-            url: p["url"],
-            fileName: p["fileName"],
-            fileType: p["fileType"],
-            expireDateTime: p["expireDateTime"],
-            validationStatus: p["validationStatus"],
-            validationFailureDetails: p["validationFailureDetails"],
-          })),
+          additionalFileInfo: !result.body.inputArtifacts?.[
+            "additionalFileInfo"
+          ]
+            ? result.body.inputArtifacts?.["additionalFileInfo"]
+            : result.body.inputArtifacts?.["additionalFileInfo"].map((p) => ({
+                url: p["url"],
+                fileName: p["fileName"],
+                fileType: p["fileType"],
+                expireDateTime: p["expireDateTime"],
+                validationStatus: p["validationStatus"],
+                validationFailureDetails: p["validationFailureDetails"],
+              })),
         },
     testId: result.body["testId"],
     description: result.body["description"],
@@ -300,7 +305,7 @@ export async function createOrUpdateTest(
   context: Client,
   testId: string,
   body: Test,
-  options: CreateOrUpdateTestOptions = { requestOptions: {} }
+  options: CreateOrUpdateTestOptions = { requestOptions: {} },
 ): Promise<Test> {
   const result = await _createOrUpdateTestSend(context, testId, body, options);
   return _createOrUpdateTestDeserialize(result);
@@ -310,7 +315,7 @@ export function _createOrUpdateAppComponentsSend(
   context: Client,
   testId: string,
   body: TestAppComponents,
-  options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
+  options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestAdministrationCreateOrUpdateAppComponents200Response
   | LoadTestAdministrationCreateOrUpdateAppComponents201Response
@@ -330,10 +335,10 @@ export async function _createOrUpdateAppComponentsDeserialize(
   result:
     | LoadTestAdministrationCreateOrUpdateAppComponents200Response
     | LoadTestAdministrationCreateOrUpdateAppComponents201Response
-    | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse
+    | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse,
 ): Promise<TestAppComponents> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -351,13 +356,13 @@ export async function createOrUpdateAppComponents(
   context: Client,
   testId: string,
   body: TestAppComponents,
-  options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
+  options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} },
 ): Promise<TestAppComponents> {
   const result = await _createOrUpdateAppComponentsSend(
     context,
     testId,
     body,
-    options
+    options,
   );
   return _createOrUpdateAppComponentsDeserialize(result);
 }
@@ -366,7 +371,7 @@ export function _createOrUpdateServerMetricsConfigSend(
   context: Client,
   testId: string,
   body: TestServerMetricConfig,
-  options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
+  options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response
   | LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response
@@ -386,10 +391,10 @@ export async function _createOrUpdateServerMetricsConfigDeserialize(
   result:
     | LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response
     | LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response
-    | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse
+    | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse,
 ): Promise<TestServerMetricConfig> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -407,13 +412,13 @@ export async function createOrUpdateServerMetricsConfig(
   context: Client,
   testId: string,
   body: TestServerMetricConfig,
-  options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
+  options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} },
 ): Promise<TestServerMetricConfig> {
   const result = await _createOrUpdateServerMetricsConfigSend(
     context,
     testId,
     body,
-    options
+    options,
   );
   return _createOrUpdateServerMetricsConfigDeserialize(result);
 }
@@ -421,7 +426,7 @@ export async function createOrUpdateServerMetricsConfig(
 export function _getAppComponentsSend(
   context: Client,
   testId: string,
-  options: GetAppComponentsOptions = { requestOptions: {} }
+  options: GetAppComponentsOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestAdministrationGetAppComponents200Response
   | LoadTestAdministrationGetAppComponentsDefaultResponse
@@ -434,10 +439,10 @@ export function _getAppComponentsSend(
 export async function _getAppComponentsDeserialize(
   result:
     | LoadTestAdministrationGetAppComponents200Response
-    | LoadTestAdministrationGetAppComponentsDefaultResponse
+    | LoadTestAdministrationGetAppComponentsDefaultResponse,
 ): Promise<TestAppComponents> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -454,7 +459,7 @@ export async function _getAppComponentsDeserialize(
 export async function getAppComponents(
   context: Client,
   testId: string,
-  options: GetAppComponentsOptions = { requestOptions: {} }
+  options: GetAppComponentsOptions = { requestOptions: {} },
 ): Promise<TestAppComponents> {
   const result = await _getAppComponentsSend(context, testId, options);
   return _getAppComponentsDeserialize(result);
@@ -463,7 +468,7 @@ export async function getAppComponents(
 export function _getServerMetricsConfigSend(
   context: Client,
   testId: string,
-  options: GetServerMetricsConfigOptions = { requestOptions: {} }
+  options: GetServerMetricsConfigOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestAdministrationGetServerMetricsConfig200Response
   | LoadTestAdministrationGetServerMetricsConfigDefaultResponse
@@ -476,10 +481,10 @@ export function _getServerMetricsConfigSend(
 export async function _getServerMetricsConfigDeserialize(
   result:
     | LoadTestAdministrationGetServerMetricsConfig200Response
-    | LoadTestAdministrationGetServerMetricsConfigDefaultResponse
+    | LoadTestAdministrationGetServerMetricsConfigDefaultResponse,
 ): Promise<TestServerMetricConfig> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -496,7 +501,7 @@ export async function _getServerMetricsConfigDeserialize(
 export async function getServerMetricsConfig(
   context: Client,
   testId: string,
-  options: GetServerMetricsConfigOptions = { requestOptions: {} }
+  options: GetServerMetricsConfigOptions = { requestOptions: {} },
 ): Promise<TestServerMetricConfig> {
   const result = await _getServerMetricsConfigSend(context, testId, options);
   return _getServerMetricsConfigDeserialize(result);
@@ -505,7 +510,7 @@ export async function getServerMetricsConfig(
 export function _getTestSend(
   context: Client,
   testId: string,
-  options: GetTestOptions = { requestOptions: {} }
+  options: GetTestOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestAdministrationGetTest200Response
   | LoadTestAdministrationGetTestDefaultResponse
@@ -518,10 +523,10 @@ export function _getTestSend(
 export async function _getTestDeserialize(
   result:
     | LoadTestAdministrationGetTest200Response
-    | LoadTestAdministrationGetTestDefaultResponse
+    | LoadTestAdministrationGetTestDefaultResponse,
 ): Promise<Test> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -660,16 +665,18 @@ export async function _getTestDeserialize(
                     "validationFailureDetails"
                   ],
               },
-          additionalFileInfo: (
-            result.body.inputArtifacts?.["additionalFileInfo"] ?? []
-          ).map((p) => ({
-            url: p["url"],
-            fileName: p["fileName"],
-            fileType: p["fileType"],
-            expireDateTime: p["expireDateTime"],
-            validationStatus: p["validationStatus"],
-            validationFailureDetails: p["validationFailureDetails"],
-          })),
+          additionalFileInfo: !result.body.inputArtifacts?.[
+            "additionalFileInfo"
+          ]
+            ? result.body.inputArtifacts?.["additionalFileInfo"]
+            : result.body.inputArtifacts?.["additionalFileInfo"].map((p) => ({
+                url: p["url"],
+                fileName: p["fileName"],
+                fileType: p["fileType"],
+                expireDateTime: p["expireDateTime"],
+                validationStatus: p["validationStatus"],
+                validationFailureDetails: p["validationFailureDetails"],
+              })),
         },
     testId: result.body["testId"],
     description: result.body["description"],
@@ -688,7 +695,7 @@ export async function _getTestDeserialize(
 export async function getTest(
   context: Client,
   testId: string,
-  options: GetTestOptions = { requestOptions: {} }
+  options: GetTestOptions = { requestOptions: {} },
 ): Promise<Test> {
   const result = await _getTestSend(context, testId, options);
   return _getTestDeserialize(result);
@@ -698,7 +705,7 @@ export function _getTestFileSend(
   context: Client,
   testId: string,
   fileName: string,
-  options: GetTestFileOptions = { requestOptions: {} }
+  options: GetTestFileOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestAdministrationGetTestFile200Response
   | LoadTestAdministrationGetTestFileDefaultResponse
@@ -711,10 +718,10 @@ export function _getTestFileSend(
 export async function _getTestFileDeserialize(
   result:
     | LoadTestAdministrationGetTestFile200Response
-    | LoadTestAdministrationGetTestFileDefaultResponse
+    | LoadTestAdministrationGetTestFileDefaultResponse,
 ): Promise<FileInfo> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -732,7 +739,7 @@ export async function getTestFile(
   context: Client,
   testId: string,
   fileName: string,
-  options: GetTestFileOptions = { requestOptions: {} }
+  options: GetTestFileOptions = { requestOptions: {} },
 ): Promise<FileInfo> {
   const result = await _getTestFileSend(context, testId, fileName, options);
   return _getTestFileDeserialize(result);
@@ -741,7 +748,7 @@ export async function getTestFile(
 export function _listTestFilesSend(
   context: Client,
   testId: string,
-  options: ListTestFilesOptions = { requestOptions: {} }
+  options: ListTestFilesOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestAdministrationListTestFiles200Response
   | LoadTestAdministrationListTestFilesDefaultResponse
@@ -754,14 +761,14 @@ export function _listTestFilesSend(
 export async function _listTestFilesDeserialize(
   result:
     | LoadTestAdministrationListTestFiles200Response
-    | LoadTestAdministrationListTestFilesDefaultResponse
+    | LoadTestAdministrationListTestFilesDefaultResponse,
 ): Promise<PagedFileInfo> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
+    value: result.body["value"].map((p) => ({
       url: p["url"],
       fileName: p["fileName"],
       fileType: p["fileType"],
@@ -774,18 +781,22 @@ export async function _listTestFilesDeserialize(
 }
 
 /** Get all test files. */
-export async function listTestFiles(
+export function listTestFiles(
   context: Client,
   testId: string,
-  options: ListTestFilesOptions = { requestOptions: {} }
-): Promise<PagedFileInfo> {
-  const result = await _listTestFilesSend(context, testId, options);
-  return _listTestFilesDeserialize(result);
+  options: ListTestFilesOptions = { requestOptions: {} },
+): PagedAsyncIterableIterator<FileInfo> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listTestFilesSend(context, testId, options),
+    _listTestFilesDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" },
+  );
 }
 
 export function _listTestsSend(
   context: Client,
-  options: ListTestsOptions = { requestOptions: {} }
+  options: ListTestsOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestAdministrationListTests200Response
   | LoadTestAdministrationListTestsDefaultResponse
@@ -807,14 +818,14 @@ export function _listTestsSend(
 export async function _listTestsDeserialize(
   result:
     | LoadTestAdministrationListTests200Response
-    | LoadTestAdministrationListTestsDefaultResponse
+    | LoadTestAdministrationListTestsDefaultResponse,
 ): Promise<PagedTest> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
+    value: result.body["value"].map((p) => ({
       passFailCriteria: !p.passFailCriteria
         ? undefined
         : { passFailMetrics: p.passFailCriteria?.["passFailMetrics"] },
@@ -925,16 +936,16 @@ export async function _listTestsDeserialize(
                       "validationFailureDetails"
                     ],
                 },
-            additionalFileInfo: (
-              p.inputArtifacts?.["additionalFileInfo"] ?? []
-            ).map((p) => ({
-              url: p["url"],
-              fileName: p["fileName"],
-              fileType: p["fileType"],
-              expireDateTime: p["expireDateTime"],
-              validationStatus: p["validationStatus"],
-              validationFailureDetails: p["validationFailureDetails"],
-            })),
+            additionalFileInfo: !p.inputArtifacts?.["additionalFileInfo"]
+              ? p.inputArtifacts?.["additionalFileInfo"]
+              : p.inputArtifacts?.["additionalFileInfo"].map((p) => ({
+                  url: p["url"],
+                  fileName: p["fileName"],
+                  fileType: p["fileType"],
+                  expireDateTime: p["expireDateTime"],
+                  validationStatus: p["validationStatus"],
+                  validationFailureDetails: p["validationFailureDetails"],
+                })),
           },
       testId: p["testId"],
       description: p["description"],
@@ -955,12 +966,16 @@ export async function _listTestsDeserialize(
  * Get all load tests by the fully qualified resource Id e.g
  * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.
  */
-export async function listTests(
+export function listTests(
   context: Client,
-  options: ListTestsOptions = { requestOptions: {} }
-): Promise<PagedTest> {
-  const result = await _listTestsSend(context, options);
-  return _listTestsDeserialize(result);
+  options: ListTestsOptions = { requestOptions: {} },
+): PagedAsyncIterableIterator<Test> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listTestsSend(context, options),
+    _listTestsDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" },
+  );
 }
 
 export function _uploadTestFileSend(
@@ -968,7 +983,7 @@ export function _uploadTestFileSend(
   testId: string,
   fileName: string,
   body: Uint8Array,
-  options: UploadTestFileOptions = { requestOptions: {} }
+  options: UploadTestFileOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestAdministrationUploadTestFile201Response
   | LoadTestAdministrationUploadTestFileDefaultResponse
@@ -986,10 +1001,10 @@ export function _uploadTestFileSend(
 export async function _uploadTestFileDeserialize(
   result:
     | LoadTestAdministrationUploadTestFile201Response
-    | LoadTestAdministrationUploadTestFileDefaultResponse
+    | LoadTestAdministrationUploadTestFileDefaultResponse,
 ): Promise<FileInfo> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -1012,14 +1027,14 @@ export async function uploadTestFile(
   testId: string,
   fileName: string,
   body: Uint8Array,
-  options: UploadTestFileOptions = { requestOptions: {} }
+  options: UploadTestFileOptions = { requestOptions: {} },
 ): Promise<FileInfo> {
   const result = await _uploadTestFileSend(
     context,
     testId,
     fileName,
     body,
-    options
+    options,
   );
   return _uploadTestFileDeserialize(result);
 }
@@ -1028,7 +1043,7 @@ export function _deleteTestFileSend(
   context: Client,
   testId: string,
   fileName: string,
-  options: DeleteTestFileOptions = { requestOptions: {} }
+  options: DeleteTestFileOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestAdministrationDeleteTestFile204Response
   | LoadTestAdministrationDeleteTestFileDefaultResponse
@@ -1041,10 +1056,10 @@ export function _deleteTestFileSend(
 export async function _deleteTestFileDeserialize(
   result:
     | LoadTestAdministrationDeleteTestFile204Response
-    | LoadTestAdministrationDeleteTestFileDefaultResponse
+    | LoadTestAdministrationDeleteTestFileDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -1055,7 +1070,7 @@ export async function deleteTestFile(
   context: Client,
   testId: string,
   fileName: string,
-  options: DeleteTestFileOptions = { requestOptions: {} }
+  options: DeleteTestFileOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteTestFileSend(context, testId, fileName, options);
   return _deleteTestFileDeserialize(result);
@@ -1064,7 +1079,7 @@ export async function deleteTestFile(
 export function _deleteTestSend(
   context: Client,
   testId: string,
-  options: DeleteTestOptions = { requestOptions: {} }
+  options: DeleteTestOptions = { requestOptions: {} },
 ): StreamableMethod<
   | LoadTestAdministrationDeleteTest204Response
   | LoadTestAdministrationDeleteTestDefaultResponse
@@ -1077,10 +1092,10 @@ export function _deleteTestSend(
 export async function _deleteTestDeserialize(
   result:
     | LoadTestAdministrationDeleteTest204Response
-    | LoadTestAdministrationDeleteTestDefaultResponse
+    | LoadTestAdministrationDeleteTestDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -1090,7 +1105,7 @@ export async function _deleteTestDeserialize(
 export async function deleteTest(
   context: Client,
   testId: string,
-  options: DeleteTestOptions = { requestOptions: {} }
+  options: DeleteTestOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteTestSend(context, testId, options);
   return _deleteTestDeserialize(result);

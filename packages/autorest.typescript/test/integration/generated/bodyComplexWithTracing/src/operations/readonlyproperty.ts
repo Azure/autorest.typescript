@@ -16,7 +16,7 @@ import {
   ReadonlypropertyGetValidOptionalParams,
   ReadonlypropertyGetValidResponse,
   ReadonlyObj,
-  ReadonlypropertyPutValidOptionalParams
+  ReadonlypropertyPutValidOptionalParams,
 } from "../models";
 
 /** Class containing Readonlyproperty operations. */
@@ -36,7 +36,7 @@ export class ReadonlypropertyImpl implements Readonlyproperty {
    * @param options The options parameters.
    */
   async getValid(
-    options?: ReadonlypropertyGetValidOptionalParams
+    options?: ReadonlypropertyGetValidOptionalParams,
   ): Promise<ReadonlypropertyGetValidResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getValid",
@@ -44,9 +44,9 @@ export class ReadonlypropertyImpl implements Readonlyproperty {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getValidOperationSpec
+          getValidOperationSpec,
         ) as Promise<ReadonlypropertyGetValidResponse>;
-      }
+      },
     );
   }
 
@@ -57,7 +57,7 @@ export class ReadonlypropertyImpl implements Readonlyproperty {
    */
   async putValid(
     complexBody: ReadonlyObj,
-    options?: ReadonlypropertyPutValidOptionalParams
+    options?: ReadonlypropertyPutValidOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putValid",
@@ -65,9 +65,9 @@ export class ReadonlypropertyImpl implements Readonlyproperty {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putValidOperationSpec
+          putValidOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 }
@@ -79,15 +79,15 @@ const getValidOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ReadonlyObj
+      bodyMapper: Mappers.ReadonlyObj,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putValidOperationSpec: coreClient.OperationSpec = {
   path: "/complex/readonlyproperty/valid",
@@ -95,12 +95,12 @@ const putValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody17,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

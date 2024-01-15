@@ -33,7 +33,7 @@ async function getSiteInstanceInfo() {
     resourceGroupName,
     name,
     instanceId,
-    slot
+    slot,
   );
   console.log(result);
 }

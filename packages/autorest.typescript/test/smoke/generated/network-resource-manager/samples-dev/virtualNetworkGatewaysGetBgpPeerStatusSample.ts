@@ -26,10 +26,11 @@ async function getVirtualNetworkGatewayBgpPeerStatus() {
   const virtualNetworkGatewayName = "vpngw";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGateways.beginGetBgpPeerStatusAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayName
-  );
+  const result =
+    await client.virtualNetworkGateways.beginGetBgpPeerStatusAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+    );
   console.log(result);
 }
 

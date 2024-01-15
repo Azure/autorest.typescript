@@ -19,8 +19,9 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
+  stringToUint8Array,
 } from "@typespec/ts-http-runtime";
-import { stringToUint8Array } from "@typespec/ts-http-runtime";
 import {
   ImagesCreateOptions,
   ImagesCreateEditOptions,
@@ -30,7 +31,7 @@ import {
 export function _createSend(
   context: Client,
   image: CreateImageRequest,
-  options: ImagesCreateOptions = { requestOptions: {} }
+  options: ImagesCreateOptions = { requestOptions: {} },
 ): StreamableMethod<ImagesCreate200Response | ImagesCreateDefaultResponse> {
   return context
     .path("/images/generations")
@@ -47,15 +48,15 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: ImagesCreate200Response | ImagesCreateDefaultResponse
+  result: ImagesCreate200Response | ImagesCreateDefaultResponse,
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
     created: new Date(result.body["created"]),
-    data: (result.body["data"] ?? []).map((p) => ({
+    data: result.body["data"].map((p) => ({
       url: p["url"],
       b64Json:
         typeof p["b64_json"] === "string"
@@ -68,7 +69,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   image: CreateImageRequest,
-  options: ImagesCreateOptions = { requestOptions: {} }
+  options: ImagesCreateOptions = { requestOptions: {} },
 ): Promise<ImagesResponse> {
   const result = await _createSend(context, image, options);
   return _createDeserialize(result);
@@ -77,7 +78,7 @@ export async function create(
 export function _createEditSend(
   context: Client,
   image: CreateImageEditRequest,
-  options: ImagesCreateEditOptions = { requestOptions: {} }
+  options: ImagesCreateEditOptions = { requestOptions: {} },
 ): StreamableMethod<
   ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
 > {
@@ -99,15 +100,15 @@ export function _createEditSend(
 }
 
 export async function _createEditDeserialize(
-  result: ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
+  result: ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse,
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
     created: new Date(result.body["created"]),
-    data: (result.body["data"] ?? []).map((p) => ({
+    data: result.body["data"].map((p) => ({
       url: p["url"],
       b64Json:
         typeof p["b64_json"] === "string"
@@ -120,7 +121,7 @@ export async function _createEditDeserialize(
 export async function createEdit(
   context: Client,
   image: CreateImageEditRequest,
-  options: ImagesCreateEditOptions = { requestOptions: {} }
+  options: ImagesCreateEditOptions = { requestOptions: {} },
 ): Promise<ImagesResponse> {
   const result = await _createEditSend(context, image, options);
   return _createEditDeserialize(result);
@@ -129,7 +130,7 @@ export async function createEdit(
 export function _createVariationSend(
   context: Client,
   image: CreateImageVariationRequest,
-  options: ImagesCreateVariationOptions = { requestOptions: {} }
+  options: ImagesCreateVariationOptions = { requestOptions: {} },
 ): StreamableMethod<
   ImagesCreateVariation200Response | ImagesCreateVariationDefaultResponse
 > {
@@ -151,15 +152,15 @@ export function _createVariationSend(
 export async function _createVariationDeserialize(
   result:
     | ImagesCreateVariation200Response
-    | ImagesCreateVariationDefaultResponse
+    | ImagesCreateVariationDefaultResponse,
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
     created: new Date(result.body["created"]),
-    data: (result.body["data"] ?? []).map((p) => ({
+    data: result.body["data"].map((p) => ({
       url: p["url"],
       b64Json:
         typeof p["b64_json"] === "string"
@@ -172,7 +173,7 @@ export async function _createVariationDeserialize(
 export async function createVariation(
   context: Client,
   image: CreateImageVariationRequest,
-  options: ImagesCreateVariationOptions = { requestOptions: {} }
+  options: ImagesCreateVariationOptions = { requestOptions: {} },
 ): Promise<ImagesResponse> {
   const result = await _createVariationSend(context, image, options);
   return _createVariationDeserialize(result);

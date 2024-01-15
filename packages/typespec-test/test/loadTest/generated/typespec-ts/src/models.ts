@@ -42,7 +42,7 @@ export interface PassFailMetric {
   /**
    * The client metric on which the criteria should be applied.
    *
-   * Possible values: response_time_ms, latency, error, requests, requests_per_sec
+   * Possible values: "response_time_ms", "latency", "error", "requests", "requests_per_sec"
    */
   clientMetric?: string;
   /**
@@ -51,7 +51,7 @@ export interface PassFailMetric {
    * ‘max’ - for response_time_ms and latency metric, ‘avg’ - for requests_per_sec,
    * ‘count’ - for requests
    *
-   * Possible values: count, percentage, avg, p50, p90, p95, p99, min, max
+   * Possible values: "count", "percentage", "avg", "p50", "p90", "p95", "p99", "min", "max"
    */
   aggregate?: string;
   /** The comparison operator. Supported types ‘>’, ‘<’ */
@@ -66,7 +66,7 @@ export interface PassFailMetric {
   /**
    * Action taken after the threshold is met. Default is ‘continue’.
    *
-   * Possible values: continue, stop
+   * Possible values: "continue", "stop"
    */
   action?: string;
 }
@@ -78,7 +78,7 @@ export interface Secret {
   /**
    * Type of secret
    *
-   * Possible values: AKV_SECRET_URI, SECRET_VALUE
+   * Possible values: "AKV_SECRET_URI", "SECRET_VALUE"
    */
   type?: string;
 }
@@ -90,7 +90,7 @@ export interface CertificateMetadata {
   /**
    * Type of certificate
    *
-   * Possible values: AKV_CERT_URI
+   * Possible values: "AKV_CERT_URI"
    */
   type?: string;
   /** Name of the certificate. */
@@ -156,7 +156,7 @@ export interface FileInfo {
   /**
    * File type
    *
-   * Possible values: JMX_FILE, USER_PROPERTIES, ADDITIONAL_ARTIFACTS
+   * Possible values: "JMX_FILE", "USER_PROPERTIES", "ADDITIONAL_ARTIFACTS"
    */
   fileType?: string;
   /** Expiry time of the file (ISO 8601 literal format) */
@@ -164,7 +164,7 @@ export interface FileInfo {
   /**
    * Validation status of the file
    *
-   * Possible values: NOT_VALIDATED, VALIDATION_SUCCESS, VALIDATION_FAILURE, VALIDATION_INITIATED, VALIDATION_NOT_REQUIRED
+   * Possible values: "NOT_VALIDATED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE", "VALIDATION_INITIATED", "VALIDATION_NOT_REQUIRED"
    */
   validationStatus?: string;
   /** Validation failure error details */

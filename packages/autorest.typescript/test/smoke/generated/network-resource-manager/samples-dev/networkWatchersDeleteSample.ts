@@ -28,7 +28,7 @@ async function deleteNetworkWatcher() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkWatchers.beginDeleteAndWait(
     resourceGroupName,
-    networkWatcherName
+    networkWatcherName,
   );
   console.log(result);
 }

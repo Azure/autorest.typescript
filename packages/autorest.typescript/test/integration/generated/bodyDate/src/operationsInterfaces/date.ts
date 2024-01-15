@@ -20,7 +20,7 @@ import {
   DateGetMaxDateResponse,
   DatePutMinDateOptionalParams,
   DateGetMinDateOptionalParams,
-  DateGetMinDateResponse
+  DateGetMinDateResponse,
 } from "../models";
 
 /** Interface representing a DateOperations. */
@@ -35,21 +35,21 @@ export interface DateOperations {
    * @param options The options parameters.
    */
   getInvalidDate(
-    options?: DateGetInvalidDateOptionalParams
+    options?: DateGetInvalidDateOptionalParams,
   ): Promise<DateGetInvalidDateResponse>;
   /**
    * Get overflow date value
    * @param options The options parameters.
    */
   getOverflowDate(
-    options?: DateGetOverflowDateOptionalParams
+    options?: DateGetOverflowDateOptionalParams,
   ): Promise<DateGetOverflowDateResponse>;
   /**
    * Get underflow date value
    * @param options The options parameters.
    */
   getUnderflowDate(
-    options?: DateGetUnderflowDateOptionalParams
+    options?: DateGetUnderflowDateOptionalParams,
   ): Promise<DateGetUnderflowDateResponse>;
   /**
    * Put max date value 9999-12-31
@@ -58,14 +58,14 @@ export interface DateOperations {
    */
   putMaxDate(
     dateBody: Date,
-    options?: DatePutMaxDateOptionalParams
+    options?: DatePutMaxDateOptionalParams,
   ): Promise<void>;
   /**
    * Get max date value 9999-12-31
    * @param options The options parameters.
    */
   getMaxDate(
-    options?: DateGetMaxDateOptionalParams
+    options?: DateGetMaxDateOptionalParams,
   ): Promise<DateGetMaxDateResponse>;
   /**
    * Put min date value 0000-01-01
@@ -74,13 +74,13 @@ export interface DateOperations {
    */
   putMinDate(
     dateBody: Date,
-    options?: DatePutMinDateOptionalParams
+    options?: DatePutMinDateOptionalParams,
   ): Promise<void>;
   /**
    * Get min date value 0000-01-01
    * @param options The options parameters.
    */
   getMinDate(
-    options?: DateGetMinDateOptionalParams
+    options?: DateGetMinDateOptionalParams,
   ): Promise<DateGetMinDateResponse>;
 }

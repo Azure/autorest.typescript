@@ -25,7 +25,7 @@ describe("anonymous model", () => {
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile?.getFullText()!,
           `
           export interface Bar {
@@ -38,14 +38,16 @@ describe("anonymous model", () => {
         );
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
+
         export function _readSend(
           context: Client,
           pathParam: string,
@@ -73,7 +75,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return;
         }
@@ -122,7 +124,7 @@ describe("anonymous model", () => {
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile?.getFullText()!,
           `
           export interface Bar {
@@ -135,7 +137,7 @@ describe("anonymous model", () => {
           true
         );
         assert.ok(optionFile);
-        assertEqualContent(
+        await assertEqualContent(
           optionFile?.getFullText()!,
           `
         import { OperationOptions } from "@azure-rest/core-client";
@@ -150,13 +152,14 @@ describe("anonymous model", () => {
         );
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -186,7 +189,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return;
         }
@@ -233,7 +236,7 @@ describe("anonymous model", () => {
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile?.getFullText()!,
           `
           export interface Bar {
@@ -246,7 +249,7 @@ describe("anonymous model", () => {
           true
         );
         assert.ok(optionFile);
-        assertEqualContent(
+        await assertEqualContent(
           optionFile?.getFullText()!,
           `
         import { OperationOptions } from "@azure-rest/core-client";
@@ -261,14 +264,16 @@ describe("anonymous model", () => {
         );
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
+
         export function _readSend(
           context: Client,
           pathParam: string,
@@ -295,7 +300,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return;
         }
@@ -340,7 +345,7 @@ describe("anonymous model", () => {
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile?.getFullText()!,
           `
         export interface Foo {
@@ -361,13 +366,14 @@ describe("anonymous model", () => {
         );
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -392,7 +398,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return;
         }
@@ -427,13 +433,14 @@ describe("anonymous model", () => {
         );
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -451,7 +458,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return;
         }
@@ -482,7 +489,7 @@ describe("anonymous model", () => {
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile?.getFullText()!,
           `
           export interface Bar {
@@ -495,13 +502,14 @@ describe("anonymous model", () => {
         );
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -524,7 +532,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return;
         }
@@ -561,7 +569,7 @@ describe("anonymous model", () => {
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile!.getFullText()!,
           `
         export interface Test {
@@ -574,13 +582,14 @@ describe("anonymous model", () => {
         );
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -596,7 +605,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read204Response): Promise<void> {
           if (result.status !== "204") {
-            throw result.body;
+            throw createRestError(result);
           }
           return;
         }
@@ -623,7 +632,7 @@ describe("anonymous model", () => {
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile!.getFullText()!,
           `
         export interface Test {
@@ -636,13 +645,14 @@ describe("anonymous model", () => {
         );
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -658,7 +668,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read204Response): Promise<void> {
           if (result.status !== "204") {
-            throw result.body;
+            throw createRestError(result);
           }
           return;
         }
@@ -678,17 +688,18 @@ describe("anonymous model", () => {
 
   describe("in response", async () => {
     describe("happens at body parameter", async () => {
-      function verifyReturnTypeAsEmpty(
+      async function verifyReturnTypeAsEmpty(
         operationDetail: string,
         returnType: string
       ) {
-        assertEqualContent(
+        await assertEqualContent(
           operationDetail,
           `
         import { TestingContext as Client } from "../rest/index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -700,7 +711,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<${returnType}> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return result.body;
         }
@@ -728,7 +739,7 @@ describe("anonymous model", () => {
         );
         assert.equal(operationFiles?.length, 1);
         // Generate the operations.ts file with empty model
-        verifyReturnTypeAsEmpty(
+        await verifyReturnTypeAsEmpty(
           operationFiles?.[0]?.getFullText()!,
           "Record<string, any>"
         );
@@ -741,8 +752,7 @@ describe("anonymous model", () => {
         op read(): PublishResult;
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
-        // console.log(modelFile?.getFullText());
-        assertEqualContent(
+        await assertEqualContent(
           modelFile?.getFullText()!,
           `
           export interface PublishResult {}
@@ -754,7 +764,7 @@ describe("anonymous model", () => {
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
         // Model name referred in operations.ts
-        verifyReturnTypeAsEmpty(
+        await verifyReturnTypeAsEmpty(
           operationFiles?.[0]?.getFullText()!,
           "PublishResult"
         );
@@ -771,13 +781,14 @@ describe("anonymous model", () => {
         );
         assert.equal(operationFiles?.length, 1);
         // Generate the operations.ts file with empty model
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]!.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -791,7 +802,7 @@ describe("anonymous model", () => {
           result: Read200Response
         ): Promise<{ foo?: { bar: string | null } }> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return {
             foo: !result.body.foo ? undefined : { bar: result.body.foo?.["bar"] },
@@ -827,8 +838,7 @@ describe("anonymous model", () => {
         op read(): ReturnBody;
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
-        // console.log(modelFile?.getFullText());
-        assertEqualContent(
+        await assertEqualContent(
           modelFile?.getFullText()!,
           `
         export interface ReturnBody {
@@ -847,15 +857,16 @@ describe("anonymous model", () => {
           tspContent
         );
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
-
+        
         export function _readSend(
           context: Client,
           options: ReadOptions = { requestOptions: {} }
@@ -869,7 +880,7 @@ describe("anonymous model", () => {
           result: Read200Response
         ): Promise<ReturnBody> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
 
           return {
@@ -877,7 +888,7 @@ describe("anonymous model", () => {
             emptyAnomyousArray: result.body["emptyAnomyousArray"],
             emptyAnomyousDict: result.body["emptyAnomyousDict"],
             emptyModel: {},
-            emptyModelArray: (result.body["emptyModelArray"] ?? []).map(() => ({})),
+            emptyModelArray: result.body["emptyModelArray"].map(() => ({})),
             emptyModelDict: result.body["emptyModelDict"],
           };
         }
@@ -911,8 +922,7 @@ describe("anonymous model", () => {
         op read(): Foz;
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
-        // console.log(modelFile?.getFullText());
-        assertEqualContent(
+        await assertEqualContent(
           modelFile?.getFullText()!,
           `
           export interface Foz {
@@ -936,13 +946,14 @@ describe("anonymous model", () => {
           tspContent
         );
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
           import { TestingContext as Client } from "../rest/index.js";
           import {
             StreamableMethod,
             operationOptionsToRequestParameters,
+            createRestError
           } from "@azure-rest/core-client";
           
           export function _readSend(
@@ -956,18 +967,16 @@ describe("anonymous model", () => {
           
           export async function _readDeserialize(result: Read200Response): Promise<Foz> {
             if (result.status !== "200") {
-              throw result.body;
+              throw createRestError(result);
             }
           
             return {
               baz: {
                 foo: result.body.baz["foo"],
                 bas: result.body.baz["bas"],
-                bar: (result.body.baz["test"] ?? []).map((p) => ({ test: p["test"] })),
+                bar: !result.body.baz["test"] ? result.body.baz["test"] : result.body.baz["test"].map((p) => ({ test: p["test"] })),
                 nonemptyAnomyous: { a: result.body.baz.nonemptyAnomyous["a"] },
-                nonemptyAnomyousArray: (
-                  result.body.baz["nonemptyAnomyousArray"] ?? []
-                ).map((p) => ({ b: p["b"] })),
+                nonemptyAnomyousArray: result.body.baz["nonemptyAnomyousArray"].map((p) => ({ b: p["b"] })),
                 nonemptyAnomyousDict: result.body.baz["nonemptyAnomyousDict"],
               },
             };

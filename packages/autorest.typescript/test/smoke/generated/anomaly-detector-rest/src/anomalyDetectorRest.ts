@@ -17,7 +17,7 @@ export default function createClient(
   endpoint: string,
   apiVersion: string,
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): AnomalyDetectorRestClient {
   const baseUrl =
     options.baseUrl ?? `${endpoint}/anomalydetector/${apiVersion}`;
@@ -30,22 +30,24 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
       apiKeyHeaderName:
-        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key"
-    }
+        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
+    },
   };
 
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as AnomalyDetectorRestClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }

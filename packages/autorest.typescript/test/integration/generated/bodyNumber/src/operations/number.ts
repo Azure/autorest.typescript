@@ -49,7 +49,7 @@ import {
   NumberGetSmallDoubleResponse,
   NumberPutSmallDecimalOptionalParams,
   NumberGetSmallDecimalOptionalParams,
-  NumberGetSmallDecimalResponse
+  NumberGetSmallDecimalResponse,
 } from "../models";
 
 /** Class containing NumberOperations operations. */
@@ -69,7 +69,7 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getNull(
-    options?: NumberGetNullOptionalParams
+    options?: NumberGetNullOptionalParams,
   ): Promise<NumberGetNullResponse> {
     return this.client.sendOperationRequest({ options }, getNullOperationSpec);
   }
@@ -79,11 +79,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getInvalidFloat(
-    options?: NumberGetInvalidFloatOptionalParams
+    options?: NumberGetInvalidFloatOptionalParams,
   ): Promise<NumberGetInvalidFloatResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getInvalidFloatOperationSpec
+      getInvalidFloatOperationSpec,
     );
   }
 
@@ -92,11 +92,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getInvalidDouble(
-    options?: NumberGetInvalidDoubleOptionalParams
+    options?: NumberGetInvalidDoubleOptionalParams,
   ): Promise<NumberGetInvalidDoubleResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getInvalidDoubleOperationSpec
+      getInvalidDoubleOperationSpec,
     );
   }
 
@@ -105,11 +105,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getInvalidDecimal(
-    options?: NumberGetInvalidDecimalOptionalParams
+    options?: NumberGetInvalidDecimalOptionalParams,
   ): Promise<NumberGetInvalidDecimalResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getInvalidDecimalOperationSpec
+      getInvalidDecimalOperationSpec,
     );
   }
 
@@ -120,11 +120,11 @@ export class NumberOperationsImpl implements NumberOperations {
    */
   putBigFloat(
     numberBody: number,
-    options?: NumberPutBigFloatOptionalParams
+    options?: NumberPutBigFloatOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { numberBody, options },
-      putBigFloatOperationSpec
+      putBigFloatOperationSpec,
     );
   }
 
@@ -133,11 +133,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getBigFloat(
-    options?: NumberGetBigFloatOptionalParams
+    options?: NumberGetBigFloatOptionalParams,
   ): Promise<NumberGetBigFloatResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getBigFloatOperationSpec
+      getBigFloatOperationSpec,
     );
   }
 
@@ -148,11 +148,11 @@ export class NumberOperationsImpl implements NumberOperations {
    */
   putBigDouble(
     numberBody: number,
-    options?: NumberPutBigDoubleOptionalParams
+    options?: NumberPutBigDoubleOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { numberBody, options },
-      putBigDoubleOperationSpec
+      putBigDoubleOperationSpec,
     );
   }
 
@@ -161,11 +161,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getBigDouble(
-    options?: NumberGetBigDoubleOptionalParams
+    options?: NumberGetBigDoubleOptionalParams,
   ): Promise<NumberGetBigDoubleResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getBigDoubleOperationSpec
+      getBigDoubleOperationSpec,
     );
   }
 
@@ -174,11 +174,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   putBigDoublePositiveDecimal(
-    options?: NumberPutBigDoublePositiveDecimalOptionalParams
+    options?: NumberPutBigDoublePositiveDecimalOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      putBigDoublePositiveDecimalOperationSpec
+      putBigDoublePositiveDecimalOperationSpec,
     );
   }
 
@@ -187,11 +187,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getBigDoublePositiveDecimal(
-    options?: NumberGetBigDoublePositiveDecimalOptionalParams
+    options?: NumberGetBigDoublePositiveDecimalOptionalParams,
   ): Promise<NumberGetBigDoublePositiveDecimalResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getBigDoublePositiveDecimalOperationSpec
+      getBigDoublePositiveDecimalOperationSpec,
     );
   }
 
@@ -200,11 +200,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   putBigDoubleNegativeDecimal(
-    options?: NumberPutBigDoubleNegativeDecimalOptionalParams
+    options?: NumberPutBigDoubleNegativeDecimalOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      putBigDoubleNegativeDecimalOperationSpec
+      putBigDoubleNegativeDecimalOperationSpec,
     );
   }
 
@@ -213,11 +213,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getBigDoubleNegativeDecimal(
-    options?: NumberGetBigDoubleNegativeDecimalOptionalParams
+    options?: NumberGetBigDoubleNegativeDecimalOptionalParams,
   ): Promise<NumberGetBigDoubleNegativeDecimalResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getBigDoubleNegativeDecimalOperationSpec
+      getBigDoubleNegativeDecimalOperationSpec,
     );
   }
 
@@ -228,11 +228,11 @@ export class NumberOperationsImpl implements NumberOperations {
    */
   putBigDecimal(
     numberBody: number,
-    options?: NumberPutBigDecimalOptionalParams
+    options?: NumberPutBigDecimalOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { numberBody, options },
-      putBigDecimalOperationSpec
+      putBigDecimalOperationSpec,
     );
   }
 
@@ -241,11 +241,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getBigDecimal(
-    options?: NumberGetBigDecimalOptionalParams
+    options?: NumberGetBigDecimalOptionalParams,
   ): Promise<NumberGetBigDecimalResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getBigDecimalOperationSpec
+      getBigDecimalOperationSpec,
     );
   }
 
@@ -254,11 +254,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   putBigDecimalPositiveDecimal(
-    options?: NumberPutBigDecimalPositiveDecimalOptionalParams
+    options?: NumberPutBigDecimalPositiveDecimalOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      putBigDecimalPositiveDecimalOperationSpec
+      putBigDecimalPositiveDecimalOperationSpec,
     );
   }
 
@@ -267,11 +267,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getBigDecimalPositiveDecimal(
-    options?: NumberGetBigDecimalPositiveDecimalOptionalParams
+    options?: NumberGetBigDecimalPositiveDecimalOptionalParams,
   ): Promise<NumberGetBigDecimalPositiveDecimalResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getBigDecimalPositiveDecimalOperationSpec
+      getBigDecimalPositiveDecimalOperationSpec,
     );
   }
 
@@ -280,11 +280,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   putBigDecimalNegativeDecimal(
-    options?: NumberPutBigDecimalNegativeDecimalOptionalParams
+    options?: NumberPutBigDecimalNegativeDecimalOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      putBigDecimalNegativeDecimalOperationSpec
+      putBigDecimalNegativeDecimalOperationSpec,
     );
   }
 
@@ -293,11 +293,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getBigDecimalNegativeDecimal(
-    options?: NumberGetBigDecimalNegativeDecimalOptionalParams
+    options?: NumberGetBigDecimalNegativeDecimalOptionalParams,
   ): Promise<NumberGetBigDecimalNegativeDecimalResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getBigDecimalNegativeDecimalOperationSpec
+      getBigDecimalNegativeDecimalOperationSpec,
     );
   }
 
@@ -308,11 +308,11 @@ export class NumberOperationsImpl implements NumberOperations {
    */
   putSmallFloat(
     numberBody: number,
-    options?: NumberPutSmallFloatOptionalParams
+    options?: NumberPutSmallFloatOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { numberBody, options },
-      putSmallFloatOperationSpec
+      putSmallFloatOperationSpec,
     );
   }
 
@@ -321,11 +321,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getSmallFloat(
-    options?: NumberGetSmallFloatOptionalParams
+    options?: NumberGetSmallFloatOptionalParams,
   ): Promise<NumberGetSmallFloatResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getSmallFloatOperationSpec
+      getSmallFloatOperationSpec,
     );
   }
 
@@ -336,11 +336,11 @@ export class NumberOperationsImpl implements NumberOperations {
    */
   putSmallDouble(
     numberBody: number,
-    options?: NumberPutSmallDoubleOptionalParams
+    options?: NumberPutSmallDoubleOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { numberBody, options },
-      putSmallDoubleOperationSpec
+      putSmallDoubleOperationSpec,
     );
   }
 
@@ -349,11 +349,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getSmallDouble(
-    options?: NumberGetSmallDoubleOptionalParams
+    options?: NumberGetSmallDoubleOptionalParams,
   ): Promise<NumberGetSmallDoubleResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getSmallDoubleOperationSpec
+      getSmallDoubleOperationSpec,
     );
   }
 
@@ -364,11 +364,11 @@ export class NumberOperationsImpl implements NumberOperations {
    */
   putSmallDecimal(
     numberBody: number,
-    options?: NumberPutSmallDecimalOptionalParams
+    options?: NumberPutSmallDecimalOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { numberBody, options },
-      putSmallDecimalOperationSpec
+      putSmallDecimalOperationSpec,
     );
   }
 
@@ -377,11 +377,11 @@ export class NumberOperationsImpl implements NumberOperations {
    * @param options The options parameters.
    */
   getSmallDecimal(
-    options?: NumberGetSmallDecimalOptionalParams
+    options?: NumberGetSmallDecimalOptionalParams,
   ): Promise<NumberGetSmallDecimalResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getSmallDecimalOperationSpec
+      getSmallDecimalOperationSpec,
     );
   }
 }
@@ -393,60 +393,60 @@ const getNullOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getInvalidFloatOperationSpec: coreClient.OperationSpec = {
   path: "/number/invalidfloat",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getInvalidDoubleOperationSpec: coreClient.OperationSpec = {
   path: "/number/invaliddouble",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getInvalidDecimalOperationSpec: coreClient.OperationSpec = {
   path: "/number/invaliddecimal",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putBigFloatOperationSpec: coreClient.OperationSpec = {
   path: "/number/big/float/3.402823e+20",
@@ -454,29 +454,29 @@ const putBigFloatOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getBigFloatOperationSpec: coreClient.OperationSpec = {
   path: "/number/big/float/3.402823e+20",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putBigDoubleOperationSpec: coreClient.OperationSpec = {
   path: "/number/big/double/2.5976931e+101",
@@ -484,29 +484,29 @@ const putBigDoubleOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getBigDoubleOperationSpec: coreClient.OperationSpec = {
   path: "/number/big/double/2.5976931e+101",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putBigDoublePositiveDecimalOperationSpec: coreClient.OperationSpec = {
   path: "/number/big/double/99999999.99",
@@ -514,29 +514,29 @@ const putBigDoublePositiveDecimalOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.numberBody1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getBigDoublePositiveDecimalOperationSpec: coreClient.OperationSpec = {
   path: "/number/big/double/99999999.99",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putBigDoubleNegativeDecimalOperationSpec: coreClient.OperationSpec = {
   path: "/number/big/double/-99999999.99",
@@ -544,29 +544,29 @@ const putBigDoubleNegativeDecimalOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.numberBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getBigDoubleNegativeDecimalOperationSpec: coreClient.OperationSpec = {
   path: "/number/big/double/-99999999.99",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putBigDecimalOperationSpec: coreClient.OperationSpec = {
   path: "/number/big/decimal/2.5976931e+101",
@@ -574,29 +574,29 @@ const putBigDecimalOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getBigDecimalOperationSpec: coreClient.OperationSpec = {
   path: "/number/big/decimal/2.5976931e+101",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putBigDecimalPositiveDecimalOperationSpec: coreClient.OperationSpec = {
   path: "/number/big/decimal/99999999.99",
@@ -604,29 +604,29 @@ const putBigDecimalPositiveDecimalOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.numberBody1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getBigDecimalPositiveDecimalOperationSpec: coreClient.OperationSpec = {
   path: "/number/big/decimal/99999999.99",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putBigDecimalNegativeDecimalOperationSpec: coreClient.OperationSpec = {
   path: "/number/big/decimal/-99999999.99",
@@ -634,29 +634,29 @@ const putBigDecimalNegativeDecimalOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.numberBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getBigDecimalNegativeDecimalOperationSpec: coreClient.OperationSpec = {
   path: "/number/big/decimal/-99999999.99",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putSmallFloatOperationSpec: coreClient.OperationSpec = {
   path: "/number/small/float/3.402823e-20",
@@ -664,29 +664,29 @@ const putSmallFloatOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getSmallFloatOperationSpec: coreClient.OperationSpec = {
   path: "/number/small/float/3.402823e-20",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putSmallDoubleOperationSpec: coreClient.OperationSpec = {
   path: "/number/small/double/2.5976931e-101",
@@ -694,29 +694,29 @@ const putSmallDoubleOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getSmallDoubleOperationSpec: coreClient.OperationSpec = {
   path: "/number/small/double/2.5976931e-101",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putSmallDecimalOperationSpec: coreClient.OperationSpec = {
   path: "/number/small/decimal/2.5976931e-101",
@@ -724,27 +724,27 @@ const putSmallDecimalOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.numberBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getSmallDecimalOperationSpec: coreClient.OperationSpec = {
   path: "/number/small/decimal/2.5976931e-101",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Number" } }
+      bodyMapper: { type: { name: "Number" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
