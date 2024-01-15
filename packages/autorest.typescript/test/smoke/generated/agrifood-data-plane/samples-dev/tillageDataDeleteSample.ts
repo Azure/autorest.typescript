@@ -18,7 +18,7 @@ async function tillageDataDelete() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const farmerId = "FARMER123";
   const tillageDataId = "TILLAGEOP123";
@@ -26,7 +26,7 @@ async function tillageDataDelete() {
     .path(
       "/farmers/{farmerId}/tillage-data/{tillageDataId}",
       farmerId,
-      tillageDataId
+      tillageDataId,
     )
     .delete();
   console.log(result);

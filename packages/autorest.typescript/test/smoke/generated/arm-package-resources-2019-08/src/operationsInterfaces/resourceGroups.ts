@@ -22,7 +22,7 @@ import {
   ResourceGroupsUpdateResponse,
   ExportTemplateRequest,
   ResourceGroupsExportTemplateOptionalParams,
-  ResourceGroupsExportTemplateResponse
+  ResourceGroupsExportTemplateResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -33,7 +33,7 @@ export interface ResourceGroups {
    * @param options The options parameters.
    */
   list(
-    options?: ResourceGroupsListOptionalParams
+    options?: ResourceGroupsListOptionalParams,
   ): PagedAsyncIterableIterator<ResourceGroup>;
   /**
    * Checks whether a resource group exists.
@@ -42,7 +42,7 @@ export interface ResourceGroups {
    */
   checkExistence(
     resourceGroupName: string,
-    options?: ResourceGroupsCheckExistenceOptionalParams
+    options?: ResourceGroupsCheckExistenceOptionalParams,
   ): Promise<void>;
   /**
    * Creates or updates a resource group.
@@ -55,7 +55,7 @@ export interface ResourceGroups {
   createOrUpdate(
     resourceGroupName: string,
     parameters: ResourceGroup,
-    options?: ResourceGroupsCreateOrUpdateOptionalParams
+    options?: ResourceGroupsCreateOrUpdateOptionalParams,
   ): Promise<ResourceGroupsCreateOrUpdateResponse>;
   /**
    * When you delete a resource group, all of its resources are also deleted. Deleting a resource group
@@ -65,7 +65,7 @@ export interface ResourceGroups {
    */
   beginDelete(
     resourceGroupName: string,
-    options?: ResourceGroupsDeleteOptionalParams
+    options?: ResourceGroupsDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * When you delete a resource group, all of its resources are also deleted. Deleting a resource group
@@ -75,7 +75,7 @@ export interface ResourceGroups {
    */
   beginDeleteAndWait(
     resourceGroupName: string,
-    options?: ResourceGroupsDeleteOptionalParams
+    options?: ResourceGroupsDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Gets a resource group.
@@ -84,7 +84,7 @@ export interface ResourceGroups {
    */
   get(
     resourceGroupName: string,
-    options?: ResourceGroupsGetOptionalParams
+    options?: ResourceGroupsGetOptionalParams,
   ): Promise<ResourceGroupsGetResponse>;
   /**
    * Resource groups can be updated through a simple PATCH operation to a group address. The format of
@@ -97,7 +97,7 @@ export interface ResourceGroups {
   update(
     resourceGroupName: string,
     parameters: ResourceGroupPatchable,
-    options?: ResourceGroupsUpdateOptionalParams
+    options?: ResourceGroupsUpdateOptionalParams,
   ): Promise<ResourceGroupsUpdateResponse>;
   /**
    * Captures the specified resource group as a template.
@@ -108,7 +108,7 @@ export interface ResourceGroups {
   beginExportTemplate(
     resourceGroupName: string,
     parameters: ExportTemplateRequest,
-    options?: ResourceGroupsExportTemplateOptionalParams
+    options?: ResourceGroupsExportTemplateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ResourceGroupsExportTemplateResponse>,
@@ -124,6 +124,6 @@ export interface ResourceGroups {
   beginExportTemplateAndWait(
     resourceGroupName: string,
     parameters: ExportTemplateRequest,
-    options?: ResourceGroupsExportTemplateOptionalParams
+    options?: ResourceGroupsExportTemplateOptionalParams,
   ): Promise<ResourceGroupsExportTemplateResponse>;
 }

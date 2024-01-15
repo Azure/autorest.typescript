@@ -22,7 +22,7 @@ async function swapDeploymentsSample() {
   const initialResponse = await client
     .path(
       "/authoring/analyze-text/projects/{projectName}/deployments:swap",
-      projectName
+      projectName,
     )
     .post({
       body: {

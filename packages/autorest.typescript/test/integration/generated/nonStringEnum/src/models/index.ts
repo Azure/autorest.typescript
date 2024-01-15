@@ -19,7 +19,7 @@ export enum KnownIntEnum {
   /** FourHundredSix */
   FourHundredSix = 406,
   /** FourHundredTwentyNine */
-  FourHundredTwentyNine = 429
+  FourHundredTwentyNine = 429,
 }
 
 /**
@@ -46,7 +46,7 @@ export enum KnownFloatEnum {
   /** FourHundredSix2 */
   FourHundredSix2 = 406.2,
   /** FourHundredTwentyNine1 */
-  FourHundredTwentyNine1 = 429.1
+  FourHundredTwentyNine1 = 429.1,
 }
 
 /**

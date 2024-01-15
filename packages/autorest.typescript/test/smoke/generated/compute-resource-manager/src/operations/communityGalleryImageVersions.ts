@@ -13,12 +13,13 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClient } from "../computeManagementClient";
 import {
   CommunityGalleryImageVersionsGetOptionalParams,
-  CommunityGalleryImageVersionsGetResponse
+  CommunityGalleryImageVersionsGetResponse,
 } from "../models";
 
 /** Class containing CommunityGalleryImageVersions operations. */
 export class CommunityGalleryImageVersionsImpl
-  implements CommunityGalleryImageVersions {
+  implements CommunityGalleryImageVersions
+{
   private readonly client: ComputeManagementClient;
 
   /**
@@ -44,7 +45,7 @@ export class CommunityGalleryImageVersionsImpl
     publicGalleryName: string,
     galleryImageName: string,
     galleryImageVersionName: string,
-    options?: CommunityGalleryImageVersionsGetOptionalParams
+    options?: CommunityGalleryImageVersionsGetOptionalParams,
   ): Promise<CommunityGalleryImageVersionsGetResponse> {
     return this.client.sendOperationRequest(
       {
@@ -52,9 +53,9 @@ export class CommunityGalleryImageVersionsImpl
         publicGalleryName,
         galleryImageName,
         galleryImageVersionName,
-        options
+        options,
       },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 }
@@ -62,16 +63,15 @@ export class CommunityGalleryImageVersionsImpl
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/communityGalleries/{publicGalleryName}/images/{galleryImageName}/versions/{galleryImageVersionName}",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/communityGalleries/{publicGalleryName}/images/{galleryImageName}/versions/{galleryImageVersionName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.CommunityGalleryImageVersion
+      bodyMapper: Mappers.CommunityGalleryImageVersion,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -80,8 +80,8 @@ const getOperationSpec: coreClient.OperationSpec = {
     Parameters.location,
     Parameters.galleryImageName,
     Parameters.galleryImageVersionName,
-    Parameters.publicGalleryName
+    Parameters.publicGalleryName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

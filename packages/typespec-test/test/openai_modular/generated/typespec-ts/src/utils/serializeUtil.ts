@@ -20,7 +20,7 @@ import {
 
 /** serialize function for ChatRequestUserMessage */
 function serializeChatRequestUserMessage(
-  obj: ChatRequestUserMessage
+  obj: ChatRequestUserMessage,
 ): ChatRequestUserMessageRest {
   return {
     role: obj["role"],
@@ -31,7 +31,7 @@ function serializeChatRequestUserMessage(
 
 /** serialize function for ChatRequestAssistantMessage */
 function serializeChatRequestAssistantMessage(
-  obj: ChatRequestAssistantMessage
+  obj: ChatRequestAssistantMessage,
 ): ChatRequestAssistantMessageRest {
   return {
     role: obj["role"],
@@ -49,7 +49,7 @@ function serializeChatRequestAssistantMessage(
 
 /** serialize function for ChatRequestToolMessage */
 function serializeChatRequestToolMessage(
-  obj: ChatRequestToolMessage
+  obj: ChatRequestToolMessage,
 ): ChatRequestToolMessageRest {
   return {
     role: obj["role"],
@@ -60,14 +60,14 @@ function serializeChatRequestToolMessage(
 
 /** serialize function for ChatRequestMessageUnion */
 export function serializeChatRequestMessageUnion(
-  obj: ChatRequestMessageUnion
+  obj: ChatRequestMessageUnion,
 ): ChatRequestMessageRest {
   switch (obj.role) {
     case "user":
       return serializeChatRequestUserMessage(obj as ChatRequestUserMessage);
     case "assistant":
       return serializeChatRequestAssistantMessage(
-        obj as ChatRequestAssistantMessage
+        obj as ChatRequestAssistantMessage,
       );
     case "tool":
       return serializeChatRequestToolMessage(obj as ChatRequestToolMessage);
@@ -78,7 +78,7 @@ export function serializeChatRequestMessageUnion(
 
 /** serialize function for ChatMessageImageContentItem */
 function serializeChatMessageImageContentItem(
-  obj: ChatMessageImageContentItem
+  obj: ChatMessageImageContentItem,
 ): ChatMessageImageContentItemRest {
   return {
     type: obj["type"],
@@ -88,12 +88,12 @@ function serializeChatMessageImageContentItem(
 
 /** serialize function for ChatMessageContentItemUnion */
 export function serializeChatMessageContentItemUnion(
-  obj: ChatMessageContentItemUnion
+  obj: ChatMessageContentItemUnion,
 ): ChatMessageContentItemRest {
   switch (obj.type) {
     case "image_url":
       return serializeChatMessageImageContentItem(
-        obj as ChatMessageImageContentItem
+        obj as ChatMessageImageContentItem,
       );
     default:
       return obj;

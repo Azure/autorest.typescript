@@ -13,7 +13,7 @@ export interface AudioTranscriptionOptions {
   /**
    * The requested format of the transcription response data, which will influence the content and detail of the result.
    *
-   * Possible values: json, verbose_json, text, srt, vtt
+   * Possible values: "json", "verbose_json", "text", "srt", "vtt"
    */
   response_format?: string;
   /**
@@ -49,7 +49,7 @@ export interface AudioTranslationOptions {
   /**
    * The requested format of the translation response data, which will influence the content and detail of the result.
    *
-   * Possible values: json, verbose_json, text, srt, vtt
+   * Possible values: "json", "verbose_json", "text", "srt", "vtt"
    */
   response_format?: string;
   /**
@@ -324,7 +324,7 @@ export interface ChatMessageImageUrl {
    * The evaluation quality setting to use, which controls relative prioritization of speed, token consumption, and
    * accuracy.
    *
-   * Possible values: auto, low, high
+   * Possible values: "auto", "low", "high"
    */
   detail?: string;
 }
@@ -479,7 +479,7 @@ export interface AzureCognitiveSearchChatExtensionParameters {
   /**
    * The query type to use with Azure Cognitive Search.
    *
-   * Possible values: simple, semantic, vector, vectorSimpleHybrid, vectorSemanticHybrid
+   * Possible values: "simple", "semantic", "vector", "vectorSimpleHybrid", "vectorSemanticHybrid"
    */
   queryType?: string;
   /** The additional semantic configuration for the query. */
@@ -744,7 +744,7 @@ export interface ElasticsearchChatExtensionParameters {
   /**
    * The query type of Elasticsearch®.
    *
-   * Possible values: simple, vector
+   * Possible values: "simple", "vector"
    */
   queryType?: string;
   /** The embedding dependency for vector search. */
@@ -921,27 +921,27 @@ export interface ImageGenerationOptions {
    * Dall-e-2 models support 256x256, 512x512, or 1024x1024.
    * Dall-e-3 models support 1024x1024, 1792x1024, or 1024x1792.
    *
-   * Possible values: 256x256, 512x512, 1024x1024, 1792x1024, 1024x1792
+   * Possible values: "256x256", "512x512", "1024x1024", "1792x1024", "1024x1792"
    */
   size?: string;
   /**
    * The format in which image generation response items should be presented.
    *
-   * Possible values: url, b64_json
+   * Possible values: "url", "b64_json"
    */
   response_format?: string;
   /**
    * The desired image generation quality level to use.
    * Only configurable with dall-e-3 models.
    *
-   * Possible values: standard, hd
+   * Possible values: "standard", "hd"
    */
   quality?: string;
   /**
    * The desired image generation style to use.
    * Only configurable with dall-e-3 models.
    *
-   * Possible values: natural, vivid
+   * Possible values: "natural", "vivid"
    */
   style?: string;
   /** A unique identifier representing your end-user, which can help to monitor and detect abuse. */

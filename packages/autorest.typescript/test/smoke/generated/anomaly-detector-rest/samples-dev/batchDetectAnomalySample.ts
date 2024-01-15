@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import createAnomalyDetectorRestClient, {
-  getLongRunningPoller
+  getLongRunningPoller,
 } from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
@@ -22,7 +22,7 @@ async function detectAnomalyWithMultivariateModel() {
   const client = createAnomalyDetectorRestClient(
     endpoint,
     apiVersion,
-    credential
+    credential,
   );
   const modelId = "45aad126-aafd-11ea-b8fb-d89ef3400c5f";
   const initialResponse = await client
@@ -33,9 +33,9 @@ async function detectAnomalyWithMultivariateModel() {
           "https://multiadsample.blob.core.windows.net/data/sample_data_2_1000.csv",
         endTime: new Date("2019-04-01T00:40:00Z"),
         startTime: new Date("2019-04-01T00:15:00Z"),
-        topContributorCount: 10
+        topContributorCount: 10,
       },
-      headers: { "Content-Type": "application/json" }
+      headers: { "Content-Type": "application/json" },
     });
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();

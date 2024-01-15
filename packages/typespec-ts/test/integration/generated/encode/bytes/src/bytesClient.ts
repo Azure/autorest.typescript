@@ -11,7 +11,6 @@ import { BytesClient } from "./clientDefinitions";
  */
 export default function createClient(options: ClientOptions = {}): BytesClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
-  options.apiVersion = options.apiVersion ?? "1.0.0";
   const userAgentInfo = `azsdk-js-encode-bytes-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -29,5 +28,6 @@ export default function createClient(options: ClientOptions = {}): BytesClient {
 
   const client = getClient(baseUrl, options) as BytesClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return client;
 }

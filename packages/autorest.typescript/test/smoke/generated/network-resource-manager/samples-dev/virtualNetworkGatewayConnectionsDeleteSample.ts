@@ -26,10 +26,11 @@ async function deleteVirtualNetworkGatewayConnection() {
   const virtualNetworkGatewayConnectionName = "conn1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGatewayConnections.beginDeleteAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayConnectionName
-  );
+  const result =
+    await client.virtualNetworkGatewayConnections.beginDeleteAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+    );
   console.log(result);
 }
 

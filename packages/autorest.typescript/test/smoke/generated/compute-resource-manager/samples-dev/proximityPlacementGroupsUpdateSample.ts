@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ProximityPlacementGroupUpdate,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -28,14 +28,14 @@ async function createAProximityPlacementGroup() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const proximityPlacementGroupName = "myProximityPlacementGroup";
   const parameters: ProximityPlacementGroupUpdate = {
-    tags: { additionalProp1: "string" }
+    tags: { additionalProp1: "string" },
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.proximityPlacementGroups.update(
     resourceGroupName,
     proximityPlacementGroupName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

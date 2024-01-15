@@ -16,17 +16,17 @@ export const ErrorModel: coreClient.CompositeMapper = {
       status: {
         serializedName: "status",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       message: {
         serializedName: "message",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const MyException: coreClient.CompositeMapper = {
@@ -37,11 +37,11 @@ export const MyException: coreClient.CompositeMapper = {
       statusCode: {
         serializedName: "statusCode",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const C: coreClient.CompositeMapper = {
@@ -52,11 +52,11 @@ export const C: coreClient.CompositeMapper = {
       httpCode: {
         serializedName: "httpCode",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const D: coreClient.CompositeMapper = {
@@ -67,11 +67,11 @@ export const D: coreClient.CompositeMapper = {
       httpStatusCode: {
         serializedName: "httpStatusCode",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const B: coreClient.CompositeMapper = {
@@ -83,11 +83,11 @@ export const B: coreClient.CompositeMapper = {
       textStatusCode: {
         serializedName: "textStatusCode",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HttpRedirectsHead300Headers: coreClient.CompositeMapper = {
@@ -100,11 +100,11 @@ export const HttpRedirectsHead300Headers: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HttpRedirectsGet300Headers: coreClient.CompositeMapper = {
@@ -117,11 +117,11 @@ export const HttpRedirectsGet300Headers: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HttpRedirectsHead301Headers: coreClient.CompositeMapper = {
@@ -134,11 +134,11 @@ export const HttpRedirectsHead301Headers: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HttpRedirectsGet301Headers: coreClient.CompositeMapper = {
@@ -151,11 +151,11 @@ export const HttpRedirectsGet301Headers: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HttpRedirectsPut301Headers: coreClient.CompositeMapper = {
@@ -168,11 +168,11 @@ export const HttpRedirectsPut301Headers: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HttpRedirectsHead302Headers: coreClient.CompositeMapper = {
@@ -185,11 +185,11 @@ export const HttpRedirectsHead302Headers: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HttpRedirectsGet302Headers: coreClient.CompositeMapper = {
@@ -202,11 +202,11 @@ export const HttpRedirectsGet302Headers: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HttpRedirectsPatch302Headers: coreClient.CompositeMapper = {
@@ -219,11 +219,11 @@ export const HttpRedirectsPatch302Headers: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HttpRedirectsPost303Headers: coreClient.CompositeMapper = {
@@ -236,11 +236,11 @@ export const HttpRedirectsPost303Headers: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HttpRedirectsHead307Headers: coreClient.CompositeMapper = {
@@ -253,11 +253,11 @@ export const HttpRedirectsHead307Headers: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HttpRedirectsGet307Headers: coreClient.CompositeMapper = {
@@ -270,11 +270,11 @@ export const HttpRedirectsGet307Headers: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HttpRedirectsOptions307Headers: coreClient.CompositeMapper = {
@@ -287,11 +287,11 @@ export const HttpRedirectsOptions307Headers: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HttpRedirectsPut307Headers: coreClient.CompositeMapper = {
@@ -304,11 +304,11 @@ export const HttpRedirectsPut307Headers: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HttpRedirectsPatch307Headers: coreClient.CompositeMapper = {
@@ -321,11 +321,11 @@ export const HttpRedirectsPatch307Headers: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HttpRedirectsPost307Headers: coreClient.CompositeMapper = {
@@ -338,11 +338,11 @@ export const HttpRedirectsPost307Headers: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HttpRedirectsDelete307Headers: coreClient.CompositeMapper = {
@@ -355,9 +355,9 @@ export const HttpRedirectsDelete307Headers: coreClient.CompositeMapper = {
         isConstant: true,
         serializedName: "location",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

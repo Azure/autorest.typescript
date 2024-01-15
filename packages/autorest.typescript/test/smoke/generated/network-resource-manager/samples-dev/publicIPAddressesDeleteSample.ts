@@ -28,7 +28,7 @@ async function deletePublicIPAddress() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.publicIPAddresses.beginDeleteAndWait(
     resourceGroupName,
-    publicIpAddressName
+    publicIpAddressName,
   );
   console.log(result);
 }

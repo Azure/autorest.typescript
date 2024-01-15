@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ExpressRouteCircuit,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,20 +35,20 @@ async function createExpressRouteCircuit() {
     serviceProviderProperties: {
       bandwidthInMbps: 200,
       peeringLocation: "Silicon Valley",
-      serviceProviderName: "Equinix"
+      serviceProviderName: "Equinix",
     },
     sku: {
       name: "Standard_MeteredData",
       family: "MeteredData",
-      tier: "Standard"
-    }
+      tier: "Standard",
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCircuits.beginCreateOrUpdateAndWait(
     resourceGroupName,
     circuitName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -67,18 +67,21 @@ async function createExpressRouteCircuitOnExpressRoutePort() {
     authorizationKey: "b0be57f5-1fba-463b-adec-ffe767354cdd",
     bandwidthInGbps: 10,
     expressRoutePort: {
-      id:
-        "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/expressRoutePorts/portName"
+      id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/expressRoutePorts/portName",
     },
     location: "westus",
-    sku: { name: "Premium_MeteredData", family: "MeteredData", tier: "Premium" }
+    sku: {
+      name: "Premium_MeteredData",
+      family: "MeteredData",
+      tier: "Premium",
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteCircuits.beginCreateOrUpdateAndWait(
     resourceGroupName,
     circuitName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

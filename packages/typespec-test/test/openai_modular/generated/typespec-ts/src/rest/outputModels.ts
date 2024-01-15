@@ -16,7 +16,7 @@ export interface AudioTranscriptionOutput {
   /**
    * The label that describes which operation type generated the accompanying response data.
    *
-   * Possible values: transcribe, translate
+   * Possible values: "transcribe", "translate"
    */
   task?: string;
   /**
@@ -71,7 +71,7 @@ export interface AudioTranslationOutput {
   /**
    * The label that describes which operation type generated the accompanying response data.
    *
-   * Possible values: transcribe, translate
+   * Possible values: "transcribe", "translate"
    */
   task?: string;
   /**
@@ -200,7 +200,7 @@ export interface ContentFilterResultOutput {
   /**
    * Ratings for the intensity and risk level of filtered content.
    *
-   * Possible values: safe, low, medium, high
+   * Possible values: "safe", "low", "medium", "high"
    */
   severity: string;
   /** A value indicating whether or not the content has been filtered. */
@@ -431,7 +431,7 @@ export interface ChatResponseMessageOutput {
   /**
    * The chat role associated with the message.
    *
-   * Possible values: system, assistant, user, function, tool
+   * Possible values: "system", "assistant", "user", "function", "tool"
    */
   role: string;
   /** The content of the message. */
@@ -557,27 +557,27 @@ export interface ImageGenerationOptionsOutput {
    * Dall-e-2 models support 256x256, 512x512, or 1024x1024.
    * Dall-e-3 models support 1024x1024, 1792x1024, or 1024x1792.
    *
-   * Possible values: 256x256, 512x512, 1024x1024, 1792x1024, 1024x1792
+   * Possible values: "256x256", "512x512", "1024x1024", "1792x1024", "1024x1792"
    */
   size?: string;
   /**
    * The format in which image generation response items should be presented.
    *
-   * Possible values: url, b64_json
+   * Possible values: "url", "b64_json"
    */
   response_format?: string;
   /**
    * The desired image generation quality level to use.
    * Only configurable with dall-e-3 models.
    *
-   * Possible values: standard, hd
+   * Possible values: "standard", "hd"
    */
   quality?: string;
   /**
    * The desired image generation style to use.
    * Only configurable with dall-e-3 models.
    *
-   * Possible values: natural, vivid
+   * Possible values: "natural", "vivid"
    */
   style?: string;
   /** A unique identifier representing your end-user, which can help to monitor and detect abuse. */
@@ -655,7 +655,7 @@ export interface BatchImageGenerationOperationResponseOutput {
   /**
    * The status of the operation
    *
-   * Possible values: notRunning, running, succeeded, canceled, failed
+   * Possible values: "notRunning", "running", "succeeded", "canceled", "failed"
    */
   status: string;
   /** The error if the operation failed. */

@@ -16,12 +16,13 @@ import {
   SubscriptionInCredentialsPostMethodGlobalNullOptionalParams,
   SubscriptionInCredentialsPostMethodGlobalNotProvidedValidOptionalParams,
   SubscriptionInCredentialsPostPathGlobalValidOptionalParams,
-  SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams
+  SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams,
 } from "../models";
 
 /** Class containing SubscriptionInCredentials operations. */
 export class SubscriptionInCredentialsImpl
-  implements SubscriptionInCredentials {
+  implements SubscriptionInCredentials
+{
   private readonly client: AzureSpecialPropertiesClient;
 
   /**
@@ -38,11 +39,11 @@ export class SubscriptionInCredentialsImpl
    * @param options The options parameters.
    */
   postMethodGlobalValid(
-    options?: SubscriptionInCredentialsPostMethodGlobalValidOptionalParams
+    options?: SubscriptionInCredentialsPostMethodGlobalValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postMethodGlobalValidOperationSpec
+      postMethodGlobalValidOperationSpec,
     );
   }
 
@@ -52,11 +53,11 @@ export class SubscriptionInCredentialsImpl
    * @param options The options parameters.
    */
   postMethodGlobalNull(
-    options?: SubscriptionInCredentialsPostMethodGlobalNullOptionalParams
+    options?: SubscriptionInCredentialsPostMethodGlobalNullOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postMethodGlobalNullOperationSpec
+      postMethodGlobalNullOperationSpec,
     );
   }
 
@@ -66,11 +67,11 @@ export class SubscriptionInCredentialsImpl
    * @param options The options parameters.
    */
   postMethodGlobalNotProvidedValid(
-    options?: SubscriptionInCredentialsPostMethodGlobalNotProvidedValidOptionalParams
+    options?: SubscriptionInCredentialsPostMethodGlobalNotProvidedValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postMethodGlobalNotProvidedValidOperationSpec
+      postMethodGlobalNotProvidedValidOperationSpec,
     );
   }
 
@@ -80,11 +81,11 @@ export class SubscriptionInCredentialsImpl
    * @param options The options parameters.
    */
   postPathGlobalValid(
-    options?: SubscriptionInCredentialsPostPathGlobalValidOptionalParams
+    options?: SubscriptionInCredentialsPostPathGlobalValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postPathGlobalValidOperationSpec
+      postPathGlobalValidOperationSpec,
     );
   }
 
@@ -94,11 +95,11 @@ export class SubscriptionInCredentialsImpl
    * @param options The options parameters.
    */
   postSwaggerGlobalValid(
-    options?: SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams
+    options?: SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postSwaggerGlobalValidOperationSpec
+      postSwaggerGlobalValidOperationSpec,
     );
   }
 }
@@ -106,73 +107,69 @@ export class SubscriptionInCredentialsImpl
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const postMethodGlobalValidOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
+  path: "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
   httpMethod: "POST",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const postMethodGlobalNullOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}",
+  path: "/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}",
   httpMethod: "POST",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const postMethodGlobalNotProvidedValidOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}",
-  httpMethod: "POST",
-  responses: {
-    200: {},
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
-  headerParameters: [Parameters.accept],
-  serializer
-};
+const postMethodGlobalNotProvidedValidOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}",
+    httpMethod: "POST",
+    responses: {
+      200: {},
+      default: {
+        bodyMapper: Mappers.ErrorModel,
+      },
+    },
+    queryParameters: [Parameters.apiVersion],
+    urlParameters: [Parameters.$host, Parameters.subscriptionId],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };
 const postPathGlobalValidOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
+  path: "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
   httpMethod: "POST",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const postSwaggerGlobalValidOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
+  path: "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
   httpMethod: "POST",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

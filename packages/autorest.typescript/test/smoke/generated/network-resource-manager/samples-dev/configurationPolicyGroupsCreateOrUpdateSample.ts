@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VpnServerConfigurationPolicyGroup,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -28,30 +28,32 @@ async function configurationPolicyGroupPut() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const vpnServerConfigurationName = "vpnServerConfiguration1";
   const configurationPolicyGroupName = "policyGroup1";
-  const vpnServerConfigurationPolicyGroupParameters: VpnServerConfigurationPolicyGroup = {
-    isDefault: true,
-    policyMembers: [
-      {
-        name: "policy1",
-        attributeType: "RadiusAzureGroupId",
-        attributeValue: "6ad1bd08"
-      },
-      {
-        name: "policy2",
-        attributeType: "CertificateGroupId",
-        attributeValue: "red.com"
-      }
-    ],
-    priority: 0
-  };
+  const vpnServerConfigurationPolicyGroupParameters: VpnServerConfigurationPolicyGroup =
+    {
+      isDefault: true,
+      policyMembers: [
+        {
+          name: "policy1",
+          attributeType: "RadiusAzureGroupId",
+          attributeValue: "6ad1bd08",
+        },
+        {
+          name: "policy2",
+          attributeType: "CertificateGroupId",
+          attributeValue: "red.com",
+        },
+      ],
+      priority: 0,
+    };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.configurationPolicyGroups.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    vpnServerConfigurationName,
-    configurationPolicyGroupName,
-    vpnServerConfigurationPolicyGroupParameters
-  );
+  const result =
+    await client.configurationPolicyGroups.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      vpnServerConfigurationName,
+      configurationPolicyGroupName,
+      vpnServerConfigurationPolicyGroupParameters,
+    );
   console.log(result);
 }
 

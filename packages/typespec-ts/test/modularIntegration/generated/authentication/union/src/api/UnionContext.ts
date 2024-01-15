@@ -13,7 +13,7 @@ export { UnionContext } from "../rest/index.js";
 /** Illustrates clients generated with ApiKey and OAuth2 authentication. */
 export function createUnion(
   credential: KeyCredential | TokenCredential,
-  options: UnionClientOptions = {}
+  options: UnionClientOptions = {},
 ): UnionContext {
   const clientContext = getClient(credential, options);
   return clientContext;

@@ -9,7 +9,7 @@
 import {
   OperationURLParameter,
   OperationParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 
 export const $host: OperationURLParameter = {
@@ -18,10 +18,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const accept: OperationParameter = {
@@ -31,9 +31,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const xMsClientRequestId: OperationParameter = {
@@ -42,9 +42,9 @@ export const xMsClientRequestId: OperationParameter = {
     serializedName: "x-ms-client-request-id",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const subscriptionId: OperationURLParameter = {
@@ -53,9 +53,9 @@ export const subscriptionId: OperationURLParameter = {
     serializedName: "subscriptionId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const apiVersion: OperationQueryParameter = {
@@ -65,9 +65,9 @@ export const apiVersion: OperationQueryParameter = {
     isConstant: true,
     serializedName: "api-version",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const subscriptionId1: OperationURLParameter = {
@@ -76,9 +76,9 @@ export const subscriptionId1: OperationURLParameter = {
     serializedName: "subscriptionId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const apiVersion1: OperationQueryParameter = {
@@ -88,9 +88,9 @@ export const apiVersion1: OperationQueryParameter = {
     isConstant: true,
     serializedName: "api-version",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const apiVersion2: OperationQueryParameter = {
@@ -98,9 +98,9 @@ export const apiVersion2: OperationQueryParameter = {
   mapper: {
     serializedName: "api-version",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const unencodedPathParam: OperationURLParameter = {
@@ -109,10 +109,10 @@ export const unencodedPathParam: OperationURLParameter = {
     serializedName: "unencodedPathParam",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const unencodedPathParam1: OperationURLParameter = {
@@ -122,10 +122,10 @@ export const unencodedPathParam1: OperationURLParameter = {
     isConstant: true,
     serializedName: "unencodedPathParam",
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const q1: OperationQueryParameter = {
@@ -134,10 +134,10 @@ export const q1: OperationQueryParameter = {
     serializedName: "q1",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const q11: OperationQueryParameter = {
@@ -145,10 +145,10 @@ export const q11: OperationQueryParameter = {
   mapper: {
     serializedName: "q1",
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const q12: OperationQueryParameter = {
@@ -158,10 +158,10 @@ export const q12: OperationQueryParameter = {
     isConstant: true,
     serializedName: "q1",
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const filter: OperationQueryParameter = {
@@ -169,9 +169,9 @@ export const filter: OperationQueryParameter = {
   mapper: {
     serializedName: "$filter",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const top: OperationQueryParameter = {
@@ -179,9 +179,9 @@ export const top: OperationQueryParameter = {
   mapper: {
     serializedName: "$top",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const orderby: OperationQueryParameter = {
@@ -189,9 +189,9 @@ export const orderby: OperationQueryParameter = {
   mapper: {
     serializedName: "$orderby",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const fooClientRequestId: OperationParameter = {
@@ -200,21 +200,21 @@ export const fooClientRequestId: OperationParameter = {
     serializedName: "foo-client-request-id",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const fooClientRequestId1: OperationParameter = {
   parameterPath: [
     "headerCustomNamedRequestIdParamGroupingParameters",
-    "fooClientRequestId"
+    "fooClientRequestId",
   ],
   mapper: {
     serializedName: "foo-client-request-id",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };

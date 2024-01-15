@@ -30,7 +30,7 @@ async function storageAccountGetBlobInventoryPolicy() {
   const result = await client.blobInventoryPolicies.get(
     resourceGroupName,
     accountName,
-    blobInventoryPolicyName
+    blobInventoryPolicyName,
   );
   console.log(result);
 }

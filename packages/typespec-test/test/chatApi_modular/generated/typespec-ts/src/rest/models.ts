@@ -28,7 +28,7 @@ export interface ChatMessage {
   /**
    * The role associated with the message.
    *
-   * Possible values: user, system, assistant
+   * Possible values: "user", "system", "assistant"
    */
   role: string;
   /**

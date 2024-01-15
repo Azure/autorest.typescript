@@ -30,7 +30,7 @@ async function deleteAGalleryImage() {
   const result = await client.galleryImages.beginDeleteAndWait(
     resourceGroupName,
     galleryName,
-    galleryImageName
+    galleryImageName,
   );
   console.log(result);
 }

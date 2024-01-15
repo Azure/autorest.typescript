@@ -13,7 +13,7 @@ import * as Parameters from "../models/parameters";
 import { SealedChoiceClient } from "../sealedChoiceClient";
 import {
   TokenGrantType,
-  AuthenticationExchangeAcrRefreshTokenForAcrAccessTokenOptionalParams
+  AuthenticationExchangeAcrRefreshTokenForAcrAccessTokenOptionalParams,
 } from "../models";
 
 /** Class containing Authentication operations. */
@@ -35,23 +35,24 @@ export class AuthenticationImpl implements Authentication {
    */
   exchangeAcrRefreshTokenForAcrAccessToken(
     grantType: TokenGrantType,
-    options?: AuthenticationExchangeAcrRefreshTokenForAcrAccessTokenOptionalParams
+    options?: AuthenticationExchangeAcrRefreshTokenForAcrAccessTokenOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { grantType, options },
-      exchangeAcrRefreshTokenForAcrAccessTokenOperationSpec
+      exchangeAcrRefreshTokenForAcrAccessTokenOperationSpec,
     );
   }
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const exchangeAcrRefreshTokenForAcrAccessTokenOperationSpec: coreClient.OperationSpec = {
-  path: "/oauth2/token",
-  httpMethod: "POST",
-  responses: { 200: {}, default: {} },
-  formDataParameters: [Parameters.grantType],
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
-  serializer
-};
+const exchangeAcrRefreshTokenForAcrAccessTokenOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/oauth2/token",
+    httpMethod: "POST",
+    responses: { 200: {}, default: {} },
+    formDataParameters: [Parameters.grantType],
+    urlParameters: [Parameters.$host],
+    headerParameters: [Parameters.contentType],
+    serializer,
+  };

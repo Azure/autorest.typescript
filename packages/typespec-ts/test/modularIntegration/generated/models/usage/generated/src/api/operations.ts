@@ -26,7 +26,7 @@ import {
 export function _inputSend(
   context: Client,
   inputParameter: InputRecord,
-  options: InputOptions = { requestOptions: {} }
+  options: InputOptions = { requestOptions: {} },
 ): StreamableMethod<Input204Response> {
   return context
     .path("/type/model/usage/input")
@@ -37,7 +37,7 @@ export function _inputSend(
 }
 
 export async function _inputDeserialize(
-  result: Input204Response
+  result: Input204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -49,7 +49,7 @@ export async function _inputDeserialize(
 export async function input(
   context: Client,
   inputParameter: InputRecord,
-  options: InputOptions = { requestOptions: {} }
+  options: InputOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _inputSend(context, inputParameter, options);
   return _inputDeserialize(result);
@@ -57,7 +57,7 @@ export async function input(
 
 export function _outputSend(
   context: Client,
-  options: OutputOptions = { requestOptions: {} }
+  options: OutputOptions = { requestOptions: {} },
 ): StreamableMethod<Output200Response> {
   return context
     .path("/type/model/usage/output")
@@ -65,7 +65,7 @@ export function _outputSend(
 }
 
 export async function _outputDeserialize(
-  result: Output200Response
+  result: Output200Response,
 ): Promise<OutputRecord> {
   if (result.status !== "200") {
     throw createRestError(result);
@@ -78,7 +78,7 @@ export async function _outputDeserialize(
 
 export async function output(
   context: Client,
-  options: OutputOptions = { requestOptions: {} }
+  options: OutputOptions = { requestOptions: {} },
 ): Promise<OutputRecord> {
   const result = await _outputSend(context, options);
   return _outputDeserialize(result);
@@ -87,7 +87,7 @@ export async function output(
 export function _inputAndOutputSend(
   context: Client,
   body: InputOutputRecord,
-  options: InputAndOutputOptions = { requestOptions: {} }
+  options: InputAndOutputOptions = { requestOptions: {} },
 ): StreamableMethod<InputAndOutput200Response> {
   return context
     .path("/type/model/usage/input-output")
@@ -98,7 +98,7 @@ export function _inputAndOutputSend(
 }
 
 export async function _inputAndOutputDeserialize(
-  result: InputAndOutput200Response
+  result: InputAndOutput200Response,
 ): Promise<InputOutputRecord> {
   if (result.status !== "200") {
     throw createRestError(result);
@@ -112,7 +112,7 @@ export async function _inputAndOutputDeserialize(
 export async function inputAndOutput(
   context: Client,
   body: InputOutputRecord,
-  options: InputAndOutputOptions = { requestOptions: {} }
+  options: InputAndOutputOptions = { requestOptions: {} },
 ): Promise<InputOutputRecord> {
   const result = await _inputAndOutputSend(context, body, options);
   return _inputAndOutputDeserialize(result);

@@ -60,7 +60,7 @@ export function _getAudioTranscriptionAsPlainTextSend(
   context: Client,
   deploymentId: string,
   body: AudioTranscriptionOptions,
-  options: GetAudioTranscriptionAsPlainTextOptions = { requestOptions: {} }
+  options: GetAudioTranscriptionAsPlainTextOptions = { requestOptions: {} },
 ): StreamableMethod<
   | GetAudioTranscriptionAsPlainText200Response
   | GetAudioTranscriptionAsPlainTextDefaultResponse
@@ -87,7 +87,7 @@ export function _getAudioTranscriptionAsPlainTextSend(
 export async function _getAudioTranscriptionAsPlainTextDeserialize(
   result:
     | GetAudioTranscriptionAsPlainText200Response
-    | GetAudioTranscriptionAsPlainTextDefaultResponse
+    | GetAudioTranscriptionAsPlainTextDefaultResponse,
 ): Promise<string> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -104,13 +104,13 @@ export async function getAudioTranscriptionAsPlainText(
   context: Client,
   deploymentId: string,
   body: AudioTranscriptionOptions,
-  options: GetAudioTranscriptionAsPlainTextOptions = { requestOptions: {} }
+  options: GetAudioTranscriptionAsPlainTextOptions = { requestOptions: {} },
 ): Promise<string> {
   const result = await _getAudioTranscriptionAsPlainTextSend(
     context,
     deploymentId,
     body,
-    options
+    options,
   );
   return _getAudioTranscriptionAsPlainTextDeserialize(result);
 }
@@ -119,7 +119,9 @@ export function _getAudioTranscriptionAsResponseObjectSend(
   context: Client,
   deploymentId: string,
   body: AudioTranscriptionOptions,
-  options: GetAudioTranscriptionAsResponseObjectOptions = { requestOptions: {} }
+  options: GetAudioTranscriptionAsResponseObjectOptions = {
+    requestOptions: {},
+  },
 ): StreamableMethod<
   | GetAudioTranscriptionAsResponseObject200Response
   | GetAudioTranscriptionAsResponseObjectDefaultResponse
@@ -147,7 +149,7 @@ export function _getAudioTranscriptionAsResponseObjectSend(
 export async function _getAudioTranscriptionAsResponseObjectDeserialize(
   result:
     | GetAudioTranscriptionAsResponseObject200Response
-    | GetAudioTranscriptionAsResponseObjectDefaultResponse
+    | GetAudioTranscriptionAsResponseObjectDefaultResponse,
 ): Promise<AudioTranscription> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -183,13 +185,15 @@ export async function getAudioTranscriptionAsResponseObject(
   context: Client,
   deploymentId: string,
   body: AudioTranscriptionOptions,
-  options: GetAudioTranscriptionAsResponseObjectOptions = { requestOptions: {} }
+  options: GetAudioTranscriptionAsResponseObjectOptions = {
+    requestOptions: {},
+  },
 ): Promise<AudioTranscription> {
   const result = await _getAudioTranscriptionAsResponseObjectSend(
     context,
     deploymentId,
     body,
-    options
+    options,
   );
   return _getAudioTranscriptionAsResponseObjectDeserialize(result);
 }
@@ -198,7 +202,7 @@ export function _getAudioTranslationAsPlainTextSend(
   context: Client,
   deploymentId: string,
   body: AudioTranslationOptions,
-  options: GetAudioTranslationAsPlainTextOptions = { requestOptions: {} }
+  options: GetAudioTranslationAsPlainTextOptions = { requestOptions: {} },
 ): StreamableMethod<
   | GetAudioTranslationAsPlainText200Response
   | GetAudioTranslationAsPlainTextDefaultResponse
@@ -224,7 +228,7 @@ export function _getAudioTranslationAsPlainTextSend(
 export async function _getAudioTranslationAsPlainTextDeserialize(
   result:
     | GetAudioTranslationAsPlainText200Response
-    | GetAudioTranslationAsPlainTextDefaultResponse
+    | GetAudioTranslationAsPlainTextDefaultResponse,
 ): Promise<string> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -238,13 +242,13 @@ export async function getAudioTranslationAsPlainText(
   context: Client,
   deploymentId: string,
   body: AudioTranslationOptions,
-  options: GetAudioTranslationAsPlainTextOptions = { requestOptions: {} }
+  options: GetAudioTranslationAsPlainTextOptions = { requestOptions: {} },
 ): Promise<string> {
   const result = await _getAudioTranslationAsPlainTextSend(
     context,
     deploymentId,
     body,
-    options
+    options,
   );
   return _getAudioTranslationAsPlainTextDeserialize(result);
 }
@@ -253,7 +257,7 @@ export function _getAudioTranslationAsResponseObjectSend(
   context: Client,
   deploymentId: string,
   body: AudioTranslationOptions,
-  options: GetAudioTranslationAsResponseObjectOptions = { requestOptions: {} }
+  options: GetAudioTranslationAsResponseObjectOptions = { requestOptions: {} },
 ): StreamableMethod<
   | GetAudioTranslationAsResponseObject200Response
   | GetAudioTranslationAsResponseObjectDefaultResponse
@@ -280,7 +284,7 @@ export function _getAudioTranslationAsResponseObjectSend(
 export async function _getAudioTranslationAsResponseObjectDeserialize(
   result:
     | GetAudioTranslationAsResponseObject200Response
-    | GetAudioTranslationAsResponseObjectDefaultResponse
+    | GetAudioTranslationAsResponseObjectDefaultResponse,
 ): Promise<AudioTranslation> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -313,13 +317,13 @@ export async function getAudioTranslationAsResponseObject(
   context: Client,
   deploymentId: string,
   body: AudioTranslationOptions,
-  options: GetAudioTranslationAsResponseObjectOptions = { requestOptions: {} }
+  options: GetAudioTranslationAsResponseObjectOptions = { requestOptions: {} },
 ): Promise<AudioTranslation> {
   const result = await _getAudioTranslationAsResponseObjectSend(
     context,
     deploymentId,
     body,
-    options
+    options,
   );
   return _getAudioTranslationAsResponseObjectDeserialize(result);
 }
@@ -328,7 +332,7 @@ export function _getCompletionsSend(
   context: Client,
   deploymentId: string,
   body: CompletionsOptions,
-  options: GetCompletionsOptions = { requestOptions: {} }
+  options: GetCompletionsOptions = { requestOptions: {} },
 ): StreamableMethod<GetCompletions200Response | GetCompletionsDefaultResponse> {
   return context
     .path("/deployments/{deploymentId}/completions", deploymentId)
@@ -355,7 +359,7 @@ export function _getCompletionsSend(
 }
 
 export async function _getCompletionsDeserialize(
-  result: GetCompletions200Response | GetCompletionsDefaultResponse
+  result: GetCompletions200Response | GetCompletionsDefaultResponse,
 ): Promise<Completions> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -523,13 +527,13 @@ export async function getCompletions(
   context: Client,
   deploymentId: string,
   body: CompletionsOptions,
-  options: GetCompletionsOptions = { requestOptions: {} }
+  options: GetCompletionsOptions = { requestOptions: {} },
 ): Promise<Completions> {
   const result = await _getCompletionsSend(
     context,
     deploymentId,
     body,
-    options
+    options,
   );
   return _getCompletionsDeserialize(result);
 }
@@ -538,7 +542,7 @@ export function _getChatCompletionsSend(
   context: Client,
   deploymentId: string,
   body: ChatCompletionsOptions,
-  options: GetChatCompletionsOptions = { requestOptions: {} }
+  options: GetChatCompletionsOptions = { requestOptions: {} },
 ): StreamableMethod<
   GetChatCompletions200Response | GetChatCompletionsDefaultResponse
 > {
@@ -548,7 +552,7 @@ export function _getChatCompletionsSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         messages: body["messages"].map((p) =>
-          serializeChatRequestMessageUnion(p)
+          serializeChatRequestMessageUnion(p),
         ),
         functions: !body["functions"]
           ? body["functions"]
@@ -591,7 +595,7 @@ export function _getChatCompletionsSend(
 }
 
 export async function _getChatCompletionsDeserialize(
-  result: GetChatCompletions200Response | GetChatCompletionsDefaultResponse
+  result: GetChatCompletions200Response | GetChatCompletionsDefaultResponse,
 ): Promise<ChatCompletions> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -843,13 +847,13 @@ export async function getChatCompletions(
   context: Client,
   deploymentId: string,
   body: ChatCompletionsOptions,
-  options: GetChatCompletionsOptions = { requestOptions: {} }
+  options: GetChatCompletionsOptions = { requestOptions: {} },
 ): Promise<ChatCompletions> {
   const result = await _getChatCompletionsSend(
     context,
     deploymentId,
     body,
-    options
+    options,
   );
   return _getChatCompletionsDeserialize(result);
 }
@@ -858,7 +862,9 @@ export function _getChatCompletionsWithAzureExtensionsSend(
   context: Client,
   deploymentId: string,
   body: ChatCompletionsOptions,
-  options: GetChatCompletionsWithAzureExtensionsOptions = { requestOptions: {} }
+  options: GetChatCompletionsWithAzureExtensionsOptions = {
+    requestOptions: {},
+  },
 ): StreamableMethod<
   | GetChatCompletionsWithAzureExtensions200Response
   | GetChatCompletionsWithAzureExtensionsDefaultResponse
@@ -866,13 +872,13 @@ export function _getChatCompletionsWithAzureExtensionsSend(
   return context
     .path(
       "/deployments/{deploymentId}/extensions/chat/completions",
-      deploymentId
+      deploymentId,
     )
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
         messages: body["messages"].map((p) =>
-          serializeChatRequestMessageUnion(p)
+          serializeChatRequestMessageUnion(p),
         ),
         functions: !body["functions"]
           ? body["functions"]
@@ -917,7 +923,7 @@ export function _getChatCompletionsWithAzureExtensionsSend(
 export async function _getChatCompletionsWithAzureExtensionsDeserialize(
   result:
     | GetChatCompletionsWithAzureExtensions200Response
-    | GetChatCompletionsWithAzureExtensionsDefaultResponse
+    | GetChatCompletionsWithAzureExtensionsDefaultResponse,
 ): Promise<ChatCompletions> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -1169,13 +1175,15 @@ export async function getChatCompletionsWithAzureExtensions(
   context: Client,
   deploymentId: string,
   body: ChatCompletionsOptions,
-  options: GetChatCompletionsWithAzureExtensionsOptions = { requestOptions: {} }
+  options: GetChatCompletionsWithAzureExtensionsOptions = {
+    requestOptions: {},
+  },
 ): Promise<ChatCompletions> {
   const result = await _getChatCompletionsWithAzureExtensionsSend(
     context,
     deploymentId,
     body,
-    options
+    options,
   );
   return _getChatCompletionsWithAzureExtensionsDeserialize(result);
 }
@@ -1184,7 +1192,7 @@ export function _getImageGenerationsSend(
   context: Client,
   deploymentId: string,
   body: ImageGenerationOptions,
-  options: GetImageGenerationsOptions = { requestOptions: {} }
+  options: GetImageGenerationsOptions = { requestOptions: {} },
 ): StreamableMethod<
   GetImageGenerations200Response | GetImageGenerationsDefaultResponse
 > {
@@ -1206,7 +1214,7 @@ export function _getImageGenerationsSend(
 }
 
 export async function _getImageGenerationsDeserialize(
-  result: GetImageGenerations200Response | GetImageGenerationsDefaultResponse
+  result: GetImageGenerations200Response | GetImageGenerationsDefaultResponse,
 ): Promise<ImageGenerations> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -1227,13 +1235,13 @@ export async function getImageGenerations(
   context: Client,
   deploymentId: string,
   body: ImageGenerationOptions,
-  options: GetImageGenerationsOptions = { requestOptions: {} }
+  options: GetImageGenerationsOptions = { requestOptions: {} },
 ): Promise<ImageGenerations> {
   const result = await _getImageGenerationsSend(
     context,
     deploymentId,
     body,
-    options
+    options,
   );
   return _getImageGenerationsDeserialize(result);
 }
@@ -1242,7 +1250,7 @@ export function _getEmbeddingsSend(
   context: Client,
   deploymentId: string,
   body: EmbeddingsOptions,
-  options: GetEmbeddingsOptions = { requestOptions: {} }
+  options: GetEmbeddingsOptions = { requestOptions: {} },
 ): StreamableMethod<GetEmbeddings200Response | GetEmbeddingsDefaultResponse> {
   return context
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
@@ -1253,7 +1261,7 @@ export function _getEmbeddingsSend(
 }
 
 export async function _getEmbeddingsDeserialize(
-  result: GetEmbeddings200Response | GetEmbeddingsDefaultResponse
+  result: GetEmbeddings200Response | GetEmbeddingsDefaultResponse,
 ): Promise<Embeddings> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -1276,7 +1284,7 @@ export async function getEmbeddings(
   context: Client,
   deploymentId: string,
   body: EmbeddingsOptions,
-  options: GetEmbeddingsOptions = { requestOptions: {} }
+  options: GetEmbeddingsOptions = { requestOptions: {} },
 ): Promise<Embeddings> {
   const result = await _getEmbeddingsSend(context, deploymentId, body, options);
   return _getEmbeddingsDeserialize(result);

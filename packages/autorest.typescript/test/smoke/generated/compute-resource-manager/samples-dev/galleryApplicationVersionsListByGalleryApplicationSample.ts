@@ -31,7 +31,7 @@ async function listGalleryApplicationVersionsInAGalleryApplicationDefinition() {
   for await (let item of client.galleryApplicationVersions.listByGalleryApplication(
     resourceGroupName,
     galleryName,
-    galleryApplicationName
+    galleryApplicationName,
   )) {
     resArray.push(item);
   }

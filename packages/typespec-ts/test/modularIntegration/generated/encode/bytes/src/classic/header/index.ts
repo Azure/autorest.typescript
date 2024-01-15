@@ -20,11 +20,11 @@ export interface HeaderOperations {
   base64: (value: Uint8Array, options?: HeaderBase64Options) => Promise<void>;
   base64url: (
     value: Uint8Array,
-    options?: HeaderBase64urlOptions
+    options?: HeaderBase64urlOptions,
   ) => Promise<void>;
   base64urlArray: (
     value: Uint8Array[],
-    options?: HeaderBase64urlArrayOptions
+    options?: HeaderBase64urlArrayOptions,
   ) => Promise<void>;
 }
 
@@ -38,7 +38,7 @@ export function getHeader(context: BytesContext) {
       headerBase64url(context, value, options),
     base64urlArray: (
       value: Uint8Array[],
-      options?: HeaderBase64urlArrayOptions
+      options?: HeaderBase64urlArrayOptions,
     ) => headerBase64urlArray(context, value, options),
   };
 }

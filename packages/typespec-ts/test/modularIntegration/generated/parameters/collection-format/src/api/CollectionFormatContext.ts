@@ -11,7 +11,7 @@ export { CollectionFormatContext } from "../rest/index.js";
 
 /** Test for collectionFormat. */
 export function createCollectionFormat(
-  options: CollectionFormatClientOptions = {}
+  options: CollectionFormatClientOptions = {},
 ): CollectionFormatContext {
   const clientContext = getClient(options);
   return clientContext;

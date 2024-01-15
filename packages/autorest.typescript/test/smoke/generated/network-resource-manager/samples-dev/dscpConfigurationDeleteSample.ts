@@ -28,7 +28,7 @@ async function deleteDscpConfiguration() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.dscpConfigurationOperations.beginDeleteAndWait(
     resourceGroupName,
-    dscpConfigurationName
+    dscpConfigurationName,
   );
   console.log(result);
 }

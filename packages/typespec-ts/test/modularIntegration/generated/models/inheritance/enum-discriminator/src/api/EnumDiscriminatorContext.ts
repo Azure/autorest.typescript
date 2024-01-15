@@ -11,7 +11,7 @@ export { EnumDiscriminatorContext } from "../rest/index.js";
 
 /** Illustrates inheritance with enum discriminator. */
 export function createEnumDiscriminator(
-  options: EnumDiscriminatorClientOptions = {}
+  options: EnumDiscriminatorClientOptions = {},
 ): EnumDiscriminatorContext {
   const clientContext = getClient(options);
   return clientContext;

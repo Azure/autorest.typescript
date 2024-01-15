@@ -30,7 +30,7 @@ async function storageAccountDeleteBlobInventoryPolicy() {
   const result = await client.blobInventoryPolicies.delete(
     resourceGroupName,
     accountName,
-    blobInventoryPolicyName
+    blobInventoryPolicyName,
   );
   console.log(result);
 }

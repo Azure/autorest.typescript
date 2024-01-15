@@ -496,8 +496,8 @@ function buildBodyParameter(
     return bodyParameter.optional
       ? `body: typeof ${bodyParameter.clientName} === 'string'
     ? uint8ArrayToString(${bodyParameter.clientName}, "${getEncodingFormat(
-          bodyParameter.type
-        )}")
+      bodyParameter.type
+    )}")
     : ${bodyParameter.clientName}`
       : `body: uint8ArrayToString(${
           bodyParameter.clientName
@@ -587,16 +587,14 @@ function getContentTypeValue(param: Parameter | Property) {
   const defaultValue =
     param.clientDefaultValue ?? param.type.clientDefaultValue;
 
-  if (!defaultValue) {
-    throw new Error(
-      `Constant ${param.clientName} does not have a default value`
-    );
-  }
-
   if (defaultValue) {
     return `contentType: options.${param.clientName} as any ?? "${defaultValue}"`;
   } else {
-    return `contentType: options.${param.clientName}`;
+    return `contentType: ${
+      !param.optional
+        ? "contentType"
+        : "options." + param.clientName + " as any"
+    }`;
   }
 }
 

@@ -27,7 +27,7 @@ export class PageableClient {
 
   /** List users */
   list(
-    options: ListOptions = { requestOptions: {} }
+    options: ListOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<User> {
     return list(this._client, options);
   }

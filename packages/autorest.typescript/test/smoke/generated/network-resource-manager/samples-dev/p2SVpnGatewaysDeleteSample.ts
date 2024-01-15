@@ -28,7 +28,7 @@ async function p2SVpnGatewayDelete() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.p2SVpnGateways.beginDeleteAndWait(
     resourceGroupName,
-    gatewayName
+    gatewayName,
   );
   console.log(result);
 }

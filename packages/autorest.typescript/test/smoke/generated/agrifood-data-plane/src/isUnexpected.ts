@@ -205,7 +205,7 @@ import {
   WeatherGetDataDeleteJobDetails200Response,
   WeatherGetDataDeleteJobDetailsDefaultResponse,
   WeatherCreateDataDeleteJob202Response,
-  WeatherCreateDataDeleteJobDefaultResponse
+  WeatherCreateDataDeleteJobDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -214,7 +214,7 @@ const responseMap: Record<string, string[]> = {
   "GET /farmers/{farmerId}/application-data/{applicationDataId}": ["200"],
   "PATCH /farmers/{farmerId}/application-data/{applicationDataId}": [
     "200",
-    "201"
+    "201",
   ],
   "DELETE /farmers/{farmerId}/application-data/{applicationDataId}": ["204"],
   "GET /farmers/{farmerId}/attachments": ["200"],
@@ -307,407 +307,407 @@ const responseMap: Record<string, string[]> = {
   "GET /weather/ingest-data/{jobId}": ["200"],
   "PUT /weather/ingest-data/{jobId}": ["202"],
   "GET /weather/delete-data/{jobId}": ["200"],
-  "PUT /weather/delete-data/{jobId}": ["202"]
+  "PUT /weather/delete-data/{jobId}": ["202"],
 };
 
 export function isUnexpected(
   response:
     | ApplicationDataListByFarmerId200Response
-    | ApplicationDataListByFarmerIdDefaultResponse
+    | ApplicationDataListByFarmerIdDefaultResponse,
 ): response is ApplicationDataListByFarmerIdDefaultResponse;
 export function isUnexpected(
-  response: ApplicationDataList200Response | ApplicationDataListDefaultResponse
+  response: ApplicationDataList200Response | ApplicationDataListDefaultResponse,
 ): response is ApplicationDataListDefaultResponse;
 export function isUnexpected(
-  response: ApplicationDataGet200Response | ApplicationDataGetDefaultResponse
+  response: ApplicationDataGet200Response | ApplicationDataGetDefaultResponse,
 ): response is ApplicationDataGetDefaultResponse;
 export function isUnexpected(
   response:
     | ApplicationDataCreateOrUpdate200Response
     | ApplicationDataCreateOrUpdate201Response
-    | ApplicationDataCreateOrUpdateDefaultResponse
+    | ApplicationDataCreateOrUpdateDefaultResponse,
 ): response is ApplicationDataCreateOrUpdateDefaultResponse;
 export function isUnexpected(
   response:
     | ApplicationDataDelete204Response
-    | ApplicationDataDeleteDefaultResponse
+    | ApplicationDataDeleteDefaultResponse,
 ): response is ApplicationDataDeleteDefaultResponse;
 export function isUnexpected(
   response:
     | AttachmentsListByFarmerId200Response
-    | AttachmentsListByFarmerIdDefaultResponse
+    | AttachmentsListByFarmerIdDefaultResponse,
 ): response is AttachmentsListByFarmerIdDefaultResponse;
 export function isUnexpected(
-  response: AttachmentsGet200Response | AttachmentsGetDefaultResponse
+  response: AttachmentsGet200Response | AttachmentsGetDefaultResponse,
 ): response is AttachmentsGetDefaultResponse;
 export function isUnexpected(
   response:
     | AttachmentsCreateOrUpdate200Response
     | AttachmentsCreateOrUpdate201Response
-    | AttachmentsCreateOrUpdateDefaultResponse
+    | AttachmentsCreateOrUpdateDefaultResponse,
 ): response is AttachmentsCreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: AttachmentsDelete204Response | AttachmentsDeleteDefaultResponse
+  response: AttachmentsDelete204Response | AttachmentsDeleteDefaultResponse,
 ): response is AttachmentsDeleteDefaultResponse;
 export function isUnexpected(
-  response: AttachmentsDownload200Response | AttachmentsDownloadDefaultResponse
+  response: AttachmentsDownload200Response | AttachmentsDownloadDefaultResponse,
 ): response is AttachmentsDownloadDefaultResponse;
 export function isUnexpected(
   response:
     | BoundariesListByFarmerId200Response
-    | BoundariesListByFarmerIdDefaultResponse
+    | BoundariesListByFarmerIdDefaultResponse,
 ): response is BoundariesListByFarmerIdDefaultResponse;
 export function isUnexpected(
   response:
     | BoundariesSearchByFarmerId200Response
-    | BoundariesSearchByFarmerIdDefaultResponse
+    | BoundariesSearchByFarmerIdDefaultResponse,
 ): response is BoundariesSearchByFarmerIdDefaultResponse;
 export function isUnexpected(
-  response: BoundariesList200Response | BoundariesListDefaultResponse
+  response: BoundariesList200Response | BoundariesListDefaultResponse,
 ): response is BoundariesListDefaultResponse;
 export function isUnexpected(
-  response: BoundariesSearch200Response | BoundariesSearchDefaultResponse
+  response: BoundariesSearch200Response | BoundariesSearchDefaultResponse,
 ): response is BoundariesSearchDefaultResponse;
 export function isUnexpected(
   response:
     | BoundariesGetCascadeDeleteJobDetails200Response
-    | BoundariesGetCascadeDeleteJobDetailsDefaultResponse
+    | BoundariesGetCascadeDeleteJobDetailsDefaultResponse,
 ): response is BoundariesGetCascadeDeleteJobDetailsDefaultResponse;
 export function isUnexpected(
   response:
     | BoundariesCreateCascadeDeleteJob202Response
-    | BoundariesCreateCascadeDeleteJobDefaultResponse
+    | BoundariesCreateCascadeDeleteJobDefaultResponse,
 ): response is BoundariesCreateCascadeDeleteJobDefaultResponse;
 export function isUnexpected(
-  response: BoundariesGet200Response | BoundariesGetDefaultResponse
+  response: BoundariesGet200Response | BoundariesGetDefaultResponse,
 ): response is BoundariesGetDefaultResponse;
 export function isUnexpected(
   response:
     | BoundariesCreateOrUpdate200Response
     | BoundariesCreateOrUpdate201Response
-    | BoundariesCreateOrUpdateDefaultResponse
+    | BoundariesCreateOrUpdateDefaultResponse,
 ): response is BoundariesCreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: BoundariesDelete204Response | BoundariesDeleteDefaultResponse
+  response: BoundariesDelete204Response | BoundariesDeleteDefaultResponse,
 ): response is BoundariesDeleteDefaultResponse;
 export function isUnexpected(
   response:
     | BoundariesGetOverlap200Response
-    | BoundariesGetOverlapDefaultResponse
+    | BoundariesGetOverlapDefaultResponse,
 ): response is BoundariesGetOverlapDefaultResponse;
 export function isUnexpected(
-  response: CropsList200Response | CropsListDefaultResponse
+  response: CropsList200Response | CropsListDefaultResponse,
 ): response is CropsListDefaultResponse;
 export function isUnexpected(
-  response: CropsGet200Response | CropsGetDefaultResponse
+  response: CropsGet200Response | CropsGetDefaultResponse,
 ): response is CropsGetDefaultResponse;
 export function isUnexpected(
   response:
     | CropsCreateOrUpdate200Response
     | CropsCreateOrUpdate201Response
-    | CropsCreateOrUpdateDefaultResponse
+    | CropsCreateOrUpdateDefaultResponse,
 ): response is CropsCreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: CropsDelete204Response | CropsDeleteDefaultResponse
+  response: CropsDelete204Response | CropsDeleteDefaultResponse,
 ): response is CropsDeleteDefaultResponse;
 export function isUnexpected(
   response:
     | CropVarietiesListByCropId200Response
-    | CropVarietiesListByCropIdDefaultResponse
+    | CropVarietiesListByCropIdDefaultResponse,
 ): response is CropVarietiesListByCropIdDefaultResponse;
 export function isUnexpected(
-  response: CropVarietiesList200Response | CropVarietiesListDefaultResponse
+  response: CropVarietiesList200Response | CropVarietiesListDefaultResponse,
 ): response is CropVarietiesListDefaultResponse;
 export function isUnexpected(
-  response: CropVarietiesGet200Response | CropVarietiesGetDefaultResponse
+  response: CropVarietiesGet200Response | CropVarietiesGetDefaultResponse,
 ): response is CropVarietiesGetDefaultResponse;
 export function isUnexpected(
   response:
     | CropVarietiesCreateOrUpdate200Response
     | CropVarietiesCreateOrUpdate201Response
-    | CropVarietiesCreateOrUpdateDefaultResponse
+    | CropVarietiesCreateOrUpdateDefaultResponse,
 ): response is CropVarietiesCreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: CropVarietiesDelete204Response | CropVarietiesDeleteDefaultResponse
+  response: CropVarietiesDelete204Response | CropVarietiesDeleteDefaultResponse,
 ): response is CropVarietiesDeleteDefaultResponse;
 export function isUnexpected(
-  response: FarmersList200Response | FarmersListDefaultResponse
+  response: FarmersList200Response | FarmersListDefaultResponse,
 ): response is FarmersListDefaultResponse;
 export function isUnexpected(
-  response: FarmersGet200Response | FarmersGetDefaultResponse
+  response: FarmersGet200Response | FarmersGetDefaultResponse,
 ): response is FarmersGetDefaultResponse;
 export function isUnexpected(
   response:
     | FarmersCreateOrUpdate200Response
     | FarmersCreateOrUpdate201Response
-    | FarmersCreateOrUpdateDefaultResponse
+    | FarmersCreateOrUpdateDefaultResponse,
 ): response is FarmersCreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: FarmersDelete204Response | FarmersDeleteDefaultResponse
+  response: FarmersDelete204Response | FarmersDeleteDefaultResponse,
 ): response is FarmersDeleteDefaultResponse;
 export function isUnexpected(
   response:
     | FarmersGetCascadeDeleteJobDetails200Response
-    | FarmersGetCascadeDeleteJobDetailsDefaultResponse
+    | FarmersGetCascadeDeleteJobDetailsDefaultResponse,
 ): response is FarmersGetCascadeDeleteJobDetailsDefaultResponse;
 export function isUnexpected(
   response:
     | FarmersCreateCascadeDeleteJob202Response
-    | FarmersCreateCascadeDeleteJobDefaultResponse
+    | FarmersCreateCascadeDeleteJobDefaultResponse,
 ): response is FarmersCreateCascadeDeleteJobDefaultResponse;
 export function isUnexpected(
   response:
     | FarmOperationsCreateDataIngestionJob202Response
-    | FarmOperationsCreateDataIngestionJobDefaultResponse
+    | FarmOperationsCreateDataIngestionJobDefaultResponse,
 ): response is FarmOperationsCreateDataIngestionJobDefaultResponse;
 export function isUnexpected(
   response:
     | FarmOperationsGetDataIngestionJobDetails200Response
-    | FarmOperationsGetDataIngestionJobDetailsDefaultResponse
+    | FarmOperationsGetDataIngestionJobDetailsDefaultResponse,
 ): response is FarmOperationsGetDataIngestionJobDetailsDefaultResponse;
 export function isUnexpected(
-  response: FarmsListByFarmerId200Response | FarmsListByFarmerIdDefaultResponse
+  response: FarmsListByFarmerId200Response | FarmsListByFarmerIdDefaultResponse,
 ): response is FarmsListByFarmerIdDefaultResponse;
 export function isUnexpected(
-  response: FarmsList200Response | FarmsListDefaultResponse
+  response: FarmsList200Response | FarmsListDefaultResponse,
 ): response is FarmsListDefaultResponse;
 export function isUnexpected(
-  response: FarmsGet200Response | FarmsGetDefaultResponse
+  response: FarmsGet200Response | FarmsGetDefaultResponse,
 ): response is FarmsGetDefaultResponse;
 export function isUnexpected(
   response:
     | FarmsCreateOrUpdate200Response
     | FarmsCreateOrUpdate201Response
-    | FarmsCreateOrUpdateDefaultResponse
+    | FarmsCreateOrUpdateDefaultResponse,
 ): response is FarmsCreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: FarmsDelete204Response | FarmsDeleteDefaultResponse
+  response: FarmsDelete204Response | FarmsDeleteDefaultResponse,
 ): response is FarmsDeleteDefaultResponse;
 export function isUnexpected(
   response:
     | FarmsGetCascadeDeleteJobDetails200Response
-    | FarmsGetCascadeDeleteJobDetailsDefaultResponse
+    | FarmsGetCascadeDeleteJobDetailsDefaultResponse,
 ): response is FarmsGetCascadeDeleteJobDetailsDefaultResponse;
 export function isUnexpected(
   response:
     | FarmsCreateCascadeDeleteJob202Response
-    | FarmsCreateCascadeDeleteJobDefaultResponse
+    | FarmsCreateCascadeDeleteJobDefaultResponse,
 ): response is FarmsCreateCascadeDeleteJobDefaultResponse;
 export function isUnexpected(
   response:
     | FieldsListByFarmerId200Response
-    | FieldsListByFarmerIdDefaultResponse
+    | FieldsListByFarmerIdDefaultResponse,
 ): response is FieldsListByFarmerIdDefaultResponse;
 export function isUnexpected(
-  response: FieldsList200Response | FieldsListDefaultResponse
+  response: FieldsList200Response | FieldsListDefaultResponse,
 ): response is FieldsListDefaultResponse;
 export function isUnexpected(
-  response: FieldsGet200Response | FieldsGetDefaultResponse
+  response: FieldsGet200Response | FieldsGetDefaultResponse,
 ): response is FieldsGetDefaultResponse;
 export function isUnexpected(
   response:
     | FieldsCreateOrUpdate200Response
     | FieldsCreateOrUpdate201Response
-    | FieldsCreateOrUpdateDefaultResponse
+    | FieldsCreateOrUpdateDefaultResponse,
 ): response is FieldsCreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: FieldsDelete204Response | FieldsDeleteDefaultResponse
+  response: FieldsDelete204Response | FieldsDeleteDefaultResponse,
 ): response is FieldsDeleteDefaultResponse;
 export function isUnexpected(
   response:
     | FieldsGetCascadeDeleteJobDetails200Response
-    | FieldsGetCascadeDeleteJobDetailsDefaultResponse
+    | FieldsGetCascadeDeleteJobDetailsDefaultResponse,
 ): response is FieldsGetCascadeDeleteJobDetailsDefaultResponse;
 export function isUnexpected(
   response:
     | FieldsCreateCascadeDeleteJob202Response
-    | FieldsCreateCascadeDeleteJobDefaultResponse
+    | FieldsCreateCascadeDeleteJobDefaultResponse,
 ): response is FieldsCreateCascadeDeleteJobDefaultResponse;
 export function isUnexpected(
   response:
     | HarvestDataListByFarmerId200Response
-    | HarvestDataListByFarmerIdDefaultResponse
+    | HarvestDataListByFarmerIdDefaultResponse,
 ): response is HarvestDataListByFarmerIdDefaultResponse;
 export function isUnexpected(
-  response: HarvestDataList200Response | HarvestDataListDefaultResponse
+  response: HarvestDataList200Response | HarvestDataListDefaultResponse,
 ): response is HarvestDataListDefaultResponse;
 export function isUnexpected(
-  response: HarvestDataGet200Response | HarvestDataGetDefaultResponse
+  response: HarvestDataGet200Response | HarvestDataGetDefaultResponse,
 ): response is HarvestDataGetDefaultResponse;
 export function isUnexpected(
   response:
     | HarvestDataCreateOrUpdate200Response
     | HarvestDataCreateOrUpdate201Response
-    | HarvestDataCreateOrUpdateDefaultResponse
+    | HarvestDataCreateOrUpdateDefaultResponse,
 ): response is HarvestDataCreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: HarvestDataDelete204Response | HarvestDataDeleteDefaultResponse
+  response: HarvestDataDelete204Response | HarvestDataDeleteDefaultResponse,
 ): response is HarvestDataDeleteDefaultResponse;
 export function isUnexpected(
   response:
     | ImageProcessingCreateRasterizeJob202Response
-    | ImageProcessingCreateRasterizeJobDefaultResponse
+    | ImageProcessingCreateRasterizeJobDefaultResponse,
 ): response is ImageProcessingCreateRasterizeJobDefaultResponse;
 export function isUnexpected(
-  response: OAuthProvidersList200Response | OAuthProvidersListDefaultResponse
+  response: OAuthProvidersList200Response | OAuthProvidersListDefaultResponse,
 ): response is OAuthProvidersListDefaultResponse;
 export function isUnexpected(
-  response: OAuthProvidersGet200Response | OAuthProvidersGetDefaultResponse
+  response: OAuthProvidersGet200Response | OAuthProvidersGetDefaultResponse,
 ): response is OAuthProvidersGetDefaultResponse;
 export function isUnexpected(
   response:
     | OAuthProvidersCreateOrUpdate200Response
     | OAuthProvidersCreateOrUpdate201Response
-    | OAuthProvidersCreateOrUpdateDefaultResponse
+    | OAuthProvidersCreateOrUpdateDefaultResponse,
 ): response is OAuthProvidersCreateOrUpdateDefaultResponse;
 export function isUnexpected(
   response:
     | OAuthProvidersDelete204Response
-    | OAuthProvidersDeleteDefaultResponse
+    | OAuthProvidersDeleteDefaultResponse,
 ): response is OAuthProvidersDeleteDefaultResponse;
 export function isUnexpected(
-  response: OAuthTokensList200Response | OAuthTokensListDefaultResponse
+  response: OAuthTokensList200Response | OAuthTokensListDefaultResponse,
 ): response is OAuthTokensListDefaultResponse;
 export function isUnexpected(
   response:
     | OAuthTokensGetOAuthConnectionLink200Response
-    | OAuthTokensGetOAuthConnectionLinkDefaultResponse
+    | OAuthTokensGetOAuthConnectionLinkDefaultResponse,
 ): response is OAuthTokensGetOAuthConnectionLinkDefaultResponse;
 export function isUnexpected(
   response:
     | OAuthTokensGetCascadeDeleteJobDetails200Response
-    | OAuthTokensGetCascadeDeleteJobDetailsDefaultResponse
+    | OAuthTokensGetCascadeDeleteJobDetailsDefaultResponse,
 ): response is OAuthTokensGetCascadeDeleteJobDetailsDefaultResponse;
 export function isUnexpected(
   response:
     | OAuthTokensCreateCascadeDeleteJob202Response
-    | OAuthTokensCreateCascadeDeleteJobDefaultResponse
+    | OAuthTokensCreateCascadeDeleteJobDefaultResponse,
 ): response is OAuthTokensCreateCascadeDeleteJobDefaultResponse;
 export function isUnexpected(
   response:
     | PlantingDataListByFarmerId200Response
-    | PlantingDataListByFarmerIdDefaultResponse
+    | PlantingDataListByFarmerIdDefaultResponse,
 ): response is PlantingDataListByFarmerIdDefaultResponse;
 export function isUnexpected(
-  response: PlantingDataList200Response | PlantingDataListDefaultResponse
+  response: PlantingDataList200Response | PlantingDataListDefaultResponse,
 ): response is PlantingDataListDefaultResponse;
 export function isUnexpected(
-  response: PlantingDataGet200Response | PlantingDataGetDefaultResponse
+  response: PlantingDataGet200Response | PlantingDataGetDefaultResponse,
 ): response is PlantingDataGetDefaultResponse;
 export function isUnexpected(
   response:
     | PlantingDataCreateOrUpdate200Response
     | PlantingDataCreateOrUpdate201Response
-    | PlantingDataCreateOrUpdateDefaultResponse
+    | PlantingDataCreateOrUpdateDefaultResponse,
 ): response is PlantingDataCreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: PlantingDataDelete204Response | PlantingDataDeleteDefaultResponse
+  response: PlantingDataDelete204Response | PlantingDataDeleteDefaultResponse,
 ): response is PlantingDataDeleteDefaultResponse;
 export function isUnexpected(
-  response: ScenesList200Response | ScenesListDefaultResponse
+  response: ScenesList200Response | ScenesListDefaultResponse,
 ): response is ScenesListDefaultResponse;
 export function isUnexpected(
   response:
     | ScenesCreateSatelliteDataIngestionJob202Response
-    | ScenesCreateSatelliteDataIngestionJobDefaultResponse
+    | ScenesCreateSatelliteDataIngestionJobDefaultResponse,
 ): response is ScenesCreateSatelliteDataIngestionJobDefaultResponse;
 export function isUnexpected(
   response:
     | ScenesGetSatelliteDataIngestionJobDetails200Response
-    | ScenesGetSatelliteDataIngestionJobDetailsDefaultResponse
+    | ScenesGetSatelliteDataIngestionJobDetailsDefaultResponse,
 ): response is ScenesGetSatelliteDataIngestionJobDetailsDefaultResponse;
 export function isUnexpected(
-  response: ScenesDownload200Response | ScenesDownloadDefaultResponse
+  response: ScenesDownload200Response | ScenesDownloadDefaultResponse,
 ): response is ScenesDownloadDefaultResponse;
 export function isUnexpected(
   response:
     | SeasonalFieldsListByFarmerId200Response
-    | SeasonalFieldsListByFarmerIdDefaultResponse
+    | SeasonalFieldsListByFarmerIdDefaultResponse,
 ): response is SeasonalFieldsListByFarmerIdDefaultResponse;
 export function isUnexpected(
-  response: SeasonalFieldsList200Response | SeasonalFieldsListDefaultResponse
+  response: SeasonalFieldsList200Response | SeasonalFieldsListDefaultResponse,
 ): response is SeasonalFieldsListDefaultResponse;
 export function isUnexpected(
-  response: SeasonalFieldsGet200Response | SeasonalFieldsGetDefaultResponse
+  response: SeasonalFieldsGet200Response | SeasonalFieldsGetDefaultResponse,
 ): response is SeasonalFieldsGetDefaultResponse;
 export function isUnexpected(
   response:
     | SeasonalFieldsCreateOrUpdate200Response
     | SeasonalFieldsCreateOrUpdate201Response
-    | SeasonalFieldsCreateOrUpdateDefaultResponse
+    | SeasonalFieldsCreateOrUpdateDefaultResponse,
 ): response is SeasonalFieldsCreateOrUpdateDefaultResponse;
 export function isUnexpected(
   response:
     | SeasonalFieldsDelete204Response
-    | SeasonalFieldsDeleteDefaultResponse
+    | SeasonalFieldsDeleteDefaultResponse,
 ): response is SeasonalFieldsDeleteDefaultResponse;
 export function isUnexpected(
   response:
     | SeasonalFieldsGetCascadeDeleteJobDetails200Response
-    | SeasonalFieldsGetCascadeDeleteJobDetailsDefaultResponse
+    | SeasonalFieldsGetCascadeDeleteJobDetailsDefaultResponse,
 ): response is SeasonalFieldsGetCascadeDeleteJobDetailsDefaultResponse;
 export function isUnexpected(
   response:
     | SeasonalFieldsCreateCascadeDeleteJob202Response
-    | SeasonalFieldsCreateCascadeDeleteJobDefaultResponse
+    | SeasonalFieldsCreateCascadeDeleteJobDefaultResponse,
 ): response is SeasonalFieldsCreateCascadeDeleteJobDefaultResponse;
 export function isUnexpected(
-  response: SeasonsList200Response | SeasonsListDefaultResponse
+  response: SeasonsList200Response | SeasonsListDefaultResponse,
 ): response is SeasonsListDefaultResponse;
 export function isUnexpected(
-  response: SeasonsGet200Response | SeasonsGetDefaultResponse
+  response: SeasonsGet200Response | SeasonsGetDefaultResponse,
 ): response is SeasonsGetDefaultResponse;
 export function isUnexpected(
   response:
     | SeasonsCreateOrUpdate200Response
     | SeasonsCreateOrUpdate201Response
-    | SeasonsCreateOrUpdateDefaultResponse
+    | SeasonsCreateOrUpdateDefaultResponse,
 ): response is SeasonsCreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: SeasonsDelete204Response | SeasonsDeleteDefaultResponse
+  response: SeasonsDelete204Response | SeasonsDeleteDefaultResponse,
 ): response is SeasonsDeleteDefaultResponse;
 export function isUnexpected(
   response:
     | TillageDataListByFarmerId200Response
-    | TillageDataListByFarmerIdDefaultResponse
+    | TillageDataListByFarmerIdDefaultResponse,
 ): response is TillageDataListByFarmerIdDefaultResponse;
 export function isUnexpected(
-  response: TillageDataList200Response | TillageDataListDefaultResponse
+  response: TillageDataList200Response | TillageDataListDefaultResponse,
 ): response is TillageDataListDefaultResponse;
 export function isUnexpected(
-  response: TillageDataGet200Response | TillageDataGetDefaultResponse
+  response: TillageDataGet200Response | TillageDataGetDefaultResponse,
 ): response is TillageDataGetDefaultResponse;
 export function isUnexpected(
   response:
     | TillageDataCreateOrUpdate200Response
     | TillageDataCreateOrUpdate201Response
-    | TillageDataCreateOrUpdateDefaultResponse
+    | TillageDataCreateOrUpdateDefaultResponse,
 ): response is TillageDataCreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: TillageDataDelete204Response | TillageDataDeleteDefaultResponse
+  response: TillageDataDelete204Response | TillageDataDeleteDefaultResponse,
 ): response is TillageDataDeleteDefaultResponse;
 export function isUnexpected(
-  response: WeatherList200Response | WeatherListDefaultResponse
+  response: WeatherList200Response | WeatherListDefaultResponse,
 ): response is WeatherListDefaultResponse;
 export function isUnexpected(
   response:
     | WeatherGetDataIngestionJobDetails200Response
-    | WeatherGetDataIngestionJobDetailsDefaultResponse
+    | WeatherGetDataIngestionJobDetailsDefaultResponse,
 ): response is WeatherGetDataIngestionJobDetailsDefaultResponse;
 export function isUnexpected(
   response:
     | WeatherCreateDataIngestionJob202Response
-    | WeatherCreateDataIngestionJobDefaultResponse
+    | WeatherCreateDataIngestionJobDefaultResponse,
 ): response is WeatherCreateDataIngestionJobDefaultResponse;
 export function isUnexpected(
   response:
     | WeatherGetDataDeleteJobDetails200Response
-    | WeatherGetDataDeleteJobDetailsDefaultResponse
+    | WeatherGetDataDeleteJobDetailsDefaultResponse,
 ): response is WeatherGetDataDeleteJobDetailsDefaultResponse;
 export function isUnexpected(
   response:
     | WeatherCreateDataDeleteJob202Response
-    | WeatherCreateDataDeleteJobDefaultResponse
+    | WeatherCreateDataDeleteJobDefaultResponse,
 ): response is WeatherCreateDataDeleteJobDefaultResponse;
 export function isUnexpected(
   response:
@@ -914,7 +914,7 @@ export function isUnexpected(
     | WeatherGetDataDeleteJobDetails200Response
     | WeatherGetDataDeleteJobDetailsDefaultResponse
     | WeatherCreateDataDeleteJob202Response
-    | WeatherCreateDataDeleteJobDefaultResponse
+    | WeatherCreateDataDeleteJobDefaultResponse,
 ): response is
   | ApplicationDataListByFarmerIdDefaultResponse
   | ApplicationDataListDefaultResponse
@@ -1059,7 +1059,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

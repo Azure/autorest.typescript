@@ -24,7 +24,7 @@ import {
   PetsCreateAPInPropertiesResponse,
   PetAPInPropertiesWithAPString,
   PetsCreateAPInPropertiesWithAPStringOptionalParams,
-  PetsCreateAPInPropertiesWithAPStringResponse
+  PetsCreateAPInPropertiesWithAPStringResponse,
 } from "../models";
 
 /** Interface representing a Pets. */
@@ -36,7 +36,7 @@ export interface Pets {
    */
   createAPTrue(
     createParameters: PetAPTrue,
-    options?: PetsCreateAPTrueOptionalParams
+    options?: PetsCreateAPTrueOptionalParams,
   ): Promise<PetsCreateAPTrueResponse>;
   /**
    * Create a CatAPTrue which contains more properties than what is defined.
@@ -45,7 +45,7 @@ export interface Pets {
    */
   createCatAPTrue(
     createParameters: CatAPTrue,
-    options?: PetsCreateCatAPTrueOptionalParams
+    options?: PetsCreateCatAPTrueOptionalParams,
   ): Promise<PetsCreateCatAPTrueResponse>;
   /**
    * Create a Pet which contains more properties than what is defined.
@@ -54,7 +54,7 @@ export interface Pets {
    */
   createAPObject(
     createParameters: PetAPObject,
-    options?: PetsCreateAPObjectOptionalParams
+    options?: PetsCreateAPObjectOptionalParams,
   ): Promise<PetsCreateAPObjectResponse>;
   /**
    * Create a Pet which contains more properties than what is defined.
@@ -63,7 +63,7 @@ export interface Pets {
    */
   createAPString(
     createParameters: PetAPString,
-    options?: PetsCreateAPStringOptionalParams
+    options?: PetsCreateAPStringOptionalParams,
   ): Promise<PetsCreateAPStringResponse>;
   /**
    * Create a Pet which contains more properties than what is defined.
@@ -72,7 +72,7 @@ export interface Pets {
    */
   createAPInProperties(
     createParameters: PetAPInProperties,
-    options?: PetsCreateAPInPropertiesOptionalParams
+    options?: PetsCreateAPInPropertiesOptionalParams,
   ): Promise<PetsCreateAPInPropertiesResponse>;
   /**
    * Create a Pet which contains more properties than what is defined.
@@ -81,6 +81,6 @@ export interface Pets {
    */
   createAPInPropertiesWithAPString(
     createParameters: PetAPInPropertiesWithAPString,
-    options?: PetsCreateAPInPropertiesWithAPStringOptionalParams
+    options?: PetsCreateAPInPropertiesWithAPStringOptionalParams,
   ): Promise<PetsCreateAPInPropertiesWithAPStringResponse>;
 }

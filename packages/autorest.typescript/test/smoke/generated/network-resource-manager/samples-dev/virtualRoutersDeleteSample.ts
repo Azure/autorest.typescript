@@ -28,7 +28,7 @@ async function deleteVirtualRouter() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualRouters.beginDeleteAndWait(
     resourceGroupName,
-    virtualRouterName
+    virtualRouterName,
   );
   console.log(result);
 }

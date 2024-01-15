@@ -36,7 +36,7 @@ import {
   ExplicitPostRequiredArrayPropertyOptionalParams,
   ExplicitPostOptionalArrayPropertyOptionalParams,
   ExplicitPostRequiredArrayHeaderOptionalParams,
-  ExplicitPostOptionalArrayHeaderOptionalParams
+  ExplicitPostOptionalArrayHeaderOptionalParams,
 } from "../models";
 
 /** Interface representing a Explicit. */
@@ -46,7 +46,7 @@ export interface Explicit {
    * @param options The options parameters.
    */
   putOptionalBinaryBody(
-    options?: ExplicitPutOptionalBinaryBodyOptionalParams
+    options?: ExplicitPutOptionalBinaryBodyOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly required body parameter
@@ -55,7 +55,7 @@ export interface Explicit {
    */
   putRequiredBinaryBody(
     bodyParameter: coreRestPipeline.RequestBodyType,
-    options?: ExplicitPutRequiredBinaryBodyOptionalParams
+    options?: ExplicitPutRequiredBinaryBodyOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly required integer. Please put null and the client library should throw before the
@@ -65,14 +65,14 @@ export interface Explicit {
    */
   postRequiredIntegerParameter(
     bodyParameter: number,
-    options?: ExplicitPostRequiredIntegerParameterOptionalParams
+    options?: ExplicitPostRequiredIntegerParameterOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly optional integer. Please put null.
    * @param options The options parameters.
    */
   postOptionalIntegerParameter(
-    options?: ExplicitPostOptionalIntegerParameterOptionalParams
+    options?: ExplicitPostOptionalIntegerParameterOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client
@@ -82,14 +82,14 @@ export interface Explicit {
    */
   postRequiredIntegerProperty(
     bodyParameter: IntWrapper,
-    options?: ExplicitPostRequiredIntegerPropertyOptionalParams
+    options?: ExplicitPostRequiredIntegerPropertyOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
    * @param options The options parameters.
    */
   postOptionalIntegerProperty(
-    options?: ExplicitPostOptionalIntegerPropertyOptionalParams
+    options?: ExplicitPostOptionalIntegerPropertyOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly required integer. Please put a header 'headerParameter' => null and the client
@@ -99,14 +99,14 @@ export interface Explicit {
    */
   postRequiredIntegerHeader(
     headerParameter: number,
-    options?: ExplicitPostRequiredIntegerHeaderOptionalParams
+    options?: ExplicitPostRequiredIntegerHeaderOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly optional integer. Please put a header 'headerParameter' => null.
    * @param options The options parameters.
    */
   postOptionalIntegerHeader(
-    options?: ExplicitPostOptionalIntegerHeaderOptionalParams
+    options?: ExplicitPostOptionalIntegerHeaderOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly required string. Please put null and the client library should throw before the
@@ -116,14 +116,14 @@ export interface Explicit {
    */
   postRequiredStringParameter(
     bodyParameter: string,
-    options?: ExplicitPostRequiredStringParameterOptionalParams
+    options?: ExplicitPostRequiredStringParameterOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly optional string. Please put null.
    * @param options The options parameters.
    */
   postOptionalStringParameter(
-    options?: ExplicitPostOptionalStringParameterOptionalParams
+    options?: ExplicitPostOptionalStringParameterOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
@@ -133,14 +133,14 @@ export interface Explicit {
    */
   postRequiredStringProperty(
     bodyParameter: StringWrapper,
-    options?: ExplicitPostRequiredStringPropertyOptionalParams
+    options?: ExplicitPostRequiredStringPropertyOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
    * @param options The options parameters.
    */
   postOptionalStringProperty(
-    options?: ExplicitPostOptionalStringPropertyOptionalParams
+    options?: ExplicitPostOptionalStringPropertyOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly required string. Please put a header 'headerParameter' => null and the client
@@ -150,14 +150,14 @@ export interface Explicit {
    */
   postRequiredStringHeader(
     headerParameter: string,
-    options?: ExplicitPostRequiredStringHeaderOptionalParams
+    options?: ExplicitPostRequiredStringHeaderOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly optional string. Please put a header 'headerParameter' => null.
    * @param options The options parameters.
    */
   postOptionalStringHeader(
-    options?: ExplicitPostOptionalStringHeaderOptionalParams
+    options?: ExplicitPostOptionalStringHeaderOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly required complex object. Please put null and the client library should throw before
@@ -167,14 +167,14 @@ export interface Explicit {
    */
   postRequiredClassParameter(
     bodyParameter: Product,
-    options?: ExplicitPostRequiredClassParameterOptionalParams
+    options?: ExplicitPostRequiredClassParameterOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly optional complex object. Please put null.
    * @param options The options parameters.
    */
   postOptionalClassParameter(
-    options?: ExplicitPostOptionalClassParameterOptionalParams
+    options?: ExplicitPostOptionalClassParameterOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null and
@@ -184,14 +184,14 @@ export interface Explicit {
    */
   postRequiredClassProperty(
     bodyParameter: ClassWrapper,
-    options?: ExplicitPostRequiredClassPropertyOptionalParams
+    options?: ExplicitPostRequiredClassPropertyOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
    * @param options The options parameters.
    */
   postOptionalClassProperty(
-    options?: ExplicitPostOptionalClassPropertyOptionalParams
+    options?: ExplicitPostOptionalClassPropertyOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly required array. Please put null and the client library should throw before the
@@ -201,14 +201,14 @@ export interface Explicit {
    */
   postRequiredArrayParameter(
     bodyParameter: string[],
-    options?: ExplicitPostRequiredArrayParameterOptionalParams
+    options?: ExplicitPostRequiredArrayParameterOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly optional array. Please put null.
    * @param options The options parameters.
    */
   postOptionalArrayParameter(
-    options?: ExplicitPostOptionalArrayParameterOptionalParams
+    options?: ExplicitPostOptionalArrayParameterOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the client
@@ -218,14 +218,14 @@ export interface Explicit {
    */
   postRequiredArrayProperty(
     bodyParameter: ArrayWrapper,
-    options?: ExplicitPostRequiredArrayPropertyOptionalParams
+    options?: ExplicitPostRequiredArrayPropertyOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
    * @param options The options parameters.
    */
   postOptionalArrayProperty(
-    options?: ExplicitPostOptionalArrayPropertyOptionalParams
+    options?: ExplicitPostOptionalArrayPropertyOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly required array. Please put a header 'headerParameter' => null and the client library
@@ -235,13 +235,13 @@ export interface Explicit {
    */
   postRequiredArrayHeader(
     headerParameter: string[],
-    options?: ExplicitPostRequiredArrayHeaderOptionalParams
+    options?: ExplicitPostRequiredArrayHeaderOptionalParams,
   ): Promise<void>;
   /**
    * Test explicitly optional integer. Please put a header 'headerParameter' => null.
    * @param options The options parameters.
    */
   postOptionalArrayHeader(
-    options?: ExplicitPostOptionalArrayHeaderOptionalParams
+    options?: ExplicitPostOptionalArrayHeaderOptionalParams,
   ): Promise<void>;
 }

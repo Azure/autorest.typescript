@@ -56,7 +56,7 @@ import {
   PolymorphicrecursivePutValidParameters,
   ReadonlypropertyGetValidParameters,
   ReadonlypropertyPutValidParameters,
-  FlattencomplexGetValidParameters
+  FlattencomplexGetValidParameters,
 } from "./parameters";
 import {
   BasicGetValid200Response,
@@ -167,25 +167,25 @@ import {
   ReadonlypropertyGetValidDefaultResponse,
   ReadonlypropertyPutValid200Response,
   ReadonlypropertyPutValidDefaultResponse,
-  FlattencomplexGetValid200Response
+  FlattencomplexGetValid200Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface BasicGetValid {
   /** Get complex type {id: 2, name: 'abc', color: 'YELLOW'} */
   get(
-    options?: BasicGetValidParameters
+    options?: BasicGetValidParameters,
   ): StreamableMethod<BasicGetValid200Response | BasicGetValidDefaultResponse>;
   /** Please put {id: 2, name: 'abc', color: 'Magenta'} */
   put(
-    options: BasicPutValidParameters
+    options: BasicPutValidParameters,
   ): StreamableMethod<BasicPutValid200Response | BasicPutValidDefaultResponse>;
 }
 
 export interface BasicGetInvalid {
   /** Get a basic complex type that is invalid for the local strong type */
   get(
-    options?: BasicGetInvalidParameters
+    options?: BasicGetInvalidParameters,
   ): StreamableMethod<
     BasicGetInvalid200Response | BasicGetInvalidDefaultResponse
   >;
@@ -194,21 +194,21 @@ export interface BasicGetInvalid {
 export interface BasicGetEmpty {
   /** Get a basic complex type that is empty */
   get(
-    options?: BasicGetEmptyParameters
+    options?: BasicGetEmptyParameters,
   ): StreamableMethod<BasicGetEmpty200Response | BasicGetEmptyDefaultResponse>;
 }
 
 export interface BasicGetNull {
   /** Get a basic complex type whose properties are null */
   get(
-    options?: BasicGetNullParameters
+    options?: BasicGetNullParameters,
   ): StreamableMethod<BasicGetNull200Response | BasicGetNullDefaultResponse>;
 }
 
 export interface BasicGetNotProvided {
   /** Get a basic complex type while the server doesn't provide a response payload */
   get(
-    options?: BasicGetNotProvidedParameters
+    options?: BasicGetNotProvidedParameters,
   ): StreamableMethod<
     BasicGetNotProvided200Response | BasicGetNotProvidedDefaultResponse
   >;
@@ -217,13 +217,13 @@ export interface BasicGetNotProvided {
 export interface PrimitiveGetInt {
   /** Get complex types with integer properties */
   get(
-    options?: PrimitiveGetIntParameters
+    options?: PrimitiveGetIntParameters,
   ): StreamableMethod<
     PrimitiveGetInt200Response | PrimitiveGetIntDefaultResponse
   >;
   /** Put complex types with integer properties */
   put(
-    options: PrimitivePutIntParameters
+    options: PrimitivePutIntParameters,
   ): StreamableMethod<
     PrimitivePutInt200Response | PrimitivePutIntDefaultResponse
   >;
@@ -232,13 +232,13 @@ export interface PrimitiveGetInt {
 export interface PrimitiveGetLong {
   /** Get complex types with long properties */
   get(
-    options?: PrimitiveGetLongParameters
+    options?: PrimitiveGetLongParameters,
   ): StreamableMethod<
     PrimitiveGetLong200Response | PrimitiveGetLongDefaultResponse
   >;
   /** Put complex types with long properties */
   put(
-    options: PrimitivePutLongParameters
+    options: PrimitivePutLongParameters,
   ): StreamableMethod<
     PrimitivePutLong200Response | PrimitivePutLongDefaultResponse
   >;
@@ -247,13 +247,13 @@ export interface PrimitiveGetLong {
 export interface PrimitiveGetFloat {
   /** Get complex types with float properties */
   get(
-    options?: PrimitiveGetFloatParameters
+    options?: PrimitiveGetFloatParameters,
   ): StreamableMethod<
     PrimitiveGetFloat200Response | PrimitiveGetFloatDefaultResponse
   >;
   /** Put complex types with float properties */
   put(
-    options: PrimitivePutFloatParameters
+    options: PrimitivePutFloatParameters,
   ): StreamableMethod<
     PrimitivePutFloat200Response | PrimitivePutFloatDefaultResponse
   >;
@@ -262,13 +262,13 @@ export interface PrimitiveGetFloat {
 export interface PrimitiveGetDouble {
   /** Get complex types with double properties */
   get(
-    options?: PrimitiveGetDoubleParameters
+    options?: PrimitiveGetDoubleParameters,
   ): StreamableMethod<
     PrimitiveGetDouble200Response | PrimitiveGetDoubleDefaultResponse
   >;
   /** Put complex types with double properties */
   put(
-    options: PrimitivePutDoubleParameters
+    options: PrimitivePutDoubleParameters,
   ): StreamableMethod<
     PrimitivePutDouble200Response | PrimitivePutDoubleDefaultResponse
   >;
@@ -277,13 +277,13 @@ export interface PrimitiveGetDouble {
 export interface PrimitiveGetBool {
   /** Get complex types with bool properties */
   get(
-    options?: PrimitiveGetBoolParameters
+    options?: PrimitiveGetBoolParameters,
   ): StreamableMethod<
     PrimitiveGetBool200Response | PrimitiveGetBoolDefaultResponse
   >;
   /** Put complex types with bool properties */
   put(
-    options: PrimitivePutBoolParameters
+    options: PrimitivePutBoolParameters,
   ): StreamableMethod<
     PrimitivePutBool200Response | PrimitivePutBoolDefaultResponse
   >;
@@ -292,13 +292,13 @@ export interface PrimitiveGetBool {
 export interface PrimitiveGetString {
   /** Get complex types with string properties */
   get(
-    options?: PrimitiveGetStringParameters
+    options?: PrimitiveGetStringParameters,
   ): StreamableMethod<
     PrimitiveGetString200Response | PrimitiveGetStringDefaultResponse
   >;
   /** Put complex types with string properties */
   put(
-    options: PrimitivePutStringParameters
+    options: PrimitivePutStringParameters,
   ): StreamableMethod<
     PrimitivePutString200Response | PrimitivePutStringDefaultResponse
   >;
@@ -307,13 +307,13 @@ export interface PrimitiveGetString {
 export interface PrimitiveGetDate {
   /** Get complex types with date properties */
   get(
-    options?: PrimitiveGetDateParameters
+    options?: PrimitiveGetDateParameters,
   ): StreamableMethod<
     PrimitiveGetDate200Response | PrimitiveGetDateDefaultResponse
   >;
   /** Put complex types with date properties */
   put(
-    options: PrimitivePutDateParameters
+    options: PrimitivePutDateParameters,
   ): StreamableMethod<
     PrimitivePutDate200Response | PrimitivePutDateDefaultResponse
   >;
@@ -322,13 +322,13 @@ export interface PrimitiveGetDate {
 export interface PrimitiveGetDateTime {
   /** Get complex types with datetime properties */
   get(
-    options?: PrimitiveGetDateTimeParameters
+    options?: PrimitiveGetDateTimeParameters,
   ): StreamableMethod<
     PrimitiveGetDateTime200Response | PrimitiveGetDateTimeDefaultResponse
   >;
   /** Put complex types with datetime properties */
   put(
-    options: PrimitivePutDateTimeParameters
+    options: PrimitivePutDateTimeParameters,
   ): StreamableMethod<
     PrimitivePutDateTime200Response | PrimitivePutDateTimeDefaultResponse
   >;
@@ -337,14 +337,14 @@ export interface PrimitiveGetDateTime {
 export interface PrimitiveGetDateTimeRfc1123 {
   /** Get complex types with datetimeRfc1123 properties */
   get(
-    options?: PrimitiveGetDateTimeRfc1123Parameters
+    options?: PrimitiveGetDateTimeRfc1123Parameters,
   ): StreamableMethod<
     | PrimitiveGetDateTimeRfc1123200Response
     | PrimitiveGetDateTimeRfc1123DefaultResponse
   >;
   /** Put complex types with datetimeRfc1123 properties */
   put(
-    options: PrimitivePutDateTimeRfc1123Parameters
+    options: PrimitivePutDateTimeRfc1123Parameters,
   ): StreamableMethod<
     | PrimitivePutDateTimeRfc1123200Response
     | PrimitivePutDateTimeRfc1123DefaultResponse
@@ -354,13 +354,13 @@ export interface PrimitiveGetDateTimeRfc1123 {
 export interface PrimitiveGetDuration {
   /** Get complex types with duration properties */
   get(
-    options?: PrimitiveGetDurationParameters
+    options?: PrimitiveGetDurationParameters,
   ): StreamableMethod<
     PrimitiveGetDuration200Response | PrimitiveGetDurationDefaultResponse
   >;
   /** Put complex types with duration properties */
   put(
-    options: PrimitivePutDurationParameters
+    options: PrimitivePutDurationParameters,
   ): StreamableMethod<
     PrimitivePutDuration200Response | PrimitivePutDurationDefaultResponse
   >;
@@ -369,13 +369,13 @@ export interface PrimitiveGetDuration {
 export interface PrimitiveGetByte {
   /** Get complex types with byte properties */
   get(
-    options?: PrimitiveGetByteParameters
+    options?: PrimitiveGetByteParameters,
   ): StreamableMethod<
     PrimitiveGetByte200Response | PrimitiveGetByteDefaultResponse
   >;
   /** Put complex types with byte properties */
   put(
-    options: PrimitivePutByteParameters
+    options: PrimitivePutByteParameters,
   ): StreamableMethod<
     PrimitivePutByte200Response | PrimitivePutByteDefaultResponse
   >;
@@ -384,29 +384,29 @@ export interface PrimitiveGetByte {
 export interface ArrayGetValid {
   /** Get complex types with array property */
   get(
-    options?: ArrayGetValidParameters
+    options?: ArrayGetValidParameters,
   ): StreamableMethod<ArrayGetValid200Response | ArrayGetValidDefaultResponse>;
   /** Put complex types with array property */
   put(
-    options: ArrayPutValidParameters
+    options: ArrayPutValidParameters,
   ): StreamableMethod<ArrayPutValid200Response | ArrayPutValidDefaultResponse>;
 }
 
 export interface ArrayGetEmpty {
   /** Get complex types with array property which is empty */
   get(
-    options?: ArrayGetEmptyParameters
+    options?: ArrayGetEmptyParameters,
   ): StreamableMethod<ArrayGetEmpty200Response | ArrayGetEmptyDefaultResponse>;
   /** Put complex types with array property which is empty */
   put(
-    options: ArrayPutEmptyParameters
+    options: ArrayPutEmptyParameters,
   ): StreamableMethod<ArrayPutEmpty200Response | ArrayPutEmptyDefaultResponse>;
 }
 
 export interface ArrayGetNotProvided {
   /** Get complex types with array property while server doesn't provide a response payload */
   get(
-    options?: ArrayGetNotProvidedParameters
+    options?: ArrayGetNotProvidedParameters,
   ): StreamableMethod<
     ArrayGetNotProvided200Response | ArrayGetNotProvidedDefaultResponse
   >;
@@ -415,13 +415,13 @@ export interface ArrayGetNotProvided {
 export interface DictionaryGetValid {
   /** Get complex types with dictionary property */
   get(
-    options?: DictionaryGetValidParameters
+    options?: DictionaryGetValidParameters,
   ): StreamableMethod<
     DictionaryGetValid200Response | DictionaryGetValidDefaultResponse
   >;
   /** Put complex types with dictionary property */
   put(
-    options: DictionaryPutValidParameters
+    options: DictionaryPutValidParameters,
   ): StreamableMethod<
     DictionaryPutValid200Response | DictionaryPutValidDefaultResponse
   >;
@@ -430,13 +430,13 @@ export interface DictionaryGetValid {
 export interface DictionaryGetEmpty {
   /** Get complex types with dictionary property which is empty */
   get(
-    options?: DictionaryGetEmptyParameters
+    options?: DictionaryGetEmptyParameters,
   ): StreamableMethod<
     DictionaryGetEmpty200Response | DictionaryGetEmptyDefaultResponse
   >;
   /** Put complex types with dictionary property which is empty */
   put(
-    options: DictionaryPutEmptyParameters
+    options: DictionaryPutEmptyParameters,
   ): StreamableMethod<
     DictionaryPutEmpty200Response | DictionaryPutEmptyDefaultResponse
   >;
@@ -445,7 +445,7 @@ export interface DictionaryGetEmpty {
 export interface DictionaryGetNull {
   /** Get complex types with dictionary property which is null */
   get(
-    options?: DictionaryGetNullParameters
+    options?: DictionaryGetNullParameters,
   ): StreamableMethod<
     DictionaryGetNull200Response | DictionaryGetNullDefaultResponse
   >;
@@ -454,7 +454,7 @@ export interface DictionaryGetNull {
 export interface DictionaryGetNotProvided {
   /** Get complex types with dictionary property while server doesn't provide a response payload */
   get(
-    options?: DictionaryGetNotProvidedParameters
+    options?: DictionaryGetNotProvidedParameters,
   ): StreamableMethod<
     | DictionaryGetNotProvided200Response
     | DictionaryGetNotProvidedDefaultResponse
@@ -464,13 +464,13 @@ export interface DictionaryGetNotProvided {
 export interface InheritanceGetValid {
   /** Get complex types that extend others */
   get(
-    options?: InheritanceGetValidParameters
+    options?: InheritanceGetValidParameters,
   ): StreamableMethod<
     InheritanceGetValid200Response | InheritanceGetValidDefaultResponse
   >;
   /** Put complex types that extend others */
   put(
-    options: InheritancePutValidParameters
+    options: InheritancePutValidParameters,
   ): StreamableMethod<
     InheritancePutValid200Response | InheritancePutValidDefaultResponse
   >;
@@ -479,13 +479,13 @@ export interface InheritanceGetValid {
 export interface PolymorphismGetValid {
   /** Get complex types that are polymorphic */
   get(
-    options?: PolymorphismGetValidParameters
+    options?: PolymorphismGetValidParameters,
   ): StreamableMethod<
     PolymorphismGetValid200Response | PolymorphismGetValidDefaultResponse
   >;
   /** Put complex types that are polymorphic */
   put(
-    options: PolymorphismPutValidParameters
+    options: PolymorphismPutValidParameters,
   ): StreamableMethod<
     PolymorphismPutValid200Response | PolymorphismPutValidDefaultResponse
   >;
@@ -494,7 +494,7 @@ export interface PolymorphismGetValid {
 export interface PolymorphismGetDotSyntax {
   /** Get complex types that are polymorphic, JSON key contains a dot */
   get(
-    options?: PolymorphismGetDotSyntaxParameters
+    options?: PolymorphismGetDotSyntaxParameters,
   ): StreamableMethod<
     | PolymorphismGetDotSyntax200Response
     | PolymorphismGetDotSyntaxDefaultResponse
@@ -504,7 +504,7 @@ export interface PolymorphismGetDotSyntax {
 export interface PolymorphismGetComposedWithDiscriminator {
   /** Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire. */
   get(
-    options?: PolymorphismGetComposedWithDiscriminatorParameters
+    options?: PolymorphismGetComposedWithDiscriminatorParameters,
   ): StreamableMethod<
     | PolymorphismGetComposedWithDiscriminator200Response
     | PolymorphismGetComposedWithDiscriminatorDefaultResponse
@@ -514,7 +514,7 @@ export interface PolymorphismGetComposedWithDiscriminator {
 export interface PolymorphismGetComposedWithoutDiscriminator {
   /** Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property. */
   get(
-    options?: PolymorphismGetComposedWithoutDiscriminatorParameters
+    options?: PolymorphismGetComposedWithoutDiscriminatorParameters,
   ): StreamableMethod<
     | PolymorphismGetComposedWithoutDiscriminator200Response
     | PolymorphismGetComposedWithoutDiscriminatorDefaultResponse
@@ -524,14 +524,14 @@ export interface PolymorphismGetComposedWithoutDiscriminator {
 export interface PolymorphismGetComplicated {
   /** Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties */
   get(
-    options?: PolymorphismGetComplicatedParameters
+    options?: PolymorphismGetComplicatedParameters,
   ): StreamableMethod<
     | PolymorphismGetComplicated200Response
     | PolymorphismGetComplicatedDefaultResponse
   >;
   /** Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties */
   put(
-    options: PolymorphismPutComplicatedParameters
+    options: PolymorphismPutComplicatedParameters,
   ): StreamableMethod<
     | PolymorphismPutComplicated200Response
     | PolymorphismPutComplicatedDefaultResponse
@@ -541,7 +541,7 @@ export interface PolymorphismGetComplicated {
 export interface PolymorphismPutMissingDiscriminator {
   /** Put complex types that are polymorphic, omitting the discriminator */
   put(
-    options: PolymorphismPutMissingDiscriminatorParameters
+    options: PolymorphismPutMissingDiscriminatorParameters,
   ): StreamableMethod<
     | PolymorphismPutMissingDiscriminator200Response
     | PolymorphismPutMissingDiscriminatorDefaultResponse
@@ -551,7 +551,7 @@ export interface PolymorphismPutMissingDiscriminator {
 export interface PolymorphismPutValidMissingRequired {
   /** Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client */
   put(
-    options: PolymorphismPutValidMissingRequiredParameters
+    options: PolymorphismPutValidMissingRequiredParameters,
   ): StreamableMethod<
     | PolymorphismPutValidMissingRequired200Response
     | PolymorphismPutValidMissingRequiredDefaultResponse
@@ -561,14 +561,14 @@ export interface PolymorphismPutValidMissingRequired {
 export interface PolymorphicrecursiveGetValid {
   /** Get complex types that are polymorphic and have recursive references */
   get(
-    options?: PolymorphicrecursiveGetValidParameters
+    options?: PolymorphicrecursiveGetValidParameters,
   ): StreamableMethod<
     | PolymorphicrecursiveGetValid200Response
     | PolymorphicrecursiveGetValidDefaultResponse
   >;
   /** Put complex types that are polymorphic and have recursive references */
   put(
-    options: PolymorphicrecursivePutValidParameters
+    options: PolymorphicrecursivePutValidParameters,
   ): StreamableMethod<
     | PolymorphicrecursivePutValid200Response
     | PolymorphicrecursivePutValidDefaultResponse
@@ -578,14 +578,14 @@ export interface PolymorphicrecursiveGetValid {
 export interface ReadonlypropertyGetValid {
   /** Get complex types that have readonly properties */
   get(
-    options?: ReadonlypropertyGetValidParameters
+    options?: ReadonlypropertyGetValidParameters,
   ): StreamableMethod<
     | ReadonlypropertyGetValid200Response
     | ReadonlypropertyGetValidDefaultResponse
   >;
   /** Put complex types that have readonly properties */
   put(
-    options: ReadonlypropertyPutValidParameters
+    options: ReadonlypropertyPutValidParameters,
   ): StreamableMethod<
     | ReadonlypropertyPutValid200Response
     | ReadonlypropertyPutValidDefaultResponse
@@ -594,7 +594,7 @@ export interface ReadonlypropertyGetValid {
 
 export interface FlattencomplexGetValid {
   get(
-    options?: FlattencomplexGetValidParameters
+    options?: FlattencomplexGetValidParameters,
   ): StreamableMethod<FlattencomplexGetValid200Response>;
 }
 
@@ -653,21 +653,21 @@ export interface Routes {
   (path: "/complex/polymorphism/dotsyntax"): PolymorphismGetDotSyntax;
   /** Resource for '/complex/polymorphism/composedWithDiscriminator' has methods for the following verbs: get */
   (
-    path: "/complex/polymorphism/composedWithDiscriminator"
+    path: "/complex/polymorphism/composedWithDiscriminator",
   ): PolymorphismGetComposedWithDiscriminator;
   /** Resource for '/complex/polymorphism/composedWithoutDiscriminator' has methods for the following verbs: get */
   (
-    path: "/complex/polymorphism/composedWithoutDiscriminator"
+    path: "/complex/polymorphism/composedWithoutDiscriminator",
   ): PolymorphismGetComposedWithoutDiscriminator;
   /** Resource for '/complex/polymorphism/complicated' has methods for the following verbs: get, put */
   (path: "/complex/polymorphism/complicated"): PolymorphismGetComplicated;
   /** Resource for '/complex/polymorphism/missingdiscriminator' has methods for the following verbs: put */
   (
-    path: "/complex/polymorphism/missingdiscriminator"
+    path: "/complex/polymorphism/missingdiscriminator",
   ): PolymorphismPutMissingDiscriminator;
   /** Resource for '/complex/polymorphism/missingrequired/invalid' has methods for the following verbs: put */
   (
-    path: "/complex/polymorphism/missingrequired/invalid"
+    path: "/complex/polymorphism/missingrequired/invalid",
   ): PolymorphismPutValidMissingRequired;
   /** Resource for '/complex/polymorphicrecursive/valid' has methods for the following verbs: get, put */
   (path: "/complex/polymorphicrecursive/valid"): PolymorphicrecursiveGetValid;

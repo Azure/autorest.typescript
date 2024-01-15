@@ -13,7 +13,7 @@ import { TranslatorClient } from "./clientDefinitions";
  */
 export default function createClient(
   endpoint: string,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): TranslatorClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "3.0";

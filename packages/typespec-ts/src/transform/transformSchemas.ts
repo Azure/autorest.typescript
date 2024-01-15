@@ -54,6 +54,11 @@ export function transformSchemas(
     transformSchemaForRoute(route);
   }
   function transformSchemaForRoute(route: HttpOperation) {
+    if (route.parameters) {
+      for (const param of route.parameters.parameters) {
+        getGeneratedModels(param.param, SchemaContext.Input);
+      }
+    }
     const bodyModel = getBodyType(program, route);
     if (
       bodyModel &&
@@ -66,6 +71,13 @@ export function transformSchemas(
         continue;
       }
       for (const resps of resp.responses) {
+        const headers = resps?.headers;
+        if (headers && Object.keys(headers).length) {
+          for (const value of Object.values(headers)) {
+            getGeneratedModels(value, SchemaContext.Output);
+          }
+        }
+
         const respModel = resps.body;
         if (!respModel) {
           continue;
@@ -125,7 +137,10 @@ export function transformSchemas(
       if (
         indexer?.value &&
         (!program.stateMap(modelKey).get(indexer?.value) ||
-          !program.stateMap(modelKey).get(indexer?.value)?.includes(context))
+          !program
+            .stateMap(modelKey)
+            .get(indexer?.value)
+            ?.includes(context))
       ) {
         getGeneratedModels(indexer.value, context);
       }
@@ -202,6 +217,8 @@ export function transformSchemas(
       if (!model.expression) {
         setModelMap(model, context);
       }
+    } else if (model.kind === "ModelProperty") {
+      getGeneratedModels(model.type, context);
     }
   }
   const allSchemas = Array.from(schemas, function (item) {

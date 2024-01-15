@@ -10,7 +10,7 @@ import * as coreClient from "@azure/core-client";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import * as coreAuth from "@azure/core-auth";
 import {
@@ -20,7 +20,7 @@ import {
   ResourcesImpl,
   ResourceGroupsImpl,
   TagsImpl,
-  DeploymentOperationsImpl
+  DeploymentOperationsImpl,
 } from "./operations";
 import {
   Operations,
@@ -29,7 +29,7 @@ import {
   Resources,
   ResourceGroups,
   Tags,
-  DeploymentOperations
+  DeploymentOperations,
 } from "./operationsInterfaces";
 import { ResourceManagementClientOptionalParams } from "./models";
 
@@ -47,16 +47,16 @@ export class ResourceManagementClient extends coreClient.ServiceClient {
   constructor(
     credentials: coreAuth.TokenCredential,
     subscriptionId: string,
-    options?: ResourceManagementClientOptionalParams
+    options?: ResourceManagementClientOptionalParams,
   );
   constructor(
     credentials: coreAuth.TokenCredential,
-    options?: ResourceManagementClientOptionalParams
+    options?: ResourceManagementClientOptionalParams,
   );
   constructor(
     credentials: coreAuth.TokenCredential,
     subscriptionIdOrOptions?: ResourceManagementClientOptionalParams | string,
-    options?: ResourceManagementClientOptionalParams
+    options?: ResourceManagementClientOptionalParams,
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");
@@ -76,7 +76,7 @@ export class ResourceManagementClient extends coreClient.ServiceClient {
     }
     const defaults: ResourceManagementClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8",
-      credential: credentials
+      credential: credentials,
     };
 
     const packageDetails = `azsdk-js-arm-package-resources-2019-08/1.0.0-beta.1`;
@@ -89,10 +89,10 @@ export class ResourceManagementClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
-        options.endpoint ?? options.baseUri ?? "https://management.azure.com"
+        options.endpoint ?? options.baseUri ?? "https://management.azure.com",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -120,7 +120,7 @@ export class ResourceManagementClient extends coreClient.ServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -134,7 +134,7 @@ export class ResourceManagementClient extends coreClient.ServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }

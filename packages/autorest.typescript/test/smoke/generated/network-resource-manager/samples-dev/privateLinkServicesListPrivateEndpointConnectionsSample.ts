@@ -29,7 +29,7 @@ async function listPrivateLinkServiceInResourceGroup() {
   const resArray = new Array();
   for await (let item of client.privateLinkServices.listPrivateEndpointConnections(
     resourceGroupName,
-    serviceName
+    serviceName,
   )) {
     resArray.push(item);
   }

@@ -32,7 +32,7 @@ async function getAzureKeyVaultReferencesForAppSettingsForSlot() {
   for await (let item of client.webApps.listAppSettingsKeyVaultReferencesSlot(
     resourceGroupName,
     name,
-    slot
+    slot,
   )) {
     resArray.push(item);
   }

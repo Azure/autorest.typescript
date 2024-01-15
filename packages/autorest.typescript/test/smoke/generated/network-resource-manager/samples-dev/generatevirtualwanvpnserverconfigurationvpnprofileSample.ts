@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualWanVpnProfileParameters,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,15 +30,16 @@ async function generateVirtualWanVpnServerConfigurationVpnProfile() {
   const vpnClientParams: VirtualWanVpnProfileParameters = {
     authenticationMethod: "EAPTLS",
     vpnServerConfigurationResourceId:
-      "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/vpnServerConfigurations/vpnconfig1"
+      "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/vpnServerConfigurations/vpnconfig1",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.beginGeneratevirtualwanvpnserverconfigurationvpnprofileAndWait(
-    resourceGroupName,
-    virtualWANName,
-    vpnClientParams
-  );
+  const result =
+    await client.beginGeneratevirtualwanvpnserverconfigurationvpnprofileAndWait(
+      resourceGroupName,
+      virtualWANName,
+      vpnClientParams,
+    );
   console.log(result);
 }
 

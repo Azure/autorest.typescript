@@ -33,7 +33,7 @@ async function getTheLongTermRetentionPolicyForTheDatabase() {
     resourceGroupName,
     serverName,
     databaseName,
-    policyName
+    policyName,
   );
   console.log(result);
 }

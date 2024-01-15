@@ -10,7 +10,7 @@ import * as coreClient from "@azure/core-client";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import * as coreAuth from "@azure/core-auth";
 import {
@@ -44,7 +44,7 @@ import {
   RestorableMongodbCollectionsImpl,
   RestorableMongodbResourcesImpl,
   CassandraClustersImpl,
-  CassandraDataCentersImpl
+  CassandraDataCentersImpl,
 } from "./operations";
 import {
   DatabaseAccounts,
@@ -77,7 +77,7 @@ import {
   RestorableMongodbCollections,
   RestorableMongodbResources,
   CassandraClusters,
-  CassandraDataCenters
+  CassandraDataCenters,
 } from "./operationsInterfaces";
 import { CosmosDBManagementClientOptionalParams } from "./models";
 
@@ -95,7 +95,7 @@ export class CosmosDBManagementClient extends coreClient.ServiceClient {
   constructor(
     credentials: coreAuth.TokenCredential,
     subscriptionId: string,
-    options?: CosmosDBManagementClientOptionalParams
+    options?: CosmosDBManagementClientOptionalParams,
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");
@@ -110,7 +110,7 @@ export class CosmosDBManagementClient extends coreClient.ServiceClient {
     }
     const defaults: CosmosDBManagementClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8",
-      credential: credentials
+      credential: credentials,
     };
 
     const packageDetails = `azsdk-js-cosmos-db-resource-manager/1.0.0-beta.1`;
@@ -123,10 +123,10 @@ export class CosmosDBManagementClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
-        options.endpoint ?? options.baseUri ?? "https://management.azure.com"
+        options.endpoint ?? options.baseUri ?? "https://management.azure.com",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -163,7 +163,7 @@ export class CosmosDBManagementClient extends coreClient.ServiceClient {
     this.restorableSqlResources = new RestorableSqlResourcesImpl(this);
     this.restorableMongodbDatabases = new RestorableMongodbDatabasesImpl(this);
     this.restorableMongodbCollections = new RestorableMongodbCollectionsImpl(
-      this
+      this,
     );
     this.restorableMongodbResources = new RestorableMongodbResourcesImpl(this);
     this.cassandraClusters = new CassandraClustersImpl(this);
@@ -180,7 +180,7 @@ export class CosmosDBManagementClient extends coreClient.ServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -194,7 +194,7 @@ export class CosmosDBManagementClient extends coreClient.ServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }

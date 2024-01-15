@@ -12,7 +12,7 @@ export interface JobResultOutput {
   /**
    * The status of the processing job.
    *
-   * Possible values: notStarted, running, succeeded, failed, canceled, partiallyCompleted
+   * Possible values: "notStarted", "running", "succeeded", "failed", "canceled", "partiallyCompleted"
    */
   readonly status: string;
   /** Error objects that describes the error when status is "Failed". */
@@ -34,7 +34,7 @@ export interface ResourceOperationStatusOutput {
   /**
    * The status of the operation
    *
-   * Possible values: NotStarted, Running, Succeeded, Failed, Canceled
+   * Possible values: "NotStarted", "Running", "Succeeded", "Failed", "Canceled"
    */
   status: string;
   /** Error object that describes the error when status is "Failed". */

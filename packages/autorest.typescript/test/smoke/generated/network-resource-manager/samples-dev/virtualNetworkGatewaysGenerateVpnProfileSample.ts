@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VpnClientParameters,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,11 +30,12 @@ async function generateVirtualNetworkGatewayVpnProfile() {
   const parameters: VpnClientParameters = {};
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGateways.beginGenerateVpnProfileAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayName,
-    parameters
-  );
+  const result =
+    await client.virtualNetworkGateways.beginGenerateVpnProfileAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      parameters,
+    );
   console.log(result);
 }
 

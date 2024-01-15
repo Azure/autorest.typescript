@@ -49,7 +49,7 @@ export interface UnivariateUnivariateDetectionOptions {
    * Used to specify how to deal with missing values in the input series, it's used
    * when granularity is not "none".
    *
-   * Possible values: auto, previous, linear, fixed, zero, notFill
+   * Possible values: "auto", "previous", "linear", "fixed", "zero", "notFill"
    */
   imputeMode?: string;
   /**
@@ -179,7 +179,7 @@ export interface MultivariateModelInfo {
    * Data schema of input data source: OneTable or MultiTable. The default
    * DataSchema is OneTable.
    *
-   * Possible values: OneTable, MultiTable
+   * Possible values: "OneTable", "MultiTable"
    */
   dataSchema?: string;
   /**
@@ -221,7 +221,7 @@ export interface MultivariateAlignPolicy {
    * An optional field, indicating how missing values will be filled. One of
    * Previous, Subsequent, Linear, Zero, Fixed.
    *
-   * Possible values: Previous, Subsequent, Linear, Zero, Fixed
+   * Possible values: "Previous", "Subsequent", "Linear", "Zero", "Fixed"
    */
   fillNAMethod?: string;
   /** An optional field. Required when fillNAMethod is Fixed. */

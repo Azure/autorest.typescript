@@ -16,7 +16,7 @@ import { HeaderCsvOptions } from "../../models/options.js";
 export function _headerCsvSend(
   context: Client,
   colors: string[],
-  options: HeaderCsvOptions = { requestOptions: {} }
+  options: HeaderCsvOptions = { requestOptions: {} },
 ): StreamableMethod<HeaderCsv204Response> {
   return context
     .path("/parameters/collection-format/header/csv")
@@ -27,7 +27,7 @@ export function _headerCsvSend(
 }
 
 export async function _headerCsvDeserialize(
-  result: HeaderCsv204Response
+  result: HeaderCsv204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -39,7 +39,7 @@ export async function _headerCsvDeserialize(
 export async function headerCsv(
   context: Client,
   colors: string[],
-  options: HeaderCsvOptions = { requestOptions: {} }
+  options: HeaderCsvOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _headerCsvSend(context, colors, options);
   return _headerCsvDeserialize(result);

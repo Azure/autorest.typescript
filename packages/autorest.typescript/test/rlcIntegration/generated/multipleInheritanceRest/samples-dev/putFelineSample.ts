@@ -17,7 +17,7 @@ async function putFelineSample() {
     .path("/multipleInheritance/feline")
     .put({
       body: { meows: true, hisses: true },
-      contentType: "application/json"
+      contentType: "application/json",
     });
   console.log(result);
 }

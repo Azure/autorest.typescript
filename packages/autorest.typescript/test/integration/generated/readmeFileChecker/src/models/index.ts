@@ -209,7 +209,7 @@ export interface DeletedSecretItem extends SecretItem {
 /** Known values of {@link ApiVersion72Preview} that the service accepts. */
 export enum KnownApiVersion72Preview {
   /** Api Version '7.2-preview' */
-  Seven2Preview = "7.2-preview"
+  Seven2Preview = "7.2-preview",
 }
 
 /**
@@ -236,7 +236,7 @@ export enum KnownDeletionRecoveryLevel {
   /** Denotes a vault state in which deletion is recoverable without the possibility for immediate and permanent deletion (i.e. purge when 7<= SoftDeleteRetentionInDays < 90).This level guarantees the recoverability of the deleted entity during the retention interval and while the subscription is still available. */
   CustomizedRecoverable = "CustomizedRecoverable",
   /** Denotes a vault and subscription state in which deletion is recoverable, immediate and permanent deletion (i.e. purge) is not permitted, and in which the subscription itself cannot be permanently canceled when 7<= SoftDeleteRetentionInDays < 90. This level guarantees the recoverability of the deleted entity during the retention interval, and also reflects the fact that the subscription itself cannot be cancelled. */
-  CustomizedRecoverableProtectedSubscription = "CustomizedRecoverable+ProtectedSubscription"
+  CustomizedRecoverableProtectedSubscription = "CustomizedRecoverable+ProtectedSubscription",
 }
 
 /**

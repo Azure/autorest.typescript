@@ -32,7 +32,7 @@ async function listArpTable() {
     resourceGroupName,
     circuitName,
     peeringName,
-    devicePath
+    devicePath,
   );
   console.log(result);
 }

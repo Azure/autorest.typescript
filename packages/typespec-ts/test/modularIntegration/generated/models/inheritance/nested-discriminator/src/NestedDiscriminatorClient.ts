@@ -37,39 +37,39 @@ export class NestedDiscriminatorClient {
   }
 
   getModel(
-    options: GetModelOptions = { requestOptions: {} }
+    options: GetModelOptions = { requestOptions: {} },
   ): Promise<FishUnion> {
     return getModel(this._client, options);
   }
 
   putModel(
     input: FishUnion,
-    options: PutModelOptions = { requestOptions: {} }
+    options: PutModelOptions = { requestOptions: {} },
   ): Promise<void> {
     return putModel(this._client, input, options);
   }
 
   getRecursiveModel(
-    options: GetRecursiveModelOptions = { requestOptions: {} }
+    options: GetRecursiveModelOptions = { requestOptions: {} },
   ): Promise<FishUnion> {
     return getRecursiveModel(this._client, options);
   }
 
   putRecursiveModel(
     input: FishUnion,
-    options: PutRecursiveModelOptions = { requestOptions: {} }
+    options: PutRecursiveModelOptions = { requestOptions: {} },
   ): Promise<void> {
     return putRecursiveModel(this._client, input, options);
   }
 
   getMissingDiscriminator(
-    options: GetMissingDiscriminatorOptions = { requestOptions: {} }
+    options: GetMissingDiscriminatorOptions = { requestOptions: {} },
   ): Promise<FishUnion> {
     return getMissingDiscriminator(this._client, options);
   }
 
   getWrongDiscriminator(
-    options: GetWrongDiscriminatorOptions = { requestOptions: {} }
+    options: GetWrongDiscriminatorOptions = { requestOptions: {} },
   ): Promise<FishUnion> {
     return getWrongDiscriminator(this._client, options);
   }

@@ -28,7 +28,7 @@ async function getPublicIPAddress() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.publicIPAddresses.get(
     resourceGroupName,
-    publicIpAddressName
+    publicIpAddressName,
   );
   console.log(result);
 }

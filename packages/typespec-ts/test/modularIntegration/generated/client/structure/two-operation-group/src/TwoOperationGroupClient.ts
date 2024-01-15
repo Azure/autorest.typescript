@@ -27,7 +27,7 @@ export class TwoOperationGroupClient {
   constructor(
     endpoint: string,
     client: ClientType,
-    options: TwoOperationGroupClientOptions = {}
+    options: TwoOperationGroupClientOptions = {},
   ) {
     this._client = createTwoOperationGroup(endpoint, client, options);
     this.pipeline = this._client.pipeline;

@@ -24,19 +24,19 @@ import {
 export interface PropertyOperations {
   default: (
     body: DefaultBytesProperty,
-    options?: PropertyDefaultOptions
+    options?: PropertyDefaultOptions,
   ) => Promise<DefaultBytesProperty>;
   base64: (
     body: Base64BytesProperty,
-    options?: PropertyBase64Options
+    options?: PropertyBase64Options,
   ) => Promise<Base64BytesProperty>;
   base64url: (
     body: Base64urlBytesProperty,
-    options?: PropertyBase64urlOptions
+    options?: PropertyBase64urlOptions,
   ) => Promise<Base64urlBytesProperty>;
   base64urlArray: (
     body: Base64urlArrayBytesProperty,
-    options?: PropertyBase64urlArrayOptions
+    options?: PropertyBase64urlArrayOptions,
   ) => Promise<Base64urlArrayBytesProperty>;
 }
 
@@ -48,17 +48,17 @@ export function getProperty(context: BytesContext) {
       propertyBase64(context, body, options),
     base64url: (
       body: Base64urlBytesProperty,
-      options?: PropertyBase64urlOptions
+      options?: PropertyBase64urlOptions,
     ) => propertyBase64url(context, body, options),
     base64urlArray: (
       body: Base64urlArrayBytesProperty,
-      options?: PropertyBase64urlArrayOptions
+      options?: PropertyBase64urlArrayOptions,
     ) => propertyBase64urlArray(context, body, options),
   };
 }
 
 export function getPropertyOperations(
-  context: BytesContext
+  context: BytesContext,
 ): PropertyOperations {
   return {
     ...getProperty(context),

@@ -11,7 +11,7 @@ export { DatetimeContext } from "../rest/index.js";
 
 /** Test for encode decorator on datetime. */
 export function createDatetime(
-  options: DatetimeClientOptions = {}
+  options: DatetimeClientOptions = {},
 ): DatetimeContext {
   const clientContext = getClient(options);
   return clientContext;

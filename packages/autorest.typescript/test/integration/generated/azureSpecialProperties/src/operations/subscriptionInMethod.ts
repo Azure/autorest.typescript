@@ -15,7 +15,7 @@ import {
   SubscriptionInMethodPostMethodLocalValidOptionalParams,
   SubscriptionInMethodPostMethodLocalNullOptionalParams,
   SubscriptionInMethodPostPathLocalValidOptionalParams,
-  SubscriptionInMethodPostSwaggerLocalValidOptionalParams
+  SubscriptionInMethodPostSwaggerLocalValidOptionalParams,
 } from "../models";
 
 /** Class containing SubscriptionInMethod operations. */
@@ -38,11 +38,11 @@ export class SubscriptionInMethodImpl implements SubscriptionInMethod {
    */
   postMethodLocalValid(
     subscriptionId: string,
-    options?: SubscriptionInMethodPostMethodLocalValidOptionalParams
+    options?: SubscriptionInMethodPostMethodLocalValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { subscriptionId, options },
-      postMethodLocalValidOperationSpec
+      postMethodLocalValidOperationSpec,
     );
   }
 
@@ -55,11 +55,11 @@ export class SubscriptionInMethodImpl implements SubscriptionInMethod {
    */
   postMethodLocalNull(
     subscriptionId: string,
-    options?: SubscriptionInMethodPostMethodLocalNullOptionalParams
+    options?: SubscriptionInMethodPostMethodLocalNullOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { subscriptionId, options },
-      postMethodLocalNullOperationSpec
+      postMethodLocalNullOperationSpec,
     );
   }
 
@@ -71,11 +71,11 @@ export class SubscriptionInMethodImpl implements SubscriptionInMethod {
    */
   postPathLocalValid(
     subscriptionId: string,
-    options?: SubscriptionInMethodPostPathLocalValidOptionalParams
+    options?: SubscriptionInMethodPostPathLocalValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { subscriptionId, options },
-      postPathLocalValidOperationSpec
+      postPathLocalValidOperationSpec,
     );
   }
 
@@ -88,11 +88,11 @@ export class SubscriptionInMethodImpl implements SubscriptionInMethod {
    */
   postSwaggerLocalValid(
     subscriptionId: string,
-    options?: SubscriptionInMethodPostSwaggerLocalValidOptionalParams
+    options?: SubscriptionInMethodPostSwaggerLocalValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { subscriptionId, options },
-      postSwaggerLocalValidOperationSpec
+      postSwaggerLocalValidOperationSpec,
     );
   }
 }
@@ -100,58 +100,54 @@ export class SubscriptionInMethodImpl implements SubscriptionInMethod {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const postMethodLocalValidOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
+  path: "/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
   httpMethod: "POST",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.subscriptionId1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const postMethodLocalNullOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}",
+  path: "/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}",
   httpMethod: "POST",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.subscriptionId1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const postPathLocalValidOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
+  path: "/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
   httpMethod: "POST",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.subscriptionId1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const postSwaggerLocalValidOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
+  path: "/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}",
   httpMethod: "POST",
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.subscriptionId1],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

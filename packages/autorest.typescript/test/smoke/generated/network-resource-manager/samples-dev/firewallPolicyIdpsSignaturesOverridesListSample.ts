@@ -29,7 +29,7 @@ async function getSignatureOverrides() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.firewallPolicyIdpsSignaturesOverrides.list(
     resourceGroupName,
-    firewallPolicyName
+    firewallPolicyName,
   );
   console.log(result);
 }

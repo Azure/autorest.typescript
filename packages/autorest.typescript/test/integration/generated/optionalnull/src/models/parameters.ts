@@ -1,6 +1,6 @@
 import {
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 
 export const $host: OperationURLParameter = {
@@ -9,10 +9,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const searchText: OperationQueryParameter = {
@@ -20,9 +20,9 @@ export const searchText: OperationQueryParameter = {
   mapper: {
     serializedName: "search",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const includeTotalResultCount: OperationQueryParameter = {
@@ -30,7 +30,7 @@ export const includeTotalResultCount: OperationQueryParameter = {
   mapper: {
     serializedName: "$count",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };

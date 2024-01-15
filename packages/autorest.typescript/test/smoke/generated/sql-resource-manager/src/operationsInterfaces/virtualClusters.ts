@@ -19,7 +19,7 @@ import {
   VirtualClustersDeleteOptionalParams,
   VirtualClusterUpdate,
   VirtualClustersUpdateOptionalParams,
-  VirtualClustersUpdateResponse
+  VirtualClustersUpdateResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -30,7 +30,7 @@ export interface VirtualClusters {
    * @param options The options parameters.
    */
   list(
-    options?: VirtualClustersListOptionalParams
+    options?: VirtualClustersListOptionalParams,
   ): PagedAsyncIterableIterator<VirtualCluster>;
   /**
    * Gets a list of virtual clusters in a resource group.
@@ -40,7 +40,7 @@ export interface VirtualClusters {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: VirtualClustersListByResourceGroupOptionalParams
+    options?: VirtualClustersListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<VirtualCluster>;
   /**
    * Synchronizes the DNS server settings used by the managed instances inside the given virtual cluster.
@@ -52,7 +52,7 @@ export interface VirtualClusters {
   updateDnsServers(
     resourceGroupName: string,
     virtualClusterName: string,
-    options?: VirtualClustersUpdateDnsServersOptionalParams
+    options?: VirtualClustersUpdateDnsServersOptionalParams,
   ): Promise<VirtualClustersUpdateDnsServersResponse>;
   /**
    * Gets a virtual cluster.
@@ -64,7 +64,7 @@ export interface VirtualClusters {
   get(
     resourceGroupName: string,
     virtualClusterName: string,
-    options?: VirtualClustersGetOptionalParams
+    options?: VirtualClustersGetOptionalParams,
   ): Promise<VirtualClustersGetResponse>;
   /**
    * Deletes a virtual cluster.
@@ -76,7 +76,7 @@ export interface VirtualClusters {
   beginDelete(
     resourceGroupName: string,
     virtualClusterName: string,
-    options?: VirtualClustersDeleteOptionalParams
+    options?: VirtualClustersDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes a virtual cluster.
@@ -88,7 +88,7 @@ export interface VirtualClusters {
   beginDeleteAndWait(
     resourceGroupName: string,
     virtualClusterName: string,
-    options?: VirtualClustersDeleteOptionalParams
+    options?: VirtualClustersDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Updates a virtual cluster.
@@ -102,7 +102,7 @@ export interface VirtualClusters {
     resourceGroupName: string,
     virtualClusterName: string,
     parameters: VirtualClusterUpdate,
-    options?: VirtualClustersUpdateOptionalParams
+    options?: VirtualClustersUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<VirtualClustersUpdateResponse>,
@@ -121,6 +121,6 @@ export interface VirtualClusters {
     resourceGroupName: string,
     virtualClusterName: string,
     parameters: VirtualClusterUpdate,
-    options?: VirtualClustersUpdateOptionalParams
+    options?: VirtualClustersUpdateOptionalParams,
   ): Promise<VirtualClustersUpdateResponse>;
 }

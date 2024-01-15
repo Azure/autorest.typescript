@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   Disk,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,14 +33,14 @@ async function createAManagedDiskAndAssociateWithDiskAccessResource() {
       "/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/diskAccesses/{existing-diskAccess-name}",
     diskSizeGB: 200,
     location: "West US",
-    networkAccessPolicy: "AllowPrivate"
+    networkAccessPolicy: "AllowPrivate",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskName,
-    disk
+    disk,
   );
   console.log(result);
 }
@@ -60,16 +60,16 @@ async function createAManagedDiskAndAssociateWithDiskEncryptionSet() {
     diskSizeGB: 200,
     encryption: {
       diskEncryptionSetId:
-        "/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/diskEncryptionSets/{existing-diskEncryptionSet-name}"
+        "/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/diskEncryptionSets/{existing-diskEncryptionSet-name}",
     },
-    location: "West US"
+    location: "West US",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskName,
-    disk
+    disk,
   );
   console.log(result);
 }
@@ -88,16 +88,16 @@ async function createAManagedDiskByCopyingASnapshot() {
     creationData: {
       createOption: "Copy",
       sourceResourceId:
-        "subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/snapshots/mySnapshot"
+        "subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/snapshots/mySnapshot",
     },
-    location: "West US"
+    location: "West US",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskName,
-    disk
+    disk,
   );
   console.log(result);
 }
@@ -118,16 +118,16 @@ async function createAManagedDiskByImportingAnUnmanagedBlobFromADifferentSubscri
       sourceUri:
         "https://mystorageaccount.blob.core.windows.net/osimages/osimage.vhd",
       storageAccountId:
-        "subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Storage/storageAccounts/myStorageAccount"
+        "subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Storage/storageAccounts/myStorageAccount",
     },
-    location: "West US"
+    location: "West US",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskName,
-    disk
+    disk,
   );
   console.log(result);
 }
@@ -146,16 +146,16 @@ async function createAManagedDiskByImportingAnUnmanagedBlobFromTheSameSubscripti
     creationData: {
       createOption: "Import",
       sourceUri:
-        "https://mystorageaccount.blob.core.windows.net/osimages/osimage.vhd"
+        "https://mystorageaccount.blob.core.windows.net/osimages/osimage.vhd",
     },
-    location: "West US"
+    location: "West US",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskName,
-    disk
+    disk,
   );
   console.log(result);
 }
@@ -174,19 +174,18 @@ async function createAManagedDiskFromAPlatformImage() {
     creationData: {
       createOption: "FromImage",
       imageReference: {
-        id:
-          "/Subscriptions/{subscriptionId}/Providers/Microsoft.Compute/Locations/westus/Publishers/{publisher}/ArtifactTypes/VMImage/Offers/{offer}/Skus/{sku}/Versions/1.0.0"
-      }
+        id: "/Subscriptions/{subscriptionId}/Providers/Microsoft.Compute/Locations/westus/Publishers/{publisher}/ArtifactTypes/VMImage/Offers/{offer}/Skus/{sku}/Versions/1.0.0",
+      },
     },
     location: "West US",
-    osType: "Windows"
+    osType: "Windows",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskName,
-    disk
+    disk,
   );
   console.log(result);
 }
@@ -205,16 +204,16 @@ async function createAManagedDiskFromAnExistingManagedDiskInTheSameOrDifferentSu
     creationData: {
       createOption: "Copy",
       sourceResourceId:
-        "subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/disks/myDisk1"
+        "subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/disks/myDisk1",
     },
-    location: "West US"
+    location: "West US",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskName,
-    disk
+    disk,
   );
   console.log(result);
 }
@@ -233,20 +232,19 @@ async function createAManagedDiskWithSecurityProfile() {
     creationData: {
       createOption: "FromImage",
       imageReference: {
-        id:
-          "/Subscriptions/{subscriptionId}/Providers/Microsoft.Compute/Locations/uswest/Publishers/Microsoft/ArtifactTypes/VMImage/Offers/{offer}"
-      }
+        id: "/Subscriptions/{subscriptionId}/Providers/Microsoft.Compute/Locations/uswest/Publishers/Microsoft/ArtifactTypes/VMImage/Offers/{offer}",
+      },
     },
     location: "North Central US",
     osType: "Windows",
-    securityProfile: { securityType: "TrustedLaunch" }
+    securityProfile: { securityType: "TrustedLaunch" },
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskName,
-    disk
+    disk,
   );
   console.log(result);
 }
@@ -265,14 +263,14 @@ async function createAManagedDiskWithSsdZrsAccountType() {
     creationData: { createOption: "Empty" },
     diskSizeGB: 200,
     location: "West US",
-    sku: { name: "Premium_ZRS" }
+    sku: { name: "Premium_ZRS" },
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskName,
-    disk
+    disk,
   );
   console.log(result);
 }
@@ -289,14 +287,14 @@ async function createAManagedUploadDisk() {
   const diskName = "myDisk";
   const disk: Disk = {
     creationData: { createOption: "Upload", uploadSizeBytes: 10737418752 },
-    location: "West US"
+    location: "West US",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskName,
-    disk
+    disk,
   );
   console.log(result);
 }
@@ -315,14 +313,14 @@ async function createAnEmptyManagedDiskInExtendedLocation() {
     creationData: { createOption: "Empty" },
     diskSizeGB: 200,
     extendedLocation: { name: "{edge-zone-id}", type: "EdgeZone" },
-    location: "West US"
+    location: "West US",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskName,
-    disk
+    disk,
   );
   console.log(result);
 }
@@ -340,14 +338,14 @@ async function createAnEmptyManagedDisk() {
   const disk: Disk = {
     creationData: { createOption: "Empty" },
     diskSizeGB: 200,
-    location: "West US"
+    location: "West US",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskName,
-    disk
+    disk,
   );
   console.log(result);
 }
@@ -366,14 +364,14 @@ async function createAnUltraManagedDiskWithLogicalSectorSize512E() {
     creationData: { createOption: "Empty", logicalSectorSize: 512 },
     diskSizeGB: 200,
     location: "West US",
-    sku: { name: "UltraSSD_LRS" }
+    sku: { name: "UltraSSD_LRS" },
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.disks.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskName,
-    disk
+    disk,
   );
   console.log(result);
 }

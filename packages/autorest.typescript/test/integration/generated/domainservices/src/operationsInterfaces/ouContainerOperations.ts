@@ -1,7 +1,7 @@
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   OperationEntity,
-  OuContainerOperationsListOptionalParams
+  OuContainerOperationsListOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -12,6 +12,6 @@ export interface OuContainerOperations {
    * @param options The options parameters.
    */
   list(
-    options?: OuContainerOperationsListOptionalParams
+    options?: OuContainerOperationsListOptionalParams,
   ): PagedAsyncIterableIterator<OperationEntity>;
 }

@@ -37,7 +37,7 @@ import {
 export function _createSend(
   context: Client,
   fineTune: CreateFineTuneRequest,
-  options: FineTunesCreateOptions = { requestOptions: {} }
+  options: FineTunesCreateOptions = { requestOptions: {} },
 ): StreamableMethod<
   FineTunesCreate200Response | FineTunesCreateDefaultResponse
 > {
@@ -64,7 +64,7 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: FineTunesCreate200Response | FineTunesCreateDefaultResponse
+  result: FineTunesCreate200Response | FineTunesCreateDefaultResponse,
 ): Promise<FineTune> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -136,7 +136,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   fineTune: CreateFineTuneRequest,
-  options: FineTunesCreateOptions = { requestOptions: {} }
+  options: FineTunesCreateOptions = { requestOptions: {} },
 ): Promise<FineTune> {
   const result = await _createSend(context, fineTune, options);
   return _createDeserialize(result);
@@ -144,7 +144,7 @@ export async function create(
 
 export function _listSend(
   context: Client,
-  options: FineTunesListOptions = { requestOptions: {} }
+  options: FineTunesListOptions = { requestOptions: {} },
 ): StreamableMethod<FineTunesList200Response | FineTunesListDefaultResponse> {
   return context
     .path("/fine-tunes")
@@ -152,7 +152,7 @@ export function _listSend(
 }
 
 export async function _listDeserialize(
-  result: FineTunesList200Response | FineTunesListDefaultResponse
+  result: FineTunesList200Response | FineTunesListDefaultResponse,
 ): Promise<ListFineTunesResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -224,7 +224,7 @@ export async function _listDeserialize(
 
 export async function list(
   context: Client,
-  options: FineTunesListOptions = { requestOptions: {} }
+  options: FineTunesListOptions = { requestOptions: {} },
 ): Promise<ListFineTunesResponse> {
   const result = await _listSend(context, options);
   return _listDeserialize(result);
@@ -233,7 +233,7 @@ export async function list(
 export function _retrieveSend(
   context: Client,
   fineTuneId: string,
-  options: FineTunesRetrieveOptions = { requestOptions: {} }
+  options: FineTunesRetrieveOptions = { requestOptions: {} },
 ): StreamableMethod<
   FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse
 > {
@@ -243,7 +243,7 @@ export function _retrieveSend(
 }
 
 export async function _retrieveDeserialize(
-  result: FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse
+  result: FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse,
 ): Promise<FineTune> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -315,7 +315,7 @@ export async function _retrieveDeserialize(
 export async function retrieve(
   context: Client,
   fineTuneId: string,
-  options: FineTunesRetrieveOptions = { requestOptions: {} }
+  options: FineTunesRetrieveOptions = { requestOptions: {} },
 ): Promise<FineTune> {
   const result = await _retrieveSend(context, fineTuneId, options);
   return _retrieveDeserialize(result);
@@ -324,7 +324,7 @@ export async function retrieve(
 export function _listEventsSend(
   context: Client,
   fineTuneId: string,
-  options: FineTunesListEventsOptions = { requestOptions: {} }
+  options: FineTunesListEventsOptions = { requestOptions: {} },
 ): StreamableMethod<
   FineTunesListEvents200Response | FineTunesListEventsDefaultResponse
 > {
@@ -337,7 +337,7 @@ export function _listEventsSend(
 }
 
 export async function _listEventsDeserialize(
-  result: FineTunesListEvents200Response | FineTunesListEventsDefaultResponse
+  result: FineTunesListEvents200Response | FineTunesListEventsDefaultResponse,
 ): Promise<ListFineTuneEventsResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -357,7 +357,7 @@ export async function _listEventsDeserialize(
 export async function listEvents(
   context: Client,
   fineTuneId: string,
-  options: FineTunesListEventsOptions = { requestOptions: {} }
+  options: FineTunesListEventsOptions = { requestOptions: {} },
 ): Promise<ListFineTuneEventsResponse> {
   const result = await _listEventsSend(context, fineTuneId, options);
   return _listEventsDeserialize(result);
@@ -366,7 +366,7 @@ export async function listEvents(
 export function _cancelSend(
   context: Client,
   fineTuneId: string,
-  options: FineTunesCancelOptions = { requestOptions: {} }
+  options: FineTunesCancelOptions = { requestOptions: {} },
 ): StreamableMethod<
   FineTunesCancel200Response | FineTunesCancelDefaultResponse
 > {
@@ -376,7 +376,7 @@ export function _cancelSend(
 }
 
 export async function _cancelDeserialize(
-  result: FineTunesCancel200Response | FineTunesCancelDefaultResponse
+  result: FineTunesCancel200Response | FineTunesCancelDefaultResponse,
 ): Promise<FineTune> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -448,7 +448,7 @@ export async function _cancelDeserialize(
 export async function cancel(
   context: Client,
   fineTuneId: string,
-  options: FineTunesCancelOptions = { requestOptions: {} }
+  options: FineTunesCancelOptions = { requestOptions: {} },
 ): Promise<FineTune> {
   const result = await _cancelSend(context, fineTuneId, options);
   return _cancelDeserialize(result);

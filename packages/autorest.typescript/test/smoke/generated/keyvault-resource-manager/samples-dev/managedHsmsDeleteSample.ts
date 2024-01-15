@@ -29,7 +29,7 @@ async function deleteAManagedHsmPool() {
   const client = new KeyVaultManagementClient(credential, subscriptionId);
   const result = await client.managedHsms.beginDeleteAndWait(
     resourceGroupName,
-    name
+    name,
   );
   console.log(result);
 }

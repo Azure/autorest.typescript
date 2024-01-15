@@ -17,7 +17,7 @@ import { PagingClient } from "../pagingClient";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -114,7 +114,7 @@ import {
   PagingGetMultiplePagesLRONextResponse,
   PagingAppendApiVersionNextResponse,
   PagingReplaceApiVersionNextResponse,
-  PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse
+  PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -135,7 +135,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listNoItemNamePages(
-    options?: PagingGetNoItemNamePagesOptionalParams
+    options?: PagingGetNoItemNamePagesOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getNoItemNamePagesPagingAll(options);
     return {
@@ -150,13 +150,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getNoItemNamePagesPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *getNoItemNamePagesPagingPage(
     options?: PagingGetNoItemNamePagesOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetNoItemNamePagesResponse;
     let continuationToken = settings?.continuationToken;
@@ -177,7 +177,7 @@ export class PagingImpl implements Paging {
   }
 
   private async *getNoItemNamePagesPagingAll(
-    options?: PagingGetNoItemNamePagesOptionalParams
+    options?: PagingGetNoItemNamePagesOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getNoItemNamePagesPagingPage(options)) {
       yield* page;
@@ -189,7 +189,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listEmptyNextLinkNamePages(
-    options?: PagingGetEmptyNextLinkNamePagesOptionalParams
+    options?: PagingGetEmptyNextLinkNamePagesOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getEmptyNextLinkNamePagesPagingAll(options);
     return {
@@ -204,13 +204,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getEmptyNextLinkNamePagesPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *getEmptyNextLinkNamePagesPagingPage(
     options?: PagingGetEmptyNextLinkNamePagesOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetEmptyNextLinkNamePagesResponse;
     let continuationToken = settings?.continuationToken;
@@ -224,7 +224,7 @@ export class PagingImpl implements Paging {
     while (continuationToken) {
       result = await this._getEmptyNextLinkNamePagesNext(
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -234,10 +234,10 @@ export class PagingImpl implements Paging {
   }
 
   private async *getEmptyNextLinkNamePagesPagingAll(
-    options?: PagingGetEmptyNextLinkNamePagesOptionalParams
+    options?: PagingGetEmptyNextLinkNamePagesOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getEmptyNextLinkNamePagesPagingPage(
-      options
+      options,
     )) {
       yield* page;
     }
@@ -248,7 +248,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listNullNextLinkNamePages(
-    options?: PagingGetNullNextLinkNamePagesOptionalParams
+    options?: PagingGetNullNextLinkNamePagesOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getNullNextLinkNamePagesPagingAll(options);
     return {
@@ -263,13 +263,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getNullNextLinkNamePagesPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *getNullNextLinkNamePagesPagingPage(
     options?: PagingGetNullNextLinkNamePagesOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetNullNextLinkNamePagesResponse;
     result = await this._getNullNextLinkNamePages(options);
@@ -277,7 +277,7 @@ export class PagingImpl implements Paging {
   }
 
   private async *getNullNextLinkNamePagesPagingAll(
-    options?: PagingGetNullNextLinkNamePagesOptionalParams
+    options?: PagingGetNullNextLinkNamePagesOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getNullNextLinkNamePagesPagingPage(options)) {
       yield* page;
@@ -289,7 +289,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listSinglePages(
-    options?: PagingGetSinglePagesOptionalParams
+    options?: PagingGetSinglePagesOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getSinglePagesPagingAll(options);
     return {
@@ -304,13 +304,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getSinglePagesPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *getSinglePagesPagingPage(
     options?: PagingGetSinglePagesOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetSinglePagesResponse;
     let continuationToken = settings?.continuationToken;
@@ -331,7 +331,7 @@ export class PagingImpl implements Paging {
   }
 
   private async *getSinglePagesPagingAll(
-    options?: PagingGetSinglePagesOptionalParams
+    options?: PagingGetSinglePagesOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getSinglePagesPagingPage(options)) {
       yield* page;
@@ -345,11 +345,11 @@ export class PagingImpl implements Paging {
    */
   public listSinglePagesWithBodyParams(
     parameters: BodyParam,
-    options?: PagingGetSinglePagesWithBodyParamsOptionalParams
+    options?: PagingGetSinglePagesWithBodyParamsOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getSinglePagesWithBodyParamsPagingAll(
       parameters,
-      options
+      options,
     );
     return {
       next() {
@@ -365,16 +365,16 @@ export class PagingImpl implements Paging {
         return this.getSinglePagesWithBodyParamsPagingPage(
           parameters,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *getSinglePagesWithBodyParamsPagingPage(
     parameters: BodyParam,
     options?: PagingGetSinglePagesWithBodyParamsOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetSinglePagesWithBodyParamsResponse;
     let continuationToken = settings?.continuationToken;
@@ -389,7 +389,7 @@ export class PagingImpl implements Paging {
       result = await this._getSinglePagesWithBodyParamsNext(
         parameters,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.values || [];
@@ -400,11 +400,11 @@ export class PagingImpl implements Paging {
 
   private async *getSinglePagesWithBodyParamsPagingAll(
     parameters: BodyParam,
-    options?: PagingGetSinglePagesWithBodyParamsOptionalParams
+    options?: PagingGetSinglePagesWithBodyParamsOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getSinglePagesWithBodyParamsPagingPage(
       parameters,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -416,7 +416,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listFirstResponseEmpty(
-    options?: PagingFirstResponseEmptyOptionalParams
+    options?: PagingFirstResponseEmptyOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.firstResponseEmptyPagingAll(options);
     return {
@@ -431,13 +431,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.firstResponseEmptyPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *firstResponseEmptyPagingPage(
     options?: PagingFirstResponseEmptyOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingFirstResponseEmptyResponse;
     let continuationToken = settings?.continuationToken;
@@ -458,7 +458,7 @@ export class PagingImpl implements Paging {
   }
 
   private async *firstResponseEmptyPagingAll(
-    options?: PagingFirstResponseEmptyOptionalParams
+    options?: PagingFirstResponseEmptyOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.firstResponseEmptyPagingPage(options)) {
       yield* page;
@@ -470,7 +470,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listMultiplePages(
-    options?: PagingGetMultiplePagesOptionalParams
+    options?: PagingGetMultiplePagesOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getMultiplePagesPagingAll(options);
     return {
@@ -485,13 +485,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getMultiplePagesPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *getMultiplePagesPagingPage(
     options?: PagingGetMultiplePagesOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetMultiplePagesResponse;
     let continuationToken = settings?.continuationToken;
@@ -512,7 +512,7 @@ export class PagingImpl implements Paging {
   }
 
   private async *getMultiplePagesPagingAll(
-    options?: PagingGetMultiplePagesOptionalParams
+    options?: PagingGetMultiplePagesOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getMultiplePagesPagingPage(options)) {
       yield* page;
@@ -527,11 +527,11 @@ export class PagingImpl implements Paging {
    */
   public listWithQueryParams(
     requiredQueryParameter: number,
-    options?: PagingGetWithQueryParamsOptionalParams
+    options?: PagingGetWithQueryParamsOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getWithQueryParamsPagingAll(
       requiredQueryParameter,
-      options
+      options,
     );
     return {
       next() {
@@ -547,16 +547,16 @@ export class PagingImpl implements Paging {
         return this.getWithQueryParamsPagingPage(
           requiredQueryParameter,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *getWithQueryParamsPagingPage(
     requiredQueryParameter: number,
     options?: PagingGetWithQueryParamsOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetWithQueryParamsResponse;
     let continuationToken = settings?.continuationToken;
@@ -578,11 +578,11 @@ export class PagingImpl implements Paging {
 
   private async *getWithQueryParamsPagingAll(
     requiredQueryParameter: number,
-    options?: PagingGetWithQueryParamsOptionalParams
+    options?: PagingGetWithQueryParamsOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getWithQueryParamsPagingPage(
       requiredQueryParameter,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -595,7 +595,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listDuplicateParams(
-    options?: PagingDuplicateParamsOptionalParams
+    options?: PagingDuplicateParamsOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.duplicateParamsPagingAll(options);
     return {
@@ -610,13 +610,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.duplicateParamsPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *duplicateParamsPagingPage(
     options?: PagingDuplicateParamsOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingDuplicateParamsResponse;
     let continuationToken = settings?.continuationToken;
@@ -637,7 +637,7 @@ export class PagingImpl implements Paging {
   }
 
   private async *duplicateParamsPagingAll(
-    options?: PagingDuplicateParamsOptionalParams
+    options?: PagingDuplicateParamsOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.duplicateParamsPagingPage(options)) {
       yield* page;
@@ -649,7 +649,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listPageWithMaxPageSize(
-    options?: PagingPageWithMaxPageSizeOptionalParams
+    options?: PagingPageWithMaxPageSizeOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.pageWithMaxPageSizePagingAll(options);
     return {
@@ -664,13 +664,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.pageWithMaxPageSizePagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *pageWithMaxPageSizePagingPage(
     options?: PagingPageWithMaxPageSizeOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingPageWithMaxPageSizeResponse;
     let continuationToken = settings?.continuationToken;
@@ -691,7 +691,7 @@ export class PagingImpl implements Paging {
   }
 
   private async *pageWithMaxPageSizePagingAll(
-    options?: PagingPageWithMaxPageSizeOptionalParams
+    options?: PagingPageWithMaxPageSizeOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.pageWithMaxPageSizePagingPage(options)) {
       yield* page;
@@ -703,7 +703,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listOdataMultiplePages(
-    options?: PagingGetOdataMultiplePagesOptionalParams
+    options?: PagingGetOdataMultiplePagesOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getOdataMultiplePagesPagingAll(options);
     return {
@@ -718,13 +718,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getOdataMultiplePagesPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *getOdataMultiplePagesPagingPage(
     options?: PagingGetOdataMultiplePagesOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetOdataMultiplePagesResponse;
     let continuationToken = settings?.continuationToken;
@@ -738,7 +738,7 @@ export class PagingImpl implements Paging {
     while (continuationToken) {
       result = await this._getOdataMultiplePagesNext(
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.odataNextLink;
       let page = result.values || [];
@@ -748,7 +748,7 @@ export class PagingImpl implements Paging {
   }
 
   private async *getOdataMultiplePagesPagingAll(
-    options?: PagingGetOdataMultiplePagesOptionalParams
+    options?: PagingGetOdataMultiplePagesOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getOdataMultiplePagesPagingPage(options)) {
       yield* page;
@@ -762,11 +762,11 @@ export class PagingImpl implements Paging {
    */
   public listMultiplePagesWithOffset(
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
-    options?: PagingGetMultiplePagesWithOffsetOptionalParams
+    options?: PagingGetMultiplePagesWithOffsetOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getMultiplePagesWithOffsetPagingAll(
       pagingGetMultiplePagesWithOffsetOptions,
-      options
+      options,
     );
     return {
       next() {
@@ -782,23 +782,23 @@ export class PagingImpl implements Paging {
         return this.getMultiplePagesWithOffsetPagingPage(
           pagingGetMultiplePagesWithOffsetOptions,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *getMultiplePagesWithOffsetPagingPage(
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
     options?: PagingGetMultiplePagesWithOffsetOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetMultiplePagesWithOffsetResponse;
     let continuationToken = settings?.continuationToken;
     if (!continuationToken) {
       result = await this._getMultiplePagesWithOffset(
         pagingGetMultiplePagesWithOffsetOptions,
-        options
+        options,
       );
       let page = result.values || [];
       continuationToken = result.nextLink;
@@ -809,7 +809,7 @@ export class PagingImpl implements Paging {
       result = await this._getMultiplePagesWithOffsetNext(
         pagingGetMultiplePagesWithOffsetOptions,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.values || [];
@@ -820,11 +820,11 @@ export class PagingImpl implements Paging {
 
   private async *getMultiplePagesWithOffsetPagingAll(
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
-    options?: PagingGetMultiplePagesWithOffsetOptionalParams
+    options?: PagingGetMultiplePagesWithOffsetOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getMultiplePagesWithOffsetPagingPage(
       pagingGetMultiplePagesWithOffsetOptions,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -836,7 +836,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listMultiplePagesRetryFirst(
-    options?: PagingGetMultiplePagesRetryFirstOptionalParams
+    options?: PagingGetMultiplePagesRetryFirstOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getMultiplePagesRetryFirstPagingAll(options);
     return {
@@ -851,13 +851,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getMultiplePagesRetryFirstPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *getMultiplePagesRetryFirstPagingPage(
     options?: PagingGetMultiplePagesRetryFirstOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetMultiplePagesRetryFirstResponse;
     let continuationToken = settings?.continuationToken;
@@ -871,7 +871,7 @@ export class PagingImpl implements Paging {
     while (continuationToken) {
       result = await this._getMultiplePagesRetryFirstNext(
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.values || [];
@@ -881,10 +881,10 @@ export class PagingImpl implements Paging {
   }
 
   private async *getMultiplePagesRetryFirstPagingAll(
-    options?: PagingGetMultiplePagesRetryFirstOptionalParams
+    options?: PagingGetMultiplePagesRetryFirstOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getMultiplePagesRetryFirstPagingPage(
-      options
+      options,
     )) {
       yield* page;
     }
@@ -896,7 +896,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listMultiplePagesRetrySecond(
-    options?: PagingGetMultiplePagesRetrySecondOptionalParams
+    options?: PagingGetMultiplePagesRetrySecondOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getMultiplePagesRetrySecondPagingAll(options);
     return {
@@ -911,13 +911,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getMultiplePagesRetrySecondPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *getMultiplePagesRetrySecondPagingPage(
     options?: PagingGetMultiplePagesRetrySecondOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetMultiplePagesRetrySecondResponse;
     let continuationToken = settings?.continuationToken;
@@ -931,7 +931,7 @@ export class PagingImpl implements Paging {
     while (continuationToken) {
       result = await this._getMultiplePagesRetrySecondNext(
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.values || [];
@@ -941,10 +941,10 @@ export class PagingImpl implements Paging {
   }
 
   private async *getMultiplePagesRetrySecondPagingAll(
-    options?: PagingGetMultiplePagesRetrySecondOptionalParams
+    options?: PagingGetMultiplePagesRetrySecondOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getMultiplePagesRetrySecondPagingPage(
-      options
+      options,
     )) {
       yield* page;
     }
@@ -955,7 +955,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listSinglePagesFailure(
-    options?: PagingGetSinglePagesFailureOptionalParams
+    options?: PagingGetSinglePagesFailureOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getSinglePagesFailurePagingAll(options);
     return {
@@ -970,13 +970,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getSinglePagesFailurePagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *getSinglePagesFailurePagingPage(
     options?: PagingGetSinglePagesFailureOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetSinglePagesFailureResponse;
     let continuationToken = settings?.continuationToken;
@@ -990,7 +990,7 @@ export class PagingImpl implements Paging {
     while (continuationToken) {
       result = await this._getSinglePagesFailureNext(
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.values || [];
@@ -1000,7 +1000,7 @@ export class PagingImpl implements Paging {
   }
 
   private async *getSinglePagesFailurePagingAll(
-    options?: PagingGetSinglePagesFailureOptionalParams
+    options?: PagingGetSinglePagesFailureOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getSinglePagesFailurePagingPage(options)) {
       yield* page;
@@ -1012,7 +1012,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listMultiplePagesFailure(
-    options?: PagingGetMultiplePagesFailureOptionalParams
+    options?: PagingGetMultiplePagesFailureOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getMultiplePagesFailurePagingAll(options);
     return {
@@ -1027,13 +1027,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getMultiplePagesFailurePagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *getMultiplePagesFailurePagingPage(
     options?: PagingGetMultiplePagesFailureOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetMultiplePagesFailureResponse;
     let continuationToken = settings?.continuationToken;
@@ -1047,7 +1047,7 @@ export class PagingImpl implements Paging {
     while (continuationToken) {
       result = await this._getMultiplePagesFailureNext(
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.values || [];
@@ -1057,7 +1057,7 @@ export class PagingImpl implements Paging {
   }
 
   private async *getMultiplePagesFailurePagingAll(
-    options?: PagingGetMultiplePagesFailureOptionalParams
+    options?: PagingGetMultiplePagesFailureOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getMultiplePagesFailurePagingPage(options)) {
       yield* page;
@@ -1069,7 +1069,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listMultiplePagesFailureUri(
-    options?: PagingGetMultiplePagesFailureUriOptionalParams
+    options?: PagingGetMultiplePagesFailureUriOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getMultiplePagesFailureUriPagingAll(options);
     return {
@@ -1084,13 +1084,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getMultiplePagesFailureUriPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *getMultiplePagesFailureUriPagingPage(
     options?: PagingGetMultiplePagesFailureUriOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetMultiplePagesFailureUriResponse;
     let continuationToken = settings?.continuationToken;
@@ -1104,7 +1104,7 @@ export class PagingImpl implements Paging {
     while (continuationToken) {
       result = await this._getMultiplePagesFailureUriNext(
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.values || [];
@@ -1114,10 +1114,10 @@ export class PagingImpl implements Paging {
   }
 
   private async *getMultiplePagesFailureUriPagingAll(
-    options?: PagingGetMultiplePagesFailureUriOptionalParams
+    options?: PagingGetMultiplePagesFailureUriOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getMultiplePagesFailureUriPagingPage(
-      options
+      options,
     )) {
       yield* page;
     }
@@ -1132,12 +1132,12 @@ export class PagingImpl implements Paging {
   public listMultiplePagesFragmentNextLink(
     apiVersion: string,
     tenant: string,
-    options?: PagingGetMultiplePagesFragmentNextLinkOptionalParams
+    options?: PagingGetMultiplePagesFragmentNextLinkOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getMultiplePagesFragmentNextLinkPagingAll(
       apiVersion,
       tenant,
-      options
+      options,
     );
     return {
       next() {
@@ -1154,9 +1154,9 @@ export class PagingImpl implements Paging {
           apiVersion,
           tenant,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -1164,7 +1164,7 @@ export class PagingImpl implements Paging {
     apiVersion: string,
     tenant: string,
     options?: PagingGetMultiplePagesFragmentNextLinkOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetMultiplePagesFragmentNextLinkResponse;
     let continuationToken = settings?.continuationToken;
@@ -1172,7 +1172,7 @@ export class PagingImpl implements Paging {
       result = await this._getMultiplePagesFragmentNextLink(
         apiVersion,
         tenant,
-        options
+        options,
       );
       let page = result.values || [];
       continuationToken = result.odataNextLink;
@@ -1184,7 +1184,7 @@ export class PagingImpl implements Paging {
         apiVersion,
         tenant,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.odataNextLink;
       let page = result.values || [];
@@ -1196,12 +1196,12 @@ export class PagingImpl implements Paging {
   private async *getMultiplePagesFragmentNextLinkPagingAll(
     apiVersion: string,
     tenant: string,
-    options?: PagingGetMultiplePagesFragmentNextLinkOptionalParams
+    options?: PagingGetMultiplePagesFragmentNextLinkOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getMultiplePagesFragmentNextLinkPagingPage(
       apiVersion,
       tenant,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -1214,11 +1214,11 @@ export class PagingImpl implements Paging {
    */
   public listMultiplePagesFragmentWithGroupingNextLink(
     customParameterGroup: CustomParameterGroup,
-    options?: PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams
+    options?: PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getMultiplePagesFragmentWithGroupingNextLinkPagingAll(
       customParameterGroup,
-      options
+      options,
     );
     return {
       next() {
@@ -1234,23 +1234,23 @@ export class PagingImpl implements Paging {
         return this.getMultiplePagesFragmentWithGroupingNextLinkPagingPage(
           customParameterGroup,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *getMultiplePagesFragmentWithGroupingNextLinkPagingPage(
     customParameterGroup: CustomParameterGroup,
     options?: PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse;
     let continuationToken = settings?.continuationToken;
     if (!continuationToken) {
       result = await this._getMultiplePagesFragmentWithGroupingNextLink(
         customParameterGroup,
-        options
+        options,
       );
       let page = result.values || [];
       continuationToken = result.odataNextLink;
@@ -1261,7 +1261,7 @@ export class PagingImpl implements Paging {
       result = await this._nextFragmentWithGrouping(
         continuationToken,
         customParameterGroup,
-        options
+        options,
       );
       continuationToken = result.odataNextLink;
       let page = result.values || [];
@@ -1272,11 +1272,11 @@ export class PagingImpl implements Paging {
 
   private async *getMultiplePagesFragmentWithGroupingNextLinkPagingAll(
     customParameterGroup: CustomParameterGroup,
-    options?: PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams
+    options?: PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getMultiplePagesFragmentWithGroupingNextLinkPagingPage(
       customParameterGroup,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -1287,7 +1287,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public beginListMultiplePagesLROAndWait(
-    options?: PagingGetMultiplePagesLROOptionalParams
+    options?: PagingGetMultiplePagesLROOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.getMultiplePagesLROPagingAll(options);
     return {
@@ -1302,13 +1302,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.getMultiplePagesLROPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *getMultiplePagesLROPagingPage(
     options?: PagingGetMultiplePagesLROOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetMultiplePagesLROResponse;
     let continuationToken = settings?.continuationToken;
@@ -1330,7 +1330,7 @@ export class PagingImpl implements Paging {
   }
 
   private async *getMultiplePagesLROPagingAll(
-    options?: PagingGetMultiplePagesLROOptionalParams
+    options?: PagingGetMultiplePagesLROOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getMultiplePagesLROPagingPage(options)) {
       yield* page;
@@ -1343,7 +1343,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listAppendApiVersion(
-    options?: PagingAppendApiVersionOptionalParams
+    options?: PagingAppendApiVersionOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.appendApiVersionPagingAll(options);
     return {
@@ -1358,13 +1358,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.appendApiVersionPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *appendApiVersionPagingPage(
     options?: PagingAppendApiVersionOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingAppendApiVersionResponse;
     let continuationToken = settings?.continuationToken;
@@ -1385,7 +1385,7 @@ export class PagingImpl implements Paging {
   }
 
   private async *appendApiVersionPagingAll(
-    options?: PagingAppendApiVersionOptionalParams
+    options?: PagingAppendApiVersionOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.appendApiVersionPagingPage(options)) {
       yield* page;
@@ -1398,7 +1398,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listReplaceApiVersion(
-    options?: PagingReplaceApiVersionOptionalParams
+    options?: PagingReplaceApiVersionOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.replaceApiVersionPagingAll(options);
     return {
@@ -1413,13 +1413,13 @@ export class PagingImpl implements Paging {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.replaceApiVersionPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *replaceApiVersionPagingPage(
     options?: PagingReplaceApiVersionOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingReplaceApiVersionResponse;
     let continuationToken = settings?.continuationToken;
@@ -1440,7 +1440,7 @@ export class PagingImpl implements Paging {
   }
 
   private async *replaceApiVersionPagingAll(
-    options?: PagingReplaceApiVersionOptionalParams
+    options?: PagingReplaceApiVersionOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.replaceApiVersionPagingPage(options)) {
       yield* page;
@@ -1458,13 +1458,13 @@ export class PagingImpl implements Paging {
     apiVersion: string,
     tenant: string,
     nextLink: string,
-    options?: PagingNextFragmentOptionalParams
+    options?: PagingNextFragmentOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.nextFragmentPagingAll(
       apiVersion,
       tenant,
       nextLink,
-      options
+      options,
     );
     return {
       next() {
@@ -1482,9 +1482,9 @@ export class PagingImpl implements Paging {
           tenant,
           nextLink,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -1493,7 +1493,7 @@ export class PagingImpl implements Paging {
     tenant: string,
     nextLink: string,
     options?: PagingNextFragmentOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingNextFragmentResponse;
     let continuationToken = settings?.continuationToken;
@@ -1509,7 +1509,7 @@ export class PagingImpl implements Paging {
         apiVersion,
         tenant,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.odataNextLink;
       let page = result.values || [];
@@ -1522,13 +1522,13 @@ export class PagingImpl implements Paging {
     apiVersion: string,
     tenant: string,
     nextLink: string,
-    options?: PagingNextFragmentOptionalParams
+    options?: PagingNextFragmentOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.nextFragmentPagingPage(
       apiVersion,
       tenant,
       nextLink,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -1543,12 +1543,12 @@ export class PagingImpl implements Paging {
   public listNextFragmentWithGrouping(
     nextLink: string,
     customParameterGroup: CustomParameterGroup,
-    options?: PagingNextFragmentWithGroupingOptionalParams
+    options?: PagingNextFragmentWithGroupingOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
     const iter = this.nextFragmentWithGroupingPagingAll(
       nextLink,
       customParameterGroup,
-      options
+      options,
     );
     return {
       next() {
@@ -1565,9 +1565,9 @@ export class PagingImpl implements Paging {
           nextLink,
           customParameterGroup,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -1575,7 +1575,7 @@ export class PagingImpl implements Paging {
     nextLink: string,
     customParameterGroup: CustomParameterGroup,
     options?: PagingNextFragmentWithGroupingOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingNextFragmentWithGroupingResponse;
     let continuationToken = settings?.continuationToken;
@@ -1583,7 +1583,7 @@ export class PagingImpl implements Paging {
       result = await this._nextFragmentWithGrouping(
         nextLink,
         customParameterGroup,
-        options
+        options,
       );
       let page = result.values || [];
       continuationToken = result.odataNextLink;
@@ -1594,7 +1594,7 @@ export class PagingImpl implements Paging {
       result = await this._nextFragmentWithGrouping(
         continuationToken,
         customParameterGroup,
-        options
+        options,
       );
       continuationToken = result.odataNextLink;
       let page = result.values || [];
@@ -1606,12 +1606,12 @@ export class PagingImpl implements Paging {
   private async *nextFragmentWithGroupingPagingAll(
     nextLink: string,
     customParameterGroup: CustomParameterGroup,
-    options?: PagingNextFragmentWithGroupingOptionalParams
+    options?: PagingNextFragmentWithGroupingOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.nextFragmentWithGroupingPagingPage(
       nextLink,
       customParameterGroup,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -1623,11 +1623,10 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   public listPagingModelWithItemNameWithXMSClientName(
-    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
+    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams,
   ): PagedAsyncIterableIterator<Product> {
-    const iter = this.getPagingModelWithItemNameWithXMSClientNamePagingAll(
-      options
-    );
+    const iter =
+      this.getPagingModelWithItemNameWithXMSClientNamePagingAll(options);
     return {
       next() {
         return iter.next();
@@ -1641,15 +1640,15 @@ export class PagingImpl implements Paging {
         }
         return this.getPagingModelWithItemNameWithXMSClientNamePagingPage(
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *getPagingModelWithItemNameWithXMSClientNamePagingPage(
     options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Product[]> {
     let result: PagingGetPagingModelWithItemNameWithXMSClientNameResponse;
     let continuationToken = settings?.continuationToken;
@@ -1663,7 +1662,7 @@ export class PagingImpl implements Paging {
     while (continuationToken) {
       result = await this._getPagingModelWithItemNameWithXMSClientNameNext(
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.indexes || [];
@@ -1673,10 +1672,10 @@ export class PagingImpl implements Paging {
   }
 
   private async *getPagingModelWithItemNameWithXMSClientNamePagingAll(
-    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
+    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams,
   ): AsyncIterableIterator<Product> {
     for await (const page of this.getPagingModelWithItemNameWithXMSClientNamePagingPage(
-      options
+      options,
     )) {
       yield* page;
     }
@@ -1687,7 +1686,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _getNoItemNamePages(
-    options?: PagingGetNoItemNamePagesOptionalParams
+    options?: PagingGetNoItemNamePagesOptionalParams,
   ): Promise<PagingGetNoItemNamePagesResponse> {
     return tracingClient.withSpan(
       "PagingClient._getNoItemNamePages",
@@ -1695,9 +1694,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getNoItemNamePagesOperationSpec
+          getNoItemNamePagesOperationSpec,
         ) as Promise<PagingGetNoItemNamePagesResponse>;
-      }
+      },
     );
   }
 
@@ -1706,7 +1705,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _getEmptyNextLinkNamePages(
-    options?: PagingGetEmptyNextLinkNamePagesOptionalParams
+    options?: PagingGetEmptyNextLinkNamePagesOptionalParams,
   ): Promise<PagingGetEmptyNextLinkNamePagesResponse> {
     return tracingClient.withSpan(
       "PagingClient._getEmptyNextLinkNamePages",
@@ -1714,9 +1713,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getEmptyNextLinkNamePagesOperationSpec
+          getEmptyNextLinkNamePagesOperationSpec,
         ) as Promise<PagingGetEmptyNextLinkNamePagesResponse>;
-      }
+      },
     );
   }
 
@@ -1725,7 +1724,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _getNullNextLinkNamePages(
-    options?: PagingGetNullNextLinkNamePagesOptionalParams
+    options?: PagingGetNullNextLinkNamePagesOptionalParams,
   ): Promise<PagingGetNullNextLinkNamePagesResponse> {
     return tracingClient.withSpan(
       "PagingClient._getNullNextLinkNamePages",
@@ -1733,9 +1732,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getNullNextLinkNamePagesOperationSpec
+          getNullNextLinkNamePagesOperationSpec,
         ) as Promise<PagingGetNullNextLinkNamePagesResponse>;
-      }
+      },
     );
   }
 
@@ -1744,7 +1743,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _getSinglePages(
-    options?: PagingGetSinglePagesOptionalParams
+    options?: PagingGetSinglePagesOptionalParams,
   ): Promise<PagingGetSinglePagesResponse> {
     return tracingClient.withSpan(
       "PagingClient._getSinglePages",
@@ -1752,9 +1751,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getSinglePagesOperationSpec
+          getSinglePagesOperationSpec,
         ) as Promise<PagingGetSinglePagesResponse>;
-      }
+      },
     );
   }
 
@@ -1765,7 +1764,7 @@ export class PagingImpl implements Paging {
    */
   private async _getSinglePagesWithBodyParams(
     parameters: BodyParam,
-    options?: PagingGetSinglePagesWithBodyParamsOptionalParams
+    options?: PagingGetSinglePagesWithBodyParamsOptionalParams,
   ): Promise<PagingGetSinglePagesWithBodyParamsResponse> {
     return tracingClient.withSpan(
       "PagingClient._getSinglePagesWithBodyParams",
@@ -1773,9 +1772,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { parameters, options },
-          getSinglePagesWithBodyParamsOperationSpec
+          getSinglePagesWithBodyParamsOperationSpec,
         ) as Promise<PagingGetSinglePagesWithBodyParamsResponse>;
-      }
+      },
     );
   }
 
@@ -1785,7 +1784,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _firstResponseEmpty(
-    options?: PagingFirstResponseEmptyOptionalParams
+    options?: PagingFirstResponseEmptyOptionalParams,
   ): Promise<PagingFirstResponseEmptyResponse> {
     return tracingClient.withSpan(
       "PagingClient._firstResponseEmpty",
@@ -1793,9 +1792,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          firstResponseEmptyOperationSpec
+          firstResponseEmptyOperationSpec,
         ) as Promise<PagingFirstResponseEmptyResponse>;
-      }
+      },
     );
   }
 
@@ -1804,7 +1803,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _getMultiplePages(
-    options?: PagingGetMultiplePagesOptionalParams
+    options?: PagingGetMultiplePagesOptionalParams,
   ): Promise<PagingGetMultiplePagesResponse> {
     return tracingClient.withSpan(
       "PagingClient._getMultiplePages",
@@ -1812,9 +1811,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getMultiplePagesOperationSpec
+          getMultiplePagesOperationSpec,
         ) as Promise<PagingGetMultiplePagesResponse>;
-      }
+      },
     );
   }
 
@@ -1826,7 +1825,7 @@ export class PagingImpl implements Paging {
    */
   private async _getWithQueryParams(
     requiredQueryParameter: number,
-    options?: PagingGetWithQueryParamsOptionalParams
+    options?: PagingGetWithQueryParamsOptionalParams,
   ): Promise<PagingGetWithQueryParamsResponse> {
     return tracingClient.withSpan(
       "PagingClient._getWithQueryParams",
@@ -1834,9 +1833,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { requiredQueryParameter, options },
-          getWithQueryParamsOperationSpec
+          getWithQueryParamsOperationSpec,
         ) as Promise<PagingGetWithQueryParamsResponse>;
-      }
+      },
     );
   }
 
@@ -1847,7 +1846,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _duplicateParams(
-    options?: PagingDuplicateParamsOptionalParams
+    options?: PagingDuplicateParamsOptionalParams,
   ): Promise<PagingDuplicateParamsResponse> {
     return tracingClient.withSpan(
       "PagingClient._duplicateParams",
@@ -1855,9 +1854,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          duplicateParamsOperationSpec
+          duplicateParamsOperationSpec,
         ) as Promise<PagingDuplicateParamsResponse>;
-      }
+      },
     );
   }
 
@@ -1866,7 +1865,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _pageWithMaxPageSize(
-    options?: PagingPageWithMaxPageSizeOptionalParams
+    options?: PagingPageWithMaxPageSizeOptionalParams,
   ): Promise<PagingPageWithMaxPageSizeResponse> {
     return tracingClient.withSpan(
       "PagingClient._pageWithMaxPageSize",
@@ -1874,9 +1873,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          pageWithMaxPageSizeOperationSpec
+          pageWithMaxPageSizeOperationSpec,
         ) as Promise<PagingPageWithMaxPageSizeResponse>;
-      }
+      },
     );
   }
 
@@ -1885,7 +1884,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _nextOperationWithQueryParams(
-    options?: PagingNextOperationWithQueryParamsOptionalParams
+    options?: PagingNextOperationWithQueryParamsOptionalParams,
   ): Promise<PagingNextOperationWithQueryParamsResponse> {
     return tracingClient.withSpan(
       "PagingClient._nextOperationWithQueryParams",
@@ -1893,9 +1892,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          nextOperationWithQueryParamsOperationSpec
+          nextOperationWithQueryParamsOperationSpec,
         ) as Promise<PagingNextOperationWithQueryParamsResponse>;
-      }
+      },
     );
   }
 
@@ -1904,7 +1903,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _getOdataMultiplePages(
-    options?: PagingGetOdataMultiplePagesOptionalParams
+    options?: PagingGetOdataMultiplePagesOptionalParams,
   ): Promise<PagingGetOdataMultiplePagesResponse> {
     return tracingClient.withSpan(
       "PagingClient._getOdataMultiplePages",
@@ -1912,9 +1911,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getOdataMultiplePagesOperationSpec
+          getOdataMultiplePagesOperationSpec,
         ) as Promise<PagingGetOdataMultiplePagesResponse>;
-      }
+      },
     );
   }
 
@@ -1925,7 +1924,7 @@ export class PagingImpl implements Paging {
    */
   private async _getMultiplePagesWithOffset(
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
-    options?: PagingGetMultiplePagesWithOffsetOptionalParams
+    options?: PagingGetMultiplePagesWithOffsetOptionalParams,
   ): Promise<PagingGetMultiplePagesWithOffsetResponse> {
     return tracingClient.withSpan(
       "PagingClient._getMultiplePagesWithOffset",
@@ -1933,9 +1932,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { pagingGetMultiplePagesWithOffsetOptions, options },
-          getMultiplePagesWithOffsetOperationSpec
+          getMultiplePagesWithOffsetOperationSpec,
         ) as Promise<PagingGetMultiplePagesWithOffsetResponse>;
-      }
+      },
     );
   }
 
@@ -1945,7 +1944,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _getMultiplePagesRetryFirst(
-    options?: PagingGetMultiplePagesRetryFirstOptionalParams
+    options?: PagingGetMultiplePagesRetryFirstOptionalParams,
   ): Promise<PagingGetMultiplePagesRetryFirstResponse> {
     return tracingClient.withSpan(
       "PagingClient._getMultiplePagesRetryFirst",
@@ -1953,9 +1952,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getMultiplePagesRetryFirstOperationSpec
+          getMultiplePagesRetryFirstOperationSpec,
         ) as Promise<PagingGetMultiplePagesRetryFirstResponse>;
-      }
+      },
     );
   }
 
@@ -1965,7 +1964,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _getMultiplePagesRetrySecond(
-    options?: PagingGetMultiplePagesRetrySecondOptionalParams
+    options?: PagingGetMultiplePagesRetrySecondOptionalParams,
   ): Promise<PagingGetMultiplePagesRetrySecondResponse> {
     return tracingClient.withSpan(
       "PagingClient._getMultiplePagesRetrySecond",
@@ -1973,9 +1972,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getMultiplePagesRetrySecondOperationSpec
+          getMultiplePagesRetrySecondOperationSpec,
         ) as Promise<PagingGetMultiplePagesRetrySecondResponse>;
-      }
+      },
     );
   }
 
@@ -1984,7 +1983,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _getSinglePagesFailure(
-    options?: PagingGetSinglePagesFailureOptionalParams
+    options?: PagingGetSinglePagesFailureOptionalParams,
   ): Promise<PagingGetSinglePagesFailureResponse> {
     return tracingClient.withSpan(
       "PagingClient._getSinglePagesFailure",
@@ -1992,9 +1991,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getSinglePagesFailureOperationSpec
+          getSinglePagesFailureOperationSpec,
         ) as Promise<PagingGetSinglePagesFailureResponse>;
-      }
+      },
     );
   }
 
@@ -2003,7 +2002,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _getMultiplePagesFailure(
-    options?: PagingGetMultiplePagesFailureOptionalParams
+    options?: PagingGetMultiplePagesFailureOptionalParams,
   ): Promise<PagingGetMultiplePagesFailureResponse> {
     return tracingClient.withSpan(
       "PagingClient._getMultiplePagesFailure",
@@ -2011,9 +2010,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getMultiplePagesFailureOperationSpec
+          getMultiplePagesFailureOperationSpec,
         ) as Promise<PagingGetMultiplePagesFailureResponse>;
-      }
+      },
     );
   }
 
@@ -2022,7 +2021,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _getMultiplePagesFailureUri(
-    options?: PagingGetMultiplePagesFailureUriOptionalParams
+    options?: PagingGetMultiplePagesFailureUriOptionalParams,
   ): Promise<PagingGetMultiplePagesFailureUriResponse> {
     return tracingClient.withSpan(
       "PagingClient._getMultiplePagesFailureUri",
@@ -2030,9 +2029,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getMultiplePagesFailureUriOperationSpec
+          getMultiplePagesFailureUriOperationSpec,
         ) as Promise<PagingGetMultiplePagesFailureUriResponse>;
-      }
+      },
     );
   }
 
@@ -2045,7 +2044,7 @@ export class PagingImpl implements Paging {
   private async _getMultiplePagesFragmentNextLink(
     apiVersion: string,
     tenant: string,
-    options?: PagingGetMultiplePagesFragmentNextLinkOptionalParams
+    options?: PagingGetMultiplePagesFragmentNextLinkOptionalParams,
   ): Promise<PagingGetMultiplePagesFragmentNextLinkResponse> {
     return tracingClient.withSpan(
       "PagingClient._getMultiplePagesFragmentNextLink",
@@ -2053,9 +2052,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { apiVersion, tenant, options },
-          getMultiplePagesFragmentNextLinkOperationSpec
+          getMultiplePagesFragmentNextLinkOperationSpec,
         ) as Promise<PagingGetMultiplePagesFragmentNextLinkResponse>;
-      }
+      },
     );
   }
 
@@ -2066,7 +2065,7 @@ export class PagingImpl implements Paging {
    */
   private async _getMultiplePagesFragmentWithGroupingNextLink(
     customParameterGroup: CustomParameterGroup,
-    options?: PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams
+    options?: PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams,
   ): Promise<PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse> {
     return tracingClient.withSpan(
       "PagingClient._getMultiplePagesFragmentWithGroupingNextLink",
@@ -2074,11 +2073,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { customParameterGroup, options },
-          getMultiplePagesFragmentWithGroupingNextLinkOperationSpec
-        ) as Promise<
-          PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse
-        >;
-      }
+          getMultiplePagesFragmentWithGroupingNextLinkOperationSpec,
+        ) as Promise<PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse>;
+      },
     );
   }
 
@@ -2087,7 +2084,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _getMultiplePagesLRO(
-    options?: PagingGetMultiplePagesLROOptionalParams
+    options?: PagingGetMultiplePagesLROOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<PagingGetMultiplePagesLROResponse>,
@@ -2096,29 +2093,29 @@ export class PagingImpl implements Paging {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<PagingGetMultiplePagesLROResponse> => {
       return tracingClient.withSpan(
         "PagingClient._getMultiplePagesLRO",
         options ?? {},
         async () => {
-          return this.client.sendOperationRequest(args, spec) as Promise<
-            PagingGetMultiplePagesLROResponse
-          >;
-        }
+          return this.client.sendOperationRequest(
+            args,
+            spec,
+          ) as Promise<PagingGetMultiplePagesLROResponse>;
+        },
       );
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -2127,8 +2124,8 @@ export class PagingImpl implements Paging {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -2136,22 +2133,22 @@ export class PagingImpl implements Paging {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { options },
-      spec: getMultiplePagesLROOperationSpec
+      spec: getMultiplePagesLROOperationSpec,
     });
     const poller = await createHttpPoller<
       PagingGetMultiplePagesLROResponse,
       OperationState<PagingGetMultiplePagesLROResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -2163,7 +2160,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _appendApiVersion(
-    options?: PagingAppendApiVersionOptionalParams
+    options?: PagingAppendApiVersionOptionalParams,
   ): Promise<PagingAppendApiVersionResponse> {
     return tracingClient.withSpan(
       "PagingClient._appendApiVersion",
@@ -2171,9 +2168,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          appendApiVersionOperationSpec
+          appendApiVersionOperationSpec,
         ) as Promise<PagingAppendApiVersionResponse>;
-      }
+      },
     );
   }
 
@@ -2183,7 +2180,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _replaceApiVersion(
-    options?: PagingReplaceApiVersionOptionalParams
+    options?: PagingReplaceApiVersionOptionalParams,
   ): Promise<PagingReplaceApiVersionResponse> {
     return tracingClient.withSpan(
       "PagingClient._replaceApiVersion",
@@ -2191,9 +2188,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          replaceApiVersionOperationSpec
+          replaceApiVersionOperationSpec,
         ) as Promise<PagingReplaceApiVersionResponse>;
-      }
+      },
     );
   }
 
@@ -2208,7 +2205,7 @@ export class PagingImpl implements Paging {
     apiVersion: string,
     tenant: string,
     nextLink: string,
-    options?: PagingNextFragmentOptionalParams
+    options?: PagingNextFragmentOptionalParams,
   ): Promise<PagingNextFragmentResponse> {
     return tracingClient.withSpan(
       "PagingClient._nextFragment",
@@ -2216,9 +2213,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { apiVersion, tenant, nextLink, options },
-          nextFragmentOperationSpec
+          nextFragmentOperationSpec,
         ) as Promise<PagingNextFragmentResponse>;
-      }
+      },
     );
   }
 
@@ -2231,7 +2228,7 @@ export class PagingImpl implements Paging {
   private async _nextFragmentWithGrouping(
     nextLink: string,
     customParameterGroup: CustomParameterGroup,
-    options?: PagingNextFragmentWithGroupingOptionalParams
+    options?: PagingNextFragmentWithGroupingOptionalParams,
   ): Promise<PagingNextFragmentWithGroupingResponse> {
     return tracingClient.withSpan(
       "PagingClient._nextFragmentWithGrouping",
@@ -2239,9 +2236,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, customParameterGroup, options },
-          nextFragmentWithGroupingOperationSpec
+          nextFragmentWithGroupingOperationSpec,
         ) as Promise<PagingNextFragmentWithGroupingResponse>;
-      }
+      },
     );
   }
 
@@ -2251,7 +2248,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   private async _getPagingModelWithItemNameWithXMSClientName(
-    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
+    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams,
   ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse> {
     return tracingClient.withSpan(
       "PagingClient._getPagingModelWithItemNameWithXMSClientName",
@@ -2259,9 +2256,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getPagingModelWithItemNameWithXMSClientNameOperationSpec
+          getPagingModelWithItemNameWithXMSClientNameOperationSpec,
         ) as Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse>;
-      }
+      },
     );
   }
 
@@ -2272,7 +2269,7 @@ export class PagingImpl implements Paging {
    */
   private async _getNoItemNamePagesNext(
     nextLink: string,
-    options?: PagingGetNoItemNamePagesNextOptionalParams
+    options?: PagingGetNoItemNamePagesNextOptionalParams,
   ): Promise<PagingGetNoItemNamePagesNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._getNoItemNamePagesNext",
@@ -2280,9 +2277,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          getNoItemNamePagesNextOperationSpec
+          getNoItemNamePagesNextOperationSpec,
         ) as Promise<PagingGetNoItemNamePagesNextResponse>;
-      }
+      },
     );
   }
 
@@ -2294,7 +2291,7 @@ export class PagingImpl implements Paging {
    */
   private async _getEmptyNextLinkNamePagesNext(
     nextLink: string,
-    options?: PagingGetEmptyNextLinkNamePagesNextOptionalParams
+    options?: PagingGetEmptyNextLinkNamePagesNextOptionalParams,
   ): Promise<PagingGetEmptyNextLinkNamePagesNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._getEmptyNextLinkNamePagesNext",
@@ -2302,9 +2299,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          getEmptyNextLinkNamePagesNextOperationSpec
+          getEmptyNextLinkNamePagesNextOperationSpec,
         ) as Promise<PagingGetEmptyNextLinkNamePagesNextResponse>;
-      }
+      },
     );
   }
 
@@ -2315,7 +2312,7 @@ export class PagingImpl implements Paging {
    */
   private async _getSinglePagesNext(
     nextLink: string,
-    options?: PagingGetSinglePagesNextOptionalParams
+    options?: PagingGetSinglePagesNextOptionalParams,
   ): Promise<PagingGetSinglePagesNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._getSinglePagesNext",
@@ -2323,9 +2320,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          getSinglePagesNextOperationSpec
+          getSinglePagesNextOperationSpec,
         ) as Promise<PagingGetSinglePagesNextResponse>;
-      }
+      },
     );
   }
 
@@ -2339,7 +2336,7 @@ export class PagingImpl implements Paging {
   private async _getSinglePagesWithBodyParamsNext(
     parameters: BodyParam,
     nextLink: string,
-    options?: PagingGetSinglePagesWithBodyParamsNextOptionalParams
+    options?: PagingGetSinglePagesWithBodyParamsNextOptionalParams,
   ): Promise<PagingGetSinglePagesWithBodyParamsNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._getSinglePagesWithBodyParamsNext",
@@ -2347,9 +2344,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { parameters, nextLink, options },
-          getSinglePagesWithBodyParamsNextOperationSpec
+          getSinglePagesWithBodyParamsNextOperationSpec,
         ) as Promise<PagingGetSinglePagesWithBodyParamsNextResponse>;
-      }
+      },
     );
   }
 
@@ -2360,7 +2357,7 @@ export class PagingImpl implements Paging {
    */
   private async _firstResponseEmptyNext(
     nextLink: string,
-    options?: PagingFirstResponseEmptyNextOptionalParams
+    options?: PagingFirstResponseEmptyNextOptionalParams,
   ): Promise<PagingFirstResponseEmptyNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._firstResponseEmptyNext",
@@ -2368,9 +2365,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          firstResponseEmptyNextOperationSpec
+          firstResponseEmptyNextOperationSpec,
         ) as Promise<PagingFirstResponseEmptyNextResponse>;
-      }
+      },
     );
   }
 
@@ -2381,7 +2378,7 @@ export class PagingImpl implements Paging {
    */
   private async _getMultiplePagesNext(
     nextLink: string,
-    options?: PagingGetMultiplePagesNextOptionalParams
+    options?: PagingGetMultiplePagesNextOptionalParams,
   ): Promise<PagingGetMultiplePagesNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._getMultiplePagesNext",
@@ -2389,9 +2386,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          getMultiplePagesNextOperationSpec
+          getMultiplePagesNextOperationSpec,
         ) as Promise<PagingGetMultiplePagesNextResponse>;
-      }
+      },
     );
   }
 
@@ -2402,7 +2399,7 @@ export class PagingImpl implements Paging {
    */
   private async _duplicateParamsNext(
     nextLink: string,
-    options?: PagingDuplicateParamsNextOptionalParams
+    options?: PagingDuplicateParamsNextOptionalParams,
   ): Promise<PagingDuplicateParamsNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._duplicateParamsNext",
@@ -2410,9 +2407,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          duplicateParamsNextOperationSpec
+          duplicateParamsNextOperationSpec,
         ) as Promise<PagingDuplicateParamsNextResponse>;
-      }
+      },
     );
   }
 
@@ -2423,7 +2420,7 @@ export class PagingImpl implements Paging {
    */
   private async _pageWithMaxPageSizeNext(
     nextLink: string,
-    options?: PagingPageWithMaxPageSizeNextOptionalParams
+    options?: PagingPageWithMaxPageSizeNextOptionalParams,
   ): Promise<PagingPageWithMaxPageSizeNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._pageWithMaxPageSizeNext",
@@ -2431,9 +2428,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          pageWithMaxPageSizeNextOperationSpec
+          pageWithMaxPageSizeNextOperationSpec,
         ) as Promise<PagingPageWithMaxPageSizeNextResponse>;
-      }
+      },
     );
   }
 
@@ -2444,7 +2441,7 @@ export class PagingImpl implements Paging {
    */
   private async _getOdataMultiplePagesNext(
     nextLink: string,
-    options?: PagingGetOdataMultiplePagesNextOptionalParams
+    options?: PagingGetOdataMultiplePagesNextOptionalParams,
   ): Promise<PagingGetOdataMultiplePagesNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._getOdataMultiplePagesNext",
@@ -2452,9 +2449,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          getOdataMultiplePagesNextOperationSpec
+          getOdataMultiplePagesNextOperationSpec,
         ) as Promise<PagingGetOdataMultiplePagesNextResponse>;
-      }
+      },
     );
   }
 
@@ -2468,7 +2465,7 @@ export class PagingImpl implements Paging {
   private async _getMultiplePagesWithOffsetNext(
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
     nextLink: string,
-    options?: PagingGetMultiplePagesWithOffsetNextOptionalParams
+    options?: PagingGetMultiplePagesWithOffsetNextOptionalParams,
   ): Promise<PagingGetMultiplePagesWithOffsetNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._getMultiplePagesWithOffsetNext",
@@ -2476,9 +2473,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { pagingGetMultiplePagesWithOffsetOptions, nextLink, options },
-          getMultiplePagesWithOffsetNextOperationSpec
+          getMultiplePagesWithOffsetNextOperationSpec,
         ) as Promise<PagingGetMultiplePagesWithOffsetNextResponse>;
-      }
+      },
     );
   }
 
@@ -2490,7 +2487,7 @@ export class PagingImpl implements Paging {
    */
   private async _getMultiplePagesRetryFirstNext(
     nextLink: string,
-    options?: PagingGetMultiplePagesRetryFirstNextOptionalParams
+    options?: PagingGetMultiplePagesRetryFirstNextOptionalParams,
   ): Promise<PagingGetMultiplePagesRetryFirstNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._getMultiplePagesRetryFirstNext",
@@ -2498,9 +2495,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          getMultiplePagesRetryFirstNextOperationSpec
+          getMultiplePagesRetryFirstNextOperationSpec,
         ) as Promise<PagingGetMultiplePagesRetryFirstNextResponse>;
-      }
+      },
     );
   }
 
@@ -2512,7 +2509,7 @@ export class PagingImpl implements Paging {
    */
   private async _getMultiplePagesRetrySecondNext(
     nextLink: string,
-    options?: PagingGetMultiplePagesRetrySecondNextOptionalParams
+    options?: PagingGetMultiplePagesRetrySecondNextOptionalParams,
   ): Promise<PagingGetMultiplePagesRetrySecondNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._getMultiplePagesRetrySecondNext",
@@ -2520,9 +2517,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          getMultiplePagesRetrySecondNextOperationSpec
+          getMultiplePagesRetrySecondNextOperationSpec,
         ) as Promise<PagingGetMultiplePagesRetrySecondNextResponse>;
-      }
+      },
     );
   }
 
@@ -2533,7 +2530,7 @@ export class PagingImpl implements Paging {
    */
   private async _getSinglePagesFailureNext(
     nextLink: string,
-    options?: PagingGetSinglePagesFailureNextOptionalParams
+    options?: PagingGetSinglePagesFailureNextOptionalParams,
   ): Promise<PagingGetSinglePagesFailureNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._getSinglePagesFailureNext",
@@ -2541,9 +2538,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          getSinglePagesFailureNextOperationSpec
+          getSinglePagesFailureNextOperationSpec,
         ) as Promise<PagingGetSinglePagesFailureNextResponse>;
-      }
+      },
     );
   }
 
@@ -2555,7 +2552,7 @@ export class PagingImpl implements Paging {
    */
   private async _getMultiplePagesFailureNext(
     nextLink: string,
-    options?: PagingGetMultiplePagesFailureNextOptionalParams
+    options?: PagingGetMultiplePagesFailureNextOptionalParams,
   ): Promise<PagingGetMultiplePagesFailureNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._getMultiplePagesFailureNext",
@@ -2563,9 +2560,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          getMultiplePagesFailureNextOperationSpec
+          getMultiplePagesFailureNextOperationSpec,
         ) as Promise<PagingGetMultiplePagesFailureNextResponse>;
-      }
+      },
     );
   }
 
@@ -2577,7 +2574,7 @@ export class PagingImpl implements Paging {
    */
   private async _getMultiplePagesFailureUriNext(
     nextLink: string,
-    options?: PagingGetMultiplePagesFailureUriNextOptionalParams
+    options?: PagingGetMultiplePagesFailureUriNextOptionalParams,
   ): Promise<PagingGetMultiplePagesFailureUriNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._getMultiplePagesFailureUriNext",
@@ -2585,9 +2582,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          getMultiplePagesFailureUriNextOperationSpec
+          getMultiplePagesFailureUriNextOperationSpec,
         ) as Promise<PagingGetMultiplePagesFailureUriNextResponse>;
-      }
+      },
     );
   }
 
@@ -2598,7 +2595,7 @@ export class PagingImpl implements Paging {
    */
   private async _getMultiplePagesLRONext(
     nextLink: string,
-    options?: PagingGetMultiplePagesLRONextOptionalParams
+    options?: PagingGetMultiplePagesLRONextOptionalParams,
   ): Promise<PagingGetMultiplePagesLRONextResponse> {
     return tracingClient.withSpan(
       "PagingClient._getMultiplePagesLRONext",
@@ -2606,9 +2603,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          getMultiplePagesLRONextOperationSpec
+          getMultiplePagesLRONextOperationSpec,
         ) as Promise<PagingGetMultiplePagesLRONextResponse>;
-      }
+      },
     );
   }
 
@@ -2619,7 +2616,7 @@ export class PagingImpl implements Paging {
    */
   private async _appendApiVersionNext(
     nextLink: string,
-    options?: PagingAppendApiVersionNextOptionalParams
+    options?: PagingAppendApiVersionNextOptionalParams,
   ): Promise<PagingAppendApiVersionNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._appendApiVersionNext",
@@ -2627,9 +2624,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          appendApiVersionNextOperationSpec
+          appendApiVersionNextOperationSpec,
         ) as Promise<PagingAppendApiVersionNextResponse>;
-      }
+      },
     );
   }
 
@@ -2640,7 +2637,7 @@ export class PagingImpl implements Paging {
    */
   private async _replaceApiVersionNext(
     nextLink: string,
-    options?: PagingReplaceApiVersionNextOptionalParams
+    options?: PagingReplaceApiVersionNextOptionalParams,
   ): Promise<PagingReplaceApiVersionNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._replaceApiVersionNext",
@@ -2648,9 +2645,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          replaceApiVersionNextOperationSpec
+          replaceApiVersionNextOperationSpec,
         ) as Promise<PagingReplaceApiVersionNextResponse>;
-      }
+      },
     );
   }
 
@@ -2662,7 +2659,7 @@ export class PagingImpl implements Paging {
    */
   private async _getPagingModelWithItemNameWithXMSClientNameNext(
     nextLink: string,
-    options?: PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams
+    options?: PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams,
   ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse> {
     return tracingClient.withSpan(
       "PagingClient._getPagingModelWithItemNameWithXMSClientNameNext",
@@ -2670,11 +2667,9 @@ export class PagingImpl implements Paging {
       async (options) => {
         return this.client.sendOperationRequest(
           { nextLink, options },
-          getPagingModelWithItemNameWithXMSClientNameNextOperationSpec
-        ) as Promise<
-          PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse
-        >;
-      }
+          getPagingModelWithItemNameWithXMSClientNameNextOperationSpec,
+        ) as Promise<PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse>;
+      },
     );
   }
 }
@@ -2686,650 +2681,655 @@ const getNoItemNamePagesOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResultValue
+      bodyMapper: Mappers.ProductResultValue,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getEmptyNextLinkNamePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/emptynextlink",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResultValue
+      bodyMapper: Mappers.ProductResultValue,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getNullNextLinkNamePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/nullnextlink",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSinglePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/single",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSinglePagesWithBodyParamsOperationSpec: coreClient.OperationSpec = {
   path: "/paging/single/getWithBodyParams",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const firstResponseEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/paging/firstResponseEmpty/1",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResultValue
+      bodyMapper: Mappers.ProductResultValue,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults,
-    Parameters.timeout
+    Parameters.timeout,
   ],
-  serializer
+  serializer,
 };
 const getWithQueryParamsOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/getWithQueryParams",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [
     Parameters.requiredQueryParameter,
-    Parameters.queryConstant
+    Parameters.queryConstant,
   ],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const duplicateParamsOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/duplicateParams/1",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.filter],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const pageWithMaxPageSizeOperationSpec: coreClient.OperationSpec = {
   path: "/paging/maxPageSize",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.maxpagesize],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const nextOperationWithQueryParamsOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/nextOperationWithQueryParams",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.queryConstant],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getOdataMultiplePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/odata",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OdataProductResult
+      bodyMapper: Mappers.OdataProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults1,
-    Parameters.timeout1
+    Parameters.timeout1,
   ],
-  serializer
+  serializer,
 };
 const getMultiplePagesWithOffsetOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/withpath/{offset}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.offset],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults2,
-    Parameters.timeout2
+    Parameters.timeout2,
   ],
-  serializer
+  serializer,
 };
 const getMultiplePagesRetryFirstOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/retryfirst",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesRetrySecondOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/retrysecond",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSinglePagesFailureOperationSpec: coreClient.OperationSpec = {
   path: "/paging/single/failure",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesFailureOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/failure",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesFailureUriOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/failureuri",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const getMultiplePagesFragmentNextLinkOperationSpec: coreClient.OperationSpec = {
-  path: "/paging/multiple/fragment/{tenant}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.OdataProductResult
+const getMultiplePagesFragmentNextLinkOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/paging/multiple/fragment/{tenant}",
+    httpMethod: "GET",
+    responses: {
+      200: {
+        bodyMapper: Mappers.OdataProductResult,
+      },
+      default: {},
     },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.tenant],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: coreClient.OperationSpec = {
-  path: "/paging/multiple/fragmentwithgrouping/{tenant}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.OdataProductResult
+    queryParameters: [Parameters.apiVersion],
+    urlParameters: [Parameters.$host, Parameters.tenant],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };
+const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/paging/multiple/fragmentwithgrouping/{tenant}",
+    httpMethod: "GET",
+    responses: {
+      200: {
+        bodyMapper: Mappers.OdataProductResult,
+      },
+      default: {},
     },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [Parameters.$host, Parameters.tenant1],
-  headerParameters: [Parameters.accept],
-  serializer
-};
+    queryParameters: [Parameters.apiVersion1],
+    urlParameters: [Parameters.$host, Parameters.tenant1],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };
 const getMultiplePagesLROOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/lro",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
     201: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
     202: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
     204: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults3,
-    Parameters.timeout3
+    Parameters.timeout3,
   ],
-  serializer
+  serializer,
 };
 const appendApiVersionOperationSpec: coreClient.OperationSpec = {
   path: "/paging/apiVersion/append/1",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const replaceApiVersionOperationSpec: coreClient.OperationSpec = {
   path: "/paging/apiVersion/replace/1",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const nextFragmentOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/fragment/{tenant}/{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OdataProductResult
+      bodyMapper: Mappers.OdataProductResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenant, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const nextFragmentWithGroupingOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OdataProductResult
+      bodyMapper: Mappers.OdataProductResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.tenant1, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const getPagingModelWithItemNameWithXMSClientNameOperationSpec: coreClient.OperationSpec = {
-  path: "/paging/itemNameWithXMSClientName",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProductResultValueWithXMSClientName
+const getPagingModelWithItemNameWithXMSClientNameOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/paging/itemNameWithXMSClientName",
+    httpMethod: "GET",
+    responses: {
+      200: {
+        bodyMapper: Mappers.ProductResultValueWithXMSClientName,
+      },
+      default: {},
     },
-    default: {}
-  },
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept],
-  serializer
-};
+    urlParameters: [Parameters.$host],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };
 const getNoItemNamePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResultValue
+      bodyMapper: Mappers.ProductResultValue,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getEmptyNextLinkNamePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResultValue
+      bodyMapper: Mappers.ProductResultValue,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSinglePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const getSinglePagesWithBodyParamsNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProductResult
+const getSinglePagesWithBodyParamsNextOperationSpec: coreClient.OperationSpec =
+  {
+    path: "{nextLink}",
+    httpMethod: "GET",
+    responses: {
+      200: {
+        bodyMapper: Mappers.ProductResult,
+      },
+      default: {},
     },
-    default: {}
-  },
-  urlParameters: [Parameters.$host, Parameters.nextLink],
-  headerParameters: [Parameters.accept, Parameters.contentType],
-  mediaType: "json",
-  serializer
-};
+    urlParameters: [Parameters.$host, Parameters.nextLink],
+    headerParameters: [Parameters.accept, Parameters.contentType],
+    mediaType: "json",
+    serializer,
+  };
 const firstResponseEmptyNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResultValue
+      bodyMapper: Mappers.ProductResultValue,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults,
-    Parameters.timeout
+    Parameters.timeout,
   ],
-  serializer
+  serializer,
 };
 const duplicateParamsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const pageWithMaxPageSizeNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getOdataMultiplePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OdataProductResult
+      bodyMapper: Mappers.OdataProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults1,
-    Parameters.timeout1
+    Parameters.timeout1,
   ],
-  serializer
+  serializer,
 };
 const getMultiplePagesWithOffsetNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.offset, Parameters.nextLink],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults2,
-    Parameters.timeout2
+    Parameters.timeout2,
   ],
-  serializer
+  serializer,
 };
 const getMultiplePagesRetryFirstNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesRetrySecondNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSinglePagesFailureNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesFailureNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesFailureUriNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesLRONextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
     202: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults3,
-    Parameters.timeout3
+    Parameters.timeout3,
   ],
-  serializer
+  serializer,
 };
 const appendApiVersionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const replaceApiVersionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const getPagingModelWithItemNameWithXMSClientNameNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProductResultValueWithXMSClientName
+const getPagingModelWithItemNameWithXMSClientNameNextOperationSpec: coreClient.OperationSpec =
+  {
+    path: "{nextLink}",
+    httpMethod: "GET",
+    responses: {
+      200: {
+        bodyMapper: Mappers.ProductResultValueWithXMSClientName,
+      },
+      default: {},
     },
-    default: {}
-  },
-  urlParameters: [Parameters.$host, Parameters.nextLink],
-  headerParameters: [Parameters.accept],
-  serializer
-};
+    urlParameters: [Parameters.$host, Parameters.nextLink],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };

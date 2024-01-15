@@ -10,7 +10,7 @@ import { HttpInfrastructureRestClient } from "./clientDefinitions";
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): HttpInfrastructureRestClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-http-infrastructure-rest/1.0.0-preview1`;
@@ -21,15 +21,16 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
-    }
+      logger: options.loggingOptions?.logger ?? logger.info,
+    },
   };
 
   const client = getClient(baseUrl, options) as HttpInfrastructureRestClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return {
     ...client,
     httpFailure: {
@@ -41,7 +42,7 @@ export default function createClient(
       },
       getNoModelEmpty: (options) => {
         return client.path("/http/failure/nomodel/empty").get(options);
-      }
+      },
     },
     httpSuccess: {
       head200: (options) => {
@@ -100,7 +101,7 @@ export default function createClient(
       },
       head404: (options) => {
         return client.path("/http/success/404").head(options);
-      }
+      },
     },
     httpRedirects: {
       head300: (options) => {
@@ -150,7 +151,7 @@ export default function createClient(
       },
       delete307: (options) => {
         return client.path("/http/redirect/307").delete(options);
-      }
+      },
     },
     httpClientFailure: {
       head400: (options) => {
@@ -230,7 +231,7 @@ export default function createClient(
       },
       head429: (options) => {
         return client.path("/http/failure/client/429").head(options);
-      }
+      },
     },
     httpServerFailure: {
       head501: (options) => {
@@ -244,7 +245,7 @@ export default function createClient(
       },
       delete505: (options) => {
         return client.path("/http/failure/server/505").delete(options);
-      }
+      },
     },
     httpRetry: {
       head408: (options) => {
@@ -273,13 +274,13 @@ export default function createClient(
       },
       patch504: (options) => {
         return client.path("/http/retry/504").patch(options);
-      }
+      },
     },
     multipleResponses: {
       get200Model204NoModelDefaultError200Valid: (options) => {
         return client
           .path(
-            "/http/payloads/200/A/204/none/default/Error/response/200/valid"
+            "/http/payloads/200/A/204/none/default/Error/response/200/valid",
           )
           .get(options);
       },
@@ -291,7 +292,7 @@ export default function createClient(
       get200Model204NoModelDefaultError201Invalid: (options) => {
         return client
           .path(
-            "/http/payloads/200/A/204/none/default/Error/response/201/valid"
+            "/http/payloads/200/A/204/none/default/Error/response/201/valid",
           )
           .get(options);
       },
@@ -303,7 +304,7 @@ export default function createClient(
       get200Model204NoModelDefaultError400Valid: (options) => {
         return client
           .path(
-            "/http/payloads/200/A/204/none/default/Error/response/400/valid"
+            "/http/payloads/200/A/204/none/default/Error/response/400/valid",
           )
           .get(options);
       },
@@ -325,77 +326,77 @@ export default function createClient(
       get200ModelA201ModelC404ModelDDefaultError200Valid: (options) => {
         return client
           .path(
-            "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid"
+            "/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid",
           )
           .get(options);
       },
       get200ModelA201ModelC404ModelDDefaultError201Valid: (options) => {
         return client
           .path(
-            "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid"
+            "/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid",
           )
           .get(options);
       },
       get200ModelA201ModelC404ModelDDefaultError404Valid: (options) => {
         return client
           .path(
-            "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid"
+            "/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid",
           )
           .get(options);
       },
       get200ModelA201ModelC404ModelDDefaultError400Valid: (options) => {
         return client
           .path(
-            "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid"
+            "/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid",
           )
           .get(options);
       },
       get202None204NoneDefaultError202None: (options) => {
         return client
           .path(
-            "/http/payloads/202/none/204/none/default/Error/response/202/none"
+            "/http/payloads/202/none/204/none/default/Error/response/202/none",
           )
           .get(options);
       },
       get202None204NoneDefaultError204None: (options) => {
         return client
           .path(
-            "/http/payloads/202/none/204/none/default/Error/response/204/none"
+            "/http/payloads/202/none/204/none/default/Error/response/204/none",
           )
           .get(options);
       },
       get202None204NoneDefaultError400Valid: (options) => {
         return client
           .path(
-            "/http/payloads/202/none/204/none/default/Error/response/400/valid"
+            "/http/payloads/202/none/204/none/default/Error/response/400/valid",
           )
           .get(options);
       },
       get202None204NoneDefaultNone202Invalid: (options) => {
         return client
           .path(
-            "/http/payloads/202/none/204/none/default/none/response/202/invalid"
+            "/http/payloads/202/none/204/none/default/none/response/202/invalid",
           )
           .get(options);
       },
       get202None204NoneDefaultNone204None: (options) => {
         return client
           .path(
-            "/http/payloads/202/none/204/none/default/none/response/204/none"
+            "/http/payloads/202/none/204/none/default/none/response/204/none",
           )
           .get(options);
       },
       get202None204NoneDefaultNone400None: (options) => {
         return client
           .path(
-            "/http/payloads/202/none/204/none/default/none/response/400/none"
+            "/http/payloads/202/none/204/none/default/none/response/400/none",
           )
           .get(options);
       },
       get202None204NoneDefaultNone400Invalid: (options) => {
         return client
           .path(
-            "/http/payloads/202/none/204/none/default/none/response/400/invalid"
+            "/http/payloads/202/none/204/none/default/none/response/400/invalid",
           )
           .get(options);
       },
@@ -473,7 +474,7 @@ export default function createClient(
         return client
           .path("/http/payloads/200/A/response/202/valid")
           .get(options);
-      }
-    }
+      },
+    },
   };
 }

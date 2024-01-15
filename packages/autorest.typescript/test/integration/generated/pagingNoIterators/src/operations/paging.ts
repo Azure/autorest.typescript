@@ -14,7 +14,7 @@ import { PagingNoIteratorsClient } from "../pagingNoIteratorsClient";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -110,7 +110,7 @@ import {
   PagingReplaceApiVersionNextOptionalParams,
   PagingReplaceApiVersionNextResponse,
   PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams,
-  PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse
+  PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse,
 } from "../models";
 
 /** Class containing Paging operations. */
@@ -130,11 +130,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getNoItemNamePages(
-    options?: PagingGetNoItemNamePagesOptionalParams
+    options?: PagingGetNoItemNamePagesOptionalParams,
   ): Promise<PagingGetNoItemNamePagesResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getNoItemNamePagesOperationSpec
+      getNoItemNamePagesOperationSpec,
     );
   }
 
@@ -143,11 +143,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getEmptyNextLinkNamePages(
-    options?: PagingGetEmptyNextLinkNamePagesOptionalParams
+    options?: PagingGetEmptyNextLinkNamePagesOptionalParams,
   ): Promise<PagingGetEmptyNextLinkNamePagesResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getEmptyNextLinkNamePagesOperationSpec
+      getEmptyNextLinkNamePagesOperationSpec,
     );
   }
 
@@ -156,11 +156,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getNullNextLinkNamePages(
-    options?: PagingGetNullNextLinkNamePagesOptionalParams
+    options?: PagingGetNullNextLinkNamePagesOptionalParams,
   ): Promise<PagingGetNullNextLinkNamePagesResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getNullNextLinkNamePagesOperationSpec
+      getNullNextLinkNamePagesOperationSpec,
     );
   }
 
@@ -169,11 +169,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getSinglePages(
-    options?: PagingGetSinglePagesOptionalParams
+    options?: PagingGetSinglePagesOptionalParams,
   ): Promise<PagingGetSinglePagesResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getSinglePagesOperationSpec
+      getSinglePagesOperationSpec,
     );
   }
 
@@ -184,11 +184,11 @@ export class PagingImpl implements Paging {
    */
   getSinglePagesWithBodyParams(
     parameters: BodyParam,
-    options?: PagingGetSinglePagesWithBodyParamsOptionalParams
+    options?: PagingGetSinglePagesWithBodyParamsOptionalParams,
   ): Promise<PagingGetSinglePagesWithBodyParamsResponse> {
     return this.client.sendOperationRequest(
       { parameters, options },
-      getSinglePagesWithBodyParamsOperationSpec
+      getSinglePagesWithBodyParamsOperationSpec,
     );
   }
 
@@ -198,11 +198,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   firstResponseEmpty(
-    options?: PagingFirstResponseEmptyOptionalParams
+    options?: PagingFirstResponseEmptyOptionalParams,
   ): Promise<PagingFirstResponseEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      firstResponseEmptyOperationSpec
+      firstResponseEmptyOperationSpec,
     );
   }
 
@@ -211,11 +211,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getMultiplePages(
-    options?: PagingGetMultiplePagesOptionalParams
+    options?: PagingGetMultiplePagesOptionalParams,
   ): Promise<PagingGetMultiplePagesResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getMultiplePagesOperationSpec
+      getMultiplePagesOperationSpec,
     );
   }
 
@@ -227,11 +227,11 @@ export class PagingImpl implements Paging {
    */
   getWithQueryParams(
     requiredQueryParameter: number,
-    options?: PagingGetWithQueryParamsOptionalParams
+    options?: PagingGetWithQueryParamsOptionalParams,
   ): Promise<PagingGetWithQueryParamsResponse> {
     return this.client.sendOperationRequest(
       { requiredQueryParameter, options },
-      getWithQueryParamsOperationSpec
+      getWithQueryParamsOperationSpec,
     );
   }
 
@@ -242,11 +242,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   duplicateParams(
-    options?: PagingDuplicateParamsOptionalParams
+    options?: PagingDuplicateParamsOptionalParams,
   ): Promise<PagingDuplicateParamsResponse> {
     return this.client.sendOperationRequest(
       { options },
-      duplicateParamsOperationSpec
+      duplicateParamsOperationSpec,
     );
   }
 
@@ -255,11 +255,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   pageWithMaxPageSize(
-    options?: PagingPageWithMaxPageSizeOptionalParams
+    options?: PagingPageWithMaxPageSizeOptionalParams,
   ): Promise<PagingPageWithMaxPageSizeResponse> {
     return this.client.sendOperationRequest(
       { options },
-      pageWithMaxPageSizeOperationSpec
+      pageWithMaxPageSizeOperationSpec,
     );
   }
 
@@ -268,11 +268,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   nextOperationWithQueryParams(
-    options?: PagingNextOperationWithQueryParamsOptionalParams
+    options?: PagingNextOperationWithQueryParamsOptionalParams,
   ): Promise<PagingNextOperationWithQueryParamsResponse> {
     return this.client.sendOperationRequest(
       { options },
-      nextOperationWithQueryParamsOperationSpec
+      nextOperationWithQueryParamsOperationSpec,
     );
   }
 
@@ -281,11 +281,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getOdataMultiplePages(
-    options?: PagingGetOdataMultiplePagesOptionalParams
+    options?: PagingGetOdataMultiplePagesOptionalParams,
   ): Promise<PagingGetOdataMultiplePagesResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getOdataMultiplePagesOperationSpec
+      getOdataMultiplePagesOperationSpec,
     );
   }
 
@@ -296,11 +296,11 @@ export class PagingImpl implements Paging {
    */
   getMultiplePagesWithOffset(
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
-    options?: PagingGetMultiplePagesWithOffsetOptionalParams
+    options?: PagingGetMultiplePagesWithOffsetOptionalParams,
   ): Promise<PagingGetMultiplePagesWithOffsetResponse> {
     return this.client.sendOperationRequest(
       { pagingGetMultiplePagesWithOffsetOptions, options },
-      getMultiplePagesWithOffsetOperationSpec
+      getMultiplePagesWithOffsetOperationSpec,
     );
   }
 
@@ -310,11 +310,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getMultiplePagesRetryFirst(
-    options?: PagingGetMultiplePagesRetryFirstOptionalParams
+    options?: PagingGetMultiplePagesRetryFirstOptionalParams,
   ): Promise<PagingGetMultiplePagesRetryFirstResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getMultiplePagesRetryFirstOperationSpec
+      getMultiplePagesRetryFirstOperationSpec,
     );
   }
 
@@ -324,11 +324,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getMultiplePagesRetrySecond(
-    options?: PagingGetMultiplePagesRetrySecondOptionalParams
+    options?: PagingGetMultiplePagesRetrySecondOptionalParams,
   ): Promise<PagingGetMultiplePagesRetrySecondResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getMultiplePagesRetrySecondOperationSpec
+      getMultiplePagesRetrySecondOperationSpec,
     );
   }
 
@@ -337,11 +337,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getSinglePagesFailure(
-    options?: PagingGetSinglePagesFailureOptionalParams
+    options?: PagingGetSinglePagesFailureOptionalParams,
   ): Promise<PagingGetSinglePagesFailureResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getSinglePagesFailureOperationSpec
+      getSinglePagesFailureOperationSpec,
     );
   }
 
@@ -350,11 +350,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getMultiplePagesFailure(
-    options?: PagingGetMultiplePagesFailureOptionalParams
+    options?: PagingGetMultiplePagesFailureOptionalParams,
   ): Promise<PagingGetMultiplePagesFailureResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getMultiplePagesFailureOperationSpec
+      getMultiplePagesFailureOperationSpec,
     );
   }
 
@@ -363,11 +363,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getMultiplePagesFailureUri(
-    options?: PagingGetMultiplePagesFailureUriOptionalParams
+    options?: PagingGetMultiplePagesFailureUriOptionalParams,
   ): Promise<PagingGetMultiplePagesFailureUriResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getMultiplePagesFailureUriOperationSpec
+      getMultiplePagesFailureUriOperationSpec,
     );
   }
 
@@ -380,11 +380,11 @@ export class PagingImpl implements Paging {
   getMultiplePagesFragmentNextLink(
     apiVersion: string,
     tenant: string,
-    options?: PagingGetMultiplePagesFragmentNextLinkOptionalParams
+    options?: PagingGetMultiplePagesFragmentNextLinkOptionalParams,
   ): Promise<PagingGetMultiplePagesFragmentNextLinkResponse> {
     return this.client.sendOperationRequest(
       { apiVersion, tenant, options },
-      getMultiplePagesFragmentNextLinkOperationSpec
+      getMultiplePagesFragmentNextLinkOperationSpec,
     );
   }
 
@@ -395,11 +395,11 @@ export class PagingImpl implements Paging {
    */
   getMultiplePagesFragmentWithGroupingNextLink(
     customParameterGroup: CustomParameterGroup,
-    options?: PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams
+    options?: PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams,
   ): Promise<PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse> {
     return this.client.sendOperationRequest(
       { customParameterGroup, options },
-      getMultiplePagesFragmentWithGroupingNextLinkOperationSpec
+      getMultiplePagesFragmentWithGroupingNextLinkOperationSpec,
     );
   }
 
@@ -408,7 +408,7 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   async getMultiplePagesLRO(
-    options?: PagingGetMultiplePagesLROOptionalParams
+    options?: PagingGetMultiplePagesLROOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<PagingGetMultiplePagesLROResponse>,
@@ -417,21 +417,20 @@ export class PagingImpl implements Paging {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<PagingGetMultiplePagesLROResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -440,8 +439,8 @@ export class PagingImpl implements Paging {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -449,22 +448,22 @@ export class PagingImpl implements Paging {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { options },
-      spec: getMultiplePagesLROOperationSpec
+      spec: getMultiplePagesLROOperationSpec,
     });
     const poller = await createHttpPoller<
       PagingGetMultiplePagesLROResponse,
       OperationState<PagingGetMultiplePagesLROResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -476,11 +475,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   appendApiVersion(
-    options?: PagingAppendApiVersionOptionalParams
+    options?: PagingAppendApiVersionOptionalParams,
   ): Promise<PagingAppendApiVersionResponse> {
     return this.client.sendOperationRequest(
       { options },
-      appendApiVersionOperationSpec
+      appendApiVersionOperationSpec,
     );
   }
 
@@ -490,11 +489,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   replaceApiVersion(
-    options?: PagingReplaceApiVersionOptionalParams
+    options?: PagingReplaceApiVersionOptionalParams,
   ): Promise<PagingReplaceApiVersionResponse> {
     return this.client.sendOperationRequest(
       { options },
-      replaceApiVersionOperationSpec
+      replaceApiVersionOperationSpec,
     );
   }
 
@@ -509,11 +508,11 @@ export class PagingImpl implements Paging {
     apiVersion: string,
     tenant: string,
     nextLink: string,
-    options?: PagingNextFragmentOptionalParams
+    options?: PagingNextFragmentOptionalParams,
   ): Promise<PagingNextFragmentResponse> {
     return this.client.sendOperationRequest(
       { apiVersion, tenant, nextLink, options },
-      nextFragmentOperationSpec
+      nextFragmentOperationSpec,
     );
   }
 
@@ -526,11 +525,11 @@ export class PagingImpl implements Paging {
   nextFragmentWithGrouping(
     nextLink: string,
     customParameterGroup: CustomParameterGroup,
-    options?: PagingNextFragmentWithGroupingOptionalParams
+    options?: PagingNextFragmentWithGroupingOptionalParams,
   ): Promise<PagingNextFragmentWithGroupingResponse> {
     return this.client.sendOperationRequest(
       { nextLink, customParameterGroup, options },
-      nextFragmentWithGroupingOperationSpec
+      nextFragmentWithGroupingOperationSpec,
     );
   }
 
@@ -540,11 +539,11 @@ export class PagingImpl implements Paging {
    * @param options The options parameters.
    */
   getPagingModelWithItemNameWithXMSClientName(
-    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
+    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams,
   ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getPagingModelWithItemNameWithXMSClientNameOperationSpec
+      getPagingModelWithItemNameWithXMSClientNameOperationSpec,
     );
   }
 
@@ -555,11 +554,11 @@ export class PagingImpl implements Paging {
    */
   getNoItemNamePagesNext(
     nextLink: string,
-    options?: PagingGetNoItemNamePagesNextOptionalParams
+    options?: PagingGetNoItemNamePagesNextOptionalParams,
   ): Promise<PagingGetNoItemNamePagesNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      getNoItemNamePagesNextOperationSpec
+      getNoItemNamePagesNextOperationSpec,
     );
   }
 
@@ -571,11 +570,11 @@ export class PagingImpl implements Paging {
    */
   getEmptyNextLinkNamePagesNext(
     nextLink: string,
-    options?: PagingGetEmptyNextLinkNamePagesNextOptionalParams
+    options?: PagingGetEmptyNextLinkNamePagesNextOptionalParams,
   ): Promise<PagingGetEmptyNextLinkNamePagesNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      getEmptyNextLinkNamePagesNextOperationSpec
+      getEmptyNextLinkNamePagesNextOperationSpec,
     );
   }
 
@@ -586,11 +585,11 @@ export class PagingImpl implements Paging {
    */
   getSinglePagesNext(
     nextLink: string,
-    options?: PagingGetSinglePagesNextOptionalParams
+    options?: PagingGetSinglePagesNextOptionalParams,
   ): Promise<PagingGetSinglePagesNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      getSinglePagesNextOperationSpec
+      getSinglePagesNextOperationSpec,
     );
   }
 
@@ -604,11 +603,11 @@ export class PagingImpl implements Paging {
   getSinglePagesWithBodyParamsNext(
     parameters: BodyParam,
     nextLink: string,
-    options?: PagingGetSinglePagesWithBodyParamsNextOptionalParams
+    options?: PagingGetSinglePagesWithBodyParamsNextOptionalParams,
   ): Promise<PagingGetSinglePagesWithBodyParamsNextResponse> {
     return this.client.sendOperationRequest(
       { parameters, nextLink, options },
-      getSinglePagesWithBodyParamsNextOperationSpec
+      getSinglePagesWithBodyParamsNextOperationSpec,
     );
   }
 
@@ -619,11 +618,11 @@ export class PagingImpl implements Paging {
    */
   firstResponseEmptyNext(
     nextLink: string,
-    options?: PagingFirstResponseEmptyNextOptionalParams
+    options?: PagingFirstResponseEmptyNextOptionalParams,
   ): Promise<PagingFirstResponseEmptyNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      firstResponseEmptyNextOperationSpec
+      firstResponseEmptyNextOperationSpec,
     );
   }
 
@@ -634,11 +633,11 @@ export class PagingImpl implements Paging {
    */
   getMultiplePagesNext(
     nextLink: string,
-    options?: PagingGetMultiplePagesNextOptionalParams
+    options?: PagingGetMultiplePagesNextOptionalParams,
   ): Promise<PagingGetMultiplePagesNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      getMultiplePagesNextOperationSpec
+      getMultiplePagesNextOperationSpec,
     );
   }
 
@@ -649,11 +648,11 @@ export class PagingImpl implements Paging {
    */
   duplicateParamsNext(
     nextLink: string,
-    options?: PagingDuplicateParamsNextOptionalParams
+    options?: PagingDuplicateParamsNextOptionalParams,
   ): Promise<PagingDuplicateParamsNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      duplicateParamsNextOperationSpec
+      duplicateParamsNextOperationSpec,
     );
   }
 
@@ -664,11 +663,11 @@ export class PagingImpl implements Paging {
    */
   pageWithMaxPageSizeNext(
     nextLink: string,
-    options?: PagingPageWithMaxPageSizeNextOptionalParams
+    options?: PagingPageWithMaxPageSizeNextOptionalParams,
   ): Promise<PagingPageWithMaxPageSizeNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      pageWithMaxPageSizeNextOperationSpec
+      pageWithMaxPageSizeNextOperationSpec,
     );
   }
 
@@ -679,11 +678,11 @@ export class PagingImpl implements Paging {
    */
   getOdataMultiplePagesNext(
     nextLink: string,
-    options?: PagingGetOdataMultiplePagesNextOptionalParams
+    options?: PagingGetOdataMultiplePagesNextOptionalParams,
   ): Promise<PagingGetOdataMultiplePagesNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      getOdataMultiplePagesNextOperationSpec
+      getOdataMultiplePagesNextOperationSpec,
     );
   }
 
@@ -697,11 +696,11 @@ export class PagingImpl implements Paging {
   getMultiplePagesWithOffsetNext(
     pagingGetMultiplePagesWithOffsetOptions: PagingGetMultiplePagesWithOffsetOptions,
     nextLink: string,
-    options?: PagingGetMultiplePagesWithOffsetNextOptionalParams
+    options?: PagingGetMultiplePagesWithOffsetNextOptionalParams,
   ): Promise<PagingGetMultiplePagesWithOffsetNextResponse> {
     return this.client.sendOperationRequest(
       { pagingGetMultiplePagesWithOffsetOptions, nextLink, options },
-      getMultiplePagesWithOffsetNextOperationSpec
+      getMultiplePagesWithOffsetNextOperationSpec,
     );
   }
 
@@ -713,11 +712,11 @@ export class PagingImpl implements Paging {
    */
   getMultiplePagesRetryFirstNext(
     nextLink: string,
-    options?: PagingGetMultiplePagesRetryFirstNextOptionalParams
+    options?: PagingGetMultiplePagesRetryFirstNextOptionalParams,
   ): Promise<PagingGetMultiplePagesRetryFirstNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      getMultiplePagesRetryFirstNextOperationSpec
+      getMultiplePagesRetryFirstNextOperationSpec,
     );
   }
 
@@ -729,11 +728,11 @@ export class PagingImpl implements Paging {
    */
   getMultiplePagesRetrySecondNext(
     nextLink: string,
-    options?: PagingGetMultiplePagesRetrySecondNextOptionalParams
+    options?: PagingGetMultiplePagesRetrySecondNextOptionalParams,
   ): Promise<PagingGetMultiplePagesRetrySecondNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      getMultiplePagesRetrySecondNextOperationSpec
+      getMultiplePagesRetrySecondNextOperationSpec,
     );
   }
 
@@ -744,11 +743,11 @@ export class PagingImpl implements Paging {
    */
   getSinglePagesFailureNext(
     nextLink: string,
-    options?: PagingGetSinglePagesFailureNextOptionalParams
+    options?: PagingGetSinglePagesFailureNextOptionalParams,
   ): Promise<PagingGetSinglePagesFailureNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      getSinglePagesFailureNextOperationSpec
+      getSinglePagesFailureNextOperationSpec,
     );
   }
 
@@ -760,11 +759,11 @@ export class PagingImpl implements Paging {
    */
   getMultiplePagesFailureNext(
     nextLink: string,
-    options?: PagingGetMultiplePagesFailureNextOptionalParams
+    options?: PagingGetMultiplePagesFailureNextOptionalParams,
   ): Promise<PagingGetMultiplePagesFailureNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      getMultiplePagesFailureNextOperationSpec
+      getMultiplePagesFailureNextOperationSpec,
     );
   }
 
@@ -776,11 +775,11 @@ export class PagingImpl implements Paging {
    */
   getMultiplePagesFailureUriNext(
     nextLink: string,
-    options?: PagingGetMultiplePagesFailureUriNextOptionalParams
+    options?: PagingGetMultiplePagesFailureUriNextOptionalParams,
   ): Promise<PagingGetMultiplePagesFailureUriNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      getMultiplePagesFailureUriNextOperationSpec
+      getMultiplePagesFailureUriNextOperationSpec,
     );
   }
 
@@ -791,11 +790,11 @@ export class PagingImpl implements Paging {
    */
   getMultiplePagesLRONext(
     nextLink: string,
-    options?: PagingGetMultiplePagesLRONextOptionalParams
+    options?: PagingGetMultiplePagesLRONextOptionalParams,
   ): Promise<PagingGetMultiplePagesLRONextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      getMultiplePagesLRONextOperationSpec
+      getMultiplePagesLRONextOperationSpec,
     );
   }
 
@@ -806,11 +805,11 @@ export class PagingImpl implements Paging {
    */
   appendApiVersionNext(
     nextLink: string,
-    options?: PagingAppendApiVersionNextOptionalParams
+    options?: PagingAppendApiVersionNextOptionalParams,
   ): Promise<PagingAppendApiVersionNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      appendApiVersionNextOperationSpec
+      appendApiVersionNextOperationSpec,
     );
   }
 
@@ -821,11 +820,11 @@ export class PagingImpl implements Paging {
    */
   replaceApiVersionNext(
     nextLink: string,
-    options?: PagingReplaceApiVersionNextOptionalParams
+    options?: PagingReplaceApiVersionNextOptionalParams,
   ): Promise<PagingReplaceApiVersionNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      replaceApiVersionNextOperationSpec
+      replaceApiVersionNextOperationSpec,
     );
   }
 
@@ -837,11 +836,11 @@ export class PagingImpl implements Paging {
    */
   getPagingModelWithItemNameWithXMSClientNameNext(
     nextLink: string,
-    options?: PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams
+    options?: PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams,
   ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      getPagingModelWithItemNameWithXMSClientNameNextOperationSpec
+      getPagingModelWithItemNameWithXMSClientNameNextOperationSpec,
     );
   }
 }
@@ -853,650 +852,655 @@ const getNoItemNamePagesOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResultValue
+      bodyMapper: Mappers.ProductResultValue,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getEmptyNextLinkNamePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/emptynextlink",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResultValue
+      bodyMapper: Mappers.ProductResultValue,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getNullNextLinkNamePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/nullnextlink",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSinglePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/single",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSinglePagesWithBodyParamsOperationSpec: coreClient.OperationSpec = {
   path: "/paging/single/getWithBodyParams",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const firstResponseEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/paging/firstResponseEmpty/1",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResultValue
+      bodyMapper: Mappers.ProductResultValue,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults,
-    Parameters.timeout
+    Parameters.timeout,
   ],
-  serializer
+  serializer,
 };
 const getWithQueryParamsOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/getWithQueryParams",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [
     Parameters.requiredQueryParameter,
-    Parameters.queryConstant
+    Parameters.queryConstant,
   ],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const duplicateParamsOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/duplicateParams/1",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.filter],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const pageWithMaxPageSizeOperationSpec: coreClient.OperationSpec = {
   path: "/paging/maxPageSize",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.maxpagesize],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const nextOperationWithQueryParamsOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/nextOperationWithQueryParams",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.queryConstant],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getOdataMultiplePagesOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/odata",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OdataProductResult
+      bodyMapper: Mappers.OdataProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults1,
-    Parameters.timeout1
+    Parameters.timeout1,
   ],
-  serializer
+  serializer,
 };
 const getMultiplePagesWithOffsetOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/withpath/{offset}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.offset],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults2,
-    Parameters.timeout2
+    Parameters.timeout2,
   ],
-  serializer
+  serializer,
 };
 const getMultiplePagesRetryFirstOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/retryfirst",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesRetrySecondOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/retrysecond",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSinglePagesFailureOperationSpec: coreClient.OperationSpec = {
   path: "/paging/single/failure",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesFailureOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/failure",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesFailureUriOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/failureuri",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const getMultiplePagesFragmentNextLinkOperationSpec: coreClient.OperationSpec = {
-  path: "/paging/multiple/fragment/{tenant}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.OdataProductResult
+const getMultiplePagesFragmentNextLinkOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/paging/multiple/fragment/{tenant}",
+    httpMethod: "GET",
+    responses: {
+      200: {
+        bodyMapper: Mappers.OdataProductResult,
+      },
+      default: {},
     },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.tenant],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: coreClient.OperationSpec = {
-  path: "/paging/multiple/fragmentwithgrouping/{tenant}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.OdataProductResult
+    queryParameters: [Parameters.apiVersion],
+    urlParameters: [Parameters.$host, Parameters.tenant],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };
+const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/paging/multiple/fragmentwithgrouping/{tenant}",
+    httpMethod: "GET",
+    responses: {
+      200: {
+        bodyMapper: Mappers.OdataProductResult,
+      },
+      default: {},
     },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion1],
-  urlParameters: [Parameters.$host, Parameters.tenant1],
-  headerParameters: [Parameters.accept],
-  serializer
-};
+    queryParameters: [Parameters.apiVersion1],
+    urlParameters: [Parameters.$host, Parameters.tenant1],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };
 const getMultiplePagesLROOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/lro",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
     201: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
     202: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
     204: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults3,
-    Parameters.timeout3
+    Parameters.timeout3,
   ],
-  serializer
+  serializer,
 };
 const appendApiVersionOperationSpec: coreClient.OperationSpec = {
   path: "/paging/apiVersion/append/1",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const replaceApiVersionOperationSpec: coreClient.OperationSpec = {
   path: "/paging/apiVersion/replace/1",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const nextFragmentOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/fragment/{tenant}/{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OdataProductResult
+      bodyMapper: Mappers.OdataProductResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenant, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const nextFragmentWithGroupingOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OdataProductResult
+      bodyMapper: Mappers.OdataProductResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [Parameters.$host, Parameters.tenant1, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const getPagingModelWithItemNameWithXMSClientNameOperationSpec: coreClient.OperationSpec = {
-  path: "/paging/itemNameWithXMSClientName",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProductResultValueWithXMSClientName
+const getPagingModelWithItemNameWithXMSClientNameOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/paging/itemNameWithXMSClientName",
+    httpMethod: "GET",
+    responses: {
+      200: {
+        bodyMapper: Mappers.ProductResultValueWithXMSClientName,
+      },
+      default: {},
     },
-    default: {}
-  },
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept],
-  serializer
-};
+    urlParameters: [Parameters.$host],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };
 const getNoItemNamePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResultValue
+      bodyMapper: Mappers.ProductResultValue,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getEmptyNextLinkNamePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResultValue
+      bodyMapper: Mappers.ProductResultValue,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSinglePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const getSinglePagesWithBodyParamsNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProductResult
+const getSinglePagesWithBodyParamsNextOperationSpec: coreClient.OperationSpec =
+  {
+    path: "{nextLink}",
+    httpMethod: "GET",
+    responses: {
+      200: {
+        bodyMapper: Mappers.ProductResult,
+      },
+      default: {},
     },
-    default: {}
-  },
-  urlParameters: [Parameters.$host, Parameters.nextLink],
-  headerParameters: [Parameters.accept, Parameters.contentType],
-  mediaType: "json",
-  serializer
-};
+    urlParameters: [Parameters.$host, Parameters.nextLink],
+    headerParameters: [Parameters.accept, Parameters.contentType],
+    mediaType: "json",
+    serializer,
+  };
 const firstResponseEmptyNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResultValue
+      bodyMapper: Mappers.ProductResultValue,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults,
-    Parameters.timeout
+    Parameters.timeout,
   ],
-  serializer
+  serializer,
 };
 const duplicateParamsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const pageWithMaxPageSizeNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getOdataMultiplePagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OdataProductResult
+      bodyMapper: Mappers.OdataProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults1,
-    Parameters.timeout1
+    Parameters.timeout1,
   ],
-  serializer
+  serializer,
 };
 const getMultiplePagesWithOffsetNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.offset, Parameters.nextLink],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults2,
-    Parameters.timeout2
+    Parameters.timeout2,
   ],
-  serializer
+  serializer,
 };
 const getMultiplePagesRetryFirstNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesRetrySecondNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getSinglePagesFailureNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesFailureNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesFailureUriNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getMultiplePagesLRONextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
     202: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
     Parameters.maxresults3,
-    Parameters.timeout3
+    Parameters.timeout3,
   ],
-  serializer
+  serializer,
 };
 const appendApiVersionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const replaceApiVersionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResult
+      bodyMapper: Mappers.ProductResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const getPagingModelWithItemNameWithXMSClientNameNextOperationSpec: coreClient.OperationSpec = {
-  path: "{nextLink}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.ProductResultValueWithXMSClientName
+const getPagingModelWithItemNameWithXMSClientNameNextOperationSpec: coreClient.OperationSpec =
+  {
+    path: "{nextLink}",
+    httpMethod: "GET",
+    responses: {
+      200: {
+        bodyMapper: Mappers.ProductResultValueWithXMSClientName,
+      },
+      default: {},
     },
-    default: {}
-  },
-  urlParameters: [Parameters.$host, Parameters.nextLink],
-  headerParameters: [Parameters.accept],
-  serializer
-};
+    urlParameters: [Parameters.$host, Parameters.nextLink],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };

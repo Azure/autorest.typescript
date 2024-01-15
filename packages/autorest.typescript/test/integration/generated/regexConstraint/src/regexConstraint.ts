@@ -11,7 +11,7 @@ import * as Parameters from "./models/parameters";
 import {
   RegexConstraintOptionalParams,
   ApiV1ValueGetOptionalParams,
-  ApiV1ValueGetResponse
+  ApiV1ValueGetResponse,
 } from "./models";
 
 export class RegexConstraint extends coreClient.ServiceClient {
@@ -32,7 +32,7 @@ export class RegexConstraint extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: RegexConstraintOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-regex-constraint/1.0.0-preview1`;
@@ -45,9 +45,9 @@ export class RegexConstraint extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "{$host}"
+      endpoint: options.endpoint ?? options.baseUri ?? "{$host}",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -61,11 +61,11 @@ export class RegexConstraint extends coreClient.ServiceClient {
    */
   apiV1ValueGet(
     serverName: string,
-    options?: ApiV1ValueGetOptionalParams
+    options?: ApiV1ValueGetOptionalParams,
   ): Promise<ApiV1ValueGetResponse> {
     return this.sendOperationRequest(
       { serverName, options },
-      apiV1ValueGetOperationSpec
+      apiV1ValueGetOperationSpec,
     );
   }
 }
@@ -77,10 +77,10 @@ const apiV1ValueGetOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   urlParameters: [Parameters.$host, Parameters.serverName],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

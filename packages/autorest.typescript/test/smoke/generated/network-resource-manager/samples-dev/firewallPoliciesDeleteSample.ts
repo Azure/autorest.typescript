@@ -28,7 +28,7 @@ async function deleteFirewallPolicy() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.firewallPolicies.beginDeleteAndWait(
     resourceGroupName,
-    firewallPolicyName
+    firewallPolicyName,
   );
   console.log(result);
 }

@@ -31,7 +31,7 @@ import {
 
 export function _getExtensibleModelSend(
   context: Client,
-  options: GetExtensibleModelOptions = { requestOptions: {} }
+  options: GetExtensibleModelOptions = { requestOptions: {} },
 ): StreamableMethod<GetExtensibleModel200Response> {
   return context
     .path("/type/model/inheritance/enum-discriminator/extensible-enum")
@@ -39,7 +39,7 @@ export function _getExtensibleModelSend(
 }
 
 export async function _getExtensibleModelDeserialize(
-  result: GetExtensibleModel200Response
+  result: GetExtensibleModel200Response,
 ): Promise<DogUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
@@ -51,7 +51,7 @@ export async function _getExtensibleModelDeserialize(
 /** Receive model with extensible enum discriminator type. */
 export async function getExtensibleModel(
   context: Client,
-  options: GetExtensibleModelOptions = { requestOptions: {} }
+  options: GetExtensibleModelOptions = { requestOptions: {} },
 ): Promise<DogUnion> {
   const result = await _getExtensibleModelSend(context, options);
   return _getExtensibleModelDeserialize(result);
@@ -60,7 +60,7 @@ export async function getExtensibleModel(
 export function _putExtensibleModelSend(
   context: Client,
   input: DogUnion,
-  options: PutExtensibleModelOptions = { requestOptions: {} }
+  options: PutExtensibleModelOptions = { requestOptions: {} },
 ): StreamableMethod<PutExtensibleModel204Response> {
   return context
     .path("/type/model/inheritance/enum-discriminator/extensible-enum")
@@ -68,7 +68,7 @@ export function _putExtensibleModelSend(
 }
 
 export async function _putExtensibleModelDeserialize(
-  result: PutExtensibleModel204Response
+  result: PutExtensibleModel204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -81,7 +81,7 @@ export async function _putExtensibleModelDeserialize(
 export async function putExtensibleModel(
   context: Client,
   input: DogUnion,
-  options: PutExtensibleModelOptions = { requestOptions: {} }
+  options: PutExtensibleModelOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putExtensibleModelSend(context, input, options);
   return _putExtensibleModelDeserialize(result);
@@ -91,17 +91,17 @@ export function _getExtensibleModelMissingDiscriminatorSend(
   context: Client,
   options: GetExtensibleModelMissingDiscriminatorOptions = {
     requestOptions: {},
-  }
+  },
 ): StreamableMethod<GetExtensibleModelMissingDiscriminator200Response> {
   return context
     .path(
-      "/type/model/inheritance/enum-discriminator/extensible-enum/missingdiscriminator"
+      "/type/model/inheritance/enum-discriminator/extensible-enum/missingdiscriminator",
     )
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getExtensibleModelMissingDiscriminatorDeserialize(
-  result: GetExtensibleModelMissingDiscriminator200Response
+  result: GetExtensibleModelMissingDiscriminator200Response,
 ): Promise<DogUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
@@ -115,28 +115,28 @@ export async function getExtensibleModelMissingDiscriminator(
   context: Client,
   options: GetExtensibleModelMissingDiscriminatorOptions = {
     requestOptions: {},
-  }
+  },
 ): Promise<DogUnion> {
   const result = await _getExtensibleModelMissingDiscriminatorSend(
     context,
-    options
+    options,
   );
   return _getExtensibleModelMissingDiscriminatorDeserialize(result);
 }
 
 export function _getExtensibleModelWrongDiscriminatorSend(
   context: Client,
-  options: GetExtensibleModelWrongDiscriminatorOptions = { requestOptions: {} }
+  options: GetExtensibleModelWrongDiscriminatorOptions = { requestOptions: {} },
 ): StreamableMethod<GetExtensibleModelWrongDiscriminator200Response> {
   return context
     .path(
-      "/type/model/inheritance/enum-discriminator/extensible-enum/wrongdiscriminator"
+      "/type/model/inheritance/enum-discriminator/extensible-enum/wrongdiscriminator",
     )
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getExtensibleModelWrongDiscriminatorDeserialize(
-  result: GetExtensibleModelWrongDiscriminator200Response
+  result: GetExtensibleModelWrongDiscriminator200Response,
 ): Promise<DogUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
@@ -148,18 +148,18 @@ export async function _getExtensibleModelWrongDiscriminatorDeserialize(
 /** Get a model containing discriminator value never defined. */
 export async function getExtensibleModelWrongDiscriminator(
   context: Client,
-  options: GetExtensibleModelWrongDiscriminatorOptions = { requestOptions: {} }
+  options: GetExtensibleModelWrongDiscriminatorOptions = { requestOptions: {} },
 ): Promise<DogUnion> {
   const result = await _getExtensibleModelWrongDiscriminatorSend(
     context,
-    options
+    options,
   );
   return _getExtensibleModelWrongDiscriminatorDeserialize(result);
 }
 
 export function _getFixedModelSend(
   context: Client,
-  options: GetFixedModelOptions = { requestOptions: {} }
+  options: GetFixedModelOptions = { requestOptions: {} },
 ): StreamableMethod<GetFixedModel200Response> {
   return context
     .path("/type/model/inheritance/enum-discriminator/fixed-enum")
@@ -167,7 +167,7 @@ export function _getFixedModelSend(
 }
 
 export async function _getFixedModelDeserialize(
-  result: GetFixedModel200Response
+  result: GetFixedModel200Response,
 ): Promise<SnakeUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
@@ -179,7 +179,7 @@ export async function _getFixedModelDeserialize(
 /** Receive model with fixed enum discriminator type. */
 export async function getFixedModel(
   context: Client,
-  options: GetFixedModelOptions = { requestOptions: {} }
+  options: GetFixedModelOptions = { requestOptions: {} },
 ): Promise<SnakeUnion> {
   const result = await _getFixedModelSend(context, options);
   return _getFixedModelDeserialize(result);
@@ -188,7 +188,7 @@ export async function getFixedModel(
 export function _putFixedModelSend(
   context: Client,
   input: SnakeUnion,
-  options: PutFixedModelOptions = { requestOptions: {} }
+  options: PutFixedModelOptions = { requestOptions: {} },
 ): StreamableMethod<PutFixedModel204Response> {
   return context
     .path("/type/model/inheritance/enum-discriminator/fixed-enum")
@@ -196,7 +196,7 @@ export function _putFixedModelSend(
 }
 
 export async function _putFixedModelDeserialize(
-  result: PutFixedModel204Response
+  result: PutFixedModel204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -209,7 +209,7 @@ export async function _putFixedModelDeserialize(
 export async function putFixedModel(
   context: Client,
   input: SnakeUnion,
-  options: PutFixedModelOptions = { requestOptions: {} }
+  options: PutFixedModelOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putFixedModelSend(context, input, options);
   return _putFixedModelDeserialize(result);
@@ -217,17 +217,17 @@ export async function putFixedModel(
 
 export function _getFixedModelMissingDiscriminatorSend(
   context: Client,
-  options: GetFixedModelMissingDiscriminatorOptions = { requestOptions: {} }
+  options: GetFixedModelMissingDiscriminatorOptions = { requestOptions: {} },
 ): StreamableMethod<GetFixedModelMissingDiscriminator200Response> {
   return context
     .path(
-      "/type/model/inheritance/enum-discriminator/fixed-enum/missingdiscriminator"
+      "/type/model/inheritance/enum-discriminator/fixed-enum/missingdiscriminator",
     )
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getFixedModelMissingDiscriminatorDeserialize(
-  result: GetFixedModelMissingDiscriminator200Response
+  result: GetFixedModelMissingDiscriminator200Response,
 ): Promise<SnakeUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
@@ -239,7 +239,7 @@ export async function _getFixedModelMissingDiscriminatorDeserialize(
 /** Get a model omitting the discriminator. */
 export async function getFixedModelMissingDiscriminator(
   context: Client,
-  options: GetFixedModelMissingDiscriminatorOptions = { requestOptions: {} }
+  options: GetFixedModelMissingDiscriminatorOptions = { requestOptions: {} },
 ): Promise<SnakeUnion> {
   const result = await _getFixedModelMissingDiscriminatorSend(context, options);
   return _getFixedModelMissingDiscriminatorDeserialize(result);
@@ -247,17 +247,17 @@ export async function getFixedModelMissingDiscriminator(
 
 export function _getFixedModelWrongDiscriminatorSend(
   context: Client,
-  options: GetFixedModelWrongDiscriminatorOptions = { requestOptions: {} }
+  options: GetFixedModelWrongDiscriminatorOptions = { requestOptions: {} },
 ): StreamableMethod<GetFixedModelWrongDiscriminator200Response> {
   return context
     .path(
-      "/type/model/inheritance/enum-discriminator/fixed-enum/wrongdiscriminator"
+      "/type/model/inheritance/enum-discriminator/fixed-enum/wrongdiscriminator",
     )
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getFixedModelWrongDiscriminatorDeserialize(
-  result: GetFixedModelWrongDiscriminator200Response
+  result: GetFixedModelWrongDiscriminator200Response,
 ): Promise<SnakeUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
@@ -269,7 +269,7 @@ export async function _getFixedModelWrongDiscriminatorDeserialize(
 /** Get a model containing discriminator value never defined. */
 export async function getFixedModelWrongDiscriminator(
   context: Client,
-  options: GetFixedModelWrongDiscriminatorOptions = { requestOptions: {} }
+  options: GetFixedModelWrongDiscriminatorOptions = { requestOptions: {} },
 ): Promise<SnakeUnion> {
   const result = await _getFixedModelWrongDiscriminatorSend(context, options);
   return _getFixedModelWrongDiscriminatorDeserialize(result);

@@ -30,7 +30,7 @@ async function loadBalancerOutboundRuleGet() {
   const result = await client.loadBalancerOutboundRules.get(
     resourceGroupName,
     loadBalancerName,
-    outboundRuleName
+    outboundRuleName,
   );
   console.log(result);
 }

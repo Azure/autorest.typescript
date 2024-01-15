@@ -18,7 +18,7 @@ export interface ModelsOperations {
   retrieve: (model: string, options?: ModelsRetrieveOptions) => Promise<Model>;
   deleteOperation: (
     model: string,
-    options?: ModelsDeleteOperationOptions
+    options?: ModelsDeleteOperationOptions,
   ) => Promise<DeleteModelResponse>;
 }
 

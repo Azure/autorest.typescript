@@ -438,7 +438,7 @@ type BodyParameter = ParamBase & {
   type: Type;
   restApiName: string;
   location: "body";
-  defaultContentType: string;
+  // defaultContentType: string;
   isBinaryPayload: boolean;
 };
 
@@ -453,26 +453,18 @@ function emitBodyParameter(
   if (contentTypes.length === 0) {
     contentTypes = ["application/json"];
   }
-  if (contentTypes.length !== 1) {
-    throw Error("Currently only one kind of content-type!");
-  }
   const type = getType(context, getBodyType(context.program, httpOperation)!, {
     disableEffectiveModel: true,
     usage: UsageFlags.Input
   });
 
-  const defaultContentType =
-    body.parameter?.default ?? contentTypes.includes("application/json")
-      ? "application/json"
-      : contentTypes[0]!;
   return {
     contentTypes,
     type,
     restApiName: body.parameter?.name ?? "body",
     location: "body",
     ...base,
-    defaultContentType,
-    isBinaryPayload: isBinaryPayload(context, body.type, defaultContentType)
+    isBinaryPayload: isBinaryPayload(context, body.type, contentTypes)
   };
 }
 
@@ -1032,8 +1024,8 @@ function emitModel(
     (context.rlcOptions?.enableModelNamespace
       ? fullNamespaceName
       : effectiveName
-      ? effectiveName
-      : getName(context.program, type));
+        ? effectiveName
+        : getName(context.program, type));
   if (
     !overridedModelName &&
     type.templateMapper &&

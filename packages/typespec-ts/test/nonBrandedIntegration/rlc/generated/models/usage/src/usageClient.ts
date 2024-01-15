@@ -9,7 +9,6 @@ import { UsageClient } from "./clientDefinitions";
  */
 export default function createClient(options: ClientOptions = {}): UsageClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
-  options.apiVersion = options.apiVersion ?? "1.0.0";
   const userAgentInfo = `azsdk-js-usage-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -24,5 +23,6 @@ export default function createClient(options: ClientOptions = {}): UsageClient {
 
   const client = getClient(baseUrl, options) as UsageClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return client;
 }

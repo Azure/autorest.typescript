@@ -9,7 +9,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 
 export const contentType: OperationParameter = {
@@ -19,9 +19,9 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const arrayBody: OperationParameter = {
@@ -34,11 +34,11 @@ export const arrayBody: OperationParameter = {
       element: {
         type: {
           name: "Composite",
-          className: "Product"
-        }
-      }
-    }
-  }
+          className: "Product",
+        },
+      },
+    },
+  },
 };
 
 export const accept: OperationParameter = {
@@ -48,9 +48,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -59,10 +59,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const apiVersion: OperationParameter = {
@@ -71,9 +71,9 @@ export const apiVersion: OperationParameter = {
     serializedName: "api-version",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const pageRange: OperationQueryParameter = {
@@ -86,13 +86,13 @@ export const pageRange: OperationQueryParameter = {
         constraints: {
           Pattern: new RegExp("^\\d+(-\\d+)?$"),
           MaxLength: 24,
-          MinLength: 1
+          MinLength: 1,
         },
         type: {
-          name: "String"
-        }
-      }
-    }
+          name: "String",
+        },
+      },
+    },
   },
-  collectionFormat: "CSV"
+  collectionFormat: "CSV",
 };

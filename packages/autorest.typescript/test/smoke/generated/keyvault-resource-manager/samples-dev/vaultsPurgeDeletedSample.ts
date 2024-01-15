@@ -29,7 +29,7 @@ async function purgeADeletedVault() {
   const client = new KeyVaultManagementClient(credential, subscriptionId);
   const result = await client.vaults.beginPurgeDeletedAndWait(
     vaultName,
-    location
+    location,
   );
   console.log(result);
 }

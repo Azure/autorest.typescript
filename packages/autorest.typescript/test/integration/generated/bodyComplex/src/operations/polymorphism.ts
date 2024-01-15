@@ -28,7 +28,7 @@ import {
   PolymorphismPutComplicatedOptionalParams,
   PolymorphismPutMissingDiscriminatorOptionalParams,
   PolymorphismPutMissingDiscriminatorResponse,
-  PolymorphismPutValidMissingRequiredOptionalParams
+  PolymorphismPutValidMissingRequiredOptionalParams,
 } from "../models";
 
 /** Class containing Polymorphism operations. */
@@ -48,7 +48,7 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   getValid(
-    options?: PolymorphismGetValidOptionalParams
+    options?: PolymorphismGetValidOptionalParams,
   ): Promise<PolymorphismGetValidResponse> {
     return this.client.sendOperationRequest({ options }, getValidOperationSpec);
   }
@@ -92,11 +92,11 @@ export class PolymorphismImpl implements Polymorphism {
    */
   putValid(
     complexBody: FishUnion,
-    options?: PolymorphismPutValidOptionalParams
+    options?: PolymorphismPutValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { complexBody, options },
-      putValidOperationSpec
+      putValidOperationSpec,
     );
   }
 
@@ -105,11 +105,11 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   getDotSyntax(
-    options?: PolymorphismGetDotSyntaxOptionalParams
+    options?: PolymorphismGetDotSyntaxOptionalParams,
   ): Promise<PolymorphismGetDotSyntaxResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDotSyntaxOperationSpec
+      getDotSyntaxOperationSpec,
     );
   }
 
@@ -120,11 +120,11 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   getComposedWithDiscriminator(
-    options?: PolymorphismGetComposedWithDiscriminatorOptionalParams
+    options?: PolymorphismGetComposedWithDiscriminatorOptionalParams,
   ): Promise<PolymorphismGetComposedWithDiscriminatorResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getComposedWithDiscriminatorOperationSpec
+      getComposedWithDiscriminatorOperationSpec,
     );
   }
 
@@ -135,11 +135,11 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   getComposedWithoutDiscriminator(
-    options?: PolymorphismGetComposedWithoutDiscriminatorOptionalParams
+    options?: PolymorphismGetComposedWithoutDiscriminatorOptionalParams,
   ): Promise<PolymorphismGetComposedWithoutDiscriminatorResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getComposedWithoutDiscriminatorOperationSpec
+      getComposedWithoutDiscriminatorOperationSpec,
     );
   }
 
@@ -149,11 +149,11 @@ export class PolymorphismImpl implements Polymorphism {
    * @param options The options parameters.
    */
   getComplicated(
-    options?: PolymorphismGetComplicatedOptionalParams
+    options?: PolymorphismGetComplicatedOptionalParams,
   ): Promise<PolymorphismGetComplicatedResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getComplicatedOperationSpec
+      getComplicatedOperationSpec,
     );
   }
 
@@ -165,11 +165,11 @@ export class PolymorphismImpl implements Polymorphism {
    */
   putComplicated(
     complexBody: SalmonUnion,
-    options?: PolymorphismPutComplicatedOptionalParams
+    options?: PolymorphismPutComplicatedOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { complexBody, options },
-      putComplicatedOperationSpec
+      putComplicatedOperationSpec,
     );
   }
 
@@ -180,11 +180,11 @@ export class PolymorphismImpl implements Polymorphism {
    */
   putMissingDiscriminator(
     complexBody: SalmonUnion,
-    options?: PolymorphismPutMissingDiscriminatorOptionalParams
+    options?: PolymorphismPutMissingDiscriminatorOptionalParams,
   ): Promise<PolymorphismPutMissingDiscriminatorResponse> {
     return this.client.sendOperationRequest(
       { complexBody, options },
-      putMissingDiscriminatorOperationSpec
+      putMissingDiscriminatorOperationSpec,
     );
   }
 
@@ -222,11 +222,11 @@ export class PolymorphismImpl implements Polymorphism {
    */
   putValidMissingRequired(
     complexBody: FishUnion,
-    options?: PolymorphismPutValidMissingRequiredOptionalParams
+    options?: PolymorphismPutValidMissingRequiredOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { complexBody, options },
-      putValidMissingRequiredOperationSpec
+      putValidMissingRequiredOperationSpec,
     );
   }
 }
@@ -238,15 +238,15 @@ const getValidOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Fish
+      bodyMapper: Mappers.Fish,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putValidOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphism/valid",
@@ -254,74 +254,74 @@ const putValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody15,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDotSyntaxOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphism/dotsyntax",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DotFish
+      bodyMapper: Mappers.DotFish,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getComposedWithDiscriminatorOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphism/composedWithDiscriminator",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DotFishMarket
+      bodyMapper: Mappers.DotFishMarket,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getComposedWithoutDiscriminatorOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphism/composedWithoutDiscriminator",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DotFishMarket
+      bodyMapper: Mappers.DotFishMarket,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getComplicatedOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphism/complicated",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Salmon
+      bodyMapper: Mappers.Salmon,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putComplicatedOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphism/complicated",
@@ -329,31 +329,31 @@ const putComplicatedOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody16,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const putMissingDiscriminatorOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphism/missingdiscriminator",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.Salmon
+      bodyMapper: Mappers.Salmon,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody16,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const putValidMissingRequiredOperationSpec: coreClient.OperationSpec = {
   path: "/complex/polymorphism/missingrequired/invalid",
@@ -361,12 +361,12 @@ const putValidMissingRequiredOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody15,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

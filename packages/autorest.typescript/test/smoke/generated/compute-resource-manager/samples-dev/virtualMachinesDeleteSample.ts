@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualMachinesDeleteOptionalParams,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,7 +34,7 @@ async function forceDeleteAVM() {
   const result = await client.virtualMachines.beginDeleteAndWait(
     resourceGroupName,
     vmName,
-    options
+    options,
   );
   console.log(result);
 }

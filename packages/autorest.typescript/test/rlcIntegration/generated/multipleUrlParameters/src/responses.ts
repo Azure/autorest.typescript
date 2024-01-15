@@ -6,7 +6,7 @@ import {
   EntityMutationResponseOutput,
   ErrorResponseOutput,
   AtlasEntitiesWithExtInfoOutput,
-  AtlasEntityWithExtInfoOutput
+  AtlasEntityWithExtInfoOutput,
 } from "./outputModels";
 
 /**

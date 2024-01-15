@@ -43,7 +43,6 @@ export interface BodyParameter {
   description: string;
   clientName: string;
   inOverload: boolean;
-  defaultContentType: string;
   isBinaryPayload: boolean;
 }
 

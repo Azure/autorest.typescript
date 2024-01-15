@@ -24,7 +24,7 @@ import {
   DotFishMarketOutput,
   SalmonOutput,
   ReadonlyObjOutput,
-  MyBaseTypeOutput
+  MyBaseTypeOutput,
 } from "./outputModels";
 
 /** Get complex type {id: 2, name: 'abc', color: 'YELLOW'} */

@@ -51,13 +51,15 @@ function extractModels(codeModel: ModularCodeModel): Type[] {
   return models;
 }
 
+/**
+ * Extracts all the aliases from the code model
+ * 1. alias from polymorphic base model, where we need to use typescript union to combine all the sub models
+ * 2. alias from unions, where we also need to use typescript union to combine all the union variants
+ */
 export function extractAliases(codeModel: ModularCodeModel): Type[] {
   const models = codeModel.types.filter(
     (t) =>
-      (t.type === "model" || t.type === "combined") &&
-      t.name &&
-      t.alias &&
-      t.aliasType
+      (t.type === "model" || t.type === "combined") && t.alias && t.aliasType
   );
   return models;
 }
@@ -131,9 +133,9 @@ export function buildModels(
   // We are generating both models and enums here
   const coreClientTypes = new Set<string>();
   const models = extractModels(codeModel);
-
+  const aliases = extractAliases(codeModel);
   // Skip to generate models.ts if there is no any models
-  if (models.length === 0) {
+  if (models.length === 0 && aliases.length === 0) {
     return;
   }
   const srcPath = codeModel.modularOptions.sourceRoot;
@@ -176,7 +178,6 @@ export function buildModels(
     ]);
   }
 
-  const aliases = extractAliases(codeModel);
   aliases.forEach((alias) => {
     modelsFile.addTypeAlias(buildModelTypeAlias(alias));
   });

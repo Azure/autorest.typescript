@@ -61,7 +61,7 @@ import {
   MultipleResponsesGet200ModelA400InvalidOptionalParams,
   MultipleResponsesGet200ModelA400InvalidResponse,
   MultipleResponsesGet200ModelA202ValidOptionalParams,
-  MultipleResponsesGet200ModelA202ValidResponse
+  MultipleResponsesGet200ModelA202ValidResponse,
 } from "../models";
 
 /** Interface representing a MultipleResponses. */
@@ -71,205 +71,189 @@ export interface MultipleResponses {
    * @param options The options parameters.
    */
   get200Model204NoModelDefaultError200Valid(
-    options?: MultipleResponsesGet200Model204NoModelDefaultError200ValidOptionalParams
-  ): Promise<
-    MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse
-  >;
+    options?: MultipleResponsesGet200Model204NoModelDefaultError200ValidOptionalParams,
+  ): Promise<MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse>;
   /**
    * Send a 204 response with no payload
    * @param options The options parameters.
    */
   get200Model204NoModelDefaultError204Valid(
-    options?: MultipleResponsesGet200Model204NoModelDefaultError204ValidOptionalParams
-  ): Promise<
-    MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse
-  >;
+    options?: MultipleResponsesGet200Model204NoModelDefaultError204ValidOptionalParams,
+  ): Promise<MultipleResponsesGet200Model204NoModelDefaultError204ValidResponse>;
   /**
    * Send a 201 response with valid payload: {'statusCode': '201'}
    * @param options The options parameters.
    */
   get200Model204NoModelDefaultError201Invalid(
-    options?: MultipleResponsesGet200Model204NoModelDefaultError201InvalidOptionalParams
-  ): Promise<
-    MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse
-  >;
+    options?: MultipleResponsesGet200Model204NoModelDefaultError201InvalidOptionalParams,
+  ): Promise<MultipleResponsesGet200Model204NoModelDefaultError201InvalidResponse>;
   /**
    * Send a 202 response with no payload:
    * @param options The options parameters.
    */
   get200Model204NoModelDefaultError202None(
-    options?: MultipleResponsesGet200Model204NoModelDefaultError202NoneOptionalParams
+    options?: MultipleResponsesGet200Model204NoModelDefaultError202NoneOptionalParams,
   ): Promise<MultipleResponsesGet200Model204NoModelDefaultError202NoneResponse>;
   /**
    * Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}
    * @param options The options parameters.
    */
   get200Model204NoModelDefaultError400Valid(
-    options?: MultipleResponsesGet200Model204NoModelDefaultError400ValidOptionalParams
-  ): Promise<
-    MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse
-  >;
+    options?: MultipleResponsesGet200Model204NoModelDefaultError400ValidOptionalParams,
+  ): Promise<MultipleResponsesGet200Model204NoModelDefaultError400ValidResponse>;
   /**
    * Send a 200 response with valid payload: {'statusCode': '200'}
    * @param options The options parameters.
    */
   get200Model201ModelDefaultError200Valid(
-    options?: MultipleResponsesGet200Model201ModelDefaultError200ValidOptionalParams
+    options?: MultipleResponsesGet200Model201ModelDefaultError200ValidOptionalParams,
   ): Promise<MultipleResponsesGet200Model201ModelDefaultError200ValidResponse>;
   /**
    * Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}
    * @param options The options parameters.
    */
   get200Model201ModelDefaultError201Valid(
-    options?: MultipleResponsesGet200Model201ModelDefaultError201ValidOptionalParams
+    options?: MultipleResponsesGet200Model201ModelDefaultError201ValidOptionalParams,
   ): Promise<MultipleResponsesGet200Model201ModelDefaultError201ValidResponse>;
   /**
    * Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}
    * @param options The options parameters.
    */
   get200Model201ModelDefaultError400Valid(
-    options?: MultipleResponsesGet200Model201ModelDefaultError400ValidOptionalParams
+    options?: MultipleResponsesGet200Model201ModelDefaultError400ValidOptionalParams,
   ): Promise<MultipleResponsesGet200Model201ModelDefaultError400ValidResponse>;
   /**
    * Send a 200 response with valid payload: {'statusCode': '200'}
    * @param options The options parameters.
    */
   get200ModelA201ModelC404ModelDDefaultError200Valid(
-    options?: MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidOptionalParams
-  ): Promise<
-    MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse
-  >;
+    options?: MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidOptionalParams,
+  ): Promise<MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError200ValidResponse>;
   /**
    * Send a 200 response with valid payload: {'httpCode': '201'}
    * @param options The options parameters.
    */
   get200ModelA201ModelC404ModelDDefaultError201Valid(
-    options?: MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidOptionalParams
-  ): Promise<
-    MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse
-  >;
+    options?: MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidOptionalParams,
+  ): Promise<MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError201ValidResponse>;
   /**
    * Send a 200 response with valid payload: {'httpStatusCode': '404'}
    * @param options The options parameters.
    */
   get200ModelA201ModelC404ModelDDefaultError404Valid(
-    options?: MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidOptionalParams
-  ): Promise<
-    MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse
-  >;
+    options?: MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidOptionalParams,
+  ): Promise<MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError404ValidResponse>;
   /**
    * Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}
    * @param options The options parameters.
    */
   get200ModelA201ModelC404ModelDDefaultError400Valid(
-    options?: MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidOptionalParams
-  ): Promise<
-    MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse
-  >;
+    options?: MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidOptionalParams,
+  ): Promise<MultipleResponsesGet200ModelA201ModelC404ModelDDefaultError400ValidResponse>;
   /**
    * Send a 202 response with no payload
    * @param options The options parameters.
    */
   get202None204NoneDefaultError202None(
-    options?: MultipleResponsesGet202None204NoneDefaultError202NoneOptionalParams
+    options?: MultipleResponsesGet202None204NoneDefaultError202NoneOptionalParams,
   ): Promise<void>;
   /**
    * Send a 204 response with no payload
    * @param options The options parameters.
    */
   get202None204NoneDefaultError204None(
-    options?: MultipleResponsesGet202None204NoneDefaultError204NoneOptionalParams
+    options?: MultipleResponsesGet202None204NoneDefaultError204NoneOptionalParams,
   ): Promise<void>;
   /**
    * Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}
    * @param options The options parameters.
    */
   get202None204NoneDefaultError400Valid(
-    options?: MultipleResponsesGet202None204NoneDefaultError400ValidOptionalParams
+    options?: MultipleResponsesGet202None204NoneDefaultError400ValidOptionalParams,
   ): Promise<void>;
   /**
    * Send a 202 response with an unexpected payload {'property': 'value'}
    * @param options The options parameters.
    */
   get202None204NoneDefaultNone202Invalid(
-    options?: MultipleResponsesGet202None204NoneDefaultNone202InvalidOptionalParams
+    options?: MultipleResponsesGet202None204NoneDefaultNone202InvalidOptionalParams,
   ): Promise<void>;
   /**
    * Send a 204 response with no payload
    * @param options The options parameters.
    */
   get202None204NoneDefaultNone204None(
-    options?: MultipleResponsesGet202None204NoneDefaultNone204NoneOptionalParams
+    options?: MultipleResponsesGet202None204NoneDefaultNone204NoneOptionalParams,
   ): Promise<void>;
   /**
    * Send a 400 response with no payload
    * @param options The options parameters.
    */
   get202None204NoneDefaultNone400None(
-    options?: MultipleResponsesGet202None204NoneDefaultNone400NoneOptionalParams
+    options?: MultipleResponsesGet202None204NoneDefaultNone400NoneOptionalParams,
   ): Promise<void>;
   /**
    * Send a 400 response with an unexpected payload {'property': 'value'}
    * @param options The options parameters.
    */
   get202None204NoneDefaultNone400Invalid(
-    options?: MultipleResponsesGet202None204NoneDefaultNone400InvalidOptionalParams
+    options?: MultipleResponsesGet202None204NoneDefaultNone400InvalidOptionalParams,
   ): Promise<void>;
   /**
    * Send a 200 response with valid payload: {'statusCode': '200'}
    * @param options The options parameters.
    */
   getDefaultModelA200Valid(
-    options?: MultipleResponsesGetDefaultModelA200ValidOptionalParams
+    options?: MultipleResponsesGetDefaultModelA200ValidOptionalParams,
   ): Promise<MultipleResponsesGetDefaultModelA200ValidResponse>;
   /**
    * Send a 200 response with no payload
    * @param options The options parameters.
    */
   getDefaultModelA200None(
-    options?: MultipleResponsesGetDefaultModelA200NoneOptionalParams
+    options?: MultipleResponsesGetDefaultModelA200NoneOptionalParams,
   ): Promise<MultipleResponsesGetDefaultModelA200NoneResponse>;
   /**
    * Send a 400 response with valid payload: {'statusCode': '400'}
    * @param options The options parameters.
    */
   getDefaultModelA400Valid(
-    options?: MultipleResponsesGetDefaultModelA400ValidOptionalParams
+    options?: MultipleResponsesGetDefaultModelA400ValidOptionalParams,
   ): Promise<void>;
   /**
    * Send a 400 response with no payload
    * @param options The options parameters.
    */
   getDefaultModelA400None(
-    options?: MultipleResponsesGetDefaultModelA400NoneOptionalParams
+    options?: MultipleResponsesGetDefaultModelA400NoneOptionalParams,
   ): Promise<void>;
   /**
    * Send a 200 response with invalid payload: {'statusCode': '200'}
    * @param options The options parameters.
    */
   getDefaultNone200Invalid(
-    options?: MultipleResponsesGetDefaultNone200InvalidOptionalParams
+    options?: MultipleResponsesGetDefaultNone200InvalidOptionalParams,
   ): Promise<void>;
   /**
    * Send a 200 response with no payload
    * @param options The options parameters.
    */
   getDefaultNone200None(
-    options?: MultipleResponsesGetDefaultNone200NoneOptionalParams
+    options?: MultipleResponsesGetDefaultNone200NoneOptionalParams,
   ): Promise<void>;
   /**
    * Send a 400 response with valid payload: {'statusCode': '400'}
    * @param options The options parameters.
    */
   getDefaultNone400Invalid(
-    options?: MultipleResponsesGetDefaultNone400InvalidOptionalParams
+    options?: MultipleResponsesGetDefaultNone400InvalidOptionalParams,
   ): Promise<void>;
   /**
    * Send a 400 response with no payload
    * @param options The options parameters.
    */
   getDefaultNone400None(
-    options?: MultipleResponsesGetDefaultNone400NoneOptionalParams
+    options?: MultipleResponsesGetDefaultNone400NoneOptionalParams,
   ): Promise<void>;
   /**
    * Send a 200 response with no payload, when a payload is expected - client should return a null object
@@ -277,48 +261,48 @@ export interface MultipleResponses {
    * @param options The options parameters.
    */
   get200ModelA200None(
-    options?: MultipleResponsesGet200ModelA200NoneOptionalParams
+    options?: MultipleResponsesGet200ModelA200NoneOptionalParams,
   ): Promise<MultipleResponsesGet200ModelA200NoneResponse>;
   /**
    * Send a 200 response with payload {'statusCode': '200'}
    * @param options The options parameters.
    */
   get200ModelA200Valid(
-    options?: MultipleResponsesGet200ModelA200ValidOptionalParams
+    options?: MultipleResponsesGet200ModelA200ValidOptionalParams,
   ): Promise<MultipleResponsesGet200ModelA200ValidResponse>;
   /**
    * Send a 200 response with invalid payload {'statusCodeInvalid': '200'}
    * @param options The options parameters.
    */
   get200ModelA200Invalid(
-    options?: MultipleResponsesGet200ModelA200InvalidOptionalParams
+    options?: MultipleResponsesGet200ModelA200InvalidOptionalParams,
   ): Promise<MultipleResponsesGet200ModelA200InvalidResponse>;
   /**
    * Send a 400 response with no payload client should treat as an http error with no error model
    * @param options The options parameters.
    */
   get200ModelA400None(
-    options?: MultipleResponsesGet200ModelA400NoneOptionalParams
+    options?: MultipleResponsesGet200ModelA400NoneOptionalParams,
   ): Promise<MultipleResponsesGet200ModelA400NoneResponse>;
   /**
    * Send a 200 response with payload {'statusCode': '400'}
    * @param options The options parameters.
    */
   get200ModelA400Valid(
-    options?: MultipleResponsesGet200ModelA400ValidOptionalParams
+    options?: MultipleResponsesGet200ModelA400ValidOptionalParams,
   ): Promise<MultipleResponsesGet200ModelA400ValidResponse>;
   /**
    * Send a 200 response with invalid payload {'statusCodeInvalid': '400'}
    * @param options The options parameters.
    */
   get200ModelA400Invalid(
-    options?: MultipleResponsesGet200ModelA400InvalidOptionalParams
+    options?: MultipleResponsesGet200ModelA400InvalidOptionalParams,
   ): Promise<MultipleResponsesGet200ModelA400InvalidResponse>;
   /**
    * Send a 202 response with payload {'statusCode': '202'}
    * @param options The options parameters.
    */
   get200ModelA202Valid(
-    options?: MultipleResponsesGet200ModelA202ValidOptionalParams
+    options?: MultipleResponsesGet200ModelA202ValidOptionalParams,
   ): Promise<MultipleResponsesGet200ModelA202ValidResponse>;
 }

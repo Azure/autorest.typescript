@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   NetworkGroupsDeleteOptionalParams,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -37,7 +37,7 @@ async function networkGroupsDelete() {
     resourceGroupName,
     networkManagerName,
     networkGroupName,
-    options
+    options,
   );
   console.log(result);
 }

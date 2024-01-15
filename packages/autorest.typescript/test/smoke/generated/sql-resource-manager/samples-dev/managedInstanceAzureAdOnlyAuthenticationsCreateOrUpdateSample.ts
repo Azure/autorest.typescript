@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ManagedInstanceAzureADOnlyAuthentication,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,16 +31,17 @@ async function createsOrUpdatesAzureActiveDirectoryOnlyAuthenticationObject() {
   const managedInstanceName = "managedInstance";
   const authenticationName = "Default";
   const parameters: ManagedInstanceAzureADOnlyAuthentication = {
-    azureADOnlyAuthentication: false
+    azureADOnlyAuthentication: false,
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
-  const result = await client.managedInstanceAzureADOnlyAuthentications.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    managedInstanceName,
-    authenticationName,
-    parameters
-  );
+  const result =
+    await client.managedInstanceAzureADOnlyAuthentications.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      managedInstanceName,
+      authenticationName,
+      parameters,
+    );
   console.log(result);
 }
 

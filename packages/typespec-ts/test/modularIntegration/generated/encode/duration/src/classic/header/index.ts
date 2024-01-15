@@ -22,15 +22,15 @@ export interface HeaderOperations {
   iso8601: (duration: string, options?: HeaderIso8601Options) => Promise<void>;
   iso8601Array: (
     duration: string[],
-    options?: HeaderIso8601ArrayOptions
+    options?: HeaderIso8601ArrayOptions,
   ) => Promise<void>;
   int32Seconds: (
     duration: number,
-    options?: HeaderInt32SecondsOptions
+    options?: HeaderInt32SecondsOptions,
   ) => Promise<void>;
   floatSeconds: (
     duration: number,
-    options?: HeaderFloatSecondsOptions
+    options?: HeaderFloatSecondsOptions,
   ) => Promise<void>;
 }
 
@@ -50,7 +50,7 @@ export function getHeader(context: DurationContext) {
 }
 
 export function getHeaderOperations(
-  context: DurationContext
+  context: DurationContext,
 ): HeaderOperations {
   return {
     ...getHeader(context),

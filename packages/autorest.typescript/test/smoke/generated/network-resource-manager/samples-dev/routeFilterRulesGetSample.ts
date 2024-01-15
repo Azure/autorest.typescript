@@ -30,7 +30,7 @@ async function routeFilterRuleGet() {
   const result = await client.routeFilterRules.get(
     resourceGroupName,
     routeFilterName,
-    ruleName
+    ruleName,
   );
   console.log(result);
 }

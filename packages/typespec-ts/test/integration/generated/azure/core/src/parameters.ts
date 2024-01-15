@@ -63,7 +63,7 @@ export interface ListWithParametersQueryParamProperties {
   /**
    * Another query parameter.
    *
-   * Possible values: First, Second
+   * Possible values: "First", "Second"
    */
   another?: string;
 }

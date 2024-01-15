@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   BlobContainer,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,7 +30,7 @@ async function putContainerWithDefaultEncryptionScope() {
   const containerName = "container6185";
   const blobContainer: BlobContainer = {
     defaultEncryptionScope: "encryptionscope185",
-    denyEncryptionScopeOverride: true
+    denyEncryptionScopeOverride: true,
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -38,7 +38,7 @@ async function putContainerWithDefaultEncryptionScope() {
     resourceGroupName,
     accountName,
     containerName,
-    blobContainer
+    blobContainer,
   );
   console.log(result);
 }
@@ -55,7 +55,7 @@ async function putContainerWithObjectLevelWorm() {
   const accountName = "sto328";
   const containerName = "container6185";
   const blobContainer: BlobContainer = {
-    immutableStorageWithVersioning: { enabled: true }
+    immutableStorageWithVersioning: { enabled: true },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -63,7 +63,7 @@ async function putContainerWithObjectLevelWorm() {
     resourceGroupName,
     accountName,
     containerName,
-    blobContainer
+    blobContainer,
   );
   console.log(result);
 }
@@ -86,7 +86,7 @@ async function putContainers() {
     resourceGroupName,
     accountName,
     containerName,
-    blobContainer
+    blobContainer,
   );
   console.log(result);
 }

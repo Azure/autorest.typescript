@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   BastionShareableLinkListRequest,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,17 +31,15 @@ async function createBastionShareableLinksForTheRequestVMS() {
     vms: [
       {
         vm: {
-          id:
-            "/subscriptions/subid/resourceGroups/rgx/providers/Microsoft.Compute/virtualMachines/vm1"
-        }
+          id: "/subscriptions/subid/resourceGroups/rgx/providers/Microsoft.Compute/virtualMachines/vm1",
+        },
       },
       {
         vm: {
-          id:
-            "/subscriptions/subid/resourceGroups/rgx/providers/Microsoft.Compute/virtualMachines/vm2"
-        }
-      }
-    ]
+          id: "/subscriptions/subid/resourceGroups/rgx/providers/Microsoft.Compute/virtualMachines/vm2",
+        },
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -49,7 +47,7 @@ async function createBastionShareableLinksForTheRequestVMS() {
   for await (let item of client.beginListPutBastionShareableLinkAndWait(
     resourceGroupName,
     bastionHostName,
-    bslRequest
+    bslRequest,
   )) {
     resArray.push(item);
   }

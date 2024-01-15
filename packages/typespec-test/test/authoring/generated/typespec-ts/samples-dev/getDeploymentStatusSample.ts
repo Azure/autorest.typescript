@@ -24,7 +24,7 @@ async function getDeploymentStatusSample() {
       "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}",
       projectName,
       deploymentName,
-      jobId
+      jobId,
     )
     .get();
   console.log(result);
