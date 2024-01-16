@@ -316,10 +316,6 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     inputPath: "azure/core/traits"
   },
   {
-    outputPath: "enums/fixed",
-    inputPath: "type/enum/fixed"
-  },
-  {
     outputPath: "models/empty",
     inputPath: "type/model/empty"
   }
