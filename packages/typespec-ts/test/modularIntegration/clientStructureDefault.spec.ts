@@ -29,7 +29,7 @@ describe("Client Structure Default Rest Client", () => {
 
   it("should call operation three correctly", async () => {
     try {
-      const result = await client.three();
+      const result = await client.foo.three();
       assert.strictEqual(result, undefined);
     } catch (err) {
       assert.fail(err as string);
@@ -38,7 +38,7 @@ describe("Client Structure Default Rest Client", () => {
 
   it("should call operation four correctly", async () => {
     try {
-      const result = await client.four();
+      const result = await client.foo.four();
       assert.strictEqual(result, undefined);
     } catch (err) {
       assert.fail(err as string);
@@ -47,7 +47,7 @@ describe("Client Structure Default Rest Client", () => {
 
   it("should call operation five correctly", async () => {
     try {
-      const result = await client.five();
+      const result = await client.bar.five();
       assert.strictEqual(result, undefined);
     } catch (err) {
       assert.fail(err as string);
@@ -56,7 +56,7 @@ describe("Client Structure Default Rest Client", () => {
 
   it("should call operation six correctly", async () => {
     try {
-      const result = await client.six();
+      const result = await client.bar.six();
       assert.strictEqual(result, undefined);
     } catch (err) {
       assert.fail(err as string);

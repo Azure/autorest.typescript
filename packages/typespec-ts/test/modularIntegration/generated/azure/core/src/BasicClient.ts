@@ -2,12 +2,7 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import {
-  User,
-  ListItemInputBody,
-  FirstItem,
-  SecondItem,
-} from "./models/models.js";
+import { User, ListItemInputBody } from "./models/models.js";
 import {
   CreateOrUpdateOptions,
   CreateOrReplaceOptions,
@@ -18,10 +13,12 @@ import {
   ListWithCustomPageModelOptions,
   DeleteOperationOptions,
   ExportOperationOptions,
-  ListFirstItemOptions,
-  ListSecondItemOptions,
 } from "./models/options.js";
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
+import {
+  getTwoModelsAsPageItemOperations,
+  TwoModelsAsPageItemOperations,
+} from "./classic/twoModelsAsPageItem/index.js";
 import {
   createBasic,
   BasicClientOptions,
@@ -35,8 +32,6 @@ import {
   listWithCustomPageModel,
   deleteOperation,
   exportOperation,
-  listFirstItem,
-  listSecondItem,
 } from "./api/index.js";
 
 export { BasicClientOptions } from "./api/BasicContext.js";
@@ -50,7 +45,11 @@ export class BasicClient {
   constructor(options: BasicClientOptions = {}) {
     this._client = createBasic(options);
     this.pipeline = this._client.pipeline;
+    this.twoModelsAsPageItem = getTwoModelsAsPageItemOperations(this._client);
   }
+
+  /** The operation groups for TwoModelsAsPageItem */
+  public readonly twoModelsAsPageItem: TwoModelsAsPageItemOperations;
 
   /** Creates or updates a User */
   createOrUpdate(
@@ -119,19 +118,5 @@ export class BasicClient {
     options: ExportOperationOptions = { requestOptions: {} },
   ): Promise<User> {
     return exportOperation(this._client, id, format, options);
-  }
-
-  /** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
-  listFirstItem(
-    options: ListFirstItemOptions = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<FirstItem> {
-    return listFirstItem(this._client, options);
-  }
-
-  /** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
-  listSecondItem(
-    options: ListSecondItemOptions = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<SecondItem> {
-    return listSecondItem(this._client, options);
   }
 }

@@ -2,6 +2,10 @@
 // Licensed under the MIT license.
 
 import {
+  ListFirstItem200Response,
+  ListFirstItemDefaultResponse,
+  ListSecondItem200Response,
+  ListSecondItemDefaultResponse,
   CreateOrUpdate200Response,
   CreateOrUpdate201Response,
   CreateOrUpdateDefaultResponse,
@@ -22,13 +26,11 @@ import {
   ListWithCustomPageModelDefaultResponse,
   ExportOperation200Response,
   ExportOperationDefaultResponse,
-  ListFirstItem200Response,
-  ListFirstItemDefaultResponse,
-  ListSecondItem200Response,
-  ListSecondItemDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
+  "GET /azure/core/basic/first-item": ["200"],
+  "GET /azure/core/basic/second-item": ["200"],
   "PATCH /azure/core/basic/users/{id}": ["200", "201"],
   "PUT /azure/core/basic/users/{id}": ["200", "201"],
   "GET /azure/core/basic/users/{id}": ["200"],
@@ -38,10 +40,14 @@ const responseMap: Record<string, string[]> = {
   "GET /azure/core/basic/parameters": ["200"],
   "GET /azure/core/basic/custom-page": ["200"],
   "POST /azure/core/basic/users/{id}:export": ["200"],
-  "GET /azure/core/basic/first-item": ["200"],
-  "GET /azure/core/basic/second-item": ["200"],
 };
 
+export function isUnexpected(
+  response: ListFirstItem200Response | ListFirstItemDefaultResponse,
+): response is ListFirstItemDefaultResponse;
+export function isUnexpected(
+  response: ListSecondItem200Response | ListSecondItemDefaultResponse,
+): response is ListSecondItemDefaultResponse;
 export function isUnexpected(
   response:
     | CreateOrUpdate200Response
@@ -78,13 +84,11 @@ export function isUnexpected(
   response: ExportOperation200Response | ExportOperationDefaultResponse,
 ): response is ExportOperationDefaultResponse;
 export function isUnexpected(
-  response: ListFirstItem200Response | ListFirstItemDefaultResponse,
-): response is ListFirstItemDefaultResponse;
-export function isUnexpected(
-  response: ListSecondItem200Response | ListSecondItemDefaultResponse,
-): response is ListSecondItemDefaultResponse;
-export function isUnexpected(
   response:
+    | ListFirstItem200Response
+    | ListFirstItemDefaultResponse
+    | ListSecondItem200Response
+    | ListSecondItemDefaultResponse
     | CreateOrUpdate200Response
     | CreateOrUpdate201Response
     | CreateOrUpdateDefaultResponse
@@ -104,12 +108,10 @@ export function isUnexpected(
     | ListWithCustomPageModel200Response
     | ListWithCustomPageModelDefaultResponse
     | ExportOperation200Response
-    | ExportOperationDefaultResponse
-    | ListFirstItem200Response
-    | ListFirstItemDefaultResponse
-    | ListSecondItem200Response
-    | ListSecondItemDefaultResponse,
+    | ExportOperationDefaultResponse,
 ): response is
+  | ListFirstItemDefaultResponse
+  | ListSecondItemDefaultResponse
   | CreateOrUpdateDefaultResponse
   | CreateOrReplaceDefaultResponse
   | GetDefaultResponse
@@ -118,9 +120,7 @@ export function isUnexpected(
   | ListWithPageDefaultResponse
   | ListWithParametersDefaultResponse
   | ListWithCustomPageModelDefaultResponse
-  | ExportOperationDefaultResponse
-  | ListFirstItemDefaultResponse
-  | ListSecondItemDefaultResponse {
+  | ExportOperationDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
