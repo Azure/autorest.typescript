@@ -9,7 +9,7 @@ using Azure.Core;
 using Azure.Core.Foundations;
 using Azure.Core.Traits;
 
-namespace Face.Sessions;
+namespace Face;
 
 alias ServiceTraits =
   NoClientRequestId &
