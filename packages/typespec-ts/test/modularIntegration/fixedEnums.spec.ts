@@ -4,7 +4,7 @@ import {
 } from "./generated/enums/fixed/generated/src/index.js";
 import { assert } from "chai";
 
-describe("FixedEnums Rest Client", () => {
+describe.only("FixedEnums Rest Client", () => {
   let client: FixedClient;
   beforeEach(() => {
     client = new FixedClient({
@@ -37,10 +37,8 @@ describe("FixedEnums Rest Client", () => {
 
   it("should put unknown value", async () => {
     try {
-      const result = await client.putUnknownValue(
-        JSON.stringify("Weekend") as DaysOfWeekEnum
-      );
-      assert.fail(result);
+      await client.putUnknownValue(JSON.stringify("Weekend") as DaysOfWeekEnum);
+      assert.fail("Expected an error");
     } catch (err) {
       assert.isUndefined(err);
     }
