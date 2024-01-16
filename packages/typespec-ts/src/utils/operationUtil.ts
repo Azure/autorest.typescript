@@ -292,8 +292,8 @@ export function extractOperationLroDetail(
     const metadata = getLroMetadata(program, operation.operation);
     precedence =
       metadata?.finalStep &&
-      metadata?.finalStep.target &&
       metadata.finalStep.kind === "pollingSuccessProperty" &&
+      metadata?.finalStep.target &&
       metadata?.finalStep?.target?.name === "result"
         ? OPERATION_LRO_HIGH_PRIORITY
         : OPERATION_LRO_LOW_PRIORITY;
