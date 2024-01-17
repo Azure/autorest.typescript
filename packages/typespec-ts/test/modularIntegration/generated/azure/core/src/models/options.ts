@@ -4,10 +4,6 @@
 import { OperationOptions } from "@azure-rest/core-client";
 import { ListItemInputExtensibleEnum } from "./models.js";
 
-export interface ListFirstItemOptions extends OperationOptions {}
-
-export interface ListSecondItemOptions extends OperationOptions {}
-
 export interface CreateOrUpdateOptions extends OperationOptions {
   /** This request has a JSON Merge Patch body. */
   contentType?: string;
@@ -46,3 +42,7 @@ export interface ListWithCustomPageModelOptions extends OperationOptions {}
 export interface DeleteOperationOptions extends OperationOptions {}
 
 export interface ExportOperationOptions extends OperationOptions {}
+
+export interface ListFirstItemOptions extends OperationOptions {}
+
+export interface ListSecondItemOptions extends OperationOptions {}

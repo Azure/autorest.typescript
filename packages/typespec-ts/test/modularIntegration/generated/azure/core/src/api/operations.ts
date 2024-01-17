@@ -5,11 +5,11 @@ import {
   User,
   ListItemInputBody,
   UserListResults,
+  PagedUser,
   PagedFirstItem,
   FirstItem,
   PagedSecondItem,
   SecondItem,
-  PagedUser,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
@@ -48,8 +48,6 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  ListFirstItemOptions,
-  ListSecondItemOptions,
   CreateOrUpdateOptions,
   CreateOrReplaceOptions,
   GetOptions,
@@ -59,77 +57,9 @@ import {
   ListWithCustomPageModelOptions,
   DeleteOperationOptions,
   ExportOperationOptions,
+  ListFirstItemOptions,
+  ListSecondItemOptions,
 } from "../models/options.js";
-
-export function _listFirstItemSend(
-  context: Client,
-  options: ListFirstItemOptions = { requestOptions: {} },
-): StreamableMethod<ListFirstItem200Response | ListFirstItemDefaultResponse> {
-  return context
-    .path("/azure/core/basic/first-item")
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _listFirstItemDeserialize(
-  result: ListFirstItem200Response | ListFirstItemDefaultResponse,
-): Promise<PagedFirstItem> {
-  if (isUnexpected(result)) {
-    throw createRestError(result);
-  }
-
-  return {
-    value: result.body["value"].map((p) => ({ id: p["id"] })),
-    nextLink: result.body["nextLink"],
-  };
-}
-
-/** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
-export function listFirstItem(
-  context: Client,
-  options: ListFirstItemOptions = { requestOptions: {} },
-): PagedAsyncIterableIterator<FirstItem> {
-  return buildPagedAsyncIterator(
-    context,
-    () => _listFirstItemSend(context, options),
-    _listFirstItemDeserialize,
-    { itemName: "value", nextLinkName: "nextLink" },
-  );
-}
-
-export function _listSecondItemSend(
-  context: Client,
-  options: ListSecondItemOptions = { requestOptions: {} },
-): StreamableMethod<ListSecondItem200Response | ListSecondItemDefaultResponse> {
-  return context
-    .path("/azure/core/basic/second-item")
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _listSecondItemDeserialize(
-  result: ListSecondItem200Response | ListSecondItemDefaultResponse,
-): Promise<PagedSecondItem> {
-  if (isUnexpected(result)) {
-    throw createRestError(result);
-  }
-
-  return {
-    value: result.body["value"].map((p) => ({ name: p["name"] })),
-    nextLink: result.body["nextLink"],
-  };
-}
-
-/** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
-export function listSecondItem(
-  context: Client,
-  options: ListSecondItemOptions = { requestOptions: {} },
-): PagedAsyncIterableIterator<SecondItem> {
-  return buildPagedAsyncIterator(
-    context,
-    () => _listSecondItemSend(context, options),
-    _listSecondItemDeserialize,
-    { itemName: "value", nextLinkName: "nextLink" },
-  );
-}
 
 export function _createOrUpdateSend(
   context: Client,
@@ -590,4 +520,74 @@ export async function exportOperation(
 ): Promise<User> {
   const result = await _exportOperationSend(context, id, format, options);
   return _exportOperationDeserialize(result);
+}
+
+export function _listFirstItemSend(
+  context: Client,
+  options: ListFirstItemOptions = { requestOptions: {} },
+): StreamableMethod<ListFirstItem200Response | ListFirstItemDefaultResponse> {
+  return context
+    .path("/azure/core/basic/first-item")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _listFirstItemDeserialize(
+  result: ListFirstItem200Response | ListFirstItemDefaultResponse,
+): Promise<PagedFirstItem> {
+  if (isUnexpected(result)) {
+    throw createRestError(result);
+  }
+
+  return {
+    value: result.body["value"].map((p) => ({ id: p["id"] })),
+    nextLink: result.body["nextLink"],
+  };
+}
+
+/** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
+export function listFirstItem(
+  context: Client,
+  options: ListFirstItemOptions = { requestOptions: {} },
+): PagedAsyncIterableIterator<FirstItem> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listFirstItemSend(context, options),
+    _listFirstItemDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" },
+  );
+}
+
+export function _listSecondItemSend(
+  context: Client,
+  options: ListSecondItemOptions = { requestOptions: {} },
+): StreamableMethod<ListSecondItem200Response | ListSecondItemDefaultResponse> {
+  return context
+    .path("/azure/core/basic/second-item")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _listSecondItemDeserialize(
+  result: ListSecondItem200Response | ListSecondItemDefaultResponse,
+): Promise<PagedSecondItem> {
+  if (isUnexpected(result)) {
+    throw createRestError(result);
+  }
+
+  return {
+    value: result.body["value"].map((p) => ({ name: p["name"] })),
+    nextLink: result.body["nextLink"],
+  };
+}
+
+/** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
+export function listSecondItem(
+  context: Client,
+  options: ListSecondItemOptions = { requestOptions: {} },
+): PagedAsyncIterableIterator<SecondItem> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listSecondItemSend(context, options),
+    _listSecondItemDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" },
+  );
 }

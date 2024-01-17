@@ -4,20 +4,10 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
 import {
-  RenamedTwoOptions,
-  RenamedFourOptions,
-  RenamedSixOptions,
-  RenamedOneOptions,
-  RenamedThreeOptions,
-  RenamedFiveOptions,
-} from "./models/options.js";
+  getClientOperations,
+  ClientOperations,
+} from "./classic/client/index.js";
 import {
-  renamedTwo,
-  renamedFour,
-  renamedSix,
-  renamedOne,
-  renamedThree,
-  renamedFive,
   createRenamedOperation,
   RenamedOperationClientOptions,
   ServiceContext,
@@ -37,41 +27,9 @@ export class RenamedOperationClient {
   ) {
     this._client = createRenamedOperation(endpoint, client, options);
     this.pipeline = this._client.pipeline;
+    this.client = getClientOperations(this._client);
   }
 
-  renamedTwo(
-    options: RenamedTwoOptions = { requestOptions: {} },
-  ): Promise<void> {
-    return renamedTwo(this._client, options);
-  }
-
-  renamedFour(
-    options: RenamedFourOptions = { requestOptions: {} },
-  ): Promise<void> {
-    return renamedFour(this._client, options);
-  }
-
-  renamedSix(
-    options: RenamedSixOptions = { requestOptions: {} },
-  ): Promise<void> {
-    return renamedSix(this._client, options);
-  }
-
-  renamedOne(
-    options: RenamedOneOptions = { requestOptions: {} },
-  ): Promise<void> {
-    return renamedOne(this._client, options);
-  }
-
-  renamedThree(
-    options: RenamedThreeOptions = { requestOptions: {} },
-  ): Promise<void> {
-    return renamedThree(this._client, options);
-  }
-
-  renamedFive(
-    options: RenamedFiveOptions = { requestOptions: {} },
-  ): Promise<void> {
-    return renamedFive(this._client, options);
-  }
+  /** The operation groups for ClientStructureRenamedOperation */
+  public readonly client: ClientOperations;
 }

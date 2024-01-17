@@ -180,6 +180,16 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
   for (const client of clients) {
     // only consider it's conflict when there are conflicts in the same client
     const nameSet = new Set<string>();
+    const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+    for (const clientOp of clientOperations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+      const name = getOperationName(program, route.operation);
+      if (nameSet.has(name)) {
+        return true;
+      } else {
+        nameSet.add(name);
+      }
+    }
     const operationGroups = listOperationGroups(dpgContext, client, true);
     for (const operationGroup of operationGroups) {
       const operations = listOperationsInOperationGroup(
@@ -194,16 +204,6 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
         } else {
           nameSet.add(name);
         }
-      }
-    }
-    const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-    for (const clientOp of clientOperations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-      const name = getOperationName(program, route.operation);
-      if (nameSet.has(name)) {
-        return true;
-      } else {
-        nameSet.add(name);
       }
     }
   }

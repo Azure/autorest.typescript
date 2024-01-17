@@ -4,20 +4,10 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
 import {
-  OneOptions,
-  ThreeOptions,
-  FourOptions,
-  TwoOptions,
-  FiveOptions,
-  SixOptions,
-} from "./models/options.js";
+  getClientOperations,
+  ClientOperations,
+} from "./classic/client/index.js";
 import {
-  one,
-  three,
-  four,
-  two,
-  five,
-  six,
   createTwoOperationGroup,
   TwoOperationGroupClientOptions,
   ServiceContext,
@@ -37,29 +27,9 @@ export class TwoOperationGroupClient {
   ) {
     this._client = createTwoOperationGroup(endpoint, client, options);
     this.pipeline = this._client.pipeline;
+    this.client = getClientOperations(this._client);
   }
 
-  one(options: OneOptions = { requestOptions: {} }): Promise<void> {
-    return one(this._client, options);
-  }
-
-  three(options: ThreeOptions = { requestOptions: {} }): Promise<void> {
-    return three(this._client, options);
-  }
-
-  four(options: FourOptions = { requestOptions: {} }): Promise<void> {
-    return four(this._client, options);
-  }
-
-  two(options: TwoOptions = { requestOptions: {} }): Promise<void> {
-    return two(this._client, options);
-  }
-
-  five(options: FiveOptions = { requestOptions: {} }): Promise<void> {
-    return five(this._client, options);
-  }
-
-  six(options: SixOptions = { requestOptions: {} }): Promise<void> {
-    return six(this._client, options);
-  }
+  /** The operation groups for ClientStructureTwoOperationGroupGroup1 */
+  public readonly client: ClientOperations;
 }

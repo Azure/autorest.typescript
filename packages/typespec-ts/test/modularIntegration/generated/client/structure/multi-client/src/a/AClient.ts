@@ -4,18 +4,10 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
 import {
-  RenamedOneOptions,
-  RenamedThreeOptions,
-  RenamedFiveOptions,
-} from "./models/options.js";
-import {
-  createA,
-  AClientOptions,
-  ServiceContext,
-  renamedOne,
-  renamedThree,
-  renamedFive,
-} from "./api/index.js";
+  getClientOperations,
+  ClientOperations,
+} from "./classic/client/index.js";
+import { createA, AClientOptions, ServiceContext } from "./api/index.js";
 
 export { AClientOptions } from "./api/AContext.js";
 
@@ -31,23 +23,9 @@ export class AClient {
   ) {
     this._client = createA(endpoint, client, options);
     this.pipeline = this._client.pipeline;
+    this.client = getClientOperations(this._client);
   }
 
-  renamedOne(
-    options: RenamedOneOptions = { requestOptions: {} },
-  ): Promise<void> {
-    return renamedOne(this._client, options);
-  }
-
-  renamedThree(
-    options: RenamedThreeOptions = { requestOptions: {} },
-  ): Promise<void> {
-    return renamedThree(this._client, options);
-  }
-
-  renamedFive(
-    options: RenamedFiveOptions = { requestOptions: {} },
-  ): Promise<void> {
-    return renamedFive(this._client, options);
-  }
+  /** The operation groups for ClientStructureMultiClientClientA */
+  public readonly client: ClientOperations;
 }

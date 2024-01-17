@@ -1481,11 +1481,20 @@ function emitOperationGroups(
     string,
     OperationGroup
   >();
+  const clientOperations: HrlcOperation[] = [];
+  for (const operation of listOperationsInOperationGroup(context, client)) {
+    clientOperations.push(emitOperation(context, operation, "", rlcModels));
+  }
+  if (clientOperations.length > 0) {
+    addHierarchyOperationGroup(clientOperations, groupMapping);
+  }
   for (const operationGroup of listOperationGroups(context, client, true)) {
     const operations: HrlcOperation[] = [];
-    const name = context.rlcOptions?.hierarchyClient
-      ? operationGroup.type.name
-      : "";
+    const name =
+      context.rlcOptions?.hierarchyClient ||
+      context.rlcOptions?.enableOperationGroup
+        ? operationGroup.type.name
+        : "";
     for (const operation of listOperationsInOperationGroup(
       context,
       operationGroup
@@ -1495,13 +1504,6 @@ function emitOperationGroups(
     if (operations.length > 0) {
       addHierarchyOperationGroup(operations, groupMapping);
     }
-  }
-  const clientOperations: HrlcOperation[] = [];
-  for (const operation of listOperationsInOperationGroup(context, client)) {
-    clientOperations.push(emitOperation(context, operation, "", rlcModels));
-  }
-  if (clientOperations.length > 0) {
-    addHierarchyOperationGroup(clientOperations, groupMapping);
   }
 
   groupMapping.forEach((value) => {

@@ -312,6 +312,17 @@ export function hasPollingOperations(
   client: SdkClient,
   dpgContext: SdkContext
 ) {
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    if (isLongRunningOperation(program, route)) {
+      return true;
+    }
+  }
   const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
@@ -329,18 +340,6 @@ export function hasPollingOperations(
       }
     }
   }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    if (isLongRunningOperation(program, route)) {
-      return true;
-    }
-  }
-
   return false;
 }
 
@@ -359,6 +358,17 @@ export function hasPagingOperations(
   client: SdkClient,
   dpgContext: SdkContext
 ) {
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    if (isPagingOperation(program, route)) {
+      return true;
+    }
+  }
   const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
@@ -374,17 +384,6 @@ export function hasPagingOperations(
       if (isPagingOperation(program, route)) {
         return true;
       }
-    }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    if (isPagingOperation(program, route)) {
-      return true;
     }
   }
   return false;

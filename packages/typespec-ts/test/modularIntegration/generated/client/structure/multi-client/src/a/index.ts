@@ -4,7 +4,13 @@
 export { AClient, AClientOptions } from "./AClient.js";
 export {
   ClientType,
-  RenamedOneOptions,
-  RenamedThreeOptions,
-  RenamedFiveOptions,
+  ClientStructureMultiClientClientARenamedOneOptions,
+  ClientStructureMultiClientClientARenamedThreeOptions,
+  ClientStructureMultiClientClientARenamedFiveOptions,
 } from "./models/index.js";
+export {
+  ClientOperations,
+  ClientStructureOperations,
+  ClientStructureMultiClientOperations,
+  ClientStructureMultiClientClientAOperations,
+} from "./classic/index.js";
