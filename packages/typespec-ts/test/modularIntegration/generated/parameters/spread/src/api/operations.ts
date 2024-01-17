@@ -1,27 +1,61 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { BodyParameter } from "../models/models.js";
 import {
   AliasSpreadAsRequestBody204Response,
   AliasSpreadAsRequestParameter204Response,
   AliasSpreadWithMultipleParameters204Response,
+  ModelSpreadAsRequestBody204Response,
   SpreadContext as Client,
-} from "../../rest/index.js";
+} from "../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  AliasSpreadAsRequestBodyOptions,
-  AliasSpreadAsRequestParameterOptions,
-  AliasSpreadWithMultipleParametersOptions,
-} from "../../models/options.js";
+  SpreadAsRequestBodyOptions,
+  SpreadAsRequestParameterOptions,
+  SpreadWithMultipleParametersOptions,
+} from "../models/options.js";
 
-export function _aliasSpreadAsRequestBodySend(
+export function _spreadAsRequestBodySend(
+  context: Client,
+  body: BodyParameter,
+  options: SpreadAsRequestBodyOptions = { requestOptions: {} },
+): StreamableMethod<ModelSpreadAsRequestBody204Response> {
+  return context
+    .path("/parameters/spread/model/request-body")
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: { name: body["name"] },
+    });
+}
+
+export async function _spreadAsRequestBodyDeserialize(
+  result: ModelSpreadAsRequestBody204Response,
+): Promise<void> {
+  if (result.status !== "204") {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function spreadAsRequestBody(
+  context: Client,
+  body: BodyParameter,
+  options: SpreadAsRequestBodyOptions = { requestOptions: {} },
+): Promise<void> {
+  const result = await _spreadAsRequestBodySend(context, body, options);
+  return _spreadAsRequestBodyDeserialize(result);
+}
+
+export function _spreadAsRequestBodySend(
   context: Client,
   name: string,
-  options: AliasSpreadAsRequestBodyOptions = { requestOptions: {} },
+  options: SpreadAsRequestBodyOptions = { requestOptions: {} },
 ): StreamableMethod<AliasSpreadAsRequestBody204Response> {
   return context
     .path("/parameters/spread/alias/request-body")
@@ -31,7 +65,7 @@ export function _aliasSpreadAsRequestBodySend(
     });
 }
 
-export async function _aliasSpreadAsRequestBodyDeserialize(
+export async function _spreadAsRequestBodyDeserialize(
   result: AliasSpreadAsRequestBody204Response,
 ): Promise<void> {
   if (result.status !== "204") {
@@ -41,21 +75,21 @@ export async function _aliasSpreadAsRequestBodyDeserialize(
   return;
 }
 
-export async function aliasSpreadAsRequestBody(
+export async function spreadAsRequestBody(
   context: Client,
   name: string,
-  options: AliasSpreadAsRequestBodyOptions = { requestOptions: {} },
+  options: SpreadAsRequestBodyOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _aliasSpreadAsRequestBodySend(context, name, options);
-  return _aliasSpreadAsRequestBodyDeserialize(result);
+  const result = await _spreadAsRequestBodySend(context, name, options);
+  return _spreadAsRequestBodyDeserialize(result);
 }
 
-export function _aliasSpreadAsRequestParameterSend(
+export function _spreadAsRequestParameterSend(
   context: Client,
   id: string,
   xMsTestHeader: string,
   name: string,
-  options: AliasSpreadAsRequestParameterOptions = { requestOptions: {} },
+  options: SpreadAsRequestParameterOptions = { requestOptions: {} },
 ): StreamableMethod<AliasSpreadAsRequestParameter204Response> {
   return context
     .path("/parameters/spread/alias/request-parameter/{id}", id)
@@ -66,7 +100,7 @@ export function _aliasSpreadAsRequestParameterSend(
     });
 }
 
-export async function _aliasSpreadAsRequestParameterDeserialize(
+export async function _spreadAsRequestParameterDeserialize(
   result: AliasSpreadAsRequestParameter204Response,
 ): Promise<void> {
   if (result.status !== "204") {
@@ -76,24 +110,24 @@ export async function _aliasSpreadAsRequestParameterDeserialize(
   return;
 }
 
-export async function aliasSpreadAsRequestParameter(
+export async function spreadAsRequestParameter(
   context: Client,
   id: string,
   xMsTestHeader: string,
   name: string,
-  options: AliasSpreadAsRequestParameterOptions = { requestOptions: {} },
+  options: SpreadAsRequestParameterOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _aliasSpreadAsRequestParameterSend(
+  const result = await _spreadAsRequestParameterSend(
     context,
     id,
     xMsTestHeader,
     name,
     options,
   );
-  return _aliasSpreadAsRequestParameterDeserialize(result);
+  return _spreadAsRequestParameterDeserialize(result);
 }
 
-export function _aliasSpreadWithMultipleParametersSend(
+export function _spreadWithMultipleParametersSend(
   context: Client,
   id: string,
   xMsTestHeader: string,
@@ -103,7 +137,7 @@ export function _aliasSpreadWithMultipleParametersSend(
   prop4: string,
   prop5: string,
   prop6: string,
-  options: AliasSpreadWithMultipleParametersOptions = { requestOptions: {} },
+  options: SpreadWithMultipleParametersOptions = { requestOptions: {} },
 ): StreamableMethod<AliasSpreadWithMultipleParameters204Response> {
   return context
     .path("/parameters/spread/alias/multiple-parameters/{id}", id)
@@ -121,7 +155,7 @@ export function _aliasSpreadWithMultipleParametersSend(
     });
 }
 
-export async function _aliasSpreadWithMultipleParametersDeserialize(
+export async function _spreadWithMultipleParametersDeserialize(
   result: AliasSpreadWithMultipleParameters204Response,
 ): Promise<void> {
   if (result.status !== "204") {
@@ -131,7 +165,7 @@ export async function _aliasSpreadWithMultipleParametersDeserialize(
   return;
 }
 
-export async function aliasSpreadWithMultipleParameters(
+export async function spreadWithMultipleParameters(
   context: Client,
   id: string,
   xMsTestHeader: string,
@@ -141,9 +175,9 @@ export async function aliasSpreadWithMultipleParameters(
   prop4: string,
   prop5: string,
   prop6: string,
-  options: AliasSpreadWithMultipleParametersOptions = { requestOptions: {} },
+  options: SpreadWithMultipleParametersOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _aliasSpreadWithMultipleParametersSend(
+  const result = await _spreadWithMultipleParametersSend(
     context,
     id,
     xMsTestHeader,
@@ -155,5 +189,5 @@ export async function aliasSpreadWithMultipleParameters(
     prop6,
     options,
   );
-  return _aliasSpreadWithMultipleParametersDeserialize(result);
+  return _spreadWithMultipleParametersDeserialize(result);
 }

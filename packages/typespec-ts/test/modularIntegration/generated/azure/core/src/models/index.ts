@@ -6,16 +6,14 @@ export {
   UserOrder,
   ListItemInputBody,
   UserListResults,
+  PagedUser,
+  ListItemInputExtensibleEnum,
   PagedFirstItem,
   FirstItem,
   PagedSecondItem,
   SecondItem,
-  PagedUser,
-  ListItemInputExtensibleEnum,
 } from "./models.js";
 export {
-  TwoModelsAsPageItemListFirstItemOptions,
-  TwoModelsAsPageItemListSecondItemOptions,
   CreateOrUpdateOptions,
   CreateOrReplaceOptions,
   GetOptions,
@@ -25,6 +23,8 @@ export {
   ListWithCustomPageModelOptions,
   DeleteOperationOptions,
   ExportOperationOptions,
+  ListFirstItemOptions,
+  ListSecondItemOptions,
 } from "./options.js";
 export {
   PageSettings,

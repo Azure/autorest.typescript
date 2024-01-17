@@ -2,9 +2,16 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { getModelOperations, ModelOperations } from "./classic/model/index.js";
-import { getAliasOperations, AliasOperations } from "./classic/alias/index.js";
+import { BodyParameter } from "./models/models.js";
 import {
+  SpreadAsRequestBodyOptions,
+  SpreadAsRequestParameterOptions,
+  SpreadWithMultipleParametersOptions,
+} from "./models/options.js";
+import {
+  spreadAsRequestBody,
+  spreadAsRequestParameter,
+  spreadWithMultipleParameters,
   createSpread,
   SpreadClientOptions,
   SpreadContext,
@@ -21,12 +28,59 @@ export class SpreadClient {
   constructor(options: SpreadClientOptions = {}) {
     this._client = createSpread(options);
     this.pipeline = this._client.pipeline;
-    this.model = getModelOperations(this._client);
-    this.alias = getAliasOperations(this._client);
   }
 
-  /** The operation groups for Model */
-  public readonly model: ModelOperations;
-  /** The operation groups for Alias */
-  public readonly alias: AliasOperations;
+  spreadAsRequestBody(
+    body: BodyParameter,
+    options: SpreadAsRequestBodyOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return spreadAsRequestBody(this._client, body, options);
+  }
+
+  spreadAsRequestBody(
+    name: string,
+    options: SpreadAsRequestBodyOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return spreadAsRequestBody(this._client, name, options);
+  }
+
+  spreadAsRequestParameter(
+    id: string,
+    xMsTestHeader: string,
+    name: string,
+    options: SpreadAsRequestParameterOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return spreadAsRequestParameter(
+      this._client,
+      id,
+      xMsTestHeader,
+      name,
+      options,
+    );
+  }
+
+  spreadWithMultipleParameters(
+    id: string,
+    xMsTestHeader: string,
+    prop1: string,
+    prop2: string,
+    prop3: string,
+    prop4: string,
+    prop5: string,
+    prop6: string,
+    options: SpreadWithMultipleParametersOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return spreadWithMultipleParameters(
+      this._client,
+      id,
+      xMsTestHeader,
+      prop1,
+      prop2,
+      prop3,
+      prop4,
+      prop5,
+      prop6,
+      options,
+    );
+  }
 }

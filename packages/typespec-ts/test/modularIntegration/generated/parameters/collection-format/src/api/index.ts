@@ -6,11 +6,4 @@ export {
   CollectionFormatClientOptions,
   CollectionFormatContext,
 } from "./CollectionFormatContext.js";
-export { headerCsv } from "./header/index.js";
-export {
-  queryMulti,
-  querySsv,
-  queryTsv,
-  queryPipes,
-  queryCsv,
-} from "./query/index.js";
+export { multi, ssv, tsv, pipes, csv } from "./operations.js";

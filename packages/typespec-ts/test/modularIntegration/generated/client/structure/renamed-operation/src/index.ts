@@ -7,11 +7,10 @@ export {
 } from "./RenamedOperationClient.js";
 export {
   ClientType,
-  GroupRenamedTwoOptions,
-  GroupRenamedFourOptions,
-  GroupRenamedSixOptions,
   RenamedOneOptions,
   RenamedThreeOptions,
   RenamedFiveOptions,
+  RenamedTwoOptions,
+  RenamedFourOptions,
+  RenamedSixOptions,
 } from "./models/index.js";
-export { GroupOperations } from "./classic/index.js";

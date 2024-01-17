@@ -17,9 +17,9 @@ import {
 } from "@azure-rest/core-client";
 import {
   OneOptions,
-  TwoOptions,
   ThreeOptions,
   FourOptions,
+  TwoOptions,
   FiveOptions,
   SixOptions,
 } from "../models/options.js";
@@ -47,31 +47,6 @@ export async function one(
 ): Promise<void> {
   const result = await _oneSend(context, options);
   return _oneDeserialize(result);
-}
-
-export function _twoSend(
-  context: Client,
-  options: TwoOptions = { requestOptions: {} },
-): StreamableMethod<Two204Response> {
-  return context
-    .path("/two")
-    .post({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _twoDeserialize(result: Two204Response): Promise<void> {
-  if (result.status !== "204") {
-    throw createRestError(result);
-  }
-
-  return;
-}
-
-export async function two(
-  context: Client,
-  options: TwoOptions = { requestOptions: {} },
-): Promise<void> {
-  const result = await _twoSend(context, options);
-  return _twoDeserialize(result);
 }
 
 export function _threeSend(
@@ -124,6 +99,31 @@ export async function four(
 ): Promise<void> {
   const result = await _fourSend(context, options);
   return _fourDeserialize(result);
+}
+
+export function _twoSend(
+  context: Client,
+  options: TwoOptions = { requestOptions: {} },
+): StreamableMethod<Two204Response> {
+  return context
+    .path("/two")
+    .post({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _twoDeserialize(result: Two204Response): Promise<void> {
+  if (result.status !== "204") {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function two(
+  context: Client,
+  options: TwoOptions = { requestOptions: {} },
+): Promise<void> {
+  const result = await _twoSend(context, options);
+  return _twoDeserialize(result);
 }
 
 export function _fiveSend(

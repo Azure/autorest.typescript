@@ -3,13 +3,14 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 
-export interface GetThingBodyParam {
+export interface OveralodOperationsGetThingBodyParam {
   body: string | number;
 }
 
-export type GetThingParameters = GetThingBodyParam & RequestParameters;
+export type OveralodOperationsGetThingParameters =
+  OveralodOperationsGetThingBodyParam & RequestParameters;
 
-export interface UploadBodyParam {
+export interface OveralodOperationsUploadBodyParam {
   /** Value may contain any sequence of octets */
   body:
     | string
@@ -18,22 +19,95 @@ export interface UploadBodyParam {
     | NodeJS.ReadableStream;
 }
 
-export interface UploadMediaTypesParam {
+export interface OveralodOperationsUploadMediaTypesParam {
   contentType: "text/plain" | "application/octet-stream";
 }
 
-export type UploadParameters = UploadMediaTypesParam &
-  UploadBodyParam &
-  RequestParameters;
+export type OveralodOperationsUploadParameters =
+  OveralodOperationsUploadMediaTypesParam &
+    OveralodOperationsUploadBodyParam &
+    RequestParameters;
 
-export interface ProcessBodyParam {
+export interface OveralodOperationsProcessBodyParam {
   body?: { data: string | string };
 }
 
-export interface ProcessMediaTypesParam {
+export interface OveralodOperationsProcessMediaTypesParam {
   contentType: "text/plain" | "application/octet-stream";
 }
 
-export type ProcessParameters = ProcessMediaTypesParam &
-  ProcessBodyParam &
-  RequestParameters;
+export type OveralodOperationsProcessParameters =
+  OveralodOperationsProcessMediaTypesParam &
+    OveralodOperationsProcessBodyParam &
+    RequestParameters;
+
+export interface OverloadClientGetStringBodyParam {
+  body: string;
+}
+
+export type OverloadClientGetStringParameters =
+  OverloadClientGetStringBodyParam & RequestParameters;
+
+export interface OverloadClientGetNumberBodyParam {
+  body: number;
+}
+
+export type OverloadClientGetNumberParameters =
+  OverloadClientGetNumberBodyParam & RequestParameters;
+
+export interface OverloadClientUploadStringBodyParam {
+  body: string;
+}
+
+export interface OverloadClientUploadStringMediaTypesParam {
+  contentType: "text/plain";
+}
+
+export type OverloadClientUploadStringParameters =
+  OverloadClientUploadStringMediaTypesParam &
+    OverloadClientUploadStringBodyParam &
+    RequestParameters;
+
+export interface OverloadClientUploadBytesBodyParam {
+  /** Value may contain any sequence of octets */
+  body:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
+}
+
+export interface OverloadClientUploadBytesMediaTypesParam {
+  contentType: "application/octet-stream";
+}
+
+export type OverloadClientUploadBytesParameters =
+  OverloadClientUploadBytesMediaTypesParam &
+    OverloadClientUploadBytesBodyParam &
+    RequestParameters;
+
+export interface OverloadClientProcessStringBodyParam {
+  body?: { data: string };
+}
+
+export interface OverloadClientProcessStringMediaTypesParam {
+  contentType: "text/plain";
+}
+
+export type OverloadClientProcessStringParameters =
+  OverloadClientProcessStringMediaTypesParam &
+    OverloadClientProcessStringBodyParam &
+    RequestParameters;
+
+export interface OverloadClientProcessBytesBodyParam {
+  body?: { data: string };
+}
+
+export interface OverloadClientProcessBytesMediaTypesParam {
+  contentType: "application/octet-stream";
+}
+
+export type OverloadClientProcessBytesParameters =
+  OverloadClientProcessBytesMediaTypesParam &
+    OverloadClientProcessBytesBodyParam &
+    RequestParameters;

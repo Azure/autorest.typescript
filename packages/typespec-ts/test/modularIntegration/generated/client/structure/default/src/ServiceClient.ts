@@ -3,12 +3,21 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
-import { OneOptions, TwoOptions } from "./models/options.js";
-import { getFooOperations, FooOperations } from "./classic/foo/index.js";
-import { getBarOperations, BarOperations } from "./classic/bar/index.js";
+import {
+  OneOptions,
+  TwoOptions,
+  ThreeOptions,
+  FourOptions,
+  FiveOptions,
+  SixOptions,
+} from "./models/options.js";
 import {
   one,
   two,
+  three,
+  four,
+  five,
+  six,
   createService,
   ServiceClientOptions,
   ServiceContext,
@@ -37,14 +46,7 @@ export class ServiceClient {
   ) {
     this._client = createService(endpoint, client, options);
     this.pipeline = this._client.pipeline;
-    this.foo = getFooOperations(this._client);
-    this.bar = getBarOperations(this._client);
   }
-
-  /** The operation groups for Foo */
-  public readonly foo: FooOperations;
-  /** The operation groups for Bar */
-  public readonly bar: BarOperations;
 
   one(options: OneOptions = { requestOptions: {} }): Promise<void> {
     return one(this._client, options);
@@ -52,5 +54,21 @@ export class ServiceClient {
 
   two(options: TwoOptions = { requestOptions: {} }): Promise<void> {
     return two(this._client, options);
+  }
+
+  three(options: ThreeOptions = { requestOptions: {} }): Promise<void> {
+    return three(this._client, options);
+  }
+
+  four(options: FourOptions = { requestOptions: {} }): Promise<void> {
+    return four(this._client, options);
+  }
+
+  five(options: FiveOptions = { requestOptions: {} }): Promise<void> {
+    return five(this._client, options);
+  }
+
+  six(options: SixOptions = { requestOptions: {} }): Promise<void> {
+    return six(this._client, options);
   }
 }
