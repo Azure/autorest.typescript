@@ -35,6 +35,7 @@
     "validate-version-tolerance": "npm run start-test-server:v2 & npm run generate-version-tolerance && npm run generate-version-tolerance:tests && npm run test-version-tolerance && npm run stop-test-server",
     "generate-version-tolerance": "ts-node ./test/commands/version-tolerance.ts",
     "generate-version-tolerance:tests": "ts-node ./test/commands/version-tolerance.ts --test-gen",
+    "regen-test-baselines": "npm run generate-swaggers && npm run rlc-generate-swaggers && npm run smoke-test",
     "test-version-tolerance": "mocha -r ts-node/register --timeout 2000 \"./test/version-tolerance/**/!(sampleTest).spec.ts\"",
     "clone:specs": "git clone -c core.longpaths=true https://github.com/Azure/azure-rest-api-specs.git ./.tmp/specs",
     "smoke-test": "ts-node ./test/commands/smoke-test.ts",
