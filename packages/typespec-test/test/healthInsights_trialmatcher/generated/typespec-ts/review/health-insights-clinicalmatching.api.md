@@ -173,7 +173,7 @@ export interface CreateJob200Response extends HttpResponse {
 // @public (undocumented)
 export interface CreateJob202Headers {
     "operation-location": string;
-    "repeatability-result"?: "accepted" | "rejected";
+    "repeatability-result"?: RepeatabilityResultOutput;
     "retry-after"?: number;
 }
 
@@ -327,6 +327,9 @@ export interface PatientRecord {
     id: string;
     info?: PatientInfo;
 }
+
+// @public (undocumented)
+export type RepeatabilityResultOutput = "accepted" | "rejected";
 
 // @public (undocumented)
 export interface Routes {

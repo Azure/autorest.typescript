@@ -1,8 +1,8 @@
 // Licensed under the MIT license.
 
 import {
-  CreateFineTuningJobRequest,
   FineTuningJob,
+  CreateFineTuningJobRequest,
   ListPaginatedFineTuningJobsResponse,
   ListFineTuningJobEventsResponse,
 } from "../../../models/models.js";

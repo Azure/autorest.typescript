@@ -2,7 +2,6 @@ import { TelemetryInfo } from "@azure-tools/rlc-common";
 import {
   SdkClient,
   SdkContext,
-  listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import { ignoreDiagnostics } from "@typespec/compiler";
@@ -30,22 +29,11 @@ function getCustomRequestHeaderNameForClient(
   client: SdkClient
 ) {
   const program = dpgContext.program;
-  const operationGroups = listOperationGroups(dpgContext, client);
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-    for (const op of operations) {
-      const headerName = getCustomRequestHeaderNameForOperation(
-        ignoreDiagnostics(getHttpOperation(program, op))
-      );
-      if (headerName !== undefined) {
-        return headerName;
-      }
-    }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  const clientOperations = listOperationsInOperationGroup(
+    dpgContext,
+    client,
+    true
+  );
   for (const clientOp of clientOperations) {
     const headerName = getCustomRequestHeaderNameForOperation(
       ignoreDiagnostics(getHttpOperation(program, clientOp))

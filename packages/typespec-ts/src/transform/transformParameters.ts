@@ -36,7 +36,6 @@ import {
 } from "../utils/operationUtil.js";
 import {
   SdkClient,
-  listOperationGroups,
   listOperationsInOperationGroup,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
@@ -48,24 +47,13 @@ export function transformToParameterTypes(
   dpgContext: SdkContext
 ): OperationParameter[] {
   const program = dpgContext.program;
-  const operationGroups = listOperationGroups(dpgContext, client);
   const rlcParameters: OperationParameter[] = [];
   const outputImportedSet = new Set<string>();
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-    for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
-      // ignore overload base operation
-      if (route.overloads && route.overloads?.length > 0) {
-        continue;
-      }
-      transformToParameterTypesForRoute(program, route);
-    }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  const clientOperations = listOperationsInOperationGroup(
+    dpgContext,
+    client,
+    true
+  );
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     // ignore overload base operation

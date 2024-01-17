@@ -16,7 +16,6 @@ import {
 } from "@typespec/http";
 import {
   SdkClient,
-  listOperationGroups,
   listOperationsInOperationGroup,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
@@ -38,23 +37,12 @@ export function transformPaths(
   client: SdkClient,
   dpgContext: SdkContext
 ): Paths {
-  const operationGroups = listOperationGroups(dpgContext, client);
   const paths: Paths = {};
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-    for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
-      // ignore overload base operation
-      if (route.overloads && route.overloads?.length > 0) {
-        continue;
-      }
-      transformOperation(dpgContext, route, paths);
-    }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  const clientOperations = listOperationsInOperationGroup(
+    dpgContext,
+    client,
+    true
+  );
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     // ignore overload base operation

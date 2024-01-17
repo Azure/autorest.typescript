@@ -32,7 +32,6 @@ import {
 } from "@azure-tools/typespec-azure-core";
 import {
   SdkClient,
-  listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import {
@@ -312,24 +311,11 @@ export function hasPollingOperations(
   client: SdkClient,
   dpgContext: SdkContext
 ) {
-  const operationGroups = listOperationGroups(dpgContext, client);
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-    for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
-      // ignore overload base operation
-      if (route.overloads && route.overloads?.length > 0) {
-        continue;
-      }
-      if (isLongRunningOperation(program, route)) {
-        return true;
-      }
-    }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  const clientOperations = listOperationsInOperationGroup(
+    dpgContext,
+    client,
+    true
+  );
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     // ignore overload base operation
@@ -359,24 +345,11 @@ export function hasPagingOperations(
   client: SdkClient,
   dpgContext: SdkContext
 ) {
-  const operationGroups = listOperationGroups(dpgContext, client);
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-    for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
-      // ignore overload base operation
-      if (route.overloads && route.overloads?.length > 0) {
-        continue;
-      }
-      if (isPagingOperation(program, route)) {
-        return true;
-      }
-    }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  const clientOperations = listOperationsInOperationGroup(
+    dpgContext,
+    client,
+    true
+  );
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     // ignore overload base operation

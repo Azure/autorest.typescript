@@ -197,7 +197,7 @@ export interface CreateJob {
 // @public (undocumented)
 export interface CreateJob202Headers {
     "operation-location": string;
-    "repeatability-result"?: "accepted" | "rejected";
+    "repeatability-result"?: RepeatabilityResultOutput;
     "retry-after"?: number;
 }
 
@@ -1084,6 +1084,9 @@ export interface ReferenceOutput extends ElementOutput {
     reference?: string;
     type?: string;
 }
+
+// @public (undocumented)
+export type RepeatabilityResultOutput = "accepted" | "rejected";
 
 // @public
 export interface ResearchStudy extends DomainResourceParent {
