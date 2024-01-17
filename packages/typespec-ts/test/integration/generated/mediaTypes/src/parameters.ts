@@ -4,7 +4,7 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { SourcePath } from "./models";
 
-export interface MediaTypesOperationsGetByUnionOnlyBodyParam {
+export interface GetByUnionOnlyBodyParam {
   /**
    * Input parameter.
    *
@@ -18,7 +18,7 @@ export interface MediaTypesOperationsGetByUnionOnlyBodyParam {
     | NodeJS.ReadableStream;
 }
 
-export interface MediaTypesOperationsGetByUnionOnlyMediaTypesParam {
+export interface GetByUnionOnlyMediaTypesParam {
   contentType:
     | "application/pdf"
     | "application/json"
@@ -28,40 +28,39 @@ export interface MediaTypesOperationsGetByUnionOnlyMediaTypesParam {
     | "text/plain";
 }
 
-export type MediaTypesOperationsGetByUnionOnlyParameters =
-  MediaTypesOperationsGetByUnionOnlyMediaTypesParam &
-    MediaTypesOperationsGetByUnionOnlyBodyParam &
-    RequestParameters;
+export type GetByUnionOnlyParameters = GetByUnionOnlyMediaTypesParam &
+  GetByUnionOnlyBodyParam &
+  RequestParameters;
 
-export interface MediaTypesOperationsGetBySharedRouteForStringBodyParam {
+export interface GetBySharedRouteForStringBodyParam {
   /** Input parameter. */
   body: string;
 }
 
-export interface MediaTypesOperationsGetBySharedRouteForStringMediaTypesParam {
+export interface GetBySharedRouteForStringMediaTypesParam {
   contentType: "text/plain";
 }
 
-export type MediaTypesOperationsGetBySharedRouteForStringParameters =
-  MediaTypesOperationsGetBySharedRouteForStringMediaTypesParam &
-    MediaTypesOperationsGetBySharedRouteForStringBodyParam &
+export type GetBySharedRouteForStringParameters =
+  GetBySharedRouteForStringMediaTypesParam &
+    GetBySharedRouteForStringBodyParam &
     RequestParameters;
 
-export interface MediaTypesOperationsGetBySharedRouteForModelBodyParam {
+export interface GetBySharedRouteForModelBodyParam {
   /** Input parameter. */
   body: SourcePath;
 }
 
-export interface MediaTypesOperationsGetBySharedRouteForModelMediaTypesParam {
+export interface GetBySharedRouteForModelMediaTypesParam {
   contentType: "application/json";
 }
 
-export type MediaTypesOperationsGetBySharedRouteForModelParameters =
-  MediaTypesOperationsGetBySharedRouteForModelMediaTypesParam &
-    MediaTypesOperationsGetBySharedRouteForModelBodyParam &
+export type GetBySharedRouteForModelParameters =
+  GetBySharedRouteForModelMediaTypesParam &
+    GetBySharedRouteForModelBodyParam &
     RequestParameters;
 
-export interface MediaTypesOperationsGetBySharedRouteForBytesBodyParam {
+export interface GetBySharedRouteForBytesBodyParam {
   /**
    * Input parameter.
    *
@@ -74,16 +73,16 @@ export interface MediaTypesOperationsGetBySharedRouteForBytesBodyParam {
     | NodeJS.ReadableStream;
 }
 
-export interface MediaTypesOperationsGetBySharedRouteForBytesMediaTypesParam {
+export interface GetBySharedRouteForBytesMediaTypesParam {
   contentType: "application/pdf" | "image/jpeg" | "image/png" | "image/tiff";
 }
 
-export type MediaTypesOperationsGetBySharedRouteForBytesParameters =
-  MediaTypesOperationsGetBySharedRouteForBytesMediaTypesParam &
-    MediaTypesOperationsGetBySharedRouteForBytesBodyParam &
+export type GetBySharedRouteForBytesParameters =
+  GetBySharedRouteForBytesMediaTypesParam &
+    GetBySharedRouteForBytesBodyParam &
     RequestParameters;
 
-export interface MediaTypesOperationsGetByOverloadParentBodyParam {
+export interface GetByOverloadParentBodyParam {
   /**
    * Input parameter.
    *
@@ -97,7 +96,7 @@ export interface MediaTypesOperationsGetByOverloadParentBodyParam {
     | NodeJS.ReadableStream;
 }
 
-export interface MediaTypesOperationsGetByOverloadParentMediaTypesParam {
+export interface GetByOverloadParentMediaTypesParam {
   contentType:
     | "application/pdf"
     | "application/json"
@@ -107,12 +106,11 @@ export interface MediaTypesOperationsGetByOverloadParentMediaTypesParam {
     | "text/plain";
 }
 
-export type MediaTypesOperationsGetByOverloadParentParameters =
-  MediaTypesOperationsGetByOverloadParentMediaTypesParam &
-    MediaTypesOperationsGetByOverloadParentBodyParam &
-    RequestParameters;
+export type GetByOverloadParentParameters = GetByOverloadParentMediaTypesParam &
+  GetByOverloadParentBodyParam &
+  RequestParameters;
 
-export interface MediaTypesClientGetByUnionBodyParam {
+export interface GetByUnionBodyParam {
   /**
    * Input parameter.
    *
@@ -126,7 +124,7 @@ export interface MediaTypesClientGetByUnionBodyParam {
     | NodeJS.ReadableStream;
 }
 
-export interface MediaTypesClientGetByUnionMediaTypesParam {
+export interface GetByUnionMediaTypesParam {
   contentType:
     | "application/pdf"
     | "application/json"
@@ -136,40 +134,39 @@ export interface MediaTypesClientGetByUnionMediaTypesParam {
     | "text/plain";
 }
 
-export type MediaTypesClientGetByUnionParameters =
-  MediaTypesClientGetByUnionMediaTypesParam &
-    MediaTypesClientGetByUnionBodyParam &
-    RequestParameters;
+export type GetByUnionParameters = GetByUnionMediaTypesParam &
+  GetByUnionBodyParam &
+  RequestParameters;
 
-export interface MediaTypesClientGetBySharedRouteForStringBodyParam {
+export interface GetBySharedRouteForStringBodyParam {
   /** Input parameter. */
   body: string;
 }
 
-export interface MediaTypesClientGetBySharedRouteForStringMediaTypesParam {
+export interface GetBySharedRouteForStringMediaTypesParam {
   contentType: "text/plain";
 }
 
-export type MediaTypesClientGetBySharedRouteForStringParameters =
-  MediaTypesClientGetBySharedRouteForStringMediaTypesParam &
-    MediaTypesClientGetBySharedRouteForStringBodyParam &
+export type GetBySharedRouteForStringParameters =
+  GetBySharedRouteForStringMediaTypesParam &
+    GetBySharedRouteForStringBodyParam &
     RequestParameters;
 
-export interface MediaTypesClientGetBySharedRouteForModelBodyParam {
+export interface GetBySharedRouteForModelBodyParam {
   /** Input parameter. */
   body: SourcePath;
 }
 
-export interface MediaTypesClientGetBySharedRouteForModelMediaTypesParam {
+export interface GetBySharedRouteForModelMediaTypesParam {
   contentType: "application/json";
 }
 
-export type MediaTypesClientGetBySharedRouteForModelParameters =
-  MediaTypesClientGetBySharedRouteForModelMediaTypesParam &
-    MediaTypesClientGetBySharedRouteForModelBodyParam &
+export type GetBySharedRouteForModelParameters =
+  GetBySharedRouteForModelMediaTypesParam &
+    GetBySharedRouteForModelBodyParam &
     RequestParameters;
 
-export interface MediaTypesClientGetBySharedRouteForBytesBodyParam {
+export interface GetBySharedRouteForBytesBodyParam {
   /**
    * Input parameter.
    *
@@ -182,44 +179,43 @@ export interface MediaTypesClientGetBySharedRouteForBytesBodyParam {
     | NodeJS.ReadableStream;
 }
 
-export interface MediaTypesClientGetBySharedRouteForBytesMediaTypesParam {
+export interface GetBySharedRouteForBytesMediaTypesParam {
   contentType: "application/pdf" | "image/jpeg" | "image/png" | "image/tiff";
 }
 
-export type MediaTypesClientGetBySharedRouteForBytesParameters =
-  MediaTypesClientGetBySharedRouteForBytesMediaTypesParam &
-    MediaTypesClientGetBySharedRouteForBytesBodyParam &
+export type GetBySharedRouteForBytesParameters =
+  GetBySharedRouteForBytesMediaTypesParam &
+    GetBySharedRouteForBytesBodyParam &
     RequestParameters;
 
-export interface MediaTypesClientGetByOverloadStringBodyParam {
+export interface GetByOverloadStringBodyParam {
   /** Input parameter. */
   body: string;
 }
 
-export interface MediaTypesClientGetByOverloadStringMediaTypesParam {
+export interface GetByOverloadStringMediaTypesParam {
   contentType: "text/plain";
 }
 
-export type MediaTypesClientGetByOverloadStringParameters =
-  MediaTypesClientGetByOverloadStringMediaTypesParam &
-    MediaTypesClientGetByOverloadStringBodyParam &
-    RequestParameters;
+export type GetByOverloadStringParameters = GetByOverloadStringMediaTypesParam &
+  GetByOverloadStringBodyParam &
+  RequestParameters;
 
-export interface MediaTypesClientGetByOverloadForModelBodyParam {
+export interface GetByOverloadForModelBodyParam {
   /** Input parameter. */
   body: SourcePath;
 }
 
-export interface MediaTypesClientGetByOverloadForModelMediaTypesParam {
+export interface GetByOverloadForModelMediaTypesParam {
   contentType: "application/json";
 }
 
-export type MediaTypesClientGetByOverloadForModelParameters =
-  MediaTypesClientGetByOverloadForModelMediaTypesParam &
-    MediaTypesClientGetByOverloadForModelBodyParam &
+export type GetByOverloadForModelParameters =
+  GetByOverloadForModelMediaTypesParam &
+    GetByOverloadForModelBodyParam &
     RequestParameters;
 
-export interface MediaTypesClientGetByOverloadForBytesBodyParam {
+export interface GetByOverloadForBytesBodyParam {
   /**
    * Input parameter.
    *
@@ -232,11 +228,11 @@ export interface MediaTypesClientGetByOverloadForBytesBodyParam {
     | NodeJS.ReadableStream;
 }
 
-export interface MediaTypesClientGetByOverloadForBytesMediaTypesParam {
+export interface GetByOverloadForBytesMediaTypesParam {
   contentType: "application/pdf" | "image/jpeg" | "image/png" | "image/tiff";
 }
 
-export type MediaTypesClientGetByOverloadForBytesParameters =
-  MediaTypesClientGetByOverloadForBytesMediaTypesParam &
-    MediaTypesClientGetByOverloadForBytesBodyParam &
+export type GetByOverloadForBytesParameters =
+  GetByOverloadForBytesMediaTypesParam &
+    GetByOverloadForBytesBodyParam &
     RequestParameters;

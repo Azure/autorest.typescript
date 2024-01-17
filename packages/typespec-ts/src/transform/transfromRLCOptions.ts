@@ -183,6 +183,11 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
       true
     );
     for (const clientOp of clientOperations) {
+      // Skip if this operation has sourceOperation
+      // in the case of overload and shared route, we need to skip this.
+      if (clientOp.sourceOperation) {
+        continue;
+      }
       const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
       const name = getOperationName(program, route.operation);
       if (nameSet.has(name)) {

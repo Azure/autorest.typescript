@@ -2,95 +2,83 @@
 // Licensed under the MIT license.
 
 import {
-  OveralodOperationsGetThingParameters,
-  OveralodOperationsUploadParameters,
-  OveralodOperationsProcessParameters,
-  OverloadClientGetStringParameters,
-  OverloadClientGetNumberParameters,
-  OverloadClientUploadStringParameters,
-  OverloadClientUploadBytesParameters,
-  OverloadClientProcessStringParameters,
-  OverloadClientProcessBytesParameters,
+  GetThingParameters,
+  UploadParameters,
+  ProcessParameters,
+  GetStringParameters,
+  GetNumberParameters,
+  UploadStringParameters,
+  UploadBytesParameters,
+  ProcessStringParameters,
+  ProcessBytesParameters,
 } from "./parameters";
 import {
-  OveralodOperationsGetThing200Response,
-  OveralodOperationsUpload204Response,
-  OveralodOperationsProcess204Response,
-  OverloadClientGetString200Response,
-  OverloadClientGetNumber200Response,
-  OverloadClientUploadString204Response,
-  OverloadClientUploadBytes204Response,
-  OverloadClientProcessString204Response,
-  OverloadClientProcessBytes204Response,
+  GetThing200Response,
+  Upload204Response,
+  Process204Response,
+  GetString200Response,
+  GetNumber200Response,
+  UploadString204Response,
+  UploadBytes204Response,
+  ProcessString204Response,
+  ProcessBytes204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface OveralodOperationsGetThing {
+export interface GetThing {
   /** Overload with same routes */
-  post(
-    options: OveralodOperationsGetThingParameters,
-  ): StreamableMethod<OveralodOperationsGetThing200Response>;
+  post(options: GetThingParameters): StreamableMethod<GetThing200Response>;
 }
 
-export interface OveralodOperationsUpload {
+export interface Upload {
   /** Overload with different routes */
-  put(
-    options: OveralodOperationsUploadParameters,
-  ): StreamableMethod<OveralodOperationsUpload204Response>;
+  put(options: UploadParameters): StreamableMethod<Upload204Response>;
 }
 
-export interface OveralodOperationsProcess {
+export interface Process {
   /** Overloads with different actions */
-  put(
-    options: OveralodOperationsProcessParameters,
-  ): StreamableMethod<OveralodOperationsProcess204Response>;
+  put(options: ProcessParameters): StreamableMethod<Process204Response>;
 }
 
-export interface OverloadClientGetString {
+export interface GetString {
+  post(options: GetStringParameters): StreamableMethod<GetString200Response>;
+  post(options: GetNumberParameters): StreamableMethod<GetNumber200Response>;
+}
+
+export interface UploadString {
+  put(
+    options: UploadStringParameters,
+  ): StreamableMethod<UploadString204Response>;
+}
+
+export interface UploadBytes {
+  put(options: UploadBytesParameters): StreamableMethod<UploadBytes204Response>;
+}
+
+export interface ProcessString {
   post(
-    options: OverloadClientGetStringParameters,
-  ): StreamableMethod<OverloadClientGetString200Response>;
-  post(
-    options: OverloadClientGetNumberParameters,
-  ): StreamableMethod<OverloadClientGetNumber200Response>;
-}
-
-export interface OverloadClientUploadString {
+    options: ProcessStringParameters,
+  ): StreamableMethod<ProcessString204Response>;
   put(
-    options: OverloadClientUploadStringParameters,
-  ): StreamableMethod<OverloadClientUploadString204Response>;
-}
-
-export interface OverloadClientUploadBytes {
-  put(
-    options: OverloadClientUploadBytesParameters,
-  ): StreamableMethod<OverloadClientUploadBytes204Response>;
-}
-
-export interface OverloadClientProcessString {
-  post(
-    options: OverloadClientProcessStringParameters,
-  ): StreamableMethod<OverloadClientProcessString204Response>;
-  put(
-    options: OverloadClientProcessBytesParameters,
-  ): StreamableMethod<OverloadClientProcessBytes204Response>;
+    options: ProcessBytesParameters,
+  ): StreamableMethod<ProcessBytes204Response>;
 }
 
 export interface Routes {
   /** Resource for '/get' has methods for the following verbs: post */
-  (path: "/get"): OveralodOperationsGetThing;
+  (path: "/get"): GetThing;
   /** Resource for '/changed-routes' has methods for the following verbs: put */
-  (path: "/changed-routes"): OveralodOperationsUpload;
+  (path: "/changed-routes"): Upload;
   /** Resource for '/changed-actions' has methods for the following verbs: put */
-  (path: "/changed-actions"): OveralodOperationsProcess;
+  (path: "/changed-actions"): Process;
   /** Resource for '/overload/get' has methods for the following verbs: post */
-  (path: "/overload/get"): OverloadClientGetString;
+  (path: "/overload/get"): GetString;
   /** Resource for '/overload/toString' has methods for the following verbs: put */
-  (path: "/overload/toString"): OverloadClientUploadString;
+  (path: "/overload/toString"): UploadString;
   /** Resource for '/overload/changed-routes' has methods for the following verbs: put */
-  (path: "/overload/changed-routes"): OverloadClientUploadBytes;
+  (path: "/overload/changed-routes"): UploadBytes;
   /** Resource for '/overload/changed-actions' has methods for the following verbs: post, put */
-  (path: "/overload/changed-actions"): OverloadClientProcessString;
+  (path: "/overload/changed-actions"): ProcessString;
 }
 
 export type OveralodClient = Client & {

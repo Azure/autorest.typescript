@@ -30,4 +30,5 @@ export interface UserActionResponseOutput {
   userActionResult: string;
 }
 
+/** Alias for RepeatabilityResultOutput */
 export type RepeatabilityResultOutput = "accepted" | "rejected";
