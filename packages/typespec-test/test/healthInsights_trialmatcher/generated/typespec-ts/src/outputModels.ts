@@ -179,4 +179,5 @@ export interface ExtendedClinicalCodedElementOutput {
   category?: string;
 }
 
+/** Alias for RepeatabilityResultOutput */
 export type RepeatabilityResultOutput = "accepted" | "rejected";

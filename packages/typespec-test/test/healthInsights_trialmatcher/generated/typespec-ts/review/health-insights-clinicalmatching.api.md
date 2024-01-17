@@ -328,7 +328,7 @@ export interface PatientRecord {
     info?: PatientInfo;
 }
 
-// @public (undocumented)
+// @public
 export type RepeatabilityResultOutput = "accepted" | "rejected";
 
 // @public (undocumented)

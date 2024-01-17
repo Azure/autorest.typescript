@@ -1085,7 +1085,7 @@ export interface ReferenceOutput extends ElementOutput {
     type?: string;
 }
 
-// @public (undocumented)
+// @public
 export type RepeatabilityResultOutput = "accepted" | "rejected";
 
 // @public
