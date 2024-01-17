@@ -36,26 +36,6 @@ export interface UserListResults {
   nextLink?: string;
 }
 
-/** Paged collection of User items */
-export interface PagedUser {
-  /** The User items on this page */
-  value: User[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-/** Paged collection of User items */
-export interface PagedUser {
-  /** The User items on this page */
-  value: User[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-/** An extensible enum input parameter. */
-/** "First", "Second" */
-export type ListItemInputExtensibleEnum = string;
-
 /** Paged collection of FirstItem items */
 export interface PagedFirstItem {
   /** The FirstItem items on this page */
@@ -83,3 +63,23 @@ export interface SecondItem {
   /** The name of the item. */
   readonly name: string;
 }
+
+/** Paged collection of User items */
+export interface PagedUser {
+  /** The User items on this page */
+  value: User[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** Paged collection of User items */
+export interface PagedUser {
+  /** The User items on this page */
+  value: User[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** An extensible enum input parameter. */
+/** "First", "Second" */
+export type ListItemInputExtensibleEnum = string;

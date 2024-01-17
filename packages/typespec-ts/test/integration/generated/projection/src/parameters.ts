@@ -9,18 +9,6 @@ import {
   JsonAndClientProjectedNameModel,
 } from "./models";
 
-export type OperationParameters = RequestParameters;
-
-export interface ParameterQueryParamProperties {
-  "default-name": string;
-}
-
-export interface ParameterQueryParam {
-  queryParameters: ParameterQueryParamProperties;
-}
-
-export type ParameterParameters = ParameterQueryParam & RequestParameters;
-
 export interface PropertyJsonBodyParam {
   body?: JsonProjectedNameModel;
 }
@@ -47,3 +35,14 @@ export interface PropertyJsonAndClientBodyParam {
 
 export type PropertyJsonAndClientParameters = PropertyJsonAndClientBodyParam &
   RequestParameters;
+export type OperationParameters = RequestParameters;
+
+export interface ParameterQueryParamProperties {
+  "default-name": string;
+}
+
+export interface ParameterQueryParam {
+  queryParameters: ParameterQueryParamProperties;
+}
+
+export type ParameterParameters = ParameterQueryParam & RequestParameters;

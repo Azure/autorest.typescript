@@ -18,6 +18,28 @@ export interface AccountListSupportedImagesResult {
     value?: ImageInformation[];
 }
 
+// @public (undocumented)
+export interface AccountsListPoolNodeCountsOptions extends OperationOptions {
+    $filter?: string;
+    maxresults?: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface AccountsListSupportedImagesOptions extends OperationOptions {
+    $filter?: string;
+    maxresults?: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface AccountsOperations {
+    // (undocumented)
+    listPoolNodeCounts: (options?: AccountsListPoolNodeCountsOptions) => PagedAsyncIterableIterator<PoolNodeCounts>;
+    // (undocumented)
+    listSupportedImages: (options?: AccountsListSupportedImagesOptions) => PagedAsyncIterableIterator<ImageInformation>;
+}
+
 // @public
 export interface AffinityInformation {
     affinityId: string;
@@ -36,6 +58,25 @@ export interface ApplicationListResult {
 export interface ApplicationPackageReference {
     applicationId: string;
     version?: string;
+}
+
+// @public (undocumented)
+export interface ApplicationsGetApplicationOptions extends OperationOptions {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface ApplicationsListApplicationsOptions extends OperationOptions {
+    maxresults?: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface ApplicationsOperations {
+    // (undocumented)
+    getApplication: (applicationId: string, options?: ApplicationsGetApplicationOptions) => Promise<BatchApplication>;
+    // (undocumented)
+    listApplications: (options?: ApplicationsListApplicationsOptions) => PagedAsyncIterableIterator<BatchApplication>;
 }
 
 // @public
@@ -120,83 +161,15 @@ export interface BatchCertificate {
 // @public (undocumented)
 export class BatchClient {
     constructor(endpoint: string, credential: TokenCredential, options?: BatchClientOptions);
-    cancelCertificateDeletion(thumbprintAlgorithm: string, thumbprint: string, options?: CancelCertificateDeletionOptions): Promise<void>;
-    createCertificate(body: BatchCertificate, options?: CreateCertificateOptions): Promise<void>;
-    createJob(body: BatchJobCreateOptions, options?: CreateJobOptions): Promise<void>;
-    createJobSchedule(body: BatchJobScheduleCreateOptions, options?: CreateJobScheduleOptions): Promise<void>;
-    createNodeUser(poolId: string, nodeId: string, body: BatchNodeUserCreateOptions, options?: CreateNodeUserOptions): Promise<void>;
-    createPool(body: BatchPoolCreateOptions, options?: CreatePoolOptions): Promise<void>;
-    createTask(jobId: string, body: BatchTaskCreateOptions, options?: CreateTaskOptions): Promise<void>;
-    createTaskCollection(jobId: string, collection: BatchTaskCollection, options?: CreateTaskCollectionOptions): Promise<TaskAddCollectionResult>;
-    deleteCertificate(thumbprintAlgorithm: string, thumbprint: string, options?: DeleteCertificateOptions): Promise<void>;
-    deleteJob(jobId: string, options?: DeleteJobOptions): Promise<void>;
-    deleteJobSchedule(jobScheduleId: string, options?: DeleteJobScheduleOptions): Promise<void>;
-    deleteNodeFile(poolId: string, nodeId: string, filePath: string, options?: DeleteNodeFileOptions): Promise<void>;
-    deleteNodeUser(poolId: string, nodeId: string, userName: string, options?: DeleteNodeUserOptions): Promise<void>;
-    deletePool(poolId: string, options?: DeletePoolOptions): Promise<void>;
-    deleteTask(jobId: string, taskId: string, options?: DeleteTaskOptions): Promise<void>;
-    deleteTaskFile(jobId: string, taskId: string, filePath: string, options?: DeleteTaskFileOptions): Promise<void>;
-    disableJob(jobId: string, body: BatchJobDisableOptions, options?: DisableJobOptions): Promise<void>;
-    disableJobSchedule(jobScheduleId: string, options?: DisableJobScheduleOptions): Promise<void>;
-    disableNodeScheduling(poolId: string, nodeId: string, body: NodeDisableSchedulingOptions, options?: DisableNodeSchedulingOptions): Promise<void>;
-    disablePoolAutoScale(poolId: string, options?: DisablePoolAutoScaleOptions): Promise<void>;
-    enableJob(jobId: string, options?: EnableJobOptions): Promise<void>;
-    enableJobSchedule(jobScheduleId: string, options?: EnableJobScheduleOptions): Promise<void>;
-    enableNodeScheduling(poolId: string, nodeId: string, options?: EnableNodeSchedulingOptions): Promise<void>;
-    enablePoolAutoScale(poolId: string, body: BatchPoolEnableAutoScaleOptions, options?: EnablePoolAutoScaleOptions): Promise<void>;
-    evaluatePoolAutoScale(poolId: string, body: BatchPoolEvaluateAutoScaleOptions, options?: EvaluatePoolAutoScaleOptions): Promise<AutoScaleRun>;
-    getApplication(applicationId: string, options?: GetApplicationOptions): Promise<BatchApplication>;
-    getCertificate(thumbprintAlgorithm: string, thumbprint: string, options?: GetCertificateOptions): Promise<BatchCertificate>;
-    getJob(jobId: string, options?: GetJobOptions): Promise<BatchJob>;
-    getJobSchedule(jobScheduleId: string, options?: GetJobScheduleOptions): Promise<BatchJobSchedule>;
-    getJobTaskCounts(jobId: string, options?: GetJobTaskCountsOptions): Promise<TaskCountsResult>;
-    getNode(poolId: string, nodeId: string, options?: GetNodeOptions): Promise<BatchNode>;
-    getNodeExtension(poolId: string, nodeId: string, extensionName: string, options?: GetNodeExtensionOptions): Promise<NodeVMExtension>;
-    getNodeFile(poolId: string, nodeId: string, filePath: string, options?: GetNodeFileOptions): Promise<Uint8Array>;
-    getNodeFileProperties(poolId: string, nodeId: string, filePath: string, options?: GetNodeFilePropertiesOptions): Promise<void>;
-    getNodeRemoteDesktopFile(poolId: string, nodeId: string, options?: GetNodeRemoteDesktopFileOptions): Promise<Uint8Array>;
-    getNodeRemoteLoginSettings(poolId: string, nodeId: string, options?: GetNodeRemoteLoginSettingsOptions): Promise<BatchNodeRemoteLoginSettingsResult>;
-    getPool(poolId: string, options?: GetPoolOptions): Promise<BatchPool>;
-    getTask(jobId: string, taskId: string, options?: GetTaskOptions): Promise<BatchTask>;
-    getTaskFile(jobId: string, taskId: string, filePath: string, options?: GetTaskFileOptions): Promise<Uint8Array>;
-    getTaskFileProperties(jobId: string, taskId: string, filePath: string, options?: GetTaskFilePropertiesOptions): Promise<void>;
-    jobScheduleExists(jobScheduleId: string, options?: JobScheduleExistsOptions): Promise<void>;
-    listApplications(options?: ListApplicationsOptions): PagedAsyncIterableIterator<BatchApplication>;
-    listCertificates(options?: ListCertificatesOptions): PagedAsyncIterableIterator<BatchCertificate>;
-    listJobPreparationAndReleaseTaskStatus(jobId: string, options?: ListJobPreparationAndReleaseTaskStatusOptions): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation>;
-    listJobs(options?: ListJobsOptions): PagedAsyncIterableIterator<BatchJob>;
-    listJobSchedules(options?: ListJobSchedulesOptions): PagedAsyncIterableIterator<BatchJobSchedule>;
-    listJobsFromSchedule(jobScheduleId: string, options?: ListJobsFromScheduleOptions): PagedAsyncIterableIterator<BatchJob>;
-    listNodeExtensions(poolId: string, nodeId: string, options?: ListNodeExtensionsOptions): PagedAsyncIterableIterator<NodeVMExtension>;
-    listNodeFiles(poolId: string, nodeId: string, options?: ListNodeFilesOptions): PagedAsyncIterableIterator<NodeFile>;
-    listNodes(poolId: string, options?: ListNodesOptions): PagedAsyncIterableIterator<BatchNode>;
-    listPoolNodeCounts(options?: ListPoolNodeCountsOptions): PagedAsyncIterableIterator<PoolNodeCounts>;
-    listPools(options?: ListPoolsOptions): PagedAsyncIterableIterator<BatchPool>;
-    listPoolUsageMetrics(options?: ListPoolUsageMetricsOptions): PagedAsyncIterableIterator<PoolUsageMetrics>;
-    listSubTasks(jobId: string, taskId: string, options?: ListSubTasksOptions): Promise<BatchTaskListSubtasksResult>;
-    listSupportedImages(options?: ListSupportedImagesOptions): PagedAsyncIterableIterator<ImageInformation>;
-    listTaskFiles(jobId: string, taskId: string, options?: ListTaskFilesOptions): PagedAsyncIterableIterator<NodeFile>;
-    listTasks(jobId: string, options?: ListTasksOptions): PagedAsyncIterableIterator<BatchTask>;
+    readonly accounts: AccountsOperations;
+    readonly applications: ApplicationsOperations;
+    readonly certificates: CertificatesOperations;
+    readonly jobs: JobsOperations;
+    readonly jobSchedules: JobSchedulesOperations;
+    readonly nodes: NodesOperations;
     readonly pipeline: Pipeline;
-    poolExists(poolId: string, options?: PoolExistsOptions): Promise<void>;
-    reactivateTask(jobId: string, taskId: string, options?: ReactivateTaskOptions): Promise<void>;
-    rebootNode(poolId: string, nodeId: string, body: NodeRebootOptions, options?: RebootNodeOptions): Promise<void>;
-    reimageNode(poolId: string, nodeId: string, body: NodeReimageOptions, options?: ReimageNodeOptions): Promise<void>;
-    removeNodes(poolId: string, body: NodeRemoveOptions, options?: RemoveNodesOptions): Promise<void>;
-    replaceJob(jobId: string, body: BatchJob, options?: ReplaceJobOptions): Promise<void>;
-    replaceJobSchedule(jobScheduleId: string, body: BatchJobSchedule, options?: ReplaceJobScheduleOptions): Promise<void>;
-    replaceNodeUser(poolId: string, nodeId: string, userName: string, body: BatchNodeUserUpdateOptions, options?: ReplaceNodeUserOptions): Promise<void>;
-    replacePoolProperties(poolId: string, body: BatchPoolReplaceOptions, options?: ReplacePoolPropertiesOptions): Promise<void>;
-    replaceTask(jobId: string, taskId: string, body: BatchTask, options?: ReplaceTaskOptions): Promise<void>;
-    resizePool(poolId: string, body: BatchPoolResizeOptions, options?: ResizePoolOptions): Promise<void>;
-    stopPoolResize(poolId: string, options?: StopPoolResizeOptions): Promise<void>;
-    terminateJob(jobId: string, body: BatchJobTerminateOptions, options?: TerminateJobOptions): Promise<void>;
-    terminateJobSchedule(jobScheduleId: string, options?: TerminateJobScheduleOptions): Promise<void>;
-    terminateTask(jobId: string, taskId: string, options?: TerminateTaskOptions): Promise<void>;
-    updateJob(jobId: string, body: BatchJobUpdateOptions, options?: UpdateJobOptions): Promise<void>;
-    updateJobSchedule(jobScheduleId: string, body: BatchJobScheduleUpdateOptions, options?: UpdateJobScheduleOptions): Promise<void>;
-    updatePool(poolId: string, body: BatchPoolUpdateOptions, options?: UpdatePoolOptions): Promise<void>;
-    uploadNodeLogs(poolId: string, nodeId: string, body: UploadBatchServiceLogsOptions, options?: UploadNodeLogsOptions): Promise<UploadBatchServiceLogsResult>;
+    readonly pools: PoolsOperations;
+    readonly tasks: TasksOperations;
 }
 
 // @public (undocumented)
@@ -625,11 +598,6 @@ export interface BatchTaskListSubtasksResult {
 // @public
 export type CachingType = string;
 
-// @public (undocumented)
-export interface CancelCertificateDeletionOptions extends OperationOptions {
-    timeOut?: number;
-}
-
 // @public
 export type CertificateFormat = string;
 
@@ -646,6 +614,50 @@ export interface CertificateReference {
     thumbprint: string;
     thumbprintAlgorithm: string;
     visibility?: CertificateVisibility[];
+}
+
+// @public (undocumented)
+export interface CertificatesCancelCertificateDeletionOptions extends OperationOptions {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface CertificatesCreateCertificateOptions extends OperationOptions {
+    contentType?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface CertificatesDeleteCertificateOptions extends OperationOptions {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface CertificatesGetCertificateOptions extends OperationOptions {
+    $select?: string[];
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface CertificatesListCertificatesOptions extends OperationOptions {
+    $filter?: string;
+    $select?: string[];
+    maxresults?: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface CertificatesOperations {
+    // (undocumented)
+    cancelCertificateDeletion: (thumbprintAlgorithm: string, thumbprint: string, options?: CertificatesCancelCertificateDeletionOptions) => Promise<void>;
+    // (undocumented)
+    createCertificate: (body: BatchCertificate, options?: CertificatesCreateCertificateOptions) => Promise<void>;
+    // (undocumented)
+    deleteCertificate: (thumbprintAlgorithm: string, thumbprint: string, options?: CertificatesDeleteCertificateOptions) => Promise<void>;
+    // (undocumented)
+    getCertificate: (thumbprintAlgorithm: string, thumbprint: string, options?: CertificatesGetCertificateOptions) => Promise<BatchCertificate>;
+    // (undocumented)
+    listCertificates: (options?: CertificatesListCertificatesOptions) => PagedAsyncIterableIterator<BatchCertificate>;
 }
 
 // @public
@@ -698,48 +710,6 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public (undocumented)
-export interface CreateCertificateOptions extends OperationOptions {
-    contentType?: string;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface CreateJobOptions extends OperationOptions {
-    contentType?: string;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface CreateJobScheduleOptions extends OperationOptions {
-    contentType?: string;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface CreateNodeUserOptions extends OperationOptions {
-    contentType?: string;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface CreatePoolOptions extends OperationOptions {
-    contentType?: string;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface CreateTaskCollectionOptions extends OperationOptions {
-    contentType?: string;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface CreateTaskOptions extends OperationOptions {
-    contentType?: string;
-    timeOut?: number;
-}
-
 // @public
 export interface DataDisk {
     caching?: CachingType;
@@ -753,64 +723,6 @@ export interface DeleteCertificateError {
     code?: string;
     message?: string;
     values?: NameValuePair[];
-}
-
-// @public (undocumented)
-export interface DeleteCertificateOptions extends OperationOptions {
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface DeleteJobOptions extends OperationOptions {
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface DeleteJobScheduleOptions extends OperationOptions {
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface DeleteNodeFileOptions extends OperationOptions {
-    recursive?: boolean;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface DeleteNodeUserOptions extends OperationOptions {
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface DeletePoolOptions extends OperationOptions {
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface DeleteTaskFileOptions extends OperationOptions {
-    recursive?: boolean;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface DeleteTaskOptions extends OperationOptions {
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
 }
 
 // @public
@@ -830,36 +742,6 @@ export type DisableBatchNodeSchedulingOption = string;
 // @public
 export type DisableJobOption = string;
 
-// @public (undocumented)
-export interface DisableJobOptions extends OperationOptions {
-    contentType?: string;
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface DisableJobScheduleOptions extends OperationOptions {
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface DisableNodeSchedulingOptions extends OperationOptions {
-    contentType?: string;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface DisablePoolAutoScaleOptions extends OperationOptions {
-    timeOut?: number;
-}
-
 // @public
 export interface DiskEncryptionConfiguration {
     targets?: DiskEncryptionTarget[];
@@ -874,39 +756,6 @@ export type DynamicVNetAssignmentScope = string;
 // @public
 export type ElevationLevel = string;
 
-// @public (undocumented)
-export interface EnableJobOptions extends OperationOptions {
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface EnableJobScheduleOptions extends OperationOptions {
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface EnableNodeSchedulingOptions extends OperationOptions {
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface EnablePoolAutoScaleOptions extends OperationOptions {
-    contentType?: string;
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
 // @public
 export interface EnvironmentSetting {
     name: string;
@@ -920,12 +769,6 @@ export type ErrorCategory = string;
 export interface ErrorMessage {
     lang?: string;
     value?: string;
-}
-
-// @public (undocumented)
-export interface EvaluatePoolAutoScaleOptions extends OperationOptions {
-    contentType?: string;
-    timeOut?: number;
 }
 
 // @public
@@ -963,118 +806,6 @@ export interface FileProperties {
     creationTime?: Date;
     fileMode?: string;
     lastModified: Date;
-}
-
-// @public (undocumented)
-export interface GetApplicationOptions extends OperationOptions {
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface GetCertificateOptions extends OperationOptions {
-    $select?: string[];
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface GetJobOptions extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface GetJobScheduleOptions extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface GetJobTaskCountsOptions extends OperationOptions {
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface GetNodeExtensionOptions extends OperationOptions {
-    $select?: string[];
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface GetNodeFileOptions extends OperationOptions {
-    ifModifiedSince?: Date;
-    ifUnmodifiedSince?: Date;
-    ocpRange?: string;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface GetNodeFilePropertiesOptions extends OperationOptions {
-    ifModifiedSince?: Date;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface GetNodeOptions extends OperationOptions {
-    $select?: string[];
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface GetNodeRemoteDesktopFileOptions extends OperationOptions {
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface GetNodeRemoteLoginSettingsOptions extends OperationOptions {
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface GetPoolOptions extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface GetTaskFileOptions extends OperationOptions {
-    ifModifiedSince?: Date;
-    ifUnmodifiedSince?: Date;
-    ocpRange?: string;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface GetTaskFilePropertiesOptions extends OperationOptions {
-    ifModifiedSince?: Date;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface GetTaskOptions extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
 }
 
 // @public
@@ -1256,7 +987,94 @@ export interface JobScheduleExecutionInformation {
 }
 
 // @public (undocumented)
-export interface JobScheduleExistsOptions extends OperationOptions {
+export interface JobSchedulesCreateJobScheduleOptions extends OperationOptions {
+    contentType?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobSchedulesDeleteJobScheduleOptions extends OperationOptions {
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobSchedulesDisableJobScheduleOptions extends OperationOptions {
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobSchedulesEnableJobScheduleOptions extends OperationOptions {
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobSchedulesGetJobScheduleOptions extends OperationOptions {
+    $expand?: string[];
+    $select?: string[];
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobSchedulesJobScheduleExistsOptions extends OperationOptions {
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobSchedulesListJobSchedulesOptions extends OperationOptions {
+    $expand?: string[];
+    $filter?: string;
+    $select?: string[];
+    maxresults?: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobSchedulesOperations {
+    // (undocumented)
+    createJobSchedule: (body: BatchJobScheduleCreateOptions, options?: JobSchedulesCreateJobScheduleOptions) => Promise<void>;
+    // (undocumented)
+    deleteJobSchedule: (jobScheduleId: string, options?: JobSchedulesDeleteJobScheduleOptions) => Promise<void>;
+    // (undocumented)
+    disableJobSchedule: (jobScheduleId: string, options?: JobSchedulesDisableJobScheduleOptions) => Promise<void>;
+    // (undocumented)
+    enableJobSchedule: (jobScheduleId: string, options?: JobSchedulesEnableJobScheduleOptions) => Promise<void>;
+    // (undocumented)
+    getJobSchedule: (jobScheduleId: string, options?: JobSchedulesGetJobScheduleOptions) => Promise<BatchJobSchedule>;
+    // (undocumented)
+    jobScheduleExists: (jobScheduleId: string, options?: JobSchedulesJobScheduleExistsOptions) => Promise<void>;
+    // (undocumented)
+    listJobSchedules: (options?: JobSchedulesListJobSchedulesOptions) => PagedAsyncIterableIterator<BatchJobSchedule>;
+    // (undocumented)
+    replaceJobSchedule: (jobScheduleId: string, body: BatchJobSchedule, options?: JobSchedulesReplaceJobScheduleOptions) => Promise<void>;
+    // (undocumented)
+    terminateJobSchedule: (jobScheduleId: string, options?: JobSchedulesTerminateJobScheduleOptions) => Promise<void>;
+    // (undocumented)
+    updateJobSchedule: (jobScheduleId: string, body: BatchJobScheduleUpdateOptions, options?: JobSchedulesUpdateJobScheduleOptions) => Promise<void>;
+}
+
+// @public (undocumented)
+export interface JobSchedulesReplaceJobScheduleOptions extends OperationOptions {
+    contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -1285,12 +1103,135 @@ export interface JobScheduleStatistics {
     writeIOps: number;
 }
 
+// @public (undocumented)
+export interface JobSchedulesTerminateJobScheduleOptions extends OperationOptions {
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobSchedulesUpdateJobScheduleOptions extends OperationOptions {
+    contentType?: string;
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
 // @public
 export interface JobSchedulingError {
     category: ErrorCategory;
     code?: string;
     details?: NameValuePair[];
     message?: string;
+}
+
+// @public (undocumented)
+export interface JobsCreateJobOptions extends OperationOptions {
+    contentType?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobsDeleteJobOptions extends OperationOptions {
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobsDisableJobOptions extends OperationOptions {
+    contentType?: string;
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobsEnableJobOptions extends OperationOptions {
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobsGetJobOptions extends OperationOptions {
+    $expand?: string[];
+    $select?: string[];
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobsGetJobTaskCountsOptions extends OperationOptions {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobsListJobPreparationAndReleaseTaskStatusOptions extends OperationOptions {
+    $filter?: string;
+    $select?: string[];
+    maxresults?: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobsListJobsFromScheduleOptions extends OperationOptions {
+    $expand?: string[];
+    $filter?: string;
+    $select?: string[];
+    maxresults?: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobsListJobsOptions extends OperationOptions {
+    $expand?: string[];
+    $filter?: string;
+    $select?: string[];
+    maxresults?: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobsOperations {
+    // (undocumented)
+    createJob: (body: BatchJobCreateOptions, options?: JobsCreateJobOptions) => Promise<void>;
+    // (undocumented)
+    deleteJob: (jobId: string, options?: JobsDeleteJobOptions) => Promise<void>;
+    // (undocumented)
+    disableJob: (jobId: string, body: BatchJobDisableOptions, options?: JobsDisableJobOptions) => Promise<void>;
+    // (undocumented)
+    enableJob: (jobId: string, options?: JobsEnableJobOptions) => Promise<void>;
+    // (undocumented)
+    getJob: (jobId: string, options?: JobsGetJobOptions) => Promise<BatchJob>;
+    // (undocumented)
+    getJobTaskCounts: (jobId: string, options?: JobsGetJobTaskCountsOptions) => Promise<TaskCountsResult>;
+    // (undocumented)
+    listJobPreparationAndReleaseTaskStatus: (jobId: string, options?: JobsListJobPreparationAndReleaseTaskStatusOptions) => PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation>;
+    // (undocumented)
+    listJobs: (options?: JobsListJobsOptions) => PagedAsyncIterableIterator<BatchJob>;
+    // (undocumented)
+    listJobsFromSchedule: (jobScheduleId: string, options?: JobsListJobsFromScheduleOptions) => PagedAsyncIterableIterator<BatchJob>;
+    // (undocumented)
+    replaceJob: (jobId: string, body: BatchJob, options?: JobsReplaceJobOptions) => Promise<void>;
+    // (undocumented)
+    terminateJob: (jobId: string, body: BatchJobTerminateOptions, options?: JobsTerminateJobOptions) => Promise<void>;
+    // (undocumented)
+    updateJob: (jobId: string, body: BatchJobUpdateOptions, options?: JobsUpdateJobOptions) => Promise<void>;
 }
 
 // @public
@@ -1310,6 +1251,16 @@ export interface JobSpecification {
     poolInfo: PoolInformation;
     priority?: number;
     usesTaskDependencies?: boolean;
+}
+
+// @public (undocumented)
+export interface JobsReplaceJobOptions extends OperationOptions {
+    contentType?: string;
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
 }
 
 // @public
@@ -1333,138 +1284,31 @@ export interface JobStatistics {
     writeIOps: number;
 }
 
+// @public (undocumented)
+export interface JobsTerminateJobOptions extends OperationOptions {
+    contentType?: string;
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface JobsUpdateJobOptions extends OperationOptions {
+    contentType?: string;
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
 // @public
 export interface LinuxUserConfiguration {
     gid?: number;
     sshPrivateKey?: string;
     uid?: number;
-}
-
-// @public (undocumented)
-export interface ListApplicationsOptions extends OperationOptions {
-    maxresults?: number;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ListCertificatesOptions extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
-    maxresults?: number;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ListJobPreparationAndReleaseTaskStatusOptions extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
-    maxresults?: number;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ListJobSchedulesOptions extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
-    maxresults?: number;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ListJobsFromScheduleOptions extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
-    maxresults?: number;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ListJobsOptions extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
-    maxresults?: number;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ListNodeExtensionsOptions extends OperationOptions {
-    $select?: string[];
-    maxresults?: number;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ListNodeFilesOptions extends OperationOptions {
-    $filter?: string;
-    maxresults?: number;
-    recursive?: boolean;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ListNodesOptions extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
-    maxresults?: number;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ListPoolNodeCountsOptions extends OperationOptions {
-    $filter?: string;
-    maxresults?: number;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ListPoolsOptions extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
-    maxresults?: number;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ListPoolUsageMetricsOptions extends OperationOptions {
-    $filter?: string;
-    endtime?: Date;
-    maxresults?: number;
-    starttime?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ListSubTasksOptions extends OperationOptions {
-    $select?: string[];
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ListSupportedImagesOptions extends OperationOptions {
-    $filter?: string;
-    maxresults?: number;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ListTaskFilesOptions extends OperationOptions {
-    $filter?: string;
-    maxresults?: number;
-    recursive?: boolean;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ListTasksOptions extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
-    maxresults?: number;
-    timeOut?: number;
 }
 
 // @public
@@ -1595,6 +1439,158 @@ export interface NodeRemoveOptions {
     resizeTimeout?: string;
 }
 
+// @public (undocumented)
+export interface NodesCreateNodeUserOptions extends OperationOptions {
+    contentType?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesDeleteNodeFileOptions extends OperationOptions {
+    recursive?: boolean;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesDeleteNodeUserOptions extends OperationOptions {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesDisableNodeSchedulingOptions extends OperationOptions {
+    contentType?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesEnableNodeSchedulingOptions extends OperationOptions {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesGetNodeExtensionOptions extends OperationOptions {
+    $select?: string[];
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesGetNodeFileOptions extends OperationOptions {
+    ifModifiedSince?: Date;
+    ifUnmodifiedSince?: Date;
+    ocpRange?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesGetNodeFilePropertiesOptions extends OperationOptions {
+    ifModifiedSince?: Date;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesGetNodeOptions extends OperationOptions {
+    $select?: string[];
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesGetNodeRemoteDesktopFileOptions extends OperationOptions {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesGetNodeRemoteLoginSettingsOptions extends OperationOptions {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesListNodeExtensionsOptions extends OperationOptions {
+    $select?: string[];
+    maxresults?: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesListNodeFilesOptions extends OperationOptions {
+    $filter?: string;
+    maxresults?: number;
+    recursive?: boolean;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesListNodesOptions extends OperationOptions {
+    $filter?: string;
+    $select?: string[];
+    maxresults?: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesOperations {
+    // (undocumented)
+    createNodeUser: (poolId: string, nodeId: string, body: BatchNodeUserCreateOptions, options?: NodesCreateNodeUserOptions) => Promise<void>;
+    // (undocumented)
+    deleteNodeFile: (poolId: string, nodeId: string, filePath: string, options?: NodesDeleteNodeFileOptions) => Promise<void>;
+    // (undocumented)
+    deleteNodeUser: (poolId: string, nodeId: string, userName: string, options?: NodesDeleteNodeUserOptions) => Promise<void>;
+    // (undocumented)
+    disableNodeScheduling: (poolId: string, nodeId: string, body: NodeDisableSchedulingOptions, options?: NodesDisableNodeSchedulingOptions) => Promise<void>;
+    // (undocumented)
+    enableNodeScheduling: (poolId: string, nodeId: string, options?: NodesEnableNodeSchedulingOptions) => Promise<void>;
+    // (undocumented)
+    getNode: (poolId: string, nodeId: string, options?: NodesGetNodeOptions) => Promise<BatchNode>;
+    // (undocumented)
+    getNodeExtension: (poolId: string, nodeId: string, extensionName: string, options?: NodesGetNodeExtensionOptions) => Promise<NodeVMExtension>;
+    // (undocumented)
+    getNodeFile: (poolId: string, nodeId: string, filePath: string, options?: NodesGetNodeFileOptions) => Promise<Uint8Array>;
+    // (undocumented)
+    getNodeFileProperties: (poolId: string, nodeId: string, filePath: string, options?: NodesGetNodeFilePropertiesOptions) => Promise<void>;
+    // (undocumented)
+    getNodeRemoteDesktopFile: (poolId: string, nodeId: string, options?: NodesGetNodeRemoteDesktopFileOptions) => Promise<Uint8Array>;
+    // (undocumented)
+    getNodeRemoteLoginSettings: (poolId: string, nodeId: string, options?: NodesGetNodeRemoteLoginSettingsOptions) => Promise<BatchNodeRemoteLoginSettingsResult>;
+    // (undocumented)
+    listNodeExtensions: (poolId: string, nodeId: string, options?: NodesListNodeExtensionsOptions) => PagedAsyncIterableIterator<NodeVMExtension>;
+    // (undocumented)
+    listNodeFiles: (poolId: string, nodeId: string, options?: NodesListNodeFilesOptions) => PagedAsyncIterableIterator<NodeFile>;
+    // (undocumented)
+    listNodes: (poolId: string, options?: NodesListNodesOptions) => PagedAsyncIterableIterator<BatchNode>;
+    // (undocumented)
+    rebootNode: (poolId: string, nodeId: string, body: NodeRebootOptions, options?: NodesRebootNodeOptions) => Promise<void>;
+    // (undocumented)
+    reimageNode: (poolId: string, nodeId: string, body: NodeReimageOptions, options?: NodesReimageNodeOptions) => Promise<void>;
+    // (undocumented)
+    replaceNodeUser: (poolId: string, nodeId: string, userName: string, body: BatchNodeUserUpdateOptions, options?: NodesReplaceNodeUserOptions) => Promise<void>;
+    // (undocumented)
+    uploadNodeLogs: (poolId: string, nodeId: string, body: UploadBatchServiceLogsOptions, options?: NodesUploadNodeLogsOptions) => Promise<UploadBatchServiceLogsResult>;
+}
+
+// @public (undocumented)
+export interface NodesRebootNodeOptions extends OperationOptions {
+    contentType?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesReimageNodeOptions extends OperationOptions {
+    contentType?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesReplaceNodeUserOptions extends OperationOptions {
+    contentType?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface NodesUploadNodeLogsOptions extends OperationOptions {
+    contentType?: string;
+    timeOut?: number;
+}
+
 // @public
 export interface NodeVMExtension {
     instanceView?: VMExtensionInstanceView;
@@ -1667,15 +1663,6 @@ export interface PoolEndpointConfiguration {
     inboundNATPools: InboundNATPool[];
 }
 
-// @public (undocumented)
-export interface PoolExistsOptions extends OperationOptions {
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
 // @public
 export type PoolIdentityType = string;
 
@@ -1707,6 +1694,103 @@ export interface PoolNodeCountsListResult {
     value?: PoolNodeCounts[];
 }
 
+// @public (undocumented)
+export interface PoolsCreatePoolOptions extends OperationOptions {
+    contentType?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolsDeletePoolOptions extends OperationOptions {
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolsDisablePoolAutoScaleOptions extends OperationOptions {
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolsEnablePoolAutoScaleOptions extends OperationOptions {
+    contentType?: string;
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolsEvaluatePoolAutoScaleOptions extends OperationOptions {
+    contentType?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolsGetPoolOptions extends OperationOptions {
+    $expand?: string[];
+    $select?: string[];
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolsListPoolsOptions extends OperationOptions {
+    $expand?: string[];
+    $filter?: string;
+    $select?: string[];
+    maxresults?: number;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolsListPoolUsageMetricsOptions extends OperationOptions {
+    $filter?: string;
+    endtime?: Date;
+    maxresults?: number;
+    starttime?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolsOperations {
+    // (undocumented)
+    createPool: (body: BatchPoolCreateOptions, options?: PoolsCreatePoolOptions) => Promise<void>;
+    // (undocumented)
+    deletePool: (poolId: string, options?: PoolsDeletePoolOptions) => Promise<void>;
+    // (undocumented)
+    disablePoolAutoScale: (poolId: string, options?: PoolsDisablePoolAutoScaleOptions) => Promise<void>;
+    // (undocumented)
+    enablePoolAutoScale: (poolId: string, body: BatchPoolEnableAutoScaleOptions, options?: PoolsEnablePoolAutoScaleOptions) => Promise<void>;
+    // (undocumented)
+    evaluatePoolAutoScale: (poolId: string, body: BatchPoolEvaluateAutoScaleOptions, options?: PoolsEvaluatePoolAutoScaleOptions) => Promise<AutoScaleRun>;
+    // (undocumented)
+    getPool: (poolId: string, options?: PoolsGetPoolOptions) => Promise<BatchPool>;
+    // (undocumented)
+    listPools: (options?: PoolsListPoolsOptions) => PagedAsyncIterableIterator<BatchPool>;
+    // (undocumented)
+    listPoolUsageMetrics: (options?: PoolsListPoolUsageMetricsOptions) => PagedAsyncIterableIterator<PoolUsageMetrics>;
+    // (undocumented)
+    poolExists: (poolId: string, options?: PoolsPoolExistsOptions) => Promise<void>;
+    // (undocumented)
+    removeNodes: (poolId: string, body: NodeRemoveOptions, options?: PoolsRemoveNodesOptions) => Promise<void>;
+    // (undocumented)
+    replacePoolProperties: (poolId: string, body: BatchPoolReplaceOptions, options?: PoolsReplacePoolPropertiesOptions) => Promise<void>;
+    // (undocumented)
+    resizePool: (poolId: string, body: BatchPoolResizeOptions, options?: PoolsResizePoolOptions) => Promise<void>;
+    // (undocumented)
+    stopPoolResize: (poolId: string, options?: PoolsStopPoolResizeOptions) => Promise<void>;
+    // (undocumented)
+    updatePool: (poolId: string, body: BatchPoolUpdateOptions, options?: PoolsUpdatePoolOptions) => Promise<void>;
+}
+
 // @public
 export interface PoolSpecification {
     applicationLicenses?: string[];
@@ -1733,6 +1817,50 @@ export interface PoolSpecification {
     vmSize: string;
 }
 
+// @public (undocumented)
+export interface PoolsPoolExistsOptions extends OperationOptions {
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolsRemoveNodesOptions extends OperationOptions {
+    contentType?: string;
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolsReplacePoolPropertiesOptions extends OperationOptions {
+    contentType?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolsResizePoolOptions extends OperationOptions {
+    contentType?: string;
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface PoolsStopPoolResizeOptions extends OperationOptions {
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
 // @public
 export type PoolState = string;
 
@@ -1743,6 +1871,16 @@ export interface PoolStatistics {
     startTime: Date;
     url: string;
     usageStats?: UsageStatistics;
+}
+
+// @public (undocumented)
+export interface PoolsUpdatePoolOptions extends OperationOptions {
+    contentType?: string;
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
 }
 
 // @public
@@ -1760,83 +1898,10 @@ export interface PublicIpAddressConfiguration {
     provision?: IPAddressProvisioningType;
 }
 
-// @public (undocumented)
-export interface ReactivateTaskOptions extends OperationOptions {
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface RebootNodeOptions extends OperationOptions {
-    contentType?: string;
-    timeOut?: number;
-}
-
 // @public
 export interface RecentJob {
     id?: string;
     url?: string;
-}
-
-// @public (undocumented)
-export interface ReimageNodeOptions extends OperationOptions {
-    contentType?: string;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface RemoveNodesOptions extends OperationOptions {
-    contentType?: string;
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ReplaceJobOptions extends OperationOptions {
-    contentType?: string;
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ReplaceJobScheduleOptions extends OperationOptions {
-    contentType?: string;
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ReplaceNodeUserOptions extends OperationOptions {
-    contentType?: string;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ReplacePoolPropertiesOptions extends OperationOptions {
-    contentType?: string;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface ReplaceTaskOptions extends OperationOptions {
-    contentType?: string;
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
 }
 
 // @public
@@ -1844,16 +1909,6 @@ export interface ResizeError {
     code?: string;
     message?: string;
     values?: NameValuePair[];
-}
-
-// @public (undocumented)
-export interface ResizePoolOptions extends OperationOptions {
-    contentType?: string;
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
 }
 
 // @public
@@ -1924,15 +1979,6 @@ export type StartTaskState = string;
 
 // @public
 export type StatusLevelTypes = string;
-
-// @public (undocumented)
-export interface StopPoolResizeOptions extends OperationOptions {
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
 
 // @public
 export type StorageAccountType = string;
@@ -2063,6 +2109,82 @@ export interface TaskSchedulingPolicy {
     nodeFillType: BatchNodeFillType;
 }
 
+// @public (undocumented)
+export interface TasksCreateTaskCollectionOptions extends OperationOptions {
+    contentType?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface TasksCreateTaskOptions extends OperationOptions {
+    contentType?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface TasksDeleteTaskFileOptions extends OperationOptions {
+    recursive?: boolean;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface TasksDeleteTaskOptions extends OperationOptions {
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface TasksGetTaskFileOptions extends OperationOptions {
+    ifModifiedSince?: Date;
+    ifUnmodifiedSince?: Date;
+    ocpRange?: string;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface TasksGetTaskFilePropertiesOptions extends OperationOptions {
+    ifModifiedSince?: Date;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface TasksGetTaskOptions extends OperationOptions {
+    $expand?: string[];
+    $select?: string[];
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface TasksListSubTasksOptions extends OperationOptions {
+    $select?: string[];
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface TasksListTaskFilesOptions extends OperationOptions {
+    $filter?: string;
+    maxresults?: number;
+    recursive?: boolean;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface TasksListTasksOptions extends OperationOptions {
+    $expand?: string[];
+    $filter?: string;
+    $select?: string[];
+    maxresults?: number;
+    timeOut?: number;
+}
+
 // @public
 export interface TaskSlotCounts {
     active: number;
@@ -2070,6 +2192,55 @@ export interface TaskSlotCounts {
     failed: number;
     running: number;
     succeeded: number;
+}
+
+// @public (undocumented)
+export interface TasksOperations {
+    // (undocumented)
+    createTask: (jobId: string, body: BatchTaskCreateOptions, options?: TasksCreateTaskOptions) => Promise<void>;
+    // (undocumented)
+    createTaskCollection: (jobId: string, collection: BatchTaskCollection, options?: TasksCreateTaskCollectionOptions) => Promise<TaskAddCollectionResult>;
+    // (undocumented)
+    deleteTask: (jobId: string, taskId: string, options?: TasksDeleteTaskOptions) => Promise<void>;
+    // (undocumented)
+    deleteTaskFile: (jobId: string, taskId: string, filePath: string, options?: TasksDeleteTaskFileOptions) => Promise<void>;
+    // (undocumented)
+    getTask: (jobId: string, taskId: string, options?: TasksGetTaskOptions) => Promise<BatchTask>;
+    // (undocumented)
+    getTaskFile: (jobId: string, taskId: string, filePath: string, options?: TasksGetTaskFileOptions) => Promise<Uint8Array>;
+    // (undocumented)
+    getTaskFileProperties: (jobId: string, taskId: string, filePath: string, options?: TasksGetTaskFilePropertiesOptions) => Promise<void>;
+    // (undocumented)
+    listSubTasks: (jobId: string, taskId: string, options?: TasksListSubTasksOptions) => Promise<BatchTaskListSubtasksResult>;
+    // (undocumented)
+    listTaskFiles: (jobId: string, taskId: string, options?: TasksListTaskFilesOptions) => PagedAsyncIterableIterator<NodeFile>;
+    // (undocumented)
+    listTasks: (jobId: string, options?: TasksListTasksOptions) => PagedAsyncIterableIterator<BatchTask>;
+    // (undocumented)
+    reactivateTask: (jobId: string, taskId: string, options?: TasksReactivateTaskOptions) => Promise<void>;
+    // (undocumented)
+    replaceTask: (jobId: string, taskId: string, body: BatchTask, options?: TasksReplaceTaskOptions) => Promise<void>;
+    // (undocumented)
+    terminateTask: (jobId: string, taskId: string, options?: TasksTerminateTaskOptions) => Promise<void>;
+}
+
+// @public (undocumented)
+export interface TasksReactivateTaskOptions extends OperationOptions {
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
+}
+
+// @public (undocumented)
+export interface TasksReplaceTaskOptions extends OperationOptions {
+    contentType?: string;
+    ifMatch?: string;
+    ifModifiedSince?: Date;
+    ifNoneMatch?: string;
+    ifUnmodifiedSince?: Date;
+    timeOut?: number;
 }
 
 // @public
@@ -2091,56 +2262,7 @@ export interface TaskStatistics {
 }
 
 // @public (undocumented)
-export interface TerminateJobOptions extends OperationOptions {
-    contentType?: string;
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface TerminateJobScheduleOptions extends OperationOptions {
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface TerminateTaskOptions extends OperationOptions {
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface UpdateJobOptions extends OperationOptions {
-    contentType?: string;
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface UpdateJobScheduleOptions extends OperationOptions {
-    contentType?: string;
-    ifMatch?: string;
-    ifModifiedSince?: Date;
-    ifNoneMatch?: string;
-    ifUnmodifiedSince?: Date;
-    timeOut?: number;
-}
-
-// @public (undocumented)
-export interface UpdatePoolOptions extends OperationOptions {
-    contentType?: string;
+export interface TasksTerminateTaskOptions extends OperationOptions {
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -2160,12 +2282,6 @@ export interface UploadBatchServiceLogsOptions {
 export interface UploadBatchServiceLogsResult {
     numberOfFilesUploaded: number;
     virtualDirectoryName: string;
-}
-
-// @public (undocumented)
-export interface UploadNodeLogsOptions extends OperationOptions {
-    contentType?: string;
-    timeOut?: number;
 }
 
 // @public

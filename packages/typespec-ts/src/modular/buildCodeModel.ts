@@ -56,6 +56,7 @@ import { getAddedOnVersions } from "@typespec/versioning";
 import {
   SdkClient,
   listClients,
+  listOperationGroups,
   listOperationsInOperationGroup,
   isApiVersion,
   getDefaultApiVersion,
@@ -1316,10 +1317,8 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
   }
   if (sdkType.kind === "union") {
     const unionName = type.name;
-    const discriminatorPropertyName = getDiscriminator(
-      context.program,
-      type
-    )?.propertyName;
+    const discriminatorPropertyName = getDiscriminator(context.program, type)
+      ?.propertyName;
     const variantTypes = sdkType.values.map((x) => {
       const valueType = getType(context, x.__raw!);
       if (valueType.properties && discriminatorPropertyName) {
@@ -1480,12 +1479,21 @@ function emitOperationGroups(
     string,
     OperationGroup
   >();
+  for (const operationGroup of listOperationGroups(context, client, true)) {
+    const operations: HrlcOperation[] = [];
+    const name = operationGroup.type.name;
+    for (const operation of listOperationsInOperationGroup(
+      context,
+      operationGroup
+    )) {
+      operations.push(emitOperation(context, operation, name, rlcModels));
+    }
+    if (operations.length > 0) {
+      addHierarchyOperationGroup(operations, groupMapping);
+    }
+  }
   const clientOperations: HrlcOperation[] = [];
-  for (const operation of listOperationsInOperationGroup(
-    context,
-    client,
-    true
-  )) {
+  for (const operation of listOperationsInOperationGroup(context, client)) {
     clientOperations.push(emitOperation(context, operation, "", rlcModels));
   }
   if (clientOperations.length > 0) {

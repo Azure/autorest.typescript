@@ -16,6 +16,5 @@ export {
   listWithCustomPageModel,
   deleteOperation,
   exportOperation,
-  listFirstItem,
-  listSecondItem,
 } from "./operations.js";
+export { listFirstItem, listSecondItem } from "./twoModelsAsPageItem/index.js";

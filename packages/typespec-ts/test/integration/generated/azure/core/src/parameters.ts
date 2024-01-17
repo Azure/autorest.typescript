@@ -4,6 +4,8 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { User, ListItemInputBody } from "./models";
 
+export type ListFirstItemParameters = RequestParameters;
+export type ListSecondItemParameters = RequestParameters;
 /** The resource instance. */
 export type UserResourceMergeAndPatch = Partial<User>;
 
@@ -88,5 +90,3 @@ export interface ExportQueryParam {
 }
 
 export type ExportParameters = ExportQueryParam & RequestParameters;
-export type ListFirstItemParameters = RequestParameters;
-export type ListSecondItemParameters = RequestParameters;

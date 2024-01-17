@@ -5,7 +5,7 @@ import {
   isService,
   Operation
 } from "@typespec/compiler";
-import { SdkContext } from "../utils/interfaces.js";
+import { SdkContext } from "./interfaces.js";
 
 export function getModelNamespaceName(
   dpgContext: SdkContext,

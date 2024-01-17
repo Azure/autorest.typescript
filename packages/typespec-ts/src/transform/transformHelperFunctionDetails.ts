@@ -1,5 +1,6 @@
 import {
   SdkClient,
+  listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import { HelperFunctionDetails } from "@azure-tools/rlc-common";
@@ -49,11 +50,28 @@ export function transformHelperFunctionDetails(
   }
   // TODO: Remove this when @pageable is finally removed.
   const nextLinks = new Set<string>();
-  const clientOperations = listOperationsInOperationGroup(
-    dpgContext,
-    client,
-    true
-  );
+  const operationGroups = listOperationGroups(dpgContext, client, true);
+  for (const operationGroup of operationGroups) {
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
+    for (const op of operations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      // ignore overload base operation
+      if (route.overloads && route.overloads?.length > 0) {
+        continue;
+      }
+      if (getPageable(program, route.operation)) {
+        const nextLinkName =
+          getPageable(program, route.operation) || "nextLink";
+        if (nextLinkName) {
+          nextLinks.add(nextLinkName);
+        }
+      }
+    }
+  }
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     // ignore overload base operation
@@ -105,11 +123,22 @@ function extractPageDetailFromCore(
   // Add default values
   nextLinks.add("nextLink");
   itemNames.add("value");
-  const clientOperations = listOperationsInOperationGroup(
-    dpgContext,
-    client,
-    true
-  );
+  const operationGroups = listOperationGroups(dpgContext, client, true);
+  for (const operationGroup of operationGroups) {
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
+    for (const op of operations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      // ignore overload base operation
+      if (route.overloads && route.overloads?.length > 0) {
+        continue;
+      }
+      extractPageDetailFromCoreForRoute(route);
+    }
+  }
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     // ignore overload base operation
@@ -159,11 +188,38 @@ function extractSpecialSerializeInfo(
   let hasTsvCollection = false;
   let hasSsvCollection = false;
   let hasCsvCollection = false;
-  const clientOperations = listOperationsInOperationGroup(
-    dpgContext,
-    client,
-    true
-  );
+  const operationGroups = listOperationGroups(dpgContext, client, true);
+  for (const operationGroup of operationGroups) {
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
+    for (const op of operations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      route.parameters.parameters.forEach((parameter) => {
+        const serializeInfo = getSpecialSerializeInfo(
+          parameter.type,
+          (parameter as any).format
+        );
+        hasMultiCollection = hasMultiCollection
+          ? hasMultiCollection
+          : serializeInfo.hasMultiCollection;
+        hasPipeCollection = hasPipeCollection
+          ? hasPipeCollection
+          : serializeInfo.hasPipeCollection;
+        hasTsvCollection = hasTsvCollection
+          ? hasTsvCollection
+          : serializeInfo.hasTsvCollection;
+        hasSsvCollection = hasSsvCollection
+          ? hasSsvCollection
+          : serializeInfo.hasSsvCollection;
+        hasCsvCollection = hasCsvCollection
+          ? hasCsvCollection
+          : serializeInfo.hasCsvCollection;
+      });
+    }
+  }
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     route.parameters.parameters.forEach((parameter) => {

@@ -2,12 +2,13 @@
 // Licensed under the MIT license.
 
 export {
-  spreadAsRequestBody,
-  spreadAsRequestParameter,
-  spreadWithMultipleParameters,
-} from "./operations.js";
-export {
   createSpread,
   SpreadClientOptions,
   SpreadContext,
 } from "./SpreadContext.js";
+export {
+  aliasSpreadAsRequestBody,
+  aliasSpreadAsRequestParameter,
+  aliasSpreadWithMultipleParameters,
+} from "./alias/index.js";
+export { modelSpreadAsRequestBody } from "./model/index.js";

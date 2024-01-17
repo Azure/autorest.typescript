@@ -16,6 +16,7 @@ export {
   ChatCompletionOptions,
   ChatCompletion,
   ChatChoice,
-  CreateStreamingOptions,
-  CreateOptions,
+  GenericChatClientCreateStreamingOptions,
+  GenericChatClientCreateOptions,
 } from "./models/index.js";
+export { GenericChatClientOperations } from "./classic/index.js";

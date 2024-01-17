@@ -3,7 +3,7 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface ListApplicationsOptions extends OperationOptions {
+export interface ApplicationsListApplicationsOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -16,7 +16,7 @@ export interface ListApplicationsOptions extends OperationOptions {
   timeOut?: number;
 }
 
-export interface GetApplicationOptions extends OperationOptions {
+export interface ApplicationsGetApplicationOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -24,7 +24,7 @@ export interface GetApplicationOptions extends OperationOptions {
   timeOut?: number;
 }
 
-export interface ListPoolUsageMetricsOptions extends OperationOptions {
+export interface PoolsListPoolUsageMetricsOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -54,7 +54,7 @@ export interface ListPoolUsageMetricsOptions extends OperationOptions {
   $filter?: string;
 }
 
-export interface CreatePoolOptions extends OperationOptions {
+export interface PoolsCreatePoolOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -64,7 +64,7 @@ export interface CreatePoolOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface ListPoolsOptions extends OperationOptions {
+export interface PoolsListPoolsOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -86,7 +86,7 @@ export interface ListPoolsOptions extends OperationOptions {
   $expand?: string[];
 }
 
-export interface DeletePoolOptions extends OperationOptions {
+export interface PoolsDeletePoolOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -118,7 +118,7 @@ export interface DeletePoolOptions extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
-export interface PoolExistsOptions extends OperationOptions {
+export interface PoolsPoolExistsOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -150,307 +150,7 @@ export interface PoolExistsOptions extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
-export interface GetPoolOptions extends OperationOptions {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  ifMatch?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  ifNoneMatch?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
-  /** An OData $select clause. */
-  $select?: string[];
-  /** An OData $expand clause. */
-  $expand?: string[];
-}
-
-export interface UpdatePoolOptions extends OperationOptions {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  ifMatch?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  ifNoneMatch?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
-  /** Type of content */
-  contentType?: string;
-}
-
-export interface DisablePoolAutoScaleOptions extends OperationOptions {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface EnablePoolAutoScaleOptions extends OperationOptions {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  ifMatch?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  ifNoneMatch?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
-  /** Type of content */
-  contentType?: string;
-}
-
-export interface EvaluatePoolAutoScaleOptions extends OperationOptions {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /** Type of content */
-  contentType?: string;
-}
-
-export interface ResizePoolOptions extends OperationOptions {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  ifMatch?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  ifNoneMatch?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
-  /** Type of content */
-  contentType?: string;
-}
-
-export interface StopPoolResizeOptions extends OperationOptions {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  ifMatch?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  ifNoneMatch?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
-}
-
-export interface ReplacePoolPropertiesOptions extends OperationOptions {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /** Type of content */
-  contentType?: string;
-}
-
-export interface RemoveNodesOptions extends OperationOptions {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  ifMatch?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  ifNoneMatch?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
-  /** Type of content */
-  contentType?: string;
-}
-
-export interface ListSupportedImagesOptions extends OperationOptions {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  maxresults?: number;
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /**
-   * An OData $filter clause. For more information on constructing this filter, see
-   * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
-   */
-  $filter?: string;
-}
-
-export interface ListPoolNodeCountsOptions extends OperationOptions {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  maxresults?: number;
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /**
-   * An OData $filter clause. For more information on constructing this filter, see
-   * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
-   */
-  $filter?: string;
-}
-
-export interface DeleteJobOptions extends OperationOptions {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  ifMatch?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  ifNoneMatch?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
-}
-
-export interface GetJobOptions extends OperationOptions {
+export interface PoolsGetPoolOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -486,7 +186,7 @@ export interface GetJobOptions extends OperationOptions {
   $expand?: string[];
 }
 
-export interface UpdateJobOptions extends OperationOptions {
+export interface PoolsUpdatePoolOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -520,7 +220,15 @@ export interface UpdateJobOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface ReplaceJobOptions extends OperationOptions {
+export interface PoolsDisablePoolAutoScaleOptions extends OperationOptions {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface PoolsEnablePoolAutoScaleOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -554,7 +262,17 @@ export interface ReplaceJobOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface DisableJobOptions extends OperationOptions {
+export interface PoolsEvaluatePoolAutoScaleOptions extends OperationOptions {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /** Type of content */
+  contentType?: string;
+}
+
+export interface PoolsResizePoolOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -588,7 +306,7 @@ export interface DisableJobOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface EnableJobOptions extends OperationOptions {
+export interface PoolsStopPoolResizeOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -620,7 +338,17 @@ export interface EnableJobOptions extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
-export interface TerminateJobOptions extends OperationOptions {
+export interface PoolsReplacePoolPropertiesOptions extends OperationOptions {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /** Type of content */
+  contentType?: string;
+}
+
+export interface PoolsRemoveNodesOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -654,7 +382,279 @@ export interface TerminateJobOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface CreateJobOptions extends OperationOptions {
+export interface AccountsListSupportedImagesOptions extends OperationOptions {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /**
+   * An OData $filter clause. For more information on constructing this filter, see
+   * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
+   */
+  $filter?: string;
+}
+
+export interface AccountsListPoolNodeCountsOptions extends OperationOptions {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /**
+   * An OData $filter clause. For more information on constructing this filter, see
+   * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
+   */
+  $filter?: string;
+}
+
+export interface JobsDeleteJobOptions extends OperationOptions {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  ifMatch?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
+}
+
+export interface JobsGetJobOptions extends OperationOptions {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  ifMatch?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
+  /** An OData $select clause. */
+  $select?: string[];
+  /** An OData $expand clause. */
+  $expand?: string[];
+}
+
+export interface JobsUpdateJobOptions extends OperationOptions {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  ifMatch?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
+  /** Type of content */
+  contentType?: string;
+}
+
+export interface JobsReplaceJobOptions extends OperationOptions {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  ifMatch?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
+  /** Type of content */
+  contentType?: string;
+}
+
+export interface JobsDisableJobOptions extends OperationOptions {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  ifMatch?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
+  /** Type of content */
+  contentType?: string;
+}
+
+export interface JobsEnableJobOptions extends OperationOptions {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  ifMatch?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
+}
+
+export interface JobsTerminateJobOptions extends OperationOptions {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  ifMatch?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
+  /** Type of content */
+  contentType?: string;
+}
+
+export interface JobsCreateJobOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -664,7 +664,7 @@ export interface CreateJobOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface ListJobsOptions extends OperationOptions {
+export interface JobsListJobsOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -686,7 +686,7 @@ export interface ListJobsOptions extends OperationOptions {
   $expand?: string[];
 }
 
-export interface ListJobsFromScheduleOptions extends OperationOptions {
+export interface JobsListJobsFromScheduleOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -708,7 +708,7 @@ export interface ListJobsFromScheduleOptions extends OperationOptions {
   $expand?: string[];
 }
 
-export interface ListJobPreparationAndReleaseTaskStatusOptions
+export interface JobsListJobPreparationAndReleaseTaskStatusOptions
   extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
@@ -729,7 +729,7 @@ export interface ListJobPreparationAndReleaseTaskStatusOptions
   $select?: string[];
 }
 
-export interface GetJobTaskCountsOptions extends OperationOptions {
+export interface JobsGetJobTaskCountsOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -737,7 +737,7 @@ export interface GetJobTaskCountsOptions extends OperationOptions {
   timeOut?: number;
 }
 
-export interface CreateCertificateOptions extends OperationOptions {
+export interface CertificatesCreateCertificateOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -747,7 +747,7 @@ export interface CreateCertificateOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface ListCertificatesOptions extends OperationOptions {
+export interface CertificatesListCertificatesOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -767,7 +767,8 @@ export interface ListCertificatesOptions extends OperationOptions {
   $select?: string[];
 }
 
-export interface CancelCertificateDeletionOptions extends OperationOptions {
+export interface CertificatesCancelCertificateDeletionOptions
+  extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -775,7 +776,7 @@ export interface CancelCertificateDeletionOptions extends OperationOptions {
   timeOut?: number;
 }
 
-export interface DeleteCertificateOptions extends OperationOptions {
+export interface CertificatesDeleteCertificateOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -783,7 +784,7 @@ export interface DeleteCertificateOptions extends OperationOptions {
   timeOut?: number;
 }
 
-export interface GetCertificateOptions extends OperationOptions {
+export interface CertificatesGetCertificateOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -793,7 +794,7 @@ export interface GetCertificateOptions extends OperationOptions {
   $select?: string[];
 }
 
-export interface JobScheduleExistsOptions extends OperationOptions {
+export interface JobSchedulesJobScheduleExistsOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -825,7 +826,7 @@ export interface JobScheduleExistsOptions extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
-export interface DeleteJobScheduleOptions extends OperationOptions {
+export interface JobSchedulesDeleteJobScheduleOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -857,7 +858,7 @@ export interface DeleteJobScheduleOptions extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
-export interface GetJobScheduleOptions extends OperationOptions {
+export interface JobSchedulesGetJobScheduleOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -893,7 +894,7 @@ export interface GetJobScheduleOptions extends OperationOptions {
   $expand?: string[];
 }
 
-export interface UpdateJobScheduleOptions extends OperationOptions {
+export interface JobSchedulesUpdateJobScheduleOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -927,7 +928,8 @@ export interface UpdateJobScheduleOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface ReplaceJobScheduleOptions extends OperationOptions {
+export interface JobSchedulesReplaceJobScheduleOptions
+  extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -961,7 +963,8 @@ export interface ReplaceJobScheduleOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface DisableJobScheduleOptions extends OperationOptions {
+export interface JobSchedulesDisableJobScheduleOptions
+  extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -993,7 +996,7 @@ export interface DisableJobScheduleOptions extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
-export interface EnableJobScheduleOptions extends OperationOptions {
+export interface JobSchedulesEnableJobScheduleOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1025,7 +1028,8 @@ export interface EnableJobScheduleOptions extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
-export interface TerminateJobScheduleOptions extends OperationOptions {
+export interface JobSchedulesTerminateJobScheduleOptions
+  extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1057,7 +1061,7 @@ export interface TerminateJobScheduleOptions extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
-export interface CreateJobScheduleOptions extends OperationOptions {
+export interface JobSchedulesCreateJobScheduleOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1067,7 +1071,7 @@ export interface CreateJobScheduleOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface ListJobSchedulesOptions extends OperationOptions {
+export interface JobSchedulesListJobSchedulesOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1089,7 +1093,7 @@ export interface ListJobSchedulesOptions extends OperationOptions {
   $expand?: string[];
 }
 
-export interface CreateTaskOptions extends OperationOptions {
+export interface TasksCreateTaskOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1099,7 +1103,7 @@ export interface CreateTaskOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface ListTasksOptions extends OperationOptions {
+export interface TasksListTasksOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1121,7 +1125,7 @@ export interface ListTasksOptions extends OperationOptions {
   $expand?: string[];
 }
 
-export interface CreateTaskCollectionOptions extends OperationOptions {
+export interface TasksCreateTaskCollectionOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1131,7 +1135,7 @@ export interface CreateTaskCollectionOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface DeleteTaskOptions extends OperationOptions {
+export interface TasksDeleteTaskOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1163,7 +1167,7 @@ export interface DeleteTaskOptions extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
-export interface GetTaskOptions extends OperationOptions {
+export interface TasksGetTaskOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1199,7 +1203,7 @@ export interface GetTaskOptions extends OperationOptions {
   $expand?: string[];
 }
 
-export interface ReplaceTaskOptions extends OperationOptions {
+export interface TasksReplaceTaskOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1233,7 +1237,7 @@ export interface ReplaceTaskOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface ListSubTasksOptions extends OperationOptions {
+export interface TasksListSubTasksOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1243,7 +1247,7 @@ export interface ListSubTasksOptions extends OperationOptions {
   $select?: string[];
 }
 
-export interface TerminateTaskOptions extends OperationOptions {
+export interface TasksTerminateTaskOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1275,7 +1279,7 @@ export interface TerminateTaskOptions extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
-export interface ReactivateTaskOptions extends OperationOptions {
+export interface TasksReactivateTaskOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1307,7 +1311,7 @@ export interface ReactivateTaskOptions extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
-export interface DeleteTaskFileOptions extends OperationOptions {
+export interface TasksDeleteTaskFileOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1322,7 +1326,7 @@ export interface DeleteTaskFileOptions extends OperationOptions {
   recursive?: boolean;
 }
 
-export interface GetTaskFileOptions extends OperationOptions {
+export interface TasksGetTaskFileOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1347,7 +1351,7 @@ export interface GetTaskFileOptions extends OperationOptions {
   ocpRange?: string;
 }
 
-export interface GetTaskFilePropertiesOptions extends OperationOptions {
+export interface TasksGetTaskFilePropertiesOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1367,7 +1371,7 @@ export interface GetTaskFilePropertiesOptions extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
-export interface ListTaskFilesOptions extends OperationOptions {
+export interface TasksListTaskFilesOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1390,7 +1394,7 @@ export interface ListTaskFilesOptions extends OperationOptions {
   recursive?: boolean;
 }
 
-export interface CreateNodeUserOptions extends OperationOptions {
+export interface NodesCreateNodeUserOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1400,7 +1404,7 @@ export interface CreateNodeUserOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface DeleteNodeUserOptions extends OperationOptions {
+export interface NodesDeleteNodeUserOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1408,7 +1412,7 @@ export interface DeleteNodeUserOptions extends OperationOptions {
   timeOut?: number;
 }
 
-export interface ReplaceNodeUserOptions extends OperationOptions {
+export interface NodesReplaceNodeUserOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1418,7 +1422,7 @@ export interface ReplaceNodeUserOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface GetNodeOptions extends OperationOptions {
+export interface NodesGetNodeOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1428,7 +1432,7 @@ export interface GetNodeOptions extends OperationOptions {
   $select?: string[];
 }
 
-export interface RebootNodeOptions extends OperationOptions {
+export interface NodesRebootNodeOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1438,7 +1442,7 @@ export interface RebootNodeOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface ReimageNodeOptions extends OperationOptions {
+export interface NodesReimageNodeOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1448,7 +1452,7 @@ export interface ReimageNodeOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface DisableNodeSchedulingOptions extends OperationOptions {
+export interface NodesDisableNodeSchedulingOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1458,7 +1462,7 @@ export interface DisableNodeSchedulingOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface EnableNodeSchedulingOptions extends OperationOptions {
+export interface NodesEnableNodeSchedulingOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1466,7 +1470,8 @@ export interface EnableNodeSchedulingOptions extends OperationOptions {
   timeOut?: number;
 }
 
-export interface GetNodeRemoteLoginSettingsOptions extends OperationOptions {
+export interface NodesGetNodeRemoteLoginSettingsOptions
+  extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1474,7 +1479,7 @@ export interface GetNodeRemoteLoginSettingsOptions extends OperationOptions {
   timeOut?: number;
 }
 
-export interface GetNodeRemoteDesktopFileOptions extends OperationOptions {
+export interface NodesGetNodeRemoteDesktopFileOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1482,7 +1487,7 @@ export interface GetNodeRemoteDesktopFileOptions extends OperationOptions {
   timeOut?: number;
 }
 
-export interface UploadNodeLogsOptions extends OperationOptions {
+export interface NodesUploadNodeLogsOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1492,7 +1497,7 @@ export interface UploadNodeLogsOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface ListNodesOptions extends OperationOptions {
+export interface NodesListNodesOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1512,7 +1517,7 @@ export interface ListNodesOptions extends OperationOptions {
   $select?: string[];
 }
 
-export interface GetNodeExtensionOptions extends OperationOptions {
+export interface NodesGetNodeExtensionOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1522,7 +1527,7 @@ export interface GetNodeExtensionOptions extends OperationOptions {
   $select?: string[];
 }
 
-export interface ListNodeExtensionsOptions extends OperationOptions {
+export interface NodesListNodeExtensionsOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1537,7 +1542,7 @@ export interface ListNodeExtensionsOptions extends OperationOptions {
   $select?: string[];
 }
 
-export interface DeleteNodeFileOptions extends OperationOptions {
+export interface NodesDeleteNodeFileOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1552,7 +1557,7 @@ export interface DeleteNodeFileOptions extends OperationOptions {
   recursive?: boolean;
 }
 
-export interface GetNodeFileOptions extends OperationOptions {
+export interface NodesGetNodeFileOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1577,7 +1582,7 @@ export interface GetNodeFileOptions extends OperationOptions {
   ocpRange?: string;
 }
 
-export interface GetNodeFilePropertiesOptions extends OperationOptions {
+export interface NodesGetNodeFilePropertiesOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1597,7 +1602,7 @@ export interface GetNodeFilePropertiesOptions extends OperationOptions {
   ifUnmodifiedSince?: Date;
 }
 
-export interface ListNodeFilesOptions extends OperationOptions {
+export interface NodesListNodeFilesOptions extends OperationOptions {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.

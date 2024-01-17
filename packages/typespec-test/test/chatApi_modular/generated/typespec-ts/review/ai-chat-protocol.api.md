@@ -54,8 +54,7 @@ export interface ChatMessageDelta {
 // @public (undocumented)
 export class ChatProtocolClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ChatProtocolClientOptions);
-    create(body: ChatCompletionOptions, options?: CreateOptions): Promise<ChatCompletion>;
-    createStreaming(body: StreamingChatCompletionOptions, options?: CreateStreamingOptions): Promise<ChatCompletionChunk>;
+    readonly genericChatClient: GenericChatClientOperations;
     readonly pipeline: Pipeline;
 }
 
@@ -75,16 +74,24 @@ export interface ChoiceDelta {
     sessionState?: unknown;
 }
 
-// @public (undocumented)
-export interface CreateOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CreateStreamingOptions extends OperationOptions {
-}
-
 // @public
 export type FinishReason = string;
+
+// @public (undocumented)
+export interface GenericChatClientCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface GenericChatClientCreateStreamingOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface GenericChatClientOperations {
+    // (undocumented)
+    create: (body: ChatCompletionOptions, options?: GenericChatClientCreateOptions) => Promise<ChatCompletion>;
+    // (undocumented)
+    createStreaming: (body: StreamingChatCompletionOptions, options?: GenericChatClientCreateStreamingOptions) => Promise<ChatCompletionChunk>;
+}
 
 // @public
 export interface StreamingChatCompletionOptions {

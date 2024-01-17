@@ -4,12 +4,46 @@
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
+  PagedFirstItemOutput,
+  PagedSecondItemOutput,
   UserOutput,
   PagedUserOutput,
   UserListResultsOutput,
-  PagedFirstItemOutput,
-  PagedSecondItemOutput,
 } from "./outputModels.js";
+
+/** The request has succeeded. */
+export interface ListFirstItem200Response extends HttpResponse {
+  status: "200";
+  body: PagedFirstItemOutput;
+}
+
+export interface ListFirstItemDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface ListFirstItemDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+  headers: RawHttpHeaders & ListFirstItemDefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface ListSecondItem200Response extends HttpResponse {
+  status: "200";
+  body: PagedSecondItemOutput;
+}
+
+export interface ListSecondItemDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface ListSecondItemDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+  headers: RawHttpHeaders & ListSecondItemDefaultHeaders;
+}
 
 /** The request has succeeded. */
 export interface CreateOrUpdate200Response extends HttpResponse {
@@ -173,38 +207,4 @@ export interface ExportOperationDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & ExportOperationDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface ListFirstItem200Response extends HttpResponse {
-  status: "200";
-  body: PagedFirstItemOutput;
-}
-
-export interface ListFirstItemDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ListFirstItemDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ListFirstItemDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface ListSecondItem200Response extends HttpResponse {
-  status: "200";
-  body: PagedSecondItemOutput;
-}
-
-export interface ListSecondItemDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ListSecondItemDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ListSecondItemDefaultHeaders;
 }

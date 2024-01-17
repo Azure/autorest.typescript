@@ -4,18 +4,13 @@
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  StreamingChatCompletionOptions,
-  ChatCompletionChunk,
-  ChatCompletionOptions,
-  ChatCompletion,
-} from "./models/models.js";
-import { CreateStreamingOptions, CreateOptions } from "./models/options.js";
+  getGenericChatClientOperations,
+  GenericChatClientOperations,
+} from "./classic/genericChatClient/index.js";
 import {
   createChatProtocol,
   ChatProtocolClientOptions,
   ChatProtocolContext,
-  createStreaming,
-  create,
 } from "./api/index.js";
 
 export { ChatProtocolClientOptions } from "./api/ChatProtocolContext.js";
@@ -33,21 +28,9 @@ export class ChatProtocolClient {
   ) {
     this._client = createChatProtocol(endpoint, credential, options);
     this.pipeline = this._client.pipeline;
+    this.genericChatClient = getGenericChatClientOperations(this._client);
   }
 
-  /** Creates a new streaming chat completion. */
-  createStreaming(
-    body: StreamingChatCompletionOptions,
-    options: CreateStreamingOptions = { requestOptions: {} },
-  ): Promise<ChatCompletionChunk> {
-    return createStreaming(this._client, body, options);
-  }
-
-  /** Creates a new chat completion. */
-  create(
-    body: ChatCompletionOptions,
-    options: CreateOptions = { requestOptions: {} },
-  ): Promise<ChatCompletion> {
-    return create(this._client, body, options);
-  }
+  /** The operation groups for GenericChatClient */
+  public readonly genericChatClient: GenericChatClientOperations;
 }

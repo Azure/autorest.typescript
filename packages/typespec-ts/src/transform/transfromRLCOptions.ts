@@ -16,7 +16,10 @@ import { reportDiagnostic } from "../lib.js";
 import { getDefaultService } from "../utils/modelUtils.js";
 import { getRLCClients } from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { listOperationsInOperationGroup } from "@azure-tools/typespec-client-generator-core";
+import {
+  listOperationGroups,
+  listOperationsInOperationGroup
+} from "@azure-tools/typespec-client-generator-core";
 import { getOperationName } from "../utils/operationUtil.js";
 import { detectModelConflicts } from "../utils/namespaceUtils.js";
 
@@ -177,17 +180,24 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
   for (const client of clients) {
     // only consider it's conflict when there are conflicts in the same client
     const nameSet = new Set<string>();
-    const clientOperations = listOperationsInOperationGroup(
-      dpgContext,
-      client,
-      true
-    );
-    for (const clientOp of clientOperations) {
-      // Skip if this operation has sourceOperation
-      // in the case of overload and shared route, we need to skip this.
-      if (clientOp.sourceOperation) {
-        continue;
+    const operationGroups = listOperationGroups(dpgContext, client, true);
+    for (const operationGroup of operationGroups) {
+      const operations = listOperationsInOperationGroup(
+        dpgContext,
+        operationGroup
+      );
+      for (const op of operations) {
+        const route = ignoreDiagnostics(getHttpOperation(program, op));
+        const name = getOperationName(program, route.operation);
+        if (nameSet.has(name)) {
+          return true;
+        } else {
+          nameSet.add(name);
+        }
       }
+    }
+    const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+    for (const clientOp of clientOperations) {
       const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
       const name = getOperationName(program, route.operation);
       if (nameSet.has(name)) {

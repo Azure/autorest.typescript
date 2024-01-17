@@ -6,9 +6,8 @@ export {
   ContentSafetyClientOptions,
   ContentSafetyContext,
 } from "./ContentSafetyContext.js";
+export { analyzeImage } from "./imageOperations/index.js";
 export {
-  analyzeText,
-  analyzeImage,
   getTextBlocklist,
   createOrUpdateTextBlocklist,
   deleteTextBlocklist,
@@ -17,4 +16,5 @@ export {
   removeBlockItems,
   getTextBlocklistItem,
   listTextBlocklistItems,
-} from "./operations.js";
+} from "./textBlocklists/index.js";
+export { analyzeText } from "./textOperations/index.js";

@@ -7,17 +7,12 @@ import {
   RenamedOneOptions,
   RenamedThreeOptions,
   RenamedFiveOptions,
-  RenamedTwoOptions,
-  RenamedFourOptions,
-  RenamedSixOptions,
 } from "./models/options.js";
+import { getGroupOperations, GroupOperations } from "./classic/group/index.js";
 import {
   renamedOne,
   renamedThree,
   renamedFive,
-  renamedTwo,
-  renamedFour,
-  renamedSix,
   createRenamedOperation,
   RenamedOperationClientOptions,
   ServiceContext,
@@ -37,7 +32,11 @@ export class RenamedOperationClient {
   ) {
     this._client = createRenamedOperation(endpoint, client, options);
     this.pipeline = this._client.pipeline;
+    this.group = getGroupOperations(this._client);
   }
+
+  /** The operation groups for Group */
+  public readonly group: GroupOperations;
 
   renamedOne(
     options: RenamedOneOptions = { requestOptions: {} },
@@ -55,23 +54,5 @@ export class RenamedOperationClient {
     options: RenamedFiveOptions = { requestOptions: {} },
   ): Promise<void> {
     return renamedFive(this._client, options);
-  }
-
-  renamedTwo(
-    options: RenamedTwoOptions = { requestOptions: {} },
-  ): Promise<void> {
-    return renamedTwo(this._client, options);
-  }
-
-  renamedFour(
-    options: RenamedFourOptions = { requestOptions: {} },
-  ): Promise<void> {
-    return renamedFour(this._client, options);
-  }
-
-  renamedSix(
-    options: RenamedSixOptions = { requestOptions: {} },
-  ): Promise<void> {
-    return renamedSix(this._client, options);
   }
 }
