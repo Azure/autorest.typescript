@@ -14,8 +14,8 @@ export {
   ListItemInputExtensibleEnum,
 } from "./models.js";
 export {
-  TwoModelsAsPageItemListFirstItemOptions,
-  TwoModelsAsPageItemListSecondItemOptions,
+  ListFirstItemOptions,
+  ListSecondItemOptions,
   CreateOrUpdateOptions,
   CreateOrReplaceOptions,
   GetOptions,

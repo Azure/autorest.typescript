@@ -3,10 +3,10 @@
 
 export { ClientType } from "./models.js";
 export {
-  FooThreeOptions,
-  FooFourOptions,
-  BarFiveOptions,
-  BarSixOptions,
+  ThreeOptions,
+  FourOptions,
+  FiveOptions,
+  SixOptions,
   OneOptions,
   TwoOptions,
 } from "./options.js";

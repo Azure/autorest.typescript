@@ -3,7 +3,6 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface GenericChatClientCreateStreamingOptions
-  extends OperationOptions {}
+export interface CreateStreamingOptions extends OperationOptions {}
 
-export interface GenericChatClientCreateOptions extends OperationOptions {}
+export interface CreateOptions extends OperationOptions {}

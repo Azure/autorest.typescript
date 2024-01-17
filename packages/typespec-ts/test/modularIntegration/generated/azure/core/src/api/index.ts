@@ -7,6 +7,8 @@ export {
   BasicContext,
 } from "./BasicContext.js";
 export {
+  listFirstItem,
+  listSecondItem,
   createOrUpdate,
   createOrReplace,
   get,
@@ -17,4 +19,3 @@ export {
   deleteOperation,
   exportOperation,
 } from "./operations.js";
-export { listFirstItem, listSecondItem } from "./twoModelsAsPageItem/index.js";

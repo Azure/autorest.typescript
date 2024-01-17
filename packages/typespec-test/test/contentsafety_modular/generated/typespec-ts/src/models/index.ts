@@ -24,16 +24,16 @@ export {
   PagedTextBlockItem,
 } from "./models.js";
 export {
-  TextOperationsAnalyzeTextOptions,
-  ImageOperationsAnalyzeImageOptions,
-  TextBlocklistsGetTextBlocklistOptions,
-  TextBlocklistsCreateOrUpdateTextBlocklistOptions,
-  TextBlocklistsDeleteTextBlocklistOptions,
-  TextBlocklistsListTextBlocklistsOptions,
-  TextBlocklistsAddOrUpdateBlockItemsOptions,
-  TextBlocklistsRemoveBlockItemsOptions,
-  TextBlocklistsGetTextBlocklistItemOptions,
-  TextBlocklistsListTextBlocklistItemsOptions,
+  AnalyzeTextRequestOptions,
+  AnalyzeImageRequestOptions,
+  GetTextBlocklistOptions,
+  CreateOrUpdateTextBlocklistOptions,
+  DeleteTextBlocklistOptions,
+  ListTextBlocklistsOptions,
+  AddOrUpdateBlockItemsRequestOptions,
+  RemoveBlockItemsRequestOptions,
+  GetTextBlocklistItemOptions,
+  ListTextBlocklistItemsOptions,
 } from "./options.js";
 export {
   PageSettings,

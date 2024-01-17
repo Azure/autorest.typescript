@@ -2,16 +2,23 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { getQueryOperations, QueryOperations } from "./classic/query/index.js";
-import {
-  getHeaderOperations,
-  HeaderOperations,
-} from "./classic/header/index.js";
 import {
   createCollectionFormat,
   CollectionFormatClientOptions,
   CollectionFormatContext,
+  multi,
+  ssv,
+  tsv,
+  pipes,
+  csv,
 } from "./api/index.js";
+import {
+  MultiOptions,
+  SsvOptions,
+  TsvOptions,
+  PipesOptions,
+  CsvOptions,
+} from "./models/options.js";
 
 export { CollectionFormatClientOptions } from "./api/CollectionFormatContext.js";
 
@@ -24,12 +31,47 @@ export class CollectionFormatClient {
   constructor(options: CollectionFormatClientOptions = {}) {
     this._client = createCollectionFormat(options);
     this.pipeline = this._client.pipeline;
-    this.query = getQueryOperations(this._client);
-    this.header = getHeaderOperations(this._client);
   }
 
-  /** The operation groups for Query */
-  public readonly query: QueryOperations;
-  /** The operation groups for Header */
-  public readonly header: HeaderOperations;
+  multi(
+    colors: string[],
+    options: MultiOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return multi(this._client, colors, options);
+  }
+
+  ssv(
+    colors: string[],
+    options: SsvOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return ssv(this._client, colors, options);
+  }
+
+  tsv(
+    colors: string[],
+    options: TsvOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return tsv(this._client, colors, options);
+  }
+
+  pipes(
+    colors: string[],
+    options: PipesOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return pipes(this._client, colors, options);
+  }
+
+  csv(
+    colors: string[],
+    options: CsvOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return csv(this._client, colors, options);
+  }
+
+  csv(
+    colors: string[],
+    options: CsvOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return csv(this._client, colors, options);
+  }
 }

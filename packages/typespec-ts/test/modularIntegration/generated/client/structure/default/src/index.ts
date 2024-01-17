@@ -4,11 +4,10 @@
 export { ServiceClient, ServiceClientOptions } from "./ServiceClient.js";
 export {
   ClientType,
-  FooThreeOptions,
-  FooFourOptions,
-  BarFiveOptions,
-  BarSixOptions,
+  ThreeOptions,
+  FourOptions,
+  FiveOptions,
+  SixOptions,
   OneOptions,
   TwoOptions,
 } from "./models/index.js";
-export { BarOperations, FooOperations } from "./classic/index.js";

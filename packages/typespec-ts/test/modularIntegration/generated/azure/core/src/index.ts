@@ -13,8 +13,8 @@ export {
   SecondItem,
   PagedUser,
   ListItemInputExtensibleEnum,
-  TwoModelsAsPageItemListFirstItemOptions,
-  TwoModelsAsPageItemListSecondItemOptions,
+  ListFirstItemOptions,
+  ListSecondItemOptions,
   CreateOrUpdateOptions,
   CreateOrReplaceOptions,
   GetOptions,
@@ -28,4 +28,3 @@ export {
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./models/index.js";
-export { TwoModelsAsPageItemOperations } from "./classic/index.js";

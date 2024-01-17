@@ -15,6 +15,10 @@ export interface AddOrUpdateBlockItemsOptions {
     blockItems: TextBlockItemInfo[];
 }
 
+// @public (undocumented)
+export interface AddOrUpdateBlockItemsRequestOptions extends OperationOptions {
+}
+
 // @public
 export interface AddOrUpdateBlockItemsResult {
     value?: TextBlockItem[];
@@ -29,6 +33,10 @@ export interface AnalyzeImageOptions {
 
 // @public
 export type AnalyzeImageOutputType = string;
+
+// @public (undocumented)
+export interface AnalyzeImageRequestOptions extends OperationOptions {
+}
 
 // @public
 export interface AnalyzeImageResult {
@@ -47,6 +55,10 @@ export interface AnalyzeTextOptions {
 // @public
 export type AnalyzeTextOutputType = string;
 
+// @public (undocumented)
+export interface AnalyzeTextRequestOptions extends OperationOptions {
+}
+
 // @public
 export interface AnalyzeTextResult {
     analyzeResults: TextAnalyzeSeverityResult[];
@@ -56,10 +68,17 @@ export interface AnalyzeTextResult {
 // @public (undocumented)
 export class ContentSafetyClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ContentSafetyClientOptions);
-    readonly imageOperations: ImageOperationsOperations;
+    addOrUpdateBlockItems(blocklistName: string, body: AddOrUpdateBlockItemsOptions, options?: AddOrUpdateBlockItemsRequestOptions): Promise<AddOrUpdateBlockItemsResult>;
+    analyzeImage(body: AnalyzeImageOptions, options?: AnalyzeImageRequestOptions): Promise<AnalyzeImageResult>;
+    analyzeText(body: AnalyzeTextOptions, options?: AnalyzeTextRequestOptions): Promise<AnalyzeTextResult>;
+    createOrUpdateTextBlocklist(blocklistName: string, resource: TextBlocklist, options?: CreateOrUpdateTextBlocklistOptions): Promise<TextBlocklist>;
+    deleteTextBlocklist(blocklistName: string, options?: DeleteTextBlocklistOptions): Promise<void>;
+    getTextBlocklist(blocklistName: string, options?: GetTextBlocklistOptions): Promise<TextBlocklist>;
+    getTextBlocklistItem(blocklistName: string, blockItemId: string, options?: GetTextBlocklistItemOptions): Promise<TextBlockItem>;
+    listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptions): PagedAsyncIterableIterator<TextBlockItem>;
+    listTextBlocklists(options?: ListTextBlocklistsOptions): PagedAsyncIterableIterator<TextBlocklist>;
     readonly pipeline: Pipeline;
-    readonly textBlocklists: TextBlocklistsOperations;
-    readonly textOperations: TextOperationsOperations;
+    removeBlockItems(blocklistName: string, body: RemoveBlockItemsOptions, options?: RemoveBlockItemsRequestOptions): Promise<void>;
 }
 
 // @public (undocumented)
@@ -70,6 +89,23 @@ export interface ContentSafetyClientOptions extends ClientOptions {
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
+
+// @public (undocumented)
+export interface CreateOrUpdateTextBlocklistOptions extends OperationOptions {
+    contentType?: string;
+}
+
+// @public (undocumented)
+export interface DeleteTextBlocklistOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface GetTextBlocklistItemOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface GetTextBlocklistOptions extends OperationOptions {
+}
 
 // @public
 export interface ImageAnalyzeSeverityResult {
@@ -88,13 +124,14 @@ interface ImageData_2 {
 export { ImageData_2 as ImageData }
 
 // @public (undocumented)
-export interface ImageOperationsAnalyzeImageOptions extends OperationOptions {
+export interface ListTextBlocklistItemsOptions extends OperationOptions {
+    maxpagesize?: number;
+    skip?: number;
+    top?: number;
 }
 
 // @public (undocumented)
-export interface ImageOperationsOperations {
-    // (undocumented)
-    analyzeImage: (body: AnalyzeImageOptions, options?: ImageOperationsAnalyzeImageOptions) => Promise<AnalyzeImageResult>;
+export interface ListTextBlocklistsOptions extends OperationOptions {
 }
 
 // @public
@@ -124,6 +161,10 @@ export interface PageSettings {
 // @public
 export interface RemoveBlockItemsOptions {
     blockItemIds: string[];
+}
+
+// @public (undocumented)
+export interface RemoveBlockItemsRequestOptions extends OperationOptions {
 }
 
 // @public
@@ -158,74 +199,8 @@ export interface TextBlocklistMatchResult {
     blocklistName: string;
 }
 
-// @public (undocumented)
-export interface TextBlocklistsAddOrUpdateBlockItemsOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface TextBlocklistsCreateOrUpdateTextBlocklistOptions extends OperationOptions {
-    contentType?: string;
-}
-
-// @public (undocumented)
-export interface TextBlocklistsDeleteTextBlocklistOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface TextBlocklistsGetTextBlocklistItemOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface TextBlocklistsGetTextBlocklistOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface TextBlocklistsListTextBlocklistItemsOptions extends OperationOptions {
-    maxpagesize?: number;
-    skip?: number;
-    top?: number;
-}
-
-// @public (undocumented)
-export interface TextBlocklistsListTextBlocklistsOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface TextBlocklistsOperations {
-    // (undocumented)
-    addOrUpdateBlockItems: (blocklistName: string, body: AddOrUpdateBlockItemsOptions, options?: TextBlocklistsAddOrUpdateBlockItemsOptions) => Promise<AddOrUpdateBlockItemsResult>;
-    // (undocumented)
-    createOrUpdateTextBlocklist: (blocklistName: string, resource: TextBlocklist, options?: TextBlocklistsCreateOrUpdateTextBlocklistOptions) => Promise<TextBlocklist>;
-    // (undocumented)
-    deleteTextBlocklist: (blocklistName: string, options?: TextBlocklistsDeleteTextBlocklistOptions) => Promise<void>;
-    // (undocumented)
-    getTextBlocklist: (blocklistName: string, options?: TextBlocklistsGetTextBlocklistOptions) => Promise<TextBlocklist>;
-    // (undocumented)
-    getTextBlocklistItem: (blocklistName: string, blockItemId: string, options?: TextBlocklistsGetTextBlocklistItemOptions) => Promise<TextBlockItem>;
-    // (undocumented)
-    listTextBlocklistItems: (blocklistName: string, options?: TextBlocklistsListTextBlocklistItemsOptions) => PagedAsyncIterableIterator<TextBlockItem>;
-    // (undocumented)
-    listTextBlocklists: (options?: TextBlocklistsListTextBlocklistsOptions) => PagedAsyncIterableIterator<TextBlocklist>;
-    // (undocumented)
-    removeBlockItems: (blocklistName: string, body: RemoveBlockItemsOptions, options?: TextBlocklistsRemoveBlockItemsOptions) => Promise<void>;
-}
-
-// @public (undocumented)
-export interface TextBlocklistsRemoveBlockItemsOptions extends OperationOptions {
-}
-
 // @public
 export type TextCategory = string;
-
-// @public (undocumented)
-export interface TextOperationsAnalyzeTextOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface TextOperationsOperations {
-    // (undocumented)
-    analyzeText: (body: AnalyzeTextOptions, options?: TextOperationsAnalyzeTextOptions) => Promise<AnalyzeTextResult>;
-}
 
 // (No @packageDocumentation comment for this package)
 

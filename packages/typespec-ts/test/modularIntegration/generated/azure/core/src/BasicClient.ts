@@ -2,8 +2,15 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { User, ListItemInputBody } from "./models/models.js";
 import {
+  User,
+  ListItemInputBody,
+  FirstItem,
+  SecondItem,
+} from "./models/models.js";
+import {
+  ListFirstItemOptions,
+  ListSecondItemOptions,
   CreateOrUpdateOptions,
   CreateOrReplaceOptions,
   GetOptions,
@@ -16,13 +23,11 @@ import {
 } from "./models/options.js";
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
-  getTwoModelsAsPageItemOperations,
-  TwoModelsAsPageItemOperations,
-} from "./classic/twoModelsAsPageItem/index.js";
-import {
   createBasic,
   BasicClientOptions,
   BasicContext,
+  listFirstItem,
+  listSecondItem,
   createOrUpdate,
   createOrReplace,
   get,
@@ -45,11 +50,21 @@ export class BasicClient {
   constructor(options: BasicClientOptions = {}) {
     this._client = createBasic(options);
     this.pipeline = this._client.pipeline;
-    this.twoModelsAsPageItem = getTwoModelsAsPageItemOperations(this._client);
   }
 
-  /** The operation groups for TwoModelsAsPageItem */
-  public readonly twoModelsAsPageItem: TwoModelsAsPageItemOperations;
+  /** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
+  listFirstItem(
+    options: ListFirstItemOptions = { requestOptions: {} },
+  ): PagedAsyncIterableIterator<FirstItem> {
+    return listFirstItem(this._client, options);
+  }
+
+  /** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
+  listSecondItem(
+    options: ListSecondItemOptions = { requestOptions: {} },
+  ): PagedAsyncIterableIterator<SecondItem> {
+    return listSecondItem(this._client, options);
+  }
 
   /** Creates or updates a User */
   createOrUpdate(
