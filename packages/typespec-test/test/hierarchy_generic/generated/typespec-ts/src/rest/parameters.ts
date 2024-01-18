@@ -2,7 +2,13 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { Ba, Bea, A } from "./models.js";
+import { A, Ba, Bea } from "./models.js";
+
+export interface Op1BodyParam {
+  body: A;
+}
+
+export type Op1Parameters = Op1BodyParam & RequestParameters;
 
 export interface BOp1BodyParam {
   body: Ba;
@@ -27,9 +33,3 @@ export interface DOp1BodyParam {
 }
 
 export type DOp1Parameters = DOp1BodyParam & RequestParameters;
-
-export interface Op1BodyParam {
-  body: A;
-}
-
-export type Op1Parameters = Op1BodyParam & RequestParameters;

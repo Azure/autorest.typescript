@@ -22,12 +22,12 @@ export class FooClient {
     this.d = getDOperations(this._client);
   }
 
+  op1(body: A, options: Op1Options = { requestOptions: {} }): Promise<void> {
+    return op1(this._client, body, options);
+  }
+
   /** The operation groups for B */
   public readonly b: BOperations;
   /** The operation groups for D */
   public readonly d: DOperations;
-
-  op1(body: A, options: Op1Options = { requestOptions: {} }): Promise<void> {
-    return op1(this._client, body, options);
-  }
 }
