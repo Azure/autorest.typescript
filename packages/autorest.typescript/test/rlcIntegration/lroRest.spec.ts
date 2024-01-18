@@ -9,6 +9,7 @@ import { assert } from "chai";
 import chaiAsPromised from "chai-as-promised";
 chai.use(chaiAsPromised);
 import { addCookiePolicies } from "../utils/cookies";
+import { isNode } from "@azure/core-util";
 
 function createClient() {
   const client = LRORest({
@@ -1004,7 +1005,9 @@ describe("LRO Rest Client", () => {
     it("should handle put200InvalidJson", async () => {
       await assert.isRejected(
         client.path("/lro/error/put/200/invalidjson").put(),
-        /SyntaxError: Unexpected end of JSON input" occurred while parsing the response body/
+        isNode
+          ? /SyntaxError: Unexpected end of JSON input" occurred while parsing the response body/
+          : /SyntaxError: Expected ',' or '}' after property value in JSON/
       );
     });
 
@@ -1060,7 +1063,9 @@ describe("LRO Rest Client", () => {
 
       await assert.isRejected(
         poller.pollUntilDone(),
-        /"SyntaxError: Unexpected end of JSON input" occurred while parsing the response body - { "status": "Accepted"/
+        isNode
+          ? /"SyntaxError: Unexpected end of JSON input" occurred while parsing the response body - { "status": "Accepted"/
+          : /SyntaxError: Expected ',' or '}' after property value in JSON/
       );
     });
 
@@ -1103,7 +1108,9 @@ describe("LRO Rest Client", () => {
 
       await assert.isRejected(
         poller.pollUntilDone(),
-        /"SyntaxError: Unexpected end of JSON input" occurred while parsing the response body - { "status": "Accepted"/
+        isNode
+          ? /"SyntaxError: Unexpected end of JSON input" occurred while parsing the response body - { "status": "Accepted"/
+          : /SyntaxError: Expected ',' or '}' after property value in JSON/
       );
     });
   });
