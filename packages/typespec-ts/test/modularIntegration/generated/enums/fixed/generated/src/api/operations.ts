@@ -6,21 +6,22 @@ import {
   FixedContext as Client,
   GetKnownValue200Response,
   PutKnownValue204Response,
-  PutUnknownValue204Response
+  PutUnknownValue204Response,
 } from "../rest/index.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters
+  operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   GetKnownValueOptions,
   PutKnownValueOptions,
-  PutUnknownValueOptions
+  PutUnknownValueOptions,
 } from "../models/options.js";
 
 export function _getKnownValueSend(
   context: Client,
-  options: GetKnownValueOptions = { requestOptions: {} }
+  options: GetKnownValueOptions = { requestOptions: {} },
 ): StreamableMethod<GetKnownValue200Response> {
   return context
     .path("/type/enum/fixed/string/known-value")
@@ -28,10 +29,10 @@ export function _getKnownValueSend(
 }
 
 export async function _getKnownValueDeserialize(
-  result: GetKnownValue200Response
+  result: GetKnownValue200Response,
 ): Promise<DaysOfWeekEnum> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return result.body;
@@ -40,7 +41,7 @@ export async function _getKnownValueDeserialize(
 /** getKnownValue */
 export async function getKnownValue(
   context: Client,
-  options: GetKnownValueOptions = { requestOptions: {} }
+  options: GetKnownValueOptions = { requestOptions: {} },
 ): Promise<DaysOfWeekEnum> {
   const result = await _getKnownValueSend(context, options);
   return _getKnownValueDeserialize(result);
@@ -49,18 +50,18 @@ export async function getKnownValue(
 export function _putKnownValueSend(
   context: Client,
   body: DaysOfWeekEnum,
-  options: PutKnownValueOptions = { requestOptions: {} }
+  options: PutKnownValueOptions = { requestOptions: {} },
 ): StreamableMethod<PutKnownValue204Response> {
   return context
     .path("/type/enum/fixed/string/known-value")
-    .put({ ...operationOptionsToRequestParameters(options), body });
+    .put({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _putKnownValueDeserialize(
-  result: PutKnownValue204Response
+  result: PutKnownValue204Response,
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -70,7 +71,7 @@ export async function _putKnownValueDeserialize(
 export async function putKnownValue(
   context: Client,
   body: DaysOfWeekEnum,
-  options: PutKnownValueOptions = { requestOptions: {} }
+  options: PutKnownValueOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putKnownValueSend(context, body, options);
   return _putKnownValueDeserialize(result);
@@ -79,18 +80,18 @@ export async function putKnownValue(
 export function _putUnknownValueSend(
   context: Client,
   body: DaysOfWeekEnum,
-  options: PutUnknownValueOptions = { requestOptions: {} }
+  options: PutUnknownValueOptions = { requestOptions: {} },
 ): StreamableMethod<PutUnknownValue204Response> {
   return context
     .path("/type/enum/fixed/string/unknown-value")
-    .put({ ...operationOptionsToRequestParameters(options), body });
+    .put({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _putUnknownValueDeserialize(
-  result: PutUnknownValue204Response
+  result: PutUnknownValue204Response,
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -100,7 +101,7 @@ export async function _putUnknownValueDeserialize(
 export async function putUnknownValue(
   context: Client,
   body: DaysOfWeekEnum,
-  options: PutUnknownValueOptions = { requestOptions: {} }
+  options: PutUnknownValueOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putUnknownValueSend(context, body, options);
   return _putUnknownValueDeserialize(result);

@@ -31,7 +31,7 @@ export class FixedClient {
 
   /** getKnownValue */
   getKnownValue(
-    options: GetKnownValueOptions = { requestOptions: {} }
+    options: GetKnownValueOptions = { requestOptions: {} },
   ): Promise<DaysOfWeekEnum> {
     return getKnownValue(this._client, options);
   }
@@ -39,7 +39,7 @@ export class FixedClient {
   /** putKnownValue */
   putKnownValue(
     body: DaysOfWeekEnum,
-    options: PutKnownValueOptions = { requestOptions: {} }
+    options: PutKnownValueOptions = { requestOptions: {} },
   ): Promise<void> {
     return putKnownValue(this._client, body, options);
   }
@@ -47,7 +47,7 @@ export class FixedClient {
   /** putUnknownValue */
   putUnknownValue(
     body: DaysOfWeekEnum,
-    options: PutUnknownValueOptions = { requestOptions: {} }
+    options: PutUnknownValueOptions = { requestOptions: {} },
   ): Promise<void> {
     return putUnknownValue(this._client, body, options);
   }
