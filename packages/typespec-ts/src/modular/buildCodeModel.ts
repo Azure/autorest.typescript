@@ -1317,10 +1317,8 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
   }
   if (sdkType.kind === "union") {
     const unionName = type.name;
-    const discriminatorPropertyName = getDiscriminator(
-      context.program,
-      type
-    )?.propertyName;
+    const discriminatorPropertyName = getDiscriminator(context.program, type)
+      ?.propertyName;
     const variantTypes = sdkType.values.map((x) => {
       const valueType = getType(context, x.__raw!);
       if (valueType.properties && discriminatorPropertyName) {

@@ -137,7 +137,10 @@ export function transformSchemas(
       if (
         indexer?.value &&
         (!program.stateMap(modelKey).get(indexer?.value) ||
-          !program.stateMap(modelKey).get(indexer?.value)?.includes(context))
+          !program
+            .stateMap(modelKey)
+            .get(indexer?.value)
+            ?.includes(context))
       ) {
         getGeneratedModels(indexer.value, context);
       }
