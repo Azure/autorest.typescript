@@ -454,6 +454,8 @@ function buildBodyParameter(
 
     if (bodyParameter && bodyParts.length > 0) {
       return `\nbody: {${bodyParts.join(",\n")}},`;
+    } else if (bodyParameter && bodyParts.length === 0) {
+      return `\nbody: ${bodyParameter.clientName},`;
     }
   } else if (
     bodyParameter.type.type === "model" &&
