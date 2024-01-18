@@ -153,6 +153,13 @@
       // Optional Scripts
       {
         "commandKind": "bulk",
+        "name": "regen-test-baselines",
+        "summary": "Run code generation and tests to update baselines",
+        "enableParallelism": true,
+        "ignoreMissingScript": true
+      },
+      {
+        "commandKind": "bulk",
         "name": "extract-api",
         "summary": "Run API Extractor on projects",
         "enableParallelism": true,
