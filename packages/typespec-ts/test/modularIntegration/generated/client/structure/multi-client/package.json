@@ -39,14 +39,6 @@
     "./b/models": {
       "types": "./types/src/b/models/index.d.ts",
       "import": "./dist-esm/src/b/models/index.js"
-    },
-    "./a/api/client/structure/multiClient/clientA": {
-      "types": "./types/src/a/api/client/structure/multiClient/clientA/index.d.ts",
-      "import": "./dist-esm/src/a/api/client/structure/multiClient/clientA/index.js"
-    },
-    "./b/api/client/structure/multiClient/clientB": {
-      "types": "./types/src/b/api/client/structure/multiClient/clientB/index.d.ts",
-      "import": "./dist-esm/src/b/api/client/structure/multiClient/clientB/index.js"
     }
   },
   "repository": "github:Azure/azure-sdk-for-js",

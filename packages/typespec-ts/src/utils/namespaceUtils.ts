@@ -40,7 +40,11 @@ export function getOperationNamespaceInterfaceName(
       result.push(operation.interface.name);
       return result;
     }
-    if (operation.interface.namespace) {
+    if (
+      operation.interface.namespace &&
+      !isGlobalNamespace(dpgContext.program, operation.interface.namespace) &&
+      !isService(dpgContext.program, operation.interface.namespace)
+    ) {
       result.push(
         ...getModelNamespaceName(dpgContext, operation.interface.namespace)
       );

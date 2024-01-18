@@ -43,6 +43,8 @@ export interface DeleteOperationOptions extends OperationOptions {}
 
 export interface ExportOperationOptions extends OperationOptions {}
 
-export interface ListFirstItemOptions extends OperationOptions {}
+export interface TwoModelsAsPageItemListFirstItemOptions
+  extends OperationOptions {}
 
-export interface ListSecondItemOptions extends OperationOptions {}
+export interface TwoModelsAsPageItemListSecondItemOptions
+  extends OperationOptions {}

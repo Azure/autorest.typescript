@@ -4,10 +4,18 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
 import {
-  getClientOperations,
-  ClientOperations,
-} from "./classic/client/index.js";
-import { createB, BClientOptions, ServiceContext } from "./api/index.js";
+  RenamedTwoOptions,
+  RenamedFourOptions,
+  RenamedSixOptions,
+} from "./models/options.js";
+import {
+  createB,
+  BClientOptions,
+  ServiceContext,
+  renamedTwo,
+  renamedFour,
+  renamedSix,
+} from "./api/index.js";
 
 export { BClientOptions } from "./api/BContext.js";
 
@@ -23,9 +31,23 @@ export class BClient {
   ) {
     this._client = createB(endpoint, client, options);
     this.pipeline = this._client.pipeline;
-    this.client = getClientOperations(this._client);
   }
 
-  /** The operation groups for ClientStructureMultiClientClientB */
-  public readonly client: ClientOperations;
+  renamedTwo(
+    options: RenamedTwoOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return renamedTwo(this._client, options);
+  }
+
+  renamedFour(
+    options: RenamedFourOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return renamedFour(this._client, options);
+  }
+
+  renamedSix(
+    options: RenamedSixOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return renamedSix(this._client, options);
+  }
 }

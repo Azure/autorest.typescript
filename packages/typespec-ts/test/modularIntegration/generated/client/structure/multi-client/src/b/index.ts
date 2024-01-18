@@ -4,13 +4,7 @@
 export { BClient, BClientOptions } from "./BClient.js";
 export {
   ClientType,
-  ClientStructureMultiClientClientBRenamedTwoOptions,
-  ClientStructureMultiClientClientBRenamedFourOptions,
-  ClientStructureMultiClientClientBRenamedSixOptions,
+  RenamedTwoOptions,
+  RenamedFourOptions,
+  RenamedSixOptions,
 } from "./models/index.js";
-export {
-  ClientOperations,
-  ClientStructureOperations,
-  ClientStructureMultiClientOperations,
-  ClientStructureMultiClientClientBOperations,
-} from "./classic/index.js";

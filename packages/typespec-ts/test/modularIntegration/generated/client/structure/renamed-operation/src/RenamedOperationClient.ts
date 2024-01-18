@@ -4,10 +4,15 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
 import {
-  getClientOperations,
-  ClientOperations,
-} from "./classic/client/index.js";
+  RenamedOneOptions,
+  RenamedThreeOptions,
+  RenamedFiveOptions,
+} from "./models/options.js";
+import { getGroupOperations, GroupOperations } from "./classic/group/index.js";
 import {
+  renamedOne,
+  renamedThree,
+  renamedFive,
   createRenamedOperation,
   RenamedOperationClientOptions,
   ServiceContext,
@@ -27,9 +32,27 @@ export class RenamedOperationClient {
   ) {
     this._client = createRenamedOperation(endpoint, client, options);
     this.pipeline = this._client.pipeline;
-    this.client = getClientOperations(this._client);
+    this.group = getGroupOperations(this._client);
   }
 
-  /** The operation groups for ClientStructureRenamedOperation */
-  public readonly client: ClientOperations;
+  renamedOne(
+    options: RenamedOneOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return renamedOne(this._client, options);
+  }
+
+  renamedThree(
+    options: RenamedThreeOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return renamedThree(this._client, options);
+  }
+
+  renamedFive(
+    options: RenamedFiveOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return renamedFive(this._client, options);
+  }
+
+  /** The operation groups for Group */
+  public readonly group: GroupOperations;
 }

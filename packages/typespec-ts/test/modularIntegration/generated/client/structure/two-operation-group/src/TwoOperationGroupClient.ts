@@ -4,9 +4,13 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
 import {
-  getClientOperations,
-  ClientOperations,
-} from "./classic/client/index.js";
+  getGroup1Operations,
+  Group1Operations,
+} from "./classic/group1/index.js";
+import {
+  getGroup2Operations,
+  Group2Operations,
+} from "./classic/group2/index.js";
 import {
   createTwoOperationGroup,
   TwoOperationGroupClientOptions,
@@ -27,9 +31,12 @@ export class TwoOperationGroupClient {
   ) {
     this._client = createTwoOperationGroup(endpoint, client, options);
     this.pipeline = this._client.pipeline;
-    this.client = getClientOperations(this._client);
+    this.group1 = getGroup1Operations(this._client);
+    this.group2 = getGroup2Operations(this._client);
   }
 
-  /** The operation groups for ClientStructureTwoOperationGroupGroup1 */
-  public readonly client: ClientOperations;
+  /** The operation groups for Group1 */
+  public readonly group1: Group1Operations;
+  /** The operation groups for Group2 */
+  public readonly group2: Group2Operations;
 }

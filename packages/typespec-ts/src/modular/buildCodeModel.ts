@@ -1490,11 +1490,7 @@ function emitOperationGroups(
   }
   for (const operationGroup of listOperationGroups(context, client, true)) {
     const operations: HrlcOperation[] = [];
-    const name =
-      context.rlcOptions?.hierarchyClient ||
-      context.rlcOptions?.enableOperationGroup
-        ? operationGroup.type.name
-        : "";
+    const name = operationGroup.type.name;
     for (const operation of listOperationsInOperationGroup(
       context,
       operationGroup
