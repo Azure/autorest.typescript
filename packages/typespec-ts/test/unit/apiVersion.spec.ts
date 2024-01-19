@@ -220,7 +220,7 @@ const buildPathReturn_WithoutDefault = () => {
   /**
    * Initialize a new instance of \`testClient\`
    * @param endpoint - The endpoint to use.
-   * @param apiVersion - Api Version Possible values: 2022-05-15-preview
+   * @param apiVersion - Api Version Possible values: "2022-05-15-preview"
    * @param options - the parameter for all optional parameters
    */
   export default function createClient(

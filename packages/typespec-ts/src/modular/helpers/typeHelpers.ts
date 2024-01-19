@@ -209,12 +209,14 @@ function handleCombinedType(type: Type): TypeMetadata {
   if (!type.types) {
     throw new Error("Unable to process combined without combinedTypes");
   }
-  const name = type.types
-    .map((t) => {
-      const sdkType = getType(t, t.format).name;
-      return `${sdkType}`;
-    })
-    .join(" | ");
+  const name =
+    type.name ??
+    type.types
+      .map((t) => {
+        const sdkType = getType(t, t.format).name;
+        return `${sdkType}`;
+      })
+      .join(" | ");
   return { name: `(${name})`, nullable: type.nullable };
 }
 

@@ -34,7 +34,7 @@ export interface LivenessSessionOutput {
   /**
    * The session status.
    *
-   * Possible values: NotStarted, Started, ResultAvailable
+   * Possible values: "NotStarted", "Started", "ResultAvailable"
    */
   status: string;
   /** The last result of session. */
@@ -122,7 +122,7 @@ export interface LivenessWithVerifySessionOutput {
   /**
    * The session status.
    *
-   * Possible values: NotStarted, Started, ResultAvailable
+   * Possible values: "NotStarted", "Started", "ResultAvailable"
    */
   status: string;
   /** The last result of session. */

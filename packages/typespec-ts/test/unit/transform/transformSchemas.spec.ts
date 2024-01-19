@@ -225,9 +225,20 @@ describe("#transformSchemas", () => {
       // console.log(first, property, property?.enum);
       assert.isNotNull(property);
       assert.deepEqual(property, {
-        type: '"English"|"Chinese"',
+        type: '"English" | "Chinese"',
         description: undefined,
-        enum: ["English", "Chinese"],
+        enum: [
+          {
+            "description": "English descriptions",
+            "isConstant": true,
+            "type": "\"English\""
+          },
+          {
+            "description": "Chinese descriptions",
+            "isConstant": true,
+            "type": "\"Chinese\""
+          }
+        ],
         required: true,
         usage: ["input", "output"]
       } as any);
@@ -257,11 +268,22 @@ describe("#transformSchemas", () => {
       const property = first.properties![`"prop"`];
       assert.isNotNull(property);
       assert.deepEqual(property, {
-        type: '"English"|"Chinese"',
+        type: '"English" | "Chinese"',
         name: "string",
         typeName: "string",
-        description: "Possible values: English, Chinese",
-        enum: ["English", "Chinese"],
+        description: "Possible values: \"English\", \"Chinese\"",
+        enum: [
+          {
+            "description": "English descriptions",
+            "isConstant": true,
+            "type": "\"English\""
+          },
+          {
+            "description": "Chinese descriptions",
+            "isConstant": true,
+            "type": "\"Chinese\""
+          }
+        ],
         required: true,
         usage: ["input", "output"]
       } as any);
