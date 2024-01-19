@@ -13,8 +13,11 @@ export function buildRestorePollerHelper(
   if (lroOperstions.length === 0) {
     return;
   }
+  // TODO: add real deserialize function
+  // TODO: add real client type
+  // TODO: add pollingHelper import
   const restorePollerHelperContent = `
-    import {
+      import {
         PathUncheckedResponse,
         OperationOptions
       } from "@azure-rest/core-client";
