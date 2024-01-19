@@ -5,6 +5,7 @@ import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   RadiologyInsightsResultOutput,
+  RepeatabilityResultOutput,
   HealthInsightsOperationStatusOutput,
 } from "./outputModels";
 
@@ -37,7 +38,7 @@ export interface CreateJob202Headers {
   /** The Retry-After header can indicate how long the client should wait before polling the operation status. */
   "retry-after"?: number;
   /** Indicates whether the repeatable request was accepted or rejected. */
-  "repeatability-result"?: "accepted" | "rejected";
+  "repeatability-result"?: RepeatabilityResultOutput;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */

@@ -314,6 +314,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "azure/core-traits",
     inputPath: "azure/core/traits"
+  },
+  {
+    outputPath: "models/empty",
+    inputPath: "type/model/empty"
   }
 ];
 

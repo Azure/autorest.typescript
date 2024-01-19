@@ -28,8 +28,17 @@ export function transformSchemas(
     SchemaContext[]
   >();
   const schemaMap: Map<any, any> = new Map<any, any>();
-  const operationGroups = listOperationGroups(dpgContext, client);
   const modelKey = Symbol("typescript-models-" + client.name);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    transformSchemaForRoute(route);
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
@@ -43,15 +52,6 @@ export function transformSchemas(
       }
       transformSchemaForRoute(route);
     }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    transformSchemaForRoute(route);
   }
   function transformSchemaForRoute(route: HttpOperation) {
     if (route.parameters) {
