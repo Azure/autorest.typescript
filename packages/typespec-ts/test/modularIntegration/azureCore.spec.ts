@@ -141,7 +141,7 @@ describe("BasicClient Classical Client", () => {
   });
 
   it("should list first item", async () => {
-    const customPageIter = await client.twoModelsAsPageItem.listFirstItem();
+    const customPageIter = await client.listFirstItem();
     const items = [];
     for await (const user of customPageIter) {
       items.push(user);
@@ -151,7 +151,7 @@ describe("BasicClient Classical Client", () => {
   });
 
   it("should list second item", async () => {
-    const customPageIter = await client.twoModelsAsPageItem.listSecondItem();
+    const customPageIter = await client.listSecondItem();
     const items = [];
     for await (const user of customPageIter) {
       items.push(user);
