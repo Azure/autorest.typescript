@@ -2,7 +2,12 @@
 // Licensed under the MIT license.
 
 import { Next } from "@azure/core-lro";
-import { Client, HttpResponse, createRestError } from "@azure-rest/core-client";
+import {
+  Client,
+  PathUncheckedResponse,
+  createRestError
+} from "@azure-rest/core-client";
+import { isUnexpected } from "../rest/index.js";
 
 export interface GetLongRunningPollerOptions<TResponse> {
   /** Delay to wait until next poll, in milliseconds. */
@@ -26,7 +31,7 @@ export interface GetLongRunningPollerOptions<TResponse> {
   getInitialResponse?: () => PromiseLike<TResponse>;
 }
 export function getLongRunningPoller<
-  TResponse extends HttpResponse,
+  TResponse extends PathUncheckedResponse,
   TResult = void
 >(
   client: Client,
@@ -73,10 +78,10 @@ export function getLongRunningPoller<
  * @param deserializeFn - deserialize function to convert Rest response to modular output
  * @returns - An LRO response that the LRO implementation understands
  */
-function getLroResponse<TResponse extends HttpResponse>(
+function getLroResponse<TResponse extends PathUncheckedResponse>(
   response: TResponse
 ): Next.OperationResponse<TResponse> {
-  if (Number.isNaN(response.status)) {
+  if (isUnexpected(response as PathUncheckedResponse)) {
     createRestError(
       `Status code of the response is not a number. Value: ${response.status}`,
       response

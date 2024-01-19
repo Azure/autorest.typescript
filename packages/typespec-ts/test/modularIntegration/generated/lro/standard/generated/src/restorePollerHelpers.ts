@@ -1,6 +1,9 @@
-import { HttpResponse, OperationOptions } from "@azure-rest/core-client";
-import { StandardContext } from "./rest/clientDefinitions.js";
+import {
+  PathUncheckedResponse,
+  OperationOptions
+} from "@azure-rest/core-client";
 import { Next } from "@azure/core-lro";
+import { StandardContext } from "./rest/clientDefinitions.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import { StandardClient } from "./StandardClient.js";
 import {
@@ -11,7 +14,7 @@ import {
 
 export interface RestorePollerOptions<
   TResult,
-  TResponse extends HttpResponse = HttpResponse
+  TResponse extends PathUncheckedResponse = PathUncheckedResponse
 > extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -30,7 +33,7 @@ const deserializeMap: Record<string, Function> = {
  * useful when you want to create pollers on a different host or a poller
  * needs to be constructed after the original one is not in scope.
  */
-export function restorePoller<TResponse extends HttpResponse, TResult>(
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
   client: StandardContext | StandardClient,
   serializedState: string,
   sourceOperation: (
@@ -41,18 +44,20 @@ export function restorePoller<TResponse extends HttpResponse, TResult>(
   const pollerConfig = Next.deserializeState(serializedState).config;
   const initialUri = pollerConfig.initialUri;
   const requestMethod = pollerConfig.requestMethod;
-  const resourceLocationConfig = pollerConfig?.metadata?.[
-    "resourceLocationConfig"
-  ] as Next.ResourceLocationConfig | undefined;
   if (!initialUri || !requestMethod) {
     throw new Error(
       `Invalid serialized state: ${serializedState} for sourceOperation ${sourceOperation?.name}`
     );
   }
-  const deserializeHelper = getDeserializationHelper(initialUri, requestMethod);
+  const resourceLocationConfig = pollerConfig?.metadata?.[
+    "resourceLocationConfig"
+  ] as Next.ResourceLocationConfig | undefined;
+  const deserializeHelper =
+    options?.processResponseBody ??
+    getDeserializationHelper(initialUri, requestMethod);
   if (!deserializeHelper) {
     throw new Error(
-      `Please ensure the source operation is in this client! We can't find its deserializeHelper for ${requestMethod} ${initialUri}.`
+      `Please ensure the operation is in this client! We can't find its deserializeHelper for ${sourceOperation?.name}.`
     );
   }
   return getLongRunningPoller(

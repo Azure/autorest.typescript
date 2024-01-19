@@ -58,6 +58,10 @@ import {
   buildPagingTypes,
   buildPagingHelpers as buildModularPagingHelpers
 } from "./modular/buildPagingFiles.js";
+import {
+  buildGetPollerHelper,
+  buildRestorePollerHelper
+} from "./modular/buildLroFiles.js";
 
 export * from "./lib.js";
 
@@ -184,6 +188,7 @@ export async function $onEmit(context: EmitContext) {
         buildModelsOptions(modularCodeModel, subClient);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
+        // build paging files
         buildPagingTypes(modularCodeModel, subClient);
         buildModularPagingHelpers(
           modularCodeModel,
@@ -191,6 +196,14 @@ export async function $onEmit(context: EmitContext) {
           hasClientUnexpectedHelper,
           isMultiClients
         );
+        // build lro files
+        buildGetPollerHelper(
+          modularCodeModel,
+          subClient,
+          hasClientUnexpectedHelper,
+          isMultiClients
+        );
+        buildRestorePollerHelper(modularCodeModel, subClient);
         buildOperationFiles(
           dpgContext,
           modularCodeModel,
