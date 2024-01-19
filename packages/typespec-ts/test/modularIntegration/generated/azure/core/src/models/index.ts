@@ -23,8 +23,8 @@ export {
   ListWithCustomPageModelOptions,
   DeleteOperationOptions,
   ExportOperationOptions,
-  TwoModelsAsPageItemListFirstItemOptions,
-  TwoModelsAsPageItemListSecondItemOptions,
+  ListFirstItemOptions,
+  ListSecondItemOptions,
 } from "./options.js";
 export {
   PageSettings,

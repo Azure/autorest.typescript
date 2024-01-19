@@ -22,10 +22,9 @@ export {
   ListWithCustomPageModelOptions,
   DeleteOperationOptions,
   ExportOperationOptions,
-  TwoModelsAsPageItemListFirstItemOptions,
-  TwoModelsAsPageItemListSecondItemOptions,
+  ListFirstItemOptions,
+  ListSecondItemOptions,
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./models/index.js";
-export { TwoModelsAsPageItemOperations } from "./classic/index.js";

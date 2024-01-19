@@ -7,4 +7,3 @@ export {
   RenamedOperationClientOptions,
   ServiceContext,
 } from "./RenamedOperationContext.js";
-export { renamedTwo, renamedFour, renamedSix } from "./group/index.js";

@@ -7,5 +7,3 @@ export {
   ServiceClientOptions,
   ServiceContext,
 } from "./ServiceContext.js";
-export { five, six } from "./bar/index.js";
-export { three, four } from "./foo/index.js";
