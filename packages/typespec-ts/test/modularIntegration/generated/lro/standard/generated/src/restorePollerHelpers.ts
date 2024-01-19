@@ -1,6 +1,6 @@
 import { HttpResponse, OperationOptions } from "@azure-rest/core-client";
 import { StandardContext } from "./rest/clientDefinitions.js";
-import { CoreNext } from "@azure/core-lro";
+import { Next } from "@azure/core-lro";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import { StandardClient } from "./StandardClient.js";
 import {
@@ -35,15 +35,15 @@ export function restorePoller<TResponse extends HttpResponse, TResult>(
   serializedState: string,
   sourceOperation: (
     ...args: any[]
-  ) => CoreNext.PollerLike<CoreNext.OperationState<TResult>, TResult>,
+  ) => Next.PollerLike<Next.OperationState<TResult>, TResult>,
   options?: RestorePollerOptions<TResult>
-): CoreNext.PollerLike<CoreNext.OperationState<TResult>, TResult> {
-  const pollerConfig = CoreNext.deserializeState(serializedState).config;
+): Next.PollerLike<Next.OperationState<TResult>, TResult> {
+  const pollerConfig = Next.deserializeState(serializedState).config;
   const initialUri = pollerConfig.initialUri;
   const requestMethod = pollerConfig.requestMethod;
   const resourceLocationConfig = pollerConfig?.metadata?.[
     "resourceLocationConfig"
-  ] as CoreNext.ResourceLocationConfig | undefined;
+  ] as Next.ResourceLocationConfig | undefined;
   if (!initialUri || !requestMethod) {
     throw new Error(
       `Invalid serialized state: ${serializedState} for sourceOperation ${sourceOperation?.name}`

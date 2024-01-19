@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { CoreNext } from "@azure/core-lro";
+import { Next } from "@azure/core-lro";
 import { Client, HttpResponse, createRestError } from "@azure-rest/core-client";
 
 export interface GetLongRunningPollerOptions<TResponse> {
@@ -10,7 +10,12 @@ export interface GetLongRunningPollerOptions<TResponse> {
   /**
    * The potential location of the result of the LRO if specified by the LRO extension in the swagger.
    */
-  resourceLocationConfig?: CoreNext.ResourceLocationConfig;
+  resourceLocationConfig?: Next.ResourceLocationConfig;
+  /**
+   * The original url of the LRO
+   * Should be set when restoreFrom is set
+   */
+  initialUri?: string;
   /**
    * A serialized poller which can be used to resume an existing paused Long-Running-Operation.
    */
@@ -19,10 +24,6 @@ export interface GetLongRunningPollerOptions<TResponse> {
    * The function to get the initial response
    */
   getInitialResponse?: () => PromiseLike<TResponse>;
-  /**
-   * The original url of the LRO
-   */
-  initialUri?: string;
 }
 export function getLongRunningPoller<
   TResponse extends HttpResponse,
@@ -31,7 +32,7 @@ export function getLongRunningPoller<
   client: Client,
   processResponseBody: (result: TResponse) => PromiseLike<TResult>,
   options: GetLongRunningPollerOptions<TResponse>
-): CoreNext.PollerLike<CoreNext.OperationState<TResult>, TResult> {
+): Next.PollerLike<Next.OperationState<TResult>, TResult> {
   const { restoreFrom, getInitialResponse } = options;
   if (!restoreFrom && !getInitialResponse) {
     throw new Error(
@@ -39,7 +40,7 @@ export function getLongRunningPoller<
     );
   }
   let initialResponse: TResponse | undefined = undefined;
-  const poller: CoreNext.LongRunningOperation<TResponse> = {
+  const poller: Next.LongRunningOperation<TResponse> = {
     sendInitialRequest: async () => {
       if (!getInitialResponse) {
         throw new Error("getInitialResponse is required if init a new poller");
@@ -49,12 +50,15 @@ export function getLongRunningPoller<
     },
     sendPollRequest: async (path: string) => {
       const response = await client.pathUnchecked(path).get();
-      response.headers["x-ms-original-url"] =
-        options.initialUri ?? initialResponse?.request?.url ?? "";
+      if (options.initialUri || initialResponse) {
+        response.headers["x-ms-original-url"] =
+          options.initialUri ?? initialResponse!.request.url;
+      }
+
       return getLroResponse(response as TResponse);
     }
   };
-  return CoreNext.createHttpPoller(poller, {
+  return Next.createHttpPoller(poller, {
     intervalInMs: options?.updateIntervalInMs,
     resourceLocationConfig: options?.resourceLocationConfig,
     restoreFrom: options?.restoreFrom,
@@ -71,7 +75,7 @@ export function getLongRunningPoller<
  */
 function getLroResponse<TResponse extends HttpResponse>(
   response: TResponse
-): CoreNext.OperationResponse<TResponse> {
+): Next.OperationResponse<TResponse> {
   if (Number.isNaN(response.status)) {
     createRestError(
       `Status code of the response is not a number. Value: ${response.status}`,

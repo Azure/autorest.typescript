@@ -26,7 +26,7 @@ import {
   DeleteOperationOptions,
   ExportOperationOptions
 } from "../models/options.js";
-import { CoreNext } from "@azure/core-lro";
+import { Next } from "@azure/core-lro";
 import { getLongRunningPoller } from "./pollingHelpers.js";
 
 export function _createOrReplaceSend(
@@ -69,12 +69,12 @@ export function createOrReplace(
   name: string,
   resource: User,
   options: CreateOrReplaceOptions = { requestOptions: {} }
-): CoreNext.PollerLike<CoreNext.OperationState<User>, User> {
+): Next.PollerLike<Next.OperationState<User>, User> {
   return getLongRunningPoller(context, _createOrReplaceDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
     getInitialResponse: () =>
       _createOrReplaceSend(context, name, resource, options)
-  }) as CoreNext.PollerLike<CoreNext.OperationState<User>, User>;
+  }) as Next.PollerLike<Next.OperationState<User>, User>;
 }
 
 export function _deleteOperationSend(
@@ -109,11 +109,11 @@ export function deleteOperation(
   context: Client,
   name: string,
   options: DeleteOperationOptions = { requestOptions: {} }
-): CoreNext.PollerLike<CoreNext.OperationState<void>, void> {
+): Next.PollerLike<Next.OperationState<void>, void> {
   return getLongRunningPoller(context, _deleteOperationDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
     getInitialResponse: () => _deleteOperationSend(context, name, options)
-  }) as CoreNext.PollerLike<CoreNext.OperationState<void>, void>;
+  }) as Next.PollerLike<Next.OperationState<void>, void>;
 }
 
 export function _exportOperationSend(
@@ -152,13 +152,10 @@ export function exportOperation(
   name: string,
   format: string,
   options: ExportOperationOptions = { requestOptions: {} }
-): CoreNext.PollerLike<CoreNext.OperationState<ExportedUser>, ExportedUser> {
+): Next.PollerLike<Next.OperationState<ExportedUser>, ExportedUser> {
   return getLongRunningPoller(context, _exportOperationDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
     getInitialResponse: () =>
       _exportOperationSend(context, name, format, options)
-  }) as CoreNext.PollerLike<
-    CoreNext.OperationState<ExportedUser>,
-    ExportedUser
-  >;
+  }) as Next.PollerLike<Next.OperationState<ExportedUser>, ExportedUser>;
 }
