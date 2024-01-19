@@ -6,8 +6,9 @@ export {
   ClientType,
   OneOptions,
   TwoOptions,
-  ThreeOptions,
-  FourOptions,
-  FiveOptions,
-  SixOptions,
+  FooThreeOptions,
+  FooFourOptions,
+  BarFiveOptions,
+  BarSixOptions,
 } from "./models/index.js";
+export { BarOperations, FooOperations } from "./classic/index.js";
