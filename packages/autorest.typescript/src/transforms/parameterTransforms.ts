@@ -253,13 +253,7 @@ export function populateOperationParameters(
   const name = normalizeName(
     parameterName,
     NameType.Parameter,
-    parameter.language.default.isTopLevelParameter ||
-      ReservedModelNames.some((reserve) => {
-        return (
-          parameterName === reserve.name &&
-          reserve.reservedFor.includes(NameType.Parameter)
-        );
-      }) /** shouldGuard */
+    true /** shouldGuard */
   );
 
   const sameNameParams = operationParameters.filter(
@@ -357,9 +351,7 @@ function getParameterPath(parameter: Parameter) {
   const name = normalizeName(
     metadata.name,
     NameType.Parameter,
-    parameter.language.default.isTopLevelParameter
-      ? true
-      : false /** shouldGuard */
+    true /** shouldGuard */
   );
 
   if (parameter.groupedBy) {
