@@ -1390,6 +1390,7 @@ describe("inheritance & polymorphism", () => {
               .post({
                 ...operationOptionsToRequestParameters(options),
                 contentType: contentType,
+				        body: body,
               });
         }
         
@@ -1514,6 +1515,7 @@ describe("inheritance & polymorphism", () => {
             .post({
               ...operationOptionsToRequestParameters(options),
               headers: { "test-header": testHeader },
+			        body: body,
             });
         }
         export async function _getDeserialize(result: Get204Response): Promise<void> {
@@ -1679,11 +1681,11 @@ describe("inheritance & polymorphism", () => {
         | "text/plain; charset=utf-8"
         | "text/vnd.ms.protobuf";
         `
-      )
+)
       const paramOutput = await emitModularOperationsFromTypeSpec(
         tspDefinition
       );
-      assert.ok(paramOutput);
+            assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
       await assertEqualContent(
         paramOutput?.[0]?.getFullText()!,

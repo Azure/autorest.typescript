@@ -4,7 +4,6 @@ import { DictionaryClient } from "./generated/dictionary/generated/src/index.js"
 interface TypeDetail {
   type: string;
   defaultValue: any;
-  convertedToFn?: (_: any) => any;
 }
 
 const testedTypes: TypeDetail[] = [
