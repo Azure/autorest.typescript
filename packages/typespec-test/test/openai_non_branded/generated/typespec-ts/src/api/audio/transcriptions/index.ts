@@ -1,8 +1,8 @@
 // Licensed under the MIT license.
 
 import {
-  CreateTranscriptionRequest,
   CreateTranscriptionResponse,
+  CreateTranscriptionRequest,
 } from "../../../models/models.js";
 import {
   AudioTranscriptionsCreate200Response,

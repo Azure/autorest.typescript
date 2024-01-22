@@ -178,3 +178,6 @@ export interface ExtendedClinicalCodedElementOutput {
   /** The bio-medical category related to the coded concept, e.g. Diagnosis, Symptom, Medication, Examination. */
   category?: string;
 }
+
+/** Alias for RepeatabilityResultOutput */
+export type RepeatabilityResultOutput = "accepted" | "rejected";

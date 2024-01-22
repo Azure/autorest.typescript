@@ -43,9 +43,18 @@ export function transformToResponseTypes(
   dpgContext: SdkContext
 ): OperationResponse[] {
   const program = dpgContext.program;
-  const operationGroups = listOperationGroups(dpgContext, client);
   const rlcResponses: OperationResponse[] = [];
   const inputImportedSet = new Set<string>();
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    transformToResponseTypesForRoute(route);
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
@@ -59,15 +68,6 @@ export function transformToResponseTypes(
       }
       transformToResponseTypesForRoute(route);
     }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    transformToResponseTypesForRoute(route);
   }
   if (inputImportedSet.size > 0) {
     importDetails.response.importsSet = inputImportedSet;

@@ -38,8 +38,17 @@ export function transformPaths(
   client: SdkClient,
   dpgContext: SdkContext
 ): Paths {
-  const operationGroups = listOperationGroups(dpgContext, client);
   const paths: Paths = {};
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    transformOperation(dpgContext, route, paths);
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
@@ -54,15 +63,7 @@ export function transformPaths(
       transformOperation(dpgContext, route, paths);
     }
   }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    transformOperation(dpgContext, route, paths);
-  }
+
   return paths;
 }
 

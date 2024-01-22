@@ -3,8 +3,8 @@
 
 import { OpenAIContext } from "../../../api/OpenAIContext.js";
 import {
-  CreateFineTuningJobRequest,
   FineTuningJob,
+  CreateFineTuningJobRequest,
   ListPaginatedFineTuningJobsResponse,
   ListFineTuningJobEventsResponse,
 } from "../../../models/models.js";

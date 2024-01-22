@@ -2131,6 +2131,7 @@ describe("Input/output model type", () => {
           prop2: number;
         }
        
+        /** Alias for MyNamedUnion */
         export type MyNamedUnion = Model1 | Model2;`,
         additionalOutputContent: `
         /** The first one of the unioned model type. */
@@ -2148,7 +2149,8 @@ describe("Input/output model type", () => {
           prop2: number;
         }
        
-       export type MyNamedUnionOutput = Model1Output | Model2Output;`
+        /** Alias for MyNamedUnionOutput */
+        export type MyNamedUnionOutput = Model1Output | Model2Output;`
       });
     });
 
@@ -2181,6 +2183,7 @@ describe("Input/output model type", () => {
           prop1: number;
         }
 
+        /** Alias for MyNamedUnion */
         export type MyNamedUnion = Model1 | "foo" | null | 1 | "X" | "Y" | Array<Model1>;`,
         additionalOutputContent: `
         /** The first one of the unioned model type. */
@@ -2188,6 +2191,7 @@ describe("Input/output model type", () => {
           prop1: number;
         }
 
+        /** Alias for MyNamedUnionOutput */
         export type MyNamedUnionOutput = Model1Output | "foo" | null | 1 | "X" | "Y" | Array<Model1Output>;`
       });
     });
@@ -2205,8 +2209,10 @@ describe("Input/output model type", () => {
         additionalTypeSpecDefinition: tspDefinition,
         outputType: `MyNamedUnionOutput | null`,
         additionalInputContent: `
+        /** Alias for MyNamedUnion */
         export type MyNamedUnion = string | number;`,
         additionalOutputContent: `
+        /** Alias for MyNamedUnionOutput */
         export type MyNamedUnionOutput = string | number;`
       });
     });
@@ -2225,8 +2231,10 @@ describe("Input/output model type", () => {
         additionalTypeSpecDefinition: tspDefinition,
         outputType: `StringExtensibleNamedUnionOutput`,
         additionalInputContent: `
+        /** Alias for StringExtensibleNamedUnion */
         export type StringExtensibleNamedUnion = "b" | "c" | 1;`,
         additionalOutputContent: `
+        /** Alias for StringExtensibleNamedUnionOutput */
         export type StringExtensibleNamedUnionOutput = "b" | "c" | 1;`
       });
     });
@@ -3180,6 +3188,7 @@ describe("Input/output model type", () => {
       await assertEqualContent(
         inputModelFile?.content!,
         `
+        /** Alias for SchemaContentTypeValues */
         export type SchemaContentTypeValues =
           | "application/json; serialization=Avro"
           | "application/json; serialization=json"
@@ -3229,6 +3238,7 @@ describe("Input/output model type", () => {
       await assertEqualContent(
         inputModelFile?.content!,
         `
+        /** Alias for SchemaContentTypeValues */
         export type SchemaContentTypeValues =
           | "application/json; serialization=Avro"
           | "application/json; serialization=json"
@@ -3239,6 +3249,7 @@ describe("Input/output model type", () => {
       await assertEqualContent(
         outputModelFile?.content!,
         `
+        /** Alias for SchemaContentTypeValuesOutput */
         export type SchemaContentTypeValuesOutput =
           | "application/json; serialization=Avro"
           | "application/json; serialization=json"
