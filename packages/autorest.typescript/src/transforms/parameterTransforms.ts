@@ -151,6 +151,7 @@ const extractOperationParameters = (codeModel: CodeModel) =>
             operation.parameters || []
           ).map((p) => {
             p.language.default.isTopLevelParameter = true;
+            p.schema.language.default.isTopLevelParameter = true;
             return {
               parameter: p,
               operationName
@@ -163,14 +164,16 @@ const extractOperationParameters = (codeModel: CodeModel) =>
           const requestParams: OperationParameterDetails[] = [];
           requests.map((request) => {
             request.parameters?.map((parameter) => {
-              if (parameter.required) {
-                if ((parameter as any)["targetProperty"] !== undefined) {
-                  (parameter as any)[
-                    "targetProperty"
-                  ].language.default.isTopLevelParameter = true;
-                }
-                parameter.language.default.isTopLevelParameter = true;
+              if ((parameter as any)["targetProperty"] !== undefined) {
+                (parameter as any)[
+                  "targetProperty"
+                ].language.default.isTopLevelParameter = true;
+                (parameter as any)[
+                  "targetProperty"
+                ].schema.language.default.isTopLevelParameter = true;
               }
+              parameter.language.default.isTopLevelParameter = true;
+              parameter.schema.language.default.isTopLevelParameter = true;
               requestParams.push({
                 operationName,
                 parameter,

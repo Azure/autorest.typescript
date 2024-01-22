@@ -37,7 +37,10 @@ export interface PaginationExtension {
   isNextLinkMethod?: boolean;
 }
 
-export type Language = ModelerLanguage & { paging?: PaginationExtension };
+export type Language = ModelerLanguage & {
+  paging?: PaginationExtension;
+  isTopLevelParameter?: boolean;
+};
 
 export function getLanguageMetadata(languages: Languages): Language {
   return languages.typescript || languages.javascript || languages.default;
