@@ -877,12 +877,6 @@ export function getResponseMapping(
         );
         definition = `"${property.clientName}": ${deserializeFunctionName}(${propertyFullName})`;
       } else {
-        if (
-          property.type.name === "ChatMessage" ||
-          property.type.name === "ChatResponseMessage"
-        ) {
-          property;
-        }
         definition = `"${property.clientName}": ${getNullableCheck(
           propertyFullName,
           property.type
