@@ -1,0 +1,45 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+export { NullableClient, NullableClientOptions } from "./NullableClient.js";
+export {
+  StringProperty,
+  BytesProperty,
+  DatetimeProperty,
+  DurationProperty,
+  CollectionsByteProperty,
+  CollectionsModelProperty,
+  InnerModel,
+  StringGetNonNullOptions,
+  StringGetNullOptions,
+  StringPatchNonNullOptions,
+  StringPatchNullOptions,
+  BytesGetNonNullOptions,
+  BytesGetNullOptions,
+  BytesPatchNonNullOptions,
+  BytesPatchNullOptions,
+  DatetimeGetNonNullOptions,
+  DatetimeGetNullOptions,
+  DatetimePatchNonNullOptions,
+  DatetimePatchNullOptions,
+  DurationGetNonNullOptions,
+  DurationGetNullOptions,
+  DurationPatchNonNullOptions,
+  DurationPatchNullOptions,
+  CollectionsByteGetNonNullOptions,
+  CollectionsByteGetNullOptions,
+  CollectionsBytePatchNonNullOptions,
+  CollectionsBytePatchNullOptions,
+  CollectionsModelGetNonNullOptions,
+  CollectionsModelGetNullOptions,
+  CollectionsModelPatchNonNullOptions,
+  CollectionsModelPatchNullOptions,
+} from "./models/index.js";
+export {
+  BytesOperations,
+  CollectionsByteOperations,
+  CollectionsModelOperations,
+  DatetimeOperations,
+  DurationOperations,
+  StringOperations,
+} from "./classic/index.js";
