@@ -1,5 +1,6 @@
 import { Imports } from "@azure-tools/rlc-common";
 import { OperationResponse, RLCOptions } from "@azure-tools/rlc-common";
+import { LroMetadata } from "@azure-tools/typespec-azure-core";
 import { Project } from "ts-morph";
 
 export interface ModularOptions {
@@ -174,4 +175,5 @@ export interface Operation {
   addedOn?: string;
   rlcResponse?: OperationResponse;
   namespaceHierarchies: string[];
+  lroMetadata?: LroMetadata;
 }

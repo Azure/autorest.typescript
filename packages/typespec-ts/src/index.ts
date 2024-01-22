@@ -204,6 +204,7 @@ export async function $onEmit(context: EmitContext) {
           isMultiClients
         );
         buildRestorePollerHelper(modularCodeModel, subClient);
+        // build operation files
         buildOperationFiles(
           dpgContext,
           modularCodeModel,

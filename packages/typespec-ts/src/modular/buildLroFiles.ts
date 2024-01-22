@@ -174,7 +174,7 @@ export function buildRestorePollerHelper(
   const filePath = path.join(
     `${srcPath}/${
       subfolder !== "" ? subfolder + "/" : ""
-    }restorePollerHelper.ts`
+    }restorePollerHelpers.ts`
   );
   const fileContent = codeModel.project.createSourceFile(filePath, undefined, {
     overwrite: true
@@ -310,7 +310,7 @@ export function buildGetPollerHelper(
   const filePath = path.join(
     codeModel.modularOptions.sourceRoot,
     client.subfolder ?? "",
-    `api/pollingHelper.ts`
+    `api/pollingHelpers.ts`
   );
 
   const fileContent = codeModel.project.createSourceFile(filePath, undefined, {

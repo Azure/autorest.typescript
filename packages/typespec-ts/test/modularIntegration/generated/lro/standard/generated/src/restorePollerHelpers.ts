@@ -1,6 +1,9 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
 import {
   PathUncheckedResponse,
-  OperationOptions
+  OperationOptions,
 } from "@azure-rest/core-client";
 import { Next } from "@azure/core-lro";
 import { StandardContext } from "./rest/clientDefinitions.js";
@@ -9,12 +12,12 @@ import { StandardClient } from "./StandardClient.js";
 import {
   _createOrReplaceDeserialize,
   _deleteOperationDeserialize,
-  _exportOperationDeserialize
+  _exportOperationDeserialize,
 } from "./api/operations.js";
 
 export interface RestorePollerOptions<
   TResult,
-  TResponse extends PathUncheckedResponse = PathUncheckedResponse
+  TResponse extends PathUncheckedResponse = PathUncheckedResponse,
 > extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -25,7 +28,7 @@ export interface RestorePollerOptions<
 const deserializeMap: Record<string, Function> = {
   "POST /azure/core/lro/standard/users/{name}": _exportOperationDeserialize,
   "PUT /azure/core/lro/standard/users/{name}": _createOrReplaceDeserialize,
-  "DELETE /azure/core/lro/standard/users/{name}": _deleteOperationDeserialize
+  "DELETE /azure/core/lro/standard/users/{name}": _deleteOperationDeserialize,
 };
 
 /**
@@ -39,14 +42,14 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
   sourceOperation: (
     ...args: any[]
   ) => Next.PollerLike<Next.OperationState<TResult>, TResult>,
-  options?: RestorePollerOptions<TResult>
+  options?: RestorePollerOptions<TResult>,
 ): Next.PollerLike<Next.OperationState<TResult>, TResult> {
   const pollerConfig = Next.deserializeState(serializedState).config;
   const initialUri = pollerConfig.initialUri;
   const requestMethod = pollerConfig.requestMethod;
   if (!initialUri || !requestMethod) {
     throw new Error(
-      `Invalid serialized state: ${serializedState} for sourceOperation ${sourceOperation?.name}`
+      `Invalid serialized state: ${serializedState} for sourceOperation ${sourceOperation?.name}`,
     );
   }
   const resourceLocationConfig = pollerConfig?.metadata?.[
@@ -57,7 +60,7 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
     getDeserializationHelper(initialUri, requestMethod);
   if (!deserializeHelper) {
     throw new Error(
-      `Please ensure the operation is in this client! We can't find its deserializeHelper for ${sourceOperation?.name}.`
+      `Please ensure the operation is in this client! We can't find its deserializeHelper for ${sourceOperation?.name}.`,
     );
   }
   return getLongRunningPoller(
@@ -67,14 +70,14 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
       updateIntervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig,
       restoreFrom: serializedState,
-      initialUri: initialUri
-    }
+      initialUri: initialUri,
+    },
   );
 }
 
 function getDeserializationHelper(
   urlStr: string,
-  method: string
+  method: string,
 ): ((result: unknown) => PromiseLike<unknown>) | undefined {
   const path = new URL(urlStr).pathname;
   const pathParts = path.split("/");
@@ -114,7 +117,7 @@ function getDeserializationHelper(
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

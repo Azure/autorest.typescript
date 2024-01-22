@@ -1,4 +1,8 @@
-import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
+import {
+  getLroMetadata,
+  getPagedResult,
+  isFixed
+} from "@azure-tools/typespec-azure-core";
 import {
   Enum,
   getDoc,
@@ -670,8 +674,13 @@ function emitOperation(
   return emitBasicOperation(context, operation, operationGroupName, rlcModels);
 }
 
-function addLroInformation(emittedOperation: HrlcOperation) {
+function addLroInformation(
+  program: Program,
+  operation: Operation,
+  emittedOperation: HrlcOperation
+) {
   emittedOperation["discriminator"] = "lro";
+  emittedOperation["lroMetadata"] = getLroMetadata(program, operation);
 }
 
 function addPagingInformation(
@@ -702,7 +711,7 @@ function emitLroPagingOperation(
     operationGroupName,
     rlcModels
   );
-  addLroInformation(emittedOperation);
+  addLroInformation(context.program, operation, emittedOperation);
   addPagingInformation(context.program, operation, emittedOperation);
   emittedOperation["discriminator"] = "lropaging";
   return emittedOperation;
@@ -720,7 +729,7 @@ function emitLroOperation(
     operationGroupName,
     rlcModels
   );
-  addLroInformation(emittedOperation);
+  addLroInformation(context.program, operation, emittedOperation);
   return emittedOperation;
 }
 
