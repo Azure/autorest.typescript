@@ -26,9 +26,10 @@ export interface RestorePollerOptions<
 }
 
 const deserializeMap: Record<string, Function> = {
-  "POST /azure/core/lro/standard/users/{name}": _exportOperationDeserialize,
   "PUT /azure/core/lro/standard/users/{name}": _createOrReplaceDeserialize,
   "DELETE /azure/core/lro/standard/users/{name}": _deleteOperationDeserialize,
+  "POST /azure/core/lro/standard/users/{name}:export":
+    _exportOperationDeserialize,
 };
 
 /**

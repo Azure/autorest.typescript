@@ -53,7 +53,6 @@ export function buildRestorePollerHelper(
       const deserializeMap: Record<string, Function> = {
         ${deserializeMap.join(",\n")}
       };
-      };
       
       /**
        * Creates a poller from the serialized state of another poller. This can be
