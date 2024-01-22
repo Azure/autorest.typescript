@@ -60,7 +60,7 @@ const testedTypes: TypeDetail[] = [
   }
 ];
 
-describe.only("Dictionary Client", () => {
+describe("Dictionary Client", () => {
   let client: DictionaryClient;
 
   beforeEach(() => {
