@@ -688,21 +688,40 @@ function emitOperation(
 }
 
 function addLroInformation(
-  program: Program,
+  context: SdkContext,
   operation: Operation,
   emittedOperation: HrlcOperation
 ) {
   emittedOperation["discriminator"] = "lro";
-  emittedOperation["lroMetadata"] = getLroMetadata(program, operation);
+  const metadata = getLroMetadata(context.program, operation);
+  emittedOperation["lroMetadata"] = {
+    finalResult:
+      metadata?.finalResult === "void" || metadata?.finalResult === undefined
+        ? undefined
+        : getType(context, metadata.finalResult),
+    finalStateVia: metadata?.finalStateVia,
+    finalResultPath: metadata?.finalResultPath,
+    finalEnvelopeResponse: {
+      statusCodes: [200],
+      isBinaryPayload: false,
+      discriminator: emittedOperation.discriminator,
+      headers: [],
+      type:
+        metadata?.finalEnvelopeResult === "void" ||
+        metadata?.finalEnvelopeResult === undefined
+          ? undefined
+          : getType(context, metadata.finalEnvelopeResult)
+    }
+  };
 }
 
 function addPagingInformation(
-  program: Program,
+  context: SdkContext,
   operation: Operation,
   emittedOperation: Record<string, any>
 ) {
   emittedOperation["discriminator"] = "paging";
-  const pagedResult = getPagedResult(program, operation);
+  const pagedResult = getPagedResult(context.program, operation);
   if (pagedResult === undefined) {
     throw Error(
       "Trying to add paging information, but not paging metadata for this operation"
@@ -726,8 +745,8 @@ function emitLroPagingOperation(
     rlcModels,
     hierarchies
   );
-  addLroInformation(context.program, operation, emittedOperation);
-  addPagingInformation(context.program, operation, emittedOperation);
+  addLroInformation(context, operation, emittedOperation);
+  addPagingInformation(context, operation, emittedOperation);
   emittedOperation["discriminator"] = "lropaging";
   return emittedOperation;
 }
@@ -746,7 +765,7 @@ function emitLroOperation(
     rlcModels,
     hierarchies
   );
-  addLroInformation(context.program, operation, emittedOperation);
+  addLroInformation(context, operation, emittedOperation);
   return emittedOperation;
 }
 
@@ -764,7 +783,7 @@ function emitPagingOperation(
     rlcModels,
     hierarchies
   );
-  addPagingInformation(context.program, operation, emittedOperation);
+  addPagingInformation(context, operation, emittedOperation);
   return emittedOperation;
 }
 

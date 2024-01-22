@@ -5,7 +5,8 @@ export { StandardClient, StandardClientOptions } from "./StandardClient.js";
 export {
   User,
   ExportedUser,
+  OperationState,
   CreateOrReplaceOptions,
   DeleteOperationOptions,
-  ExportOperationOptions
+  ExportOperationOptions,
 } from "./models/index.js";

@@ -6,7 +6,7 @@ import { User, ExportedUser } from "./models/models.js";
 import {
   CreateOrReplaceOptions,
   DeleteOperationOptions,
-  ExportOperationOptions
+  ExportOperationOptions,
 } from "./models/options.js";
 import {
   createOrReplace,
@@ -14,7 +14,7 @@ import {
   exportOperation,
   createStandard,
   StandardClientOptions,
-  StandardContext
+  StandardContext,
 } from "./api/index.js";
 import { Next } from "@azure/core-lro";
 
@@ -35,7 +35,7 @@ export class StandardClient {
   createOrReplace(
     name: string,
     resource: User,
-    options: CreateOrReplaceOptions = { requestOptions: {} }
+    options: CreateOrReplaceOptions = { requestOptions: {} },
   ): Next.PollerLike<Next.OperationState<User>, User> {
     return createOrReplace(this._client, name, resource, options);
   }
@@ -43,7 +43,7 @@ export class StandardClient {
   /** Deletes a User */
   deleteOperation(
     name: string,
-    options: DeleteOperationOptions = { requestOptions: {} }
+    options: DeleteOperationOptions = { requestOptions: {} },
   ): Next.PollerLike<Next.OperationState<void>, void> {
     return deleteOperation(this._client, name, options);
   }
@@ -52,7 +52,7 @@ export class StandardClient {
   exportOperation(
     name: string,
     format: string,
-    options: ExportOperationOptions = { requestOptions: {} }
+    options: ExportOperationOptions = { requestOptions: {} },
   ): Next.PollerLike<Next.OperationState<ExportedUser>, ExportedUser> {
     return exportOperation(this._client, name, format, options);
   }

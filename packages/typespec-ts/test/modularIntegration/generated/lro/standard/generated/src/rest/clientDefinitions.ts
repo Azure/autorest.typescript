@@ -20,7 +20,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface CreateOrReplace {
   /** Creates or replaces a User */
   put(
-    options: CreateOrReplaceParameters
+    options: CreateOrReplaceParameters,
   ): StreamableMethod<
     | CreateOrReplace200Response
     | CreateOrReplace201Response
@@ -28,7 +28,7 @@ export interface CreateOrReplace {
   >;
   /** Deletes a User */
   delete(
-    options?: DeleteParameters
+    options?: DeleteParameters,
   ): StreamableMethod<
     DeleteOperation202Response | DeleteOperationDefaultResponse
   >;
@@ -37,7 +37,7 @@ export interface CreateOrReplace {
 export interface Export {
   /** Exports a User */
   post(
-    options: ExportParameters
+    options: ExportParameters,
   ): StreamableMethod<
     ExportOperation202Response | ExportOperationDefaultResponse
   >;
@@ -47,7 +47,7 @@ export interface Routes {
   /** Resource for '/azure/core/lro/standard/users/\{name\}' has methods for the following verbs: put, delete */
   (
     path: "/azure/core/lro/standard/users/{name}",
-    name: string
+    name: string,
   ): CreateOrReplace;
   /** Resource for '/azure/core/lro/standard/users/\{name\}:export' has methods for the following verbs: post */
   (path: "/azure/core/lro/standard/users/{name}:export", name: string): Export;

@@ -7,6 +7,10 @@ export {
   exportOperation,
 } from "./operations.js";
 export {
+  getLongRunningPoller,
+  GetLongRunningPollerOptions,
+} from "./pollingHelpers.js";
+export {
   createStandard,
   StandardClientOptions,
   StandardContext,

@@ -100,18 +100,21 @@ export function getDeserializePrivateFunction(
   runtimeImports: RuntimeImports
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
-
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
       type: getRLCResponseType(operation.rlcResponse)
     }
   ];
+  const isLroOnly = isLROOnlyOperation(operation);
 
   // TODO: Support operation overloads
-  const response = operation.responses[0]!;
+  const response =
+    operation.lroMetadata?.finalEnvelopeResponse ?? operation.responses[0]!;
   let returnType;
-  if (response?.type?.type) {
+  if (isLroOnly) {
+    returnType = buildLroReturnType(operation);
+  } else if (response?.type?.type) {
     returnType = buildType(
       response.type.name,
       response.type,
@@ -157,32 +160,44 @@ export function getDeserializePrivateFunction(
     }
   }
 
+  const deserializedType = isLroOnly
+    ? operation?.lroMetadata?.finalResult
+    : response.type;
+  const deserializedRoot = operation?.lroMetadata?.finalResultPath
+    ? `result.body.${operation?.lroMetadata?.finalResultPath}`
+    : "result.body";
+
   if (
-    response?.type?.type === "any" ||
+    deserializedType?.type === "any" ||
     response.isBinaryPayload ||
-    response?.type?.aliasType
+    deserializedType?.aliasType
   ) {
     statements.push(`return result.body`);
-  } else if (getAllProperties(response?.type).length > 0) {
+  } else if (
+    deserializedType &&
+    getAllProperties(deserializedType).length > 0
+  ) {
     statements.push(
       `return {`,
       getResponseMapping(
-        getAllProperties(response.type) ?? [],
-        "result.body",
+        getAllProperties(deserializedType) ?? [],
+        deserializedRoot,
         runtimeImports
       ).join(","),
       `}`
     );
-  } else if (returnType.type === "void") {
+  } else if (returnType.type === "void" || deserializedType === undefined) {
     statements.push(`return;`);
   } else {
     statements.push(
       `return ${deserializeResponseValue(
         response.type,
-        "result.body",
+        deserializedRoot,
         runtimeImports,
-        response.type.nullable !== undefined ? !response.type.nullable : false,
-        response.type.format
+        deserializedType.nullable !== undefined
+          ? !deserializedType.nullable
+          : false,
+        deserializedType.format
       )}`
     );
   }
@@ -247,19 +262,28 @@ export function getOperationFunction(
   operation: Operation,
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
+  const isPaging = isPagingOperation(operation);
+  const isLro = isLROOperation(operation);
+  if (isPaging && !isLro) {
+    // Case 1: paging-only operation
+    return getPagingOnlyOperationFunction(operation, clientType);
+  } else if (!isPaging && isLro) {
+    // Case 2: lro-only operation
+    return getLroOnlyOperatonFunction(operation, clientType);
+  } else if (isLro && isPaging) {
+    // Case 3: both paging + lro operation
+    // TODO: Not supported and emit warning
+  }
+
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(operation, clientType);
-  const isPaging = isPagingOperation(operation);
-
   // TODO: Support operation overloads
   const response = operation.responses[0]!;
   let returnType = { name: "", type: "void" };
   if (response.type?.type) {
-    let type = response.type;
-    if (isPaging) {
-      type = extractPagingType(type, operation.itemName) ?? type;
-    }
+    const type =
+      extractPagingType(response.type, operation.itemName) ?? response.type;
     returnType = buildType(type.name, type, type.format);
   }
   const { name, fixme = [] } = getOperationName(operation);
@@ -268,40 +292,117 @@ export function getOperationFunction(
       ...getDocsFromDescription(operation.description),
       ...getFixmeForMultilineDocs(fixme)
     ],
-    isAsync: !isPaging,
+    isAsync: true,
     isExported: true,
     name: normalizeName(operation.name, NameType.Operation, true),
     parameters,
-    returnType: isPaging
-      ? `PagedAsyncIterableIterator<${returnType.type}>`
-      : `Promise<${returnType.type}>`
+    returnType: `Promise<${returnType.type}>`
   };
 
   const statements: string[] = [];
-  if (isPaging) {
-    const options = [];
-    if (operation.itemName) {
-      options.push(`itemName: "${operation.itemName}"`);
-    }
-    if (operation.continuationTokenName) {
-      options.push(`nextLinkName: "${operation.continuationTokenName}"`);
-    }
-    statements.push(
-      `return buildPagedAsyncIterator(
-        context, 
-        () => _${name}Send(${parameters.map((p) => p.name).join(", ")}), 
-        _${name}Deserialize,
-        ${options.length > 0 ? `{${options.join(", ")}}` : ``}
-        );`
-    );
-  } else {
-    statements.push(
-      `const result = await _${name}Send(${parameters
-        .map((p) => p.name)
-        .join(", ")});`
-    );
-    statements.push(`return _${name}Deserialize(result);`);
+  statements.push(
+    `const result = await _${name}Send(${parameters
+      .map((p) => p.name)
+      .join(", ")});`
+  );
+  statements.push(`return _${name}Deserialize(result);`);
+
+  return {
+    ...functionStatement,
+    statements
+  };
+}
+
+function getLroOnlyOperatonFunction(operation: Operation, clientType: string) {
+  // Extract required parameters
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] =
+    getOperationSignatureParameters(operation, clientType);
+  const returnType = buildLroReturnType(operation);
+  const { name, fixme = [] } = getOperationName(operation);
+  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    docs: [
+      ...getDocsFromDescription(operation.description),
+      ...getFixmeForMultilineDocs(fixme)
+    ],
+    isAsync: false,
+    isExported: true,
+    name: normalizeName(operation.name, NameType.Operation, true),
+    parameters,
+    returnType: `Next.PollerLike<Next.OperationState<${returnType.type}>, ${returnType.type}>`
+  };
+
+  const statements: string[] = [];
+  statements.push(`
+  return getLongRunningPoller(context, _${name}Deserialize, {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    getInitialResponse: () => _${name}Send(${parameters
+      .map((p) => p.name)
+      .join(", ")})
+  }) as Next.PollerLike<Next.OperationState<${returnType.type}>, ${
+    returnType.type
+  }>;
+  `);
+
+  return {
+    ...functionStatement,
+    statements
+  };
+}
+
+function buildLroReturnType(operation: Operation) {
+  const metadata = operation.lroMetadata;
+  if (metadata !== undefined && metadata.finalResult !== undefined) {
+    const type = metadata.finalResult;
+    return buildType(type.name, type, type.format);
   }
+  return { name: "", type: "void" };
+}
+
+function getPagingOnlyOperationFunction(
+  operation: Operation,
+  clientType: string
+): OptionalKind<FunctionDeclarationStructure> {
+  // Extract required parameters
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] =
+    getOperationSignatureParameters(operation, clientType);
+
+  // TODO: Support operation overloads
+  const response = operation.responses[0]!;
+  let returnType = { name: "", type: "void" };
+  if (response.type?.type) {
+    const type =
+      extractPagingType(response.type, operation.itemName) ?? response.type;
+    returnType = buildType(type.name, type, type.format);
+  }
+  const { name, fixme = [] } = getOperationName(operation);
+  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    docs: [
+      ...getDocsFromDescription(operation.description),
+      ...getFixmeForMultilineDocs(fixme)
+    ],
+    isAsync: false,
+    isExported: true,
+    name: normalizeName(operation.name, NameType.Operation, true),
+    parameters,
+    returnType: `PagedAsyncIterableIterator<${returnType.type}>`
+  };
+
+  const statements: string[] = [];
+  const options = [];
+  if (operation.itemName) {
+    options.push(`itemName: "${operation.itemName}"`);
+  }
+  if (operation.continuationTokenName) {
+    options.push(`nextLinkName: "${operation.continuationTokenName}"`);
+  }
+  statements.push(
+    `return buildPagedAsyncIterator(
+      context, 
+      () => _${name}Send(${parameters.map((p) => p.name).join(", ")}), 
+      _${name}Deserialize,
+      ${options.length > 0 ? `{${options.join(", ")}}` : ``}
+      );`
+  );
 
   return {
     ...functionStatement,
@@ -1048,6 +1149,10 @@ export function hasLROOperation(codeModel: ModularCodeModel) {
 
 export function isLROOperation(op: Operation): boolean {
   return op.discriminator === "lro" || op.discriminator === "lropaging";
+}
+
+export function isLROOnlyOperation(op: Operation): boolean {
+  return op.discriminator === "lro";
 }
 
 export function hasPagingOperation(client: Client): boolean;

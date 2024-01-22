@@ -27,19 +27,19 @@ export function isUnexpected(
     | CreateOrReplace200Response
     | CreateOrReplace201Response
     | CreateOrReplaceLogicalResponse
-    | CreateOrReplaceDefaultResponse
+    | CreateOrReplaceDefaultResponse,
 ): response is CreateOrReplaceDefaultResponse;
 export function isUnexpected(
   response:
     | DeleteOperation202Response
     | DeleteLogicalResponse
-    | DeleteOperationDefaultResponse
+    | DeleteOperationDefaultResponse,
 ): response is DeleteOperationDefaultResponse;
 export function isUnexpected(
   response:
     | ExportOperation202Response
     | ExportLogicalResponse
-    | ExportOperationDefaultResponse
+    | ExportOperationDefaultResponse,
 ): response is ExportOperationDefaultResponse;
 export function isUnexpected(
   response:
@@ -52,7 +52,7 @@ export function isUnexpected(
     | DeleteOperationDefaultResponse
     | ExportOperation202Response
     | ExportLogicalResponse
-    | ExportOperationDefaultResponse
+    | ExportOperationDefaultResponse,
 ): response is
   | CreateOrReplaceDefaultResponse
   | DeleteOperationDefaultResponse
@@ -105,7 +105,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

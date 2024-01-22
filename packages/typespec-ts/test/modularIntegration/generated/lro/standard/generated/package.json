@@ -4,14 +4,7 @@
   "author": "Microsoft Corporation",
   "version": "1.0.0-beta.1",
   "description": "A generated SDK for Standard.",
-  "keywords": [
-    "node",
-    "azure",
-    "cloud",
-    "typescript",
-    "browser",
-    "isomorphic"
-  ],
+  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
@@ -33,9 +26,7 @@
     }
   },
   "repository": "github:Azure/azure-sdk-for-js",
-  "bugs": {
-    "url": "https://github.com/Azure/azure-sdk-for-js/issues"
-  },
+  "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
   "files": [
     "dist/",
     "dist-esm/",
@@ -44,9 +35,7 @@
     "LICENSE",
     "review/*"
   ],
-  "engines": {
-    "node": ">=18.0.0"
-  },
+  "engines": { "node": ">=18.0.0" },
   "scripts": {
     "build:browser": "echo skipped.",
     "build:node": "echo skipped.",
@@ -77,32 +66,32 @@
   "sideEffects": false,
   "autoPublish": false,
   "dependencies": {
-    "@azure-rest/core-client": "^1.1.6",
-    "@azure/abort-controller": "^1.0.0",
     "@azure/core-auth": "^1.3.0",
-    "@azure/core-lro": "file:azure-core-lro-2.9.1.tgz",
+    "@azure-rest/core-client": "^1.1.6",
     "@azure/core-rest-pipeline": "^1.12.0",
-    "@azure/core-util": "^1.4.0",
     "@azure/logger": "^1.0.0",
-    "tslib": "^2.2.0"
+    "tslib": "^2.2.0",
+    "@azure/core-lro": "^2.5.4",
+    "@azure/abort-controller": "^1.0.0",
+    "@azure/core-util": "^1.4.0"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.31.1",
+    "autorest": "latest",
+    "@types/node": "^18.0.0",
+    "dotenv": "^16.0.0",
+    "eslint": "^8.0.0",
+    "mkdirp": "^2.1.2",
+    "prettier": "^3.1.0",
+    "rimraf": "^5.0.0",
+    "source-map-support": "^0.5.9",
+    "typescript": "~5.2.0",
     "@rollup/plugin-commonjs": "^24.0.0",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-multi-entry": "^6.0.0",
     "@rollup/plugin-node-resolve": "^13.1.3",
-    "@types/node": "^18.0.0",
-    "autorest": "latest",
-    "dotenv": "^16.0.0",
-    "eslint": "^8.0.0",
-    "mkdirp": "^2.1.2",
-    "prettier": "^2.5.1",
-    "rimraf": "^5.0.0",
     "rollup": "^2.66.1",
     "rollup-plugin-sourcemaps": "^0.6.3",
-    "source-map-support": "^0.5.9",
-    "typescript": "~5.2.0",
     "uglify-js": "^3.4.9"
   }
 }

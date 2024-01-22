@@ -5,8 +5,9 @@ import { Next } from "@azure/core-lro";
 import {
   Client,
   PathUncheckedResponse,
-  createRestError
+  createRestError,
 } from "@azure-rest/core-client";
+import { isUnexpected } from "../rest/index.js";
 import { isUnexpected } from "../rest/index.js";
 
 export interface GetLongRunningPollerOptions<TResponse> {
@@ -32,16 +33,16 @@ export interface GetLongRunningPollerOptions<TResponse> {
 }
 export function getLongRunningPoller<
   TResponse extends PathUncheckedResponse,
-  TResult = void
+  TResult = void,
 >(
   client: Client,
   processResponseBody: (result: TResponse) => PromiseLike<TResult>,
-  options: GetLongRunningPollerOptions<TResponse>
+  options: GetLongRunningPollerOptions<TResponse>,
 ): Next.PollerLike<Next.OperationState<TResult>, TResult> {
   const { restoreFrom, getInitialResponse } = options;
   if (!restoreFrom && !getInitialResponse) {
     throw new Error(
-      "Either restoreFrom or getInitialResponse must be specified"
+      "Either restoreFrom or getInitialResponse must be specified",
     );
   }
   let initialResponse: TResponse | undefined = undefined;
@@ -61,7 +62,7 @@ export function getLongRunningPoller<
       }
 
       return getLroResponse(response as TResponse);
-    }
+    },
   };
   return Next.createHttpPoller(poller, {
     intervalInMs: options?.updateIntervalInMs,
@@ -69,7 +70,7 @@ export function getLongRunningPoller<
     restoreFrom: options?.restoreFrom,
     processResult: (result: unknown) => {
       return processResponseBody(result as TResponse) as TResult;
-    }
+    },
   });
 }
 /**
@@ -79,12 +80,12 @@ export function getLongRunningPoller<
  * @returns - An LRO response that the LRO implementation understands
  */
 function getLroResponse<TResponse extends PathUncheckedResponse>(
-  response: TResponse
+  response: TResponse,
 ): Next.OperationResponse<TResponse> {
   if (isUnexpected(response as PathUncheckedResponse)) {
     createRestError(
       `Status code of the response is not a number. Value: ${response.status}`,
-      response
+      response,
     );
   }
   return {
@@ -92,7 +93,7 @@ function getLroResponse<TResponse extends PathUncheckedResponse>(
     rawResponse: {
       ...response,
       statusCode: Number.parseInt(response.status),
-      body: response.body
-    }
+      body: response.body,
+    },
   };
 }
