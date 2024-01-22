@@ -1037,8 +1037,8 @@ describe("inheritance & polymorphism", () => {
         }
 
         return {
-          name: result.body["name"],
           weight: result.body["weight"],
+          name: result.body["name"],
           kind: result.body["kind"],
           meow: result.body["meow"],
         };
