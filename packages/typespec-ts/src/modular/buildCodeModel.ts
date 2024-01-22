@@ -104,10 +104,7 @@ import {
 import { SdkContext } from "../utils/interfaces.js";
 import { Project } from "ts-morph";
 import { buildRuntimeImports } from "@azure-tools/rlc-common";
-import {
-  getModelNamespaceName,
-  getOperationNamespaceInterfaceName
-} from "../utils/namespaceUtils.js";
+import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
 import { getType as getTypeName } from "./helpers/typeHelpers.js";
 
@@ -637,7 +634,8 @@ function emitOperation(
   context: SdkContext,
   operation: Operation,
   operationGroupName: string,
-  rlcModels: RLCModel
+  rlcModels: RLCModel,
+  hierarchies: string[]
 ): HrlcOperation {
   const isBranded = rlcModels.options?.branded ?? true;
   // Skip to extract paging and lro information for non-branded clients.
@@ -646,7 +644,8 @@ function emitOperation(
       context,
       operation,
       operationGroupName,
-      rlcModels
+      rlcModels,
+      hierarchies
     );
   }
   const lro = isLongRunningOperation(
@@ -677,19 +676,33 @@ function emitOperation(
       context,
       operation,
       operationGroupName,
-      rlcModels
+      rlcModels,
+      hierarchies
     );
   } else if (paging) {
     return emitPagingOperation(
       context,
       operation,
       operationGroupName,
-      rlcModels
+      rlcModels,
+      hierarchies
     );
   } else if (lro) {
-    return emitLroOperation(context, operation, operationGroupName, rlcModels);
+    return emitLroOperation(
+      context,
+      operation,
+      operationGroupName,
+      rlcModels,
+      hierarchies
+    );
   }
-  return emitBasicOperation(context, operation, operationGroupName, rlcModels);
+  return emitBasicOperation(
+    context,
+    operation,
+    operationGroupName,
+    rlcModels,
+    hierarchies
+  );
 }
 
 function addLroInformation(emittedOperation: HrlcOperation) {
@@ -716,13 +729,15 @@ function emitLroPagingOperation(
   context: SdkContext,
   operation: Operation,
   operationGroupName: string,
-  rlcModels: RLCModel
+  rlcModels: RLCModel,
+  hierarchies: string[]
 ): HrlcOperation {
   const emittedOperation = emitBasicOperation(
     context,
     operation,
     operationGroupName,
-    rlcModels
+    rlcModels,
+    hierarchies
   );
   addLroInformation(emittedOperation);
   addPagingInformation(context.program, operation, emittedOperation);
@@ -734,13 +749,15 @@ function emitLroOperation(
   context: SdkContext,
   operation: Operation,
   operationGroupName: string,
-  rlcModels: RLCModel
+  rlcModels: RLCModel,
+  hierarchies: string[]
 ): HrlcOperation {
   const emittedOperation = emitBasicOperation(
     context,
     operation,
     operationGroupName,
-    rlcModels
+    rlcModels,
+    hierarchies
   );
   addLroInformation(emittedOperation);
   return emittedOperation;
@@ -750,13 +767,15 @@ function emitPagingOperation(
   context: SdkContext,
   operation: Operation,
   operationGroupName: string,
-  rlcModels: RLCModel
+  rlcModels: RLCModel,
+  hierarchies: string[]
 ): HrlcOperation {
   const emittedOperation = emitBasicOperation(
     context,
     operation,
     operationGroupName,
-    rlcModels
+    rlcModels,
+    hierarchies
   );
   addPagingInformation(context.program, operation, emittedOperation);
   return emittedOperation;
@@ -766,7 +785,8 @@ function emitBasicOperation(
   context: SdkContext,
   operation: Operation,
   operationGroupName: string,
-  rlcModels: RLCModel
+  rlcModels: RLCModel,
+  hierarchies: string[]
 ): HrlcOperation {
   // Set up parameters for operation
   const parameters: any[] = [];
@@ -804,9 +824,7 @@ function emitBasicOperation(
   });
 
   const namespaceHierarchies =
-    context.rlcOptions?.hierarchyClient === true
-      ? getOperationNamespaceInterfaceName(context, operation)
-      : [];
+    context.rlcOptions?.hierarchyClient === true ? hierarchies : [];
 
   if (
     namespaceHierarchies.length === 0 &&
@@ -1525,26 +1543,39 @@ function emitOperationGroups(
     string,
     OperationGroup
   >();
-  for (const operationGroup of listOperationGroups(context, client)) {
+  const clientOperations: HrlcOperation[] = [];
+  for (const operation of listOperationsInOperationGroup(context, client)) {
+    clientOperations.push(emitOperation(context, operation, "", rlcModels, []));
+  }
+  if (clientOperations.length > 0) {
+    addHierarchyOperationGroup(clientOperations, groupMapping);
+  }
+  for (const operationGroup of listOperationGroups(context, client, true)) {
     const operations: HrlcOperation[] = [];
-    const name = operationGroup.type.name;
+    const name =
+      context.rlcOptions?.hierarchyClient ||
+      context.rlcOptions?.enableOperationGroup
+        ? operationGroup.type.name
+        : "";
+    const hierarchies =
+      context.rlcOptions?.hierarchyClient ||
+      context.rlcOptions?.enableOperationGroup
+        ? operationGroup.groupPath.split(".")
+        : [];
+    if (hierarchies[0]?.endsWith("Client")) {
+      hierarchies.shift();
+    }
     for (const operation of listOperationsInOperationGroup(
       context,
       operationGroup
     )) {
-      operations.push(emitOperation(context, operation, name, rlcModels));
+      operations.push(
+        emitOperation(context, operation, name, rlcModels, hierarchies)
+      );
     }
     if (operations.length > 0) {
       addHierarchyOperationGroup(operations, groupMapping);
     }
-  }
-  const clientOperations: HrlcOperation[] = [];
-  const allClientOperations = listOperationsInOperationGroup(context, client);
-  for (const operation of allClientOperations) {
-    clientOperations.push(emitOperation(context, operation, "", rlcModels));
-  }
-  if (clientOperations.length > 0) {
-    addHierarchyOperationGroup(clientOperations, groupMapping);
   }
 
   groupMapping.forEach((value) => {

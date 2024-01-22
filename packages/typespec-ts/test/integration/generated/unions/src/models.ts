@@ -45,4 +45,5 @@ export interface MixedTypesCases {
   boolean: Cat | "a" | number | boolean;
 }
 
+/** Alias for StringExtensibleNamedUnion */
 export type StringExtensibleNamedUnion = string | "b" | "c";

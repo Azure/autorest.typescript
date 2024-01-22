@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import {
-  CreateTranslationRequest,
   CreateTranslationResponse,
+  CreateTranslationRequest,
 } from "../../../models/models.js";
 import {
   AudioTranslationsCreate200Response,
