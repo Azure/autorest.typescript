@@ -50,7 +50,7 @@ export function _int32ValuePutSend(
 ): StreamableMethod<Int32ValuePut204Response> {
   return context
     .path("/type/dictionary/int32")
-    .put({ ...operationOptionsToRequestParameters(options) });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _int32ValuePutDeserialize(

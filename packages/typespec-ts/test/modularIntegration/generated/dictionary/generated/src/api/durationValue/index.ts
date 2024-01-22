@@ -50,7 +50,7 @@ export function _durationValuePutSend(
 ): StreamableMethod<DurationValuePut204Response> {
   return context
     .path("/type/dictionary/duration")
-    .put({ ...operationOptionsToRequestParameters(options) });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _durationValuePutDeserialize(

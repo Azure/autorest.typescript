@@ -50,7 +50,7 @@ export function _float32ValuePutSend(
 ): StreamableMethod<Float32ValuePut204Response> {
   return context
     .path("/type/dictionary/float32")
-    .put({ ...operationOptionsToRequestParameters(options) });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _float32ValuePutDeserialize(

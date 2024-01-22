@@ -51,7 +51,7 @@ export function _modelValuePutSend(
 ): StreamableMethod<ModelValuePut204Response> {
   return context
     .path("/type/dictionary/model")
-    .put({ ...operationOptionsToRequestParameters(options) });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _modelValuePutDeserialize(

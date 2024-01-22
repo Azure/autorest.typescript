@@ -50,7 +50,7 @@ export function _datetimeValuePutSend(
 ): StreamableMethod<DatetimeValuePut204Response> {
   return context
     .path("/type/dictionary/datetime")
-    .put({ ...operationOptionsToRequestParameters(options) });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _datetimeValuePutDeserialize(

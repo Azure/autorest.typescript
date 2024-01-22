@@ -50,7 +50,7 @@ export function _booleanValuePutSend(
 ): StreamableMethod<BooleanValuePut204Response> {
   return context
     .path("/type/dictionary/boolean")
-    .put({ ...operationOptionsToRequestParameters(options) });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _booleanValuePutDeserialize(

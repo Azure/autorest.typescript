@@ -50,7 +50,7 @@ export function _unknownValuePutSend(
 ): StreamableMethod<UnknownValuePut204Response> {
   return context
     .path("/type/dictionary/unknown")
-    .put({ ...operationOptionsToRequestParameters(options) });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _unknownValuePutDeserialize(

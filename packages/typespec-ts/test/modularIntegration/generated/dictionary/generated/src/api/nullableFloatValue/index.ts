@@ -50,7 +50,7 @@ export function _nullableFloatValuePutSend(
 ): StreamableMethod<NullableFloatValuePut204Response> {
   return context
     .path("/type/dictionary/nullable-float")
-    .put({ ...operationOptionsToRequestParameters(options) });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _nullableFloatValuePutDeserialize(

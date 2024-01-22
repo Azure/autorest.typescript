@@ -51,7 +51,7 @@ export function _recursiveModelValuePutSend(
 ): StreamableMethod<RecursiveModelValuePut204Response> {
   return context
     .path("/type/dictionary/model/recursive")
-    .put({ ...operationOptionsToRequestParameters(options) });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _recursiveModelValuePutDeserialize(

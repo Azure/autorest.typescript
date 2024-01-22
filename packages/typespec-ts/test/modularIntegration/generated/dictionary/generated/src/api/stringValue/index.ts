@@ -50,7 +50,7 @@ export function _stringValuePutSend(
 ): StreamableMethod<StringValuePut204Response> {
   return context
     .path("/type/dictionary/string")
-    .put({ ...operationOptionsToRequestParameters(options) });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _stringValuePutDeserialize(
