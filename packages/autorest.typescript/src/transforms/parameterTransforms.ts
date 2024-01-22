@@ -150,9 +150,7 @@ const extractOperationParameters = (codeModel: CodeModel) =>
           const operationParams: OperationParameterDetails[] = (
             operation.parameters || []
           ).map((p) => {
-            if (p.required) {
-              p.language.default.isTopLevelParameter = true;
-            }
+            p.language.default.isTopLevelParameter = true;
             return {
               parameter: p,
               operationName
