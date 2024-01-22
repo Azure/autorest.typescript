@@ -5,7 +5,8 @@ import {
   getOperationFunction,
   getSendPrivateFunction,
   getDeserializePrivateFunction,
-  getOperationOptionsName
+  getOperationOptionsName,
+  isLROOperation
 } from "./helpers/operationHelpers.js";
 import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
@@ -230,17 +231,25 @@ export function buildOperationOptions(
   const options = [...optionalParameters];
 
   const name = getOperationOptionsName(operation, true);
+  const lroOptions = {
+    name: "updateIntervalInMs",
+    type: "number",
+    hasQuestionToken: true,
+    docs: ["Delay to wait until next poll, in milliseconds."]
+  };
 
   sourceFile.addInterface({
     name,
     isExported: true,
     extends: ["OperationOptions"],
-    properties: options.map((p) => {
-      return {
-        docs: getDocsFromDescription(p.description),
-        hasQuestionToken: true,
-        ...buildType(p.clientName, p.type, p.format)
-      };
-    })
+    properties: (isLROOperation(operation) ? [lroOptions] : []).concat(
+      options.map((p) => {
+        return {
+          docs: getDocsFromDescription(p.description),
+          hasQuestionToken: true,
+          ...buildType(p.clientName, p.type, p.format)
+        };
+      })
+    )
   });
 }
