@@ -30,7 +30,16 @@ function getCustomRequestHeaderNameForClient(
   client: SdkClient
 ) {
   const program = dpgContext.program;
-  const operationGroups = listOperationGroups(dpgContext, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const headerName = getCustomRequestHeaderNameForOperation(
+      ignoreDiagnostics(getHttpOperation(program, clientOp))
+    );
+    if (headerName !== undefined) {
+      return headerName;
+    }
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
@@ -43,15 +52,6 @@ function getCustomRequestHeaderNameForClient(
       if (headerName !== undefined) {
         return headerName;
       }
-    }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const headerName = getCustomRequestHeaderNameForOperation(
-      ignoreDiagnostics(getHttpOperation(program, clientOp))
-    );
-    if (headerName !== undefined) {
-      return headerName;
     }
   }
   return undefined;

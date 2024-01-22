@@ -3,8 +3,8 @@
 
 import { OpenAIContext } from "../../../api/OpenAIContext.js";
 import {
-  CreateTranslationRequest,
   CreateTranslationResponse,
+  CreateTranslationRequest,
 } from "../../../models/models.js";
 import { create } from "../../../api/audio/translations/index.js";
 import { AudioTranslationsCreateOptions } from "../../../models/options.js";

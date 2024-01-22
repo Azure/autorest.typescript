@@ -5,7 +5,7 @@ import "@azure-tools/typespec-azure-core";
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
-namespace Face.Sessions;
+namespace Face;
 
 @doc("The ApiVersion path parameter.")
 model ApiVersionPathParameter {

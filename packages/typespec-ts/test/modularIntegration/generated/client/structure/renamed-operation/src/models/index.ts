@@ -3,10 +3,10 @@
 
 export { ClientType } from "./models.js";
 export {
-  GroupRenamedTwoOptions,
-  GroupRenamedFourOptions,
-  GroupRenamedSixOptions,
   RenamedOneOptions,
   RenamedThreeOptions,
   RenamedFiveOptions,
+  GroupRenamedTwoOptions,
+  GroupRenamedFourOptions,
+  GroupRenamedSixOptions,
 } from "./options.js";
