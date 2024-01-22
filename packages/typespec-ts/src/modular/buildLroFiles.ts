@@ -1,3 +1,4 @@
+import { getOperationName } from "./helpers/namingHelpers.js";
 import { isLROOperation } from "./helpers/operationHelpers.js";
 import { ModularCodeModel, Client } from "./modularCodeModel.js";
 import path from "path";
@@ -13,6 +14,16 @@ export function buildRestorePollerHelper(
   if (lroOperstions.length === 0) {
     return;
   }
+  const deserializeMap: string[] = [],
+    deserializedFunctions: string[] = [];
+  lroOperstions.forEach((op) => {
+    const { name } = getOperationName(op);
+    deserializedFunctions.push(`_${name}Deserialize`);
+    deserializeMap.push(
+      `"${op.method.toUpperCase()} ${op.url}": _${name}Deserialize`
+    );
+  });
+  // const { name, fixme = [] } = getOperationName(operation);
   // TODO: add real deserialize function
   // TODO: add real client type
   // TODO: add pollingHelper import
@@ -26,9 +37,7 @@ export function buildRestorePollerHelper(
       import { getLongRunningPoller } from "./api/pollingHelpers.js";
       import { StandardClient } from "./StandardClient.js";
       import {
-        _createOrReplaceDeserialize,
-        _deleteOperationDeserialize,
-        _exportOperationDeserialize
+        ${deserializedFunctions.join(",\n")}
       } from "./api/operations.js";
       
       export interface RestorePollerOptions<
@@ -42,9 +51,8 @@ export function buildRestorePollerHelper(
       }
       
       const deserializeMap: Record<string, Function> = {
-        "POST /azure/core/lro/standard/users/{name}": _exportOperationDeserialize,
-        "PUT /azure/core/lro/standard/users/{name}": _createOrReplaceDeserialize,
-        "DELETE /azure/core/lro/standard/users/{name}": _deleteOperationDeserialize
+        ${deserializeMap.join(",\n")}
+      };
       };
       
       /**
