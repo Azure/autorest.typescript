@@ -6,7 +6,7 @@ import {
   getSendPrivateFunction,
   getDeserializePrivateFunction,
   getOperationOptionsName,
-  getRequestOptionsSerializePrivateFunction as getParameterSerializePrivateFunction,
+  getRequestOptionsSerializePrivateFunctions,
   getResponseDeserializePrivateFunctions
 } from "./helpers/operationHelpers.js";
 import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
@@ -96,14 +96,6 @@ export function buildOperationFiles(
     operationGroup.operations.forEach((o) => {
       const operationDeclaration = getOperationFunction(o, clientType);
       const sendOperationDeclaration = getSendPrivateFunction(o, clientType);
-      const parameterSerializeDeclaration =
-        getParameterSerializePrivateFunction(
-          dpgContext,
-          o,
-          clientType,
-          importSet,
-          codeModel.runtimeImports
-        );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         o,
         isRLCMultiEndpoint(dpgContext),
@@ -114,19 +106,28 @@ export function buildOperationFiles(
         [
           operationDeclaration,
           sendOperationDeclaration,
-          parameterSerializeDeclaration,
           deserializeOperationDeclaration
         ].filter(isDefined)
       );
     });
 
+    const parameterSerializeDeclarations =
+      getRequestOptionsSerializePrivateFunctions(
+        dpgContext,
+        operationGroup,
+        importSet,
+        codeModel.runtimeImports
+      );
     const responseDeserializeDeclarations =
       getResponseDeserializePrivateFunctions(
         operationGroup,
         importSet,
         codeModel.runtimeImports
       );
-    operationGroupFile.addFunctions(responseDeserializeDeclarations);
+    operationGroupFile.addFunctions([
+      ...parameterSerializeDeclarations,
+      ...responseDeserializeDeclarations
+    ]);
 
     operationGroupFile.addImportDeclarations([
       {

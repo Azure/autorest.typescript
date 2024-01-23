@@ -66,9 +66,9 @@ export function getSendPrivateFunction(
 
   const parameters = getOperationSignatureParameters(operation, clientType);
   const typeDerivedParameters = parameters.slice(1, -1);
-  const typeDerivedParamNames = typeDerivedParameters.map(
-    (param) => param.name
-  );
+  const typeDerivedParamNames = typeDerivedParameters.map(({ name }) => name);
+  typeDerivedParameters.forEach((param) => (param.name = `_${param.name}`));
+
   const hasRequestOptions = operation.rlcParameter.parameters.some(
     (parameter) =>
       parameter.body?.body?.length ||
@@ -80,7 +80,6 @@ export function getSendPrivateFunction(
     hasRequestOptions ? "requestOptions" : undefined,
     ...typeDerivedParamNames
   ].filter(isDefined);
-  typeDerivedParameters.forEach((param) => (param.name = `_${param.name}`));
 
   const returnType = `StreamableMethod<${getRLCResponseType(
     operation.rlcResponse
@@ -88,19 +87,40 @@ export function getSendPrivateFunction(
 
   const operationPath = operation.url;
   const operationMethod = operation.method.toLowerCase();
-  const parameterType = getOperationOptionsName(operation, true);
+  //TODO: Implement overload operations
+  const contentType =
+    operation.parameters.find(isContentType)?.clientDefaultValue;
+  const index = operation.rlcParameter.parameters.findIndex(
+    (parameterMetadatas) => {
+      parameterMetadatas.parameters?.some(({ type, param }) => {
+        // TODO: validate that this actually checks the content type
+        return (
+          type === "header" &&
+          param.name === "contentType" &&
+          param.default === contentType
+        );
+      });
+    }
+  );
+  const suffix = index > 0 ? index : "";
   const serializeFunctionName =
-    "_" + normalizeName(`${parameterType}Serialize`, NameType.Method);
+    "_" +
+    normalizeName(
+      `${getOperationName(operation).name}OptionsSerialize${suffix}`,
+      NameType.Method
+    );
 
   const statements: string[] = [];
   const destructureLHS = serializerOutputProperties.length
     ? `const {${serializerOutputProperties.join(", ")}} =`
     : undefined;
-  const serializeFunctionCall = typeDerivedParameters.length
-    ? `${serializeFunctionName}(${typeDerivedParameters
-        .map(({ name }) => name)
-        .join(", ")})`
-    : undefined;
+  const serializeArguments = [
+    ...typeDerivedParamNames.map((name) => `${name}: _${name}`),
+    "options"
+  ];
+  const serializeFunctionCall = `${serializeFunctionName}({
+        ${serializeArguments.join(", ")}
+        })`;
   const destructuringAssignment = [
     destructureLHS,
     serializeFunctionCall
@@ -108,27 +128,55 @@ export function getSendPrivateFunction(
   if (destructuringAssignment.length) {
     statements.push(...destructuringAssignment, ";\n");
   }
+
+  statements.push(
+    `const requestParameters = operationOptionsToRequestParameters(options) as ${
+      getOperationName(operation, { casing: "pascal" }).name
+    }Parameters;`
+  );
+
   const pathParameters = [
     `"${operationPath}"`,
     ...getPathParameters(operation)
   ].join(", ");
+  const hasHeaderParameter = operation.rlcParameter.parameters.some(
+    ({ parameters }) =>
+      parameters?.some(
+        ({ type, param }) => type === "header" && param.name !== "contentType"
+      )
+  );
+  const hasQueryParameter = operation.rlcParameter.parameters.some(
+    ({ parameters }) => parameters?.some(({ type }) => type === "query")
+  );
+  const hasPathParameter = operation.rlcParameter.parameters.some(
+    ({ parameters }) => parameters?.some(({ type }) => type === "path")
+  );
 
   const requestOptionProperties = [
-    "...operationOptionsToRequestParameters(options)",
-    hasRequestOptions ? "...requestOptions" : undefined
+    "...requestParameters",
+    `...requestOptions`,
+    hasHeaderParameter
+      ? "headers: { ...requestParameters.headers, ...requestOptions.headers }"
+      : undefined,
+    hasQueryParameter
+      ? "queryParameters: { ...requestParameters.queryParameters, ...requestOptions.queryParameters }"
+      : undefined,
+    hasPathParameter
+      ? "pathParameters: { ...requestParameters.pathParameters, ...requestOptions.pathParameters }"
+      : undefined
   ].filter(isDefined);
-  const requestOptions = [
-    `{
+  const requestOptions = `{
       ${requestOptionProperties.join(",\n")}
-    }`
-  ].filter(isDefined);
+    }`;
   const responseTypeCast = operation.isOverload
     ? `as ${returnType}`
     : undefined;
   const requestCall = [
     `context
     .path(${pathParameters})
-    .${operationMethod}(${requestOptions.join(" ")})`,
+    .${operationMethod}(${
+      hasRequestOptions ? requestOptions : "requestParameters"
+    })`,
     responseTypeCast
   ].filter(isDefined);
   const returnStatement = ["return", requestCall.join(" ")];
@@ -146,105 +194,156 @@ export function getSendPrivateFunction(
   return functionStatement;
 }
 
-export function getRequestOptionsSerializePrivateFunction(
+export function getRequestOptionsSerializePrivateFunctions(
   dpgContext: SdkContext,
-  operation: Operation,
-  clientType: string,
+  operationGroup: OperationGroup,
   importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
-): OptionalKind<FunctionDeclarationStructure> {
-  const parameterType = getOperationOptionsName(operation, true);
-  const parameters = getOperationSignatureParameters(
-    operation,
-    clientType
-  ).slice(1, -1);
+): OptionalKind<FunctionDeclarationStructure>[] {
+  return operationGroup.operations
+    .flatMap((operation) => {
+      const operationParameters = operation.parameters
+        .filter(
+          (parameter) =>
+            parameter.implementation === "Method" &&
+            parameter.type.type !== "constant" &&
+            parameter.clientDefaultValue === undefined &&
+            !parameter.optional
+        )
+        .map((parameter) =>
+          buildType(parameter.clientName, parameter.type, parameter.format)
+        );
+      const bodyParameter = operation.bodyParameter
+        ? buildType(
+            operation.bodyParameter.clientName,
+            operation.bodyParameter.type,
+            operation.bodyParameter.type.format
+          )
+        : undefined;
+      const parameterDeclarations = [
+        ...operationParameters,
+        bodyParameter,
+        { name: "options", type: getOperationOptionsName(operation, true) }
+      ].filter(isDefined);
 
-  const requestOptionsTypes = getRequestOptionsTypes(
-    // TODO: Support operation overloads
-    operation.rlcParameter.parameters[0]!,
-    0,
-    operation.rlcParameter.operationGroup,
-    operation.rlcParameter.operationName
-  );
-  const returnTypeRequestOptionsDeclaration = requestOptionsTypes.length
-    ? `requestOptions: ${requestOptionsTypes.join(" & ")}`
-    : undefined;
-  const returnObjectTypeProperties = [
-    ...parameters
-      .filter((param) => param.name !== "body")
-      .map((param) => `${param.name}: ${param.type ?? "any"}`),
-    returnTypeRequestOptionsDeclaration
-  ].filter(isDefined);
-  const returnType = returnObjectTypeProperties.length
-    ? `{${returnObjectTypeProperties.join(",\n")}}`
-    : undefined;
+      const parameter = {
+        name: "parameters",
+        type: `{
+          ${parameterDeclarations
+            .map(({ name, type }) => `${name}: ${type}`)
+            .join(",\n")}
+        }`
+      };
+      const operationParameterPropertyDeclarations = operationParameters.map(
+        (param) => `${param.name}: ${param.type ?? "unknown"}`
+      );
+      const requestParameters = getRequestParameters(
+        dpgContext,
+        operation,
+        importSet,
+        runtimeImports
+      );
+      const requestOptionsProperty = requestParameters.length
+        ? `requestOptions: {${requestParameters.join(",\n")}}`
+        : undefined;
+      const nonRequestOptions = operation.parameters
+        .filter(
+          (parameter) =>
+            parameter.implementation === "Method" &&
+            parameter.type.type !== "constant" &&
+            parameter.clientDefaultValue === undefined &&
+            !parameter.optional
+        )
+        .map((parameter) => parameter.restApiName);
+      const returnObjectProperties = [
+        ...nonRequestOptions,
+        requestOptionsProperty
+      ].filter(isDefined);
+      const returnObject = returnObjectProperties.length
+        ? `{${returnObjectProperties.join(",\n")}}`
+        : undefined;
+      const destructureStatement = `const {${parameterDeclarations
+        .map((parameter) => parameter.name)
+        .join(", ")}} = ${parameter.name};`;
+      const returnStatement = returnObject
+        ? `return ${returnObject};`
+        : undefined;
+      const statements = [destructureStatement, returnStatement]
+        .filter(isDefined)
+        .join("\n");
 
-  const requestParameters = getRequestParameters(
-    dpgContext,
-    operation,
-    importSet,
-    runtimeImports
-  );
-  const requestOptionsProperty = requestParameters.length
-    ? `requestOptions: {${requestParameters.join(",\n")}}`
-    : undefined;
-  const returnObjectProperties = [
-    ...parameters
-      .filter((param) => param.name !== "body")
-      .map((param) => param.name),
-    requestOptionsProperty
-  ].filter(isDefined);
-  const returnObject = returnObjectProperties.length
-    ? `{${returnObjectProperties.join(",\n")}}`
-    : undefined;
-  const statements = ["return", returnObject, ";"].filter(isDefined).join(" ");
+      return operation.rlcParameter.parameters.map((parameterMetadatas, i) => {
+        const suffix = i || "";
+        const functionName =
+          "_" +
+          normalizeName(
+            `${getOperationName(operation).name}OptionsSerialize${suffix}`,
+            NameType.Method
+          );
 
-  const functionDeclaration: OptionalKind<FunctionDeclarationStructure> = {
-    isAsync: false,
-    isExported: true,
-    name: "_" + normalizeName(`${parameterType}Serialize`, NameType.Method),
-    parameters,
-    returnType,
-    statements
-  };
+        const requestOptionsTypes = getRequestOptionsTypes(
+          parameterMetadatas,
+          i,
+          operation.groupName,
+          operation.name
+        );
+        const returnTypeRequestOptionsDeclaration = requestOptionsTypes.length
+          ? `requestOptions: ${requestOptionsTypes.join(" & ")}`
+          : undefined;
+        const returnObjectTypeProperties = [
+          ...operationParameterPropertyDeclarations,
+          returnTypeRequestOptionsDeclaration
+        ].filter(isDefined);
+        const returnType = returnObjectTypeProperties.length
+          ? `{${returnObjectTypeProperties.join(",\n")}}`
+          : undefined;
 
-  return functionDeclaration;
+        const functionDeclaration: OptionalKind<FunctionDeclarationStructure> =
+          {
+            isAsync: false,
+            isExported: true,
+            name: functionName,
+            parameters: [parameter],
+            returnType,
+            statements
+          };
+        return functionDeclaration;
+      });
+    })
+    .filter(isDefined);
+}
 
-  function getRequestOptionsTypes(
-    { parameters, body }: ParameterMetadatas,
-    i: number,
-    operationGroup: string,
-    operationName: string
-  ): string[] {
-    const types: Array<string | undefined> = new Array(5).fill(undefined);
+function getRequestOptionsTypes(
+  { parameters, body }: ParameterMetadatas,
+  i: number,
+  operationGroup: string,
+  operationName: string
+): string[] {
+  const types: Array<string | undefined> = new Array(5).fill(undefined);
 
-    const bodyCondition = body?.body?.length;
-    types[0] = bodyCondition ? "BodyParam" : undefined;
+  const bodyCondition = body?.body?.length;
+  types[0] = bodyCondition ? "BodyParam" : undefined;
 
-    parameters?.forEach((parameter) => {
-      const queryCondition = parameter.type === "query";
-      const pathCondition = parameter.type === "path";
-      const headerCondition =
-        parameter.type === "header" && parameter.name !== "contentType";
-      const contentTypeCondition =
-        parameter.type === "header" && parameter.name === "contentType";
+  parameters?.forEach((parameter) => {
+    const queryCondition = parameter.type === "query";
+    const pathCondition = parameter.type === "path";
+    const headerCondition =
+      parameter.type === "header" && parameter.name !== "contentType";
+    const contentTypeCondition =
+      parameter.type === "header" && parameter.name === "contentType";
 
-      types[1] = queryCondition ? "QueryParam" : types[1];
-      types[2] = pathCondition ? "PathParam" : types[2];
-      types[3] = headerCondition ? "HeaderParam" : types[3];
-      types[4] = contentTypeCondition ? "MediaTypesParam" : types[4];
-    });
+    types[1] = queryCondition ? "QueryParam" : types[1];
+    types[2] = pathCondition ? "PathParam" : types[2];
+    types[3] = headerCondition ? "HeaderParam" : types[3];
+    types[4] = contentTypeCondition ? "MediaTypesParam" : types[4];
+  });
 
-    const parameterBaseName = getParameterBaseName(
-      operationGroup,
-      operationName
-    );
-    const nameSuffix = String(i ? i : "");
+  const parameterBaseName = getParameterBaseName(operationGroup, operationName);
+  const nameSuffix = String(i ? i : "");
 
-    return types
-      .filter(isDefined)
-      .map((paramType) => `${parameterBaseName}${paramType}${nameSuffix}`);
-  }
+  return types
+    .filter(isDefined)
+    .map((paramType) => `${parameterBaseName}${paramType}${nameSuffix}`);
 }
 
 export function getDeserializePrivateFunction(
@@ -288,11 +387,11 @@ export function getDeserializePrivateFunction(
   }
 
   const { name } = getOperationName(operation);
-  const { returnType, overloadStatements } = getOverloadMetadata(
+  const { returnType, responseUnionStatements } = getResponseUnionMetadata(
     operation.responses
   );
 
-  statements.push(...overloadStatements);
+  statements.push(...responseUnionStatements);
 
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
     isAsync: true,
@@ -309,7 +408,7 @@ export function getDeserializePrivateFunction(
   };
 }
 
-function getOverloadMetadata(responses: Response[]) {
+function getResponseUnionMetadata(responses: Response[]) {
   const expectedResponses = responses
     .map((response) => {
       return {
@@ -321,7 +420,7 @@ function getOverloadMetadata(responses: Response[]) {
     })
     .filter((response) => response.statusCodes.length);
 
-  const overloadMetadata = expectedResponses
+  const responseUnionMetadata = expectedResponses
     .map((response) => {
       const returnType = buildType(
         response.type.name,
@@ -334,45 +433,60 @@ function getOverloadMetadata(responses: Response[]) {
       const statusCodes = response.statusCodes.map(
         (statusCode) => `"${statusCode}"`
       );
-      const deserializeFunctionName = getDeserializeFunctionName(response.type);
+      const deserializeFunctionName = getSerializeFunctionName(
+        response.type,
+        "Deserialize"
+      );
 
       return { statusCodes, deserializeFunctionName, returnType };
     })
     .filter(isDefined);
 
-  const overloadStatements = getStatements(overloadMetadata);
+  const responseUnionStatements = getStatements(responseUnionMetadata);
 
-  const returnType = overloadMetadata.length
-    ? overloadMetadata.map(({ returnType }) => returnType).join(" | ")
+  const returnType = responseUnionMetadata.length
+    ? responseUnionMetadata.map(({ returnType }) => returnType).join(" | ")
     : "void";
-  return { returnType, overloadStatements };
+  return { returnType, responseUnionStatements };
+
   function getStatements(
-    overloadMetadata: {
+    responseUnionMetadata: {
       statusCodes: string[];
-      deserializeFunctionName: string;
+      deserializeFunctionName?: string;
     }[]
   ): string[] {
-    if (overloadMetadata.length === 1) {
-      const { deserializeFunctionName } = overloadMetadata[0]!;
-      return [`return ${deserializeFunctionName}(result);`];
-    }
+    return responseUnionMetadata.flatMap(
+      ({ statusCodes, deserializeFunctionName }) => {
+        const returnStatement = deserializeFunctionName
+          ? `return ${deserializeFunctionName}(result);`
+          : "return result.body;";
 
-    return overloadMetadata.flatMap(
-      ({ statusCodes, deserializeFunctionName }) => [
-        `if ([${statusCodes.join(", ")}].includes(result.status)){`,
-        `return ${deserializeFunctionName}(result);`,
-        `}`
-      ]
+        const statements =
+          responseUnionMetadata.length === 1
+            ? [returnStatement]
+            : [
+                `if ([${statusCodes.join(", ")}].includes(result.status)){`,
+                returnStatement,
+                `}`
+              ];
+        return statements;
+      }
     );
   }
 }
 
-function getDeserializeFunctionName(type: Type) {
-  const baseName = `${type.name}Deserialize`;
+function getSerializeFunctionName(
+  type: Type,
+  direction: "Serialize" | "Deserialize"
+) {
+  if (!type.name) {
+    return undefined;
+  }
+  const baseName = `${type.name}${direction}`;
   return `_${normalizeName(baseName, NameType.Method)}`;
 }
 
-type TypeMetadata = {
+type ResponseTypeMetadata = {
   type: Type;
   typeResponses: Array<{
     response: Response;
@@ -382,8 +496,10 @@ type TypeMetadata = {
   }>;
 };
 
-function getTypeMetadata(operationGroup: OperationGroup) {
-  const typeMap = new Map<string, TypeMetadata>();
+function getResponseTypeMetadata(
+  operationGroup: OperationGroup
+): ResponseTypeMetadata[] {
+  const typeMap = new Map<string, ResponseTypeMetadata>();
   operationGroup.operations.forEach((operation) => {
     operation.responses
       .map((response) => {
@@ -431,9 +547,9 @@ export function getResponseDeserializePrivateFunctions(
   importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
 ): Array<OptionalKind<FunctionDeclarationStructure>> {
-  const typeMetadata = getTypeMetadata(operationGroup);
-  return typeMetadata.map(({ type, typeResponses: responseData }) => {
-    const resultType = responseData
+  const responseTypeMetadata = getResponseTypeMetadata(operationGroup);
+  return responseTypeMetadata.map(({ type, typeResponses }) => {
+    const resultType = typeResponses
       .flatMap(({ rlcResponses, operationGroupName, operationName }) => {
         return rlcResponses.map((rlcResponseMetadata) => {
           return getRLCResponseType({
@@ -447,7 +563,7 @@ export function getResponseDeserializePrivateFunctions(
       .filter((type, i, arr) => type !== arr[i + 1]) // is unique
       .join(" | ");
 
-    const responsesAreBinaryPayload = responseData.map(
+    const responsesAreBinaryPayload = typeResponses.map(
       ({ response }) => response.isBinaryPayload
     );
     if (
@@ -464,7 +580,7 @@ export function getResponseDeserializePrivateFunctions(
     const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
       isAsync: false,
       isExported: true,
-      name: getDeserializeFunctionName(type),
+      name: getSerializeFunctionName(type, "Deserialize"),
       parameters: [
         {
           name: "result",
@@ -578,7 +694,7 @@ export function getOperationFunction(
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(operation, clientType);
-  const { returnType } = getOverloadMetadata(operation.responses);
+  const { returnType } = getResponseUnionMetadata(operation.responses);
   const { name, fixme = [] } = getOperationName(operation);
 
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
@@ -664,48 +780,43 @@ function getRequestParameters(
 
   const parameterPropertyDeclarations = [];
 
-  if (contentTypeParameter) {
-    parameterPropertyDeclarations.push(
-      `${getContentTypeValue(contentTypeParameter)},`
-    );
-  }
+  parameterPropertyDeclarations.push(
+    contentTypeParameter ? getContentTypeValue(contentTypeParameter) : undefined
+  );
 
-  if (parametersImplementation.header.length) {
-    parameterPropertyDeclarations.push(
-      `${parameterPropertyDeclarations}\nheaders: {${parametersImplementation.header
-        .map((i) =>
-          buildHeaderParameter(dpgContext.program, i.paramMap, i.param)
-        )
-        .join(",\n")}},`
-    );
-  }
+  parameterPropertyDeclarations.push(
+    parametersImplementation.header.length
+      ? `headers: {${parametersImplementation.header
+          .map((i) =>
+            buildHeaderParameter(dpgContext.program, i.paramMap, i.param)
+          )
+          .join(",\n")}}`
+      : undefined
+  );
 
-  if (parametersImplementation.query.length) {
-    parameterPropertyDeclarations.push(
-      `${parameterPropertyDeclarations}\nqueryParameters: {${parametersImplementation.query
-        .map((i) => i.paramMap)
-        .join(",\n")}}`
-    );
-  }
-  if (
-    operation.bodyParameter === undefined &&
-    parametersImplementation.body.length
-  ) {
-    parameterPropertyDeclarations.push(
-      `${parameterPropertyDeclarations}\nbody: {${parametersImplementation.body
-        .map((i) => i.paramMap)
-        .join(",\n")}}`
-    );
-  } else if (operation.bodyParameter !== undefined) {
-    parameterPropertyDeclarations.push(
-      `${parameterPropertyDeclarations}${buildBodyParameter(
-        operation.bodyParameter,
-        importSet,
-        runtimeImports
-      )}`
-    );
-  }
-  return parameterPropertyDeclarations;
+  parameterPropertyDeclarations.push(
+    parametersImplementation.query.length
+      ? `queryParameters: {${parametersImplementation.query
+          .map((i) => i.paramMap)
+          .join(",\n")}}`
+      : undefined
+  );
+
+  parameterPropertyDeclarations.push(
+    !operation.bodyParameter && parametersImplementation.body.length
+      ? `body: {${parametersImplementation.body
+          .map((i) => i.paramMap)
+          .join(",\n")}}`
+      : undefined
+  );
+
+  parameterPropertyDeclarations.push(
+    operation.bodyParameter
+      ? buildBodyParameter(operation.bodyParameter, importSet, runtimeImports)
+      : undefined
+  );
+
+  return parameterPropertyDeclarations.filter(isDefined);
 }
 
 // Specially handle the type for headers because we only allow string/number/boolean values
@@ -734,14 +845,10 @@ function buildHeaderParameter(
 }
 
 function buildBodyParameter(
-  bodyParameter: BodyParameter | undefined,
+  bodyParameter: BodyParameter,
   importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
 ) {
-  if (!bodyParameter) {
-    return "";
-  }
-
   if (bodyParameter.type.type === "model") {
     const bodyParts: string[] = getRequestModelMapping(
       bodyParameter.type,
@@ -751,7 +858,7 @@ function buildBodyParameter(
     );
 
     if (bodyParameter && bodyParts.length > 0) {
-      return `\nbody: {${bodyParts.join(",\n")}}`;
+      return `body: {${bodyParts.join(",\n")}}`;
     }
   }
 
@@ -763,11 +870,11 @@ function buildBodyParameter(
         importSet,
         runtimeImports
       );
-      return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { return {
+      return `body: (${bodyParameter.clientName} ?? []).map((p) => { return {
         ${bodyParts.join(", ")}
       };})`;
     }
-    return `\nbody: ${bodyParameter.clientName}`;
+    return `body: ${bodyParameter.clientName}`;
   }
 
   if (
@@ -791,10 +898,9 @@ function buildBodyParameter(
           bodyParameter.clientName
         }, "${getEncodingFormat(bodyParameter.type)}")`;
   } else if (bodyParameter.isBinaryPayload) {
-    return `\nbody: ${bodyParameter.clientName},`;
+    return `body: ${bodyParameter.clientName}`;
   }
-
-  return "";
+  return;
 }
 
 function getEncodingFormat(type: { format?: string }) {
@@ -888,11 +994,7 @@ function getContentTypeValue(param: Parameter | Property) {
     );
   }
 
-  if (defaultValue) {
-    return `contentType: options.${param.clientName} as any ?? "${defaultValue}"`;
-  } else {
-    return `contentType: options.${param.clientName}`;
-  }
+  return `contentType: "${defaultValue}"`;
 }
 
 type RequiredType = (Parameter | Property) & {
