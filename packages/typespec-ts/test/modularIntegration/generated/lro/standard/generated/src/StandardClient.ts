@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Next } from "@azure/core-lro";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { User, ExportedUser } from "./models/models.js";
 import {
@@ -16,7 +17,6 @@ import {
   StandardClientOptions,
   StandardContext,
 } from "./api/index.js";
-import { Next } from "@azure/core-lro";
 
 export { StandardClientOptions } from "./api/StandardContext.js";
 

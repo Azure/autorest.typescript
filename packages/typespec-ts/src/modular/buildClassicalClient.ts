@@ -85,6 +85,7 @@ export function buildClassicalClient(
       .join(",")})`
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline`);
+  importLroDependencies(clientFile);
   importCredential(codeModel.runtimeImports, clientFile);
   importPipeline(codeModel.runtimeImports, clientFile);
   importAllModels(clientFile, srcPath, subfolder);
@@ -92,6 +93,13 @@ export function buildClassicalClient(
   importAllApis(clientFile, srcPath, subfolder);
   clientFile.fixMissingImports();
   clientFile.fixUnusedIdentifiers();
+}
+
+function importLroDependencies(clientFile: SourceFile) {
+  clientFile.addImportDeclaration({
+    moduleSpecifier: `@azure/core-lro`,
+    namedImports: ["Next"]
+  });
 }
 
 function importAllApis(

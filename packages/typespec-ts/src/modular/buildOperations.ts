@@ -68,6 +68,15 @@ export function buildOperationFiles(
       operationGroup.namespaceHierarchies.length
     );
 
+    // We need to import the paging helpers and types explicitly because ts-morph may not be able to find correct ones.
+    importLroDependencies(
+      srcPath,
+      operationGroupFile,
+      codeModel.project,
+      subfolder,
+      operationGroup.namespaceHierarchies.length
+    );
+
     const namedImports: string[] = [];
     let clientType = "Client";
     if (isRLCMultiEndpoint(dpgContext)) {
@@ -215,6 +224,38 @@ export function importPagingDependencies(
       importLayer === 0 ? "./" : "../".repeat(importLayer)
     }pagingHelpers.js`,
     namedImports: exportedPaingHelpers
+  });
+}
+
+export function importLroDependencies(
+  srcPath: string,
+  sourceFile: SourceFile,
+  project: Project,
+  subfolder: string = "",
+  importLayer: number = 0
+) {
+  const pollingHelper = project.getSourceFile(
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}api/pollingHelpers.ts`
+  );
+
+  if (!pollingHelper) {
+    return;
+  }
+
+  const exportedPollingHelpers = [
+    ...pollingHelper.getExportedDeclarations().keys()
+  ];
+
+  sourceFile.addImportDeclaration({
+    moduleSpecifier: `${
+      importLayer === 0 ? "./" : "../".repeat(importLayer)
+    }pagingHelpers.js`,
+    namedImports: exportedPollingHelpers
+  });
+
+  sourceFile.addImportDeclaration({
+    moduleSpecifier: `@azure/core-lro`,
+    namedImports: ["Next"]
   });
 }
 
