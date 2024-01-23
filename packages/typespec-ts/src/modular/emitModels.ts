@@ -101,7 +101,7 @@ export function buildModelInterface(
     docs: getDocsFromDescription(model.description),
     extends: [] as string[],
     properties: (modelProperties ?? []).map((p) => {
-      const propertyMetadata = getType(p.type, p.format);
+      const propertyMetadata = getType(p.type, { format: p.format });
       let propertyTypeName = propertyMetadata.name;
       if (isAzureCoreErrorSdkType(p.type)) {
         propertyTypeName = isAzureCoreErrorSdkType(p.type)
@@ -159,7 +159,9 @@ export function buildModels(
       const modelInterface = buildModelInterface(model, { coreClientTypes });
       model.type === "model"
         ? model.parents?.forEach((p) =>
-            modelInterface.extends.push(p.alias ?? getType(p, p.format).name)
+            modelInterface.extends.push(
+              p.alias ?? getType(p, { format: p.format }).name
+            )
           )
         : undefined;
       modelsFile.addInterface(modelInterface);

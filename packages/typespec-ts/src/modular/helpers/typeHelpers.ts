@@ -33,11 +33,33 @@ const simpleTypeMap: Record<string, TypeMetadata> = {
   unknown: { name: "unknown" }
 };
 
+// Mapping of simple types to their TypeScript equivalents.
+const restSimpleTypeMap: Record<string, TypeMetadata> = {
+  Key: {
+    name: "KeyCredential",
+    originModule: "@azure/core-auth",
+    isRelative: false
+  },
+  OAuth2: {
+    name: "TokenCredential",
+    originModule: "@azure/core-auth",
+    isRelative: false
+  },
+  boolean: { name: "boolean" },
+  datetime: { name: "string" },
+  float: { name: "number" },
+  integer: { name: "number" },
+  "byte-array": { name: "string" },
+  string: { name: "string" },
+  any: { name: "Record<string, any>" },
+  unknown: { name: "unknown" }
+};
+
 function handleAnomymousModelName(type: Type) {
   let retVal = `{`;
   for (const prop of type.properties ?? []) {
     const propName = prop.clientName ?? prop.restApiName ?? "";
-    const propTypeName = getType(prop.type, prop.type.format).name;
+    const propTypeName = getType(prop.type, { format: prop.type.format }).name;
     if (!propName || !propTypeName) {
       continue;
     }
@@ -67,9 +89,14 @@ function handleNullableTypeName(type: {
 /**
  * Maps a given Type to its TypeScript representation metadata.
  */
-export function getType(type: Type, format?: string): TypeMetadata {
+export function getType(
+  type: Type,
+  options?: { format?: string; forRest?: boolean }
+): TypeMetadata {
   // Handle simple type conversions
-  const simpleType = simpleTypeMap[type.type];
+  const simpleType = options?.forRest
+    ? restSimpleTypeMap[type.type]
+    : simpleTypeMap[type.type];
   if (simpleType) {
     const typeMetadata: TypeMetadata = { ...simpleType };
     if (type.nullable) {
@@ -87,19 +114,19 @@ export function getType(type: Type, format?: string): TypeMetadata {
       return handleEnumType(type);
 
     case "list":
-      return handleListType(type);
+      return handleListType(type, options);
 
     case "model":
       return handleModelType(type);
 
     case "duration":
-      return handleDurationType(type, format);
+      return handleDurationType(type, options?.format);
 
     case "combined":
       return handleCombinedType(type);
 
     case "dict":
-      return handleDictType(type);
+      return handleDictType(type, options);
 
     default:
       throw new Error(`Unsupported type ${type.type}`);
@@ -146,15 +173,18 @@ function handleEnumType(type: Type): TypeMetadata {
 /**
  * Handles the conversion of list types to TypeScript representation metadata.
  */
-function handleListType(type: Type): TypeMetadata {
+function handleListType(
+  type: Type,
+  option?: { forRest?: boolean; format?: string }
+): TypeMetadata {
   if (!type.elementType) {
     throw new Error("Unable to process Array with no elementType");
   }
 
-  const elementTypeMetadata = getType(
-    type.elementType,
-    type.elementType.format
-  );
+  const elementTypeMetadata = getType(type.elementType, {
+    ...option,
+    format: type.elementType.format
+  });
 
   const name = handleNullableTypeName({
     name: `${elementTypeMetadata.name}[]`,
@@ -210,7 +240,7 @@ function handleCombinedType(type: Type): TypeMetadata {
     type.name ??
     type.types
       .map((t) => {
-        const sdkType = getType(t, t.format).name;
+        const sdkType = getType(t, { format: t.format }).name;
         return `${sdkType}`;
       })
       .join(" | ");
@@ -220,12 +250,18 @@ function handleCombinedType(type: Type): TypeMetadata {
 /**
  * Handles the conversion of dict types to TypeScript representation metadata.
  */
-function handleDictType(type: Type): TypeMetadata {
+export function handleDictType(
+  type: Type,
+  option?: { format?: string; forRest?: boolean }
+): TypeMetadata {
   if (!type.elementType) {
     throw new Error("Unable to process dict without elemetType info");
   }
 
-  const elementType = getType(type.elementType, type.elementType.format);
+  const elementType = getType(type.elementType, {
+    ...option,
+    format: type.elementType.format
+  });
   const elementName = elementType.name;
   return {
     name: `Record<string, ${elementName}>`
@@ -240,7 +276,7 @@ export function buildType(clientName?: string, type?: Type, format?: string) {
     throw new Error("Type should be defined");
   }
 
-  const typeMetadata = getType(type, format);
+  const typeMetadata = getType(type, { format });
 
   return { name: clientName ?? "", type: typeMetadata.name };
 }
