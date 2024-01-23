@@ -196,14 +196,6 @@ export async function $onEmit(context: EmitContext) {
           hasClientUnexpectedHelper,
           isMultiClients
         );
-        // build lro files
-        buildGetPollerHelper(
-          modularCodeModel,
-          subClient,
-          hasClientUnexpectedHelper,
-          isMultiClients
-        );
-        buildRestorePollerHelper(modularCodeModel, subClient);
         // build operation files
         buildOperationFiles(
           dpgContext,
@@ -212,6 +204,15 @@ export async function $onEmit(context: EmitContext) {
           hasClientUnexpectedHelper
         );
         buildClientContext(dpgContext, modularCodeModel, subClient);
+
+        // build lro files
+        buildGetPollerHelper(
+          modularCodeModel,
+          subClient,
+          hasClientUnexpectedHelper,
+          isMultiClients
+        );
+        buildRestorePollerHelper(modularCodeModel, subClient);
         buildSubpathIndexFile(modularCodeModel, subClient, "models");
         if (dpgContext.rlcOptions?.hierarchyClient) {
           buildSubpathIndexFile(modularCodeModel, subClient, "api");

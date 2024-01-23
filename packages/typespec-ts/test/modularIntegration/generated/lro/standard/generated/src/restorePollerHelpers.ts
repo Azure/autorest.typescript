@@ -6,9 +6,9 @@ import {
   OperationOptions,
 } from "@azure-rest/core-client";
 import { Next } from "@azure/core-lro";
-import { StandardContext } from "./rest/clientDefinitions.js";
-import { getLongRunningPoller } from "./api/pollingHelpers.js";
+import { StandardContext } from "./api/StandardContext.js";
 import { StandardClient } from "./StandardClient.js";
+import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import {
   _createOrReplaceDeserialize,
   _deleteOperationDeserialize,

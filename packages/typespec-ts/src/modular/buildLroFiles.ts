@@ -1,7 +1,8 @@
-import { getOperationName } from "./helpers/namingHelpers.js";
+import { SourceFile } from "ts-morph";
+import { getClientName, getOperationName } from "./helpers/namingHelpers.js";
 import { isLROOperation } from "./helpers/operationHelpers.js";
 import { ModularCodeModel, Client } from "./modularCodeModel.js";
-import path from "path";
+import path, { join } from "path";
 
 // Generate `restorePollerHelper.ts` file
 export function buildRestorePollerHelper(
@@ -23,23 +24,13 @@ export function buildRestorePollerHelper(
       `"${op.method.toUpperCase()} ${op.url}": _${name}Deserialize`
     );
   });
-  // const { name, fixme = [] } = getOperationName(operation);
-  // TODO: add real deserialize function
-  // TODO: add real client type
-  // TODO: add pollingHelper import
   const restorePollerHelperContent = `
       import {
         PathUncheckedResponse,
         OperationOptions
       } from "@azure-rest/core-client";
       import { Next } from "@azure/core-lro";
-      import { StandardContext } from "./rest/clientDefinitions.js";
-      import { getLongRunningPoller } from "./api/pollingHelpers.js";
-      import { StandardClient } from "./StandardClient.js";
-      import {
-        ${deserializedFunctions.join(",\n")}
-      } from "./api/operations.js";
-      
+
       export interface RestorePollerOptions<
         TResult,
         TResponse extends PathUncheckedResponse = PathUncheckedResponse
@@ -183,13 +174,91 @@ export function buildRestorePollerHelper(
       subfolder !== "" ? subfolder + "/" : ""
     }restorePollerHelpers.ts`
   );
-  const fileContent = codeModel.project.createSourceFile(filePath, undefined, {
-    overwrite: true
-  });
-  fileContent.addStatements(restorePollerHelperContent);
+  const restorePollerFile = codeModel.project.createSourceFile(
+    filePath,
+    undefined,
+    {
+      overwrite: true
+    }
+  );
+  restorePollerFile.addStatements(restorePollerHelperContent);
+  importClientContext(client, restorePollerFile);
+  importGetPollerHelper(restorePollerFile);
+  importDeserializeHelpers(codeModel, client, restorePollerFile);
+  restorePollerFile.fixMissingImports();
+  restorePollerFile.fixUnusedIdentifiers();
 }
 
-// Generate `api/pollingHelper.ts` file
+function importClientContext(client: Client, sourceFile: SourceFile) {
+  const modularClientName = getClientName(client);
+  const classicalClientname = `${getClientName(client)}Client`;
+  sourceFile.addImportDeclaration({
+    namedImports: [`${modularClientName}Context`],
+    moduleSpecifier: `./api/${modularClientName}Context.js`
+  });
+
+  sourceFile.addImportDeclaration({
+    namedImports: [`${classicalClientname}`],
+    moduleSpecifier: `./${classicalClientname}.js`
+  });
+}
+
+function importGetPollerHelper(sourceFile: SourceFile) {
+  sourceFile.addImportDeclaration({
+    namedImports: [`getLongRunningPoller`],
+    moduleSpecifier: `./api/pollingHelpers.js`
+  });
+}
+
+function importDeserializeHelpers(
+  codeModel: ModularCodeModel,
+  client: Client,
+  sourceFile: SourceFile
+) {
+  const srcPath = codeModel.modularOptions.sourceRoot;
+  const apiFilePattern = join(srcPath, client.subfolder ?? "", "api");
+  const operationFiles = codeModel.project
+    .getSourceFiles()
+    .filter((file) => {
+      return file
+        .getFilePath()
+        .replace(/\\/g, "/")
+        .startsWith(apiFilePattern.replace(/\\/g, "/"));
+    })
+    .filter((file) => {
+      return (
+        file.getFilePath().endsWith("operations.ts") ||
+        file.getFilePath().endsWith("index.ts")
+      );
+    });
+  for (const file of operationFiles) {
+    let deserializedFunctions: string[] = [
+      ...file.getExportedDeclarations().entries()
+    ]
+      .filter((exDeclaration) => {
+        const [name, declarations] = exDeclaration;
+        return (
+          name.startsWith("_") &&
+          declarations.length > 0 &&
+          name.endsWith("Deserialize")
+        );
+      })
+      .map((exDeclaration) => {
+        return exDeclaration[0];
+      });
+    const specifier = file
+      .getFilePath()
+      .split("api")[1]!
+      .replace(/\\/g, "/")
+      .replace(".ts", "");
+    sourceFile.addImportDeclaration({
+      moduleSpecifier: `./api${specifier}.js`,
+      namedImports: deserializedFunctions
+    });
+  }
+}
+
+// Generate `api/pollingHelpers.ts` file
 export function buildGetPollerHelper(
   codeModel: ModularCodeModel,
   client: Client,

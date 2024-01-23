@@ -34,7 +34,7 @@ export function buildSubpathIndexFile(
       continue;
     }
     // Skip to export these files because they are used internally.
-    if (skipFiles.some(file.getFilePath().endsWith)) {
+    if (skipFiles.some((skipFile) => file.getFilePath().endsWith(skipFile))) {
       continue;
     }
     if (file.getFilePath() === indexFile.getFilePath()) {
