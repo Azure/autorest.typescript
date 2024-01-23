@@ -6,6 +6,7 @@ import {
   OperationOptions,
 } from "@azure-rest/core-client";
 import { Next } from "@azure/core-lro";
+import { AbortSignalLike } from "@azure/abort-controller";
 import { StandardContext } from "./api/StandardContext.js";
 import { StandardClient } from "./StandardClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
@@ -21,6 +22,10 @@ export interface RestorePollerOptions<
 > extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
+  /**
+   * The signal which can be used to abort requests.
+   */
+  abortSignal?: AbortSignalLike;
   /** Deserialization function for raw response body */
   processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
 }
@@ -69,6 +74,7 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
     deserializeHelper as (result: TResponse) => PromiseLike<TResult>,
     {
       updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
       resourceLocationConfig,
       restoreFrom: serializedState,
       initialUri: initialUri,

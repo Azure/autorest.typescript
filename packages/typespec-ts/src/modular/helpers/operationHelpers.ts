@@ -335,6 +335,7 @@ function getLroOnlyOperatonFunction(operation: Operation, clientType: string) {
   statements.push(`
   return getLongRunningPoller(context, _${name}Deserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
     getInitialResponse: () => _${name}Send(${parameters
       .map((p) => p.name)
       .join(", ")})

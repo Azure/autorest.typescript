@@ -74,6 +74,7 @@ export function createOrReplace(
 ): Next.PollerLike<Next.OperationState<User>, User> {
   return getLongRunningPoller(context, _createOrReplaceDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
     getInitialResponse: () =>
       _createOrReplaceSend(context, name, resource, options),
   }) as Next.PollerLike<Next.OperationState<User>, User>;
@@ -114,6 +115,7 @@ export function deleteOperation(
 ): Next.PollerLike<Next.OperationState<void>, void> {
   return getLongRunningPoller(context, _deleteOperationDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
     getInitialResponse: () => _deleteOperationSend(context, name, options),
   }) as Next.PollerLike<Next.OperationState<void>, void>;
 }
@@ -161,6 +163,7 @@ export function exportOperation(
 ): Next.PollerLike<Next.OperationState<ExportedUser>, ExportedUser> {
   return getLongRunningPoller(context, _exportOperationDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
     getInitialResponse: () =>
       _exportOperationSend(context, name, format, options),
   }) as Next.PollerLike<Next.OperationState<ExportedUser>, ExportedUser>;

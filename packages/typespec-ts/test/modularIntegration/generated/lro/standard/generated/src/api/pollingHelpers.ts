@@ -7,11 +7,16 @@ import {
   PathUncheckedResponse,
   createRestError,
 } from "@azure-rest/core-client";
+import { AbortSignalLike } from "@azure/abort-controller";
 import { isUnexpected } from "../rest/index.js";
 
 export interface GetLongRunningPollerOptions<TResponse> {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
+  /**
+   * The signal which can be used to abort requests.
+   */
+  abortSignal?: AbortSignalLike;
   /**
    * The potential location of the result of the LRO if specified by the LRO extension in the swagger.
    */
@@ -53,8 +58,15 @@ export function getLongRunningPoller<
       initialResponse = await getInitialResponse();
       return getLroResponse(initialResponse);
     },
-    sendPollRequest: async (path: string) => {
-      const response = await client.pathUnchecked(path).get();
+    sendPollRequest: async (
+      path: string,
+      pollOptions?: {
+        abortSignal?: AbortSignalLike;
+      },
+    ) => {
+      const response = await client
+        .pathUnchecked(path)
+        .get({ abortSignal: options.abortSignal ?? pollOptions?.abortSignal });
       if (options.initialUri || initialResponse) {
         response.headers["x-ms-original-url"] =
           options.initialUri ?? initialResponse!.request.url;
