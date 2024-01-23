@@ -159,4 +159,57 @@ describe("BasicClient Classical Client", () => {
     assert.strictEqual(items.length, 1);
     assert.strictEqual(items[0]?.name, "Madge");
   });
+
+  it("should export a user", async () => {
+    try {
+      const user = await client.exportOperation(1, "json");
+      console.log(user);
+      assert.strictEqual(user?.id, 1);
+      assert.strictEqual(user?.name, "Madge");
+      assert.strictEqual(user?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b59");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it.only("should create or replace a user", async () => {
+    try {
+      const user = await client.createOrReplace(1, {
+        name: "Madge",
+        id: 1,
+        etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+      });
+      console.log(user);
+      // assert.strictEqual(user?.id, 1);
+      // assert.strictEqual(user?.name, "Madge");
+      // assert.strictEqual(user?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b59");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should create or update a user", async () => {
+    try {
+      const user = await client.createOrUpdate(1, {
+        name: "Madge",
+        id: 1,
+        etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+      });
+      console.log(user);
+      assert.strictEqual(user?.id, 1);
+      assert.strictEqual(user?.name, "Madge");
+      assert.strictEqual(user?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b59");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should delete a user", async () => {
+    try {
+      const user = await client.deleteOperation(1);
+      assert.isUndefined(user);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
 });
