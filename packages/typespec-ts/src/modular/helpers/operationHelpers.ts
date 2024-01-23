@@ -418,14 +418,14 @@ function getResponseUnionMetadata(responses: Response[]) {
         )
       };
     })
-    .filter((response) => response.statusCodes.length);
+    .filter((response) => response.statusCodes.length && response.type?.type);
 
   const responseUnionMetadata = expectedResponses
     .map((response) => {
       const returnType = buildType(
-        response.type.name,
+        response.type!.name,
         response.type,
-        response.type.format
+        response.type!.format
       ).type;
       if (returnType === "void") {
         return;
@@ -434,7 +434,7 @@ function getResponseUnionMetadata(responses: Response[]) {
         (statusCode) => `"${statusCode}"`
       );
       const deserializeFunctionName = getSerializeFunctionName(
-        response.type,
+        response.type!,
         "Deserialize"
       );
 
@@ -513,10 +513,10 @@ function getResponseTypeMetadata(
       .filter((response) => response.statusCodes.length)
       .forEach((response) => {
         const type = response.type;
-        const typeName = type.name;
-        if (!typeName) {
+        if (!type || !type.name) {
           return;
         }
+        const typeName = type.name;
 
         if (!typeMap.get(typeName))
           typeMap.set(typeName, {

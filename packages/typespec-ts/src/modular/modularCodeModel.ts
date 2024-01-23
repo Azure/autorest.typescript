@@ -150,7 +150,7 @@ export interface Response {
   headers: Header[];
   statusCodes: (number | "default")[];
   discriminator: string;
-  type: Type;
+  type?: Type;
   addedOn?: string;
   isBinaryPayload?: boolean;
 }
