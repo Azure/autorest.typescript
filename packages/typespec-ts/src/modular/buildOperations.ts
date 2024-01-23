@@ -231,7 +231,7 @@ export function importLroDependencies(
   sourceFile.addImportDeclaration({
     moduleSpecifier: `${
       importLayer === 0 ? "./" : "../".repeat(importLayer)
-    }pagingHelpers.js`,
+    }pollingHelpers.js`,
     namedImports: ["getLongRunningPoller"]
   });
 

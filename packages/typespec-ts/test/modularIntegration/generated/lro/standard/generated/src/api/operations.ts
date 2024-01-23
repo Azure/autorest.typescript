@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { getLongRunningPoller } from "./pagingHelpers.js";
+import { getLongRunningPoller } from "./pollingHelpers.js";
 import { Next } from "@azure/core-lro";
 import { User, ExportedUser } from "../models/models.js";
 import {
