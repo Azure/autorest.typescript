@@ -13,7 +13,7 @@ import {
   Property,
   Type
 } from "../modularCodeModel.js";
-import { buildType } from "./typeHelpers.js";
+import { buildType, getType } from "./typeHelpers.js";
 import {
   Imports as RuntimeImports,
   NameType,
@@ -77,6 +77,32 @@ export function getSendPrivateFunction(
   const operationMethod = operation.method.toLowerCase();
 
   const statements: string[] = [];
+  const bodyParameter = operation.bodyParameter;
+  if (bodyParameter) {
+    const bodyDict = handleDictSerialize(
+      bodyParameter?.type!,
+      bodyParameter?.clientName!,
+      runtimeImports
+    );
+    if (bodyDict.statements.length > 0) {
+      statements.push(...bodyDict.statements);
+      bodyParameter.clientName = bodyDict.newClientName;
+    }
+    if (bodyParameter.type.type === "model") {
+      extractDictFromModel(bodyParameter.type).forEach((p) => {
+        const dictDict = handleDictSerialize(
+          p.type,
+          p.clientName!,
+          runtimeImports
+        );
+        if (dictDict.statements.length > 0) {
+          statements.push(...dictDict.statements);
+          p.clientName = dictDict.newClientName;
+        }
+      });
+    }
+  }
+
   statements.push(
     `return context.path("${operationPath}", ${getPathParameters(
       operation
@@ -89,6 +115,78 @@ export function getSendPrivateFunction(
 
   return {
     ...functionStatement,
+    statements
+  };
+}
+
+let typeSetMap: Map<Type, Set<Property>> = new Map();
+function extractDictFromModel(type: Type): Property[] {
+  if (typeSetMap.get(type)) {
+    return Array.from(typeSetMap.get(type)!.values());
+  }
+  const allParents = getAllAncestors(type);
+  const allProperties = getAllProperties(type, allParents) ?? [];
+  const typeDicts: Set<Property> = new Set();
+  allProperties
+    .filter((p) => {
+      p.type.type === "dict";
+    })
+    .forEach((p) => typeDicts.add(p));
+  const modelPropertyDict = allProperties
+    .filter((p) => {
+      p.type.type === "model";
+    })
+    .map((p) => extractDictFromModel(p.type));
+  modelPropertyDict.forEach((dict) => dict.forEach((d) => typeDicts.add(d)));
+  allProperties
+    .filter((p) => {
+      p.type.type === "list" &&
+        p.type.elementType &&
+        p.type.elementType?.type === "model";
+    })
+    .forEach((p) => {
+      if (p.type.elementType?.type === "model") {
+        const dict = extractDictFromModel(p.type.elementType!);
+        dict.forEach((d) => typeDicts.add(d));
+      }
+    });
+  typeSetMap.set(type, typeDicts);
+  return Array.from(typeDicts.values());
+}
+
+export function handleDictSerialize(
+  typeDict: Type,
+  clientName: string,
+  runtimeImports: RuntimeImports
+): { newClientName: string; statements: string[] } {
+  const statements: string[] = [];
+  let newClientName = clientName;
+  if (
+    typeDict &&
+    typeDict.type === "dict" &&
+    typeDict.elementType &&
+    needsDeserialize(typeDict.elementType)
+  ) {
+    newClientName = `new${toPascalCase(clientName)}`;
+    statements.push(`const ${newClientName}: ${
+      getType(typeDict, {
+        format: typeDict.format,
+        forRest: true
+      }).name
+    } = {};
+        Object.entries(${clientName}).forEach(([key, value]) => {
+          ${newClientName}[key] = ${serializeRequestValue(
+            typeDict.elementType,
+            "value",
+            runtimeImports,
+            true,
+            [typeDict.elementType],
+            typeDict.format
+          )};
+        });`);
+  }
+  return {
+    newClientName,
     statements
   };
 }
@@ -177,15 +275,16 @@ export function getDeserializePrivateFunction(
   } else if (returnType.type === "void") {
     statements.push(`return;`);
   } else {
+    const deserialized = deserializeResponseValue(
+      response.type,
+      "result.body",
+      runtimeImports,
+      response.type.nullable !== undefined ? !response.type.nullable : false,
+      [response.type],
+      response.type.format
+    );
     statements.push(
-      `return ${deserializeResponseValue(
-        response.type,
-        "result.body",
-        runtimeImports,
-        response.type.nullable !== undefined ? !response.type.nullable : false,
-        [response.type],
-        response.type.format
-      )}`
+      `${deserialized.startsWith("const") ? "" : "return "}${deserialized}`
     );
   }
   return {
@@ -964,6 +1063,22 @@ function deserializeResponseValue(
         : ${restValue}`;
       }
       return restValue;
+    case "dict":
+      if (type.elementType && needsDeserialize(type.elementType)) {
+        return `const newResult: ${getType(type).name} = {};
+        Object.entries(${restValue}).forEach(([key, value]) => {
+          newResult[key] = ${deserializeResponseValue(
+            type.elementType,
+            "value",
+            runtimeImports,
+            true,
+            [...typeStack, type.elementType],
+            type.elementType.format
+          )};
+        });
+        return newResult;`;
+      }
+      return restValue;
     default:
       return restValue;
   }
@@ -1022,6 +1137,8 @@ function serializeRequestValue(
           [...typeStack, type.elementType!],
           type.elementType?.format
         )})`;
+      } else if (type.elementType?.type === "dict") {
+        return `${clientValue} as any`;
       } else {
         return clientValue;
       }
@@ -1038,6 +1155,9 @@ function serializeRequestValue(
             }"): undefined`;
       }
       return clientValue;
+    // this means dict that we handled.
+    case "dict":
+      return clientValue;
     default:
       return clientValue;
   }
@@ -1048,7 +1168,8 @@ function needsDeserialize(type?: Type) {
     type?.type === "datetime" ||
     type?.type === "model" ||
     type?.type === "list" ||
-    type?.type === "byte-array"
+    type?.type === "byte-array" ||
+    type?.type === "dict"
   );
 }
 
@@ -1086,7 +1207,12 @@ export function isPagingOperation(op: Operation): boolean {
   return op.discriminator === "paging" || op.discriminator === "lropaging";
 }
 
+const allPropertiesMap: Map<Type, Property[]> = new Map();
+
 export function getAllProperties(type: Type, parents?: Type[]): Property[] {
+  if (allPropertiesMap.has(type)) {
+    return allPropertiesMap.get(type)!;
+  }
   const propertiesMap: Map<string, Property> = new Map();
   if (!type) {
     return [];
@@ -1099,14 +1225,21 @@ export function getAllProperties(type: Type, parents?: Type[]): Property[] {
   type.properties?.forEach((p) => {
     propertiesMap.set(p.clientName, p);
   });
+  allPropertiesMap.set(type, [...propertiesMap.values()]);
   return [...propertiesMap.values()];
 }
 
+const ancestorsMap: Map<Type, Type[]> = new Map();
+
 function getAllAncestors(type: Type): Type[] {
+  if (ancestorsMap.has(type)) {
+    return ancestorsMap.get(type)!;
+  }
   const ancestors: Type[] = [];
   type?.parents?.forEach((p) => {
     ancestors.push(p);
     ancestors.push(...getAllAncestors(p));
   });
+  ancestorsMap.set(type, ancestors);
   return ancestors;
 }

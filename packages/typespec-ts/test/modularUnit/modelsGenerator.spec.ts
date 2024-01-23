@@ -1605,9 +1605,8 @@ describe("inheritance & polymorphism", () => {
         true
       );
       assert.isUndefined(schemaOutput);
-      const paramOutput = await emitModularOperationsFromTypeSpec(
-        tspDefinition
-      );
+      const paramOutput =
+        await emitModularOperationsFromTypeSpec(tspDefinition);
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
       await assertEqualContent(
@@ -1681,11 +1680,10 @@ describe("inheritance & polymorphism", () => {
         | "text/plain; charset=utf-8"
         | "text/vnd.ms.protobuf";
         `
-)
-      const paramOutput = await emitModularOperationsFromTypeSpec(
-        tspDefinition
       );
-            assert.ok(paramOutput);
+      const paramOutput =
+        await emitModularOperationsFromTypeSpec(tspDefinition);
+      assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
       await assertEqualContent(
         paramOutput?.[0]?.getFullText()!,

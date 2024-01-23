@@ -33,7 +33,11 @@ export async function _modelValueGetDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const newResult: Record<string, InnerModel> = {};
+  Object.entries(result.body).forEach(([key, value]) => {
+    newResult[key] = value;
+  });
+  return newResult;
 }
 
 export async function modelValueGet(
@@ -49,9 +53,13 @@ export function _modelValuePutSend(
   body: Record<string, InnerModel>,
   options: ModelValuePutOptions = { requestOptions: {} },
 ): StreamableMethod<ModelValuePut204Response> {
+  const newBody: Record<string, InnerModel> = {};
+  Object.entries(body).forEach(([key, value]) => {
+    newBody[key] = value;
+  });
   return context
     .path("/type/dictionary/model")
-    .put({ ...operationOptionsToRequestParameters(options), body: body });
+    .put({ ...operationOptionsToRequestParameters(options), body: newBody });
 }
 
 export async function _modelValuePutDeserialize(

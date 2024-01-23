@@ -12,7 +12,7 @@ import {
 export interface ModelValueOperations {
   get: (options?: ModelValueGetOptions) => Promise<Record<string, InnerModel>>;
   put: (
-    body: Record<string, InnerModel>,
+    newBody: Record<string, InnerModel>,
     options?: ModelValuePutOptions,
   ) => Promise<void>;
 }
@@ -20,8 +20,10 @@ export interface ModelValueOperations {
 export function getModelValue(context: DictionaryContext) {
   return {
     get: (options?: ModelValueGetOptions) => modelValueGet(context, options),
-    put: (body: Record<string, InnerModel>, options?: ModelValuePutOptions) =>
-      modelValuePut(context, body, options),
+    put: (
+      newBody: Record<string, InnerModel>,
+      options?: ModelValuePutOptions,
+    ) => modelValuePut(context, newBody, options),
   };
 }
 

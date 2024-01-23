@@ -28,7 +28,7 @@ export function getClientParameters(
           (p.clientDefaultValue === null || p.clientDefaultValue === undefined)
       )
       .map<OptionalKind<ParameterDeclarationStructure>>((p) => {
-        const typeMetadata = getType(p.type, p.format);
+        const typeMetadata = getType(p.type, { format: p.format });
         let typeName = typeMetadata.name;
         if (typeMetadata.nullable) {
           typeName = `${typeName} | null`;

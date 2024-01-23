@@ -32,7 +32,11 @@ export async function _datetimeValueGetDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const newResult: Record<string, Date> = {};
+  Object.entries(result.body).forEach(([key, value]) => {
+    newResult[key] = new Date(value);
+  });
+  return newResult;
 }
 
 export async function datetimeValueGet(
@@ -48,9 +52,13 @@ export function _datetimeValuePutSend(
   body: Record<string, Date>,
   options: DatetimeValuePutOptions = { requestOptions: {} },
 ): StreamableMethod<DatetimeValuePut204Response> {
+  const newBody: Record<string, string> = {};
+  Object.entries(body).forEach(([key, value]) => {
+    newBody[key] = value.toISOString();
+  });
   return context
     .path("/type/dictionary/datetime")
-    .put({ ...operationOptionsToRequestParameters(options), body: body });
+    .put({ ...operationOptionsToRequestParameters(options), body: newBody });
 }
 
 export async function _datetimeValuePutDeserialize(

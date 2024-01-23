@@ -33,7 +33,11 @@ export async function _recursiveModelValueGetDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  const newResult: Record<string, InnerModel> = {};
+  Object.entries(result.body).forEach(([key, value]) => {
+    newResult[key] = value;
+  });
+  return newResult;
 }
 
 export async function recursiveModelValueGet(
@@ -49,9 +53,13 @@ export function _recursiveModelValuePutSend(
   body: Record<string, InnerModel>,
   options: RecursiveModelValuePutOptions = { requestOptions: {} },
 ): StreamableMethod<RecursiveModelValuePut204Response> {
+  const newBody: Record<string, InnerModel> = {};
+  Object.entries(body).forEach(([key, value]) => {
+    newBody[key] = value;
+  });
   return context
     .path("/type/dictionary/model/recursive")
-    .put({ ...operationOptionsToRequestParameters(options), body: body });
+    .put({ ...operationOptionsToRequestParameters(options), body: newBody });
 }
 
 export async function _recursiveModelValuePutDeserialize(

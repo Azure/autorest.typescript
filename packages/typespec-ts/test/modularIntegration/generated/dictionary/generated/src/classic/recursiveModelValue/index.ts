@@ -17,7 +17,7 @@ export interface RecursiveModelValueOperations {
     options?: RecursiveModelValueGetOptions,
   ) => Promise<Record<string, InnerModel>>;
   put: (
-    body: Record<string, InnerModel>,
+    newBody: Record<string, InnerModel>,
     options?: RecursiveModelValuePutOptions,
   ) => Promise<void>;
 }
@@ -27,9 +27,9 @@ export function getRecursiveModelValue(context: DictionaryContext) {
     get: (options?: RecursiveModelValueGetOptions) =>
       recursiveModelValueGet(context, options),
     put: (
-      body: Record<string, InnerModel>,
+      newBody: Record<string, InnerModel>,
       options?: RecursiveModelValuePutOptions,
-    ) => recursiveModelValuePut(context, body, options),
+    ) => recursiveModelValuePut(context, newBody, options),
   };
 }
 

@@ -62,7 +62,7 @@ export interface Float32ValuePut204Response extends HttpResponse {
 /** The request has succeeded. */
 export interface DatetimeValueGet200Response extends HttpResponse {
   status: "200";
-  body: Record<string, Date>;
+  body: Record<string, string>;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
