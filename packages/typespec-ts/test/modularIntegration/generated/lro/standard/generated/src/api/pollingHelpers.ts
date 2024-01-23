@@ -8,7 +8,6 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { isUnexpected } from "../rest/index.js";
-import { isUnexpected } from "../rest/index.js";
 
 export interface GetLongRunningPollerOptions<TResponse> {
   /** Delay to wait until next poll, in milliseconds. */

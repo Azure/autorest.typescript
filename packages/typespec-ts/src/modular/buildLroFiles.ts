@@ -297,7 +297,6 @@ export function buildGetPollerHelper(
     PathUncheckedResponse,
     createRestError
   } from "@azure-rest/core-client";
-  import { isUnexpected } from "../rest/index.js";
   ${unexpectedHelperImport}
   
   export interface GetLongRunningPollerOptions<TResponse> {
