@@ -157,20 +157,21 @@ export function getDeserializePrivateFunction(
     }
   }
 
+  const allParents = getAllAncestors(response.type);
+  const properties = getAllProperties(response.type, allParents) ?? [];
+
   if (
     response?.type?.type === "any" ||
     response.isBinaryPayload ||
     response?.type?.aliasType
   ) {
     statements.push(`return result.body`);
-  } else if (getAllProperties(response?.type).length > 0) {
+  } else if (properties.length > 0) {
     statements.push(
       `return {`,
-      getResponseMapping(
-        getAllProperties(response.type) ?? [],
-        "result.body",
-        runtimeImports
-      ).join(","),
+      getResponseMapping(response.type, "result.body", runtimeImports).join(
+        ","
+      ),
       `}`
     );
   } else if (returnType.type === "void") {
@@ -182,6 +183,7 @@ export function getDeserializePrivateFunction(
         "result.body",
         runtimeImports,
         response.type.nullable !== undefined ? !response.type.nullable : false,
+        [response.type],
         response.type.format
       )}`
     );
@@ -449,7 +451,8 @@ function buildBodyParameter(
     const bodyParts: string[] = getRequestModelMapping(
       bodyParameter.type,
       bodyParameter.clientName,
-      runtimeImports
+      runtimeImports,
+      [bodyParameter.type]
     );
 
     if (bodyParameter && bodyParts.length > 0) {
@@ -472,7 +475,8 @@ function buildBodyParameter(
       const bodyParts = getRequestModelMapping(
         bodyParameter.type.elementType,
         "p",
-        runtimeImports
+        runtimeImports,
+        [bodyParameter.type.elementType]
       );
       return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { return {
         ${bodyParts.join(", ")}
@@ -559,6 +563,7 @@ function getCollectionFormat(param: Parameter, runtimeImports: RuntimeImports) {
       param.clientName,
       runtimeImports,
       true,
+      [param.type],
       param.format
     )}${additionalParam})`;
   }
@@ -569,6 +574,7 @@ function getCollectionFormat(param: Parameter, runtimeImports: RuntimeImports) {
     "options?." + param.clientName,
     runtimeImports,
     false,
+    [param.type],
     param.format
   )}${additionalParam}): undefined`;
 }
@@ -608,7 +614,8 @@ function getRequired(param: RequiredType, runtimeImports: RuntimeImports) {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
       param.clientName,
-      runtimeImports
+      runtimeImports,
+      [param.type]
     ).join(",")}}`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
@@ -616,6 +623,7 @@ function getRequired(param: RequiredType, runtimeImports: RuntimeImports) {
     param.clientName,
     runtimeImports,
     true,
+    [param.type],
     param.format === undefined &&
       (param as Parameter).location === "header" &&
       param.type.type === "datetime"
@@ -660,7 +668,8 @@ function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
       "options?." + param.clientName + "?",
-      runtimeImports
+      runtimeImports,
+      [param.type]
     ).join(", ")}}`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
@@ -668,6 +677,7 @@ function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
     `options?.${param.clientName}`,
     runtimeImports,
     false,
+    [param.type],
     param.format === undefined &&
       (param as Parameter).location === "header" &&
       param.type.type === "datetime"
@@ -735,13 +745,16 @@ function getNullableCheck(name: string, type: Type) {
 function getRequestModelMapping(
   modelPropertyType: Type,
   propertyPath: string = "body",
-  runtimeImports: RuntimeImports
+  runtimeImports: RuntimeImports,
+  typeStack: Type[] = []
 ) {
-  if (getAllProperties(modelPropertyType).length <= 0) {
+  const props: string[] = [];
+  const allParents = getAllAncestors(modelPropertyType);
+  const properties: Property[] =
+    getAllProperties(modelPropertyType, allParents) ?? [];
+  if (properties.length <= 0) {
     return [];
   }
-  const props: string[] = [];
-  const properties: Property[] = getAllProperties(modelPropertyType) ?? [];
   for (const property of properties) {
     if (property.readonly) {
       continue;
@@ -756,12 +769,7 @@ function getRequestModelMapping(
         )} ${
           !property.optional ? "" : `!${propertyFullName} ? undefined :`
         } ${propertyFullName}`;
-      } else if (
-        (property.restApiName === "message" ||
-          property.restApiName === "messages") &&
-        (property.type.name === "ChatMessage" ||
-          property.type.elementType?.name === "ChatMessage")
-      ) {
+      } else if (typeStack.includes(property.type)) {
         definition = `"${property.restApiName}": ${
           !property.optional
             ? `${propertyFullName} as any`
@@ -778,17 +786,13 @@ function getRequestModelMapping(
           `${propertyPath}.${property.clientName}${
             property.optional ? "?" : ""
           }`,
-          runtimeImports
+          runtimeImports,
+          [...typeStack, property.type]
         )}}`;
       }
 
       props.push(definition);
-    } else if (
-      (property.restApiName === "message" ||
-        property.restApiName === "messages") &&
-      (property.type.name === "ChatMessage" ||
-        property.type.elementType?.name === "ChatMessage")
-    ) {
+    } else if (typeStack.includes(property.type)) {
       const definition = `"${property.restApiName}": ${
         !property.optional
           ? `${propertyFullName} as any`
@@ -806,6 +810,7 @@ function getRequestModelMapping(
           clientValue,
           runtimeImports,
           !property.optional,
+          [...typeStack, property.type],
           property.format
         )}`
       );
@@ -820,10 +825,16 @@ function getRequestModelMapping(
  * extracting properties from body and headers and building the HLC response object
  */
 export function getResponseMapping(
-  properties: Property[],
+  type: Type,
   propertyPath: string = "result.body",
-  runtimeImports: RuntimeImports
+  runtimeImports: RuntimeImports,
+  typeStack: Type[] = []
 ) {
+  const allParents = getAllAncestors(type);
+  const properties = getAllProperties(type, allParents) ?? [];
+  if (typeStack.length <= 0) {
+    typeStack.push(type);
+  }
   const props: string[] = [];
   for (const property of properties) {
     // TODO: Do we need to also add headers in the result type?
@@ -837,12 +848,7 @@ export function getResponseMapping(
         )} ${
           !property.optional ? "" : `!${propertyFullName} ? undefined :`
         } ${propertyFullName}`;
-      } else if (
-        (property.restApiName === "message" ||
-          property.restApiName === "messages") &&
-        (property.type.name === "ChatMessage" ||
-          property.type.elementType?.name === "ChatMessage")
-      ) {
+      } else if (typeStack.includes(property.type)) {
         definition = `"${property.clientName}": ${
           !property.optional
             ? `${propertyFullName} as any`
@@ -855,11 +861,12 @@ export function getResponseMapping(
         )} ${
           !property.optional ? "" : `!${propertyFullName} ? undefined :`
         } {${getResponseMapping(
-          getAllProperties(property.type) ?? [],
+          property.type,
           `${propertyPath}.${property.restApiName}${
             property.optional ? "?" : ""
           }`,
-          runtimeImports
+          runtimeImports,
+          [...typeStack, property.type]
         )}}`;
       }
 
@@ -869,12 +876,7 @@ export function getResponseMapping(
       const restValue = `${
         propertyPath ? `${propertyPath}${dot}` : `${dot}`
       }["${property.restApiName}"]`;
-      if (
-        (property.restApiName === "message" ||
-          property.restApiName === "messages") &&
-        (property.type.name === "ChatMessage" ||
-          property.type.elementType?.name === "ChatMessage")
-      ) {
+      if (typeStack.includes(property.type)) {
         props.push(
           `"${property.clientName}": ${
             !property.optional
@@ -889,6 +891,7 @@ export function getResponseMapping(
             restValue,
             runtimeImports,
             property.optional !== undefined ? !property.optional : false,
+            [...typeStack, property.type],
             property.format
           )}`
         );
@@ -896,6 +899,7 @@ export function getResponseMapping(
     }
   }
 
+  typeStack.pop();
   return props;
 }
 
@@ -909,6 +913,7 @@ function deserializeResponseValue(
   restValue: string,
   runtimeImports: RuntimeImports,
   required: boolean,
+  typeStack: Type[] = [],
   format?: string
 ): string {
   switch (type.type) {
@@ -928,9 +933,10 @@ function deserializeResponseValue(
       if (type.elementType?.type === "model") {
         if (!type.elementType.aliasType) {
           return `${prefix}.map(p => ({${getResponseMapping(
-            getAllProperties(type.elementType) ?? [],
+            type.elementType,
             "p",
-            runtimeImports
+            runtimeImports,
+            [...typeStack, type.elementType]
           )}}))`;
         }
         return `${prefix}`;
@@ -943,6 +949,7 @@ function deserializeResponseValue(
           "p",
           runtimeImports,
           required,
+          [...typeStack, type.elementType!],
           type.elementType?.format
         )})`;
       } else {
@@ -972,6 +979,7 @@ function serializeRequestValue(
   clientValue: string,
   runtimeImports: RuntimeImports,
   required: boolean,
+  typeStack: Type[] = [],
   format?: string
 ): string {
   switch (type.type) {
@@ -999,7 +1007,8 @@ function serializeRequestValue(
         return `${prefix}.map(p => ({${getRequestModelMapping(
           type.elementType,
           "p",
-          runtimeImports
+          runtimeImports,
+          [...typeStack, type.elementType]
         )}}))`;
       } else if (
         needsDeserialize(type.elementType) &&
@@ -1010,6 +1019,7 @@ function serializeRequestValue(
           "p",
           runtimeImports,
           required,
+          [...typeStack, type.elementType!],
           type.elementType?.format
         )})`;
       } else {
@@ -1076,12 +1086,12 @@ export function isPagingOperation(op: Operation): boolean {
   return op.discriminator === "paging" || op.discriminator === "lropaging";
 }
 
-function getAllProperties(type: Type): Property[] {
+export function getAllProperties(type: Type, parents?: Type[]): Property[] {
   const propertiesMap: Map<string, Property> = new Map();
   if (!type) {
     return [];
   }
-  type.parents?.forEach((p) => {
+  parents?.forEach((p) => {
     getAllProperties(p).forEach((prop) => {
       propertiesMap.set(prop.clientName, prop);
     });
@@ -1090,4 +1100,13 @@ function getAllProperties(type: Type): Property[] {
     propertiesMap.set(p.clientName, p);
   });
   return [...propertiesMap.values()];
+}
+
+function getAllAncestors(type: Type): Type[] {
+  const ancestors: Type[] = [];
+  type?.parents?.forEach((p) => {
+    ancestors.push(p);
+    ancestors.push(...getAllAncestors(p));
+  });
+  return ancestors;
 }
