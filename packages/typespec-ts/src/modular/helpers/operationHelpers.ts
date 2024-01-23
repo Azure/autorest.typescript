@@ -78,29 +78,28 @@ export function getSendPrivateFunction(
 
   const statements: string[] = [];
   const bodyParameter = operation.bodyParameter;
-  if (bodyParameter) {
+  if (bodyParameter && bodyParameter.type.type === "dict") {
     const bodyDict = handleDictSerialize(
-      bodyParameter?.type!,
-      bodyParameter?.clientName!,
+      bodyParameter?.type,
+      bodyParameter?.clientName,
       runtimeImports
     );
     if (bodyDict.statements.length > 0) {
       statements.push(...bodyDict.statements);
       bodyParameter.clientName = bodyDict.newClientName;
     }
-    if (bodyParameter.type.type === "model") {
-      extractDictFromModel(bodyParameter.type).forEach((p) => {
-        const dictDict = handleDictSerialize(
-          p.type,
-          p.clientName!,
-          runtimeImports
-        );
-        if (dictDict.statements.length > 0) {
-          statements.push(...dictDict.statements);
-          p.clientName = dictDict.newClientName;
-        }
-      });
-    }
+  } else if (bodyParameter && bodyParameter.type.type === "model") {
+    extractDictFromModel(bodyParameter.type).forEach((p) => {
+      const dictDict = handleDictSerialize(
+        p.type,
+        p.clientName!,
+        runtimeImports
+      );
+      if (dictDict.statements.length > 0) {
+        statements.push(...dictDict.statements);
+        p.clientName = dictDict.newClientName;
+      }
+    });
   }
 
   statements.push(
@@ -119,7 +118,7 @@ export function getSendPrivateFunction(
   };
 }
 
-let typeSetMap: Map<Type, Set<Property>> = new Map();
+const typeSetMap: Map<Type, Set<Property>> = new Map();
 function extractDictFromModel(type: Type): Property[] {
   if (typeSetMap.get(type)) {
     return Array.from(typeSetMap.get(type)!.values());
