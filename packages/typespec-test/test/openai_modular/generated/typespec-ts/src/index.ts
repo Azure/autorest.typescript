@@ -37,8 +37,6 @@ export {
   ImageGenerationOptions,
   ImageSize,
   ImageGenerationResponseFormat,
-  AzureCognitiveSearchIndexFieldMappingOptions,
-  AzureCognitiveSearchQueryType,
   GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,
