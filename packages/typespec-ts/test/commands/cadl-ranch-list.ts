@@ -318,6 +318,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/empty",
     inputPath: "type/model/empty"
+  },
+  {
+    outputPath: "models/propertyTypes",
+    inputPath: "type/property/value-types"
   }
 ];
 
