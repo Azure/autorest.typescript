@@ -4,7 +4,7 @@ import { isLROOperation } from "./helpers/operationHelpers.js";
 import { ModularCodeModel, Client } from "./modularCodeModel.js";
 import path, { join } from "path";
 
-// Generate `restorePollerHelper.ts` file
+// Generate `restorePollerHelpers.ts` file
 export function buildRestorePollerHelper(
   codeModel: ModularCodeModel,
   client: Client
@@ -24,6 +24,30 @@ export function buildRestorePollerHelper(
       `"${op.method.toUpperCase()} ${op.url}": _${name}Deserialize`
     );
   });
+
+  const srcPath = codeModel.modularOptions.sourceRoot;
+  const subfolder = client.subfolder ?? "";
+  const filePath = path.join(
+    `${srcPath}/${
+      subfolder !== "" ? subfolder + "/" : ""
+    }restorePollerHelpers.ts`
+  );
+  const restorePollerFile = codeModel.project.createSourceFile(
+    filePath,
+    undefined,
+    {
+      overwrite: true
+    }
+  );
+
+  const clientNames = importClientContext(client, restorePollerFile);
+  importGetPollerHelper(restorePollerFile);
+  importDeserializeHelpers(
+    codeModel,
+    client,
+    restorePollerFile,
+    new Set(deserializedFunctions)
+  );
   const restorePollerHelperContent = `
       import {
         PathUncheckedResponse,
@@ -56,7 +80,7 @@ export function buildRestorePollerHelper(
        * needs to be constructed after the original one is not in scope.
        */
       export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
-        client: StandardContext | StandardClient,
+        client: ${clientNames.join(" | ")},
         serializedState: string,
         sourceOperation: (
           ...args: any[]
@@ -172,41 +196,25 @@ export function buildRestorePollerHelper(
         return mapKey.slice(pathStart);
       }      
     `;
-
-  const srcPath = codeModel.modularOptions.sourceRoot;
-  const subfolder = client.subfolder ?? "";
-  const filePath = path.join(
-    `${srcPath}/${
-      subfolder !== "" ? subfolder + "/" : ""
-    }restorePollerHelpers.ts`
-  );
-  const restorePollerFile = codeModel.project.createSourceFile(
-    filePath,
-    undefined,
-    {
-      overwrite: true
-    }
-  );
   restorePollerFile.addStatements(restorePollerHelperContent);
-  importClientContext(client, restorePollerFile);
-  importGetPollerHelper(restorePollerFile);
-  importDeserializeHelpers(codeModel, client, restorePollerFile);
   restorePollerFile.fixMissingImports();
   restorePollerFile.fixUnusedIdentifiers();
 }
 
-function importClientContext(client: Client, sourceFile: SourceFile) {
+function importClientContext(client: Client, sourceFile: SourceFile): string[] {
   const modularClientName = getClientName(client);
   const classicalClientname = `${getClientName(client)}Client`;
+  const clientContextName = `${modularClientName}Context`;
   sourceFile.addImportDeclaration({
-    namedImports: [`${modularClientName}Context`],
-    moduleSpecifier: `./api/${modularClientName}Context.js`
+    namedImports: [`${clientContextName}`],
+    moduleSpecifier: `./api/${clientContextName}.js`
   });
 
   sourceFile.addImportDeclaration({
     namedImports: [`${classicalClientname}`],
     moduleSpecifier: `./${classicalClientname}.js`
   });
+  return [clientContextName, classicalClientname];
 }
 
 function importGetPollerHelper(sourceFile: SourceFile) {
@@ -219,7 +227,8 @@ function importGetPollerHelper(sourceFile: SourceFile) {
 function importDeserializeHelpers(
   codeModel: ModularCodeModel,
   client: Client,
-  sourceFile: SourceFile
+  sourceFile: SourceFile,
+  referredDeserializers: Set<string>
 ) {
   const srcPath = codeModel.modularOptions.sourceRoot;
   const apiFilePattern = join(srcPath, client.subfolder ?? "", "api");
@@ -246,7 +255,8 @@ function importDeserializeHelpers(
         return (
           name.startsWith("_") &&
           declarations.length > 0 &&
-          name.endsWith("Deserialize")
+          name.endsWith("Deserialize") &&
+          referredDeserializers.has(name)
         );
       })
       .map((exDeclaration) => {

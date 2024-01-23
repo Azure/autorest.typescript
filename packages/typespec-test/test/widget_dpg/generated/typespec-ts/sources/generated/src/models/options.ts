@@ -18,6 +18,11 @@ export interface WidgetsGetWidgetOptions extends OperationOptions {}
 
 export interface WidgetsCreateWidgetOptions extends OperationOptions {}
 
+export interface WidgetsCreateOrReplaceOptions extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+}
+
 export interface WidgetsUpdateWidgetOptions extends OperationOptions {}
 
 export interface WidgetsDeleteWidgetOptions extends OperationOptions {}

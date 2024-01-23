@@ -3,11 +3,25 @@ import "@azure-tools/typespec-azure-core";
 
 using TypeSpec.Http;
 using Azure.Core;
+using TypeSpec.Rest;
+using TypeSpec.Versioning;
+using global.Azure.Core.Traits;
+@versioned(WidgetService.Versions)
 @service({
-    title: "Widget Service",
-    version: "1.0.0",
+    title: "Widget Service"
 })
 namespace WidgetService;
+
+/** The Contoso Widget Manager service version. */
+enum Versions {
+    /** Version 2022-08-31 */
+    @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+    `1.0.0`,
+  }
+
+alias ResourceOperations = global.Azure.Core.ResourceOperations<NoConditionalRequests &
+  NoRepeatableRequests &
+  NoClientRequestId>;
 
 model Widget {
     @doc("The UUID of this widget. This is generated automatically by the service.")
@@ -58,6 +72,21 @@ model ListWidgetsPagesResults {
     @doc("The URL to get the next set of results.")
     @nextLink
     `odata.nextLink`?: string;
+}
+
+@resource("users")
+@doc("Details about a user.")
+model User {
+  @key
+  @visibility("read")
+  @doc("The name of user.")
+  name: string;
+
+  @doc("The role of user")
+  role: string;
+
+  @doc("The UUID of this widget. This is generated automatically by the service.")
+  id: string;
 }
 
 @route("/widgets")
@@ -112,6 +141,10 @@ result in an error.
         @statusCode code: 201;
         @body widget: Widget;
     } | WidgetError;
+
+    @post 
+    @route("/widgets/createOrReplace")
+    op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User>;
 
     @doc("""
 Update the contents of the widget. The widget ID is required in the input, but cannot be changed. All other fields

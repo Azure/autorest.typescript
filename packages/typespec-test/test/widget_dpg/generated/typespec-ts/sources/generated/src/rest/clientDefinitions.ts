@@ -9,6 +9,7 @@ import {
   GetWidgetParameters,
   UpdateWidgetParameters,
   DeleteWidgetParameters,
+  CreateOrReplaceParameters,
   AnalyzeWidgetParameters,
 } from "./parameters.js";
 import {
@@ -26,6 +27,9 @@ import {
   UpdateWidgetDefaultResponse,
   DeleteWidget204Response,
   DeleteWidgetDefaultResponse,
+  CreateOrReplace200Response,
+  CreateOrReplace201Response,
+  CreateOrReplaceDefaultResponse,
   AnalyzeWidget200Response,
   AnalyzeWidgetDefaultResponse,
 } from "./responses.js";
@@ -82,6 +86,17 @@ export interface GetWidget {
   ): StreamableMethod<DeleteWidget204Response | DeleteWidgetDefaultResponse>;
 }
 
+export interface CreateOrReplace {
+  /** Long-running resource create or replace operation template. */
+  post(
+    options: CreateOrReplaceParameters,
+  ): StreamableMethod<
+    | CreateOrReplace200Response
+    | CreateOrReplace201Response
+    | CreateOrReplaceDefaultResponse
+  >;
+}
+
 export interface AnalyzeWidget {
   /** Analyze a widget. The only guarantee is that this method will return a string containing the results of the analysis. */
   post(
@@ -96,6 +111,11 @@ export interface Routes {
   (path: "/widgets/widgets/pages"): ListWidgetsPages;
   /** Resource for '/widgets/\{id\}' has methods for the following verbs: get, patch, delete */
   (path: "/widgets/{id}", id: string): GetWidget;
+  /** Resource for '/widgets/widgets/createOrReplace/users/\{name\}' has methods for the following verbs: post */
+  (
+    path: "/widgets/widgets/createOrReplace/users/{name}",
+    name: string,
+  ): CreateOrReplace;
   /** Resource for '/widgets/\{id\}/analyze' has methods for the following verbs: post */
   (path: "/widgets/{id}/analyze", id: string): AnalyzeWidget;
 }

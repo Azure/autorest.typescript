@@ -16,6 +16,10 @@ import {
   UpdateWidgetDefaultResponse,
   DeleteWidget204Response,
   DeleteWidgetDefaultResponse,
+  CreateOrReplace200Response,
+  CreateOrReplace201Response,
+  CreateOrReplaceLogicalResponse,
+  CreateOrReplaceDefaultResponse,
   AnalyzeWidget200Response,
   AnalyzeWidgetDefaultResponse,
 } from "./responses.js";
@@ -28,6 +32,8 @@ const responseMap: Record<string, string[]> = {
   "GET /widgets/{id}": ["200"],
   "PATCH /widgets/{id}": ["200"],
   "DELETE /widgets/{id}": ["204"],
+  "POST /widgets/widgets/createOrReplace/users/{name}": ["200", "201"],
+  "GET /widgets/widgets/createOrReplace/users/{name}": ["200", "201"],
   "POST /widgets/{id}/analyze": ["200"],
 };
 
@@ -53,6 +59,13 @@ export function isUnexpected(
   response: DeleteWidget204Response | DeleteWidgetDefaultResponse,
 ): response is DeleteWidgetDefaultResponse;
 export function isUnexpected(
+  response:
+    | CreateOrReplace200Response
+    | CreateOrReplace201Response
+    | CreateOrReplaceLogicalResponse
+    | CreateOrReplaceDefaultResponse,
+): response is CreateOrReplaceDefaultResponse;
+export function isUnexpected(
   response: AnalyzeWidget200Response | AnalyzeWidgetDefaultResponse,
 ): response is AnalyzeWidgetDefaultResponse;
 export function isUnexpected(
@@ -71,6 +84,10 @@ export function isUnexpected(
     | UpdateWidgetDefaultResponse
     | DeleteWidget204Response
     | DeleteWidgetDefaultResponse
+    | CreateOrReplace200Response
+    | CreateOrReplace201Response
+    | CreateOrReplaceLogicalResponse
+    | CreateOrReplaceDefaultResponse
     | AnalyzeWidget200Response
     | AnalyzeWidgetDefaultResponse,
 ): response is
@@ -81,6 +98,7 @@ export function isUnexpected(
   | GetWidgetDefaultResponse
   | UpdateWidgetDefaultResponse
   | DeleteWidgetDefaultResponse
+  | CreateOrReplaceDefaultResponse
   | AnalyzeWidgetDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);

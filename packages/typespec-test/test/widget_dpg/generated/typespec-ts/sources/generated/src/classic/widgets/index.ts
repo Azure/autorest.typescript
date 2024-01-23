@@ -5,6 +5,7 @@ import { WidgetServiceContext } from "../../api/WidgetServiceContext.js";
 import {
   Widget,
   CreateWidget,
+  User,
   UpdateWidget,
   AnalyzeResult,
 } from "../../models/models.js";
@@ -14,6 +15,7 @@ import {
   queryWidgetsPages,
   getWidget,
   createWidget,
+  createOrReplace,
   updateWidget,
   deleteWidget,
   analyzeWidget,
@@ -25,6 +27,7 @@ import {
   WidgetsQueryWidgetsPagesOptions,
   WidgetsGetWidgetOptions,
   WidgetsCreateWidgetOptions,
+  WidgetsCreateOrReplaceOptions,
   WidgetsUpdateWidgetOptions,
   WidgetsDeleteWidgetOptions,
   WidgetsAnalyzeWidgetOptions,
@@ -54,6 +57,11 @@ export interface WidgetsOperations {
     body: CreateWidget,
     options?: WidgetsCreateWidgetOptions,
   ) => Promise<Widget>;
+  createOrReplace: (
+    name: string,
+    resource: User,
+    options?: WidgetsCreateOrReplaceOptions,
+  ) => Next.PollerLike<Next.OperationState<User>, User>;
   updateWidget: (
     id: string,
     body: UpdateWidget,
@@ -102,6 +110,11 @@ export function getWidgets(context: WidgetServiceContext) {
       getWidget(context, id, options),
     createWidget: (body: CreateWidget, options?: WidgetsCreateWidgetOptions) =>
       createWidget(context, body, options),
+    createOrReplace: (
+      name: string,
+      resource: User,
+      options?: WidgetsCreateOrReplaceOptions,
+    ) => createOrReplace(context, name, resource, options),
     updateWidget: (
       id: string,
       body: UpdateWidget,

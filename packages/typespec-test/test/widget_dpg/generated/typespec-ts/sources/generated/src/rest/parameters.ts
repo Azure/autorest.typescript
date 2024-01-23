@@ -3,7 +3,7 @@
 
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
-import { CreateWidget, UpdateWidget } from "./models.js";
+import { CreateWidget, User, UpdateWidget } from "./models.js";
 
 export interface ListWidgetsHeaders {
   "required-header": string;
@@ -54,6 +54,14 @@ export interface CreateWidgetBodyParam {
 }
 
 export type CreateWidgetParameters = CreateWidgetBodyParam & RequestParameters;
+
+export interface CreateOrReplaceBodyParam {
+  /** The resource instance. */
+  body: User;
+}
+
+export type CreateOrReplaceParameters = CreateOrReplaceBodyParam &
+  RequestParameters;
 
 export interface UpdateWidgetBodyParam {
   body?: UpdateWidget;
