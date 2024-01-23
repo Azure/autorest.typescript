@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { getLongRunningPoller } from "./pagingHelpers.js";
+import { Next } from "@azure/core-lro";
 import { User, ExportedUser } from "../models/models.js";
 import {
   CreateOrReplace200Response,
@@ -13,7 +15,6 @@ import {
   ExportLogicalResponse,
   ExportOperation202Response,
   ExportOperationDefaultResponse,
-  getLongRunningPoller,
   isUnexpected,
   StandardContext as Client,
 } from "../rest/index.js";
@@ -22,7 +23,6 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { Next } from "@azure/core-lro";
 import {
   CreateOrReplaceOptions,
   DeleteOperationOptions,

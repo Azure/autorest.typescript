@@ -49,6 +49,12 @@ export function buildOperationFiles(
       }api/${operationFileName}.ts`
     );
 
+    // We need to import the paging helpers and types explicitly because ts-morph may not be able to find correct ones.
+    importLroDependencies(
+      operationGroupFile,
+      operationGroup.namespaceHierarchies.length
+    );
+
     // Import models used from ./models.ts
     // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
     importModels(
@@ -61,15 +67,6 @@ export function buildOperationFiles(
 
     // We need to import the paging helpers and types explicitly because ts-morph may not be able to find them.
     importPagingDependencies(
-      srcPath,
-      operationGroupFile,
-      codeModel.project,
-      subfolder,
-      operationGroup.namespaceHierarchies.length
-    );
-
-    // We need to import the paging helpers and types explicitly because ts-morph may not be able to find correct ones.
-    importLroDependencies(
       srcPath,
       operationGroupFile,
       codeModel.project,
@@ -228,29 +225,14 @@ export function importPagingDependencies(
 }
 
 export function importLroDependencies(
-  srcPath: string,
   sourceFile: SourceFile,
-  project: Project,
-  subfolder: string = "",
   importLayer: number = 0
 ) {
-  const pollingHelper = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}api/pollingHelpers.ts`
-  );
-
-  if (!pollingHelper) {
-    return;
-  }
-
-  const exportedPollingHelpers = [
-    ...pollingHelper.getExportedDeclarations().keys()
-  ];
-
   sourceFile.addImportDeclaration({
     moduleSpecifier: `${
       importLayer === 0 ? "./" : "../".repeat(importLayer)
     }pagingHelpers.js`,
-    namedImports: exportedPollingHelpers
+    namedImports: ["getLongRunningPoller"]
   });
 
   sourceFile.addImportDeclaration({
