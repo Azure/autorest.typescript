@@ -17,11 +17,11 @@ export const StorageError: coreClient.CompositeMapper = {
         serializedName: "error",
         type: {
           name: "Composite",
-          className: "StorageErrorError"
-        }
-      }
-    }
-  }
+          className: "StorageErrorError",
+        },
+      },
+    },
+  },
 };
 
 export const StorageErrorError: coreClient.CompositeMapper = {
@@ -32,17 +32,17 @@ export const StorageErrorError: coreClient.CompositeMapper = {
       code: {
         serializedName: "Code",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       message: {
         serializedName: "Message",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const SetAccessControlRecursiveResponse: coreClient.CompositeMapper = {
@@ -53,20 +53,20 @@ export const SetAccessControlRecursiveResponse: coreClient.CompositeMapper = {
       directoriesSuccessful: {
         serializedName: "directoriesSuccessful",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       filesSuccessful: {
         serializedName: "filesSuccessful",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       failureCount: {
         serializedName: "failureCount",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       failedEntries: {
         serializedName: "failedEntries",
@@ -75,13 +75,13 @@ export const SetAccessControlRecursiveResponse: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "AclFailedEntry"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "AclFailedEntry",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const AclFailedEntry: coreClient.CompositeMapper = {
@@ -92,23 +92,23 @@ export const AclFailedEntry: coreClient.CompositeMapper = {
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       type: {
         serializedName: "type",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       errorMessage: {
         serializedName: "errorMessage",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Path: coreClient.CompositeMapper = {
@@ -119,54 +119,54 @@ export const Path: coreClient.CompositeMapper = {
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       isDirectory: {
         defaultValue: false,
         serializedName: "isDirectory",
         type: {
-          name: "Boolean"
-        }
+          name: "Boolean",
+        },
       },
       lastModified: {
         serializedName: "lastModified",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       eTag: {
         serializedName: "eTag",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentLength: {
         serializedName: "contentLength",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       owner: {
         serializedName: "owner",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       group: {
         serializedName: "group",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       permissions: {
         serializedName: "permissions",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PathList: coreClient.CompositeMapper = {
@@ -181,13 +181,13 @@ export const PathList: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Path"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "Path",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const FileSystem: coreClient.CompositeMapper = {
@@ -198,23 +198,23 @@ export const FileSystem: coreClient.CompositeMapper = {
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       lastModified: {
         serializedName: "lastModified",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       eTag: {
         serializedName: "eTag",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ListBlobsHierarchySegmentResponse: coreClient.CompositeMapper = {
@@ -226,55 +226,55 @@ export const ListBlobsHierarchySegmentResponse: coreClient.CompositeMapper = {
         serializedName: "ServiceEndpoint",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       containerName: {
         serializedName: "ContainerName",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       prefix: {
         serializedName: "Prefix",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       marker: {
         serializedName: "Marker",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       maxResults: {
         serializedName: "MaxResults",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       delimiter: {
         serializedName: "Delimiter",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       segment: {
         serializedName: "Segment",
         type: {
           name: "Composite",
-          className: "BlobHierarchyListSegment"
-        }
+          className: "BlobHierarchyListSegment",
+        },
       },
       nextMarker: {
         serializedName: "NextMarker",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const BlobHierarchyListSegment: coreClient.CompositeMapper = {
@@ -289,10 +289,10 @@ export const BlobHierarchyListSegment: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "BlobPrefix"
-            }
-          }
-        }
+              className: "BlobPrefix",
+            },
+          },
+        },
       },
       blobItems: {
         serializedName: "BlobItems",
@@ -302,13 +302,13 @@ export const BlobHierarchyListSegment: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "BlobItemInternal"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "BlobItemInternal",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const BlobPrefix: coreClient.CompositeMapper = {
@@ -320,11 +320,11 @@ export const BlobPrefix: coreClient.CompositeMapper = {
         serializedName: "Name",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const BlobItemInternal: coreClient.CompositeMapper = {
@@ -336,50 +336,50 @@ export const BlobItemInternal: coreClient.CompositeMapper = {
         serializedName: "Name",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       deleted: {
         serializedName: "Deleted",
         required: true,
         type: {
-          name: "Boolean"
-        }
+          name: "Boolean",
+        },
       },
       snapshot: {
         serializedName: "Snapshot",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       versionId: {
         serializedName: "VersionId",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       isCurrentVersion: {
         serializedName: "IsCurrentVersion",
         type: {
-          name: "Boolean"
-        }
+          name: "Boolean",
+        },
       },
       properties: {
         serializedName: "Properties",
         type: {
           name: "Composite",
-          className: "BlobPropertiesInternal"
-        }
+          className: "BlobPropertiesInternal",
+        },
       },
       deletionId: {
         serializedName: "DeletionId",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const BlobPropertiesInternal: coreClient.CompositeMapper = {
@@ -390,187 +390,187 @@ export const BlobPropertiesInternal: coreClient.CompositeMapper = {
       creationTime: {
         serializedName: "Creation-Time",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       lastModified: {
         serializedName: "Last-Modified",
         required: true,
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       etag: {
         serializedName: "Etag",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentLength: {
         serializedName: "Content-Length",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       contentType: {
         serializedName: "Content-Type",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentEncoding: {
         serializedName: "Content-Encoding",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentLanguage: {
         serializedName: "Content-Language",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentMD5: {
         serializedName: "Content-MD5",
         type: {
-          name: "ByteArray"
-        }
+          name: "ByteArray",
+        },
       },
       contentDisposition: {
         serializedName: "Content-Disposition",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       cacheControl: {
         serializedName: "Cache-Control",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       blobSequenceNumber: {
         serializedName: "x-ms-blob-sequence-number",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       copyId: {
         serializedName: "CopyId",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       copySource: {
         serializedName: "CopySource",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       copyProgress: {
         serializedName: "CopyProgress",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       copyCompletionTime: {
         serializedName: "CopyCompletionTime",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       copyStatusDescription: {
         serializedName: "CopyStatusDescription",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       serverEncrypted: {
         serializedName: "ServerEncrypted",
         type: {
-          name: "Boolean"
-        }
+          name: "Boolean",
+        },
       },
       incrementalCopy: {
         serializedName: "IncrementalCopy",
         type: {
-          name: "Boolean"
-        }
+          name: "Boolean",
+        },
       },
       destinationSnapshot: {
         serializedName: "DestinationSnapshot",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       deletedTime: {
         serializedName: "DeletedTime",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       remainingRetentionDays: {
         serializedName: "RemainingRetentionDays",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       accessTierInferred: {
         serializedName: "AccessTierInferred",
         type: {
-          name: "Boolean"
-        }
+          name: "Boolean",
+        },
       },
       customerProvidedKeySha256: {
         serializedName: "CustomerProvidedKeySha256",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       encryptionScope: {
         serializedName: "EncryptionScope",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       accessTierChangeTime: {
         serializedName: "AccessTierChangeTime",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       tagCount: {
         serializedName: "TagCount",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       expiresOn: {
         serializedName: "Expiry-Time",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       isSealed: {
         serializedName: "Sealed",
         type: {
-          name: "Boolean"
-        }
+          name: "Boolean",
+        },
       },
       lastAccessedOn: {
         serializedName: "LastAccessTime",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       deleteTime: {
         serializedName: "DeleteTime",
         type: {
-          name: "DateTimeRfc1123"
-        }
-      }
-    }
-  }
+          name: "DateTimeRfc1123",
+        },
+      },
+    },
+  },
 };
 
 export const FileSystemList: coreClient.CompositeMapper = {
@@ -585,13 +585,13 @@ export const FileSystemList: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "FileSystem"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "FileSystem",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const PathCreateHeaders: coreClient.CompositeMapper = {
@@ -602,52 +602,52 @@ export const PathCreateHeaders: coreClient.CompositeMapper = {
       date: {
         serializedName: "date",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       eTag: {
         serializedName: "etag",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       lastModified: {
         serializedName: "last-modified",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       requestId: {
         constraints: {
           Pattern: new RegExp(
-            "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$"
-          )
+            "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$",
+          ),
         },
         serializedName: "x-ms-request-id",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       version: {
         serializedName: "x-ms-version",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       continuation: {
         serializedName: "x-ms-continuation",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentLength: {
         serializedName: "content-length",
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const PathCreateExceptionHeaders: coreClient.CompositeMapper = {
@@ -658,11 +658,11 @@ export const PathCreateExceptionHeaders: coreClient.CompositeMapper = {
       errorCode: {
         serializedName: "x-ms-error-code",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PathUpdateHeaders: coreClient.CompositeMapper = {
@@ -673,106 +673,106 @@ export const PathUpdateHeaders: coreClient.CompositeMapper = {
       date: {
         serializedName: "date",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       eTag: {
         serializedName: "etag",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       lastModified: {
         serializedName: "last-modified",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       acceptRanges: {
         serializedName: "accept-ranges",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       cacheControl: {
         serializedName: "cache-control",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentDisposition: {
         serializedName: "content-disposition",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentEncoding: {
         serializedName: "content-encoding",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentLanguage: {
         serializedName: "content-language",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentLength: {
         serializedName: "content-length",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       contentRange: {
         serializedName: "content-range",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentType: {
         serializedName: "content-type",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentMD5: {
         serializedName: "content-md5",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       properties: {
         serializedName: "x-ms-properties",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       xMsContinuation: {
         serializedName: "x-ms-continuation",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       requestId: {
         constraints: {
           Pattern: new RegExp(
-            "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$"
-          )
+            "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$",
+          ),
         },
         serializedName: "x-ms-request-id",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       version: {
         serializedName: "x-ms-version",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PathUpdateExceptionHeaders: coreClient.CompositeMapper = {
@@ -783,11 +783,11 @@ export const PathUpdateExceptionHeaders: coreClient.CompositeMapper = {
       errorCode: {
         serializedName: "x-ms-error-code",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PathLeaseHeaders: coreClient.CompositeMapper = {
@@ -798,51 +798,51 @@ export const PathLeaseHeaders: coreClient.CompositeMapper = {
       date: {
         serializedName: "date",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       eTag: {
         serializedName: "etag",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       lastModified: {
         serializedName: "last-modified",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       requestId: {
         constraints: {
           Pattern: new RegExp(
-            "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$"
-          )
+            "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$",
+          ),
         },
         serializedName: "x-ms-request-id",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       version: {
         serializedName: "x-ms-version",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       leaseId: {
         constraints: {
           Pattern: new RegExp(
-            "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$"
-          )
+            "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$",
+          ),
         },
         serializedName: "x-ms-lease-id",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PathLeaseExceptionHeaders: coreClient.CompositeMapper = {
@@ -853,11 +853,11 @@ export const PathLeaseExceptionHeaders: coreClient.CompositeMapper = {
       errorCode: {
         serializedName: "x-ms-error-code",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PathReadHeaders: coreClient.CompositeMapper = {
@@ -868,124 +868,124 @@ export const PathReadHeaders: coreClient.CompositeMapper = {
       acceptRanges: {
         serializedName: "accept-ranges",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       cacheControl: {
         serializedName: "cache-control",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentDisposition: {
         serializedName: "content-disposition",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentEncoding: {
         serializedName: "content-encoding",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentLanguage: {
         serializedName: "content-language",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentLength: {
         serializedName: "content-length",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       contentRange: {
         serializedName: "content-range",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentType: {
         serializedName: "content-type",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentMD5: {
         serializedName: "content-md5",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       date: {
         serializedName: "date",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       eTag: {
         serializedName: "etag",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       lastModified: {
         serializedName: "last-modified",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       requestId: {
         constraints: {
           Pattern: new RegExp(
-            "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$"
-          )
+            "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$",
+          ),
         },
         serializedName: "x-ms-request-id",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       version: {
         serializedName: "x-ms-version",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       resourceType: {
         serializedName: "x-ms-resource-type",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       properties: {
         serializedName: "x-ms-properties",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       leaseDuration: {
         serializedName: "x-ms-lease-duration",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       leaseState: {
         serializedName: "x-ms-lease-state",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       leaseStatus: {
         serializedName: "x-ms-lease-status",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PathReadExceptionHeaders: coreClient.CompositeMapper = {
@@ -996,11 +996,11 @@ export const PathReadExceptionHeaders: coreClient.CompositeMapper = {
       errorCode: {
         serializedName: "x-ms-error-code",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PathGetPropertiesHeaders: coreClient.CompositeMapper = {
@@ -1011,148 +1011,148 @@ export const PathGetPropertiesHeaders: coreClient.CompositeMapper = {
       acceptRanges: {
         serializedName: "accept-ranges",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       cacheControl: {
         serializedName: "cache-control",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentDisposition: {
         serializedName: "content-disposition",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentEncoding: {
         serializedName: "content-encoding",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentLanguage: {
         serializedName: "content-language",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentLength: {
         serializedName: "content-length",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       contentRange: {
         serializedName: "content-range",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentType: {
         serializedName: "content-type",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       contentMD5: {
         serializedName: "content-md5",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       date: {
         serializedName: "date",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       eTag: {
         serializedName: "etag",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       lastModified: {
         serializedName: "last-modified",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       requestId: {
         constraints: {
           Pattern: new RegExp(
-            "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$"
-          )
+            "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$",
+          ),
         },
         serializedName: "x-ms-request-id",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       version: {
         serializedName: "x-ms-version",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       resourceType: {
         serializedName: "x-ms-resource-type",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       properties: {
         serializedName: "x-ms-properties",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       owner: {
         serializedName: "x-ms-owner",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       group: {
         serializedName: "x-ms-group",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       permissions: {
         serializedName: "x-ms-permissions",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       acl: {
         serializedName: "x-ms-acl",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       leaseDuration: {
         serializedName: "x-ms-lease-duration",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       leaseState: {
         serializedName: "x-ms-lease-state",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       leaseStatus: {
         serializedName: "x-ms-lease-status",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PathGetPropertiesExceptionHeaders: coreClient.CompositeMapper = {
@@ -1163,11 +1163,11 @@ export const PathGetPropertiesExceptionHeaders: coreClient.CompositeMapper = {
       errorCode: {
         serializedName: "x-ms-error-code",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PathDeleteHeaders: coreClient.CompositeMapper = {
@@ -1178,40 +1178,40 @@ export const PathDeleteHeaders: coreClient.CompositeMapper = {
       date: {
         serializedName: "date",
         type: {
-          name: "DateTimeRfc1123"
-        }
+          name: "DateTimeRfc1123",
+        },
       },
       requestId: {
         constraints: {
           Pattern: new RegExp(
-            "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$"
-          )
+            "^[{(]?[0-9a-f]{8}[-]?([0-9a-f]{4}[-]?){3}[0-9a-f]{12}[)}]?$",
+          ),
         },
         serializedName: "x-ms-request-id",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       version: {
         serializedName: "x-ms-version",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       continuation: {
         serializedName: "x-ms-continuation",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       deletionId: {
         serializedName: "x-ms-deletion-id",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const PathDeleteExceptionHeaders: coreClient.CompositeMapper = {
@@ -1222,9 +1222,9 @@ export const PathDeleteExceptionHeaders: coreClient.CompositeMapper = {
       errorCode: {
         serializedName: "x-ms-error-code",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

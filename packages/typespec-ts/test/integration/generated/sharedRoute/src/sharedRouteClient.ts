@@ -12,7 +12,7 @@ import { SharedRouteClient } from "./clientDefinitions";
  */
 export default function createClient(
   $host: string,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): SharedRouteClient {
   const baseUrl = options.baseUrl ?? `${$host}`;
 
@@ -32,6 +32,8 @@ export default function createClient(
   };
 
   const client = getClient(baseUrl, options) as SharedRouteClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }

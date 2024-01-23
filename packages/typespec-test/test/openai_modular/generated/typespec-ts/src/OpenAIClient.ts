@@ -44,7 +44,7 @@ export class OpenAIClient {
   constructor(
     endpoint: string,
     credential: KeyCredential | TokenCredential,
-    options: OpenAIClientOptions = {}
+    options: OpenAIClientOptions = {},
   ) {
     this._client = createOpenAI(endpoint, credential, options);
     this.pipeline = this._client.pipeline;
@@ -54,7 +54,7 @@ export class OpenAIClient {
   getEmbeddings(
     deploymentId: string,
     body: EmbeddingsOptions,
-    options: GetEmbeddingsOptions = { requestOptions: {} }
+    options: GetEmbeddingsOptions = { requestOptions: {} },
   ): Promise<Embeddings> {
     return getEmbeddings(this._client, deploymentId, body, options);
   }
@@ -67,7 +67,7 @@ export class OpenAIClient {
   getCompletions(
     deploymentId: string,
     body: CompletionsOptions,
-    options: GetCompletionsOptions = { requestOptions: {} }
+    options: GetCompletionsOptions = { requestOptions: {} },
   ): Promise<Completions> {
     return getCompletions(this._client, deploymentId, body, options);
   }
@@ -80,7 +80,7 @@ export class OpenAIClient {
   getChatCompletions(
     deploymentId: string,
     body: ChatCompletionsOptions,
-    options: GetChatCompletionsOptions = { requestOptions: {} }
+    options: GetChatCompletionsOptions = { requestOptions: {} },
   ): Promise<ChatCompletions> {
     return getChatCompletions(this._client, deploymentId, body, options);
   }
@@ -95,13 +95,13 @@ export class OpenAIClient {
     body: ChatCompletionsOptions,
     options: GetChatCompletionsWithAzureExtensionsOptions = {
       requestOptions: {},
-    }
+    },
   ): Promise<ChatCompletions> {
     return getChatCompletionsWithAzureExtensions(
       this._client,
       deploymentId,
       body,
-      options
+      options,
     );
   }
 
@@ -110,19 +110,19 @@ export class OpenAIClient {
     operationId: string,
     options: GetAzureBatchImageGenerationOperationStatusOptions = {
       requestOptions: {},
-    }
+    },
   ): Promise<BatchImageGenerationOperationResponse> {
     return getAzureBatchImageGenerationOperationStatus(
       this._client,
       operationId,
-      options
+      options,
     );
   }
 
   /** Starts the generation of a batch of images from a text caption */
   beginAzureBatchImageGeneration(
     body: ImageGenerationOptions,
-    options: BeginAzureBatchImageGenerationOptions = { requestOptions: {} }
+    options: BeginAzureBatchImageGenerationOptions = { requestOptions: {} },
   ): Promise<BatchImageGenerationOperationResponse> {
     return beginAzureBatchImageGeneration(this._client, body, options);
   }

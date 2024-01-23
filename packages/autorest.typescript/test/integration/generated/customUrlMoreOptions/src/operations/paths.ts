@@ -36,11 +36,11 @@ export class PathsImpl implements Paths {
     vault: string,
     secret: string,
     keyName: string,
-    options?: PathsGetEmptyOptionalParams
+    options?: PathsGetEmptyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { vault, secret, keyName, options },
-      getEmptyOperationSpec
+      getEmptyOperationSpec,
     );
   }
 }
@@ -53,8 +53,8 @@ const getEmptyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.keyVersion],
   urlParameters: [
@@ -62,8 +62,8 @@ const getEmptyOperationSpec: coreClient.OperationSpec = {
     Parameters.secret,
     Parameters.dnsSuffix,
     Parameters.keyName,
-    Parameters.subscriptionId
+    Parameters.subscriptionId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

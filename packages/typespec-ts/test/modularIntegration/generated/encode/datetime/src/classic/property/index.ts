@@ -27,23 +27,23 @@ import {
 export interface PropertyOperations {
   default: (
     body: DefaultDatetimeProperty,
-    options?: PropertyDefaultOptions
+    options?: PropertyDefaultOptions,
   ) => Promise<DefaultDatetimeProperty>;
   rfc3339: (
     body: Rfc3339DatetimeProperty,
-    options?: PropertyRfc3339Options
+    options?: PropertyRfc3339Options,
   ) => Promise<Rfc3339DatetimeProperty>;
   rfc7231: (
     body: Rfc7231DatetimeProperty,
-    options?: PropertyRfc7231Options
+    options?: PropertyRfc7231Options,
   ) => Promise<Rfc7231DatetimeProperty>;
   unixTimestamp: (
     body: UnixTimestampDatetimeProperty,
-    options?: PropertyUnixTimestampOptions
+    options?: PropertyUnixTimestampOptions,
   ) => Promise<UnixTimestampDatetimeProperty>;
   unixTimestampArray: (
     body: UnixTimestampArrayDatetimeProperty,
-    options?: PropertyUnixTimestampArrayOptions
+    options?: PropertyUnixTimestampArrayOptions,
   ) => Promise<UnixTimestampArrayDatetimeProperty>;
 }
 
@@ -51,29 +51,29 @@ export function getProperty(context: DatetimeContext) {
   return {
     default: (
       body: DefaultDatetimeProperty,
-      options?: PropertyDefaultOptions
+      options?: PropertyDefaultOptions,
     ) => propertyDefault(context, body, options),
     rfc3339: (
       body: Rfc3339DatetimeProperty,
-      options?: PropertyRfc3339Options
+      options?: PropertyRfc3339Options,
     ) => propertyRfc3339(context, body, options),
     rfc7231: (
       body: Rfc7231DatetimeProperty,
-      options?: PropertyRfc7231Options
+      options?: PropertyRfc7231Options,
     ) => propertyRfc7231(context, body, options),
     unixTimestamp: (
       body: UnixTimestampDatetimeProperty,
-      options?: PropertyUnixTimestampOptions
+      options?: PropertyUnixTimestampOptions,
     ) => propertyUnixTimestamp(context, body, options),
     unixTimestampArray: (
       body: UnixTimestampArrayDatetimeProperty,
-      options?: PropertyUnixTimestampArrayOptions
+      options?: PropertyUnixTimestampArrayOptions,
     ) => propertyUnixTimestampArray(context, body, options),
   };
 }
 
 export function getPropertyOperations(
-  context: DatetimeContext
+  context: DatetimeContext,
 ): PropertyOperations {
   return {
     ...getProperty(context),

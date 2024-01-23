@@ -134,7 +134,7 @@ import {
   ArrayGetDictionaryItemEmptyResponse,
   ArrayGetDictionaryValidOptionalParams,
   ArrayGetDictionaryValidResponse,
-  ArrayPutDictionaryValidOptionalParams
+  ArrayPutDictionaryValidOptionalParams,
 } from "../models";
 
 /** Class containing Array operations. */
@@ -162,11 +162,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: ArrayGetInvalidOptionalParams
+    options?: ArrayGetInvalidOptionalParams,
   ): Promise<ArrayGetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getInvalidOperationSpec
+      getInvalidOperationSpec,
     );
   }
 
@@ -175,7 +175,7 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getEmpty(
-    options?: ArrayGetEmptyOptionalParams
+    options?: ArrayGetEmptyOptionalParams,
   ): Promise<ArrayGetEmptyResponse> {
     return this.client.sendOperationRequest({ options }, getEmptyOperationSpec);
   }
@@ -187,11 +187,11 @@ export class ArrayImpl implements Array {
    */
   putEmpty(
     arrayBody: string[],
-    options?: ArrayPutEmptyOptionalParams
+    options?: ArrayPutEmptyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putEmptyOperationSpec
+      putEmptyOperationSpec,
     );
   }
 
@@ -200,11 +200,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getBooleanTfft(
-    options?: ArrayGetBooleanTfftOptionalParams
+    options?: ArrayGetBooleanTfftOptionalParams,
   ): Promise<ArrayGetBooleanTfftResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getBooleanTfftOperationSpec
+      getBooleanTfftOperationSpec,
     );
   }
 
@@ -215,11 +215,11 @@ export class ArrayImpl implements Array {
    */
   putBooleanTfft(
     arrayBody: boolean[],
-    options?: ArrayPutBooleanTfftOptionalParams
+    options?: ArrayPutBooleanTfftOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putBooleanTfftOperationSpec
+      putBooleanTfftOperationSpec,
     );
   }
 
@@ -228,11 +228,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getBooleanInvalidNull(
-    options?: ArrayGetBooleanInvalidNullOptionalParams
+    options?: ArrayGetBooleanInvalidNullOptionalParams,
   ): Promise<ArrayGetBooleanInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getBooleanInvalidNullOperationSpec
+      getBooleanInvalidNullOperationSpec,
     );
   }
 
@@ -241,11 +241,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getBooleanInvalidString(
-    options?: ArrayGetBooleanInvalidStringOptionalParams
+    options?: ArrayGetBooleanInvalidStringOptionalParams,
   ): Promise<ArrayGetBooleanInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getBooleanInvalidStringOperationSpec
+      getBooleanInvalidStringOperationSpec,
     );
   }
 
@@ -254,11 +254,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getIntegerValid(
-    options?: ArrayGetIntegerValidOptionalParams
+    options?: ArrayGetIntegerValidOptionalParams,
   ): Promise<ArrayGetIntegerValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getIntegerValidOperationSpec
+      getIntegerValidOperationSpec,
     );
   }
 
@@ -269,11 +269,11 @@ export class ArrayImpl implements Array {
    */
   putIntegerValid(
     arrayBody: number[],
-    options?: ArrayPutIntegerValidOptionalParams
+    options?: ArrayPutIntegerValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putIntegerValidOperationSpec
+      putIntegerValidOperationSpec,
     );
   }
 
@@ -282,11 +282,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getIntInvalidNull(
-    options?: ArrayGetIntInvalidNullOptionalParams
+    options?: ArrayGetIntInvalidNullOptionalParams,
   ): Promise<ArrayGetIntInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getIntInvalidNullOperationSpec
+      getIntInvalidNullOperationSpec,
     );
   }
 
@@ -295,11 +295,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getIntInvalidString(
-    options?: ArrayGetIntInvalidStringOptionalParams
+    options?: ArrayGetIntInvalidStringOptionalParams,
   ): Promise<ArrayGetIntInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getIntInvalidStringOperationSpec
+      getIntInvalidStringOperationSpec,
     );
   }
 
@@ -308,11 +308,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getLongValid(
-    options?: ArrayGetLongValidOptionalParams
+    options?: ArrayGetLongValidOptionalParams,
   ): Promise<ArrayGetLongValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getLongValidOperationSpec
+      getLongValidOperationSpec,
     );
   }
 
@@ -323,11 +323,11 @@ export class ArrayImpl implements Array {
    */
   putLongValid(
     arrayBody: number[],
-    options?: ArrayPutLongValidOptionalParams
+    options?: ArrayPutLongValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putLongValidOperationSpec
+      putLongValidOperationSpec,
     );
   }
 
@@ -336,11 +336,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getLongInvalidNull(
-    options?: ArrayGetLongInvalidNullOptionalParams
+    options?: ArrayGetLongInvalidNullOptionalParams,
   ): Promise<ArrayGetLongInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getLongInvalidNullOperationSpec
+      getLongInvalidNullOperationSpec,
     );
   }
 
@@ -349,11 +349,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getLongInvalidString(
-    options?: ArrayGetLongInvalidStringOptionalParams
+    options?: ArrayGetLongInvalidStringOptionalParams,
   ): Promise<ArrayGetLongInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getLongInvalidStringOperationSpec
+      getLongInvalidStringOperationSpec,
     );
   }
 
@@ -362,11 +362,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getFloatValid(
-    options?: ArrayGetFloatValidOptionalParams
+    options?: ArrayGetFloatValidOptionalParams,
   ): Promise<ArrayGetFloatValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getFloatValidOperationSpec
+      getFloatValidOperationSpec,
     );
   }
 
@@ -377,11 +377,11 @@ export class ArrayImpl implements Array {
    */
   putFloatValid(
     arrayBody: number[],
-    options?: ArrayPutFloatValidOptionalParams
+    options?: ArrayPutFloatValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putFloatValidOperationSpec
+      putFloatValidOperationSpec,
     );
   }
 
@@ -390,11 +390,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getFloatInvalidNull(
-    options?: ArrayGetFloatInvalidNullOptionalParams
+    options?: ArrayGetFloatInvalidNullOptionalParams,
   ): Promise<ArrayGetFloatInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getFloatInvalidNullOperationSpec
+      getFloatInvalidNullOperationSpec,
     );
   }
 
@@ -403,11 +403,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getFloatInvalidString(
-    options?: ArrayGetFloatInvalidStringOptionalParams
+    options?: ArrayGetFloatInvalidStringOptionalParams,
   ): Promise<ArrayGetFloatInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getFloatInvalidStringOperationSpec
+      getFloatInvalidStringOperationSpec,
     );
   }
 
@@ -416,11 +416,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDoubleValid(
-    options?: ArrayGetDoubleValidOptionalParams
+    options?: ArrayGetDoubleValidOptionalParams,
   ): Promise<ArrayGetDoubleValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDoubleValidOperationSpec
+      getDoubleValidOperationSpec,
     );
   }
 
@@ -431,11 +431,11 @@ export class ArrayImpl implements Array {
    */
   putDoubleValid(
     arrayBody: number[],
-    options?: ArrayPutDoubleValidOptionalParams
+    options?: ArrayPutDoubleValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putDoubleValidOperationSpec
+      putDoubleValidOperationSpec,
     );
   }
 
@@ -444,11 +444,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDoubleInvalidNull(
-    options?: ArrayGetDoubleInvalidNullOptionalParams
+    options?: ArrayGetDoubleInvalidNullOptionalParams,
   ): Promise<ArrayGetDoubleInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDoubleInvalidNullOperationSpec
+      getDoubleInvalidNullOperationSpec,
     );
   }
 
@@ -457,11 +457,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDoubleInvalidString(
-    options?: ArrayGetDoubleInvalidStringOptionalParams
+    options?: ArrayGetDoubleInvalidStringOptionalParams,
   ): Promise<ArrayGetDoubleInvalidStringResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDoubleInvalidStringOperationSpec
+      getDoubleInvalidStringOperationSpec,
     );
   }
 
@@ -470,11 +470,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getStringValid(
-    options?: ArrayGetStringValidOptionalParams
+    options?: ArrayGetStringValidOptionalParams,
   ): Promise<ArrayGetStringValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getStringValidOperationSpec
+      getStringValidOperationSpec,
     );
   }
 
@@ -485,11 +485,11 @@ export class ArrayImpl implements Array {
    */
   putStringValid(
     arrayBody: string[],
-    options?: ArrayPutStringValidOptionalParams
+    options?: ArrayPutStringValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putStringValidOperationSpec
+      putStringValidOperationSpec,
     );
   }
 
@@ -498,11 +498,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getEnumValid(
-    options?: ArrayGetEnumValidOptionalParams
+    options?: ArrayGetEnumValidOptionalParams,
   ): Promise<ArrayGetEnumValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getEnumValidOperationSpec
+      getEnumValidOperationSpec,
     );
   }
 
@@ -513,11 +513,11 @@ export class ArrayImpl implements Array {
    */
   putEnumValid(
     arrayBody: FooEnum[],
-    options?: ArrayPutEnumValidOptionalParams
+    options?: ArrayPutEnumValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putEnumValidOperationSpec
+      putEnumValidOperationSpec,
     );
   }
 
@@ -526,11 +526,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getStringEnumValid(
-    options?: ArrayGetStringEnumValidOptionalParams
+    options?: ArrayGetStringEnumValidOptionalParams,
   ): Promise<ArrayGetStringEnumValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getStringEnumValidOperationSpec
+      getStringEnumValidOperationSpec,
     );
   }
 
@@ -541,11 +541,11 @@ export class ArrayImpl implements Array {
    */
   putStringEnumValid(
     arrayBody: Enum1[],
-    options?: ArrayPutStringEnumValidOptionalParams
+    options?: ArrayPutStringEnumValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putStringEnumValidOperationSpec
+      putStringEnumValidOperationSpec,
     );
   }
 
@@ -554,11 +554,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getStringWithNull(
-    options?: ArrayGetStringWithNullOptionalParams
+    options?: ArrayGetStringWithNullOptionalParams,
   ): Promise<ArrayGetStringWithNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getStringWithNullOperationSpec
+      getStringWithNullOperationSpec,
     );
   }
 
@@ -567,11 +567,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getStringWithInvalid(
-    options?: ArrayGetStringWithInvalidOptionalParams
+    options?: ArrayGetStringWithInvalidOptionalParams,
   ): Promise<ArrayGetStringWithInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getStringWithInvalidOperationSpec
+      getStringWithInvalidOperationSpec,
     );
   }
 
@@ -581,11 +581,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getUuidValid(
-    options?: ArrayGetUuidValidOptionalParams
+    options?: ArrayGetUuidValidOptionalParams,
   ): Promise<ArrayGetUuidValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getUuidValidOperationSpec
+      getUuidValidOperationSpec,
     );
   }
 
@@ -598,11 +598,11 @@ export class ArrayImpl implements Array {
    */
   putUuidValid(
     arrayBody: string[],
-    options?: ArrayPutUuidValidOptionalParams
+    options?: ArrayPutUuidValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putUuidValidOperationSpec
+      putUuidValidOperationSpec,
     );
   }
 
@@ -611,11 +611,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getUuidInvalidChars(
-    options?: ArrayGetUuidInvalidCharsOptionalParams
+    options?: ArrayGetUuidInvalidCharsOptionalParams,
   ): Promise<ArrayGetUuidInvalidCharsResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getUuidInvalidCharsOperationSpec
+      getUuidInvalidCharsOperationSpec,
     );
   }
 
@@ -624,11 +624,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDateValid(
-    options?: ArrayGetDateValidOptionalParams
+    options?: ArrayGetDateValidOptionalParams,
   ): Promise<ArrayGetDateValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDateValidOperationSpec
+      getDateValidOperationSpec,
     );
   }
 
@@ -639,11 +639,11 @@ export class ArrayImpl implements Array {
    */
   putDateValid(
     arrayBody: Date[],
-    options?: ArrayPutDateValidOptionalParams
+    options?: ArrayPutDateValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putDateValidOperationSpec
+      putDateValidOperationSpec,
     );
   }
 
@@ -652,11 +652,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDateInvalidNull(
-    options?: ArrayGetDateInvalidNullOptionalParams
+    options?: ArrayGetDateInvalidNullOptionalParams,
   ): Promise<ArrayGetDateInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDateInvalidNullOperationSpec
+      getDateInvalidNullOperationSpec,
     );
   }
 
@@ -665,11 +665,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDateInvalidChars(
-    options?: ArrayGetDateInvalidCharsOptionalParams
+    options?: ArrayGetDateInvalidCharsOptionalParams,
   ): Promise<ArrayGetDateInvalidCharsResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDateInvalidCharsOperationSpec
+      getDateInvalidCharsOperationSpec,
     );
   }
 
@@ -679,11 +679,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDateTimeValid(
-    options?: ArrayGetDateTimeValidOptionalParams
+    options?: ArrayGetDateTimeValidOptionalParams,
   ): Promise<ArrayGetDateTimeValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDateTimeValidOperationSpec
+      getDateTimeValidOperationSpec,
     );
   }
 
@@ -695,11 +695,11 @@ export class ArrayImpl implements Array {
    */
   putDateTimeValid(
     arrayBody: Date[],
-    options?: ArrayPutDateTimeValidOptionalParams
+    options?: ArrayPutDateTimeValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putDateTimeValidOperationSpec
+      putDateTimeValidOperationSpec,
     );
   }
 
@@ -708,11 +708,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDateTimeInvalidNull(
-    options?: ArrayGetDateTimeInvalidNullOptionalParams
+    options?: ArrayGetDateTimeInvalidNullOptionalParams,
   ): Promise<ArrayGetDateTimeInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDateTimeInvalidNullOperationSpec
+      getDateTimeInvalidNullOperationSpec,
     );
   }
 
@@ -721,11 +721,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDateTimeInvalidChars(
-    options?: ArrayGetDateTimeInvalidCharsOptionalParams
+    options?: ArrayGetDateTimeInvalidCharsOptionalParams,
   ): Promise<ArrayGetDateTimeInvalidCharsResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDateTimeInvalidCharsOperationSpec
+      getDateTimeInvalidCharsOperationSpec,
     );
   }
 
@@ -735,11 +735,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDateTimeRfc1123Valid(
-    options?: ArrayGetDateTimeRfc1123ValidOptionalParams
+    options?: ArrayGetDateTimeRfc1123ValidOptionalParams,
   ): Promise<ArrayGetDateTimeRfc1123ValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDateTimeRfc1123ValidOperationSpec
+      getDateTimeRfc1123ValidOperationSpec,
     );
   }
 
@@ -752,11 +752,11 @@ export class ArrayImpl implements Array {
    */
   putDateTimeRfc1123Valid(
     arrayBody: Date[],
-    options?: ArrayPutDateTimeRfc1123ValidOptionalParams
+    options?: ArrayPutDateTimeRfc1123ValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putDateTimeRfc1123ValidOperationSpec
+      putDateTimeRfc1123ValidOperationSpec,
     );
   }
 
@@ -765,11 +765,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDurationValid(
-    options?: ArrayGetDurationValidOptionalParams
+    options?: ArrayGetDurationValidOptionalParams,
   ): Promise<ArrayGetDurationValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDurationValidOperationSpec
+      getDurationValidOperationSpec,
     );
   }
 
@@ -780,11 +780,11 @@ export class ArrayImpl implements Array {
    */
   putDurationValid(
     arrayBody: string[],
-    options?: ArrayPutDurationValidOptionalParams
+    options?: ArrayPutDurationValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putDurationValidOperationSpec
+      putDurationValidOperationSpec,
     );
   }
 
@@ -794,11 +794,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getByteValid(
-    options?: ArrayGetByteValidOptionalParams
+    options?: ArrayGetByteValidOptionalParams,
   ): Promise<ArrayGetByteValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getByteValidOperationSpec
+      getByteValidOperationSpec,
     );
   }
 
@@ -811,11 +811,11 @@ export class ArrayImpl implements Array {
    */
   putByteValid(
     arrayBody: Uint8Array[],
-    options?: ArrayPutByteValidOptionalParams
+    options?: ArrayPutByteValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putByteValidOperationSpec
+      putByteValidOperationSpec,
     );
   }
 
@@ -824,11 +824,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getByteInvalidNull(
-    options?: ArrayGetByteInvalidNullOptionalParams
+    options?: ArrayGetByteInvalidNullOptionalParams,
   ): Promise<ArrayGetByteInvalidNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getByteInvalidNullOperationSpec
+      getByteInvalidNullOperationSpec,
     );
   }
 
@@ -838,11 +838,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getBase64Url(
-    options?: ArrayGetBase64UrlOptionalParams
+    options?: ArrayGetBase64UrlOptionalParams,
   ): Promise<ArrayGetBase64UrlResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getBase64UrlOperationSpec
+      getBase64UrlOperationSpec,
     );
   }
 
@@ -851,11 +851,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getComplexNull(
-    options?: ArrayGetComplexNullOptionalParams
+    options?: ArrayGetComplexNullOptionalParams,
   ): Promise<ArrayGetComplexNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getComplexNullOperationSpec
+      getComplexNullOperationSpec,
     );
   }
 
@@ -864,11 +864,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getComplexEmpty(
-    options?: ArrayGetComplexEmptyOptionalParams
+    options?: ArrayGetComplexEmptyOptionalParams,
   ): Promise<ArrayGetComplexEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getComplexEmptyOperationSpec
+      getComplexEmptyOperationSpec,
     );
   }
 
@@ -878,11 +878,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getComplexItemNull(
-    options?: ArrayGetComplexItemNullOptionalParams
+    options?: ArrayGetComplexItemNullOptionalParams,
   ): Promise<ArrayGetComplexItemNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getComplexItemNullOperationSpec
+      getComplexItemNullOperationSpec,
     );
   }
 
@@ -892,11 +892,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getComplexItemEmpty(
-    options?: ArrayGetComplexItemEmptyOptionalParams
+    options?: ArrayGetComplexItemEmptyOptionalParams,
   ): Promise<ArrayGetComplexItemEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getComplexItemEmptyOperationSpec
+      getComplexItemEmptyOperationSpec,
     );
   }
 
@@ -906,11 +906,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getComplexValid(
-    options?: ArrayGetComplexValidOptionalParams
+    options?: ArrayGetComplexValidOptionalParams,
   ): Promise<ArrayGetComplexValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getComplexValidOperationSpec
+      getComplexValidOperationSpec,
     );
   }
 
@@ -923,11 +923,11 @@ export class ArrayImpl implements Array {
    */
   putComplexValid(
     arrayBody: Product[],
-    options?: ArrayPutComplexValidOptionalParams
+    options?: ArrayPutComplexValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putComplexValidOperationSpec
+      putComplexValidOperationSpec,
     );
   }
 
@@ -936,11 +936,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getArrayNull(
-    options?: ArrayGetArrayNullOptionalParams
+    options?: ArrayGetArrayNullOptionalParams,
   ): Promise<ArrayGetArrayNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getArrayNullOperationSpec
+      getArrayNullOperationSpec,
     );
   }
 
@@ -949,11 +949,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getArrayEmpty(
-    options?: ArrayGetArrayEmptyOptionalParams
+    options?: ArrayGetArrayEmptyOptionalParams,
   ): Promise<ArrayGetArrayEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getArrayEmptyOperationSpec
+      getArrayEmptyOperationSpec,
     );
   }
 
@@ -962,11 +962,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getArrayItemNull(
-    options?: ArrayGetArrayItemNullOptionalParams
+    options?: ArrayGetArrayItemNullOptionalParams,
   ): Promise<ArrayGetArrayItemNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getArrayItemNullOperationSpec
+      getArrayItemNullOperationSpec,
     );
   }
 
@@ -975,11 +975,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getArrayItemEmpty(
-    options?: ArrayGetArrayItemEmptyOptionalParams
+    options?: ArrayGetArrayItemEmptyOptionalParams,
   ): Promise<ArrayGetArrayItemEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getArrayItemEmptyOperationSpec
+      getArrayItemEmptyOperationSpec,
     );
   }
 
@@ -988,11 +988,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getArrayValid(
-    options?: ArrayGetArrayValidOptionalParams
+    options?: ArrayGetArrayValidOptionalParams,
   ): Promise<ArrayGetArrayValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getArrayValidOperationSpec
+      getArrayValidOperationSpec,
     );
   }
 
@@ -1003,11 +1003,11 @@ export class ArrayImpl implements Array {
    */
   putArrayValid(
     arrayBody: string[][],
-    options?: ArrayPutArrayValidOptionalParams
+    options?: ArrayPutArrayValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putArrayValidOperationSpec
+      putArrayValidOperationSpec,
     );
   }
 
@@ -1016,11 +1016,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDictionaryNull(
-    options?: ArrayGetDictionaryNullOptionalParams
+    options?: ArrayGetDictionaryNullOptionalParams,
   ): Promise<ArrayGetDictionaryNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDictionaryNullOperationSpec
+      getDictionaryNullOperationSpec,
     );
   }
 
@@ -1029,11 +1029,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDictionaryEmpty(
-    options?: ArrayGetDictionaryEmptyOptionalParams
+    options?: ArrayGetDictionaryEmptyOptionalParams,
   ): Promise<ArrayGetDictionaryEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDictionaryEmptyOperationSpec
+      getDictionaryEmptyOperationSpec,
     );
   }
 
@@ -1043,11 +1043,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDictionaryItemNull(
-    options?: ArrayGetDictionaryItemNullOptionalParams
+    options?: ArrayGetDictionaryItemNullOptionalParams,
   ): Promise<ArrayGetDictionaryItemNullResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDictionaryItemNullOperationSpec
+      getDictionaryItemNullOperationSpec,
     );
   }
 
@@ -1057,11 +1057,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDictionaryItemEmpty(
-    options?: ArrayGetDictionaryItemEmptyOptionalParams
+    options?: ArrayGetDictionaryItemEmptyOptionalParams,
   ): Promise<ArrayGetDictionaryItemEmptyResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDictionaryItemEmptyOperationSpec
+      getDictionaryItemEmptyOperationSpec,
     );
   }
 
@@ -1071,11 +1071,11 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getDictionaryValid(
-    options?: ArrayGetDictionaryValidOptionalParams
+    options?: ArrayGetDictionaryValidOptionalParams,
   ): Promise<ArrayGetDictionaryValidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getDictionaryValidOperationSpec
+      getDictionaryValidOperationSpec,
     );
   }
 
@@ -1089,11 +1089,11 @@ export class ArrayImpl implements Array {
    */
   putDictionaryValid(
     arrayBody: { [propertyName: string]: string }[],
-    options?: ArrayPutDictionaryValidOptionalParams
+    options?: ArrayPutDictionaryValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { arrayBody, options },
-      putDictionaryValidOperationSpec
+      putDictionaryValidOperationSpec,
     );
   }
 }
@@ -1106,16 +1106,16 @@ const getNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Number" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getInvalidOperationSpec: coreClient.OperationSpec = {
   path: "/array/invalid",
@@ -1123,16 +1123,16 @@ const getInvalidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Number" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/array/empty",
@@ -1140,16 +1140,16 @@ const getEmptyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Number" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/array/empty",
@@ -1157,14 +1157,14 @@ const putEmptyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getBooleanTfftOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/boolean/tfft",
@@ -1172,16 +1172,16 @@ const getBooleanTfftOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Boolean" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Boolean" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putBooleanTfftOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/boolean/tfft",
@@ -1189,14 +1189,14 @@ const putBooleanTfftOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getBooleanInvalidNullOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/boolean/true.null.false",
@@ -1204,16 +1204,16 @@ const getBooleanInvalidNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Boolean" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Boolean" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getBooleanInvalidStringOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/boolean/true.boolean.false",
@@ -1221,16 +1221,16 @@ const getBooleanInvalidStringOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Boolean" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Boolean" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getIntegerValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/integer/1.-1.3.300",
@@ -1238,16 +1238,16 @@ const getIntegerValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Number" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putIntegerValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/integer/1.-1.3.300",
@@ -1255,14 +1255,14 @@ const putIntegerValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getIntInvalidNullOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/integer/1.null.zero",
@@ -1270,16 +1270,16 @@ const getIntInvalidNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Number" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getIntInvalidStringOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/integer/1.integer.0",
@@ -1287,16 +1287,16 @@ const getIntInvalidStringOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Number" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getLongValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/long/1.-1.3.300",
@@ -1304,16 +1304,16 @@ const getLongValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Number" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putLongValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/long/1.-1.3.300",
@@ -1321,14 +1321,14 @@ const putLongValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getLongInvalidNullOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/long/1.null.zero",
@@ -1336,16 +1336,16 @@ const getLongInvalidNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Number" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getLongInvalidStringOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/long/1.integer.0",
@@ -1353,16 +1353,16 @@ const getLongInvalidStringOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Number" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getFloatValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/float/0--0.01-1.2e20",
@@ -1370,16 +1370,16 @@ const getFloatValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Number" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putFloatValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/float/0--0.01-1.2e20",
@@ -1387,14 +1387,14 @@ const putFloatValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getFloatInvalidNullOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/float/0.0-null-1.2e20",
@@ -1402,16 +1402,16 @@ const getFloatInvalidNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Number" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getFloatInvalidStringOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/float/1.number.0",
@@ -1419,16 +1419,16 @@ const getFloatInvalidStringOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Number" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDoubleValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/double/0--0.01-1.2e20",
@@ -1436,16 +1436,16 @@ const getDoubleValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Number" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDoubleValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/double/0--0.01-1.2e20",
@@ -1453,14 +1453,14 @@ const putDoubleValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDoubleInvalidNullOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/double/0.0-null-1.2e20",
@@ -1468,16 +1468,16 @@ const getDoubleInvalidNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Number" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDoubleInvalidStringOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/double/1.number.0",
@@ -1485,16 +1485,16 @@ const getDoubleInvalidStringOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Number" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Number" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getStringValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/string/foo1.foo2.foo3",
@@ -1502,16 +1502,16 @@ const getStringValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "String" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "String" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putStringValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/string/foo1.foo2.foo3",
@@ -1519,14 +1519,14 @@ const putStringValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getEnumValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/enum/foo1.foo2.foo3",
@@ -1537,18 +1537,18 @@ const getEnumValidOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Enum", allowedValues: ["foo1", "foo2", "foo3"] }
-          }
-        }
-      }
+            type: { name: "Enum", allowedValues: ["foo1", "foo2", "foo3"] },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putEnumValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/enum/foo1.foo2.foo3",
@@ -1556,14 +1556,14 @@ const putEnumValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody3,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getStringEnumValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/string-enum/foo1.foo2.foo3",
@@ -1571,16 +1571,16 @@ const getStringEnumValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "String" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "String" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putStringEnumValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/string-enum/foo1.foo2.foo3",
@@ -1588,14 +1588,14 @@ const putStringEnumValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody4,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getStringWithNullOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/string/foo.null.foo2",
@@ -1603,16 +1603,16 @@ const getStringWithNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "String" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "String" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getStringWithInvalidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/string/foo.123.foo2",
@@ -1620,16 +1620,16 @@ const getStringWithInvalidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "String" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "String" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getUuidValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/uuid/valid",
@@ -1637,16 +1637,16 @@ const getUuidValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Uuid" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Uuid" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putUuidValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/uuid/valid",
@@ -1654,14 +1654,14 @@ const putUuidValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody5,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getUuidInvalidCharsOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/uuid/invalidchars",
@@ -1669,16 +1669,16 @@ const getUuidInvalidCharsOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Uuid" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Uuid" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDateValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/date/valid",
@@ -1686,16 +1686,16 @@ const getDateValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Date" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Date" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDateValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/date/valid",
@@ -1703,14 +1703,14 @@ const putDateValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody6,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDateInvalidNullOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/date/invalidnull",
@@ -1718,16 +1718,16 @@ const getDateInvalidNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Date" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Date" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDateInvalidCharsOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/date/invalidchars",
@@ -1735,16 +1735,16 @@ const getDateInvalidCharsOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Date" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Date" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDateTimeValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/date-time/valid",
@@ -1752,16 +1752,16 @@ const getDateTimeValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "DateTime" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "DateTime" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDateTimeValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/date-time/valid",
@@ -1769,14 +1769,14 @@ const putDateTimeValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody7,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDateTimeInvalidNullOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/date-time/invalidnull",
@@ -1784,16 +1784,16 @@ const getDateTimeInvalidNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "DateTime" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "DateTime" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDateTimeInvalidCharsOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/date-time/invalidchars",
@@ -1801,16 +1801,16 @@ const getDateTimeInvalidCharsOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "DateTime" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "DateTime" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDateTimeRfc1123ValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/date-time-rfc1123/valid",
@@ -1820,17 +1820,17 @@ const getDateTimeRfc1123ValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Sequence",
-          element: { type: { name: "DateTimeRfc1123" } }
-        }
-      }
+          element: { type: { name: "DateTimeRfc1123" } },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDateTimeRfc1123ValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/date-time-rfc1123/valid",
@@ -1838,14 +1838,14 @@ const putDateTimeRfc1123ValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody8,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDurationValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/duration/valid",
@@ -1853,16 +1853,16 @@ const getDurationValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "TimeSpan" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "TimeSpan" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDurationValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/duration/valid",
@@ -1870,14 +1870,14 @@ const putDurationValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody9,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getByteValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/byte/valid",
@@ -1885,16 +1885,16 @@ const getByteValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "ByteArray" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "ByteArray" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putByteValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/byte/valid",
@@ -1902,14 +1902,14 @@ const putByteValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody10,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getByteInvalidNullOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/byte/invalidnull",
@@ -1917,16 +1917,16 @@ const getByteInvalidNullOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "ByteArray" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "ByteArray" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getBase64UrlOperationSpec: coreClient.OperationSpec = {
   path: "/array/prim/base64url/valid",
@@ -1934,16 +1934,16 @@ const getBase64UrlOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "Base64Url" } } }
-      }
+        type: { name: "Sequence", element: { type: { name: "Base64Url" } } },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getComplexNullOperationSpec: coreClient.OperationSpec = {
   path: "/array/complex/null",
@@ -1953,17 +1953,17 @@ const getComplexNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Product" } }
-        }
-      }
+          element: { type: { name: "Composite", className: "Product" } },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getComplexEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/array/complex/empty",
@@ -1973,17 +1973,17 @@ const getComplexEmptyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Product" } }
-        }
-      }
+          element: { type: { name: "Composite", className: "Product" } },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getComplexItemNullOperationSpec: coreClient.OperationSpec = {
   path: "/array/complex/itemnull",
@@ -1993,17 +1993,17 @@ const getComplexItemNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Product" } }
-        }
-      }
+          element: { type: { name: "Composite", className: "Product" } },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getComplexItemEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/array/complex/itemempty",
@@ -2013,17 +2013,17 @@ const getComplexItemEmptyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Product" } }
-        }
-      }
+          element: { type: { name: "Composite", className: "Product" } },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getComplexValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/complex/valid",
@@ -2033,17 +2033,17 @@ const getComplexValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Product" } }
-        }
-      }
+          element: { type: { name: "Composite", className: "Product" } },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putComplexValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/complex/valid",
@@ -2051,14 +2051,14 @@ const putComplexValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody11,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getArrayNullOperationSpec: coreClient.OperationSpec = {
   path: "/array/array/null",
@@ -2069,18 +2069,18 @@ const getArrayNullOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Sequence", element: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Sequence", element: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getArrayEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/array/array/empty",
@@ -2091,18 +2091,18 @@ const getArrayEmptyOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Sequence", element: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Sequence", element: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getArrayItemNullOperationSpec: coreClient.OperationSpec = {
   path: "/array/array/itemnull",
@@ -2113,18 +2113,18 @@ const getArrayItemNullOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Sequence", element: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Sequence", element: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getArrayItemEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/array/array/itemempty",
@@ -2135,18 +2135,18 @@ const getArrayItemEmptyOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Sequence", element: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Sequence", element: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getArrayValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/array/valid",
@@ -2157,18 +2157,18 @@ const getArrayValidOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Sequence", element: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Sequence", element: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putArrayValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/array/valid",
@@ -2176,14 +2176,14 @@ const putArrayValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody12,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDictionaryNullOperationSpec: coreClient.OperationSpec = {
   path: "/array/dictionary/null",
@@ -2194,18 +2194,18 @@ const getDictionaryNullOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Dictionary", value: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Dictionary", value: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDictionaryEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/array/dictionary/empty",
@@ -2216,18 +2216,18 @@ const getDictionaryEmptyOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Dictionary", value: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Dictionary", value: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDictionaryItemNullOperationSpec: coreClient.OperationSpec = {
   path: "/array/dictionary/itemnull",
@@ -2238,18 +2238,18 @@ const getDictionaryItemNullOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Dictionary", value: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Dictionary", value: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDictionaryItemEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/array/dictionary/itemempty",
@@ -2260,18 +2260,18 @@ const getDictionaryItemEmptyOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Dictionary", value: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Dictionary", value: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getDictionaryValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/dictionary/valid",
@@ -2282,18 +2282,18 @@ const getDictionaryValidOperationSpec: coreClient.OperationSpec = {
         type: {
           name: "Sequence",
           element: {
-            type: { name: "Dictionary", value: { type: { name: "String" } } }
-          }
-        }
-      }
+            type: { name: "Dictionary", value: { type: { name: "String" } } },
+          },
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDictionaryValidOperationSpec: coreClient.OperationSpec = {
   path: "/array/dictionary/valid",
@@ -2301,12 +2301,12 @@ const putDictionaryValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.arrayBody13,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

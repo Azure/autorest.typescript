@@ -20,7 +20,7 @@ async function listDeploymentsSample() {
   const initialResponse = await client
     .path(
       "/authoring/analyze-text/projects/{projectName}/deployments",
-      projectName
+      projectName,
     )
     .get();
   const pageData = paginate(client, initialResponse);

@@ -18,7 +18,7 @@ async function attachmentsDelete() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const farmerId = "FARMER123";
   const attachmentId = "ATTACHMENT123";
@@ -26,7 +26,7 @@ async function attachmentsDelete() {
     .path(
       "/farmers/{farmerId}/attachments/{attachmentId}",
       farmerId,
-      attachmentId
+      attachmentId,
     )
     .delete();
   console.log(result);

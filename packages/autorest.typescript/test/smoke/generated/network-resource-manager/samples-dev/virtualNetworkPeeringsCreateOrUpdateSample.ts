@@ -11,7 +11,7 @@
 import {
   VirtualNetworkPeering,
   VirtualNetworkPeeringsCreateOrUpdateOptionalParams,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,10 +34,9 @@ async function createPeering() {
     allowGatewayTransit: false,
     allowVirtualNetworkAccess: true,
     remoteVirtualNetwork: {
-      id:
-        "/subscriptions/subid/resourceGroups/peerTest/providers/Microsoft.Network/virtualNetworks/vnet2"
+      id: "/subscriptions/subid/resourceGroups/peerTest/providers/Microsoft.Network/virtualNetworks/vnet2",
     },
-    useRemoteGateways: false
+    useRemoteGateways: false,
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -45,7 +44,7 @@ async function createPeering() {
     resourceGroupName,
     virtualNetworkName,
     virtualNetworkPeeringName,
-    virtualNetworkPeeringParameters
+    virtualNetworkPeeringParameters,
   );
   console.log(result);
 }
@@ -66,10 +65,9 @@ async function createPeeringWithRemoteVirtualNetworkEncryption() {
     allowGatewayTransit: false,
     allowVirtualNetworkAccess: true,
     remoteVirtualNetwork: {
-      id:
-        "/subscriptions/subid/resourceGroups/peerTest/providers/Microsoft.Network/virtualNetworks/vnet2"
+      id: "/subscriptions/subid/resourceGroups/peerTest/providers/Microsoft.Network/virtualNetworks/vnet2",
     },
-    useRemoteGateways: false
+    useRemoteGateways: false,
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -77,7 +75,7 @@ async function createPeeringWithRemoteVirtualNetworkEncryption() {
     resourceGroupName,
     virtualNetworkName,
     virtualNetworkPeeringName,
-    virtualNetworkPeeringParameters
+    virtualNetworkPeeringParameters,
   );
   console.log(result);
 }
@@ -99,13 +97,12 @@ async function syncPeering() {
     allowGatewayTransit: false,
     allowVirtualNetworkAccess: true,
     remoteVirtualNetwork: {
-      id:
-        "/subscriptions/subid/resourceGroups/peerTest/providers/Microsoft.Network/virtualNetworks/vnet2"
+      id: "/subscriptions/subid/resourceGroups/peerTest/providers/Microsoft.Network/virtualNetworks/vnet2",
     },
-    useRemoteGateways: false
+    useRemoteGateways: false,
   };
   const options: VirtualNetworkPeeringsCreateOrUpdateOptionalParams = {
-    syncRemoteAddressSpace
+    syncRemoteAddressSpace,
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -114,7 +111,7 @@ async function syncPeering() {
     virtualNetworkName,
     virtualNetworkPeeringName,
     virtualNetworkPeeringParameters,
-    options
+    options,
   );
   console.log(result);
 }

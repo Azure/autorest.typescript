@@ -69,16 +69,18 @@ export function buildObjectAliases(
   for (const objectSchema of objectSchemas) {
     if (objectSchema.alias || objectSchema.outputAlias) {
       const description = objectSchema.description;
+      const modelName = schemaUsage.includes(SchemaContext.Input)
+        ? `${objectSchema.typeName}`
+        : `${objectSchema.outputTypeName}`;
       objectAliases.push({
         kind: StructureKind.TypeAlias,
         ...(description && { docs: [{ description }] }),
-        name: schemaUsage.includes(SchemaContext.Input)
-          ? `${objectSchema.typeName}`
-          : `${objectSchema.outputTypeName}`,
+        name: modelName,
         type: schemaUsage.includes(SchemaContext.Input)
           ? `${objectSchema.alias}`
           : `${objectSchema.outputAlias}`,
-        isExported: true
+        isExported: true,
+        docs: [description ?? "Alias for " + modelName]
       });
       if (objectSchema.alias?.startsWith("Paged<")) {
         importedModels.add("Paged");
@@ -268,7 +270,10 @@ function getDiscriminatorProperty(
     return {
       kind: StructureKind.PropertySignature,
       name: `"${discriminatorPropertyName}"`,
-      type: model.options?.sourceFrom === "Swagger" ? discriminators : `string`
+      type:
+        model.options?.sourceFrom === "Swagger"
+          ? discriminators
+          : objectSchema.discriminator?.type
     };
   }
 
@@ -300,8 +305,8 @@ function getDiscriminatorValue(objectSchema: ObjectSchema): string | undefined {
   const discriminatorValue = objectSchema.discriminatorValue
     ? objectSchema.discriminatorValue
     : objectSchema.discriminator
-    ? objectSchema.name
-    : undefined;
+      ? objectSchema.name
+      : undefined;
   const children = objectSchema.children?.immediate ?? [];
 
   // If the current object has a discriminatorValue but doesn't have any children
@@ -366,14 +371,16 @@ export function getImmediateParentsNames(
   // If an immediate parent is an empty DictionarySchema, that means that the object has been marked
   // with additional properties. We need to add Record<string, unknown> to the extend list and
   if (
-    objectSchema.parents.immediate.find((im) => isDictionarySchema(im, {filterEmpty: true}))
+    objectSchema.parents.immediate.find((im) =>
+      isDictionarySchema(im, { filterEmpty: true })
+    )
   ) {
     extendFrom.push("Record<string, unknown>");
   }
 
   // Get the rest of the parents excluding any DictionarySchemas
   const parents = objectSchema.parents.immediate
-    .filter((p) => !isDictionarySchema(p, {filterEmpty: true}))
+    .filter((p) => !isDictionarySchema(p, { filterEmpty: true }))
     .map((parent) => {
       const nameSuffix = schemaUsage.includes(SchemaContext.Output)
         ? "Output"
@@ -455,8 +462,8 @@ export function getPropertySignature(
       generateForOutput(schemaUsage, property.usage) && property.outputTypeName
         ? property.outputTypeName
         : property.typeName
-        ? property.typeName
-        : property.type;
+          ? property.typeName
+          : property.type;
     if (property.typeName && property.fromCore) {
       importedModels.add(property.typeName);
       type = property.typeName;

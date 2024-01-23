@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   StaticSiteUserARMResource,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,7 +31,7 @@ async function createOrUpdateAUserForAStaticSite() {
   const authprovider = "aad";
   const userid = "1234";
   const staticSiteUserEnvelope: StaticSiteUserARMResource = {
-    roles: "contributor"
+    roles: "contributor",
   };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
@@ -40,7 +40,7 @@ async function createOrUpdateAUserForAStaticSite() {
     name,
     authprovider,
     userid,
-    staticSiteUserEnvelope
+    staticSiteUserEnvelope,
   );
   console.log(result);
 }

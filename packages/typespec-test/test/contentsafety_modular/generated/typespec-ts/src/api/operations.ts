@@ -14,6 +14,8 @@ import {
   PagedTextBlocklist,
   PagedTextBlockItem,
 } from "../models/models.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
+import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
   isUnexpected,
   ContentSafetyContext as Client,
@@ -42,6 +44,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
@@ -60,7 +63,7 @@ import {
 export function _analyzeTextSend(
   context: Client,
   body: AnalyzeTextOptions,
-  options: AnalyzeTextRequestOptions = { requestOptions: {} }
+  options: AnalyzeTextRequestOptions = { requestOptions: {} },
 ): StreamableMethod<AnalyzeText200Response | AnalyzeTextDefaultResponse> {
   return context
     .path("/text:analyze")
@@ -77,21 +80,21 @@ export function _analyzeTextSend(
 }
 
 export async function _analyzeTextDeserialize(
-  result: AnalyzeText200Response | AnalyzeTextDefaultResponse
+  result: AnalyzeText200Response | AnalyzeTextDefaultResponse,
 ): Promise<AnalyzeTextResult> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
-    blocklistsMatchResults: (result.body["blocklistsMatchResults"] ?? []).map(
-      (p) => ({
-        blocklistName: p["blocklistName"],
-        blockItemId: p["blockItemId"],
-        blockItemText: p["blockItemText"],
-      })
-    ),
-    analyzeResults: (result.body["analyzeResults"] ?? []).map((p) => ({
+    blocklistsMatchResults: !result.body["blocklistsMatchResults"]
+      ? result.body["blocklistsMatchResults"]
+      : result.body["blocklistsMatchResults"].map((p) => ({
+          blocklistName: p["blocklistName"],
+          blockItemId: p["blockItemId"],
+          blockItemText: p["blockItemText"],
+        })),
+    analyzeResults: result.body["analyzeResults"].map((p) => ({
       category: p["category"],
       severity: p["severity"],
     })),
@@ -102,7 +105,7 @@ export async function _analyzeTextDeserialize(
 export async function analyzeText(
   context: Client,
   body: AnalyzeTextOptions,
-  options: AnalyzeTextRequestOptions = { requestOptions: {} }
+  options: AnalyzeTextRequestOptions = { requestOptions: {} },
 ): Promise<AnalyzeTextResult> {
   const result = await _analyzeTextSend(context, body, options);
   return _analyzeTextDeserialize(result);
@@ -111,7 +114,7 @@ export async function analyzeText(
 export function _analyzeImageSend(
   context: Client,
   body: AnalyzeImageOptions,
-  options: AnalyzeImageRequestOptions = { requestOptions: {} }
+  options: AnalyzeImageRequestOptions = { requestOptions: {} },
 ): StreamableMethod<AnalyzeImage200Response | AnalyzeImageDefaultResponse> {
   return context
     .path("/image:analyze")
@@ -132,14 +135,14 @@ export function _analyzeImageSend(
 }
 
 export async function _analyzeImageDeserialize(
-  result: AnalyzeImage200Response | AnalyzeImageDefaultResponse
+  result: AnalyzeImage200Response | AnalyzeImageDefaultResponse,
 ): Promise<AnalyzeImageResult> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
-    analyzeResults: (result.body["analyzeResults"] ?? []).map((p) => ({
+    analyzeResults: result.body["analyzeResults"].map((p) => ({
       category: p["category"],
       severity: p["severity"],
     })),
@@ -150,7 +153,7 @@ export async function _analyzeImageDeserialize(
 export async function analyzeImage(
   context: Client,
   body: AnalyzeImageOptions,
-  options: AnalyzeImageRequestOptions = { requestOptions: {} }
+  options: AnalyzeImageRequestOptions = { requestOptions: {} },
 ): Promise<AnalyzeImageResult> {
   const result = await _analyzeImageSend(context, body, options);
   return _analyzeImageDeserialize(result);
@@ -159,7 +162,7 @@ export async function analyzeImage(
 export function _getTextBlocklistSend(
   context: Client,
   blocklistName: string,
-  options: GetTextBlocklistOptions = { requestOptions: {} }
+  options: GetTextBlocklistOptions = { requestOptions: {} },
 ): StreamableMethod<
   GetTextBlocklist200Response | GetTextBlocklistDefaultResponse
 > {
@@ -169,10 +172,10 @@ export function _getTextBlocklistSend(
 }
 
 export async function _getTextBlocklistDeserialize(
-  result: GetTextBlocklist200Response | GetTextBlocklistDefaultResponse
+  result: GetTextBlocklist200Response | GetTextBlocklistDefaultResponse,
 ): Promise<TextBlocklist> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -185,7 +188,7 @@ export async function _getTextBlocklistDeserialize(
 export async function getTextBlocklist(
   context: Client,
   blocklistName: string,
-  options: GetTextBlocklistOptions = { requestOptions: {} }
+  options: GetTextBlocklistOptions = { requestOptions: {} },
 ): Promise<TextBlocklist> {
   const result = await _getTextBlocklistSend(context, blocklistName, options);
   return _getTextBlocklistDeserialize(result);
@@ -195,7 +198,7 @@ export function _createOrUpdateTextBlocklistSend(
   context: Client,
   blocklistName: string,
   resource: TextBlocklist,
-  options: CreateOrUpdateTextBlocklistOptions = { requestOptions: {} }
+  options: CreateOrUpdateTextBlocklistOptions = { requestOptions: {} },
 ): StreamableMethod<
   | CreateOrUpdateTextBlocklist200Response
   | CreateOrUpdateTextBlocklist201Response
@@ -215,10 +218,10 @@ export async function _createOrUpdateTextBlocklistDeserialize(
   result:
     | CreateOrUpdateTextBlocklist200Response
     | CreateOrUpdateTextBlocklist201Response
-    | CreateOrUpdateTextBlocklistDefaultResponse
+    | CreateOrUpdateTextBlocklistDefaultResponse,
 ): Promise<TextBlocklist> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -232,13 +235,13 @@ export async function createOrUpdateTextBlocklist(
   context: Client,
   blocklistName: string,
   resource: TextBlocklist,
-  options: CreateOrUpdateTextBlocklistOptions = { requestOptions: {} }
+  options: CreateOrUpdateTextBlocklistOptions = { requestOptions: {} },
 ): Promise<TextBlocklist> {
   const result = await _createOrUpdateTextBlocklistSend(
     context,
     blocklistName,
     resource,
-    options
+    options,
   );
   return _createOrUpdateTextBlocklistDeserialize(result);
 }
@@ -246,7 +249,7 @@ export async function createOrUpdateTextBlocklist(
 export function _deleteTextBlocklistSend(
   context: Client,
   blocklistName: string,
-  options: DeleteTextBlocklistOptions = { requestOptions: {} }
+  options: DeleteTextBlocklistOptions = { requestOptions: {} },
 ): StreamableMethod<
   DeleteTextBlocklist204Response | DeleteTextBlocklistDefaultResponse
 > {
@@ -256,10 +259,10 @@ export function _deleteTextBlocklistSend(
 }
 
 export async function _deleteTextBlocklistDeserialize(
-  result: DeleteTextBlocklist204Response | DeleteTextBlocklistDefaultResponse
+  result: DeleteTextBlocklist204Response | DeleteTextBlocklistDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -269,19 +272,19 @@ export async function _deleteTextBlocklistDeserialize(
 export async function deleteTextBlocklist(
   context: Client,
   blocklistName: string,
-  options: DeleteTextBlocklistOptions = { requestOptions: {} }
+  options: DeleteTextBlocklistOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteTextBlocklistSend(
     context,
     blocklistName,
-    options
+    options,
   );
   return _deleteTextBlocklistDeserialize(result);
 }
 
 export function _listTextBlocklistsSend(
   context: Client,
-  options: ListTextBlocklistsOptions = { requestOptions: {} }
+  options: ListTextBlocklistsOptions = { requestOptions: {} },
 ): StreamableMethod<
   ListTextBlocklists200Response | ListTextBlocklistsDefaultResponse
 > {
@@ -291,14 +294,14 @@ export function _listTextBlocklistsSend(
 }
 
 export async function _listTextBlocklistsDeserialize(
-  result: ListTextBlocklists200Response | ListTextBlocklistsDefaultResponse
+  result: ListTextBlocklists200Response | ListTextBlocklistsDefaultResponse,
 ): Promise<PagedTextBlocklist> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
+    value: result.body["value"].map((p) => ({
       blocklistName: p["blocklistName"],
       description: p["description"],
     })),
@@ -307,31 +310,35 @@ export async function _listTextBlocklistsDeserialize(
 }
 
 /** Get all text blocklists details. */
-export async function listTextBlocklists(
+export function listTextBlocklists(
   context: Client,
-  options: ListTextBlocklistsOptions = { requestOptions: {} }
-): Promise<PagedTextBlocklist> {
-  const result = await _listTextBlocklistsSend(context, options);
-  return _listTextBlocklistsDeserialize(result);
+  options: ListTextBlocklistsOptions = { requestOptions: {} },
+): PagedAsyncIterableIterator<TextBlocklist> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listTextBlocklistsSend(context, options),
+    _listTextBlocklistsDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" },
+  );
 }
 
 export function _addOrUpdateBlockItemsSend(
   context: Client,
   blocklistName: string,
   body: AddOrUpdateBlockItemsOptions,
-  options: AddOrUpdateBlockItemsRequestOptions = { requestOptions: {} }
+  options: AddOrUpdateBlockItemsRequestOptions = { requestOptions: {} },
 ): StreamableMethod<
   AddOrUpdateBlockItems200Response | AddOrUpdateBlockItemsDefaultResponse
 > {
   return context
     .path(
       "/text/blocklists/{blocklistName}:addOrUpdateBlockItems",
-      blocklistName
+      blocklistName,
     )
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        blockItems: (body["blockItems"] ?? []).map((p) => ({
+        blockItems: body["blockItems"].map((p) => ({
           description: p["description"],
           text: p["text"],
         })),
@@ -342,18 +349,20 @@ export function _addOrUpdateBlockItemsSend(
 export async function _addOrUpdateBlockItemsDeserialize(
   result:
     | AddOrUpdateBlockItems200Response
-    | AddOrUpdateBlockItemsDefaultResponse
+    | AddOrUpdateBlockItemsDefaultResponse,
 ): Promise<AddOrUpdateBlockItemsResult> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      blockItemId: p["blockItemId"],
-      description: p["description"],
-      text: p["text"],
-    })),
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          blockItemId: p["blockItemId"],
+          description: p["description"],
+          text: p["text"],
+        })),
   };
 }
 
@@ -362,13 +371,13 @@ export async function addOrUpdateBlockItems(
   context: Client,
   blocklistName: string,
   body: AddOrUpdateBlockItemsOptions,
-  options: AddOrUpdateBlockItemsRequestOptions = { requestOptions: {} }
+  options: AddOrUpdateBlockItemsRequestOptions = { requestOptions: {} },
 ): Promise<AddOrUpdateBlockItemsResult> {
   const result = await _addOrUpdateBlockItemsSend(
     context,
     blocklistName,
     body,
-    options
+    options,
   );
   return _addOrUpdateBlockItemsDeserialize(result);
 }
@@ -377,7 +386,7 @@ export function _removeBlockItemsSend(
   context: Client,
   blocklistName: string,
   body: RemoveBlockItemsOptions,
-  options: RemoveBlockItemsRequestOptions = { requestOptions: {} }
+  options: RemoveBlockItemsRequestOptions = { requestOptions: {} },
 ): StreamableMethod<
   RemoveBlockItems204Response | RemoveBlockItemsDefaultResponse
 > {
@@ -390,10 +399,10 @@ export function _removeBlockItemsSend(
 }
 
 export async function _removeBlockItemsDeserialize(
-  result: RemoveBlockItems204Response | RemoveBlockItemsDefaultResponse
+  result: RemoveBlockItems204Response | RemoveBlockItemsDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -404,13 +413,13 @@ export async function removeBlockItems(
   context: Client,
   blocklistName: string,
   body: RemoveBlockItemsOptions,
-  options: RemoveBlockItemsRequestOptions = { requestOptions: {} }
+  options: RemoveBlockItemsRequestOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _removeBlockItemsSend(
     context,
     blocklistName,
     body,
-    options
+    options,
   );
   return _removeBlockItemsDeserialize(result);
 }
@@ -419,7 +428,7 @@ export function _getTextBlocklistItemSend(
   context: Client,
   blocklistName: string,
   blockItemId: string,
-  options: GetTextBlocklistItemOptions = { requestOptions: {} }
+  options: GetTextBlocklistItemOptions = { requestOptions: {} },
 ): StreamableMethod<
   GetTextBlocklistItem200Response | GetTextBlocklistItemDefaultResponse
 > {
@@ -427,16 +436,16 @@ export function _getTextBlocklistItemSend(
     .path(
       "/text/blocklists/{blocklistName}/blockItems/{blockItemId}",
       blocklistName,
-      blockItemId
+      blockItemId,
     )
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getTextBlocklistItemDeserialize(
-  result: GetTextBlocklistItem200Response | GetTextBlocklistItemDefaultResponse
+  result: GetTextBlocklistItem200Response | GetTextBlocklistItemDefaultResponse,
 ): Promise<TextBlockItem> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -451,13 +460,13 @@ export async function getTextBlocklistItem(
   context: Client,
   blocklistName: string,
   blockItemId: string,
-  options: GetTextBlocklistItemOptions = { requestOptions: {} }
+  options: GetTextBlocklistItemOptions = { requestOptions: {} },
 ): Promise<TextBlockItem> {
   const result = await _getTextBlocklistItemSend(
     context,
     blocklistName,
     blockItemId,
-    options
+    options,
   );
   return _getTextBlocklistItemDeserialize(result);
 }
@@ -465,7 +474,7 @@ export async function getTextBlocklistItem(
 export function _listTextBlocklistItemsSend(
   context: Client,
   blocklistName: string,
-  options: ListTextBlocklistItemsOptions = { requestOptions: {} }
+  options: ListTextBlocklistItemsOptions = { requestOptions: {} },
 ): StreamableMethod<
   ListTextBlocklistItems200Response | ListTextBlocklistItemsDefaultResponse
 > {
@@ -484,14 +493,14 @@ export function _listTextBlocklistItemsSend(
 export async function _listTextBlocklistItemsDeserialize(
   result:
     | ListTextBlocklistItems200Response
-    | ListTextBlocklistItemsDefaultResponse
+    | ListTextBlocklistItemsDefaultResponse,
 ): Promise<PagedTextBlockItem> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
+    value: result.body["value"].map((p) => ({
       blockItemId: p["blockItemId"],
       description: p["description"],
       text: p["text"],
@@ -501,15 +510,15 @@ export async function _listTextBlocklistItemsDeserialize(
 }
 
 /** Get all blockItems in a text blocklist */
-export async function listTextBlocklistItems(
+export function listTextBlocklistItems(
   context: Client,
   blocklistName: string,
-  options: ListTextBlocklistItemsOptions = { requestOptions: {} }
-): Promise<PagedTextBlockItem> {
-  const result = await _listTextBlocklistItemsSend(
+  options: ListTextBlocklistItemsOptions = { requestOptions: {} },
+): PagedAsyncIterableIterator<TextBlockItem> {
+  return buildPagedAsyncIterator(
     context,
-    blocklistName,
-    options
+    () => _listTextBlocklistItemsSend(context, blocklistName, options),
+    _listTextBlocklistItemsDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" },
   );
-  return _listTextBlocklistItemsDeserialize(result);
 }

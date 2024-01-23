@@ -15,7 +15,7 @@ import {
   ResourceLinksCreateOrUpdateOptionalParams,
   ResourceLinksCreateOrUpdateResponse,
   ResourceLinksGetOptionalParams,
-  ResourceLinksGetResponse
+  ResourceLinksGetResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -26,7 +26,7 @@ export interface ResourceLinks {
    * @param options The options parameters.
    */
   listAtSubscription(
-    options?: ResourceLinksListAtSubscriptionOptionalParams
+    options?: ResourceLinksListAtSubscriptionOptionalParams,
   ): PagedAsyncIterableIterator<ResourceLink>;
   /**
    * Gets a list of resource links at and below the specified source scope.
@@ -37,7 +37,7 @@ export interface ResourceLinks {
    */
   listAtSourceScope(
     scope: string,
-    options?: ResourceLinksListAtSourceScopeOptionalParams
+    options?: ResourceLinksListAtSourceScopeOptionalParams,
   ): PagedAsyncIterableIterator<ResourceLink>;
   /**
    * Deletes a resource link with the specified ID.
@@ -49,7 +49,7 @@ export interface ResourceLinks {
    */
   delete(
     linkId: string,
-    options?: ResourceLinksDeleteOptionalParams
+    options?: ResourceLinksDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Creates or updates a resource link between the specified resources.
@@ -63,7 +63,7 @@ export interface ResourceLinks {
   createOrUpdate(
     linkId: string,
     parameters: ResourceLink,
-    options?: ResourceLinksCreateOrUpdateOptionalParams
+    options?: ResourceLinksCreateOrUpdateOptionalParams,
   ): Promise<ResourceLinksCreateOrUpdateResponse>;
   /**
    * Gets a resource link with the specified ID.
@@ -73,6 +73,6 @@ export interface ResourceLinks {
    */
   get(
     linkId: string,
-    options?: ResourceLinksGetOptionalParams
+    options?: ResourceLinksGetOptionalParams,
   ): Promise<ResourceLinksGetResponse>;
 }

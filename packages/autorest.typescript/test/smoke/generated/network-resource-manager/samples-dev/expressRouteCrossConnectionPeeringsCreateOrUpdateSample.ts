@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ExpressRouteCrossConnectionPeering,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,21 +32,22 @@ async function expressRouteCrossConnectionBgpPeeringCreate() {
   const peeringParameters: ExpressRouteCrossConnectionPeering = {
     ipv6PeeringConfig: {
       primaryPeerAddressPrefix: "3FFE:FFFF:0:CD30::/126",
-      secondaryPeerAddressPrefix: "3FFE:FFFF:0:CD30::4/126"
+      secondaryPeerAddressPrefix: "3FFE:FFFF:0:CD30::4/126",
     },
     peerASN: 200,
     primaryPeerAddressPrefix: "192.168.16.252/30",
     secondaryPeerAddressPrefix: "192.168.18.252/30",
-    vlanId: 200
+    vlanId: 200,
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.expressRouteCrossConnectionPeerings.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    crossConnectionName,
-    peeringName,
-    peeringParameters
-  );
+  const result =
+    await client.expressRouteCrossConnectionPeerings.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      crossConnectionName,
+      peeringName,
+      peeringParameters,
+    );
   console.log(result);
 }
 

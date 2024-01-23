@@ -28,7 +28,7 @@ async function getServiceEndPointPolicy() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.serviceEndpointPolicies.get(
     resourceGroupName,
-    serviceEndpointPolicyName
+    serviceEndpointPolicyName,
   );
   console.log(result);
 }

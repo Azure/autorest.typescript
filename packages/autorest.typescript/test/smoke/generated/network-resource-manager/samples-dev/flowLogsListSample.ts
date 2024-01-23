@@ -29,7 +29,7 @@ async function listConnectionMonitors() {
   const resArray = new Array();
   for await (let item of client.flowLogs.list(
     resourceGroupName,
-    networkWatcherName
+    networkWatcherName,
   )) {
     resArray.push(item);
   }

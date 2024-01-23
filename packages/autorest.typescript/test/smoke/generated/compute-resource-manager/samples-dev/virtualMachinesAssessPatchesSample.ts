@@ -29,7 +29,7 @@ async function assessPatchStateOfAVirtualMachine() {
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.virtualMachines.beginAssessPatchesAndWait(
     resourceGroupName,
-    vmName
+    vmName,
   );
   console.log(result);
 }

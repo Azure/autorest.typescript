@@ -5,6 +5,7 @@ import { HttpResponse } from "@azure-rest/core-client";
 import {
   WidgetOutput,
   WidgetErrorOutput,
+  ListWidgetsPagesResultsOutput,
   AnalyzeResultOutput,
 } from "./outputModels.js";
 
@@ -15,6 +16,28 @@ export interface ListWidgets200Response extends HttpResponse {
 }
 
 export interface ListWidgetsDefaultResponse extends HttpResponse {
+  status: string;
+  body: WidgetErrorOutput;
+}
+
+/** The request has succeeded. */
+export interface ListWidgetsPages200Response extends HttpResponse {
+  status: "200";
+  body: ListWidgetsPagesResultsOutput;
+}
+
+export interface ListWidgetsPagesDefaultResponse extends HttpResponse {
+  status: string;
+  body: WidgetErrorOutput;
+}
+
+/** The request has succeeded. */
+export interface QueryWidgetsPages200Response extends HttpResponse {
+  status: "200";
+  body: ListWidgetsPagesResultsOutput;
+}
+
+export interface QueryWidgetsPagesDefaultResponse extends HttpResponse {
   status: string;
   body: WidgetErrorOutput;
 }

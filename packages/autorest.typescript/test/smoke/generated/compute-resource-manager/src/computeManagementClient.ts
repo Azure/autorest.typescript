@@ -57,7 +57,7 @@ import {
   CloudServiceRolesImpl,
   CloudServicesImpl,
   CloudServicesUpdateDomainImpl,
-  CloudServiceOperatingSystemsImpl
+  CloudServiceOperatingSystemsImpl,
 } from "./operations";
 import {
   Operations,
@@ -108,7 +108,7 @@ import {
   CloudServiceRoles,
   CloudServices,
   CloudServicesUpdateDomain,
-  CloudServiceOperatingSystems
+  CloudServiceOperatingSystems,
 } from "./operationsInterfaces";
 import { ComputeManagementClientOptionalParams } from "./models";
 
@@ -126,7 +126,7 @@ export class ComputeManagementClient extends coreClient.ServiceClient {
   constructor(
     credentials: coreAuth.TokenCredential,
     subscriptionId: string,
-    options?: ComputeManagementClientOptionalParams
+    options?: ComputeManagementClientOptionalParams,
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");
@@ -141,7 +141,7 @@ export class ComputeManagementClient extends coreClient.ServiceClient {
     }
     const defaults: ComputeManagementClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8",
-      credential: credentials
+      credential: credentials,
     };
 
     const packageDetails = `azsdk-js-compute-resource-manager/1.0.0-beta.1`;
@@ -154,10 +154,10 @@ export class ComputeManagementClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
-        options.endpoint ?? options.baseUri ?? "https://management.azure.com"
+        options.endpoint ?? options.baseUri ?? "https://management.azure.com",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -172,12 +172,12 @@ export class ComputeManagementClient extends coreClient.ServiceClient {
     this.dedicatedHosts = new DedicatedHostsImpl(this);
     this.sshPublicKeys = new SshPublicKeysImpl(this);
     this.virtualMachineExtensionImages = new VirtualMachineExtensionImagesImpl(
-      this
+      this,
     );
     this.virtualMachineExtensions = new VirtualMachineExtensionsImpl(this);
     this.virtualMachineImages = new VirtualMachineImagesImpl(this);
     this.virtualMachineImagesEdgeZone = new VirtualMachineImagesEdgeZoneImpl(
-      this
+      this,
     );
     this.usageOperations = new UsageOperationsImpl(this);
     this.virtualMachines = new VirtualMachinesImpl(this);
@@ -188,21 +188,17 @@ export class ComputeManagementClient extends coreClient.ServiceClient {
     this.restorePoints = new RestorePointsImpl(this);
     this.capacityReservationGroups = new CapacityReservationGroupsImpl(this);
     this.capacityReservations = new CapacityReservationsImpl(this);
-    this.virtualMachineScaleSetExtensions = new VirtualMachineScaleSetExtensionsImpl(
-      this
-    );
-    this.virtualMachineScaleSetRollingUpgrades = new VirtualMachineScaleSetRollingUpgradesImpl(
-      this
-    );
-    this.virtualMachineScaleSetVMExtensions = new VirtualMachineScaleSetVMExtensionsImpl(
-      this
-    );
+    this.virtualMachineScaleSetExtensions =
+      new VirtualMachineScaleSetExtensionsImpl(this);
+    this.virtualMachineScaleSetRollingUpgrades =
+      new VirtualMachineScaleSetRollingUpgradesImpl(this);
+    this.virtualMachineScaleSetVMExtensions =
+      new VirtualMachineScaleSetVMExtensionsImpl(this);
     this.virtualMachineScaleSetVMs = new VirtualMachineScaleSetVMsImpl(this);
     this.logAnalytics = new LogAnalyticsImpl(this);
     this.virtualMachineRunCommands = new VirtualMachineRunCommandsImpl(this);
-    this.virtualMachineScaleSetVMRunCommands = new VirtualMachineScaleSetVMRunCommandsImpl(
-      this
-    );
+    this.virtualMachineScaleSetVMRunCommands =
+      new VirtualMachineScaleSetVMRunCommandsImpl(this);
     this.resourceSkus = new ResourceSkusImpl(this);
     this.disks = new DisksImpl(this);
     this.snapshots = new SnapshotsImpl(this);
@@ -221,14 +217,14 @@ export class ComputeManagementClient extends coreClient.ServiceClient {
     this.communityGalleries = new CommunityGalleriesImpl(this);
     this.communityGalleryImages = new CommunityGalleryImagesImpl(this);
     this.communityGalleryImageVersions = new CommunityGalleryImageVersionsImpl(
-      this
+      this,
     );
     this.cloudServiceRoleInstances = new CloudServiceRoleInstancesImpl(this);
     this.cloudServiceRoles = new CloudServiceRolesImpl(this);
     this.cloudServices = new CloudServicesImpl(this);
     this.cloudServicesUpdateDomain = new CloudServicesUpdateDomainImpl(this);
     this.cloudServiceOperatingSystems = new CloudServiceOperatingSystemsImpl(
-      this
+      this,
     );
   }
 

@@ -8,12 +8,12 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import {
   ResponseHeaderSchema,
-  ImportKind,
   OperationResponse,
   ResponseMetadata,
   Schema,
   SchemaContext,
-  getLroLogicalResponseName
+  getLroLogicalResponseName,
+  Imports
 } from "@azure-tools/rlc-common";
 import { getDoc, ignoreDiagnostics } from "@typespec/compiler";
 import {
@@ -38,14 +38,23 @@ import {
 import { SdkContext } from "../utils/interfaces.js";
 
 export function transformToResponseTypes(
-  importDetails: Map<ImportKind, Set<string>>,
+  importDetails: Imports,
   client: SdkClient,
   dpgContext: SdkContext
 ): OperationResponse[] {
   const program = dpgContext.program;
-  const operationGroups = listOperationGroups(dpgContext, client);
   const rlcResponses: OperationResponse[] = [];
   const inputImportedSet = new Set<string>();
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    transformToResponseTypesForRoute(route);
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
@@ -60,17 +69,8 @@ export function transformToResponseTypes(
       transformToResponseTypesForRoute(route);
     }
   }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    transformToResponseTypesForRoute(route);
-  }
   if (inputImportedSet.size > 0) {
-    importDetails.set(ImportKind.ResponseOutput, inputImportedSet);
+    importDetails.response.importsSet = inputImportedSet;
   }
   function transformToResponseTypesForRoute(route: HttpOperation) {
     const rlcOperationUnit: OperationResponse = {
@@ -86,7 +86,7 @@ export function transformToResponseTypes(
         description: resp.description
       };
       // transform header
-      const headers = transformHeaders(dpgContext, resp);
+      const headers = transformHeaders(dpgContext, resp, inputImportedSet);
       // transform body
       const body = transformBody(dpgContext, resp, inputImportedSet);
       rlcOperationUnit.responses.push({
@@ -116,7 +116,8 @@ export function transformToResponseTypes(
  */
 function transformHeaders(
   dpgContext: SdkContext,
-  response: HttpOperationResponse
+  response: HttpOperationResponse,
+  importedModels: Set<string>
 ): ResponseHeaderSchema[] | undefined {
   if (!response.responses.length) {
     return;
@@ -140,7 +141,11 @@ function transformHeaders(
       const typeSchema = getSchemaForType(dpgContext, value!.type, [
         SchemaContext.Output
       ]) as Schema;
-      const type = getTypeName(typeSchema);
+      const type = getTypeName(typeSchema, [SchemaContext.Output]);
+      getImportedModelName(typeSchema, [SchemaContext.Output])?.forEach(
+        importedModels.add,
+        importedModels
+      );
       const header: ResponseHeaderSchema = {
         name: `"${key.toLowerCase()}"`,
         type,

@@ -10,7 +10,7 @@ import {
   HttpServerFailureHead501OptionalParams,
   HttpServerFailureGet501OptionalParams,
   HttpServerFailurePost505OptionalParams,
-  HttpServerFailureDelete505OptionalParams
+  HttpServerFailureDelete505OptionalParams,
 } from "../models";
 
 /** Interface representing a HttpServerFailure. */

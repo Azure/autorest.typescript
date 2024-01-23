@@ -28,7 +28,7 @@ async function deleteASnapshot() {
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.snapshots.beginDeleteAndWait(
     resourceGroupName,
-    snapshotName
+    snapshotName,
   );
   console.log(result);
 }

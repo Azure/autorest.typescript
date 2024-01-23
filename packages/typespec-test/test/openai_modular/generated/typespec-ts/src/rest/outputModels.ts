@@ -110,7 +110,7 @@ export interface ContentFilterResultOutput {
   /**
    * Ratings for the intensity and risk level of filtered content.
    *
-   * Possible values: safe, low, medium, high
+   * Possible values: "safe", "low", "medium", "high"
    */
   severity: string;
   /** A value indicating whether or not the content has been filtered. */
@@ -170,7 +170,7 @@ export interface ChatMessageOutput {
   /**
    * The role associated with this message payload.
    *
-   * Possible values: system, assistant, user, function, tool
+   * Possible values: "system", "assistant", "user", "function", "tool"
    */
   role: string;
   /** The text associated with this message payload. */
@@ -283,7 +283,7 @@ export interface BatchImageGenerationOperationResponseOutput {
   /**
    * The status of the operation
    *
-   * Possible values: notRunning, running, succeeded, canceled, failed
+   * Possible values: "notRunning", "running", "succeeded", "canceled", "failed"
    */
   status: string;
   /** The error if the operation failed. */
@@ -319,14 +319,14 @@ export interface ImageGenerationOptionsOutput {
   /**
    * The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024 (defaults to 1024x1024).
    *
-   * Possible values: 256x256, 512x512, 1024x1024
+   * Possible values: "256x256", "512x512", "1024x1024"
    */
   size?: string;
   /**
    *   The format in which image generation response items should be presented.
    *   Azure OpenAI only supports URL response items.
    *
-   * Possible values: url, b64_json
+   * Possible values: "url", "b64_json"
    */
   response_format?: string;
   /** A unique identifier representing your end-user, which can help to monitor and detect abuse. */

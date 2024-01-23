@@ -24,7 +24,7 @@ async function loadTestRunListMetricDimensionValuesSample() {
     .path(
       "/test-runs/{testRunId}/metric-dimensions/{name}/values",
       testRunId,
-      name
+      name,
     )
     .get({
       queryParameters: {

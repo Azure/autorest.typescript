@@ -20,7 +20,7 @@ async function detectAnomalyStatusOfTheLatestPointInTimeSeriesExample() {
   const client = createAnomalyDetectorRestClient(
     endpoint,
     apiVersion,
-    credential
+    credential,
   );
   const result = await client.path("/timeseries/last/detect").post({
     body: {
@@ -77,10 +77,10 @@ async function detectAnomalyStatusOfTheLatestPointInTimeSeriesExample() {
         { timestamp: new Date("1975-09-01T00:00:00Z"), value: 817 },
         { timestamp: new Date("1975-10-01T00:00:00Z"), value: 827 },
         { timestamp: new Date("1975-11-01T00:00:00Z"), value: 797 },
-        { timestamp: new Date("1975-12-01T00:00:00Z"), value: 843 }
-      ]
+        { timestamp: new Date("1975-12-01T00:00:00Z"), value: 843 },
+      ],
     },
-    headers: { "Content-Type": "application/json" }
+    headers: { "Content-Type": "application/json" },
   });
   console.log(result);
 }

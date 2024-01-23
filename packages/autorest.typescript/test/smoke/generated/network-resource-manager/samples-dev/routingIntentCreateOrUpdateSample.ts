@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   RoutingIntent,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,24 +34,25 @@ async function routeTablePut() {
         name: "InternetTraffic",
         destinations: ["Internet"],
         nextHop:
-          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/azureFirewalls/azfw1"
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/azureFirewalls/azfw1",
       },
       {
         name: "PrivateTrafficPolicy",
         destinations: ["PrivateTraffic"],
         nextHop:
-          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/azureFirewalls/azfw1"
-      }
-    ]
+          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/azureFirewalls/azfw1",
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.routingIntentOperations.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    virtualHubName,
-    routingIntentName,
-    routingIntentParameters
-  );
+  const result =
+    await client.routingIntentOperations.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      virtualHubName,
+      routingIntentName,
+      routingIntentParameters,
+    );
   console.log(result);
 }
 

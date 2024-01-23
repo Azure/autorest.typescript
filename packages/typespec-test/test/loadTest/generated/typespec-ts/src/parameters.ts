@@ -81,7 +81,7 @@ export interface LoadTestAdministrationUploadTestFileQueryParamProperties {
   /**
    * File type
    *
-   * Possible values: JMX_FILE, USER_PROPERTIES, ADDITIONAL_ARTIFACTS
+   * Possible values: "JMX_FILE", "USER_PROPERTIES", "ADDITIONAL_ARTIFACTS"
    */
   fileType?: string;
 }
@@ -231,7 +231,7 @@ export interface LoadTestRunListMetricsQueryParamProperties {
   /**
    * The interval (i.e. timegrain) of the query.
    *
-   * Possible values: PT5S, PT10S, PT1M, PT5M, PT1H
+   * Possible values: "PT5S", "PT10S", "PT1M", "PT5M", "PT1H"
    */
   interval?: string;
   /** Metric name */
@@ -258,7 +258,7 @@ export interface LoadTestRunListMetricDimensionValuesQueryParamProperties {
   /**
    * The interval (i.e. timegrain) of the query.
    *
-   * Possible values: PT5S, PT10S, PT1M, PT5M, PT1H
+   * Possible values: "PT5S", "PT10S", "PT1M", "PT5M", "PT1H"
    */
   interval?: string;
   /** Metric name */

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   IdentityUpdate,
-  ManagedServiceIdentityClient
+  ManagedServiceIdentityClient,
 } from "@msinternal/msi-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,14 +29,14 @@ async function identityUpdate() {
   const resourceName = "resourceName";
   const parameters: IdentityUpdate = {
     location: "eastus",
-    tags: { key1: "value1", key2: "value2" }
+    tags: { key1: "value1", key2: "value2" },
   };
   const credential = new DefaultAzureCredential();
   const client = new ManagedServiceIdentityClient(credential, subscriptionId);
   const result = await client.userAssignedIdentities.update(
     resourceGroupName,
     resourceName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

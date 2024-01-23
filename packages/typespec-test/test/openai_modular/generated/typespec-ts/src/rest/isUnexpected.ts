@@ -28,29 +28,29 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: GetEmbeddings200Response | GetEmbeddingsDefaultResponse
+  response: GetEmbeddings200Response | GetEmbeddingsDefaultResponse,
 ): response is GetEmbeddingsDefaultResponse;
 export function isUnexpected(
-  response: GetCompletions200Response | GetCompletionsDefaultResponse
+  response: GetCompletions200Response | GetCompletionsDefaultResponse,
 ): response is GetCompletionsDefaultResponse;
 export function isUnexpected(
-  response: GetChatCompletions200Response | GetChatCompletionsDefaultResponse
+  response: GetChatCompletions200Response | GetChatCompletionsDefaultResponse,
 ): response is GetChatCompletionsDefaultResponse;
 export function isUnexpected(
   response:
     | GetChatCompletionsWithAzureExtensions200Response
-    | GetChatCompletionsWithAzureExtensionsDefaultResponse
+    | GetChatCompletionsWithAzureExtensionsDefaultResponse,
 ): response is GetChatCompletionsWithAzureExtensionsDefaultResponse;
 export function isUnexpected(
   response:
     | GetAzureBatchImageGenerationOperationStatus200Response
-    | GetAzureBatchImageGenerationOperationStatusDefaultResponse
+    | GetAzureBatchImageGenerationOperationStatusDefaultResponse,
 ): response is GetAzureBatchImageGenerationOperationStatusDefaultResponse;
 export function isUnexpected(
   response:
     | BeginAzureBatchImageGeneration202Response
     | BeginAzureBatchImageGenerationLogicalResponse
-    | BeginAzureBatchImageGenerationDefaultResponse
+    | BeginAzureBatchImageGenerationDefaultResponse,
 ): response is BeginAzureBatchImageGenerationDefaultResponse;
 export function isUnexpected(
   response:
@@ -66,7 +66,7 @@ export function isUnexpected(
     | GetAzureBatchImageGenerationOperationStatusDefaultResponse
     | BeginAzureBatchImageGeneration202Response
     | BeginAzureBatchImageGenerationLogicalResponse
-    | BeginAzureBatchImageGenerationDefaultResponse
+    | BeginAzureBatchImageGenerationDefaultResponse,
 ): response is
   | GetEmbeddingsDefaultResponse
   | GetCompletionsDefaultResponse
@@ -122,7 +122,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

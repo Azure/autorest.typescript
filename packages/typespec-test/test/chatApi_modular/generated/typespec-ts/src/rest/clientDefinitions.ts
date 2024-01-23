@@ -8,7 +8,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface CreateStreaming {
   /** Creates a new streaming chat completion. */
   post(
-    options?: CreateStreamingParameters
+    options?: CreateStreamingParameters,
   ): StreamableMethod<CreateStreaming200Response>;
   /** Creates a new chat completion. */
   post(options?: CreateParameters): StreamableMethod<Create200Response>;

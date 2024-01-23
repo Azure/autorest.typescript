@@ -62,7 +62,7 @@ export interface UnivariateAnomalyDetectorErrorOutput {
   /**
    * The error code.
    *
-   * Possible values: InvalidCustomInterval, BadArgument, InvalidGranularity, InvalidPeriod, InvalidModelArgument, InvalidSeries, InvalidJsonFormat, RequiredGranularity, RequiredSeries, InvalidImputeMode, InvalidImputeFixedValue
+   * Possible values: "InvalidCustomInterval", "BadArgument", "InvalidGranularity", "InvalidPeriod", "InvalidModelArgument", "InvalidSeries", "InvalidJsonFormat", "RequiredGranularity", "RequiredSeries", "InvalidImputeMode", "InvalidImputeFixedValue"
    */
   code?: string;
   /** A message explaining the error reported by the service. */
@@ -272,7 +272,7 @@ export interface MultivariateModelInfoOutput {
    * Data schema of input data source: OneTable or MultiTable. The default
    * DataSchema is OneTable.
    *
-   * Possible values: OneTable, MultiTable
+   * Possible values: "OneTable", "MultiTable"
    */
   dataSchema?: string;
   /**
@@ -316,7 +316,7 @@ export interface MultivariateAlignPolicyOutput {
    * An optional field, indicating how missing values will be filled. One of
    * Previous, Subsequent, Linear, Zero, Fixed.
    *
-   * Possible values: Previous, Subsequent, Linear, Zero, Fixed
+   * Possible values: "Previous", "Subsequent", "Linear", "Zero", "Fixed"
    */
   fillNAMethod?: string;
   /** An optional field. Required when fillNAMethod is Fixed. */

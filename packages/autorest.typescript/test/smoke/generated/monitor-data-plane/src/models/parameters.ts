@@ -11,7 +11,7 @@ import { AzureMetricsDocument as AzureMetricsDocumentMapper } from "../models/ma
 
 export const body: OperationParameter = {
   parameterPath: "body",
-  mapper: AzureMetricsDocumentMapper
+  mapper: AzureMetricsDocumentMapper,
 };
 
 export const accept: OperationParameter = {
@@ -21,9 +21,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -32,10 +32,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const contentType: OperationParameter = {
@@ -44,9 +44,9 @@ export const contentType: OperationParameter = {
     serializedName: "Content-Type",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentLength: OperationParameter = {
@@ -55,9 +55,9 @@ export const contentLength: OperationParameter = {
     serializedName: "Content-Length",
     required: true,
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const authorization: OperationParameter = {
@@ -66,9 +66,9 @@ export const authorization: OperationParameter = {
     serializedName: "Authorization",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const subscriptionId: OperationURLParameter = {
@@ -77,9 +77,9 @@ export const subscriptionId: OperationURLParameter = {
     serializedName: "subscriptionId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const resourceGroupName: OperationURLParameter = {
@@ -88,9 +88,9 @@ export const resourceGroupName: OperationURLParameter = {
     serializedName: "resourceGroupName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const resourceProvider: OperationURLParameter = {
@@ -99,9 +99,9 @@ export const resourceProvider: OperationURLParameter = {
     serializedName: "resourceProvider",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const resourceTypeName: OperationURLParameter = {
@@ -110,9 +110,9 @@ export const resourceTypeName: OperationURLParameter = {
     serializedName: "resourceTypeName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const resourceName: OperationURLParameter = {
@@ -121,7 +121,7 @@ export const resourceName: OperationURLParameter = {
     serializedName: "resourceName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };

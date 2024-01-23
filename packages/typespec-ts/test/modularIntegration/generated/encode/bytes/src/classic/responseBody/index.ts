@@ -20,10 +20,10 @@ import {
 export interface ResponseBodyOperations {
   default: (options?: ResponseBodyDefaultOptions) => Promise<Uint8Array>;
   octetStream: (
-    options?: ResponseBodyOctetStreamOptions
+    options?: ResponseBodyOctetStreamOptions,
   ) => Promise<Uint8Array>;
   customContentType: (
-    options?: ResponseBodyCustomContentTypeOptions
+    options?: ResponseBodyCustomContentTypeOptions,
   ) => Promise<Uint8Array>;
   base64: (options?: ResponseBodyBase64Options) => Promise<Uint8Array>;
   base64url: (options?: ResponseBodyBase64urlOptions) => Promise<Uint8Array>;
@@ -45,7 +45,7 @@ export function getResponseBody(context: BytesContext) {
 }
 
 export function getResponseBodyOperations(
-  context: BytesContext
+  context: BytesContext,
 ): ResponseBodyOperations {
   return {
     ...getResponseBody(context),

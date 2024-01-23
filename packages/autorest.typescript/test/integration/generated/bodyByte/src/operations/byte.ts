@@ -20,7 +20,7 @@ import {
   ByteGetNonAsciiResponse,
   BytePutNonAsciiOptionalParams,
   ByteGetInvalidOptionalParams,
-  ByteGetInvalidResponse
+  ByteGetInvalidResponse,
 } from "../models";
 
 /** Class containing Byte operations. */
@@ -48,7 +48,7 @@ export class ByteImpl implements Byte {
    * @param options The options parameters.
    */
   getEmpty(
-    options?: ByteGetEmptyOptionalParams
+    options?: ByteGetEmptyOptionalParams,
   ): Promise<ByteGetEmptyResponse> {
     return this.client.sendOperationRequest({ options }, getEmptyOperationSpec);
   }
@@ -58,11 +58,11 @@ export class ByteImpl implements Byte {
    * @param options The options parameters.
    */
   getNonAscii(
-    options?: ByteGetNonAsciiOptionalParams
+    options?: ByteGetNonAsciiOptionalParams,
   ): Promise<ByteGetNonAsciiResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getNonAsciiOperationSpec
+      getNonAsciiOperationSpec,
     );
   }
 
@@ -73,11 +73,11 @@ export class ByteImpl implements Byte {
    */
   putNonAscii(
     byteBody: Uint8Array,
-    options?: BytePutNonAsciiOptionalParams
+    options?: BytePutNonAsciiOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { byteBody, options },
-      putNonAsciiOperationSpec
+      putNonAsciiOperationSpec,
     );
   }
 
@@ -86,11 +86,11 @@ export class ByteImpl implements Byte {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: ByteGetInvalidOptionalParams
+    options?: ByteGetInvalidOptionalParams,
   ): Promise<ByteGetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getInvalidOperationSpec
+      getInvalidOperationSpec,
     );
   }
 }
@@ -102,45 +102,45 @@ const getNullOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "ByteArray" } }
+      bodyMapper: { type: { name: "ByteArray" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/byte/empty",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "ByteArray" } }
+      bodyMapper: { type: { name: "ByteArray" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getNonAsciiOperationSpec: coreClient.OperationSpec = {
   path: "/byte/nonAscii",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "ByteArray" } }
+      bodyMapper: { type: { name: "ByteArray" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putNonAsciiOperationSpec: coreClient.OperationSpec = {
   path: "/byte/nonAscii",
@@ -148,27 +148,27 @@ const putNonAsciiOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.byteBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getInvalidOperationSpec: coreClient.OperationSpec = {
   path: "/byte/invalid",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "ByteArray" } }
+      bodyMapper: { type: { name: "ByteArray" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

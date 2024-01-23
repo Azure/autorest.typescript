@@ -9,6 +9,10 @@ export function buildLogger(model: RLCModel) {
   if (!model.options) {
     return undefined;
   }
+  // Disable logger for non-branded packages
+  if (model.options.branded === false) {
+    return undefined;
+  }
   const project = new Project();
   const { srcPath } = model;
   const { packageDetails } = model.options;

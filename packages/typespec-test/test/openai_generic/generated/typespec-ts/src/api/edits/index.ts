@@ -11,13 +11,14 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { EditsCreateOptions } from "../../models/options.js";
 
 export function _createSend(
   context: Client,
   edit: CreateEditRequest,
-  options: EditsCreateOptions = { requestOptions: {} }
+  options: EditsCreateOptions = { requestOptions: {} },
 ): StreamableMethod<EditsCreate200Response | EditsCreateDefaultResponse> {
   return context
     .path("/edits")
@@ -35,16 +36,16 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: EditsCreate200Response | EditsCreateDefaultResponse
+  result: EditsCreate200Response | EditsCreateDefaultResponse,
 ): Promise<CreateEditResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
     object: result.body["object"],
     created: new Date(result.body["created"]),
-    choices: (result.body["choices"] ?? []).map((p) => ({
+    choices: result.body["choices"].map((p) => ({
       text: p["text"],
       index: p["index"],
       finishReason: p["finish_reason"] as any,
@@ -60,7 +61,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   edit: CreateEditRequest,
-  options: EditsCreateOptions = { requestOptions: {} }
+  options: EditsCreateOptions = { requestOptions: {} },
 ): Promise<CreateEditResponse> {
   const result = await _createSend(context, edit, options);
   return _createDeserialize(result);

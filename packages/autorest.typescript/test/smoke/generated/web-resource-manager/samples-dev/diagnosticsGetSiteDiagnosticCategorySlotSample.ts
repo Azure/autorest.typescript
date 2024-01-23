@@ -34,7 +34,7 @@ async function getAppDiagnosticCategory() {
     resourceGroupName,
     siteName,
     diagnosticCategory,
-    slot
+    slot,
   );
   console.log(result);
 }
@@ -59,7 +59,7 @@ async function getAppSlotDiagnosticCategory() {
     resourceGroupName,
     siteName,
     diagnosticCategory,
-    slot
+    slot,
   );
   console.log(result);
 }

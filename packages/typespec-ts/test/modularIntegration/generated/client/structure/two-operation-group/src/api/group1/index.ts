@@ -10,6 +10,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   Group1OneOptions,
@@ -19,7 +20,7 @@ import {
 
 export function _oneSend(
   context: Client,
-  options: Group1OneOptions = { requestOptions: {} }
+  options: Group1OneOptions = { requestOptions: {} },
 ): StreamableMethod<One204Response> {
   return context
     .path("/one")
@@ -28,7 +29,7 @@ export function _oneSend(
 
 export async function _oneDeserialize(result: One204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -36,7 +37,7 @@ export async function _oneDeserialize(result: One204Response): Promise<void> {
 
 export async function one(
   context: Client,
-  options: Group1OneOptions = { requestOptions: {} }
+  options: Group1OneOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _oneSend(context, options);
   return _oneDeserialize(result);
@@ -44,7 +45,7 @@ export async function one(
 
 export function _threeSend(
   context: Client,
-  options: Group1ThreeOptions = { requestOptions: {} }
+  options: Group1ThreeOptions = { requestOptions: {} },
 ): StreamableMethod<Three204Response> {
   return context
     .path("/three")
@@ -52,10 +53,10 @@ export function _threeSend(
 }
 
 export async function _threeDeserialize(
-  result: Three204Response
+  result: Three204Response,
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -63,7 +64,7 @@ export async function _threeDeserialize(
 
 export async function three(
   context: Client,
-  options: Group1ThreeOptions = { requestOptions: {} }
+  options: Group1ThreeOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _threeSend(context, options);
   return _threeDeserialize(result);
@@ -71,7 +72,7 @@ export async function three(
 
 export function _fourSend(
   context: Client,
-  options: Group1FourOptions = { requestOptions: {} }
+  options: Group1FourOptions = { requestOptions: {} },
 ): StreamableMethod<Four204Response> {
   return context
     .path("/four")
@@ -80,7 +81,7 @@ export function _fourSend(
 
 export async function _fourDeserialize(result: Four204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -88,7 +89,7 @@ export async function _fourDeserialize(result: Four204Response): Promise<void> {
 
 export async function four(
   context: Client,
-  options: Group1FourOptions = { requestOptions: {} }
+  options: Group1FourOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _fourSend(context, options);
   return _fourDeserialize(result);

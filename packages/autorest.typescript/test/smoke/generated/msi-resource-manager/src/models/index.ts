@@ -188,14 +188,16 @@ export interface UserAssignedIdentitiesListBySubscriptionOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscription operation. */
-export type UserAssignedIdentitiesListBySubscriptionResponse = UserAssignedIdentitiesListResult;
+export type UserAssignedIdentitiesListBySubscriptionResponse =
+  UserAssignedIdentitiesListResult;
 
 /** Optional parameters. */
 export interface UserAssignedIdentitiesListByResourceGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type UserAssignedIdentitiesListByResourceGroupResponse = UserAssignedIdentitiesListResult;
+export type UserAssignedIdentitiesListByResourceGroupResponse =
+  UserAssignedIdentitiesListResult;
 
 /** Optional parameters. */
 export interface UserAssignedIdentitiesCreateOrUpdateOptionalParams
@@ -227,14 +229,16 @@ export interface UserAssignedIdentitiesListBySubscriptionNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscriptionNext operation. */
-export type UserAssignedIdentitiesListBySubscriptionNextResponse = UserAssignedIdentitiesListResult;
+export type UserAssignedIdentitiesListBySubscriptionNextResponse =
+  UserAssignedIdentitiesListResult;
 
 /** Optional parameters. */
 export interface UserAssignedIdentitiesListByResourceGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type UserAssignedIdentitiesListByResourceGroupNextResponse = UserAssignedIdentitiesListResult;
+export type UserAssignedIdentitiesListByResourceGroupNextResponse =
+  UserAssignedIdentitiesListResult;
 
 /** Optional parameters. */
 export interface ManagedServiceIdentityClientOptionalParams

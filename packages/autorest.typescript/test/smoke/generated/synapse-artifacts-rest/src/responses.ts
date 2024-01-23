@@ -52,7 +52,7 @@ import {
   TriggerResourceOutput,
   TriggerSubscriptionOperationStatusOutput,
   TriggerRunsQueryResponseOutput,
-  WorkspaceOutput
+  WorkspaceOutput,
 } from "./outputModels";
 
 /** Get all KQL scripts */

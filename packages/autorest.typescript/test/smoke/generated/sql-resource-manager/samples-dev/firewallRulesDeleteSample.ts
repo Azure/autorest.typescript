@@ -32,7 +32,7 @@ async function deleteAFirewallRule() {
   const result = await client.firewallRules.delete(
     resourceGroupName,
     serverName,
-    firewallRuleName
+    firewallRuleName,
   );
   console.log(result);
 }

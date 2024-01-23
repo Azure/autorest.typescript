@@ -15,7 +15,7 @@ import { AuthoringClient } from "./clientDefinitions";
 export default function createClient(
   endpoint: string,
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): AuthoringClient {
   const baseUrl = options.baseUrl ?? `${endpoint}/language`;
   options.apiVersion = options.apiVersion ?? "202ß2-05-15-preview";

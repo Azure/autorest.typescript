@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VpnDeviceScriptParameters,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,15 +30,16 @@ async function getVpnDeviceConfigurationScript() {
   const parameters: VpnDeviceScriptParameters = {
     deviceFamily: "ISR",
     firmwareVersion: "IOS 15.1 (Preview)",
-    vendor: "Cisco"
+    vendor: "Cisco",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGateways.vpnDeviceConfigurationScript(
-    resourceGroupName,
-    virtualNetworkGatewayConnectionName,
-    parameters
-  );
+  const result =
+    await client.virtualNetworkGateways.vpnDeviceConfigurationScript(
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+      parameters,
+    );
   console.log(result);
 }
 

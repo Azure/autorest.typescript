@@ -39,7 +39,7 @@ import {
   EnumGetReferencedConstant200Response,
   EnumGetReferencedConstantDefaultResponse,
   EnumPutReferencedConstant200Response,
-  EnumPutReferencedConstantDefaultResponse
+  EnumPutReferencedConstantDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -61,83 +61,83 @@ const responseMap: Record<string, string[]> = {
   "GET /string/enum/Referenced": ["200"],
   "PUT /string/enum/Referenced": ["200"],
   "GET /string/enum/ReferencedConstant": ["200"],
-  "PUT /string/enum/ReferencedConstant": ["200"]
+  "PUT /string/enum/ReferencedConstant": ["200"],
 };
 
 export function isUnexpected(
-  response: StringGetNull200Response | StringGetNullDefaultResponse
+  response: StringGetNull200Response | StringGetNullDefaultResponse,
 ): response is StringGetNullDefaultResponse;
 export function isUnexpected(
-  response: StringPutNull200Response | StringPutNullDefaultResponse
+  response: StringPutNull200Response | StringPutNullDefaultResponse,
 ): response is StringPutNullDefaultResponse;
 export function isUnexpected(
-  response: StringGetEmpty200Response | StringGetEmptyDefaultResponse
+  response: StringGetEmpty200Response | StringGetEmptyDefaultResponse,
 ): response is StringGetEmptyDefaultResponse;
 export function isUnexpected(
-  response: StringPutEmpty200Response | StringPutEmptyDefaultResponse
+  response: StringPutEmpty200Response | StringPutEmptyDefaultResponse,
 ): response is StringPutEmptyDefaultResponse;
 export function isUnexpected(
-  response: StringGetMbcs200Response | StringGetMbcsDefaultResponse
+  response: StringGetMbcs200Response | StringGetMbcsDefaultResponse,
 ): response is StringGetMbcsDefaultResponse;
 export function isUnexpected(
-  response: StringPutMbcs200Response | StringPutMbcsDefaultResponse
+  response: StringPutMbcs200Response | StringPutMbcsDefaultResponse,
 ): response is StringPutMbcsDefaultResponse;
 export function isUnexpected(
-  response: StringGetWhitespace200Response | StringGetWhitespaceDefaultResponse
+  response: StringGetWhitespace200Response | StringGetWhitespaceDefaultResponse,
 ): response is StringGetWhitespaceDefaultResponse;
 export function isUnexpected(
-  response: StringPutWhitespace200Response | StringPutWhitespaceDefaultResponse
+  response: StringPutWhitespace200Response | StringPutWhitespaceDefaultResponse,
 ): response is StringPutWhitespaceDefaultResponse;
 export function isUnexpected(
   response:
     | StringGetNotProvided200Response
-    | StringGetNotProvidedDefaultResponse
+    | StringGetNotProvidedDefaultResponse,
 ): response is StringGetNotProvidedDefaultResponse;
 export function isUnexpected(
   response:
     | StringGetBase64Encoded200Response
-    | StringGetBase64EncodedDefaultResponse
+    | StringGetBase64EncodedDefaultResponse,
 ): response is StringGetBase64EncodedDefaultResponse;
 export function isUnexpected(
   response:
     | StringGetBase64UrlEncoded200Response
-    | StringGetBase64UrlEncodedDefaultResponse
+    | StringGetBase64UrlEncodedDefaultResponse,
 ): response is StringGetBase64UrlEncodedDefaultResponse;
 export function isUnexpected(
   response:
     | StringPutBase64UrlEncoded200Response
-    | StringPutBase64UrlEncodedDefaultResponse
+    | StringPutBase64UrlEncodedDefaultResponse,
 ): response is StringPutBase64UrlEncodedDefaultResponse;
 export function isUnexpected(
   response:
     | StringGetNullBase64UrlEncoded200Response
-    | StringGetNullBase64UrlEncodedDefaultResponse
+    | StringGetNullBase64UrlEncodedDefaultResponse,
 ): response is StringGetNullBase64UrlEncodedDefaultResponse;
 export function isUnexpected(
   response:
     | EnumGetNotExpandable200Response
-    | EnumGetNotExpandableDefaultResponse
+    | EnumGetNotExpandableDefaultResponse,
 ): response is EnumGetNotExpandableDefaultResponse;
 export function isUnexpected(
   response:
     | EnumPutNotExpandable200Response
-    | EnumPutNotExpandableDefaultResponse
+    | EnumPutNotExpandableDefaultResponse,
 ): response is EnumPutNotExpandableDefaultResponse;
 export function isUnexpected(
-  response: EnumGetReferenced200Response | EnumGetReferencedDefaultResponse
+  response: EnumGetReferenced200Response | EnumGetReferencedDefaultResponse,
 ): response is EnumGetReferencedDefaultResponse;
 export function isUnexpected(
-  response: EnumPutReferenced200Response | EnumPutReferencedDefaultResponse
+  response: EnumPutReferenced200Response | EnumPutReferencedDefaultResponse,
 ): response is EnumPutReferencedDefaultResponse;
 export function isUnexpected(
   response:
     | EnumGetReferencedConstant200Response
-    | EnumGetReferencedConstantDefaultResponse
+    | EnumGetReferencedConstantDefaultResponse,
 ): response is EnumGetReferencedConstantDefaultResponse;
 export function isUnexpected(
   response:
     | EnumPutReferencedConstant200Response
-    | EnumPutReferencedConstantDefaultResponse
+    | EnumPutReferencedConstantDefaultResponse,
 ): response is EnumPutReferencedConstantDefaultResponse;
 export function isUnexpected(
   response:
@@ -178,7 +178,7 @@ export function isUnexpected(
     | EnumGetReferencedConstant200Response
     | EnumGetReferencedConstantDefaultResponse
     | EnumPutReferencedConstant200Response
-    | EnumPutReferencedConstantDefaultResponse
+    | EnumPutReferencedConstantDefaultResponse,
 ): response is
   | StringGetNullDefaultResponse
   | StringPutNullDefaultResponse
@@ -247,7 +247,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

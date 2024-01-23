@@ -36,7 +36,7 @@ async function getsAWorkloadClassifierForADataWarehouse() {
     serverName,
     databaseName,
     workloadGroupName,
-    workloadClassifierName
+    workloadClassifierName,
   );
   console.log(result);
 }

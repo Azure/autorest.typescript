@@ -1,3 +1,4 @@
+import { Imports } from "@azure-tools/rlc-common";
 import { OperationResponse, RLCOptions } from "@azure-tools/rlc-common";
 import { Project } from "ts-morph";
 
@@ -12,6 +13,7 @@ export interface ModularCodeModel {
   clients: Client[];
   types: Type[];
   project: Project;
+  runtimeImports: Imports;
 }
 
 export interface Header {
@@ -39,7 +41,6 @@ export interface BodyParameter {
   description: string;
   clientName: string;
   inOverload: boolean;
-  defaultContentType: string;
   isBinaryPayload: boolean;
 }
 
@@ -97,6 +98,8 @@ export interface Type {
   properties?: Property[];
   types?: Type[];
   isCoreErrorType?: boolean;
+  alias?: string;
+  aliasType?: string;
 }
 
 export interface Client {

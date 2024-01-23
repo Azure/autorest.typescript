@@ -18,7 +18,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface AddOperation {
   /** Added operation */
   delete(
-    options?: AddOperationParameters
+    options?: AddOperationParameters,
   ): StreamableMethod<AddOperation204Response>;
 }
 
@@ -30,14 +30,14 @@ export interface FromNone {
 export interface FromOneRequired {
   /** Operation that grew up from accepting one required parameter to accepting a required parameter and an optional parameter. */
   get(
-    options: FromOneRequiredParameters
+    options: FromOneRequiredParameters,
   ): StreamableMethod<FromOneRequired204Response>;
 }
 
 export interface FromOneOptional {
   /** Tests that we can grow up an operation from accepting one optional parameter to accepting two optional parameters. */
   get(
-    options?: FromOneOptionalParameters
+    options?: FromOneOptionalParameters,
   ): StreamableMethod<FromOneOptional204Response>;
 }
 

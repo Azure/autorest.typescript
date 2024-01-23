@@ -10,15 +10,6 @@ describe("SpecialWordsClient Rest Client", () => {
   });
 
   describe("operations", () => {
-    it("should get special words for operation `for`", async () => {
-      try {
-        const result = await client.path("/special-words/operations/for").get();
-        assert.strictEqual(result.status, "204");
-      } catch (err) {
-        assert.fail(err as string);
-      }
-    });
-
     it("should get special words for operation `and`", async () => {
       try {
         const result = await client.path("/special-words/operations/and").get();
@@ -117,6 +108,15 @@ describe("SpecialWordsClient Rest Client", () => {
     it("should get special words for operation `def`", async () => {
       try {
         const result = await client.path("/special-words/operations/def").get();
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `del`", async () => {
+      try {
+        const result = await client.path("/special-words/operations/del").get();
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -338,19 +338,6 @@ describe("SpecialWordsClient Rest Client", () => {
   });
 
   describe("parameters", () => {
-    it("should get special words for operation `for`", async () => {
-      try {
-        const result = await client.path("/special-words/parameters/for").get({
-          queryParameters: {
-            for: "ok"
-          }
-        });
-        assert.strictEqual(result.status, "204");
-      } catch (err) {
-        assert.fail(err as string);
-      }
-    });
-
     it("should get special words for operation `and`", async () => {
       try {
         const result = await client.path("/special-words/parameters/and").get({
@@ -487,6 +474,19 @@ describe("SpecialWordsClient Rest Client", () => {
         const result = await client.path("/special-words/parameters/def").get({
           queryParameters: {
             def: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `del`", async () => {
+      try {
+        const result = await client.path("/special-words/parameters/del").get({
+          queryParameters: {
+            del: "ok"
           }
         });
         assert.strictEqual(result.status, "204");
@@ -786,19 +786,6 @@ describe("SpecialWordsClient Rest Client", () => {
   });
 
   describe("models", () => {
-    it("should get special words for operation `for`", async () => {
-      try {
-        const result = await client.path("/special-words/models/for").post({
-          body: {
-            name: "ok"
-          }
-        });
-        assert.strictEqual(result.status, "204");
-      } catch (err) {
-        assert.fail(err as string);
-      }
-    });
-
     it("should get special words for operation `and`", async () => {
       try {
         const result = await client.path("/special-words/models/and").post({
@@ -923,6 +910,19 @@ describe("SpecialWordsClient Rest Client", () => {
     it("should get special words for operation `def`", async () => {
       try {
         const result = await client.path("/special-words/models/def").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `del`", async () => {
+      try {
+        const result = await client.path("/special-words/models/del").post({
           body: {
             name: "ok"
           }
@@ -1198,6 +1198,23 @@ describe("SpecialWordsClient Rest Client", () => {
             name: "ok"
           }
         });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+  });
+
+  describe("model properties", () => {
+    it("should post special words for operation `same-as-model`", async () => {
+      try {
+        const result = await client
+          .path("/special-words/model-properties/same-as-model")
+          .post({
+            body: {
+              SameAsModel: "ok"
+            }
+          });
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);

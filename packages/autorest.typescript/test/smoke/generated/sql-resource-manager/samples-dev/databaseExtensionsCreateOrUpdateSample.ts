@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   DatabaseExtensions,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -37,17 +37,18 @@ async function createOrUpdateDatabaseExtensions() {
       "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     storageKeyType: "StorageAccessKey",
     storageUri:
-      "https://teststorage.blob.core.windows.net/testcontainer/Manifest.xml"
+      "https://teststorage.blob.core.windows.net/testcontainer/Manifest.xml",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
-  const result = await client.databaseExtensionsOperations.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    serverName,
-    databaseName,
-    extensionName,
-    parameters
-  );
+  const result =
+    await client.databaseExtensionsOperations.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      extensionName,
+      parameters,
+    );
   console.log(result);
 }
 

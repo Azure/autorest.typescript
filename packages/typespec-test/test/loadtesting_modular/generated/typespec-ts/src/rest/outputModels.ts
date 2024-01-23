@@ -56,7 +56,7 @@ export interface PassFailMetricOutput {
   /**
    * The client metric on which the criteria should be applied.
    *
-   * Possible values: response_time_ms, latency, error, requests, requests_per_sec
+   * Possible values: "response_time_ms", "latency", "error", "requests", "requests_per_sec"
    */
   clientMetric?: string;
   /**
@@ -65,7 +65,7 @@ export interface PassFailMetricOutput {
    * ‘max’ - for response_time_ms and latency metric, ‘avg’ - for requests_per_sec,
    * ‘count’ - for requests
    *
-   * Possible values: count, percentage, avg, p50, p90, p95, p99, min, max
+   * Possible values: "count", "percentage", "avg", "p50", "p90", "p95", "p99", "min", "max"
    */
   aggregate?: string;
   /** The comparison operator. Supported types ‘>’, ‘<’ */
@@ -80,7 +80,7 @@ export interface PassFailMetricOutput {
   /**
    * Action taken after the threshold is met. Default is ‘continue’.
    *
-   * Possible values: continue, stop
+   * Possible values: "continue", "stop"
    */
   action?: string;
   /** The actual value of the client metric for the test run. */
@@ -88,7 +88,7 @@ export interface PassFailMetricOutput {
   /**
    * Outcome of the test run.
    *
-   * Possible values: passed, undetermined, failed
+   * Possible values: "passed", "undetermined", "failed"
    */
   readonly result?: string;
 }
@@ -100,7 +100,7 @@ export interface SecretOutput {
   /**
    * Type of secret
    *
-   * Possible values: AKV_SECRET_URI, SECRET_VALUE
+   * Possible values: "AKV_SECRET_URI", "SECRET_VALUE"
    */
   type?: string;
 }
@@ -112,7 +112,7 @@ export interface CertificateMetadataOutput {
   /**
    * Type of certificate
    *
-   * Possible values: AKV_CERT_URI
+   * Possible values: "AKV_CERT_URI"
    */
   type?: string;
   /** Name of the certificate. */
@@ -180,7 +180,7 @@ export interface FileInfoOutput {
   /**
    * File type
    *
-   * Possible values: JMX_FILE, USER_PROPERTIES, ADDITIONAL_ARTIFACTS
+   * Possible values: "JMX_FILE", "USER_PROPERTIES", "ADDITIONAL_ARTIFACTS"
    */
   fileType?: string;
   /** Expiry time of the file (ISO 8601 literal format) */
@@ -188,7 +188,7 @@ export interface FileInfoOutput {
   /**
    * Validation status of the file
    *
-   * Possible values: NOT_VALIDATED, VALIDATION_SUCCESS, VALIDATION_FAILURE, VALIDATION_INITIATED, VALIDATION_NOT_REQUIRED
+   * Possible values: "NOT_VALIDATED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE", "VALIDATION_INITIATED", "VALIDATION_NOT_REQUIRED"
    */
   validationStatus?: string;
   /** Validation failure error details */
@@ -312,7 +312,7 @@ export interface TestRunOutput {
   /**
    * Test result for pass/Fail criteria used during the test run.
    *
-   * Possible values: PASSED, NOT_APPLICABLE, FAILED
+   * Possible values: "PASSED", "NOT_APPLICABLE", "FAILED"
    */
   readonly testResult?: string;
   /** Number of virtual users, for which test has been run. */
@@ -326,7 +326,7 @@ export interface TestRunOutput {
   /**
    * The test run status.
    *
-   * Possible values: ACCEPTED, NOTSTARTED, PROVISIONING, PROVISIONED, CONFIGURING, CONFIGURED, EXECUTING, EXECUTED, DEPROVISIONING, DEPROVISIONED, DONE, CANCELLING, CANCELLED, FAILED, VALIDATION_SUCCESS, VALIDATION_FAILURE
+   * Possible values: "ACCEPTED", "NOTSTARTED", "PROVISIONING", "PROVISIONED", "CONFIGURING", "CONFIGURED", "EXECUTING", "EXECUTED", "DEPROVISIONING", "DEPROVISIONED", "DONE", "CANCELLING", "CANCELLED", "FAILED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE"
    */
   readonly status?: string;
   /** The test run start DateTime(ISO 8601 literal format). */
@@ -452,7 +452,7 @@ export interface MetricDefinitionOutput {
   /**
    * The primary aggregation type value defining how to use the values for display.
    *
-   * Possible values: Average, Count, None, Total, Percentile90, Percentile95, Percentile99
+   * Possible values: "Average", "Count", "None", "Total", "Percentile90", "Percentile95", "Percentile99"
    */
   primaryAggregationType?: string;
   /** The collection of what all aggregation types are supported. */
@@ -460,7 +460,7 @@ export interface MetricDefinitionOutput {
   /**
    * The unit of the metric.
    *
-   * Possible values: NotSpecified, Percent, Count, Seconds, Milliseconds, Bytes, BytesPerSecond, CountPerSecond
+   * Possible values: "NotSpecified", "Percent", "Count", "Seconds", "Milliseconds", "Bytes", "BytesPerSecond", "CountPerSecond"
    */
   unit?: string;
   /**
@@ -484,7 +484,7 @@ export interface MetricAvailabilityOutput {
    * The time grain specifies the aggregation interval for the metric. Expressed as
    * a duration 'PT1M', 'PT1H', etc.
    *
-   * Possible values: PT5S, PT10S, PT1M, PT5M, PT1H
+   * Possible values: "PT5S", "PT10S", "PT1M", "PT5M", "PT1H"
    */
   timeGrain?: string;
 }

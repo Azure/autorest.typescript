@@ -6,13 +6,14 @@ import { DOp1204Response, FooContext as Client } from "../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { DOp1Options } from "../../models/options.js";
 
 export function _op1Send(
   context: Client,
   body: A,
-  options: DOp1Options = { requestOptions: {} }
+  options: DOp1Options = { requestOptions: {} },
 ): StreamableMethod<DOp1204Response> {
   return context
     .path("/d")
@@ -24,7 +25,7 @@ export function _op1Send(
 
 export async function _op1Deserialize(result: DOp1204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -33,7 +34,7 @@ export async function _op1Deserialize(result: DOp1204Response): Promise<void> {
 export async function op1(
   context: Client,
   body: A,
-  options: DOp1Options = { requestOptions: {} }
+  options: DOp1Options = { requestOptions: {} },
 ): Promise<void> {
   const result = await _op1Send(context, body, options);
   return _op1Deserialize(result);

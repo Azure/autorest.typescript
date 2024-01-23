@@ -27,7 +27,7 @@ import {
   ResourceLinksGetOptionalParams,
   ResourceLinksGetResponse,
   ResourceLinksListAtSubscriptionNextResponse,
-  ResourceLinksListAtSourceScopeNextResponse
+  ResourceLinksListAtSourceScopeNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -48,7 +48,7 @@ export class ResourceLinksImpl implements ResourceLinks {
    * @param options The options parameters.
    */
   public listAtSubscription(
-    options?: ResourceLinksListAtSubscriptionOptionalParams
+    options?: ResourceLinksListAtSubscriptionOptionalParams,
   ): PagedAsyncIterableIterator<ResourceLink> {
     const iter = this.listAtSubscriptionPagingAll(options);
     return {
@@ -63,13 +63,13 @@ export class ResourceLinksImpl implements ResourceLinks {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listAtSubscriptionPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listAtSubscriptionPagingPage(
     options?: ResourceLinksListAtSubscriptionOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<ResourceLink[]> {
     let result: ResourceLinksListAtSubscriptionResponse;
     let continuationToken = settings?.continuationToken;
@@ -90,7 +90,7 @@ export class ResourceLinksImpl implements ResourceLinks {
   }
 
   private async *listAtSubscriptionPagingAll(
-    options?: ResourceLinksListAtSubscriptionOptionalParams
+    options?: ResourceLinksListAtSubscriptionOptionalParams,
   ): AsyncIterableIterator<ResourceLink> {
     for await (const page of this.listAtSubscriptionPagingPage(options)) {
       yield* page;
@@ -106,7 +106,7 @@ export class ResourceLinksImpl implements ResourceLinks {
    */
   public listAtSourceScope(
     scope: string,
-    options?: ResourceLinksListAtSourceScopeOptionalParams
+    options?: ResourceLinksListAtSourceScopeOptionalParams,
   ): PagedAsyncIterableIterator<ResourceLink> {
     const iter = this.listAtSourceScopePagingAll(scope, options);
     return {
@@ -121,14 +121,14 @@ export class ResourceLinksImpl implements ResourceLinks {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listAtSourceScopePagingPage(scope, options, settings);
-      }
+      },
     };
   }
 
   private async *listAtSourceScopePagingPage(
     scope: string,
     options?: ResourceLinksListAtSourceScopeOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<ResourceLink[]> {
     let result: ResourceLinksListAtSourceScopeResponse;
     let continuationToken = settings?.continuationToken;
@@ -143,7 +143,7 @@ export class ResourceLinksImpl implements ResourceLinks {
       result = await this._listAtSourceScopeNext(
         scope,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -154,7 +154,7 @@ export class ResourceLinksImpl implements ResourceLinks {
 
   private async *listAtSourceScopePagingAll(
     scope: string,
-    options?: ResourceLinksListAtSourceScopeOptionalParams
+    options?: ResourceLinksListAtSourceScopeOptionalParams,
   ): AsyncIterableIterator<ResourceLink> {
     for await (const page of this.listAtSourceScopePagingPage(scope, options)) {
       yield* page;
@@ -171,11 +171,11 @@ export class ResourceLinksImpl implements ResourceLinks {
    */
   delete(
     linkId: string,
-    options?: ResourceLinksDeleteOptionalParams
+    options?: ResourceLinksDeleteOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { linkId, options },
-      deleteOperationSpec
+      deleteOperationSpec,
     );
   }
 
@@ -191,11 +191,11 @@ export class ResourceLinksImpl implements ResourceLinks {
   createOrUpdate(
     linkId: string,
     parameters: ResourceLink,
-    options?: ResourceLinksCreateOrUpdateOptionalParams
+    options?: ResourceLinksCreateOrUpdateOptionalParams,
   ): Promise<ResourceLinksCreateOrUpdateResponse> {
     return this.client.sendOperationRequest(
       { linkId, parameters, options },
-      createOrUpdateOperationSpec
+      createOrUpdateOperationSpec,
     );
   }
 
@@ -207,11 +207,11 @@ export class ResourceLinksImpl implements ResourceLinks {
    */
   get(
     linkId: string,
-    options?: ResourceLinksGetOptionalParams
+    options?: ResourceLinksGetOptionalParams,
   ): Promise<ResourceLinksGetResponse> {
     return this.client.sendOperationRequest(
       { linkId, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -220,11 +220,11 @@ export class ResourceLinksImpl implements ResourceLinks {
    * @param options The options parameters.
    */
   private _listAtSubscription(
-    options?: ResourceLinksListAtSubscriptionOptionalParams
+    options?: ResourceLinksListAtSubscriptionOptionalParams,
   ): Promise<ResourceLinksListAtSubscriptionResponse> {
     return this.client.sendOperationRequest(
       { options },
-      listAtSubscriptionOperationSpec
+      listAtSubscriptionOperationSpec,
     );
   }
 
@@ -237,11 +237,11 @@ export class ResourceLinksImpl implements ResourceLinks {
    */
   private _listAtSourceScope(
     scope: string,
-    options?: ResourceLinksListAtSourceScopeOptionalParams
+    options?: ResourceLinksListAtSourceScopeOptionalParams,
   ): Promise<ResourceLinksListAtSourceScopeResponse> {
     return this.client.sendOperationRequest(
       { scope, options },
-      listAtSourceScopeOperationSpec
+      listAtSourceScopeOperationSpec,
     );
   }
 
@@ -252,11 +252,11 @@ export class ResourceLinksImpl implements ResourceLinks {
    */
   private _listAtSubscriptionNext(
     nextLink: string,
-    options?: ResourceLinksListAtSubscriptionNextOptionalParams
+    options?: ResourceLinksListAtSubscriptionNextOptionalParams,
   ): Promise<ResourceLinksListAtSubscriptionNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listAtSubscriptionNextOperationSpec
+      listAtSubscriptionNextOperationSpec,
     );
   }
 
@@ -271,11 +271,11 @@ export class ResourceLinksImpl implements ResourceLinks {
   private _listAtSourceScopeNext(
     scope: string,
     nextLink: string,
-    options?: ResourceLinksListAtSourceScopeNextOptionalParams
+    options?: ResourceLinksListAtSourceScopeNextOptionalParams,
   ): Promise<ResourceLinksListAtSourceScopeNextResponse> {
     return this.client.sendOperationRequest(
       { scope, nextLink, options },
-      listAtSourceScopeNextOperationSpec
+      listAtSourceScopeNextOperationSpec,
     );
   }
 }
@@ -288,90 +288,90 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   responses: { 200: {}, 204: {} },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.linkId],
-  serializer
+  serializer,
 };
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path: "/{linkId}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.ResourceLink
+      bodyMapper: Mappers.ResourceLink,
     },
     201: {
-      bodyMapper: Mappers.ResourceLink
-    }
+      bodyMapper: Mappers.ResourceLink,
+    },
   },
   requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.linkId],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getOperationSpec: coreClient.OperationSpec = {
   path: "/{linkId}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ResourceLink
-    }
+      bodyMapper: Mappers.ResourceLink,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.linkId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listAtSubscriptionOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/links",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ResourceLinkResult
-    }
+      bodyMapper: Mappers.ResourceLinkResult,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listAtSourceScopeOperationSpec: coreClient.OperationSpec = {
   path: "/{scope}/providers/Microsoft.Resources/links",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ResourceLinkResult
-    }
+      bodyMapper: Mappers.ResourceLinkResult,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter1],
   urlParameters: [Parameters.$host, Parameters.scope],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listAtSubscriptionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ResourceLinkResult
-    }
+      bodyMapper: Mappers.ResourceLinkResult,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
-    Parameters.subscriptionId
+    Parameters.subscriptionId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listAtSourceScopeNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ResourceLinkResult
-    }
+      bodyMapper: Mappers.ResourceLinkResult,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.nextLink, Parameters.scope],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

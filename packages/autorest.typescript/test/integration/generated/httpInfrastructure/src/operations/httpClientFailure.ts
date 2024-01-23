@@ -37,7 +37,7 @@ import {
   HttpClientFailurePost415OptionalParams,
   HttpClientFailureGet416OptionalParams,
   HttpClientFailureDelete417OptionalParams,
-  HttpClientFailureHead429OptionalParams
+  HttpClientFailureHead429OptionalParams,
 } from "../models";
 
 /** Class containing HttpClientFailure operations. */
@@ -73,11 +73,11 @@ export class HttpClientFailureImpl implements HttpClientFailure {
    * @param options The options parameters.
    */
   options400(
-    options?: HttpClientFailureOptions400OptionalParams
+    options?: HttpClientFailureOptions400OptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      options400OperationSpec
+      options400OperationSpec,
     );
   }
 
@@ -112,7 +112,7 @@ export class HttpClientFailureImpl implements HttpClientFailure {
   delete400(options?: HttpClientFailureDelete400OptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      delete400OperationSpec
+      delete400OperationSpec,
     );
   }
 
@@ -137,11 +137,11 @@ export class HttpClientFailureImpl implements HttpClientFailure {
    * @param options The options parameters.
    */
   options403(
-    options?: HttpClientFailureOptions403OptionalParams
+    options?: HttpClientFailureOptions403OptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      options403OperationSpec
+      options403OperationSpec,
     );
   }
 
@@ -184,7 +184,7 @@ export class HttpClientFailureImpl implements HttpClientFailure {
   delete407(options?: HttpClientFailureDelete407OptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      delete407OperationSpec
+      delete407OperationSpec,
     );
   }
 
@@ -217,11 +217,11 @@ export class HttpClientFailureImpl implements HttpClientFailure {
    * @param options The options parameters.
    */
   options412(
-    options?: HttpClientFailureOptions412OptionalParams
+    options?: HttpClientFailureOptions412OptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      options412OperationSpec
+      options412OperationSpec,
     );
   }
 
@@ -272,7 +272,7 @@ export class HttpClientFailureImpl implements HttpClientFailure {
   delete417(options?: HttpClientFailureDelete417OptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      delete417OperationSpec
+      delete417OperationSpec,
     );
   }
 
@@ -292,336 +292,336 @@ const head400OperationSpec: coreClient.OperationSpec = {
   httpMethod: "HEAD",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const get400OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/400",
   httpMethod: "GET",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const options400OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/400",
   httpMethod: "OPTIONS",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const put400OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/400",
   httpMethod: "PUT",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const patch400OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/400",
   httpMethod: "PATCH",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const post400OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/400",
   httpMethod: "POST",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const delete400OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/400",
   httpMethod: "DELETE",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const head401OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/401",
   httpMethod: "HEAD",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const get402OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/402",
   httpMethod: "GET",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const options403OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/403",
   httpMethod: "OPTIONS",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const get403OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/403",
   httpMethod: "GET",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const put404OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/404",
   httpMethod: "PUT",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const patch405OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/405",
   httpMethod: "PATCH",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const post406OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/406",
   httpMethod: "POST",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const delete407OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/407",
   httpMethod: "DELETE",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const put409OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/409",
   httpMethod: "PUT",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const head410OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/410",
   httpMethod: "HEAD",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const get411OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/411",
   httpMethod: "GET",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const options412OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/412",
   httpMethod: "OPTIONS",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const get412OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/412",
   httpMethod: "GET",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const put413OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/413",
   httpMethod: "PUT",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const patch414OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/414",
   httpMethod: "PATCH",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const post415OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/415",
   httpMethod: "POST",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const get416OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/416",
   httpMethod: "GET",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const delete417OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/417",
   httpMethod: "DELETE",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.booleanValue,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const head429OperationSpec: coreClient.OperationSpec = {
   path: "/http/failure/client/429",
   httpMethod: "HEAD",
   responses: {
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

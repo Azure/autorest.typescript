@@ -30,7 +30,7 @@ async function storageAccountEncryptionScopeList() {
   const resArray = new Array();
   for await (let item of client.encryptionScopes.list(
     resourceGroupName,
-    accountName
+    accountName,
   )) {
     resArray.push(item);
   }

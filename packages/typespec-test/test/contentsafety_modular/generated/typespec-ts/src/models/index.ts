@@ -35,3 +35,8 @@ export {
   GetTextBlocklistItemOptions,
   ListTextBlocklistItemsOptions,
 } from "./options.js";
+export {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./pagingTypes.js";

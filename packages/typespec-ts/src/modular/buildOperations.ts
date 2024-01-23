@@ -11,6 +11,9 @@ import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { getImportSpecifier } from "@azure-tools/rlc-common";
+import { addImportsToFiles } from "@azure-tools/rlc-common";
+import { clearImportSets } from "@azure-tools/rlc-common";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -25,7 +28,7 @@ export function buildOperationFiles(
 ) {
   const operationFiles = [];
   for (const operationGroup of client.operationGroups) {
-    const importSet: Map<string, Set<string>> = new Map<string, Set<string>>();
+    clearImportSets(codeModel.runtimeImports);
     const operationFileName =
       operationGroup.className && operationGroup.namespaceHierarchies.length > 0
         ? `${operationGroup.namespaceHierarchies
@@ -48,6 +51,15 @@ export function buildOperationFiles(
     // Import models used from ./models.ts
     // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
     importModels(
+      srcPath,
+      operationGroupFile,
+      codeModel.project,
+      subfolder,
+      operationGroup.namespaceHierarchies.length
+    );
+
+    // We need to import the paging helpers and types explicitly because ts-morph may not be able to find them.
+    importPagingDependencies(
       srcPath,
       operationGroupFile,
       codeModel.project,
@@ -94,13 +106,13 @@ export function buildOperationFiles(
         dpgContext,
         o,
         clientType,
-        importSet
+        codeModel.runtimeImports
       );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         o,
         isRLCMultiEndpoint(dpgContext),
         needUnexpectedHelper,
-        importSet
+        codeModel.runtimeImports
       );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
@@ -111,23 +123,17 @@ export function buildOperationFiles(
 
     operationGroupFile.addImportDeclarations([
       {
-        moduleSpecifier: "@azure-rest/core-client",
+        moduleSpecifier: getImportSpecifier(
+          "restClient",
+          codeModel?.runtimeImports
+        ),
         namedImports: [
           "StreamableMethod",
           "operationOptionsToRequestParameters"
         ]
       }
     ]);
-    if (importSet.size > 0) {
-      for (const [moduleName, imports] of importSet.entries()) {
-        operationGroupFile.addImportDeclarations([
-          {
-            moduleSpecifier: moduleName,
-            namedImports: [...imports.values()]
-          }
-        ]);
-      }
-    }
+    addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
     operationGroupFile.fixMissingImports();
     // have to fixUnusedIdentifiers after everything get generated.
     operationGroupFile.fixUnusedIdentifiers();
@@ -167,6 +173,48 @@ export function importModels(
   // Import all models and then let ts-morph clean up the unused ones
   // we can't fixUnusedIdentifiers here because the operaiton files are still being generated.
   // sourceFile.fixUnusedIdentifiers();
+}
+
+export function importPagingDependencies(
+  srcPath: string,
+  sourceFile: SourceFile,
+  project: Project,
+  subfolder: string = "",
+  importLayer: number = 0
+) {
+  const pagingTypes = project.getSourceFile(
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/pagingTypes.ts`
+  );
+
+  if (!pagingTypes) {
+    return;
+  }
+
+  const exportedPaingTypes = [...pagingTypes.getExportedDeclarations().keys()];
+
+  sourceFile.addImportDeclaration({
+    moduleSpecifier: `${"../".repeat(importLayer + 1)}models/pagingTypes.js`,
+    namedImports: exportedPaingTypes
+  });
+
+  const pagingHelper = project.getSourceFile(
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}api/pagingHelpers.ts`
+  );
+
+  if (!pagingHelper) {
+    return;
+  }
+
+  const exportedPaingHelpers = [
+    ...pagingHelper.getExportedDeclarations().keys()
+  ];
+
+  sourceFile.addImportDeclaration({
+    moduleSpecifier: `${
+      importLayer === 0 ? "./" : "../".repeat(importLayer)
+    }pagingHelpers.js`,
+    namedImports: exportedPaingHelpers
+  });
 }
 
 /**

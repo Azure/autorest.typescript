@@ -29,7 +29,7 @@ async function expressRouteGatewayGet() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.expressRouteGateways.get(
     resourceGroupName,
-    expressRouteGatewayName
+    expressRouteGatewayName,
   );
   console.log(result);
 }

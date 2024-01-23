@@ -14,13 +14,14 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { CompletionsCreateOptions } from "../../models/options.js";
 
 export function _createSend(
   context: Client,
   body: CreateCompletionRequest,
-  options: CompletionsCreateOptions = { requestOptions: {} }
+  options: CompletionsCreateOptions = { requestOptions: {} },
 ): StreamableMethod<
   CompletionsCreate200Response | CompletionsCreateDefaultResponse
 > {
@@ -50,10 +51,10 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: CompletionsCreate200Response | CompletionsCreateDefaultResponse
+  result: CompletionsCreate200Response | CompletionsCreateDefaultResponse,
 ): Promise<CreateCompletionResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -61,7 +62,7 @@ export async function _createDeserialize(
     object: result.body["object"],
     created: new Date(result.body["created"]),
     model: result.body["model"],
-    choices: (result.body["choices"] ?? []).map((p) => ({
+    choices: result.body["choices"].map((p) => ({
       index: p["index"],
       text: p["text"],
       logprobs:
@@ -88,7 +89,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   body: CreateCompletionRequest,
-  options: CompletionsCreateOptions = { requestOptions: {} }
+  options: CompletionsCreateOptions = { requestOptions: {} },
 ): Promise<CreateCompletionResponse> {
   const result = await _createSend(context, body, options);
   return _createDeserialize(result);

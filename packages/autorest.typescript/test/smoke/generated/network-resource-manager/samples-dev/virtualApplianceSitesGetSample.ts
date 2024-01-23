@@ -30,7 +30,7 @@ async function getNetworkVirtualApplianceSite() {
   const result = await client.virtualApplianceSites.get(
     resourceGroupName,
     networkVirtualApplianceName,
-    siteName
+    siteName,
   );
   console.log(result);
 }

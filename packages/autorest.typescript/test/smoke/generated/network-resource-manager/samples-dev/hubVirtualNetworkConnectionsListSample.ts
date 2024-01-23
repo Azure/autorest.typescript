@@ -29,7 +29,7 @@ async function hubVirtualNetworkConnectionList() {
   const resArray = new Array();
   for await (let item of client.hubVirtualNetworkConnections.list(
     resourceGroupName,
-    virtualHubName
+    virtualHubName,
   )) {
     resArray.push(item);
   }

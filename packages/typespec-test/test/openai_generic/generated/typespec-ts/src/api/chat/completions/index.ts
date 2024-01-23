@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import {
-  CreateChatCompletionRequest,
   CreateChatCompletionResponse,
+  CreateChatCompletionRequest,
 } from "../../../models/models.js";
 import {
   ChatCompletionsCreate200Response,
@@ -14,13 +14,14 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { ChatCompletionsCreateOptions } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,
   body: CreateChatCompletionRequest,
-  options: ChatCompletionsCreateOptions = { requestOptions: {} }
+  options: ChatCompletionsCreateOptions = { requestOptions: {} },
 ): StreamableMethod<
   ChatCompletionsCreate200Response | ChatCompletionsCreateDefaultResponse
 > {
@@ -30,7 +31,7 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         model: body["model"],
-        messages: (body["messages"] ?? []).map((p) => ({
+        messages: body["messages"].map((p) => ({
           role: p["role"],
           content: p["content"],
           name: p["name"],
@@ -41,11 +42,13 @@ export function _createSend(
                 arguments: p.functionCall?.["arguments"],
               },
         })),
-        functions: (body["functions"] ?? []).map((p) => ({
-          name: p["name"],
-          description: p["description"],
-          parameters: p["parameters"],
-        })),
+        functions: !body["functions"]
+          ? body["functions"]
+          : body["functions"].map((p) => ({
+              name: p["name"],
+              description: p["description"],
+              parameters: p["parameters"],
+            })),
         function_call: body["functionCall"],
         temperature: body["temperature"],
         top_p: body["topP"],
@@ -64,10 +67,10 @@ export function _createSend(
 export async function _createDeserialize(
   result:
     | ChatCompletionsCreate200Response
-    | ChatCompletionsCreateDefaultResponse
+    | ChatCompletionsCreateDefaultResponse,
 ): Promise<CreateChatCompletionResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -75,7 +78,7 @@ export async function _createDeserialize(
     object: result.body["object"],
     created: new Date(result.body["created"]),
     model: result.body["model"],
-    choices: (result.body["choices"] ?? []).map((p) => ({
+    choices: result.body["choices"].map((p) => ({
       index: p["index"],
       message: {
         role: p.message["role"] as any,
@@ -102,7 +105,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   body: CreateChatCompletionRequest,
-  options: ChatCompletionsCreateOptions = { requestOptions: {} }
+  options: ChatCompletionsCreateOptions = { requestOptions: {} },
 ): Promise<CreateChatCompletionResponse> {
   const result = await _createSend(context, body, options);
   return _createDeserialize(result);

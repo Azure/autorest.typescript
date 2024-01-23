@@ -23,6 +23,14 @@
     "./models": {
       "types": "./types/src/models/index.d.ts",
       "import": "./dist-esm/src/models/index.js"
+    },
+    "./api/foo": {
+      "types": "./types/src/api/foo/index.d.ts",
+      "import": "./dist-esm/src/api/foo/index.js"
+    },
+    "./api/bar": {
+      "types": "./types/src/api/bar/index.d.ts",
+      "import": "./dist-esm/src/api/bar/index.js"
     }
   },
   "repository": "github:Azure/azure-sdk-for-js",
@@ -37,7 +45,6 @@
   ],
   "engines": { "node": ">=18.0.0" },
   "scripts": {
-    "audit": "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
     "build:browser": "echo skipped.",
     "build:node": "echo skipped.",
     "build:samples": "echo skipped.",
@@ -68,7 +75,7 @@
   "autoPublish": false,
   "dependencies": {
     "@azure/core-auth": "^1.3.0",
-    "@azure-rest/core-client": "^1.1.4",
+    "@azure-rest/core-client": "^1.1.6",
     "@azure/core-rest-pipeline": "^1.12.0",
     "@azure/logger": "^1.0.0",
     "tslib": "^2.2.0",
@@ -81,7 +88,7 @@
     "dotenv": "^16.0.0",
     "eslint": "^8.0.0",
     "mkdirp": "^2.1.2",
-    "prettier": "^2.5.1",
+    "prettier": "^3.1.0",
     "rimraf": "^5.0.0",
     "source-map-support": "^0.5.9",
     "typescript": "~5.2.0",

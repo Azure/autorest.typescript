@@ -16,7 +16,7 @@ import { NetworkCloud } from "../networkCloud";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -39,7 +39,7 @@ import {
   StorageAppliancesEnableRemoteVendorManagementOptionalParams,
   StorageAppliancesEnableRemoteVendorManagementResponse,
   StorageAppliancesListBySubscriptionNextResponse,
-  StorageAppliancesListByResourceGroupNextResponse
+  StorageAppliancesListByResourceGroupNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -60,7 +60,7 @@ export class StorageAppliancesImpl implements StorageAppliances {
    * @param options The options parameters.
    */
   public listBySubscription(
-    options?: StorageAppliancesListBySubscriptionOptionalParams
+    options?: StorageAppliancesListBySubscriptionOptionalParams,
   ): PagedAsyncIterableIterator<StorageAppliance> {
     const iter = this.listBySubscriptionPagingAll(options);
     return {
@@ -75,13 +75,13 @@ export class StorageAppliancesImpl implements StorageAppliances {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listBySubscriptionPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listBySubscriptionPagingPage(
     options?: StorageAppliancesListBySubscriptionOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<StorageAppliance[]> {
     let result: StorageAppliancesListBySubscriptionResponse;
     let continuationToken = settings?.continuationToken;
@@ -102,7 +102,7 @@ export class StorageAppliancesImpl implements StorageAppliances {
   }
 
   private async *listBySubscriptionPagingAll(
-    options?: StorageAppliancesListBySubscriptionOptionalParams
+    options?: StorageAppliancesListBySubscriptionOptionalParams,
   ): AsyncIterableIterator<StorageAppliance> {
     for await (const page of this.listBySubscriptionPagingPage(options)) {
       yield* page;
@@ -116,7 +116,7 @@ export class StorageAppliancesImpl implements StorageAppliances {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: StorageAppliancesListByResourceGroupOptionalParams
+    options?: StorageAppliancesListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<StorageAppliance> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -133,16 +133,16 @@ export class StorageAppliancesImpl implements StorageAppliances {
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
     options?: StorageAppliancesListByResourceGroupOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<StorageAppliance[]> {
     let result: StorageAppliancesListByResourceGroupResponse;
     let continuationToken = settings?.continuationToken;
@@ -157,7 +157,7 @@ export class StorageAppliancesImpl implements StorageAppliances {
       result = await this._listByResourceGroupNext(
         resourceGroupName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -168,11 +168,11 @@ export class StorageAppliancesImpl implements StorageAppliances {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: StorageAppliancesListByResourceGroupOptionalParams
+    options?: StorageAppliancesListByResourceGroupOptionalParams,
   ): AsyncIterableIterator<StorageAppliance> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -183,11 +183,11 @@ export class StorageAppliancesImpl implements StorageAppliances {
    * @param options The options parameters.
    */
   private _listBySubscription(
-    options?: StorageAppliancesListBySubscriptionOptionalParams
+    options?: StorageAppliancesListBySubscriptionOptionalParams,
   ): Promise<StorageAppliancesListBySubscriptionResponse> {
     return this.client.sendOperationRequest(
       { options },
-      listBySubscriptionOperationSpec
+      listBySubscriptionOperationSpec,
     );
   }
 
@@ -198,11 +198,11 @@ export class StorageAppliancesImpl implements StorageAppliances {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: StorageAppliancesListByResourceGroupOptionalParams
+    options?: StorageAppliancesListByResourceGroupOptionalParams,
   ): Promise<StorageAppliancesListByResourceGroupResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, options },
-      listByResourceGroupOperationSpec
+      listByResourceGroupOperationSpec,
     );
   }
 
@@ -215,11 +215,11 @@ export class StorageAppliancesImpl implements StorageAppliances {
   get(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesGetOptionalParams
+    options?: StorageAppliancesGetOptionalParams,
   ): Promise<StorageAppliancesGetResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, storageApplianceName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -236,7 +236,7 @@ export class StorageAppliancesImpl implements StorageAppliances {
     resourceGroupName: string,
     storageApplianceName: string,
     storageApplianceParameters: StorageAppliance,
-    options?: StorageAppliancesCreateOrUpdateOptionalParams
+    options?: StorageAppliancesCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<StorageAppliancesCreateOrUpdateResponse>,
@@ -245,21 +245,20 @@ export class StorageAppliancesImpl implements StorageAppliances {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<StorageAppliancesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -268,8 +267,8 @@ export class StorageAppliancesImpl implements StorageAppliances {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -277,8 +276,8 @@ export class StorageAppliancesImpl implements StorageAppliances {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -288,9 +287,9 @@ export class StorageAppliancesImpl implements StorageAppliances {
         resourceGroupName,
         storageApplianceName,
         storageApplianceParameters,
-        options
+        options,
       },
-      spec: createOrUpdateOperationSpec
+      spec: createOrUpdateOperationSpec,
     });
     const poller = await createHttpPoller<
       StorageAppliancesCreateOrUpdateResponse,
@@ -298,7 +297,7 @@ export class StorageAppliancesImpl implements StorageAppliances {
     >(lro, {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation",
     });
     await poller.poll();
     return poller;
@@ -317,13 +316,13 @@ export class StorageAppliancesImpl implements StorageAppliances {
     resourceGroupName: string,
     storageApplianceName: string,
     storageApplianceParameters: StorageAppliance,
-    options?: StorageAppliancesCreateOrUpdateOptionalParams
+    options?: StorageAppliancesCreateOrUpdateOptionalParams,
   ): Promise<StorageAppliancesCreateOrUpdateResponse> {
     const poller = await this.beginCreateOrUpdate(
       resourceGroupName,
       storageApplianceName,
       storageApplianceParameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -339,25 +338,24 @@ export class StorageAppliancesImpl implements StorageAppliances {
   async beginDelete(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesDeleteOptionalParams
+    options?: StorageAppliancesDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -366,8 +364,8 @@ export class StorageAppliancesImpl implements StorageAppliances {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -375,20 +373,20 @@ export class StorageAppliancesImpl implements StorageAppliances {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, storageApplianceName, options },
-      spec: deleteOperationSpec
+      spec: deleteOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "location"
+      resourceLocationConfig: "location",
     });
     await poller.poll();
     return poller;
@@ -405,12 +403,12 @@ export class StorageAppliancesImpl implements StorageAppliances {
   async beginDeleteAndWait(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesDeleteOptionalParams
+    options?: StorageAppliancesDeleteOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       storageApplianceName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -425,7 +423,7 @@ export class StorageAppliancesImpl implements StorageAppliances {
   async beginUpdate(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesUpdateOptionalParams
+    options?: StorageAppliancesUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<StorageAppliancesUpdateResponse>,
@@ -434,21 +432,20 @@ export class StorageAppliancesImpl implements StorageAppliances {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<StorageAppliancesUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -457,8 +454,8 @@ export class StorageAppliancesImpl implements StorageAppliances {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -466,15 +463,15 @@ export class StorageAppliancesImpl implements StorageAppliances {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, storageApplianceName, options },
-      spec: updateOperationSpec
+      spec: updateOperationSpec,
     });
     const poller = await createHttpPoller<
       StorageAppliancesUpdateResponse,
@@ -482,7 +479,7 @@ export class StorageAppliancesImpl implements StorageAppliances {
     >(lro, {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "azure-async-operation"
+      resourceLocationConfig: "azure-async-operation",
     });
     await poller.poll();
     return poller;
@@ -498,12 +495,12 @@ export class StorageAppliancesImpl implements StorageAppliances {
   async beginUpdateAndWait(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesUpdateOptionalParams
+    options?: StorageAppliancesUpdateOptionalParams,
   ): Promise<StorageAppliancesUpdateResponse> {
     const poller = await this.beginUpdate(
       resourceGroupName,
       storageApplianceName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -517,7 +514,7 @@ export class StorageAppliancesImpl implements StorageAppliances {
   async beginDisableRemoteVendorManagement(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesDisableRemoteVendorManagementOptionalParams
+    options?: StorageAppliancesDisableRemoteVendorManagementOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<StorageAppliancesDisableRemoteVendorManagementResponse>,
@@ -526,21 +523,20 @@ export class StorageAppliancesImpl implements StorageAppliances {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<StorageAppliancesDisableRemoteVendorManagementResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -549,8 +545,8 @@ export class StorageAppliancesImpl implements StorageAppliances {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -558,15 +554,15 @@ export class StorageAppliancesImpl implements StorageAppliances {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, storageApplianceName, options },
-      spec: disableRemoteVendorManagementOperationSpec
+      spec: disableRemoteVendorManagementOperationSpec,
     });
     const poller = await createHttpPoller<
       StorageAppliancesDisableRemoteVendorManagementResponse,
@@ -574,7 +570,7 @@ export class StorageAppliancesImpl implements StorageAppliances {
     >(lro, {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "location"
+      resourceLocationConfig: "location",
     });
     await poller.poll();
     return poller;
@@ -589,12 +585,12 @@ export class StorageAppliancesImpl implements StorageAppliances {
   async beginDisableRemoteVendorManagementAndWait(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesDisableRemoteVendorManagementOptionalParams
+    options?: StorageAppliancesDisableRemoteVendorManagementOptionalParams,
   ): Promise<StorageAppliancesDisableRemoteVendorManagementResponse> {
     const poller = await this.beginDisableRemoteVendorManagement(
       resourceGroupName,
       storageApplianceName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -608,7 +604,7 @@ export class StorageAppliancesImpl implements StorageAppliances {
   async beginEnableRemoteVendorManagement(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesEnableRemoteVendorManagementOptionalParams
+    options?: StorageAppliancesEnableRemoteVendorManagementOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<StorageAppliancesEnableRemoteVendorManagementResponse>,
@@ -617,21 +613,20 @@ export class StorageAppliancesImpl implements StorageAppliances {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<StorageAppliancesEnableRemoteVendorManagementResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -640,8 +635,8 @@ export class StorageAppliancesImpl implements StorageAppliances {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -649,15 +644,15 @@ export class StorageAppliancesImpl implements StorageAppliances {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, storageApplianceName, options },
-      spec: enableRemoteVendorManagementOperationSpec
+      spec: enableRemoteVendorManagementOperationSpec,
     });
     const poller = await createHttpPoller<
       StorageAppliancesEnableRemoteVendorManagementResponse,
@@ -665,7 +660,7 @@ export class StorageAppliancesImpl implements StorageAppliances {
     >(lro, {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "location"
+      resourceLocationConfig: "location",
     });
     await poller.poll();
     return poller;
@@ -680,12 +675,12 @@ export class StorageAppliancesImpl implements StorageAppliances {
   async beginEnableRemoteVendorManagementAndWait(
     resourceGroupName: string,
     storageApplianceName: string,
-    options?: StorageAppliancesEnableRemoteVendorManagementOptionalParams
+    options?: StorageAppliancesEnableRemoteVendorManagementOptionalParams,
   ): Promise<StorageAppliancesEnableRemoteVendorManagementResponse> {
     const poller = await this.beginEnableRemoteVendorManagement(
       resourceGroupName,
       storageApplianceName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -697,11 +692,11 @@ export class StorageAppliancesImpl implements StorageAppliances {
    */
   private _listBySubscriptionNext(
     nextLink: string,
-    options?: StorageAppliancesListBySubscriptionNextOptionalParams
+    options?: StorageAppliancesListBySubscriptionNextOptionalParams,
   ): Promise<StorageAppliancesListBySubscriptionNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listBySubscriptionNextOperationSpec
+      listBySubscriptionNextOperationSpec,
     );
   }
 
@@ -714,11 +709,11 @@ export class StorageAppliancesImpl implements StorageAppliances {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: StorageAppliancesListByResourceGroupNextOptionalParams
+    options?: StorageAppliancesListByResourceGroupNextOptionalParams,
   ): Promise<StorageAppliancesListByResourceGroupNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, nextLink, options },
-      listByResourceGroupNextOperationSpec
+      listByResourceGroupNextOperationSpec,
     );
   }
 }
@@ -726,85 +721,81 @@ export class StorageAppliancesImpl implements StorageAppliances {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const listBySubscriptionOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/storageAppliances",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/storageAppliances",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.StorageApplianceList
+      bodyMapper: Mappers.StorageApplianceList,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.StorageApplianceList
+      bodyMapper: Mappers.StorageApplianceList,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.StorageAppliance
+      bodyMapper: Mappers.ErrorResponse,
     },
-    default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.storageApplianceName
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
+};
+const getOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.StorageAppliance,
+    },
+    default: {
+      bodyMapper: Mappers.ErrorResponse,
+    },
+  },
+  queryParameters: [Parameters.apiVersion],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.storageApplianceName,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
 };
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.StorageAppliance
+      bodyMapper: Mappers.StorageAppliance,
     },
     201: {
-      bodyMapper: Mappers.StorageAppliance
+      bodyMapper: Mappers.StorageAppliance,
     },
     202: {
-      bodyMapper: Mappers.StorageAppliance
+      bodyMapper: Mappers.StorageAppliance,
     },
     204: {
-      bodyMapper: Mappers.StorageAppliance
+      bodyMapper: Mappers.StorageAppliance,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   requestBody: Parameters.storageApplianceParameters,
   queryParameters: [Parameters.apiVersion],
@@ -812,15 +803,14 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.storageApplianceName
+    Parameters.storageApplianceName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}",
   httpMethod: "DELETE",
   responses: {
     200: {},
@@ -828,39 +818,38 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     202: {},
     204: {},
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.storageApplianceName
+    Parameters.storageApplianceName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const updateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}",
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.StorageAppliance
+      bodyMapper: Mappers.StorageAppliance,
     },
     201: {
-      bodyMapper: Mappers.StorageAppliance
+      bodyMapper: Mappers.StorageAppliance,
     },
     202: {
-      bodyMapper: Mappers.StorageAppliance
+      bodyMapper: Mappers.StorageAppliance,
     },
     204: {
-      bodyMapper: Mappers.StorageAppliance
+      bodyMapper: Mappers.StorageAppliance,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   requestBody: Parameters.storageApplianceUpdateParameters,
   queryParameters: [Parameters.apiVersion],
@@ -868,63 +857,61 @@ const updateOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.storageApplianceName
+    Parameters.storageApplianceName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const disableRemoteVendorManagementOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/disableRemoteVendorManagement",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/disableRemoteVendorManagement",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.OperationStatusResult
+      bodyMapper: Mappers.OperationStatusResult,
     },
     201: {
-      bodyMapper: Mappers.OperationStatusResult
+      bodyMapper: Mappers.OperationStatusResult,
     },
     202: {
-      bodyMapper: Mappers.OperationStatusResult
+      bodyMapper: Mappers.OperationStatusResult,
     },
     204: {
-      bodyMapper: Mappers.OperationStatusResult
+      bodyMapper: Mappers.OperationStatusResult,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.storageApplianceName
+    Parameters.storageApplianceName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const enableRemoteVendorManagementOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/enableRemoteVendorManagement",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/storageAppliances/{storageApplianceName}/enableRemoteVendorManagement",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.OperationStatusResult
+      bodyMapper: Mappers.OperationStatusResult,
     },
     201: {
-      bodyMapper: Mappers.OperationStatusResult
+      bodyMapper: Mappers.OperationStatusResult,
     },
     202: {
-      bodyMapper: Mappers.OperationStatusResult
+      bodyMapper: Mappers.OperationStatusResult,
     },
     204: {
-      bodyMapper: Mappers.OperationStatusResult
+      bodyMapper: Mappers.OperationStatusResult,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   requestBody:
     Parameters.storageApplianceEnableRemoteVendorManagementParameters,
@@ -933,48 +920,48 @@ const enableRemoteVendorManagementOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.storageApplianceName
+    Parameters.storageApplianceName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.StorageApplianceList
+      bodyMapper: Mappers.StorageApplianceList,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
-    Parameters.subscriptionId
+    Parameters.subscriptionId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.StorageApplianceList
+      bodyMapper: Mappers.StorageApplianceList,
     },
     default: {
-      bodyMapper: Mappers.ErrorResponse
-    }
+      bodyMapper: Mappers.ErrorResponse,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

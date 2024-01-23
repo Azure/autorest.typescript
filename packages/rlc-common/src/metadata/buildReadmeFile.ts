@@ -81,6 +81,43 @@ setLogLevel("info");
 For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/core/logger).
 `;
 
+const nonBrandedReadmeTemplate = `# {{ clientDescriptiveName }} library for JavaScript
+
+{{ description }}
+
+Key links:
+
+{{#if packageSourceURL}}
+- [Source code]({{ packageSourceURL }})
+{{/if}}
+{{#if packageNPMURL}}
+- [Package (NPM)]({{ packageNPMURL }})
+{{/if}}
+{{#if apiRefURL}}
+- [API reference documentation]({{ apiRefURL }})
+{{/if}}
+{{#if serviceDocURL}}
+- [Product documentation]({{ serviceDocURL }})
+{{/if}}
+{{#if samplesURL}}
+- [Samples]({{ samplesURL }})
+{{/if}}
+
+## Getting started
+
+### Currently supported environments
+
+- LTS versions of Node.js
+
+### Install the \`{{ clientPackageName }}\` package
+
+Install the {{ clientDescriptiveName }} REST client library for JavaScript with \`npm\`:
+
+\`\`\`bash
+npm install {{ clientPackageName }}
+\`\`\`
+`;
+
 /**
  * Meta data information about the service, the package, and the client.
  */
@@ -124,7 +161,12 @@ interface Metadata {
 
 export function buildReadmeFile(model: RLCModel) {
   const metadata = createMetadata(model) ?? {};
-  const readmeFileContents = hbs.compile(readmeTemplate, { noEscape: true });
+  const readmeFileContents = hbs.compile(
+    model.options?.branded === false
+      ? nonBrandedReadmeTemplate
+      : readmeTemplate,
+    { noEscape: true }
+  );
   return {
     path: "README.md",
     content: readmeFileContents(metadata)

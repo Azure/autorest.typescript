@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   DiskEncryptionSet,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,18 +29,18 @@ async function createADiskEncryptionSetWithKeyVaultFromADifferentSubscription() 
   const diskEncryptionSetName = "myDiskEncryptionSet";
   const diskEncryptionSet: DiskEncryptionSet = {
     activeKey: {
-      keyUrl: "https://myvaultdifferentsub.vault-int.azure-int.net/keys/{key}"
+      keyUrl: "https://myvaultdifferentsub.vault-int.azure-int.net/keys/{key}",
     },
     encryptionType: "EncryptionAtRestWithCustomerKey",
     identity: { type: "SystemAssigned" },
-    location: "West US"
+    location: "West US",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.diskEncryptionSets.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskEncryptionSetName,
-    diskEncryptionSet
+    diskEncryptionSet,
   );
   console.log(result);
 }
@@ -59,20 +59,19 @@ async function createADiskEncryptionSet() {
     activeKey: {
       keyUrl: "https://myvmvault.vault-int.azure-int.net/keys/{key}",
       sourceVault: {
-        id:
-          "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/vaults/myVMVault"
-      }
+        id: "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/vaults/myVMVault",
+      },
     },
     encryptionType: "EncryptionAtRestWithCustomerKey",
     identity: { type: "SystemAssigned" },
-    location: "West US"
+    location: "West US",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.diskEncryptionSets.beginCreateOrUpdateAndWait(
     resourceGroupName,
     diskEncryptionSetName,
-    diskEncryptionSet
+    diskEncryptionSet,
   );
   console.log(result);
 }

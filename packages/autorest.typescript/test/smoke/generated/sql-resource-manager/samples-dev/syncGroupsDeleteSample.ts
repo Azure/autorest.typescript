@@ -34,7 +34,7 @@ async function deleteASyncGroup() {
     resourceGroupName,
     serverName,
     databaseName,
-    syncGroupName
+    syncGroupName,
   );
   console.log(result);
 }

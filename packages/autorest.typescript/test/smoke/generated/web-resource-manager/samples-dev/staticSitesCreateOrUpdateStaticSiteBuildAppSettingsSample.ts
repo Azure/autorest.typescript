@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   StringDictionary,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,16 +30,17 @@ async function createsOrUpdatesTheFunctionAppSettingsOfAStaticSiteBuild() {
   const name = "testStaticSite0";
   const environmentName = "12";
   const appSettings: StringDictionary = {
-    properties: { setting1: "someval", setting2: "someval2" }
+    properties: { setting1: "someval", setting2: "someval2" },
   };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
-  const result = await client.staticSites.createOrUpdateStaticSiteBuildAppSettings(
-    resourceGroupName,
-    name,
-    environmentName,
-    appSettings
-  );
+  const result =
+    await client.staticSites.createOrUpdateStaticSiteBuildAppSettings(
+      resourceGroupName,
+      name,
+      environmentName,
+      appSettings,
+    );
   console.log(result);
 }
 

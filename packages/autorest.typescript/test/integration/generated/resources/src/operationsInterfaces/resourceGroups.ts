@@ -8,7 +8,7 @@
 
 import {
   ResourceGroupsCheckExistenceOptionalParams,
-  ResourceGroupsCheckExistenceResponse
+  ResourceGroupsCheckExistenceResponse,
 } from "../models";
 
 /** Interface representing a ResourceGroups. */
@@ -20,6 +20,6 @@ export interface ResourceGroups {
    */
   checkExistence(
     resourceGroupName: string,
-    options?: ResourceGroupsCheckExistenceOptionalParams
+    options?: ResourceGroupsCheckExistenceOptionalParams,
   ): Promise<ResourceGroupsCheckExistenceResponse>;
 }

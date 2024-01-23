@@ -13,7 +13,7 @@ import {
   HeaderCustomNamedRequestIdParamGroupingOptionalParams,
   HeaderCustomNamedRequestIdParamGroupingResponse,
   HeaderCustomNamedRequestIdHeadOptionalParams,
-  HeaderCustomNamedRequestIdHeadResponse
+  HeaderCustomNamedRequestIdHeadResponse,
 } from "../models";
 
 /** Interface representing a Header. */
@@ -25,7 +25,7 @@ export interface Header {
    */
   customNamedRequestId(
     fooClientRequestId: string,
-    options?: HeaderCustomNamedRequestIdOptionalParams
+    options?: HeaderCustomNamedRequestIdOptionalParams,
   ): Promise<HeaderCustomNamedRequestIdResponse>;
   /**
    * Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request, via
@@ -35,7 +35,7 @@ export interface Header {
    */
   customNamedRequestIdParamGrouping(
     headerCustomNamedRequestIdParamGroupingParameters: HeaderCustomNamedRequestIdParamGroupingParameters,
-    options?: HeaderCustomNamedRequestIdParamGroupingOptionalParams
+    options?: HeaderCustomNamedRequestIdParamGroupingOptionalParams,
   ): Promise<HeaderCustomNamedRequestIdParamGroupingResponse>;
   /**
    * Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request
@@ -44,6 +44,6 @@ export interface Header {
    */
   customNamedRequestIdHead(
     fooClientRequestId: string,
-    options?: HeaderCustomNamedRequestIdHeadOptionalParams
+    options?: HeaderCustomNamedRequestIdHeadOptionalParams,
   ): Promise<HeaderCustomNamedRequestIdHeadResponse>;
 }

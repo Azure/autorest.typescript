@@ -10,6 +10,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   RenamedOneOptions,
@@ -19,7 +20,7 @@ import {
 
 export function _renamedOneSend(
   context: Client,
-  options: RenamedOneOptions = { requestOptions: {} }
+  options: RenamedOneOptions = { requestOptions: {} },
 ): StreamableMethod<One204Response> {
   return context
     .path("/one")
@@ -27,10 +28,10 @@ export function _renamedOneSend(
 }
 
 export async function _renamedOneDeserialize(
-  result: One204Response
+  result: One204Response,
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -38,7 +39,7 @@ export async function _renamedOneDeserialize(
 
 export async function renamedOne(
   context: Client,
-  options: RenamedOneOptions = { requestOptions: {} }
+  options: RenamedOneOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _renamedOneSend(context, options);
   return _renamedOneDeserialize(result);
@@ -46,7 +47,7 @@ export async function renamedOne(
 
 export function _renamedThreeSend(
   context: Client,
-  options: RenamedThreeOptions = { requestOptions: {} }
+  options: RenamedThreeOptions = { requestOptions: {} },
 ): StreamableMethod<Three204Response> {
   return context
     .path("/three")
@@ -54,10 +55,10 @@ export function _renamedThreeSend(
 }
 
 export async function _renamedThreeDeserialize(
-  result: Three204Response
+  result: Three204Response,
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -65,7 +66,7 @@ export async function _renamedThreeDeserialize(
 
 export async function renamedThree(
   context: Client,
-  options: RenamedThreeOptions = { requestOptions: {} }
+  options: RenamedThreeOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _renamedThreeSend(context, options);
   return _renamedThreeDeserialize(result);
@@ -73,7 +74,7 @@ export async function renamedThree(
 
 export function _renamedFiveSend(
   context: Client,
-  options: RenamedFiveOptions = { requestOptions: {} }
+  options: RenamedFiveOptions = { requestOptions: {} },
 ): StreamableMethod<Five204Response> {
   return context
     .path("/five")
@@ -81,10 +82,10 @@ export function _renamedFiveSend(
 }
 
 export async function _renamedFiveDeserialize(
-  result: Five204Response
+  result: Five204Response,
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -92,7 +93,7 @@ export async function _renamedFiveDeserialize(
 
 export async function renamedFive(
   context: Client,
-  options: RenamedFiveOptions = { requestOptions: {} }
+  options: RenamedFiveOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _renamedFiveSend(context, options);
   return _renamedFiveDeserialize(result);

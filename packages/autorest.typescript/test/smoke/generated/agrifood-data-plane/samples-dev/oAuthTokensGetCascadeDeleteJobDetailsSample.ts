@@ -18,7 +18,7 @@ async function oAuthTokensGetCascadeDeleteJobDetails() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const jobId = "JOBID123";
   const result = await client.path("/oauth/tokens/remove/{jobId}", jobId).get();

@@ -8,12 +8,13 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { GetOptions } from "../models/options.js";
 
 export function _getSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} }
+  options: GetOptions = { requestOptions: {} },
 ): StreamableMethod<Get204Response> {
   return context
     .path("/special-headers/client-request-id")
@@ -22,7 +23,7 @@ export function _getSend(
 
 export async function _getDeserialize(result: Get204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -31,7 +32,7 @@ export async function _getDeserialize(result: Get204Response): Promise<void> {
 /** Get operation with azure client request id header. */
 export async function get(
   context: Client,
-  options: GetOptions = { requestOptions: {} }
+  options: GetOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getSend(context, options);
   return _getDeserialize(result);

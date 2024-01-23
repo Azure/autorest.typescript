@@ -32,7 +32,7 @@ async function listSecurityAdminRuleCollections() {
   for await (let item of client.adminRuleCollections.list(
     resourceGroupName,
     networkManagerName,
-    configurationName
+    configurationName,
   )) {
     resArray.push(item);
   }

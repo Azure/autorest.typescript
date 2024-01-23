@@ -30,7 +30,7 @@ async function getSubnet() {
   const result = await client.subnets.get(
     resourceGroupName,
     virtualNetworkName,
-    subnetName
+    subnetName,
   );
   console.log(result);
 }
@@ -51,7 +51,7 @@ async function getSubnetWithADelegation() {
   const result = await client.subnets.get(
     resourceGroupName,
     virtualNetworkName,
-    subnetName
+    subnetName,
   );
   console.log(result);
 }

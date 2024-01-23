@@ -9,7 +9,6 @@ options:
     azureSdkForJs: false
     isTypeSpecTest: true
     isModularLibrary: true
-    hierarchyClient: false
     packageDetails:
       name: "@msinternal/client-structure-twoopgroup"
       description: "Client Structure TwoOperationGroup Test Service"

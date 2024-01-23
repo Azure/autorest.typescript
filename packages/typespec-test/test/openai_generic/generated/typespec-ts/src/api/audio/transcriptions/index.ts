@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import {
-  CreateTranscriptionRequest,
   CreateTranscriptionResponse,
+  CreateTranscriptionRequest,
 } from "../../../models/models.js";
 import {
   AudioTranscriptionsCreate200Response,
@@ -14,13 +14,14 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { AudioTranscriptionsCreateOptions } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,
   audio: CreateTranscriptionRequest,
-  options: AudioTranscriptionsCreateOptions = { requestOptions: {} }
+  options: AudioTranscriptionsCreateOptions = { requestOptions: {} },
 ): StreamableMethod<
   | AudioTranscriptionsCreate200Response
   | AudioTranscriptionsCreateDefaultResponse
@@ -44,10 +45,10 @@ export function _createSend(
 export async function _createDeserialize(
   result:
     | AudioTranscriptionsCreate200Response
-    | AudioTranscriptionsCreateDefaultResponse
+    | AudioTranscriptionsCreateDefaultResponse,
 ): Promise<CreateTranscriptionResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -58,7 +59,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   audio: CreateTranscriptionRequest,
-  options: AudioTranscriptionsCreateOptions = { requestOptions: {} }
+  options: AudioTranscriptionsCreateOptions = { requestOptions: {} },
 ): Promise<CreateTranscriptionResponse> {
   const result = await _createSend(context, audio, options);
   return _createDeserialize(result);

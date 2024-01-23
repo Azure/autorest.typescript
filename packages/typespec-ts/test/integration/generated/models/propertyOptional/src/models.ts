@@ -37,6 +37,48 @@ export interface CollectionsModelProperty {
   property?: Array<StringProperty>;
 }
 
+/** Model with string literal property */
+export interface StringLiteralProperty {
+  /** Property */
+  property?: "hello";
+}
+
+/** Model with int literal property */
+export interface IntLiteralProperty {
+  /** Property */
+  property?: 1;
+}
+
+/** Model with float literal property */
+export interface FloatLiteralProperty {
+  /** Property */
+  property?: 1.2;
+}
+
+/** Model with boolean literal property */
+export interface BooleanLiteralProperty {
+  /** Property */
+  property?: true;
+}
+
+/** Model with union of string literal property */
+export interface UnionStringLiteralProperty {
+  /** Property */
+  property?: "hello" | "world";
+}
+
+/** Model with union of int literal property */
+export interface UnionIntLiteralProperty {
+  /** Property */
+  property?: 1 | 2;
+}
+
+/** Model with union of float literal property */
+export interface UnionFloatLiteralProperty {
+  /** Property */
+  property?: 1.2 | 2.3;
+}
+
 /** Model with required and optional properties */
 export interface RequiredAndOptionalProperty {
   /** optional string property */

@@ -27,11 +27,12 @@ async function deleteFirewallPolicyRuleCollectionGroup() {
   const ruleCollectionGroupName = "ruleCollectionGroup1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.firewallPolicyRuleCollectionGroups.beginDeleteAndWait(
-    resourceGroupName,
-    firewallPolicyName,
-    ruleCollectionGroupName
-  );
+  const result =
+    await client.firewallPolicyRuleCollectionGroups.beginDeleteAndWait(
+      resourceGroupName,
+      firewallPolicyName,
+      ruleCollectionGroupName,
+    );
   console.log(result);
 }
 

@@ -50,7 +50,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface ListCollections {
   /** Collection ids are user-created collections of ledger entries */
   get(
-    options?: ListCollectionsParameters
+    options?: ListCollectionsParameters,
   ): StreamableMethod<
     ListCollections200Response | ListCollectionsDefaultResponse
   >;
@@ -59,7 +59,7 @@ export interface ListCollections {
 export interface GetEnclaveQuotes {
   /** A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave. */
   get(
-    options?: GetEnclaveQuotesParameters
+    options?: GetEnclaveQuotesParameters,
   ): StreamableMethod<
     GetEnclaveQuotes200Response | GetEnclaveQuotesDefaultResponse
   >;
@@ -68,7 +68,7 @@ export interface GetEnclaveQuotes {
 export interface GetConstitution {
   /** The constitution is a script that assesses and applies proposals from consortium members. */
   get(
-    options?: GetConstitutionParameters
+    options?: GetConstitutionParameters,
   ): StreamableMethod<
     GetConstitution200Response | GetConstitutionDefaultResponse
   >;
@@ -77,7 +77,7 @@ export interface GetConstitution {
 export interface GetConsortiumMembers {
   /** Consortium members can manage the Confidential Ledger. */
   get(
-    options?: GetConsortiumMembersParameters
+    options?: GetConsortiumMembersParameters,
   ): StreamableMethod<
     GetConsortiumMembers200Response | GetConsortiumMembersDefaultResponse
   >;
@@ -86,7 +86,7 @@ export interface GetConsortiumMembers {
 export interface ListLedgerEntries {
   /** A collection id may optionally be specified. Only entries in the specified (or default) collection will be returned. */
   get(
-    options?: ListLedgerEntriesParameters
+    options?: ListLedgerEntriesParameters,
   ): StreamableMethod<
     ListLedgerEntries200Response | ListLedgerEntriesDefaultResponse
   >;
@@ -95,7 +95,7 @@ export interface ListLedgerEntries {
 export interface CreateLedgerEntry {
   /** A collection id may optionally be specified. */
   post(
-    options: CreateLedgerEntryParameters
+    options: CreateLedgerEntryParameters,
   ): StreamableMethod<
     CreateLedgerEntry201Response | CreateLedgerEntryDefaultResponse
   >;
@@ -104,7 +104,7 @@ export interface CreateLedgerEntry {
 export interface GetLedgerEntry {
   /** Get a LedgerEntry */
   get(
-    options?: GetLedgerEntryParameters
+    options?: GetLedgerEntryParameters,
   ): StreamableMethod<
     GetLedgerEntry200Response | GetLedgerEntryDefaultResponse
   >;
@@ -113,14 +113,14 @@ export interface GetLedgerEntry {
 export interface GetReceipt {
   /** Runs a custom action on LedgerEntry */
   get(
-    options?: GetReceiptParameters
+    options?: GetReceiptParameters,
   ): StreamableMethod<GetReceipt200Response | GetReceiptDefaultResponse>;
 }
 
 export interface GetTransactionStatus {
   /** Runs a custom action on LedgerEntry */
   get(
-    options?: GetTransactionStatusParameters
+    options?: GetTransactionStatusParameters,
   ): StreamableMethod<
     GetTransactionStatus200Response | GetTransactionStatusDefaultResponse
   >;
@@ -129,7 +129,7 @@ export interface GetTransactionStatus {
 export interface GetCurrentLedgerEntry {
   /** Runs a custom action on LedgerEntry */
   get(
-    options?: GetCurrentLedgerEntryParameters
+    options?: GetCurrentLedgerEntryParameters,
   ): StreamableMethod<
     GetCurrentLedgerEntry200Response | GetCurrentLedgerEntryDefaultResponse
   >;
@@ -138,15 +138,15 @@ export interface GetCurrentLedgerEntry {
 export interface DeleteUser {
   /** Delete a LedgerUser */
   delete(
-    options?: DeleteUserParameters
+    options?: DeleteUserParameters,
   ): StreamableMethod<DeleteUser204Response | DeleteUserDefaultResponse>;
   /** Get a LedgerUser */
   get(
-    options?: GetUserParameters
+    options?: GetUserParameters,
   ): StreamableMethod<GetUser200Response | GetUserDefaultResponse>;
   /** Creates or updates a LedgerUser */
   patch(
-    options: CreateOrUpdateUserParameters
+    options: CreateOrUpdateUserParameters,
   ): StreamableMethod<
     | CreateOrUpdateUser200Response
     | CreateOrUpdateUser201Response
@@ -170,17 +170,17 @@ export interface Routes {
   /** Resource for '/app/transactions/\{transactionId\}' has methods for the following verbs: get */
   (
     path: "/app/transactions/{transactionId}",
-    transactionId: string
+    transactionId: string,
   ): GetLedgerEntry;
   /** Resource for '/app/transactions/\{transactionId\}/receipt' has methods for the following verbs: get */
   (
     path: "/app/transactions/{transactionId}/receipt",
-    transactionId: string
+    transactionId: string,
   ): GetReceipt;
   /** Resource for '/app/transactions/\{transactionId\}/status' has methods for the following verbs: get */
   (
     path: "/app/transactions/{transactionId}/status",
-    transactionId: string
+    transactionId: string,
   ): GetTransactionStatus;
   /** Resource for '/app/transactions/getCurrentLedgerEntry' has methods for the following verbs: get */
   (path: "/app/transactions/getCurrentLedgerEntry"): GetCurrentLedgerEntry;

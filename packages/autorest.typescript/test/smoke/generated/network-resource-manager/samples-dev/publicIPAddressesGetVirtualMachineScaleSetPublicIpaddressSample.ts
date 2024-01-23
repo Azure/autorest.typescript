@@ -30,14 +30,15 @@ async function getVmssPublicIP() {
   const publicIpAddressName = "pub1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.publicIPAddresses.getVirtualMachineScaleSetPublicIPAddress(
-    resourceGroupName,
-    virtualMachineScaleSetName,
-    virtualmachineIndex,
-    networkInterfaceName,
-    ipConfigurationName,
-    publicIpAddressName
-  );
+  const result =
+    await client.publicIPAddresses.getVirtualMachineScaleSetPublicIPAddress(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      networkInterfaceName,
+      ipConfigurationName,
+      publicIpAddressName,
+    );
   console.log(result);
 }
 

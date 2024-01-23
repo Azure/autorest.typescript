@@ -53,7 +53,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface QueryDefault {
   get(
-    options: QueryDefaultParameters
+    options: QueryDefaultParameters,
   ): StreamableMethod<QueryDefault204Response>;
 }
 
@@ -63,121 +63,121 @@ export interface QueryBase64 {
 
 export interface QueryBase64url {
   get(
-    options: QueryBase64urlParameters
+    options: QueryBase64urlParameters,
   ): StreamableMethod<QueryBase64url204Response>;
 }
 
 export interface QueryBase64urlArray {
   get(
-    options: QueryBase64urlArrayParameters
+    options: QueryBase64urlArrayParameters,
   ): StreamableMethod<QueryBase64urlArray204Response>;
 }
 
 export interface PropertyDefault {
   post(
-    options: PropertyDefaultParameters
+    options: PropertyDefaultParameters,
   ): StreamableMethod<PropertyDefault200Response>;
 }
 
 export interface PropertyBase64 {
   post(
-    options: PropertyBase64Parameters
+    options: PropertyBase64Parameters,
   ): StreamableMethod<PropertyBase64200Response>;
 }
 
 export interface PropertyBase64url {
   post(
-    options: PropertyBase64urlParameters
+    options: PropertyBase64urlParameters,
   ): StreamableMethod<PropertyBase64url200Response>;
 }
 
 export interface PropertyBase64urlArray {
   post(
-    options: PropertyBase64urlArrayParameters
+    options: PropertyBase64urlArrayParameters,
   ): StreamableMethod<PropertyBase64urlArray200Response>;
 }
 
 export interface HeaderDefault {
   get(
-    options: HeaderDefaultParameters
+    options: HeaderDefaultParameters,
   ): StreamableMethod<HeaderDefault204Response>;
 }
 
 export interface HeaderBase64 {
   get(
-    options: HeaderBase64Parameters
+    options: HeaderBase64Parameters,
   ): StreamableMethod<HeaderBase64204Response>;
 }
 
 export interface HeaderBase64url {
   get(
-    options: HeaderBase64urlParameters
+    options: HeaderBase64urlParameters,
   ): StreamableMethod<HeaderBase64url204Response>;
 }
 
 export interface HeaderBase64urlArray {
   get(
-    options: HeaderBase64urlArrayParameters
+    options: HeaderBase64urlArrayParameters,
   ): StreamableMethod<HeaderBase64urlArray204Response>;
 }
 
 export interface RequestBodyDefault {
   post(
-    options: RequestBodyDefaultParameters
+    options: RequestBodyDefaultParameters,
   ): StreamableMethod<RequestBodyDefault204Response>;
 }
 
 export interface RequestBodyOctetStream {
   post(
-    options: RequestBodyOctetStreamParameters
+    options: RequestBodyOctetStreamParameters,
   ): StreamableMethod<RequestBodyOctetStream204Response>;
 }
 
 export interface RequestBodyCustomContentType {
   post(
-    options: RequestBodyCustomContentTypeParameters
+    options: RequestBodyCustomContentTypeParameters,
   ): StreamableMethod<RequestBodyCustomContentType204Response>;
 }
 
 export interface RequestBodyBase64 {
   post(
-    options: RequestBodyBase64Parameters
+    options: RequestBodyBase64Parameters,
   ): StreamableMethod<RequestBodyBase64204Response>;
 }
 
 export interface RequestBodyBase64url {
   post(
-    options: RequestBodyBase64urlParameters
+    options: RequestBodyBase64urlParameters,
   ): StreamableMethod<RequestBodyBase64url204Response>;
 }
 
 export interface ResponseBodyDefault {
   get(
-    options?: ResponseBodyDefaultParameters
+    options?: ResponseBodyDefaultParameters,
   ): StreamableMethod<ResponseBodyDefault200Response>;
 }
 
 export interface ResponseBodyOctetStream {
   get(
-    options?: ResponseBodyOctetStreamParameters
+    options?: ResponseBodyOctetStreamParameters,
   ): StreamableMethod<ResponseBodyOctetStream200Response>;
 }
 
 export interface ResponseBodyCustomContentType {
   get(
-    options?: ResponseBodyCustomContentTypeParameters
+    options?: ResponseBodyCustomContentTypeParameters,
   ): StreamableMethod<ResponseBodyCustomContentType200Response>;
 }
 
 export interface ResponseBodyBase64 {
   get(
-    options?: ResponseBodyBase64Parameters
+    options?: ResponseBodyBase64Parameters,
   ): StreamableMethod<ResponseBodyBase64200Response>;
 }
 
 export interface ResponseBodyBase64url {
   get(
-    options?: ResponseBodyBase64urlParameters
+    options?: ResponseBodyBase64urlParameters,
   ): StreamableMethod<ResponseBodyBase64url200Response>;
 }
 
@@ -212,7 +212,7 @@ export interface Routes {
   (path: "/encode/bytes/body/request/octet-stream"): RequestBodyOctetStream;
   /** Resource for '/encode/bytes/body/request/custom-content-type' has methods for the following verbs: post */
   (
-    path: "/encode/bytes/body/request/custom-content-type"
+    path: "/encode/bytes/body/request/custom-content-type",
   ): RequestBodyCustomContentType;
   /** Resource for '/encode/bytes/body/request/base64' has methods for the following verbs: post */
   (path: "/encode/bytes/body/request/base64"): RequestBodyBase64;
@@ -224,7 +224,7 @@ export interface Routes {
   (path: "/encode/bytes/body/response/octet-stream"): ResponseBodyOctetStream;
   /** Resource for '/encode/bytes/body/response/custom-content-type' has methods for the following verbs: get */
   (
-    path: "/encode/bytes/body/response/custom-content-type"
+    path: "/encode/bytes/body/response/custom-content-type",
   ): ResponseBodyCustomContentType;
   /** Resource for '/encode/bytes/body/response/base64' has methods for the following verbs: get */
   (path: "/encode/bytes/body/response/base64"): ResponseBodyBase64;

@@ -30,7 +30,7 @@ async function getApplicationGatewayPrivateEndpointConnection() {
   const result = await client.applicationGatewayPrivateEndpointConnections.get(
     resourceGroupName,
     applicationGatewayName,
-    connectionName
+    connectionName,
   );
   console.log(result);
 }

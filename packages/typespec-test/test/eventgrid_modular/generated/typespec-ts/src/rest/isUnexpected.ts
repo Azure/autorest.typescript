@@ -3,6 +3,7 @@
 
 import {
   PublishCloudEvent200Response,
+  PublishCloudEvents200Response,
   PublishCloudEventDefaultResponse,
   ReceiveCloudEvents200Response,
   ReceiveCloudEventsDefaultResponse,
@@ -27,25 +28,29 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: PublishCloudEvent200Response | PublishCloudEventDefaultResponse
+  response:
+    | PublishCloudEvent200Response
+    | PublishCloudEvents200Response
+    | PublishCloudEventDefaultResponse,
 ): response is PublishCloudEventDefaultResponse;
 export function isUnexpected(
-  response: ReceiveCloudEvents200Response | ReceiveCloudEventsDefaultResponse
+  response: ReceiveCloudEvents200Response | ReceiveCloudEventsDefaultResponse,
 ): response is ReceiveCloudEventsDefaultResponse;
 export function isUnexpected(
   response:
     | AcknowledgeCloudEvents200Response
-    | AcknowledgeCloudEventsDefaultResponse
+    | AcknowledgeCloudEventsDefaultResponse,
 ): response is AcknowledgeCloudEventsDefaultResponse;
 export function isUnexpected(
-  response: ReleaseCloudEvents200Response | ReleaseCloudEventsDefaultResponse
+  response: ReleaseCloudEvents200Response | ReleaseCloudEventsDefaultResponse,
 ): response is ReleaseCloudEventsDefaultResponse;
 export function isUnexpected(
-  response: RejectCloudEvents200Response | RejectCloudEventsDefaultResponse
+  response: RejectCloudEvents200Response | RejectCloudEventsDefaultResponse,
 ): response is RejectCloudEventsDefaultResponse;
 export function isUnexpected(
   response:
     | PublishCloudEvent200Response
+    | PublishCloudEvents200Response
     | PublishCloudEventDefaultResponse
     | ReceiveCloudEvents200Response
     | ReceiveCloudEventsDefaultResponse
@@ -54,7 +59,7 @@ export function isUnexpected(
     | ReleaseCloudEvents200Response
     | ReleaseCloudEventsDefaultResponse
     | RejectCloudEvents200Response
-    | RejectCloudEventsDefaultResponse
+    | RejectCloudEventsDefaultResponse,
 ): response is
   | PublishCloudEventDefaultResponse
   | ReceiveCloudEventsDefaultResponse
@@ -109,7 +114,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

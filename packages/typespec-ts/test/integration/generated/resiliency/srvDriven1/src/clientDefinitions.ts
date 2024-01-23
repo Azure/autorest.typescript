@@ -21,14 +21,14 @@ export interface FromNone {
 export interface FromOneRequired {
   /** Test that currently accepts one required parameter, will be updated in next spec to accept a new optional parameter as well */
   get(
-    options: FromOneRequiredParameters
+    options: FromOneRequiredParameters,
   ): StreamableMethod<FromOneRequired204Response>;
 }
 
 export interface FromOneOptional {
   /** Test that currently accepts one optional parameter, will be updated in next spec to accept a new optional parameter as well */
   get(
-    options?: FromOneOptionalParameters
+    options?: FromOneOptionalParameters,
   ): StreamableMethod<FromOneOptional204Response>;
 }
 

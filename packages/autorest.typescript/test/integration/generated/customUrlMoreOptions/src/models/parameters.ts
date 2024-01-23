@@ -9,7 +9,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 
 export const accept: OperationParameter = {
@@ -19,9 +19,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const vault: OperationURLParameter = {
@@ -30,10 +30,10 @@ export const vault: OperationURLParameter = {
     serializedName: "vault",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const secret: OperationURLParameter = {
@@ -42,10 +42,10 @@ export const secret: OperationURLParameter = {
     serializedName: "secret",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const dnsSuffix: OperationURLParameter = {
@@ -54,10 +54,10 @@ export const dnsSuffix: OperationURLParameter = {
     serializedName: "dnsSuffix",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const keyName: OperationURLParameter = {
@@ -66,9 +66,9 @@ export const keyName: OperationURLParameter = {
     serializedName: "keyName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const subscriptionId: OperationURLParameter = {
@@ -77,9 +77,9 @@ export const subscriptionId: OperationURLParameter = {
     serializedName: "subscriptionId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const keyVersion: OperationQueryParameter = {
@@ -88,7 +88,7 @@ export const keyVersion: OperationQueryParameter = {
     defaultValue: "v1",
     serializedName: "keyVersion",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };

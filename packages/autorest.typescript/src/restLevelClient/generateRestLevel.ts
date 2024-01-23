@@ -149,7 +149,7 @@ export async function generateRestLevelClient() {
 
     // Format the contents if necessary
     if (isJson || isSourceCode) {
-      fileContents = format(
+      fileContents = await format(
         fileContents,
         isJson ? prettierJSONOptions : prettierTypeScriptOptions
       );

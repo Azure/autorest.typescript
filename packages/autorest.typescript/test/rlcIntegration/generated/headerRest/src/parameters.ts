@@ -13,8 +13,8 @@ export interface HeaderParamExistingKeyHeaderParam {
   headers: RawHttpHeadersInput & HeaderParamExistingKeyHeaders;
 }
 
-export type HeaderParamExistingKeyParameters = HeaderParamExistingKeyHeaderParam &
-  RequestParameters;
+export type HeaderParamExistingKeyParameters =
+  HeaderParamExistingKeyHeaderParam & RequestParameters;
 export type HeaderResponseExistingKeyParameters = RequestParameters;
 
 export interface HeaderParamProtectedKeyHeaders {
@@ -26,8 +26,8 @@ export interface HeaderParamProtectedKeyHeaderParam {
   headers: RawHttpHeadersInput & HeaderParamProtectedKeyHeaders;
 }
 
-export type HeaderParamProtectedKeyParameters = HeaderParamProtectedKeyHeaderParam &
-  RequestParameters;
+export type HeaderParamProtectedKeyParameters =
+  HeaderParamProtectedKeyHeaderParam & RequestParameters;
 export type HeaderResponseProtectedKeyParameters = RequestParameters;
 
 export interface HeaderParamIntegerHeaders {
@@ -235,8 +235,8 @@ export interface HeaderResponseDatetimeHeaderParam {
   headers: RawHttpHeadersInput & HeaderResponseDatetimeHeaders;
 }
 
-export type HeaderResponseDatetimeParameters = HeaderResponseDatetimeHeaderParam &
-  RequestParameters;
+export type HeaderResponseDatetimeParameters =
+  HeaderResponseDatetimeHeaderParam & RequestParameters;
 
 export interface HeaderParamDatetimeRfc1123Headers {
   /** Send a post request with header values "scenario": "valid" or "min" */
@@ -249,8 +249,8 @@ export interface HeaderParamDatetimeRfc1123HeaderParam {
   headers: RawHttpHeadersInput & HeaderParamDatetimeRfc1123Headers;
 }
 
-export type HeaderParamDatetimeRfc1123Parameters = HeaderParamDatetimeRfc1123HeaderParam &
-  RequestParameters;
+export type HeaderParamDatetimeRfc1123Parameters =
+  HeaderParamDatetimeRfc1123HeaderParam & RequestParameters;
 
 export interface HeaderResponseDatetimeRfc1123Headers {
   /** Send a post request with header values "scenario": "valid" or "min" */
@@ -261,8 +261,8 @@ export interface HeaderResponseDatetimeRfc1123HeaderParam {
   headers: RawHttpHeadersInput & HeaderResponseDatetimeRfc1123Headers;
 }
 
-export type HeaderResponseDatetimeRfc1123Parameters = HeaderResponseDatetimeRfc1123HeaderParam &
-  RequestParameters;
+export type HeaderResponseDatetimeRfc1123Parameters =
+  HeaderResponseDatetimeRfc1123HeaderParam & RequestParameters;
 
 export interface HeaderParamDurationHeaders {
   /** Send a post request with header values "scenario": "valid" */
@@ -287,8 +287,8 @@ export interface HeaderResponseDurationHeaderParam {
   headers: RawHttpHeadersInput & HeaderResponseDurationHeaders;
 }
 
-export type HeaderResponseDurationParameters = HeaderResponseDurationHeaderParam &
-  RequestParameters;
+export type HeaderResponseDurationParameters =
+  HeaderResponseDurationHeaderParam & RequestParameters;
 
 export interface HeaderParamByteHeaders {
   /** Send a post request with header values "scenario": "valid" */

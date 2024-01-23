@@ -47,115 +47,115 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface QueryDefault {
   get(
-    options: QueryDefaultParameters
+    options: QueryDefaultParameters,
   ): StreamableMethod<QueryDefault204Response>;
 }
 
 export interface QueryRfc3339 {
   get(
-    options: QueryRfc3339Parameters
+    options: QueryRfc3339Parameters,
   ): StreamableMethod<QueryRfc3339204Response>;
 }
 
 export interface QueryRfc7231 {
   get(
-    options: QueryRfc7231Parameters
+    options: QueryRfc7231Parameters,
   ): StreamableMethod<QueryRfc7231204Response>;
 }
 
 export interface QueryUnixTimestamp {
   get(
-    options: QueryUnixTimestampParameters
+    options: QueryUnixTimestampParameters,
   ): StreamableMethod<QueryUnixTimestamp204Response>;
 }
 
 export interface QueryUnixTimestampArray {
   get(
-    options: QueryUnixTimestampArrayParameters
+    options: QueryUnixTimestampArrayParameters,
   ): StreamableMethod<QueryUnixTimestampArray204Response>;
 }
 
 export interface PropertyDefault {
   post(
-    options: PropertyDefaultParameters
+    options: PropertyDefaultParameters,
   ): StreamableMethod<PropertyDefault200Response>;
 }
 
 export interface PropertyRfc3339 {
   post(
-    options: PropertyRfc3339Parameters
+    options: PropertyRfc3339Parameters,
   ): StreamableMethod<PropertyRfc3339200Response>;
 }
 
 export interface PropertyRfc7231 {
   post(
-    options: PropertyRfc7231Parameters
+    options: PropertyRfc7231Parameters,
   ): StreamableMethod<PropertyRfc7231200Response>;
 }
 
 export interface PropertyUnixTimestamp {
   post(
-    options: PropertyUnixTimestampParameters
+    options: PropertyUnixTimestampParameters,
   ): StreamableMethod<PropertyUnixTimestamp200Response>;
 }
 
 export interface PropertyUnixTimestampArray {
   post(
-    options: PropertyUnixTimestampArrayParameters
+    options: PropertyUnixTimestampArrayParameters,
   ): StreamableMethod<PropertyUnixTimestampArray200Response>;
 }
 
 export interface HeaderDefault {
   get(
-    options: HeaderDefaultParameters
+    options: HeaderDefaultParameters,
   ): StreamableMethod<HeaderDefault204Response>;
 }
 
 export interface HeaderRfc3339 {
   get(
-    options: HeaderRfc3339Parameters
+    options: HeaderRfc3339Parameters,
   ): StreamableMethod<HeaderRfc3339204Response>;
 }
 
 export interface HeaderRfc7231 {
   get(
-    options: HeaderRfc7231Parameters
+    options: HeaderRfc7231Parameters,
   ): StreamableMethod<HeaderRfc7231204Response>;
 }
 
 export interface HeaderUnixTimestamp {
   get(
-    options: HeaderUnixTimestampParameters
+    options: HeaderUnixTimestampParameters,
   ): StreamableMethod<HeaderUnixTimestamp204Response>;
 }
 
 export interface HeaderUnixTimestampArray {
   get(
-    options: HeaderUnixTimestampArrayParameters
+    options: HeaderUnixTimestampArrayParameters,
   ): StreamableMethod<HeaderUnixTimestampArray204Response>;
 }
 
 export interface ResponseHeaderDefault {
   get(
-    options?: ResponseHeaderDefaultParameters
+    options?: ResponseHeaderDefaultParameters,
   ): StreamableMethod<ResponseHeaderDefault204Response>;
 }
 
 export interface ResponseHeaderRfc3339 {
   get(
-    options?: ResponseHeaderRfc3339Parameters
+    options?: ResponseHeaderRfc3339Parameters,
   ): StreamableMethod<ResponseHeaderRfc3339204Response>;
 }
 
 export interface ResponseHeaderRfc7231 {
   get(
-    options?: ResponseHeaderRfc7231Parameters
+    options?: ResponseHeaderRfc7231Parameters,
   ): StreamableMethod<ResponseHeaderRfc7231204Response>;
 }
 
 export interface ResponseHeaderUnixTimestamp {
   get(
-    options?: ResponseHeaderUnixTimestampParameters
+    options?: ResponseHeaderUnixTimestampParameters,
   ): StreamableMethod<ResponseHeaderUnixTimestamp204Response>;
 }
 
@@ -170,7 +170,7 @@ export interface Routes {
   (path: "/encode/datetime/query/unix-timestamp"): QueryUnixTimestamp;
   /** Resource for '/encode/datetime/query/unix-timestamp-array' has methods for the following verbs: get */
   (
-    path: "/encode/datetime/query/unix-timestamp-array"
+    path: "/encode/datetime/query/unix-timestamp-array",
   ): QueryUnixTimestampArray;
   /** Resource for '/encode/datetime/property/default' has methods for the following verbs: post */
   (path: "/encode/datetime/property/default"): PropertyDefault;
@@ -182,7 +182,7 @@ export interface Routes {
   (path: "/encode/datetime/property/unix-timestamp"): PropertyUnixTimestamp;
   /** Resource for '/encode/datetime/property/unix-timestamp-array' has methods for the following verbs: post */
   (
-    path: "/encode/datetime/property/unix-timestamp-array"
+    path: "/encode/datetime/property/unix-timestamp-array",
   ): PropertyUnixTimestampArray;
   /** Resource for '/encode/datetime/header/default' has methods for the following verbs: get */
   (path: "/encode/datetime/header/default"): HeaderDefault;
@@ -194,7 +194,7 @@ export interface Routes {
   (path: "/encode/datetime/header/unix-timestamp"): HeaderUnixTimestamp;
   /** Resource for '/encode/datetime/header/unix-timestamp-array' has methods for the following verbs: get */
   (
-    path: "/encode/datetime/header/unix-timestamp-array"
+    path: "/encode/datetime/header/unix-timestamp-array",
   ): HeaderUnixTimestampArray;
   /** Resource for '/encode/datetime/responseheader/default' has methods for the following verbs: get */
   (path: "/encode/datetime/responseheader/default"): ResponseHeaderDefault;
@@ -204,7 +204,7 @@ export interface Routes {
   (path: "/encode/datetime/responseheader/rfc7231"): ResponseHeaderRfc7231;
   /** Resource for '/encode/datetime/responseheader/unix-timestamp' has methods for the following verbs: get */
   (
-    path: "/encode/datetime/responseheader/unix-timestamp"
+    path: "/encode/datetime/responseheader/unix-timestamp",
   ): ResponseHeaderUnixTimestamp;
 }
 

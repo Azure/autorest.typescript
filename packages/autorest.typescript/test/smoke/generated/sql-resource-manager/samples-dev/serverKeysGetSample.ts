@@ -31,7 +31,7 @@ async function getTheServerKey() {
   const result = await client.serverKeys.get(
     resourceGroupName,
     serverName,
-    keyName
+    keyName,
   );
   console.log(result);
 }

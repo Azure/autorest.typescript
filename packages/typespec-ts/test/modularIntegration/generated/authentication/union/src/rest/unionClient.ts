@@ -13,10 +13,9 @@ import { UnionContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: TokenCredential | KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): UnionContext {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
-  options.apiVersion = options.apiVersion ?? "1.0.0";
   const userAgentInfo = `azsdk-js-azure-auth-union-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -40,5 +39,6 @@ export default function createClient(
 
   const client = getClient(baseUrl, credentials, options) as UnionContext;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return client;
 }

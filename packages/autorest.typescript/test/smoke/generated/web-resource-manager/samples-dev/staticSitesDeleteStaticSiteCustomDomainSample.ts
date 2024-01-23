@@ -28,11 +28,12 @@ async function deleteACustomDomainForAStaticSite() {
   const domainName = "custom.domain.net";
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
-  const result = await client.staticSites.beginDeleteStaticSiteCustomDomainAndWait(
-    resourceGroupName,
-    name,
-    domainName
-  );
+  const result =
+    await client.staticSites.beginDeleteStaticSiteCustomDomainAndWait(
+      resourceGroupName,
+      name,
+      domainName,
+    );
   console.log(result);
 }
 

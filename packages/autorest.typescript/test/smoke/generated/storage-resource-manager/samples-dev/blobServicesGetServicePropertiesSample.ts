@@ -28,7 +28,7 @@ async function getBlobServices() {
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.blobServices.getServiceProperties(
     resourceGroupName,
-    accountName
+    accountName,
   );
   console.log(result);
 }

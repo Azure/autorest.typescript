@@ -36,7 +36,7 @@ async function refreshASyncMemberDatabaseSchema() {
     serverName,
     databaseName,
     syncGroupName,
-    syncMemberName
+    syncMemberName,
   );
   console.log(result);
 }

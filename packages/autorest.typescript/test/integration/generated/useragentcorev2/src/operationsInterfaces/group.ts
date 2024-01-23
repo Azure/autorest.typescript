@@ -8,7 +8,7 @@
 
 import {
   GroupGetSampleResourceGroupOptionalParams,
-  GroupGetSampleResourceGroupResponse
+  GroupGetSampleResourceGroupResponse,
 } from "../models";
 
 /** Interface representing a Group. */
@@ -20,6 +20,6 @@ export interface Group {
    */
   getSampleResourceGroup(
     resourceGroupName: string,
-    options?: GroupGetSampleResourceGroupOptionalParams
+    options?: GroupGetSampleResourceGroupOptionalParams,
   ): Promise<GroupGetSampleResourceGroupResponse>;
 }

@@ -32,11 +32,11 @@ export class PathsImpl implements Paths {
    */
   getEmpty(
     accountName: string,
-    options?: PathsGetEmptyOptionalParams
+    options?: PathsGetEmptyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { accountName, options },
-      getEmptyOperationSpec
+      getEmptyOperationSpec,
     );
   }
 }
@@ -49,10 +49,10 @@ const getEmptyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.accountName, Parameters.host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

@@ -12,7 +12,7 @@ import { UnionBodyClient } from "./clientDefinitions";
  */
 export default function createClient(
   endpoint: string,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): UnionBodyClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
 
@@ -32,6 +32,8 @@ export default function createClient(
   };
 
   const client = getClient(baseUrl, options) as UnionBodyClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }
