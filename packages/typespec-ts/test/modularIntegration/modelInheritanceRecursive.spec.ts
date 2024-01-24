@@ -1,0 +1,49 @@
+import { Extension, RecursiveClient } from "./generated/models/inheritance/recursive/generated/src/index.js";
+import { assert } from "chai";
+
+const body : Extension= {
+    level: 0,
+    extension: [
+      {
+        level: 1,
+        extension: [
+          {
+            level: 2,
+          },
+        ],
+      },
+      {
+        level: 1,
+      },
+    ],
+  };
+describe.only("Empty Client", () => {
+  let client: RecursiveClient;
+
+  beforeEach(() => {
+    client = new RecursiveClient({
+      allowInsecureConnection: true
+    });
+  });
+
+  it("Inheritance Recursive put test", async () => {
+    try {
+      const result = await client.put(body);
+      console.log(result);
+      assert.isNotNull(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("Inheritance Recursive get test", async () => {
+    try {
+      const result = await client.get();
+      console.log(result);
+      assert.isNotNull(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+});
