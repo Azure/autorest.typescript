@@ -32,9 +32,7 @@ export async function _datetimeValueGetDeserialize(
     throw createRestError(result);
   }
 
-  return !result.body
-    ? result.body
-    : result.body.map((p) => (p !== undefined ? new Date(p) : undefined));
+  return !result.body ? result.body : result.body.map((p) => new Date(p));
 }
 
 export async function datetimeValueGet(
