@@ -834,6 +834,7 @@ export function getResponseMapping(
   const props: string[] = [];
   for (const property of properties) {
     // TODO: Do we need to also add headers in the result type?
+    // skipping never properties in response
     const propertyFullName = `${propertyPath}.${property.restApiName}`;
     if (property.type.type === "model") {
       let definition;
@@ -960,6 +961,8 @@ function deserializeResponseValue(
         : ${restValue}`;
       }
       return restValue;
+    case "never": 
+      return `{} as never`;
     default:
       return restValue;
   }
