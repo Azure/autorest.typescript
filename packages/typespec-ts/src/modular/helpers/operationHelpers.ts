@@ -190,9 +190,11 @@ export function getDeserializePrivateFunction(
   } else if (deserializedType && properties.length > 0) {
     statements.push(
       `return {`,
-      getResponseMapping(deserializedType, "result.body", runtimeImports).join(
-        ","
-      ),
+      getResponseMapping(
+        deserializedType,
+        deserializedRoot,
+        runtimeImports
+      ).join(","),
       `}`
     );
   } else if (returnType.type === "void" || deserializedType === undefined) {
@@ -201,7 +203,7 @@ export function getDeserializePrivateFunction(
     statements.push(
       `return ${deserializeResponseValue(
         deserializedType,
-        "result.body",
+        deserializedRoot,
         runtimeImports,
         deserializedType.nullable !== undefined
           ? !deserializedType.nullable
