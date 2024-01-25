@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Next } from "@marygao/core-lro";
 import { StandardContext } from "./api/StandardContext.js";
 import { StandardClient } from "./StandardClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
@@ -14,7 +15,6 @@ import {
   PathUncheckedResponse,
   OperationOptions,
 } from "@azure-rest/core-client";
-import { Next } from "@azure/core-lro";
 import { AbortSignalLike } from "@azure/abort-controller";
 
 export interface RestorePollerOptions<

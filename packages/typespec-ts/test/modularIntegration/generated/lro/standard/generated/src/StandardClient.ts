@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Next } from "@azure/core-lro";
+import { Next } from "@marygao/core-lro";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { User, ExportedUser } from "./models/models.js";
 import {

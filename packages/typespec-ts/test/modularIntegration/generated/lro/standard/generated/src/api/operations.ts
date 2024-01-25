@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { getLongRunningPoller } from "./pollingHelpers.js";
-import { Next } from "@azure/core-lro";
+import { Next } from "@marygao/core-lro";
 import { User, ExportedUser } from "../models/models.js";
 import {
   CreateOrReplace200Response,

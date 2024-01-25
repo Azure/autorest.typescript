@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Next } from "@azure/core-lro";
+import { Next } from "@marygao/core-lro";
+
 import {
   Client,
   PathUncheckedResponse,
