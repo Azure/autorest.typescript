@@ -1,5 +1,6 @@
 import { assert } from "chai";
 import { ValueTypesClient } from "./generated/models/propertyTypes/generated/src/index.js";
+import { stringToUint8Array } from "@azure/core-util";
 
 interface TypeDetail {
   type: string;
@@ -18,7 +19,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "bytes",
-    defaultValue: "aGVsbG8sIHdvcmxkIQ=="
+    defaultValue: stringToUint8Array("aGVsbG8sIHdvcmxkIQ==", "base64")
   },
   {
     type: "int",
@@ -38,8 +39,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "datetime",
-    defaultValue: "2022-08-26T18:38:00Z",
-    convertedToFn: (value: string) => new Date(value).toISOString()
+    defaultValue: new Date("2022-08-26T18:38:00Z"),
   },
   {
     type: "duration",
@@ -55,7 +55,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "model",
-    defaultValue: { property: "hello" }
+    defaultValue: {property: "hello"}
   },
   {
     type: "collections/string",
@@ -293,7 +293,7 @@ describe("ModelsPropertyTypesClient Rest Client", () => {
             break;
           case "model":
             result = await client.model.put({
-              property: { property: item.defaultValue }
+              property: item.defaultValue
             });
             break;
           case "collections/string":

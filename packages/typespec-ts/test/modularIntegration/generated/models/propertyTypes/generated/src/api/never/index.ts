@@ -30,9 +30,7 @@ export async function _neverGetDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    property: {} as never,
-  };
+  return result.body;
 }
 
 /** Get call */
@@ -51,10 +49,7 @@ export function _neverPutSend(
 ): StreamableMethod<NeverPut204Response> {
   return context
     .path("/type/property/value-types/never")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: { property: body["property"] },
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _neverPutDeserialize(

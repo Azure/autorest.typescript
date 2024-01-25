@@ -274,6 +274,9 @@ function processModelProperties(
     if (!isSchemaProperty(context.program, property)) {
       continue;
     }
+    if (isNeverType(property.type)) {
+      continue;
+    }
     if (newValue.properties === undefined || newValue.properties === null) {
       newValue.properties = [];
     }
