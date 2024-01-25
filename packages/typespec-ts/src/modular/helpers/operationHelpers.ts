@@ -176,21 +176,23 @@ export function getDeserializePrivateFunction(
     );
   }
 
+  const allParents = deserializedType ? getAllAncestors(deserializedType) : [];
+  const properties = deserializedType
+    ? getAllProperties(deserializedType, allParents)
+    : [];
+
   if (
     deserializedType?.type === "any" ||
     response.isBinaryPayload ||
     deserializedType?.aliasType
   ) {
     statements.push(`return result.body`);
-  } else if (
-    deserializedType &&
-    getAllProperties(deserializedType).length > 0
-  ) {
+  } else if (deserializedType && properties.length > 0) {
     statements.push(
       `return {`,
-      getResponseMapping(response.type, "result.body", runtimeImports).join(
-        getAllProperties(deserializedType) ?? [],
-        deserializedRoot,
+      getResponseMapping(deserializedType, "result.body", runtimeImports).join(
+        ","
+      ),
       `}`
     );
   } else if (returnType.type === "void" || deserializedType === undefined) {
@@ -198,12 +200,13 @@ export function getDeserializePrivateFunction(
   } else {
     statements.push(
       `return ${deserializeResponseValue(
-        response.type,
-        deserializedRoot,
+        deserializedType,
+        "result.body",
         runtimeImports,
         deserializedType.nullable !== undefined
           ? !deserializedType.nullable
           : false,
+        [deserializedType],
         deserializedType.format
       )}`
     );
