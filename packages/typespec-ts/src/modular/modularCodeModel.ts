@@ -83,7 +83,8 @@ export interface Type {
     | "dict"
     | "combined"
     | "any"
-    | "unknown";
+    | "unknown"
+    | "never";
   policy?: Policy;
   apiVersions?: any[];
   clientDefaultValue?: any;

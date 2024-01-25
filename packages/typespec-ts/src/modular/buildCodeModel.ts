@@ -274,6 +274,9 @@ function processModelProperties(
     if (!isSchemaProperty(context.program, property)) {
       continue;
     }
+    if (isNeverType(property.type)) {
+      continue;
+    }
     if (newValue.properties === undefined || newValue.properties === null) {
       newValue.properties = [];
     }
@@ -1185,6 +1188,16 @@ function emitStdScalar(
       return { type: "duration", format: newScalar.format };
     case "numeric":
       return {}; // Waiting on design for more precise type https://github.com/microsoft/cadl/issues/1260
+    case "decimal":
+    case "decimal128":
+      reportDiagnostic(program, {
+        code: "decimal-to-number",
+        format: {
+          propertyName: newScalar?.name ?? ""
+        },
+        target: newScalar ?? scalar
+      });
+      return { type: "integer", format: newScalar.format };
     default:
       return {};
   }
