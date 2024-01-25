@@ -27,6 +27,10 @@
     "./api/widgets": {
       "types": "./types/src/api/widgets/index.d.ts",
       "import": "./dist-esm/src/api/widgets/index.js"
+    },
+    "./api/budgets": {
+      "types": "./types/src/api/budgets/index.d.ts",
+      "import": "./dist-esm/src/api/budgets/index.js"
     }
   },
   "repository": "github:Azure/azure-sdk-for-js",
@@ -76,6 +80,9 @@
     "@azure/logger": "^1.0.0",
     "tslib": "^2.2.0",
     "@azure/core-paging": "^1.5.0",
+    "@azure/core-lro": "^2.5.4",
+    "@marygao/core-lro": "^2.9.1",
+    "@azure/abort-controller": "^1.0.0",
     "@azure/core-util": "^1.4.0"
   },
   "devDependencies": {

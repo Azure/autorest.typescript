@@ -313,6 +313,7 @@ function emitBrandedPackage(
       }),
       ...(hasLRO && {
         "@azure/core-lro": "^2.5.4",
+        "@marygao/core-lro": "^2.9.1",
         "@azure/abort-controller": "^1.0.0"
       }),
       ...(isModularLibrary && {

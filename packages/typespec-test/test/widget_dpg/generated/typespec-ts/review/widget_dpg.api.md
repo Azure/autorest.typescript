@@ -5,6 +5,7 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { Next } from '@marygao/core-lro';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
@@ -12,6 +13,17 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 export interface AnalyzeResult {
     // (undocumented)
     summary: string;
+}
+
+// @public (undocumented)
+export interface BudgetsCreateOrReplaceOptions extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public (undocumented)
+export interface BudgetsOperations {
+    // (undocumented)
+    createOrReplace: (name: string, resource: User, options?: BudgetsCreateOrReplaceOptions) => Next.PollerLike<Next.OperationState<User>, User>;
 }
 
 // @public
@@ -49,6 +61,13 @@ export interface UpdateWidget {
     weight?: number;
 }
 
+// @public
+export interface User {
+    id: string;
+    readonly name: string;
+    role: string;
+}
+
 // @public (undocumented)
 export interface Widget {
     color: "red" | "blue";
@@ -58,6 +77,11 @@ export interface Widget {
 
 // @public (undocumented)
 export interface WidgetsAnalyzeWidgetOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetsCreateOrReplaceOptions extends OperationOptions {
+    updateIntervalInMs?: number;
 }
 
 // @public (undocumented)
@@ -71,6 +95,7 @@ export interface WidgetsDeleteWidgetOptions extends OperationOptions {
 // @public (undocumented)
 export class WidgetServiceClient {
     constructor(endpoint: string, options?: WidgetServiceClientOptions);
+    readonly budgets: BudgetsOperations;
     readonly pipeline: Pipeline;
     readonly widgets: WidgetsOperations;
 }
@@ -103,6 +128,8 @@ export interface WidgetsListWidgetsPagesOptions extends OperationOptions {
 export interface WidgetsOperations {
     // (undocumented)
     analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptions) => Promise<AnalyzeResult>;
+    // (undocumented)
+    createOrReplace: (name: string, resource: User, options?: WidgetsCreateOrReplaceOptions) => Next.PollerLike<Next.OperationState<User>, User>;
     // (undocumented)
     createWidget: (body: CreateWidget, options?: WidgetsCreateWidgetOptions) => Promise<Widget>;
     // (undocumented)

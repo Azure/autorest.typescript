@@ -11,7 +11,7 @@ import { buildLroDeserDetailMap } from "./buildOperations.js";
  */
 export function importLroCoreDependencies(clientFile: SourceFile) {
   clientFile.addImportDeclaration({
-    moduleSpecifier: `@azure/core-lro`,
+    moduleSpecifier: `@marygao/core-lro`,
     namedImports: ["Next"]
   });
 }
@@ -47,6 +47,7 @@ export function buildRestorePollerHelper(
     }
   );
 
+  importLroCoreDependencies(restorePollerFile);
   const clientNames = importClientContext(client, restorePollerFile);
   importGetPollerHelper(restorePollerFile);
   const deserializeMap = importDeserializeHelpers(client, restorePollerFile);
@@ -55,7 +56,6 @@ export function buildRestorePollerHelper(
         PathUncheckedResponse,
         OperationOptions
       } from "@azure-rest/core-client";
-      import { Next } from "@azure/core-lro";
       import { AbortSignalLike } from "@azure/abort-controller";
 
       export interface RestorePollerOptions<
@@ -287,7 +287,6 @@ export function buildGetPollerHelper(
       }../rest/index.js";`
     : "";
   const getLroPollerContent = `
-  import { Next } from "@azure/core-lro";
   import {
     Client,
     PathUncheckedResponse,
@@ -399,5 +398,6 @@ export function buildGetPollerHelper(
   const fileContent = codeModel.project.createSourceFile(filePath, undefined, {
     overwrite: true
   });
+  importLroCoreDependencies(fileContent);
   fileContent.addStatements(getLroPollerContent);
 }

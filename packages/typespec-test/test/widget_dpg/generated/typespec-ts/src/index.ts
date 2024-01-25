@@ -9,6 +9,7 @@ export {
   Widget,
   ListWidgetsPagesResults,
   CreateWidget,
+  User,
   UpdateWidget,
   AnalyzeResult,
   WidgetsListWidgetsOptions,
@@ -16,11 +17,13 @@ export {
   WidgetsQueryWidgetsPagesOptions,
   WidgetsGetWidgetOptions,
   WidgetsCreateWidgetOptions,
+  WidgetsCreateOrReplaceOptions,
   WidgetsUpdateWidgetOptions,
   WidgetsDeleteWidgetOptions,
   WidgetsAnalyzeWidgetOptions,
+  BudgetsCreateOrReplaceOptions,
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./models/index.js";
-export { WidgetsOperations } from "./classic/index.js";
+export { BudgetsOperations, WidgetsOperations } from "./classic/index.js";

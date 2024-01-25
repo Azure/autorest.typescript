@@ -5,6 +5,7 @@ export {
   Widget,
   ListWidgetsPagesResults,
   CreateWidget,
+  User,
   UpdateWidget,
   AnalyzeResult,
 } from "./models.js";
@@ -14,9 +15,11 @@ export {
   WidgetsQueryWidgetsPagesOptions,
   WidgetsGetWidgetOptions,
   WidgetsCreateWidgetOptions,
+  WidgetsCreateOrReplaceOptions,
   WidgetsUpdateWidgetOptions,
   WidgetsDeleteWidgetOptions,
   WidgetsAnalyzeWidgetOptions,
+  BudgetsCreateOrReplaceOptions,
 } from "./options.js";
 export {
   PageSettings,

@@ -21,7 +21,7 @@ import {
   analyzeWidget,
 } from "../../api/widgets/index.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
-import { Next } from "@azure/core-lro";
+import { Next } from "@marygao/core-lro";
 import {
   WidgetsListWidgetsOptions,
   WidgetsListWidgetsPagesOptions,
