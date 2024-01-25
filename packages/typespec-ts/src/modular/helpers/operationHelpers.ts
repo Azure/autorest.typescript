@@ -1209,8 +1209,6 @@ export function getAllProperties(type: Type, parents?: Type[]): Property[] {
   return [...propertiesMap.values()];
 }
 
-export function getOperationPathKey(op: Operation) {
-  return `${op.method.toUpperCase()} ${op.url}`;
 function getAllAncestors(type: Type): Type[] {
   const ancestors: Type[] = [];
   type?.parents?.forEach((p) => {

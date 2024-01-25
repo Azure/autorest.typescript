@@ -7,8 +7,7 @@ import {
   getDeserializePrivateFunction,
   getOperationOptionsName,
   isLROOperation,
-  isLROOnlyOperation,
-  getOperationPathKey
+  isLROOnlyOperation
 } from "./helpers/operationHelpers.js";
 import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
@@ -319,7 +318,7 @@ export function buildLroDeserDetailMap(client: Client) {
         }
         existingNames.add(deserName);
         return {
-          path: getOperationPathKey(o),
+          path: `${o.method.toUpperCase()} ${o.url}`,
           deserName,
           renamedDeserName
         };
