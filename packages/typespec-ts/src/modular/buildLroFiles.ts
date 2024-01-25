@@ -247,7 +247,7 @@ function importDeserializeHelpers(
       );
     });
   for (const file of operationFiles) {
-    let deserializedFunctions: string[] = [
+    const deserializedFunctions: string[] = [
       ...file.getExportedDeclarations().entries()
     ]
       .filter((exDeclaration) => {
@@ -262,11 +262,15 @@ function importDeserializeHelpers(
       .map((exDeclaration) => {
         return exDeclaration[0];
       });
+    if (deserializedFunctions.length === 0) {
+      continue;
+    }
     const specifier = file
       .getFilePath()
       .split("api")[1]!
       .replace(/\\/g, "/")
       .replace(".ts", "");
+
     sourceFile.addImportDeclaration({
       moduleSpecifier: `./api${specifier}.js`,
       namedImports: deserializedFunctions

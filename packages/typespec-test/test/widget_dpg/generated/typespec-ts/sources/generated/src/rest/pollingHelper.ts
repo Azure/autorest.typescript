@@ -11,10 +11,14 @@ import {
   createHttpPoller,
 } from "@azure/core-lro";
 import {
-  CreateOrReplace200Response,
-  CreateOrReplace201Response,
-  CreateOrReplaceDefaultResponse,
-  CreateOrReplaceLogicalResponse,
+  WidgetsCreateOrReplace200Response,
+  WidgetsCreateOrReplace201Response,
+  WidgetsCreateOrReplaceDefaultResponse,
+  WidgetsCreateOrReplaceLogicalResponse,
+  BudgetsCreateOrReplace200Response,
+  BudgetsCreateOrReplace201Response,
+  BudgetsCreateOrReplaceDefaultResponse,
+  BudgetsCreateOrReplaceLogicalResponse,
 } from "./responses.js";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
@@ -25,14 +29,26 @@ import {
  */
 export async function getLongRunningPoller<
   TResult extends
-    | CreateOrReplaceLogicalResponse
-    | CreateOrReplaceDefaultResponse,
+    | WidgetsCreateOrReplaceLogicalResponse
+    | WidgetsCreateOrReplaceDefaultResponse,
 >(
   client: Client,
   initialResponse:
-    | CreateOrReplace200Response
-    | CreateOrReplace201Response
-    | CreateOrReplaceDefaultResponse,
+    | WidgetsCreateOrReplace200Response
+    | WidgetsCreateOrReplace201Response
+    | WidgetsCreateOrReplaceDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends
+    | BudgetsCreateOrReplaceLogicalResponse
+    | BudgetsCreateOrReplaceDefaultResponse,
+>(
+  client: Client,
+  initialResponse:
+    | BudgetsCreateOrReplace200Response
+    | BudgetsCreateOrReplace201Response
+    | BudgetsCreateOrReplaceDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(

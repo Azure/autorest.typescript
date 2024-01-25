@@ -28,3 +28,8 @@ export interface WidgetsUpdateWidgetOptions extends OperationOptions {}
 export interface WidgetsDeleteWidgetOptions extends OperationOptions {}
 
 export interface WidgetsAnalyzeWidgetOptions extends OperationOptions {}
+
+export interface BudgetsCreateOrReplaceOptions extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+}

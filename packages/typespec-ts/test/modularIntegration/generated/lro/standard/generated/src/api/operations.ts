@@ -148,6 +148,13 @@ export async function _exportOperationDeserialize(
     throw createRestError(result);
   }
 
+  if (result?.body?.result === undefined) {
+    createRestError(
+      `Expected a result in the response at position "result.body.result"`,
+      result,
+    );
+  }
+
   return {
     name: result.body.result["name"],
     resourceUri: result.body.result["resourceUri"],

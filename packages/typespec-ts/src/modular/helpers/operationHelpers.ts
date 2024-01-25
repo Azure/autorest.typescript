@@ -163,9 +163,18 @@ export function getDeserializePrivateFunction(
   const deserializedType = isLroOnly
     ? operation?.lroMetadata?.finalResult
     : response.type;
-  const deserializedRoot = operation?.lroMetadata?.finalResultPath
+  const hasLroSubPath = operation?.lroMetadata?.finalResultPath !== undefined;
+  const deserializedRoot = hasLroSubPath
     ? `result.body.${operation?.lroMetadata?.finalResultPath}`
     : "result.body";
+  if (hasLroSubPath) {
+    statements.push(
+      `if(${deserializedRoot.split(".").join("?.")} === undefined) {
+        createRestError(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
+      }
+      `
+    );
+  }
 
   if (
     deserializedType?.type === "any" ||

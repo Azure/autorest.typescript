@@ -163,3 +163,12 @@ are optional and will be updated within the widget if provided.
         @path id: string
     ): AnalyzeResult | WidgetError;
 }
+
+
+@route("/budgets")
+@tag("Widgets")
+interface Budgets {
+    @post 
+    @route("/widgets/createOrReplace")
+    op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User>;
+}

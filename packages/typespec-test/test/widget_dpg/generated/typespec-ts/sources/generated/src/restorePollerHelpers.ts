@@ -4,6 +4,7 @@
 import { WidgetServiceContext } from "./api/WidgetServiceContext.js";
 import { WidgetServiceClient } from "./WidgetServiceClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
+import { _createOrReplaceDeserialize } from "./api/budgets/index.js";
 import { _createOrReplaceDeserialize } from "./api/widgets/index.js";
 
 import {
@@ -15,7 +16,7 @@ import { AbortSignalLike } from "@azure/abort-controller";
 
 export interface RestorePollerOptions<
   TResult,
-  TResponse extends PathUncheckedResponse = PathUncheckedResponse
+  TResponse extends PathUncheckedResponse = PathUncheckedResponse,
 > extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -30,6 +31,8 @@ export interface RestorePollerOptions<
 const deserializeMap: Record<string, Function> = {
   "POST /widgets/widgets/createOrReplace/users/{name}":
     _createOrReplaceDeserialize,
+  "POST /budgets/widgets/createOrReplace/users/{name}":
+    _createOrReplaceDeserialize,
 };
 
 /**
@@ -43,14 +46,14 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
   sourceOperation: (
     ...args: any[]
   ) => Next.PollerLike<Next.OperationState<TResult>, TResult>,
-  options?: RestorePollerOptions<TResult>
+  options?: RestorePollerOptions<TResult>,
 ): Next.PollerLike<Next.OperationState<TResult>, TResult> {
   const pollerConfig = Next.deserializeState(serializedState).config;
   const initialUri = pollerConfig.initialUri;
   const requestMethod = pollerConfig.requestMethod;
   if (!initialUri || !requestMethod) {
     throw new Error(
-      `Invalid serialized state: ${serializedState} for sourceOperation ${sourceOperation?.name}`
+      `Invalid serialized state: ${serializedState} for sourceOperation ${sourceOperation?.name}`,
     );
   }
   const resourceLocationConfig = pollerConfig?.metadata?.[
@@ -61,7 +64,7 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
     getDeserializationHelper(initialUri, requestMethod);
   if (!deserializeHelper) {
     throw new Error(
-      `Please ensure the operation is in this client! We can't find its deserializeHelper for ${sourceOperation?.name}.`
+      `Please ensure the operation is in this client! We can't find its deserializeHelper for ${sourceOperation?.name}.`,
     );
   }
   return getLongRunningPoller(
@@ -73,13 +76,13 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
       resourceLocationConfig,
       restoreFrom: serializedState,
       initialUri: initialUri,
-    }
+    },
   );
 }
 
 function getDeserializationHelper(
   urlStr: string,
-  method: string
+  method: string,
 ): ((result: unknown) => PromiseLike<unknown>) | undefined {
   const path = new URL(urlStr).pathname;
   const pathParts = path.split("/");
@@ -119,7 +122,7 @@ function getDeserializationHelper(
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

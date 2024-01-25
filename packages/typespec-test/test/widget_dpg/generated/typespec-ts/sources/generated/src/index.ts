@@ -21,8 +21,9 @@ export {
   WidgetsUpdateWidgetOptions,
   WidgetsDeleteWidgetOptions,
   WidgetsAnalyzeWidgetOptions,
+  BudgetsCreateOrReplaceOptions,
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./models/index.js";
-export { WidgetsOperations } from "./classic/index.js";
+export { BudgetsOperations, WidgetsOperations } from "./classic/index.js";

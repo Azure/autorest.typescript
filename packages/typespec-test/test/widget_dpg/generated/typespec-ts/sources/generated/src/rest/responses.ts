@@ -12,129 +12,170 @@ import {
 } from "./outputModels.js";
 
 /** The request has succeeded. */
-export interface ListWidgets200Response extends HttpResponse {
+export interface WidgetsListWidgets200Response extends HttpResponse {
   status: "200";
   body: Array<WidgetOutput>;
 }
 
-export interface ListWidgetsDefaultResponse extends HttpResponse {
+export interface WidgetsListWidgetsDefaultResponse extends HttpResponse {
   status: string;
   body: WidgetErrorOutput;
 }
 
 /** The request has succeeded. */
-export interface ListWidgetsPages200Response extends HttpResponse {
+export interface WidgetsListWidgetsPages200Response extends HttpResponse {
   status: "200";
   body: ListWidgetsPagesResultsOutput;
 }
 
-export interface ListWidgetsPagesDefaultResponse extends HttpResponse {
+export interface WidgetsListWidgetsPagesDefaultResponse extends HttpResponse {
   status: string;
   body: WidgetErrorOutput;
 }
 
 /** The request has succeeded. */
-export interface QueryWidgetsPages200Response extends HttpResponse {
+export interface WidgetsQueryWidgetsPages200Response extends HttpResponse {
   status: "200";
   body: ListWidgetsPagesResultsOutput;
 }
 
-export interface QueryWidgetsPagesDefaultResponse extends HttpResponse {
+export interface WidgetsQueryWidgetsPagesDefaultResponse extends HttpResponse {
   status: string;
   body: WidgetErrorOutput;
 }
 
 /** The request has succeeded. */
-export interface GetWidget200Response extends HttpResponse {
+export interface WidgetsGetWidget200Response extends HttpResponse {
   status: "200";
   body: WidgetOutput;
 }
 
-export interface GetWidgetDefaultResponse extends HttpResponse {
+export interface WidgetsGetWidgetDefaultResponse extends HttpResponse {
   status: string;
   body: WidgetErrorOutput;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface CreateWidget201Response extends HttpResponse {
+export interface WidgetsCreateWidget201Response extends HttpResponse {
   status: "201";
   body: WidgetOutput;
 }
 
-export interface CreateWidgetDefaultResponse extends HttpResponse {
+export interface WidgetsCreateWidgetDefaultResponse extends HttpResponse {
   status: string;
   body: WidgetErrorOutput;
 }
 
-export interface CreateOrReplace200Headers {
+export interface WidgetsCreateOrReplace200Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
 }
 
 /** The request has succeeded. */
-export interface CreateOrReplace200Response extends HttpResponse {
+export interface WidgetsCreateOrReplace200Response extends HttpResponse {
   status: "200";
   body: UserOutput;
-  headers: RawHttpHeaders & CreateOrReplace200Headers;
+  headers: RawHttpHeaders & WidgetsCreateOrReplace200Headers;
 }
 
-export interface CreateOrReplace201Headers {
+export interface WidgetsCreateOrReplace201Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface CreateOrReplace201Response extends HttpResponse {
+export interface WidgetsCreateOrReplace201Response extends HttpResponse {
   status: "201";
   body: UserOutput;
-  headers: RawHttpHeaders & CreateOrReplace201Headers;
+  headers: RawHttpHeaders & WidgetsCreateOrReplace201Headers;
 }
 
-export interface CreateOrReplaceDefaultHeaders {
+export interface WidgetsCreateOrReplaceDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface CreateOrReplaceDefaultResponse extends HttpResponse {
+export interface WidgetsCreateOrReplaceDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & CreateOrReplaceDefaultHeaders;
+  headers: RawHttpHeaders & WidgetsCreateOrReplaceDefaultHeaders;
 }
 
 /** The final response for long-running createOrReplace operation */
-export interface CreateOrReplaceLogicalResponse extends HttpResponse {
+export interface WidgetsCreateOrReplaceLogicalResponse extends HttpResponse {
   status: "200";
   body: UserOutput;
 }
 
 /** The request has succeeded. */
-export interface UpdateWidget200Response extends HttpResponse {
+export interface WidgetsUpdateWidget200Response extends HttpResponse {
   status: "200";
   body: WidgetOutput;
 }
 
-export interface UpdateWidgetDefaultResponse extends HttpResponse {
+export interface WidgetsUpdateWidgetDefaultResponse extends HttpResponse {
   status: string;
   body: WidgetErrorOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface DeleteWidget204Response extends HttpResponse {
+export interface WidgetsDeleteWidget204Response extends HttpResponse {
   status: "204";
 }
 
-export interface DeleteWidgetDefaultResponse extends HttpResponse {
+export interface WidgetsDeleteWidgetDefaultResponse extends HttpResponse {
   status: string;
   body: WidgetErrorOutput;
 }
 
 /** The request has succeeded. */
-export interface AnalyzeWidget200Response extends HttpResponse {
+export interface WidgetsAnalyzeWidget200Response extends HttpResponse {
   status: "200";
   body: AnalyzeResultOutput;
 }
 
-export interface AnalyzeWidgetDefaultResponse extends HttpResponse {
+export interface WidgetsAnalyzeWidgetDefaultResponse extends HttpResponse {
   status: string;
   body: WidgetErrorOutput;
+}
+
+export interface BudgetsCreateOrReplace200Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
+/** The request has succeeded. */
+export interface BudgetsCreateOrReplace200Response extends HttpResponse {
+  status: "200";
+  body: UserOutput;
+  headers: RawHttpHeaders & BudgetsCreateOrReplace200Headers;
+}
+
+export interface BudgetsCreateOrReplace201Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
+/** The request has succeeded and a new resource has been created as a result. */
+export interface BudgetsCreateOrReplace201Response extends HttpResponse {
+  status: "201";
+  body: UserOutput;
+  headers: RawHttpHeaders & BudgetsCreateOrReplace201Headers;
+}
+
+export interface BudgetsCreateOrReplaceDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface BudgetsCreateOrReplaceDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+  headers: RawHttpHeaders & BudgetsCreateOrReplaceDefaultHeaders;
+}
+
+/** The final response for long-running createOrReplace operation */
+export interface BudgetsCreateOrReplaceLogicalResponse extends HttpResponse {
+  status: "200";
+  body: UserOutput;
 }

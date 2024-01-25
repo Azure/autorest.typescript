@@ -19,6 +19,7 @@ export {
   WidgetsUpdateWidgetOptions,
   WidgetsDeleteWidgetOptions,
   WidgetsAnalyzeWidgetOptions,
+  BudgetsCreateOrReplaceOptions,
 } from "./options.js";
 export {
   PageSettings,
