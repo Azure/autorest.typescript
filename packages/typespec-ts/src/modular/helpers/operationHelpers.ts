@@ -944,7 +944,7 @@ function deserializeResponseValue(
           type.elementType!,
           "p",
           runtimeImports,
-          type.elementType?.nullable === false ? false : true,
+          true,
           [...typeStack, type.elementType!],
           type.elementType?.format
         )})`;
