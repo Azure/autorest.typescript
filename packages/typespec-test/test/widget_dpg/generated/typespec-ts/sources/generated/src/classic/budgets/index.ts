@@ -4,6 +4,7 @@
 import { WidgetServiceContext } from "../../api/WidgetServiceContext.js";
 import { User } from "../../models/models.js";
 import { createOrReplace } from "../../api/budgets/index.js";
+import { Next } from "@azure/core-lro";
 import { BudgetsCreateOrReplaceOptions } from "../../models/options.js";
 
 export interface BudgetsOperations {

@@ -4,6 +4,13 @@ import { isLROOperation } from "./helpers/operationHelpers.js";
 import { ModularCodeModel, Client } from "./modularCodeModel.js";
 import path, { join } from "path";
 
+export function importLroCoreDependencies(clientFile: SourceFile) {
+  clientFile.addImportDeclaration({
+    moduleSpecifier: `@azure/core-lro`,
+    namedImports: ["Next"]
+  });
+}
+
 // Generate `restorePollerHelpers.ts` file
 export function buildRestorePollerHelper(
   codeModel: ModularCodeModel,
