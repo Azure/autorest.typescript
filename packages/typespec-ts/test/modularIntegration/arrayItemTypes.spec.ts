@@ -30,7 +30,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "datetime",
-    defaultValue: ["2022-08-26T18:38:00Z"]
+    defaultValue: [new Date("2022-08-26T18:38:00Z")]
   },
   {
     type: "duration",
@@ -42,7 +42,10 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "model",
-    defaultValue: [{ property: "hello" }, { property: "world" }]
+    defaultValue: [
+      { property: "hello", children: undefined },
+      { property: "world", children: undefined }
+    ]
   },
   {
     type: "nullable-float",
