@@ -24,6 +24,18 @@
       "types": "./types/src/models/index.d.ts",
       "import": "./dist-esm/src/models/index.js"
     },
+    "./api/baz/foo": {
+      "types": "./types/src/api/baz/foo/index.d.ts",
+      "import": "./dist-esm/src/api/baz/foo/index.js"
+    },
+    "./api/qux": {
+      "types": "./types/src/api/qux/index.d.ts",
+      "import": "./dist-esm/src/api/qux/index.js"
+    },
+    "./api/qux/bar": {
+      "types": "./types/src/api/qux/bar/index.d.ts",
+      "import": "./dist-esm/src/api/qux/bar/index.js"
+    },
     "./api/foo": {
       "types": "./types/src/api/foo/index.d.ts",
       "import": "./dist-esm/src/api/foo/index.js"
