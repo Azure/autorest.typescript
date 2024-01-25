@@ -4,6 +4,9 @@
 import {
   OneParameters,
   TwoParameters,
+  SevenParameters,
+  EightParameters,
+  NineParameters,
   ThreeParameters,
   FourParameters,
   FiveParameters,
@@ -12,6 +15,9 @@ import {
 import {
   One204Response,
   Two204Response,
+  Seven204Response,
+  Eight204Response,
+  Nine204Response,
   Three204Response,
   Four204Response,
   Five204Response,
@@ -25,6 +31,18 @@ export interface One {
 
 export interface Two {
   post(options?: TwoParameters): StreamableMethod<Two204Response>;
+}
+
+export interface Seven {
+  post(options?: SevenParameters): StreamableMethod<Seven204Response>;
+}
+
+export interface Eight {
+  post(options?: EightParameters): StreamableMethod<Eight204Response>;
+}
+
+export interface Nine {
+  post(options?: NineParameters): StreamableMethod<Nine204Response>;
 }
 
 export interface Three {
@@ -48,6 +66,12 @@ export interface Routes {
   (path: "/one"): One;
   /** Resource for '/two' has methods for the following verbs: post */
   (path: "/two"): Two;
+  /** Resource for '/seven' has methods for the following verbs: post */
+  (path: "/seven"): Seven;
+  /** Resource for '/eight' has methods for the following verbs: post */
+  (path: "/eight"): Eight;
+  /** Resource for '/nine' has methods for the following verbs: post */
+  (path: "/nine"): Nine;
   /** Resource for '/three' has methods for the following verbs: post */
   (path: "/three"): Three;
   /** Resource for '/four' has methods for the following verbs: post */

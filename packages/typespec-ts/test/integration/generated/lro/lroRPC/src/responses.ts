@@ -3,7 +3,7 @@
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
-import { JobResultOutput, ResourceOperationStatusOutput } from "./outputModels";
+import { JobResultOutput } from "./outputModels";
 
 /** The request has succeeded. */
 export interface GetJob200Response extends HttpResponse {
@@ -30,7 +30,6 @@ export interface CreateJob202Headers {
 /** The request has been accepted for processing, but processing has not yet completed. */
 export interface CreateJob202Response extends HttpResponse {
   status: "202";
-  body: ResourceOperationStatusOutput;
   headers: RawHttpHeaders & CreateJob202Headers;
 }
 
@@ -48,5 +47,4 @@ export interface CreateJobDefaultResponse extends HttpResponse {
 /** The final response for long-running createJob operation */
 export interface CreateJobLogicalResponse extends HttpResponse {
   status: "200";
-  body: ResourceOperationStatusOutput;
 }
