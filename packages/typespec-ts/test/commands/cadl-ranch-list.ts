@@ -325,6 +325,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   },
   {  outputPath: "arrays/items",
     inputPath: "type/array"
+  },
+  {
+    outputPath: "models/inheritance/recursive",
+    inputPath: "type/model/inheritance/recursive"
   }
 ];
 
