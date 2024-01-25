@@ -149,7 +149,7 @@ export async function _exportOperationDeserialize(
   }
 
   if (result?.body?.result === undefined) {
-    createRestError(
+    throw createRestError(
       `Expected a result in the response at position "result.body.result"`,
       result,
     );

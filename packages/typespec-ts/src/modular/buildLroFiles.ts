@@ -1,9 +1,14 @@
 import { SourceFile } from "ts-morph";
-import { getClientName, getOperationName } from "./helpers/namingHelpers.js";
+import { getClientName } from "./helpers/namingHelpers.js";
 import { isLROOperation } from "./helpers/operationHelpers.js";
 import { ModularCodeModel, Client } from "./modularCodeModel.js";
-import path, { join } from "path";
+import path from "path";
+import { buildLroDeserDetailMap } from "./buildOperations.js";
 
+/**
+ * Always import LRO dependencies and remember to remove if unused.
+ * @param clientFile - The file to add the imports to.
+ */
 export function importLroCoreDependencies(clientFile: SourceFile) {
   clientFile.addImportDeclaration({
     moduleSpecifier: `@azure/core-lro`,
@@ -11,27 +16,22 @@ export function importLroCoreDependencies(clientFile: SourceFile) {
   });
 }
 
-// Generate `restorePollerHelpers.ts` file
+/**
+ * Generate `restorePollerHelpers.ts` file
+ * @param codeModel - The code model.
+ * @param client - The client.
+ * @returns
+ */
 export function buildRestorePollerHelper(
   codeModel: ModularCodeModel,
   client: Client
 ) {
-  const lroOperstions = client.operationGroups
+  const lros = client.operationGroups
     .flatMap((op) => op.operations)
     .filter(isLROOperation);
-  if (lroOperstions.length === 0) {
+  if (lros.length === 0) {
     return;
   }
-  const deserializeMap: string[] = [],
-    deserializedFunctions: string[] = [];
-  lroOperstions.forEach((op) => {
-    const { name } = getOperationName(op);
-    deserializedFunctions.push(`_${name}Deserialize`);
-    deserializeMap.push(
-      `"${op.method.toUpperCase()} ${op.url}": _${name}Deserialize`
-    );
-  });
-
   const srcPath = codeModel.modularOptions.sourceRoot;
   const subfolder = client.subfolder ?? "";
   const filePath = path.join(
@@ -49,12 +49,7 @@ export function buildRestorePollerHelper(
 
   const clientNames = importClientContext(client, restorePollerFile);
   importGetPollerHelper(restorePollerFile);
-  importDeserializeHelpers(
-    codeModel,
-    client,
-    restorePollerFile,
-    new Set(deserializedFunctions)
-  );
+  const deserializeMap = importDeserializeHelpers(client, restorePollerFile);
   const restorePollerHelperContent = `
       import {
         PathUncheckedResponse,
@@ -231,61 +226,35 @@ function importGetPollerHelper(sourceFile: SourceFile) {
   });
 }
 
-function importDeserializeHelpers(
-  codeModel: ModularCodeModel,
-  client: Client,
-  sourceFile: SourceFile,
-  referredDeserializers: Set<string>
-) {
-  const srcPath = codeModel.modularOptions.sourceRoot;
-  const apiFilePattern = join(srcPath, client.subfolder ?? "", "api");
-  const operationFiles = codeModel.project
-    .getSourceFiles()
-    .filter((file) => {
-      return file
-        .getFilePath()
-        .replace(/\\/g, "/")
-        .startsWith(apiFilePattern.replace(/\\/g, "/"));
-    })
-    .filter((file) => {
-      return (
-        file.getFilePath().endsWith("operations.ts") ||
-        file.getFilePath().endsWith("index.ts")
+function importDeserializeHelpers(client: Client, sourceFile: SourceFile) {
+  const deserializeDetails = buildLroDeserDetailMap(client);
+  const deserializeMap: string[] = [];
+  for (const [key, value] of deserializeDetails.entries()) {
+    sourceFile.addImportDeclaration({
+      namedImports: value.map((detail) =>
+        detail.renamedDeserName
+          ? `${detail.deserName} as ${detail.renamedDeserName}`
+          : detail.deserName
+      ),
+      moduleSpecifier: key
+    });
+    value.forEach((detail) => {
+      deserializeMap.push(
+        `"${detail.path}": ${detail.renamedDeserName ?? detail.deserName}`
       );
     });
-  for (const file of operationFiles) {
-    const deserializedFunctions: string[] = [
-      ...file.getExportedDeclarations().entries()
-    ]
-      .filter((exDeclaration) => {
-        const [name, declarations] = exDeclaration;
-        return (
-          name.startsWith("_") &&
-          declarations.length > 0 &&
-          name.endsWith("Deserialize") &&
-          referredDeserializers.has(name)
-        );
-      })
-      .map((exDeclaration) => {
-        return exDeclaration[0];
-      });
-    if (deserializedFunctions.length === 0) {
-      continue;
-    }
-    const specifier = file
-      .getFilePath()
-      .split("api")[1]!
-      .replace(/\\/g, "/")
-      .replace(".ts", "");
-
-    sourceFile.addImportDeclaration({
-      moduleSpecifier: `./api${specifier}.js`,
-      namedImports: deserializedFunctions
-    });
   }
+  return deserializeMap;
 }
 
-// Generate `api/pollingHelpers.ts` file
+/**
+ * Generate `api/pollingHelpers.ts` file
+ * @param codeModel - The code model.
+ * @param client - The client.
+ * @param needUnexpectedHelper - Whether need to import unexpected helper.
+ * @param isMultiClients - Whether the client is multi-clients.
+ * @returns
+ */
 export function buildGetPollerHelper(
   codeModel: ModularCodeModel,
   client: Client,

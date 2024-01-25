@@ -170,7 +170,7 @@ export function getDeserializePrivateFunction(
   if (hasLroSubPath) {
     statements.push(
       `if(${deserializedRoot.split(".").join("?.")} === undefined) {
-        createRestError(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
+        throw createRestError(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
       }
       `
     );
@@ -1201,4 +1201,8 @@ function getAllProperties(type: Type): Property[] {
     propertiesMap.set(p.clientName, p);
   });
   return [...propertiesMap.values()];
+}
+
+export function getOperationPathKey(op: Operation) {
+  return `${op.method.toUpperCase()} ${op.url}`;
 }

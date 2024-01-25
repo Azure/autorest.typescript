@@ -4,8 +4,8 @@
 import { WidgetServiceContext } from "./api/WidgetServiceContext.js";
 import { WidgetServiceClient } from "./WidgetServiceClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
-import { _createOrReplaceDeserialize } from "./api/budgets/index.js";
 import { _createOrReplaceDeserialize } from "./api/widgets/index.js";
+import { _createOrReplaceDeserialize as _createOrReplaceDeserializeBudgets } from "./api/budgets/index.js";
 
 import {
   PathUncheckedResponse,
@@ -32,7 +32,7 @@ const deserializeMap: Record<string, Function> = {
   "POST /widgets/widgets/createOrReplace/users/{name}":
     _createOrReplaceDeserialize,
   "POST /budgets/widgets/createOrReplace/users/{name}":
-    _createOrReplaceDeserialize,
+    _createOrReplaceDeserializeBudgets,
 };
 
 /**

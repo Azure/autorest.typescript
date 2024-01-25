@@ -6,7 +6,9 @@ import {
   getSendPrivateFunction,
   getDeserializePrivateFunction,
   getOperationOptionsName,
-  isLROOperation
+  isLROOperation,
+  isLROOnlyOperation,
+  getOperationPathKey
 } from "./helpers/operationHelpers.js";
 import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
@@ -15,6 +17,9 @@ import { SdkContext } from "../utils/interfaces.js";
 import { getImportSpecifier } from "@azure-tools/rlc-common";
 import { addImportsToFiles } from "@azure-tools/rlc-common";
 import { clearImportSets } from "@azure-tools/rlc-common";
+import { importLroCoreDependencies } from "./buildLroFiles.js";
+import { OperationPathAndDeserDetails } from "./interfaces.js";
+import { getOperationName } from "./helpers/namingHelpers.js";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -235,10 +240,7 @@ export function importLroDependencies(
     namedImports: ["getLongRunningPoller"]
   });
 
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: `@azure/core-lro`,
-    namedImports: ["Next"]
-  });
+  importLroCoreDependencies(sourceFile);
 }
 
 /**
@@ -275,4 +277,54 @@ export function buildOperationOptions(
       })
     )
   });
+}
+
+/**
+ * This function creates a map of operation file path to operation names.
+ */
+export function buildLroDeserDetailMap(client: Client) {
+  const map = new Map<string, OperationPathAndDeserDetails[]>();
+  const existingNames = new Set<string>();
+  for (const operationGroup of client.operationGroups) {
+    const operations = operationGroup.operations.filter((o) =>
+      isLROOnlyOperation(o)
+    );
+    // skip this operation group if it has no LRO operations
+    if (operations.length === 0) {
+      continue;
+    }
+
+    const operationFileName =
+      operationGroup.className && operationGroup.namespaceHierarchies.length > 0
+        ? `${operationGroup.namespaceHierarchies
+            .map((hierarchy) => {
+              return normalizeName(hierarchy, NameType.File);
+            })
+            .join("/")}/index`
+        : // When the program has no operation groups defined all operations are put
+          // into a nameless operation group. We'll call this operations.
+          "operations";
+    map.set(
+      `./api/${operationFileName}.js`,
+      operations.map((o) => {
+        const { name } = getOperationName(o);
+        const deserName = `_${name}Deserialize`;
+        let renamedDeserName = undefined;
+        if (existingNames.has(deserName)) {
+          const newName = `${name}Deserialize_${operationFileName
+            .split("/")
+            .slice(0, -1)
+            .join("_")}`;
+          renamedDeserName = `_${normalizeName(newName, NameType.Method)}`;
+        }
+        existingNames.add(deserName);
+        return {
+          path: getOperationPathKey(o),
+          deserName,
+          renamedDeserName
+        };
+      })
+    );
+  }
+  return map;
 }
