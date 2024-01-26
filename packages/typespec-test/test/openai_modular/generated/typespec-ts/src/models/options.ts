@@ -16,4 +16,7 @@ export interface GetAzureBatchImageGenerationOperationStatusOptions
   extends OperationOptions {}
 
 export interface BeginAzureBatchImageGenerationOptions
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+}

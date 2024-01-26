@@ -4,11 +4,20 @@
 
 ```ts
 
+import { AbortSignalLike } from '@azure/abort-controller';
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorModel } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
+import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
+import { Next } from '@marygao/core-lro';
 import { OperationOptions } from '@azure-rest/core-client';
+import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RawHttpHeaders } from '@azure/core-rest-pipeline';
+import { RequestParameters } from '@azure-rest/core-client';
+import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -53,6 +62,7 @@ export interface BatchImageGenerationOperationResponse {
 
 // @public (undocumented)
 export interface BeginAzureBatchImageGenerationOptions extends OperationOptions {
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -284,7 +294,7 @@ export type ImageSize = string;
 // @public (undocumented)
 export class OpenAIClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions);
-    beginAzureBatchImageGeneration(body: ImageGenerationOptions, options?: BeginAzureBatchImageGenerationOptions): Promise<BatchImageGenerationOperationResponse>;
+    beginAzureBatchImageGeneration(body: ImageGenerationOptions, options?: BeginAzureBatchImageGenerationOptions): Next.PollerLike<Next.OperationState<ImageGenerations>, ImageGenerations>;
     getAzureBatchImageGenerationOperationStatus(operationId: string, options?: GetAzureBatchImageGenerationOperationStatusOptions): Promise<BatchImageGenerationOperationResponse>;
     getChatCompletions(deploymentId: string, body: ChatCompletionsOptions, options?: GetChatCompletionsOptions): Promise<ChatCompletions>;
     getChatCompletionsWithAzureExtensions(deploymentId: string, body: ChatCompletionsOptions, options?: GetChatCompletionsWithAzureExtensionsOptions): Promise<ChatCompletions>;
@@ -301,6 +311,18 @@ export interface OpenAIClientOptions extends ClientOptions {
 export interface PromptFilterResult {
     contentFilterResults?: ContentFilterResults;
     promptIndex: number;
+}
+
+// Warning: (ae-forgotten-export) The symbol "OpenAIContext" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: OpenAIContext | OpenAIClient, serializedState: string, sourceOperation: (...args: any[]) => Next.PollerLike<Next.OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): Next.PollerLike<Next.OperationState<TResult>, TResult>;
+
+// @public (undocumented)
+export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
+    abortSignal?: AbortSignalLike;
+    processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
+    updateIntervalInMs?: number;
 }
 
 // (No @packageDocumentation comment for this package)

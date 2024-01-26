@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Next } from "@marygao/core-lro";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
@@ -11,6 +12,7 @@ import {
   ChatCompletionsOptions,
   ChatCompletions,
   BatchImageGenerationOperationResponse,
+  ImageGenerations,
   ImageGenerationOptions,
 } from "./models/models.js";
 import {
@@ -123,7 +125,7 @@ export class OpenAIClient {
   beginAzureBatchImageGeneration(
     body: ImageGenerationOptions,
     options: BeginAzureBatchImageGenerationOptions = { requestOptions: {} },
-  ): Promise<BatchImageGenerationOperationResponse> {
+  ): Next.PollerLike<Next.OperationState<ImageGenerations>, ImageGenerations> {
     return beginAzureBatchImageGeneration(this._client, body, options);
   }
 }

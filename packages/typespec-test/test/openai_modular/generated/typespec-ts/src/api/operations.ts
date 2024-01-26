@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { getLongRunningPoller } from "./pollingHelpers.js";
+import { Next } from "@marygao/core-lro";
 import {
   EmbeddingsOptions,
   Embeddings,
@@ -9,6 +11,7 @@ import {
   ChatCompletionsOptions,
   ChatCompletions,
   BatchImageGenerationOperationResponse,
+  ImageGenerations,
   ImageGenerationOptions,
 } from "../models/models.js";
 import {
@@ -806,36 +809,38 @@ export async function _beginAzureBatchImageGenerationDeserialize(
     | BeginAzureBatchImageGeneration202Response
     | BeginAzureBatchImageGenerationDefaultResponse
     | BeginAzureBatchImageGenerationLogicalResponse,
-): Promise<BatchImageGenerationOperationResponse> {
+): Promise<ImageGenerations> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
+  if (result?.body?.result === undefined) {
+    throw createRestError(
+      `Expected a result in the response at position "result.body.result"`,
+      result,
+    );
+  }
+
   return {
-    id: result.body["id"],
-    created: new Date(result.body["created"]),
-    expires: result.body["expires"],
-    result: !result.body.result
-      ? undefined
-      : {
-          created: new Date(result.body.result?.["created"]),
-          data: result.body.result?.["data"] as any,
-        },
-    status: result.body["status"],
-    error: !result.body.error ? undefined : result.body.error,
+    created: new Date(result.body.result["created"]),
+    data: result.body.result["data"] as any,
   };
 }
 
 /** Starts the generation of a batch of images from a text caption */
-export async function beginAzureBatchImageGeneration(
+export function beginAzureBatchImageGeneration(
   context: Client,
   body: ImageGenerationOptions,
   options: BeginAzureBatchImageGenerationOptions = { requestOptions: {} },
-): Promise<BatchImageGenerationOperationResponse> {
-  const result = await _beginAzureBatchImageGenerationSend(
+): Next.PollerLike<Next.OperationState<ImageGenerations>, ImageGenerations> {
+  return getLongRunningPoller(
     context,
-    body,
-    options,
-  );
-  return _beginAzureBatchImageGenerationDeserialize(result);
+    _beginAzureBatchImageGenerationDeserialize,
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      getInitialResponse: () =>
+        _beginAzureBatchImageGenerationSend(context, body, options),
+    },
+  ) as Next.PollerLike<Next.OperationState<ImageGenerations>, ImageGenerations>;
 }
