@@ -16,8 +16,10 @@ export default function createClient(
   clientParam: string,
   options: ClientOptions = {},
 ): ServiceContext {
-  const baseUrl =
-    options.baseUrl ?? `${endpoint}/client/structure/${clientParam}`;
+  const endpointUrl =
+    options.endpoint ??
+    options.baseUrl ??
+    `${endpoint}/client/structure/${clientParam}`;
 
   const userAgentInfo = `azsdk-js-client-structure-multiclient-rest/1.0.0`;
   const userAgentPrefix =
@@ -34,7 +36,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as ServiceContext;
+  const client = getClient(endpointUrl, options) as ServiceContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
