@@ -216,8 +216,6 @@ export const nonBrandedRlcTsps: TypeSpecRanchConfig[] = [
 
 export const modularTsps: TypeSpecRanchConfig[] = [
   {
-    outputPath: "lro/standard",
-    inputPath: "azure/core/lro/standard"
     outputPath: "models/usage",
     inputPath: "type/model/usage"
   },
@@ -325,9 +323,7 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     outputPath: "models/propertyTypes",
     inputPath: "type/property/value-types"
   },
-  {  outputPath: "arrays/items",
-    inputPath: "type/array"
-  },
+  { outputPath: "arrays/items", inputPath: "type/array" },
   {
     outputPath: "models/inheritance/recursive",
     inputPath: "type/model/inheritance/recursive"
