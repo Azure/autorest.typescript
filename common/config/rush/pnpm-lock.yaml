@@ -1,5 +1,9 @@
 lockfileVersion: 5.4
 
+overrides:
+  '@azure/core-rest-pipeline': ~/azure-sdk-for-js/sdk/core/core-rest-pipeline
+  '@azure-rest/core-client': ~/azure-sdk-for-js/sdk/core/core-client-rest
+
 importers:
 
   .:
@@ -10,7 +14,7 @@ importers:
       '@autorest/codemodel': ~4.19.2
       '@autorest/extension-base': ^3.5.0
       '@autorest/testmodeler': ^2.4.0
-      '@azure-rest/core-client': ^1.1.6
+      '@azure-rest/core-client': ~/azure-sdk-for-js/sdk/core/core-client-rest
       '@azure-tools/codegen': ^2.9.1
       '@azure-tools/rlc-common': workspace:^0.20.0
       '@azure-tools/test-recorder': ^3.0.0
@@ -21,7 +25,7 @@ importers:
       '@azure/core-http-compat': ^1.2.0
       '@azure/core-lro': ^2.5.4
       '@azure/core-paging': ^1.5.0
-      '@azure/core-rest-pipeline': ^1.12.0
+      '@azure/core-rest-pipeline': ~/azure-sdk-for-js/sdk/core/core-rest-pipeline
       '@azure/core-tracing': ^1.0.0
       '@azure/core-util': ^1.4.0
       '@azure/core-xml': ^1.0.0-beta.1
@@ -78,7 +82,7 @@ importers:
       '@autorest/codemodel': 4.19.3
       '@autorest/extension-base': 3.5.2
       '@autorest/testmodeler': 2.6.1
-      '@azure-rest/core-client': 1.1.6
+      '@azure-rest/core-client': link:../../../azure-sdk-for-js/sdk/core/core-client-rest
       '@azure-tools/codegen': 2.9.2
       '@azure-tools/rlc-common': link:../rlc-common
       '@azure/core-auth': 1.5.0
@@ -87,7 +91,7 @@ importers:
       '@azure/core-http-compat': 1.3.0
       '@azure/core-lro': 2.5.4
       '@azure/core-paging': 1.5.0
-      '@azure/core-rest-pipeline': 1.12.1
+      '@azure/core-rest-pipeline': link:../../../azure-sdk-for-js/sdk/core/core-rest-pipeline
       '@azure/core-tracing': 1.0.1
       '@azure/logger': 1.0.4
       '@types/lodash': 4.14.199
@@ -226,7 +230,7 @@ importers:
 
   ../../packages/typespec-ts:
     specifiers:
-      '@azure-rest/core-client': ^1.1.6
+      '@azure-rest/core-client': ~/azure-sdk-for-js/sdk/core/core-client-rest
       '@azure-tools/cadl-ranch': ^0.11.2
       '@azure-tools/cadl-ranch-expect': ^0.11.0
       '@azure-tools/cadl-ranch-specs': ^0.28.7
@@ -236,7 +240,7 @@ importers:
       '@azure/core-auth': ^1.3.2
       '@azure/core-lro': ^2.5.4
       '@azure/core-paging': ^1.5.0
-      '@azure/core-rest-pipeline': ^1.12.0
+      '@azure/core-rest-pipeline': ~/azure-sdk-for-js/sdk/core/core-rest-pipeline
       '@azure/core-util': ^1.4.0
       '@azure/logger': ^1.0.4
       '@types/chai': ^4.3.1
@@ -277,14 +281,14 @@ importers:
       ts-morph: 15.1.0
       tslib: 2.6.2
     devDependencies:
-      '@azure-rest/core-client': 1.1.6
+      '@azure-rest/core-client': link:../../../azure-sdk-for-js/sdk/core/core-client-rest
       '@azure-tools/cadl-ranch': 0.11.2_jomoca4gmv4qvfhpxu6msmnyuy
       '@azure-tools/cadl-ranch-expect': 0.11.0_ejqqrhxs4enfjwgbuhtcygsti4
       '@azure-tools/cadl-ranch-specs': 0.28.7_ktlnye6tq344n3leprf7kev6zm
       '@azure/core-auth': 1.5.0
       '@azure/core-lro': 2.5.4
       '@azure/core-paging': 1.5.0
-      '@azure/core-rest-pipeline': 1.12.1
+      '@azure/core-rest-pipeline': link:../../../azure-sdk-for-js/sdk/core/core-rest-pipeline
       '@azure/core-util': 1.5.0
       '@azure/logger': 1.0.4
       '@types/chai': 4.3.6
@@ -333,19 +337,6 @@ packages:
     resolution: {integrity: sha512-7OXzYet3S/Hiow9LzHUY5qdNRnceSQd41wKEGzfcGVleyWRobYJgYxGmUEyFZP4ZSerAb+QqygSvo9yWIC3nrQ==}
     dev: false
 
-  /@azure-rest/core-client/1.1.6:
-    resolution: {integrity: sha512-f/eM9o7BHVvjz2HciCwM7LhRcUO4o+okj6NStQK/BNqeTTg5hGWC+ja2vDPfh5ldkXAcBRFC7zyiGUNQYtPyAg==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      '@azure/abort-controller': 1.1.0
-      '@azure/core-auth': 1.5.0
-      '@azure/core-rest-pipeline': 1.12.1
-      '@azure/core-tracing': 1.0.1
-      '@azure/core-util': 1.5.0
-      tslib: 2.6.2
-    transitivePeerDependencies:
-      - supports-color
-
   /@azure-tools/async-io/3.0.254:
     resolution: {integrity: sha512-X1C7XdyCuo50ch9FzKtTvmK18FgDxxf1Bbt3cSoknQqeDaRegHSSCO+zByq2YA4NvUzKXeZ1engh29IDxZXgpQ==}
     engines: {node: '>=10.12.0'}
@@ -381,7 +372,6 @@ packages:
       '@types/node': 18.18.0
     transitivePeerDependencies:
       - encoding
-      - supports-color
     dev: true
 
   /@azure-tools/cadl-ranch-expect/0.11.0_ejqqrhxs4enfjwgbuhtcygsti4:
@@ -421,7 +411,6 @@ packages:
     transitivePeerDependencies:
       - '@types/express'
       - encoding
-      - supports-color
     dev: true
 
   /@azure-tools/cadl-ranch/0.11.2_jomoca4gmv4qvfhpxu6msmnyuy:
@@ -457,7 +446,6 @@ packages:
       - '@types/express'
       - '@typespec/versioning'
       - encoding
-      - supports-color
     dev: true
 
   /@azure-tools/codegen/2.9.2:
@@ -479,11 +467,9 @@ packages:
     engines: {node: '>=14.0.0'}
     dependencies:
       '@azure/core-auth': 1.5.0
-      '@azure/core-rest-pipeline': 1.12.1
+      '@azure/core-rest-pipeline': link:../../../azure-sdk-for-js/sdk/core/core-rest-pipeline
       '@azure/core-util': 1.5.0
       '@azure/logger': 1.0.4
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@azure-tools/typespec-autorest/0.37.2_5kmgmb7zg7fbvjypl7nux4vhay:
@@ -554,13 +540,11 @@ packages:
     dependencies:
       '@azure/abort-controller': 1.1.0
       '@azure/core-auth': 1.5.0
-      '@azure/core-rest-pipeline': 1.12.1
+      '@azure/core-rest-pipeline': link:../../../azure-sdk-for-js/sdk/core/core-rest-pipeline
       '@azure/core-tracing': 1.0.1
       '@azure/core-util': 1.5.0
       '@azure/logger': 1.0.4
       tslib: 2.6.2
-    transitivePeerDependencies:
-      - supports-color
 
   /@azure/core-http-compat/1.3.0:
     resolution: {integrity: sha512-ZN9avruqbQ5TxopzG3ih3KRy52n8OAbitX3fnZT5go4hzu0J+KVPSzkL+Wt3hpJpdG8WIfg1sBD1tWkgUdEpBA==}
@@ -568,9 +552,7 @@ packages:
     dependencies:
       '@azure/abort-controller': 1.1.0
       '@azure/core-client': 1.7.3
-      '@azure/core-rest-pipeline': 1.12.1
-    transitivePeerDependencies:
-      - supports-color
+      '@azure/core-rest-pipeline': link:../../../azure-sdk-for-js/sdk/core/core-rest-pipeline
     dev: false
 
   /@azure/core-http/3.0.3:
@@ -609,22 +591,6 @@ packages:
     dependencies:
       tslib: 2.6.2
 
-  /@azure/core-rest-pipeline/1.12.1:
-    resolution: {integrity: sha512-SsyWQ+T5MFQRX+M8H/66AlaI6HyCbQStGfFngx2fuiW+vKI2DkhtOvbYodPyf9fOe/ARLWWc3ohX54lQ5Kmaog==}
-    engines: {node: '>=14.0.0'}
-    dependencies:
-      '@azure/abort-controller': 1.1.0
-      '@azure/core-auth': 1.5.0
-      '@azure/core-tracing': 1.0.1
-      '@azure/core-util': 1.5.0
-      '@azure/logger': 1.0.4
-      form-data: 4.0.0
-      http-proxy-agent: 5.0.0
-      https-proxy-agent: 5.0.1
-      tslib: 2.6.2
-    transitivePeerDependencies:
-      - supports-color
-
   /@azure/core-tracing/1.0.0-preview.13:
     resolution: {integrity: sha512-KxDlhXyMlh2Jhj2ykX6vNEU0Vou4nHr025KoSEiz7cS3BNiHNaZcdECk/DmLkEB0as5T7b/TpRcehJ5yV6NeXQ==}
     engines: {node: '>=12.0.0'}
@@ -661,7 +627,7 @@ packages:
       '@azure/abort-controller': 1.1.0
       '@azure/core-auth': 1.5.0
       '@azure/core-client': 1.7.3
-      '@azure/core-rest-pipeline': 1.12.1
+      '@azure/core-rest-pipeline': link:../../../azure-sdk-for-js/sdk/core/core-rest-pipeline
       '@azure/core-tracing': 1.0.1
       '@azure/core-util': 1.5.0
       '@azure/logger': 1.0.4
@@ -674,8 +640,6 @@ packages:
       stoppable: 1.1.0
       tslib: 2.6.2
       uuid: 8.3.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@azure/logger/1.0.4:
@@ -1004,6 +968,7 @@ packages:
   /@tootallnate/once/2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
     engines: {node: '>= 10'}
+    dev: true
 
   /@tootallnate/quickjs-emscripten/0.23.0:
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
@@ -1574,6 +1539,7 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /agent-base/7.1.0:
     resolution: {integrity: sha512-o/zjMZRhJxny7OyEF+Op8X+efiELC7k7yOjMzgfzVqOzXqkBkWI79YoTdOtsuWd5BWhAGAuOY/Xa6xpiaWXiNg==}
@@ -2300,6 +2266,7 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+    dev: true
 
   /debug/4.3.4_supports-color@8.1.1:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
@@ -3408,6 +3375,7 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /http-proxy-agent/7.0.0:
     resolution: {integrity: sha512-+ZT+iBxVUQ1asugqnD6oWoRiS25AkjNfG085dKJGtGxkdwLQrMKU5wJr2bOOFAXzKcTuqq+7fZlTMgG3SRfIYQ==}
@@ -3447,6 +3415,7 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /https-proxy-agent/7.0.2:
     resolution: {integrity: sha512-NmLNjm6ucYwtcUmL7JQC1ZQ57LmHP4lT15FQ8D61nak1rO6DH+fz5qNK2Ap5UN4ZapYICE3/0KodcLYSPsPbaA==}
@@ -4366,6 +4335,7 @@ packages:
 
   /ms/2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
+    dev: true
 
   /ms/2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
