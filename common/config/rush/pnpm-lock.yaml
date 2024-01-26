@@ -226,7 +226,7 @@ importers:
 
   ../../packages/typespec-ts:
     specifiers:
-      '@azure-rest/core-client': ^1.1.6
+      '@azure-rest/core-client': /Users/zhangqiaoqiao/work/code/azure-sdk-for-js/sdk/core/core-client-rest/azure-rest-core-client-1.2.0.tgz
       '@azure-tools/cadl-ranch': ^0.10.0
       '@azure-tools/cadl-ranch-expect': ^0.9.0
       '@azure-tools/cadl-ranch-specs': ^0.26.2
@@ -277,7 +277,7 @@ importers:
       ts-morph: 15.1.0
       tslib: 2.6.2
     devDependencies:
-      '@azure-rest/core-client': 1.1.6
+      '@azure-rest/core-client': file:../../../azure-sdk-for-js/sdk/core/core-client-rest/azure-rest-core-client-1.2.0.tgz
       '@azure-tools/cadl-ranch': 0.10.0_jomoca4gmv4qvfhpxu6msmnyuy
       '@azure-tools/cadl-ranch-expect': 0.9.0_ejqqrhxs4enfjwgbuhtcygsti4
       '@azure-tools/cadl-ranch-specs': 0.26.2_7c67xkvq6tze6rgrnuoqtreaay
@@ -345,6 +345,7 @@ packages:
       tslib: 2.6.2
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /@azure-tools/async-io/3.0.254:
     resolution: {integrity: sha512-X1C7XdyCuo50ch9FzKtTvmK18FgDxxf1Bbt3cSoknQqeDaRegHSSCO+zByq2YA4NvUzKXeZ1engh29IDxZXgpQ==}
@@ -552,6 +553,13 @@ packages:
     engines: {node: '>=12.0.0'}
     dependencies:
       tslib: 2.6.2
+
+  /@azure/abort-controller/2.0.0:
+    resolution: {integrity: sha512-RP/mR/WJchR+g+nQFJGOec+nzeN/VvjlwbinccoqfhTsTHbb8X5+mLDp48kHT0ueyum0BNSwGm0kX0UZuIqTGg==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      tslib: 2.6.2
+    dev: true
 
   /@azure/core-auth/1.5.0:
     resolution: {integrity: sha512-udzoBuYG1VBoHVohDTrvKjyzel34zt77Bhp7dQntVGGD0ehVq48owENbBG8fIgkHRNUBQH5k1r0hpoMu5L8+kw==}
@@ -6394,4 +6402,20 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  file:../../../azure-sdk-for-js/sdk/core/core-client-rest/azure-rest-core-client-1.2.0.tgz:
+    resolution: {integrity: sha512-KEGlTWC6Al2cmcx1dMTNbUbG/8afGCaqWhWypDpK8s/NYV0u/yx9DO6R5FvEDnADuNbNmUJxadLf/9MXIg8mdQ==, tarball: file:../../../azure-sdk-for-js/sdk/core/core-client-rest/azure-rest-core-client-1.2.0.tgz}
+    name: '@azure-rest/core-client'
+    version: 1.2.0
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      '@azure/abort-controller': 2.0.0
+      '@azure/core-auth': 1.5.0
+      '@azure/core-rest-pipeline': 1.12.1
+      '@azure/core-tracing': 1.0.1
+      '@azure/core-util': 1.5.0
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true

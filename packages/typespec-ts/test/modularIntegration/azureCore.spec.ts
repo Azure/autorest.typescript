@@ -178,11 +178,12 @@ describe("BasicClient Classical Client", () => {
         name: "Madge",
         id: 1,
         etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-      });
-      console.log(user);
-      // assert.strictEqual(user?.id, 1);
-      // assert.strictEqual(user?.name, "Madge");
-      // assert.strictEqual(user?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b59");
+      }, {
+        contentType: "application/json"
+      } as any);
+      assert.strictEqual(user?.id, 1);
+      assert.strictEqual(user?.name, "Madge");
+      assert.strictEqual(user?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b59");
     } catch (err) {
       assert.fail(err as string);
     }
