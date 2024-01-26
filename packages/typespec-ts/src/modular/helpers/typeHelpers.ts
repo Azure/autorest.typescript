@@ -101,8 +101,8 @@ export function getType(type: Type, format?: string): TypeMetadata {
     case "dict":
       return handleDictType(type);
 
-    case "never":
-      return { name: "never" };
+    case "never": 
+      return { name: "never", nullable: type.nullable };
 
     default:
       throw new Error(`Unsupported type ${type.type}`);
