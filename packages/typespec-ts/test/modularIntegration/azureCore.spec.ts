@@ -172,7 +172,7 @@ describe("BasicClient Classical Client", () => {
     }
   });
 
-  it.only("should create or replace a user", async () => {
+  it("should create or replace a user", async () => {
     try {
       const user = await client.createOrReplace(1, {
         name: "Madge",
