@@ -20,6 +20,14 @@ export function buildRootIndex(
   }
 
   exportClassicalClient(client, rootIndexFile, subfolder);
+  exportRestoreHelpers(
+    rootIndexFile,
+    project,
+    srcPath,
+    clientName,
+    subfolder,
+    true
+  );
   exportModules(
     rootIndexFile,
     project,
@@ -38,6 +46,40 @@ export function buildRootIndex(
     subfolder,
     true
   );
+}
+
+function exportRestoreHelpers(
+  indexFile: SourceFile,
+  project: Project,
+  srcPath: string,
+  clientName: string,
+  subfolder: string = "",
+  isTopLevel: boolean = false
+) {
+  const helperFile = project.getSourceFile(
+    `${srcPath}/${
+      subfolder !== "" ? subfolder + "/" : ""
+    }restorePollerHelpers.ts`
+  );
+  if (!helperFile) {
+    return;
+  }
+  const exported = [...indexFile.getExportedDeclarations().keys()];
+  const namedExports = [...helperFile.getExportedDeclarations().keys()].map(
+    (helper) => {
+      if (exported.indexOf(helper) > -1) {
+        return `${helper} as ${clientName}${helper}`;
+      }
+      return helper;
+    }
+  );
+  const moduleSpecifier = `./${
+    isTopLevel && subfolder !== "" ? subfolder + "/" : ""
+  }restorePollerHelpers.js`;
+  indexFile.addExportDeclaration({
+    moduleSpecifier,
+    namedExports
+  });
 }
 
 function exportClassicalClient(
@@ -113,6 +155,13 @@ export function buildSubClientIndexFile(
   }
 
   exportClassicalClient(client, subClientIndexFile, subfolder, true);
+  exportRestoreHelpers(
+    subClientIndexFile,
+    codeModel.project,
+    srcPath,
+    clientName,
+    subfolder
+  );
   exportModules(
     subClientIndexFile,
     codeModel.project,

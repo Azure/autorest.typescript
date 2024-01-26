@@ -5,6 +5,7 @@ export {
   WidgetServiceClient,
   WidgetServiceClientOptions,
 } from "./WidgetServiceClient.js";
+export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   Widget,
   ListWidgetsPagesResults,

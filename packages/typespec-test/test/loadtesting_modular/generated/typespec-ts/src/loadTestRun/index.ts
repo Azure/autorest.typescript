@@ -5,6 +5,7 @@ export {
   LoadTestRunClient,
   LoadTestRunClientOptions,
 } from "./LoadTestRunClient.js";
+export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   Test,
   PassFailCriteria,

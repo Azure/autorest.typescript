@@ -4,10 +4,21 @@
 
 ```ts
 
+/// <reference types="node" />
+
+import { AbortSignalLike } from '@azure/abort-controller';
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
+import { HttpResponse } from '@azure-rest/core-client';
 import { Next } from '@marygao/core-lro';
 import { OperationOptions } from '@azure-rest/core-client';
+import { Paged } from '@azure/core-paging';
+import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { RawHttpHeaders } from '@azure/core-rest-pipeline';
+import { RequestParameters } from '@azure-rest/core-client';
+import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -680,6 +691,18 @@ export interface ResourceMetric {
     resourceId: string;
     resourceType: string;
     unit?: string;
+}
+
+// Warning: (ae-forgotten-export) The symbol "AzureLoadTestingContext" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: AzureLoadTestingContext | LoadTestRunClient, serializedState: string, sourceOperation: (...args: any[]) => Next.PollerLike<Next.OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): Next.PollerLike<Next.OperationState<TResult>, TResult>;
+
+// @public (undocumented)
+export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
+    abortSignal?: AbortSignalLike;
+    processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
+    updateIntervalInMs?: number;
 }
 
 // @public

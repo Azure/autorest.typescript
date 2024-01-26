@@ -72,6 +72,10 @@ export {
   LoadTestRunClientOptions,
 } from "./loadTestRun/LoadTestRunClient.js";
 export {
+  restorePoller,
+  RestorePollerOptions,
+} from "./loadTestRun/restorePollerHelpers.js";
+export {
   Test as LoadTestRunClientTest,
   PassFailCriteria as LoadTestRunClientPassFailCriteria,
   PassFailMetric as LoadTestRunClientPassFailMetric,
