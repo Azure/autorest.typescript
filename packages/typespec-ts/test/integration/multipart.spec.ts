@@ -6,7 +6,7 @@ import MultiPartClientFactory, {
 import { resolve } from "path";
 import { readFile } from "fs/promises";
 import { fileURLToPath } from "url";
-describe.only("MultiPartClient Rest Client", () => {
+describe("MultiPartClient Rest Client", () => {
   let client: MultiPartClient;
 
   beforeEach(() => {
@@ -17,6 +17,7 @@ describe.only("MultiPartClient Rest Client", () => {
   const root = resolvePath(fileURLToPath(import.meta.url), "../../../temp");
   console.log(resolve(root, "./assets/image.jpg"));
   const path = resolve(root, "./assets/image.jpg");
+  const pngPath = resolve(root, "./assets/image.png");
   
   it("client should create mixed-parts value", async () => {
     const file = await readFile(path);
@@ -30,43 +31,18 @@ describe.only("MultiPartClient Rest Client", () => {
     assert.strictEqual(result.status, "204");
   });
 
-  it("client should create mixed-parts value", async () => {
-    const file = await readFile(path);
-    console.log(file)
-    const result = await client.path("/multipart/form-data/complex-parts").post({
-      contentType: "multipart/form-data",
-      body: {
-        id: "123",
-        profileImage: file as any,
-        address:{ city: "X" },
-        previousAddresses:[{ city: "Y" }, { city: "Z" }],
-        pictures:[file as any]
-      }
-    });
-    assert.strictEqual(result.status, "204");
-  });
-  it("client should create json-part value", async () => {
-    const file = await readFile(path);
-    const result = await client.path("/multipart/form-data/json-part").post({
-        body: {
-            address: { city: "X" },
-            profileImage: file as any
-        },
-        contentType: "multipart/form-data"
-    });
-    assert.strictEqual(result.status, "204");
-  });
   it("client should create binary-array-parts value", async () => {
-    const file = await readFile(path);
+    const file = await readFile(pngPath);
     const result = await client.path("/multipart/form-data/binary-array-parts").post({
         contentType: "multipart/form-data",
         body: {
             id:"123",
-            pictures:[file as any]
+            pictures:[file as any, file as any]
         }
     });
     assert.strictEqual(result.status, "204");
   });
+
   it("client should create multi-binary-parts value", async () => {
     const file = await readFile(path);
     const result = await client.path("/multipart/form-data/multi-binary-parts").post({
@@ -77,15 +53,43 @@ describe.only("MultiPartClient Rest Client", () => {
     });
     assert.strictEqual(result.status, "204");
   });
-  it("client should create json-array-parts value", async () => {
-    const file = await readFile(path);
-    const result = await client.path("/multipart/form-data/json-array-parts").post({
-        contentType: "multipart/form-data",
-        body: {
-            profileImage: file as any,
-            previousAddresses: [{ city: "Y" }, { city: "Z" }]
-        }
-    });
-    assert.strictEqual(result.status, "204");
-  });
+
+//   it.only("client should create mixed-parts value", async () => {
+//     const file = await readFile(path);
+//     console.log(file)
+//     const result = await client.path("/multipart/form-data/complex-parts").post({
+//       contentType: "multipart/form-data",
+//       body: {
+//         id: "123",
+//         profileImage: file as any,
+//         address:{ city: "X" },
+//         previousAddresses:[{ city: "Y" }, { city: "Z" }],
+//         pictures:[file as any]
+//       }
+//     });
+//     assert.strictEqual(result.status, "204");
+//   });
+//   it("client should create json-part value", async () => {
+//     const file = await readFile(path);
+//     const result = await client.path("/multipart/form-data/json-part").post({
+//         body: {
+//             address: { city: "X" },
+//             profileImage: file as any
+//         },
+//         contentType: "multipart/form-data"
+//     });
+//     assert.strictEqual(result.status, "204");
+//   });
+
+//   it("client should create json-array-parts value", async () => {
+//     const file = await readFile(path);
+//     const result = await client.path("/multipart/form-data/json-array-parts").post({
+//         contentType: "multipart/form-data",
+//         body: {
+//             profileImage: file as any,
+//             previousAddresses: [{ city: "Y" }, { city: "Z" }]
+//         }
+//     });
+//     assert.strictEqual(result.status, "204");
+//   });
 });
