@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Next } from "@marygao/core-lro";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
@@ -72,7 +73,7 @@ export class LoadTestRunClient {
     testRunId: string,
     resource: TestRun,
     options: TestRunOptions = { requestOptions: {} },
-  ): Promise<TestRun> {
+  ): Next.PollerLike<Next.OperationState<TestRun>, TestRun> {
     return testRun(this._client, testRunId, resource, options);
   }
 

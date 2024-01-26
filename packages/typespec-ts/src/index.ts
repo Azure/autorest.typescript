@@ -411,4 +411,6 @@ export function removeUnusedInterfaces(project: Project) {
     }
     interfaceDeclaration.interfaceDeclaration.remove();
   });
+
+  project.getSourceFiles().forEach((file) => file.fixUnusedIdentifiers());
 }

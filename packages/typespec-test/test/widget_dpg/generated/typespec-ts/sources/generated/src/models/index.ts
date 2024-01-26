@@ -8,6 +8,7 @@ export {
   User,
   UpdateWidget,
   AnalyzeResult,
+  OperationState,
 } from "./models.js";
 export {
   WidgetsListWidgetsOptions,
@@ -20,6 +21,7 @@ export {
   WidgetsDeleteWidgetOptions,
   WidgetsAnalyzeWidgetOptions,
   BudgetsCreateOrReplaceOptions,
+  BudgetsCreateOrUpdateOptions,
 } from "./options.js";
 export {
   PageSettings,

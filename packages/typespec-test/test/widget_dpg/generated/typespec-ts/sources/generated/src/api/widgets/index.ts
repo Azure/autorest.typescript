@@ -336,7 +336,7 @@ export function _createOrReplaceSend(
 > {
   return context
     .path("/widgets/widgets/createOrReplace/users/{name}", name)
-    .post({
+    .put({
       ...operationOptionsToRequestParameters(options),
       body: { role: resource["role"], id: resource["id"] },
     });

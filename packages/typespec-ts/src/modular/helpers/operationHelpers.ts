@@ -160,6 +160,15 @@ export function getDeserializePrivateFunction(
     }
   }
 
+  // TODO: Hard-coded for LRO PATCH case for now
+  // Considering 1) there exists issues in getLroMetadata() for PATCH and 2) we don't have real case yet
+  if (isLroOnly && operation.method.toLowerCase() === "patch") {
+    statements.push(`return result.body as any`);
+    return {
+      ...functionStatement,
+      statements
+    };
+  }
   const deserializedType = isLroOnly
     ? operation?.lroMetadata?.finalResult
     : response.type;

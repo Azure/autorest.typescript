@@ -33,3 +33,10 @@ export interface BudgetsCreateOrReplaceOptions extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
 }
+
+export interface BudgetsCreateOrUpdateOptions extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** This request has a JSON Merge Patch body. */
+  contentType?: string;
+}

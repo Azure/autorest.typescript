@@ -12,6 +12,7 @@ import {
   WidgetsCreateOrReplaceParameters,
   WidgetsAnalyzeWidgetParameters,
   BudgetsCreateOrReplaceParameters,
+  BudgetsCreateOrUpdateParameters,
 } from "./parameters.js";
 import {
   WidgetsListWidgets200Response,
@@ -36,6 +37,9 @@ import {
   BudgetsCreateOrReplace200Response,
   BudgetsCreateOrReplace201Response,
   BudgetsCreateOrReplaceDefaultResponse,
+  BudgetsCreateOrUpdate200Response,
+  BudgetsCreateOrUpdate201Response,
+  BudgetsCreateOrUpdateDefaultResponse,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -103,7 +107,7 @@ export interface WidgetsGetWidget {
 
 export interface WidgetsCreateOrReplace {
   /** Long-running resource create or replace operation template. */
-  post(
+  put(
     options: WidgetsCreateOrReplaceParameters,
   ): StreamableMethod<
     | WidgetsCreateOrReplace200Response
@@ -123,12 +127,23 @@ export interface WidgetsAnalyzeWidget {
 
 export interface BudgetsCreateOrReplace {
   /** Long-running resource create or replace operation template. */
-  post(
+  put(
     options: BudgetsCreateOrReplaceParameters,
   ): StreamableMethod<
     | BudgetsCreateOrReplace200Response
     | BudgetsCreateOrReplace201Response
     | BudgetsCreateOrReplaceDefaultResponse
+  >;
+}
+
+export interface BudgetsCreateOrUpdate {
+  /** Long-running resource create or update operation template. */
+  patch(
+    options: BudgetsCreateOrUpdateParameters,
+  ): StreamableMethod<
+    | BudgetsCreateOrUpdate200Response
+    | BudgetsCreateOrUpdate201Response
+    | BudgetsCreateOrUpdateDefaultResponse
   >;
 }
 
@@ -139,18 +154,23 @@ export interface Routes {
   (path: "/widgets/widgets/pages"): WidgetsListWidgetsPages;
   /** Resource for '/widgets/\{id\}' has methods for the following verbs: get, patch, delete */
   (path: "/widgets/{id}", id: string): WidgetsGetWidget;
-  /** Resource for '/widgets/widgets/createOrReplace/users/\{name\}' has methods for the following verbs: post */
+  /** Resource for '/widgets/widgets/createOrReplace/users/\{name\}' has methods for the following verbs: put */
   (
     path: "/widgets/widgets/createOrReplace/users/{name}",
     name: string,
   ): WidgetsCreateOrReplace;
   /** Resource for '/widgets/\{id\}/analyze' has methods for the following verbs: post */
   (path: "/widgets/{id}/analyze", id: string): WidgetsAnalyzeWidget;
-  /** Resource for '/budgets/widgets/createOrReplace/users/\{name\}' has methods for the following verbs: post */
+  /** Resource for '/budgets/widgets/createOrReplace/users/\{name\}' has methods for the following verbs: put */
   (
     path: "/budgets/widgets/createOrReplace/users/{name}",
     name: string,
   ): BudgetsCreateOrReplace;
+  /** Resource for '/budgets/widgets/createOrUpdate/users/\{name\}' has methods for the following verbs: patch */
+  (
+    path: "/budgets/widgets/createOrUpdate/users/{name}",
+    name: string,
+  ): BudgetsCreateOrUpdate;
 }
 
 export type WidgetServiceContext = Client & {

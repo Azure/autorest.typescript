@@ -81,3 +81,20 @@ export interface BudgetsCreateOrReplaceBodyParam {
 
 export type BudgetsCreateOrReplaceParameters = BudgetsCreateOrReplaceBodyParam &
   RequestParameters;
+/** The resource instance. */
+export type UserResourceMergeAndPatch = Partial<User>;
+
+export interface BudgetsCreateOrUpdateBodyParam {
+  /** The resource instance. */
+  body: UserResourceMergeAndPatch;
+}
+
+export interface BudgetsCreateOrUpdateMediaTypesParam {
+  /** This request has a JSON Merge Patch body. */
+  contentType: "application/merge-patch+json";
+}
+
+export type BudgetsCreateOrUpdateParameters =
+  BudgetsCreateOrUpdateMediaTypesParam &
+    BudgetsCreateOrUpdateBodyParam &
+    RequestParameters;

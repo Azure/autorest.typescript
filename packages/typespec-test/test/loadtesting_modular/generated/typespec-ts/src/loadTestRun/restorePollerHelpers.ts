@@ -2,14 +2,10 @@
 // Licensed under the MIT license.
 
 import { Next } from "@marygao/core-lro";
-import { WidgetServiceContext } from "./api/WidgetServiceContext.js";
-import { WidgetServiceClient } from "./WidgetServiceClient.js";
+import { LoadTestRunContext } from "./api/LoadTestRunContext.js";
+import { LoadTestRunClient } from "./LoadTestRunClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
-import { _createOrReplaceDeserialize } from "./api/widgets/index.js";
-import {
-  _createOrReplaceDeserialize as _createOrReplaceDeserializeBudgets,
-  _createOrUpdateDeserialize,
-} from "./api/budgets/index.js";
+import { _testRunDeserialize } from "./api/operations.js";
 
 import {
   PathUncheckedResponse,
@@ -32,12 +28,7 @@ export interface RestorePollerOptions<
 }
 
 const deserializeMap: Record<string, Function> = {
-  "PUT /widgets/widgets/createOrReplace/users/{name}":
-    _createOrReplaceDeserialize,
-  "PUT /budgets/widgets/createOrReplace/users/{name}":
-    _createOrReplaceDeserializeBudgets,
-  "PATCH /budgets/widgets/createOrUpdate/users/{name}":
-    _createOrUpdateDeserialize,
+  "PATCH /test-runs/{testRunId}": _testRunDeserialize,
 };
 
 /**
@@ -46,7 +37,7 @@ const deserializeMap: Record<string, Function> = {
  * needs to be constructed after the original one is not in scope.
  */
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
-  client: WidgetServiceContext | WidgetServiceClient,
+  client: LoadTestRunContext | LoadTestRunClient,
   serializedState: string,
   sourceOperation: (
     ...args: any[]
