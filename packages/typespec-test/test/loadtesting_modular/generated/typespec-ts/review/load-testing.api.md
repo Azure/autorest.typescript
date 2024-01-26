@@ -5,6 +5,7 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { Next } from '@marygao/core-lro';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
@@ -235,7 +236,7 @@ export class LoadTestRunClient {
     listTestRuns(options?: ListTestRunsOptions): LoadTestRunClientPagedAsyncIterableIterator<LoadTestRunClientTestRun>;
     readonly pipeline: Pipeline;
     stopTestRun(testRunId: string, options?: StopTestRunOptions): Promise<LoadTestRunClientTestRun>;
-    testRun(testRunId: string, resource: LoadTestRunClientTestRun, options?: TestRunOptions): Promise<LoadTestRunClientTestRun>;
+    testRun(testRunId: string, resource: LoadTestRunClientTestRun, options?: TestRunOptions): Next.PollerLike<Next.OperationState<LoadTestRunClientTestRun>, LoadTestRunClientTestRun>;
 }
 
 // @public
@@ -374,6 +375,9 @@ export interface LoadTestRunClientNameAndDesc {
     description?: string;
     name?: string;
 }
+
+// @public
+export type LoadTestRunClientOperationState = string;
 
 // @public
 export interface LoadTestRunClientOptionalLoadTestConfig {
@@ -600,6 +604,9 @@ export interface NameAndDesc {
 }
 
 // @public
+export type OperationState = string;
+
+// @public
 export interface OptionalLoadTestConfig {
     duration?: number;
     endpointUrl?: string;
@@ -778,6 +785,7 @@ export interface TestRunInputArtifacts {
 export interface TestRunOptions extends OperationOptions {
     contentType?: string;
     oldTestRunId?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public

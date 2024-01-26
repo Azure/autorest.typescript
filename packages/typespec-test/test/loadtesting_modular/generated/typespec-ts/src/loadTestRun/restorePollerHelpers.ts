@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { Next } from "@marygao/core-lro";
-import { LoadTestRunContext } from "./api/LoadTestRunContext.js";
+import { AzureLoadTestingContext } from "./api/LoadTestRunContext.js";
 import { LoadTestRunClient } from "./LoadTestRunClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import { _testRunDeserialize } from "./api/operations.js";
@@ -37,7 +37,7 @@ const deserializeMap: Record<string, Function> = {
  * needs to be constructed after the original one is not in scope.
  */
 export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
-  client: LoadTestRunContext | LoadTestRunClient,
+  client: AzureLoadTestingContext | LoadTestRunClient,
   serializedState: string,
   sourceOperation: (
     ...args: any[]

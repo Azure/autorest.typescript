@@ -204,12 +204,12 @@ export function buildRestorePollerHelper(
 }
 
 function importClientContext(client: Client, sourceFile: SourceFile): string[] {
-  const modularClientName = getClientName(client);
+  const name = getClientName(client);
   const classicalClientname = `${getClientName(client)}Client`;
-  const clientContextName = `${modularClientName}Context`;
+  const clientContextName = client.rlcClientName;
   sourceFile.addImportDeclaration({
     namedImports: [`${clientContextName}`],
-    moduleSpecifier: `./api/${clientContextName}.js`
+    moduleSpecifier: `./api/${name}Context.js`
   });
 
   sourceFile.addImportDeclaration({

@@ -21,9 +21,17 @@ export interface BudgetsCreateOrReplaceOptions extends OperationOptions {
 }
 
 // @public (undocumented)
+export interface BudgetsCreateOrUpdateOptions extends OperationOptions {
+    contentType?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public (undocumented)
 export interface BudgetsOperations {
     // (undocumented)
     createOrReplace: (name: string, resource: User, options?: BudgetsCreateOrReplaceOptions) => Next.PollerLike<Next.OperationState<User>, User>;
+    // (undocumented)
+    createOrUpdate: (name: string, resource: User, options?: BudgetsCreateOrUpdateOptions) => Next.PollerLike<Next.OperationState<User>, User>;
 }
 
 // @public
@@ -42,6 +50,9 @@ export interface ListWidgetsPagesResults {
     "odata.nextLink"?: string;
     results: Widget[];
 }
+
+// @public
+export type OperationState = string;
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
