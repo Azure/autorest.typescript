@@ -53,6 +53,15 @@ function getRLCResponseType(rlcResponse?: OperationResponse) {
     .join(" | ");
 }
 
+function getRLCLroLogicalResponse(rlcResponse?: OperationResponse) {
+  const logicalResponse = (rlcResponse?.responses ?? []).filter(
+    (r) => r.predefinedName && r.predefinedName.endsWith(`LogicalResponse`)
+  );
+  return logicalResponse.length > 0
+    ? logicalResponse[0]!.predefinedName!
+    : "any";
+}
+
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
   operation: Operation,
@@ -176,13 +185,17 @@ export function getDeserializePrivateFunction(
   const deserializedRoot = hasLroSubPath
     ? `result.body.${operation?.lroMetadata?.finalResultPath}`
     : "result.body";
-  if (hasLroSubPath) {
-    statements.push(
-      `if(${deserializedRoot.split(".").join("?.")} === undefined) {
-        throw createRestError(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
-      }
-      `
-    );
+  if (isLroOnly) {
+    const lroLogicalResponse = getRLCLroLogicalResponse(operation.rlcResponse);
+    statements.push(`result = result as ${lroLogicalResponse};`);
+    if (hasLroSubPath) {
+      statements.push(
+        `if(${deserializedRoot.split(".").join("?.")} === undefined) {
+          throw createRestError(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
+        }
+        `
+      );
+    }
   }
 
   const allParents = deserializedType ? getAllAncestors(deserializedType) : [];
