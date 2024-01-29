@@ -17,7 +17,7 @@ const body : Extension= {
     },
   ],
 };
-describe("Empty Client", () => {
+describe("Recursive Client", () => {
   let client: RecursiveClient;
 
   beforeEach(() => {
