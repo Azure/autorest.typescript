@@ -56,6 +56,7 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
+  result = result as BudgetsCreateOrReplaceLogicalResponse;
   return {
     name: result.body["name"],
     role: result.body["role"],

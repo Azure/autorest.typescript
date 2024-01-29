@@ -814,6 +814,7 @@ export async function _beginAzureBatchImageGenerationDeserialize(
     throw createRestError(result);
   }
 
+  result = result as BeginAzureBatchImageGenerationLogicalResponse;
   if (result?.body?.result === undefined) {
     throw createRestError(
       `Expected a result in the response at position "result.body.result"`,

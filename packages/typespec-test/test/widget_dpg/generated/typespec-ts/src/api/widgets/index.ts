@@ -353,6 +353,7 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
+  result = result as WidgetsCreateOrReplaceLogicalResponse;
   return {
     name: result.body["name"],
     role: result.body["role"],
