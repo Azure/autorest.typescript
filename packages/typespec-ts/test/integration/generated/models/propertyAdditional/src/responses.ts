@@ -4,7 +4,11 @@
 import { HttpResponse } from "@azure-rest/core-client";
 import {
   ExtendsUnknownAdditionalPropertiesOutput,
+  ExtendsUnknownAdditionalPropertiesDerivedOutput,
+  ExtendsUnknownAdditionalPropertiesDiscriminatedOutput,
   IsUnknownAdditionalPropertiesOutput,
+  IsUnknownAdditionalPropertiesDerivedOutput,
+  IsUnknownAdditionalPropertiesDiscriminatedOutput,
   ExtendsStringAdditionalPropertiesOutput,
   IsStringAdditionalPropertiesOutput,
   ExtendsFloatAdditionalPropertiesOutput,
@@ -27,6 +31,30 @@ export interface ExtendsUnknownPut204Response extends HttpResponse {
 }
 
 /** The request has succeeded. */
+export interface ExtendsUnknownDerivedGet200Response extends HttpResponse {
+  status: "200";
+  body: ExtendsUnknownAdditionalPropertiesDerivedOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface ExtendsUnknownDerivedPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface ExtendsUnknownDiscriminatedGet200Response
+  extends HttpResponse {
+  status: "200";
+  body: ExtendsUnknownAdditionalPropertiesDiscriminatedOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface ExtendsUnknownDiscriminatedPut204Response
+  extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
 export interface IsUnknownGet200Response extends HttpResponse {
   status: "200";
   body: IsUnknownAdditionalPropertiesOutput;
@@ -34,6 +62,28 @@ export interface IsUnknownGet200Response extends HttpResponse {
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface IsUnknownPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface IsUnknownDerivedGet200Response extends HttpResponse {
+  status: "200";
+  body: IsUnknownAdditionalPropertiesDerivedOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface IsUnknownDerivedPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface IsUnknownDiscriminatedGet200Response extends HttpResponse {
+  status: "200";
+  body: IsUnknownAdditionalPropertiesDiscriminatedOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface IsUnknownDiscriminatedPut204Response extends HttpResponse {
   status: "204";
 }
 

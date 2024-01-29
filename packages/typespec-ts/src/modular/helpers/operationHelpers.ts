@@ -28,7 +28,6 @@ import {
   getDocsFromDescription
 } from "./docsHelpers.js";
 import {
-  getAllAncestors,
   getDeserializeFunctionName,
   isNormalUnion,
   isPolymorphicUnion,
@@ -458,7 +457,8 @@ function buildBodyParameter(
     const bodyParts: string[] = getRequestModelMapping(
       bodyParameter.type,
       bodyParameter.clientName,
-      runtimeImports
+      runtimeImports,
+      [bodyParameter.type]
     );
 
     if (bodyParameter && bodyParts.length > 0) {
@@ -481,7 +481,8 @@ function buildBodyParameter(
       const bodyParts = getRequestModelMapping(
         bodyParameter.type.elementType,
         "p",
-        runtimeImports
+        runtimeImports,
+        [bodyParameter.type.elementType]
       );
       return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { return {
         ${bodyParts.join(", ")}
@@ -564,6 +565,7 @@ function getCollectionFormat(param: Parameter, runtimeImports: RuntimeImports) {
       param.clientName,
       runtimeImports,
       true,
+      [param.type],
       param.format
     )}${additionalParam})`;
   }
@@ -574,6 +576,7 @@ function getCollectionFormat(param: Parameter, runtimeImports: RuntimeImports) {
     "options?." + param.clientName,
     runtimeImports,
     false,
+    [param.type],
     param.format
   )}${additionalParam}): undefined`;
 }
@@ -613,7 +616,8 @@ function getRequired(param: RequiredType, runtimeImports: RuntimeImports) {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
       param.clientName,
-      runtimeImports
+      runtimeImports,
+      [param.type]
     ).join(",")}}`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
@@ -621,6 +625,7 @@ function getRequired(param: RequiredType, runtimeImports: RuntimeImports) {
     param.clientName,
     runtimeImports,
     true,
+    [param.type],
     param.format === undefined &&
       (param as Parameter).location === "header" &&
       param.type.type === "datetime"
@@ -665,7 +670,8 @@ function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
       "options?." + param.clientName + "?",
-      runtimeImports
+      runtimeImports,
+      [param.type]
     ).join(", ")}}`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
@@ -673,6 +679,7 @@ function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
     `options?.${param.clientName}`,
     runtimeImports,
     false,
+    [param.type],
     param.format === undefined &&
       (param as Parameter).location === "header" &&
       param.type.type === "datetime"
@@ -740,7 +747,8 @@ function getNullableCheck(name: string, type: Type) {
 export function getRequestModelMapping(
   modelPropertyType: Type,
   propertyPath: string = "body",
-  runtimeImports: RuntimeImports
+  runtimeImports: RuntimeImports,
+  typeStack: Type[] = []
 ) {
   const props: string[] = [];
   const allParents = getAllAncestors(modelPropertyType);
@@ -772,7 +780,7 @@ export function getRequestModelMapping(
         )} ${
           !property.optional ? "" : `!${propertyFullName} ? undefined :`
         } ${propertyFullName}`;
-      } else if (allParents.includes(property.type)) {
+      } else if (typeStack.includes(property.type)) {
         const isSpecialModel = isSpecialUnionVariant(property.type);
         definition = `"${property.restApiName}": ${
           !property.optional
@@ -798,12 +806,13 @@ export function getRequestModelMapping(
           `${propertyPath}.${property.clientName}${
             property.optional ? "?" : ""
           }`,
-          runtimeImports
+          runtimeImports,
+          [...typeStack, property.type]
         )}}`;
       }
 
       props.push(definition);
-    } else if (allParents.includes(property.type)) {
+    } else if (typeStack.includes(property.type)) {
       const isSpecialModel = isSpecialUnionVariant(property.type);
       const definition = `"${property.restApiName}": ${
         !property.optional
@@ -824,6 +833,7 @@ export function getRequestModelMapping(
           clientValue,
           runtimeImports,
           !property.optional,
+          [...typeStack, property.type],
           property.format
         )}`
       );
@@ -898,7 +908,7 @@ export function getResponseMapping(
       const restValue = `${
         propertyPath ? `${propertyPath}${dot}` : `${dot}`
       }["${property.restApiName}"]`;
-      if (allParents.includes(property.type)) {
+      if (typeStack.includes(property.type)) {
         const isSpecialModel = isSpecialUnionVariant(property.type);
         props.push(
           `"${property.clientName}": ${
@@ -977,7 +987,7 @@ export function deserializeResponseValue(
           type.elementType!,
           "p",
           runtimeImports,
-          required,
+          true,
           [...typeStack, type.elementType!],
           type.elementType?.format
         )})`;
@@ -1020,6 +1030,7 @@ export function serializeRequestValue(
   clientValue: string,
   runtimeImports: RuntimeImports,
   required: boolean,
+  typeStack: Type[] = [],
   format?: string
 ): string {
   switch (type.type) {
@@ -1047,7 +1058,8 @@ export function serializeRequestValue(
         return `${prefix}.map(p => ({${getRequestModelMapping(
           type.elementType,
           "p",
-          runtimeImports
+          runtimeImports,
+          [...typeStack, type.elementType]
         )}}))`;
       } else if (
         needsDeserialize(type.elementType) &&
@@ -1058,6 +1070,7 @@ export function serializeRequestValue(
           "p",
           runtimeImports,
           required,
+          [...typeStack, type.elementType!],
           type.elementType?.format
         )})`;
       } else if (
@@ -1170,4 +1183,13 @@ export function getAllProperties(type: Type, parents?: Type[]): Property[] {
     propertiesMap.set(p.clientName, p);
   });
   return [...propertiesMap.values()];
+}
+
+export function getAllAncestors(type: Type): Type[] {
+  const ancestors: Type[] = [];
+  type?.parents?.forEach((p) => {
+    ancestors.push(p);
+    ancestors.push(...getAllAncestors(p));
+  });
+  return ancestors;
 }

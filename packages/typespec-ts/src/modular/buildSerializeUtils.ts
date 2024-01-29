@@ -3,7 +3,8 @@ import {
   getResponseMapping,
   getRequestModelMapping,
   serializeRequestValue,
-  deserializeResponseValue
+  deserializeResponseValue,
+  getAllAncestors
 } from "./helpers/operationHelpers.js";
 import { ModularCodeModel, Type } from "./modularCodeModel.js";
 import {
@@ -205,15 +206,6 @@ export function isSpecialUnionVariant(
   variantStack.pop();
   specialVariantMap.set(t, false);
   return false;
-}
-
-export function getAllAncestors(type: Type): Type[] {
-  const ancestors: Type[] = [];
-  type?.parents?.forEach((p) => {
-    ancestors.push(p);
-    ancestors.push(...getAllAncestors(p));
-  });
-  return ancestors;
 }
 
 export function isNormalUnion(t: Type): boolean {
