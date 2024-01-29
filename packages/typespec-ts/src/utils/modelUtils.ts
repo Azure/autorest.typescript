@@ -137,7 +137,8 @@ export function getSchemaForType(
   typeInput: Type,
   usage?: SchemaContext[],
   needRef: boolean = false,
-  relevantProperty?: ModelProperty
+  relevantProperty?: ModelProperty,
+  _contentTypes?: string[]
 ) {
   const program = dpgContext.program;
   const type = getEffectiveModelFromType(program, typeInput);
