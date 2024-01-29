@@ -277,8 +277,9 @@ importers:
       '@azure-tools/cadl-ranch': 0.11.2_jomoca4gmv4qvfhpxu6msmnyuy
       '@azure-tools/cadl-ranch-expect': 0.11.0_ejqqrhxs4enfjwgbuhtcygsti4
       '@azure-tools/cadl-ranch-specs': 0.28.7_ktlnye6tq344n3leprf7kev6zm
-      '@azure/abort-controller': 1.1.0
+      '@azure-tools/typespec-azure-core': 0.37.2_go2aawq7a7w4termvhoebskuti
       '@azure-tools/typespec-client-generator-core': 0.37.0_ejqqrhxs4enfjwgbuhtcygsti4
+      '@azure/abort-controller': 1.1.0
       '@azure/core-auth': 1.5.0
       '@azure/core-lro': 2.5.4
       '@azure/core-paging': 1.5.0
