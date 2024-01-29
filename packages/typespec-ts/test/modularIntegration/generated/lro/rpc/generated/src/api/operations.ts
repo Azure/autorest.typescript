@@ -45,6 +45,7 @@ export async function _longRunningRpcDeserialize(
     throw createRestError(result);
   }
 
+  result = result as LongRunningRpcLogicalResponse;
   if (result?.body?.result === undefined) {
     throw createRestError(
       `Expected a result in the response at position "result.body.result"`,

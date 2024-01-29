@@ -59,6 +59,7 @@ export async function _createOrReplaceDeserialize(
     throw createRestError(result);
   }
 
+  result = result as CreateOrReplaceLogicalResponse;
   return {
     name: result.body["name"],
     role: result.body["role"],
@@ -104,6 +105,7 @@ export async function _deleteOperationDeserialize(
     throw createRestError(result);
   }
 
+  result = result as DeleteLogicalResponse;
   return;
 }
 
@@ -148,6 +150,7 @@ export async function _exportOperationDeserialize(
     throw createRestError(result);
   }
 
+  result = result as ExportLogicalResponse;
   if (result?.body?.result === undefined) {
     throw createRestError(
       `Expected a result in the response at position "result.body.result"`,
