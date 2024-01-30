@@ -70,7 +70,7 @@ import {
   getDefaultApiVersion,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
-import { SdkContext } from "./interfaces.js";
+import { GetSchemaOptions, SdkContext } from "./interfaces.js";
 import { getModelNamespaceName } from "./namespaceUtils.js";
 
 export function getBinaryType(usage: SchemaContext[]) {
@@ -135,21 +135,10 @@ export function enrichBinaryTypeInBody(schema: any) {
 export function getSchemaForType(
   dpgContext: SdkContext,
   typeInput: Type,
-  options?: {
-    // usage is used to determine the type name of the schema
-    usage?: SchemaContext[];
-    // default to false, if true, the schema would be enriched with more information
-    needRef?: boolean;
-    // relevant property which the type belongs to
-    relevantProperty?: ModelProperty;
-    // effective content types which would impact the schema
-    effectiveContentTypes?: string[];
-    // if this type is taken as request body
-    isRequestBody?: boolean;
-  }
+  options?: GetSchemaOptions
 ) {
   const program = dpgContext.program;
-  const { usage, needRef, relevantProperty } = options ?? {};
+  const { usage } = options ?? {};
   const type = getEffectiveModelFromType(program, typeInput);
 
   const builtinType = getSchemaForLiteral(type);
@@ -162,7 +151,7 @@ export function getSchemaForType(
     return builtinType;
   }
   if (type.kind === "Model") {
-    const schema = getSchemaForModel(dpgContext, type, usage, needRef) as any;
+    const schema = getSchemaForModel(dpgContext, type, options) as any;
     if (isAnonymousObjectSchema(schema)) {
       if (Object.keys(schema.properties ?? {}).length === 0) {
         // Handle empty anonymous model as Record
@@ -197,13 +186,13 @@ export function getSchemaForType(
     schema.usage = usage;
     return schema;
   } else if (type.kind === "Union") {
-    return getSchemaForUnion(dpgContext, type, usage);
+    return getSchemaForUnion(dpgContext, type, options);
   } else if (type.kind === "UnionVariant") {
-    return getSchemaForUnionVariant(dpgContext, type, usage);
+    return getSchemaForUnionVariant(dpgContext, type, options);
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(dpgContext, type);
   } else if (type.kind === "Scalar") {
-    return getSchemaForScalar(dpgContext, type, relevantProperty);
+    return getSchemaForScalar(dpgContext, type, options);
   } else if (type.kind === "EnumMember") {
     return getSchemaForEnumMember(program, type);
   }
@@ -296,9 +285,10 @@ function mergeFormatAndEncoding(
 function getSchemaForScalar(
   dpgContext: SdkContext,
   scalar: Scalar,
-  relevantProperty?: ModelProperty
+  options?: GetSchemaOptions
 ) {
   let result = {};
+  const { relevantProperty } = options ?? {};
   const isStd = dpgContext.program.checker.isStdType(scalar);
   if (isStd) {
     result = getSchemaForStdScalar(
@@ -327,10 +317,11 @@ function getSchemaForScalar(
 function getSchemaForUnion(
   dpgContext: SdkContext,
   union: Union,
-  usage?: SchemaContext[]
+  options?: GetSchemaOptions
 ) {
   const variants = Array.from(union.variants.values());
   const values = [];
+  const { usage } = options ?? {};
 
   for (const variant of variants) {
     // We already know it's not a model type
@@ -369,8 +360,9 @@ function getSchemaForUnion(
 function getSchemaForUnionVariant(
   dpgContext: SdkContext,
   variant: UnionVariant,
-  usage?: SchemaContext[]
+  options?: GetSchemaOptions
 ): Schema {
+  const { usage } = options ?? {};
   return getSchemaForType(dpgContext, variant, { usage });
 }
 
@@ -505,9 +497,9 @@ function isSchemaProperty(program: Program, property: ModelProperty) {
 function getSchemaForModel(
   dpgContext: SdkContext,
   model: Model,
-  usage?: SchemaContext[],
-  needRef?: boolean
+  options?: GetSchemaOptions
 ) {
+  const { usage, needRef } = options ?? {};
   if (isArrayModelType(dpgContext.program, model)) {
     return getSchemaForArrayModel(dpgContext, model, usage!);
   }
