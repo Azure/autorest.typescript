@@ -150,8 +150,10 @@ const extractOperationParameters = (codeModel: CodeModel) =>
           const operationParams: OperationParameterDetails[] = (
             operation.parameters || []
           ).map((p) => {
-            p.language.default.isTopLevelParameter = true;
-            p.schema.language.default.isTopLevelParameter = true;
+            if (p.required) {
+              p.language.default.isTopLevelParameter = true;
+              p.schema.language.default.isTopLevelParameter = true;
+            }
             return {
               parameter: p,
               operationName
@@ -164,21 +166,23 @@ const extractOperationParameters = (codeModel: CodeModel) =>
           const requestParams: OperationParameterDetails[] = [];
           requests.map((request) => {
             request.parameters?.map((parameter) => {
-              if ((parameter as any)["targetProperty"] !== undefined) {
-                (parameter as any)[
-                  "targetProperty"
-                ].language.default.isTopLevelParameter = true;
-                (parameter as any)[
-                  "targetProperty"
-                ].schema.language.default.isTopLevelParameter = true;
-              }
-              parameter.language.default.isTopLevelParameter = true;
-              parameter.schema.language.default.isTopLevelParameter = true;
               requestParams.push({
                 operationName,
                 parameter,
                 targetMediaType: request.protocol.http?.knownMediaType
               });
+              if (parameter.required) {
+                if ((parameter as any)["targetProperty"] !== undefined) {
+                  (parameter as any)[
+                    "targetProperty"
+                  ].language.default.isTopLevelParameter = true;
+                  (parameter as any)[
+                    "targetProperty"
+                  ].schema.language.default.isTopLevelParameter = true;
+                }
+                parameter.language.default.isTopLevelParameter = true;
+                parameter.schema.language.default.isTopLevelParameter = true;
+              }
               return parameter;
             });
             return request;
@@ -352,9 +356,14 @@ function getParameterPath(parameter: Parameter) {
   const name = normalizeName(
     metadata.name,
     NameType.Parameter,
-    true /** shouldGuard */
+    true
   );
 
+  const propertyName = normalizeName(
+    metadata.name,
+    NameType.Property,
+    true
+  );
   if (parameter.groupedBy) {
     const groupedByName = getLanguageMetadata(
       parameter.groupedBy.language
@@ -364,13 +373,13 @@ function getParameterPath(parameter: Parameter) {
         ? ["options"]
         : []),
       normalizeName(groupedByName, NameType.Parameter, true /** shouldGuard */),
-      name
+      propertyName
     ];
   }
 
   return isClientImplementation(parameter) || parameter.required
     ? name
-    : ["options", name];
+    : ["options", propertyName];
 }
 
 const isClientImplementation = (parameter: Parameter) =>

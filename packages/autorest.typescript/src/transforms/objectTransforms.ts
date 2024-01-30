@@ -64,7 +64,7 @@ export function transformObject(
     schema,
     properties: schema.properties
       ? schema.properties.map((prop) =>
-          transformProperty(prop, metadata.isTopLevelParameter)
+          transformProperty(prop)
         )
       : []
   };
@@ -80,17 +80,14 @@ function getObjectSerializedName(metadata: Language, kind: ObjectKind) {
       : undefined;
 }
 
-export function transformProperty(
-  {
-    language,
-    schema,
-    serializedName,
-    required,
-    readOnly,
-    nullable
-  }: Property | GroupProperty,
-  isTopLevelParameter: boolean = false
-): PropertyDetails {
+export function transformProperty({
+  language,
+  schema,
+  serializedName,
+  required,
+  readOnly,
+  nullable
+}: Property | GroupProperty): PropertyDetails {
   const { useCoreV2 } = getAutorestOptions();
   const metadata = getLanguageMetadata(language);
   // In the next call, the second parameter 'false' stands for isNullable
@@ -106,9 +103,7 @@ export function transformProperty(
   return {
     name: normalizeName(
       metadata.name,
-      isTopLevelParameter || metadata.isTopLevelParameter
-        ? NameType.Parameter
-        : NameType.Property,
+      NameType.Property,
       true /** shouldGuard */
     ),
     description,

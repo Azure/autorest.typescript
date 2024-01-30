@@ -9,9 +9,9 @@ export function transformGroups(codeModel: CodeModel) {
 }
 
 function transformGroup({ language, properties }: GroupSchema): ObjectDetails {
-  const { name, description, isTopLevelParameter } = getLanguageMetadata(language);
+  const { name, description } = getLanguageMetadata(language);
   const groupProperties = (properties || []).map(prop =>
-    transformProperty(prop, isTopLevelParameter)
+    transformProperty(prop)
   );
 
   return {
