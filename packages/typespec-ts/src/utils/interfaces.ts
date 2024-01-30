@@ -25,4 +25,6 @@ export interface GetSchemaOptions {
   effectiveContentTypes?: string[];
   // if this type is taken as request body
   isRequestBody?: boolean;
+  // if the parent type is taken as request body
+  isParentRequestBody?: boolean;
 }
