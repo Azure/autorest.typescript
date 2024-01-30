@@ -952,10 +952,11 @@ function getSchemaForArrayModel(
 function getSchemaForRecordModel(
   dpgContext: SdkContext,
   type: Model,
-  usage: SchemaContext[]
+  options?: GetSchemaOptions
 ) {
   const { program } = dpgContext;
   const { indexer } = type;
+  const { usage } = options ?? {};
   let schema: any = {};
   if (!indexer) {
     return schema;
