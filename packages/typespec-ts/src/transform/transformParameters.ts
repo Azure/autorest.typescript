@@ -183,6 +183,7 @@ function getParameterMetadata(
     param: {
       name,
       type,
+      typeName: type,
       required: !parameter.param.optional,
       description
     }
@@ -289,7 +290,10 @@ function transformNormalBody(
     importedModels,
     headers
   );
-  let schema = getSchemaForType(dpgContext, bodyType);
+  let schema = getSchemaForType(dpgContext, bodyType, {
+    effectiveContentTypes: getContentTypes(headers),
+    isRequestBody: true
+  });
   let overrideType = undefined;
   if (hasBinaryContent) {
     schema = enrichBinaryTypeInBody(schema);
@@ -316,16 +320,20 @@ function getBodyDetail(
   bodyType: Type,
   headers: ParameterMetadata[]
 ) {
-  const contentTypes: string[] = headers
-    .filter((h) => h.name === "contentType")
-    .map((h) => {
-      return getTypeName(h.param, [SchemaContext.Input]);
-    });
+  const contentTypes: string[] = getContentTypes(headers);
   const hasBinaryContent = contentTypes.some((c) =>
     isBinaryPayload(dpgContext, bodyType, c)
   );
   const hasFormContent = contentTypes.includes(`"multipart/form-data"`);
   return { hasBinaryContent, hasFormContent };
+}
+
+function getContentTypes(headers: ParameterMetadata[]) {
+  return headers
+    .filter((h) => h.name === "contentType")
+    .map((h) => {
+      return getTypeName(h.param, [SchemaContext.Input]);
+    });
 }
 
 function extractNameFromTypeSpecType(
