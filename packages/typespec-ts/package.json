@@ -27,7 +27,7 @@
     "copy:typespec": "rm -rf temp && mkdirp -p temp && cp -r ./node_modules/@azure-tools/cadl-ranch-specs/* ./temp && cp -r ./test/integration/typespec/* ./temp/http",
     "generate-and-run:rlc": "npm run generate-tsp-only:rlc && npm run integration-test:alone:rlc && npm run stop-test-server",
     "generate-and-run:modular": "npm run generate-tsp-only:modular && npm run integration-test:alone:modular && npm run stop-test-server",
-    "generate-tsp-only": "npm run generate-tsp-only:rlc && npm run generate-tsp-only:modular && npm run generate-tsp-only:non-branded-rlc && npm run generate-tsp-only:non-branded-modular", 
+    "generate-tsp-only": "npm run generate-tsp-only:rlc && npm run generate-tsp-only:modular && npm run generate-tsp-only:non-branded-rlc && npm run generate-tsp-only:non-branded-modular",
     "generate-tsp-only:rlc": "node --loader ts-node/esm ./test/commands/gen-cadl-ranch.ts --tag=rlc",
     "generate-tsp-only:modular": "node --loader ts-node/esm ./test/commands/gen-cadl-ranch.ts --tag=modular",
     "generate-tsp-only:non-branded": "npm run generate-tsp-only:non-branded-rlc && npm run generate-tsp-only:non-branded-modular",
@@ -77,18 +77,18 @@
     "@typespec/ts-http-runtime": "1.0.0-alpha.20231129.4",
     "@azure-tools/typespec-azure-core": "0.37.2",
     "@azure-tools/typespec-client-generator-core": "0.37.0",
-    "@typespec/compiler": "0.51.0",
-    "@typespec/http": "0.51.0",
-    "@typespec/rest": "0.51.0",
-    "@typespec/versioning": "0.51.0"
+    "@typespec/compiler": "0.52.0",
+    "@typespec/http": "0.52.1",
+    "@typespec/rest": "0.52.0",
+    "@typespec/versioning": "0.52.0"
   },
   "peerDependencies": {
-    "@azure-tools/typespec-azure-core": ">=0.37.2 <1.0.0",
-    "@azure-tools/typespec-client-generator-core": ">=0.37.0 <1.0.0",
-    "@typespec/compiler": ">=0.51.0 <1.0.0",
-    "@typespec/http": ">=0.51.0 <1.0.0",
-    "@typespec/rest": ">=0.51.0 <1.0.0",
-    "@typespec/versioning": ">=0.51.0 <1.0.0"
+    "@azure-tools/typespec-azure-core": ">=0.38.0 <1.0.0",
+    "@azure-tools/typespec-client-generator-core": ">=0.38.0 <1.0.0",
+    "@typespec/compiler": ">=0.52.0 <1.0.0",
+    "@typespec/http": ">=0.52.1 <1.0.0",
+    "@typespec/rest": ">=0.52.0 <1.0.0",
+    "@typespec/versioning": ">=0.52.0 <1.0.0"
   },
   "dependencies": {
     "prettier": "^3.1.0",
