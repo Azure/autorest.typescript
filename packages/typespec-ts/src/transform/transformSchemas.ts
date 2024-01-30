@@ -87,7 +87,7 @@ export function transformSchemas(
     }
   }
   program.stateMap(modelKey).forEach((context, tspModel) => {
-    const model = getSchemaForType(dpgContext, tspModel, context);
+    const model = getSchemaForType(dpgContext, tspModel, { usage: context });
     if (model) {
       model.usage = context;
     }

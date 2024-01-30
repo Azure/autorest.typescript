@@ -131,13 +131,11 @@ function getParameterMetadata(
 ): ParameterMetadata {
   const program = dpgContext.program;
   const schemaContext = [SchemaContext.Exception, SchemaContext.Input];
-  const schema = getSchemaForType(
-    dpgContext,
-    parameter.param.type,
-    schemaContext,
-    false,
-    parameter.param
-  ) as Schema;
+  const schema = getSchemaForType(dpgContext, parameter.param.type, {
+    usage: schemaContext,
+    needRef: false,
+    relevantProperty: parameter.param
+  }) as Schema;
   let type = getTypeName(schema, schemaContext);
   const name = getParameterName(parameter.name);
   let description =
@@ -337,10 +335,9 @@ function extractNameFromTypeSpecType(
   importedModels: Set<string>,
   headers?: ParameterMetadata[]
 ) {
-  const bodySchema = getSchemaForType(dpgContext, type, [
-    SchemaContext.Input,
-    SchemaContext.Exception
-  ]) as Schema;
+  const bodySchema = getSchemaForType(dpgContext, type, {
+    usage: [SchemaContext.Input, SchemaContext.Exception]
+  }) as Schema;
   const importedNames = getImportedModelName(bodySchema, schemaUsage) ?? [];
   importedNames.forEach(importedModels.add, importedModels);
 
@@ -368,10 +365,9 @@ function extractDescriptionsFromBody(
     getFormattedPropertyDoc(
       dpgContext.program,
       parameters.bodyParameter,
-      getSchemaForType(dpgContext, bodyType, [
-        SchemaContext.Input,
-        SchemaContext.Exception
-      ])
+      getSchemaForType(dpgContext, bodyType, {
+        usage: [SchemaContext.Input, SchemaContext.Exception]
+      })
     );
   return description ? [description] : [];
 }

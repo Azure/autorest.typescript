@@ -135,12 +135,21 @@ export function enrichBinaryTypeInBody(schema: any) {
 export function getSchemaForType(
   dpgContext: SdkContext,
   typeInput: Type,
-  usage?: SchemaContext[],
-  needRef: boolean = false,
-  relevantProperty?: ModelProperty,
-  _contentTypes?: string[]
+  options?: {
+    // usage is used to determine the type name of the schema
+    usage?: SchemaContext[];
+    // default to false, if true, the schema would be enriched with more information
+    needRef?: boolean;
+    // relevant property which the type belongs to
+    relevantProperty?: ModelProperty;
+    // effective content types which would impact the schema
+    effectiveContentTypes?: string[];
+    // if this type is taken as request body
+    isRequestBody?: boolean;
+  }
 ) {
   const program = dpgContext.program;
+  const { usage, needRef, relevantProperty } = options ?? {};
   const type = getEffectiveModelFromType(program, typeInput);
 
   const builtinType = getSchemaForLiteral(type);
@@ -325,7 +334,7 @@ function getSchemaForUnion(
 
   for (const variant of variants) {
     // We already know it's not a model type
-    values.push(getSchemaForType(dpgContext, variant.type, usage));
+    values.push(getSchemaForType(dpgContext, variant.type, { usage }));
   }
 
   const schema: any = {};
@@ -362,7 +371,7 @@ function getSchemaForUnionVariant(
   variant: UnionVariant,
   usage?: SchemaContext[]
 ): Schema {
-  return getSchemaForType(dpgContext, variant, usage);
+  return getSchemaForType(dpgContext, variant, { usage });
 }
 
 // An openapi "string" can be defined in several different ways in typespec
@@ -602,16 +611,17 @@ function getSchemaForModel(
     };
   }
   for (const child of derivedModels) {
-    const childSchema = getSchemaForType(dpgContext, child, usage, true);
+    const childSchema = getSchemaForType(dpgContext, child, {
+      usage,
+      needRef: true
+    });
     for (const [name, prop] of child.properties) {
       if (name === discriminator?.propertyName) {
-        const propSchema = getSchemaForType(
-          dpgContext,
-          prop.type,
+        const propSchema = getSchemaForType(dpgContext, prop.type, {
           usage,
-          !isAnonymousModelType(prop.type),
-          prop
-        );
+          needRef: !isAnonymousModelType(prop.type),
+          relevantProperty: prop
+        });
         childSchema.discriminatorValue = propSchema.type.replace(/"/g, "");
         break;
       }
@@ -660,13 +670,11 @@ function getSchemaForModel(
       continue;
     }
 
-    const propSchema = getSchemaForType(
-      dpgContext,
-      prop.type,
+    const propSchema = getSchemaForType(dpgContext, prop.type, {
       usage,
-      isAnonymousModelType(prop.type) ? false : true,
-      prop
-    );
+      needRef: isAnonymousModelType(prop.type) ? false : true,
+      relevantProperty: prop
+    });
 
     if (propSchema === undefined) {
       continue;
@@ -726,8 +734,18 @@ function getSchemaForModel(
 
   if (model.baseModel) {
     modelSchema.parents = {
-      all: [getSchemaForType(dpgContext, model.baseModel, usage, true)],
-      immediate: [getSchemaForType(dpgContext, model.baseModel, usage, true)]
+      all: [
+        getSchemaForType(dpgContext, model.baseModel, {
+          usage,
+          needRef: true
+        })
+      ],
+      immediate: [
+        getSchemaForType(dpgContext, model.baseModel, {
+          usage,
+          needRef: true
+        })
+      ]
     };
   }
   return modelSchema;
@@ -872,12 +890,10 @@ function getSchemaForArrayModel(
   if (isArrayModelType(program, type)) {
     schema = {
       type: "array",
-      items: getSchemaForType(
-        dpgContext,
-        indexer.value!,
+      items: getSchemaForType(dpgContext, indexer.value!, {
         usage,
-        !isAnonymousModelType(indexer.value!)
-      ),
+        needRef: !isAnonymousModelType(indexer.value!)
+      }),
       description: getDoc(program, type)
     };
     if (
@@ -953,12 +969,10 @@ function getSchemaForRecordModel(
     return schema;
   }
   if (isRecordModelType(program, type)) {
-    const valueType = getSchemaForType(
-      dpgContext,
-      indexer?.value,
+    const valueType = getSchemaForType(dpgContext, indexer?.value, {
       usage,
-      !isAnonymousModelType(indexer.value)
-    );
+      needRef: !isAnonymousModelType(indexer.value)
+    });
     schema = {
       type: "dictionary",
       additionalProperties: valueType,
