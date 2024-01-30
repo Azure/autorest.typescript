@@ -329,11 +329,7 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/inheritance/recursive",
     inputPath: "type/model/inheritance/recursive"
-  },
-  {
-    outputPath: "unions",
-    inputPath: "type/union"
-  },
+  }
 ];
 
 export const nonBrandedModularTsps: TypeSpecRanchConfig[] = [
