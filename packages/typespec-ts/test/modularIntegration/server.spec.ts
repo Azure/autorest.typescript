@@ -1,6 +1,8 @@
 import { assert } from "chai";
 import { SingleClient } from "./generated/server/path/single/src/index.js";
 import { MultipleClient } from "./generated/server/path/multiple/src/index.js";
+import { NotVersionedClient } from "./generated/server/versions/not-versioned/src/index.js"
+import { VersionedClient } from "./generated/server/versions/versioned/src/index.js";
 describe("Single Server Path Client", () => {
   let client: SingleClient;
 
@@ -47,6 +49,81 @@ describe("Multiple Server Path Client", () => {
   it("should work with param", async () => {
     try {
       const result = await client.withOperationPathParam("test");
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+});
+
+describe.only("NotVersioned Server Version Client", () => {
+  let client: NotVersionedClient;
+
+  beforeEach(() => {
+    client = new NotVersionedClient("http://localhost:3000", "v1.0");
+  });
+
+  it("should work without apiVersion", async () => {
+    try {
+      const result = await client.withoutApiVersion();
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should work with param", async () => {
+    try {
+      const result = await client.withQueryApiVersion();
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should work with path param", async () => {
+    try {
+      const result = await client.withPathApiVersion();
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+});
+
+describe.only("Versioned Server Version Client", () => {
+  let client: VersionedClient;
+
+  beforeEach(() => {
+    client = new VersionedClient("http://localhost:3000", {
+      allowInsecureConnection: true,
+      retryOptions: {
+        maxRetries: 0
+      }
+    });
+  });
+
+  it("should work without apiVersion", async () => {
+    try {
+      const result = await client.withoutApiVersion();
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should work with param", async () => {
+    try {
+      const result = await client.withQueryApiVersion();
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should work with path param", async () => {
+    try {
+      const result = await client.withPathApiVersion();
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
