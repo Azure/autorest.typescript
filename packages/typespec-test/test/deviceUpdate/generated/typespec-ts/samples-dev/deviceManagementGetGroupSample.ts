@@ -1,0 +1,37 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+import createAzureDeviceUpdateClient from "@azure-rest/iot-device-update";
+import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
+
+/**
+ * This sample demonstrates how to call operation GetGroup
+ *
+ * @summary call operation GetGroup
+ */
+async function deviceManagementGetGroupSample() {
+  const endpoint = "{Your endpoint}";
+  const instanceId = "{Your instanceId}";
+  const credential = new DefaultAzureCredential();
+  const client = createAzureDeviceUpdateClient(
+    endpoint,
+    instanceId,
+    credential,
+  );
+  const groupId = "{Your groupId}";
+  const result = await client
+    .path("/management/groups/{groupId}", groupId)
+    .get({
+      headers: { "x-ms-client-request-id": "{Your x-ms-client-request-id}" },
+    });
+  console.log(result);
+}
+
+async function main() {
+  deviceManagementGetGroupSample();
+}
+
+main().catch(console.error);

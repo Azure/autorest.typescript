@@ -1,0 +1,40 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+import createAzureDeviceUpdateClient from "@azure-rest/iot-device-update";
+import { DefaultAzureCredential } from "@azure/identity";
+import * as dotenv from "dotenv";
+
+dotenv.config();
+
+/**
+ * This sample demonstrates how to call operation GetDeploymentStatus
+ *
+ * @summary call operation GetDeploymentStatus
+ */
+async function deviceManagementGetDeploymentStatusSample() {
+  const endpoint = "{Your endpoint}";
+  const instanceId = "{Your instanceId}";
+  const credential = new DefaultAzureCredential();
+  const client = createAzureDeviceUpdateClient(
+    endpoint,
+    instanceId,
+    credential,
+  );
+  const groupId = "{Your groupId}";
+  const deploymentId = "{Your deploymentId}";
+  const result = await client
+    .path(
+      "/management/groups/{groupId}/deployments/{deploymentId}/status",
+      groupId,
+      deploymentId,
+    )
+    .get();
+  console.log(result);
+}
+
+async function main() {
+  deviceManagementGetDeploymentStatusSample();
+}
+
+main().catch(console.error);
