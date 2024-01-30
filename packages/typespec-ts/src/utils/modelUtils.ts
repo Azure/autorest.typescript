@@ -499,7 +499,7 @@ function getSchemaForModel(
 ) {
   const { usage, needRef } = options ?? {};
   if (isArrayModelType(dpgContext.program, model)) {
-    return getSchemaForArrayModel(dpgContext, model, usage!);
+    return getSchemaForArrayModel(dpgContext, model, { usage });
   }
 
   const program = dpgContext.program;
@@ -550,7 +550,7 @@ function getSchemaForModel(
   );
 
   if (modelSchema.name === "Record" && isRecordModelType(program, model)) {
-    return getSchemaForRecordModel(dpgContext, model, usage!);
+    return getSchemaForRecordModel(dpgContext, model, { usage });
   }
   modelSchema.typeName = modelSchema.name;
   if (usage && usage.includes(SchemaContext.Output)) {
@@ -649,8 +649,8 @@ function getSchemaForModel(
   }
   if (isRecordModelType(program, model)) {
     modelSchema.parents = {
-      all: [getSchemaForRecordModel(dpgContext, model, usage!)],
-      immediate: [getSchemaForRecordModel(dpgContext, model, usage!)]
+      all: [getSchemaForRecordModel(dpgContext, model, { usage })],
+      immediate: [getSchemaForRecordModel(dpgContext, model, { usage })]
     };
   }
   for (const [propName, prop] of model.properties) {
@@ -869,10 +869,11 @@ function enumMemberType(member: EnumMember) {
 function getSchemaForArrayModel(
   dpgContext: SdkContext,
   type: Model,
-  usage: SchemaContext[]
+  options?: GetSchemaOptions
 ) {
   const { program } = dpgContext;
   const { indexer } = type;
+  const { usage } = options ?? {};
   let schema: any = {};
   if (!indexer) {
     return schema;
