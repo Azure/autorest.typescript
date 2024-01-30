@@ -288,14 +288,12 @@ function getSchemaForScalar(
   options?: GetSchemaOptions
 ) {
   let result = {};
-  const { relevantProperty } = options ?? {};
   const isStd = dpgContext.program.checker.isStdType(scalar);
+  const { relevantProperty } = options ?? {};
   if (isStd) {
-    result = getSchemaForStdScalar(
-      dpgContext.program,
-      scalar,
+    result = getSchemaForStdScalar(dpgContext.program, scalar, {
       relevantProperty
-    );
+    });
   } else if (scalar.baseScalar) {
     result = getSchemaForScalar(dpgContext, scalar.baseScalar);
   }
@@ -1011,8 +1009,9 @@ function isUnionType(type: Type) {
 function getSchemaForStdScalar(
   program: Program,
   type: Scalar,
-  relevantProperty?: ModelProperty
+  options?: GetSchemaOptions
 ) {
+  const { relevantProperty } = options ?? {};
   if (!program.checker.isStdType(type)) {
     return undefined;
   }
