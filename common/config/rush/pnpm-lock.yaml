@@ -231,8 +231,8 @@ importers:
       '@azure-tools/cadl-ranch-expect': ^0.11.0
       '@azure-tools/cadl-ranch-specs': ^0.28.7
       '@azure-tools/rlc-common': workspace:^0.21.0
-      '@azure-tools/typespec-azure-core': 0.37.2
-      '@azure-tools/typespec-client-generator-core': 0.37.0
+      '@azure-tools/typespec-azure-core': 0.38.0
+      '@azure-tools/typespec-client-generator-core': 0.38.0
       '@azure/core-auth': ^1.3.2
       '@azure/core-lro': ^2.5.4
       '@azure/core-paging': ^1.5.0
@@ -274,9 +274,9 @@ importers:
       '@azure-rest/core-client': 1.1.6
       '@azure-tools/cadl-ranch': 0.11.2_z4ytlbo62miz7wplut4y2tqdsa
       '@azure-tools/cadl-ranch-expect': 0.11.0_hcpcasyazuhu5r37x6lfh5gruy
-      '@azure-tools/cadl-ranch-specs': 0.28.7_twmjmv6p2zvexrbfeqaqdpjhtm
-      '@azure-tools/typespec-azure-core': 0.37.2_4mursonewu5hn2yhcp44ukhhky
-      '@azure-tools/typespec-client-generator-core': 0.37.0_hcpcasyazuhu5r37x6lfh5gruy
+      '@azure-tools/cadl-ranch-specs': 0.28.7_46ngotnwf4x33nef25igcsrjpa
+      '@azure-tools/typespec-azure-core': 0.38.0_4mursonewu5hn2yhcp44ukhhky
+      '@azure-tools/typespec-client-generator-core': 0.38.0_hcpcasyazuhu5r37x6lfh5gruy
       '@azure/core-auth': 1.5.0
       '@azure/core-lro': 2.5.4
       '@azure/core-paging': 1.5.0
@@ -414,7 +414,7 @@ packages:
       '@typespec/versioning': 0.52.0_@typespec+compiler@0.52.0
     dev: true
 
-  /@azure-tools/cadl-ranch-specs/0.28.7_twmjmv6p2zvexrbfeqaqdpjhtm:
+  /@azure-tools/cadl-ranch-specs/0.28.7_46ngotnwf4x33nef25igcsrjpa:
     resolution: {integrity: sha512-UDYR64oL0QZQ4FxKI7SEKPoLhewlYZRUrOD0fTnfUCTPuaQ/P5h+F5NZfEBHer+2WRhuvY5Xc7Glba33NPyTWg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -428,7 +428,7 @@ packages:
       '@azure-tools/cadl-ranch': 0.11.2_z4ytlbo62miz7wplut4y2tqdsa
       '@azure-tools/cadl-ranch-api': 0.4.3
       '@azure-tools/cadl-ranch-expect': 0.11.0_hcpcasyazuhu5r37x6lfh5gruy
-      '@azure-tools/typespec-azure-core': 0.37.2_4mursonewu5hn2yhcp44ukhhky
+      '@azure-tools/typespec-azure-core': 0.38.0_4mursonewu5hn2yhcp44ukhhky
       '@typespec/compiler': 0.52.0
       '@typespec/http': 0.52.1_@typespec+compiler@0.52.0
       '@typespec/rest': 0.52.0_ul257hu73e5sf6e67hlhqupana
@@ -520,19 +520,6 @@ packages:
       '@typespec/versioning': 0.52.0_@typespec+compiler@0.52.0
     dev: false
 
-  /@azure-tools/typespec-azure-core/0.37.2_4mursonewu5hn2yhcp44ukhhky:
-    resolution: {integrity: sha512-/503w3jnRnStowsI7etaDynwQcz7ecNqhFKZErBYGbKVZKoEwJIr5d59m52sjJs8cmr2336es6jw2n2TdfotrA==}
-    engines: {node: '>=18.0.0'}
-    peerDependencies:
-      '@typespec/compiler': ~0.51.0
-      '@typespec/http': ~0.51.0
-      '@typespec/rest': ~0.51.0
-    dependencies:
-      '@typespec/compiler': 0.52.0
-      '@typespec/http': 0.52.1_@typespec+compiler@0.52.0
-      '@typespec/rest': 0.52.0_ul257hu73e5sf6e67hlhqupana
-    dev: true
-
   /@azure-tools/typespec-azure-core/0.38.0_4mursonewu5hn2yhcp44ukhhky:
     resolution: {integrity: sha512-ASM+njC2lpzPykzw2OicWIaAOH+OBe3bVMrufEnINBjlr7owAtudvjrTLLWmAVMBciL/YOF579KdyjxTbaxJ5A==}
     engines: {node: '>=18.0.0'}
@@ -544,24 +531,6 @@ packages:
       '@typespec/compiler': 0.52.0
       '@typespec/http': 0.52.1_@typespec+compiler@0.52.0
       '@typespec/rest': 0.52.0_ul257hu73e5sf6e67hlhqupana
-    dev: false
-
-  /@azure-tools/typespec-client-generator-core/0.37.0_hcpcasyazuhu5r37x6lfh5gruy:
-    resolution: {integrity: sha512-wOQMN4gL5LrDsGJw1QkIHHT8SxurdX/E1T8I7enNo9UnPnpnNqTmJ9fusYjJhWnA6/qi51mRD7VX2Ymxh9WN6g==}
-    engines: {node: '>=18.0.0'}
-    peerDependencies:
-      '@typespec/compiler': ~0.51.0
-      '@typespec/http': ~0.51.0
-      '@typespec/rest': ~0.51.0
-      '@typespec/versioning': ~0.51.0
-    dependencies:
-      '@typespec/compiler': 0.52.0
-      '@typespec/http': 0.52.1_@typespec+compiler@0.52.0
-      '@typespec/rest': 0.52.0_ul257hu73e5sf6e67hlhqupana
-      '@typespec/versioning': 0.52.0_@typespec+compiler@0.52.0
-      change-case: 4.1.2
-      pluralize: 8.0.0
-    dev: true
 
   /@azure-tools/typespec-client-generator-core/0.38.0_hcpcasyazuhu5r37x6lfh5gruy:
     resolution: {integrity: sha512-DUDIHJikz3Ai8uPk3vKFoMkkGPUxoD5DbGdwkN/pQxaL6Aze8HV4LGEOGtvaIu0SsGjCX9G3XPAXoBoupYgXbw==}
@@ -578,7 +547,6 @@ packages:
       '@typespec/versioning': 0.52.0_@typespec+compiler@0.52.0
       change-case: 5.3.0
       pluralize: 8.0.0
-    dev: false
 
   /@azure/abort-controller/1.1.0:
     resolution: {integrity: sha512-TrRLIoSQVzfAJX9H1JeFjzAoDGcoK1IYX1UImfceTZpsyYfWr09Ss1aHW1y5TrrR3iq6RZLBwJ3E24uwPhwahw==}
