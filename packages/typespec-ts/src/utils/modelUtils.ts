@@ -639,7 +639,6 @@ function getSchemaForModel(
       description: `Discriminator property for ${model.name}.`
     };
     modelSchema.discriminatorValue = propertyName;
-
     modelSchema.isPolyParent = true;
   }
 

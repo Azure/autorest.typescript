@@ -291,7 +291,7 @@ function transformNormalBody(
     headers
   );
   let schema = getSchemaForType(dpgContext, bodyType, {
-    effectiveContentTypes: getContentTypes(headers),
+    contentTypes: getContentTypes(headers),
     isRequestBody: true
   });
   let overrideType = undefined;

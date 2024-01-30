@@ -21,8 +21,8 @@ export interface GetSchemaOptions {
   needRef?: boolean;
   // relevant property which the type belongs to
   relevantProperty?: ModelProperty;
-  // effective content types which would impact the schema
-  effectiveContentTypes?: string[];
+  // content types which would impact the schema
+  contentTypes?: string[];
   // if this type is taken as request body
   isRequestBody?: boolean;
   // if the parent type is taken as request body
