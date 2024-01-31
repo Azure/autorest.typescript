@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import {
-  ListFilesResponse,
   OpenAIFile,
+  ListFilesResponse,
   CreateFileRequest,
   DeleteFileResponse,
 } from "../../models/models.js";
