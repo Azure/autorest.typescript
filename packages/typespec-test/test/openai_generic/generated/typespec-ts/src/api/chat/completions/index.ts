@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import {
-  CreateChatCompletionResponse,
   CreateChatCompletionRequest,
+  CreateChatCompletionResponse,
 } from "../../../models/models.js";
 import {
   ChatCompletionsCreate200Response,

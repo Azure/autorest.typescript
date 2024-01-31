@@ -2,8 +2,8 @@
 
 import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
-  ListFilesResponse,
   OpenAIFile,
+  ListFilesResponse,
   CreateFileRequest,
   DeleteFileResponse,
 } from "../../models/models.js";

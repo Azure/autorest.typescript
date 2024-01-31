@@ -2,8 +2,8 @@
 
 import { OpenAIContext } from "../../../api/OpenAIContext.js";
 import {
-  CreateChatCompletionResponse,
   CreateChatCompletionRequest,
+  CreateChatCompletionResponse,
 } from "../../../models/models.js";
 import { create } from "../../../api/chat/completions/index.js";
 import { ChatCompletionsCreateOptions } from "../../../models/options.js";
