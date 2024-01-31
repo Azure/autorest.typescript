@@ -287,9 +287,10 @@ function getSchemaForScalar(
   scalar: Scalar,
   options?: GetSchemaOptions
 ) {
-  let result = {};
+  let result = {} as any;
   const isStd = dpgContext.program.checker.isStdType(scalar);
-  const { relevantProperty } = options ?? {};
+  const { relevantProperty, isRequestBody, isParentRequestBody, contentTypes } =
+    options ?? {};
   if (isStd) {
     result = getSchemaForStdScalar(dpgContext.program, scalar, {
       relevantProperty
@@ -297,19 +298,63 @@ function getSchemaForScalar(
   } else if (scalar.baseScalar) {
     result = getSchemaForScalar(dpgContext, scalar.baseScalar);
   }
-  const withDecorators = applyEncoding(
-    dpgContext,
-    scalar,
-    result
-      ? applyIntrinsicDecorators(dpgContext.program, scalar, result)
-      : undefined
-  );
-  if (withDecorators.type === "string" && withDecorators.format === "binary") {
-    withDecorators.typeName =
+
+  if (isOctStreamAsRequestBody()) {
+    // bytes in the body of application/octet-stream is the raw binary payload/file
+    result.typeName =
       "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
-    withDecorators.outputTypeName = "Uint8Array";
+    result.outputTypeName = "Uint8Array";
+    return result;
+  } else if (isFormDataBytesInRequestBody()) {
+    // bytes inside a multipart part (for now) is assumed to be file
+    result.typeName =
+      "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File";
+    result.outputTypeName = "Uint8Array";
+    return result;
+  } else {
+    // for other cases we would trust the @encode decorator if not present we would treat it as string
+    const withDecorators = applyEncoding(
+      dpgContext,
+      scalar,
+      result
+        ? applyIntrinsicDecorators(dpgContext.program, scalar, result)
+        : undefined
+    );
+    if (
+      withDecorators.type === "string" &&
+      withDecorators.format === "binary"
+    ) {
+      withDecorators.typeName =
+        "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
+      withDecorators.outputTypeName = "Uint8Array";
+    }
+    return withDecorators;
   }
-  return withDecorators;
+
+  function isOctStreamAsRequestBody() {
+    return (
+      checkContentTypeIs("application/octet-stream", contentTypes) &&
+      isRequestBody &&
+      result.type === "string" &&
+      result.format === "bytes"
+    );
+  }
+
+  function isFormDataBytesInRequestBody() {
+    return (
+      checkContentTypeIs("multipart/form-data", contentTypes) &&
+      isParentRequestBody &&
+      result.type === "string" &&
+      result.format === "bytes"
+    );
+  }
+}
+
+function checkContentTypeIs(target: string, sourceTypes: string[] = []) {
+  return (
+    sourceTypes.length === 1 &&
+    sourceTypes[0]?.toLowerCase() === target.toLowerCase()
+  );
 }
 
 function getSchemaForUnion(
@@ -497,7 +542,7 @@ function getSchemaForModel(
   model: Model,
   options?: GetSchemaOptions
 ) {
-  const { usage, needRef } = options ?? {};
+  const { usage, needRef, isRequestBody, contentTypes } = options ?? {};
   if (isArrayModelType(dpgContext.program, model)) {
     return getSchemaForArrayModel(dpgContext, model, { usage });
   }
@@ -662,7 +707,10 @@ function getSchemaForModel(
     const propSchema = getSchemaForType(dpgContext, prop.type, {
       usage,
       needRef: isAnonymousModelType(prop.type) ? false : true,
-      relevantProperty: prop
+      relevantProperty: prop,
+      isParentRequestBody: isRequestBody,
+      isRequestBody: false,
+      contentTypes
     });
 
     if (propSchema === undefined) {
@@ -1033,7 +1081,7 @@ function getSchemaForStdScalar(
   const description = getSummary(program, type);
   switch (name) {
     case "bytes":
-      return { type: "string", format: "byte", description };
+      return { type: "string", format: "bytes", description };
     case "integer":
       return applyIntrinsicDecorators(program, type, {
         type: "number"
