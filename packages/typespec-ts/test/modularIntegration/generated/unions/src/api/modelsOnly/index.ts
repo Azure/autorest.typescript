@@ -34,7 +34,7 @@ export async function _modelsOnlyGetDeserialize(
   }
 
   return {
-    prop: result.body["prop"] as any,
+    prop: result.body["prop"],
   };
 }
 

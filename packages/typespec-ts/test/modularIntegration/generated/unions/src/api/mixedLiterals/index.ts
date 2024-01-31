@@ -35,10 +35,10 @@ export async function _mixedLiteralsGetDeserialize(
 
   return {
     prop: {
-      stringLiteral: result.body.prop["stringLiteral"] as any,
-      intLiteral: result.body.prop["intLiteral"] as any,
-      floatLiteral: result.body.prop["floatLiteral"] as any,
-      booleanLiteral: result.body.prop["booleanLiteral"] as any,
+      stringLiteral: result.body.prop["stringLiteral"],
+      intLiteral: result.body.prop["intLiteral"],
+      floatLiteral: result.body.prop["floatLiteral"],
+      booleanLiteral: result.body.prop["booleanLiteral"],
     },
   };
 }
