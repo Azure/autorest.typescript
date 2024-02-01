@@ -304,7 +304,6 @@ function transformRequestBody(
   });
 
   const descriptions = getBodyDescriptions(dpgContext, schema, parameters);
-  console.log("schema", schema, descriptions);
   const type = getRequestBodyType(
     schema,
     [SchemaContext.Input],
