@@ -17,6 +17,7 @@ import {
   isAzureCoreErrorType
 } from "../utils/modelUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { getContentTypes } from "./transformParameters.js";
 
 export function transformSchemas(
   program: Program,
@@ -28,6 +29,8 @@ export function transformSchemas(
     SchemaContext[]
   >();
   const schemaMap: Map<any, any> = new Map<any, any>();
+  const requestBodySet = new Set<Type>();
+  const contentTypeMap = new Map<Type, string[]>();
   const modelKey = Symbol("typescript-models-" + client.name);
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
@@ -64,6 +67,11 @@ export function transformSchemas(
       bodyModel &&
       (bodyModel.kind === "Model" || bodyModel.kind === "Union")
     ) {
+      requestBodySet.add(bodyModel);
+      const contentType = getContentTypes(route.parameters, dpgContext);
+      if (contentType.length > 0) {
+        contentTypeMap.set(bodyModel, contentType);
+      }
       getGeneratedModels(bodyModel, SchemaContext.Input);
     }
     for (const resp of route.responses) {
@@ -87,7 +95,12 @@ export function transformSchemas(
     }
   }
   program.stateMap(modelKey).forEach((context, tspModel) => {
-    const model = getSchemaForType(dpgContext, tspModel, { usage: context });
+    const model = getSchemaForType(dpgContext, tspModel, {
+      usage: context,
+      isRequestBody: requestBodySet.has(tspModel),
+      isParentRequestBody: false,
+      contentTypes: contentTypeMap.get(tspModel)
+    });
     if (model) {
       model.usage = context;
     }

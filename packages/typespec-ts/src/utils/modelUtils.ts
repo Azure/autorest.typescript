@@ -73,10 +73,13 @@ import {
 import { GetSchemaOptions, SdkContext } from "./interfaces.js";
 import { getModelNamespaceName } from "./namespaceUtils.js";
 
+const BINARY_TYPE_UNION =
+  "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
+
 export function getBinaryType(usage: SchemaContext[]) {
   return usage.includes(SchemaContext.Output)
     ? "Uint8Array"
-    : "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
+    : BINARY_TYPE_UNION;
 }
 
 export function isByteOrByteUnion(dpgContext: SdkContext, type: Type) {
@@ -301,14 +304,12 @@ function getSchemaForScalar(
 
   if (isOctStreamAsRequestBody()) {
     // bytes in the body of application/octet-stream is the raw binary payload/file
-    result.typeName =
-      "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
+    result.typeName = BINARY_TYPE_UNION;
     result.outputTypeName = "Uint8Array";
     return result;
   } else if (isFormDataBytesInRequestBody()) {
     // bytes inside a multipart part (for now) is assumed to be file
-    result.typeName =
-      "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File";
+    result.typeName = `${BINARY_TYPE_UNION} | File`;
     result.outputTypeName = "Uint8Array";
     return result;
   } else {
@@ -324,8 +325,7 @@ function getSchemaForScalar(
       withDecorators.type === "string" &&
       withDecorators.format === "binary"
     ) {
-      withDecorators.typeName =
-        "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
+      withDecorators.typeName = BINARY_TYPE_UNION;
       withDecorators.outputTypeName = "Uint8Array";
     }
     return withDecorators;
@@ -363,11 +363,10 @@ function getSchemaForUnion(
 ) {
   const variants = Array.from(union.variants.values());
   const values = [];
-  const { usage } = options ?? {};
 
   for (const variant of variants) {
     // We already know it's not a model type
-    values.push(getSchemaForType(dpgContext, variant.type, { usage }));
+    values.push(getSchemaForType(dpgContext, variant.type, options));
   }
 
   const schema: any = {};
@@ -543,7 +542,7 @@ function getSchemaForModel(
 ) {
   const { usage, needRef, isRequestBody, contentTypes } = options ?? {};
   if (isArrayModelType(dpgContext.program, model)) {
-    return getSchemaForArrayModel(dpgContext, model, { usage });
+    return getSchemaForArrayModel(dpgContext, model, options);
   }
 
   const program = dpgContext.program;
@@ -919,7 +918,7 @@ function getSchemaForArrayModel(
 ) {
   const { program } = dpgContext;
   const { indexer } = type;
-  const { usage } = options ?? {};
+  const { usage, isParentRequestBody, contentTypes } = options ?? {};
   let schema: any = {};
   if (!indexer) {
     return schema;
@@ -929,6 +928,15 @@ function getSchemaForArrayModel(
       type: "array",
       items: getSchemaForType(dpgContext, indexer.value!, {
         usage,
+        isRequestBody: false,
+        contentTypes,
+        // special handling for array in formdata
+        isParentRequestBody: checkContentTypeIs(
+          "multipart/form-data",
+          contentTypes
+        )
+          ? isParentRequestBody
+          : false,
         needRef: !isAnonymousModelType(indexer.value!)
       }),
       description: getDoc(program, type)
@@ -951,12 +959,12 @@ function getSchemaForArrayModel(
         } else if (schema.items.type === "union") {
           schema.typeName = `(${schema.items.typeName})[]`;
         } else if (
-          schema.items.format === "binary" &&
+          schema.items.typeName.includes(BINARY_TYPE_UNION) &&
           schema.items.type === "string"
         ) {
-          schema.typeName = `Array<${schema.items.typeName}>`;
+          schema.typeName = `(${schema.items.typeName})[]`;
           if (usage && usage.includes(SchemaContext.Output)) {
-            schema.outputTypeName = `Array<${schema.items.outputTypeName}>`;
+            schema.outputTypeName = `(${schema.items.outputTypeName})[]`;
           }
         } else if (isAnonymousObjectSchema(schema.items)) {
           schema.typeName = `${schema.items.typeName}[]`;
@@ -1177,8 +1185,7 @@ function getSchemaForStdScalar(
           type: "string",
           format: "binary",
           description,
-          typeName:
-            "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream",
+          typeName: BINARY_TYPE_UNION,
           outputTypeName: "Uint8Array"
         };
       }
@@ -1360,6 +1367,13 @@ function getEnumStringDescription(type: any) {
   return undefined;
 }
 
+function getBinaryDescripton(type: any) {
+  if (type?.typeName?.includes(BINARY_TYPE_UNION) && type.type === "string") {
+    return `Value may contain any sequence of octets`;
+  }
+  return undefined;
+}
+
 function getDecimalDescription(type: any) {
   if (
     (type.format === "decimal" || type.format === "decimal128") &&
@@ -1383,7 +1397,9 @@ export function getFormattedPropertyDoc(
 ) {
   const propertyDoc = getDoc(program, type);
   const enhancedDocFromType =
-    getEnumStringDescription(schemaType) ?? getDecimalDescription(schemaType);
+    getEnumStringDescription(schemaType) ??
+    getDecimalDescription(schemaType) ??
+    getBinaryDescripton(schemaType);
   if (propertyDoc && enhancedDocFromType) {
     return `${propertyDoc}${sperator}${enhancedDocFromType}`;
   }

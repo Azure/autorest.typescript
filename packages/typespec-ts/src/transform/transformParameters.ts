@@ -40,6 +40,34 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { SdkContext } from "../utils/interfaces.js";
 
+export function getContentTypes(
+  parameters?: HttpOperationParameters,
+  dpgContext?: SdkContext
+): string[];
+export function getContentTypes(headers?: ParameterMetadata[]): string[];
+export function getContentTypes(
+  headersOrParams?: ParameterMetadata[] | HttpOperationParameters,
+  dpgContext?: SdkContext
+) {
+  if (!headersOrParams) {
+    return [];
+  }
+  if (!Array.isArray(headersOrParams) && dpgContext) {
+    headersOrParams = transformHeaderParameters(
+      dpgContext!,
+      headersOrParams as HttpOperationParameters,
+      new Set<string>()
+    );
+  } else {
+    headersOrParams = headersOrParams as ParameterMetadata[];
+  }
+  return (headersOrParams ?? [])
+    .filter((h) => h.name === "contentType")
+    .map((h) => {
+      return getTypeName(h.param, [SchemaContext.Input]);
+    });
+}
+
 export function transformToParameterTypes(
   importDetails: Imports,
   client: SdkClient,
@@ -253,7 +281,7 @@ function transformBodyParameters(
   if (!bodyType) {
     return;
   }
-  return transformNormalBody(
+  return transformRequestBody(
     dpgContext,
     bodyType,
     parameters,
@@ -262,23 +290,21 @@ function transformBodyParameters(
   );
 }
 
-function transformNormalBody(
+function transformRequestBody(
   dpgContext: SdkContext,
   bodyType: Type,
   parameters: HttpOperationParameters,
   importedModels: Set<string>,
   headers: ParameterMetadata[]
 ) {
-  const descriptions = extractDescriptionsFromBody(
-    dpgContext,
-    bodyType,
-    parameters
-  );
   const schema = getSchemaForType(dpgContext, bodyType, {
     contentTypes: getContentTypes(headers),
     isRequestBody: true,
     usage: [SchemaContext.Input, SchemaContext.Exception]
   });
+
+  const descriptions = getBodyDescriptions(dpgContext, schema, parameters);
+  console.log("schema", schema, descriptions);
   const type = getRequestBodyType(
     schema,
     [SchemaContext.Input],
@@ -300,14 +326,6 @@ function transformNormalBody(
       }
     ]
   };
-}
-
-function getContentTypes(headers?: ParameterMetadata[]) {
-  return (headers ?? [])
-    .filter((h) => h.name === "contentType")
-    .map((h) => {
-      return getTypeName(h.param, [SchemaContext.Input]);
-    });
 }
 
 function getRequestBodyType(
@@ -333,9 +351,9 @@ function getRequestBodyType(
   return typeName;
 }
 
-function extractDescriptionsFromBody(
+function getBodyDescriptions(
   dpgContext: SdkContext,
-  bodyType: Type,
+  bodySchema: Schema,
   parameters: HttpOperationParameters
 ) {
   const description =
@@ -343,9 +361,7 @@ function extractDescriptionsFromBody(
     getFormattedPropertyDoc(
       dpgContext.program,
       parameters.bodyParameter,
-      getSchemaForType(dpgContext, bodyType, {
-        usage: [SchemaContext.Input, SchemaContext.Exception]
-      })
+      bodySchema
     );
   return description ? [description] : [];
 }
