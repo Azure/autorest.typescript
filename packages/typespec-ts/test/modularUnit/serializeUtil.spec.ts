@@ -37,7 +37,7 @@ describe("modular special union serialization", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -125,7 +125,7 @@ describe("modular special union serialization", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -205,7 +205,7 @@ describe("modular special union serialization", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -285,7 +285,7 @@ describe("modular special union serialization", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -370,7 +370,7 @@ describe("modular special union serialization", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -455,7 +455,7 @@ describe("modular special union serialization", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -545,7 +545,7 @@ describe("modular special union serialization", () => {
       tspContent
     );
     assert.equal(serializeUtil?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
       import {
@@ -578,7 +578,7 @@ describe("modular special union serialization", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -663,7 +663,7 @@ describe("modular special union serialization", () => {
       tspContent
     );
     assert.ok(serializeUtil);
-    assertEqualContent(
+    await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
       import { uint8ArrayToString } from "@azure/core-util";
@@ -693,7 +693,7 @@ describe("modular special union serialization", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -743,6 +743,258 @@ describe("modular special union serialization", () => {
       true
     );
   });
+
+  it("should generate serialize util if there're special discriminated union variants of model with bytes and datetime property", async () => {
+    const tspContent = `
+    @discriminator("kind")
+    union WidgetData {
+      kind0: WidgetData0;
+      kind1: WidgetData1;
+    }
+
+    model WidgetData0 {
+      kind: "kind0";
+      fooProp: bytes;
+    }
+    
+    model WidgetData1 {
+      kind: "kind1";
+      data: utcDateTime;
+    }
+    
+    model Widget {
+      @key id: string;
+      weight: int32;
+      color: "red" | "blue";
+    }
+    
+    model Widget1 extends Widget {
+      data: WidgetData
+    }
+
+    interface WidgetService {
+      @get @route("customGet1") customGet1(@body body: Widget1): void;
+    }
+    `;
+
+    // to test the generated deserialized utils for union variant of model with datetime properties.
+    const serializeUtil = await emitModularSerializeUtilsFromTypeSpec(
+      tspContent
+    );
+    assert.ok(serializeUtil);
+    await assertEqualContent(
+      serializeUtil?.[0]?.getFullText()!,
+      `
+      import { uint8ArrayToString } from "@azure/core-util";
+      import {
+        WidgetData0 as WidgetData0Rest,
+        WidgetData1 as WidgetData1Rest,
+        WidgetData as WidgetDataRest,
+      } from "../rest/index.js";
+      import { WidgetData0, WidgetData1, WidgetData } from "../models/models.js";
+      
+      /** serialize function for WidgetData0 */
+      function serializeWidgetData0(obj: WidgetData0): WidgetData0Rest {
+        return {
+          kind: obj["kind"],
+          fooProp: uint8ArrayToString(obj["fooProp"], "base64"),
+        };
+      }
+      
+      /** serialize function for WidgetData1 */
+      function serializeWidgetData1(obj: WidgetData1): WidgetData1Rest {
+        return { kind: obj["kind"], data: obj["data"].toISOString() };
+      }
+      
+      /** serialize function for WidgetData */
+      export function serializeWidgetData(obj: WidgetData): WidgetDataRest {
+        switch (obj.kind) {
+          case "kind0":
+            return serializeWidgetData0(obj);
+          case "kind1":
+            return serializeWidgetData1(obj);
+          default:
+            return obj;
+        }
+      }
+      `
+    );
+
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    await assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+        createRestError,
+      } from "@azure-rest/core-client";
+      export function _customGet1Send(
+        context: Client,
+        body: Widget1,
+        options: CustomGet1Options = { requestOptions: {} },
+      ): StreamableMethod<CustomGet1204Response> {
+        return context
+          .path("/customGet1")
+          .get({
+            ...operationOptionsToRequestParameters(options),
+            body: {
+              id: body["id"],
+              weight: body["weight"],
+              color: body["color"],
+              data: serializeWidgetData(body["data"]),
+            },
+          });
+      }
+      export async function _customGet1Deserialize(
+        result: CustomGet1204Response,
+      ): Promise<void> {
+        if (result.status !== "204") {
+          throw createRestError(result);
+        }
+        return;
+      }
+      export async function customGet1(
+        context: Client,
+        body: Widget1,
+        options: CustomGet1Options = { requestOptions: {} },
+      ): Promise<void> {
+        const result = await _customGet1Send(context, body, options);
+        return _customGet1Deserialize(result);
+      }
+      `,
+      true
+    );
+  });
+
+  it("should generate serialize util if there're special discriminated union variants of model with bytes and bytes property", async () => {
+    const tspContent = `
+    @discriminator("kind")
+    union WidgetData {
+      kind0: WidgetData0;
+      kind1: WidgetData1;
+    }
+
+    model WidgetData0 {
+      kind: "kind0";
+      fooProp: bytes;
+    }
+    
+    model WidgetData1 {
+      kind: "kind1";
+      data: bytes;
+    }
+    
+    model Widget {
+      @key id: string;
+      weight: int32;
+      color: "red" | "blue";
+    }
+    
+    model Widget1 extends Widget {
+      data: WidgetData
+    }
+
+    interface WidgetService {
+      @get @route("customGet1") customGet1(@body body: Widget1): void;
+    }
+    `;
+
+    // to test the generated deserialized utils for union variant of model with datetime properties.
+    const serializeUtil = await emitModularSerializeUtilsFromTypeSpec(
+      tspContent
+    );
+    assert.ok(serializeUtil);
+    await assertEqualContent(
+      serializeUtil?.[0]?.getFullText()!,
+      `
+      import { uint8ArrayToString } from "@azure/core-util";
+      import {
+        WidgetData0 as WidgetData0Rest,
+        WidgetData1 as WidgetData1Rest,
+        WidgetData as WidgetDataRest,
+      } from "../rest/index.js";
+      import { WidgetData0, WidgetData1, WidgetData } from "../models/models.js";
+      
+      /** serialize function for WidgetData0 */
+      function serializeWidgetData0(obj: WidgetData0): WidgetData0Rest {
+        return {
+          kind: obj["kind"],
+          fooProp: uint8ArrayToString(obj["fooProp"], "base64"),
+        };
+      }
+      
+      /** serialize function for WidgetData1 */
+      function serializeWidgetData1(obj: WidgetData1): WidgetData1Rest {
+        return { kind: obj["kind"], data: uint8ArrayToString(obj["data"], "base64") };
+      }
+      
+      /** serialize function for WidgetData */
+      export function serializeWidgetData(obj: WidgetData): WidgetDataRest {
+        switch (obj.kind) {
+          case "kind0":
+            return serializeWidgetData0(obj);
+          case "kind1":
+            return serializeWidgetData1(obj);
+          default:
+            return obj;
+        }
+      }
+      `
+    );
+
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    await assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+        createRestError,
+      } from "@azure-rest/core-client";
+      export function _customGet1Send(
+        context: Client,
+        body: Widget1,
+        options: CustomGet1Options = { requestOptions: {} },
+      ): StreamableMethod<CustomGet1204Response> {
+        return context
+          .path("/customGet1")
+          .get({
+            ...operationOptionsToRequestParameters(options),
+            body: {
+              id: body["id"],
+              weight: body["weight"],
+              color: body["color"],
+              data: serializeWidgetData(body["data"]),
+            },
+          });
+      }
+      export async function _customGet1Deserialize(
+        result: CustomGet1204Response,
+      ): Promise<void> {
+        if (result.status !== "204") {
+          throw createRestError(result);
+        }
+        return;
+      }
+      export async function customGet1(
+        context: Client,
+        body: Widget1,
+        options: CustomGet1Options = { requestOptions: {} },
+      ): Promise<void> {
+        const result = await _customGet1Send(context, body, options);
+        return _customGet1Deserialize(result);
+      }
+      `,
+      true
+    );
+  });
 });
 
 describe("modular special union deserialization", () => {
@@ -777,7 +1029,7 @@ describe("modular special union deserialization", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -857,7 +1109,7 @@ describe("modular special union deserialization", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -929,7 +1181,7 @@ describe("modular special union deserialization", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -1001,7 +1253,7 @@ describe("modular special union deserialization", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -1078,7 +1330,7 @@ describe("modular special union deserialization", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -1154,7 +1406,7 @@ describe("modular special union deserialization", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -1234,7 +1486,7 @@ describe("modular special union deserialization", () => {
       tspContent
     );
     assert.equal(serializeUtil?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
       import { WidgetData1Output, WidgetDataOutput } from "../rest/index.js";
@@ -1264,7 +1516,7 @@ describe("modular special union deserialization", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -1344,7 +1596,7 @@ describe("modular special union deserialization", () => {
       tspContent
     );
     assert.ok(serializeUtil);
-    assertEqualContent(
+    await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
       import { stringToUint8Array } from "@azure/core-util";
@@ -1376,7 +1628,7 @@ describe("modular special union deserialization", () => {
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       operationFiles?.[0]?.getFullText()!,
       `
       import { TestingContext as Client } from "../rest/index.js";
@@ -1418,6 +1670,260 @@ describe("modular special union deserialization", () => {
     );
   });
 
+  it("should generate serialize util if there're special discriminated union variants of model with bytes and datetime property", async () => {
+    const tspContent = `
+    @discriminator("kind")
+    union WidgetData {
+      kind0: WidgetData0;
+      kind1: WidgetData1;
+    }
+
+    model WidgetData0 {
+      kind: "kind0";
+      fooProp: bytes;
+    }
+    
+    model WidgetData1 {
+      kind: "kind1";
+      data: utcDateTime;
+    }
+    
+    model Widget {
+      @key id: string;
+      weight: int32;
+      color: "red" | "blue";
+    }
+    
+    model Widget1 extends Widget {
+      data: WidgetData
+    }
+
+    interface WidgetService {
+      @get @route("customGet1") customGet1(): Widget1;
+    }
+    `;
+
+    // to test the generated deserialized utils for union variant of model with datetime properties.
+    const serializeUtil = await emitModularSerializeUtilsFromTypeSpec(
+      tspContent
+    );
+    assert.ok(serializeUtil);
+    await assertEqualContent(
+      serializeUtil?.[0]?.getFullText()!,
+      `
+      import { stringToUint8Array } from "@azure/core-util";
+      import {
+        WidgetData0Output,
+        WidgetData1Output,
+        WidgetDataOutput,
+      } from "../rest/index.js";
+      import { WidgetData0, WidgetData1, WidgetData } from "../models/models.js";
+      
+      /** deserialize function for WidgetData0 */
+      function deserializeWidgetData0(obj: WidgetData0Output): WidgetData0 {
+        return {
+          kind: obj["kind"],
+          fooProp:
+            typeof obj["fooProp"] === "string"
+              ? stringToUint8Array(obj["fooProp"], "base64")
+              : obj["fooProp"],
+        };
+      }
+      
+      /** deserialize function for WidgetData1 */
+      function deserializeWidgetData1(obj: WidgetData1Output): WidgetData1 {
+        return { kind: obj["kind"], data: new Date(obj["data"]) };
+      }
+      
+      /** deserialize function for WidgetDataOutput */
+      export function deserializeWidgetData(obj: WidgetDataOutput): WidgetData {
+        switch (obj.kind) {
+          case "kind0":
+            return deserializeWidgetData0(obj);
+          case "kind1":
+            return deserializeWidgetData1(obj);
+          default:
+            return obj;
+        }
+      }
+      `
+    );
+
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    await assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+        createRestError,
+      } from "@azure-rest/core-client";
+      export function _customGet1Send(
+        context: Client,
+        options: CustomGet1Options = { requestOptions: {} },
+      ): StreamableMethod<CustomGet1200Response> {
+        return context
+          .path("/customGet1")
+          .get({ ...operationOptionsToRequestParameters(options) });
+      }
+      export async function _customGet1Deserialize(
+        result: CustomGet1200Response,
+      ): Promise<Widget1> {
+        if (result.status !== "200") {
+          throw createRestError(result);
+        }
+        return {
+          id: result.body["id"],
+          weight: result.body["weight"],
+          color: result.body["color"],
+          data: deserializeWidgetData(result.body["data"]),
+        };
+      }
+      export async function customGet1(
+        context: Client,
+        options: CustomGet1Options = { requestOptions: {} },
+      ): Promise<Widget1> {
+        const result = await _customGet1Send(context, options);
+        return _customGet1Deserialize(result);
+      }
+      `,
+      true
+    );
+  });
+
+  it("should generate serialize util if there're special discriminated union variants of model with bytes and bytes property", async () => {
+    const tspContent = `
+    @discriminator("kind")
+    union WidgetData {
+      kind0: WidgetData0;
+      kind1: WidgetData1;
+    }
+
+    model WidgetData0 {
+      kind: "kind0";
+      fooProp: bytes;
+    }
+    
+    model WidgetData1 {
+      kind: "kind1";
+      data: bytes;
+    }
+    
+    model Widget {
+      @key id: string;
+      weight: int32;
+      color: "red" | "blue";
+    }
+    
+    model Widget1 extends Widget {
+      data: WidgetData
+    }
+
+    interface WidgetService {
+      @get @route("customGet1") customGet1(): Widget1;
+    }
+    `;
+
+    // to test the generated deserialized utils for union variant of model with datetime properties.
+    const serializeUtil = await emitModularSerializeUtilsFromTypeSpec(
+      tspContent
+    );
+    assert.ok(serializeUtil);
+    await assertEqualContent(
+      serializeUtil?.[0]?.getFullText()!,
+      `
+      import { stringToUint8Array } from "@azure/core-util";
+      import {
+        WidgetData0Output,
+        WidgetData1Output,
+        WidgetDataOutput,
+      } from "../rest/index.js";
+      import { WidgetData0, WidgetData1, WidgetData } from "../models/models.js";
+      
+      /** deserialize function for WidgetData0 */
+      function deserializeWidgetData0(obj: WidgetData0Output): WidgetData0 {
+        return {
+          kind: obj["kind"],
+          fooProp:
+            typeof obj["fooProp"] === "string"
+              ? stringToUint8Array(obj["fooProp"], "base64")
+              : obj["fooProp"],
+        };
+      }
+      
+      /** deserialize function for WidgetData1 */
+      function deserializeWidgetData1(obj: WidgetData1Output): WidgetData1 {
+        return {
+          kind: obj["kind"],
+          data:
+            typeof obj["data"] === "string"
+              ? stringToUint8Array(obj["data"], "base64")
+              : obj["data"],
+        };
+      }
+      
+      /** deserialize function for WidgetDataOutput */
+      export function deserializeWidgetData(obj: WidgetDataOutput): WidgetData {
+        switch (obj.kind) {
+          case "kind0":
+            return deserializeWidgetData0(obj);
+          case "kind1":
+            return deserializeWidgetData1(obj);
+          default:
+            return obj;
+        }
+      }
+      `
+    );
+
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    await assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+        createRestError,
+      } from "@azure-rest/core-client";
+      export function _customGet1Send(
+        context: Client,
+        options: CustomGet1Options = { requestOptions: {} },
+      ): StreamableMethod<CustomGet1200Response> {
+        return context
+          .path("/customGet1")
+          .get({ ...operationOptionsToRequestParameters(options) });
+      }
+      export async function _customGet1Deserialize(
+        result: CustomGet1200Response,
+      ): Promise<Widget1> {
+        if (result.status !== "200") {
+          throw createRestError(result);
+        }
+        return {
+          id: result.body["id"],
+          weight: result.body["weight"],
+          color: result.body["color"],
+          data: deserializeWidgetData(result.body["data"]),
+        };
+      }
+      export async function customGet1(
+        context: Client,
+        options: CustomGet1Options = { requestOptions: {} },
+      ): Promise<Widget1> {
+        const result = await _customGet1Send(context, options);
+        return _customGet1Deserialize(result);
+      }
+      `,
+      true
+    );
+  });
+
   it("should not generate deserialize util even if circular in model properties but no other special variants", async () => {
     const tspContent = `
     @discriminator("kind")
@@ -1448,7 +1954,7 @@ describe("modular special union deserialization", () => {
     assert.ok(serializeUtil?.length === 0);
   });
 
-  it("should not generate deserialize util even if circular in model properties but no other special variants", async () => {
+  it("should generate deserialize util even if circular in model properties but no other special variants", async () => {
     const tspContent = `
     @discriminator("kind")
     model Pet {
@@ -1477,7 +1983,7 @@ describe("modular special union deserialization", () => {
       tspContent
     );
     assert.equal(serializeUtil?.length, 1);
-    assertEqualContent(
+    await assertEqualContent(
       serializeUtil?.[0]?.getFullText()!,
       `
       import { PetUnion, Gold, DogUnion } from "../models/models.js";
