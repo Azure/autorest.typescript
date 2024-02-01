@@ -24,15 +24,13 @@ import {
   getFormattedPropertyDoc,
   getBodyType,
   predictDefaultValue,
-  enrichBinaryTypeInBody,
   getSerializeTypeName
 } from "../utils/modelUtils.js";
 
 import {
   getOperationGroupName,
   getOperationName,
-  getSpecialSerializeInfo,
-  isBinaryPayload
+  getSpecialSerializeInfo
 } from "../utils/operationUtil.js";
 import {
   SdkClient,
@@ -255,15 +253,12 @@ function transformBodyParameters(
   if (!bodyType) {
     return;
   }
-  const { hasBinaryContent } = getBodyDetail(dpgContext, bodyType, headers);
-
   return transformNormalBody(
     dpgContext,
     bodyType,
     parameters,
     importedModels,
-    headers,
-    hasBinaryContent
+    headers
   );
 }
 
@@ -272,33 +267,25 @@ function transformNormalBody(
   bodyType: Type,
   parameters: HttpOperationParameters,
   importedModels: Set<string>,
-  headers: ParameterMetadata[],
-  hasBinaryContent: boolean
+  headers: ParameterMetadata[]
 ) {
   const descriptions = extractDescriptionsFromBody(
     dpgContext,
     bodyType,
     parameters
   );
-  if (hasBinaryContent) {
-    descriptions.push("Value may contain any sequence of octets");
-  }
-  const type = extractNameFromTypeSpecType(
-    dpgContext,
-    bodyType,
+  const schema = getSchemaForType(dpgContext, bodyType, {
+    contentTypes: getContentTypes(headers),
+    isRequestBody: true,
+    usage: [SchemaContext.Input, SchemaContext.Exception]
+  });
+  const type = getRequestBodyType(
+    schema,
     [SchemaContext.Input],
     importedModels,
     headers
   );
-  let schema = getSchemaForType(dpgContext, bodyType, {
-    contentTypes: getContentTypes(headers),
-    isRequestBody: true
-  });
-  let overrideType = undefined;
-  if (hasBinaryContent) {
-    schema = enrichBinaryTypeInBody(schema);
-    overrideType = schema.typeName;
-  }
+
   return {
     isPartialBody: false,
     body: [
@@ -306,7 +293,7 @@ function transformNormalBody(
         properties: schema.properties,
         typeName: schema.name,
         name: "body",
-        type: overrideType ?? type,
+        type: type,
         required: parameters?.bodyParameter?.optional === false,
         description: descriptions.join("\n\n"),
         oriSchema: schema
@@ -315,37 +302,20 @@ function transformNormalBody(
   };
 }
 
-function getBodyDetail(
-  dpgContext: SdkContext,
-  bodyType: Type,
-  headers: ParameterMetadata[]
-) {
-  const contentTypes: string[] = getContentTypes(headers);
-  const hasBinaryContent = contentTypes.some((c) =>
-    isBinaryPayload(dpgContext, bodyType, c)
-  );
-  const hasFormContent = contentTypes.includes(`"multipart/form-data"`);
-  return { hasBinaryContent, hasFormContent };
-}
-
-function getContentTypes(headers: ParameterMetadata[]) {
-  return headers
+function getContentTypes(headers?: ParameterMetadata[]) {
+  return (headers ?? [])
     .filter((h) => h.name === "contentType")
     .map((h) => {
       return getTypeName(h.param, [SchemaContext.Input]);
     });
 }
 
-function extractNameFromTypeSpecType(
-  dpgContext: SdkContext,
-  type: Type,
+function getRequestBodyType(
+  bodySchema: Schema,
   schemaUsage: SchemaContext[],
   importedModels: Set<string>,
   headers?: ParameterMetadata[]
 ) {
-  const bodySchema = getSchemaForType(dpgContext, type, {
-    usage: [SchemaContext.Input, SchemaContext.Exception]
-  }) as Schema;
   const importedNames = getImportedModelName(bodySchema, schemaUsage) ?? [];
   importedNames.forEach(importedModels.add, importedModels);
 

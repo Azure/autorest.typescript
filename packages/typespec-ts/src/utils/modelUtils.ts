@@ -345,15 +345,14 @@ function getSchemaForScalar(
       checkContentTypeIs("multipart/form-data", contentTypes) &&
       isParentRequestBody &&
       result.type === "string" &&
-      result.format === "bytes"
+      (result.format === "bytes" || result.format === "binary")
     );
   }
 }
 
 function checkContentTypeIs(target: string, sourceTypes: string[] = []) {
   return (
-    sourceTypes.length === 1 &&
-    sourceTypes[0]?.toLowerCase() === target.toLowerCase()
+    sourceTypes.length === 1 && sourceTypes[0]?.toLowerCase().includes(target)
   );
 }
 
