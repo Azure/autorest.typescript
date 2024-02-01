@@ -2,14 +2,14 @@
 // Licensed under the MIT license.
 
 export {
-  DogParent,
+  Dog,
   Golden,
   DogKind,
-  SnakeParent,
+  Snake,
   Cobra,
   SnakeKind,
-  Dog,
-  Snake,
+  DogUnion,
+  SnakeUnion,
 } from "./models.js";
 export {
   GetExtensibleModelOptions,

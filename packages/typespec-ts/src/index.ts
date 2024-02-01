@@ -49,6 +49,7 @@ import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
+import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
 import { join } from "path";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
@@ -184,6 +185,7 @@ export async function $onEmit(context: EmitContext) {
         buildModelsOptions(modularCodeModel, subClient);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
+        buildSerializeUtils(modularCodeModel);
         buildPagingTypes(modularCodeModel, subClient);
         buildModularPagingHelpers(
           modularCodeModel,

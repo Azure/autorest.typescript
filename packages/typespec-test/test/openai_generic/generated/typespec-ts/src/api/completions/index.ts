@@ -74,7 +74,7 @@ export async function _createDeserialize(
               topLogprobs: p.logprobs["top_logprobs"],
               textOffset: p.logprobs["text_offset"],
             },
-      finishReason: p["finish_reason"] as any,
+      finishReason: p["finish_reason"],
     })),
     usage: !result.body.usage
       ? undefined

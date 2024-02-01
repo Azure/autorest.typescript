@@ -2,13 +2,13 @@
 // Licensed under the MIT license.
 
 export {
-  FishParent,
-  SharkParent,
+  Fish,
+  Shark,
   SawShark,
   GoblinShark,
   Salmon,
-  Fish,
-  Shark,
+  FishUnion,
+  SharkUnion,
 } from "./models.js";
 export {
   GetModelOptions,
