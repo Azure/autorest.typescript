@@ -168,7 +168,7 @@ describe("Responses.ts", () => {
     `
       );
     });
-    it.only("@header contentType not json or text should set format to binary(finally unit8array)", async () => {
+    it("@header contentType not json or text should set format to binary(finally unit8array)", async () => {
       const responses = await emitResponsesFromTypeSpec(`
       @get op read(): {@header contentType: "image/png", @body body: bytes};
       `);

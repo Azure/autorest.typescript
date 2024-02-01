@@ -84,22 +84,22 @@ export function getBinaryType(usage: SchemaContext[]) {
 
 export function isByteOrByteUnion(dpgContext: SdkContext, type: Type) {
   const schema = getSchemaForType(dpgContext, type);
-  return isByteType(schema) || isByteUnion(schema);
+  return isBytesType(schema) || isBytesUnion(schema);
 }
 
-function isByteType(schema: any) {
+function isBytesType(schema: any) {
   return (
     schema.type === "string" &&
-    (schema.format === "byte" || schema.format === "binary")
+    (schema.format === "bytes" || schema.format === "binary")
   );
 }
 
-function isByteUnion(schema: any) {
+function isBytesUnion(schema: any) {
   if (!Array.isArray(schema.enum)) {
     return false;
   }
   for (const ele of schema.enum) {
-    if (isByteType(ele)) {
+    if (isBytesType(ele)) {
       return true;
     }
   }
@@ -116,12 +116,12 @@ function refineByteType(schema: any) {
 }
 
 export function enrichBinaryTypeInBody(schema: any) {
-  if (isByteType(schema)) {
+  if (isBytesType(schema)) {
     refineByteType(schema);
-  } else if (isByteUnion(schema)) {
+  } else if (isBytesUnion(schema)) {
     const inputType: string[] = [];
     for (const item of schema.enum) {
-      if (isByteType(item)) {
+      if (isBytesType(item)) {
         refineByteType(item);
       }
       // ignore the string type for input because we already have it in bytes union
@@ -335,8 +335,7 @@ function getSchemaForScalar(
     return (
       checkContentTypeIs("application/octet-stream", contentTypes) &&
       isRequestBody &&
-      result.type === "string" &&
-      result.format === "bytes"
+      isBytesType(result)
     );
   }
 
@@ -344,8 +343,7 @@ function getSchemaForScalar(
     return (
       checkContentTypeIs("multipart/form-data", contentTypes) &&
       isParentRequestBody &&
-      result.type === "string" &&
-      (result.format === "bytes" || result.format === "binary")
+      isBytesType(result)
     );
   }
 }
