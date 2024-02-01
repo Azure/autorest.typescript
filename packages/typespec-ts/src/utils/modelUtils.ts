@@ -366,7 +366,9 @@ function getSchemaForUnion(
 
   for (const variant of variants) {
     // We already know it's not a model type
-    values.push(getSchemaForType(dpgContext, variant.type, options));
+    values.push(
+      getSchemaForType(dpgContext, variant.type, { ...options, needRef: false })
+    );
   }
 
   const schema: any = {};

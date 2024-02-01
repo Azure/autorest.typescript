@@ -17,7 +17,7 @@ export interface GenerationDirDetail {
 export interface GetSchemaOptions {
   // usage is used to determine the type name of the schema
   usage?: SchemaContext[];
-  // default to false, if true, the schema would be enriched with more information
+  // default to false
   needRef?: boolean;
   // relevant property which the type belongs to
   relevantProperty?: ModelProperty;
