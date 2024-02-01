@@ -32,7 +32,6 @@ import {
   isNullType,
   Scalar,
   UnionVariant,
-  getProjectedName,
   StringLiteral,
   BooleanLiteral,
   NoTarget,
@@ -43,7 +42,8 @@ import {
   getEncode,
   EncodeData,
   isRecordModelType,
-  isArrayModelType
+  isArrayModelType,
+  resolveEncodedName
 } from "@typespec/compiler";
 import { reportDiagnostic } from "../lib.js";
 import {
@@ -504,7 +504,7 @@ function getSchemaForModel(
 
   const program = dpgContext.program;
   const overridedModelName =
-    getFriendlyName(program, model) ?? getProjectedName(program, model, "json");
+    getFriendlyName(program, model) ?? resolveEncodedName(program, model, "json");
   const fullNamespaceName =
     overridedModelName ??
     getModelNamespaceName(dpgContext, model.namespace!)
@@ -653,7 +653,7 @@ function getSchemaForModel(
     };
   }
   for (const [propName, prop] of model.properties) {
-    const restApiName = getProjectedName(program, prop, "json");
+    const restApiName = resolveEncodedName(program, prop, "json");
     const name = `"${restApiName ?? propName}"`;
     if (!isSchemaProperty(program, prop)) {
       continue;
@@ -765,7 +765,7 @@ function applyIntrinsicDecorators(
     newTarget.description = docStr;
   }
 
-  const restApiName = getProjectedName(program, type, "json");
+  const restApiName = resolveEncodedName(program, type, "json");
   if (restApiName) {
     newTarget.name = restApiName;
   }

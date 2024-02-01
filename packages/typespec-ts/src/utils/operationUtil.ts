@@ -11,11 +11,11 @@ import {
   normalizeName
 } from "@azure-tools/rlc-common";
 import {
-  getProjectedName,
   ignoreDiagnostics,
   Model,
   Operation,
   Program,
+  resolveEncodedName,
   Type
 } from "@typespec/compiler";
 import {
@@ -159,7 +159,7 @@ export function getOperationGroupName(
 }
 
 export function getOperationName(program: Program, operation: Operation) {
-  const projectedOperationName = getProjectedName(program, operation, "json");
+  const projectedOperationName = resolveEncodedName(program, operation, "json");
 
   return normalizeName(
     projectedOperationName ?? operation.name,

@@ -66,7 +66,8 @@ import {
   SdkBuiltInType,
   getSdkBuiltInType,
   getClientType,
-  SdkEnumValueType
+  SdkEnumValueType,
+  getClientNameOverride
 } from "@azure-tools/typespec-client-generator-core";
 import {
   ModularCodeModel,
@@ -1003,7 +1004,7 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
   }
   const effectiveName = getEffectiveSchemaType(context.program, type).name;
   const overridedModelName =
-    getProjectedName(context.program, type, "javascript") ??
+    getClientNameOverride(context.program, type, "javascript") ??
     getProjectedName(context.program, type, "client") ??
     getFriendlyName(context.program, type);
   const fullNamespaceName =
