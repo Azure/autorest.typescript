@@ -74,8 +74,10 @@ import { GetSchemaOptions, SdkContext } from "./interfaces.js";
 import { getModelNamespaceName } from "./namespaceUtils.js";
 import { KnownMediaType, hasMediaType } from "./mediaTypes.js";
 
-const BINARY_TYPE_UNION =
+export const BINARY_TYPE_UNION =
   "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
+
+export const BINARY_AND_FILE_TYPE_UNION = `${BINARY_TYPE_UNION} | File`;
 
 export function getBinaryType(usage: SchemaContext[]) {
   return usage.includes(SchemaContext.Output)
@@ -314,7 +316,7 @@ function getSchemaForScalar(
     return result;
   } else if (isFormDataBytesInRequestBody()) {
     // bytes inside a multipart part (for now) is assumed to be file
-    result.typeName = `${BINARY_TYPE_UNION} | File`;
+    result.typeName = BINARY_AND_FILE_TYPE_UNION;
     result.outputTypeName = "Uint8Array";
     return result;
   } else {

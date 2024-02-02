@@ -25,7 +25,6 @@ describe("utils testing", () => {
           `);
       const first = schemaOutput?.[0] as ObjectSchema;
       const res = `{"prop": {"index": number;"text": string;"logprobs": null | {"tokens": string[];"token_logprobs": number[];"top_logprobs": Record<string, number>[];"text_offset": number[];};}[];}`;
-      // console.log(getModelInlineSigniture(first), first);
       assert.strictEqual(getModelInlineSigniture(first), res);
     });
   });

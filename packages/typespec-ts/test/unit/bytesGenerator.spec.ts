@@ -4,7 +4,7 @@ import {
   emitParameterFromTypeSpec
 } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
-describe("bytes request", () => {
+describe("bytes", () => {
   describe("application/octet-stream", () => {
     it("@encode('binary') - should be treated as raw binary payload", async () => {
       const parameters = await emitParameterFromTypeSpec(
@@ -80,7 +80,7 @@ describe("bytes request", () => {
     });
 
     // TODO: need to figure out the behavior
-    it.skip("@encode('base64')", async () => {});
+    it.skip("@encode('base64') - should be treated as string?", async () => {});
     it.skip("bytes in model - should be treated as base64 string?");
   });
   describe("application/json or no content type specified", () => {
@@ -421,7 +421,6 @@ describe("bytes request", () => {
         `
       );
       assert.ok(parameters);
-      console.log(parameters?.content!);
       await assertEqualContent(
         parameters?.content!,
         `
@@ -443,7 +442,7 @@ describe("bytes request", () => {
     });
     // TODO: we need more discussions about current behavior
     // This case is not finalized yet and some validations would be added in tcgc
-    it.skip("mixed non-binary and binary content types", async () => {
+    it.skip("mixed non-binary and binary content types - should report errors?", async () => {
       const parameters = await emitParameterFromTypeSpec(
         `
         @post op read(@header contentType: "image/png" | "application/json", @body body: bytes): {};
