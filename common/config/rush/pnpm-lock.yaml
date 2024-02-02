@@ -21,7 +21,7 @@ importers:
       '@azure/core-http-compat': ^1.2.0
       '@azure/core-lro': ^2.5.4
       '@azure/core-paging': ^1.5.0
-      '@azure/core-rest-pipeline': ^1.13.1
+      '@azure/core-rest-pipeline': ^1.14.0
       '@azure/core-tracing': ^1.0.0
       '@azure/core-util': ^1.4.0
       '@azure/core-xml': ^1.0.0-beta.1
@@ -236,7 +236,7 @@ importers:
       '@azure/core-auth': ^1.6.0
       '@azure/core-lro': ^2.5.4
       '@azure/core-paging': ^1.5.0
-      '@azure/core-rest-pipeline': ^1.13.1
+      '@azure/core-rest-pipeline': ^1.14.0
       '@azure/core-util': ^1.4.0
       '@azure/logger': ^1.0.4
       '@types/chai': ^4.3.1

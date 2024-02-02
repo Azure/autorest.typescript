@@ -88,7 +88,7 @@
   "dependencies": {
     "@azure/core-auth": "^1.6.0",
     "@azure-rest/core-client": "^1.2.0",
-    "@azure/core-rest-pipeline": "^1.13.1",
+    "@azure/core-rest-pipeline": "^1.14.0",
     "@azure/logger": "^1.0.0",
     "tslib": "^2.2.0",
     "@azure/core-util": "^1.4.0"
