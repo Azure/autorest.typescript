@@ -167,6 +167,18 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
     exports.push("SerializeHelper");
   }
 
+  if (hasFileTypeIncluded(model)) {
+    file.addExportDeclarations([
+      {
+        moduleSpecifier: getImportSpecifier(
+          "restPipeline",
+          model.importInfo.runtimeImports
+        ),
+        namedExports: ["createFile", "createFileFromStream"]
+      }
+    ]);
+  }
+
   file.addExportDeclarations([
     {
       moduleSpecifier: getImportModuleName(

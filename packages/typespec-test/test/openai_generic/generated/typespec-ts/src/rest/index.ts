@@ -10,5 +10,6 @@ export * from "./clientDefinitions.js";
 export * from "./isUnexpected.js";
 export * from "./models.js";
 export * from "./outputModels.js";
+export { createFile, createFileFromStream } from "@azure/core-rest-pipeline";
 
 export default OpenAIClient;
