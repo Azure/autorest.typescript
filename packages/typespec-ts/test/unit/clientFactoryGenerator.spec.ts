@@ -218,7 +218,7 @@ describe("Client Factory generation", () => {
             /**
              * Initialize a new instance of \`testClient\`
              * @param endpoint - The endpoint to use.
-             * @param version - The version to use. Possible values: v1.1
+             * @param version - The version to use. Possible values: "v1.1"
              * @param options - the parameter for all optional parameters
              */
             export default function createClient(
@@ -291,7 +291,7 @@ describe("Client Factory generation", () => {
 
             /**
              * Initialize a new instance of \`testClient\`
-             * @param version - The version to use. Possible values: v1.1
+             * @param version - The version to use. Possible values: "v1.1"
              * @param options - the parameter for all optional parameters
              */
             export default function createClient(

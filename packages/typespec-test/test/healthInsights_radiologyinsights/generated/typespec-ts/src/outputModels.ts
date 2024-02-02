@@ -10,7 +10,7 @@ export interface RadiologyInsightsResultOutput {
   /**
    * The status of the operation
    *
-   * Possible values: notStarted, running, succeeded, failed, canceled
+   * Possible values: "notStarted", "running", "succeeded", "failed", "canceled"
    */
   readonly status: string;
   /** The date and time when the processing job was created. */
@@ -383,7 +383,7 @@ export interface ContactPointOutput {
   /**
    * phone | fax | email | pager | url | sms | other
    *
-   * Possible values: phone, fax, email, pager, url, sms, other
+   * Possible values: "phone", "fax", "email", "pager", "url", "sms", "other"
    */
   system?: string;
   /** The actual contact point details */
@@ -391,7 +391,7 @@ export interface ContactPointOutput {
   /**
    * home | work | temp | old | mobile - purpose of this contact point
    *
-   * Possible values: home, work, temp, old, mobile
+   * Possible values: "home", "work", "temp", "old", "mobile"
    */
   use?: string;
   /** Specify preferred order of use (1 = highest) */
@@ -417,7 +417,7 @@ export interface RecommendationFindingOutput extends ExtendibleOutput {
   /**
    * recommendation finding status
    *
-   * Possible values: present, differential, ruleOut, conditional
+   * Possible values: "present", "differential", "ruleOut", "conditional"
    */
   recommendationFindingStatus: string;
 }
@@ -434,7 +434,7 @@ export interface ObservationOutput extends DomainResourceOutputParent {
   /**
    * registered | preliminary | final | amended +
    *
-   * Possible values: registered, preliminary, final, amended, corrected, cancelled, entered-in-error, unknown
+   * Possible values: "registered", "preliminary", "final", "amended", "corrected", "cancelled", "entered-in-error", "unknown"
    */
   status: string;
   /** Classification of  type of observation */
@@ -627,7 +627,7 @@ export interface ResearchStudyOutput extends DomainResourceOutputParent {
   /**
    * active | administratively-completed | approved | closed-to-accrual | closed-to-accrual-and-intervention | completed | disapproved | in-review | temporarily-closed-to-accrual | temporarily-closed-to-accrual-and-intervention | withdrawn
    *
-   * Possible values: active, administratively-completed, approved, closed-to-accrual, closed-to-accrual-and-intervention, completed, disapproved, in-review, temporarily-closed-to-accrual, temporarily-closed-to-accrual-and-intervention, withdrawn
+   * Possible values: "active", "administratively-completed", "approved", "closed-to-accrual", "closed-to-accrual-and-intervention", "completed", "disapproved", "in-review", "temporarily-closed-to-accrual", "temporarily-closed-to-accrual-and-intervention", "withdrawn"
    */
   status: string;
   /** treatment | prevention | diagnostic | supportive-care | screening | health-services-research | basic-science | device-feasibility */
@@ -711,7 +711,7 @@ export interface LateralityDiscrepancyInferenceOutput
   /**
    * mismatch type
    *
-   * Possible values: orderLateralityMismatch, textLateralityContradiction, textLateralityMissing
+   * Possible values: "orderLateralityMismatch", "textLateralityContradiction", "textLateralityMissing"
    */
   discrepancyType: string;
 }
@@ -907,7 +907,7 @@ export interface PatientInfoOutput {
   /**
    * The patient's sex.
    *
-   * Possible values: female, male, unspecified
+   * Possible values: "female", "male", "unspecified"
    */
   sex?: string;
   /** The patient's date of birth. */
@@ -928,7 +928,7 @@ export interface EncounterOutput {
   /**
    * The class of the encounter.
    *
-   * Possible values: inpatient, ambulatory, observation, emergency, virtual, healthHome
+   * Possible values: "inpatient", "ambulatory", "observation", "emergency", "virtual", "healthHome"
    */
   class?: string;
 }
@@ -946,13 +946,13 @@ export interface PatientDocumentOutput {
   /**
    * The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document).
    *
-   * Possible values: note, fhirBundle, dicom, genomicSequencing
+   * Possible values: "note", "fhirBundle", "dicom", "genomicSequencing"
    */
   type: string;
   /**
    * The type of the clinical document.
    *
-   * Possible values: consultation, dischargeSummary, historyAndPhysical, radiologyReport, procedure, progress, laboratory, pathologyReport
+   * Possible values: "consultation", "dischargeSummary", "historyAndPhysical", "radiologyReport", "procedure", "progress", "laboratory", "pathologyReport"
    */
   clinicalType?: string;
   /** A given identifier for the document. Has to be unique across all documents for a single patient. */
@@ -966,7 +966,7 @@ export interface PatientDocumentOutput {
   /**
    * specialty type the document
    *
-   * Possible values: pathology, radiology
+   * Possible values: "pathology", "radiology"
    */
   specialtyType?: string;
   /** Administrative metadata for the document. */
@@ -998,7 +998,7 @@ export interface DocumentContentOutput {
    * In case the source type is 'inline', the content is given as a string (for instance, text).
    * In case the source type is 'reference', the content is given as a URI.
    *
-   * Possible values: inline, reference
+   * Possible values: "inline", "reference"
    */
   sourceType: string;
   /** The content of the document, given either inline (as a string) or as a reference (URI). */
@@ -1054,7 +1054,7 @@ export interface HealthInsightsOperationStatusOutput {
   /**
    * The status of the operation
    *
-   * Possible values: notStarted, running, succeeded, failed, canceled
+   * Possible values: "notStarted", "running", "succeeded", "failed", "canceled"
    */
   readonly status: string;
   /** The date and time when the processing job was created. */
@@ -1106,3 +1106,5 @@ export type ProcedureRecommendationOutput =
   | ProcedureRecommendationOutputParent
   | GenericProcedureRecommendationOutput
   | ImagingProcedureRecommendationOutput;
+/** Alias for RepeatabilityResultOutput */
+export type RepeatabilityResultOutput = "accepted" | "rejected";

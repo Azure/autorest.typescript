@@ -624,5 +624,7 @@ export interface CreateModerationRequest {
   model?: string | "text-moderation-latest" | "text-moderation-stable";
 }
 
+/** Alias for Stop */
 export type Stop = string | string[] | null;
+/** Alias for Prompt */
 export type Prompt = string | string[] | number[] | number[][] | null;

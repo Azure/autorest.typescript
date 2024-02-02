@@ -7,10 +7,16 @@ export interface OneOptions extends OperationOptions {}
 
 export interface TwoOptions extends OperationOptions {}
 
-export interface ThreeOptions extends OperationOptions {}
+export interface BazFooSevenOptions extends OperationOptions {}
 
-export interface FourOptions extends OperationOptions {}
+export interface QuxEightOptions extends OperationOptions {}
 
-export interface FiveOptions extends OperationOptions {}
+export interface QuxBarNineOptions extends OperationOptions {}
 
-export interface SixOptions extends OperationOptions {}
+export interface FooThreeOptions extends OperationOptions {}
+
+export interface FooFourOptions extends OperationOptions {}
+
+export interface BarFiveOptions extends OperationOptions {}
+
+export interface BarSixOptions extends OperationOptions {}

@@ -14,8 +14,10 @@ parameters:
 
 variables:
   AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/packages/autorest.typescript/coverage/"
-  TypeSpec_TESTSERVER_COVERAGE_RLC_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/cadl-ranch-coverage-typescript-rlc.json"
-  TypeSpec_TESTSERVER_COVERAGE_MODULAR_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/cadl-ranch-coverage-typescript-modular.json"
+  TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/cadl-ranch-coverage-typescript-rlc-azure.json"
+  TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/cadl-ranch-coverage-typescript-rlc-standard.json"
+  TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/cadl-ranch-coverage-typescript-modular-azure.json"
+  TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT: "$(Build.SourcesDirectory)/packages/typespec-ts/coverage/cadl-ranch-coverage-typescript-modular-standard.json"
 
 pool:
   vmImage: ubuntu-20.04
@@ -294,18 +296,26 @@ stages:
           - script: npm run check:tree
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "Check git Tree"
-          - script: npx cadl-ranch check-coverage ./node_modules/@azure-tools/cadl-ranch-specs/http --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_RLC_REPORT) --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_REPORT)
+          - script: npx cadl-ranch check-coverage ./node_modules/@azure-tools/cadl-ranch-specs/http --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT) --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT) --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT) --coverageFiles $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT)
             displayName: "Check Coverage"
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             continueOnError: true
-          - publish: $(TypeSpec_TESTSERVER_COVERAGE_RLC_REPORT)
-            artifact: RLCCoverageReport
-            displayName: "Publish rlc coverage report"
+          - publish: $(TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT)
+            artifact: RLCAzureCoverageReport
+            displayName: "Publish rlc azure coverage report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq( variables['Agent.OS'], 'Linux'))
-          - publish: $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_REPORT)
-            artifact: ModularCoverageReport
-            displayName: "Publish modular coverage report"
+          - publish: $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT)
+            artifact: ModularAzureCoverageReport
+            displayName: "Publish modular azure coverage report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq( variables['Agent.OS'], 'Linux'))
+          - publish: $(TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT)
+            artifact: RLCStandardCoverageReport
+            displayName: "Publish rlc standard coverage report"
+            condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq( variables['Agent.OS'], 'Windows'))
+          - publish: $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT)
+            artifact: ModularStandardCoverageReport
+            displayName: "Publish modular standard coverage report"
+            condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq( variables['Agent.OS'], 'Windows'))
           - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))}}:
               - task: AzureCLI@2
                 displayName: "Upload to Cadl Ranch Coverage Report"
@@ -315,9 +325,10 @@ stages:
                   scriptLocation: "inlineScript"
                   workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
                   inlineScript: |
-                    npx cadl-ranch upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_RLC_REPORT) --generatorName typescript/rlc --storageAccountName azuresdkcadlranch --generatorVersion $(node -p -e "require('./package.json').version")
-                    npx cadl-ranch upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_REPORT) --generatorName typescript/modular --storageAccountName azuresdkcadlranch --generatorVersion $(node -p -e "require('./package.json').version")
-
+                    npx cadl-ranch upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_RLC_AZURE_REPORT) --generatorName typescript/rlc --storageAccountName azuresdkcadlranch --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode azure
+                    npx cadl-ranch upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_AZURE_REPORT) --generatorName typescript/modular --storageAccountName azuresdkcadlranch --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode azure
+                    npx cadl-ranch upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_RLC_STANDARD_REPORT) --generatorName typescript/rlc --storageAccountName azuresdkcadlranch --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode standard
+                    npx cadl-ranch upload-coverage --coverageFile $(TypeSpec_TESTSERVER_COVERAGE_MODULAR_STANDARD_REPORT) --generatorName typescript/modular --storageAccountName azuresdkcadlranch --generatorVersion $(node -p -e "require('./package.json').version") --generatorMode standard
   # The Prerelease and Release stages are conditioned on whether we are building a pull request and the branch.
   - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq(parameters.IncludeRelease,true))}}:
       - template: release.yml

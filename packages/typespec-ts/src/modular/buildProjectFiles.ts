@@ -223,7 +223,7 @@ function emitNonBrandedPackage(codeModel: ModularCodeModel) {
       prettier: "^3.1.0",
       rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
-      typescript: "~5.2.0",
+      typescript: "~5.3.3",
       "@rollup/plugin-commonjs": "^24.0.0",
       "@rollup/plugin-json": "^6.0.0",
       "@rollup/plugin-multi-entry": "^6.0.0",
@@ -241,8 +241,8 @@ function emitBrandedPackage(
   codeModel: ModularCodeModel,
   hasSamplesGenerated: boolean
 ) {
-  const hasLRO = hasLROOperation(codeModel),
-    hasPaging = hasPagingOperation(codeModel);
+  const hasLRO = hasLROOperation(codeModel, true),
+    hasPaging = hasPagingOperation(codeModel, true);
   const { azureOutputDirectory, azureSdkForJs, sourceFrom, isModularLibrary } =
     codeModel.options;
   let { packageDetails, generateTest, generateSample } = codeModel.options;
@@ -329,7 +329,7 @@ function emitBrandedPackage(
       prettier: "^3.1.0",
       rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
-      typescript: "~5.2.0"
+      typescript: "~5.3.3"
     }
   } as any;
 

@@ -179,7 +179,7 @@ function restLevelPackage(model: RLCModel) {
       prettier: "^3.1.0",
       rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
-      typescript: "~5.2.0"
+      typescript: "~5.3.3"
     }
   };
 

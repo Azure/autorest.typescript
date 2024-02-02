@@ -16,7 +16,7 @@ export interface TrialMatcherResultOutput {
   /**
    * The status of the processing job.
    *
-   * Possible values: notStarted, running, succeeded, failed, partiallyCompleted
+   * Possible values: "notStarted", "running", "succeeded", "failed", "partiallyCompleted"
    */
   readonly status: string;
   /** An array of errors, if any errors occurred during the processing job. */
@@ -50,7 +50,7 @@ export interface TrialMatcherInferenceOutput {
   /**
    * The type of the Trial Matcher inference.
    *
-   * Possible values: trialEligibility
+   * Possible values: "trialEligibility"
    */
   type: string;
   /** The value of the inference, as relevant for the given inference type. */
@@ -66,7 +66,7 @@ export interface TrialMatcherInferenceOutput {
   /**
    * Possible sources of a clinical trial.
    *
-   * Possible values: custom, clinicaltrials.gov
+   * Possible values: "custom", "clinicaltrials.gov"
    */
   source?: string;
   /** Trial data which is of interest to the potential participant. */
@@ -122,13 +122,13 @@ export interface ClinicalTrialMetadataOutput {
   /**
    * Possible study types of a clinical trial.
    *
-   * Possible values: interventional, observational, expandedAccess, patientRegistries
+   * Possible values: "interventional", "observational", "expandedAccess", "patientRegistries"
    */
   studyType?: string;
   /**
    * Possible recruitment status of a clinical trial.
    *
-   * Possible values: unknownStatus, notYetRecruiting, recruiting, enrollingByInvitation
+   * Possible values: "unknownStatus", "notYetRecruiting", "recruiting", "enrollingByInvitation"
    */
   recruitmentStatus?: string;
   /** Medical conditions and their synonyms which are relevant for the clinical trial, given as strings. */
@@ -178,3 +178,6 @@ export interface ExtendedClinicalCodedElementOutput {
   /** The bio-medical category related to the coded concept, e.g. Diagnosis, Symptom, Medication, Examination. */
   category?: string;
 }
+
+/** Alias for RepeatabilityResultOutput */
+export type RepeatabilityResultOutput = "accepted" | "rejected";

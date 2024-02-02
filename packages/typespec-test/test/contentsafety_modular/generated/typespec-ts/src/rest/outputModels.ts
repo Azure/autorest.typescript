@@ -16,7 +16,7 @@ export interface AnalyzeTextOptionsOutput {
   /**
    * The type of text analysis output. If not assigned, the default value is "FourLevels".
    *
-   * Possible values: FourLevels, EightLevels
+   * Possible values: "FourLevels", "EightLevels"
    */
   outputType?: string;
 }
@@ -44,7 +44,7 @@ export interface TextAnalyzeSeverityResultOutput {
   /**
    * The text category.
    *
-   * Possible values: Hate, SelfHarm, Sexual, Violence
+   * Possible values: "Hate", "SelfHarm", "Sexual", "Violence"
    */
   category: string;
   /** This field is decided by outputType in request, if choose "FourLevels", the value could be 0,2,4,6. The higher the severity of input content, the larger this value is. */
@@ -60,7 +60,7 @@ export interface AnalyzeImageOptionsOutput {
   /**
    * The type of image analysis output. If not assigned, the default value is "FourLevels".
    *
-   * Possible values: FourLevels
+   * Possible values: "FourLevels"
    */
   outputType?: string;
 }
@@ -84,7 +84,7 @@ export interface ImageAnalyzeSeverityResultOutput {
   /**
    * The image category.
    *
-   * Possible values: Hate, SelfHarm, Sexual, Violence
+   * Possible values: "Hate", "SelfHarm", "Sexual", "Violence"
    */
   category: string;
   /** This field is decided by outputType in request, if choose "FourLevels", the value could be 0,2,4,6. The higher the severity of input content, the larger this value is. */

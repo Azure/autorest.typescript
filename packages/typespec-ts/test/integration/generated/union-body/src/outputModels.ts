@@ -7,7 +7,7 @@ export interface RequestRegisterCCOutput
 }
 
 export interface CommonRegistrationRequestOutput {
-  /** Possible values: 01 */
+  /** Possible values: "01" */
   payMethod: string;
 }
 
