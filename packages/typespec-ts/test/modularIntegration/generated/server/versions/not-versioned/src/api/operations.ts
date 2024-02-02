@@ -47,11 +47,15 @@ export async function withoutApiVersion(
 
 export function _withQueryApiVersionSend(
   context: Client,
+  apiVersion: string,
   options: WithQueryApiVersionOptions = { requestOptions: {} },
 ): StreamableMethod<WithQueryApiVersion200Response> {
   return context
     .path("/server/versions/not-versioned/with-query-api-version")
-    .head({ ...operationOptionsToRequestParameters(options) });
+    .head({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": apiVersion },
+    });
 }
 
 export async function _withQueryApiVersionDeserialize(
@@ -66,14 +70,16 @@ export async function _withQueryApiVersionDeserialize(
 
 export async function withQueryApiVersion(
   context: Client,
+  apiVersion: string,
   options: WithQueryApiVersionOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _withQueryApiVersionSend(context, options);
+  const result = await _withQueryApiVersionSend(context, apiVersion, options);
   return _withQueryApiVersionDeserialize(result);
 }
 
 export function _withPathApiVersionSend(
   context: Client,
+  apiVersion: string,
   options: WithPathApiVersionOptions = { requestOptions: {} },
 ): StreamableMethod<WithPathApiVersion200Response> {
   return context
@@ -96,8 +102,9 @@ export async function _withPathApiVersionDeserialize(
 
 export async function withPathApiVersion(
   context: Client,
+  apiVersion: string,
   options: WithPathApiVersionOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _withPathApiVersionSend(context, options);
+  const result = await _withPathApiVersionSend(context, apiVersion, options);
   return _withPathApiVersionDeserialize(result);
 }

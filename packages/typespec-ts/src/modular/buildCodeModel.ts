@@ -481,7 +481,10 @@ function emitParameter(
     clientDefaultValue = paramMap.type.value;
   }
 
-  if (isApiVersion(context, parameter as HttpOperationParameter)) {
+  if (
+    isApiVersion(context, parameter as HttpOperationParameter) &&
+    hasApiVersionInClient
+  ) {
     const defaultApiVersion = getDefaultApiVersion(
       context,
       getServiceNamespace(context.program)
@@ -489,7 +492,7 @@ function emitParameter(
     paramMap.type = defaultApiVersion
       ? getConstantType(defaultApiVersion.value)
       : { type: "string" };
-    paramMap.implementation = "Client";
+    paramMap.implementation = implementation;
     paramMap.in_docstring = false;
     if (defaultApiVersion) {
       clientDefaultValue = defaultApiVersion.value;
@@ -1741,29 +1744,9 @@ function emitGlobalParameters(
   return clientParameters;
 }
 
-function getApiVersionParameter(context: SdkContext): Parameter | void {
-  const version = getDefaultApiVersion(
-    context,
-    getServiceNamespace(context.program)
-  );
+function getApiVersionParameter(): Parameter | void {
   if (apiVersionParam) {
     return { ...apiVersionParam, isApiVersion: true };
-  } else if (version !== undefined) {
-    return {
-      clientName: "api_version",
-      clientDefaultValue: version.value,
-      description: "Api Version",
-      implementation: "Client",
-      location: "query",
-      restApiName: "api-version",
-      skipUrlEncoding: false,
-      optional: false,
-      inDocstring: true,
-      inOverload: false,
-      inOverriden: false,
-      type: getConstantType(version.value),
-      isApiVersion: true
-    };
   }
 }
 
@@ -1795,7 +1778,7 @@ function emitClients(
       rlcClientName: rlcModels ? getClientName(rlcModels) : client.name,
       subfolder: ""
     };
-    const emittedApiVersionParam = getApiVersionParameter(context);
+    const emittedApiVersionParam = getApiVersionParameter();
     if (emittedApiVersionParam && hasApiVersionInClient) {
       emittedClient.parameters.push(emittedApiVersionParam);
     }
