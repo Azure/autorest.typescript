@@ -72,6 +72,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { GetSchemaOptions, SdkContext } from "./interfaces.js";
 import { getModelNamespaceName } from "./namespaceUtils.js";
+import { KnownMediaType, hasMediaType } from "./mediaTypes.js";
 
 const BINARY_TYPE_UNION =
   "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
@@ -292,8 +293,12 @@ function getSchemaForScalar(
 ) {
   let result = {} as any;
   const isStd = dpgContext.program.checker.isStdType(scalar);
-  const { relevantProperty, isRequestBody, isParentRequestBody, contentTypes } =
-    options ?? {};
+  const {
+    relevantProperty,
+    isRequestBody,
+    isParentRequestBody,
+    mediaTypes: contentTypes
+  } = options ?? {};
   if (isStd) {
     result = getSchemaForStdScalar(dpgContext.program, scalar, {
       relevantProperty
@@ -302,7 +307,7 @@ function getSchemaForScalar(
     result = getSchemaForScalar(dpgContext, scalar.baseScalar);
   }
 
-  if (isOctStreamAsRequestBody()) {
+  if (isBinaryAsRequestBody()) {
     // bytes in the body of application/octet-stream is the raw binary payload/file
     result.typeName = BINARY_TYPE_UNION;
     result.outputTypeName = "Uint8Array";
@@ -331,9 +336,9 @@ function getSchemaForScalar(
     return withDecorators;
   }
 
-  function isOctStreamAsRequestBody() {
+  function isBinaryAsRequestBody() {
     return (
-      checkContentTypeIs("application/octet-stream", contentTypes) &&
+      hasMediaType(KnownMediaType.Binary, contentTypes) &&
       isRequestBody &&
       isBytesType(result)
     );
@@ -341,17 +346,11 @@ function getSchemaForScalar(
 
   function isFormDataBytesInRequestBody() {
     return (
-      checkContentTypeIs("multipart/form-data", contentTypes) &&
+      hasMediaType(KnownMediaType.Multipart, contentTypes) &&
       isParentRequestBody &&
       isBytesType(result)
     );
   }
-}
-
-function checkContentTypeIs(target: string, sourceTypes: string[] = []) {
-  return (
-    sourceTypes.length === 1 && sourceTypes[0]?.toLowerCase().includes(target)
-  );
 }
 
 function getSchemaForUnion(
@@ -540,7 +539,12 @@ function getSchemaForModel(
   model: Model,
   options?: GetSchemaOptions
 ) {
-  const { usage, needRef, isRequestBody, contentTypes } = options ?? {};
+  const {
+    usage,
+    needRef,
+    isRequestBody,
+    mediaTypes: contentTypes
+  } = options ?? {};
   if (isArrayModelType(dpgContext.program, model)) {
     return getSchemaForArrayModel(dpgContext, model, options);
   }
@@ -708,7 +712,7 @@ function getSchemaForModel(
       relevantProperty: prop,
       isParentRequestBody: isRequestBody,
       isRequestBody: false,
-      contentTypes
+      mediaTypes: contentTypes
     });
 
     if (propSchema === undefined) {
@@ -918,7 +922,11 @@ function getSchemaForArrayModel(
 ) {
   const { program } = dpgContext;
   const { indexer } = type;
-  const { usage, isParentRequestBody, contentTypes } = options ?? {};
+  const {
+    usage,
+    isParentRequestBody,
+    mediaTypes: contentTypes
+  } = options ?? {};
   let schema: any = {};
   if (!indexer) {
     return schema;
@@ -929,10 +937,10 @@ function getSchemaForArrayModel(
       items: getSchemaForType(dpgContext, indexer.value!, {
         usage,
         isRequestBody: false,
-        contentTypes,
+        mediaTypes: contentTypes,
         // special handling for array in formdata
-        isParentRequestBody: checkContentTypeIs(
-          "multipart/form-data",
+        isParentRequestBody: hasMediaType(
+          KnownMediaType.Multipart,
           contentTypes
         )
           ? isParentRequestBody

@@ -1,6 +1,7 @@
 import { RLCOptions, SchemaContext } from "@azure-tools/rlc-common";
 import { SdkContext as TCGCSdkContext } from "@azure-tools/typespec-client-generator-core";
 import { ModelProperty } from "@typespec/compiler";
+import { KnownMediaType } from "./mediaTypes.js";
 
 export interface SdkContext extends TCGCSdkContext {
   rlcOptions?: RLCOptions;
@@ -22,7 +23,7 @@ export interface GetSchemaOptions {
   // relevant property which the type belongs to
   relevantProperty?: ModelProperty;
   // content types which would impact the schema
-  contentTypes?: string[];
+  mediaTypes?: KnownMediaType[];
   // if this type is taken as request body
   isRequestBody?: boolean;
   // if the parent type is taken as request body

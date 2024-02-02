@@ -17,7 +17,7 @@ import {
   isAzureCoreErrorType
 } from "../utils/modelUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { getContentTypes } from "./transformParameters.js";
+import { KnownMediaType, extractMediaTypes } from "../utils/mediaTypes.js";
 
 export function transformSchemas(
   program: Program,
@@ -30,7 +30,7 @@ export function transformSchemas(
   >();
   const schemaMap: Map<any, any> = new Map<any, any>();
   const requestBodySet = new Set<Type>();
-  const contentTypeMap = new Map<Type, string[]>();
+  const contentTypeMap = new Map<Type, KnownMediaType[]>();
   const modelKey = Symbol("typescript-models-" + client.name);
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
@@ -68,9 +68,12 @@ export function transformSchemas(
       (bodyModel.kind === "Model" || bodyModel.kind === "Union")
     ) {
       requestBodySet.add(bodyModel);
-      const contentType = getContentTypes(route.parameters, dpgContext);
-      if (contentType.length > 0) {
-        contentTypeMap.set(bodyModel, contentType);
+      const contentTypes: KnownMediaType[] = extractMediaTypes(
+        route.parameters,
+        dpgContext
+      );
+      if (contentTypes.length > 0) {
+        contentTypeMap.set(bodyModel, contentTypes);
       }
       getGeneratedModels(bodyModel, SchemaContext.Input);
     }
@@ -99,7 +102,7 @@ export function transformSchemas(
       usage: context,
       isRequestBody: requestBodySet.has(tspModel),
       isParentRequestBody: false,
-      contentTypes: contentTypeMap.get(tspModel)
+      mediaTypes: contentTypeMap.get(tspModel)
     });
     if (model) {
       model.usage = context;

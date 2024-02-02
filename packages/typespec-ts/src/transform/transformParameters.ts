@@ -39,34 +39,11 @@ import {
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
 import { SdkContext } from "../utils/interfaces.js";
-
-export function getContentTypes(
-  parameters?: HttpOperationParameters,
-  dpgContext?: SdkContext
-): string[];
-export function getContentTypes(headers?: ParameterMetadata[]): string[];
-export function getContentTypes(
-  headersOrParams?: ParameterMetadata[] | HttpOperationParameters,
-  dpgContext?: SdkContext
-) {
-  if (!headersOrParams) {
-    return [];
-  }
-  if (!Array.isArray(headersOrParams) && dpgContext) {
-    headersOrParams = transformHeaderParameters(
-      dpgContext!,
-      headersOrParams as HttpOperationParameters,
-      new Set<string>()
-    );
-  } else {
-    headersOrParams = headersOrParams as ParameterMetadata[];
-  }
-  return (headersOrParams ?? [])
-    .filter((h) => h.name === "contentType")
-    .map((h) => {
-      return getTypeName(h.param, [SchemaContext.Input]);
-    });
-}
+import {
+  extractMediaTypes,
+  hasMediaType,
+  isMediaTypeJsonMergePatch
+} from "../utils/mediaTypes.js";
 
 export function transformToParameterTypes(
   importDetails: Imports,
@@ -251,7 +228,7 @@ function transformPathParameters() {
   return [];
 }
 
-function transformHeaderParameters(
+export function transformHeaderParameters(
   dpgContext: SdkContext,
   parameters: HttpOperationParameters,
   importedModels: Set<string>
@@ -298,7 +275,7 @@ function transformRequestBody(
   headers: ParameterMetadata[]
 ) {
   const schema = getSchemaForType(dpgContext, bodyType, {
-    contentTypes: getContentTypes(headers),
+    mediaTypes: extractMediaTypes(headers),
     isRequestBody: true,
     usage: [SchemaContext.Input, SchemaContext.Exception]
   });
@@ -340,10 +317,8 @@ function getRequestBodyType(
   const contentTypes = headers
     ?.filter((h) => h.name === "contentType")
     .map((h) => h.param.type);
-  const hasMergeAndPatchType =
-    contentTypes &&
-    contentTypes.length === 1 &&
-    contentTypes[0]?.includes("application/merge-patch+json");
+  const hasMergeAndPatchType = isMediaTypeJsonMergePatch(contentTypes ?? []);
+
   if (hasMergeAndPatchType && (bodySchema as ObjectSchema).properties) {
     typeName = `${typeName}ResourceMergeAndPatch`;
   }
