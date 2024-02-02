@@ -4,33 +4,43 @@
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  EmbeddingsOptions,
-  Embeddings,
+  AudioTranscriptionOptions,
+  AudioTranscription,
+  AudioTranslationOptions,
+  AudioTranslation,
   CompletionsOptions,
   Completions,
   ChatCompletionsOptions,
   ChatCompletions,
-  BatchImageGenerationOperationResponse,
   ImageGenerationOptions,
+  ImageGenerations,
+  EmbeddingsOptions,
+  Embeddings,
 } from "./models/models.js";
 import {
-  GetEmbeddingsOptions,
+  GetAudioTranscriptionAsPlainTextOptions,
+  GetAudioTranscriptionAsResponseObjectOptions,
+  GetAudioTranslationAsPlainTextOptions,
+  GetAudioTranslationAsResponseObjectOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,
   GetChatCompletionsWithAzureExtensionsOptions,
-  GetAzureBatchImageGenerationOperationStatusOptions,
-  BeginAzureBatchImageGenerationOptions,
+  GetImageGenerationsOptions,
+  GetEmbeddingsOptions,
 } from "./models/options.js";
 import {
   createOpenAI,
   OpenAIClientOptions,
   OpenAIContext,
-  getEmbeddings,
+  getAudioTranscriptionAsPlainText,
+  getAudioTranscriptionAsResponseObject,
+  getAudioTranslationAsPlainText,
+  getAudioTranslationAsResponseObject,
   getCompletions,
   getChatCompletions,
   getChatCompletionsWithAzureExtensions,
-  getAzureBatchImageGenerationOperationStatus,
-  beginAzureBatchImageGeneration,
+  getImageGenerations,
+  getEmbeddings,
 } from "./api/index.js";
 
 export { OpenAIClientOptions } from "./api/OpenAIContext.js";
@@ -40,7 +50,6 @@ export class OpenAIClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  /** Azure OpenAI APIs for completions and search */
   constructor(
     endpoint: string,
     credential: KeyCredential | TokenCredential,
@@ -50,13 +59,70 @@ export class OpenAIClient {
     this.pipeline = this._client.pipeline;
   }
 
-  /** Return the embeddings for a given prompt. */
-  getEmbeddings(
+  /**
+   * Gets transcribed text and associated metadata from provided spoken audio data. Audio will be transcribed in the
+   * written language corresponding to the language it was spoken in.
+   */
+  getAudioTranscriptionAsPlainText(
     deploymentId: string,
-    body: EmbeddingsOptions,
-    options: GetEmbeddingsOptions = { requestOptions: {} },
-  ): Promise<Embeddings> {
-    return getEmbeddings(this._client, deploymentId, body, options);
+    body: AudioTranscriptionOptions,
+    options: GetAudioTranscriptionAsPlainTextOptions = { requestOptions: {} },
+  ): Promise<string> {
+    return getAudioTranscriptionAsPlainText(
+      this._client,
+      deploymentId,
+      body,
+      options,
+    );
+  }
+
+  /**
+   * Gets transcribed text and associated metadata from provided spoken audio data. Audio will be transcribed in the
+   * written language corresponding to the language it was spoken in.
+   */
+  getAudioTranscriptionAsResponseObject(
+    deploymentId: string,
+    body: AudioTranscriptionOptions,
+    options: GetAudioTranscriptionAsResponseObjectOptions = {
+      requestOptions: {},
+    },
+  ): Promise<AudioTranscription> {
+    return getAudioTranscriptionAsResponseObject(
+      this._client,
+      deploymentId,
+      body,
+      options,
+    );
+  }
+
+  /** Gets English language transcribed text and associated metadata from provided spoken audio data. */
+  getAudioTranslationAsPlainText(
+    deploymentId: string,
+    body: AudioTranslationOptions,
+    options: GetAudioTranslationAsPlainTextOptions = { requestOptions: {} },
+  ): Promise<string> {
+    return getAudioTranslationAsPlainText(
+      this._client,
+      deploymentId,
+      body,
+      options,
+    );
+  }
+
+  /** Gets English language transcribed text and associated metadata from provided spoken audio data. */
+  getAudioTranslationAsResponseObject(
+    deploymentId: string,
+    body: AudioTranslationOptions,
+    options: GetAudioTranslationAsResponseObjectOptions = {
+      requestOptions: {},
+    },
+  ): Promise<AudioTranslation> {
+    return getAudioTranslationAsResponseObject(
+      this._client,
+      deploymentId,
+      body,
+      options,
+    );
   }
 
   /**
@@ -105,25 +171,21 @@ export class OpenAIClient {
     );
   }
 
-  /** Returns the status of the images operation */
-  getAzureBatchImageGenerationOperationStatus(
-    operationId: string,
-    options: GetAzureBatchImageGenerationOperationStatusOptions = {
-      requestOptions: {},
-    },
-  ): Promise<BatchImageGenerationOperationResponse> {
-    return getAzureBatchImageGenerationOperationStatus(
-      this._client,
-      operationId,
-      options,
-    );
+  /** Creates an image given a prompt. */
+  getImageGenerations(
+    deploymentId: string,
+    body: ImageGenerationOptions,
+    options: GetImageGenerationsOptions = { requestOptions: {} },
+  ): Promise<ImageGenerations> {
+    return getImageGenerations(this._client, deploymentId, body, options);
   }
 
-  /** Starts the generation of a batch of images from a text caption */
-  beginAzureBatchImageGeneration(
-    body: ImageGenerationOptions,
-    options: BeginAzureBatchImageGenerationOptions = { requestOptions: {} },
-  ): Promise<BatchImageGenerationOperationResponse> {
-    return beginAzureBatchImageGeneration(this._client, body, options);
+  /** Return the embeddings for a given prompt. */
+  getEmbeddings(
+    deploymentId: string,
+    body: EmbeddingsOptions,
+    options: GetEmbeddingsOptions = { requestOptions: {} },
+  ): Promise<Embeddings> {
+    return getEmbeddings(this._client, deploymentId, body, options);
   }
 }

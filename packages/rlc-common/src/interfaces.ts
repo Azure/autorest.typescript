@@ -27,6 +27,8 @@ export type ImportType =
   /**inner models' imports for parameter and response */
   | "parameter"
   | "response"
+  | "rlcIndex"
+  | "modularModel"
   /**common third party imports */
   | "restClient"
   | "coreAuth"

@@ -2,8 +2,8 @@
 
 import { OpenAIContext } from "../../../api/OpenAIContext.js";
 import {
-  CreateTranscriptionResponse,
   CreateTranscriptionRequest,
+  CreateTranscriptionResponse,
 } from "../../../models/models.js";
 import { create } from "../../../api/audio/transcriptions/index.js";
 import { AudioTranscriptionsCreateOptions } from "../../../models/options.js";

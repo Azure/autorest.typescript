@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Dog, Snake } from "../models/models.js";
+import { DogUnion, SnakeUnion } from "../models/models.js";
 import {
   EnumDiscriminatorContext as Client,
   GetExtensibleModel200Response,
@@ -40,7 +40,7 @@ export function _getExtensibleModelSend(
 
 export async function _getExtensibleModelDeserialize(
   result: GetExtensibleModel200Response,
-): Promise<Dog> {
+): Promise<DogUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -52,14 +52,14 @@ export async function _getExtensibleModelDeserialize(
 export async function getExtensibleModel(
   context: Client,
   options: GetExtensibleModelOptions = { requestOptions: {} },
-): Promise<Dog> {
+): Promise<DogUnion> {
   const result = await _getExtensibleModelSend(context, options);
   return _getExtensibleModelDeserialize(result);
 }
 
 export function _putExtensibleModelSend(
   context: Client,
-  input: Dog,
+  input: DogUnion,
   options: PutExtensibleModelOptions = { requestOptions: {} },
 ): StreamableMethod<PutExtensibleModel204Response> {
   return context
@@ -80,7 +80,7 @@ export async function _putExtensibleModelDeserialize(
 /** Send model with extensible enum discriminator type. */
 export async function putExtensibleModel(
   context: Client,
-  input: Dog,
+  input: DogUnion,
   options: PutExtensibleModelOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putExtensibleModelSend(context, input, options);
@@ -102,7 +102,7 @@ export function _getExtensibleModelMissingDiscriminatorSend(
 
 export async function _getExtensibleModelMissingDiscriminatorDeserialize(
   result: GetExtensibleModelMissingDiscriminator200Response,
-): Promise<Dog> {
+): Promise<DogUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -116,7 +116,7 @@ export async function getExtensibleModelMissingDiscriminator(
   options: GetExtensibleModelMissingDiscriminatorOptions = {
     requestOptions: {},
   },
-): Promise<Dog> {
+): Promise<DogUnion> {
   const result = await _getExtensibleModelMissingDiscriminatorSend(
     context,
     options,
@@ -137,7 +137,7 @@ export function _getExtensibleModelWrongDiscriminatorSend(
 
 export async function _getExtensibleModelWrongDiscriminatorDeserialize(
   result: GetExtensibleModelWrongDiscriminator200Response,
-): Promise<Dog> {
+): Promise<DogUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -149,7 +149,7 @@ export async function _getExtensibleModelWrongDiscriminatorDeserialize(
 export async function getExtensibleModelWrongDiscriminator(
   context: Client,
   options: GetExtensibleModelWrongDiscriminatorOptions = { requestOptions: {} },
-): Promise<Dog> {
+): Promise<DogUnion> {
   const result = await _getExtensibleModelWrongDiscriminatorSend(
     context,
     options,
@@ -168,7 +168,7 @@ export function _getFixedModelSend(
 
 export async function _getFixedModelDeserialize(
   result: GetFixedModel200Response,
-): Promise<Snake> {
+): Promise<SnakeUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -180,14 +180,14 @@ export async function _getFixedModelDeserialize(
 export async function getFixedModel(
   context: Client,
   options: GetFixedModelOptions = { requestOptions: {} },
-): Promise<Snake> {
+): Promise<SnakeUnion> {
   const result = await _getFixedModelSend(context, options);
   return _getFixedModelDeserialize(result);
 }
 
 export function _putFixedModelSend(
   context: Client,
-  input: Snake,
+  input: SnakeUnion,
   options: PutFixedModelOptions = { requestOptions: {} },
 ): StreamableMethod<PutFixedModel204Response> {
   return context
@@ -208,7 +208,7 @@ export async function _putFixedModelDeserialize(
 /** Send model with fixed enum discriminator type. */
 export async function putFixedModel(
   context: Client,
-  input: Snake,
+  input: SnakeUnion,
   options: PutFixedModelOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putFixedModelSend(context, input, options);
@@ -228,7 +228,7 @@ export function _getFixedModelMissingDiscriminatorSend(
 
 export async function _getFixedModelMissingDiscriminatorDeserialize(
   result: GetFixedModelMissingDiscriminator200Response,
-): Promise<Snake> {
+): Promise<SnakeUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -240,7 +240,7 @@ export async function _getFixedModelMissingDiscriminatorDeserialize(
 export async function getFixedModelMissingDiscriminator(
   context: Client,
   options: GetFixedModelMissingDiscriminatorOptions = { requestOptions: {} },
-): Promise<Snake> {
+): Promise<SnakeUnion> {
   const result = await _getFixedModelMissingDiscriminatorSend(context, options);
   return _getFixedModelMissingDiscriminatorDeserialize(result);
 }
@@ -258,7 +258,7 @@ export function _getFixedModelWrongDiscriminatorSend(
 
 export async function _getFixedModelWrongDiscriminatorDeserialize(
   result: GetFixedModelWrongDiscriminator200Response,
-): Promise<Snake> {
+): Promise<SnakeUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -270,7 +270,7 @@ export async function _getFixedModelWrongDiscriminatorDeserialize(
 export async function getFixedModelWrongDiscriminator(
   context: Client,
   options: GetFixedModelWrongDiscriminatorOptions = { requestOptions: {} },
-): Promise<Snake> {
+): Promise<SnakeUnion> {
   const result = await _getFixedModelWrongDiscriminatorSend(context, options);
   return _getFixedModelWrongDiscriminatorDeserialize(result);
 }
