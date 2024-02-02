@@ -241,8 +241,8 @@ function emitBrandedPackage(
   codeModel: ModularCodeModel,
   hasSamplesGenerated: boolean
 ) {
-  const hasLRO = hasLROOperation(codeModel),
-    hasPaging = hasPagingOperation(codeModel);
+  const hasLRO = hasLROOperation(codeModel, true),
+    hasPaging = hasPagingOperation(codeModel, true);
   const { azureOutputDirectory, azureSdkForJs, sourceFrom, isModularLibrary } =
     codeModel.options;
   let { packageDetails, generateTest, generateSample } = codeModel.options;

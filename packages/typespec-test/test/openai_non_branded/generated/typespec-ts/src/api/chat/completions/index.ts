@@ -80,7 +80,7 @@ export async function _createDeserialize(
     choices: result.body["choices"].map((p) => ({
       index: p["index"],
       message: {
-        role: p.message["role"] as any,
+        role: p.message["role"],
         content: p.message["content"],
         functionCall: !p.message.function_call
           ? undefined
@@ -89,7 +89,7 @@ export async function _createDeserialize(
               arguments: p.message.function_call?.["arguments"],
             },
       },
-      finishReason: p["finish_reason"] as any,
+      finishReason: p["finish_reason"],
     })),
     usage: !result.body.usage
       ? undefined

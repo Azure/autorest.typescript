@@ -37,7 +37,7 @@ export async function _modelValueGetDeserialize(
     ? result.body
     : result.body.map((p) => ({
         property: p["property"],
-        children: !p.children ? undefined : (p.children as any),
+        children: !p.children ? undefined : p.children,
       }));
 }
 
@@ -63,7 +63,7 @@ export function _modelValuePutSend(
           ? p["children"]
           : p["children"].map((p) => ({
               property: p["property"],
-              children: !p.children ? undefined : (p.children as any),
+              children: !p.children ? undefined : p.children,
             })),
       };
     }),

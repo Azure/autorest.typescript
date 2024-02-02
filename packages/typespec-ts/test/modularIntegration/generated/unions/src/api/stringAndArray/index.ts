@@ -35,8 +35,8 @@ export async function _stringAndArrayGetDeserialize(
 
   return {
     prop: {
-      string: result.body.prop["string"] as any,
-      array: result.body.prop["array"] as any,
+      string: result.body.prop["string"],
+      array: result.body.prop["array"],
     },
   };
 }

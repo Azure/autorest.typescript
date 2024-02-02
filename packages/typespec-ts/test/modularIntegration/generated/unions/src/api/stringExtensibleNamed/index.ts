@@ -34,7 +34,7 @@ export async function _stringExtensibleNamedGetDeserialize(
   }
 
   return {
-    prop: result.body["prop"] as any,
+    prop: result.body["prop"],
   };
 }
 
