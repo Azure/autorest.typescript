@@ -8,6 +8,11 @@ export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./models";
-export { createFile, createFileFromStream } from "@azure/core-rest-pipeline";
+export {
+  createFile,
+  createFileFromStream,
+  type CreateFileOptions,
+  type CreateFileFromStreamOptions,
+} from "@azure/core-rest-pipeline";
 
 export default MultiPartClient;

@@ -11,6 +11,11 @@ export * from "./isUnexpected.js";
 export * from "./models.js";
 export * from "./outputModels.js";
 export * from "./pollingHelper.js";
-export { createFile, createFileFromStream } from "@azure/core-rest-pipeline";
+export {
+  createFile,
+  createFileFromStream,
+  type CreateFileOptions,
+  type CreateFileFromStreamOptions,
+} from "@azure/core-rest-pipeline";
 
 export default OpenAIClient;

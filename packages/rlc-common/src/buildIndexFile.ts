@@ -167,17 +167,7 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
     exports.push("SerializeHelper");
   }
 
-  if (hasFileTypeIncluded(model)) {
-    file.addExportDeclarations([
-      {
-        moduleSpecifier: getImportSpecifier(
-          "restPipeline",
-          model.importInfo.runtimeImports
-        ),
-        namedExports: ["createFile", "createFileFromStream"]
-      }
-    ]);
-  }
+  reExportFileHelperFromCore(file, model);
 
   file.addExportDeclarations([
     {
@@ -341,6 +331,15 @@ function generateRLCIndex(file: SourceFile, model: RLCModel) {
     ]);
   }
 
+  reExportFileHelperFromCore(file, model);
+
+  file.addExportAssignment({
+    expression: createClientFuncName,
+    isExportEquals: false
+  });
+}
+
+function reExportFileHelperFromCore(file: SourceFile, model: RLCModel) {
   if (hasFileTypeIncluded(model)) {
     file.addExportDeclarations([
       {
@@ -348,13 +347,13 @@ function generateRLCIndex(file: SourceFile, model: RLCModel) {
           "restPipeline",
           model.importInfo.runtimeImports
         ),
-        namedExports: ["createFile", "createFileFromStream"]
+        namedExports: [
+          "createFile",
+          "createFileFromStream",
+          "type CreateFileOptions",
+          "type CreateFileFromStreamOptions"
+        ]
       }
     ]);
   }
-
-  file.addExportAssignment({
-    expression: createClientFuncName,
-    isExportEquals: false
-  });
 }
