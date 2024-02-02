@@ -27,7 +27,7 @@ describe("Client Factory generation", () => {
          * @param options - the parameter for all optional parameters
          */
         export default function createClient(options: ClientOptions = {}): testClient {
-        const baseUrl = options.baseUrl ?? \`localhost\`;
+        const endpointUrl = options.endpoint ?? options.baseUrl ?? \`localhost\`;
         
         const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix =
@@ -44,7 +44,7 @@ describe("Client Factory generation", () => {
             },
         };
         
-        const client = getClient(baseUrl, options) as testClient;
+        const client = getClient(endpointUrl, options) as testClient;
 
         client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
         
@@ -84,7 +84,7 @@ describe("Client Factory generation", () => {
             endpoint: string,
             options: ClientOptions = {}
           ): testClient {
-            const baseUrl = options.baseUrl ?? \`\${endpoint}/language\`;
+            const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}/language\`;
           
             const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
             const userAgentPrefix =
@@ -101,7 +101,7 @@ describe("Client Factory generation", () => {
               },
             };
           
-            const client = getClient(baseUrl, options) as testClient;
+            const client = getClient(endpointUrl, options) as testClient;
 
             client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
           
@@ -157,7 +157,7 @@ describe("Client Factory generation", () => {
               version: "V1" | "V2",
               options: ClientOptions = {}
             ): testClient {
-              const baseUrl = options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
+              const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
             
               const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
               const userAgentPrefix =
@@ -174,7 +174,7 @@ describe("Client Factory generation", () => {
                 },
               };
             
-              const client = getClient(baseUrl, options) as testClient;
+              const client = getClient(endpointUrl, options) as testClient;
 
               client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
             
@@ -226,7 +226,7 @@ describe("Client Factory generation", () => {
               version: string,
               options: ClientOptions = {}
             ): testClient {
-              const baseUrl = options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
+              const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
             
               const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
               const userAgentPrefix =
@@ -243,7 +243,7 @@ describe("Client Factory generation", () => {
                 },
               };
             
-              const client = getClient(baseUrl, options) as testClient;
+              const client = getClient(endpointUrl, options) as testClient;
 
               client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
             
@@ -299,7 +299,7 @@ describe("Client Factory generation", () => {
               options: testClientOptions = {}
             ): testClient {
               const endpoint = options.endpoint ?? "http://localhost:3000";
-              const baseUrl = options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
+              const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
             
               const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
               const userAgentPrefix =
@@ -316,7 +316,7 @@ describe("Client Factory generation", () => {
                 },
               };
             
-              const client = getClient(baseUrl, options) as testClient;
+              const client = getClient(endpointUrl, options) as testClient;
               
               client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
             
@@ -347,7 +347,7 @@ describe("Client Factory generation", () => {
          * @param options - the parameter for all optional parameters
          */
         export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
-        const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
+        const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}\`;
         
         const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix =
@@ -364,7 +364,7 @@ describe("Client Factory generation", () => {
             },
         };
         
-        const client = getClient(baseUrl, options) as testClient;
+        const client = getClient(endpointUrl, options) as testClient;
 
         client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
         
@@ -436,7 +436,7 @@ describe("Client Factory generation", () => {
        * @param options - the parameter for all optional parameters
        */
       export default function createClient(endpoint: string, credentials: TokenCredential, options: ClientOptions = {}): testClient {
-        const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
+        const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}\`;
         
         const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix = options.userAgentOptions && options.userAgentOptions.userAgentPrefix ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`: \`\${userAgentInfo}\`;;
@@ -453,7 +453,7 @@ describe("Client Factory generation", () => {
             },
         };
 
-        const client = getClient(baseUrl, credentials, options) as testClient;
+        const client = getClient(endpointUrl, credentials, options) as testClient;
 
         client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
@@ -491,7 +491,7 @@ describe("Client Factory generation", () => {
          * @param options - the parameter for all optional parameters
          */
         export default function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
-        const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
+        const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}\`;
         
         const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix =
@@ -512,7 +512,7 @@ describe("Client Factory generation", () => {
             },
         };
         
-        const client = getClient(baseUrl, credentials, options) as testClient;
+        const client = getClient(endpointUrl, credentials, options) as testClient;
 
         client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
         

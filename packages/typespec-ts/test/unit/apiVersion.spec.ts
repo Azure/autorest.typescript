@@ -143,7 +143,7 @@ const buildDefaultReturn = (hasDefault: boolean, hasQueryDefinition: boolean) =>
     endpoint: string,
     options: ClientOptions = {}
   ): testClient {
-    const baseUrl = options.baseUrl ?? \`\${endpoint}/language\`;
+    const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}/language\`;
     ${defaultDef}
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
@@ -160,7 +160,7 @@ const buildDefaultReturn = (hasDefault: boolean, hasQueryDefinition: boolean) =>
       },
     };
   
-    const client = getClient(baseUrl, options) as testClient;
+    const client = getClient(endpointUrl, options) as testClient;
     ${apiVersionDef}
     return client;
   }`;
@@ -186,7 +186,7 @@ const buildPathReturn_WithDefault = () => {
     options: testClientOptions = {}
   ): testClient {
     const apiVersion = options.apiVersion ?? "2022-05-15-preview";
-    const baseUrl = options.baseUrl ?? \`\${endpoint}/anomalydetector/\${apiVersion}\`;
+    const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}/anomalydetector/\${apiVersion}\`;
 
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
@@ -203,7 +203,7 @@ const buildPathReturn_WithDefault = () => {
       },
     };
   
-    const client = getClient(baseUrl, options) as testClient;
+    const client = getClient(endpointUrl, options) as testClient;
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   
@@ -228,7 +228,7 @@ const buildPathReturn_WithoutDefault = () => {
     apiVersion: string,
     options: ClientOptions = {}
   ): testClient {
-    const baseUrl = options.baseUrl ?? \`\${endpoint}/anomalydetector/\${apiVersion}\`;
+    const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}/anomalydetector/\${apiVersion}\`;
 
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
@@ -245,7 +245,7 @@ const buildPathReturn_WithoutDefault = () => {
       },
     };
   
-    const client = getClient(baseUrl, options) as testClient;
+    const client = getClient(endpointUrl, options) as testClient;
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   

@@ -19,8 +19,10 @@ export default function createClient(
   options: MultipleParamInServerPathClientOptions = {},
 ): MultipleParamInServerPathClient {
   const apiVersion = options.apiVersion ?? "v1.0";
-  const baseUrl =
-    options.baseUrl ?? `${endpoint}/server/path/multiple/${apiVersion}`;
+  const endpointUrl =
+    options.endpoint ??
+    options.baseUrl ??
+    `${endpoint}/server/path/multiple/${apiVersion}`;
 
   const userAgentInfo = `azsdk-js-multipleparam-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -37,7 +39,10 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as MultipleParamInServerPathClient;
+  const client = getClient(
+    endpointUrl,
+    options,
+  ) as MultipleParamInServerPathClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 

@@ -21,7 +21,8 @@ export default function createClient(
   options: ServiceDrivenNewClientOptions = {},
 ): ServiceDrivenNewClient {
   const apiVersion = options.apiVersion ?? "v2";
-  const baseUrl =
+  const endpointUrl =
+    options.endpoint ??
     options.baseUrl ??
     `${endpoint}/resiliency/service-driven/client:v2/service:${serviceDeploymentVersion}/api-version:${apiVersion}`;
 
@@ -40,7 +41,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as ServiceDrivenNewClient;
+  const client = getClient(endpointUrl, options) as ServiceDrivenNewClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
