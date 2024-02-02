@@ -1,8 +1,5 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/pnpm-config.schema.json",
   "useWorkspaces": true,
-  "strictPeerDependencies": false,
-  "globalOverrides": {
-    "@azure/core-rest-pipeline": "1.13.1-alpha.20240110.1"
-  }
+  "strictPeerDependencies": false
 }

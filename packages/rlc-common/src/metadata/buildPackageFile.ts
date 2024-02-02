@@ -153,9 +153,9 @@ function restLevelPackage(model: RLCModel) {
     sideEffects: false,
     autoPublish: false,
     dependencies: {
-      "@azure/core-auth": "^1.3.0",
-      "@azure-rest/core-client": "^1.1.6",
-      "@azure/core-rest-pipeline": "^1.13.0",
+      "@azure/core-auth": "^1.6.0",
+      "@azure-rest/core-client": "^1.2.0",
+      "@azure/core-rest-pipeline": "^1.13.1",
       "@azure/logger": "^1.0.0",
       tslib: "^2.2.0",
       ...(hasPaging && {
