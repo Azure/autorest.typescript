@@ -10,6 +10,11 @@ export * from "./clientDefinitions";
 export * from "./isUnexpected";
 export * from "./models";
 export * from "./outputModels";
-export { createFile, createFileFromStream } from "@azure/core-rest-pipeline";
+export {
+  createFile,
+  createFileFromStream,
+  type CreateFileOptions,
+  type CreateFileFromStreamOptions,
+} from "@azure/core-rest-pipeline";
 
 export default FaceClient;

@@ -10,6 +10,8 @@ import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { createFile } from '@azure/core-rest-pipeline';
 import { createFileFromStream } from '@azure/core-rest-pipeline';
+import { CreateFileFromStreamOptions } from '@azure/core-rest-pipeline';
+import { CreateFileOptions } from '@azure/core-rest-pipeline';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
@@ -28,6 +30,10 @@ export default createClient;
 export { createFile }
 
 export { createFileFromStream }
+
+export { CreateFileFromStreamOptions }
+
+export { CreateFileOptions }
 
 // @public (undocumented)
 export interface CreateLivenessSession {
