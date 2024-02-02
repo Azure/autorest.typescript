@@ -24,7 +24,8 @@ import {
   getFormattedPropertyDoc,
   getBodyType,
   predictDefaultValue,
-  getSerializeTypeName
+  getSerializeTypeName,
+  BINARY_AND_FILE_TYPE_UNION
 } from "../utils/modelUtils.js";
 
 import {
@@ -40,7 +41,9 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { SdkContext } from "../utils/interfaces.js";
 import {
+  KnownMediaType,
   extractMediaTypes,
+  hasMediaType,
   isMediaTypeJsonMergePatch
 } from "../utils/mediaTypes.js";
 
@@ -273,8 +276,9 @@ function transformRequestBody(
   importedModels: Set<string>,
   headers: ParameterMetadata[]
 ) {
+  const contentTypes = extractMediaTypes(parameters.body?.contentTypes ?? []);
   const schema = getSchemaForType(dpgContext, bodyType, {
-    mediaTypes: extractMediaTypes(parameters.body?.contentTypes ?? []),
+    mediaTypes: contentTypes,
     isRequestBody: true,
     usage: [SchemaContext.Input, SchemaContext.Exception]
   });
@@ -289,6 +293,7 @@ function transformRequestBody(
 
   return {
     isPartialBody: false,
+    hasFileTypeIncluded: isFileUploadCase(),
     body: [
       {
         properties: schema.properties,
@@ -301,6 +306,22 @@ function transformRequestBody(
       }
     ]
   };
+  function isFileUploadCase() {
+    const isMultipartForm =
+      hasMediaType(KnownMediaType.Multipart, contentTypes) &&
+      contentTypes.length === 1;
+    let hasFileType = false;
+    if (schema.type === "object" && schema.properties) {
+      for (const p of Object.values(schema.properties)) {
+        if ((p as Schema).typeName?.includes(BINARY_AND_FILE_TYPE_UNION)) {
+          hasFileType = true;
+          break;
+        }
+      }
+    }
+
+    return isMultipartForm && hasFileType;
+  }
 }
 
 function getRequestBodyType(
@@ -317,7 +338,6 @@ function getRequestBodyType(
     ?.filter((h) => h.name === "contentType")
     .map((h) => h.param.type);
   const hasMergeAndPatchType = isMediaTypeJsonMergePatch(contentTypes ?? []);
-
   if (hasMergeAndPatchType && (bodySchema as ObjectSchema).properties) {
     typeName = `${typeName}ResourceMergeAndPatch`;
   }

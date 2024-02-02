@@ -5,6 +5,7 @@ import { Project, SourceFile } from "ts-morph";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import {
   hasCsvCollection,
+  hasFileTypeIncluded,
   hasInputModels,
   hasMultiCollection,
   hasOutputModels,
@@ -18,6 +19,7 @@ import {
 import { RLCModel } from "./interfaces.js";
 import * as path from "path";
 import { getImportModuleName } from "./helpers/nameConstructors.js";
+import { getImportSpecifier } from "./helpers/importsUtil.js";
 
 export function buildIndexFile(model: RLCModel) {
   const multiClient = Boolean(model.options?.multiClient),
@@ -323,6 +325,18 @@ function generateRLCIndex(file: SourceFile, model: RLCModel) {
           },
           model
         )
+      }
+    ]);
+  }
+
+  if (hasFileTypeIncluded(model)) {
+    file.addExportDeclarations([
+      {
+        moduleSpecifier: getImportSpecifier(
+          "restPipeline",
+          model.importInfo.runtimeImports
+        ),
+        namedExports: ["createFile", "createFileFromStream"]
       }
     ]);
   }

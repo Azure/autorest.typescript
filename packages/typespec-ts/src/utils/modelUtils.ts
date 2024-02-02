@@ -1378,7 +1378,11 @@ function getEnumStringDescription(type: any) {
 }
 
 function getBinaryDescripton(type: any) {
-  if (type?.typeName?.includes(BINARY_TYPE_UNION) && type.type === "string") {
+  if (type?.typeName?.includes(BINARY_TYPE_UNION)) {
+    if (type?.typeName?.includes(BINARY_AND_FILE_TYPE_UNION)) {
+      return `NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
+You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.`;
+    }
     return `Value may contain any sequence of octets`;
   }
   return undefined;
