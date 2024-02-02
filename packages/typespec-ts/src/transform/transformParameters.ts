@@ -41,7 +41,6 @@ import {
 import { SdkContext } from "../utils/interfaces.js";
 import {
   extractMediaTypes,
-  hasMediaType,
   isMediaTypeJsonMergePatch
 } from "../utils/mediaTypes.js";
 
