@@ -378,30 +378,81 @@ describe("bytes request", () => {
     // TODO: need to figure out the behavior
     it.skip("bytes as request body - should not be allowed?");
   });
-  describe.skip("other content-types", () => {
-    it("bytes request should respect @header contentType and use binary format when not json or text", async () => {
+  describe("mixed content-types", () => {
+    it("non-binary content types mixing - should not be treated as binary", async () => {
       const parameters = await emitParameterFromTypeSpec(
         `
-            @post op read(@header contentType: "image/png", @body body: bytes): {};
-            `
+        union SchemaContentTypeValues {
+          avro: "application/json; serialization=Avro",
+          json: "application/json; serialization=json",
+          custom: "text/plain; charset=utf-8",
+          protobuf: "text/vnd.ms.protobuf",
+        }
+        @post op read(@header contentType: SchemaContentTypeValues, @body body: bytes): {};
+        `
       );
       assert.ok(parameters);
-      await assertEqualContent(parameters?.content!, ``);
-    });
-  });
+      await assertEqualContent(
+        parameters?.content!,
+        `
+      import { RequestParameters } from "@azure-rest/core-client";
+      import { SchemaContentTypeValues } from "./models";
 
-  // TODO: we need more discussions about current behavior
-  // This case is not finalized yet and some validations would be added in tcgc
-  it.skip("multiple contentTypes mixed json and others", async () => {
-    const parameters = await emitParameterFromTypeSpec(
+      export interface ReadBodyParam {
+        body: string;
+      }
+
+      export interface ReadMediaTypesParam {
+        contentType: SchemaContentTypeValues;
+      }
+
+      export type ReadParameters = ReadMediaTypesParam & ReadBodyParam & RequestParameters;
       `
+      );
+    });
+    it("binary content types mixing - should be treated as binary", async () => {
+      const parameters = await emitParameterFromTypeSpec(
+        `
+        union SchemaContentTypeValues {
+          mp3: "audio/mpeg3",
+          image: "image/jpeg",
+        }
+        @post op read(@header contentType: SchemaContentTypeValues, @body body: bytes): {};
+        `
+      );
+      assert.ok(parameters);
+      console.log(parameters?.content!);
+      await assertEqualContent(
+        parameters?.content!,
+        `
+      import { RequestParameters } from "@azure-rest/core-client";
+      import { SchemaContentTypeValues } from "./models";
+
+      export interface ReadBodyParam {
+        /** Value may contain any sequence of octets */
+        body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream;
+      }
+
+      export interface ReadMediaTypesParam {
+        contentType: SchemaContentTypeValues;
+      }
+
+      export type ReadParameters = ReadMediaTypesParam & ReadBodyParam & RequestParameters;
+      `
+      );
+    });
+    // TODO: we need more discussions about current behavior
+    // This case is not finalized yet and some validations would be added in tcgc
+    it.skip("mixed non-binary and binary content types", async () => {
+      const parameters = await emitParameterFromTypeSpec(
+        `
         @post op read(@header contentType: "image/png" | "application/json", @body body: bytes): {};
         `
-    );
-    assert.ok(parameters);
-    await assertEqualContent(
-      parameters?.content!,
-      `
+      );
+      assert.ok(parameters);
+      await assertEqualContent(
+        parameters?.content!,
+        `
         import { RequestParameters } from "@azure-rest/core-client";
 
         export interface ReadBodyParam {
@@ -421,6 +472,7 @@ describe("bytes request", () => {
           ReadBodyParam &
           RequestParameters;
         `
-    );
+      );
+    });
   });
 });

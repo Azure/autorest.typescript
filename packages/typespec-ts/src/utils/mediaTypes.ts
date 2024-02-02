@@ -1,12 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
-import { HttpOperationParameters } from "@typespec/http";
-import { transformHeaderParameters } from "../transform/transformParameters.js";
-import { ParameterMetadata, SchemaContext } from "@azure-tools/rlc-common";
-import { getTypeName } from "./modelUtils.js";
-
 // Media Type is: type "/" [tree "."] subtype ["+" suffix] * [";" parameter]
 
 const json = "json";
@@ -146,31 +140,10 @@ export function hasMediaType(
 }
 
 export function extractMediaTypes(
-  parameters?: HttpOperationParameters,
-  dpgContext?: SdkContext
-): KnownMediaType[];
-export function extractMediaTypes(
-  headers?: ParameterMetadata[]
-): KnownMediaType[];
-export function extractMediaTypes(
-  headersOrParams?: ParameterMetadata[] | HttpOperationParameters,
-  dpgContext?: SdkContext
+  mediaTypes: string[] | string
 ): KnownMediaType[] {
-  if (!headersOrParams) {
-    return [];
+  if (typeof mediaTypes === "string") {
+    mediaTypes = [mediaTypes];
   }
-  if (!Array.isArray(headersOrParams) && dpgContext) {
-    headersOrParams = transformHeaderParameters(
-      dpgContext!,
-      headersOrParams as HttpOperationParameters,
-      new Set<string>()
-    );
-  } else {
-    headersOrParams = headersOrParams as ParameterMetadata[];
-  }
-  return (headersOrParams ?? [])
-    .filter((h) => h.name === "contentType")
-    .map((h) => {
-      return knownMediaType(getTypeName(h.param, [SchemaContext.Input]));
-    });
+  return mediaTypes.map((mediaType) => knownMediaType(mediaType));
 }

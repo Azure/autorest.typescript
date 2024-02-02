@@ -69,8 +69,7 @@ export function transformSchemas(
     ) {
       requestBodySet.add(bodyModel);
       const contentTypes: KnownMediaType[] = extractMediaTypes(
-        route.parameters,
-        dpgContext
+        route.parameters.body?.contentTypes ?? []
       );
       if (contentTypes.length > 0) {
         contentTypeMap.set(bodyModel, contentTypes);

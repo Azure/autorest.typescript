@@ -274,7 +274,7 @@ function transformRequestBody(
   headers: ParameterMetadata[]
 ) {
   const schema = getSchemaForType(dpgContext, bodyType, {
-    mediaTypes: extractMediaTypes(headers),
+    mediaTypes: extractMediaTypes(parameters.body?.contentTypes ?? []),
     isRequestBody: true,
     usage: [SchemaContext.Input, SchemaContext.Exception]
   });
