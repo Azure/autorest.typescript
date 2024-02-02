@@ -24,12 +24,8 @@ export class NotVersionedClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates not-versioned server. */
-  constructor(
-    endpoint: string,
-    apiVersion: string,
-    options: NotVersionedClientOptions = {},
-  ) {
-    this._client = createNotVersioned(endpoint, apiVersion, options);
+  constructor(endpoint: string, options: NotVersionedClientOptions = {}) {
+    this._client = createNotVersioned(endpoint, options);
     this.pipeline = this._client.pipeline;
   }
 

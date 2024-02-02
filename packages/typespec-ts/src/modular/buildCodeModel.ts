@@ -151,6 +151,7 @@ const typesMap = new Map<EmitterType, HrlcType>();
 const simpleTypesMap = new Map<string, HrlcType>();
 const endpointPathParameters: Record<string, any>[] = [];
 let apiVersionParam: Parameter | undefined = undefined;
+let hasApiVersionInClient = true;
 
 function isSimpleType(
   program: Program,
@@ -816,17 +817,22 @@ function emitBasicOperation(
     namespaceHierarchies.push(operationGroupName);
   }
 
+  let hasApiVersionInOperation = false;
   for (const param of httpOperation.parameters.parameters) {
     if (isIgnoredHeaderParam(param)) {
       continue;
     }
     const emittedParam = emitParameter(context, param, "Method");
-    if (isApiVersion(context, param) && apiVersionParam === undefined) {
+    if (isApiVersion(context, param)) {
+      hasApiVersionInOperation = true;
       apiVersionParam = emittedParam;
     }
     parameters.push(emittedParam);
   }
 
+  if (!hasApiVersionInOperation) {
+    hasApiVersionInClient = false;
+  }
   // Set up responses for operation
   const responses: Response[] = [];
   const exceptions: Response[] = [];
@@ -1657,6 +1663,7 @@ function emitServerParams(
         isApiVersion(context, serverParameter as any) &&
         apiVersionParam == undefined
       ) {
+        hasApiVersionInClient = true;
         apiVersionParam = emittedParameter;
         continue;
       }
@@ -1789,7 +1796,7 @@ function emitClients(
       subfolder: ""
     };
     const emittedApiVersionParam = getApiVersionParameter(context);
-    if (emittedApiVersionParam) {
+    if (emittedApiVersionParam && hasApiVersionInClient) {
       emittedClient.parameters.push(emittedApiVersionParam);
     }
     retval.push(emittedClient);
