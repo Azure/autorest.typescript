@@ -32,3 +32,9 @@ export interface FormDataJsonArrayParts204Response extends HttpResponse {
 export interface FormDataMultiBinaryParts204Response extends HttpResponse {
   status: "204";
 }
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface FormDataCheckFileNameAndContentType204Response
+  extends HttpResponse {
+  status: "204";
+}

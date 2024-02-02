@@ -8,6 +8,7 @@ import {
   FormDataBinaryArrayPartsParameters,
   FormDataJsonArrayPartsParameters,
   FormDataMultiBinaryPartsParameters,
+  FormDataCheckFileNameAndContentTypeParameters,
 } from "./parameters";
 import {
   FormDataBasic204Response,
@@ -16,6 +17,7 @@ import {
   FormDataBinaryArrayParts204Response,
   FormDataJsonArrayParts204Response,
   FormDataMultiBinaryParts204Response,
+  FormDataCheckFileNameAndContentType204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -61,6 +63,13 @@ export interface MultiBinaryParts {
   ): StreamableMethod<FormDataMultiBinaryParts204Response>;
 }
 
+export interface CheckFileNameAndContentType {
+  /** Test content-type: multipart/form-data */
+  post(
+    options: FormDataCheckFileNameAndContentTypeParameters,
+  ): StreamableMethod<FormDataCheckFileNameAndContentType204Response>;
+}
+
 export interface Routes {
   /** Resource for '/multipart/form-data/mixed-parts' has methods for the following verbs: post */
   (path: "/multipart/form-data/mixed-parts"): Basic;
@@ -74,6 +83,10 @@ export interface Routes {
   (path: "/multipart/form-data/json-array-parts"): JsonArrayParts;
   /** Resource for '/multipart/form-data/multi-binary-parts' has methods for the following verbs: post */
   (path: "/multipart/form-data/multi-binary-parts"): MultiBinaryParts;
+  /** Resource for '/multipart/form-data/check-filename-and-content-type' has methods for the following verbs: post */
+  (
+    path: "/multipart/form-data/check-filename-and-content-type",
+  ): CheckFileNameAndContentType;
 }
 
 export type MultiPartClient = Client & {

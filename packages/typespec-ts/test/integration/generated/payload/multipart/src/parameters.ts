@@ -85,3 +85,16 @@ export type FormDataMultiBinaryPartsParameters =
   FormDataMultiBinaryPartsMediaTypesParam &
     FormDataMultiBinaryPartsBodyParam &
     RequestParameters;
+
+export interface FormDataCheckFileNameAndContentTypeBodyParam {
+  body: MultiPartRequest;
+}
+
+export interface FormDataCheckFileNameAndContentTypeMediaTypesParam {
+  contentType: "multipart/form-data";
+}
+
+export type FormDataCheckFileNameAndContentTypeParameters =
+  FormDataCheckFileNameAndContentTypeMediaTypesParam &
+    FormDataCheckFileNameAndContentTypeBodyParam &
+    RequestParameters;
