@@ -10,7 +10,6 @@ import {
   Methods,
   ObjectSchema,
   OperationParameter,
-  ParameterMetadata,
   PathParameter,
   RLCModel,
   SchemaContext
