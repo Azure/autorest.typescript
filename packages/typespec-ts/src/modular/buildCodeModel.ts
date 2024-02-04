@@ -1781,6 +1781,14 @@ function emitClients(
     const emittedApiVersionParam = getApiVersionParameter();
     if (emittedApiVersionParam && hasApiVersionInClient) {
       emittedClient.parameters.push(emittedApiVersionParam);
+      // if we have client level api version, we need to remove it from all operations
+      emittedClient.operationGroups.forEach((opGroup) => {
+        opGroup.operations.forEach((op) => {
+          op.parameters = op.parameters.filter((param) => {
+            return !param.isApiVersion;
+          });
+        });
+      });
     }
     retval.push(emittedClient);
   }

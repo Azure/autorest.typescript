@@ -56,11 +56,11 @@ describe("Multiple Server Path Client", () => {
   });
 });
 
-describe.only("NotVersioned Server Version Client", () => {
+describe("NotVersioned Server Version Client", () => {
   let client: NotVersionedClient;
 
   beforeEach(() => {
-    client = new NotVersionedClient("http://localhost:3000", "v1.0");
+    client = new NotVersionedClient("http://localhost:3000");
   });
 
   it("should work without apiVersion", async () => {
@@ -74,7 +74,7 @@ describe.only("NotVersioned Server Version Client", () => {
 
   it("should work with param", async () => {
     try {
-      const result = await client.withQueryApiVersion();
+      const result = await client.withQueryApiVersion("v1.0");
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -83,7 +83,7 @@ describe.only("NotVersioned Server Version Client", () => {
 
   it("should work with path param", async () => {
     try {
-      const result = await client.withPathApiVersion();
+      const result = await client.withPathApiVersion("v1.0");
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -91,7 +91,7 @@ describe.only("NotVersioned Server Version Client", () => {
   });
 });
 
-describe.only("Versioned Server Version Client", () => {
+describe("Versioned Server Version Client", () => {
   let client: VersionedClient;
 
   beforeEach(() => {
@@ -114,7 +114,7 @@ describe.only("Versioned Server Version Client", () => {
 
   it("should work with param", async () => {
     try {
-      const result = await client.withQueryApiVersion();
+      const result = await client.withQueryApiVersion("v1.0");
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -123,7 +123,7 @@ describe.only("Versioned Server Version Client", () => {
 
   it("should work with path param", async () => {
     try {
-      const result = await client.withPathApiVersion();
+      const result = await client.withPathApiVersion("v1.0");
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);

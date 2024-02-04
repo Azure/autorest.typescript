@@ -36,14 +36,16 @@ export class VersionedClient {
   }
 
   withQueryApiVersion(
+    apiVersion: string,
     options: WithQueryApiVersionOptions = { requestOptions: {} },
   ): Promise<void> {
-    return withQueryApiVersion(this._client, options);
+    return withQueryApiVersion(this._client, apiVersion, options);
   }
 
   withPathApiVersion(
+    apiVersion: string,
     options: WithPathApiVersionOptions = { requestOptions: {} },
   ): Promise<void> {
-    return withPathApiVersion(this._client, options);
+    return withPathApiVersion(this._client, apiVersion, options);
   }
 }
