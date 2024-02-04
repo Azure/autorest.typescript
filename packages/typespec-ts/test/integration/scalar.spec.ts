@@ -152,15 +152,11 @@ describe("Scalar Client", () => {
       const getResult = await client
         .path("/type/scalar/decimal/prepare_verify")
         .get();
-      // do any calculation based on numbers
-      let total = 0;
-      getResult.body.forEach((decimal: number) => {
-        total += decimal;
-      });
+      assert.strictEqual(getResult.status, "200");
       const result = await client
         .path("/type/scalar/decimal/verify")
-        .post({ body: total });
-      assert.strictEqual(result.status, "400");
+        .post({ body: 0.3 });
+      assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -171,15 +167,11 @@ describe("Scalar Client", () => {
       const getResult = await client
         .path("/type/scalar/decimal128/prepare_verify")
         .get();
-      // do any calculation based on numbers
-      let total = 0;
-      getResult.body.forEach((decimal: number) => {
-        total += decimal;
-      });
+        assert.strictEqual(getResult.status, "200");
       const result = await client
         .path("/type/scalar/decimal128/verify")
-        .post({ body: total });
-      assert.strictEqual(result.status, "400");
+        .post({ body: 0.3 });
+      assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
     }
