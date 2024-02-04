@@ -294,7 +294,7 @@ function transformRequestBody(
         properties: schema.properties,
         typeName: schema.name,
         name: "body",
-        type: type,
+        type,
         required: parameters?.bodyParameter?.optional === false,
         description: descriptions.join("\n\n"),
         oriSchema: schema
