@@ -16,7 +16,7 @@ export enum KnownMediaType {
   Xml = "xml",
   Form = "form",
   Binary = "binary",
-  Multipart = "multipart",
+  MultipartFormData = "multipart/form-data",
   Text = "text",
   Unknown = "unknown"
 }
@@ -67,7 +67,7 @@ export function knownMediaType(mediaType: string) {
       return KnownMediaType.Form;
     }
     if (mt.type === "multipart" && mt.subtype === "form-data") {
-      return KnownMediaType.Multipart;
+      return KnownMediaType.MultipartFormData;
     }
     if (mt.type === application) {
       // at this point, an unrecognized application/* is considered a binary format

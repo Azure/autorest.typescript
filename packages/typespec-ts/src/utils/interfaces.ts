@@ -19,6 +19,7 @@ export interface GetSchemaOptions {
   // usage is used to determine the type name of the schema
   usage?: SchemaContext[];
   // default to false
+  // when it is true and we would only generate a reference and not cover too many details
   needRef?: boolean;
   // relevant property which the type belongs to
   relevantProperty?: ModelProperty;

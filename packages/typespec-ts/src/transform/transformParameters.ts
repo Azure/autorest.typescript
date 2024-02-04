@@ -303,7 +303,7 @@ function transformRequestBody(
   };
   function isMultpartFileUpload() {
     const isMultipartForm =
-      hasMediaType(KnownMediaType.Multipart, contentTypes) &&
+      hasMediaType(KnownMediaType.MultipartFormData, contentTypes) &&
       contentTypes.length === 1;
     let hasFileType = false;
     if (schema.type === "object" && schema.properties) {
