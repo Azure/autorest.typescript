@@ -1,7 +1,7 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@typespec/ts-http-runtime";
-import { UsageClient } from "./clientDefinitions.js";
+import { UsageClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `UsageClient`
