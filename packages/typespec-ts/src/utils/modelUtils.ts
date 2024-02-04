@@ -404,8 +404,7 @@ function getSchemaForUnionVariant(
   variant: UnionVariant,
   options?: GetSchemaOptions
 ): Schema {
-  const { usage } = options ?? {};
-  return getSchemaForType(dpgContext, variant, { usage });
+  return getSchemaForType(dpgContext, variant, options);
 }
 
 // An openapi "string" can be defined in several different ways in typespec
