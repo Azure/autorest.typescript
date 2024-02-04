@@ -314,7 +314,7 @@ function getSchemaForScalar(
     result.typeName = BINARY_TYPE_UNION;
     result.outputTypeName = "Uint8Array";
     return result;
-  } else if (isFormDataBytesInRequestBody()) {
+  } else if (isMultipartBytesInRequestBody()) {
     // bytes inside a multipart part (for now) is assumed to be file
     result.typeName = BINARY_AND_FILE_TYPE_UNION;
     result.outputTypeName = "Uint8Array";
@@ -346,7 +346,7 @@ function getSchemaForScalar(
     );
   }
 
-  function isFormDataBytesInRequestBody() {
+  function isMultipartBytesInRequestBody() {
     return (
       hasMediaType(KnownMediaType.Multipart, contentTypes) &&
       isParentRequestBody &&

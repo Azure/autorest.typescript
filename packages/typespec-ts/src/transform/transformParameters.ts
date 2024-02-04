@@ -284,16 +284,11 @@ function transformRequestBody(
   });
 
   const descriptions = getBodyDescriptions(dpgContext, schema, parameters);
-  const type = getRequestBodyType(
-    schema,
-    [SchemaContext.Input],
-    importedModels,
-    headers
-  );
+  const type = getRequestBodyType(schema, importedModels, headers);
 
   return {
     isPartialBody: false,
-    hasFileTypeIncluded: isFileUploadCase(),
+    hasFileTypeIncluded: isMultpartFileUpload(),
     body: [
       {
         properties: schema.properties,
@@ -306,7 +301,7 @@ function transformRequestBody(
       }
     ]
   };
-  function isFileUploadCase() {
+  function isMultpartFileUpload() {
     const isMultipartForm =
       hasMediaType(KnownMediaType.Multipart, contentTypes) &&
       contentTypes.length === 1;
@@ -326,10 +321,10 @@ function transformRequestBody(
 
 function getRequestBodyType(
   bodySchema: Schema,
-  schemaUsage: SchemaContext[],
   importedModels: Set<string>,
   headers?: ParameterMetadata[]
 ) {
+  const schemaUsage = [SchemaContext.Input, SchemaContext.Exception];
   const importedNames = getImportedModelName(bodySchema, schemaUsage) ?? [];
   importedNames.forEach(importedModels.add, importedModels);
 
