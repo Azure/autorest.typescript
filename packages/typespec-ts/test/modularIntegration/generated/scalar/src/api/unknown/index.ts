@@ -48,7 +48,7 @@ export function _unknownPutSend(
 ): StreamableMethod<UnknownPut204Response> {
   return context
     .path("/type/scalar/unknown")
-    .put({ ...operationOptionsToRequestParameters(options) });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _unknownPutDeserialize(

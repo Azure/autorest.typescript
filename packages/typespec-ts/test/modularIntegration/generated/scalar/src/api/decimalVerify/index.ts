@@ -50,7 +50,7 @@ export function _decimalVerifyVerifySend(
 ): StreamableMethod<DecimalVerifyVerify204Response> {
   return context
     .path("/type/scalar/decimal/verify")
-    .post({ ...operationOptionsToRequestParameters(options) });
+    .post({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _decimalVerifyVerifyDeserialize(

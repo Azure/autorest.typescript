@@ -48,7 +48,7 @@ export function _stringPutSend(
 ): StreamableMethod<StringModelPut204Response> {
   return context
     .path("/type/scalar/string")
-    .put({ ...operationOptionsToRequestParameters(options) });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _stringPutDeserialize(

@@ -48,7 +48,7 @@ export function _booleanPutSend(
 ): StreamableMethod<BooleanModelPut204Response> {
   return context
     .path("/type/scalar/boolean")
-    .put({ ...operationOptionsToRequestParameters(options) });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _booleanPutDeserialize(

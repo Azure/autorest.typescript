@@ -52,7 +52,7 @@ export function _decimalTypeRequestBodySend(
 ): StreamableMethod<DecimalTypeRequestBody204Response> {
   return context
     .path("/type/scalar/decimal/resquest_body")
-    .put({ ...operationOptionsToRequestParameters(options) });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _decimalTypeRequestBodyDeserialize(
