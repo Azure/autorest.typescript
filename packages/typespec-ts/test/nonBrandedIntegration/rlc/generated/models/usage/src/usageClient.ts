@@ -1,7 +1,7 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@typespec/ts-http-runtime";
-import { UsageClient } from "./clientDefinitions";
+import { UsageClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `UsageClient`
@@ -9,7 +9,7 @@ import { UsageClient } from "./clientDefinitions";
  */
 export default function createClient(options: ClientOptions = {}): UsageClient {
   const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
+    options.baseUrl ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-usage-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

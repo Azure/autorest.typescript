@@ -4,7 +4,7 @@ import {
   InputParameters,
   OutputParameters,
   InputAndOutputParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   Input204Response,
   Output200Response,
