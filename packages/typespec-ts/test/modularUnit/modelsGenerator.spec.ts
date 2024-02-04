@@ -1563,6 +1563,7 @@ describe("inheritance & polymorphism", () => {
               .post({
                 ...operationOptionsToRequestParameters(options),
                 contentType: contentType,
+                body: body
               });
         }
         
@@ -1687,6 +1688,7 @@ describe("inheritance & polymorphism", () => {
             .post({
               ...operationOptionsToRequestParameters(options),
               headers: { "test-header": testHeader },
+              body: body
             });
         }
         export async function _getDeserialize(result: Get204Response): Promise<void> {

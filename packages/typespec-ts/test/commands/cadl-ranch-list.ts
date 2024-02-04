@@ -339,6 +339,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "unions",
     inputPath: "type/union"
+  },
+  {
+    outputPath: "scalar",
+    inputPath: "type/scalar"
   }
 ];
 

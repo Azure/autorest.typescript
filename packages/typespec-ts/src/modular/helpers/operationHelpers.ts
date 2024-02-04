@@ -509,6 +509,10 @@ function buildBodyParameter(
     return `\nbody: ${bodyParameter.clientName},`;
   }
 
+  if (bodyParameter) {
+    return `\nbody: ${bodyParameter.clientName},`;
+  }
+  
   return "";
 }
 
