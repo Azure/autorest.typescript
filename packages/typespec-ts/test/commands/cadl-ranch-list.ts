@@ -338,6 +338,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     outputPath: "unions",
     inputPath: "type/union"
   },
+  {
+    outputPath: "payload/json-merge-patch",
+    inputPath: "payload/json-merge-patch"
+  }
 ];
 
 export const nonBrandedModularTsps: TypeSpecRanchConfig[] = [
