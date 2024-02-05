@@ -60,7 +60,12 @@ describe("NotVersioned Server Version Client", () => {
   let client: NotVersionedClient;
 
   beforeEach(() => {
-    client = new NotVersionedClient("http://localhost:3000");
+    client = new NotVersionedClient("http://localhost:3000", {
+      allowInsecureConnection: true,
+      retryOptions: {
+        maxRetries: 0
+      }
+    });
   });
 
   it("should work without apiVersion", async () => {

@@ -1442,7 +1442,7 @@ export function getEnrichedDefaultApiVersion(
   if (defaultVersion) {
     return defaultVersion.value;
   }
-  return serviceNamespace.version;
+  return;
 }
 
 export function trimUsage(model: any) {

@@ -17,6 +17,7 @@ export interface AddOrUpdateBlockItemsOptions {
 
 // @public (undocumented)
 export interface AddOrUpdateBlockItemsRequestOptions extends OperationOptions {
+    apiVersion?: "2023-10-01";
 }
 
 // @public
@@ -36,6 +37,7 @@ export type AnalyzeImageOutputType = string;
 
 // @public (undocumented)
 export interface AnalyzeImageRequestOptions extends OperationOptions {
+    apiVersion?: "2023-10-01";
 }
 
 // @public
@@ -57,6 +59,7 @@ export type AnalyzeTextOutputType = string;
 
 // @public (undocumented)
 export interface AnalyzeTextRequestOptions extends OperationOptions {
+    apiVersion?: "2023-10-01";
 }
 
 // @public
@@ -92,19 +95,23 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 
 // @public (undocumented)
 export interface CreateOrUpdateTextBlocklistOptions extends OperationOptions {
+    apiVersion?: "2023-10-01";
     contentType?: string;
 }
 
 // @public (undocumented)
 export interface DeleteTextBlocklistOptions extends OperationOptions {
+    apiVersion?: "2023-10-01";
 }
 
 // @public (undocumented)
 export interface GetTextBlocklistItemOptions extends OperationOptions {
+    apiVersion?: "2023-10-01";
 }
 
 // @public (undocumented)
 export interface GetTextBlocklistOptions extends OperationOptions {
+    apiVersion?: "2023-10-01";
 }
 
 // @public
@@ -125,6 +132,7 @@ export { ImageData_2 as ImageData }
 
 // @public (undocumented)
 export interface ListTextBlocklistItemsOptions extends OperationOptions {
+    apiVersion?: "2023-10-01";
     maxpagesize?: number;
     skip?: number;
     top?: number;
@@ -132,6 +140,7 @@ export interface ListTextBlocklistItemsOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ListTextBlocklistsOptions extends OperationOptions {
+    apiVersion?: "2023-10-01";
 }
 
 // @public
@@ -165,6 +174,7 @@ export interface RemoveBlockItemsOptions {
 
 // @public (undocumented)
 export interface RemoveBlockItemsRequestOptions extends OperationOptions {
+    apiVersion?: "2023-10-01";
 }
 
 // @public

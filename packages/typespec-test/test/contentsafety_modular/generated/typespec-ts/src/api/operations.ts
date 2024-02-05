@@ -2,15 +2,15 @@
 // Licensed under the MIT license.
 
 import {
-  AnalyzeTextOptions,
-  AnalyzeTextResult,
-  AnalyzeImageOptions,
-  AnalyzeImageResult,
   TextBlocklist,
   AddOrUpdateBlockItemsOptions,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
   RemoveBlockItemsOptions,
+  AnalyzeImageOptions,
+  AnalyzeImageResult,
+  AnalyzeTextOptions,
+  AnalyzeTextResult,
   PagedTextBlocklist,
   PagedTextBlockItem,
 } from "../models/models.js";
@@ -69,6 +69,7 @@ export function _analyzeTextSend(
     .path("/text:analyze")
     .post({
       ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2023-10-01" },
       body: {
         text: body["text"],
         categories: body["categories"],
@@ -120,6 +121,7 @@ export function _analyzeImageSend(
     .path("/image:analyze")
     .post({
       ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2023-10-01" },
       body: {
         image: {
           content:
@@ -168,7 +170,10 @@ export function _getTextBlocklistSend(
 > {
   return context
     .path("/text/blocklists/{blocklistName}", blocklistName)
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2023-10-01" },
+    });
 }
 
 export async function _getTextBlocklistDeserialize(
@@ -210,6 +215,7 @@ export function _createOrUpdateTextBlocklistSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
+      queryParameters: { "api-version": "2023-10-01" },
       body: { description: resource["description"] },
     });
 }
@@ -255,7 +261,10 @@ export function _deleteTextBlocklistSend(
 > {
   return context
     .path("/text/blocklists/{blocklistName}", blocklistName)
-    .delete({ ...operationOptionsToRequestParameters(options) });
+    .delete({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2023-10-01" },
+    });
 }
 
 export async function _deleteTextBlocklistDeserialize(
@@ -290,7 +299,10 @@ export function _listTextBlocklistsSend(
 > {
   return context
     .path("/text/blocklists")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2023-10-01" },
+    });
 }
 
 export async function _listTextBlocklistsDeserialize(
@@ -337,6 +349,7 @@ export function _addOrUpdateBlockItemsSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2023-10-01" },
       body: {
         blockItems: body["blockItems"].map((p) => ({
           description: p["description"],
@@ -394,6 +407,7 @@ export function _removeBlockItemsSend(
     .path("/text/blocklists/{blocklistName}:removeBlockItems", blocklistName)
     .post({
       ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2023-10-01" },
       body: { blockItemIds: body["blockItemIds"] },
     });
 }
@@ -438,7 +452,10 @@ export function _getTextBlocklistItemSend(
       blocklistName,
       blockItemId,
     )
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2023-10-01" },
+    });
 }
 
 export async function _getTextBlocklistItemDeserialize(
@@ -483,6 +500,7 @@ export function _listTextBlocklistItemsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": "2023-10-01",
         top: options?.top,
         skip: options?.skip,
         maxpagesize: options?.maxpagesize,

@@ -57,6 +57,7 @@ export function _publishCloudEventSend(
       contentType:
         (options.contentType as any) ??
         "application/cloudevents+json; charset=utf-8",
+      queryParameters: { "api-version": "2023-06-01-preview" },
       body: {
         event: {
           id: event["id"],
@@ -118,6 +119,7 @@ export function _publishCloudEventsSend(
     contentType:
       (options.contentType as any) ??
       "application/cloudevents-batch+json; charset=utf-8",
+    queryParameters: { "api-version": "2023-06-01-preview" },
     body: (events ?? []).map((p) => {
       return {
         id: p["id"],
@@ -183,6 +185,7 @@ export function _receiveCloudEventsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": "2023-06-01-preview",
         maxEvents: options?.maxEvents,
         maxWaitTime: options?.maxWaitTime,
       },
@@ -257,6 +260,7 @@ export function _acknowledgeCloudEventsSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
+      queryParameters: { "api-version": "2023-06-01-preview" },
       body: { lockTokens: lockTokens["lockTokens"] },
     });
 }
@@ -317,6 +321,7 @@ export function _releaseCloudEventsSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
+      queryParameters: { "api-version": "2023-06-01-preview" },
       body: { lockTokens: lockTokens["lockTokens"] },
     });
 }
@@ -375,6 +380,7 @@ export function _rejectCloudEventsSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
+      queryParameters: { "api-version": "2023-06-01-preview" },
       body: { lockTokens: lockTokens["lockTokens"] },
     });
 }

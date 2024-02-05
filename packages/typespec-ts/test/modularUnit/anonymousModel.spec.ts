@@ -453,7 +453,8 @@ describe("anonymous model", () => {
             .path("/{pathParam}", pathParam)
             .post({
               ...operationOptionsToRequestParameters(options),
-              queryParameters: { queryParam: queryParam }
+              queryParameters: { queryParam: queryParam },
+              body: body
             });
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {

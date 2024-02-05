@@ -120,83 +120,83 @@ export interface BatchCertificate {
 // @public (undocumented)
 export class BatchClient {
     constructor(endpoint: string, credential: TokenCredential, options?: BatchClientOptions);
-    cancelCertificateDeletion(thumbprintAlgorithm: string, thumbprint: string, options?: CancelCertificateDeletionOptions): Promise<void>;
-    createCertificate(body: BatchCertificate, options?: CreateCertificateOptions): Promise<void>;
-    createJob(body: BatchJobCreateOptions, options?: CreateJobOptions): Promise<void>;
-    createJobSchedule(body: BatchJobScheduleCreateOptions, options?: CreateJobScheduleOptions): Promise<void>;
-    createNodeUser(poolId: string, nodeId: string, body: BatchNodeUserCreateOptions, options?: CreateNodeUserOptions): Promise<void>;
+    cancelCertificateDeletion(apiVersion: string, thumbprintAlgorithm: string, thumbprint: string, options?: CancelCertificateDeletionOptions): Promise<void>;
+    createCertificate(apiVersion: string, body: BatchCertificate, options?: CreateCertificateOptions): Promise<void>;
+    createJob(apiVersion: string, body: BatchJobCreateOptions, options?: CreateJobOptions): Promise<void>;
+    createJobSchedule(apiVersion: string, body: BatchJobScheduleCreateOptions, options?: CreateJobScheduleOptions): Promise<void>;
+    createNodeUser(apiVersion: string, poolId: string, nodeId: string, body: BatchNodeUserCreateOptions, options?: CreateNodeUserOptions): Promise<void>;
     createPool(body: BatchPoolCreateOptions, options?: CreatePoolOptions): Promise<void>;
-    createTask(jobId: string, body: BatchTaskCreateOptions, options?: CreateTaskOptions): Promise<void>;
-    createTaskCollection(jobId: string, collection: BatchTaskCollection, options?: CreateTaskCollectionOptions): Promise<TaskAddCollectionResult>;
-    deleteCertificate(thumbprintAlgorithm: string, thumbprint: string, options?: DeleteCertificateOptions): Promise<void>;
-    deleteJob(jobId: string, options?: DeleteJobOptions): Promise<void>;
-    deleteJobSchedule(jobScheduleId: string, options?: DeleteJobScheduleOptions): Promise<void>;
-    deleteNodeFile(poolId: string, nodeId: string, filePath: string, options?: DeleteNodeFileOptions): Promise<void>;
-    deleteNodeUser(poolId: string, nodeId: string, userName: string, options?: DeleteNodeUserOptions): Promise<void>;
+    createTask(apiVersion: string, jobId: string, body: BatchTaskCreateOptions, options?: CreateTaskOptions): Promise<void>;
+    createTaskCollection(apiVersion: string, jobId: string, collection: BatchTaskCollection, options?: CreateTaskCollectionOptions): Promise<TaskAddCollectionResult>;
+    deleteCertificate(apiVersion: string, thumbprintAlgorithm: string, thumbprint: string, options?: DeleteCertificateOptions): Promise<void>;
+    deleteJob(apiVersion: string, jobId: string, options?: DeleteJobOptions): Promise<void>;
+    deleteJobSchedule(apiVersion: string, jobScheduleId: string, options?: DeleteJobScheduleOptions): Promise<void>;
+    deleteNodeFile(apiVersion: string, poolId: string, nodeId: string, filePath: string, options?: DeleteNodeFileOptions): Promise<void>;
+    deleteNodeUser(apiVersion: string, poolId: string, nodeId: string, userName: string, options?: DeleteNodeUserOptions): Promise<void>;
     deletePool(poolId: string, options?: DeletePoolOptions): Promise<void>;
-    deleteTask(jobId: string, taskId: string, options?: DeleteTaskOptions): Promise<void>;
-    deleteTaskFile(jobId: string, taskId: string, filePath: string, options?: DeleteTaskFileOptions): Promise<void>;
-    disableJob(jobId: string, body: BatchJobDisableOptions, options?: DisableJobOptions): Promise<void>;
-    disableJobSchedule(jobScheduleId: string, options?: DisableJobScheduleOptions): Promise<void>;
-    disableNodeScheduling(poolId: string, nodeId: string, body: NodeDisableSchedulingOptions, options?: DisableNodeSchedulingOptions): Promise<void>;
+    deleteTask(apiVersion: string, jobId: string, taskId: string, options?: DeleteTaskOptions): Promise<void>;
+    deleteTaskFile(apiVersion: string, jobId: string, taskId: string, filePath: string, options?: DeleteTaskFileOptions): Promise<void>;
+    disableJob(apiVersion: string, jobId: string, body: BatchJobDisableOptions, options?: DisableJobOptions): Promise<void>;
+    disableJobSchedule(apiVersion: string, jobScheduleId: string, options?: DisableJobScheduleOptions): Promise<void>;
+    disableNodeScheduling(apiVersion: string, poolId: string, nodeId: string, body: NodeDisableSchedulingOptions, options?: DisableNodeSchedulingOptions): Promise<void>;
     disablePoolAutoScale(poolId: string, options?: DisablePoolAutoScaleOptions): Promise<void>;
-    enableJob(jobId: string, options?: EnableJobOptions): Promise<void>;
-    enableJobSchedule(jobScheduleId: string, options?: EnableJobScheduleOptions): Promise<void>;
-    enableNodeScheduling(poolId: string, nodeId: string, options?: EnableNodeSchedulingOptions): Promise<void>;
+    enableJob(apiVersion: string, jobId: string, options?: EnableJobOptions): Promise<void>;
+    enableJobSchedule(apiVersion: string, jobScheduleId: string, options?: EnableJobScheduleOptions): Promise<void>;
+    enableNodeScheduling(apiVersion: string, poolId: string, nodeId: string, options?: EnableNodeSchedulingOptions): Promise<void>;
     enablePoolAutoScale(poolId: string, body: BatchPoolEnableAutoScaleOptions, options?: EnablePoolAutoScaleOptions): Promise<void>;
     evaluatePoolAutoScale(poolId: string, body: BatchPoolEvaluateAutoScaleOptions, options?: EvaluatePoolAutoScaleOptions): Promise<AutoScaleRun>;
     getApplication(applicationId: string, options?: GetApplicationOptions): Promise<BatchApplication>;
-    getCertificate(thumbprintAlgorithm: string, thumbprint: string, options?: GetCertificateOptions): Promise<BatchCertificate>;
-    getJob(jobId: string, options?: GetJobOptions): Promise<BatchJob>;
-    getJobSchedule(jobScheduleId: string, options?: GetJobScheduleOptions): Promise<BatchJobSchedule>;
-    getJobTaskCounts(jobId: string, options?: GetJobTaskCountsOptions): Promise<TaskCountsResult>;
-    getNode(poolId: string, nodeId: string, options?: GetNodeOptions): Promise<BatchNode>;
-    getNodeExtension(poolId: string, nodeId: string, extensionName: string, options?: GetNodeExtensionOptions): Promise<NodeVMExtension>;
-    getNodeFile(poolId: string, nodeId: string, filePath: string, options?: GetNodeFileOptions): Promise<Uint8Array>;
-    getNodeFileProperties(poolId: string, nodeId: string, filePath: string, options?: GetNodeFilePropertiesOptions): Promise<void>;
-    getNodeRemoteDesktopFile(poolId: string, nodeId: string, options?: GetNodeRemoteDesktopFileOptions): Promise<Uint8Array>;
-    getNodeRemoteLoginSettings(poolId: string, nodeId: string, options?: GetNodeRemoteLoginSettingsOptions): Promise<BatchNodeRemoteLoginSettingsResult>;
+    getCertificate(apiVersion: string, thumbprintAlgorithm: string, thumbprint: string, options?: GetCertificateOptions): Promise<BatchCertificate>;
+    getJob(apiVersion: string, jobId: string, options?: GetJobOptions): Promise<BatchJob>;
+    getJobSchedule(apiVersion: string, jobScheduleId: string, options?: GetJobScheduleOptions): Promise<BatchJobSchedule>;
+    getJobTaskCounts(apiVersion: string, jobId: string, options?: GetJobTaskCountsOptions): Promise<TaskCountsResult>;
+    getNode(apiVersion: string, poolId: string, nodeId: string, options?: GetNodeOptions): Promise<BatchNode>;
+    getNodeExtension(apiVersion: string, poolId: string, nodeId: string, extensionName: string, options?: GetNodeExtensionOptions): Promise<NodeVMExtension>;
+    getNodeFile(apiVersion: string, poolId: string, nodeId: string, filePath: string, options?: GetNodeFileOptions): Promise<Uint8Array>;
+    getNodeFileProperties(apiVersion: string, poolId: string, nodeId: string, filePath: string, options?: GetNodeFilePropertiesOptions): Promise<void>;
+    getNodeRemoteDesktopFile(apiVersion: string, poolId: string, nodeId: string, options?: GetNodeRemoteDesktopFileOptions): Promise<Uint8Array>;
+    getNodeRemoteLoginSettings(apiVersion: string, poolId: string, nodeId: string, options?: GetNodeRemoteLoginSettingsOptions): Promise<BatchNodeRemoteLoginSettingsResult>;
     getPool(poolId: string, options?: GetPoolOptions): Promise<BatchPool>;
-    getTask(jobId: string, taskId: string, options?: GetTaskOptions): Promise<BatchTask>;
-    getTaskFile(jobId: string, taskId: string, filePath: string, options?: GetTaskFileOptions): Promise<Uint8Array>;
-    getTaskFileProperties(jobId: string, taskId: string, filePath: string, options?: GetTaskFilePropertiesOptions): Promise<void>;
-    jobScheduleExists(jobScheduleId: string, options?: JobScheduleExistsOptions): Promise<void>;
+    getTask(apiVersion: string, jobId: string, taskId: string, options?: GetTaskOptions): Promise<BatchTask>;
+    getTaskFile(apiVersion: string, jobId: string, taskId: string, filePath: string, options?: GetTaskFileOptions): Promise<Uint8Array>;
+    getTaskFileProperties(apiVersion: string, jobId: string, taskId: string, filePath: string, options?: GetTaskFilePropertiesOptions): Promise<void>;
+    jobScheduleExists(apiVersion: string, jobScheduleId: string, options?: JobScheduleExistsOptions): Promise<void>;
     listApplications(options?: ListApplicationsOptions): PagedAsyncIterableIterator<BatchApplication>;
-    listCertificates(options?: ListCertificatesOptions): PagedAsyncIterableIterator<BatchCertificate>;
+    listCertificates(apiVersion: string, options?: ListCertificatesOptions): PagedAsyncIterableIterator<BatchCertificate>;
     listJobPreparationAndReleaseTaskStatus(jobId: string, options?: ListJobPreparationAndReleaseTaskStatusOptions): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation>;
-    listJobs(options?: ListJobsOptions): PagedAsyncIterableIterator<BatchJob>;
-    listJobSchedules(options?: ListJobSchedulesOptions): PagedAsyncIterableIterator<BatchJobSchedule>;
-    listJobsFromSchedule(jobScheduleId: string, options?: ListJobsFromScheduleOptions): PagedAsyncIterableIterator<BatchJob>;
+    listJobs(apiVersion: string, options?: ListJobsOptions): PagedAsyncIterableIterator<BatchJob>;
+    listJobSchedules(apiVersion: string, options?: ListJobSchedulesOptions): PagedAsyncIterableIterator<BatchJobSchedule>;
+    listJobsFromSchedule(apiVersion: string, jobScheduleId: string, options?: ListJobsFromScheduleOptions): PagedAsyncIterableIterator<BatchJob>;
     listNodeExtensions(poolId: string, nodeId: string, options?: ListNodeExtensionsOptions): PagedAsyncIterableIterator<NodeVMExtension>;
-    listNodeFiles(poolId: string, nodeId: string, options?: ListNodeFilesOptions): PagedAsyncIterableIterator<NodeFile>;
-    listNodes(poolId: string, options?: ListNodesOptions): PagedAsyncIterableIterator<BatchNode>;
-    listPoolNodeCounts(options?: ListPoolNodeCountsOptions): PagedAsyncIterableIterator<PoolNodeCounts>;
+    listNodeFiles(apiVersion: string, poolId: string, nodeId: string, options?: ListNodeFilesOptions): PagedAsyncIterableIterator<NodeFile>;
+    listNodes(apiVersion: string, poolId: string, options?: ListNodesOptions): PagedAsyncIterableIterator<BatchNode>;
+    listPoolNodeCounts(apiVersion: string, options?: ListPoolNodeCountsOptions): PagedAsyncIterableIterator<PoolNodeCounts>;
     listPools(options?: ListPoolsOptions): PagedAsyncIterableIterator<BatchPool>;
     listPoolUsageMetrics(options?: ListPoolUsageMetricsOptions): PagedAsyncIterableIterator<PoolUsageMetrics>;
-    listSubTasks(jobId: string, taskId: string, options?: ListSubTasksOptions): Promise<BatchTaskListSubtasksResult>;
+    listSubTasks(apiVersion: string, jobId: string, taskId: string, options?: ListSubTasksOptions): Promise<BatchTaskListSubtasksResult>;
     listSupportedImages(options?: ListSupportedImagesOptions): PagedAsyncIterableIterator<ImageInformation>;
-    listTaskFiles(jobId: string, taskId: string, options?: ListTaskFilesOptions): PagedAsyncIterableIterator<NodeFile>;
-    listTasks(jobId: string, options?: ListTasksOptions): PagedAsyncIterableIterator<BatchTask>;
+    listTaskFiles(apiVersion: string, jobId: string, taskId: string, options?: ListTaskFilesOptions): PagedAsyncIterableIterator<NodeFile>;
+    listTasks(apiVersion: string, jobId: string, options?: ListTasksOptions): PagedAsyncIterableIterator<BatchTask>;
     readonly pipeline: Pipeline;
     poolExists(poolId: string, options?: PoolExistsOptions): Promise<void>;
-    reactivateTask(jobId: string, taskId: string, options?: ReactivateTaskOptions): Promise<void>;
-    rebootNode(poolId: string, nodeId: string, body: NodeRebootOptions, options?: RebootNodeOptions): Promise<void>;
-    reimageNode(poolId: string, nodeId: string, body: NodeReimageOptions, options?: ReimageNodeOptions): Promise<void>;
+    reactivateTask(apiVersion: string, jobId: string, taskId: string, options?: ReactivateTaskOptions): Promise<void>;
+    rebootNode(apiVersion: string, poolId: string, nodeId: string, body: NodeRebootOptions, options?: RebootNodeOptions): Promise<void>;
+    reimageNode(apiVersion: string, poolId: string, nodeId: string, body: NodeReimageOptions, options?: ReimageNodeOptions): Promise<void>;
     removeNodes(poolId: string, body: NodeRemoveOptions, options?: RemoveNodesOptions): Promise<void>;
-    replaceJob(jobId: string, body: BatchJob, options?: ReplaceJobOptions): Promise<void>;
-    replaceJobSchedule(jobScheduleId: string, body: BatchJobSchedule, options?: ReplaceJobScheduleOptions): Promise<void>;
-    replaceNodeUser(poolId: string, nodeId: string, userName: string, body: BatchNodeUserUpdateOptions, options?: ReplaceNodeUserOptions): Promise<void>;
+    replaceJob(apiVersion: string, jobId: string, body: BatchJob, options?: ReplaceJobOptions): Promise<void>;
+    replaceJobSchedule(apiVersion: string, jobScheduleId: string, body: BatchJobSchedule, options?: ReplaceJobScheduleOptions): Promise<void>;
+    replaceNodeUser(apiVersion: string, poolId: string, nodeId: string, userName: string, body: BatchNodeUserUpdateOptions, options?: ReplaceNodeUserOptions): Promise<void>;
     replacePoolProperties(poolId: string, body: BatchPoolReplaceOptions, options?: ReplacePoolPropertiesOptions): Promise<void>;
-    replaceTask(jobId: string, taskId: string, body: BatchTask, options?: ReplaceTaskOptions): Promise<void>;
+    replaceTask(apiVersion: string, jobId: string, taskId: string, body: BatchTask, options?: ReplaceTaskOptions): Promise<void>;
     resizePool(poolId: string, body: BatchPoolResizeOptions, options?: ResizePoolOptions): Promise<void>;
     stopPoolResize(poolId: string, options?: StopPoolResizeOptions): Promise<void>;
-    terminateJob(jobId: string, body: BatchJobTerminateOptions, options?: TerminateJobOptions): Promise<void>;
-    terminateJobSchedule(jobScheduleId: string, options?: TerminateJobScheduleOptions): Promise<void>;
-    terminateTask(jobId: string, taskId: string, options?: TerminateTaskOptions): Promise<void>;
-    updateJob(jobId: string, body: BatchJobUpdateOptions, options?: UpdateJobOptions): Promise<void>;
-    updateJobSchedule(jobScheduleId: string, body: BatchJobScheduleUpdateOptions, options?: UpdateJobScheduleOptions): Promise<void>;
+    terminateJob(apiVersion: string, jobId: string, body: BatchJobTerminateOptions, options?: TerminateJobOptions): Promise<void>;
+    terminateJobSchedule(apiVersion: string, jobScheduleId: string, options?: TerminateJobScheduleOptions): Promise<void>;
+    terminateTask(apiVersion: string, jobId: string, taskId: string, options?: TerminateTaskOptions): Promise<void>;
+    updateJob(apiVersion: string, jobId: string, body: BatchJobUpdateOptions, options?: UpdateJobOptions): Promise<void>;
+    updateJobSchedule(apiVersion: string, jobScheduleId: string, body: BatchJobScheduleUpdateOptions, options?: UpdateJobScheduleOptions): Promise<void>;
     updatePool(poolId: string, body: BatchPoolUpdateOptions, options?: UpdatePoolOptions): Promise<void>;
-    uploadNodeLogs(poolId: string, nodeId: string, body: UploadBatchServiceLogsOptions, options?: UploadNodeLogsOptions): Promise<UploadBatchServiceLogsResult>;
+    uploadNodeLogs(apiVersion: string, poolId: string, nodeId: string, body: UploadBatchServiceLogsOptions, options?: UploadNodeLogsOptions): Promise<UploadBatchServiceLogsResult>;
 }
 
 // @public (undocumented)
@@ -724,6 +724,7 @@ export interface CreateNodeUserOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface CreatePoolOptions extends OperationOptions {
+    apiVersion?: "2023-05-01.17.0";
     contentType?: string;
     timeOut?: number;
 }
@@ -791,6 +792,7 @@ export interface DeleteNodeUserOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface DeletePoolOptions extends OperationOptions {
+    apiVersion?: "2023-05-01.17.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -857,6 +859,7 @@ export interface DisableNodeSchedulingOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface DisablePoolAutoScaleOptions extends OperationOptions {
+    apiVersion?: "2023-05-01.17.0";
     timeOut?: number;
 }
 
@@ -899,6 +902,7 @@ export interface EnableNodeSchedulingOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface EnablePoolAutoScaleOptions extends OperationOptions {
+    apiVersion?: "2023-05-01.17.0";
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -924,6 +928,7 @@ export interface ErrorMessage {
 
 // @public (undocumented)
 export interface EvaluatePoolAutoScaleOptions extends OperationOptions {
+    apiVersion?: "2023-05-01.17.0";
     contentType?: string;
     timeOut?: number;
 }
@@ -967,6 +972,7 @@ export interface FileProperties {
 
 // @public (undocumented)
 export interface GetApplicationOptions extends OperationOptions {
+    apiVersion?: "2023-05-01.17.0";
     timeOut?: number;
 }
 
@@ -1044,6 +1050,7 @@ export interface GetNodeRemoteLoginSettingsOptions extends OperationOptions {
 export interface GetPoolOptions extends OperationOptions {
     $expand?: string[];
     $select?: string[];
+    apiVersion?: "2023-05-01.17.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -1342,6 +1349,7 @@ export interface LinuxUserConfiguration {
 
 // @public (undocumented)
 export interface ListApplicationsOptions extends OperationOptions {
+    apiVersion?: "2023-05-01.17.0";
     maxresults?: number;
     timeOut?: number;
 }
@@ -1424,6 +1432,7 @@ export interface ListPoolsOptions extends OperationOptions {
     $expand?: string[];
     $filter?: string;
     $select?: string[];
+    apiVersion?: "2023-05-01.17.0";
     maxresults?: number;
     timeOut?: number;
 }
@@ -1431,6 +1440,7 @@ export interface ListPoolsOptions extends OperationOptions {
 // @public (undocumented)
 export interface ListPoolUsageMetricsOptions extends OperationOptions {
     $filter?: string;
+    apiVersion?: "2023-05-01.17.0";
     endtime?: Date;
     maxresults?: number;
     starttime?: Date;
@@ -1669,6 +1679,7 @@ export interface PoolEndpointConfiguration {
 
 // @public (undocumented)
 export interface PoolExistsOptions extends OperationOptions {
+    apiVersion?: "2023-05-01.17.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -1789,6 +1800,7 @@ export interface ReimageNodeOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface RemoveNodesOptions extends OperationOptions {
+    apiVersion?: "2023-05-01.17.0";
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -1825,6 +1837,7 @@ export interface ReplaceNodeUserOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ReplacePoolPropertiesOptions extends OperationOptions {
+    apiVersion?: "2023-05-01.17.0";
     contentType?: string;
     timeOut?: number;
 }
@@ -1848,6 +1861,7 @@ export interface ResizeError {
 
 // @public (undocumented)
 export interface ResizePoolOptions extends OperationOptions {
+    apiVersion?: "2023-05-01.17.0";
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -1927,6 +1941,7 @@ export type StatusLevelTypes = string;
 
 // @public (undocumented)
 export interface StopPoolResizeOptions extends OperationOptions {
+    apiVersion?: "2023-05-01.17.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -2140,6 +2155,7 @@ export interface UpdateJobScheduleOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface UpdatePoolOptions extends OperationOptions {
+    apiVersion?: "2023-05-01.17.0";
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;

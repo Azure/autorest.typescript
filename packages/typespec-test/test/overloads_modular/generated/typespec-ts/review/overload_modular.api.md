@@ -12,12 +12,14 @@ import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
 export interface FooOperationsGetAvatarAsJpegOptions extends OperationOptions {
+    apiVersion?: "2022-08-30";
     // (undocumented)
     contentType?: string;
 }
 
 // @public (undocumented)
 export interface FooOperationsGetAvatarAsPngOptions extends OperationOptions {
+    apiVersion?: "2022-08-30";
     // (undocumented)
     contentType?: string;
 }

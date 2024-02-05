@@ -345,6 +345,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "server/versions/not-versioned",
     inputPath: "server/versions/not-versioned"
+  },
+  {
+    outputPath: "scalar",
+    inputPath: "type/scalar"
   }
 ];
 

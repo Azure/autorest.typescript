@@ -33,7 +33,7 @@ export async function _stringExtensibleGetDeserialize(
   }
 
   return {
-    prop: result.body["prop"] as any,
+    prop: result.body["prop"],
   };
 }
 

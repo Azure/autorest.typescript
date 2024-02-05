@@ -2,14 +2,14 @@
 // Licensed under the MIT license.
 
 export {
+  MixedTypesCases,
   Cat,
-  Dog,
+  MixedLiteralsCases,
+  StringAndArrayCases,
   EnumsOnlyCases,
   LR,
   UD,
-  StringAndArrayCases,
-  MixedLiteralsCases,
-  MixedTypesCases,
+  Dog,
   StringExtensibleNamedUnion,
 } from "./models.js";
 export {

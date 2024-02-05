@@ -5,29 +5,52 @@ import { OperationOptions } from "@azure-rest/core-client";
 import { FileType } from "./models.js";
 
 export interface CreateOrUpdateTestOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
   contentType?: string;
 }
 
 export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
   contentType?: string;
 }
 
 export interface CreateOrUpdateServerMetricsConfigOptions
   extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
   contentType?: string;
 }
 
-export interface GetAppComponentsOptions extends OperationOptions {}
+export interface GetAppComponentsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
+}
 
-export interface GetServerMetricsConfigOptions extends OperationOptions {}
+export interface GetServerMetricsConfigOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
+}
 
-export interface GetTestOptions extends OperationOptions {}
+export interface GetTestOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
+}
 
-export interface GetTestFileOptions extends OperationOptions {}
+export interface GetTestFileOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
+}
 
-export interface ListTestFilesOptions extends OperationOptions {}
+export interface ListTestFilesOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
+}
 
 export interface ListTestsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
   /**
    * Sort on the supported fields in (field asc/desc) format. eg:
    * lastModifiedDateTime asc. Supported fields - lastModifiedDateTime
@@ -54,11 +77,19 @@ export interface ListTestsOptions extends OperationOptions {
 }
 
 export interface UploadTestFileOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
   contentType?: string;
   /** File type */
   fileType?: FileType;
 }
 
-export interface DeleteTestFileOptions extends OperationOptions {}
+export interface DeleteTestFileOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
+}
 
-export interface DeleteTestOptions extends OperationOptions {}
+export interface DeleteTestOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
+}

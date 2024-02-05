@@ -4,6 +4,8 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 export interface ListApplicationsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -17,6 +19,8 @@ export interface ListApplicationsOptions extends OperationOptions {
 }
 
 export interface GetApplicationOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -25,6 +29,8 @@ export interface GetApplicationOptions extends OperationOptions {
 }
 
 export interface ListPoolUsageMetricsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -55,6 +61,8 @@ export interface ListPoolUsageMetricsOptions extends OperationOptions {
 }
 
 export interface CreatePoolOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -65,6 +73,8 @@ export interface CreatePoolOptions extends OperationOptions {
 }
 
 export interface ListPoolsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -87,6 +97,8 @@ export interface ListPoolsOptions extends OperationOptions {
 }
 
 export interface DeletePoolOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -119,6 +131,8 @@ export interface DeletePoolOptions extends OperationOptions {
 }
 
 export interface PoolExistsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -151,6 +165,8 @@ export interface PoolExistsOptions extends OperationOptions {
 }
 
 export interface GetPoolOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -187,6 +203,8 @@ export interface GetPoolOptions extends OperationOptions {
 }
 
 export interface UpdatePoolOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -221,6 +239,8 @@ export interface UpdatePoolOptions extends OperationOptions {
 }
 
 export interface DisablePoolAutoScaleOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -229,6 +249,8 @@ export interface DisablePoolAutoScaleOptions extends OperationOptions {
 }
 
 export interface EnablePoolAutoScaleOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -263,6 +285,8 @@ export interface EnablePoolAutoScaleOptions extends OperationOptions {
 }
 
 export interface EvaluatePoolAutoScaleOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -273,6 +297,8 @@ export interface EvaluatePoolAutoScaleOptions extends OperationOptions {
 }
 
 export interface ResizePoolOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -307,6 +333,8 @@ export interface ResizePoolOptions extends OperationOptions {
 }
 
 export interface StopPoolResizeOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -339,6 +367,8 @@ export interface StopPoolResizeOptions extends OperationOptions {
 }
 
 export interface ReplacePoolPropertiesOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -349,6 +379,8 @@ export interface ReplacePoolPropertiesOptions extends OperationOptions {
 }
 
 export interface RemoveNodesOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.

@@ -5,6 +5,8 @@ import { OperationOptions } from "@azure-rest/core-client";
 import { Interval } from "./models.js";
 
 export interface TestRunOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
   /** This request has a JSON Merge Patch body. */
   contentType?: string;
   /**
@@ -17,25 +19,46 @@ export interface TestRunOptions extends OperationOptions {
 }
 
 export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
   contentType?: string;
 }
 
 export interface CreateOrUpdateServerMetricsConfigOptions
   extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
   contentType?: string;
 }
 
-export interface DeleteTestRunOptions extends OperationOptions {}
+export interface DeleteTestRunOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
+}
 
-export interface GetAppComponentsOptions extends OperationOptions {}
+export interface GetAppComponentsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
+}
 
-export interface GetServerMetricsConfigOptions extends OperationOptions {}
+export interface GetServerMetricsConfigOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
+}
 
-export interface GetTestRunOptions extends OperationOptions {}
+export interface GetTestRunOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
+}
 
-export interface GetTestRunFileOptions extends OperationOptions {}
+export interface GetTestRunFileOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
+}
 
 export interface ListMetricDimensionValuesOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
   /** The interval (i.e. timegrain) of the query. */
   interval?: Interval;
   /** Metric name */
@@ -48,13 +71,20 @@ export interface ListMetricDimensionValuesOptions extends OperationOptions {
 }
 
 export interface ListMetricDefinitionsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
   /** Metric namespace to query metric definitions for. */
   metricNamespace?: string;
 }
 
-export interface ListMetricNamespacesOptions extends OperationOptions {}
+export interface ListMetricNamespacesOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
+}
 
 export interface ListMetricsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
   /** The aggregation */
   aggregation?: string;
   /** The interval (i.e. timegrain) of the query. */
@@ -71,6 +101,8 @@ export interface ListMetricsOptions extends OperationOptions {
 }
 
 export interface ListTestRunsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
   /**
    * Sort on the supported fields in (field asc/desc) format. eg: executedDateTime
    * asc. Supported fields - executedDateTime
@@ -94,4 +126,7 @@ export interface ListTestRunsOptions extends OperationOptions {
   maxpagesize?: number;
 }
 
-export interface StopTestRunOptions extends OperationOptions {}
+export interface StopTestRunOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2022-11-01";
+}

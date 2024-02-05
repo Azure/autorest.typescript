@@ -4,19 +4,36 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 export interface SchemaOperationsListSchemaGroupsOptions
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-07-01";
+}
 
-export interface SchemaOperationsGetSchemaByIdOptions
-  extends OperationOptions {}
+export interface SchemaOperationsGetSchemaByIdOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-07-01";
+}
 
 export interface SchemaOperationsListSchemaVersionsOptions
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-07-01";
+}
 
 export interface SchemaOperationsGetSchemaByVersionOptions
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-07-01";
+}
 
 export interface SchemaOperationsGetSchemaIdByContentOptions
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-07-01";
+}
 
 export interface SchemaOperationsRegisterSchemaOptions
-  extends OperationOptions {}
+  extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: "2023-07-01";
+}

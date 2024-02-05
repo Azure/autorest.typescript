@@ -2,47 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-  ApplicationListResult,
-  BatchApplication,
-  PoolListUsageMetricsResult,
-  PoolUsageMetrics,
-  BatchPoolCreateOptions,
-  BatchPoolListResult,
-  BatchPool,
-  AutoScaleRun,
-  BatchPoolUpdateOptions,
-  BatchPoolEnableAutoScaleOptions,
-  BatchPoolEvaluateAutoScaleOptions,
-  BatchPoolResizeOptions,
-  BatchPoolReplaceOptions,
-  NodeRemoveOptions,
-  AccountListSupportedImagesResult,
-  ImageInformation,
-  PoolNodeCountsListResult,
-  PoolNodeCounts,
-  BatchJob,
-  BatchJobUpdateOptions,
-  BatchJobDisableOptions,
-  BatchJobTerminateOptions,
-  BatchJobCreateOptions,
-  BatchJobListResult,
-  BatchJobListPreparationAndReleaseTaskStatusResult,
-  JobPreparationAndReleaseTaskExecutionInformation,
-  TaskCountsResult,
-  BatchCertificate,
-  CertificateListResult,
-  BatchJobSchedule,
-  BatchJobScheduleUpdateOptions,
-  BatchJobScheduleCreateOptions,
-  BatchJobScheduleListResult,
-  BatchTaskCreateOptions,
-  BatchTaskListResult,
-  BatchTask,
-  BatchTaskCollection,
-  TaskAddCollectionResult,
-  BatchTaskListSubtasksResult,
-  NodeFileListResult,
-  NodeFile,
   BatchNodeUserCreateOptions,
   BatchNodeUserUpdateOptions,
   BatchNode,
@@ -55,6 +14,47 @@ import {
   BatchNodeListResult,
   NodeVMExtension,
   NodeVMExtensionList,
+  NodeFileListResult,
+  NodeFile,
+  BatchTaskCreateOptions,
+  BatchTaskListResult,
+  BatchTask,
+  BatchTaskCollection,
+  TaskAddCollectionResult,
+  BatchTaskListSubtasksResult,
+  BatchJobSchedule,
+  BatchJobScheduleUpdateOptions,
+  BatchJobScheduleCreateOptions,
+  BatchJobScheduleListResult,
+  BatchCertificate,
+  CertificateListResult,
+  BatchJob,
+  BatchJobUpdateOptions,
+  BatchJobDisableOptions,
+  BatchJobTerminateOptions,
+  BatchJobCreateOptions,
+  BatchJobListResult,
+  BatchJobListPreparationAndReleaseTaskStatusResult,
+  JobPreparationAndReleaseTaskExecutionInformation,
+  TaskCountsResult,
+  AccountListSupportedImagesResult,
+  ImageInformation,
+  PoolNodeCountsListResult,
+  PoolNodeCounts,
+  PoolListUsageMetricsResult,
+  PoolUsageMetrics,
+  BatchPoolCreateOptions,
+  BatchPoolListResult,
+  BatchPool,
+  AutoScaleRun,
+  BatchPoolUpdateOptions,
+  BatchPoolEnableAutoScaleOptions,
+  BatchPoolEvaluateAutoScaleOptions,
+  BatchPoolResizeOptions,
+  BatchPoolReplaceOptions,
+  NodeRemoveOptions,
+  ApplicationListResult,
+  BatchApplication,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
@@ -312,6 +312,7 @@ export function _listApplicationsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOut,
       },
@@ -365,7 +366,10 @@ export function _getApplicationSend(
     .path("/applications/{applicationId}", applicationId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: {
+        "api-version": "2023-05-01.17.0",
+        timeOut: options?.timeOut,
+      },
     });
 }
 
@@ -410,6 +414,7 @@ export function _listPoolUsageMetricsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOut,
         starttime: options?.starttime?.toISOString(),
@@ -472,7 +477,10 @@ export function _createPoolSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: {
+        "api-version": "2023-05-01.17.0",
+        timeOut: options?.timeOut,
+      },
       body: {
         id: body["id"],
         displayName: body["displayName"],
@@ -858,6 +866,7 @@ export function _listPoolsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOut,
         $filter: options?.$filter,
@@ -1379,7 +1388,10 @@ export function _deletePoolSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: {
+        "api-version": "2023-05-01.17.0",
+        timeOut: options?.timeOut,
+      },
     });
 }
 
@@ -1441,7 +1453,10 @@ export function _poolExistsSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: {
+        "api-version": "2023-05-01.17.0",
+        timeOut: options?.timeOut,
+      },
     });
 }
 
@@ -1492,6 +1507,7 @@ export function _getPoolSend(
           : {}),
       },
       queryParameters: {
+        "api-version": "2023-05-01.17.0",
         timeOut: options?.timeOut,
         $select: options?.$select,
         $expand: options?.$expand,
@@ -2011,7 +2027,10 @@ export function _updatePoolSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: {
+        "api-version": "2023-05-01.17.0",
+        timeOut: options?.timeOut,
+      },
       body: {
         startTask: !body.startTask
           ? undefined
@@ -2151,7 +2170,10 @@ export function _disablePoolAutoScaleSend(
     .path("/pools/{poolId}/disableautoscale", poolId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: {
+        "api-version": "2023-05-01.17.0",
+        timeOut: options?.timeOut,
+      },
     });
 }
 
@@ -2204,7 +2226,10 @@ export function _enablePoolAutoScaleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: {
+        "api-version": "2023-05-01.17.0",
+        timeOut: options?.timeOut,
+      },
       body: {
         autoScaleFormula: body["autoScaleFormula"],
         autoScaleEvaluationInterval: body["autoScaleEvaluationInterval"],
@@ -2255,7 +2280,10 @@ export function _evaluatePoolAutoScaleSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: {
+        "api-version": "2023-05-01.17.0",
+        timeOut: options?.timeOut,
+      },
       body: { autoScaleFormula: body["autoScaleFormula"] },
     });
 }
@@ -2334,7 +2362,10 @@ export function _resizePoolSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: {
+        "api-version": "2023-05-01.17.0",
+        timeOut: options?.timeOut,
+      },
       body: {
         targetDedicatedNodes: body["targetDedicatedNodes"],
         targetLowPriorityNodes: body["targetLowPriorityNodes"],
@@ -2396,7 +2427,10 @@ export function _stopPoolResizeSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: {
+        "api-version": "2023-05-01.17.0",
+        timeOut: options?.timeOut,
+      },
     });
 }
 
@@ -2443,7 +2477,10 @@ export function _replacePoolPropertiesSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: {
+        "api-version": "2023-05-01.17.0",
+        timeOut: options?.timeOut,
+      },
       body: {
         startTask: !body.startTask
           ? undefined
@@ -2599,7 +2636,10 @@ export function _removeNodesSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: {
+        "api-version": "2023-05-01.17.0",
+        timeOut: options?.timeOut,
+      },
       body: {
         nodeList: body["nodeList"],
         resizeTimeout: body["resizeTimeout"],
@@ -2698,6 +2738,7 @@ export function listSupportedImages(
 
 export function _listPoolNodeCountsSend(
   context: Client,
+  apiVersion: string,
   options: ListPoolNodeCountsOptions = { requestOptions: {} },
 ): StreamableMethod<
   ListPoolNodeCounts200Response | ListPoolNodeCountsDefaultResponse
@@ -2707,6 +2748,7 @@ export function _listPoolNodeCountsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOut,
         $filter: options?.$filter,
@@ -2774,11 +2816,12 @@ export async function _listPoolNodeCountsDeserialize(
  */
 export function listPoolNodeCounts(
   context: Client,
+  apiVersion: string,
   options: ListPoolNodeCountsOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<PoolNodeCounts> {
   return buildPagedAsyncIterator(
     context,
-    () => _listPoolNodeCountsSend(context, options),
+    () => _listPoolNodeCountsSend(context, apiVersion, options),
     _listPoolNodeCountsDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
@@ -2786,6 +2829,7 @@ export function listPoolNodeCounts(
 
 export function _deleteJobSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: DeleteJobOptions = { requestOptions: {} },
 ): StreamableMethod<DeleteJob202Response | DeleteJobDefaultResponse> {
@@ -2807,7 +2851,7 @@ export function _deleteJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -2833,15 +2877,17 @@ export async function _deleteJobDeserialize(
  */
 export async function deleteJob(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: DeleteJobOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _deleteJobSend(context, jobId, options);
+  const result = await _deleteJobSend(context, apiVersion, jobId, options);
   return _deleteJobDeserialize(result);
 }
 
 export function _getJobSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: GetJobOptions = { requestOptions: {} },
 ): StreamableMethod<GetJob200Response | GetJobDefaultResponse> {
@@ -2864,6 +2910,7 @@ export function _getJobSend(
           : {}),
       },
       queryParameters: {
+        "api-version": apiVersion,
         timeOut: options?.timeOut,
         $select: options?.$select,
         $expand: options?.$expand,
@@ -3904,15 +3951,17 @@ export async function _getJobDeserialize(
 /** Gets information about the specified Job. */
 export async function getJob(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: GetJobOptions = { requestOptions: {} },
 ): Promise<BatchJob> {
-  const result = await _getJobSend(context, jobId, options);
+  const result = await _getJobSend(context, apiVersion, jobId, options);
   return _getJobDeserialize(result);
 }
 
 export function _updateJobSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   body: BatchJobUpdateOptions,
   options: UpdateJobOptions = { requestOptions: {} },
@@ -3938,7 +3987,7 @@ export function _updateJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: {
         priority: body["priority"],
         allowTaskPreemption: body["allowTaskPreemption"],
@@ -4641,16 +4690,24 @@ export async function _updateJobDeserialize(
  */
 export async function updateJob(
   context: Client,
+  apiVersion: string,
   jobId: string,
   body: BatchJobUpdateOptions,
   options: UpdateJobOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _updateJobSend(context, jobId, body, options);
+  const result = await _updateJobSend(
+    context,
+    apiVersion,
+    jobId,
+    body,
+    options,
+  );
   return _updateJobDeserialize(result);
 }
 
 export function _replaceJobSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   body: BatchJob,
   options: ReplaceJobOptions = { requestOptions: {} },
@@ -4676,7 +4733,7 @@ export function _replaceJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: {
         priority: body["priority"],
         allowTaskPreemption: body["allowTaskPreemption"],
@@ -5323,16 +5380,24 @@ export async function _replaceJobDeserialize(
  */
 export async function replaceJob(
   context: Client,
+  apiVersion: string,
   jobId: string,
   body: BatchJob,
   options: ReplaceJobOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _replaceJobSend(context, jobId, body, options);
+  const result = await _replaceJobSend(
+    context,
+    apiVersion,
+    jobId,
+    body,
+    options,
+  );
   return _replaceJobDeserialize(result);
 }
 
 export function _disableJobSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   body: BatchJobDisableOptions,
   options: DisableJobOptions = { requestOptions: {} },
@@ -5358,7 +5423,7 @@ export function _disableJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: { disableTasks: body["disableTasks"] },
     });
 }
@@ -5385,16 +5450,24 @@ export async function _disableJobDeserialize(
  */
 export async function disableJob(
   context: Client,
+  apiVersion: string,
   jobId: string,
   body: BatchJobDisableOptions,
   options: DisableJobOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _disableJobSend(context, jobId, body, options);
+  const result = await _disableJobSend(
+    context,
+    apiVersion,
+    jobId,
+    body,
+    options,
+  );
   return _disableJobDeserialize(result);
 }
 
 export function _enableJobSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: EnableJobOptions = { requestOptions: {} },
 ): StreamableMethod<EnableJob202Response | EnableJobDefaultResponse> {
@@ -5416,7 +5489,7 @@ export function _enableJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -5440,15 +5513,17 @@ export async function _enableJobDeserialize(
  */
 export async function enableJob(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: EnableJobOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _enableJobSend(context, jobId, options);
+  const result = await _enableJobSend(context, apiVersion, jobId, options);
   return _enableJobDeserialize(result);
 }
 
 export function _terminateJobSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   body: BatchJobTerminateOptions,
   options: TerminateJobOptions = { requestOptions: {} },
@@ -5474,7 +5549,7 @@ export function _terminateJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: { terminateReason: body["terminateReason"] },
     });
 }
@@ -5499,16 +5574,24 @@ export async function _terminateJobDeserialize(
  */
 export async function terminateJob(
   context: Client,
+  apiVersion: string,
   jobId: string,
   body: BatchJobTerminateOptions,
   options: TerminateJobOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _terminateJobSend(context, jobId, body, options);
+  const result = await _terminateJobSend(
+    context,
+    apiVersion,
+    jobId,
+    body,
+    options,
+  );
   return _terminateJobDeserialize(result);
 }
 
 export function _createJobSend(
   context: Client,
+  apiVersion: string,
   body: BatchJobCreateOptions,
   options: CreateJobOptions = { requestOptions: {} },
 ): StreamableMethod<CreateJob201Response | CreateJobDefaultResponse> {
@@ -5519,7 +5602,7 @@ export function _createJobSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: {
         id: body["id"],
         displayName: body["displayName"],
@@ -6521,15 +6604,17 @@ export async function _createJobDeserialize(
  */
 export async function createJob(
   context: Client,
+  apiVersion: string,
   body: BatchJobCreateOptions,
   options: CreateJobOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _createJobSend(context, body, options);
+  const result = await _createJobSend(context, apiVersion, body, options);
   return _createJobDeserialize(result);
 }
 
 export function _listJobsSend(
   context: Client,
+  apiVersion: string,
   options: ListJobsOptions = { requestOptions: {} },
 ): StreamableMethod<ListJobs200Response | ListJobsDefaultResponse> {
   return context
@@ -6537,6 +6622,7 @@ export function _listJobsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOut,
         $filter: options?.$filter,
@@ -7622,11 +7708,12 @@ export async function _listJobsDeserialize(
 /** Lists all of the Jobs in the specified Account. */
 export function listJobs(
   context: Client,
+  apiVersion: string,
   options: ListJobsOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchJob> {
   return buildPagedAsyncIterator(
     context,
-    () => _listJobsSend(context, options),
+    () => _listJobsSend(context, apiVersion, options),
     _listJobsDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
@@ -7634,6 +7721,7 @@ export function listJobs(
 
 export function _listJobsFromScheduleSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: ListJobsFromScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
@@ -7644,6 +7732,7 @@ export function _listJobsFromScheduleSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOut,
         $filter: options?.$filter,
@@ -8729,12 +8818,14 @@ export async function _listJobsFromScheduleDeserialize(
 /** Lists the Jobs that have been created under the specified Job Schedule. */
 export function listJobsFromSchedule(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: ListJobsFromScheduleOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchJob> {
   return buildPagedAsyncIterator(
     context,
-    () => _listJobsFromScheduleSend(context, jobScheduleId, options),
+    () =>
+      _listJobsFromScheduleSend(context, apiVersion, jobScheduleId, options),
     _listJobsFromScheduleDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
@@ -8932,6 +9023,7 @@ export function listJobPreparationAndReleaseTaskStatus(
 
 export function _getJobTaskCountsSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: GetJobTaskCountsOptions = { requestOptions: {} },
 ): StreamableMethod<
@@ -8941,7 +9033,7 @@ export function _getJobTaskCountsSend(
     .path("/jobs/{jobId}/taskcounts", jobId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -8978,15 +9070,22 @@ export async function _getJobTaskCountsDeserialize(
  */
 export async function getJobTaskCounts(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: GetJobTaskCountsOptions = { requestOptions: {} },
 ): Promise<TaskCountsResult> {
-  const result = await _getJobTaskCountsSend(context, jobId, options);
+  const result = await _getJobTaskCountsSend(
+    context,
+    apiVersion,
+    jobId,
+    options,
+  );
   return _getJobTaskCountsDeserialize(result);
 }
 
 export function _createCertificateSend(
   context: Client,
+  apiVersion: string,
   body: BatchCertificate,
   options: CreateCertificateOptions = { requestOptions: {} },
 ): StreamableMethod<
@@ -8999,7 +9098,7 @@ export function _createCertificateSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: {
         thumbprint: body["thumbprint"],
         thumbprintAlgorithm: body["thumbprintAlgorithm"],
@@ -9023,15 +9122,22 @@ export async function _createCertificateDeserialize(
 /** Creates a Certificate to the specified Account. */
 export async function createCertificate(
   context: Client,
+  apiVersion: string,
   body: BatchCertificate,
   options: CreateCertificateOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _createCertificateSend(context, body, options);
+  const result = await _createCertificateSend(
+    context,
+    apiVersion,
+    body,
+    options,
+  );
   return _createCertificateDeserialize(result);
 }
 
 export function _listCertificatesSend(
   context: Client,
+  apiVersion: string,
   options: ListCertificatesOptions = { requestOptions: {} },
 ): StreamableMethod<
   ListCertificates200Response | ListCertificatesDefaultResponse
@@ -9041,6 +9147,7 @@ export function _listCertificatesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOut,
         $filter: options?.$filter,
@@ -9103,11 +9210,12 @@ export async function _listCertificatesDeserialize(
 /** Lists all of the Certificates that have been added to the specified Account. */
 export function listCertificates(
   context: Client,
+  apiVersion: string,
   options: ListCertificatesOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchCertificate> {
   return buildPagedAsyncIterator(
     context,
-    () => _listCertificatesSend(context, options),
+    () => _listCertificatesSend(context, apiVersion, options),
     _listCertificatesDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
@@ -9115,6 +9223,7 @@ export function listCertificates(
 
 export function _cancelCertificateDeletionSend(
   context: Client,
+  apiVersion: string,
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: CancelCertificateDeletionOptions = { requestOptions: {} },
@@ -9130,7 +9239,7 @@ export function _cancelCertificateDeletionSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -9157,12 +9266,14 @@ export async function _cancelCertificateDeletionDeserialize(
  */
 export async function cancelCertificateDeletion(
   context: Client,
+  apiVersion: string,
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: CancelCertificateDeletionOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _cancelCertificateDeletionSend(
     context,
+    apiVersion,
     thumbprintAlgorithm,
     thumbprint,
     options,
@@ -9172,6 +9283,7 @@ export async function cancelCertificateDeletion(
 
 export function _deleteCertificateSend(
   context: Client,
+  apiVersion: string,
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: DeleteCertificateOptions = { requestOptions: {} },
@@ -9186,7 +9298,7 @@ export function _deleteCertificateSend(
     )
     .delete({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -9213,12 +9325,14 @@ export async function _deleteCertificateDeserialize(
  */
 export async function deleteCertificate(
   context: Client,
+  apiVersion: string,
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: DeleteCertificateOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteCertificateSend(
     context,
+    apiVersion,
     thumbprintAlgorithm,
     thumbprint,
     options,
@@ -9228,6 +9342,7 @@ export async function deleteCertificate(
 
 export function _getCertificateSend(
   context: Client,
+  apiVersion: string,
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: GetCertificateOptions = { requestOptions: {} },
@@ -9240,7 +9355,11 @@ export function _getCertificateSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut, $select: options?.$select },
+      queryParameters: {
+        "api-version": apiVersion,
+        timeOut: options?.timeOut,
+        $select: options?.$select,
+      },
     });
 }
 
@@ -9293,12 +9412,14 @@ export async function _getCertificateDeserialize(
 /** Gets information about the specified Certificate. */
 export async function getCertificate(
   context: Client,
+  apiVersion: string,
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: GetCertificateOptions = { requestOptions: {} },
 ): Promise<BatchCertificate> {
   const result = await _getCertificateSend(
     context,
+    apiVersion,
     thumbprintAlgorithm,
     thumbprint,
     options,
@@ -9308,6 +9429,7 @@ export async function getCertificate(
 
 export function _jobScheduleExistsSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: JobScheduleExistsOptions = { requestOptions: {} },
 ): StreamableMethod<
@@ -9333,7 +9455,7 @@ export function _jobScheduleExistsSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -9353,15 +9475,22 @@ export async function _jobScheduleExistsDeserialize(
 /** Checks the specified Job Schedule exists. */
 export async function jobScheduleExists(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: JobScheduleExistsOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _jobScheduleExistsSend(context, jobScheduleId, options);
+  const result = await _jobScheduleExistsSend(
+    context,
+    apiVersion,
+    jobScheduleId,
+    options,
+  );
   return _jobScheduleExistsDeserialize(result);
 }
 
 export function _deleteJobScheduleSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: DeleteJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
@@ -9385,7 +9514,7 @@ export function _deleteJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -9408,15 +9537,22 @@ export async function _deleteJobScheduleDeserialize(
  */
 export async function deleteJobSchedule(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: DeleteJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _deleteJobScheduleSend(context, jobScheduleId, options);
+  const result = await _deleteJobScheduleSend(
+    context,
+    apiVersion,
+    jobScheduleId,
+    options,
+  );
   return _deleteJobScheduleDeserialize(result);
 }
 
 export function _getJobScheduleSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: GetJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<GetJobSchedule200Response | GetJobScheduleDefaultResponse> {
@@ -9439,6 +9575,7 @@ export function _getJobScheduleSend(
           : {}),
       },
       queryParameters: {
+        "api-version": apiVersion,
         timeOut: options?.timeOut,
         $select: options?.$select,
         $expand: options?.$expand,
@@ -10620,15 +10757,22 @@ export async function _getJobScheduleDeserialize(
 /** Gets information about the specified Job Schedule. */
 export async function getJobSchedule(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: GetJobScheduleOptions = { requestOptions: {} },
 ): Promise<BatchJobSchedule> {
-  const result = await _getJobScheduleSend(context, jobScheduleId, options);
+  const result = await _getJobScheduleSend(
+    context,
+    apiVersion,
+    jobScheduleId,
+    options,
+  );
   return _getJobScheduleDeserialize(result);
 }
 
 export function _updateJobScheduleSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   body: BatchJobScheduleUpdateOptions,
   options: UpdateJobScheduleOptions = { requestOptions: {} },
@@ -10656,7 +10800,7 @@ export function _updateJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: {
         schedule: !body.schedule
           ? undefined
@@ -11883,12 +12027,14 @@ export async function _updateJobScheduleDeserialize(
  */
 export async function updateJobSchedule(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   body: BatchJobScheduleUpdateOptions,
   options: UpdateJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _updateJobScheduleSend(
     context,
+    apiVersion,
     jobScheduleId,
     body,
     options,
@@ -11898,6 +12044,7 @@ export async function updateJobSchedule(
 
 export function _replaceJobScheduleSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   body: BatchJobSchedule,
   options: ReplaceJobScheduleOptions = { requestOptions: {} },
@@ -11925,7 +12072,7 @@ export function _replaceJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: {
         schedule: {
           doNotRunUntil: body.schedule["doNotRunUntil"]?.toISOString(),
@@ -13054,12 +13201,14 @@ export async function _replaceJobScheduleDeserialize(
  */
 export async function replaceJobSchedule(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   body: BatchJobSchedule,
   options: ReplaceJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _replaceJobScheduleSend(
     context,
+    apiVersion,
     jobScheduleId,
     body,
     options,
@@ -13069,6 +13218,7 @@ export async function replaceJobSchedule(
 
 export function _disableJobScheduleSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: DisableJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
@@ -13092,7 +13242,7 @@ export function _disableJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -13109,15 +13259,22 @@ export async function _disableJobScheduleDeserialize(
 /** No new Jobs will be created until the Job Schedule is enabled again. */
 export async function disableJobSchedule(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: DisableJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _disableJobScheduleSend(context, jobScheduleId, options);
+  const result = await _disableJobScheduleSend(
+    context,
+    apiVersion,
+    jobScheduleId,
+    options,
+  );
   return _disableJobScheduleDeserialize(result);
 }
 
 export function _enableJobScheduleSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: EnableJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
@@ -13141,7 +13298,7 @@ export function _enableJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -13158,15 +13315,22 @@ export async function _enableJobScheduleDeserialize(
 /** Enables a Job Schedule. */
 export async function enableJobSchedule(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: EnableJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _enableJobScheduleSend(context, jobScheduleId, options);
+  const result = await _enableJobScheduleSend(
+    context,
+    apiVersion,
+    jobScheduleId,
+    options,
+  );
   return _enableJobScheduleDeserialize(result);
 }
 
 export function _terminateJobScheduleSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: TerminateJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
@@ -13190,7 +13354,7 @@ export function _terminateJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -13207,11 +13371,13 @@ export async function _terminateJobScheduleDeserialize(
 /** Terminates a Job Schedule. */
 export async function terminateJobSchedule(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: TerminateJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _terminateJobScheduleSend(
     context,
+    apiVersion,
     jobScheduleId,
     options,
   );
@@ -13220,6 +13386,7 @@ export async function terminateJobSchedule(
 
 export function _createJobScheduleSend(
   context: Client,
+  apiVersion: string,
   body: BatchJobScheduleCreateOptions,
   options: CreateJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
@@ -13232,7 +13399,7 @@ export function _createJobScheduleSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: {
         id: body["id"],
         displayName: body["displayName"],
@@ -14357,15 +14524,22 @@ export async function _createJobScheduleDeserialize(
 /** Creates a Job Schedule to the specified Account. */
 export async function createJobSchedule(
   context: Client,
+  apiVersion: string,
   body: BatchJobScheduleCreateOptions,
   options: CreateJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _createJobScheduleSend(context, body, options);
+  const result = await _createJobScheduleSend(
+    context,
+    apiVersion,
+    body,
+    options,
+  );
   return _createJobScheduleDeserialize(result);
 }
 
 export function _listJobSchedulesSend(
   context: Client,
+  apiVersion: string,
   options: ListJobSchedulesOptions = { requestOptions: {} },
 ): StreamableMethod<
   ListJobSchedules200Response | ListJobSchedulesDefaultResponse
@@ -14375,6 +14549,7 @@ export function _listJobSchedulesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOut,
         $filter: options?.$filter,
@@ -15596,11 +15771,12 @@ export async function _listJobSchedulesDeserialize(
 /** Lists all of the Job Schedules in the specified Account. */
 export function listJobSchedules(
   context: Client,
+  apiVersion: string,
   options: ListJobSchedulesOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchJobSchedule> {
   return buildPagedAsyncIterator(
     context,
-    () => _listJobSchedulesSend(context, options),
+    () => _listJobSchedulesSend(context, apiVersion, options),
     _listJobSchedulesDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
@@ -15608,6 +15784,7 @@ export function listJobSchedules(
 
 export function _createTaskSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   body: BatchTaskCreateOptions,
   options: CreateTaskOptions = { requestOptions: {} },
@@ -15619,7 +15796,7 @@ export function _createTaskSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: {
         id: body["id"],
         displayName: body["displayName"],
@@ -15836,16 +16013,24 @@ export async function _createTaskDeserialize(
  */
 export async function createTask(
   context: Client,
+  apiVersion: string,
   jobId: string,
   body: BatchTaskCreateOptions,
   options: CreateTaskOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _createTaskSend(context, jobId, body, options);
+  const result = await _createTaskSend(
+    context,
+    apiVersion,
+    jobId,
+    body,
+    options,
+  );
   return _createTaskDeserialize(result);
 }
 
 export function _listTasksSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: ListTasksOptions = { requestOptions: {} },
 ): StreamableMethod<ListTasks200Response | ListTasksDefaultResponse> {
@@ -15854,6 +16039,7 @@ export function _listTasksSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOut,
         $filter: options?.$filter,
@@ -16169,12 +16355,13 @@ export async function _listTasksDeserialize(
  */
 export function listTasks(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: ListTasksOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchTask> {
   return buildPagedAsyncIterator(
     context,
-    () => _listTasksSend(context, jobId, options),
+    () => _listTasksSend(context, apiVersion, jobId, options),
     _listTasksDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
@@ -16182,6 +16369,7 @@ export function listTasks(
 
 export function _createTaskCollectionSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   collection: BatchTaskCollection,
   options: CreateTaskCollectionOptions = { requestOptions: {} },
@@ -16195,7 +16383,7 @@ export function _createTaskCollectionSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: {
         value: collection["value"].map((p) => ({
           id: p["id"],
@@ -16455,12 +16643,14 @@ export async function _createTaskCollectionDeserialize(
  */
 export async function createTaskCollection(
   context: Client,
+  apiVersion: string,
   jobId: string,
   collection: BatchTaskCollection,
   options: CreateTaskCollectionOptions = { requestOptions: {} },
 ): Promise<TaskAddCollectionResult> {
   const result = await _createTaskCollectionSend(
     context,
+    apiVersion,
     jobId,
     collection,
     options,
@@ -16470,6 +16660,7 @@ export async function createTaskCollection(
 
 export function _deleteTaskSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: DeleteTaskOptions = { requestOptions: {} },
@@ -16492,7 +16683,7 @@ export function _deleteTaskSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -16515,16 +16706,24 @@ export async function _deleteTaskDeserialize(
  */
 export async function deleteTask(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: DeleteTaskOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _deleteTaskSend(context, jobId, taskId, options);
+  const result = await _deleteTaskSend(
+    context,
+    apiVersion,
+    jobId,
+    taskId,
+    options,
+  );
   return _deleteTaskDeserialize(result);
 }
 
 export function _getTaskSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: GetTaskOptions = { requestOptions: {} },
@@ -16548,6 +16747,7 @@ export function _getTaskSend(
           : {}),
       },
       queryParameters: {
+        "api-version": apiVersion,
         timeOut: options?.timeOut,
         $select: options?.$select,
         $expand: options?.$expand,
@@ -16856,16 +17056,24 @@ export async function _getTaskDeserialize(
  */
 export async function getTask(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: GetTaskOptions = { requestOptions: {} },
 ): Promise<BatchTask> {
-  const result = await _getTaskSend(context, jobId, taskId, options);
+  const result = await _getTaskSend(
+    context,
+    apiVersion,
+    jobId,
+    taskId,
+    options,
+  );
   return _getTaskDeserialize(result);
 }
 
 export function _replaceTaskSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   body: BatchTask,
@@ -16892,7 +17100,7 @@ export function _replaceTaskSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: {
         constraints: !body.constraints
           ? undefined
@@ -16918,17 +17126,26 @@ export async function _replaceTaskDeserialize(
 /** Updates the properties of the specified Task. */
 export async function replaceTask(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   body: BatchTask,
   options: ReplaceTaskOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _replaceTaskSend(context, jobId, taskId, body, options);
+  const result = await _replaceTaskSend(
+    context,
+    apiVersion,
+    jobId,
+    taskId,
+    body,
+    options,
+  );
   return _replaceTaskDeserialize(result);
 }
 
 export function _listSubTasksSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: ListSubTasksOptions = { requestOptions: {} },
@@ -16937,7 +17154,11 @@ export function _listSubTasksSend(
     .path("/jobs/{jobId}/tasks/{taskId}/subtasksinfo", jobId, taskId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut, $select: options?.$select },
+      queryParameters: {
+        "api-version": apiVersion,
+        timeOut: options?.timeOut,
+        $select: options?.$select,
+      },
     });
 }
 
@@ -17006,16 +17227,24 @@ export async function _listSubTasksDeserialize(
 /** If the Task is not a multi-instance Task then this returns an empty collection. */
 export async function listSubTasks(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: ListSubTasksOptions = { requestOptions: {} },
 ): Promise<BatchTaskListSubtasksResult> {
-  const result = await _listSubTasksSend(context, jobId, taskId, options);
+  const result = await _listSubTasksSend(
+    context,
+    apiVersion,
+    jobId,
+    taskId,
+    options,
+  );
   return _listSubTasksDeserialize(result);
 }
 
 export function _terminateTaskSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: TerminateTaskOptions = { requestOptions: {} },
@@ -17038,7 +17267,7 @@ export function _terminateTaskSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -17059,16 +17288,24 @@ export async function _terminateTaskDeserialize(
  */
 export async function terminateTask(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: TerminateTaskOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _terminateTaskSend(context, jobId, taskId, options);
+  const result = await _terminateTaskSend(
+    context,
+    apiVersion,
+    jobId,
+    taskId,
+    options,
+  );
   return _terminateTaskDeserialize(result);
 }
 
 export function _reactivateTaskSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: ReactivateTaskOptions = { requestOptions: {} },
@@ -17091,7 +17328,7 @@ export function _reactivateTaskSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -17116,16 +17353,24 @@ export async function _reactivateTaskDeserialize(
  */
 export async function reactivateTask(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: ReactivateTaskOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _reactivateTaskSend(context, jobId, taskId, options);
+  const result = await _reactivateTaskSend(
+    context,
+    apiVersion,
+    jobId,
+    taskId,
+    options,
+  );
   return _reactivateTaskDeserialize(result);
 }
 
 export function _deleteTaskFileSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   filePath: string,
@@ -17141,6 +17386,7 @@ export function _deleteTaskFileSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": apiVersion,
         timeOut: options?.timeOut,
         recursive: options?.recursive,
       },
@@ -17160,6 +17406,7 @@ export async function _deleteTaskFileDeserialize(
 /** Deletes the specified Task file from the Compute Node where the Task ran. */
 export async function deleteTaskFile(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   filePath: string,
@@ -17167,6 +17414,7 @@ export async function deleteTaskFile(
 ): Promise<void> {
   const result = await _deleteTaskFileSend(
     context,
+    apiVersion,
     jobId,
     taskId,
     filePath,
@@ -17177,6 +17425,7 @@ export async function deleteTaskFile(
 
 export function _getTaskFileSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   filePath: string,
@@ -17202,7 +17451,7 @@ export function _getTaskFileSend(
           ? { "ocp-range": options?.ocpRange }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -17219,6 +17468,7 @@ export async function _getTaskFileDeserialize(
 /** Returns the content of the specified Task file. */
 export async function getTaskFile(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   filePath: string,
@@ -17226,6 +17476,7 @@ export async function getTaskFile(
 ): Promise<Uint8Array> {
   const result = await _getTaskFileSend(
     context,
+    apiVersion,
     jobId,
     taskId,
     filePath,
@@ -17236,6 +17487,7 @@ export async function getTaskFile(
 
 export function _getTaskFilePropertiesSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   filePath: string,
@@ -17260,7 +17512,7 @@ export function _getTaskFilePropertiesSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -17279,6 +17531,7 @@ export async function _getTaskFilePropertiesDeserialize(
 /** Gets the properties of the specified Task file. */
 export async function getTaskFileProperties(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   filePath: string,
@@ -17286,6 +17539,7 @@ export async function getTaskFileProperties(
 ): Promise<void> {
   const result = await _getTaskFilePropertiesSend(
     context,
+    apiVersion,
     jobId,
     taskId,
     filePath,
@@ -17296,6 +17550,7 @@ export async function getTaskFileProperties(
 
 export function _listTaskFilesSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: ListTaskFilesOptions = { requestOptions: {} },
@@ -17305,6 +17560,7 @@ export function _listTaskFilesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOut,
         $filter: options?.$filter,
@@ -17347,13 +17603,14 @@ export async function _listTaskFilesDeserialize(
 /** Lists the files in a Task's directory on its Compute Node. */
 export function listTaskFiles(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: ListTaskFilesOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<NodeFile> {
   return buildPagedAsyncIterator(
     context,
-    () => _listTaskFilesSend(context, jobId, taskId, options),
+    () => _listTaskFilesSend(context, apiVersion, jobId, taskId, options),
     _listTaskFilesDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
@@ -17361,6 +17618,7 @@ export function listTaskFiles(
 
 export function _createNodeUserSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   body: BatchNodeUserCreateOptions,
@@ -17373,7 +17631,7 @@ export function _createNodeUserSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: {
         name: body["name"],
         isAdmin: body["isAdmin"],
@@ -17400,6 +17658,7 @@ export async function _createNodeUserDeserialize(
  */
 export async function createNodeUser(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   body: BatchNodeUserCreateOptions,
@@ -17407,6 +17666,7 @@ export async function createNodeUser(
 ): Promise<void> {
   const result = await _createNodeUserSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     body,
@@ -17417,6 +17677,7 @@ export async function createNodeUser(
 
 export function _deleteNodeUserSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   userName: string,
@@ -17431,7 +17692,7 @@ export function _deleteNodeUserSend(
     )
     .delete({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -17451,6 +17712,7 @@ export async function _deleteNodeUserDeserialize(
  */
 export async function deleteNodeUser(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   userName: string,
@@ -17458,6 +17720,7 @@ export async function deleteNodeUser(
 ): Promise<void> {
   const result = await _deleteNodeUserSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     userName,
@@ -17468,6 +17731,7 @@ export async function deleteNodeUser(
 
 export function _replaceNodeUserSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   userName: string,
@@ -17488,7 +17752,7 @@ export function _replaceNodeUserSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: {
         password: body["password"],
         expiryTime: body["expiryTime"]?.toISOString(),
@@ -17515,6 +17779,7 @@ export async function _replaceNodeUserDeserialize(
  */
 export async function replaceNodeUser(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   userName: string,
@@ -17523,6 +17788,7 @@ export async function replaceNodeUser(
 ): Promise<void> {
   const result = await _replaceNodeUserSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     userName,
@@ -17534,6 +17800,7 @@ export async function replaceNodeUser(
 
 export function _getNodeSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: GetNodeOptions = { requestOptions: {} },
@@ -17542,7 +17809,11 @@ export function _getNodeSend(
     .path("/pools/{poolId}/nodes/{nodeId}", poolId, nodeId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut, $select: options?.$select },
+      queryParameters: {
+        "api-version": apiVersion,
+        timeOut: options?.timeOut,
+        $select: options?.$select,
+      },
     });
 }
 
@@ -17821,16 +18092,24 @@ export async function _getNodeDeserialize(
 /** Gets information about the specified Compute Node. */
 export async function getNode(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: GetNodeOptions = { requestOptions: {} },
 ): Promise<BatchNode> {
-  const result = await _getNodeSend(context, poolId, nodeId, options);
+  const result = await _getNodeSend(
+    context,
+    apiVersion,
+    poolId,
+    nodeId,
+    options,
+  );
   return _getNodeDeserialize(result);
 }
 
 export function _rebootNodeSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   body: NodeRebootOptions,
@@ -17843,7 +18122,7 @@ export function _rebootNodeSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: { nodeRebootOption: body["nodeRebootOption"] },
     });
 }
@@ -17861,17 +18140,26 @@ export async function _rebootNodeDeserialize(
 /** You can restart a Compute Node only if it is in an idle or running state. */
 export async function rebootNode(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   body: NodeRebootOptions,
   options: RebootNodeOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _rebootNodeSend(context, poolId, nodeId, body, options);
+  const result = await _rebootNodeSend(
+    context,
+    apiVersion,
+    poolId,
+    nodeId,
+    body,
+    options,
+  );
   return _rebootNodeDeserialize(result);
 }
 
 export function _reimageNodeSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   body: NodeReimageOptions,
@@ -17884,7 +18172,7 @@ export function _reimageNodeSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: { nodeReimageOption: body["nodeReimageOption"] },
     });
 }
@@ -17906,17 +18194,26 @@ export async function _reimageNodeDeserialize(
  */
 export async function reimageNode(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   body: NodeReimageOptions,
   options: ReimageNodeOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _reimageNodeSend(context, poolId, nodeId, body, options);
+  const result = await _reimageNodeSend(
+    context,
+    apiVersion,
+    poolId,
+    nodeId,
+    body,
+    options,
+  );
   return _reimageNodeDeserialize(result);
 }
 
 export function _disableNodeSchedulingSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   body: NodeDisableSchedulingOptions,
@@ -17931,7 +18228,7 @@ export function _disableNodeSchedulingSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: {
         nodeDisableSchedulingOption: body["nodeDisableSchedulingOption"],
       },
@@ -17956,6 +18253,7 @@ export async function _disableNodeSchedulingDeserialize(
  */
 export async function disableNodeScheduling(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   body: NodeDisableSchedulingOptions,
@@ -17963,6 +18261,7 @@ export async function disableNodeScheduling(
 ): Promise<void> {
   const result = await _disableNodeSchedulingSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     body,
@@ -17973,6 +18272,7 @@ export async function disableNodeScheduling(
 
 export function _enableNodeSchedulingSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: EnableNodeSchedulingOptions = { requestOptions: {} },
@@ -17983,7 +18283,7 @@ export function _enableNodeSchedulingSend(
     .path("/pools/{poolId}/nodes/{nodeId}/enablescheduling", poolId, nodeId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -18003,12 +18303,14 @@ export async function _enableNodeSchedulingDeserialize(
  */
 export async function enableNodeScheduling(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: EnableNodeSchedulingOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _enableNodeSchedulingSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     options,
@@ -18018,6 +18320,7 @@ export async function enableNodeScheduling(
 
 export function _getNodeRemoteLoginSettingsSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: GetNodeRemoteLoginSettingsOptions = { requestOptions: {} },
@@ -18029,7 +18332,7 @@ export function _getNodeRemoteLoginSettingsSend(
     .path("/pools/{poolId}/nodes/{nodeId}/remoteloginsettings", poolId, nodeId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -18057,12 +18360,14 @@ export async function _getNodeRemoteLoginSettingsDeserialize(
  */
 export async function getNodeRemoteLoginSettings(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: GetNodeRemoteLoginSettingsOptions = { requestOptions: {} },
 ): Promise<BatchNodeRemoteLoginSettingsResult> {
   const result = await _getNodeRemoteLoginSettingsSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     options,
@@ -18072,6 +18377,7 @@ export async function getNodeRemoteLoginSettings(
 
 export function _getNodeRemoteDesktopFileSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: GetNodeRemoteDesktopFileOptions = { requestOptions: {} },
@@ -18082,7 +18388,7 @@ export function _getNodeRemoteDesktopFileSend(
     .path("/pools/{poolId}/nodes/{nodeId}/rdp", poolId, nodeId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -18108,12 +18414,14 @@ export async function _getNodeRemoteDesktopFileDeserialize(
  */
 export async function getNodeRemoteDesktopFile(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: GetNodeRemoteDesktopFileOptions = { requestOptions: {} },
 ): Promise<Uint8Array> {
   const result = await _getNodeRemoteDesktopFileSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     options,
@@ -18123,6 +18431,7 @@ export async function getNodeRemoteDesktopFile(
 
 export function _uploadNodeLogsSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   body: UploadBatchServiceLogsOptions,
@@ -18139,7 +18448,7 @@ export function _uploadNodeLogsSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
       body: {
         containerUrl: body["containerUrl"],
         startTime: body["startTime"].toISOString(),
@@ -18172,6 +18481,7 @@ export async function _uploadNodeLogsDeserialize(
  */
 export async function uploadNodeLogs(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   body: UploadBatchServiceLogsOptions,
@@ -18179,6 +18489,7 @@ export async function uploadNodeLogs(
 ): Promise<UploadBatchServiceLogsResult> {
   const result = await _uploadNodeLogsSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     body,
@@ -18189,6 +18500,7 @@ export async function uploadNodeLogs(
 
 export function _listNodesSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   options: ListNodesOptions = { requestOptions: {} },
 ): StreamableMethod<ListNodes200Response | ListNodesDefaultResponse> {
@@ -18197,6 +18509,7 @@ export function _listNodesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOut,
         $filter: options?.$filter,
@@ -18477,12 +18790,13 @@ export async function _listNodesDeserialize(
 /** Lists the Compute Nodes in the specified Pool. */
 export function listNodes(
   context: Client,
+  apiVersion: string,
   poolId: string,
   options: ListNodesOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchNode> {
   return buildPagedAsyncIterator(
     context,
-    () => _listNodesSend(context, poolId, options),
+    () => _listNodesSend(context, apiVersion, poolId, options),
     _listNodesDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
@@ -18490,6 +18804,7 @@ export function listNodes(
 
 export function _getNodeExtensionSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   extensionName: string,
@@ -18506,7 +18821,11 @@ export function _getNodeExtensionSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut, $select: options?.$select },
+      queryParameters: {
+        "api-version": apiVersion,
+        timeOut: options?.timeOut,
+        $select: options?.$select,
+      },
     });
 }
 
@@ -18564,6 +18883,7 @@ export async function _getNodeExtensionDeserialize(
 /** Gets information about the specified Compute Node Extension. */
 export async function getNodeExtension(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   extensionName: string,
@@ -18571,6 +18891,7 @@ export async function getNodeExtension(
 ): Promise<NodeVMExtension> {
   const result = await _getNodeExtensionSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     extensionName,
@@ -18672,6 +18993,7 @@ export function listNodeExtensions(
 
 export function _deleteNodeFileSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   filePath: string,
@@ -18687,6 +19009,7 @@ export function _deleteNodeFileSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": apiVersion,
         timeOut: options?.timeOut,
         recursive: options?.recursive,
       },
@@ -18706,6 +19029,7 @@ export async function _deleteNodeFileDeserialize(
 /** Deletes the specified file from the Compute Node. */
 export async function deleteNodeFile(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   filePath: string,
@@ -18713,6 +19037,7 @@ export async function deleteNodeFile(
 ): Promise<void> {
   const result = await _deleteNodeFileSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     filePath,
@@ -18723,6 +19048,7 @@ export async function deleteNodeFile(
 
 export function _getNodeFileSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   filePath: string,
@@ -18748,7 +19074,7 @@ export function _getNodeFileSend(
           ? { "ocp-range": options?.ocpRange }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -18767,6 +19093,7 @@ export async function _getNodeFileDeserialize(
 /** Returns the content of the specified Compute Node file. */
 export async function getNodeFile(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   filePath: string,
@@ -18774,6 +19101,7 @@ export async function getNodeFile(
 ): Promise<Uint8Array> {
   const result = await _getNodeFileSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     filePath,
@@ -18784,6 +19112,7 @@ export async function getNodeFile(
 
 export function _getNodeFilePropertiesSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   filePath: string,
@@ -18808,7 +19137,7 @@ export function _getNodeFilePropertiesSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { "api-version": apiVersion, timeOut: options?.timeOut },
     });
 }
 
@@ -18827,6 +19156,7 @@ export async function _getNodeFilePropertiesDeserialize(
 /** Gets the properties of the specified Compute Node file. */
 export async function getNodeFileProperties(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   filePath: string,
@@ -18834,6 +19164,7 @@ export async function getNodeFileProperties(
 ): Promise<void> {
   const result = await _getNodeFilePropertiesSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     filePath,
@@ -18844,6 +19175,7 @@ export async function getNodeFileProperties(
 
 export function _listNodeFilesSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: ListNodeFilesOptions = { requestOptions: {} },
@@ -18853,6 +19185,7 @@ export function _listNodeFilesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
         timeOut: options?.timeOut,
         $filter: options?.$filter,
@@ -18895,13 +19228,14 @@ export async function _listNodeFilesDeserialize(
 /** Lists all of the files in Task directories on the specified Compute Node. */
 export function listNodeFiles(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: ListNodeFilesOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<NodeFile> {
   return buildPagedAsyncIterator(
     context,
-    () => _listNodeFilesSend(context, poolId, nodeId, options),
+    () => _listNodeFilesSend(context, apiVersion, poolId, nodeId, options),
     _listNodeFilesDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );

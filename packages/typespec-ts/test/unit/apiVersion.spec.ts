@@ -305,7 +305,7 @@ describe("api-version", () => {
         const def = buildPathDefinition({
           "@service": true
         });
-        const expectedRes = buildPathReturn_WithDefault();
+        const expectedRes = buildPathReturn_WithoutDefault();
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
         await assertEqualContent(models!.content, expectedRes);
@@ -339,7 +339,7 @@ describe("api-version", () => {
         const def = buildMixedDefinition({
           "@service": true
         });
-        const expectedRes = buildPathReturn_WithDefault();
+        const expectedRes = buildPathReturn_WithoutDefault();
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
         await assertEqualContent(models!.content, expectedRes);
