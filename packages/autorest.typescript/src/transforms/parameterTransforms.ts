@@ -56,6 +56,7 @@ const buildCredentialsParameter = (): ParameterDetails => {
     description:
       "Subscription credentials which uniquely identify client subscription.",
     name: "credentials",
+    propertyName: "credentials",
     serializedName: "credentials",
     location: ParameterLocation.None,
     required: true,
@@ -82,6 +83,7 @@ const buildEndpointParameter = (): ParameterDetails => ({
   nameRef: "endpoint",
   description: "Overrides client endpoint.",
   name: "endpoint",
+  propertyName: "endpoint",
   serializedName: "endpoint",
   location: ParameterLocation.None,
   required: false,
@@ -260,7 +262,11 @@ export function populateOperationParameters(
     NameType.Parameter,
     true /** shouldGuard */
   );
-
+  const propertyName = normalizeName(
+    parameterName,
+    NameType.Property,
+    true  /** shouldGuard */
+  )
   const sameNameParams = operationParameters.filter(
     (p) => p.name === name || p.nameRef === name
   );
@@ -277,6 +283,7 @@ export function populateOperationParameters(
         ? undefined
         : description,
     name,
+    propertyName,
     serializedName,
     operationsIn: {
       [operationName]: {
@@ -356,7 +363,7 @@ function getParameterPath(parameter: Parameter) {
   const name = normalizeName(
     metadata.name,
     NameType.Parameter,
-    true
+    parameter.language.default.isTopLevelParameter ? true: false /** shouldGuard */
   );
 
   const propertyName = normalizeName(

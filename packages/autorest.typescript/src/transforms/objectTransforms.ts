@@ -103,7 +103,7 @@ export function transformProperty({
   return {
     name: normalizeName(
       metadata.name,
-      NameType.Property,
+      metadata.isTopLevelParameter ? NameType.Parameter : NameType.Property,
       true /** shouldGuard */
     ),
     description,
