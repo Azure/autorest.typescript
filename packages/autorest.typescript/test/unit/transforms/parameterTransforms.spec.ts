@@ -469,7 +469,10 @@ describe("parameterTransforms", () => {
         parameters.map(p => p.nameRef),
         ["typeParam", "endpoint"]
       );
-
+      assert.deepEqual(
+        parameters.map(p => p.propertyName),
+        ["type", "endpoint"]
+      );
       const p1: ParameterDetails = parameters.find(
         p => p.nameRef === "typeParam"
       )!;

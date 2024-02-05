@@ -33,7 +33,7 @@ export interface ParameterGroupingPostOptionalParameters {
 /** Parameter group */
 export interface ParameterGroupingPostReservedWordsParameters {
   /** 'from' is a reserved word. Pass in 'bob' to pass. */
-  fromParam?: string;
+  from?: string;
   /** 'accept' is a reserved word. Pass in 'yes' to pass. */
   accept?: string;
 }
