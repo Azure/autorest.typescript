@@ -29,11 +29,13 @@ export async function rlcEmitterFor(
   needAzureCore: boolean = false,
   ignoreClientApiVersion: boolean = false,
   needTCGC: boolean = false,
-  withRawContent: boolean = false
+  withRawContent: boolean = false,
+  withVersionedApiVersion: boolean = false,
 ): Promise<TestHost> {
   const host: TestHost = await createRLCEmitterTestHost();
   const namespace = `
   #suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
+  ${withVersionedApiVersion ? '@versioned(Versions)': ""}
   @service({
     title: "Azure TypeScript Testing",
     ${ignoreClientApiVersion ? "" : 'version: "2022-12-16-preview",'}
@@ -55,9 +57,8 @@ using TypeSpec.Rest;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
 ${needAzureCore ? "using Azure.Core;" : ""}
-
 ${needNamespaces ? namespace : ""}
-
+${withVersionedApiVersion && needNamespaces ? 'enum Versions { v2022_05_15_preview: "2022-05-15-preview"}' : ""}
 ${code}
 `;
   host.addTypeSpecFile("main.tsp", content);

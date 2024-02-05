@@ -21,7 +21,7 @@ async function deleteSample() {
   const projectName = "{Your projectName}";
   const initialResponse = await client
     .path("/authoring/analyze-text/projects/{projectName}", projectName)
-    .delete();
+    .delete({ queryParameters: { "api-version": "{Your api-version}" } });
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   console.log(result);

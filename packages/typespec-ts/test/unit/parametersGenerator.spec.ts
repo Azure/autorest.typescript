@@ -5,7 +5,7 @@ import { assertEqualContent } from "../util/testUtil.js";
 describe("Parameters.ts", () => {
   describe("query parameters", () => {
     describe("apiVersion in query", () => {
-      it("should't generate apiVersion if there's a client level apiVersion", async () => {
+      it("should generate apiVersion if there's a client level apiVersion but without default value", async () => {
         const parameters = await emitParameterFromTypeSpec(
           `
           model ApiVersionParameter {
@@ -20,12 +20,46 @@ describe("Parameters.ts", () => {
           parameters?.content!,
           `
             import { RequestParameters } from "@azure-rest/core-client";
+
+            export interface TestQueryParamProperties {
+              "api-version": string;
+            }
             
-            export type TestParameters =  RequestParameters;
+            export interface TestQueryParam {
+              queryParameters: TestQueryParamProperties;
+            }
+            
+            export type TestParameters = TestQueryParam & RequestParameters;
             `
         );
       });
 
+      it("shouldn't generate apiVersion if there's a client level apiVersion and with default value", async () => {
+        const parameters = await emitParameterFromTypeSpec(
+          `
+          model ApiVersionParameter {
+            @query
+            "api-version": string;
+          }
+          op test(...ApiVersionParameter): string;
+          `,
+          false,
+          true,
+          false,
+          false,
+          true,
+          true
+        );
+        assert.ok(parameters);
+        await assertEqualContent(
+          parameters?.content!,
+          `
+            import { RequestParameters } from "@azure-rest/core-client";
+            
+            export type TestParameters = RequestParameters;
+            `
+        );
+      });
       it("should generate apiVersion if there's no client level apiVersion", async () => {
         const parameters = await emitParameterFromTypeSpec(
           `

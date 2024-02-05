@@ -260,7 +260,7 @@ describe("api-version", () => {
         const def = buildQueryDefinition({
           "@service": true
         });
-        const expectedRes = buildDefaultReturn(true, true);
+        const expectedRes = buildDefaultReturn(false, true);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
         await assertEqualContent(models!.content, expectedRes);

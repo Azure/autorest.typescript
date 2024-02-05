@@ -18,7 +18,7 @@ export default function createClient(
   options: ClientOptions = {},
 ): ConfidentialLedgerClient {
   const baseUrl = options.baseUrl ?? `${ledgerUri}`;
-  options.apiVersion = options.apiVersion ?? "2022-05-13";
+
   const userAgentInfo = `azsdk-js-confidential-ledger-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

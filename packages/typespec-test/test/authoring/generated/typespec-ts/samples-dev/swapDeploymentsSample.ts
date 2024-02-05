@@ -29,6 +29,7 @@ async function swapDeploymentsSample() {
         firstDeploymentName: "{Your firstDeploymentName}",
         secondDeploymentName: "{Your secondDeploymentName}",
       },
+      queryParameters: { "api-version": "{Your api-version}" },
     });
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
