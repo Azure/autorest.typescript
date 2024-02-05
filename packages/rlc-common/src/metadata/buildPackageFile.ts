@@ -153,9 +153,9 @@ function restLevelPackage(model: RLCModel) {
     sideEffects: false,
     autoPublish: false,
     dependencies: {
-      "@azure/core-auth": "^1.3.0",
-      "@azure-rest/core-client": "^1.1.6",
-      "@azure/core-rest-pipeline": "^1.12.0",
+      "@azure/core-auth": "^1.6.0",
+      "@azure-rest/core-client": "^1.2.0",
+      "@azure/core-rest-pipeline": "^1.14.0",
       "@azure/logger": "^1.0.0",
       tslib: "^2.2.0",
       ...(hasPaging && {
@@ -179,7 +179,7 @@ function restLevelPackage(model: RLCModel) {
       prettier: "^3.1.0",
       rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
-      typescript: "~5.2.0"
+      typescript: "~5.3.3"
     }
   };
 

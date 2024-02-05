@@ -29,7 +29,11 @@ export function _createStreamingSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        messages: body.messages as any,
+        messages: body["messages"].map((p) => ({
+          content: p["content"],
+          role: p["role"],
+          session_state: p["sessionState"],
+        })),
         stream: body["stream"],
         session_state: body["sessionState"],
         context: body["context"],
@@ -79,7 +83,11 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        messages: body.messages as any,
+        messages: body["messages"].map((p) => ({
+          content: p["content"],
+          role: p["role"],
+          session_state: p["sessionState"],
+        })),
         stream: body["stream"],
         session_state: body["sessionState"],
         context: body["context"],
@@ -97,7 +105,11 @@ export async function _createDeserialize(
   return {
     choices: result.body["choices"].map((p) => ({
       index: p["index"],
-      message: p.message as any,
+      message: {
+        content: p.message["content"],
+        role: p.message["role"],
+        sessionState: p.message["session_state"],
+      },
       sessionState: p["session_state"],
       context: p["context"],
       finishReason: p["finish_reason"],

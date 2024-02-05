@@ -24,3 +24,4 @@ common/autoinstallers/*/.npmrc
 **/types
 dist-esm
 dist
+/artifacts

@@ -102,6 +102,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "type/model/inheritance/single-discriminator"
   },
   {
+    outputPath: "models/inheritance-recursive",
+    inputPath: "type/model/inheritance/recursive"
+  },
+  {
     outputPath: "models/propertyOptional",
     inputPath: "type/property/optionality"
   },
@@ -318,6 +322,25 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/empty",
     inputPath: "type/model/empty"
+  },
+  {
+    outputPath: "models/propertyTypes",
+    inputPath: "type/property/value-types"
+  },
+  {  outputPath: "arrays/items",
+    inputPath: "type/array"
+  },
+  {
+    outputPath: "models/inheritance/recursive",
+    inputPath: "type/model/inheritance/recursive"
+  },
+  {
+    outputPath: "unions",
+    inputPath: "type/union"
+  },
+  {
+    outputPath: "scalar",
+    inputPath: "type/scalar"
   }
 ];
 

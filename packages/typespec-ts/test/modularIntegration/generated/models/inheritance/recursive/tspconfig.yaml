@@ -1,0 +1,12 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    generateMetadata: false
+    generateTest: false
+    azureSdkForJs: false
+    isModularLibrary: true
+    hierarchyClient: false
+    "emitter-output-dir": "{project-root}/generated"
+    packageDetails:
+      name: "@msinternal/model-inheritance-recursive"
