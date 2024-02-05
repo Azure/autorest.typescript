@@ -240,7 +240,7 @@ function restLevelPackage(model: RLCModel) {
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
-    packageInfo.devDependencies["@azure/identity"] = "^3.3.0";
+    packageInfo.devDependencies["@azure/identity"] = "^4.0.1";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
     packageInfo.devDependencies["mocha"] = "^10.0.0";
     packageInfo.devDependencies["esm"] = "^3.2.18";
