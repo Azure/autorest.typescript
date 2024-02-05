@@ -119,7 +119,7 @@ describe("Versioned Server Version Client", () => {
 
   it("should work with param", async () => {
     try {
-      const result = await client.withQueryApiVersion("v1.0");
+      const result = await client.withQueryApiVersion("2022-12-01-preview");
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -128,7 +128,7 @@ describe("Versioned Server Version Client", () => {
 
   it("should work with path param", async () => {
     try {
-      const result = await client.withPathApiVersion("v1.0");
+      const result = await client.withPathApiVersion("2022-12-01-preview");
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
