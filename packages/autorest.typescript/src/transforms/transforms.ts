@@ -41,7 +41,7 @@ export async function transformChoices(codeModel: CodeModel) {
 function extractProperties(
   choice: ChoiceSchema | SealedChoiceSchema
 ): UnionElement[] {
-  return choice.choices.map(c => {
+  return choice.choices.map((c) => {
     const metadata = getLanguageMetadata(c.language);
     return {
       name: metadata.name,
@@ -106,10 +106,10 @@ export async function transformCodeModel(
 
   const options = await transformOptions(operationGroups);
 
-  const [objects, groups, parameters, mappers, unions] = await Promise.all([
+  const [objects, parameters, groups, mappers, unions] = await Promise.all([
     transformObjects(codeModel, uberParents),
-    transformGroups(codeModel),
     transformParameters(codeModel, options),
+    transformGroups(codeModel),
     transformMappers(codeModel, uberParents, options),
     transformChoices(codeModel)
   ]);
@@ -146,9 +146,9 @@ async function getUberParents(codeModel: CodeModel): Promise<ObjectDetails[]> {
 
   let uberParents: ObjectDetails[] = [];
 
-  codeModel.schemas.objects.forEach(object => {
+  codeModel.schemas.objects.forEach((object) => {
     const name = getLanguageMetadata(object.language).name;
-    const isPresent = uberParents.some(up => up.name === name);
+    const isPresent = uberParents.some((up) => up.name === name);
     const hasChildren = object.children && object.children.all.length;
     const hasParents = getSchemaParents(object).length > 0;
 
@@ -164,9 +164,9 @@ async function getUberParents(codeModel: CodeModel): Promise<ObjectDetails[]> {
 function transformHasTenantLevel(
   operationGroups: OperationGroupDetails[]
 ): boolean {
-  const hasClientLevelSubscription = operationGroups.some(opGroup => {
-    return opGroup.operations.some(op => {
-      return op.parameters.some(p => {
+  const hasClientLevelSubscription = operationGroups.some((opGroup) => {
+    return opGroup.operations.some((op) => {
+      return op.parameters.some((p) => {
         return (
           p.language.default.name.toLowerCase() === "subscriptionid" &&
           p.protocol.http?.in === ParameterLocation.Path &&
@@ -175,8 +175,8 @@ function transformHasTenantLevel(
       });
     });
   });
-  const hasTenantLevelOperation = operationGroups.some(opGroup => {
-    return opGroup.operations.some(op => {
+  const hasTenantLevelOperation = operationGroups.some((opGroup) => {
+    return opGroup.operations.some((op) => {
       return op.isTenantLevel;
     });
   });

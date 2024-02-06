@@ -422,7 +422,7 @@ describe("parameterTransforms", () => {
       assert.equal(p1.parameter, param1);
     });
 
-    it("should not guard non-required query parameters name", () => {
+    it("should guard non-required query parameters name", () => {
       const codeModel = new CodeModel("testCodeModel");
       const param1 = new Parameter(
         "type",
@@ -467,11 +467,14 @@ describe("parameterTransforms", () => {
       assert.equal(parameters.length, 2);
       assert.deepEqual(
         parameters.map(p => p.nameRef),
+        ["typeParam", "endpoint"]
+      );
+      assert.deepEqual(
+        parameters.map(p => p.propertyName),
         ["type", "endpoint"]
       );
-
       const p1: ParameterDetails = parameters.find(
-        p => p.nameRef === "type"
+        p => p.nameRef === "typeParam"
       )!;
 
       assert.deepEqual(p1.operationsIn, {
