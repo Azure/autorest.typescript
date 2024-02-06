@@ -7,7 +7,21 @@ import {
   ClientProjectedNameModel,
   LanguageProjectedNameModel,
   JsonAndClientProjectedNameModel,
+  ModelWithClientProjectedName,
+  ModelWithLanguageProjectedName,
 } from "./models";
+
+export type OperationParameters = RequestParameters;
+
+export interface ParameterQueryParamProperties {
+  "default-name": string;
+}
+
+export interface ParameterQueryParam {
+  queryParameters: ParameterQueryParamProperties;
+}
+
+export type ParameterParameters = ParameterQueryParam & RequestParameters;
 
 export interface PropertyJsonBodyParam {
   body?: JsonProjectedNameModel;
@@ -35,14 +49,16 @@ export interface PropertyJsonAndClientBodyParam {
 
 export type PropertyJsonAndClientParameters = PropertyJsonAndClientBodyParam &
   RequestParameters;
-export type OperationParameters = RequestParameters;
 
-export interface ParameterQueryParamProperties {
-  "default-name": string;
+export interface ModelClientBodyParam {
+  body?: ModelWithClientProjectedName;
 }
 
-export interface ParameterQueryParam {
-  queryParameters: ParameterQueryParamProperties;
+export type ModelClientParameters = ModelClientBodyParam & RequestParameters;
+
+export interface ModelLanguageBodyParam {
+  body?: ModelWithLanguageProjectedName;
 }
 
-export type ParameterParameters = ParameterQueryParam & RequestParameters;
+export type ModelLanguageParameters = ModelLanguageBodyParam &
+  RequestParameters;

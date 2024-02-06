@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { Bird, Dinosaur } from "./models/models.js";
+import { BirdUnion, DinosaurUnion } from "./models/models.js";
 import {
   GetModelOptions,
   PutModelOptions,
@@ -38,45 +38,47 @@ export class SingleDiscriminatorClient {
     this.pipeline = this._client.pipeline;
   }
 
-  getModel(options: GetModelOptions = { requestOptions: {} }): Promise<Bird> {
+  getModel(
+    options: GetModelOptions = { requestOptions: {} },
+  ): Promise<BirdUnion> {
     return getModel(this._client, options);
   }
 
   putModel(
-    input: Bird,
-    options: PutModelOptions = { requestOptions: {} }
+    input: BirdUnion,
+    options: PutModelOptions = { requestOptions: {} },
   ): Promise<void> {
     return putModel(this._client, input, options);
   }
 
   getRecursiveModel(
-    options: GetRecursiveModelOptions = { requestOptions: {} }
-  ): Promise<Bird> {
+    options: GetRecursiveModelOptions = { requestOptions: {} },
+  ): Promise<BirdUnion> {
     return getRecursiveModel(this._client, options);
   }
 
   putRecursiveModel(
-    input: Bird,
-    options: PutRecursiveModelOptions = { requestOptions: {} }
+    input: BirdUnion,
+    options: PutRecursiveModelOptions = { requestOptions: {} },
   ): Promise<void> {
     return putRecursiveModel(this._client, input, options);
   }
 
   getMissingDiscriminator(
-    options: GetMissingDiscriminatorOptions = { requestOptions: {} }
-  ): Promise<Bird> {
+    options: GetMissingDiscriminatorOptions = { requestOptions: {} },
+  ): Promise<BirdUnion> {
     return getMissingDiscriminator(this._client, options);
   }
 
   getWrongDiscriminator(
-    options: GetWrongDiscriminatorOptions = { requestOptions: {} }
-  ): Promise<Bird> {
+    options: GetWrongDiscriminatorOptions = { requestOptions: {} },
+  ): Promise<BirdUnion> {
     return getWrongDiscriminator(this._client, options);
   }
 
   getLegacyModel(
-    options: GetLegacyModelOptions = { requestOptions: {} }
-  ): Promise<Dinosaur> {
+    options: GetLegacyModelOptions = { requestOptions: {} },
+  ): Promise<DinosaurUnion> {
     return getLegacyModel(this._client, options);
   }
 }

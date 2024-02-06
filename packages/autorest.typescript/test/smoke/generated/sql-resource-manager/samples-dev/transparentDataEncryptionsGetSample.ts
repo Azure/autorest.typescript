@@ -34,7 +34,7 @@ async function getADatabaseTransparentDataEncryption() {
     resourceGroupName,
     serverName,
     databaseName,
-    tdeName
+    tdeName,
   );
   console.log(result);
 }

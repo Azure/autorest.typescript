@@ -46,42 +46,42 @@ export function isUnexpected(
   response:
     | CreateOrUpdate200Response
     | CreateOrUpdate201Response
-    | CreateOrUpdateDefaultResponse
+    | CreateOrUpdateDefaultResponse,
 ): response is CreateOrUpdateDefaultResponse;
 export function isUnexpected(
   response:
     | CreateOrReplace200Response
     | CreateOrReplace201Response
-    | CreateOrReplaceDefaultResponse
+    | CreateOrReplaceDefaultResponse,
 ): response is CreateOrReplaceDefaultResponse;
 export function isUnexpected(
-  response: Get200Response | GetDefaultResponse
+  response: Get200Response | GetDefaultResponse,
 ): response is GetDefaultResponse;
 export function isUnexpected(
-  response: DeleteOperation204Response | DeleteOperationDefaultResponse
+  response: DeleteOperation204Response | DeleteOperationDefaultResponse,
 ): response is DeleteOperationDefaultResponse;
 export function isUnexpected(
-  response: List200Response | ListDefaultResponse
+  response: List200Response | ListDefaultResponse,
 ): response is ListDefaultResponse;
 export function isUnexpected(
-  response: ListWithPage200Response | ListWithPageDefaultResponse
+  response: ListWithPage200Response | ListWithPageDefaultResponse,
 ): response is ListWithPageDefaultResponse;
 export function isUnexpected(
-  response: ListWithParameters200Response | ListWithParametersDefaultResponse
+  response: ListWithParameters200Response | ListWithParametersDefaultResponse,
 ): response is ListWithParametersDefaultResponse;
 export function isUnexpected(
   response:
     | ListWithCustomPageModel200Response
-    | ListWithCustomPageModelDefaultResponse
+    | ListWithCustomPageModelDefaultResponse,
 ): response is ListWithCustomPageModelDefaultResponse;
 export function isUnexpected(
-  response: ExportOperation200Response | ExportOperationDefaultResponse
+  response: ExportOperation200Response | ExportOperationDefaultResponse,
 ): response is ExportOperationDefaultResponse;
 export function isUnexpected(
-  response: ListFirstItem200Response | ListFirstItemDefaultResponse
+  response: ListFirstItem200Response | ListFirstItemDefaultResponse,
 ): response is ListFirstItemDefaultResponse;
 export function isUnexpected(
-  response: ListSecondItem200Response | ListSecondItemDefaultResponse
+  response: ListSecondItem200Response | ListSecondItemDefaultResponse,
 ): response is ListSecondItemDefaultResponse;
 export function isUnexpected(
   response:
@@ -108,7 +108,7 @@ export function isUnexpected(
     | ListFirstItem200Response
     | ListFirstItemDefaultResponse
     | ListSecondItem200Response
-    | ListSecondItemDefaultResponse
+    | ListSecondItemDefaultResponse,
 ): response is
   | CreateOrUpdateDefaultResponse
   | CreateOrReplaceDefaultResponse
@@ -169,7 +169,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

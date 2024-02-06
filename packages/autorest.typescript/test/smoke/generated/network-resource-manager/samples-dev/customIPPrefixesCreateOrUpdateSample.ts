@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   CustomIpPrefix,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,7 +33,7 @@ async function createCustomIPPrefixAllocationMethod() {
   const result = await client.customIPPrefixes.beginCreateOrUpdateAndWait(
     resourceGroupName,
     customIpPrefixName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

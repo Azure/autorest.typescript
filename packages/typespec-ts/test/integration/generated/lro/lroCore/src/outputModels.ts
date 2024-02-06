@@ -18,7 +18,7 @@ export interface OperationStatusOutput {
   /**
    * The status of the operation
    *
-   * Possible values: NotStarted, Running, Succeeded, Failed, Canceled
+   * Possible values: "NotStarted", "Running", "Succeeded", "Failed", "Canceled"
    */
   status: string;
   /** Error object that describes the error when status is "Failed". */
@@ -32,7 +32,7 @@ export interface ResourceOperationStatusOutput {
   /**
    * The status of the operation
    *
-   * Possible values: NotStarted, Running, Succeeded, Failed, Canceled
+   * Possible values: "NotStarted", "Running", "Succeeded", "Failed", "Canceled"
    */
   status: string;
   /** Error object that describes the error when status is "Failed". */

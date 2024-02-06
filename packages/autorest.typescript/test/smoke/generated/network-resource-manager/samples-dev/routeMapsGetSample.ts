@@ -30,7 +30,7 @@ async function routeMapGet() {
   const result = await client.routeMaps.get(
     resourceGroupName,
     virtualHubName,
-    routeMapName
+    routeMapName,
   );
   console.log(result);
 }

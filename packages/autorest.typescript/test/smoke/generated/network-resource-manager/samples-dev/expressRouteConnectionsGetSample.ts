@@ -31,7 +31,7 @@ async function expressRouteConnectionGet() {
   const result = await client.expressRouteConnections.get(
     resourceGroupName,
     expressRouteGatewayName,
-    connectionName
+    connectionName,
   );
   console.log(result);
 }

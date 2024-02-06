@@ -18,7 +18,7 @@ async function oAuthTokensGetOauthConnectionLink() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const result = await client.path("/oauth/tokens/:connect").post();
   console.log(result);

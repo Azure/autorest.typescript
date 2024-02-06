@@ -29,7 +29,7 @@ async function getListOfPrivateLinkServiceIdThatCanBeLinkedToAPrivateEndPointWit
   const resArray = new Array();
   for await (let item of client.privateLinkServices.listAutoApprovedPrivateLinkServicesByResourceGroup(
     location,
-    resourceGroupName
+    resourceGroupName,
   )) {
     resArray.push(item);
   }

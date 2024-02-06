@@ -179,17 +179,22 @@ export function isDefinedStatusCode(statusCodes: HttpStatusCodesEntry) {
 export function isBinaryPayload(
   dpgContext: SdkContext,
   body: Type,
-  contentType: string
+  contentType: string | string[]
 ) {
-  contentType = `"${contentType}"`;
-  if (
-    contentType !== `"application/json"` &&
-    contentType !== `"text/plain"` &&
-    contentType !== `"application/json" | "text/plain"` &&
-    contentType !== `"text/plain" | "application/json"` &&
-    isByteOrByteUnion(dpgContext, body)
-  ) {
-    return true;
+  const allContentTypes = Array.isArray(contentType)
+    ? contentType
+    : [contentType];
+  for (const type of allContentTypes) {
+    const contentType = `"${type}"`;
+    if (
+      contentType !== `"application/json"` &&
+      contentType !== `"text/plain"` &&
+      contentType !== `"application/json" | "text/plain"` &&
+      contentType !== `"text/plain" | "application/json"` &&
+      isByteOrByteUnion(dpgContext, body)
+    ) {
+      return true;
+    }
   }
   return false;
 }
@@ -287,8 +292,8 @@ export function extractOperationLroDetail(
     const metadata = getLroMetadata(program, operation.operation);
     precedence =
       metadata?.finalStep &&
-      metadata?.finalStep.target &&
       metadata.finalStep.kind === "pollingSuccessProperty" &&
+      metadata?.finalStep.target &&
       metadata?.finalStep?.target?.name === "result"
         ? OPERATION_LRO_HIGH_PRIORITY
         : OPERATION_LRO_LOW_PRIORITY;
@@ -307,7 +312,18 @@ export function hasPollingOperations(
   client: SdkClient,
   dpgContext: SdkContext
 ) {
-  const operationGroups = listOperationGroups(dpgContext, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    if (isLongRunningOperation(program, route)) {
+      return true;
+    }
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
@@ -324,18 +340,6 @@ export function hasPollingOperations(
       }
     }
   }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    if (isLongRunningOperation(program, route)) {
-      return true;
-    }
-  }
-
   return false;
 }
 
@@ -354,7 +358,18 @@ export function hasPagingOperations(
   client: SdkClient,
   dpgContext: SdkContext
 ) {
-  const operationGroups = listOperationGroups(dpgContext, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    if (isPagingOperation(program, route)) {
+      return true;
+    }
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
@@ -369,17 +384,6 @@ export function hasPagingOperations(
       if (isPagingOperation(program, route)) {
         return true;
       }
-    }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    if (isPagingOperation(program, route)) {
-      return true;
     }
   }
   return false;

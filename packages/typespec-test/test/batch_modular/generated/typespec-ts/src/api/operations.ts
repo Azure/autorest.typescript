@@ -2,47 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-  ApplicationListResult,
-  BatchApplication,
-  PoolListUsageMetricsResult,
-  PoolUsageMetrics,
-  BatchPoolCreateOptions,
-  BatchPoolListResult,
-  BatchPool,
-  AutoScaleRun,
-  BatchPoolUpdateOptions,
-  BatchPoolEnableAutoScaleOptions,
-  BatchPoolEvaluateAutoScaleOptions,
-  BatchPoolResizeOptions,
-  BatchPoolReplaceOptions,
-  NodeRemoveOptions,
-  AccountListSupportedImagesResult,
-  ImageInformation,
-  PoolNodeCountsListResult,
-  PoolNodeCounts,
-  BatchJob,
-  BatchJobUpdateOptions,
-  BatchJobDisableOptions,
-  BatchJobTerminateOptions,
-  BatchJobCreateOptions,
-  BatchJobListResult,
-  BatchJobListPreparationAndReleaseTaskStatusResult,
-  JobPreparationAndReleaseTaskExecutionInformation,
-  TaskCountsResult,
-  BatchCertificate,
-  CertificateListResult,
-  BatchJobSchedule,
-  BatchJobScheduleUpdateOptions,
-  BatchJobScheduleCreateOptions,
-  BatchJobScheduleListResult,
-  BatchTaskCreateOptions,
-  BatchTaskListResult,
-  BatchTask,
-  BatchTaskCollection,
-  TaskAddCollectionResult,
-  BatchTaskListSubtasksResult,
-  NodeFileListResult,
-  NodeFile,
   BatchNodeUserCreateOptions,
   BatchNodeUserUpdateOptions,
   BatchNode,
@@ -55,6 +14,47 @@ import {
   BatchNodeListResult,
   NodeVMExtension,
   NodeVMExtensionList,
+  NodeFileListResult,
+  NodeFile,
+  BatchTaskCreateOptions,
+  BatchTaskListResult,
+  BatchTask,
+  BatchTaskCollection,
+  TaskAddCollectionResult,
+  BatchTaskListSubtasksResult,
+  BatchJobSchedule,
+  BatchJobScheduleUpdateOptions,
+  BatchJobScheduleCreateOptions,
+  BatchJobScheduleListResult,
+  BatchCertificate,
+  CertificateListResult,
+  BatchJob,
+  BatchJobUpdateOptions,
+  BatchJobDisableOptions,
+  BatchJobTerminateOptions,
+  BatchJobCreateOptions,
+  BatchJobListResult,
+  BatchJobListPreparationAndReleaseTaskStatusResult,
+  JobPreparationAndReleaseTaskExecutionInformation,
+  TaskCountsResult,
+  AccountListSupportedImagesResult,
+  ImageInformation,
+  PoolNodeCountsListResult,
+  PoolNodeCounts,
+  PoolListUsageMetricsResult,
+  PoolUsageMetrics,
+  BatchPoolCreateOptions,
+  BatchPoolListResult,
+  BatchPool,
+  AutoScaleRun,
+  BatchPoolUpdateOptions,
+  BatchPoolEnableAutoScaleOptions,
+  BatchPoolEvaluateAutoScaleOptions,
+  BatchPoolResizeOptions,
+  BatchPoolReplaceOptions,
+  NodeRemoveOptions,
+  ApplicationListResult,
+  BatchApplication,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
@@ -303,7 +303,7 @@ import {
 
 export function _listApplicationsSend(
   context: Client,
-  options: ListApplicationsOptions = { requestOptions: {} }
+  options: ListApplicationsOptions = { requestOptions: {} },
 ): StreamableMethod<
   ListApplications200Response | ListApplicationsDefaultResponse
 > {
@@ -319,7 +319,7 @@ export function _listApplicationsSend(
 }
 
 export async function _listApplicationsDeserialize(
-  result: ListApplications200Response | ListApplicationsDefaultResponse
+  result: ListApplications200Response | ListApplicationsDefaultResponse,
 ): Promise<ApplicationListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -346,20 +346,20 @@ export async function _listApplicationsDeserialize(
  */
 export function listApplications(
   context: Client,
-  options: ListApplicationsOptions = { requestOptions: {} }
+  options: ListApplicationsOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchApplication> {
   return buildPagedAsyncIterator(
     context,
     () => _listApplicationsSend(context, options),
     _listApplicationsDeserialize,
-    { itemName: "value", nextLinkName: "odata.nextLink" }
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
 export function _getApplicationSend(
   context: Client,
   applicationId: string,
-  options: GetApplicationOptions = { requestOptions: {} }
+  options: GetApplicationOptions = { requestOptions: {} },
 ): StreamableMethod<GetApplication200Response | GetApplicationDefaultResponse> {
   return context
     .path("/applications/{applicationId}", applicationId)
@@ -370,7 +370,7 @@ export function _getApplicationSend(
 }
 
 export async function _getApplicationDeserialize(
-  result: GetApplication200Response | GetApplicationDefaultResponse
+  result: GetApplication200Response | GetApplicationDefaultResponse,
 ): Promise<BatchApplication> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -393,7 +393,7 @@ export async function _getApplicationDeserialize(
 export async function getApplication(
   context: Client,
   applicationId: string,
-  options: GetApplicationOptions = { requestOptions: {} }
+  options: GetApplicationOptions = { requestOptions: {} },
 ): Promise<BatchApplication> {
   const result = await _getApplicationSend(context, applicationId, options);
   return _getApplicationDeserialize(result);
@@ -401,7 +401,7 @@ export async function getApplication(
 
 export function _listPoolUsageMetricsSend(
   context: Client,
-  options: ListPoolUsageMetricsOptions = { requestOptions: {} }
+  options: ListPoolUsageMetricsOptions = { requestOptions: {} },
 ): StreamableMethod<
   ListPoolUsageMetrics200Response | ListPoolUsageMetricsDefaultResponse
 > {
@@ -420,7 +420,7 @@ export function _listPoolUsageMetricsSend(
 }
 
 export async function _listPoolUsageMetricsDeserialize(
-  result: ListPoolUsageMetrics200Response | ListPoolUsageMetricsDefaultResponse
+  result: ListPoolUsageMetrics200Response | ListPoolUsageMetricsDefaultResponse,
 ): Promise<PoolListUsageMetricsResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -450,20 +450,20 @@ export async function _listPoolUsageMetricsDeserialize(
  */
 export function listPoolUsageMetrics(
   context: Client,
-  options: ListPoolUsageMetricsOptions = { requestOptions: {} }
+  options: ListPoolUsageMetricsOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<PoolUsageMetrics> {
   return buildPagedAsyncIterator(
     context,
     () => _listPoolUsageMetricsSend(context, options),
     _listPoolUsageMetricsDeserialize,
-    { itemName: "value", nextLinkName: "odata.nextLink" }
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
 export function _createPoolSend(
   context: Client,
   body: BatchPoolCreateOptions,
-  options: CreatePoolOptions = { requestOptions: {} }
+  options: CreatePoolOptions = { requestOptions: {} },
 ): StreamableMethod<CreatePool201Response | CreatePoolDefaultResponse> {
   return context
     .path("/pools")
@@ -826,7 +826,7 @@ export function _createPoolSend(
 }
 
 export async function _createPoolDeserialize(
-  result: CreatePool201Response | CreatePoolDefaultResponse
+  result: CreatePool201Response | CreatePoolDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -843,7 +843,7 @@ export async function _createPoolDeserialize(
 export async function createPool(
   context: Client,
   body: BatchPoolCreateOptions,
-  options: CreatePoolOptions = { requestOptions: {} }
+  options: CreatePoolOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _createPoolSend(context, body, options);
   return _createPoolDeserialize(result);
@@ -851,7 +851,7 @@ export async function createPool(
 
 export function _listPoolsSend(
   context: Client,
-  options: ListPoolsOptions = { requestOptions: {} }
+  options: ListPoolsOptions = { requestOptions: {} },
 ): StreamableMethod<ListPools200Response | ListPoolsDefaultResponse> {
   return context
     .path("/pools")
@@ -868,7 +868,7 @@ export function _listPoolsSend(
 }
 
 export async function _listPoolsDeserialize(
-  result: ListPools200Response | ListPoolsDefaultResponse
+  result: ListPools200Response | ListPoolsDefaultResponse,
 ): Promise<BatchPoolListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -1231,7 +1231,7 @@ export async function _listPoolsDeserialize(
                   : {
                       startTime: new Date(p.stats?.usageStats?.["startTime"]),
                       lastUpdateTime: new Date(
-                        p.stats?.usageStats?.["lastUpdateTime"]
+                        p.stats?.usageStats?.["lastUpdateTime"],
                       ),
                       dedicatedCoreTime:
                         p.stats?.usageStats?.["dedicatedCoreTime"],
@@ -1240,10 +1240,10 @@ export async function _listPoolsDeserialize(
                   ? undefined
                   : {
                       startTime: new Date(
-                        p.stats?.resourceStats?.["startTime"]
+                        p.stats?.resourceStats?.["startTime"],
                       ),
                       lastUpdateTime: new Date(
-                        p.stats?.resourceStats?.["lastUpdateTime"]
+                        p.stats?.resourceStats?.["lastUpdateTime"],
                       ),
                       avgCPUPercentage:
                         p.stats?.resourceStats?.["avgCPUPercentage"],
@@ -1346,20 +1346,20 @@ export async function _listPoolsDeserialize(
 /** Lists all of the Pools in the specified Account. */
 export function listPools(
   context: Client,
-  options: ListPoolsOptions = { requestOptions: {} }
+  options: ListPoolsOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchPool> {
   return buildPagedAsyncIterator(
     context,
     () => _listPoolsSend(context, options),
     _listPoolsDeserialize,
-    { itemName: "value", nextLinkName: "odata.nextLink" }
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
 export function _deletePoolSend(
   context: Client,
   poolId: string,
-  options: DeletePoolOptions = { requestOptions: {} }
+  options: DeletePoolOptions = { requestOptions: {} },
 ): StreamableMethod<DeletePool202Response | DeletePoolDefaultResponse> {
   return context
     .path("/pools/{poolId}", poolId)
@@ -1384,7 +1384,7 @@ export function _deletePoolSend(
 }
 
 export async function _deletePoolDeserialize(
-  result: DeletePool202Response | DeletePoolDefaultResponse
+  result: DeletePool202Response | DeletePoolDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -1410,7 +1410,7 @@ export async function _deletePoolDeserialize(
 export async function deletePool(
   context: Client,
   poolId: string,
-  options: DeletePoolOptions = { requestOptions: {} }
+  options: DeletePoolOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deletePoolSend(context, poolId, options);
   return _deletePoolDeserialize(result);
@@ -1419,7 +1419,7 @@ export async function deletePool(
 export function _poolExistsSend(
   context: Client,
   poolId: string,
-  options: PoolExistsOptions = { requestOptions: {} }
+  options: PoolExistsOptions = { requestOptions: {} },
 ): StreamableMethod<
   PoolExists200Response | PoolExists404Response | PoolExistsDefaultResponse
 > {
@@ -1449,7 +1449,7 @@ export async function _poolExistsDeserialize(
   result:
     | PoolExists200Response
     | PoolExists404Response
-    | PoolExistsDefaultResponse
+    | PoolExistsDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -1462,7 +1462,7 @@ export async function _poolExistsDeserialize(
 export async function poolExists(
   context: Client,
   poolId: string,
-  options: PoolExistsOptions = { requestOptions: {} }
+  options: PoolExistsOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _poolExistsSend(context, poolId, options);
   return _poolExistsDeserialize(result);
@@ -1471,7 +1471,7 @@ export async function poolExists(
 export function _getPoolSend(
   context: Client,
   poolId: string,
-  options: GetPoolOptions = { requestOptions: {} }
+  options: GetPoolOptions = { requestOptions: {} },
 ): StreamableMethod<GetPool200Response | GetPoolDefaultResponse> {
   return context
     .path("/pools/{poolId}", poolId)
@@ -1500,7 +1500,7 @@ export function _getPoolSend(
 }
 
 export async function _getPoolDeserialize(
-  result: GetPool200Response | GetPoolDefaultResponse
+  result: GetPool200Response | GetPoolDefaultResponse,
 ): Promise<BatchPool> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -1578,7 +1578,7 @@ export async function _getPoolDeserialize(
                   caching: p["caching"],
                   diskSizeGB: p["diskSizeGB"],
                   storageAccountType: p["storageAccountType"],
-                })
+                }),
               ),
           licenseType: result.body.virtualMachineConfiguration?.["licenseType"],
           containerConfiguration: !result.body.virtualMachineConfiguration
@@ -1634,7 +1634,7 @@ export async function _getPoolDeserialize(
                   settings: p["settings"],
                   protectedSettings: p["protectedSettings"],
                   provisionAfterExtensions: p["provisionAfterExtensions"],
-                })
+                }),
               ),
           osDisk: !result.body.virtualMachineConfiguration?.osDisk
             ? undefined
@@ -1862,10 +1862,10 @@ export async function _getPoolDeserialize(
             ? undefined
             : {
                 startTime: new Date(
-                  result.body.stats?.usageStats?.["startTime"]
+                  result.body.stats?.usageStats?.["startTime"],
                 ),
                 lastUpdateTime: new Date(
-                  result.body.stats?.usageStats?.["lastUpdateTime"]
+                  result.body.stats?.usageStats?.["lastUpdateTime"],
                 ),
                 dedicatedCoreTime:
                   result.body.stats?.usageStats?.["dedicatedCoreTime"],
@@ -1874,10 +1874,10 @@ export async function _getPoolDeserialize(
             ? undefined
             : {
                 startTime: new Date(
-                  result.body.stats?.resourceStats?.["startTime"]
+                  result.body.stats?.resourceStats?.["startTime"],
                 ),
                 lastUpdateTime: new Date(
-                  result.body.stats?.resourceStats?.["lastUpdateTime"]
+                  result.body.stats?.resourceStats?.["lastUpdateTime"],
                 ),
                 avgCPUPercentage:
                   result.body.stats?.resourceStats?.["avgCPUPercentage"],
@@ -1978,7 +1978,7 @@ export async function _getPoolDeserialize(
 export async function getPool(
   context: Client,
   poolId: string,
-  options: GetPoolOptions = { requestOptions: {} }
+  options: GetPoolOptions = { requestOptions: {} },
 ): Promise<BatchPool> {
   const result = await _getPoolSend(context, poolId, options);
   return _getPoolDeserialize(result);
@@ -1988,7 +1988,7 @@ export function _updatePoolSend(
   context: Client,
   poolId: string,
   body: BatchPoolUpdateOptions,
-  options: UpdatePoolOptions = { requestOptions: {} }
+  options: UpdatePoolOptions = { requestOptions: {} },
 ): StreamableMethod<UpdatePool200Response | UpdatePoolDefaultResponse> {
   return context
     .path("/pools/{poolId}", poolId)
@@ -2116,7 +2116,7 @@ export function _updatePoolSend(
 }
 
 export async function _updatePoolDeserialize(
-  result: UpdatePool200Response | UpdatePoolDefaultResponse
+  result: UpdatePool200Response | UpdatePoolDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -2134,7 +2134,7 @@ export async function updatePool(
   context: Client,
   poolId: string,
   body: BatchPoolUpdateOptions,
-  options: UpdatePoolOptions = { requestOptions: {} }
+  options: UpdatePoolOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _updatePoolSend(context, poolId, body, options);
   return _updatePoolDeserialize(result);
@@ -2143,7 +2143,7 @@ export async function updatePool(
 export function _disablePoolAutoScaleSend(
   context: Client,
   poolId: string,
-  options: DisablePoolAutoScaleOptions = { requestOptions: {} }
+  options: DisablePoolAutoScaleOptions = { requestOptions: {} },
 ): StreamableMethod<
   DisablePoolAutoScale200Response | DisablePoolAutoScaleDefaultResponse
 > {
@@ -2156,7 +2156,7 @@ export function _disablePoolAutoScaleSend(
 }
 
 export async function _disablePoolAutoScaleDeserialize(
-  result: DisablePoolAutoScale200Response | DisablePoolAutoScaleDefaultResponse
+  result: DisablePoolAutoScale200Response | DisablePoolAutoScaleDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -2169,7 +2169,7 @@ export async function _disablePoolAutoScaleDeserialize(
 export async function disablePoolAutoScale(
   context: Client,
   poolId: string,
-  options: DisablePoolAutoScaleOptions = { requestOptions: {} }
+  options: DisablePoolAutoScaleOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _disablePoolAutoScaleSend(context, poolId, options);
   return _disablePoolAutoScaleDeserialize(result);
@@ -2179,7 +2179,7 @@ export function _enablePoolAutoScaleSend(
   context: Client,
   poolId: string,
   body: BatchPoolEnableAutoScaleOptions,
-  options: EnablePoolAutoScaleOptions = { requestOptions: {} }
+  options: EnablePoolAutoScaleOptions = { requestOptions: {} },
 ): StreamableMethod<
   EnablePoolAutoScale200Response | EnablePoolAutoScaleDefaultResponse
 > {
@@ -2213,7 +2213,7 @@ export function _enablePoolAutoScaleSend(
 }
 
 export async function _enablePoolAutoScaleDeserialize(
-  result: EnablePoolAutoScale200Response | EnablePoolAutoScaleDefaultResponse
+  result: EnablePoolAutoScale200Response | EnablePoolAutoScaleDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -2234,7 +2234,7 @@ export async function enablePoolAutoScale(
   context: Client,
   poolId: string,
   body: BatchPoolEnableAutoScaleOptions,
-  options: EnablePoolAutoScaleOptions = { requestOptions: {} }
+  options: EnablePoolAutoScaleOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _enablePoolAutoScaleSend(context, poolId, body, options);
   return _enablePoolAutoScaleDeserialize(result);
@@ -2244,7 +2244,7 @@ export function _evaluatePoolAutoScaleSend(
   context: Client,
   poolId: string,
   body: BatchPoolEvaluateAutoScaleOptions,
-  options: EvaluatePoolAutoScaleOptions = { requestOptions: {} }
+  options: EvaluatePoolAutoScaleOptions = { requestOptions: {} },
 ): StreamableMethod<
   EvaluatePoolAutoScale200Response | EvaluatePoolAutoScaleDefaultResponse
 > {
@@ -2263,7 +2263,7 @@ export function _evaluatePoolAutoScaleSend(
 export async function _evaluatePoolAutoScaleDeserialize(
   result:
     | EvaluatePoolAutoScale200Response
-    | EvaluatePoolAutoScaleDefaultResponse
+    | EvaluatePoolAutoScaleDefaultResponse,
 ): Promise<AutoScaleRun> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -2296,13 +2296,13 @@ export async function evaluatePoolAutoScale(
   context: Client,
   poolId: string,
   body: BatchPoolEvaluateAutoScaleOptions,
-  options: EvaluatePoolAutoScaleOptions = { requestOptions: {} }
+  options: EvaluatePoolAutoScaleOptions = { requestOptions: {} },
 ): Promise<AutoScaleRun> {
   const result = await _evaluatePoolAutoScaleSend(
     context,
     poolId,
     body,
-    options
+    options,
   );
   return _evaluatePoolAutoScaleDeserialize(result);
 }
@@ -2311,7 +2311,7 @@ export function _resizePoolSend(
   context: Client,
   poolId: string,
   body: BatchPoolResizeOptions,
-  options: ResizePoolOptions = { requestOptions: {} }
+  options: ResizePoolOptions = { requestOptions: {} },
 ): StreamableMethod<ResizePool202Response | ResizePoolDefaultResponse> {
   return context
     .path("/pools/{poolId}/resize", poolId)
@@ -2345,7 +2345,7 @@ export function _resizePoolSend(
 }
 
 export async function _resizePoolDeserialize(
-  result: ResizePool202Response | ResizePoolDefaultResponse
+  result: ResizePool202Response | ResizePoolDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -2367,7 +2367,7 @@ export async function resizePool(
   context: Client,
   poolId: string,
   body: BatchPoolResizeOptions,
-  options: ResizePoolOptions = { requestOptions: {} }
+  options: ResizePoolOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _resizePoolSend(context, poolId, body, options);
   return _resizePoolDeserialize(result);
@@ -2376,7 +2376,7 @@ export async function resizePool(
 export function _stopPoolResizeSend(
   context: Client,
   poolId: string,
-  options: StopPoolResizeOptions = { requestOptions: {} }
+  options: StopPoolResizeOptions = { requestOptions: {} },
 ): StreamableMethod<StopPoolResize202Response | StopPoolResizeDefaultResponse> {
   return context
     .path("/pools/{poolId}/stopresize", poolId)
@@ -2401,7 +2401,7 @@ export function _stopPoolResizeSend(
 }
 
 export async function _stopPoolResizeDeserialize(
-  result: StopPoolResize202Response | StopPoolResizeDefaultResponse
+  result: StopPoolResize202Response | StopPoolResizeDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -2422,7 +2422,7 @@ export async function _stopPoolResizeDeserialize(
 export async function stopPoolResize(
   context: Client,
   poolId: string,
-  options: StopPoolResizeOptions = { requestOptions: {} }
+  options: StopPoolResizeOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _stopPoolResizeSend(context, poolId, options);
   return _stopPoolResizeDeserialize(result);
@@ -2432,7 +2432,7 @@ export function _replacePoolPropertiesSend(
   context: Client,
   poolId: string,
   body: BatchPoolReplaceOptions,
-  options: ReplacePoolPropertiesOptions = { requestOptions: {} }
+  options: ReplacePoolPropertiesOptions = { requestOptions: {} },
 ): StreamableMethod<
   ReplacePoolProperties204Response | ReplacePoolPropertiesDefaultResponse
 > {
@@ -2529,7 +2529,7 @@ export function _replacePoolPropertiesSend(
           visibility: p["visibility"],
         })),
         applicationPackageReferences: body["applicationPackageReferences"].map(
-          (p) => ({ applicationId: p["applicationId"], version: p["version"] })
+          (p) => ({ applicationId: p["applicationId"], version: p["version"] }),
         ),
         metadata: body["metadata"].map((p) => ({
           name: p["name"],
@@ -2543,7 +2543,7 @@ export function _replacePoolPropertiesSend(
 export async function _replacePoolPropertiesDeserialize(
   result:
     | ReplacePoolProperties204Response
-    | ReplacePoolPropertiesDefaultResponse
+    | ReplacePoolPropertiesDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -2561,13 +2561,13 @@ export async function replacePoolProperties(
   context: Client,
   poolId: string,
   body: BatchPoolReplaceOptions,
-  options: ReplacePoolPropertiesOptions = { requestOptions: {} }
+  options: ReplacePoolPropertiesOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _replacePoolPropertiesSend(
     context,
     poolId,
     body,
-    options
+    options,
   );
   return _replacePoolPropertiesDeserialize(result);
 }
@@ -2576,7 +2576,7 @@ export function _removeNodesSend(
   context: Client,
   poolId: string,
   body: NodeRemoveOptions,
-  options: RemoveNodesOptions = { requestOptions: {} }
+  options: RemoveNodesOptions = { requestOptions: {} },
 ): StreamableMethod<RemoveNodes202Response | RemoveNodesDefaultResponse> {
   return context
     .path("/pools/{poolId}/removenodes", poolId)
@@ -2609,7 +2609,7 @@ export function _removeNodesSend(
 }
 
 export async function _removeNodesDeserialize(
-  result: RemoveNodes202Response | RemoveNodesDefaultResponse
+  result: RemoveNodes202Response | RemoveNodesDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -2627,7 +2627,7 @@ export async function removeNodes(
   context: Client,
   poolId: string,
   body: NodeRemoveOptions,
-  options: RemoveNodesOptions = { requestOptions: {} }
+  options: RemoveNodesOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _removeNodesSend(context, poolId, body, options);
   return _removeNodesDeserialize(result);
@@ -2635,7 +2635,7 @@ export async function removeNodes(
 
 export function _listSupportedImagesSend(
   context: Client,
-  options: ListSupportedImagesOptions = { requestOptions: {} }
+  options: ListSupportedImagesOptions = { requestOptions: {} },
 ): StreamableMethod<
   ListSupportedImages200Response | ListSupportedImagesDefaultResponse
 > {
@@ -2652,7 +2652,7 @@ export function _listSupportedImagesSend(
 }
 
 export async function _listSupportedImagesDeserialize(
-  result: ListSupportedImages200Response | ListSupportedImagesDefaultResponse
+  result: ListSupportedImages200Response | ListSupportedImagesDefaultResponse,
 ): Promise<AccountListSupportedImagesResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -2686,19 +2686,19 @@ export async function _listSupportedImagesDeserialize(
 /** Lists all Virtual Machine Images supported by the Azure Batch service. */
 export function listSupportedImages(
   context: Client,
-  options: ListSupportedImagesOptions = { requestOptions: {} }
+  options: ListSupportedImagesOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<ImageInformation> {
   return buildPagedAsyncIterator(
     context,
     () => _listSupportedImagesSend(context, options),
     _listSupportedImagesDeserialize,
-    { itemName: "value", nextLinkName: "odata.nextLink" }
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
 export function _listPoolNodeCountsSend(
   context: Client,
-  options: ListPoolNodeCountsOptions = { requestOptions: {} }
+  options: ListPoolNodeCountsOptions = { requestOptions: {} },
 ): StreamableMethod<
   ListPoolNodeCounts200Response | ListPoolNodeCountsDefaultResponse
 > {
@@ -2715,7 +2715,7 @@ export function _listPoolNodeCountsSend(
 }
 
 export async function _listPoolNodeCountsDeserialize(
-  result: ListPoolNodeCounts200Response | ListPoolNodeCountsDefaultResponse
+  result: ListPoolNodeCounts200Response | ListPoolNodeCountsDefaultResponse,
 ): Promise<PoolNodeCountsListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -2774,20 +2774,20 @@ export async function _listPoolNodeCountsDeserialize(
  */
 export function listPoolNodeCounts(
   context: Client,
-  options: ListPoolNodeCountsOptions = { requestOptions: {} }
+  options: ListPoolNodeCountsOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<PoolNodeCounts> {
   return buildPagedAsyncIterator(
     context,
     () => _listPoolNodeCountsSend(context, options),
     _listPoolNodeCountsDeserialize,
-    { itemName: "value", nextLinkName: "odata.nextLink" }
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
 export function _deleteJobSend(
   context: Client,
   jobId: string,
-  options: DeleteJobOptions = { requestOptions: {} }
+  options: DeleteJobOptions = { requestOptions: {} },
 ): StreamableMethod<DeleteJob202Response | DeleteJobDefaultResponse> {
   return context
     .path("/jobs/{jobId}", jobId)
@@ -2812,7 +2812,7 @@ export function _deleteJobSend(
 }
 
 export async function _deleteJobDeserialize(
-  result: DeleteJob202Response | DeleteJobDefaultResponse
+  result: DeleteJob202Response | DeleteJobDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -2834,7 +2834,7 @@ export async function _deleteJobDeserialize(
 export async function deleteJob(
   context: Client,
   jobId: string,
-  options: DeleteJobOptions = { requestOptions: {} }
+  options: DeleteJobOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteJobSend(context, jobId, options);
   return _deleteJobDeserialize(result);
@@ -2843,7 +2843,7 @@ export async function deleteJob(
 export function _getJobSend(
   context: Client,
   jobId: string,
-  options: GetJobOptions = { requestOptions: {} }
+  options: GetJobOptions = { requestOptions: {} },
 ): StreamableMethod<GetJob200Response | GetJobDefaultResponse> {
   return context
     .path("/jobs/{jobId}", jobId)
@@ -2872,7 +2872,7 @@ export function _getJobSend(
 }
 
 export async function _getJobDeserialize(
-  result: GetJob200Response | GetJobDefaultResponse
+  result: GetJob200Response | GetJobDefaultResponse,
 ): Promise<BatchJob> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -2990,7 +2990,7 @@ export async function _getJobDeserialize(
                         ]
                           ? p.destination.container?.["uploadHeaders"]
                           : p.destination.container?.["uploadHeaders"].map(
-                              (p) => ({ name: p["name"], value: p["value"] })
+                              (p) => ({ name: p["name"], value: p["value"] }),
                             ),
                       },
                 },
@@ -3048,7 +3048,7 @@ export async function _getJobDeserialize(
                 (p) => ({
                   applicationId: p["applicationId"],
                   version: p["version"],
-                })
+                }),
               ),
           authenticationTokenSettings: !result.body.jobManagerTask
             ?.authenticationTokenSettings
@@ -3123,7 +3123,7 @@ export async function _getJobDeserialize(
           ]
             ? result.body.jobPreparationTask?.["environmentSettings"]
             : result.body.jobPreparationTask?.["environmentSettings"].map(
-                (p) => ({ name: p["name"], value: p["value"] })
+                (p) => ({ name: p["name"], value: p["value"] }),
               ),
           constraints: !result.body.jobPreparationTask?.constraints
             ? undefined
@@ -3531,7 +3531,7 @@ export async function _getJobDeserialize(
                                             p["sourceAddressPrefix"],
                                           sourcePortRanges:
                                             p["sourcePortRanges"],
-                                        })
+                                        }),
                                       ),
                                 })),
                             },
@@ -3875,7 +3875,7 @@ export async function _getJobDeserialize(
                 ]
                   ? result.body.executionInfo?.schedulingError?.["details"]
                   : result.body.executionInfo?.schedulingError?.["details"].map(
-                      (p) => ({ name: p["name"], value: p["value"] })
+                      (p) => ({ name: p["name"], value: p["value"] }),
                     ),
               },
           terminateReason: result.body.executionInfo?.["terminateReason"],
@@ -3905,7 +3905,7 @@ export async function _getJobDeserialize(
 export async function getJob(
   context: Client,
   jobId: string,
-  options: GetJobOptions = { requestOptions: {} }
+  options: GetJobOptions = { requestOptions: {} },
 ): Promise<BatchJob> {
   const result = await _getJobSend(context, jobId, options);
   return _getJobDeserialize(result);
@@ -3915,7 +3915,7 @@ export function _updateJobSend(
   context: Client,
   jobId: string,
   body: BatchJobUpdateOptions,
-  options: UpdateJobOptions = { requestOptions: {} }
+  options: UpdateJobOptions = { requestOptions: {} },
 ): StreamableMethod<UpdateJob200Response | UpdateJobDefaultResponse> {
   return context
     .path("/jobs/{jobId}", jobId)
@@ -4625,7 +4625,7 @@ export function _updateJobSend(
 }
 
 export async function _updateJobDeserialize(
-  result: UpdateJob200Response | UpdateJobDefaultResponse
+  result: UpdateJob200Response | UpdateJobDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -4643,7 +4643,7 @@ export async function updateJob(
   context: Client,
   jobId: string,
   body: BatchJobUpdateOptions,
-  options: UpdateJobOptions = { requestOptions: {} }
+  options: UpdateJobOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _updateJobSend(context, jobId, body, options);
   return _updateJobDeserialize(result);
@@ -4653,7 +4653,7 @@ export function _replaceJobSend(
   context: Client,
   jobId: string,
   body: BatchJob,
-  options: ReplaceJobOptions = { requestOptions: {} }
+  options: ReplaceJobOptions = { requestOptions: {} },
 ): StreamableMethod<ReplaceJob200Response | ReplaceJobDefaultResponse> {
   return context
     .path("/jobs/{jobId}", jobId)
@@ -4968,7 +4968,7 @@ export function _replaceJobSend(
                                                 p["sourceAddressPrefix"],
                                               sourcePortRanges:
                                                 p["sourcePortRanges"],
-                                            })
+                                            }),
                                           ),
                                     })),
                                 },
@@ -5307,7 +5307,7 @@ export function _replaceJobSend(
 }
 
 export async function _replaceJobDeserialize(
-  result: ReplaceJob200Response | ReplaceJobDefaultResponse
+  result: ReplaceJob200Response | ReplaceJobDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -5325,7 +5325,7 @@ export async function replaceJob(
   context: Client,
   jobId: string,
   body: BatchJob,
-  options: ReplaceJobOptions = { requestOptions: {} }
+  options: ReplaceJobOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _replaceJobSend(context, jobId, body, options);
   return _replaceJobDeserialize(result);
@@ -5335,7 +5335,7 @@ export function _disableJobSend(
   context: Client,
   jobId: string,
   body: BatchJobDisableOptions,
-  options: DisableJobOptions = { requestOptions: {} }
+  options: DisableJobOptions = { requestOptions: {} },
 ): StreamableMethod<DisableJob202Response | DisableJobDefaultResponse> {
   return context
     .path("/jobs/{jobId}/disable", jobId)
@@ -5364,7 +5364,7 @@ export function _disableJobSend(
 }
 
 export async function _disableJobDeserialize(
-  result: DisableJob202Response | DisableJobDefaultResponse
+  result: DisableJob202Response | DisableJobDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -5387,7 +5387,7 @@ export async function disableJob(
   context: Client,
   jobId: string,
   body: BatchJobDisableOptions,
-  options: DisableJobOptions = { requestOptions: {} }
+  options: DisableJobOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _disableJobSend(context, jobId, body, options);
   return _disableJobDeserialize(result);
@@ -5396,7 +5396,7 @@ export async function disableJob(
 export function _enableJobSend(
   context: Client,
   jobId: string,
-  options: EnableJobOptions = { requestOptions: {} }
+  options: EnableJobOptions = { requestOptions: {} },
 ): StreamableMethod<EnableJob202Response | EnableJobDefaultResponse> {
   return context
     .path("/jobs/{jobId}/enable", jobId)
@@ -5421,7 +5421,7 @@ export function _enableJobSend(
 }
 
 export async function _enableJobDeserialize(
-  result: EnableJob202Response | EnableJobDefaultResponse
+  result: EnableJob202Response | EnableJobDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -5441,7 +5441,7 @@ export async function _enableJobDeserialize(
 export async function enableJob(
   context: Client,
   jobId: string,
-  options: EnableJobOptions = { requestOptions: {} }
+  options: EnableJobOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _enableJobSend(context, jobId, options);
   return _enableJobDeserialize(result);
@@ -5451,7 +5451,7 @@ export function _terminateJobSend(
   context: Client,
   jobId: string,
   body: BatchJobTerminateOptions,
-  options: TerminateJobOptions = { requestOptions: {} }
+  options: TerminateJobOptions = { requestOptions: {} },
 ): StreamableMethod<TerminateJob202Response | TerminateJobDefaultResponse> {
   return context
     .path("/jobs/{jobId}/terminate", jobId)
@@ -5480,7 +5480,7 @@ export function _terminateJobSend(
 }
 
 export async function _terminateJobDeserialize(
-  result: TerminateJob202Response | TerminateJobDefaultResponse
+  result: TerminateJob202Response | TerminateJobDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -5501,7 +5501,7 @@ export async function terminateJob(
   context: Client,
   jobId: string,
   body: BatchJobTerminateOptions,
-  options: TerminateJobOptions = { requestOptions: {} }
+  options: TerminateJobOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _terminateJobSend(context, jobId, body, options);
   return _terminateJobDeserialize(result);
@@ -5510,7 +5510,7 @@ export async function terminateJob(
 export function _createJobSend(
   context: Client,
   body: BatchJobCreateOptions,
-  options: CreateJobOptions = { requestOptions: {} }
+  options: CreateJobOptions = { requestOptions: {} },
 ): StreamableMethod<CreateJob201Response | CreateJobDefaultResponse> {
   return context
     .path("/jobs")
@@ -5619,7 +5619,7 @@ export function _createJobSend(
                                   (p) => ({
                                     name: p["name"],
                                     value: p["value"],
-                                  })
+                                  }),
                                 ),
                           },
                     },
@@ -5671,7 +5671,7 @@ export function _createJobSend(
                     (p) => ({
                       applicationId: p["applicationId"],
                       version: p["version"],
-                    })
+                    }),
                   ),
               authenticationTokenSettings: !body.jobManagerTask
                 ?.authenticationTokenSettings
@@ -6156,7 +6156,7 @@ export function _createJobSend(
                                                 p["sourceAddressPrefix"],
                                               sourcePortRanges:
                                                 p["sourcePortRanges"],
-                                            })
+                                            }),
                                           ),
                                     })),
                                 },
@@ -6499,7 +6499,7 @@ export function _createJobSend(
 }
 
 export async function _createJobDeserialize(
-  result: CreateJob201Response | CreateJobDefaultResponse
+  result: CreateJob201Response | CreateJobDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -6522,7 +6522,7 @@ export async function _createJobDeserialize(
 export async function createJob(
   context: Client,
   body: BatchJobCreateOptions,
-  options: CreateJobOptions = { requestOptions: {} }
+  options: CreateJobOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _createJobSend(context, body, options);
   return _createJobDeserialize(result);
@@ -6530,7 +6530,7 @@ export async function createJob(
 
 export function _listJobsSend(
   context: Client,
-  options: ListJobsOptions = { requestOptions: {} }
+  options: ListJobsOptions = { requestOptions: {} },
 ): StreamableMethod<ListJobs200Response | ListJobsDefaultResponse> {
   return context
     .path("/jobs")
@@ -6547,7 +6547,7 @@ export function _listJobsSend(
 }
 
 export async function _listJobsDeserialize(
-  result: ListJobs200Response | ListJobsDefaultResponse
+  result: ListJobs200Response | ListJobsDefaultResponse,
 ): Promise<BatchJobListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -6727,7 +6727,7 @@ export async function _listJobsDeserialize(
                       (p) => ({
                         applicationId: p["applicationId"],
                         version: p["version"],
-                      })
+                      }),
                     ),
                 authenticationTokenSettings: !p.jobManagerTask
                   ?.authenticationTokenSettings
@@ -7220,7 +7220,7 @@ export async function _listJobsDeserialize(
                                                   p["sourceAddressPrefix"],
                                                 sourcePortRanges:
                                                   p["sourcePortRanges"],
-                                              })
+                                              }),
                                             ),
                                       })),
                                   },
@@ -7591,7 +7591,7 @@ export async function _listJobsDeserialize(
                       details: !p.executionInfo?.schedulingError?.["details"]
                         ? p.executionInfo?.schedulingError?.["details"]
                         : p.executionInfo?.schedulingError?.["details"].map(
-                            (p) => ({ name: p["name"], value: p["value"] })
+                            (p) => ({ name: p["name"], value: p["value"] }),
                           ),
                     },
                 terminateReason: p.executionInfo?.["terminateReason"],
@@ -7622,20 +7622,20 @@ export async function _listJobsDeserialize(
 /** Lists all of the Jobs in the specified Account. */
 export function listJobs(
   context: Client,
-  options: ListJobsOptions = { requestOptions: {} }
+  options: ListJobsOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchJob> {
   return buildPagedAsyncIterator(
     context,
     () => _listJobsSend(context, options),
     _listJobsDeserialize,
-    { itemName: "value", nextLinkName: "odata.nextLink" }
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
 export function _listJobsFromScheduleSend(
   context: Client,
   jobScheduleId: string,
-  options: ListJobsFromScheduleOptions = { requestOptions: {} }
+  options: ListJobsFromScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
   ListJobsFromSchedule200Response | ListJobsFromScheduleDefaultResponse
 > {
@@ -7654,7 +7654,7 @@ export function _listJobsFromScheduleSend(
 }
 
 export async function _listJobsFromScheduleDeserialize(
-  result: ListJobsFromSchedule200Response | ListJobsFromScheduleDefaultResponse
+  result: ListJobsFromSchedule200Response | ListJobsFromScheduleDefaultResponse,
 ): Promise<BatchJobListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -7834,7 +7834,7 @@ export async function _listJobsFromScheduleDeserialize(
                       (p) => ({
                         applicationId: p["applicationId"],
                         version: p["version"],
-                      })
+                      }),
                     ),
                 authenticationTokenSettings: !p.jobManagerTask
                   ?.authenticationTokenSettings
@@ -8327,7 +8327,7 @@ export async function _listJobsFromScheduleDeserialize(
                                                   p["sourceAddressPrefix"],
                                                 sourcePortRanges:
                                                   p["sourcePortRanges"],
-                                              })
+                                              }),
                                             ),
                                       })),
                                   },
@@ -8698,7 +8698,7 @@ export async function _listJobsFromScheduleDeserialize(
                       details: !p.executionInfo?.schedulingError?.["details"]
                         ? p.executionInfo?.schedulingError?.["details"]
                         : p.executionInfo?.schedulingError?.["details"].map(
-                            (p) => ({ name: p["name"], value: p["value"] })
+                            (p) => ({ name: p["name"], value: p["value"] }),
                           ),
                     },
                 terminateReason: p.executionInfo?.["terminateReason"],
@@ -8730,13 +8730,13 @@ export async function _listJobsFromScheduleDeserialize(
 export function listJobsFromSchedule(
   context: Client,
   jobScheduleId: string,
-  options: ListJobsFromScheduleOptions = { requestOptions: {} }
+  options: ListJobsFromScheduleOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchJob> {
   return buildPagedAsyncIterator(
     context,
     () => _listJobsFromScheduleSend(context, jobScheduleId, options),
     _listJobsFromScheduleDeserialize,
-    { itemName: "value", nextLinkName: "odata.nextLink" }
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -8745,7 +8745,7 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
   jobId: string,
   options: ListJobPreparationAndReleaseTaskStatusOptions = {
     requestOptions: {},
-  }
+  },
 ): StreamableMethod<
   | ListJobPreparationAndReleaseTaskStatus200Response
   | ListJobPreparationAndReleaseTaskStatusDefaultResponse
@@ -8766,7 +8766,7 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
 export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
   result:
     | ListJobPreparationAndReleaseTaskStatus200Response
-    | ListJobPreparationAndReleaseTaskStatusDefaultResponse
+    | ListJobPreparationAndReleaseTaskStatusDefaultResponse,
 ): Promise<BatchJobListPreparationAndReleaseTaskStatusResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -8783,7 +8783,7 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
             ? undefined
             : {
                 startTime: new Date(
-                  p.jobPreparationTaskExecutionInfo?.["startTime"]
+                  p.jobPreparationTaskExecutionInfo?.["startTime"],
                 ),
                 endTime:
                   p.jobPreparationTaskExecutionInfo?.["endTime"] !== undefined
@@ -8842,7 +8842,7 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
                   p.jobPreparationTaskExecutionInfo?.["lastRetryTime"] !==
                   undefined
                     ? new Date(
-                        p.jobPreparationTaskExecutionInfo?.["lastRetryTime"]
+                        p.jobPreparationTaskExecutionInfo?.["lastRetryTime"],
                       )
                     : undefined,
                 result: p.jobPreparationTaskExecutionInfo?.["result"],
@@ -8851,7 +8851,7 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
             ? undefined
             : {
                 startTime: new Date(
-                  p.jobReleaseTaskExecutionInfo?.["startTime"]
+                  p.jobReleaseTaskExecutionInfo?.["startTime"],
                 ),
                 endTime:
                   p.jobReleaseTaskExecutionInfo?.["endTime"] !== undefined
@@ -8920,20 +8920,20 @@ export function listJobPreparationAndReleaseTaskStatus(
   jobId: string,
   options: ListJobPreparationAndReleaseTaskStatusOptions = {
     requestOptions: {},
-  }
+  },
 ): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation> {
   return buildPagedAsyncIterator(
     context,
     () => _listJobPreparationAndReleaseTaskStatusSend(context, jobId, options),
     _listJobPreparationAndReleaseTaskStatusDeserialize,
-    { itemName: "value", nextLinkName: "odata.nextLink" }
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
 export function _getJobTaskCountsSend(
   context: Client,
   jobId: string,
-  options: GetJobTaskCountsOptions = { requestOptions: {} }
+  options: GetJobTaskCountsOptions = { requestOptions: {} },
 ): StreamableMethod<
   GetJobTaskCounts200Response | GetJobTaskCountsDefaultResponse
 > {
@@ -8946,7 +8946,7 @@ export function _getJobTaskCountsSend(
 }
 
 export async function _getJobTaskCountsDeserialize(
-  result: GetJobTaskCounts200Response | GetJobTaskCountsDefaultResponse
+  result: GetJobTaskCounts200Response | GetJobTaskCountsDefaultResponse,
 ): Promise<TaskCountsResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -8979,7 +8979,7 @@ export async function _getJobTaskCountsDeserialize(
 export async function getJobTaskCounts(
   context: Client,
   jobId: string,
-  options: GetJobTaskCountsOptions = { requestOptions: {} }
+  options: GetJobTaskCountsOptions = { requestOptions: {} },
 ): Promise<TaskCountsResult> {
   const result = await _getJobTaskCountsSend(context, jobId, options);
   return _getJobTaskCountsDeserialize(result);
@@ -8988,7 +8988,7 @@ export async function getJobTaskCounts(
 export function _createCertificateSend(
   context: Client,
   body: BatchCertificate,
-  options: CreateCertificateOptions = { requestOptions: {} }
+  options: CreateCertificateOptions = { requestOptions: {} },
 ): StreamableMethod<
   CreateCertificate201Response | CreateCertificateDefaultResponse
 > {
@@ -9011,7 +9011,7 @@ export function _createCertificateSend(
 }
 
 export async function _createCertificateDeserialize(
-  result: CreateCertificate201Response | CreateCertificateDefaultResponse
+  result: CreateCertificate201Response | CreateCertificateDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -9024,7 +9024,7 @@ export async function _createCertificateDeserialize(
 export async function createCertificate(
   context: Client,
   body: BatchCertificate,
-  options: CreateCertificateOptions = { requestOptions: {} }
+  options: CreateCertificateOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _createCertificateSend(context, body, options);
   return _createCertificateDeserialize(result);
@@ -9032,7 +9032,7 @@ export async function createCertificate(
 
 export function _listCertificatesSend(
   context: Client,
-  options: ListCertificatesOptions = { requestOptions: {} }
+  options: ListCertificatesOptions = { requestOptions: {} },
 ): StreamableMethod<
   ListCertificates200Response | ListCertificatesDefaultResponse
 > {
@@ -9050,7 +9050,7 @@ export function _listCertificatesSend(
 }
 
 export async function _listCertificatesDeserialize(
-  result: ListCertificates200Response | ListCertificatesDefaultResponse
+  result: ListCertificates200Response | ListCertificatesDefaultResponse,
 ): Promise<CertificateListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -9103,13 +9103,13 @@ export async function _listCertificatesDeserialize(
 /** Lists all of the Certificates that have been added to the specified Account. */
 export function listCertificates(
   context: Client,
-  options: ListCertificatesOptions = { requestOptions: {} }
+  options: ListCertificatesOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchCertificate> {
   return buildPagedAsyncIterator(
     context,
     () => _listCertificatesSend(context, options),
     _listCertificatesDeserialize,
-    { itemName: "value", nextLinkName: "odata.nextLink" }
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -9117,7 +9117,7 @@ export function _cancelCertificateDeletionSend(
   context: Client,
   thumbprintAlgorithm: string,
   thumbprint: string,
-  options: CancelCertificateDeletionOptions = { requestOptions: {} }
+  options: CancelCertificateDeletionOptions = { requestOptions: {} },
 ): StreamableMethod<
   | CancelCertificateDeletion204Response
   | CancelCertificateDeletionDefaultResponse
@@ -9126,7 +9126,7 @@ export function _cancelCertificateDeletionSend(
     .path(
       "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})/canceldelete",
       thumbprintAlgorithm,
-      thumbprint
+      thumbprint,
     )
     .post({
       ...operationOptionsToRequestParameters(options),
@@ -9137,7 +9137,7 @@ export function _cancelCertificateDeletionSend(
 export async function _cancelCertificateDeletionDeserialize(
   result:
     | CancelCertificateDeletion204Response
-    | CancelCertificateDeletionDefaultResponse
+    | CancelCertificateDeletionDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -9159,13 +9159,13 @@ export async function cancelCertificateDeletion(
   context: Client,
   thumbprintAlgorithm: string,
   thumbprint: string,
-  options: CancelCertificateDeletionOptions = { requestOptions: {} }
+  options: CancelCertificateDeletionOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _cancelCertificateDeletionSend(
     context,
     thumbprintAlgorithm,
     thumbprint,
-    options
+    options,
   );
   return _cancelCertificateDeletionDeserialize(result);
 }
@@ -9174,7 +9174,7 @@ export function _deleteCertificateSend(
   context: Client,
   thumbprintAlgorithm: string,
   thumbprint: string,
-  options: DeleteCertificateOptions = { requestOptions: {} }
+  options: DeleteCertificateOptions = { requestOptions: {} },
 ): StreamableMethod<
   DeleteCertificate202Response | DeleteCertificateDefaultResponse
 > {
@@ -9182,7 +9182,7 @@ export function _deleteCertificateSend(
     .path(
       "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})",
       thumbprintAlgorithm,
-      thumbprint
+      thumbprint,
     )
     .delete({
       ...operationOptionsToRequestParameters(options),
@@ -9191,7 +9191,7 @@ export function _deleteCertificateSend(
 }
 
 export async function _deleteCertificateDeserialize(
-  result: DeleteCertificate202Response | DeleteCertificateDefaultResponse
+  result: DeleteCertificate202Response | DeleteCertificateDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -9215,13 +9215,13 @@ export async function deleteCertificate(
   context: Client,
   thumbprintAlgorithm: string,
   thumbprint: string,
-  options: DeleteCertificateOptions = { requestOptions: {} }
+  options: DeleteCertificateOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteCertificateSend(
     context,
     thumbprintAlgorithm,
     thumbprint,
-    options
+    options,
   );
   return _deleteCertificateDeserialize(result);
 }
@@ -9230,13 +9230,13 @@ export function _getCertificateSend(
   context: Client,
   thumbprintAlgorithm: string,
   thumbprint: string,
-  options: GetCertificateOptions = { requestOptions: {} }
+  options: GetCertificateOptions = { requestOptions: {} },
 ): StreamableMethod<GetCertificate200Response | GetCertificateDefaultResponse> {
   return context
     .path(
       "/certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})",
       thumbprintAlgorithm,
-      thumbprint
+      thumbprint,
     )
     .get({
       ...operationOptionsToRequestParameters(options),
@@ -9245,7 +9245,7 @@ export function _getCertificateSend(
 }
 
 export async function _getCertificateDeserialize(
-  result: GetCertificate200Response | GetCertificateDefaultResponse
+  result: GetCertificate200Response | GetCertificateDefaultResponse,
 ): Promise<BatchCertificate> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -9295,13 +9295,13 @@ export async function getCertificate(
   context: Client,
   thumbprintAlgorithm: string,
   thumbprint: string,
-  options: GetCertificateOptions = { requestOptions: {} }
+  options: GetCertificateOptions = { requestOptions: {} },
 ): Promise<BatchCertificate> {
   const result = await _getCertificateSend(
     context,
     thumbprintAlgorithm,
     thumbprint,
-    options
+    options,
   );
   return _getCertificateDeserialize(result);
 }
@@ -9309,7 +9309,7 @@ export async function getCertificate(
 export function _jobScheduleExistsSend(
   context: Client,
   jobScheduleId: string,
-  options: JobScheduleExistsOptions = { requestOptions: {} }
+  options: JobScheduleExistsOptions = { requestOptions: {} },
 ): StreamableMethod<
   | JobScheduleExists200Response
   | JobScheduleExists404Response
@@ -9341,7 +9341,7 @@ export async function _jobScheduleExistsDeserialize(
   result:
     | JobScheduleExists200Response
     | JobScheduleExists404Response
-    | JobScheduleExistsDefaultResponse
+    | JobScheduleExistsDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -9354,7 +9354,7 @@ export async function _jobScheduleExistsDeserialize(
 export async function jobScheduleExists(
   context: Client,
   jobScheduleId: string,
-  options: JobScheduleExistsOptions = { requestOptions: {} }
+  options: JobScheduleExistsOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _jobScheduleExistsSend(context, jobScheduleId, options);
   return _jobScheduleExistsDeserialize(result);
@@ -9363,7 +9363,7 @@ export async function jobScheduleExists(
 export function _deleteJobScheduleSend(
   context: Client,
   jobScheduleId: string,
-  options: DeleteJobScheduleOptions = { requestOptions: {} }
+  options: DeleteJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
   DeleteJobSchedule202Response | DeleteJobScheduleDefaultResponse
 > {
@@ -9390,7 +9390,7 @@ export function _deleteJobScheduleSend(
 }
 
 export async function _deleteJobScheduleDeserialize(
-  result: DeleteJobSchedule202Response | DeleteJobScheduleDefaultResponse
+  result: DeleteJobSchedule202Response | DeleteJobScheduleDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -9409,7 +9409,7 @@ export async function _deleteJobScheduleDeserialize(
 export async function deleteJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: DeleteJobScheduleOptions = { requestOptions: {} }
+  options: DeleteJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteJobScheduleSend(context, jobScheduleId, options);
   return _deleteJobScheduleDeserialize(result);
@@ -9418,7 +9418,7 @@ export async function deleteJobSchedule(
 export function _getJobScheduleSend(
   context: Client,
   jobScheduleId: string,
-  options: GetJobScheduleOptions = { requestOptions: {} }
+  options: GetJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<GetJobSchedule200Response | GetJobScheduleDefaultResponse> {
   return context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
@@ -9447,7 +9447,7 @@ export function _getJobScheduleSend(
 }
 
 export async function _getJobScheduleDeserialize(
-  result: GetJobSchedule200Response | GetJobScheduleDefaultResponse
+  result: GetJobSchedule200Response | GetJobScheduleDefaultResponse,
 ): Promise<BatchJobSchedule> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -9603,7 +9603,7 @@ export async function _getJobScheduleDeserialize(
                           ]
                             ? p.destination.container?.["uploadHeaders"]
                             : p.destination.container?.["uploadHeaders"].map(
-                                (p) => ({ name: p["name"], value: p["value"] })
+                                (p) => ({ name: p["name"], value: p["value"] }),
                               ),
                         },
                   },
@@ -9902,7 +9902,7 @@ export async function _getJobScheduleDeserialize(
       ]
         ? result.body.jobSpecification["commonEnvironmentSettings"]
         : result.body.jobSpecification["commonEnvironmentSettings"].map(
-            (p) => ({ name: p["name"], value: p["value"] })
+            (p) => ({ name: p["name"], value: p["value"] }),
           ),
       poolInfo: {
         poolId: result.body.jobSpecification.poolInfo["poolId"],
@@ -10218,7 +10218,7 @@ export async function _getJobScheduleDeserialize(
                                               p["sourceAddressPrefix"],
                                             sourcePortRanges:
                                               p["sourcePortRanges"],
-                                          })
+                                          }),
                                         ),
                                   })),
                               },
@@ -10621,7 +10621,7 @@ export async function _getJobScheduleDeserialize(
 export async function getJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: GetJobScheduleOptions = { requestOptions: {} }
+  options: GetJobScheduleOptions = { requestOptions: {} },
 ): Promise<BatchJobSchedule> {
   const result = await _getJobScheduleSend(context, jobScheduleId, options);
   return _getJobScheduleDeserialize(result);
@@ -10631,7 +10631,7 @@ export function _updateJobScheduleSend(
   context: Client,
   jobScheduleId: string,
   body: BatchJobScheduleUpdateOptions,
-  options: UpdateJobScheduleOptions = { requestOptions: {} }
+  options: UpdateJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
   UpdateJobSchedule200Response | UpdateJobScheduleDefaultResponse
 > {
@@ -11104,7 +11104,7 @@ export function _updateJobScheduleSend(
               ]
                 ? body.jobSpecification?.["commonEnvironmentSettings"]
                 : body.jobSpecification?.["commonEnvironmentSettings"].map(
-                    (p) => ({ name: p["name"], value: p["value"] })
+                    (p) => ({ name: p["name"], value: p["value"] }),
                   ),
               poolInfo: {
                 poolId: body.jobSpecification?.poolInfo["poolId"],
@@ -11865,7 +11865,7 @@ export function _updateJobScheduleSend(
 }
 
 export async function _updateJobScheduleDeserialize(
-  result: UpdateJobSchedule200Response | UpdateJobScheduleDefaultResponse
+  result: UpdateJobSchedule200Response | UpdateJobScheduleDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -11885,13 +11885,13 @@ export async function updateJobSchedule(
   context: Client,
   jobScheduleId: string,
   body: BatchJobScheduleUpdateOptions,
-  options: UpdateJobScheduleOptions = { requestOptions: {} }
+  options: UpdateJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _updateJobScheduleSend(
     context,
     jobScheduleId,
     body,
-    options
+    options,
   );
   return _updateJobScheduleDeserialize(result);
 }
@@ -11900,7 +11900,7 @@ export function _replaceJobScheduleSend(
   context: Client,
   jobScheduleId: string,
   body: BatchJobSchedule,
-  options: ReplaceJobScheduleOptions = { requestOptions: {} }
+  options: ReplaceJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
   ReplaceJobSchedule200Response | ReplaceJobScheduleDefaultResponse
 > {
@@ -12018,7 +12018,7 @@ export function _replaceJobScheduleSend(
                         identityReference: !p.identityReference
                           ? undefined
                           : { resourceId: p.identityReference?.["resourceId"] },
-                      })
+                      }),
                     ),
                 outputFiles: !body.jobSpecification.jobManagerTask?.[
                   "outputFiles"
@@ -12057,7 +12057,7 @@ export function _replaceJobScheduleSend(
                         uploadOptions: {
                           uploadCondition: p.uploadOptions["uploadCondition"],
                         },
-                      })
+                      }),
                     ),
                 environmentSettings: !body.jobSpecification.jobManagerTask?.[
                   "environmentSettings"
@@ -12309,7 +12309,7 @@ export function _replaceJobScheduleSend(
                         identityReference: !p.identityReference
                           ? undefined
                           : { resourceId: p.identityReference?.["resourceId"] },
-                      })
+                      }),
                     ),
                 environmentSettings: !body.jobSpecification.jobReleaseTask?.[
                   "environmentSettings"
@@ -12663,7 +12663,7 @@ export function _replaceJobScheduleSend(
                                                   p["sourceAddressPrefix"],
                                                 sourcePortRanges:
                                                   p["sourcePortRanges"],
-                                              })
+                                              }),
                                             ),
                                       })),
                                   },
@@ -13036,7 +13036,7 @@ export function _replaceJobScheduleSend(
 }
 
 export async function _replaceJobScheduleDeserialize(
-  result: ReplaceJobSchedule200Response | ReplaceJobScheduleDefaultResponse
+  result: ReplaceJobSchedule200Response | ReplaceJobScheduleDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -13056,13 +13056,13 @@ export async function replaceJobSchedule(
   context: Client,
   jobScheduleId: string,
   body: BatchJobSchedule,
-  options: ReplaceJobScheduleOptions = { requestOptions: {} }
+  options: ReplaceJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _replaceJobScheduleSend(
     context,
     jobScheduleId,
     body,
-    options
+    options,
   );
   return _replaceJobScheduleDeserialize(result);
 }
@@ -13070,7 +13070,7 @@ export async function replaceJobSchedule(
 export function _disableJobScheduleSend(
   context: Client,
   jobScheduleId: string,
-  options: DisableJobScheduleOptions = { requestOptions: {} }
+  options: DisableJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
   DisableJobSchedule204Response | DisableJobScheduleDefaultResponse
 > {
@@ -13097,7 +13097,7 @@ export function _disableJobScheduleSend(
 }
 
 export async function _disableJobScheduleDeserialize(
-  result: DisableJobSchedule204Response | DisableJobScheduleDefaultResponse
+  result: DisableJobSchedule204Response | DisableJobScheduleDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -13110,7 +13110,7 @@ export async function _disableJobScheduleDeserialize(
 export async function disableJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: DisableJobScheduleOptions = { requestOptions: {} }
+  options: DisableJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _disableJobScheduleSend(context, jobScheduleId, options);
   return _disableJobScheduleDeserialize(result);
@@ -13119,7 +13119,7 @@ export async function disableJobSchedule(
 export function _enableJobScheduleSend(
   context: Client,
   jobScheduleId: string,
-  options: EnableJobScheduleOptions = { requestOptions: {} }
+  options: EnableJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
   EnableJobSchedule204Response | EnableJobScheduleDefaultResponse
 > {
@@ -13146,7 +13146,7 @@ export function _enableJobScheduleSend(
 }
 
 export async function _enableJobScheduleDeserialize(
-  result: EnableJobSchedule204Response | EnableJobScheduleDefaultResponse
+  result: EnableJobSchedule204Response | EnableJobScheduleDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -13159,7 +13159,7 @@ export async function _enableJobScheduleDeserialize(
 export async function enableJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: EnableJobScheduleOptions = { requestOptions: {} }
+  options: EnableJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _enableJobScheduleSend(context, jobScheduleId, options);
   return _enableJobScheduleDeserialize(result);
@@ -13168,7 +13168,7 @@ export async function enableJobSchedule(
 export function _terminateJobScheduleSend(
   context: Client,
   jobScheduleId: string,
-  options: TerminateJobScheduleOptions = { requestOptions: {} }
+  options: TerminateJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
   TerminateJobSchedule202Response | TerminateJobScheduleDefaultResponse
 > {
@@ -13195,7 +13195,7 @@ export function _terminateJobScheduleSend(
 }
 
 export async function _terminateJobScheduleDeserialize(
-  result: TerminateJobSchedule202Response | TerminateJobScheduleDefaultResponse
+  result: TerminateJobSchedule202Response | TerminateJobScheduleDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -13208,12 +13208,12 @@ export async function _terminateJobScheduleDeserialize(
 export async function terminateJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: TerminateJobScheduleOptions = { requestOptions: {} }
+  options: TerminateJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _terminateJobScheduleSend(
     context,
     jobScheduleId,
-    options
+    options,
   );
   return _terminateJobScheduleDeserialize(result);
 }
@@ -13221,7 +13221,7 @@ export async function terminateJobSchedule(
 export function _createJobScheduleSend(
   context: Client,
   body: BatchJobScheduleCreateOptions,
-  options: CreateJobScheduleOptions = { requestOptions: {} }
+  options: CreateJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
   CreateJobSchedule201Response | CreateJobScheduleDefaultResponse
 > {
@@ -13327,7 +13327,7 @@ export function _createJobScheduleSend(
                         identityReference: !p.identityReference
                           ? undefined
                           : { resourceId: p.identityReference?.["resourceId"] },
-                      })
+                      }),
                     ),
                 outputFiles: !body.jobSpecification.jobManagerTask?.[
                   "outputFiles"
@@ -13366,7 +13366,7 @@ export function _createJobScheduleSend(
                         uploadOptions: {
                           uploadCondition: p.uploadOptions["uploadCondition"],
                         },
-                      })
+                      }),
                     ),
                 environmentSettings: !body.jobSpecification.jobManagerTask?.[
                   "environmentSettings"
@@ -13618,7 +13618,7 @@ export function _createJobScheduleSend(
                         identityReference: !p.identityReference
                           ? undefined
                           : { resourceId: p.identityReference?.["resourceId"] },
-                      })
+                      }),
                     ),
                 environmentSettings: !body.jobSpecification.jobReleaseTask?.[
                   "environmentSettings"
@@ -13972,7 +13972,7 @@ export function _createJobScheduleSend(
                                                   p["sourceAddressPrefix"],
                                                 sourcePortRanges:
                                                   p["sourcePortRanges"],
-                                              })
+                                              }),
                                             ),
                                       })),
                                   },
@@ -14345,7 +14345,7 @@ export function _createJobScheduleSend(
 }
 
 export async function _createJobScheduleDeserialize(
-  result: CreateJobSchedule201Response | CreateJobScheduleDefaultResponse
+  result: CreateJobSchedule201Response | CreateJobScheduleDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -14358,7 +14358,7 @@ export async function _createJobScheduleDeserialize(
 export async function createJobSchedule(
   context: Client,
   body: BatchJobScheduleCreateOptions,
-  options: CreateJobScheduleOptions = { requestOptions: {} }
+  options: CreateJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _createJobScheduleSend(context, body, options);
   return _createJobScheduleDeserialize(result);
@@ -14366,7 +14366,7 @@ export async function createJobSchedule(
 
 export function _listJobSchedulesSend(
   context: Client,
-  options: ListJobSchedulesOptions = { requestOptions: {} }
+  options: ListJobSchedulesOptions = { requestOptions: {} },
 ): StreamableMethod<
   ListJobSchedules200Response | ListJobSchedulesDefaultResponse
 > {
@@ -14385,7 +14385,7 @@ export function _listJobSchedulesSend(
 }
 
 export async function _listJobSchedulesDeserialize(
-  result: ListJobSchedules200Response | ListJobSchedulesDefaultResponse
+  result: ListJobSchedules200Response | ListJobSchedulesDefaultResponse,
 ): Promise<BatchJobScheduleListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -14517,7 +14517,7 @@ export async function _listJobSchedulesDeserialize(
                             : {
                                 resourceId: p.identityReference?.["resourceId"],
                               },
-                        })
+                        }),
                       ),
                   outputFiles: !p.jobSpecification.jobManagerTask?.[
                     "outputFiles"
@@ -14556,7 +14556,7 @@ export async function _listJobSchedulesDeserialize(
                           uploadOptions: {
                             uploadCondition: p.uploadOptions["uploadCondition"],
                           },
-                        })
+                        }),
                       ),
                   environmentSettings: !p.jobSpecification.jobManagerTask?.[
                     "environmentSettings"
@@ -14808,7 +14808,7 @@ export async function _listJobSchedulesDeserialize(
                             : {
                                 resourceId: p.identityReference?.["resourceId"],
                               },
-                        })
+                        }),
                       ),
                   environmentSettings: !p.jobSpecification.jobReleaseTask?.[
                     "environmentSettings"
@@ -15596,13 +15596,13 @@ export async function _listJobSchedulesDeserialize(
 /** Lists all of the Job Schedules in the specified Account. */
 export function listJobSchedules(
   context: Client,
-  options: ListJobSchedulesOptions = { requestOptions: {} }
+  options: ListJobSchedulesOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchJobSchedule> {
   return buildPagedAsyncIterator(
     context,
     () => _listJobSchedulesSend(context, options),
     _listJobSchedulesDeserialize,
-    { itemName: "value", nextLinkName: "odata.nextLink" }
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -15610,7 +15610,7 @@ export function _createTaskSend(
   context: Client,
   jobId: string,
   body: BatchTaskCreateOptions,
-  options: CreateTaskOptions = { requestOptions: {} }
+  options: CreateTaskOptions = { requestOptions: {} },
 ): StreamableMethod<CreateTask201Response | CreateTaskDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks", jobId)
@@ -15733,7 +15733,7 @@ export function _createTaskSend(
                       uploadHeaders: !p.destination.container?.["uploadHeaders"]
                         ? p.destination.container?.["uploadHeaders"]
                         : p.destination.container?.["uploadHeaders"].map(
-                            (p) => ({ name: p["name"], value: p["value"] })
+                            (p) => ({ name: p["name"], value: p["value"] }),
                           ),
                     },
               },
@@ -15792,7 +15792,7 @@ export function _createTaskSend(
                       identityReference: !p.identityReference
                         ? undefined
                         : { resourceId: p.identityReference?.["resourceId"] },
-                    })
+                    }),
                   ),
             },
         dependsOn: !body.dependsOn
@@ -15820,7 +15820,7 @@ export function _createTaskSend(
 }
 
 export async function _createTaskDeserialize(
-  result: CreateTask201Response | CreateTaskDefaultResponse
+  result: CreateTask201Response | CreateTaskDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -15838,7 +15838,7 @@ export async function createTask(
   context: Client,
   jobId: string,
   body: BatchTaskCreateOptions,
-  options: CreateTaskOptions = { requestOptions: {} }
+  options: CreateTaskOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _createTaskSend(context, jobId, body, options);
   return _createTaskDeserialize(result);
@@ -15847,7 +15847,7 @@ export async function createTask(
 export function _listTasksSend(
   context: Client,
   jobId: string,
-  options: ListTasksOptions = { requestOptions: {} }
+  options: ListTasksOptions = { requestOptions: {} },
 ): StreamableMethod<ListTasks200Response | ListTasksDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks", jobId)
@@ -15864,7 +15864,7 @@ export function _listTasksSend(
 }
 
 export async function _listTasksDeserialize(
-  result: ListTasks200Response | ListTasksDefaultResponse
+  result: ListTasks200Response | ListTasksDefaultResponse,
 ): Promise<BatchTaskListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -16006,7 +16006,7 @@ export async function _listTasksDeserialize(
                         ]
                           ? p.destination.container?.["uploadHeaders"]
                           : p.destination.container?.["uploadHeaders"].map(
-                              (p) => ({ name: p["name"], value: p["value"] })
+                              (p) => ({ name: p["name"], value: p["value"] }),
                             ),
                       },
                 },
@@ -16072,7 +16072,7 @@ export async function _listTasksDeserialize(
                       details: !p.executionInfo?.failureInfo?.["details"]
                         ? p.executionInfo?.failureInfo?.["details"]
                         : p.executionInfo?.failureInfo?.["details"].map(
-                            (p) => ({ name: p["name"], value: p["value"] })
+                            (p) => ({ name: p["name"], value: p["value"] }),
                           ),
                     },
                 retryCount: p.executionInfo?.["retryCount"],
@@ -16119,7 +16119,7 @@ export async function _listTasksDeserialize(
                         identityReference: !p.identityReference
                           ? undefined
                           : { resourceId: p.identityReference?.["resourceId"] },
-                      })
+                      }),
                     ),
               },
           stats: !p.stats
@@ -16170,13 +16170,13 @@ export async function _listTasksDeserialize(
 export function listTasks(
   context: Client,
   jobId: string,
-  options: ListTasksOptions = { requestOptions: {} }
+  options: ListTasksOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchTask> {
   return buildPagedAsyncIterator(
     context,
     () => _listTasksSend(context, jobId, options),
     _listTasksDeserialize,
-    { itemName: "value", nextLinkName: "odata.nextLink" }
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -16184,7 +16184,7 @@ export function _createTaskCollectionSend(
   context: Client,
   jobId: string,
   collection: BatchTaskCollection,
-  options: CreateTaskCollectionOptions = { requestOptions: {} }
+  options: CreateTaskCollectionOptions = { requestOptions: {} },
 ): StreamableMethod<
   CreateTaskCollection200Response | CreateTaskCollectionDefaultResponse
 > {
@@ -16310,7 +16310,7 @@ export function _createTaskCollectionSend(
                         ]
                           ? p.destination.container?.["uploadHeaders"]
                           : p.destination.container?.["uploadHeaders"].map(
-                              (p) => ({ name: p["name"], value: p["value"] })
+                              (p) => ({ name: p["name"], value: p["value"] }),
                             ),
                       },
                 },
@@ -16369,7 +16369,7 @@ export function _createTaskCollectionSend(
                         identityReference: !p.identityReference
                           ? undefined
                           : { resourceId: p.identityReference?.["resourceId"] },
-                      })
+                      }),
                     ),
               },
           dependsOn: !p.dependsOn
@@ -16398,7 +16398,7 @@ export function _createTaskCollectionSend(
 }
 
 export async function _createTaskCollectionDeserialize(
-  result: CreateTaskCollection200Response | CreateTaskCollectionDefaultResponse
+  result: CreateTaskCollection200Response | CreateTaskCollectionDefaultResponse,
 ): Promise<TaskAddCollectionResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -16457,13 +16457,13 @@ export async function createTaskCollection(
   context: Client,
   jobId: string,
   collection: BatchTaskCollection,
-  options: CreateTaskCollectionOptions = { requestOptions: {} }
+  options: CreateTaskCollectionOptions = { requestOptions: {} },
 ): Promise<TaskAddCollectionResult> {
   const result = await _createTaskCollectionSend(
     context,
     jobId,
     collection,
-    options
+    options,
   );
   return _createTaskCollectionDeserialize(result);
 }
@@ -16472,7 +16472,7 @@ export function _deleteTaskSend(
   context: Client,
   jobId: string,
   taskId: string,
-  options: DeleteTaskOptions = { requestOptions: {} }
+  options: DeleteTaskOptions = { requestOptions: {} },
 ): StreamableMethod<DeleteTask200Response | DeleteTaskDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
@@ -16497,7 +16497,7 @@ export function _deleteTaskSend(
 }
 
 export async function _deleteTaskDeserialize(
-  result: DeleteTask200Response | DeleteTaskDefaultResponse
+  result: DeleteTask200Response | DeleteTaskDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -16517,7 +16517,7 @@ export async function deleteTask(
   context: Client,
   jobId: string,
   taskId: string,
-  options: DeleteTaskOptions = { requestOptions: {} }
+  options: DeleteTaskOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteTaskSend(context, jobId, taskId, options);
   return _deleteTaskDeserialize(result);
@@ -16527,7 +16527,7 @@ export function _getTaskSend(
   context: Client,
   jobId: string,
   taskId: string,
-  options: GetTaskOptions = { requestOptions: {} }
+  options: GetTaskOptions = { requestOptions: {} },
 ): StreamableMethod<GetTask200Response | GetTaskDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
@@ -16556,7 +16556,7 @@ export function _getTaskSend(
 }
 
 export async function _getTaskDeserialize(
-  result: GetTask200Response | GetTaskDefaultResponse
+  result: GetTask200Response | GetTaskDefaultResponse,
 ): Promise<BatchTask> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -16761,7 +16761,7 @@ export async function _getTaskDeserialize(
                 details: !result.body.executionInfo?.failureInfo?.["details"]
                   ? result.body.executionInfo?.failureInfo?.["details"]
                   : result.body.executionInfo?.failureInfo?.["details"].map(
-                      (p) => ({ name: p["name"], value: p["value"] })
+                      (p) => ({ name: p["name"], value: p["value"] }),
                     ),
               },
           retryCount: result.body.executionInfo?.["retryCount"],
@@ -16808,7 +16808,7 @@ export async function _getTaskDeserialize(
                   identityReference: !p.identityReference
                     ? undefined
                     : { resourceId: p.identityReference?.["resourceId"] },
-                })
+                }),
               ),
         },
     stats: !result.body.stats
@@ -16858,7 +16858,7 @@ export async function getTask(
   context: Client,
   jobId: string,
   taskId: string,
-  options: GetTaskOptions = { requestOptions: {} }
+  options: GetTaskOptions = { requestOptions: {} },
 ): Promise<BatchTask> {
   const result = await _getTaskSend(context, jobId, taskId, options);
   return _getTaskDeserialize(result);
@@ -16869,7 +16869,7 @@ export function _replaceTaskSend(
   jobId: string,
   taskId: string,
   body: BatchTask,
-  options: ReplaceTaskOptions = { requestOptions: {} }
+  options: ReplaceTaskOptions = { requestOptions: {} },
 ): StreamableMethod<ReplaceTask200Response | ReplaceTaskDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
@@ -16906,7 +16906,7 @@ export function _replaceTaskSend(
 }
 
 export async function _replaceTaskDeserialize(
-  result: ReplaceTask200Response | ReplaceTaskDefaultResponse
+  result: ReplaceTask200Response | ReplaceTaskDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -16921,7 +16921,7 @@ export async function replaceTask(
   jobId: string,
   taskId: string,
   body: BatchTask,
-  options: ReplaceTaskOptions = { requestOptions: {} }
+  options: ReplaceTaskOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _replaceTaskSend(context, jobId, taskId, body, options);
   return _replaceTaskDeserialize(result);
@@ -16931,7 +16931,7 @@ export function _listSubTasksSend(
   context: Client,
   jobId: string,
   taskId: string,
-  options: ListSubTasksOptions = { requestOptions: {} }
+  options: ListSubTasksOptions = { requestOptions: {} },
 ): StreamableMethod<ListSubTasks200Response | ListSubTasksDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}/subtasksinfo", jobId, taskId)
@@ -16942,7 +16942,7 @@ export function _listSubTasksSend(
 }
 
 export async function _listSubTasksDeserialize(
-  result: ListSubTasks200Response | ListSubTasksDefaultResponse
+  result: ListSubTasks200Response | ListSubTasksDefaultResponse,
 ): Promise<BatchTaskListSubtasksResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -17008,7 +17008,7 @@ export async function listSubTasks(
   context: Client,
   jobId: string,
   taskId: string,
-  options: ListSubTasksOptions = { requestOptions: {} }
+  options: ListSubTasksOptions = { requestOptions: {} },
 ): Promise<BatchTaskListSubtasksResult> {
   const result = await _listSubTasksSend(context, jobId, taskId, options);
   return _listSubTasksDeserialize(result);
@@ -17018,7 +17018,7 @@ export function _terminateTaskSend(
   context: Client,
   jobId: string,
   taskId: string,
-  options: TerminateTaskOptions = { requestOptions: {} }
+  options: TerminateTaskOptions = { requestOptions: {} },
 ): StreamableMethod<TerminateTask204Response | TerminateTaskDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}/terminate", jobId, taskId)
@@ -17043,7 +17043,7 @@ export function _terminateTaskSend(
 }
 
 export async function _terminateTaskDeserialize(
-  result: TerminateTask204Response | TerminateTaskDefaultResponse
+  result: TerminateTask204Response | TerminateTaskDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -17061,7 +17061,7 @@ export async function terminateTask(
   context: Client,
   jobId: string,
   taskId: string,
-  options: TerminateTaskOptions = { requestOptions: {} }
+  options: TerminateTaskOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _terminateTaskSend(context, jobId, taskId, options);
   return _terminateTaskDeserialize(result);
@@ -17071,7 +17071,7 @@ export function _reactivateTaskSend(
   context: Client,
   jobId: string,
   taskId: string,
-  options: ReactivateTaskOptions = { requestOptions: {} }
+  options: ReactivateTaskOptions = { requestOptions: {} },
 ): StreamableMethod<ReactivateTask204Response | ReactivateTaskDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}/reactivate", jobId, taskId)
@@ -17096,7 +17096,7 @@ export function _reactivateTaskSend(
 }
 
 export async function _reactivateTaskDeserialize(
-  result: ReactivateTask204Response | ReactivateTaskDefaultResponse
+  result: ReactivateTask204Response | ReactivateTaskDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -17118,7 +17118,7 @@ export async function reactivateTask(
   context: Client,
   jobId: string,
   taskId: string,
-  options: ReactivateTaskOptions = { requestOptions: {} }
+  options: ReactivateTaskOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _reactivateTaskSend(context, jobId, taskId, options);
   return _reactivateTaskDeserialize(result);
@@ -17129,14 +17129,14 @@ export function _deleteTaskFileSend(
   jobId: string,
   taskId: string,
   filePath: string,
-  options: DeleteTaskFileOptions = { requestOptions: {} }
+  options: DeleteTaskFileOptions = { requestOptions: {} },
 ): StreamableMethod<DeleteTaskFile200Response | DeleteTaskFileDefaultResponse> {
   return context
     .path(
       "/jobs/{jobId}/tasks/{taskId}/files/{filePath}",
       jobId,
       taskId,
-      filePath
+      filePath,
     )
     .delete({
       ...operationOptionsToRequestParameters(options),
@@ -17148,7 +17148,7 @@ export function _deleteTaskFileSend(
 }
 
 export async function _deleteTaskFileDeserialize(
-  result: DeleteTaskFile200Response | DeleteTaskFileDefaultResponse
+  result: DeleteTaskFile200Response | DeleteTaskFileDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -17163,14 +17163,14 @@ export async function deleteTaskFile(
   jobId: string,
   taskId: string,
   filePath: string,
-  options: DeleteTaskFileOptions = { requestOptions: {} }
+  options: DeleteTaskFileOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteTaskFileSend(
     context,
     jobId,
     taskId,
     filePath,
-    options
+    options,
   );
   return _deleteTaskFileDeserialize(result);
 }
@@ -17180,14 +17180,14 @@ export function _getTaskFileSend(
   jobId: string,
   taskId: string,
   filePath: string,
-  options: GetTaskFileOptions = { requestOptions: {} }
+  options: GetTaskFileOptions = { requestOptions: {} },
 ): StreamableMethod<GetTaskFile200Response | GetTaskFileDefaultResponse> {
   return context
     .path(
       "/jobs/{jobId}/tasks/{taskId}/files/{filePath}",
       jobId,
       taskId,
-      filePath
+      filePath,
     )
     .get({
       ...operationOptionsToRequestParameters(options),
@@ -17207,7 +17207,7 @@ export function _getTaskFileSend(
 }
 
 export async function _getTaskFileDeserialize(
-  result: GetTaskFile200Response | GetTaskFileDefaultResponse
+  result: GetTaskFile200Response | GetTaskFileDefaultResponse,
 ): Promise<Uint8Array> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -17222,14 +17222,14 @@ export async function getTaskFile(
   jobId: string,
   taskId: string,
   filePath: string,
-  options: GetTaskFileOptions = { requestOptions: {} }
+  options: GetTaskFileOptions = { requestOptions: {} },
 ): Promise<Uint8Array> {
   const result = await _getTaskFileSend(
     context,
     jobId,
     taskId,
     filePath,
-    options
+    options,
   );
   return _getTaskFileDeserialize(result);
 }
@@ -17239,7 +17239,7 @@ export function _getTaskFilePropertiesSend(
   jobId: string,
   taskId: string,
   filePath: string,
-  options: GetTaskFilePropertiesOptions = { requestOptions: {} }
+  options: GetTaskFilePropertiesOptions = { requestOptions: {} },
 ): StreamableMethod<
   GetTaskFileProperties200Response | GetTaskFilePropertiesDefaultResponse
 > {
@@ -17248,7 +17248,7 @@ export function _getTaskFilePropertiesSend(
       "/jobs/{jobId}/tasks/{taskId}/files/{filePath}",
       jobId,
       taskId,
-      filePath
+      filePath,
     )
     .head({
       ...operationOptionsToRequestParameters(options),
@@ -17267,7 +17267,7 @@ export function _getTaskFilePropertiesSend(
 export async function _getTaskFilePropertiesDeserialize(
   result:
     | GetTaskFileProperties200Response
-    | GetTaskFilePropertiesDefaultResponse
+    | GetTaskFilePropertiesDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -17282,14 +17282,14 @@ export async function getTaskFileProperties(
   jobId: string,
   taskId: string,
   filePath: string,
-  options: GetTaskFilePropertiesOptions = { requestOptions: {} }
+  options: GetTaskFilePropertiesOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getTaskFilePropertiesSend(
     context,
     jobId,
     taskId,
     filePath,
-    options
+    options,
   );
   return _getTaskFilePropertiesDeserialize(result);
 }
@@ -17298,7 +17298,7 @@ export function _listTaskFilesSend(
   context: Client,
   jobId: string,
   taskId: string,
-  options: ListTaskFilesOptions = { requestOptions: {} }
+  options: ListTaskFilesOptions = { requestOptions: {} },
 ): StreamableMethod<ListTaskFiles200Response | ListTaskFilesDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}/files", jobId, taskId)
@@ -17314,7 +17314,7 @@ export function _listTaskFilesSend(
 }
 
 export async function _listTaskFilesDeserialize(
-  result: ListTaskFiles200Response | ListTaskFilesDefaultResponse
+  result: ListTaskFiles200Response | ListTaskFilesDefaultResponse,
 ): Promise<NodeFileListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -17349,13 +17349,13 @@ export function listTaskFiles(
   context: Client,
   jobId: string,
   taskId: string,
-  options: ListTaskFilesOptions = { requestOptions: {} }
+  options: ListTaskFilesOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<NodeFile> {
   return buildPagedAsyncIterator(
     context,
     () => _listTaskFilesSend(context, jobId, taskId, options),
     _listTaskFilesDeserialize,
-    { itemName: "value", nextLinkName: "odata.nextLink" }
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -17364,7 +17364,7 @@ export function _createNodeUserSend(
   poolId: string,
   nodeId: string,
   body: BatchNodeUserCreateOptions,
-  options: CreateNodeUserOptions = { requestOptions: {} }
+  options: CreateNodeUserOptions = { requestOptions: {} },
 ): StreamableMethod<CreateNodeUser201Response | CreateNodeUserDefaultResponse> {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/users", poolId, nodeId)
@@ -17385,7 +17385,7 @@ export function _createNodeUserSend(
 }
 
 export async function _createNodeUserDeserialize(
-  result: CreateNodeUser201Response | CreateNodeUserDefaultResponse
+  result: CreateNodeUser201Response | CreateNodeUserDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -17403,14 +17403,14 @@ export async function createNodeUser(
   poolId: string,
   nodeId: string,
   body: BatchNodeUserCreateOptions,
-  options: CreateNodeUserOptions = { requestOptions: {} }
+  options: CreateNodeUserOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _createNodeUserSend(
     context,
     poolId,
     nodeId,
     body,
-    options
+    options,
   );
   return _createNodeUserDeserialize(result);
 }
@@ -17420,14 +17420,14 @@ export function _deleteNodeUserSend(
   poolId: string,
   nodeId: string,
   userName: string,
-  options: DeleteNodeUserOptions = { requestOptions: {} }
+  options: DeleteNodeUserOptions = { requestOptions: {} },
 ): StreamableMethod<DeleteNodeUser200Response | DeleteNodeUserDefaultResponse> {
   return context
     .path(
       "/pools/{poolId}/nodes/{nodeId}/users/{userName}",
       poolId,
       nodeId,
-      userName
+      userName,
     )
     .delete({
       ...operationOptionsToRequestParameters(options),
@@ -17436,7 +17436,7 @@ export function _deleteNodeUserSend(
 }
 
 export async function _deleteNodeUserDeserialize(
-  result: DeleteNodeUser200Response | DeleteNodeUserDefaultResponse
+  result: DeleteNodeUser200Response | DeleteNodeUserDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -17454,14 +17454,14 @@ export async function deleteNodeUser(
   poolId: string,
   nodeId: string,
   userName: string,
-  options: DeleteNodeUserOptions = { requestOptions: {} }
+  options: DeleteNodeUserOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteNodeUserSend(
     context,
     poolId,
     nodeId,
     userName,
-    options
+    options,
   );
   return _deleteNodeUserDeserialize(result);
 }
@@ -17472,7 +17472,7 @@ export function _replaceNodeUserSend(
   nodeId: string,
   userName: string,
   body: BatchNodeUserUpdateOptions,
-  options: ReplaceNodeUserOptions = { requestOptions: {} }
+  options: ReplaceNodeUserOptions = { requestOptions: {} },
 ): StreamableMethod<
   ReplaceNodeUser200Response | ReplaceNodeUserDefaultResponse
 > {
@@ -17481,7 +17481,7 @@ export function _replaceNodeUserSend(
       "/pools/{poolId}/nodes/{nodeId}/users/{userName}",
       poolId,
       nodeId,
-      userName
+      userName,
     )
     .put({
       ...operationOptionsToRequestParameters(options),
@@ -17498,7 +17498,7 @@ export function _replaceNodeUserSend(
 }
 
 export async function _replaceNodeUserDeserialize(
-  result: ReplaceNodeUser200Response | ReplaceNodeUserDefaultResponse
+  result: ReplaceNodeUser200Response | ReplaceNodeUserDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -17519,7 +17519,7 @@ export async function replaceNodeUser(
   nodeId: string,
   userName: string,
   body: BatchNodeUserUpdateOptions,
-  options: ReplaceNodeUserOptions = { requestOptions: {} }
+  options: ReplaceNodeUserOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _replaceNodeUserSend(
     context,
@@ -17527,7 +17527,7 @@ export async function replaceNodeUser(
     nodeId,
     userName,
     body,
-    options
+    options,
   );
   return _replaceNodeUserDeserialize(result);
 }
@@ -17536,7 +17536,7 @@ export function _getNodeSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: GetNodeOptions = { requestOptions: {} }
+  options: GetNodeOptions = { requestOptions: {} },
 ): StreamableMethod<GetNode200Response | GetNodeDefaultResponse> {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}", poolId, nodeId)
@@ -17547,7 +17547,7 @@ export function _getNodeSend(
 }
 
 export async function _getNodeDeserialize(
-  result: GetNode200Response | GetNodeDefaultResponse
+  result: GetNode200Response | GetNodeDefaultResponse,
 ): Promise<BatchNode> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -17614,7 +17614,7 @@ export async function _getNodeDeserialize(
                       details: !p.executionInfo?.failureInfo?.["details"]
                         ? p.executionInfo?.failureInfo?.["details"]
                         : p.executionInfo?.failureInfo?.["details"].map(
-                            (p) => ({ name: p["name"], value: p["value"] })
+                            (p) => ({ name: p["name"], value: p["value"] }),
                           ),
                     },
                 retryCount: p.executionInfo?.["retryCount"],
@@ -17738,7 +17738,7 @@ export async function _getNodeDeserialize(
                 details: !result.body.startTaskInfo?.failureInfo?.["details"]
                   ? result.body.startTaskInfo?.failureInfo?.["details"]
                   : result.body.startTaskInfo?.failureInfo?.["details"].map(
-                      (p) => ({ name: p["name"], value: p["value"] })
+                      (p) => ({ name: p["name"], value: p["value"] }),
                     ),
               },
           retryCount: result.body.startTaskInfo?.["retryCount"],
@@ -17789,7 +17789,7 @@ export async function _getNodeDeserialize(
       : {
           version: result.body.nodeAgentInfo?.["version"],
           lastUpdateTime: new Date(
-            result.body.nodeAgentInfo?.["lastUpdateTime"]
+            result.body.nodeAgentInfo?.["lastUpdateTime"],
           ),
         },
     virtualMachineInfo: !result.body.virtualMachineInfo
@@ -17823,7 +17823,7 @@ export async function getNode(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: GetNodeOptions = { requestOptions: {} }
+  options: GetNodeOptions = { requestOptions: {} },
 ): Promise<BatchNode> {
   const result = await _getNodeSend(context, poolId, nodeId, options);
   return _getNodeDeserialize(result);
@@ -17834,7 +17834,7 @@ export function _rebootNodeSend(
   poolId: string,
   nodeId: string,
   body: NodeRebootOptions,
-  options: RebootNodeOptions = { requestOptions: {} }
+  options: RebootNodeOptions = { requestOptions: {} },
 ): StreamableMethod<RebootNode202Response | RebootNodeDefaultResponse> {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/reboot", poolId, nodeId)
@@ -17849,7 +17849,7 @@ export function _rebootNodeSend(
 }
 
 export async function _rebootNodeDeserialize(
-  result: RebootNode202Response | RebootNodeDefaultResponse
+  result: RebootNode202Response | RebootNodeDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -17864,7 +17864,7 @@ export async function rebootNode(
   poolId: string,
   nodeId: string,
   body: NodeRebootOptions,
-  options: RebootNodeOptions = { requestOptions: {} }
+  options: RebootNodeOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _rebootNodeSend(context, poolId, nodeId, body, options);
   return _rebootNodeDeserialize(result);
@@ -17875,7 +17875,7 @@ export function _reimageNodeSend(
   poolId: string,
   nodeId: string,
   body: NodeReimageOptions,
-  options: ReimageNodeOptions = { requestOptions: {} }
+  options: ReimageNodeOptions = { requestOptions: {} },
 ): StreamableMethod<ReimageNode202Response | ReimageNodeDefaultResponse> {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/reimage", poolId, nodeId)
@@ -17890,7 +17890,7 @@ export function _reimageNodeSend(
 }
 
 export async function _reimageNodeDeserialize(
-  result: ReimageNode202Response | ReimageNodeDefaultResponse
+  result: ReimageNode202Response | ReimageNodeDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -17909,7 +17909,7 @@ export async function reimageNode(
   poolId: string,
   nodeId: string,
   body: NodeReimageOptions,
-  options: ReimageNodeOptions = { requestOptions: {} }
+  options: ReimageNodeOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _reimageNodeSend(context, poolId, nodeId, body, options);
   return _reimageNodeDeserialize(result);
@@ -17920,7 +17920,7 @@ export function _disableNodeSchedulingSend(
   poolId: string,
   nodeId: string,
   body: NodeDisableSchedulingOptions,
-  options: DisableNodeSchedulingOptions = { requestOptions: {} }
+  options: DisableNodeSchedulingOptions = { requestOptions: {} },
 ): StreamableMethod<
   DisableNodeScheduling200Response | DisableNodeSchedulingDefaultResponse
 > {
@@ -17941,7 +17941,7 @@ export function _disableNodeSchedulingSend(
 export async function _disableNodeSchedulingDeserialize(
   result:
     | DisableNodeScheduling200Response
-    | DisableNodeSchedulingDefaultResponse
+    | DisableNodeSchedulingDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -17959,14 +17959,14 @@ export async function disableNodeScheduling(
   poolId: string,
   nodeId: string,
   body: NodeDisableSchedulingOptions,
-  options: DisableNodeSchedulingOptions = { requestOptions: {} }
+  options: DisableNodeSchedulingOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _disableNodeSchedulingSend(
     context,
     poolId,
     nodeId,
     body,
-    options
+    options,
   );
   return _disableNodeSchedulingDeserialize(result);
 }
@@ -17975,7 +17975,7 @@ export function _enableNodeSchedulingSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: EnableNodeSchedulingOptions = { requestOptions: {} }
+  options: EnableNodeSchedulingOptions = { requestOptions: {} },
 ): StreamableMethod<
   EnableNodeScheduling200Response | EnableNodeSchedulingDefaultResponse
 > {
@@ -17988,7 +17988,7 @@ export function _enableNodeSchedulingSend(
 }
 
 export async function _enableNodeSchedulingDeserialize(
-  result: EnableNodeScheduling200Response | EnableNodeSchedulingDefaultResponse
+  result: EnableNodeScheduling200Response | EnableNodeSchedulingDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -18005,13 +18005,13 @@ export async function enableNodeScheduling(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: EnableNodeSchedulingOptions = { requestOptions: {} }
+  options: EnableNodeSchedulingOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _enableNodeSchedulingSend(
     context,
     poolId,
     nodeId,
-    options
+    options,
   );
   return _enableNodeSchedulingDeserialize(result);
 }
@@ -18020,7 +18020,7 @@ export function _getNodeRemoteLoginSettingsSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: GetNodeRemoteLoginSettingsOptions = { requestOptions: {} }
+  options: GetNodeRemoteLoginSettingsOptions = { requestOptions: {} },
 ): StreamableMethod<
   | GetNodeRemoteLoginSettings200Response
   | GetNodeRemoteLoginSettingsDefaultResponse
@@ -18036,7 +18036,7 @@ export function _getNodeRemoteLoginSettingsSend(
 export async function _getNodeRemoteLoginSettingsDeserialize(
   result:
     | GetNodeRemoteLoginSettings200Response
-    | GetNodeRemoteLoginSettingsDefaultResponse
+    | GetNodeRemoteLoginSettingsDefaultResponse,
 ): Promise<BatchNodeRemoteLoginSettingsResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -18059,13 +18059,13 @@ export async function getNodeRemoteLoginSettings(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: GetNodeRemoteLoginSettingsOptions = { requestOptions: {} }
+  options: GetNodeRemoteLoginSettingsOptions = { requestOptions: {} },
 ): Promise<BatchNodeRemoteLoginSettingsResult> {
   const result = await _getNodeRemoteLoginSettingsSend(
     context,
     poolId,
     nodeId,
-    options
+    options,
   );
   return _getNodeRemoteLoginSettingsDeserialize(result);
 }
@@ -18074,7 +18074,7 @@ export function _getNodeRemoteDesktopFileSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: GetNodeRemoteDesktopFileOptions = { requestOptions: {} }
+  options: GetNodeRemoteDesktopFileOptions = { requestOptions: {} },
 ): StreamableMethod<
   GetNodeRemoteDesktopFile200Response | GetNodeRemoteDesktopFileDefaultResponse
 > {
@@ -18089,7 +18089,7 @@ export function _getNodeRemoteDesktopFileSend(
 export async function _getNodeRemoteDesktopFileDeserialize(
   result:
     | GetNodeRemoteDesktopFile200Response
-    | GetNodeRemoteDesktopFileDefaultResponse
+    | GetNodeRemoteDesktopFileDefaultResponse,
 ): Promise<Uint8Array> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -18110,13 +18110,13 @@ export async function getNodeRemoteDesktopFile(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: GetNodeRemoteDesktopFileOptions = { requestOptions: {} }
+  options: GetNodeRemoteDesktopFileOptions = { requestOptions: {} },
 ): Promise<Uint8Array> {
   const result = await _getNodeRemoteDesktopFileSend(
     context,
     poolId,
     nodeId,
-    options
+    options,
   );
   return _getNodeRemoteDesktopFileDeserialize(result);
 }
@@ -18126,13 +18126,13 @@ export function _uploadNodeLogsSend(
   poolId: string,
   nodeId: string,
   body: UploadBatchServiceLogsOptions,
-  options: UploadNodeLogsOptions = { requestOptions: {} }
+  options: UploadNodeLogsOptions = { requestOptions: {} },
 ): StreamableMethod<UploadNodeLogs200Response | UploadNodeLogsDefaultResponse> {
   return context
     .path(
       "/pools/{poolId}/nodes/{nodeId}/uploadbatchservicelogs",
       poolId,
-      nodeId
+      nodeId,
     )
     .post({
       ...operationOptionsToRequestParameters(options),
@@ -18152,7 +18152,7 @@ export function _uploadNodeLogsSend(
 }
 
 export async function _uploadNodeLogsDeserialize(
-  result: UploadNodeLogs200Response | UploadNodeLogsDefaultResponse
+  result: UploadNodeLogs200Response | UploadNodeLogsDefaultResponse,
 ): Promise<UploadBatchServiceLogsResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -18175,14 +18175,14 @@ export async function uploadNodeLogs(
   poolId: string,
   nodeId: string,
   body: UploadBatchServiceLogsOptions,
-  options: UploadNodeLogsOptions = { requestOptions: {} }
+  options: UploadNodeLogsOptions = { requestOptions: {} },
 ): Promise<UploadBatchServiceLogsResult> {
   const result = await _uploadNodeLogsSend(
     context,
     poolId,
     nodeId,
     body,
-    options
+    options,
   );
   return _uploadNodeLogsDeserialize(result);
 }
@@ -18190,7 +18190,7 @@ export async function uploadNodeLogs(
 export function _listNodesSend(
   context: Client,
   poolId: string,
-  options: ListNodesOptions = { requestOptions: {} }
+  options: ListNodesOptions = { requestOptions: {} },
 ): StreamableMethod<ListNodes200Response | ListNodesDefaultResponse> {
   return context
     .path("/pools/{poolId}/nodes", poolId)
@@ -18206,7 +18206,7 @@ export function _listNodesSend(
 }
 
 export async function _listNodesDeserialize(
-  result: ListNodes200Response | ListNodesDefaultResponse
+  result: ListNodes200Response | ListNodesDefaultResponse,
 ): Promise<BatchNodeListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -18280,7 +18280,7 @@ export async function _listNodesDeserialize(
                                   (p) => ({
                                     name: p["name"],
                                     value: p["value"],
-                                  })
+                                  }),
                                 ),
                           },
                       retryCount: p.executionInfo?.["retryCount"],
@@ -18397,7 +18397,7 @@ export async function _listNodesDeserialize(
                       details: !p.startTaskInfo?.failureInfo?.["details"]
                         ? p.startTaskInfo?.failureInfo?.["details"]
                         : p.startTaskInfo?.failureInfo?.["details"].map(
-                            (p) => ({ name: p["name"], value: p["value"] })
+                            (p) => ({ name: p["name"], value: p["value"] }),
                           ),
                     },
                 retryCount: p.startTaskInfo?.["retryCount"],
@@ -18478,13 +18478,13 @@ export async function _listNodesDeserialize(
 export function listNodes(
   context: Client,
   poolId: string,
-  options: ListNodesOptions = { requestOptions: {} }
+  options: ListNodesOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchNode> {
   return buildPagedAsyncIterator(
     context,
     () => _listNodesSend(context, poolId, options),
     _listNodesDeserialize,
-    { itemName: "value", nextLinkName: "odata.nextLink" }
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -18493,7 +18493,7 @@ export function _getNodeExtensionSend(
   poolId: string,
   nodeId: string,
   extensionName: string,
-  options: GetNodeExtensionOptions = { requestOptions: {} }
+  options: GetNodeExtensionOptions = { requestOptions: {} },
 ): StreamableMethod<
   GetNodeExtension200Response | GetNodeExtensionDefaultResponse
 > {
@@ -18502,7 +18502,7 @@ export function _getNodeExtensionSend(
       "/pools/{poolId}/nodes/{nodeId}/extensions/{extensionName}",
       poolId,
       nodeId,
-      extensionName
+      extensionName,
     )
     .get({
       ...operationOptionsToRequestParameters(options),
@@ -18511,7 +18511,7 @@ export function _getNodeExtensionSend(
 }
 
 export async function _getNodeExtensionDeserialize(
-  result: GetNodeExtension200Response | GetNodeExtensionDefaultResponse
+  result: GetNodeExtension200Response | GetNodeExtensionDefaultResponse,
 ): Promise<NodeVMExtension> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -18567,14 +18567,14 @@ export async function getNodeExtension(
   poolId: string,
   nodeId: string,
   extensionName: string,
-  options: GetNodeExtensionOptions = { requestOptions: {} }
+  options: GetNodeExtensionOptions = { requestOptions: {} },
 ): Promise<NodeVMExtension> {
   const result = await _getNodeExtensionSend(
     context,
     poolId,
     nodeId,
     extensionName,
-    options
+    options,
   );
   return _getNodeExtensionDeserialize(result);
 }
@@ -18583,7 +18583,7 @@ export function _listNodeExtensionsSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: ListNodeExtensionsOptions = { requestOptions: {} }
+  options: ListNodeExtensionsOptions = { requestOptions: {} },
 ): StreamableMethod<
   ListNodeExtensions200Response | ListNodeExtensionsDefaultResponse
 > {
@@ -18600,7 +18600,7 @@ export function _listNodeExtensionsSend(
 }
 
 export async function _listNodeExtensionsDeserialize(
-  result: ListNodeExtensions200Response | ListNodeExtensionsDefaultResponse
+  result: ListNodeExtensions200Response | ListNodeExtensionsDefaultResponse,
 ): Promise<NodeVMExtensionList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -18660,13 +18660,13 @@ export function listNodeExtensions(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: ListNodeExtensionsOptions = { requestOptions: {} }
+  options: ListNodeExtensionsOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<NodeVMExtension> {
   return buildPagedAsyncIterator(
     context,
     () => _listNodeExtensionsSend(context, poolId, nodeId, options),
     _listNodeExtensionsDeserialize,
-    { itemName: "value", nextLinkName: "odata.nextLink" }
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }
 
@@ -18675,14 +18675,14 @@ export function _deleteNodeFileSend(
   poolId: string,
   nodeId: string,
   filePath: string,
-  options: DeleteNodeFileOptions = { requestOptions: {} }
+  options: DeleteNodeFileOptions = { requestOptions: {} },
 ): StreamableMethod<DeleteNodeFile200Response | DeleteNodeFileDefaultResponse> {
   return context
     .path(
       "/pools/{poolId}/nodes/{nodeId}/files/{filePath}",
       poolId,
       nodeId,
-      filePath
+      filePath,
     )
     .delete({
       ...operationOptionsToRequestParameters(options),
@@ -18694,7 +18694,7 @@ export function _deleteNodeFileSend(
 }
 
 export async function _deleteNodeFileDeserialize(
-  result: DeleteNodeFile200Response | DeleteNodeFileDefaultResponse
+  result: DeleteNodeFile200Response | DeleteNodeFileDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -18709,14 +18709,14 @@ export async function deleteNodeFile(
   poolId: string,
   nodeId: string,
   filePath: string,
-  options: DeleteNodeFileOptions = { requestOptions: {} }
+  options: DeleteNodeFileOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteNodeFileSend(
     context,
     poolId,
     nodeId,
     filePath,
-    options
+    options,
   );
   return _deleteNodeFileDeserialize(result);
 }
@@ -18726,14 +18726,14 @@ export function _getNodeFileSend(
   poolId: string,
   nodeId: string,
   filePath: string,
-  options: GetNodeFileOptions = { requestOptions: {} }
+  options: GetNodeFileOptions = { requestOptions: {} },
 ): StreamableMethod<GetNodeFile200Response | GetNodeFileDefaultResponse> {
   return context
     .path(
       "/pools/{poolId}/nodes/{nodeId}/files/{filePath}",
       poolId,
       nodeId,
-      filePath
+      filePath,
     )
     .get({
       ...operationOptionsToRequestParameters(options),
@@ -18753,7 +18753,7 @@ export function _getNodeFileSend(
 }
 
 export async function _getNodeFileDeserialize(
-  result: GetNodeFile200Response | GetNodeFileDefaultResponse
+  result: GetNodeFile200Response | GetNodeFileDefaultResponse,
 ): Promise<Uint8Array> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -18770,14 +18770,14 @@ export async function getNodeFile(
   poolId: string,
   nodeId: string,
   filePath: string,
-  options: GetNodeFileOptions = { requestOptions: {} }
+  options: GetNodeFileOptions = { requestOptions: {} },
 ): Promise<Uint8Array> {
   const result = await _getNodeFileSend(
     context,
     poolId,
     nodeId,
     filePath,
-    options
+    options,
   );
   return _getNodeFileDeserialize(result);
 }
@@ -18787,7 +18787,7 @@ export function _getNodeFilePropertiesSend(
   poolId: string,
   nodeId: string,
   filePath: string,
-  options: GetNodeFilePropertiesOptions = { requestOptions: {} }
+  options: GetNodeFilePropertiesOptions = { requestOptions: {} },
 ): StreamableMethod<
   GetNodeFileProperties200Response | GetNodeFilePropertiesDefaultResponse
 > {
@@ -18796,7 +18796,7 @@ export function _getNodeFilePropertiesSend(
       "/pools/{poolId}/nodes/{nodeId}/files/{filePath}",
       poolId,
       nodeId,
-      filePath
+      filePath,
     )
     .head({
       ...operationOptionsToRequestParameters(options),
@@ -18815,7 +18815,7 @@ export function _getNodeFilePropertiesSend(
 export async function _getNodeFilePropertiesDeserialize(
   result:
     | GetNodeFileProperties200Response
-    | GetNodeFilePropertiesDefaultResponse
+    | GetNodeFilePropertiesDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -18830,14 +18830,14 @@ export async function getNodeFileProperties(
   poolId: string,
   nodeId: string,
   filePath: string,
-  options: GetNodeFilePropertiesOptions = { requestOptions: {} }
+  options: GetNodeFilePropertiesOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getNodeFilePropertiesSend(
     context,
     poolId,
     nodeId,
     filePath,
-    options
+    options,
   );
   return _getNodeFilePropertiesDeserialize(result);
 }
@@ -18846,7 +18846,7 @@ export function _listNodeFilesSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: ListNodeFilesOptions = { requestOptions: {} }
+  options: ListNodeFilesOptions = { requestOptions: {} },
 ): StreamableMethod<ListNodeFiles200Response | ListNodeFilesDefaultResponse> {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/files", poolId, nodeId)
@@ -18862,7 +18862,7 @@ export function _listNodeFilesSend(
 }
 
 export async function _listNodeFilesDeserialize(
-  result: ListNodeFiles200Response | ListNodeFilesDefaultResponse
+  result: ListNodeFiles200Response | ListNodeFilesDefaultResponse,
 ): Promise<NodeFileListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -18897,12 +18897,12 @@ export function listNodeFiles(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: ListNodeFilesOptions = { requestOptions: {} }
+  options: ListNodeFilesOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<NodeFile> {
   return buildPagedAsyncIterator(
     context,
     () => _listNodeFilesSend(context, poolId, nodeId, options),
     _listNodeFilesDeserialize,
-    { itemName: "value", nextLinkName: "odata.nextLink" }
+    { itemName: "value", nextLinkName: "odata.nextLink" },
   );
 }

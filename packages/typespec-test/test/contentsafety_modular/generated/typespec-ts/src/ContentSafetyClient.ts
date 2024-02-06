@@ -4,15 +4,15 @@
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  AnalyzeTextOptions,
-  AnalyzeTextResult,
-  AnalyzeImageOptions,
-  AnalyzeImageResult,
   TextBlocklist,
   AddOrUpdateBlockItemsOptions,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
   RemoveBlockItemsOptions,
+  AnalyzeImageOptions,
+  AnalyzeImageResult,
+  AnalyzeTextOptions,
+  AnalyzeTextResult,
 } from "./models/models.js";
 import {
   AnalyzeTextRequestOptions,
@@ -54,7 +54,7 @@ export class ContentSafetyClient {
   constructor(
     endpoint: string,
     credential: KeyCredential | TokenCredential,
-    options: ContentSafetyClientOptions = {}
+    options: ContentSafetyClientOptions = {},
   ) {
     this._client = createContentSafety(endpoint, credential, options);
     this.pipeline = this._client.pipeline;
@@ -63,7 +63,7 @@ export class ContentSafetyClient {
   /** A sync API for harmful content analysis for text. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
   analyzeText(
     body: AnalyzeTextOptions,
-    options: AnalyzeTextRequestOptions = { requestOptions: {} }
+    options: AnalyzeTextRequestOptions = { requestOptions: {} },
   ): Promise<AnalyzeTextResult> {
     return analyzeText(this._client, body, options);
   }
@@ -71,7 +71,7 @@ export class ContentSafetyClient {
   /** A sync API for harmful content analysis for image. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
   analyzeImage(
     body: AnalyzeImageOptions,
-    options: AnalyzeImageRequestOptions = { requestOptions: {} }
+    options: AnalyzeImageRequestOptions = { requestOptions: {} },
   ): Promise<AnalyzeImageResult> {
     return analyzeImage(this._client, body, options);
   }
@@ -79,7 +79,7 @@ export class ContentSafetyClient {
   /** Returns text blocklist details. */
   getTextBlocklist(
     blocklistName: string,
-    options: GetTextBlocklistOptions = { requestOptions: {} }
+    options: GetTextBlocklistOptions = { requestOptions: {} },
   ): Promise<TextBlocklist> {
     return getTextBlocklist(this._client, blocklistName, options);
   }
@@ -88,27 +88,27 @@ export class ContentSafetyClient {
   createOrUpdateTextBlocklist(
     blocklistName: string,
     resource: TextBlocklist,
-    options: CreateOrUpdateTextBlocklistOptions = { requestOptions: {} }
+    options: CreateOrUpdateTextBlocklistOptions = { requestOptions: {} },
   ): Promise<TextBlocklist> {
     return createOrUpdateTextBlocklist(
       this._client,
       blocklistName,
       resource,
-      options
+      options,
     );
   }
 
   /** Deletes a text blocklist. */
   deleteTextBlocklist(
     blocklistName: string,
-    options: DeleteTextBlocklistOptions = { requestOptions: {} }
+    options: DeleteTextBlocklistOptions = { requestOptions: {} },
   ): Promise<void> {
     return deleteTextBlocklist(this._client, blocklistName, options);
   }
 
   /** Get all text blocklists details. */
   listTextBlocklists(
-    options: ListTextBlocklistsOptions = { requestOptions: {} }
+    options: ListTextBlocklistsOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<TextBlocklist> {
     return listTextBlocklists(this._client, options);
   }
@@ -117,7 +117,7 @@ export class ContentSafetyClient {
   addOrUpdateBlockItems(
     blocklistName: string,
     body: AddOrUpdateBlockItemsOptions,
-    options: AddOrUpdateBlockItemsRequestOptions = { requestOptions: {} }
+    options: AddOrUpdateBlockItemsRequestOptions = { requestOptions: {} },
   ): Promise<AddOrUpdateBlockItemsResult> {
     return addOrUpdateBlockItems(this._client, blocklistName, body, options);
   }
@@ -126,7 +126,7 @@ export class ContentSafetyClient {
   removeBlockItems(
     blocklistName: string,
     body: RemoveBlockItemsOptions,
-    options: RemoveBlockItemsRequestOptions = { requestOptions: {} }
+    options: RemoveBlockItemsRequestOptions = { requestOptions: {} },
   ): Promise<void> {
     return removeBlockItems(this._client, blocklistName, body, options);
   }
@@ -135,20 +135,20 @@ export class ContentSafetyClient {
   getTextBlocklistItem(
     blocklistName: string,
     blockItemId: string,
-    options: GetTextBlocklistItemOptions = { requestOptions: {} }
+    options: GetTextBlocklistItemOptions = { requestOptions: {} },
   ): Promise<TextBlockItem> {
     return getTextBlocklistItem(
       this._client,
       blocklistName,
       blockItemId,
-      options
+      options,
     );
   }
 
   /** Get all blockItems in a text blocklist */
   listTextBlocklistItems(
     blocklistName: string,
-    options: ListTextBlocklistItemsOptions = { requestOptions: {} }
+    options: ListTextBlocklistItemsOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<TextBlockItem> {
     return listTextBlocklistItems(this._client, blocklistName, options);
   }

@@ -96,138 +96,138 @@ export function isUnexpected(
   response:
     | LoadTestAdministrationCreateOrUpdateTest200Response
     | LoadTestAdministrationCreateOrUpdateTest201Response
-    | LoadTestAdministrationCreateOrUpdateTestDefaultResponse
+    | LoadTestAdministrationCreateOrUpdateTestDefaultResponse,
 ): response is LoadTestAdministrationCreateOrUpdateTestDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestAdministrationDeleteTest204Response
-    | LoadTestAdministrationDeleteTestDefaultResponse
+    | LoadTestAdministrationDeleteTestDefaultResponse,
 ): response is LoadTestAdministrationDeleteTestDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestAdministrationGetTest200Response
-    | LoadTestAdministrationGetTestDefaultResponse
+    | LoadTestAdministrationGetTestDefaultResponse,
 ): response is LoadTestAdministrationGetTestDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestAdministrationListTests200Response
-    | LoadTestAdministrationListTestsDefaultResponse
+    | LoadTestAdministrationListTestsDefaultResponse,
 ): response is LoadTestAdministrationListTestsDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestAdministrationUploadTestFile201Response
-    | LoadTestAdministrationUploadTestFileDefaultResponse
+    | LoadTestAdministrationUploadTestFileDefaultResponse,
 ): response is LoadTestAdministrationUploadTestFileDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestAdministrationGetTestFile200Response
-    | LoadTestAdministrationGetTestFileDefaultResponse
+    | LoadTestAdministrationGetTestFileDefaultResponse,
 ): response is LoadTestAdministrationGetTestFileDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestAdministrationDeleteTestFile204Response
-    | LoadTestAdministrationDeleteTestFileDefaultResponse
+    | LoadTestAdministrationDeleteTestFileDefaultResponse,
 ): response is LoadTestAdministrationDeleteTestFileDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestAdministrationListTestFiles200Response
-    | LoadTestAdministrationListTestFilesDefaultResponse
+    | LoadTestAdministrationListTestFilesDefaultResponse,
 ): response is LoadTestAdministrationListTestFilesDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestAdministrationCreateOrUpdateAppComponents200Response
     | LoadTestAdministrationCreateOrUpdateAppComponents201Response
-    | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse
+    | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse,
 ): response is LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestAdministrationGetAppComponents200Response
-    | LoadTestAdministrationGetAppComponentsDefaultResponse
+    | LoadTestAdministrationGetAppComponentsDefaultResponse,
 ): response is LoadTestAdministrationGetAppComponentsDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response
     | LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response
-    | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse
+    | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse,
 ): response is LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestAdministrationGetServerMetricsConfig200Response
-    | LoadTestAdministrationGetServerMetricsConfigDefaultResponse
+    | LoadTestAdministrationGetServerMetricsConfigDefaultResponse,
 ): response is LoadTestAdministrationGetServerMetricsConfigDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestRunDeleteTestRun204Response
-    | LoadTestRunDeleteTestRunDefaultResponse
+    | LoadTestRunDeleteTestRunDefaultResponse,
 ): response is LoadTestRunDeleteTestRunDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestRunCreateOrUpdateTestRun200Response
     | LoadTestRunCreateOrUpdateTestRun201Response
     | LoadTestRunCreateOrUpdateTestRunLogicalResponse
-    | LoadTestRunCreateOrUpdateTestRunDefaultResponse
+    | LoadTestRunCreateOrUpdateTestRunDefaultResponse,
 ): response is LoadTestRunCreateOrUpdateTestRunDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestRunGetTestRun200Response
-    | LoadTestRunGetTestRunDefaultResponse
+    | LoadTestRunGetTestRunDefaultResponse,
 ): response is LoadTestRunGetTestRunDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestRunGetTestRunFile200Response
-    | LoadTestRunGetTestRunFileDefaultResponse
+    | LoadTestRunGetTestRunFileDefaultResponse,
 ): response is LoadTestRunGetTestRunFileDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestRunListTestRuns200Response
-    | LoadTestRunListTestRunsDefaultResponse
+    | LoadTestRunListTestRunsDefaultResponse,
 ): response is LoadTestRunListTestRunsDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestRunStopTestRun200Response
-    | LoadTestRunStopTestRunDefaultResponse
+    | LoadTestRunStopTestRunDefaultResponse,
 ): response is LoadTestRunStopTestRunDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestRunListMetricNamespaces200Response
-    | LoadTestRunListMetricNamespacesDefaultResponse
+    | LoadTestRunListMetricNamespacesDefaultResponse,
 ): response is LoadTestRunListMetricNamespacesDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestRunListMetricDefinitions200Response
-    | LoadTestRunListMetricDefinitionsDefaultResponse
+    | LoadTestRunListMetricDefinitionsDefaultResponse,
 ): response is LoadTestRunListMetricDefinitionsDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestRunListMetrics200Response
-    | LoadTestRunListMetricsDefaultResponse
+    | LoadTestRunListMetricsDefaultResponse,
 ): response is LoadTestRunListMetricsDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestRunListMetricDimensionValues200Response
-    | LoadTestRunListMetricDimensionValuesDefaultResponse
+    | LoadTestRunListMetricDimensionValuesDefaultResponse,
 ): response is LoadTestRunListMetricDimensionValuesDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestRunCreateOrUpdateAppComponents200Response
     | LoadTestRunCreateOrUpdateAppComponents201Response
-    | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
+    | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse,
 ): response is LoadTestRunCreateOrUpdateAppComponentsDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestRunGetAppComponents200Response
-    | LoadTestRunGetAppComponentsDefaultResponse
+    | LoadTestRunGetAppComponentsDefaultResponse,
 ): response is LoadTestRunGetAppComponentsDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
     | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
-    | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
+    | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse,
 ): response is LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestRunTestRunListServerMetricsConfig200Response
-    | LoadTestRunTestRunListServerMetricsConfigDefaultResponse
+    | LoadTestRunTestRunListServerMetricsConfigDefaultResponse,
 ): response is LoadTestRunTestRunListServerMetricsConfigDefaultResponse;
 export function isUnexpected(
   response:
@@ -289,7 +289,7 @@ export function isUnexpected(
     | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
     | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
     | LoadTestRunTestRunListServerMetricsConfig200Response
-    | LoadTestRunTestRunListServerMetricsConfigDefaultResponse
+    | LoadTestRunTestRunListServerMetricsConfigDefaultResponse,
 ): response is
   | LoadTestAdministrationCreateOrUpdateTestDefaultResponse
   | LoadTestAdministrationDeleteTestDefaultResponse
@@ -365,7 +365,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

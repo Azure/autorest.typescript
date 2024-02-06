@@ -29,12 +29,13 @@ async function failoverAReplicationLink() {
   const linkId = "f0550bf5-07ce-4270-8e4b-71737975973a";
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
-  const result = await client.replicationLinks.beginFailoverAllowDataLossAndWait(
-    resourceGroupName,
-    serverName,
-    databaseName,
-    linkId
-  );
+  const result =
+    await client.replicationLinks.beginFailoverAllowDataLossAndWait(
+      resourceGroupName,
+      serverName,
+      databaseName,
+      linkId,
+    );
   console.log(result);
 }
 

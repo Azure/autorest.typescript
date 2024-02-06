@@ -11,7 +11,7 @@
 import {
   DefaultAdminRule,
   AdminRule,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,7 +34,7 @@ async function createADefaultAdminRule() {
   const ruleName = "SampleDefaultAdminRule";
   const adminRule: DefaultAdminRule = {
     flag: "AllowVnetInbound",
-    kind: "Default"
+    kind: "Default",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -44,7 +44,7 @@ async function createADefaultAdminRule() {
     configurationName,
     ruleCollectionName,
     ruleName,
-    adminRule
+    adminRule,
   );
   console.log(result);
 }
@@ -73,7 +73,7 @@ async function createAnAdminRule() {
     priority: 1,
     sourcePortRanges: ["0-65535"],
     sources: [{ addressPrefix: "Internet", addressPrefixType: "ServiceTag" }],
-    protocol: "Tcp"
+    protocol: "Tcp",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -83,7 +83,7 @@ async function createAnAdminRule() {
     configurationName,
     ruleCollectionName,
     ruleName,
-    adminRule
+    adminRule,
   );
   console.log(result);
 }

@@ -9,7 +9,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 
 export const contentType: OperationParameter = {
@@ -19,9 +19,9 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const body: OperationParameter = {
@@ -30,9 +30,9 @@ export const body: OperationParameter = {
     serializedName: "body",
     required: true,
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const accept: OperationParameter = {
@@ -42,9 +42,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -53,10 +53,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const customHeader: OperationParameter = {
@@ -64,9 +64,9 @@ export const customHeader: OperationParameter = {
   mapper: {
     serializedName: "customHeader",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const query: OperationQueryParameter = {
@@ -75,9 +75,9 @@ export const query: OperationQueryParameter = {
     defaultValue: 30,
     serializedName: "query",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const path: OperationURLParameter = {
@@ -86,66 +86,66 @@ export const path: OperationURLParameter = {
     serializedName: "path",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const customHeader1: OperationParameter = {
   parameterPath: [
     "options",
     "parameterGroupingPostOptionalParameters",
-    "customHeader"
+    "customHeader",
   ],
   mapper: {
     serializedName: "customHeader",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const query1: OperationQueryParameter = {
   parameterPath: [
     "options",
     "parameterGroupingPostOptionalParameters",
-    "query"
+    "query",
   ],
   mapper: {
     defaultValue: 30,
     serializedName: "query",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
-export const from: OperationQueryParameter = {
+export const fromParam: OperationQueryParameter = {
   parameterPath: [
     "options",
     "parameterGroupingPostReservedWordsParameters",
-    "from"
+    "from",
   ],
   mapper: {
     serializedName: "from",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const accept1: OperationQueryParameter = {
   parameterPath: [
     "options",
     "parameterGroupingPostReservedWordsParameters",
-    "accept"
+    "accept",
   ],
   mapper: {
     serializedName: "accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const headerOne: OperationParameter = {
@@ -153,9 +153,9 @@ export const headerOne: OperationParameter = {
   mapper: {
     serializedName: "header-one",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const queryOne: OperationQueryParameter = {
@@ -164,38 +164,38 @@ export const queryOne: OperationQueryParameter = {
     defaultValue: 30,
     serializedName: "query-one",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const headerTwo: OperationParameter = {
   parameterPath: [
     "options",
     "parameterGroupingPostMultiParamGroupsSecondParamGroup",
-    "headerTwo"
+    "headerTwo",
   ],
   mapper: {
     serializedName: "header-two",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const queryTwo: OperationQueryParameter = {
   parameterPath: [
     "options",
     "parameterGroupingPostMultiParamGroupsSecondParamGroup",
-    "queryTwo"
+    "queryTwo",
   ],
   mapper: {
     defaultValue: 30,
     serializedName: "query-two",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const groupedConstant: OperationParameter = {
@@ -205,9 +205,9 @@ export const groupedConstant: OperationParameter = {
     isConstant: true,
     serializedName: "groupedConstant",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const groupedParameter: OperationParameter = {
@@ -215,7 +215,7 @@ export const groupedParameter: OperationParameter = {
   mapper: {
     serializedName: "groupedParameter",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };

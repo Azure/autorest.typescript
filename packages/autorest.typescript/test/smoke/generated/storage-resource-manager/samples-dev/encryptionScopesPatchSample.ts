@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   EncryptionScope,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,9 +32,9 @@ async function storageAccountPatchEncryptionScope() {
   const encryptionScope: EncryptionScope = {
     keyVaultProperties: {
       keyUri:
-        "https://testvault.vault.core.windows.net/keys/key1/863425f1358359c"
+        "https://testvault.vault.core.windows.net/keys/key1/863425f1358359c",
     },
-    source: "Microsoft.KeyVault"
+    source: "Microsoft.KeyVault",
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -42,7 +42,7 @@ async function storageAccountPatchEncryptionScope() {
     resourceGroupName,
     accountName,
     encryptionScopeName,
-    encryptionScope
+    encryptionScope,
   );
   console.log(result);
 }

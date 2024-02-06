@@ -92,7 +92,7 @@ import { Client, StreamableMethod } from "@typespec/ts-http-runtime";
 
 export interface AudioTranscriptionsCreate {
   post(
-    options: AudioTranscriptionsCreateParameters
+    options: AudioTranscriptionsCreateParameters,
   ): StreamableMethod<
     | AudioTranscriptionsCreate200Response
     | AudioTranscriptionsCreateDefaultResponse
@@ -101,7 +101,7 @@ export interface AudioTranscriptionsCreate {
 
 export interface AudioTranslationsCreate {
   post(
-    options: AudioTranslationsCreateParameters
+    options: AudioTranslationsCreateParameters,
   ): StreamableMethod<
     AudioTranslationsCreate200Response | AudioTranslationsCreateDefaultResponse
   >;
@@ -109,7 +109,7 @@ export interface AudioTranslationsCreate {
 
 export interface ChatCompletionsCreate {
   post(
-    options?: ChatCompletionsCreateParameters
+    options?: ChatCompletionsCreateParameters,
   ): StreamableMethod<
     ChatCompletionsCreate200Response | ChatCompletionsCreateDefaultResponse
   >;
@@ -125,12 +125,12 @@ export interface FineTuningJobsCreate {
    * [Learn more about fine-tuning](/docs/guides/fine-tuning)
    */
   post(
-    options: FineTuningJobsCreateParameters
+    options: FineTuningJobsCreateParameters,
   ): StreamableMethod<
     FineTuningJobsCreate200Response | FineTuningJobsCreateDefaultResponse
   >;
   get(
-    options?: FineTuningJobsListParameters
+    options?: FineTuningJobsListParameters,
   ): StreamableMethod<
     FineTuningJobsList200Response | FineTuningJobsListDefaultResponse
   >;
@@ -138,7 +138,7 @@ export interface FineTuningJobsCreate {
 
 export interface FineTuningJobsRetrieve {
   get(
-    options?: FineTuningJobsRetrieveParameters
+    options?: FineTuningJobsRetrieveParameters,
   ): StreamableMethod<
     FineTuningJobsRetrieve200Response | FineTuningJobsRetrieveDefaultResponse
   >;
@@ -146,7 +146,7 @@ export interface FineTuningJobsRetrieve {
 
 export interface FineTuningJobsListEvents {
   get(
-    options?: FineTuningJobsListEventsParameters
+    options?: FineTuningJobsListEventsParameters,
   ): StreamableMethod<
     | FineTuningJobsListEvents200Response
     | FineTuningJobsListEventsDefaultResponse
@@ -155,7 +155,7 @@ export interface FineTuningJobsListEvents {
 
 export interface FineTuningJobsCancel {
   post(
-    options?: FineTuningJobsCancelParameters
+    options?: FineTuningJobsCancelParameters,
   ): StreamableMethod<
     FineTuningJobsCancel200Response | FineTuningJobsCancelDefaultResponse
   >;
@@ -163,7 +163,7 @@ export interface FineTuningJobsCancel {
 
 export interface CompletionsCreate {
   post(
-    options?: CompletionsCreateParameters
+    options?: CompletionsCreateParameters,
   ): StreamableMethod<
     CompletionsCreate200Response | CompletionsCreateDefaultResponse
   >;
@@ -171,13 +171,13 @@ export interface CompletionsCreate {
 
 export interface EditsCreate {
   post(
-    options: EditsCreateParameters
+    options: EditsCreateParameters,
   ): StreamableMethod<EditsCreate200Response | EditsCreateDefaultResponse>;
 }
 
 export interface EmbeddingsCreate {
   post(
-    options: EmbeddingsCreateParameters
+    options: EmbeddingsCreateParameters,
   ): StreamableMethod<
     EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse
   >;
@@ -185,19 +185,19 @@ export interface EmbeddingsCreate {
 
 export interface FilesList {
   get(
-    options?: FilesListParameters
+    options?: FilesListParameters,
   ): StreamableMethod<FilesList200Response | FilesListDefaultResponse>;
   post(
-    options: FilesCreateParameters
+    options: FilesCreateParameters,
   ): StreamableMethod<FilesCreate200Response | FilesCreateDefaultResponse>;
 }
 
 export interface FilesRetrieve {
   post(
-    options?: FilesRetrieveParameters
+    options?: FilesRetrieveParameters,
   ): StreamableMethod<FilesRetrieve200Response | FilesRetrieveDefaultResponse>;
   delete(
-    options?: FilesDeleteParameters
+    options?: FilesDeleteParameters,
   ): StreamableMethod<
     FilesDeleteOperation200Response | FilesDeleteOperationDefaultResponse
   >;
@@ -205,24 +205,24 @@ export interface FilesRetrieve {
 
 export interface FilesDownload {
   get(
-    options?: FilesDownloadParameters
+    options?: FilesDownloadParameters,
   ): StreamableMethod<FilesDownload200Response | FilesDownloadDefaultResponse>;
 }
 
 export interface FineTunesCreate {
   post(
-    options: FineTunesCreateParameters
+    options: FineTunesCreateParameters,
   ): StreamableMethod<
     FineTunesCreate200Response | FineTunesCreateDefaultResponse
   >;
   get(
-    options?: FineTunesListParameters
+    options?: FineTunesListParameters,
   ): StreamableMethod<FineTunesList200Response | FineTunesListDefaultResponse>;
 }
 
 export interface FineTunesRetrieve {
   get(
-    options?: FineTunesRetrieveParameters
+    options?: FineTunesRetrieveParameters,
   ): StreamableMethod<
     FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse
   >;
@@ -230,7 +230,7 @@ export interface FineTunesRetrieve {
 
 export interface FineTunesListEvents {
   get(
-    options?: FineTunesListEventsParameters
+    options?: FineTunesListEventsParameters,
   ): StreamableMethod<
     FineTunesListEvents200Response | FineTunesListEventsDefaultResponse
   >;
@@ -238,7 +238,7 @@ export interface FineTunesListEvents {
 
 export interface FineTunesCancel {
   post(
-    options?: FineTunesCancelParameters
+    options?: FineTunesCancelParameters,
   ): StreamableMethod<
     FineTunesCancel200Response | FineTunesCancelDefaultResponse
   >;
@@ -246,18 +246,18 @@ export interface FineTunesCancel {
 
 export interface ModelsList {
   get(
-    options?: ModelsListParameters
+    options?: ModelsListParameters,
   ): StreamableMethod<ModelsList200Response | ModelsListDefaultResponse>;
 }
 
 export interface ModelsRetrieve {
   get(
-    options?: ModelsRetrieveParameters
+    options?: ModelsRetrieveParameters,
   ): StreamableMethod<
     ModelsRetrieve200Response | ModelsRetrieveDefaultResponse
   >;
   delete(
-    options?: ModelsDeleteParameters
+    options?: ModelsDeleteParameters,
   ): StreamableMethod<
     ModelsDeleteOperation200Response | ModelsDeleteOperationDefaultResponse
   >;
@@ -265,13 +265,13 @@ export interface ModelsRetrieve {
 
 export interface ImagesCreate {
   post(
-    options: ImagesCreateParameters
+    options: ImagesCreateParameters,
   ): StreamableMethod<ImagesCreate200Response | ImagesCreateDefaultResponse>;
 }
 
 export interface ImagesCreateEdit {
   post(
-    options: ImagesCreateEditParameters
+    options: ImagesCreateEditParameters,
   ): StreamableMethod<
     ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
   >;
@@ -279,7 +279,7 @@ export interface ImagesCreateEdit {
 
 export interface ImagesCreateVariation {
   post(
-    options: ImagesCreateVariationParameters
+    options: ImagesCreateVariationParameters,
   ): StreamableMethod<
     ImagesCreateVariation200Response | ImagesCreateVariationDefaultResponse
   >;
@@ -287,7 +287,7 @@ export interface ImagesCreateVariation {
 
 export interface ModerationsCreate {
   post(
-    options: ModerationsCreateParameters
+    options: ModerationsCreateParameters,
   ): StreamableMethod<
     ModerationsCreate200Response | ModerationsCreateDefaultResponse
   >;
@@ -305,17 +305,17 @@ export interface Routes {
   /** Resource for '/fine_tuning/jobs/\{fine_tuning_job_id\}' has methods for the following verbs: get */
   (
     path: "/fine_tuning/jobs/{fine_tuning_job_id}",
-    fineTuningJobId: string
+    fineTuningJobId: string,
   ): FineTuningJobsRetrieve;
   /** Resource for '/fine_tuning/jobs/\{fine_tuning_job_id\}/events' has methods for the following verbs: get */
   (
     path: "/fine_tuning/jobs/{fine_tuning_job_id}/events",
-    fineTuningJobId: string
+    fineTuningJobId: string,
   ): FineTuningJobsListEvents;
   /** Resource for '/fine_tuning/jobs/\{fine_tuning_job_id\}/cancel' has methods for the following verbs: post */
   (
     path: "/fine_tuning/jobs/{fine_tuning_job_id}/cancel",
-    fineTuningJobId: string
+    fineTuningJobId: string,
   ): FineTuningJobsCancel;
   /** Resource for '/completions' has methods for the following verbs: post */
   (path: "/completions"): CompletionsCreate;
@@ -336,12 +336,12 @@ export interface Routes {
   /** Resource for '/fine-tunes/\{fine_tune_id\}/events' has methods for the following verbs: get */
   (
     path: "/fine-tunes/{fine_tune_id}/events",
-    fineTuneId: string
+    fineTuneId: string,
   ): FineTunesListEvents;
   /** Resource for '/fine-tunes/\{fine_tune_id\}/cancel' has methods for the following verbs: post */
   (
     path: "/fine-tunes/{fine_tune_id}/cancel",
-    fineTuneId: string
+    fineTuneId: string,
   ): FineTunesCancel;
   /** Resource for '/models' has methods for the following verbs: get */
   (path: "/models"): ModelsList;

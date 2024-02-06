@@ -28,7 +28,7 @@ async function deleteDDoSCustomPolicy() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ddosCustomPolicies.beginDeleteAndWait(
     resourceGroupName,
-    ddosCustomPolicyName
+    ddosCustomPolicyName,
   );
   console.log(result);
 }

@@ -28,7 +28,7 @@ async function startApplicationGateway() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.applicationGateways.beginStartAndWait(
     resourceGroupName,
-    applicationGatewayName
+    applicationGatewayName,
   );
   console.log(result);
 }

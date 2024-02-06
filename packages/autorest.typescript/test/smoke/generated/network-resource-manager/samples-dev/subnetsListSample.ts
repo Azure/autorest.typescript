@@ -29,7 +29,7 @@ async function listSubnets() {
   const resArray = new Array();
   for await (let item of client.subnets.list(
     resourceGroupName,
-    virtualNetworkName
+    virtualNetworkName,
   )) {
     resArray.push(item);
   }

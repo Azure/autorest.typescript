@@ -4,7 +4,7 @@ import {
   PipelineRunsQueryByFactoryResponse,
   PipelineRunsGetOptionalParams,
   PipelineRunsGetResponse,
-  PipelineRunsCancelOptionalParams
+  PipelineRunsCancelOptionalParams,
 } from "../models";
 
 /** Interface representing a PipelineRuns. */
@@ -20,7 +20,7 @@ export interface PipelineRuns {
     resourceGroupName: string,
     factoryName: string,
     filterParameters: RunFilterParameters,
-    options?: PipelineRunsQueryByFactoryOptionalParams
+    options?: PipelineRunsQueryByFactoryOptionalParams,
   ): Promise<PipelineRunsQueryByFactoryResponse>;
   /**
    * Get a pipeline run by its run ID.
@@ -33,7 +33,7 @@ export interface PipelineRuns {
     resourceGroupName: string,
     factoryName: string,
     runId: string,
-    options?: PipelineRunsGetOptionalParams
+    options?: PipelineRunsGetOptionalParams,
   ): Promise<PipelineRunsGetResponse>;
   /**
    * Cancel a pipeline run by its run ID.
@@ -46,6 +46,6 @@ export interface PipelineRuns {
     resourceGroupName: string,
     factoryName: string,
     runId: string,
-    options?: PipelineRunsCancelOptionalParams
+    options?: PipelineRunsCancelOptionalParams,
   ): Promise<void>;
 }

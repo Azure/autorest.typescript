@@ -33,7 +33,7 @@ import {
   PasswordCredentialsUpdateParameters,
   ApplicationsUpdatePasswordCredentialsOptionalParams,
   ApplicationsGetServicePrincipalsIdByAppIdOptionalParams,
-  ApplicationsGetServicePrincipalsIdByAppIdResponse
+  ApplicationsGetServicePrincipalsIdByAppIdResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -44,7 +44,7 @@ export interface Applications {
    * @param options The options parameters.
    */
   list(
-    options?: ApplicationsListOptionalParams
+    options?: ApplicationsListOptionalParams,
   ): PagedAsyncIterableIterator<Application>;
   /**
    * The owners are a set of non-admin users who are allowed to modify this object.
@@ -53,7 +53,7 @@ export interface Applications {
    */
   listOwners(
     applicationObjectId: string,
-    options?: ApplicationsListOwnersOptionalParams
+    options?: ApplicationsListOwnersOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
   /**
    * Get the keyCredentials associated with an application.
@@ -62,7 +62,7 @@ export interface Applications {
    */
   listKeyCredentials(
     applicationObjectId: string,
-    options?: ApplicationsListKeyCredentialsOptionalParams
+    options?: ApplicationsListKeyCredentialsOptionalParams,
   ): PagedAsyncIterableIterator<KeyCredential>;
   /**
    * Get the passwordCredentials associated with an application.
@@ -71,7 +71,7 @@ export interface Applications {
    */
   listPasswordCredentials(
     applicationObjectId: string,
-    options?: ApplicationsListPasswordCredentialsOptionalParams
+    options?: ApplicationsListPasswordCredentialsOptionalParams,
   ): PagedAsyncIterableIterator<PasswordCredential>;
   /**
    * Gets a list of applications from the current tenant.
@@ -80,7 +80,7 @@ export interface Applications {
    */
   listNext(
     nextLink: string,
-    options?: ApplicationsListNextOptionalParams
+    options?: ApplicationsListNextOptionalParams,
   ): PagedAsyncIterableIterator<Application>;
   /**
    * Create a new application.
@@ -89,7 +89,7 @@ export interface Applications {
    */
   create(
     parameters: ApplicationCreateParameters,
-    options?: ApplicationsCreateOptionalParams
+    options?: ApplicationsCreateOptionalParams,
   ): Promise<ApplicationsCreateResponse>;
   /**
    * Delete an application.
@@ -98,7 +98,7 @@ export interface Applications {
    */
   delete(
     applicationObjectId: string,
-    options?: ApplicationsDeleteOptionalParams
+    options?: ApplicationsDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Get an application by object ID.
@@ -107,7 +107,7 @@ export interface Applications {
    */
   get(
     applicationObjectId: string,
-    options?: ApplicationsGetOptionalParams
+    options?: ApplicationsGetOptionalParams,
   ): Promise<ApplicationsGetResponse>;
   /**
    * Update an existing application.
@@ -118,7 +118,7 @@ export interface Applications {
   patch(
     applicationObjectId: string,
     parameters: ApplicationUpdateParameters,
-    options?: ApplicationsPatchOptionalParams
+    options?: ApplicationsPatchOptionalParams,
   ): Promise<void>;
   /**
    * Add an owner to an application.
@@ -130,7 +130,7 @@ export interface Applications {
   addOwner(
     applicationObjectId: string,
     parameters: AddOwnerParameters,
-    options?: ApplicationsAddOwnerOptionalParams
+    options?: ApplicationsAddOwnerOptionalParams,
   ): Promise<void>;
   /**
    * Remove a member from owners.
@@ -141,7 +141,7 @@ export interface Applications {
   removeOwner(
     applicationObjectId: string,
     ownerObjectId: string,
-    options?: ApplicationsRemoveOwnerOptionalParams
+    options?: ApplicationsRemoveOwnerOptionalParams,
   ): Promise<void>;
   /**
    * Update the keyCredentials associated with an application.
@@ -152,7 +152,7 @@ export interface Applications {
   updateKeyCredentials(
     applicationObjectId: string,
     parameters: KeyCredentialsUpdateParameters,
-    options?: ApplicationsUpdateKeyCredentialsOptionalParams
+    options?: ApplicationsUpdateKeyCredentialsOptionalParams,
   ): Promise<void>;
   /**
    * Update passwordCredentials associated with an application.
@@ -163,7 +163,7 @@ export interface Applications {
   updatePasswordCredentials(
     applicationObjectId: string,
     parameters: PasswordCredentialsUpdateParameters,
-    options?: ApplicationsUpdatePasswordCredentialsOptionalParams
+    options?: ApplicationsUpdatePasswordCredentialsOptionalParams,
   ): Promise<void>;
   /**
    * Gets an object id for a given application id from the current tenant.
@@ -172,6 +172,6 @@ export interface Applications {
    */
   getServicePrincipalsIdByAppId(
     applicationID: string,
-    options?: ApplicationsGetServicePrincipalsIdByAppIdOptionalParams
+    options?: ApplicationsGetServicePrincipalsIdByAppIdOptionalParams,
   ): Promise<ApplicationsGetServicePrincipalsIdByAppIdResponse>;
 }

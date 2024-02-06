@@ -22,14 +22,18 @@ import { CreateStreamingOptions, CreateOptions } from "../models/options.js";
 export function _createStreamingSend(
   context: Client,
   body: StreamingChatCompletionOptions,
-  options: CreateStreamingOptions = { requestOptions: {} }
+  options: CreateStreamingOptions = { requestOptions: {} },
 ): StreamableMethod<CreateStreaming200Response> {
   return context
     .path("/chat")
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        messages: body.messages as any,
+        messages: body["messages"].map((p) => ({
+          content: p["content"],
+          role: p["role"],
+          session_state: p["sessionState"],
+        })),
         stream: body["stream"],
         session_state: body["sessionState"],
         context: body["context"],
@@ -38,7 +42,7 @@ export function _createStreamingSend(
 }
 
 export async function _createStreamingDeserialize(
-  result: CreateStreaming200Response
+  result: CreateStreaming200Response,
 ): Promise<ChatCompletionChunk> {
   if (result.status !== "200") {
     throw createRestError(result);
@@ -63,7 +67,7 @@ export async function _createStreamingDeserialize(
 export async function createStreaming(
   context: Client,
   body: StreamingChatCompletionOptions,
-  options: CreateStreamingOptions = { requestOptions: {} }
+  options: CreateStreamingOptions = { requestOptions: {} },
 ): Promise<ChatCompletionChunk> {
   const result = await _createStreamingSend(context, body, options);
   return _createStreamingDeserialize(result);
@@ -72,14 +76,18 @@ export async function createStreaming(
 export function _createSend(
   context: Client,
   body: ChatCompletionOptions,
-  options: CreateOptions = { requestOptions: {} }
+  options: CreateOptions = { requestOptions: {} },
 ): StreamableMethod<Create200Response> {
   return context
     .path("/chat")
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        messages: body.messages as any,
+        messages: body["messages"].map((p) => ({
+          content: p["content"],
+          role: p["role"],
+          session_state: p["sessionState"],
+        })),
         stream: body["stream"],
         session_state: body["sessionState"],
         context: body["context"],
@@ -88,7 +96,7 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: Create200Response
+  result: Create200Response,
 ): Promise<ChatCompletion> {
   if (result.status !== "200") {
     throw createRestError(result);
@@ -97,7 +105,11 @@ export async function _createDeserialize(
   return {
     choices: result.body["choices"].map((p) => ({
       index: p["index"],
-      message: p.message as any,
+      message: {
+        content: p.message["content"],
+        role: p.message["role"],
+        sessionState: p.message["session_state"],
+      },
       sessionState: p["session_state"],
       context: p["context"],
       finishReason: p["finish_reason"],
@@ -109,7 +121,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   body: ChatCompletionOptions,
-  options: CreateOptions = { requestOptions: {} }
+  options: CreateOptions = { requestOptions: {} },
 ): Promise<ChatCompletion> {
   const result = await _createSend(context, body, options);
   return _createDeserialize(result);

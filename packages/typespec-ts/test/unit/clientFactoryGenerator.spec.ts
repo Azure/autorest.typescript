@@ -15,7 +15,7 @@ describe("Client Factory generation", () => {
       namespace PetStore;
       `);
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
@@ -45,6 +45,8 @@ describe("Client Factory generation", () => {
         };
         
         const client = getClient(baseUrl, options) as testClient;
+
+        client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
         
         return client;
     }
@@ -66,7 +68,7 @@ describe("Client Factory generation", () => {
           scalar Endpoint extends string;
           `);
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
           import { getClient, ClientOptions } from "@azure-rest/core-client";
@@ -100,6 +102,8 @@ describe("Client Factory generation", () => {
             };
           
             const client = getClient(baseUrl, options) as testClient;
+
+            client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
           
             return client;
         }
@@ -135,7 +139,7 @@ describe("Client Factory generation", () => {
         true
       );
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
@@ -171,6 +175,8 @@ describe("Client Factory generation", () => {
               };
             
               const client = getClient(baseUrl, options) as testClient;
+
+              client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
             
               return client;
           }
@@ -202,7 +208,7 @@ describe("Client Factory generation", () => {
         true
       );
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
@@ -212,7 +218,7 @@ describe("Client Factory generation", () => {
             /**
              * Initialize a new instance of \`testClient\`
              * @param endpoint - The endpoint to use.
-             * @param version - The version to use. Possible values: v1.1
+             * @param version - The version to use. Possible values: "v1.1"
              * @param options - the parameter for all optional parameters
              */
             export default function createClient(
@@ -238,6 +244,8 @@ describe("Client Factory generation", () => {
               };
             
               const client = getClient(baseUrl, options) as testClient;
+
+              client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
             
               return client;
           }
@@ -270,7 +278,7 @@ describe("Client Factory generation", () => {
         true
       );
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
@@ -283,7 +291,7 @@ describe("Client Factory generation", () => {
 
             /**
              * Initialize a new instance of \`testClient\`
-             * @param version - The version to use. Possible values: v1.1
+             * @param version - The version to use. Possible values: "v1.1"
              * @param options - the parameter for all optional parameters
              */
             export default function createClient(
@@ -309,6 +317,8 @@ describe("Client Factory generation", () => {
               };
             
               const client = getClient(baseUrl, options) as testClient;
+              
+              client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
             
               return client;
           }
@@ -324,7 +334,7 @@ describe("Client Factory generation", () => {
       namespace PetStore;
       `);
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
@@ -355,6 +365,8 @@ describe("Client Factory generation", () => {
         };
         
         const client = getClient(baseUrl, options) as testClient;
+
+        client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
         
         return client;
     }
@@ -409,7 +421,7 @@ describe("Client Factory generation", () => {
 
       assert.ok(factoryFile);
       // console.log(factoryFile!.content);
-      assertEqualContent(
+      await assertEqualContent(
         factoryFile!.content,
         `
       import { getClient, ClientOptions } from "@azure-rest/core-client";
@@ -443,6 +455,8 @@ describe("Client Factory generation", () => {
 
         const client = getClient(baseUrl, credentials, options) as testClient;
 
+        client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+
         return client;
       }
       `
@@ -462,7 +476,7 @@ describe("Client Factory generation", () => {
       namespace PetStore;
       `);
       assert.ok(models);
-      assertEqualContent(
+      await assertEqualContent(
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
@@ -499,6 +513,8 @@ describe("Client Factory generation", () => {
         };
         
         const client = getClient(baseUrl, credentials, options) as testClient;
+
+        client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
         
         return client;
     }

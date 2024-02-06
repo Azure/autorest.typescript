@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { Fish } from "./models/models.js";
+import { FishUnion } from "./models/models.js";
 import {
   GetModelOptions,
   PutModelOptions,
@@ -36,39 +36,41 @@ export class NestedDiscriminatorClient {
     this.pipeline = this._client.pipeline;
   }
 
-  getModel(options: GetModelOptions = { requestOptions: {} }): Promise<Fish> {
+  getModel(
+    options: GetModelOptions = { requestOptions: {} },
+  ): Promise<FishUnion> {
     return getModel(this._client, options);
   }
 
   putModel(
-    input: Fish,
-    options: PutModelOptions = { requestOptions: {} }
+    input: FishUnion,
+    options: PutModelOptions = { requestOptions: {} },
   ): Promise<void> {
     return putModel(this._client, input, options);
   }
 
   getRecursiveModel(
-    options: GetRecursiveModelOptions = { requestOptions: {} }
-  ): Promise<Fish> {
+    options: GetRecursiveModelOptions = { requestOptions: {} },
+  ): Promise<FishUnion> {
     return getRecursiveModel(this._client, options);
   }
 
   putRecursiveModel(
-    input: Fish,
-    options: PutRecursiveModelOptions = { requestOptions: {} }
+    input: FishUnion,
+    options: PutRecursiveModelOptions = { requestOptions: {} },
   ): Promise<void> {
     return putRecursiveModel(this._client, input, options);
   }
 
   getMissingDiscriminator(
-    options: GetMissingDiscriminatorOptions = { requestOptions: {} }
-  ): Promise<Fish> {
+    options: GetMissingDiscriminatorOptions = { requestOptions: {} },
+  ): Promise<FishUnion> {
     return getMissingDiscriminator(this._client, options);
   }
 
   getWrongDiscriminator(
-    options: GetWrongDiscriminatorOptions = { requestOptions: {} }
-  ): Promise<Fish> {
+    options: GetWrongDiscriminatorOptions = { requestOptions: {} },
+  ): Promise<FishUnion> {
     return getWrongDiscriminator(this._client, options);
   }
 }

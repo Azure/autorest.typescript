@@ -17,8 +17,7 @@ async function stringPutWhitespace() {
   const result = await client
     .path("/string/whitespace")
     .put({
-      body:
-        "    Now is the time for all good men to come to the aid of their country    "
+      body: "    Now is the time for all good men to come to the aid of their country    ",
     });
   console.log(result);
 }

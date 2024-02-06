@@ -30,7 +30,7 @@ async function listJobAgentsInAServer() {
   const resArray = new Array();
   for await (let item of client.jobAgents.listByServer(
     resourceGroupName,
-    serverName
+    serverName,
   )) {
     resArray.push(item);
   }

@@ -17,7 +17,7 @@ async function putHorseSample() {
     .path("/multipleInheritance/horse")
     .put({
       body: { name: "{Your name}", isAShowHorse: true },
-      contentType: "application/json"
+      contentType: "application/json",
     });
   console.log(result);
 }

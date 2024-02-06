@@ -30,7 +30,7 @@ async function storageAccountGetManagementPolicies() {
   const result = await client.managementPolicies.get(
     resourceGroupName,
     accountName,
-    managementPolicyName
+    managementPolicyName,
   );
   console.log(result);
 }

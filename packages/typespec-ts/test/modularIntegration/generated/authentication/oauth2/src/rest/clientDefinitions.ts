@@ -17,7 +17,7 @@ export interface Valid {
 export interface Invalid {
   /** Check whether client is authenticated. Will return an invalid bearer error. */
   get(
-    options?: InvalidParameters
+    options?: InvalidParameters,
   ): StreamableMethod<Invalid204Response | Invalid403Response>;
 }
 

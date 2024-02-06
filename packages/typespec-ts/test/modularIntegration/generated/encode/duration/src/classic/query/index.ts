@@ -22,15 +22,15 @@ export interface QueryOperations {
   iso8601: (input: string, options?: QueryIso8601Options) => Promise<void>;
   int32Seconds: (
     input: number,
-    options?: QueryInt32SecondsOptions
+    options?: QueryInt32SecondsOptions,
   ) => Promise<void>;
   floatSeconds: (
     input: number,
-    options?: QueryFloatSecondsOptions
+    options?: QueryFloatSecondsOptions,
   ) => Promise<void>;
   int32SecondsArray: (
     input: number[],
-    options?: QueryInt32SecondsArrayOptions
+    options?: QueryInt32SecondsArrayOptions,
   ) => Promise<void>;
 }
 
@@ -46,7 +46,7 @@ export function getQuery(context: DurationContext) {
       queryFloatSeconds(context, input, options),
     int32SecondsArray: (
       input: number[],
-      options?: QueryInt32SecondsArrayOptions
+      options?: QueryInt32SecondsArrayOptions,
     ) => queryInt32SecondsArray(context, input, options),
   };
 }

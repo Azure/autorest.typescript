@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   PublicIPPrefix,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,14 +31,14 @@ async function createPublicIPPrefixAllocationMethod() {
     location: "westus",
     prefixLength: 30,
     publicIPAddressVersion: "IPv4",
-    sku: { name: "Standard", tier: "Regional" }
+    sku: { name: "Standard", tier: "Regional" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.publicIPPrefixes.beginCreateOrUpdateAndWait(
     resourceGroupName,
     publicIpPrefixName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -56,14 +56,14 @@ async function createPublicIPPrefixDefaults() {
   const parameters: PublicIPPrefix = {
     location: "westus",
     prefixLength: 30,
-    sku: { name: "Standard" }
+    sku: { name: "Standard" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.publicIPPrefixes.beginCreateOrUpdateAndWait(
     resourceGroupName,
     publicIpPrefixName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

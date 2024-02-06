@@ -29,7 +29,7 @@ export class ChatProtocolClient {
   constructor(
     endpoint: string,
     credential: KeyCredential | TokenCredential,
-    options: ChatProtocolClientOptions = {}
+    options: ChatProtocolClientOptions = {},
   ) {
     this._client = createChatProtocol(endpoint, credential, options);
     this.pipeline = this._client.pipeline;
@@ -38,7 +38,7 @@ export class ChatProtocolClient {
   /** Creates a new streaming chat completion. */
   createStreaming(
     body: StreamingChatCompletionOptions,
-    options: CreateStreamingOptions = { requestOptions: {} }
+    options: CreateStreamingOptions = { requestOptions: {} },
   ): Promise<ChatCompletionChunk> {
     return createStreaming(this._client, body, options);
   }
@@ -46,7 +46,7 @@ export class ChatProtocolClient {
   /** Creates a new chat completion. */
   create(
     body: ChatCompletionOptions,
-    options: CreateOptions = { requestOptions: {} }
+    options: CreateOptions = { requestOptions: {} },
   ): Promise<ChatCompletion> {
     return create(this._client, body, options);
   }

@@ -33,7 +33,7 @@ async function getTheLongTermRetentionBackup() {
     locationName,
     longTermRetentionServerName,
     longTermRetentionDatabaseName,
-    backupName
+    backupName,
   );
   console.log(result);
 }

@@ -31,7 +31,7 @@ async function getAppServiceEnvironmentDetectorResponses() {
   const resArray = new Array();
   for await (let item of client.diagnostics.listHostingEnvironmentDetectorResponses(
     resourceGroupName,
-    name
+    name,
   )) {
     resArray.push(item);
   }

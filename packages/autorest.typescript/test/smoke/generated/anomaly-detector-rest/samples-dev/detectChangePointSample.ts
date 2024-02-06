@@ -20,7 +20,7 @@ async function detectChangePointExample() {
   const client = createAnomalyDetectorRestClient(
     endpoint,
     apiVersion,
-    credential
+    credential,
   );
   const result = await client.path("/timeseries/changepoint/detect").post({
     body: {
@@ -284,12 +284,12 @@ async function detectChangePointExample() {
         { timestamp: new Date("2017-01-02T03:50:00Z"), value: 3232756 },
         { timestamp: new Date("2017-01-02T03:55:00Z"), value: 3233500 },
         { timestamp: new Date("2017-01-02T04:00:00Z"), value: 3233500 },
-        { timestamp: new Date("2017-01-02T04:05:00Z"), value: 3233500 }
+        { timestamp: new Date("2017-01-02T04:05:00Z"), value: 3233500 },
       ],
       stableTrendWindow: 10,
-      threshold: 0.99
+      threshold: 0.99,
     },
-    headers: { "Content-Type": "application/json" }
+    headers: { "Content-Type": "application/json" },
   });
   console.log(result);
 }

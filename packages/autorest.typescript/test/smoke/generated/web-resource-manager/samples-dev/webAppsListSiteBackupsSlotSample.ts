@@ -32,7 +32,7 @@ async function listBackups() {
   for await (let item of client.webApps.listSiteBackupsSlot(
     resourceGroupName,
     name,
-    slot
+    slot,
   )) {
     resArray.push(item);
   }

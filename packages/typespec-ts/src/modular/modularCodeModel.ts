@@ -1,5 +1,7 @@
 import { Imports } from "@azure-tools/rlc-common";
+import { HelperFunctionDetails } from "@azure-tools/rlc-common";
 import { OperationResponse, RLCOptions } from "@azure-tools/rlc-common";
+import { UsageFlags } from "@typespec/compiler";
 import { Project } from "ts-morph";
 
 export interface ModularOptions {
@@ -41,7 +43,6 @@ export interface BodyParameter {
   description: string;
   clientName: string;
   inOverload: boolean;
-  defaultContentType: string;
   isBinaryPayload: boolean;
 }
 
@@ -84,7 +85,8 @@ export interface Type {
     | "dict"
     | "combined"
     | "any"
-    | "unknown";
+    | "unknown"
+    | "never";
   policy?: Policy;
   apiVersions?: any[];
   clientDefaultValue?: any;
@@ -99,8 +101,12 @@ export interface Type {
   properties?: Property[];
   types?: Type[];
   isCoreErrorType?: boolean;
+  usage?: UsageFlags;
   alias?: string;
   aliasType?: string;
+  discriminator?: string;
+  discriminatorValue?: string;
+  isPolymorphicBaseModel?: boolean;
 }
 
 export interface Client {
@@ -112,6 +118,7 @@ export interface Client {
   apiVersions: any[];
   rlcClientName: string;
   subfolder?: string;
+  rlcHelperDetails: HelperFunctionDetails;
 }
 
 export type ParameterLocation =

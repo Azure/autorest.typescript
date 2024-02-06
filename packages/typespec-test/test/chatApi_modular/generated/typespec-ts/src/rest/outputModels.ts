@@ -8,7 +8,7 @@ export interface ChatMessageOutput {
   /**
    * The role associated with the message.
    *
-   * Possible values: user, system, assistant
+   * Possible values: "user", "system", "assistant"
    */
   role: string;
   /**
@@ -47,7 +47,7 @@ export interface ChoiceDeltaOutput {
   /**
    * The reason this chat completion completed its generation.
    *
-   * Possible values: stop, length
+   * Possible values: "stop", "length"
    */
   finish_reason?: string;
 }
@@ -59,7 +59,7 @@ export interface ChatMessageDeltaOutput {
   /**
    * The role associated with the message.
    *
-   * Possible values: user, system, assistant
+   * Possible values: "user", "system", "assistant"
    */
   role?: string;
   /**
@@ -98,7 +98,7 @@ export interface ChatChoiceOutput {
   /**
    * The reason this chat completion completed its generation.
    *
-   * Possible values: stop, length
+   * Possible values: "stop", "length"
    */
   finish_reason: string;
 }

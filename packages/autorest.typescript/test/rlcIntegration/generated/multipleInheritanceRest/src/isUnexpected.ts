@@ -11,7 +11,7 @@ import {
   GetCat200Response,
   GetCatDefaultResponse,
   GetKitten200Response,
-  GetKittenDefaultResponse
+  GetKittenDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -24,23 +24,23 @@ const responseMap: Record<string, string[]> = {
   "GET /multipleInheritance/cat": ["200"],
   "PUT /multipleInheritance/cat": ["200"],
   "GET /multipleInheritance/kitten": ["200"],
-  "PUT /multipleInheritance/kitten": ["200"]
+  "PUT /multipleInheritance/kitten": ["200"],
 };
 
 export function isUnexpected(
-  response: GetHorse200Response | GetHorseDefaultResponse
+  response: GetHorse200Response | GetHorseDefaultResponse,
 ): response is GetHorseDefaultResponse;
 export function isUnexpected(
-  response: GetPet200Response | GetPetDefaultResponse
+  response: GetPet200Response | GetPetDefaultResponse,
 ): response is GetPetDefaultResponse;
 export function isUnexpected(
-  response: GetFeline200Response | GetFelineDefaultResponse
+  response: GetFeline200Response | GetFelineDefaultResponse,
 ): response is GetFelineDefaultResponse;
 export function isUnexpected(
-  response: GetCat200Response | GetCatDefaultResponse
+  response: GetCat200Response | GetCatDefaultResponse,
 ): response is GetCatDefaultResponse;
 export function isUnexpected(
-  response: GetKitten200Response | GetKittenDefaultResponse
+  response: GetKitten200Response | GetKittenDefaultResponse,
 ): response is GetKittenDefaultResponse;
 export function isUnexpected(
   response:
@@ -53,7 +53,7 @@ export function isUnexpected(
     | GetCat200Response
     | GetCatDefaultResponse
     | GetKitten200Response
-    | GetKittenDefaultResponse
+    | GetKittenDefaultResponse,
 ): response is
   | GetHorseDefaultResponse
   | GetPetDefaultResponse
@@ -108,7 +108,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

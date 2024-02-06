@@ -28,7 +28,7 @@ async function getAnSshPublicKey() {
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.sshPublicKeys.get(
     resourceGroupName,
-    sshPublicKeyName
+    sshPublicKeyName,
   );
   console.log(result);
 }

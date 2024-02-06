@@ -30,7 +30,7 @@ async function tableOperationDelete() {
   const result = await client.tableOperations.delete(
     resourceGroupName,
     accountName,
-    tableName
+    tableName,
   );
   console.log(result);
 }

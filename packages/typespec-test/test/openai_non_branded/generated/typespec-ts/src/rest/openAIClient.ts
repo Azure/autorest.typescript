@@ -11,10 +11,9 @@ import { OpenAIContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): OpenAIContext {
   const baseUrl = options.baseUrl ?? `https://api.openai.com/v1`;
-  options.apiVersion = options.apiVersion ?? "2.0.0";
   const userAgentInfo = `azsdk-js-openai-non-branded-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -28,6 +27,8 @@ export default function createClient(
   };
 
   const client = getClient(baseUrl, options) as OpenAIContext;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   client.pipeline.addPolicy({
     name: "customKeyCredentialPolicy",

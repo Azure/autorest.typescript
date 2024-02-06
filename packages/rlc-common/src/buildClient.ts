@@ -281,10 +281,9 @@ export function getClientFactoryBody(
   }
 
   let apiVersionStatement: string = "";
-  // Set the default api-version when we have a default AND its position is query/none
+  // Set the default api-version when we have a default AND its position is query
   if (
-    (model.apiVersionInfo?.definedPosition === "query" ||
-      model.apiVersionInfo?.definedPosition === "none") &&
+    (model.apiVersionInfo?.definedPosition === "query") &&
     !!model.apiVersionInfo?.defaultValue
   ) {
     apiVersionStatement = `options.apiVersion = options.apiVersion ?? "${model.apiVersionInfo?.defaultValue}"`;
@@ -386,6 +385,11 @@ export function getClientFactoryBody(
       });`;
     }
   }
+
+  let apiVersionPolicyStatement = "";
+  if (model.apiVersionInfo?.definedPosition !== "query") {
+    apiVersionPolicyStatement = "client.pipeline.removePolicy({name: 'ApiVersionPolicy'})";
+  }
   let returnStatement = `return client;`;
 
   if (includeShortcuts) {
@@ -411,6 +415,7 @@ export function getClientFactoryBody(
     userAgentStatement,
     overrideOptionsStatement,
     getClient,
+    apiVersionPolicyStatement,
     customHttpAuthStatement,
     returnStatement
   ];

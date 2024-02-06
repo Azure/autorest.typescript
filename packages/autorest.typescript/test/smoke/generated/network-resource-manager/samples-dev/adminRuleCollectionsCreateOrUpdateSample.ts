@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   AdminRuleCollection,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,9 +35,9 @@ async function createOrUpdateAnAdminRuleCollection() {
     appliesToGroups: [
       {
         networkGroupId:
-          "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Network/networkManagers/testNetworkManager/networkGroups/testGroup"
-      }
-    ]
+          "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Network/networkManagers/testNetworkManager/networkGroups/testGroup",
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -46,7 +46,7 @@ async function createOrUpdateAnAdminRuleCollection() {
     networkManagerName,
     configurationName,
     ruleCollectionName,
-    ruleCollection
+    ruleCollection,
   );
   console.log(result);
 }

@@ -16,23 +16,23 @@ export const PetDef: coreClient.CompositeMapper = {
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       daysOfWeek: {
         defaultValue: "Friday",
         serializedName: "DaysOfWeek",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       intEnum: {
         serializedName: "IntEnum",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

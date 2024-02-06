@@ -3,21 +3,14 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
-import {
-  OneOptions,
-  TwoOptions,
-  ThreeOptions,
-  FourOptions,
-  FiveOptions,
-  SixOptions,
-} from "./models/options.js";
+import { OneOptions, TwoOptions } from "./models/options.js";
+import { getBazOperations, BazOperations } from "./classic/baz/index.js";
+import { getQuxOperations, QuxOperations } from "./classic/qux/index.js";
+import { getFooOperations, FooOperations } from "./classic/foo/index.js";
+import { getBarOperations, BarOperations } from "./classic/bar/index.js";
 import {
   one,
   two,
-  three,
-  four,
-  five,
-  six,
   createService,
   ServiceClientOptions,
   ServiceContext,
@@ -42,10 +35,14 @@ export class ServiceClient {
   constructor(
     endpoint: string,
     client: ClientType,
-    options: ServiceClientOptions = {}
+    options: ServiceClientOptions = {},
   ) {
     this._client = createService(endpoint, client, options);
     this.pipeline = this._client.pipeline;
+    this.baz = getBazOperations(this._client);
+    this.qux = getQuxOperations(this._client);
+    this.foo = getFooOperations(this._client);
+    this.bar = getBarOperations(this._client);
   }
 
   one(options: OneOptions = { requestOptions: {} }): Promise<void> {
@@ -56,19 +53,12 @@ export class ServiceClient {
     return two(this._client, options);
   }
 
-  three(options: ThreeOptions = { requestOptions: {} }): Promise<void> {
-    return three(this._client, options);
-  }
-
-  four(options: FourOptions = { requestOptions: {} }): Promise<void> {
-    return four(this._client, options);
-  }
-
-  five(options: FiveOptions = { requestOptions: {} }): Promise<void> {
-    return five(this._client, options);
-  }
-
-  six(options: SixOptions = { requestOptions: {} }): Promise<void> {
-    return six(this._client, options);
-  }
+  /** The operation groups for BazFoo */
+  public readonly baz: BazOperations;
+  /** The operation groups for Qux */
+  public readonly qux: QuxOperations;
+  /** The operation groups for Foo */
+  public readonly foo: FooOperations;
+  /** The operation groups for Bar */
+  public readonly bar: BarOperations;
 }

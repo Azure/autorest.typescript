@@ -28,7 +28,7 @@ async function getLocalNetworkGateway() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.localNetworkGateways.get(
     resourceGroupName,
-    localNetworkGatewayName
+    localNetworkGatewayName,
   );
   console.log(result);
 }

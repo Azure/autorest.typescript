@@ -25,7 +25,7 @@ import {
 export function _headerDefaultSend(
   context: Client,
   value: Uint8Array,
-  options: HeaderDefaultOptions = { requestOptions: {} }
+  options: HeaderDefaultOptions = { requestOptions: {} },
 ): StreamableMethod<HeaderDefault204Response> {
   return context
     .path("/encode/bytes/header/default")
@@ -36,7 +36,7 @@ export function _headerDefaultSend(
 }
 
 export async function _headerDefaultDeserialize(
-  result: HeaderDefault204Response
+  result: HeaderDefault204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -48,7 +48,7 @@ export async function _headerDefaultDeserialize(
 export async function headerDefault(
   context: Client,
   value: Uint8Array,
-  options: HeaderDefaultOptions = { requestOptions: {} }
+  options: HeaderDefaultOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _headerDefaultSend(context, value, options);
   return _headerDefaultDeserialize(result);
@@ -57,7 +57,7 @@ export async function headerDefault(
 export function _headerBase64Send(
   context: Client,
   value: Uint8Array,
-  options: HeaderBase64Options = { requestOptions: {} }
+  options: HeaderBase64Options = { requestOptions: {} },
 ): StreamableMethod<HeaderBase64204Response> {
   return context
     .path("/encode/bytes/header/base64")
@@ -68,7 +68,7 @@ export function _headerBase64Send(
 }
 
 export async function _headerBase64Deserialize(
-  result: HeaderBase64204Response
+  result: HeaderBase64204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -80,7 +80,7 @@ export async function _headerBase64Deserialize(
 export async function headerBase64(
   context: Client,
   value: Uint8Array,
-  options: HeaderBase64Options = { requestOptions: {} }
+  options: HeaderBase64Options = { requestOptions: {} },
 ): Promise<void> {
   const result = await _headerBase64Send(context, value, options);
   return _headerBase64Deserialize(result);
@@ -89,7 +89,7 @@ export async function headerBase64(
 export function _headerBase64urlSend(
   context: Client,
   value: Uint8Array,
-  options: HeaderBase64urlOptions = { requestOptions: {} }
+  options: HeaderBase64urlOptions = { requestOptions: {} },
 ): StreamableMethod<HeaderBase64url204Response> {
   return context
     .path("/encode/bytes/header/base64url")
@@ -100,7 +100,7 @@ export function _headerBase64urlSend(
 }
 
 export async function _headerBase64urlDeserialize(
-  result: HeaderBase64url204Response
+  result: HeaderBase64url204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -112,7 +112,7 @@ export async function _headerBase64urlDeserialize(
 export async function headerBase64url(
   context: Client,
   value: Uint8Array,
-  options: HeaderBase64urlOptions = { requestOptions: {} }
+  options: HeaderBase64urlOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _headerBase64urlSend(context, value, options);
   return _headerBase64urlDeserialize(result);
@@ -121,7 +121,7 @@ export async function headerBase64url(
 export function _headerBase64urlArraySend(
   context: Client,
   value: Uint8Array[],
-  options: HeaderBase64urlArrayOptions = { requestOptions: {} }
+  options: HeaderBase64urlArrayOptions = { requestOptions: {} },
 ): StreamableMethod<HeaderBase64urlArray204Response> {
   return context
     .path("/encode/bytes/header/base64url-array")
@@ -129,14 +129,14 @@ export function _headerBase64urlArraySend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         value: buildCsvCollection(
-          value.map((p) => uint8ArrayToString(p, "base64url"))
+          value.map((p) => uint8ArrayToString(p, "base64url")),
         ),
       },
     });
 }
 
 export async function _headerBase64urlArrayDeserialize(
-  result: HeaderBase64urlArray204Response
+  result: HeaderBase64urlArray204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -148,7 +148,7 @@ export async function _headerBase64urlArrayDeserialize(
 export async function headerBase64urlArray(
   context: Client,
   value: Uint8Array[],
-  options: HeaderBase64urlArrayOptions = { requestOptions: {} }
+  options: HeaderBase64urlArrayOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _headerBase64urlArraySend(context, value, options);
   return _headerBase64urlArrayDeserialize(result);

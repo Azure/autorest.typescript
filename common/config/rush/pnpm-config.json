@@ -1,8 +1,5 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/pnpm-config.schema.json",
   "useWorkspaces": true,
-  "strictPeerDependencies": false,
-  "globalOverrides": {
-    "@azure/core-auth": "../../../azure-sdk-for-js/sdk/core/core-auth"
-  }
+  "strictPeerDependencies": false
 }

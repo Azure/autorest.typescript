@@ -17,7 +17,7 @@ import {
   MetricsConfigurationsCreateOrUpdateResponse,
   MetricsConfigurationsDeleteOptionalParams,
   MetricsConfigurationsUpdateOptionalParams,
-  MetricsConfigurationsUpdateResponse
+  MetricsConfigurationsUpdateResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -32,7 +32,7 @@ export interface MetricsConfigurations {
   listByCluster(
     resourceGroupName: string,
     clusterName: string,
-    options?: MetricsConfigurationsListByClusterOptionalParams
+    options?: MetricsConfigurationsListByClusterOptionalParams,
   ): PagedAsyncIterableIterator<ClusterMetricsConfiguration>;
   /**
    * Get metrics configuration of the provided cluster.
@@ -45,7 +45,7 @@ export interface MetricsConfigurations {
     resourceGroupName: string,
     clusterName: string,
     metricsConfigurationName: string,
-    options?: MetricsConfigurationsGetOptionalParams
+    options?: MetricsConfigurationsGetOptionalParams,
   ): Promise<MetricsConfigurationsGetResponse>;
   /**
    * Create new or update the existing metrics configuration of the provided cluster.
@@ -60,7 +60,7 @@ export interface MetricsConfigurations {
     clusterName: string,
     metricsConfigurationName: string,
     metricsConfigurationParameters: ClusterMetricsConfiguration,
-    options?: MetricsConfigurationsCreateOrUpdateOptionalParams
+    options?: MetricsConfigurationsCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<MetricsConfigurationsCreateOrUpdateResponse>,
@@ -80,7 +80,7 @@ export interface MetricsConfigurations {
     clusterName: string,
     metricsConfigurationName: string,
     metricsConfigurationParameters: ClusterMetricsConfiguration,
-    options?: MetricsConfigurationsCreateOrUpdateOptionalParams
+    options?: MetricsConfigurationsCreateOrUpdateOptionalParams,
   ): Promise<MetricsConfigurationsCreateOrUpdateResponse>;
   /**
    * Delete the metrics configuration of the provided cluster.
@@ -93,7 +93,7 @@ export interface MetricsConfigurations {
     resourceGroupName: string,
     clusterName: string,
     metricsConfigurationName: string,
-    options?: MetricsConfigurationsDeleteOptionalParams
+    options?: MetricsConfigurationsDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Delete the metrics configuration of the provided cluster.
@@ -106,7 +106,7 @@ export interface MetricsConfigurations {
     resourceGroupName: string,
     clusterName: string,
     metricsConfigurationName: string,
-    options?: MetricsConfigurationsDeleteOptionalParams
+    options?: MetricsConfigurationsDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Patch properties of metrics configuration for the provided cluster, or update the tags associated
@@ -120,7 +120,7 @@ export interface MetricsConfigurations {
     resourceGroupName: string,
     clusterName: string,
     metricsConfigurationName: string,
-    options?: MetricsConfigurationsUpdateOptionalParams
+    options?: MetricsConfigurationsUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<MetricsConfigurationsUpdateResponse>,
@@ -139,6 +139,6 @@ export interface MetricsConfigurations {
     resourceGroupName: string,
     clusterName: string,
     metricsConfigurationName: string,
-    options?: MetricsConfigurationsUpdateOptionalParams
+    options?: MetricsConfigurationsUpdateOptionalParams,
   ): Promise<MetricsConfigurationsUpdateResponse>;
 }

@@ -29,7 +29,7 @@ async function vpnConnectionList() {
   const resArray = new Array();
   for await (let item of client.vpnConnections.listByVpnGateway(
     resourceGroupName,
-    gatewayName
+    gatewayName,
   )) {
     resArray.push(item);
   }

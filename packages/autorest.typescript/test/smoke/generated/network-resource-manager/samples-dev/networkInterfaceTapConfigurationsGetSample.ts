@@ -30,7 +30,7 @@ async function getNetworkInterfaceTapConfigurations() {
   const result = await client.networkInterfaceTapConfigurations.get(
     resourceGroupName,
     networkInterfaceName,
-    tapConfigurationName
+    tapConfigurationName,
   );
   console.log(result);
 }

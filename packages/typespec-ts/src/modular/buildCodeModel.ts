@@ -20,7 +20,6 @@ import {
   getEffectiveModelType,
   getDiscriminator,
   Operation,
-  isKey,
   Scalar,
   IntrinsicScalarName,
   isStringType,
@@ -35,7 +34,8 @@ import {
   getProjectedName,
   isNullType,
   getEncode,
-  isTemplateDeclarationOrInstance
+  isTemplateDeclarationOrInstance,
+  UsageFlags
 } from "@typespec/compiler";
 import {
   getAuthentication,
@@ -77,7 +77,8 @@ import {
   OperationGroup,
   Response,
   Type as HrlcType,
-  Header
+  Header,
+  Property
 } from "./modularCodeModel.js";
 import {
   getBodyType,
@@ -103,11 +104,9 @@ import {
 import { SdkContext } from "../utils/interfaces.js";
 import { Project } from "ts-morph";
 import { buildRuntimeImports } from "@azure-tools/rlc-common";
-import {
-  getModelNamespaceName,
-  getOperationNamespaceInterfaceName
-} from "../utils/namespaceUtils.js";
+import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
+import { getType as getTypeName } from "./helpers/typeHelpers.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -193,13 +192,18 @@ function isDiscriminator(
   return false;
 }
 
-function handleDiscriminator(context: SdkContext, type: Model) {
+function handleDiscriminator(
+  context: SdkContext,
+  type: Model,
+  usage: UsageFlags
+) {
   const discriminator = getDiscriminator(context.program, type);
   if (discriminator) {
     const discriminatorValues: string[] = [];
     const aliases: string[] = [];
+    const discriminatedSubtypes: Type[] = [];
     for (const childModel of type.derivedModels) {
-      const modelType = getType(context, childModel);
+      const modelType = getType(context, childModel, { usage });
       aliases.push(modelType.name);
       for (const property of modelType.properties) {
         if (property.restApiName === discriminator.propertyName) {
@@ -207,6 +211,7 @@ function handleDiscriminator(context: SdkContext, type: Model) {
           discriminatorValues.push(modelType.discriminatorValue);
         }
       }
+      discriminatedSubtypes.push(modelType);
     }
     const discriminatorInfo = {
       description:
@@ -221,7 +226,8 @@ function handleDiscriminator(context: SdkContext, type: Model) {
       name: discriminator.propertyName,
       isPolymorphic: true,
       isDiscriminator: true,
-      aliases
+      aliases,
+      discriminatedSubtypes
     };
     return discriminatorInfo;
   }
@@ -267,19 +273,23 @@ function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
 function processModelProperties(
   context: SdkContext,
   newValue: any,
-  model: Model
+  model: Model,
+  usage: UsageFlags
 ) {
   // need to do properties after insertion to avoid infinite recursion
-  const discriminatorInfo = handleDiscriminator(context, model);
+  const discriminatorInfo = handleDiscriminator(context, model, usage);
   let hasDiscriminator = false;
   for (const property of model.properties.values()) {
     if (!isSchemaProperty(context.program, property)) {
       continue;
     }
+    if (isNeverType(property.type)) {
+      continue;
+    }
     if (newValue.properties === undefined || newValue.properties === null) {
       newValue.properties = [];
     }
-    let newProperty = emitProperty(context, property);
+    let newProperty = emitProperty(context, property, usage);
     if (isDiscriminator(context, model, property.name)) {
       hasDiscriminator = true;
       newProperty = {
@@ -294,10 +304,18 @@ function processModelProperties(
     if (!hasDiscriminator) {
       newValue.properties.push({ ...discriminatorInfo });
     }
-    newValue.alias = `${newValue.name}Parent`;
-    newValue.isPolyBaseModel = true;
-    discriminatorInfo?.aliases.push(`${newValue.alias}`);
-    newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
+    // we don't need to add the discriminator info if it's an anonymous model
+    // because it's impossible to have a anonymous model as the polymorphic base in typespec
+    // the only possibility is the anonymous model is an alias for an union type which has already been taken care of in the combined types.
+    if (newValue.name) {
+      discriminatorInfo?.aliases.push(`${newValue.name}`);
+      newValue.alias = `${newValue.name}`;
+      newValue.name = `${newValue.name}Union`;
+      newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
+      newValue.types = discriminatorInfo?.discriminatedSubtypes;
+      newValue.isPolymorphicBaseModel = true;
+      newValue.discriminator = discriminatorInfo.restApiName;
+    }
   }
 }
 
@@ -316,7 +334,7 @@ function isEmptyAnonymousModel(type: EmitterType): boolean {
 function getType(
   context: SdkContext,
   type: EmitterType,
-  options: { disableEffectiveModel?: boolean } = {}
+  options: { disableEffectiveModel?: boolean; usage?: UsageFlags } = {}
 ): any {
   // don't cache simple type(string, int, etc) since decorators may change the result
   const enableCache = !isSimpleType(context.program, type);
@@ -336,7 +354,7 @@ function getType(
     // do not generate model for empty model, treat it as any
     newValue = { type: "any" };
   } else {
-    newValue = emitType(context, type);
+    newValue = emitType(context, type, options.usage!);
   }
   if (type.kind === "ModelProperty" || type.kind === "Scalar") {
     newValue = applyEncoding(context.program, type, newValue);
@@ -349,13 +367,13 @@ function getType(
     if (type.kind === "Union") {
       for (const t of type.variants.values()) {
         if (t.type.kind === "Model") {
-          processModelProperties(context, newValue, t.type);
+          processModelProperties(context, newValue, t.type, options.usage!);
         }
       }
     }
     if (type.kind === "Model") {
       // need to do properties after insertion to avoid infinite recursion
-      processModelProperties(context, newValue, type);
+      processModelProperties(context, newValue, type, options.usage!);
     }
   } else {
     const key = JSON.stringify(newValue);
@@ -420,7 +438,7 @@ type BodyParameter = ParamBase & {
   type: Type;
   restApiName: string;
   location: "body";
-  defaultContentType: string;
+  // defaultContentType: string;
   isBinaryPayload: boolean;
 };
 
@@ -435,25 +453,18 @@ function emitBodyParameter(
   if (contentTypes.length === 0) {
     contentTypes = ["application/json"];
   }
-  if (contentTypes.length !== 1) {
-    throw Error("Currently only one kind of content-type!");
-  }
   const type = getType(context, getBodyType(context.program, httpOperation)!, {
-    disableEffectiveModel: true
+    disableEffectiveModel: true,
+    usage: UsageFlags.Input
   });
 
-  const defaultContentType =
-    body.parameter?.default ?? contentTypes.includes("application/json")
-      ? "application/json"
-      : contentTypes[0]!;
   return {
     contentTypes,
     type,
     restApiName: body.parameter?.name ?? "body",
     location: "body",
     ...base,
-    defaultContentType,
-    isBinaryPayload: isBinaryPayload(context, body.type, defaultContentType)
+    isBinaryPayload: isBinaryPayload(context, body.type, contentTypes)
   };
 }
 
@@ -463,7 +474,9 @@ function emitParameter(
   implementation: string
 ): Parameter {
   const base = emitParamBase(context.program, parameter.param);
-  let type = getType(context, parameter.param.type);
+  let type = getType(context, parameter.param.type, {
+    usage: UsageFlags.Input
+  });
   let clientDefaultValue = undefined;
   if (
     parameter.name.toLowerCase() === "content-type" &&
@@ -562,7 +575,7 @@ function emitResponseHeaders(
   }
   for (const [key, value] of Object.entries(headers)) {
     retval.push({
-      type: getType(context, value.type),
+      type: getType(context, value.type, { usage: UsageFlags.Output }),
       restApiName: key
     });
   }
@@ -591,9 +604,11 @@ function emitResponse(
       candidate.find((e) => e === originType.name)
     ) {
       const modelType = getEffectiveSchemaType(context.program, originType);
-      type = getType(context, modelType);
+      type = getType(context, modelType, { usage: UsageFlags.Output });
     } else {
-      type = getType(context, innerResponse.body.type);
+      type = getType(context, innerResponse.body.type, {
+        usage: UsageFlags.Output
+      });
     }
   }
   const statusCodes: (number | "default")[] = [];
@@ -622,7 +637,8 @@ function emitOperation(
   context: SdkContext,
   operation: Operation,
   operationGroupName: string,
-  rlcModels: RLCModel
+  rlcModels: RLCModel,
+  hierarchies: string[]
 ): HrlcOperation {
   const isBranded = rlcModels.options?.branded ?? true;
   // Skip to extract paging and lro information for non-branded clients.
@@ -631,7 +647,8 @@ function emitOperation(
       context,
       operation,
       operationGroupName,
-      rlcModels
+      rlcModels,
+      hierarchies
     );
   }
   const lro = isLongRunningOperation(
@@ -662,19 +679,33 @@ function emitOperation(
       context,
       operation,
       operationGroupName,
-      rlcModels
+      rlcModels,
+      hierarchies
     );
   } else if (paging) {
     return emitPagingOperation(
       context,
       operation,
       operationGroupName,
-      rlcModels
+      rlcModels,
+      hierarchies
     );
   } else if (lro) {
-    return emitLroOperation(context, operation, operationGroupName, rlcModels);
+    return emitLroOperation(
+      context,
+      operation,
+      operationGroupName,
+      rlcModels,
+      hierarchies
+    );
   }
-  return emitBasicOperation(context, operation, operationGroupName, rlcModels);
+  return emitBasicOperation(
+    context,
+    operation,
+    operationGroupName,
+    rlcModels,
+    hierarchies
+  );
 }
 
 function addLroInformation(emittedOperation: HrlcOperation) {
@@ -701,13 +732,15 @@ function emitLroPagingOperation(
   context: SdkContext,
   operation: Operation,
   operationGroupName: string,
-  rlcModels: RLCModel
+  rlcModels: RLCModel,
+  hierarchies: string[]
 ): HrlcOperation {
   const emittedOperation = emitBasicOperation(
     context,
     operation,
     operationGroupName,
-    rlcModels
+    rlcModels,
+    hierarchies
   );
   addLroInformation(emittedOperation);
   addPagingInformation(context.program, operation, emittedOperation);
@@ -719,13 +752,15 @@ function emitLroOperation(
   context: SdkContext,
   operation: Operation,
   operationGroupName: string,
-  rlcModels: RLCModel
+  rlcModels: RLCModel,
+  hierarchies: string[]
 ): HrlcOperation {
   const emittedOperation = emitBasicOperation(
     context,
     operation,
     operationGroupName,
-    rlcModels
+    rlcModels,
+    hierarchies
   );
   addLroInformation(emittedOperation);
   return emittedOperation;
@@ -735,13 +770,15 @@ function emitPagingOperation(
   context: SdkContext,
   operation: Operation,
   operationGroupName: string,
-  rlcModels: RLCModel
+  rlcModels: RLCModel,
+  hierarchies: string[]
 ): HrlcOperation {
   const emittedOperation = emitBasicOperation(
     context,
     operation,
     operationGroupName,
-    rlcModels
+    rlcModels,
+    hierarchies
   );
   addPagingInformation(context.program, operation, emittedOperation);
   return emittedOperation;
@@ -751,7 +788,8 @@ function emitBasicOperation(
   context: SdkContext,
   operation: Operation,
   operationGroupName: string,
-  rlcModels: RLCModel
+  rlcModels: RLCModel,
+  hierarchies: string[]
 ): HrlcOperation {
   // Set up parameters for operation
   const parameters: any[] = [];
@@ -789,9 +827,7 @@ function emitBasicOperation(
   });
 
   const namespaceHierarchies =
-    context.rlcOptions?.hierarchyClient === true
-      ? getOperationNamespaceInterfaceName(context, operation)
-      : [];
+    context.rlcOptions?.hierarchyClient === true ? hierarchies : [];
 
   if (
     namespaceHierarchies.length === 0 &&
@@ -918,7 +954,8 @@ function isReadOnly(program: Program, type: ModelProperty): boolean {
 
 function emitProperty(
   context: SdkContext,
-  property: ModelProperty
+  property: ModelProperty,
+  usage: UsageFlags
 ): Record<string, any> {
   const newProperty = applyEncoding(context.program, property, property);
   let clientDefaultValue = undefined;
@@ -942,9 +979,9 @@ function emitProperty(
     getProjectedName(context.program, property, "json") ?? property.name;
 
   if (property.model) {
-    getType(context, property.model);
+    getType(context, property.model, { usage });
   }
-  const type = getType(context, property.type);
+  const type = getType(context, property.type, { usage });
   return {
     clientName: applyCasing(clientName, { casing: CASING }),
     restApiName: jsonName,
@@ -952,8 +989,7 @@ function emitProperty(
     optional: property.optional,
     description: getDocStr(context.program, property),
     addedOn: getAddedOnVersion(context.program, property),
-    readonly:
-      isReadOnly(context.program, property) || isKey(context.program, property),
+    readonly: isReadOnly(context.program, property),
     clientDefaultValue: clientDefaultValue,
     format: newProperty.format
   };
@@ -981,12 +1017,16 @@ function getName(program: Program, type: Model): string {
   }
 }
 
-function emitModel(context: SdkContext, type: Model): Record<string, any> {
+function emitModel(
+  context: SdkContext,
+  type: Model,
+  usage: UsageFlags
+): Record<string, any> {
   // Now we know it's a defined model
   const properties: Record<string, any>[] = [];
   let baseModel = undefined;
   if (type.baseModel) {
-    baseModel = getType(context, type.baseModel);
+    baseModel = getType(context, type.baseModel, { usage });
   }
   const effectiveName = getEffectiveSchemaType(context.program, type).name;
   const overridedModelName =
@@ -1005,8 +1045,8 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
     (context.rlcOptions?.enableModelNamespace
       ? fullNamespaceName
       : effectiveName
-      ? effectiveName
-      : getName(context.program, type));
+        ? effectiveName
+        : getName(context.program, type));
   if (
     !overridedModelName &&
     type.templateMapper &&
@@ -1034,14 +1074,15 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
     name: modelName,
     description: getDocStr(context.program, type),
     parents: baseModel ? [baseModel] : [],
-    discriminatedSubtypes: {},
+    discriminatedSubtypes: [],
     properties: properties,
     addedOn: getAddedOnVersion(context.program, type),
     snakeCaseName: modelName
       ? applyCasing(modelName, { casing: CASING })
       : modelName,
     base: modelName === "" ? "json" : "dpg",
-    isCoreErrorType: isAzureCoreErrorType(type)
+    isCoreErrorType: isAzureCoreErrorType(type),
+    usage
   };
 }
 
@@ -1175,6 +1216,16 @@ function emitStdScalar(
       return { type: "duration", format: newScalar.format };
     case "numeric":
       return {}; // Waiting on design for more precise type https://github.com/microsoft/cadl/issues/1260
+    case "decimal":
+    case "decimal128":
+      reportDiagnostic(program, {
+        code: "decimal-to-number",
+        format: {
+          propertyName: newScalar?.name ?? ""
+        },
+        target: newScalar ?? scalar
+      });
+      return { type: "integer", format: newScalar.format };
     default:
       return {};
   }
@@ -1283,7 +1334,8 @@ function emitScalar(program: Program, scalar: Scalar): Record<string, any> {
 
 function emitListOrDict(
   context: SdkContext,
-  type: Model
+  type: Model,
+  usage: UsageFlags
 ): Record<string, any> | undefined {
   if (type.indexer !== undefined) {
     if (!isNeverType(type.indexer.key)) {
@@ -1291,12 +1343,12 @@ function emitListOrDict(
       if (name === "string") {
         return {
           type: "dict",
-          elementType: getType(context, type.indexer.value!)
+          elementType: getType(context, type.indexer.value!, { usage })
         };
       } else if (name === "integer") {
         return {
           type: "list",
-          elementType: getType(context, type.indexer.value!)
+          elementType: getType(context, type.indexer.value!, { usage })
         };
       }
     }
@@ -1304,7 +1356,11 @@ function emitListOrDict(
   return undefined;
 }
 
-function mapTypeSpecType(context: SdkContext, type: Type): any {
+function mapTypeSpecType(
+  context: SdkContext,
+  type: Type,
+  usage: UsageFlags
+): any {
   switch (type.kind) {
     case "Number":
       return constantType(type.value, intOrFloat(type.value));
@@ -1313,11 +1369,15 @@ function mapTypeSpecType(context: SdkContext, type: Type): any {
     case "Boolean":
       return constantType(type.value, "boolean");
     case "Model":
-      return emitListOrDict(context, type);
+      return emitListOrDict(context, type, usage);
   }
 }
 
-function emitUnion(context: SdkContext, type: Union): Record<string, any> {
+function emitUnion(
+  context: SdkContext,
+  type: Union,
+  usage: UsageFlags
+): Record<string, any> {
   const sdkType = getSdkUnion(context, type);
   const nonNullOptions = getNonNullOptions(type);
   if (sdkType === undefined) {
@@ -1325,14 +1385,33 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
   }
   if (sdkType.kind === "union") {
     const unionName = type.name;
+    const discriminatorPropertyName = getDiscriminator(context.program, type)
+      ?.propertyName;
+    const variantTypes = sdkType.values.map((x) => {
+      const valueType = getType(context, x.__raw!, { usage });
+      if (valueType.properties && discriminatorPropertyName) {
+        valueType.discriminatorValue = valueType.properties.filter(
+          (p: Property) => p.clientName === discriminatorPropertyName
+        )[0].type.value;
+      }
+      return valueType;
+    });
     return {
       nullable: sdkType.nullable,
       name: unionName,
       description: `Type of ${unionName}`,
       internal: true,
       type: "combined",
-      types: sdkType.values.map((x) => getType(context, x.__raw!)),
-      xmlMetadata: {}
+      types: variantTypes,
+      xmlMetadata: {},
+      usage,
+      discriminator: discriminatorPropertyName,
+      alias:
+        unionName === "" || unionName === undefined ? undefined : unionName,
+      aliasType:
+        unionName === "" || unionName === undefined
+          ? undefined
+          : variantTypes.map((x) => getTypeName(x).name).join(" | ")
     };
   } else if (sdkType.kind === "enum") {
     return {
@@ -1344,7 +1423,8 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
       values: sdkType.values.map((x) => emitEnumMember(context, x)),
       isFixed: sdkType.isFixed,
-      xmlMetadata: {}
+      xmlMetadata: {},
+      usage
     };
   } else if (
     isStringOrNumberKind(context.program, sdkType.kind) &&
@@ -1363,7 +1443,10 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       xmlMetadata: {}
     };
   } else {
-    return { ...emitType(context, sdkType.__raw!), nullable: sdkType.nullable };
+    return {
+      ...emitType(context, sdkType.__raw!, usage),
+      nullable: sdkType.nullable
+    };
   }
 }
 
@@ -1422,14 +1505,18 @@ function emitSimpleType(
   };
 }
 
-function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
+function emitType(
+  context: SdkContext,
+  type: EmitterType,
+  usage: UsageFlags
+): Record<string, any> {
   if (type.kind === "Credential") {
     return emitCredential(type.scheme);
   }
   if (type.kind === "CredentialTypeUnion") {
     return emitCredentialUnion(type);
   }
-  const builtinType = mapTypeSpecType(context, type);
+  const builtinType = mapTypeSpecType(context, type, usage);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
     const doc = getDoc(context.program, type);
@@ -1443,11 +1530,11 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
     case "Intrinsic":
       return { type: type.name };
     case "Model":
-      return emitModel(context, type);
+      return emitModel(context, type, usage);
     case "Scalar":
       return emitScalar(context.program, type);
     case "Union":
-      return emitUnion(context, type);
+      return emitUnion(context, type, usage);
     case "UnionVariant":
       return {};
     case "Enum":
@@ -1469,25 +1556,39 @@ function emitOperationGroups(
     string,
     OperationGroup
   >();
-  for (const operationGroup of listOperationGroups(context, client)) {
+  const clientOperations: HrlcOperation[] = [];
+  for (const operation of listOperationsInOperationGroup(context, client)) {
+    clientOperations.push(emitOperation(context, operation, "", rlcModels, []));
+  }
+  if (clientOperations.length > 0) {
+    addHierarchyOperationGroup(clientOperations, groupMapping);
+  }
+  for (const operationGroup of listOperationGroups(context, client, true)) {
     const operations: HrlcOperation[] = [];
-    const name = operationGroup.type.name;
+    const name =
+      context.rlcOptions?.hierarchyClient ||
+      context.rlcOptions?.enableOperationGroup
+        ? operationGroup.type.name
+        : "";
+    const hierarchies =
+      context.rlcOptions?.hierarchyClient ||
+      context.rlcOptions?.enableOperationGroup
+        ? operationGroup.groupPath.split(".")
+        : [];
+    if (hierarchies[0]?.endsWith("Client")) {
+      hierarchies.shift();
+    }
     for (const operation of listOperationsInOperationGroup(
       context,
       operationGroup
     )) {
-      operations.push(emitOperation(context, operation, name, rlcModels));
+      operations.push(
+        emitOperation(context, operation, name, rlcModels, hierarchies)
+      );
     }
     if (operations.length > 0) {
       addHierarchyOperationGroup(operations, groupMapping);
     }
-  }
-  const clientOperations: HrlcOperation[] = [];
-  for (const operation of listOperationsInOperationGroup(context, client)) {
-    clientOperations.push(emitOperation(context, operation, "", rlcModels));
-  }
-  if (clientOperations.length > 0) {
-    addHierarchyOperationGroup(clientOperations, groupMapping);
   }
 
   groupMapping.forEach((value) => {
@@ -1652,7 +1753,7 @@ function emitCredentialParam(
         };
       }
       return {
-        type: getType(context, type),
+        type: getType(context, type, { usage: UsageFlags.Input }),
         optional: false,
         description: "Credential needed for the client to connect to Azure.",
         clientName: "credential",
@@ -1731,7 +1832,9 @@ function emitClients(
       url: server ? server.url : "",
       apiVersions: [],
       rlcClientName: rlcModels ? getClientName(rlcModels) : client.name,
-      subfolder: ""
+      subfolder: "",
+      rlcHelperDetails:
+        rlcModels && rlcModels.helperDetails ? rlcModels.helperDetails : {}
     };
     const emittedApiVersionParam = getApiVersionParameter(context);
     if (emittedApiVersionParam) {
@@ -1789,7 +1892,7 @@ export function emitCodeModel(
   simpleTypesMap.clear();
   const allModels = getAllModels(dpgContext);
   for (const model of allModels) {
-    getType(dpgContext, model.__raw!);
+    getType(dpgContext, model.__raw!, { usage: model.usage });
   }
 
   for (const namespace of getNamespaces(dpgContext)) {

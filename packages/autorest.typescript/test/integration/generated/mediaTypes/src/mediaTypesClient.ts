@@ -32,7 +32,7 @@ import {
   BodyThreeTypesResponse,
   PutTextAndJsonBody$textOptionalParams,
   PutTextAndJsonBody$jsonOptionalParams,
-  PutTextAndJsonBodyResponse
+  PutTextAndJsonBodyResponse,
 } from "./models";
 
 export class MediaTypesClient extends coreClient.ServiceClient {
@@ -48,7 +48,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: MediaTypesClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-media-types-service/1.0.0-preview1`;
@@ -61,9 +61,9 @@ export class MediaTypesClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000"
+      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000",
     };
     super(optionsWithDefaults);
 
@@ -78,7 +78,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
    */
   analyzeBody(
     contentType: ContentType,
-    options?: AnalyzeBody$binaryOptionalParams
+    options?: AnalyzeBody$binaryOptionalParams,
   ): Promise<AnalyzeBodyResponse>;
   /**
    * Analyze body, that could be different media types.
@@ -87,7 +87,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
    */
   analyzeBody(
     contentType: "application/json",
-    options?: AnalyzeBody$jsonOptionalParams
+    options?: AnalyzeBody$jsonOptionalParams,
   ): Promise<AnalyzeBodyResponse>;
   /**
    * Analyze body, that could be different media types.
@@ -116,7 +116,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
       options = args[1];
     } else {
       throw new TypeError(
-        `"contentType" must be a valid value but instead was "${args[0]}".`
+        `"contentType" must be a valid value but instead was "${args[0]}".`,
       );
     }
     operationArguments.options = options || {};
@@ -130,7 +130,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
    */
   analyzeBodyNoAcceptHeader(
     contentType: ContentType,
-    options?: AnalyzeBodyNoAcceptHeader$binaryOptionalParams
+    options?: AnalyzeBodyNoAcceptHeader$binaryOptionalParams,
   ): Promise<void>;
   /**
    * Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept type.
@@ -139,7 +139,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
    */
   analyzeBodyNoAcceptHeader(
     contentType: "application/json",
-    options?: AnalyzeBodyNoAcceptHeader$jsonOptionalParams
+    options?: AnalyzeBodyNoAcceptHeader$jsonOptionalParams,
   ): Promise<void>;
   /**
    * Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept type.
@@ -168,7 +168,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
       options = args[1];
     } else {
       throw new TypeError(
-        `"contentType" must be a valid value but instead was "${args[0]}".`
+        `"contentType" must be a valid value but instead was "${args[0]}".`,
       );
     }
     operationArguments.options = options || {};
@@ -180,11 +180,11 @@ export class MediaTypesClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   contentTypeWithEncoding(
-    options?: ContentTypeWithEncodingOptionalParams
+    options?: ContentTypeWithEncodingOptionalParams,
   ): Promise<ContentTypeWithEncodingResponse> {
     return this.sendOperationRequest(
       { options },
-      contentTypeWithEncodingOperationSpec
+      contentTypeWithEncodingOperationSpec,
     );
   }
 
@@ -196,11 +196,11 @@ export class MediaTypesClient extends coreClient.ServiceClient {
    */
   binaryBodyWithTwoContentTypes(
     message: coreRestPipeline.RequestBodyType,
-    options?: BinaryBodyWithTwoContentTypesOptionalParams
+    options?: BinaryBodyWithTwoContentTypesOptionalParams,
   ): Promise<BinaryBodyWithTwoContentTypesResponse> {
     return this.sendOperationRequest(
       { message, options },
-      binaryBodyWithTwoContentTypesOperationSpec
+      binaryBodyWithTwoContentTypesOperationSpec,
     );
   }
 
@@ -215,7 +215,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
   binaryBodyWithThreeContentTypes(
     contentType: ContentType1,
     message: coreRestPipeline.RequestBodyType,
-    options?: BinaryBodyWithThreeContentTypes$binaryOptionalParams
+    options?: BinaryBodyWithThreeContentTypes$binaryOptionalParams,
   ): Promise<BinaryBodyWithThreeContentTypesResponse>;
   /**
    * Binary body with three content types. Pass in string 'hello, world' with content type 'text/plain',
@@ -228,7 +228,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
   binaryBodyWithThreeContentTypes(
     contentType: "text/plain",
     message: string,
-    options?: BinaryBodyWithThreeContentTypes$textOptionalParams
+    options?: BinaryBodyWithThreeContentTypes$textOptionalParams,
   ): Promise<BinaryBodyWithThreeContentTypesResponse>;
   /**
    * Binary body with three content types. Pass in string 'hello, world' with content type 'text/plain',
@@ -241,12 +241,12 @@ export class MediaTypesClient extends coreClient.ServiceClient {
       | [
           ContentType1,
           coreRestPipeline.RequestBodyType,
-          BinaryBodyWithThreeContentTypes$binaryOptionalParams?
+          BinaryBodyWithThreeContentTypes$binaryOptionalParams?,
         ]
       | [
           "text/plain",
           string,
-          BinaryBodyWithThreeContentTypes$textOptionalParams?
+          BinaryBodyWithThreeContentTypes$textOptionalParams?,
         ]
   ): Promise<BinaryBodyWithThreeContentTypesResponse> {
     let operationSpec: coreClient.OperationSpec;
@@ -260,7 +260,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
       operationArguments = {
         contentType: args[0],
         message: args[1],
-        options: args[2]
+        options: args[2],
       };
       options = args[2];
     } else if (args[0] === "text/plain") {
@@ -268,12 +268,12 @@ export class MediaTypesClient extends coreClient.ServiceClient {
       operationArguments = {
         contentType: args[0],
         message: args[1],
-        options: args[2]
+        options: args[2],
       };
       options = args[2];
     } else {
       throw new TypeError(
-        `"contentType" must be a valid value but instead was "${args[0]}".`
+        `"contentType" must be a valid value but instead was "${args[0]}".`,
       );
     }
     operationArguments.options = options || {};
@@ -291,7 +291,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
   bodyThreeTypes(
     contentType: "application/octet-stream",
     message: coreRestPipeline.RequestBodyType,
-    options?: BodyThreeTypes$binaryOptionalParams
+    options?: BodyThreeTypes$binaryOptionalParams,
   ): Promise<BodyThreeTypesResponse>;
   /**
    * Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with content
@@ -304,7 +304,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
   bodyThreeTypes(
     contentType: "text/plain",
     message: string,
-    options?: BodyThreeTypes$textOptionalParams
+    options?: BodyThreeTypes$textOptionalParams,
   ): Promise<BodyThreeTypesResponse>;
   /**
    * Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with content
@@ -317,7 +317,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
   bodyThreeTypes(
     contentType: "application/json",
     message: any,
-    options?: BodyThreeTypes$jsonOptionalParams
+    options?: BodyThreeTypes$jsonOptionalParams,
   ): Promise<BodyThreeTypesResponse>;
   /**
    * Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with content
@@ -330,7 +330,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
       | [
           "application/octet-stream",
           coreRestPipeline.RequestBodyType,
-          BodyThreeTypes$binaryOptionalParams?
+          BodyThreeTypes$binaryOptionalParams?,
         ]
       | ["text/plain", string, BodyThreeTypes$textOptionalParams?]
       | ["application/json", any, BodyThreeTypes$jsonOptionalParams?]
@@ -343,7 +343,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
       operationArguments = {
         contentType: args[0],
         message: args[1],
-        options: args[2]
+        options: args[2],
       };
       options = args[2];
     } else if (args[0] === "text/plain") {
@@ -351,7 +351,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
       operationArguments = {
         contentType: args[0],
         message: args[1],
-        options: args[2]
+        options: args[2],
       };
       options = args[2];
     } else if (args[0] === "application/json") {
@@ -359,12 +359,12 @@ export class MediaTypesClient extends coreClient.ServiceClient {
       operationArguments = {
         contentType: args[0],
         message: args[1],
-        options: args[2]
+        options: args[2],
       };
       options = args[2];
     } else {
       throw new TypeError(
-        `"contentType" must be a valid value but instead was "${args[0]}".`
+        `"contentType" must be a valid value but instead was "${args[0]}".`,
       );
     }
     operationArguments.options = options || {};
@@ -380,7 +380,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
   putTextAndJsonBody(
     contentType: "text/plain",
     message: string,
-    options?: PutTextAndJsonBody$textOptionalParams
+    options?: PutTextAndJsonBody$textOptionalParams,
   ): Promise<PutTextAndJsonBodyResponse>;
   /**
    * Body that's either text/plain or application/json
@@ -391,7 +391,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
   putTextAndJsonBody(
     contentType: "application/json",
     message: string,
-    options?: PutTextAndJsonBody$jsonOptionalParams
+    options?: PutTextAndJsonBody$jsonOptionalParams,
   ): Promise<PutTextAndJsonBodyResponse>;
   /**
    * Body that's either text/plain or application/json
@@ -410,7 +410,7 @@ export class MediaTypesClient extends coreClient.ServiceClient {
       operationArguments = {
         contentType: args[0],
         message: args[1],
-        options: args[2]
+        options: args[2],
       };
       options = args[2];
     } else if (args[0] === "application/json") {
@@ -418,12 +418,12 @@ export class MediaTypesClient extends coreClient.ServiceClient {
       operationArguments = {
         contentType: args[0],
         message: args[1],
-        options: args[2]
+        options: args[2],
       };
       options = args[2];
     } else {
       throw new TypeError(
-        `"contentType" must be a valid value but instead was "${args[0]}".`
+        `"contentType" must be a valid value but instead was "${args[0]}".`,
       );
     }
     operationArguments.options = options || {};
@@ -438,39 +438,40 @@ const analyzeBody$binaryOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.input,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "binary",
-  serializer
+  serializer,
 };
 const analyzeBody$jsonOperationSpec: coreClient.OperationSpec = {
   path: "/mediatypes/analyze",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.input1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "json",
-  serializer
+  serializer,
 };
-const analyzeBodyNoAcceptHeader$binaryOperationSpec: coreClient.OperationSpec = {
-  path: "/mediatypes/analyzeNoAccept",
-  httpMethod: "POST",
-  responses: { 202: {}, default: {} },
-  requestBody: Parameters.input,
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType],
-  mediaType: "binary",
-  serializer
-};
+const analyzeBodyNoAcceptHeader$binaryOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/mediatypes/analyzeNoAccept",
+    httpMethod: "POST",
+    responses: { 202: {}, default: {} },
+    requestBody: Parameters.input,
+    urlParameters: [Parameters.$host],
+    headerParameters: [Parameters.contentType],
+    mediaType: "binary",
+    serializer,
+  };
 const analyzeBodyNoAcceptHeader$jsonOperationSpec: coreClient.OperationSpec = {
   path: "/mediatypes/analyzeNoAccept",
   httpMethod: "POST",
@@ -479,131 +480,133 @@ const analyzeBodyNoAcceptHeader$jsonOperationSpec: coreClient.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const contentTypeWithEncodingOperationSpec: coreClient.OperationSpec = {
   path: "/mediatypes/contentTypeWithEncoding",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.input2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType2, Parameters.accept2],
   mediaType: "text",
-  serializer
+  serializer,
 };
 const binaryBodyWithTwoContentTypesOperationSpec: coreClient.OperationSpec = {
   path: "/mediatypes/binaryBodyTwoContentTypes",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.message,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType3, Parameters.accept3],
   mediaType: "binary",
-  serializer
+  serializer,
 };
-const binaryBodyWithThreeContentTypes$binaryOperationSpec: coreClient.OperationSpec = {
-  path: "/mediatypes/binaryBodyThreeContentTypes",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: { type: { name: "String" } }
-    }
-  },
-  requestBody: Parameters.message,
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept3, Parameters.contentType4],
-  mediaType: "binary",
-  serializer
-};
-const binaryBodyWithThreeContentTypes$textOperationSpec: coreClient.OperationSpec = {
-  path: "/mediatypes/binaryBodyThreeContentTypes",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: { type: { name: "String" } }
-    }
-  },
-  requestBody: Parameters.message1,
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.contentType5, Parameters.accept4],
-  mediaType: "text",
-  serializer
-};
+const binaryBodyWithThreeContentTypes$binaryOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/mediatypes/binaryBodyThreeContentTypes",
+    httpMethod: "POST",
+    responses: {
+      200: {
+        bodyMapper: { type: { name: "String" } },
+      },
+    },
+    requestBody: Parameters.message,
+    urlParameters: [Parameters.$host],
+    headerParameters: [Parameters.accept3, Parameters.contentType4],
+    mediaType: "binary",
+    serializer,
+  };
+const binaryBodyWithThreeContentTypes$textOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/mediatypes/binaryBodyThreeContentTypes",
+    httpMethod: "POST",
+    responses: {
+      200: {
+        bodyMapper: { type: { name: "String" } },
+      },
+    },
+    requestBody: Parameters.message1,
+    urlParameters: [Parameters.$host],
+    headerParameters: [Parameters.contentType5, Parameters.accept4],
+    mediaType: "text",
+    serializer,
+  };
 const bodyThreeTypes$binaryOperationSpec: coreClient.OperationSpec = {
   path: "/mediatypes/bodyThreeTypes",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.message,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept3, Parameters.contentType6],
   mediaType: "binary",
-  serializer
+  serializer,
 };
 const bodyThreeTypes$textOperationSpec: coreClient.OperationSpec = {
   path: "/mediatypes/bodyThreeTypes",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.message1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType5, Parameters.accept4],
   mediaType: "text",
-  serializer
+  serializer,
 };
 const bodyThreeTypes$jsonOperationSpec: coreClient.OperationSpec = {
   path: "/mediatypes/bodyThreeTypes",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.message2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1, Parameters.accept5],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const putTextAndJsonBody$textOperationSpec: coreClient.OperationSpec = {
   path: "/mediatypes/textAndJson",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.message1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType5, Parameters.accept4],
   mediaType: "text",
-  serializer
+  serializer,
 };
 const putTextAndJsonBody$jsonOperationSpec: coreClient.OperationSpec = {
   path: "/mediatypes/textAndJson",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" } }
-    }
+      bodyMapper: { type: { name: "String" } },
+    },
   },
   requestBody: Parameters.message3,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1, Parameters.accept5],
   mediaType: "json",
-  serializer
+  serializer,
 };

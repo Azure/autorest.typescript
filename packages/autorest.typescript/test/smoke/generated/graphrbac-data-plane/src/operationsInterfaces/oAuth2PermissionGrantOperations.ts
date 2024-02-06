@@ -13,7 +13,7 @@ import {
   OAuth2PermissionGrantListOptionalParams,
   OAuth2PermissionGrantCreateOptionalParams,
   OAuth2PermissionGrantCreateResponse,
-  OAuth2PermissionGrantDeleteOptionalParams
+  OAuth2PermissionGrantDeleteOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -24,7 +24,7 @@ export interface OAuth2PermissionGrantOperations {
    * @param options The options parameters.
    */
   list(
-    options?: OAuth2PermissionGrantListOptionalParams
+    options?: OAuth2PermissionGrantListOptionalParams,
   ): PagedAsyncIterableIterator<OAuth2PermissionGrant>;
   /**
    * Gets the next page of OAuth2 permission grants
@@ -33,14 +33,14 @@ export interface OAuth2PermissionGrantOperations {
    */
   listNext(
     nextLink: string,
-    options?: OAuth2PermissionGrantListNextOptionalParams
+    options?: OAuth2PermissionGrantListNextOptionalParams,
   ): PagedAsyncIterableIterator<OAuth2PermissionGrant>;
   /**
    * Grants OAuth2 permissions for the relevant resource Ids of an app.
    * @param options The options parameters.
    */
   create(
-    options?: OAuth2PermissionGrantCreateOptionalParams
+    options?: OAuth2PermissionGrantCreateOptionalParams,
   ): Promise<OAuth2PermissionGrantCreateResponse>;
   /**
    * Delete a OAuth2 permission grant for the relevant resource Ids of an app.
@@ -49,6 +49,6 @@ export interface OAuth2PermissionGrantOperations {
    */
   delete(
     objectId: string,
-    options?: OAuth2PermissionGrantDeleteOptionalParams
+    options?: OAuth2PermissionGrantDeleteOptionalParams,
   ): Promise<void>;
 }

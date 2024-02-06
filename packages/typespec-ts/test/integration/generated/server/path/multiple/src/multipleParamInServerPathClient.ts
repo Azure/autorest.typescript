@@ -16,7 +16,7 @@ export interface MultipleParamInServerPathClientOptions extends ClientOptions {
  */
 export default function createClient(
   endpoint: string,
-  options: MultipleParamInServerPathClientOptions = {}
+  options: MultipleParamInServerPathClientOptions = {},
 ): MultipleParamInServerPathClient {
   const apiVersion = options.apiVersion ?? "v1.0";
   const baseUrl =
@@ -38,6 +38,8 @@ export default function createClient(
   };
 
   const client = getClient(baseUrl, options) as MultipleParamInServerPathClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }

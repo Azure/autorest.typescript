@@ -187,7 +187,7 @@ import {
   LROsCustomHeaderPost202Retry200202Response,
   LROsCustomHeaderPost202Retry200DefaultResponse,
   LROsCustomHeaderPostAsyncRetrySucceeded202Response,
-  LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse
+  LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -285,11 +285,11 @@ const responseMap: Record<string, string[]> = {
   "GET /lro/retryerror/putasync/retry/succeeded": ["200"],
   "DELETE /lro/retryerror/delete/provisioning/202/accepted/200/succeeded": [
     "200",
-    "202"
+    "202",
   ],
   "GET /lro/retryerror/delete/provisioning/202/accepted/200/succeeded": [
     "200",
-    "202"
+    "202",
   ],
   "DELETE /lro/retryerror/delete/202/retry/200": ["202"],
   "GET /lro/retryerror/delete/202/retry/200": ["202"],
@@ -358,427 +358,427 @@ const responseMap: Record<string, string[]> = {
   "POST /lro/customheader/post/202/retry/200": ["202"],
   "GET /lro/customheader/post/202/retry/200": ["202"],
   "POST /lro/customheader/postasync/retry/succeeded": ["202"],
-  "GET /lro/customheader/postasync/retry/succeeded": ["202"]
+  "GET /lro/customheader/postasync/retry/succeeded": ["202"],
 };
 
 export function isUnexpected(
   response:
     | LROsPut200Succeeded200Response
     | LROsPut200Succeeded204Response
-    | LROsPut200SucceededDefaultResponse
+    | LROsPut200SucceededDefaultResponse,
 ): response is LROsPut200SucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPatch200SucceededIgnoreHeaders200Response
-    | LROsPatch200SucceededIgnoreHeadersDefaultResponse
+    | LROsPatch200SucceededIgnoreHeadersDefaultResponse,
 ): response is LROsPatch200SucceededIgnoreHeadersDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPatch201RetryWithAsyncHeader200Response
     | LROsPatch201RetryWithAsyncHeader201Response
-    | LROsPatch201RetryWithAsyncHeaderDefaultResponse
+    | LROsPatch201RetryWithAsyncHeaderDefaultResponse,
 ): response is LROsPatch201RetryWithAsyncHeaderDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPatch202RetryWithAsyncAndLocationHeader200Response
     | LROsPatch202RetryWithAsyncAndLocationHeader202Response
-    | LROsPatch202RetryWithAsyncAndLocationHeaderDefaultResponse
+    | LROsPatch202RetryWithAsyncAndLocationHeaderDefaultResponse,
 ): response is LROsPatch202RetryWithAsyncAndLocationHeaderDefaultResponse;
 export function isUnexpected(
-  response: LROsPut201Succeeded201Response | LROsPut201SucceededDefaultResponse
+  response: LROsPut201Succeeded201Response | LROsPut201SucceededDefaultResponse,
 ): response is LROsPut201SucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPost202List200Response
     | LROsPost202List202Response
-    | LROsPost202ListDefaultResponse
+    | LROsPost202ListDefaultResponse,
 ): response is LROsPost202ListDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPut200SucceededNoState200Response
-    | LROsPut200SucceededNoStateDefaultResponse
+    | LROsPut200SucceededNoStateDefaultResponse,
 ): response is LROsPut200SucceededNoStateDefaultResponse;
 export function isUnexpected(
-  response: LROsPut202Retry200202Response | LROsPut202Retry200DefaultResponse
+  response: LROsPut202Retry200202Response | LROsPut202Retry200DefaultResponse,
 ): response is LROsPut202Retry200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsPut201CreatingSucceeded200200Response
     | LROsPut201CreatingSucceeded200201Response
-    | LROsPut201CreatingSucceeded200DefaultResponse
+    | LROsPut201CreatingSucceeded200DefaultResponse,
 ): response is LROsPut201CreatingSucceeded200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsPut200UpdatingSucceeded204200Response
-    | LROsPut200UpdatingSucceeded204DefaultResponse
+    | LROsPut200UpdatingSucceeded204DefaultResponse,
 ): response is LROsPut200UpdatingSucceeded204DefaultResponse;
 export function isUnexpected(
   response:
     | LROsPut201CreatingFailed200200Response
     | LROsPut201CreatingFailed200201Response
-    | LROsPut201CreatingFailed200DefaultResponse
+    | LROsPut201CreatingFailed200DefaultResponse,
 ): response is LROsPut201CreatingFailed200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsPut200Acceptedcanceled200200Response
-    | LROsPut200Acceptedcanceled200DefaultResponse
+    | LROsPut200Acceptedcanceled200DefaultResponse,
 ): response is LROsPut200Acceptedcanceled200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsPutNoHeaderInRetry202Response
-    | LROsPutNoHeaderInRetryDefaultResponse
+    | LROsPutNoHeaderInRetryDefaultResponse,
 ): response is LROsPutNoHeaderInRetryDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPutAsyncRetrySucceeded200Response
-    | LROsPutAsyncRetrySucceededDefaultResponse
+    | LROsPutAsyncRetrySucceededDefaultResponse,
 ): response is LROsPutAsyncRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPutAsyncNoRetrySucceeded200Response
-    | LROsPutAsyncNoRetrySucceededDefaultResponse
+    | LROsPutAsyncNoRetrySucceededDefaultResponse,
 ): response is LROsPutAsyncNoRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPutAsyncRetryFailed200Response
-    | LROsPutAsyncRetryFailedDefaultResponse
+    | LROsPutAsyncRetryFailedDefaultResponse,
 ): response is LROsPutAsyncRetryFailedDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPutAsyncNoRetrycanceled200Response
-    | LROsPutAsyncNoRetrycanceledDefaultResponse
+    | LROsPutAsyncNoRetrycanceledDefaultResponse,
 ): response is LROsPutAsyncNoRetrycanceledDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPutAsyncNoHeaderInRetry201Response
-    | LROsPutAsyncNoHeaderInRetryDefaultResponse
+    | LROsPutAsyncNoHeaderInRetryDefaultResponse,
 ): response is LROsPutAsyncNoHeaderInRetryDefaultResponse;
 export function isUnexpected(
-  response: LROsPutNonResource202Response | LROsPutNonResourceDefaultResponse
+  response: LROsPutNonResource202Response | LROsPutNonResourceDefaultResponse,
 ): response is LROsPutNonResourceDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPutAsyncNonResource202Response
-    | LROsPutAsyncNonResourceDefaultResponse
+    | LROsPutAsyncNonResourceDefaultResponse,
 ): response is LROsPutAsyncNonResourceDefaultResponse;
 export function isUnexpected(
-  response: LROsPutSubResource202Response | LROsPutSubResourceDefaultResponse
+  response: LROsPutSubResource202Response | LROsPutSubResourceDefaultResponse,
 ): response is LROsPutSubResourceDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPutAsyncSubResource202Response
-    | LROsPutAsyncSubResourceDefaultResponse
+    | LROsPutAsyncSubResourceDefaultResponse,
 ): response is LROsPutAsyncSubResourceDefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteProvisioning202Accepted200Succeeded200Response
     | LROsDeleteProvisioning202Accepted200Succeeded202Response
-    | LROsDeleteProvisioning202Accepted200SucceededDefaultResponse
+    | LROsDeleteProvisioning202Accepted200SucceededDefaultResponse,
 ): response is LROsDeleteProvisioning202Accepted200SucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteProvisioning202DeletingFailed200200Response
     | LROsDeleteProvisioning202DeletingFailed200202Response
-    | LROsDeleteProvisioning202DeletingFailed200DefaultResponse
+    | LROsDeleteProvisioning202DeletingFailed200DefaultResponse,
 ): response is LROsDeleteProvisioning202DeletingFailed200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteProvisioning202Deletingcanceled200200Response
     | LROsDeleteProvisioning202Deletingcanceled200202Response
-    | LROsDeleteProvisioning202Deletingcanceled200DefaultResponse
+    | LROsDeleteProvisioning202Deletingcanceled200DefaultResponse,
 ): response is LROsDeleteProvisioning202Deletingcanceled200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsDelete204Succeeded204Response
-    | LROsDelete204SucceededDefaultResponse
+    | LROsDelete204SucceededDefaultResponse,
 ): response is LROsDelete204SucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsDelete202Retry200200Response
     | LROsDelete202Retry200202Response
-    | LROsDelete202Retry200DefaultResponse
+    | LROsDelete202Retry200DefaultResponse,
 ): response is LROsDelete202Retry200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsDelete202NoRetry204200Response
     | LROsDelete202NoRetry204202Response
-    | LROsDelete202NoRetry204DefaultResponse
+    | LROsDelete202NoRetry204DefaultResponse,
 ): response is LROsDelete202NoRetry204DefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteNoHeaderInRetry202Response
     | LROsDeleteNoHeaderInRetry204Response
-    | LROsDeleteNoHeaderInRetryDefaultResponse
+    | LROsDeleteNoHeaderInRetryDefaultResponse,
 ): response is LROsDeleteNoHeaderInRetryDefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteAsyncNoHeaderInRetry202Response
     | LROsDeleteAsyncNoHeaderInRetry204Response
-    | LROsDeleteAsyncNoHeaderInRetryDefaultResponse
+    | LROsDeleteAsyncNoHeaderInRetryDefaultResponse,
 ): response is LROsDeleteAsyncNoHeaderInRetryDefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteAsyncRetrySucceeded202Response
-    | LROsDeleteAsyncRetrySucceededDefaultResponse
+    | LROsDeleteAsyncRetrySucceededDefaultResponse,
 ): response is LROsDeleteAsyncRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteAsyncNoRetrySucceeded202Response
-    | LROsDeleteAsyncNoRetrySucceededDefaultResponse
+    | LROsDeleteAsyncNoRetrySucceededDefaultResponse,
 ): response is LROsDeleteAsyncNoRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteAsyncRetryFailed202Response
-    | LROsDeleteAsyncRetryFailedDefaultResponse
+    | LROsDeleteAsyncRetryFailedDefaultResponse,
 ): response is LROsDeleteAsyncRetryFailedDefaultResponse;
 export function isUnexpected(
   response:
     | LROsDeleteAsyncRetrycanceled202Response
-    | LROsDeleteAsyncRetrycanceledDefaultResponse
+    | LROsDeleteAsyncRetrycanceledDefaultResponse,
 ): response is LROsDeleteAsyncRetrycanceledDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPost200WithPayload200Response
     | LROsPost200WithPayload202Response
-    | LROsPost200WithPayloadDefaultResponse
+    | LROsPost200WithPayloadDefaultResponse,
 ): response is LROsPost200WithPayloadDefaultResponse;
 export function isUnexpected(
-  response: LROsPost202Retry200202Response | LROsPost202Retry200DefaultResponse
+  response: LROsPost202Retry200202Response | LROsPost202Retry200DefaultResponse,
 ): response is LROsPost202Retry200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsPost202NoRetry204202Response
-    | LROsPost202NoRetry204DefaultResponse
+    | LROsPost202NoRetry204DefaultResponse,
 ): response is LROsPost202NoRetry204DefaultResponse;
 export function isUnexpected(
   response:
     | LROsPostDoubleHeadersFinalLocationGet202Response
-    | LROsPostDoubleHeadersFinalLocationGetDefaultResponse
+    | LROsPostDoubleHeadersFinalLocationGetDefaultResponse,
 ): response is LROsPostDoubleHeadersFinalLocationGetDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPostDoubleHeadersFinalAzureHeaderGet202Response
-    | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
+    | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse,
 ): response is LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPostDoubleHeadersFinalAzureHeaderGetDefault202Response
-    | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultDefaultResponse
+    | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultDefaultResponse,
 ): response is LROsPostDoubleHeadersFinalAzureHeaderGetDefaultDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPostAsyncRetrySucceeded200Response
     | LROsPostAsyncRetrySucceeded202Response
-    | LROsPostAsyncRetrySucceededDefaultResponse
+    | LROsPostAsyncRetrySucceededDefaultResponse,
 ): response is LROsPostAsyncRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPostAsyncNoRetrySucceeded200Response
     | LROsPostAsyncNoRetrySucceeded202Response
-    | LROsPostAsyncNoRetrySucceededDefaultResponse
+    | LROsPostAsyncNoRetrySucceededDefaultResponse,
 ): response is LROsPostAsyncNoRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPostAsyncRetryFailed202Response
-    | LROsPostAsyncRetryFailedDefaultResponse
+    | LROsPostAsyncRetryFailedDefaultResponse,
 ): response is LROsPostAsyncRetryFailedDefaultResponse;
 export function isUnexpected(
   response:
     | LROsPostAsyncRetrycanceled202Response
-    | LROsPostAsyncRetrycanceledDefaultResponse
+    | LROsPostAsyncRetrycanceledDefaultResponse,
 ): response is LROsPostAsyncRetrycanceledDefaultResponse;
 export function isUnexpected(
   response:
     | LRORetrysPut201CreatingSucceeded200200Response
     | LRORetrysPut201CreatingSucceeded200201Response
-    | LRORetrysPut201CreatingSucceeded200DefaultResponse
+    | LRORetrysPut201CreatingSucceeded200DefaultResponse,
 ): response is LRORetrysPut201CreatingSucceeded200DefaultResponse;
 export function isUnexpected(
   response:
     | LRORetrysPutAsyncRelativeRetrySucceeded200Response
-    | LRORetrysPutAsyncRelativeRetrySucceededDefaultResponse
+    | LRORetrysPutAsyncRelativeRetrySucceededDefaultResponse,
 ): response is LRORetrysPutAsyncRelativeRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LRORetrysDeleteProvisioning202Accepted200Succeeded200Response
     | LRORetrysDeleteProvisioning202Accepted200Succeeded202Response
-    | LRORetrysDeleteProvisioning202Accepted200SucceededDefaultResponse
+    | LRORetrysDeleteProvisioning202Accepted200SucceededDefaultResponse,
 ): response is LRORetrysDeleteProvisioning202Accepted200SucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LRORetrysDelete202Retry200202Response
-    | LRORetrysDelete202Retry200DefaultResponse
+    | LRORetrysDelete202Retry200DefaultResponse,
 ): response is LRORetrysDelete202Retry200DefaultResponse;
 export function isUnexpected(
   response:
     | LRORetrysDeleteAsyncRelativeRetrySucceeded202Response
-    | LRORetrysDeleteAsyncRelativeRetrySucceededDefaultResponse
+    | LRORetrysDeleteAsyncRelativeRetrySucceededDefaultResponse,
 ): response is LRORetrysDeleteAsyncRelativeRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LRORetrysPost202Retry200202Response
-    | LRORetrysPost202Retry200DefaultResponse
+    | LRORetrysPost202Retry200DefaultResponse,
 ): response is LRORetrysPost202Retry200DefaultResponse;
 export function isUnexpected(
   response:
     | LRORetrysPostAsyncRelativeRetrySucceeded202Response
-    | LRORetrysPostAsyncRelativeRetrySucceededDefaultResponse
+    | LRORetrysPostAsyncRelativeRetrySucceededDefaultResponse,
 ): response is LRORetrysPostAsyncRelativeRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutNonRetry400200Response
     | LrosaDsPutNonRetry400201Response
-    | LrosaDsPutNonRetry400DefaultResponse
+    | LrosaDsPutNonRetry400DefaultResponse,
 ): response is LrosaDsPutNonRetry400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutNonRetry201Creating400200Response
     | LrosaDsPutNonRetry201Creating400201Response
-    | LrosaDsPutNonRetry201Creating400DefaultResponse
+    | LrosaDsPutNonRetry201Creating400DefaultResponse,
 ): response is LrosaDsPutNonRetry201Creating400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutNonRetry201Creating400InvalidJson200Response
     | LrosaDsPutNonRetry201Creating400InvalidJson201Response
-    | LrosaDsPutNonRetry201Creating400InvalidJsonDefaultResponse
+    | LrosaDsPutNonRetry201Creating400InvalidJsonDefaultResponse,
 ): response is LrosaDsPutNonRetry201Creating400InvalidJsonDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutAsyncRelativeRetry400200Response
-    | LrosaDsPutAsyncRelativeRetry400DefaultResponse
+    | LrosaDsPutAsyncRelativeRetry400DefaultResponse,
 ): response is LrosaDsPutAsyncRelativeRetry400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsDeleteNonRetry400202Response
-    | LrosaDsDeleteNonRetry400DefaultResponse
+    | LrosaDsDeleteNonRetry400DefaultResponse,
 ): response is LrosaDsDeleteNonRetry400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsDelete202NonRetry400202Response
-    | LrosaDsDelete202NonRetry400DefaultResponse
+    | LrosaDsDelete202NonRetry400DefaultResponse,
 ): response is LrosaDsDelete202NonRetry400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsDeleteAsyncRelativeRetry400202Response
-    | LrosaDsDeleteAsyncRelativeRetry400DefaultResponse
+    | LrosaDsDeleteAsyncRelativeRetry400DefaultResponse,
 ): response is LrosaDsDeleteAsyncRelativeRetry400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPostNonRetry400202Response
-    | LrosaDsPostNonRetry400DefaultResponse
+    | LrosaDsPostNonRetry400DefaultResponse,
 ): response is LrosaDsPostNonRetry400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPost202NonRetry400202Response
-    | LrosaDsPost202NonRetry400DefaultResponse
+    | LrosaDsPost202NonRetry400DefaultResponse,
 ): response is LrosaDsPost202NonRetry400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPostAsyncRelativeRetry400202Response
-    | LrosaDsPostAsyncRelativeRetry400DefaultResponse
+    | LrosaDsPostAsyncRelativeRetry400DefaultResponse,
 ): response is LrosaDsPostAsyncRelativeRetry400DefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutError201NoProvisioningStatePayload200Response
     | LrosaDsPutError201NoProvisioningStatePayload201Response
-    | LrosaDsPutError201NoProvisioningStatePayloadDefaultResponse
+    | LrosaDsPutError201NoProvisioningStatePayloadDefaultResponse,
 ): response is LrosaDsPutError201NoProvisioningStatePayloadDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutAsyncRelativeRetryNoStatus200Response
-    | LrosaDsPutAsyncRelativeRetryNoStatusDefaultResponse
+    | LrosaDsPutAsyncRelativeRetryNoStatusDefaultResponse,
 ): response is LrosaDsPutAsyncRelativeRetryNoStatusDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutAsyncRelativeRetryNoStatusPayload200Response
-    | LrosaDsPutAsyncRelativeRetryNoStatusPayloadDefaultResponse
+    | LrosaDsPutAsyncRelativeRetryNoStatusPayloadDefaultResponse,
 ): response is LrosaDsPutAsyncRelativeRetryNoStatusPayloadDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsDelete204Succeeded204Response
-    | LrosaDsDelete204SucceededDefaultResponse
+    | LrosaDsDelete204SucceededDefaultResponse,
 ): response is LrosaDsDelete204SucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsDeleteAsyncRelativeRetryNoStatus202Response
-    | LrosaDsDeleteAsyncRelativeRetryNoStatusDefaultResponse
+    | LrosaDsDeleteAsyncRelativeRetryNoStatusDefaultResponse,
 ): response is LrosaDsDeleteAsyncRelativeRetryNoStatusDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPost202NoLocation202Response
-    | LrosaDsPost202NoLocationDefaultResponse
+    | LrosaDsPost202NoLocationDefaultResponse,
 ): response is LrosaDsPost202NoLocationDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPostAsyncRelativeRetryNoPayload202Response
-    | LrosaDsPostAsyncRelativeRetryNoPayloadDefaultResponse
+    | LrosaDsPostAsyncRelativeRetryNoPayloadDefaultResponse,
 ): response is LrosaDsPostAsyncRelativeRetryNoPayloadDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPut200InvalidJson200Response
     | LrosaDsPut200InvalidJson204Response
-    | LrosaDsPut200InvalidJsonDefaultResponse
+    | LrosaDsPut200InvalidJsonDefaultResponse,
 ): response is LrosaDsPut200InvalidJsonDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutAsyncRelativeRetryInvalidHeader200Response
-    | LrosaDsPutAsyncRelativeRetryInvalidHeaderDefaultResponse
+    | LrosaDsPutAsyncRelativeRetryInvalidHeaderDefaultResponse,
 ): response is LrosaDsPutAsyncRelativeRetryInvalidHeaderDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPutAsyncRelativeRetryInvalidJsonPolling200Response
-    | LrosaDsPutAsyncRelativeRetryInvalidJsonPollingDefaultResponse
+    | LrosaDsPutAsyncRelativeRetryInvalidJsonPollingDefaultResponse,
 ): response is LrosaDsPutAsyncRelativeRetryInvalidJsonPollingDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsDelete202RetryInvalidHeader202Response
-    | LrosaDsDelete202RetryInvalidHeaderDefaultResponse
+    | LrosaDsDelete202RetryInvalidHeaderDefaultResponse,
 ): response is LrosaDsDelete202RetryInvalidHeaderDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsDeleteAsyncRelativeRetryInvalidHeader202Response
-    | LrosaDsDeleteAsyncRelativeRetryInvalidHeaderDefaultResponse
+    | LrosaDsDeleteAsyncRelativeRetryInvalidHeaderDefaultResponse,
 ): response is LrosaDsDeleteAsyncRelativeRetryInvalidHeaderDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling202Response
-    | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingDefaultResponse
+    | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingDefaultResponse,
 ): response is LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPost202RetryInvalidHeader202Response
-    | LrosaDsPost202RetryInvalidHeaderDefaultResponse
+    | LrosaDsPost202RetryInvalidHeaderDefaultResponse,
 ): response is LrosaDsPost202RetryInvalidHeaderDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPostAsyncRelativeRetryInvalidHeader202Response
-    | LrosaDsPostAsyncRelativeRetryInvalidHeaderDefaultResponse
+    | LrosaDsPostAsyncRelativeRetryInvalidHeaderDefaultResponse,
 ): response is LrosaDsPostAsyncRelativeRetryInvalidHeaderDefaultResponse;
 export function isUnexpected(
   response:
     | LrosaDsPostAsyncRelativeRetryInvalidJsonPolling202Response
-    | LrosaDsPostAsyncRelativeRetryInvalidJsonPollingDefaultResponse
+    | LrosaDsPostAsyncRelativeRetryInvalidJsonPollingDefaultResponse,
 ): response is LrosaDsPostAsyncRelativeRetryInvalidJsonPollingDefaultResponse;
 export function isUnexpected(
   response:
     | LROsCustomHeaderPutAsyncRetrySucceeded200Response
-    | LROsCustomHeaderPutAsyncRetrySucceededDefaultResponse
+    | LROsCustomHeaderPutAsyncRetrySucceededDefaultResponse,
 ): response is LROsCustomHeaderPutAsyncRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
     | LROsCustomHeaderPut201CreatingSucceeded200200Response
     | LROsCustomHeaderPut201CreatingSucceeded200201Response
-    | LROsCustomHeaderPut201CreatingSucceeded200DefaultResponse
+    | LROsCustomHeaderPut201CreatingSucceeded200DefaultResponse,
 ): response is LROsCustomHeaderPut201CreatingSucceeded200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsCustomHeaderPost202Retry200202Response
-    | LROsCustomHeaderPost202Retry200DefaultResponse
+    | LROsCustomHeaderPost202Retry200DefaultResponse,
 ): response is LROsCustomHeaderPost202Retry200DefaultResponse;
 export function isUnexpected(
   response:
     | LROsCustomHeaderPostAsyncRetrySucceeded202Response
-    | LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse
+    | LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse,
 ): response is LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse;
 export function isUnexpected(
   response:
@@ -967,7 +967,7 @@ export function isUnexpected(
     | LROsCustomHeaderPost202Retry200202Response
     | LROsCustomHeaderPost202Retry200DefaultResponse
     | LROsCustomHeaderPostAsyncRetrySucceeded202Response
-    | LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse
+    | LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse,
 ): response is
   | LROsPut200SucceededDefaultResponse
   | LROsPatch200SucceededIgnoreHeadersDefaultResponse
@@ -1098,7 +1098,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

@@ -29,7 +29,7 @@ async function getDetailsForAStaticSite() {
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.getStaticSite(
     resourceGroupName,
-    name
+    name,
   );
   console.log(result);
 }

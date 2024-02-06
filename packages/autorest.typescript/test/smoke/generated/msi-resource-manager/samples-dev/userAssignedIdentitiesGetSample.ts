@@ -28,7 +28,7 @@ async function identityGet() {
   const client = new ManagedServiceIdentityClient(credential, subscriptionId);
   const result = await client.userAssignedIdentities.get(
     resourceGroupName,
-    resourceName
+    resourceName,
   );
   console.log(result);
 }

@@ -28,7 +28,7 @@ async function vpnServerConfigurationGet() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnServerConfigurations.get(
     resourceGroupName,
-    vpnServerConfigurationName
+    vpnServerConfigurationName,
   );
   console.log(result);
 }

@@ -10,7 +10,7 @@ import {
   PetGetByPetIdOptionalParams,
   PetGetByPetIdResponse,
   PetAddPetOptionalParams,
-  PetAddPetResponse
+  PetAddPetResponse,
 } from "../models";
 
 /** Interface representing a Pet. */
@@ -22,7 +22,7 @@ export interface Pet {
    */
   getByPetId(
     petId: string,
-    options?: PetGetByPetIdOptionalParams
+    options?: PetGetByPetIdOptionalParams,
   ): Promise<PetGetByPetIdResponse>;
   /**
    * add pet

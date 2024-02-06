@@ -6,7 +6,7 @@ export interface RequestRegisterCC extends CommonRegistrationRequest {
 }
 
 export interface CommonRegistrationRequest {
-  /** Possible values: 01 */
+  /** Possible values: "01" */
   payMethod: string;
 }
 

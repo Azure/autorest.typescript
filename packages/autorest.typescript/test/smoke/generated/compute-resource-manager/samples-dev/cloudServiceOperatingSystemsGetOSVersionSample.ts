@@ -28,7 +28,7 @@ async function getCloudServiceOSVersion() {
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.cloudServiceOperatingSystems.getOSVersion(
     location,
-    osVersionName
+    osVersionName,
   );
   console.log(result);
 }

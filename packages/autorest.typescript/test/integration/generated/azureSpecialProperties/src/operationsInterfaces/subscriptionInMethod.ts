@@ -10,7 +10,7 @@ import {
   SubscriptionInMethodPostMethodLocalValidOptionalParams,
   SubscriptionInMethodPostMethodLocalNullOptionalParams,
   SubscriptionInMethodPostPathLocalValidOptionalParams,
-  SubscriptionInMethodPostSwaggerLocalValidOptionalParams
+  SubscriptionInMethodPostSwaggerLocalValidOptionalParams,
 } from "../models";
 
 /** Interface representing a SubscriptionInMethod. */
@@ -23,7 +23,7 @@ export interface SubscriptionInMethod {
    */
   postMethodLocalValid(
     subscriptionId: string,
-    options?: SubscriptionInMethodPostMethodLocalValidOptionalParams
+    options?: SubscriptionInMethodPostMethodLocalValidOptionalParams,
   ): Promise<void>;
   /**
    * POST method with subscriptionId modeled in the method.  pass in subscription id = null, client-side
@@ -34,7 +34,7 @@ export interface SubscriptionInMethod {
    */
   postMethodLocalNull(
     subscriptionId: string,
-    options?: SubscriptionInMethodPostMethodLocalNullOptionalParams
+    options?: SubscriptionInMethodPostMethodLocalNullOptionalParams,
   ): Promise<void>;
   /**
    * POST method with subscriptionId modeled in the method.  pass in subscription id =
@@ -44,7 +44,7 @@ export interface SubscriptionInMethod {
    */
   postPathLocalValid(
     subscriptionId: string,
-    options?: SubscriptionInMethodPostPathLocalValidOptionalParams
+    options?: SubscriptionInMethodPostPathLocalValidOptionalParams,
   ): Promise<void>;
   /**
    * POST method with subscriptionId modeled in the method.  pass in subscription id =
@@ -55,6 +55,6 @@ export interface SubscriptionInMethod {
    */
   postSwaggerLocalValid(
     subscriptionId: string,
-    options?: SubscriptionInMethodPostSwaggerLocalValidOptionalParams
+    options?: SubscriptionInMethodPostSwaggerLocalValidOptionalParams,
   ): Promise<void>;
 }

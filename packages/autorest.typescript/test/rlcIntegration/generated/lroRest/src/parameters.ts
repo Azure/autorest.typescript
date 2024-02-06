@@ -28,9 +28,10 @@ export interface LROsPatch200SucceededIgnoreHeadersMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPatch200SucceededIgnoreHeadersParameters = LROsPatch200SucceededIgnoreHeadersMediaTypesParam &
-  LROsPatch200SucceededIgnoreHeadersBodyParam &
-  RequestParameters;
+export type LROsPatch200SucceededIgnoreHeadersParameters =
+  LROsPatch200SucceededIgnoreHeadersMediaTypesParam &
+    LROsPatch200SucceededIgnoreHeadersBodyParam &
+    RequestParameters;
 
 export interface LROsPatch201RetryWithAsyncHeaderBodyParam {
   /** Product to patch */
@@ -42,9 +43,10 @@ export interface LROsPatch201RetryWithAsyncHeaderMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPatch201RetryWithAsyncHeaderParameters = LROsPatch201RetryWithAsyncHeaderMediaTypesParam &
-  LROsPatch201RetryWithAsyncHeaderBodyParam &
-  RequestParameters;
+export type LROsPatch201RetryWithAsyncHeaderParameters =
+  LROsPatch201RetryWithAsyncHeaderMediaTypesParam &
+    LROsPatch201RetryWithAsyncHeaderBodyParam &
+    RequestParameters;
 
 export interface LROsPatch202RetryWithAsyncAndLocationHeaderBodyParam {
   /** Product to patch */
@@ -56,9 +58,10 @@ export interface LROsPatch202RetryWithAsyncAndLocationHeaderMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPatch202RetryWithAsyncAndLocationHeaderParameters = LROsPatch202RetryWithAsyncAndLocationHeaderMediaTypesParam &
-  LROsPatch202RetryWithAsyncAndLocationHeaderBodyParam &
-  RequestParameters;
+export type LROsPatch202RetryWithAsyncAndLocationHeaderParameters =
+  LROsPatch202RetryWithAsyncAndLocationHeaderMediaTypesParam &
+    LROsPatch202RetryWithAsyncAndLocationHeaderBodyParam &
+    RequestParameters;
 
 export interface LROsPut201SucceededBodyParam {
   /** Product to put */
@@ -85,9 +88,10 @@ export interface LROsPut200SucceededNoStateMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPut200SucceededNoStateParameters = LROsPut200SucceededNoStateMediaTypesParam &
-  LROsPut200SucceededNoStateBodyParam &
-  RequestParameters;
+export type LROsPut200SucceededNoStateParameters =
+  LROsPut200SucceededNoStateMediaTypesParam &
+    LROsPut200SucceededNoStateBodyParam &
+    RequestParameters;
 
 export interface LROsPut202Retry200BodyParam {
   /** Product to put */
@@ -113,9 +117,10 @@ export interface LROsPut201CreatingSucceeded200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPut201CreatingSucceeded200Parameters = LROsPut201CreatingSucceeded200MediaTypesParam &
-  LROsPut201CreatingSucceeded200BodyParam &
-  RequestParameters;
+export type LROsPut201CreatingSucceeded200Parameters =
+  LROsPut201CreatingSucceeded200MediaTypesParam &
+    LROsPut201CreatingSucceeded200BodyParam &
+    RequestParameters;
 
 export interface LROsPut200UpdatingSucceeded204BodyParam {
   /** Product to put */
@@ -127,9 +132,10 @@ export interface LROsPut200UpdatingSucceeded204MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPut200UpdatingSucceeded204Parameters = LROsPut200UpdatingSucceeded204MediaTypesParam &
-  LROsPut200UpdatingSucceeded204BodyParam &
-  RequestParameters;
+export type LROsPut200UpdatingSucceeded204Parameters =
+  LROsPut200UpdatingSucceeded204MediaTypesParam &
+    LROsPut200UpdatingSucceeded204BodyParam &
+    RequestParameters;
 
 export interface LROsPut201CreatingFailed200BodyParam {
   /** Product to put */
@@ -141,9 +147,10 @@ export interface LROsPut201CreatingFailed200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPut201CreatingFailed200Parameters = LROsPut201CreatingFailed200MediaTypesParam &
-  LROsPut201CreatingFailed200BodyParam &
-  RequestParameters;
+export type LROsPut201CreatingFailed200Parameters =
+  LROsPut201CreatingFailed200MediaTypesParam &
+    LROsPut201CreatingFailed200BodyParam &
+    RequestParameters;
 
 export interface LROsPut200Acceptedcanceled200BodyParam {
   /** Product to put */
@@ -155,9 +162,10 @@ export interface LROsPut200Acceptedcanceled200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPut200Acceptedcanceled200Parameters = LROsPut200Acceptedcanceled200MediaTypesParam &
-  LROsPut200Acceptedcanceled200BodyParam &
-  RequestParameters;
+export type LROsPut200Acceptedcanceled200Parameters =
+  LROsPut200Acceptedcanceled200MediaTypesParam &
+    LROsPut200Acceptedcanceled200BodyParam &
+    RequestParameters;
 
 export interface LROsPutNoHeaderInRetryBodyParam {
   /** Product to put */
@@ -169,9 +177,10 @@ export interface LROsPutNoHeaderInRetryMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPutNoHeaderInRetryParameters = LROsPutNoHeaderInRetryMediaTypesParam &
-  LROsPutNoHeaderInRetryBodyParam &
-  RequestParameters;
+export type LROsPutNoHeaderInRetryParameters =
+  LROsPutNoHeaderInRetryMediaTypesParam &
+    LROsPutNoHeaderInRetryBodyParam &
+    RequestParameters;
 
 export interface LROsPutAsyncRetrySucceededBodyParam {
   /** Product to put */
@@ -183,9 +192,10 @@ export interface LROsPutAsyncRetrySucceededMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPutAsyncRetrySucceededParameters = LROsPutAsyncRetrySucceededMediaTypesParam &
-  LROsPutAsyncRetrySucceededBodyParam &
-  RequestParameters;
+export type LROsPutAsyncRetrySucceededParameters =
+  LROsPutAsyncRetrySucceededMediaTypesParam &
+    LROsPutAsyncRetrySucceededBodyParam &
+    RequestParameters;
 
 export interface LROsPutAsyncNoRetrySucceededBodyParam {
   /** Product to put */
@@ -197,9 +207,10 @@ export interface LROsPutAsyncNoRetrySucceededMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPutAsyncNoRetrySucceededParameters = LROsPutAsyncNoRetrySucceededMediaTypesParam &
-  LROsPutAsyncNoRetrySucceededBodyParam &
-  RequestParameters;
+export type LROsPutAsyncNoRetrySucceededParameters =
+  LROsPutAsyncNoRetrySucceededMediaTypesParam &
+    LROsPutAsyncNoRetrySucceededBodyParam &
+    RequestParameters;
 
 export interface LROsPutAsyncRetryFailedBodyParam {
   /** Product to put */
@@ -211,9 +222,10 @@ export interface LROsPutAsyncRetryFailedMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPutAsyncRetryFailedParameters = LROsPutAsyncRetryFailedMediaTypesParam &
-  LROsPutAsyncRetryFailedBodyParam &
-  RequestParameters;
+export type LROsPutAsyncRetryFailedParameters =
+  LROsPutAsyncRetryFailedMediaTypesParam &
+    LROsPutAsyncRetryFailedBodyParam &
+    RequestParameters;
 
 export interface LROsPutAsyncNoRetrycanceledBodyParam {
   /** Product to put */
@@ -225,9 +237,10 @@ export interface LROsPutAsyncNoRetrycanceledMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPutAsyncNoRetrycanceledParameters = LROsPutAsyncNoRetrycanceledMediaTypesParam &
-  LROsPutAsyncNoRetrycanceledBodyParam &
-  RequestParameters;
+export type LROsPutAsyncNoRetrycanceledParameters =
+  LROsPutAsyncNoRetrycanceledMediaTypesParam &
+    LROsPutAsyncNoRetrycanceledBodyParam &
+    RequestParameters;
 
 export interface LROsPutAsyncNoHeaderInRetryBodyParam {
   /** Product to put */
@@ -239,9 +252,10 @@ export interface LROsPutAsyncNoHeaderInRetryMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPutAsyncNoHeaderInRetryParameters = LROsPutAsyncNoHeaderInRetryMediaTypesParam &
-  LROsPutAsyncNoHeaderInRetryBodyParam &
-  RequestParameters;
+export type LROsPutAsyncNoHeaderInRetryParameters =
+  LROsPutAsyncNoHeaderInRetryMediaTypesParam &
+    LROsPutAsyncNoHeaderInRetryBodyParam &
+    RequestParameters;
 
 export interface LROsPutNonResourceBodyParam {
   /** sku to put */
@@ -267,9 +281,10 @@ export interface LROsPutAsyncNonResourceMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPutAsyncNonResourceParameters = LROsPutAsyncNonResourceMediaTypesParam &
-  LROsPutAsyncNonResourceBodyParam &
-  RequestParameters;
+export type LROsPutAsyncNonResourceParameters =
+  LROsPutAsyncNonResourceMediaTypesParam &
+    LROsPutAsyncNonResourceBodyParam &
+    RequestParameters;
 
 export interface LROsPutSubResourceBodyParam {
   /** Sub Product to put */
@@ -295,12 +310,16 @@ export interface LROsPutAsyncSubResourceMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPutAsyncSubResourceParameters = LROsPutAsyncSubResourceMediaTypesParam &
-  LROsPutAsyncSubResourceBodyParam &
+export type LROsPutAsyncSubResourceParameters =
+  LROsPutAsyncSubResourceMediaTypesParam &
+    LROsPutAsyncSubResourceBodyParam &
+    RequestParameters;
+export type LROsDeleteProvisioning202Accepted200SucceededParameters =
   RequestParameters;
-export type LROsDeleteProvisioning202Accepted200SucceededParameters = RequestParameters;
-export type LROsDeleteProvisioning202DeletingFailed200Parameters = RequestParameters;
-export type LROsDeleteProvisioning202Deletingcanceled200Parameters = RequestParameters;
+export type LROsDeleteProvisioning202DeletingFailed200Parameters =
+  RequestParameters;
+export type LROsDeleteProvisioning202Deletingcanceled200Parameters =
+  RequestParameters;
 export type LROsDelete204SucceededParameters = RequestParameters;
 export type LROsDelete202Retry200Parameters = RequestParameters;
 export type LROsDelete202NoRetry204Parameters = RequestParameters;
@@ -336,12 +355,15 @@ export interface LROsPost202NoRetry204MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPost202NoRetry204Parameters = LROsPost202NoRetry204MediaTypesParam &
-  LROsPost202NoRetry204BodyParam &
-  RequestParameters;
+export type LROsPost202NoRetry204Parameters =
+  LROsPost202NoRetry204MediaTypesParam &
+    LROsPost202NoRetry204BodyParam &
+    RequestParameters;
 export type LROsPostDoubleHeadersFinalLocationGetParameters = RequestParameters;
-export type LROsPostDoubleHeadersFinalAzureHeaderGetParameters = RequestParameters;
-export type LROsPostDoubleHeadersFinalAzureHeaderGetDefaultParameters = RequestParameters;
+export type LROsPostDoubleHeadersFinalAzureHeaderGetParameters =
+  RequestParameters;
+export type LROsPostDoubleHeadersFinalAzureHeaderGetDefaultParameters =
+  RequestParameters;
 
 export interface LROsPostAsyncRetrySucceededBodyParam {
   /** Product to put */
@@ -353,9 +375,10 @@ export interface LROsPostAsyncRetrySucceededMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPostAsyncRetrySucceededParameters = LROsPostAsyncRetrySucceededMediaTypesParam &
-  LROsPostAsyncRetrySucceededBodyParam &
-  RequestParameters;
+export type LROsPostAsyncRetrySucceededParameters =
+  LROsPostAsyncRetrySucceededMediaTypesParam &
+    LROsPostAsyncRetrySucceededBodyParam &
+    RequestParameters;
 
 export interface LROsPostAsyncNoRetrySucceededBodyParam {
   /** Product to put */
@@ -367,9 +390,10 @@ export interface LROsPostAsyncNoRetrySucceededMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPostAsyncNoRetrySucceededParameters = LROsPostAsyncNoRetrySucceededMediaTypesParam &
-  LROsPostAsyncNoRetrySucceededBodyParam &
-  RequestParameters;
+export type LROsPostAsyncNoRetrySucceededParameters =
+  LROsPostAsyncNoRetrySucceededMediaTypesParam &
+    LROsPostAsyncNoRetrySucceededBodyParam &
+    RequestParameters;
 
 export interface LROsPostAsyncRetryFailedBodyParam {
   /** Product to put */
@@ -381,9 +405,10 @@ export interface LROsPostAsyncRetryFailedMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPostAsyncRetryFailedParameters = LROsPostAsyncRetryFailedMediaTypesParam &
-  LROsPostAsyncRetryFailedBodyParam &
-  RequestParameters;
+export type LROsPostAsyncRetryFailedParameters =
+  LROsPostAsyncRetryFailedMediaTypesParam &
+    LROsPostAsyncRetryFailedBodyParam &
+    RequestParameters;
 
 export interface LROsPostAsyncRetrycanceledBodyParam {
   /** Product to put */
@@ -395,9 +420,10 @@ export interface LROsPostAsyncRetrycanceledMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsPostAsyncRetrycanceledParameters = LROsPostAsyncRetrycanceledMediaTypesParam &
-  LROsPostAsyncRetrycanceledBodyParam &
-  RequestParameters;
+export type LROsPostAsyncRetrycanceledParameters =
+  LROsPostAsyncRetrycanceledMediaTypesParam &
+    LROsPostAsyncRetrycanceledBodyParam &
+    RequestParameters;
 
 export interface LRORetrysPut201CreatingSucceeded200BodyParam {
   /** Product to put */
@@ -409,9 +435,10 @@ export interface LRORetrysPut201CreatingSucceeded200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LRORetrysPut201CreatingSucceeded200Parameters = LRORetrysPut201CreatingSucceeded200MediaTypesParam &
-  LRORetrysPut201CreatingSucceeded200BodyParam &
-  RequestParameters;
+export type LRORetrysPut201CreatingSucceeded200Parameters =
+  LRORetrysPut201CreatingSucceeded200MediaTypesParam &
+    LRORetrysPut201CreatingSucceeded200BodyParam &
+    RequestParameters;
 
 export interface LRORetrysPutAsyncRelativeRetrySucceededBodyParam {
   /** Product to put */
@@ -423,12 +450,15 @@ export interface LRORetrysPutAsyncRelativeRetrySucceededMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LRORetrysPutAsyncRelativeRetrySucceededParameters = LRORetrysPutAsyncRelativeRetrySucceededMediaTypesParam &
-  LRORetrysPutAsyncRelativeRetrySucceededBodyParam &
+export type LRORetrysPutAsyncRelativeRetrySucceededParameters =
+  LRORetrysPutAsyncRelativeRetrySucceededMediaTypesParam &
+    LRORetrysPutAsyncRelativeRetrySucceededBodyParam &
+    RequestParameters;
+export type LRORetrysDeleteProvisioning202Accepted200SucceededParameters =
   RequestParameters;
-export type LRORetrysDeleteProvisioning202Accepted200SucceededParameters = RequestParameters;
 export type LRORetrysDelete202Retry200Parameters = RequestParameters;
-export type LRORetrysDeleteAsyncRelativeRetrySucceededParameters = RequestParameters;
+export type LRORetrysDeleteAsyncRelativeRetrySucceededParameters =
+  RequestParameters;
 
 export interface LRORetrysPost202Retry200BodyParam {
   /** Product to put */
@@ -440,9 +470,10 @@ export interface LRORetrysPost202Retry200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LRORetrysPost202Retry200Parameters = LRORetrysPost202Retry200MediaTypesParam &
-  LRORetrysPost202Retry200BodyParam &
-  RequestParameters;
+export type LRORetrysPost202Retry200Parameters =
+  LRORetrysPost202Retry200MediaTypesParam &
+    LRORetrysPost202Retry200BodyParam &
+    RequestParameters;
 
 export interface LRORetrysPostAsyncRelativeRetrySucceededBodyParam {
   /** Product to put */
@@ -454,9 +485,10 @@ export interface LRORetrysPostAsyncRelativeRetrySucceededMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LRORetrysPostAsyncRelativeRetrySucceededParameters = LRORetrysPostAsyncRelativeRetrySucceededMediaTypesParam &
-  LRORetrysPostAsyncRelativeRetrySucceededBodyParam &
-  RequestParameters;
+export type LRORetrysPostAsyncRelativeRetrySucceededParameters =
+  LRORetrysPostAsyncRelativeRetrySucceededMediaTypesParam &
+    LRORetrysPostAsyncRelativeRetrySucceededBodyParam &
+    RequestParameters;
 
 export interface LrosaDsPutNonRetry400BodyParam {
   /** Product to put */
@@ -468,9 +500,10 @@ export interface LrosaDsPutNonRetry400MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPutNonRetry400Parameters = LrosaDsPutNonRetry400MediaTypesParam &
-  LrosaDsPutNonRetry400BodyParam &
-  RequestParameters;
+export type LrosaDsPutNonRetry400Parameters =
+  LrosaDsPutNonRetry400MediaTypesParam &
+    LrosaDsPutNonRetry400BodyParam &
+    RequestParameters;
 
 export interface LrosaDsPutNonRetry201Creating400BodyParam {
   /** Product to put */
@@ -482,9 +515,10 @@ export interface LrosaDsPutNonRetry201Creating400MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPutNonRetry201Creating400Parameters = LrosaDsPutNonRetry201Creating400MediaTypesParam &
-  LrosaDsPutNonRetry201Creating400BodyParam &
-  RequestParameters;
+export type LrosaDsPutNonRetry201Creating400Parameters =
+  LrosaDsPutNonRetry201Creating400MediaTypesParam &
+    LrosaDsPutNonRetry201Creating400BodyParam &
+    RequestParameters;
 
 export interface LrosaDsPutNonRetry201Creating400InvalidJsonBodyParam {
   /** Product to put */
@@ -496,9 +530,10 @@ export interface LrosaDsPutNonRetry201Creating400InvalidJsonMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPutNonRetry201Creating400InvalidJsonParameters = LrosaDsPutNonRetry201Creating400InvalidJsonMediaTypesParam &
-  LrosaDsPutNonRetry201Creating400InvalidJsonBodyParam &
-  RequestParameters;
+export type LrosaDsPutNonRetry201Creating400InvalidJsonParameters =
+  LrosaDsPutNonRetry201Creating400InvalidJsonMediaTypesParam &
+    LrosaDsPutNonRetry201Creating400InvalidJsonBodyParam &
+    RequestParameters;
 
 export interface LrosaDsPutAsyncRelativeRetry400BodyParam {
   /** Product to put */
@@ -510,9 +545,10 @@ export interface LrosaDsPutAsyncRelativeRetry400MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPutAsyncRelativeRetry400Parameters = LrosaDsPutAsyncRelativeRetry400MediaTypesParam &
-  LrosaDsPutAsyncRelativeRetry400BodyParam &
-  RequestParameters;
+export type LrosaDsPutAsyncRelativeRetry400Parameters =
+  LrosaDsPutAsyncRelativeRetry400MediaTypesParam &
+    LrosaDsPutAsyncRelativeRetry400BodyParam &
+    RequestParameters;
 export type LrosaDsDeleteNonRetry400Parameters = RequestParameters;
 export type LrosaDsDelete202NonRetry400Parameters = RequestParameters;
 export type LrosaDsDeleteAsyncRelativeRetry400Parameters = RequestParameters;
@@ -527,9 +563,10 @@ export interface LrosaDsPostNonRetry400MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPostNonRetry400Parameters = LrosaDsPostNonRetry400MediaTypesParam &
-  LrosaDsPostNonRetry400BodyParam &
-  RequestParameters;
+export type LrosaDsPostNonRetry400Parameters =
+  LrosaDsPostNonRetry400MediaTypesParam &
+    LrosaDsPostNonRetry400BodyParam &
+    RequestParameters;
 
 export interface LrosaDsPost202NonRetry400BodyParam {
   /** Product to put */
@@ -541,9 +578,10 @@ export interface LrosaDsPost202NonRetry400MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPost202NonRetry400Parameters = LrosaDsPost202NonRetry400MediaTypesParam &
-  LrosaDsPost202NonRetry400BodyParam &
-  RequestParameters;
+export type LrosaDsPost202NonRetry400Parameters =
+  LrosaDsPost202NonRetry400MediaTypesParam &
+    LrosaDsPost202NonRetry400BodyParam &
+    RequestParameters;
 
 export interface LrosaDsPostAsyncRelativeRetry400BodyParam {
   /** Product to put */
@@ -555,9 +593,10 @@ export interface LrosaDsPostAsyncRelativeRetry400MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPostAsyncRelativeRetry400Parameters = LrosaDsPostAsyncRelativeRetry400MediaTypesParam &
-  LrosaDsPostAsyncRelativeRetry400BodyParam &
-  RequestParameters;
+export type LrosaDsPostAsyncRelativeRetry400Parameters =
+  LrosaDsPostAsyncRelativeRetry400MediaTypesParam &
+    LrosaDsPostAsyncRelativeRetry400BodyParam &
+    RequestParameters;
 
 export interface LrosaDsPutError201NoProvisioningStatePayloadBodyParam {
   /** Product to put */
@@ -569,9 +608,10 @@ export interface LrosaDsPutError201NoProvisioningStatePayloadMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPutError201NoProvisioningStatePayloadParameters = LrosaDsPutError201NoProvisioningStatePayloadMediaTypesParam &
-  LrosaDsPutError201NoProvisioningStatePayloadBodyParam &
-  RequestParameters;
+export type LrosaDsPutError201NoProvisioningStatePayloadParameters =
+  LrosaDsPutError201NoProvisioningStatePayloadMediaTypesParam &
+    LrosaDsPutError201NoProvisioningStatePayloadBodyParam &
+    RequestParameters;
 
 export interface LrosaDsPutAsyncRelativeRetryNoStatusBodyParam {
   /** Product to put */
@@ -583,9 +623,10 @@ export interface LrosaDsPutAsyncRelativeRetryNoStatusMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPutAsyncRelativeRetryNoStatusParameters = LrosaDsPutAsyncRelativeRetryNoStatusMediaTypesParam &
-  LrosaDsPutAsyncRelativeRetryNoStatusBodyParam &
-  RequestParameters;
+export type LrosaDsPutAsyncRelativeRetryNoStatusParameters =
+  LrosaDsPutAsyncRelativeRetryNoStatusMediaTypesParam &
+    LrosaDsPutAsyncRelativeRetryNoStatusBodyParam &
+    RequestParameters;
 
 export interface LrosaDsPutAsyncRelativeRetryNoStatusPayloadBodyParam {
   /** Product to put */
@@ -597,11 +638,13 @@ export interface LrosaDsPutAsyncRelativeRetryNoStatusPayloadMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPutAsyncRelativeRetryNoStatusPayloadParameters = LrosaDsPutAsyncRelativeRetryNoStatusPayloadMediaTypesParam &
-  LrosaDsPutAsyncRelativeRetryNoStatusPayloadBodyParam &
-  RequestParameters;
+export type LrosaDsPutAsyncRelativeRetryNoStatusPayloadParameters =
+  LrosaDsPutAsyncRelativeRetryNoStatusPayloadMediaTypesParam &
+    LrosaDsPutAsyncRelativeRetryNoStatusPayloadBodyParam &
+    RequestParameters;
 export type LrosaDsDelete204SucceededParameters = RequestParameters;
-export type LrosaDsDeleteAsyncRelativeRetryNoStatusParameters = RequestParameters;
+export type LrosaDsDeleteAsyncRelativeRetryNoStatusParameters =
+  RequestParameters;
 
 export interface LrosaDsPost202NoLocationBodyParam {
   /** Product to put */
@@ -613,9 +656,10 @@ export interface LrosaDsPost202NoLocationMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPost202NoLocationParameters = LrosaDsPost202NoLocationMediaTypesParam &
-  LrosaDsPost202NoLocationBodyParam &
-  RequestParameters;
+export type LrosaDsPost202NoLocationParameters =
+  LrosaDsPost202NoLocationMediaTypesParam &
+    LrosaDsPost202NoLocationBodyParam &
+    RequestParameters;
 
 export interface LrosaDsPostAsyncRelativeRetryNoPayloadBodyParam {
   /** Product to put */
@@ -627,9 +671,10 @@ export interface LrosaDsPostAsyncRelativeRetryNoPayloadMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPostAsyncRelativeRetryNoPayloadParameters = LrosaDsPostAsyncRelativeRetryNoPayloadMediaTypesParam &
-  LrosaDsPostAsyncRelativeRetryNoPayloadBodyParam &
-  RequestParameters;
+export type LrosaDsPostAsyncRelativeRetryNoPayloadParameters =
+  LrosaDsPostAsyncRelativeRetryNoPayloadMediaTypesParam &
+    LrosaDsPostAsyncRelativeRetryNoPayloadBodyParam &
+    RequestParameters;
 
 export interface LrosaDsPut200InvalidJsonBodyParam {
   /** Product to put */
@@ -641,9 +686,10 @@ export interface LrosaDsPut200InvalidJsonMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPut200InvalidJsonParameters = LrosaDsPut200InvalidJsonMediaTypesParam &
-  LrosaDsPut200InvalidJsonBodyParam &
-  RequestParameters;
+export type LrosaDsPut200InvalidJsonParameters =
+  LrosaDsPut200InvalidJsonMediaTypesParam &
+    LrosaDsPut200InvalidJsonBodyParam &
+    RequestParameters;
 
 export interface LrosaDsPutAsyncRelativeRetryInvalidHeaderBodyParam {
   /** Product to put */
@@ -655,9 +701,10 @@ export interface LrosaDsPutAsyncRelativeRetryInvalidHeaderMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPutAsyncRelativeRetryInvalidHeaderParameters = LrosaDsPutAsyncRelativeRetryInvalidHeaderMediaTypesParam &
-  LrosaDsPutAsyncRelativeRetryInvalidHeaderBodyParam &
-  RequestParameters;
+export type LrosaDsPutAsyncRelativeRetryInvalidHeaderParameters =
+  LrosaDsPutAsyncRelativeRetryInvalidHeaderMediaTypesParam &
+    LrosaDsPutAsyncRelativeRetryInvalidHeaderBodyParam &
+    RequestParameters;
 
 export interface LrosaDsPutAsyncRelativeRetryInvalidJsonPollingBodyParam {
   /** Product to put */
@@ -669,12 +716,15 @@ export interface LrosaDsPutAsyncRelativeRetryInvalidJsonPollingMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPutAsyncRelativeRetryInvalidJsonPollingParameters = LrosaDsPutAsyncRelativeRetryInvalidJsonPollingMediaTypesParam &
-  LrosaDsPutAsyncRelativeRetryInvalidJsonPollingBodyParam &
-  RequestParameters;
+export type LrosaDsPutAsyncRelativeRetryInvalidJsonPollingParameters =
+  LrosaDsPutAsyncRelativeRetryInvalidJsonPollingMediaTypesParam &
+    LrosaDsPutAsyncRelativeRetryInvalidJsonPollingBodyParam &
+    RequestParameters;
 export type LrosaDsDelete202RetryInvalidHeaderParameters = RequestParameters;
-export type LrosaDsDeleteAsyncRelativeRetryInvalidHeaderParameters = RequestParameters;
-export type LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingParameters = RequestParameters;
+export type LrosaDsDeleteAsyncRelativeRetryInvalidHeaderParameters =
+  RequestParameters;
+export type LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingParameters =
+  RequestParameters;
 
 export interface LrosaDsPost202RetryInvalidHeaderBodyParam {
   /** Product to put */
@@ -686,9 +736,10 @@ export interface LrosaDsPost202RetryInvalidHeaderMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPost202RetryInvalidHeaderParameters = LrosaDsPost202RetryInvalidHeaderMediaTypesParam &
-  LrosaDsPost202RetryInvalidHeaderBodyParam &
-  RequestParameters;
+export type LrosaDsPost202RetryInvalidHeaderParameters =
+  LrosaDsPost202RetryInvalidHeaderMediaTypesParam &
+    LrosaDsPost202RetryInvalidHeaderBodyParam &
+    RequestParameters;
 
 export interface LrosaDsPostAsyncRelativeRetryInvalidHeaderBodyParam {
   /** Product to put */
@@ -700,9 +751,10 @@ export interface LrosaDsPostAsyncRelativeRetryInvalidHeaderMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LrosaDsPostAsyncRelativeRetryInvalidHeaderParameters = LrosaDsPostAsyncRelativeRetryInvalidHeaderMediaTypesParam &
-  LrosaDsPostAsyncRelativeRetryInvalidHeaderBodyParam &
-  RequestParameters;
+export type LrosaDsPostAsyncRelativeRetryInvalidHeaderParameters =
+  LrosaDsPostAsyncRelativeRetryInvalidHeaderMediaTypesParam &
+    LrosaDsPostAsyncRelativeRetryInvalidHeaderBodyParam &
+    RequestParameters;
 
 export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPollingBodyParam {
   /** Product to put */
@@ -714,9 +766,10 @@ export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPollingMediaTypesParam 
   contentType?: "application/json";
 }
 
-export type LrosaDsPostAsyncRelativeRetryInvalidJsonPollingParameters = LrosaDsPostAsyncRelativeRetryInvalidJsonPollingMediaTypesParam &
-  LrosaDsPostAsyncRelativeRetryInvalidJsonPollingBodyParam &
-  RequestParameters;
+export type LrosaDsPostAsyncRelativeRetryInvalidJsonPollingParameters =
+  LrosaDsPostAsyncRelativeRetryInvalidJsonPollingMediaTypesParam &
+    LrosaDsPostAsyncRelativeRetryInvalidJsonPollingBodyParam &
+    RequestParameters;
 
 export interface LROsCustomHeaderPutAsyncRetrySucceededBodyParam {
   /** Product to put */
@@ -728,9 +781,10 @@ export interface LROsCustomHeaderPutAsyncRetrySucceededMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsCustomHeaderPutAsyncRetrySucceededParameters = LROsCustomHeaderPutAsyncRetrySucceededMediaTypesParam &
-  LROsCustomHeaderPutAsyncRetrySucceededBodyParam &
-  RequestParameters;
+export type LROsCustomHeaderPutAsyncRetrySucceededParameters =
+  LROsCustomHeaderPutAsyncRetrySucceededMediaTypesParam &
+    LROsCustomHeaderPutAsyncRetrySucceededBodyParam &
+    RequestParameters;
 
 export interface LROsCustomHeaderPut201CreatingSucceeded200BodyParam {
   /** Product to put */
@@ -742,9 +796,10 @@ export interface LROsCustomHeaderPut201CreatingSucceeded200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsCustomHeaderPut201CreatingSucceeded200Parameters = LROsCustomHeaderPut201CreatingSucceeded200MediaTypesParam &
-  LROsCustomHeaderPut201CreatingSucceeded200BodyParam &
-  RequestParameters;
+export type LROsCustomHeaderPut201CreatingSucceeded200Parameters =
+  LROsCustomHeaderPut201CreatingSucceeded200MediaTypesParam &
+    LROsCustomHeaderPut201CreatingSucceeded200BodyParam &
+    RequestParameters;
 
 export interface LROsCustomHeaderPost202Retry200BodyParam {
   /** Product to put */
@@ -756,9 +811,10 @@ export interface LROsCustomHeaderPost202Retry200MediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsCustomHeaderPost202Retry200Parameters = LROsCustomHeaderPost202Retry200MediaTypesParam &
-  LROsCustomHeaderPost202Retry200BodyParam &
-  RequestParameters;
+export type LROsCustomHeaderPost202Retry200Parameters =
+  LROsCustomHeaderPost202Retry200MediaTypesParam &
+    LROsCustomHeaderPost202Retry200BodyParam &
+    RequestParameters;
 
 export interface LROsCustomHeaderPostAsyncRetrySucceededBodyParam {
   /** Product to put */
@@ -770,6 +826,7 @@ export interface LROsCustomHeaderPostAsyncRetrySucceededMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LROsCustomHeaderPostAsyncRetrySucceededParameters = LROsCustomHeaderPostAsyncRetrySucceededMediaTypesParam &
-  LROsCustomHeaderPostAsyncRetrySucceededBodyParam &
-  RequestParameters;
+export type LROsCustomHeaderPostAsyncRetrySucceededParameters =
+  LROsCustomHeaderPostAsyncRetrySucceededMediaTypesParam &
+    LROsCustomHeaderPostAsyncRetrySucceededBodyParam &
+    RequestParameters;

@@ -27,7 +27,7 @@ async function getDscpConfiguration() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.dscpConfigurationOperations.list(
-    resourceGroupName
+    resourceGroupName,
   )) {
     resArray.push(item);
   }

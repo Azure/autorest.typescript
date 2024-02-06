@@ -29,7 +29,7 @@ async function listExpressRouteCircuitPeerings() {
   const resArray = new Array();
   for await (let item of client.expressRouteCircuitPeerings.list(
     resourceGroupName,
-    circuitName
+    circuitName,
   )) {
     resArray.push(item);
   }

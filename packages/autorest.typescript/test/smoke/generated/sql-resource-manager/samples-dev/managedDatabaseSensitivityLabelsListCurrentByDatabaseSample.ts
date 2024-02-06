@@ -32,7 +32,7 @@ async function getsTheCurrentSensitivityLabelsOfAGivenDatabaseInAManagedDatabase
   for await (let item of client.managedDatabaseSensitivityLabels.listCurrentByDatabase(
     resourceGroupName,
     managedInstanceName,
-    databaseName
+    databaseName,
   )) {
     resArray.push(item);
   }

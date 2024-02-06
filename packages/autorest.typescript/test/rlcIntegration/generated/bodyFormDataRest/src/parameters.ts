@@ -49,9 +49,10 @@ export interface FormdataUploadFileViaBodyMediaTypesParam {
   contentType?: "application/octet-stream";
 }
 
-export type FormdataUploadFileViaBodyParameters = FormdataUploadFileViaBodyMediaTypesParam &
-  FormdataUploadFileViaBodyBodyParam &
-  RequestParameters;
+export type FormdataUploadFileViaBodyParameters =
+  FormdataUploadFileViaBodyMediaTypesParam &
+    FormdataUploadFileViaBodyBodyParam &
+    RequestParameters;
 
 export interface FormdataUploadFilesBodyParam {
   body: FormdataUploadFilesFormBody;

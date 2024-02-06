@@ -37,7 +37,7 @@ import {
 export function _createSend(
   context: Client,
   job: CreateFineTuningJobRequest,
-  options: FineTuningJobsCreateOptions = { requestOptions: {} }
+  options: FineTuningJobsCreateOptions = { requestOptions: {} },
 ): StreamableMethod<
   FineTuningJobsCreate200Response | FineTuningJobsCreateDefaultResponse
 > {
@@ -58,7 +58,7 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: FineTuningJobsCreate200Response | FineTuningJobsCreateDefaultResponse
+  result: FineTuningJobsCreate200Response | FineTuningJobsCreateDefaultResponse,
 ): Promise<FineTuningJob> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -75,10 +75,8 @@ export async function _createDeserialize(
     model: result.body["model"],
     fineTunedModel: result.body["fine_tuned_model"],
     organizationId: result.body["organization_id"],
-    status: result.body["status"] as any,
-    hyperparameters: {
-      nEpochs: result.body.hyperparameters["n_epochs"] as any,
-    },
+    status: result.body["status"],
+    hyperparameters: { nEpochs: result.body.hyperparameters["n_epochs"] },
     trainingFile: result.body["training_file"],
     validationFile: result.body["validation_file"],
     resultFiles: result.body["result_files"],
@@ -105,7 +103,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   job: CreateFineTuningJobRequest,
-  options: FineTuningJobsCreateOptions = { requestOptions: {} }
+  options: FineTuningJobsCreateOptions = { requestOptions: {} },
 ): Promise<FineTuningJob> {
   const result = await _createSend(context, job, options);
   return _createDeserialize(result);
@@ -113,7 +111,7 @@ export async function create(
 
 export function _listSend(
   context: Client,
-  options: FineTuningJobsListOptions = { requestOptions: {} }
+  options: FineTuningJobsListOptions = { requestOptions: {} },
 ): StreamableMethod<
   FineTuningJobsList200Response | FineTuningJobsListDefaultResponse
 > {
@@ -126,7 +124,7 @@ export function _listSend(
 }
 
 export async function _listDeserialize(
-  result: FineTuningJobsList200Response | FineTuningJobsListDefaultResponse
+  result: FineTuningJobsList200Response | FineTuningJobsListDefaultResponse,
 ): Promise<ListPaginatedFineTuningJobsResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -142,8 +140,8 @@ export async function _listDeserialize(
       model: p["model"],
       fineTunedModel: p["fine_tuned_model"],
       organizationId: p["organization_id"],
-      status: p["status"] as any,
-      hyperparameters: { nEpochs: p.hyperparameters["n_epochs"] as any },
+      status: p["status"],
+      hyperparameters: { nEpochs: p.hyperparameters["n_epochs"] },
       trainingFile: p["training_file"],
       validationFile: p["validation_file"],
       resultFiles: p["result_files"],
@@ -163,7 +161,7 @@ export async function _listDeserialize(
 
 export async function list(
   context: Client,
-  options: FineTuningJobsListOptions = { requestOptions: {} }
+  options: FineTuningJobsListOptions = { requestOptions: {} },
 ): Promise<ListPaginatedFineTuningJobsResponse> {
   const result = await _listSend(context, options);
   return _listDeserialize(result);
@@ -172,7 +170,7 @@ export async function list(
 export function _retrieveSend(
   context: Client,
   fineTuningJobId: string,
-  options: FineTuningJobsRetrieveOptions = { requestOptions: {} }
+  options: FineTuningJobsRetrieveOptions = { requestOptions: {} },
 ): StreamableMethod<
   FineTuningJobsRetrieve200Response | FineTuningJobsRetrieveDefaultResponse
 > {
@@ -184,7 +182,7 @@ export function _retrieveSend(
 export async function _retrieveDeserialize(
   result:
     | FineTuningJobsRetrieve200Response
-    | FineTuningJobsRetrieveDefaultResponse
+    | FineTuningJobsRetrieveDefaultResponse,
 ): Promise<FineTuningJob> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -201,10 +199,8 @@ export async function _retrieveDeserialize(
     model: result.body["model"],
     fineTunedModel: result.body["fine_tuned_model"],
     organizationId: result.body["organization_id"],
-    status: result.body["status"] as any,
-    hyperparameters: {
-      nEpochs: result.body.hyperparameters["n_epochs"] as any,
-    },
+    status: result.body["status"],
+    hyperparameters: { nEpochs: result.body.hyperparameters["n_epochs"] },
     trainingFile: result.body["training_file"],
     validationFile: result.body["validation_file"],
     resultFiles: result.body["result_files"],
@@ -223,7 +219,7 @@ export async function _retrieveDeserialize(
 export async function retrieve(
   context: Client,
   fineTuningJobId: string,
-  options: FineTuningJobsRetrieveOptions = { requestOptions: {} }
+  options: FineTuningJobsRetrieveOptions = { requestOptions: {} },
 ): Promise<FineTuningJob> {
   const result = await _retrieveSend(context, fineTuningJobId, options);
   return _retrieveDeserialize(result);
@@ -232,7 +228,7 @@ export async function retrieve(
 export function _listEventsSend(
   context: Client,
   fineTuningJobId: string,
-  options: FineTuningJobsListEventsOptions = { requestOptions: {} }
+  options: FineTuningJobsListEventsOptions = { requestOptions: {} },
 ): StreamableMethod<
   FineTuningJobsListEvents200Response | FineTuningJobsListEventsDefaultResponse
 > {
@@ -247,7 +243,7 @@ export function _listEventsSend(
 export async function _listEventsDeserialize(
   result:
     | FineTuningJobsListEvents200Response
-    | FineTuningJobsListEventsDefaultResponse
+    | FineTuningJobsListEventsDefaultResponse,
 ): Promise<ListFineTuningJobEventsResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -259,7 +255,7 @@ export async function _listEventsDeserialize(
       id: p["id"],
       object: p["object"],
       createdAt: new Date(p["created_at"]),
-      level: p["level"] as any,
+      level: p["level"],
       message: p["message"],
     })),
   };
@@ -268,7 +264,7 @@ export async function _listEventsDeserialize(
 export async function listEvents(
   context: Client,
   fineTuningJobId: string,
-  options: FineTuningJobsListEventsOptions = { requestOptions: {} }
+  options: FineTuningJobsListEventsOptions = { requestOptions: {} },
 ): Promise<ListFineTuningJobEventsResponse> {
   const result = await _listEventsSend(context, fineTuningJobId, options);
   return _listEventsDeserialize(result);
@@ -277,7 +273,7 @@ export async function listEvents(
 export function _cancelSend(
   context: Client,
   fineTuningJobId: string,
-  options: FineTuningJobsCancelOptions = { requestOptions: {} }
+  options: FineTuningJobsCancelOptions = { requestOptions: {} },
 ): StreamableMethod<
   FineTuningJobsCancel200Response | FineTuningJobsCancelDefaultResponse
 > {
@@ -287,7 +283,7 @@ export function _cancelSend(
 }
 
 export async function _cancelDeserialize(
-  result: FineTuningJobsCancel200Response | FineTuningJobsCancelDefaultResponse
+  result: FineTuningJobsCancel200Response | FineTuningJobsCancelDefaultResponse,
 ): Promise<FineTuningJob> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -304,10 +300,8 @@ export async function _cancelDeserialize(
     model: result.body["model"],
     fineTunedModel: result.body["fine_tuned_model"],
     organizationId: result.body["organization_id"],
-    status: result.body["status"] as any,
-    hyperparameters: {
-      nEpochs: result.body.hyperparameters["n_epochs"] as any,
-    },
+    status: result.body["status"],
+    hyperparameters: { nEpochs: result.body.hyperparameters["n_epochs"] },
     trainingFile: result.body["training_file"],
     validationFile: result.body["validation_file"],
     resultFiles: result.body["result_files"],
@@ -326,7 +320,7 @@ export async function _cancelDeserialize(
 export async function cancel(
   context: Client,
   fineTuningJobId: string,
-  options: FineTuningJobsCancelOptions = { requestOptions: {} }
+  options: FineTuningJobsCancelOptions = { requestOptions: {} },
 ): Promise<FineTuningJob> {
   const result = await _cancelSend(context, fineTuningJobId, options);
   return _cancelDeserialize(result);

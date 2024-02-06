@@ -6,7 +6,7 @@ import * as Parameters from "../models/parameters";
 import { StorageBlobClient } from "../storageBlobClient";
 import {
   AppendBlobAppendBlockOptionalParams,
-  AppendBlobAppendBlockResponse
+  AppendBlobAppendBlockResponse,
 } from "../models";
 
 /** Class containing AppendBlob operations. */
@@ -32,11 +32,11 @@ export class AppendBlobImpl implements AppendBlob {
   appendBlock(
     contentLength: number,
     body: coreRestPipeline.RequestBodyType,
-    options?: AppendBlobAppendBlockOptionalParams
+    options?: AppendBlobAppendBlockOptionalParams,
   ): Promise<AppendBlobAppendBlockResponse> {
     return this.client.sendOperationRequest(
       { contentLength, body, options },
-      appendBlockOperationSpec
+      appendBlockOperationSpec,
     );
   }
 }
@@ -48,12 +48,12 @@ const appendBlockOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     201: {
-      headersMapper: Mappers.AppendBlobAppendBlockHeaders
+      headersMapper: Mappers.AppendBlobAppendBlockHeaders,
     },
     default: {
       bodyMapper: Mappers.StorageError,
-      headersMapper: Mappers.AppendBlobAppendBlockExceptionHeaders
-    }
+      headersMapper: Mappers.AppendBlobAppendBlockExceptionHeaders,
+    },
   },
   requestBody: Parameters.body,
   queryParameters: [Parameters.timeout, Parameters.comp2],
@@ -77,10 +77,10 @@ const appendBlockOperationSpec: coreClient.OperationSpec = {
     Parameters.version,
     Parameters.requestId,
     Parameters.maxSize,
-    Parameters.appendPosition
+    Parameters.appendPosition,
   ],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "binary",
-  serializer: xmlSerializer
+  serializer: xmlSerializer,
 };

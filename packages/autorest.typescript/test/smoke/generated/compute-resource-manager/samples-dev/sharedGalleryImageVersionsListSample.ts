@@ -31,7 +31,7 @@ async function getAGallery() {
   for await (let item of client.sharedGalleryImageVersions.list(
     location,
     galleryUniqueName,
-    galleryImageName
+    galleryImageName,
   )) {
     resArray.push(item);
   }

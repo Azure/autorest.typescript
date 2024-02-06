@@ -33,7 +33,7 @@ async function cancelTheElasticPoolManagementOperation() {
     resourceGroupName,
     serverName,
     elasticPoolName,
-    operationId
+    operationId,
   );
   console.log(result);
 }

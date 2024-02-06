@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { Dog, Snake } from "./models/models.js";
+import { DogUnion, SnakeUnion } from "./models/models.js";
 import {
   GetExtensibleModelOptions,
   PutExtensibleModelOptions,
@@ -42,15 +42,15 @@ export class EnumDiscriminatorClient {
 
   /** Receive model with extensible enum discriminator type. */
   getExtensibleModel(
-    options: GetExtensibleModelOptions = { requestOptions: {} }
-  ): Promise<Dog> {
+    options: GetExtensibleModelOptions = { requestOptions: {} },
+  ): Promise<DogUnion> {
     return getExtensibleModel(this._client, options);
   }
 
   /** Send model with extensible enum discriminator type. */
   putExtensibleModel(
-    input: Dog,
-    options: PutExtensibleModelOptions = { requestOptions: {} }
+    input: DogUnion,
+    options: PutExtensibleModelOptions = { requestOptions: {} },
   ): Promise<void> {
     return putExtensibleModel(this._client, input, options);
   }
@@ -59,8 +59,8 @@ export class EnumDiscriminatorClient {
   getExtensibleModelMissingDiscriminator(
     options: GetExtensibleModelMissingDiscriminatorOptions = {
       requestOptions: {},
-    }
-  ): Promise<Dog> {
+    },
+  ): Promise<DogUnion> {
     return getExtensibleModelMissingDiscriminator(this._client, options);
   }
 
@@ -68,37 +68,37 @@ export class EnumDiscriminatorClient {
   getExtensibleModelWrongDiscriminator(
     options: GetExtensibleModelWrongDiscriminatorOptions = {
       requestOptions: {},
-    }
-  ): Promise<Dog> {
+    },
+  ): Promise<DogUnion> {
     return getExtensibleModelWrongDiscriminator(this._client, options);
   }
 
   /** Receive model with fixed enum discriminator type. */
   getFixedModel(
-    options: GetFixedModelOptions = { requestOptions: {} }
-  ): Promise<Snake> {
+    options: GetFixedModelOptions = { requestOptions: {} },
+  ): Promise<SnakeUnion> {
     return getFixedModel(this._client, options);
   }
 
   /** Send model with fixed enum discriminator type. */
   putFixedModel(
-    input: Snake,
-    options: PutFixedModelOptions = { requestOptions: {} }
+    input: SnakeUnion,
+    options: PutFixedModelOptions = { requestOptions: {} },
   ): Promise<void> {
     return putFixedModel(this._client, input, options);
   }
 
   /** Get a model omitting the discriminator. */
   getFixedModelMissingDiscriminator(
-    options: GetFixedModelMissingDiscriminatorOptions = { requestOptions: {} }
-  ): Promise<Snake> {
+    options: GetFixedModelMissingDiscriminatorOptions = { requestOptions: {} },
+  ): Promise<SnakeUnion> {
     return getFixedModelMissingDiscriminator(this._client, options);
   }
 
   /** Get a model containing discriminator value never defined. */
   getFixedModelWrongDiscriminator(
-    options: GetFixedModelWrongDiscriminatorOptions = { requestOptions: {} }
-  ): Promise<Snake> {
+    options: GetFixedModelWrongDiscriminatorOptions = { requestOptions: {} },
+  ): Promise<SnakeUnion> {
     return getFixedModelWrongDiscriminator(this._client, options);
   }
 }

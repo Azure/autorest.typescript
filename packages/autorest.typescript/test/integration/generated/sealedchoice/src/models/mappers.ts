@@ -18,48 +18,49 @@ export const ContainerServiceMasterProfile: coreClient.CompositeMapper = {
         serializedName: "count",
         type: {
           name: "Enum",
-          allowedValues: [1, 3, 5]
-        }
+          allowedValues: [1, 3, 5],
+        },
       },
       dnsPrefix: {
         serializedName: "dnsPrefix",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       firstConsecutiveStaticIP: {
         defaultValue: "10.240.255.5",
         serializedName: "firstConsecutiveStaticIP",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       fqdn: {
         serializedName: "fqdn",
         readOnly: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
-export const PathsV3R3RxOauth2TokenPostRequestbodyContentApplicationXWwwFormUrlencodedSchema: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className:
-      "PathsV3R3RxOauth2TokenPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
-    modelProperties: {
-      grantType: {
-        serializedName: "grant_type",
-        required: true,
-        type: {
-          name: "Enum",
-          allowedValues: ["refresh_token", "password"]
-        }
-      }
-    }
-  }
-};
+export const PathsV3R3RxOauth2TokenPostRequestbodyContentApplicationXWwwFormUrlencodedSchema: coreClient.CompositeMapper =
+  {
+    type: {
+      name: "Composite",
+      className:
+        "PathsV3R3RxOauth2TokenPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
+      modelProperties: {
+        grantType: {
+          serializedName: "grant_type",
+          required: true,
+          type: {
+            name: "Enum",
+            allowedValues: ["refresh_token", "password"],
+          },
+        },
+      },
+    },
+  };

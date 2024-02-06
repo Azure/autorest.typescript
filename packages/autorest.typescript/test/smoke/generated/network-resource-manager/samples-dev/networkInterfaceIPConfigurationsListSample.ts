@@ -29,7 +29,7 @@ async function networkInterfaceIPConfigurationList() {
   const resArray = new Array();
   for await (let item of client.networkInterfaceIPConfigurations.list(
     resourceGroupName,
-    networkInterfaceName
+    networkInterfaceName,
   )) {
     resArray.push(item);
   }

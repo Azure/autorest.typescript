@@ -22,7 +22,7 @@ import {
 export function _getAvatarAsPngSend(
   context: Client,
   image: Uint8Array,
-  options: FooOperationsGetAvatarAsPngOptions = { requestOptions: {} }
+  options: FooOperationsGetAvatarAsPngOptions = { requestOptions: {} },
 ): StreamableMethod<GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse> {
   return context
     .path("/avatar")
@@ -36,7 +36,7 @@ export function _getAvatarAsPngSend(
 }
 
 export async function _getAvatarAsPngDeserialize(
-  result: GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse
+  result: GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -49,7 +49,7 @@ export async function _getAvatarAsPngDeserialize(
 export async function getAvatarAsPng(
   context: Client,
   image: Uint8Array,
-  options: FooOperationsGetAvatarAsPngOptions = { requestOptions: {} }
+  options: FooOperationsGetAvatarAsPngOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getAvatarAsPngSend(context, image, options);
   return _getAvatarAsPngDeserialize(result);
@@ -58,7 +58,7 @@ export async function getAvatarAsPng(
 export function _getAvatarAsJpegSend(
   context: Client,
   image: Uint8Array,
-  options: FooOperationsGetAvatarAsJpegOptions = { requestOptions: {} }
+  options: FooOperationsGetAvatarAsJpegOptions = { requestOptions: {} },
 ): StreamableMethod<
   GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse
 > {
@@ -74,7 +74,7 @@ export function _getAvatarAsJpegSend(
 }
 
 export async function _getAvatarAsJpegDeserialize(
-  result: GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse
+  result: GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -87,7 +87,7 @@ export async function _getAvatarAsJpegDeserialize(
 export async function getAvatarAsJpeg(
   context: Client,
   image: Uint8Array,
-  options: FooOperationsGetAvatarAsJpegOptions = { requestOptions: {} }
+  options: FooOperationsGetAvatarAsJpegOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getAvatarAsJpegSend(context, image, options);
   return _getAvatarAsJpegDeserialize(result);

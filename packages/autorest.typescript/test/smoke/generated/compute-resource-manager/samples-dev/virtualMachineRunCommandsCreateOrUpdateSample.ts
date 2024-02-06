@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualMachineRunCommand,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,21 +33,22 @@ async function createOrUpdateARunCommand() {
     location: "West US",
     parameters: [
       { name: "param1", value: "value1" },
-      { name: "param2", value: "value2" }
+      { name: "param2", value: "value2" },
     ],
     runAsPassword: "<runAsPassword>",
     runAsUser: "user1",
     source: { script: "Write-Host Hello World!" },
-    timeoutInSeconds: 3600
+    timeoutInSeconds: 3600,
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
-  const result = await client.virtualMachineRunCommands.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    vmName,
-    runCommandName,
-    runCommand
-  );
+  const result =
+    await client.virtualMachineRunCommands.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      vmName,
+      runCommandName,
+      runCommand,
+    );
   console.log(result);
 }
 

@@ -42,7 +42,7 @@ import {
   DatabaseAccountsListReadOnlyKeysResponse,
   DatabaseAccountRegenerateKeyParameters,
   DatabaseAccountsRegenerateKeyOptionalParams,
-  DatabaseAccountsCheckNameExistsOptionalParams
+  DatabaseAccountsCheckNameExistsOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -53,7 +53,7 @@ export interface DatabaseAccounts {
    * @param options The options parameters.
    */
   list(
-    options?: DatabaseAccountsListOptionalParams
+    options?: DatabaseAccountsListOptionalParams,
   ): PagedAsyncIterableIterator<DatabaseAccountGetResults>;
   /**
    * Lists all the Azure Cosmos DB database accounts available under the given resource group.
@@ -62,7 +62,7 @@ export interface DatabaseAccounts {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: DatabaseAccountsListByResourceGroupOptionalParams
+    options?: DatabaseAccountsListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<DatabaseAccountGetResults>;
   /**
    * Retrieves the metrics determined by the given filter for the given database account.
@@ -77,7 +77,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     filter: string,
-    options?: DatabaseAccountsListMetricsOptionalParams
+    options?: DatabaseAccountsListMetricsOptionalParams,
   ): PagedAsyncIterableIterator<Metric>;
   /**
    * Retrieves the usages (most recent data) for the given database account.
@@ -88,7 +88,7 @@ export interface DatabaseAccounts {
   listUsages(
     resourceGroupName: string,
     accountName: string,
-    options?: DatabaseAccountsListUsagesOptionalParams
+    options?: DatabaseAccountsListUsagesOptionalParams,
   ): PagedAsyncIterableIterator<Usage>;
   /**
    * Retrieves metric definitions for the given database account.
@@ -99,7 +99,7 @@ export interface DatabaseAccounts {
   listMetricDefinitions(
     resourceGroupName: string,
     accountName: string,
-    options?: DatabaseAccountsListMetricDefinitionsOptionalParams
+    options?: DatabaseAccountsListMetricDefinitionsOptionalParams,
   ): PagedAsyncIterableIterator<MetricDefinition>;
   /**
    * Retrieves the properties of an existing Azure Cosmos DB database account.
@@ -110,7 +110,7 @@ export interface DatabaseAccounts {
   get(
     resourceGroupName: string,
     accountName: string,
-    options?: DatabaseAccountsGetOptionalParams
+    options?: DatabaseAccountsGetOptionalParams,
   ): Promise<DatabaseAccountsGetResponse>;
   /**
    * Updates the properties of an existing Azure Cosmos DB database account.
@@ -123,7 +123,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     updateParameters: DatabaseAccountUpdateParameters,
-    options?: DatabaseAccountsUpdateOptionalParams
+    options?: DatabaseAccountsUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DatabaseAccountsUpdateResponse>,
@@ -141,7 +141,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     updateParameters: DatabaseAccountUpdateParameters,
-    options?: DatabaseAccountsUpdateOptionalParams
+    options?: DatabaseAccountsUpdateOptionalParams,
   ): Promise<DatabaseAccountsUpdateResponse>;
   /**
    * Creates or updates an Azure Cosmos DB database account. The "Update" method is preferred when
@@ -155,7 +155,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     createUpdateParameters: DatabaseAccountCreateUpdateParameters,
-    options?: DatabaseAccountsCreateOrUpdateOptionalParams
+    options?: DatabaseAccountsCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DatabaseAccountsCreateOrUpdateResponse>,
@@ -174,7 +174,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     createUpdateParameters: DatabaseAccountCreateUpdateParameters,
-    options?: DatabaseAccountsCreateOrUpdateOptionalParams
+    options?: DatabaseAccountsCreateOrUpdateOptionalParams,
   ): Promise<DatabaseAccountsCreateOrUpdateResponse>;
   /**
    * Deletes an existing Azure Cosmos DB database account.
@@ -185,7 +185,7 @@ export interface DatabaseAccounts {
   beginDelete(
     resourceGroupName: string,
     accountName: string,
-    options?: DatabaseAccountsDeleteOptionalParams
+    options?: DatabaseAccountsDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB database account.
@@ -196,7 +196,7 @@ export interface DatabaseAccounts {
   beginDeleteAndWait(
     resourceGroupName: string,
     accountName: string,
-    options?: DatabaseAccountsDeleteOptionalParams
+    options?: DatabaseAccountsDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Changes the failover priority for the Azure Cosmos DB database account. A failover priority of 0
@@ -212,7 +212,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     failoverParameters: FailoverPolicies,
-    options?: DatabaseAccountsFailoverPriorityChangeOptionalParams
+    options?: DatabaseAccountsFailoverPriorityChangeOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Changes the failover priority for the Azure Cosmos DB database account. A failover priority of 0
@@ -228,7 +228,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     failoverParameters: FailoverPolicies,
-    options?: DatabaseAccountsFailoverPriorityChangeOptionalParams
+    options?: DatabaseAccountsFailoverPriorityChangeOptionalParams,
   ): Promise<void>;
   /**
    * Lists the access keys for the specified Azure Cosmos DB database account.
@@ -239,7 +239,7 @@ export interface DatabaseAccounts {
   listKeys(
     resourceGroupName: string,
     accountName: string,
-    options?: DatabaseAccountsListKeysOptionalParams
+    options?: DatabaseAccountsListKeysOptionalParams,
   ): Promise<DatabaseAccountsListKeysResponse>;
   /**
    * Lists the connection strings for the specified Azure Cosmos DB database account.
@@ -250,7 +250,7 @@ export interface DatabaseAccounts {
   listConnectionStrings(
     resourceGroupName: string,
     accountName: string,
-    options?: DatabaseAccountsListConnectionStringsOptionalParams
+    options?: DatabaseAccountsListConnectionStringsOptionalParams,
   ): Promise<DatabaseAccountsListConnectionStringsResponse>;
   /**
    * Offline the specified region for the specified Azure Cosmos DB database account.
@@ -263,7 +263,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     regionParameterForOffline: RegionForOnlineOffline,
-    options?: DatabaseAccountsOfflineRegionOptionalParams
+    options?: DatabaseAccountsOfflineRegionOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Offline the specified region for the specified Azure Cosmos DB database account.
@@ -276,7 +276,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     regionParameterForOffline: RegionForOnlineOffline,
-    options?: DatabaseAccountsOfflineRegionOptionalParams
+    options?: DatabaseAccountsOfflineRegionOptionalParams,
   ): Promise<void>;
   /**
    * Online the specified region for the specified Azure Cosmos DB database account.
@@ -289,7 +289,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     regionParameterForOnline: RegionForOnlineOffline,
-    options?: DatabaseAccountsOnlineRegionOptionalParams
+    options?: DatabaseAccountsOnlineRegionOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Online the specified region for the specified Azure Cosmos DB database account.
@@ -302,7 +302,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     regionParameterForOnline: RegionForOnlineOffline,
-    options?: DatabaseAccountsOnlineRegionOptionalParams
+    options?: DatabaseAccountsOnlineRegionOptionalParams,
   ): Promise<void>;
   /**
    * Lists the read-only access keys for the specified Azure Cosmos DB database account.
@@ -313,7 +313,7 @@ export interface DatabaseAccounts {
   getReadOnlyKeys(
     resourceGroupName: string,
     accountName: string,
-    options?: DatabaseAccountsGetReadOnlyKeysOptionalParams
+    options?: DatabaseAccountsGetReadOnlyKeysOptionalParams,
   ): Promise<DatabaseAccountsGetReadOnlyKeysResponse>;
   /**
    * Lists the read-only access keys for the specified Azure Cosmos DB database account.
@@ -324,7 +324,7 @@ export interface DatabaseAccounts {
   listReadOnlyKeys(
     resourceGroupName: string,
     accountName: string,
-    options?: DatabaseAccountsListReadOnlyKeysOptionalParams
+    options?: DatabaseAccountsListReadOnlyKeysOptionalParams,
   ): Promise<DatabaseAccountsListReadOnlyKeysResponse>;
   /**
    * Regenerates an access key for the specified Azure Cosmos DB database account.
@@ -337,7 +337,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     keyToRegenerate: DatabaseAccountRegenerateKeyParameters,
-    options?: DatabaseAccountsRegenerateKeyOptionalParams
+    options?: DatabaseAccountsRegenerateKeyOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Regenerates an access key for the specified Azure Cosmos DB database account.
@@ -350,7 +350,7 @@ export interface DatabaseAccounts {
     resourceGroupName: string,
     accountName: string,
     keyToRegenerate: DatabaseAccountRegenerateKeyParameters,
-    options?: DatabaseAccountsRegenerateKeyOptionalParams
+    options?: DatabaseAccountsRegenerateKeyOptionalParams,
   ): Promise<void>;
   /**
    * Checks that the Azure Cosmos DB account name already exists. A valid account name may contain only
@@ -360,6 +360,6 @@ export interface DatabaseAccounts {
    */
   checkNameExists(
     accountName: string,
-    options?: DatabaseAccountsCheckNameExistsOptionalParams
+    options?: DatabaseAccountsCheckNameExistsOptionalParams,
   ): Promise<void>;
 }

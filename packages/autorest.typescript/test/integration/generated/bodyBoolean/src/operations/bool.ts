@@ -21,7 +21,7 @@ import {
   BoolGetNullOptionalParams,
   BoolGetNullResponse,
   BoolGetInvalidOptionalParams,
-  BoolGetInvalidResponse
+  BoolGetInvalidResponse,
 } from "../models";
 
 /** Class containing Bool operations. */
@@ -57,7 +57,7 @@ export class BoolImpl implements Bool {
    * @param options The options parameters.
    */
   getFalse(
-    options?: BoolGetFalseOptionalParams
+    options?: BoolGetFalseOptionalParams,
   ): Promise<BoolGetFalseResponse> {
     return this.client.sendOperationRequest({ options }, getFalseOperationSpec);
   }
@@ -83,11 +83,11 @@ export class BoolImpl implements Bool {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: BoolGetInvalidOptionalParams
+    options?: BoolGetInvalidOptionalParams,
   ): Promise<BoolGetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getInvalidOperationSpec
+      getInvalidOperationSpec,
     );
   }
 }
@@ -99,15 +99,15 @@ const getTrueOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Boolean" } }
+      bodyMapper: { type: { name: "Boolean" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putTrueOperationSpec: coreClient.OperationSpec = {
   path: "/bool/true",
@@ -115,29 +115,29 @@ const putTrueOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.boolBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getFalseOperationSpec: coreClient.OperationSpec = {
   path: "/bool/false",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Boolean" } }
+      bodyMapper: { type: { name: "Boolean" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putFalseOperationSpec: coreClient.OperationSpec = {
   path: "/bool/false",
@@ -145,42 +145,42 @@ const putFalseOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.boolBody1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getNullOperationSpec: coreClient.OperationSpec = {
   path: "/bool/null",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Boolean" } }
+      bodyMapper: { type: { name: "Boolean" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getInvalidOperationSpec: coreClient.OperationSpec = {
   path: "/bool/invalid",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Boolean" } }
+      bodyMapper: { type: { name: "Boolean" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

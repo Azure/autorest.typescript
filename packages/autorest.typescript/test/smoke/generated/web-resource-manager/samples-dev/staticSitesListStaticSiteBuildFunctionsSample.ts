@@ -32,7 +32,7 @@ async function getsTheFunctionsOfAParticularStaticSiteBuild() {
   for await (let item of client.staticSites.listStaticSiteBuildFunctions(
     resourceGroupName,
     name,
-    environmentName
+    environmentName,
   )) {
     resArray.push(item);
   }

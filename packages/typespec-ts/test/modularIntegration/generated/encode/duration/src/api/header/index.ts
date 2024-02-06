@@ -26,7 +26,7 @@ import {
 export function _headerDefaultSend(
   context: Client,
   duration: string,
-  options: HeaderDefaultOptions = { requestOptions: {} }
+  options: HeaderDefaultOptions = { requestOptions: {} },
 ): StreamableMethod<HeaderDefault204Response> {
   return context
     .path("/encode/duration/header/default")
@@ -37,7 +37,7 @@ export function _headerDefaultSend(
 }
 
 export async function _headerDefaultDeserialize(
-  result: HeaderDefault204Response
+  result: HeaderDefault204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -49,7 +49,7 @@ export async function _headerDefaultDeserialize(
 export async function headerDefault(
   context: Client,
   duration: string,
-  options: HeaderDefaultOptions = { requestOptions: {} }
+  options: HeaderDefaultOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _headerDefaultSend(context, duration, options);
   return _headerDefaultDeserialize(result);
@@ -58,7 +58,7 @@ export async function headerDefault(
 export function _headerIso8601Send(
   context: Client,
   duration: string,
-  options: HeaderIso8601Options = { requestOptions: {} }
+  options: HeaderIso8601Options = { requestOptions: {} },
 ): StreamableMethod<HeaderIso8601204Response> {
   return context
     .path("/encode/duration/header/iso8601")
@@ -69,7 +69,7 @@ export function _headerIso8601Send(
 }
 
 export async function _headerIso8601Deserialize(
-  result: HeaderIso8601204Response
+  result: HeaderIso8601204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -81,7 +81,7 @@ export async function _headerIso8601Deserialize(
 export async function headerIso8601(
   context: Client,
   duration: string,
-  options: HeaderIso8601Options = { requestOptions: {} }
+  options: HeaderIso8601Options = { requestOptions: {} },
 ): Promise<void> {
   const result = await _headerIso8601Send(context, duration, options);
   return _headerIso8601Deserialize(result);
@@ -90,7 +90,7 @@ export async function headerIso8601(
 export function _headerIso8601ArraySend(
   context: Client,
   duration: string[],
-  options: HeaderIso8601ArrayOptions = { requestOptions: {} }
+  options: HeaderIso8601ArrayOptions = { requestOptions: {} },
 ): StreamableMethod<HeaderIso8601Array204Response> {
   return context
     .path("/encode/duration/header/iso8601-array")
@@ -101,7 +101,7 @@ export function _headerIso8601ArraySend(
 }
 
 export async function _headerIso8601ArrayDeserialize(
-  result: HeaderIso8601Array204Response
+  result: HeaderIso8601Array204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -113,7 +113,7 @@ export async function _headerIso8601ArrayDeserialize(
 export async function headerIso8601Array(
   context: Client,
   duration: string[],
-  options: HeaderIso8601ArrayOptions = { requestOptions: {} }
+  options: HeaderIso8601ArrayOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _headerIso8601ArraySend(context, duration, options);
   return _headerIso8601ArrayDeserialize(result);
@@ -122,7 +122,7 @@ export async function headerIso8601Array(
 export function _headerInt32SecondsSend(
   context: Client,
   duration: number,
-  options: HeaderInt32SecondsOptions = { requestOptions: {} }
+  options: HeaderInt32SecondsOptions = { requestOptions: {} },
 ): StreamableMethod<HeaderInt32Seconds204Response> {
   return context
     .path("/encode/duration/header/int32-seconds")
@@ -133,7 +133,7 @@ export function _headerInt32SecondsSend(
 }
 
 export async function _headerInt32SecondsDeserialize(
-  result: HeaderInt32Seconds204Response
+  result: HeaderInt32Seconds204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -145,7 +145,7 @@ export async function _headerInt32SecondsDeserialize(
 export async function headerInt32Seconds(
   context: Client,
   duration: number,
-  options: HeaderInt32SecondsOptions = { requestOptions: {} }
+  options: HeaderInt32SecondsOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _headerInt32SecondsSend(context, duration, options);
   return _headerInt32SecondsDeserialize(result);
@@ -154,7 +154,7 @@ export async function headerInt32Seconds(
 export function _headerFloatSecondsSend(
   context: Client,
   duration: number,
-  options: HeaderFloatSecondsOptions = { requestOptions: {} }
+  options: HeaderFloatSecondsOptions = { requestOptions: {} },
 ): StreamableMethod<HeaderFloatSeconds204Response> {
   return context
     .path("/encode/duration/header/float-seconds")
@@ -165,7 +165,7 @@ export function _headerFloatSecondsSend(
 }
 
 export async function _headerFloatSecondsDeserialize(
-  result: HeaderFloatSeconds204Response
+  result: HeaderFloatSeconds204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -177,7 +177,7 @@ export async function _headerFloatSecondsDeserialize(
 export async function headerFloatSeconds(
   context: Client,
   duration: number,
-  options: HeaderFloatSecondsOptions = { requestOptions: {} }
+  options: HeaderFloatSecondsOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _headerFloatSecondsSend(context, duration, options);
   return _headerFloatSecondsDeserialize(result);

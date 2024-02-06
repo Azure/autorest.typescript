@@ -8,17 +8,17 @@ import { ServiceContext } from "./clientDefinitions.js";
 /**
  * Initialize a new instance of `ServiceContext`
  * @param endpoint - Need to be set as 'http://localhost:3000' in client.
- * @param clientParam - Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. Possible values: default, multi-client, renamed-operation, two-operation-group
+ * @param clientParam - Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. Possible values: "default", "multi-client", "renamed-operation", "two-operation-group"
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
   clientParam: string,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): ServiceContext {
   const baseUrl =
     options.baseUrl ?? `${endpoint}/client/structure/${clientParam}`;
-  options.apiVersion = options.apiVersion ?? "1.0.0";
+
   const userAgentInfo = `azsdk-js-client-structure-twoopgroup-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -35,6 +35,8 @@ export default function createClient(
   };
 
   const client = getClient(baseUrl, options) as ServiceContext;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }

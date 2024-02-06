@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   NetworkProfile,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,21 +35,20 @@ async function createNetworkProfileDefaults() {
           {
             name: "ipconfig1",
             subnet: {
-              id:
-                "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/networkProfileVnet/subnets/networkProfileSubnet1"
-            }
-          }
-        ]
-      }
+              id: "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/networkProfileVnet/subnets/networkProfileSubnet1",
+            },
+          },
+        ],
+      },
     ],
-    location: "westus"
+    location: "westus",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkProfiles.createOrUpdate(
     resourceGroupName,
     networkProfileName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

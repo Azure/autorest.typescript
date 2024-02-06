@@ -27,6 +27,8 @@ export type ImportType =
   /**inner models' imports for parameter and response */
   | "parameter"
   | "response"
+  | "rlcIndex"
+  | "modularModel"
   /**common third party imports */
   | "restClient"
   | "coreAuth"
@@ -106,7 +108,7 @@ export interface ApiVersionInfo {
   isCrossedVersion?: boolean;
 }
 
-export type ApiVersionPosition = "path" | "query" | "both" | "none";
+export type ApiVersionPosition = "path" | "query" | "baseurl" | "duplicate" | "none";
 export interface HelperFunctionDetails {
   hasPaging?: boolean;
   hasLongRunning?: boolean;

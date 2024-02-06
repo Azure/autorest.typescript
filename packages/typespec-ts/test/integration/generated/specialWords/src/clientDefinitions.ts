@@ -211,607 +211,607 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ModelsWithAnd {
   post(
-    options: ModelsWithAndParameters
+    options: ModelsWithAndParameters,
   ): StreamableMethod<ModelsWithAnd204Response>;
 }
 
 export interface ModelsWithAs {
   post(
-    options: ModelsWithAsParameters
+    options: ModelsWithAsParameters,
   ): StreamableMethod<ModelsWithAs204Response>;
 }
 
 export interface ModelsWithAssert {
   post(
-    options: ModelsWithAssertParameters
+    options: ModelsWithAssertParameters,
   ): StreamableMethod<ModelsWithAssert204Response>;
 }
 
 export interface ModelsWithAsync {
   post(
-    options: ModelsWithAsyncParameters
+    options: ModelsWithAsyncParameters,
   ): StreamableMethod<ModelsWithAsync204Response>;
 }
 
 export interface ModelsWithAwait {
   post(
-    options: ModelsWithAwaitParameters
+    options: ModelsWithAwaitParameters,
   ): StreamableMethod<ModelsWithAwait204Response>;
 }
 
 export interface ModelsWithBreak {
   post(
-    options: ModelsWithBreakParameters
+    options: ModelsWithBreakParameters,
   ): StreamableMethod<ModelsWithBreak204Response>;
 }
 
 export interface ModelsWithClass {
   post(
-    options: ModelsWithClassParameters
+    options: ModelsWithClassParameters,
   ): StreamableMethod<ModelsWithClass204Response>;
 }
 
 export interface ModelsWithConstructor {
   post(
-    options: ModelsWithConstructorParameters
+    options: ModelsWithConstructorParameters,
   ): StreamableMethod<ModelsWithConstructor204Response>;
 }
 
 export interface ModelsWithContinue {
   post(
-    options: ModelsWithContinueParameters
+    options: ModelsWithContinueParameters,
   ): StreamableMethod<ModelsWithContinue204Response>;
 }
 
 export interface ModelsWithDef {
   post(
-    options: ModelsWithDefParameters
+    options: ModelsWithDefParameters,
   ): StreamableMethod<ModelsWithDef204Response>;
 }
 
 export interface ModelsWithDel {
   post(
-    options: ModelsWithDelParameters
+    options: ModelsWithDelParameters,
   ): StreamableMethod<ModelsWithDel204Response>;
 }
 
 export interface ModelsWithElif {
   post(
-    options: ModelsWithElifParameters
+    options: ModelsWithElifParameters,
   ): StreamableMethod<ModelsWithElif204Response>;
 }
 
 export interface ModelsWithElse {
   post(
-    options: ModelsWithElseParameters
+    options: ModelsWithElseParameters,
   ): StreamableMethod<ModelsWithElse204Response>;
 }
 
 export interface ModelsWithExcept {
   post(
-    options: ModelsWithExceptParameters
+    options: ModelsWithExceptParameters,
   ): StreamableMethod<ModelsWithExcept204Response>;
 }
 
 export interface ModelsWithExec {
   post(
-    options: ModelsWithExecParameters
+    options: ModelsWithExecParameters,
   ): StreamableMethod<ModelsWithExec204Response>;
 }
 
 export interface ModelsWithFinally {
   post(
-    options: ModelsWithFinallyParameters
+    options: ModelsWithFinallyParameters,
   ): StreamableMethod<ModelsWithFinally204Response>;
 }
 
 export interface ModelsWithFor {
   post(
-    options: ModelsWithForParameters
+    options: ModelsWithForParameters,
   ): StreamableMethod<ModelsWithFor204Response>;
 }
 
 export interface ModelsWithFrom {
   post(
-    options: ModelsWithFromParameters
+    options: ModelsWithFromParameters,
   ): StreamableMethod<ModelsWithFrom204Response>;
 }
 
 export interface ModelsWithGlobal {
   post(
-    options: ModelsWithGlobalParameters
+    options: ModelsWithGlobalParameters,
   ): StreamableMethod<ModelsWithGlobal204Response>;
 }
 
 export interface ModelsWithIf {
   post(
-    options: ModelsWithIfParameters
+    options: ModelsWithIfParameters,
   ): StreamableMethod<ModelsWithIf204Response>;
 }
 
 export interface ModelsWithImport {
   post(
-    options: ModelsWithImportParameters
+    options: ModelsWithImportParameters,
   ): StreamableMethod<ModelsWithImport204Response>;
 }
 
 export interface ModelsWithIn {
   post(
-    options: ModelsWithInParameters
+    options: ModelsWithInParameters,
   ): StreamableMethod<ModelsWithIn204Response>;
 }
 
 export interface ModelsWithIs {
   post(
-    options: ModelsWithIsParameters
+    options: ModelsWithIsParameters,
   ): StreamableMethod<ModelsWithIs204Response>;
 }
 
 export interface ModelsWithLambda {
   post(
-    options: ModelsWithLambdaParameters
+    options: ModelsWithLambdaParameters,
   ): StreamableMethod<ModelsWithLambda204Response>;
 }
 
 export interface ModelsWithNot {
   post(
-    options: ModelsWithNotParameters
+    options: ModelsWithNotParameters,
   ): StreamableMethod<ModelsWithNot204Response>;
 }
 
 export interface ModelsWithOr {
   post(
-    options: ModelsWithOrParameters
+    options: ModelsWithOrParameters,
   ): StreamableMethod<ModelsWithOr204Response>;
 }
 
 export interface ModelsWithPass {
   post(
-    options: ModelsWithPassParameters
+    options: ModelsWithPassParameters,
   ): StreamableMethod<ModelsWithPass204Response>;
 }
 
 export interface ModelsWithRaise {
   post(
-    options: ModelsWithRaiseParameters
+    options: ModelsWithRaiseParameters,
   ): StreamableMethod<ModelsWithRaise204Response>;
 }
 
 export interface ModelsWithReturn {
   post(
-    options: ModelsWithReturnParameters
+    options: ModelsWithReturnParameters,
   ): StreamableMethod<ModelsWithReturn204Response>;
 }
 
 export interface ModelsWithTry {
   post(
-    options: ModelsWithTryParameters
+    options: ModelsWithTryParameters,
   ): StreamableMethod<ModelsWithTry204Response>;
 }
 
 export interface ModelsWithWhile {
   post(
-    options: ModelsWithWhileParameters
+    options: ModelsWithWhileParameters,
   ): StreamableMethod<ModelsWithWhile204Response>;
 }
 
 export interface ModelsWithWith {
   post(
-    options: ModelsWithWithParameters
+    options: ModelsWithWithParameters,
   ): StreamableMethod<ModelsWithWith204Response>;
 }
 
 export interface ModelsWithYield {
   post(
-    options: ModelsWithYieldParameters
+    options: ModelsWithYieldParameters,
   ): StreamableMethod<ModelsWithYield204Response>;
 }
 
 export interface ModelPropertiesSameAsModel {
   post(
-    options: ModelPropertiesSameAsModelParameters
+    options: ModelPropertiesSameAsModelParameters,
   ): StreamableMethod<ModelPropertiesSameAsModel204Response>;
 }
 
 export interface OperationsAnd {
   get(
-    options?: OperationsAndParameters
+    options?: OperationsAndParameters,
   ): StreamableMethod<OperationsAnd204Response>;
 }
 
 export interface OperationsAs {
   get(
-    options?: OperationsAsParameters
+    options?: OperationsAsParameters,
   ): StreamableMethod<OperationsAs204Response>;
 }
 
 export interface OperationsAssert {
   get(
-    options?: OperationsAssertParameters
+    options?: OperationsAssertParameters,
   ): StreamableMethod<OperationsAssert204Response>;
 }
 
 export interface OperationsAsync {
   get(
-    options?: OperationsAsyncParameters
+    options?: OperationsAsyncParameters,
   ): StreamableMethod<OperationsAsync204Response>;
 }
 
 export interface OperationsAwait {
   get(
-    options?: OperationsAwaitParameters
+    options?: OperationsAwaitParameters,
   ): StreamableMethod<OperationsAwait204Response>;
 }
 
 export interface OperationsBreak {
   get(
-    options?: OperationsBreakParameters
+    options?: OperationsBreakParameters,
   ): StreamableMethod<OperationsBreak204Response>;
 }
 
 export interface OperationsClass {
   get(
-    options?: OperationsClassParameters
+    options?: OperationsClassParameters,
   ): StreamableMethod<OperationsClass204Response>;
 }
 
 export interface OperationsConstructor {
   get(
-    options?: OperationsConstructorParameters
+    options?: OperationsConstructorParameters,
   ): StreamableMethod<OperationsConstructor204Response>;
 }
 
 export interface OperationsContinue {
   get(
-    options?: OperationsContinueParameters
+    options?: OperationsContinueParameters,
   ): StreamableMethod<OperationsContinue204Response>;
 }
 
 export interface OperationsDef {
   get(
-    options?: OperationsDefParameters
+    options?: OperationsDefParameters,
   ): StreamableMethod<OperationsDef204Response>;
 }
 
 export interface OperationsDel {
   get(
-    options?: OperationsDelParameters
+    options?: OperationsDelParameters,
   ): StreamableMethod<OperationsDel204Response>;
 }
 
 export interface OperationsElif {
   get(
-    options?: OperationsElifParameters
+    options?: OperationsElifParameters,
   ): StreamableMethod<OperationsElif204Response>;
 }
 
 export interface OperationsElse {
   get(
-    options?: OperationsElseParameters
+    options?: OperationsElseParameters,
   ): StreamableMethod<OperationsElse204Response>;
 }
 
 export interface OperationsExcept {
   get(
-    options?: OperationsExceptParameters
+    options?: OperationsExceptParameters,
   ): StreamableMethod<OperationsExcept204Response>;
 }
 
 export interface OperationsExec {
   get(
-    options?: OperationsExecParameters
+    options?: OperationsExecParameters,
   ): StreamableMethod<OperationsExec204Response>;
 }
 
 export interface OperationsFinally {
   get(
-    options?: OperationsFinallyParameters
+    options?: OperationsFinallyParameters,
   ): StreamableMethod<OperationsFinally204Response>;
 }
 
 export interface OperationsFor {
   get(
-    options?: OperationsForParameters
+    options?: OperationsForParameters,
   ): StreamableMethod<OperationsFor204Response>;
 }
 
 export interface OperationsFrom {
   get(
-    options?: OperationsFromParameters
+    options?: OperationsFromParameters,
   ): StreamableMethod<OperationsFrom204Response>;
 }
 
 export interface OperationsGlobal {
   get(
-    options?: OperationsGlobalParameters
+    options?: OperationsGlobalParameters,
   ): StreamableMethod<OperationsGlobal204Response>;
 }
 
 export interface OperationsIf {
   get(
-    options?: OperationsIfParameters
+    options?: OperationsIfParameters,
   ): StreamableMethod<OperationsIf204Response>;
 }
 
 export interface OperationsImport {
   get(
-    options?: OperationsImportParameters
+    options?: OperationsImportParameters,
   ): StreamableMethod<OperationsImport204Response>;
 }
 
 export interface OperationsIn {
   get(
-    options?: OperationsInParameters
+    options?: OperationsInParameters,
   ): StreamableMethod<OperationsIn204Response>;
 }
 
 export interface OperationsIs {
   get(
-    options?: OperationsIsParameters
+    options?: OperationsIsParameters,
   ): StreamableMethod<OperationsIs204Response>;
 }
 
 export interface OperationsLambda {
   get(
-    options?: OperationsLambdaParameters
+    options?: OperationsLambdaParameters,
   ): StreamableMethod<OperationsLambda204Response>;
 }
 
 export interface OperationsNot {
   get(
-    options?: OperationsNotParameters
+    options?: OperationsNotParameters,
   ): StreamableMethod<OperationsNot204Response>;
 }
 
 export interface OperationsOr {
   get(
-    options?: OperationsOrParameters
+    options?: OperationsOrParameters,
   ): StreamableMethod<OperationsOr204Response>;
 }
 
 export interface OperationsPass {
   get(
-    options?: OperationsPassParameters
+    options?: OperationsPassParameters,
   ): StreamableMethod<OperationsPass204Response>;
 }
 
 export interface OperationsRaise {
   get(
-    options?: OperationsRaiseParameters
+    options?: OperationsRaiseParameters,
   ): StreamableMethod<OperationsRaise204Response>;
 }
 
 export interface OperationsReturn {
   get(
-    options?: OperationsReturnParameters
+    options?: OperationsReturnParameters,
   ): StreamableMethod<OperationsReturn204Response>;
 }
 
 export interface OperationsTry {
   get(
-    options?: OperationsTryParameters
+    options?: OperationsTryParameters,
   ): StreamableMethod<OperationsTry204Response>;
 }
 
 export interface OperationsWhile {
   get(
-    options?: OperationsWhileParameters
+    options?: OperationsWhileParameters,
   ): StreamableMethod<OperationsWhile204Response>;
 }
 
 export interface OperationsWith {
   get(
-    options?: OperationsWithParameters
+    options?: OperationsWithParameters,
   ): StreamableMethod<OperationsWith204Response>;
 }
 
 export interface OperationsYield {
   get(
-    options?: OperationsYieldParameters
+    options?: OperationsYieldParameters,
   ): StreamableMethod<OperationsYield204Response>;
 }
 
 export interface ParametersWithAnd {
   get(
-    options: ParametersWithAndParameters
+    options: ParametersWithAndParameters,
   ): StreamableMethod<ParametersWithAnd204Response>;
 }
 
 export interface ParametersWithAs {
   get(
-    options: ParametersWithAsParameters
+    options: ParametersWithAsParameters,
   ): StreamableMethod<ParametersWithAs204Response>;
 }
 
 export interface ParametersWithAssert {
   get(
-    options: ParametersWithAssertParameters
+    options: ParametersWithAssertParameters,
   ): StreamableMethod<ParametersWithAssert204Response>;
 }
 
 export interface ParametersWithAsync {
   get(
-    options: ParametersWithAsyncParameters
+    options: ParametersWithAsyncParameters,
   ): StreamableMethod<ParametersWithAsync204Response>;
 }
 
 export interface ParametersWithAwait {
   get(
-    options: ParametersWithAwaitParameters
+    options: ParametersWithAwaitParameters,
   ): StreamableMethod<ParametersWithAwait204Response>;
 }
 
 export interface ParametersWithBreak {
   get(
-    options: ParametersWithBreakParameters
+    options: ParametersWithBreakParameters,
   ): StreamableMethod<ParametersWithBreak204Response>;
 }
 
 export interface ParametersWithClass {
   get(
-    options: ParametersWithClassParameters
+    options: ParametersWithClassParameters,
   ): StreamableMethod<ParametersWithClass204Response>;
 }
 
 export interface ParametersWithConstructor {
   get(
-    options: ParametersWithConstructorParameters
+    options: ParametersWithConstructorParameters,
   ): StreamableMethod<ParametersWithConstructor204Response>;
 }
 
 export interface ParametersWithContinue {
   get(
-    options: ParametersWithContinueParameters
+    options: ParametersWithContinueParameters,
   ): StreamableMethod<ParametersWithContinue204Response>;
 }
 
 export interface ParametersWithDef {
   get(
-    options: ParametersWithDefParameters
+    options: ParametersWithDefParameters,
   ): StreamableMethod<ParametersWithDef204Response>;
 }
 
 export interface ParametersWithDel {
   get(
-    options: ParametersWithDelParameters
+    options: ParametersWithDelParameters,
   ): StreamableMethod<ParametersWithDel204Response>;
 }
 
 export interface ParametersWithElif {
   get(
-    options: ParametersWithElifParameters
+    options: ParametersWithElifParameters,
   ): StreamableMethod<ParametersWithElif204Response>;
 }
 
 export interface ParametersWithElse {
   get(
-    options: ParametersWithElseParameters
+    options: ParametersWithElseParameters,
   ): StreamableMethod<ParametersWithElse204Response>;
 }
 
 export interface ParametersWithExcept {
   get(
-    options: ParametersWithExceptParameters
+    options: ParametersWithExceptParameters,
   ): StreamableMethod<ParametersWithExcept204Response>;
 }
 
 export interface ParametersWithExec {
   get(
-    options: ParametersWithExecParameters
+    options: ParametersWithExecParameters,
   ): StreamableMethod<ParametersWithExec204Response>;
 }
 
 export interface ParametersWithFinally {
   get(
-    options: ParametersWithFinallyParameters
+    options: ParametersWithFinallyParameters,
   ): StreamableMethod<ParametersWithFinally204Response>;
 }
 
 export interface ParametersWithFor {
   get(
-    options: ParametersWithForParameters
+    options: ParametersWithForParameters,
   ): StreamableMethod<ParametersWithFor204Response>;
 }
 
 export interface ParametersWithFrom {
   get(
-    options: ParametersWithFromParameters
+    options: ParametersWithFromParameters,
   ): StreamableMethod<ParametersWithFrom204Response>;
 }
 
 export interface ParametersWithGlobal {
   get(
-    options: ParametersWithGlobalParameters
+    options: ParametersWithGlobalParameters,
   ): StreamableMethod<ParametersWithGlobal204Response>;
 }
 
 export interface ParametersWithIf {
   get(
-    options: ParametersWithIfParameters
+    options: ParametersWithIfParameters,
   ): StreamableMethod<ParametersWithIf204Response>;
 }
 
 export interface ParametersWithImport {
   get(
-    options: ParametersWithImportParameters
+    options: ParametersWithImportParameters,
   ): StreamableMethod<ParametersWithImport204Response>;
 }
 
 export interface ParametersWithIn {
   get(
-    options: ParametersWithInParameters
+    options: ParametersWithInParameters,
   ): StreamableMethod<ParametersWithIn204Response>;
 }
 
 export interface ParametersWithIs {
   get(
-    options: ParametersWithIsParameters
+    options: ParametersWithIsParameters,
   ): StreamableMethod<ParametersWithIs204Response>;
 }
 
 export interface ParametersWithLambda {
   get(
-    options: ParametersWithLambdaParameters
+    options: ParametersWithLambdaParameters,
   ): StreamableMethod<ParametersWithLambda204Response>;
 }
 
 export interface ParametersWithNot {
   get(
-    options: ParametersWithNotParameters
+    options: ParametersWithNotParameters,
   ): StreamableMethod<ParametersWithNot204Response>;
 }
 
 export interface ParametersWithOr {
   get(
-    options: ParametersWithOrParameters
+    options: ParametersWithOrParameters,
   ): StreamableMethod<ParametersWithOr204Response>;
 }
 
 export interface ParametersWithPass {
   get(
-    options: ParametersWithPassParameters
+    options: ParametersWithPassParameters,
   ): StreamableMethod<ParametersWithPass204Response>;
 }
 
 export interface ParametersWithRaise {
   get(
-    options: ParametersWithRaiseParameters
+    options: ParametersWithRaiseParameters,
   ): StreamableMethod<ParametersWithRaise204Response>;
 }
 
 export interface ParametersWithReturn {
   get(
-    options: ParametersWithReturnParameters
+    options: ParametersWithReturnParameters,
   ): StreamableMethod<ParametersWithReturn204Response>;
 }
 
 export interface ParametersWithTry {
   get(
-    options: ParametersWithTryParameters
+    options: ParametersWithTryParameters,
   ): StreamableMethod<ParametersWithTry204Response>;
 }
 
 export interface ParametersWithWhile {
   get(
-    options: ParametersWithWhileParameters
+    options: ParametersWithWhileParameters,
   ): StreamableMethod<ParametersWithWhile204Response>;
 }
 
 export interface ParametersWithWith {
   get(
-    options: ParametersWithWithParameters
+    options: ParametersWithWithParameters,
   ): StreamableMethod<ParametersWithWith204Response>;
 }
 
 export interface ParametersWithYield {
   get(
-    options: ParametersWithYieldParameters
+    options: ParametersWithYieldParameters,
   ): StreamableMethod<ParametersWithYield204Response>;
 }
 
 export interface ParametersWithCancellationToken {
   get(
-    options: ParametersWithCancellationTokenParameters
+    options: ParametersWithCancellationTokenParameters,
   ): StreamableMethod<ParametersWithCancellationToken204Response>;
 }
 
@@ -884,7 +884,7 @@ export interface Routes {
   (path: "/special-words/models/yield"): ModelsWithYield;
   /** Resource for '/special-words/model-properties/same-as-model' has methods for the following verbs: post */
   (
-    path: "/special-words/model-properties/same-as-model"
+    path: "/special-words/model-properties/same-as-model",
   ): ModelPropertiesSameAsModel;
   /** Resource for '/special-words/operations/and' has methods for the following verbs: get */
   (path: "/special-words/operations/and"): OperationsAnd;
@@ -1020,7 +1020,7 @@ export interface Routes {
   (path: "/special-words/parameters/yield"): ParametersWithYield;
   /** Resource for '/special-words/parameters/cancellationToken' has methods for the following verbs: get */
   (
-    path: "/special-words/parameters/cancellationToken"
+    path: "/special-words/parameters/cancellationToken",
   ): ParametersWithCancellationToken;
 }
 

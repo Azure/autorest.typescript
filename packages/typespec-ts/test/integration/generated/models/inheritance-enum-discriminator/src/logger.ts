@@ -3,5 +3,5 @@
 
 import { createClientLogger } from "@azure/logger";
 export const logger = createClientLogger(
-  "model-inheritance-enum-discriminator"
+  "model-inheritance-enum-discriminator",
 );

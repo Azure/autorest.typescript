@@ -101,6 +101,9 @@ export function getType(type: Type, format?: string): TypeMetadata {
     case "dict":
       return handleDictType(type);
 
+    case "never": 
+      return { name: "never", nullable: type.nullable };
+
     default:
       throw new Error(`Unsupported type ${type.type}`);
   }
@@ -206,12 +209,14 @@ function handleCombinedType(type: Type): TypeMetadata {
   if (!type.types) {
     throw new Error("Unable to process combined without combinedTypes");
   }
-  const name = type.types
-    .map((t) => {
-      const sdkType = getType(t, t.format).name;
-      return `${sdkType}`;
-    })
-    .join(" | ");
+  const name =
+    type.name ??
+    type.types
+      .map((t) => {
+        const sdkType = getType(t, t.format).name;
+        return `${sdkType}`;
+      })
+      .join(" | ");
   return { name: `(${name})`, nullable: type.nullable };
 }
 

@@ -8,7 +8,7 @@ import {
   MyExceptionOutput,
   BOutput,
   COutput,
-  DOutput
+  DOutput,
 } from "./outputModels";
 
 /** Get empty error form server */

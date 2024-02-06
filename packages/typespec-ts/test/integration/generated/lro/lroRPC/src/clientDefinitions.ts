@@ -13,14 +13,14 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface GetJob {
   /** Poll a Job */
   get(
-    options?: GetJobParameters
+    options?: GetJobParameters,
   ): StreamableMethod<GetJob200Response | GetJobDefaultResponse>;
 }
 
 export interface CreateJob {
   /** Creates a Job */
   post(
-    options?: CreateJobParameters
+    options?: CreateJobParameters,
   ): StreamableMethod<CreateJob202Response | CreateJobDefaultResponse>;
 }
 
@@ -28,11 +28,11 @@ export interface Routes {
   /** Resource for '/azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs/\{jobId\}' has methods for the following verbs: get */
   (
     path: "/azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs/{jobId}",
-    jobId: string
+    jobId: string,
   ): GetJob;
   /** Resource for '/azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs' has methods for the following verbs: post */
   (
-    path: "/azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs"
+    path: "/azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs",
   ): CreateJob;
 }
 

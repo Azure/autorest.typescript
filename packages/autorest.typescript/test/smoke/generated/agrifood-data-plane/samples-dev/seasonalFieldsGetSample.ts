@@ -18,7 +18,7 @@ async function seasonalFieldsGet() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const farmerId = "FARMER123";
   const seasonalFieldId = "SEASONALFIELD123";
@@ -26,7 +26,7 @@ async function seasonalFieldsGet() {
     .path(
       "/farmers/{farmerId}/seasonal-fields/{seasonalFieldId}",
       farmerId,
-      seasonalFieldId
+      seasonalFieldId,
     )
     .get();
   console.log(result);

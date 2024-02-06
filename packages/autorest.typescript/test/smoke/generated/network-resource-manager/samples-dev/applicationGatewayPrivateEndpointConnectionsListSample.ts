@@ -29,7 +29,7 @@ async function listsAllPrivateEndpointConnectionsOnApplicationGateway() {
   const resArray = new Array();
   for await (let item of client.applicationGatewayPrivateEndpointConnections.list(
     resourceGroupName,
-    applicationGatewayName
+    applicationGatewayName,
   )) {
     resArray.push(item);
   }
