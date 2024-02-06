@@ -25,9 +25,6 @@ export interface GetCompletionsOptions extends OperationOptions {}
 
 export interface GetChatCompletionsOptions extends OperationOptions {}
 
-export interface GetChatCompletionsWithAzureExtensionsOptions
-  extends OperationOptions {}
-
 export interface GetImageGenerationsOptions extends OperationOptions {}
 
 export interface GetEmbeddingsOptions extends OperationOptions {}
