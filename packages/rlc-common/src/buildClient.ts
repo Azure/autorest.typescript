@@ -140,11 +140,9 @@ export function buildClient(model: RLCModel): File | undefined {
     ],
     returnType: clientInterfaceName,
     isDefaultExport: false,
-    statements: getClientFactoryBody(
-      model,
-      clientInterfaceName,
-      credentialTypes.length > 1
-    )
+    statements: getClientFactoryBody(model, clientInterfaceName, {
+      isMultipleCredential: credentialTypes.length > 1
+    })
   };
 
   if (!multiClient || !batch || batch.length === 1) {
@@ -238,10 +236,14 @@ function isSecurityInfoDefined(
   );
 }
 
+interface GetClientFactoryOptions {
+  isMultipleCredential: boolean;
+}
+
 export function getClientFactoryBody(
   model: RLCModel,
   clientTypeName: string,
-  isMultipleCredential: boolean
+  options: GetClientFactoryOptions = { isMultipleCredential: false }
 ): string | WriterFunction | (string | WriterFunction | StatementStructures)[] {
   if (!model.options || !model.options.packageDetails || !model.urlInfo) {
     return "";
@@ -283,7 +285,7 @@ export function getClientFactoryBody(
   let apiVersionStatement: string = "";
   // Set the default api-version when we have a default AND its position is query
   if (
-    (model.apiVersionInfo?.definedPosition === "query") &&
+    model.apiVersionInfo?.definedPosition === "query" &&
     !!model.apiVersionInfo?.defaultValue
   ) {
     apiVersionStatement = `options.apiVersion = options.apiVersion ?? "${model.apiVersionInfo?.defaultValue}"`;
@@ -364,7 +366,7 @@ export function getClientFactoryBody(
     model.options;
   let customHttpAuthStatement = "";
   if (customHttpAuthHeaderName && customHttpAuthSharedKeyPrefix) {
-    if (isMultipleCredential) {
+    if (options.isMultipleCredential) {
       customHttpAuthStatement = `if (isKeyCredential(credentials)) {
         client.pipeline.addPolicy({
           name: "customKeyCredentialPolicy",
@@ -388,7 +390,8 @@ export function getClientFactoryBody(
 
   let apiVersionPolicyStatement = "";
   if (model.apiVersionInfo?.definedPosition !== "query") {
-    apiVersionPolicyStatement = "client.pipeline.removePolicy({name: 'ApiVersionPolicy'})";
+    apiVersionPolicyStatement =
+      "client.pipeline.removePolicy({name: 'ApiVersionPolicy'})";
   }
   let returnStatement = `return client;`;
 
