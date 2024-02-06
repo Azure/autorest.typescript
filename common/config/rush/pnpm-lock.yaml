@@ -193,7 +193,7 @@ importers:
     specifiers:
       '@azure-tools/typespec-autorest': '>=0.38.1 <1.0.0'
       '@azure-tools/typespec-azure-core': '>=0.38.0 <1.0.0'
-      '@azure-tools/typespec-client-generator-core': '>=0.38.0 <1.0.0'
+      '@azure-tools/typespec-client-generator-core': '>=0.39.0-dev.8 <1.0.0'
       '@azure-tools/typespec-ts': workspace:^0.22.0
       '@types/mocha': ^5.2.7
       '@types/node': ^18.0.0
@@ -209,7 +209,7 @@ importers:
     dependencies:
       '@azure-tools/typespec-autorest': 0.38.1_f6nhdcmyim5btmbccbuco5x6xq
       '@azure-tools/typespec-azure-core': 0.38.0_4mursonewu5hn2yhcp44ukhhky
-      '@azure-tools/typespec-client-generator-core': 0.38.0_hcpcasyazuhu5r37x6lfh5gruy
+      '@azure-tools/typespec-client-generator-core': 0.39.0-dev.8_hcpcasyazuhu5r37x6lfh5gruy
       '@azure-tools/typespec-ts': link:../typespec-ts
       '@typespec/compiler': 0.52.0
       '@typespec/http': 0.52.1_@typespec+compiler@0.52.0
@@ -232,7 +232,7 @@ importers:
       '@azure-tools/cadl-ranch-specs': ^0.29.0
       '@azure-tools/rlc-common': workspace:^0.22.0
       '@azure-tools/typespec-azure-core': 0.38.0
-      '@azure-tools/typespec-client-generator-core': 0.38.0
+      '@azure-tools/typespec-client-generator-core': 0.39.0-dev.8
       '@azure/core-auth': ^1.6.0
       '@azure/core-lro': ^2.5.4
       '@azure/core-paging': ^1.5.0
@@ -276,7 +276,7 @@ importers:
       '@azure-tools/cadl-ranch-expect': 0.12.0_hcpcasyazuhu5r37x6lfh5gruy
       '@azure-tools/cadl-ranch-specs': 0.29.0_bpvnzizmtz52ksa2o5zsnrhku4
       '@azure-tools/typespec-azure-core': 0.38.0_4mursonewu5hn2yhcp44ukhhky
-      '@azure-tools/typespec-client-generator-core': 0.38.0_hcpcasyazuhu5r37x6lfh5gruy
+      '@azure-tools/typespec-client-generator-core': 0.39.0-dev.8_hcpcasyazuhu5r37x6lfh5gruy
       '@azure/core-auth': 1.6.0
       '@azure/core-lro': 2.5.4
       '@azure/core-paging': 1.5.0
@@ -517,14 +517,14 @@ packages:
       '@typespec/http': 0.52.1_@typespec+compiler@0.52.0
       '@typespec/rest': 0.52.0_ul257hu73e5sf6e67hlhqupana
 
-  /@azure-tools/typespec-client-generator-core/0.38.0_hcpcasyazuhu5r37x6lfh5gruy:
-    resolution: {integrity: sha512-DUDIHJikz3Ai8uPk3vKFoMkkGPUxoD5DbGdwkN/pQxaL6Aze8HV4LGEOGtvaIu0SsGjCX9G3XPAXoBoupYgXbw==}
+  /@azure-tools/typespec-client-generator-core/0.39.0-dev.8_hcpcasyazuhu5r37x6lfh5gruy:
+    resolution: {integrity: sha512-Y3Po/Es19+aVsY55WiWPjJ0oMWpudXgqtcttnlLWUYUXVC5eE65jhHPobTWgiBXmPzmaB1pPDN/VqbMmHyoyOQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
-      '@typespec/compiler': ~0.52.0
-      '@typespec/http': ~0.52.0
-      '@typespec/rest': ~0.52.0
-      '@typespec/versioning': ~0.52.0
+      '@typespec/compiler': ~0.52.0 || >=0.53.0-dev <0.53.0
+      '@typespec/http': ~0.52.0 || >=0.53.0-dev <0.53.0
+      '@typespec/rest': ~0.52.0 || >=0.53.0-dev <0.53.0
+      '@typespec/versioning': ~0.52.0 || >=0.53.0-dev <0.53.0
     dependencies:
       '@typespec/compiler': 0.52.0
       '@typespec/http': 0.52.1_@typespec+compiler@0.52.0
