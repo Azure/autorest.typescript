@@ -139,9 +139,11 @@ function serializeAzureSearchChatExtensionConfiguration(
   return {
     type: obj["type"],
     parameters: {
-      authentication: serializeOnYourDataAuthenticationOptionsUnion(
-        obj.parameters.authentication,
-      ),
+      authentication: !obj.parameters.authentication
+        ? obj.parameters.authentication
+        : serializeOnYourDataAuthenticationOptionsUnion(
+            obj.parameters.authentication,
+          ),
       top_n_documents: obj.parameters["topNDocuments"],
       in_scope: obj.parameters["inScope"],
       strictness: obj.parameters["strictness"],
@@ -164,9 +166,11 @@ function serializeAzureSearchChatExtensionConfiguration(
       query_type: obj.parameters["queryType"],
       semantic_configuration: obj.parameters["semanticConfiguration"],
       filter: obj.parameters["filter"],
-      embedding_dependency: serializeOnYourDataVectorizationSourceUnion(
-        obj.parameters.embeddingDependency,
-      ),
+      embedding_dependency: !obj.parameters.embeddingDependency
+        ? obj.parameters.embeddingDependency
+        : serializeOnYourDataVectorizationSourceUnion(
+            obj.parameters.embeddingDependency,
+          ),
     },
   };
 }
@@ -178,9 +182,11 @@ function serializeAzureMachineLearningIndexChatExtensionConfiguration(
   return {
     type: obj["type"],
     parameters: {
-      authentication: serializeOnYourDataAuthenticationOptionsUnion(
-        obj.parameters.authentication,
-      ),
+      authentication: !obj.parameters.authentication
+        ? obj.parameters.authentication
+        : serializeOnYourDataAuthenticationOptionsUnion(
+            obj.parameters.authentication,
+          ),
       top_n_documents: obj.parameters["topNDocuments"],
       in_scope: obj.parameters["inScope"],
       strictness: obj.parameters["strictness"],
@@ -200,9 +206,11 @@ function serializeAzureCosmosDBChatExtensionConfiguration(
   return {
     type: obj["type"],
     parameters: {
-      authentication: serializeOnYourDataAuthenticationOptionsUnion(
-        obj.parameters.authentication,
-      ),
+      authentication: !obj.parameters.authentication
+        ? obj.parameters.authentication
+        : serializeOnYourDataAuthenticationOptionsUnion(
+            obj.parameters.authentication,
+          ),
       top_n_documents: obj.parameters["topNDocuments"],
       in_scope: obj.parameters["inScope"],
       strictness: obj.parameters["strictness"],
@@ -233,9 +241,11 @@ function serializeElasticsearchChatExtensionConfiguration(
   return {
     type: obj["type"],
     parameters: {
-      authentication: serializeOnYourDataAuthenticationOptionsUnion(
-        obj.parameters.authentication,
-      ),
+      authentication: !obj.parameters.authentication
+        ? obj.parameters.authentication
+        : serializeOnYourDataAuthenticationOptionsUnion(
+            obj.parameters.authentication,
+          ),
       top_n_documents: obj.parameters["topNDocuments"],
       in_scope: obj.parameters["inScope"],
       strictness: obj.parameters["strictness"],
@@ -254,9 +264,11 @@ function serializeElasticsearchChatExtensionConfiguration(
             vector_fields: obj.parameters.fieldsMapping?.["vectorFields"],
           },
       query_type: obj.parameters["queryType"],
-      embedding_dependency: serializeOnYourDataVectorizationSourceUnion(
-        obj.parameters.embeddingDependency,
-      ),
+      embedding_dependency: !obj.parameters.embeddingDependency
+        ? obj.parameters.embeddingDependency
+        : serializeOnYourDataVectorizationSourceUnion(
+            obj.parameters.embeddingDependency,
+          ),
     },
   };
 }
@@ -268,9 +280,11 @@ function serializePineconeChatExtensionConfiguration(
   return {
     type: obj["type"],
     parameters: {
-      authentication: serializeOnYourDataAuthenticationOptionsUnion(
-        obj.parameters.authentication,
-      ),
+      authentication: !obj.parameters.authentication
+        ? obj.parameters.authentication
+        : serializeOnYourDataAuthenticationOptionsUnion(
+            obj.parameters.authentication,
+          ),
       top_n_documents: obj.parameters["topNDocuments"],
       in_scope: obj.parameters["inScope"],
       strictness: obj.parameters["strictness"],
