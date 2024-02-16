@@ -1,3 +1,7 @@
+## 0.22.0 (2024-02-16)
+
+- [Feature] (Experimental) Enable versioned generation for RLC, generating one client per version. [#](https://github.com/Azure/autorest.typescript/pull/)
+
 ## 0.22.0 (2024-02-06)
 
 - [Feature] Upgrade TypeSpec compiler to 0.52.0. Please refer to [#2262](https://github.com/Azure/autorest.typescript/pull/2262).
