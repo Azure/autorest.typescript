@@ -1,4 +1,4 @@
-import { ContentBuilder } from "@azure-tools/rlc-common";
+import { ContentBuilder, ContentBuilderOptions } from "@azure-tools/rlc-common";
 import { buildSchemaTypes } from "@azure-tools/rlc-common";
 import { File, RLCModel } from "@azure-tools/rlc-common";
 import { CompilerHost, Program } from "@typespec/compiler";
@@ -24,15 +24,14 @@ export async function emitContentByBuilder(
   program: Program,
   builderFnOrList: ContentBuilder | ContentBuilder[],
   rlcModels: RLCModel,
-  emitterOutputDir?: string,
-  args?: any
+  options?: ContentBuilderOptions & { emitterOutputDir?: string }
 ) {
   if (!Array.isArray(builderFnOrList)) {
     builderFnOrList = [builderFnOrList];
   }
   const isBranded = rlcModels?.options?.branded ?? true;
   for (const builderFn of builderFnOrList) {
-    let contentFiles: File[] | File | undefined = builderFn(rlcModels, args);
+    let contentFiles: File[] | File | undefined = builderFn(rlcModels, options);
     if (!contentFiles) {
       continue;
     }
@@ -40,7 +39,7 @@ export async function emitContentByBuilder(
       contentFiles = [contentFiles];
     }
     for (const file of contentFiles) {
-      await emitFile(file, program, isBranded, emitterOutputDir);
+      await emitFile(file, program, isBranded, options?.emitterOutputDir);
     }
   }
 }

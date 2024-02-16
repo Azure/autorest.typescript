@@ -128,7 +128,11 @@ async function isMultiVersion(
   options: RLCOptions
 ) {
   // TODO: Support multi-version for modular
-  return !options.isModularLibrary && Object.keys(projectedVersions).length > 1;
+  return (
+    !options.isModularLibrary &&
+    options.experimental &&
+    Object.keys(projectedVersions).length > 1
+  );
 }
 
 export async function $onEmit(context: EmitContext) {
@@ -272,12 +276,9 @@ export async function $onEmit(context: EmitContext) {
           buildSerializeHelper,
           rlcModels
         );
-        await emitContentByBuilder(
-          versionedProgram,
-          buildSamples,
-          rlcModels,
-          dpgContext.generationPathDetail?.metadataDir
-        );
+        await emitContentByBuilder(versionedProgram, buildSamples, rlcModels, {
+          emitterOutputDir: dpgContext.generationPathDetail?.metadataDir
+        });
       }
 
       if (!multiVersion) {
@@ -293,13 +294,9 @@ export async function $onEmit(context: EmitContext) {
 
       const rlcModels = await transformRLCModel(client, dpgContext);
       const versions = Object.keys(projectedVersions);
-      await emitContentByBuilder(
-        program,
-        buildVersionedIndexFile,
-        rlcModels,
-        undefined,
+      await emitContentByBuilder(program, buildVersionedIndexFile, rlcModels, {
         versions
-      );
+      });
     }
   }
 
@@ -410,12 +407,10 @@ export async function $onEmit(context: EmitContext) {
         commonBuilders.push(buildTsConfig);
       }
       // build metadata relevant files
-      await emitContentByBuilder(
-        program,
-        commonBuilders,
-        rlcClient,
-        dpgContext.generationPathDetail?.metadataDir
-      );
+      await emitContentByBuilder(program, commonBuilders, rlcClient, {
+        emitterOutputDir: dpgContext.generationPathDetail?.metadataDir,
+        versions: []
+      });
 
       if (option.isModularLibrary) {
         const project = new Project();
@@ -457,7 +452,7 @@ export async function $onEmit(context: EmitContext) {
           buildSampleTest
         ],
         rlcClient,
-        dpgContext.generationPathDetail?.metadataDir
+        { emitterOutputDir: dpgContext.generationPathDetail?.metadataDir }
       );
     }
   }

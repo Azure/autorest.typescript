@@ -2,10 +2,16 @@
 // Licensed under the MIT License.
 
 import { Project } from "ts-morph";
-import { RLCModel } from "./interfaces.js";
+import { RLCModel, VersionedBuilderOptions } from "./interfaces.js";
 import * as path from "path";
 
-export function buildVersionedIndexFile(model: RLCModel, versions: string[]) {
+export function buildVersionedIndexFile(
+  model: RLCModel,
+  options?: VersionedBuilderOptions
+) {
+  if (!options || !options.versions || options.versions.length === 0) {
+    return;
+  }
   const project = new Project();
   const { srcPath } = model;
   const filePath = path.join(srcPath, `index.ts`);
@@ -13,13 +19,14 @@ export function buildVersionedIndexFile(model: RLCModel, versions: string[]) {
     overwrite: true
   });
 
-  for (const version of versions) {
+  for (const version of options.versions) {
+    const moduleName = sanitizeForImportAlias(version);
     indexFile.addImportDeclaration({
       moduleSpecifier: `./${version}`,
-      namespaceImport: version
+      namespaceImport: moduleName
     });
     indexFile.addExportDeclaration({
-      namedExports: [version]
+      namedExports: [moduleName]
     });
   }
 
@@ -27,4 +34,19 @@ export function buildVersionedIndexFile(model: RLCModel, versions: string[]) {
     path: filePath,
     content: indexFile.getFullText()
   };
+}
+
+function sanitizeForImportAlias(str: string): string {
+  // Remove invalid start characters
+  let sanitized = str;
+
+  // Prepend 'v' if the string doesn't start with a valid character
+  if (!sanitized.match(/^[a-zA-Z_$]/)) {
+    sanitized = "v" + sanitized;
+  }
+
+  // Replace invalid characters within the string
+  sanitized = sanitized.replace(/[^a-zA-Z_$0-9]/g, "_");
+
+  return sanitized;
 }

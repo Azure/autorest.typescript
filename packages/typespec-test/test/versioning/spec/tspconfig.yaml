@@ -4,6 +4,7 @@ options:
   "@azure-tools/typespec-ts":
     azureSdkForJs: false
     isModularLibrary: false
+    experimental: true
     generateTest: false
     generateSample: false
     hierarchyClient: false
