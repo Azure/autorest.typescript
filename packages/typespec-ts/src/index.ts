@@ -39,7 +39,8 @@ import {
   RLCOptions,
   hasUnexpectedHelper,
   RLCModel,
-  buildSamples
+  buildSamples,
+  buildVersionedIndexFile
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
@@ -122,8 +123,20 @@ function projectVersions(context: EmitContext): ProjectedVersions {
   return projectedVersions;
 }
 
+async function isMultiVersion(
+  projectedVersions: ProjectedVersions,
+  options: RLCOptions
+) {
+  // TODO: Support multi-version for modular
+  return !options.isModularLibrary && Object.keys(projectedVersions).length > 1;
+}
+
 export async function $onEmit(context: EmitContext) {
   const projectedVersions = projectVersions(context);
+
+  if (projectedVersions === undefined) {
+    throw new Error("projectedVersions is undefined");
+  }
 
   /** Shared status */
   const program: Program = context.program;
@@ -132,10 +145,6 @@ export async function $onEmit(context: EmitContext) {
     context,
     "@azure-tools/typespec-ts"
   ) as SdkContext;
-
-  if (projectedVersions["v2"]) {
-    dpgContext.program = projectedVersions["v2"].program;
-  }
 
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
@@ -192,33 +201,104 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateRLCSources() {
-    const clients = getRLCClients(dpgContext);
-    for (const client of clients) {
-      const rlcModels = await transformRLCModel(client, dpgContext);
-      rlcCodeModels.push(rlcModels);
-      serviceNameToRlcModelsMap.set(client.service.name, rlcModels);
-      needUnexpectedHelper.set(
-        getClientName(rlcModels),
-        hasUnexpectedHelper(rlcModels)
-      );
+    const multiVersion = await isMultiVersion(
+      projectedVersions,
+      emitterOptions
+    );
+    for (const version in projectedVersions) {
+      let currentVersion: string | undefined;
+      let versionedProgram = dpgContext.program;
 
-      await emitModels(rlcModels, program);
-      await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
-      await emitContentByBuilder(program, buildResponseTypes, rlcModels);
-      await emitContentByBuilder(program, buildClient, rlcModels);
-      await emitContentByBuilder(program, buildParameterTypes, rlcModels);
-      await emitContentByBuilder(program, buildIsUnexpectedHelper, rlcModels);
-      await emitContentByBuilder(program, buildIndexFile, rlcModels);
-      await emitContentByBuilder(program, buildLogger, rlcModels);
-      await emitContentByBuilder(program, buildTopLevelIndex, rlcModels);
-      await emitContentByBuilder(program, buildRLCPaginateHelper, rlcModels);
-      await emitContentByBuilder(program, buildPollingHelper, rlcModels);
-      await emitContentByBuilder(program, buildSerializeHelper, rlcModels);
+      if (multiVersion) {
+        currentVersion = version;
+        versionedProgram = projectedVersions[currentVersion]!.program;
+      }
+
+      const clients = getRLCClients(versionedProgram);
+      for (const client of clients) {
+        const rlcModels = await transformRLCModel(
+          client,
+          { ...dpgContext, program: versionedProgram },
+          currentVersion
+        );
+        rlcCodeModels.push(rlcModels);
+        serviceNameToRlcModelsMap.set(client.service.name, rlcModels);
+        needUnexpectedHelper.set(
+          getClientName(rlcModels),
+          hasUnexpectedHelper(rlcModels)
+        );
+
+        await emitModels(rlcModels, versionedProgram);
+        await emitContentByBuilder(
+          versionedProgram,
+          buildClientDefinitions,
+          rlcModels
+        );
+        await emitContentByBuilder(
+          versionedProgram,
+          buildResponseTypes,
+          rlcModels
+        );
+        await emitContentByBuilder(versionedProgram, buildClient, rlcModels);
+        await emitContentByBuilder(
+          versionedProgram,
+          buildParameterTypes,
+          rlcModels
+        );
+        await emitContentByBuilder(
+          versionedProgram,
+          buildIsUnexpectedHelper,
+          rlcModels
+        );
+        await emitContentByBuilder(versionedProgram, buildIndexFile, rlcModels);
+        await emitContentByBuilder(versionedProgram, buildLogger, rlcModels);
+        await emitContentByBuilder(
+          versionedProgram,
+          buildTopLevelIndex,
+          rlcModels
+        );
+        await emitContentByBuilder(
+          versionedProgram,
+          buildRLCPaginateHelper,
+          rlcModels
+        );
+        await emitContentByBuilder(
+          versionedProgram,
+          buildPollingHelper,
+          rlcModels
+        );
+        await emitContentByBuilder(
+          versionedProgram,
+          buildSerializeHelper,
+          rlcModels
+        );
+        await emitContentByBuilder(
+          versionedProgram,
+          buildSamples,
+          rlcModels,
+          dpgContext.generationPathDetail?.metadataDir
+        );
+      }
+
+      if (!multiVersion) {
+        break;
+      }
+    }
+
+    if (multiVersion) {
+      const client = getRLCClients(dpgContext.program)[0];
+      if (!client) {
+        throw new Error("No client found in the program");
+      }
+
+      const rlcModels = await transformRLCModel(client, dpgContext);
+      const versions = Object.keys(projectedVersions);
       await emitContentByBuilder(
         program,
-        buildSamples,
+        buildVersionedIndexFile,
         rlcModels,
-        dpgContext.generationPathDetail?.metadataDir
+        undefined,
+        versions
       );
     }
   }

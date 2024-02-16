@@ -40,16 +40,22 @@ import { SdkContext } from "../utils/interfaces.js";
 
 export async function transformRLCModel(
   client: SdkClient,
-  dpgContext: SdkContext
+  dpgContext: SdkContext,
+  currentVersion?: string
 ): Promise<RLCModel> {
   const program = dpgContext.program;
   const options: RLCOptions = dpgContext.rlcOptions!;
-  const srcPath = join(
+  let srcPath = join(
     dpgContext.generationPathDetail?.rlcSourcesDir ?? "",
     options.batch && options.batch.length > 1
       ? normalizeName(client.name.replace("Client", ""), NameType.File)
       : ""
   );
+
+  if (currentVersion) {
+    srcPath = join(srcPath, currentVersion);
+  }
+
   const libraryName = normalizeName(
     options.batch && (options.isModularLibrary || options.batch.length > 1)
       ? client.name

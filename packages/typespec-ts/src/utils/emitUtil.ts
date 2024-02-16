@@ -24,14 +24,15 @@ export async function emitContentByBuilder(
   program: Program,
   builderFnOrList: ContentBuilder | ContentBuilder[],
   rlcModels: RLCModel,
-  emitterOutputDir?: string
+  emitterOutputDir?: string,
+  args?: any
 ) {
   if (!Array.isArray(builderFnOrList)) {
     builderFnOrList = [builderFnOrList];
   }
   const isBranded = rlcModels?.options?.branded ?? true;
   for (const builderFn of builderFnOrList) {
-    let contentFiles: File[] | File | undefined = builderFn(rlcModels);
+    let contentFiles: File[] | File | undefined = builderFn(rlcModels, args);
     if (!contentFiles) {
       continue;
     }
