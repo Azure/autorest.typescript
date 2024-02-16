@@ -1,7 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Program, EmitContext } from "@typespec/compiler";
+import {
+  Program,
+  EmitContext,
+  listServices,
+  Namespace,
+  ProjectionApplication,
+  getService,
+  projectProgram,
+  Service
+} from "@typespec/compiler";
 import * as fsextra from "fs-extra";
 import { existsSync } from "fs";
 import {
@@ -59,10 +68,63 @@ import {
   buildPagingTypes,
   buildPagingHelpers as buildModularPagingHelpers
 } from "./modular/buildPagingFiles.js";
+import { buildVersionProjections } from "@typespec/versioning";
 
 export * from "./lib.js";
 
+type ProjectedVersions = Record<string, { service: Service; program: Program }>;
+
+function projectVersions(context: EmitContext): ProjectedVersions {
+  let program = context.program;
+  const services = listServices(program);
+  const projectedVersions: ProjectedVersions = {};
+
+  if (services.length === 0) {
+    services.push({ type: program.getGlobalNamespaceType() });
+  }
+
+  for (const service of services) {
+    const commonProjections: ProjectionApplication[] = [
+      {
+        projectionName: "target",
+        arguments: ["json"]
+      }
+    ];
+    const originalProgram = program;
+    const versions = buildVersionProjections(program, service.type);
+    for (const record of versions) {
+      const projectedProgram = (program = projectProgram(originalProgram, [
+        ...commonProjections,
+        ...record.projections
+      ]));
+      const projectedServiceNs: Namespace =
+        projectedProgram.projector.projectedTypes.get(
+          service.type
+        ) as Namespace;
+
+      const currentVersion = record.version ?? "default";
+      if (projectedServiceNs === projectedProgram.getGlobalNamespaceType()) {
+        projectedVersions[currentVersion] = {
+          service: {
+            type: projectedProgram.getGlobalNamespaceType()
+          },
+          program
+        };
+      } else {
+        const svc = getService(program, projectedServiceNs);
+        if (svc) {
+          projectedVersions[currentVersion] = { service, program };
+        }
+      }
+    }
+  }
+
+  return projectedVersions;
+}
+
 export async function $onEmit(context: EmitContext) {
+  const projectedVersions = projectVersions(context);
+
   /** Shared status */
   const program: Program = context.program;
   const emitterOptions: RLCOptions = context.options;
@@ -70,6 +132,11 @@ export async function $onEmit(context: EmitContext) {
     context,
     "@azure-tools/typespec-ts"
   ) as SdkContext;
+
+  if (projectedVersions["v2"]) {
+    dpgContext.program = projectedVersions["v2"].program;
+  }
+
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
