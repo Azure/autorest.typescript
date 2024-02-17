@@ -1,6 +1,6 @@
-## 0.22.0 (2024-02-16)
+## 0.23.0 (UNRELEASED)
 
-- [Feature] (Experimental) Enable versioned generation for RLC, generating one client per version. [#](https://github.com/Azure/autorest.typescript/pull/)
+- [Feature] (Experimental) Enable versioned generation for RLC, generating one client per version. [#2295](https://github.com/Azure/autorest.typescript/pull/2295)
 
 ## 0.22.0 (2024-02-06)
 
