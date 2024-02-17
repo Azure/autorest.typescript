@@ -352,7 +352,11 @@ function extractNameFromTypeSpecType(
     contentTypes &&
     contentTypes.length === 1 &&
     contentTypes[0]?.includes("application/merge-patch+json");
-  if (hasMergeAndPatchType && (bodySchema as ObjectSchema).properties) {
+  if (
+    hasMergeAndPatchType &&
+    Boolean(bodySchema.name) &&
+    (bodySchema as ObjectSchema).properties
+  ) {
     typeName = `${typeName}ResourceMergeAndPatch`;
   }
   return typeName;

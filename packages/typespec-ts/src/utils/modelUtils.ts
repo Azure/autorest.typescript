@@ -151,6 +151,11 @@ export function getSchemaForType(
     }
     return builtinType;
   }
+
+  if (type.kind === "ModelProperty") {
+    return getSchemaForType(dpgContext, type.type, usage, needRef, type);
+  }
+
   if (type.kind === "Model") {
     const schema = getSchemaForModel(dpgContext, type, usage, needRef) as any;
     if (isAnonymousObjectSchema(schema)) {
@@ -221,7 +226,7 @@ export function getSchemaForType(
 export function getEffectiveModelFromType(program: Program, type: Type): Type {
   if (type.kind === "Model") {
     const effective = getEffectiveModelType(program, type, isSchemaProperty);
-    if (effective.name) {
+    if (effective.name && effective.name !== "Error") {
       return effective;
     }
   }
