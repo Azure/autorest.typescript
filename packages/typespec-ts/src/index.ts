@@ -245,6 +245,12 @@ export async function $onEmit(context: EmitContext) {
     const hasPackageFile = await existsSync(
       join(dpgContext.generationPathDetail?.metadataDir ?? "", "package.json")
     );
+    const hasTestFolder = await fsextra.pathExists(
+      join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
+    );
+    option.generateTest =
+      option.generateTest === true ||
+      (option.generateTest === undefined && !hasTestFolder);
     const shouldGenerateMetadata =
       option.generateMetadata === true ||
       (option.generateMetadata === undefined && !hasPackageFile);
@@ -293,13 +299,7 @@ export async function $onEmit(context: EmitContext) {
     }
 
     // Generate test relevant files
-    const hasTestFolder = await fsextra.pathExists(
-      join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
-    );
-    const shouldGenerateTest =
-      option.generateTest === true ||
-      (option.generateTest === undefined && !hasTestFolder);
-    if (shouldGenerateTest && isBranded) {
+    if (option.generateTest && isBranded) {
       await emitContentByBuilder(
         program,
         [
