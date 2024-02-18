@@ -48,7 +48,7 @@ export async function emitPageHelperFromTypeSpec(
   );
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const clients = getRLCClients(dpgContext);
+  const clients = getRLCClients(dpgContext.program);
   let helperDetail;
   if (clients && clients[0]) {
     helperDetail = transformHelperFunctionDetails(clients[0], dpgContext);
@@ -81,7 +81,7 @@ export async function emitSchemasFromTypeSpec(
   );
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const clients = getRLCClients(dpgContext);
+  const clients = getRLCClients(dpgContext.program);
   let rlcSchemas: Schema[] = [];
   if (clients && clients[0]) {
     rlcSchemas = transformSchemas(program, clients[0], dpgContext);
@@ -107,7 +107,7 @@ export async function emitModelsFromTypeSpec(
   );
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const clients = getRLCClients(dpgContext);
+  const clients = getRLCClients(dpgContext.program);
   let rlcSchemas: Schema[] = [];
   if (clients && clients[0]) {
     rlcSchemas = transformSchemas(program, clients[0], dpgContext);
@@ -144,7 +144,7 @@ export async function emitParameterFromTypeSpec(
     withRawContent
   );
   const dpgContext = createDpgContextTestHelper(context.program);
-  const clients = getRLCClients(dpgContext);
+  const clients = getRLCClients(dpgContext.program);
   const importSet = initInternalImports();
   let parameters;
   if (clients && clients[0]) {
@@ -173,7 +173,7 @@ export async function emitClientDefinitionFromTypeSpec(
   const context = await rlcEmitterFor(tspContent, true, needAzureCore);
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const clients = getRLCClients(dpgContext);
+  const clients = getRLCClients(dpgContext.program);
   let paths = {};
   if (clients && clients[0]) {
     paths = transformPaths(program, clients[0], dpgContext);
@@ -209,7 +209,7 @@ export async function emitClientFactoryFromTypeSpec(
   const dpgContext = createDpgContextTestHelper(context.program);
   const urlInfo = transformUrlInfo(dpgContext);
   const creadentialInfo = getCredentialInfo(program, {});
-  const clients = getRLCClients(dpgContext);
+  const clients = getRLCClients(dpgContext.program);
   let apiVersionInfo;
   if (clients && clients[0]) {
     apiVersionInfo = transformApiVersionInfo(clients[0], dpgContext, urlInfo);
@@ -254,7 +254,7 @@ export async function emitResponsesFromTypeSpec(
   );
   const dpgContext = createDpgContextTestHelper(context.program);
   const importSet = initInternalImports();
-  const clients = getRLCClients(dpgContext);
+  const clients = getRLCClients(dpgContext.program);
   let responses;
   if (clients && clients[0]) {
     responses = transformToResponseTypes(importSet, clients[0], dpgContext);
@@ -283,7 +283,7 @@ export async function getRLCClientsFromTypeSpec(tspContent: string) {
     true
   );
   const dpgContext = createDpgContextTestHelper(context.program);
-  const clients = getRLCClients(dpgContext);
+  const clients = getRLCClients(dpgContext.program);
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return clients;
 }
@@ -307,7 +307,7 @@ export async function emitModularModelsFromTypeSpec(
     RLCModel
   >();
   const project = new Project();
-  const clients = getRLCClients(dpgContext);
+  const clients = getRLCClients(dpgContext.program);
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
     const rlcModels = await transformRLCModel(clients[0], dpgContext);
@@ -350,7 +350,7 @@ export async function emitModularSerializeUtilsFromTypeSpec(
     RLCModel
   >();
   const project = new Project();
-  const clients = getRLCClients(dpgContext);
+  const clients = getRLCClients(dpgContext.program);
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
     const rlcModels = await transformRLCModel(clients[0], dpgContext);
@@ -398,7 +398,7 @@ export async function emitModularOperationsFromTypeSpec(
     RLCModel
   >();
   const project = new Project();
-  const clients = getRLCClients(dpgContext);
+  const clients = getRLCClients(dpgContext.program);
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
     const rlcModels = await transformRLCModel(clients[0], dpgContext);
@@ -451,7 +451,7 @@ export async function emitModularClientContextFromTypeSpec(
     RLCModel
   >();
   const project = new Project();
-  const clients = getRLCClients(dpgContext);
+  const clients = getRLCClients(dpgContext.program);
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
     const rlcModels = await transformRLCModel(clients[0], dpgContext);
