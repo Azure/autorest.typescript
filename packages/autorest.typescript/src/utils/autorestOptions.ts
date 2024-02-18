@@ -116,7 +116,9 @@ async function getGenerateSample(
 
 async function getGenerateTest(host: AutorestExtensionHost): Promise<boolean> {
   const generateTest = await host.getValue("generate-test");
-  return generateTest === null ? false : Boolean(generateTest);
+  return generateTest === null || generateTest === undefined
+    ? false
+    : Boolean(generateTest);
 }
 
 async function getAzureSdkForJs(host: AutorestExtensionHost): Promise<boolean> {
@@ -269,9 +271,8 @@ async function getPackageDetails(
   const name = normalizeName(model.language.default.name, NameType.File);
   // TODO: Look for an existing package.json and
   const packageName: string = (await host.getValue("package-name")) || name;
-  const packageNameParts: RegExpMatchArray | null = packageName.match(
-    /(^@(.*)\/)?(.*)/
-  );
+  const packageNameParts: RegExpMatchArray | null =
+    packageName.match(/(^@(.*)\/)?(.*)/);
   if (!packageNameParts) {
     throw new Error("Expecting valid package name");
   }
@@ -290,9 +291,8 @@ async function getPackageDetails(
 export async function getSecurityScopes(
   host: AutorestExtensionHost
 ): Promise<string[] | undefined> {
-  const securityScopes: string | undefined = await host.getValue(
-    "security-scopes"
-  );
+  const securityScopes: string | undefined =
+    await host.getValue("security-scopes");
   if (securityScopes !== undefined && typeof securityScopes === "string") {
     return securityScopes.split(",");
   }
