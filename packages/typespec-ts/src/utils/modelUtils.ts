@@ -599,12 +599,12 @@ function getSchemaForModel(
   }
   modelSchema.properties = {};
 
-  const derivedModels = model.derivedModels.filter((dm) => {
-    return includeDerivedModel(dm, needRef);
-  });
-
   // getSchemaOrRef on all children to push them into components.schemas
   const discriminator = getDiscriminator(program, model);
+  // should respect needRef for derived models unless there's a discriminator in base model
+  const derivedModels = model.derivedModels.filter((dm) => {
+    return includeDerivedModel(dm, discriminator ? false : needRef);
+  });
   if (derivedModels.length > 0) {
     modelSchema.children = {
       all: [],
