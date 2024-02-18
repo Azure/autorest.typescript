@@ -250,7 +250,7 @@ export async function $onEmit(context: EmitContext) {
     );
     option.generateTest =
       option.generateTest === true ||
-      (option.generateTest === undefined && !hasTestFolder);
+      (option.generateTest === undefined && !hasTestFolder && isBranded);
     const shouldGenerateMetadata =
       option.generateMetadata === true ||
       (option.generateMetadata === undefined && !hasPackageFile);
