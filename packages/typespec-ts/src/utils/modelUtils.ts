@@ -226,7 +226,7 @@ export function getSchemaForType(
 export function getEffectiveModelFromType(program: Program, type: Type): Type {
   if (type.kind === "Model") {
     const effective = getEffectiveModelType(program, type, isSchemaProperty);
-    if (effective.name && effective.name !== "Error") {
+    if (effective.name) {
       return effective;
     }
   }
@@ -239,8 +239,12 @@ export function getEffectiveModelFromType(program: Program, type: Type): Type {
   }
   return type;
 }
-export function includeDerivedModel(model: Model): boolean {
+export function includeDerivedModel(
+  model: Model,
+  needRef: boolean = false
+): boolean {
   return (
+    !needRef &&
     !isTemplateDeclaration(model) &&
     (!model.templateMapper ||
       !model.templateMapper.args ||
@@ -595,7 +599,9 @@ function getSchemaForModel(
   }
   modelSchema.properties = {};
 
-  const derivedModels = model.derivedModels.filter(includeDerivedModel);
+  const derivedModels = model.derivedModels.filter((dm) => {
+    return includeDerivedModel(dm, needRef);
+  });
 
   // getSchemaOrRef on all children to push them into components.schemas
   const discriminator = getDiscriminator(program, model);

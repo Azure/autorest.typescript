@@ -5,7 +5,7 @@ import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 
 export function buildApiExtractorConfig(model: RLCModel) {
-  let { generateTest } = model.options || {};
+  const { generateTest } = model.options || {};
   const { packageDetails, isModularLibrary } = model.options || {};
   const project = new Project();
   const config = {

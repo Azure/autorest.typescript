@@ -131,10 +131,10 @@ function restLevelPackage(model: RLCModel) {
       "integration-test:browser": "echo skipped",
       "integration-test:node": "echo skipped",
       "integration-test": "echo skipped",
-      "lint:fix": `eslint package.json api-extractor.json src ${appednPathWhenLint(
+      "lint:fix": `eslint package.json api-extractor.json src ${appendPathWhenLint(
         generateTest
       )} --ext .ts --fix --fix-type [problem,suggestion]`,
-      lint: `eslint package.json api-extractor.json src ${appednPathWhenLint(
+      lint: `eslint package.json api-extractor.json src ${appendPathWhenLint(
         generateTest
       )} --ext .ts`,
       pack: "npm pack 2>&1",
@@ -350,7 +350,7 @@ function appendPathWhenFormat(
   return path;
 }
 
-function appednPathWhenLint(generateTest?: boolean) {
+function appendPathWhenLint(generateTest?: boolean) {
   return generateTest ? "test" : "";
 }
 

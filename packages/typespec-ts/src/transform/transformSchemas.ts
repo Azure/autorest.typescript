@@ -190,7 +190,9 @@ export function transformSchemas(
       ) {
         getGeneratedModels(baseModel, context);
       }
-      const derivedModels = model.derivedModels.filter(includeDerivedModel);
+      const derivedModels = model.derivedModels.filter((dm) => {
+        return includeDerivedModel(dm);
+      });
 
       // getSchemaOrRef on all children to push them into components.schemas
       for (const child of derivedModels) {
