@@ -100,7 +100,7 @@ export async function $onEmit(context: EmitContext) {
       options.generateTest === true ||
       (options.generateTest === undefined &&
         !hasTestFolder &&
-        !options.branded);
+        options.branded);
     dpgContext.rlcOptions = options;
   }
 

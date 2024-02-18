@@ -51,7 +51,10 @@ function extractRLCOptions(
   const azureSdkForJs = getAzureSdkForJs(emitterOptions);
   const generateMetadata: undefined | boolean =
     getGenerateMetadata(emitterOptions);
-  const generateTest: undefined | boolean = getGenerateTest(emitterOptions);
+  const generateTest: undefined | boolean = getGenerateTest(
+    emitterOptions,
+    branded
+  );
   const generateSample: undefined | boolean = getGenerateSample(emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
   const azureOutputDirectory = getAzureOutputDirectory(generationRootDir);
@@ -283,15 +286,15 @@ function getGenerateMetadata(emitterOptions: RLCOptions) {
  * @param emitterOptions
  * @returns
  */
-function getGenerateTest(emitterOptions: RLCOptions) {
+function getGenerateTest(emitterOptions: RLCOptions, branded: boolean) {
   if (
-    !emitterOptions.branded &&
+    !branded &&
     (emitterOptions.generateTest === undefined ||
       emitterOptions.generateTest === null)
   ) {
     return undefined;
   } else if (
-    emitterOptions.branded &&
+    branded &&
     (emitterOptions.generateTest === undefined ||
       emitterOptions.generateTest === null)
   ) {
@@ -307,17 +310,10 @@ function getGenerateTest(emitterOptions: RLCOptions) {
  */
 function getGenerateSample(emitterOptions: RLCOptions) {
   if (
-    !emitterOptions.branded &&
-    (emitterOptions.generateSample === undefined ||
-      emitterOptions.generateSample === null)
+    emitterOptions.generateSample === undefined ||
+    emitterOptions.generateSample === null
   ) {
     return undefined;
-  } else if (
-    emitterOptions.branded &&
-    (emitterOptions.generateSample === undefined ||
-      emitterOptions.generateSample === null)
-  ) {
-    return true;
   }
   return Boolean(emitterOptions.generateSample);
 }
