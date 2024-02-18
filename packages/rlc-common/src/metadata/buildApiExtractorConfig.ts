@@ -7,8 +7,6 @@ import { RLCModel } from "../interfaces.js";
 export function buildApiExtractorConfig(model: RLCModel) {
   let { generateTest } = model.options || {};
   const { packageDetails, isModularLibrary } = model.options || {};
-  // Take the undefined as true by default
-  generateTest = generateTest === true || generateTest === undefined;
   const project = new Project();
   const config = {
     $schema:

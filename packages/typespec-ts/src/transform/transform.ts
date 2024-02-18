@@ -100,6 +100,7 @@ export async function transformRLCModel(
     options?.generateSample ===
       true /* Enable mock sample content if generateSample === true */
   );
+  options.generateSample = (model.sampleGroups ?? []).length > 0;
   return model;
 }
 

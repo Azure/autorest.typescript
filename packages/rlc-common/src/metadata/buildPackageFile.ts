@@ -56,9 +56,10 @@ function restLevelPackage(model: RLCModel) {
     isTypeSpecTest,
     sourceFrom,
     multiClient,
-    batch
+    batch,
+    branded
   } = model.options;
-  let { generateTest, generateSample } = model.options;
+  const { generateTest, generateSample } = model.options;
   if (
     multiClient &&
     batch &&
@@ -67,12 +68,6 @@ function restLevelPackage(model: RLCModel) {
   ) {
     return;
   }
-
-  // Take the undefined as true by default
-  generateTest = generateTest === true || generateTest === undefined;
-  generateSample =
-    (generateSample === true || generateSample === undefined) &&
-    (model.sampleGroups ?? []).length > 0;
   const clientPackageName = packageDetails.name;
   let apiRefUrlQueryParameter: string = "";
   packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
@@ -329,6 +324,15 @@ function restLevelPackage(model: RLCModel) {
     }
   }
 
+  if (!branded) {
+    const runtimeLibVersion =
+      model.importInfo.runtimeImports.commonFallback?.version ??
+      "1.0.0-alpha.20231129.4";
+    packageInfo.dependencies = {
+      tslib: "^2.2.0",
+      "@typespec/ts-http-runtime": runtimeLibVersion
+    };
+  }
   return packageInfo;
 }
 
