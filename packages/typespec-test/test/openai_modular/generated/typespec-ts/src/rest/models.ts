@@ -976,6 +976,26 @@ export interface ImageGenerationOptions {
   user?: string;
 }
 
+/** A representation of the request options that control the behavior of a text-to-speech operation. */
+export interface AudioSpeechOptions {
+  /** The text to generate audio for. The maximum length is 4096 characters. */
+  input: string;
+  /**
+   * The voice to use for text-to-speech.
+   *
+   * Possible values: "alloy", "echo", "fable", "onyx", "nova", "shimmer"
+   */
+  voice: string;
+  /**
+   * The audio output format for the spoken text. By default, the MP3 format will be used.
+   *
+   * Possible values: "mp3", "opus", "aac", "flac"
+   */
+  response_format?: string;
+  /** The speed of speech for generated audio. Values are valid in the range from 0.25 to 4.0, with 1.0 the default and higher values corresponding to faster speech. */
+  speed?: number;
+}
+
 /**
  * The configuration information for an embeddings request.
  * Embeddings measure the relatedness of text strings and are commonly used for search, clustering,
@@ -1001,28 +1021,8 @@ export interface EmbeddingsOptions {
    * as we have observed inferior results when newlines are present.
    */
   input: string[];
-  /** type of embedding search to use */
-  input_type: string;
-}
-
-/** Specifies the request for speech synthesis. */
-export interface AudioSpeechOptions {
-  /** The text to synthesize audio for. The maximum length is 4096 characters. */
-  input: string;
-  /**
-   * The voice to use for speech synthesis.
-   *
-   * Possible values: "alloy", "echo", "fable", "onyx", "nova", "shimmer"
-   */
-  voice: string;
-  /**
-   * The format to synthesize the audio in.
-   *
-   * Possible values: "mp3", "opus", "aac", "flac"
-   */
-  response_format?: string;
-  /** The speed of the synthesize audio. Select a value from `0.25` to `4.0`. `1.0` is the default. */
-  speed?: number;
+  /** When using Azure OpenAI, specifies the input type to use for embedding search. */
+  input_type?: string;
 }
 
 /** An abstract representation of a chat message as provided in a request. */

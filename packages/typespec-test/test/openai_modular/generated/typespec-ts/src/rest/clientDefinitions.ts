@@ -9,8 +9,8 @@ import {
   GetCompletionsParameters,
   GetChatCompletionsParameters,
   GetImageGenerationsParameters,
-  GetEmbeddingsParameters,
   GetAudioSpeechParameters,
+  GetEmbeddingsParameters,
   GetAzureBatchImageGenerationOperationStatusParameters,
   BeginAzureBatchImageGenerationParameters,
 } from "./parameters.js";
@@ -29,10 +29,10 @@ import {
   GetChatCompletionsDefaultResponse,
   GetImageGenerations200Response,
   GetImageGenerationsDefaultResponse,
-  GetEmbeddings200Response,
-  GetEmbeddingsDefaultResponse,
   GetAudioSpeech200Response,
   GetAudioSpeechDefaultResponse,
+  GetEmbeddings200Response,
+  GetEmbeddingsDefaultResponse,
   GetAzureBatchImageGenerationOperationStatus200Response,
   GetAzureBatchImageGenerationOperationStatusDefaultResponse,
   BeginAzureBatchImageGeneration202Response,
@@ -115,20 +115,20 @@ export interface GetImageGenerations {
   >;
 }
 
-export interface GetEmbeddings {
-  /** Return the embeddings for a given prompt. */
-  post(
-    options?: GetEmbeddingsParameters,
-  ): StreamableMethod<GetEmbeddings200Response | GetEmbeddingsDefaultResponse>;
-}
-
 export interface GetAudioSpeech {
-  /** Generates audio from the input text. */
+  /** Generates text-to-speech audio from the input text. */
   post(
     options?: GetAudioSpeechParameters,
   ): StreamableMethod<
     GetAudioSpeech200Response | GetAudioSpeechDefaultResponse
   >;
+}
+
+export interface GetEmbeddings {
+  /** Return the embeddings for a given prompt. */
+  post(
+    options?: GetEmbeddingsParameters,
+  ): StreamableMethod<GetEmbeddings200Response | GetEmbeddingsDefaultResponse>;
 }
 
 export interface GetAzureBatchImageGenerationOperationStatus {
@@ -177,16 +177,16 @@ export interface Routes {
     path: "/deployments/{deploymentId}/images/generations",
     deploymentId: string,
   ): GetImageGenerations;
-  /** Resource for '/deployments/\{deploymentId\}/embeddings' has methods for the following verbs: post */
-  (
-    path: "/deployments/{deploymentId}/embeddings",
-    deploymentId: string,
-  ): GetEmbeddings;
   /** Resource for '/deployments/\{deploymentId\}/audio/speech' has methods for the following verbs: post */
   (
     path: "/deployments/{deploymentId}/audio/speech",
     deploymentId: string,
   ): GetAudioSpeech;
+  /** Resource for '/deployments/\{deploymentId\}/embeddings' has methods for the following verbs: post */
+  (
+    path: "/deployments/{deploymentId}/embeddings",
+    deploymentId: string,
+  ): GetEmbeddings;
   /** Resource for '/operations/images/\{operationId\}' has methods for the following verbs: get */
   (
     path: "/operations/images/{operationId}",

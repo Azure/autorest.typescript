@@ -141,23 +141,6 @@ export interface GetImageGenerationsDefaultResponse extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface GetEmbeddings200Response extends HttpResponse {
-  status: "200";
-  body: EmbeddingsOutput;
-}
-
-export interface GetEmbeddingsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface GetEmbeddingsDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & GetEmbeddingsDefaultHeaders;
-}
-
-/** The request has succeeded. */
 export interface GetAudioSpeech200Response extends HttpResponse {
   status: "200";
   /** Value may contain any sequence of octets */
@@ -173,6 +156,23 @@ export interface GetAudioSpeechDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & GetAudioSpeechDefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface GetEmbeddings200Response extends HttpResponse {
+  status: "200";
+  body: EmbeddingsOutput;
+}
+
+export interface GetEmbeddingsDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface GetEmbeddingsDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+  headers: RawHttpHeaders & GetEmbeddingsDefaultHeaders;
 }
 
 /** The request has succeeded. */

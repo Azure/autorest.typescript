@@ -27,4 +27,6 @@ export interface GetChatCompletionsOptions extends OperationOptions {}
 
 export interface GetImageGenerationsOptions extends OperationOptions {}
 
+export interface GetAudioSpeechOptions extends OperationOptions {}
+
 export interface GetEmbeddingsOptions extends OperationOptions {}
