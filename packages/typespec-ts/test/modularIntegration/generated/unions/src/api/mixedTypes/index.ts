@@ -35,10 +35,10 @@ export async function _mixedTypesGetDeserialize(
 
   return {
     prop: {
-      model: result.body.prop["model"] as any,
-      literal: result.body.prop["literal"] as any,
-      int: result.body.prop["int"] as any,
-      boolean: result.body.prop["boolean"] as any,
+      model: result.body.prop["model"],
+      literal: result.body.prop["literal"],
+      int: result.body.prop["int"],
+      boolean: result.body.prop["boolean"],
     },
   };
 }

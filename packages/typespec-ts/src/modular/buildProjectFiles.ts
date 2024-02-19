@@ -241,8 +241,8 @@ function emitBrandedPackage(
   codeModel: ModularCodeModel,
   hasSamplesGenerated: boolean
 ) {
-  const hasLRO = hasLROOperation(codeModel),
-    hasPaging = hasPagingOperation(codeModel);
+  const hasLRO = hasLROOperation(codeModel, true),
+    hasPaging = hasPagingOperation(codeModel, true);
   const { azureOutputDirectory, azureSdkForJs, sourceFrom, isModularLibrary } =
     codeModel.options;
   let { packageDetails, generateTest, generateSample } = codeModel.options;
@@ -303,9 +303,9 @@ function emitBrandedPackage(
     sideEffects: false,
     autoPublish: false,
     dependencies: {
-      "@azure/core-auth": "^1.3.0",
-      "@azure-rest/core-client": "^1.1.6",
-      "@azure/core-rest-pipeline": "^1.12.0",
+      "@azure/core-auth": "^1.6.0",
+      "@azure-rest/core-client": "^1.2.0",
+      "@azure/core-rest-pipeline": "^1.14.0",
       "@azure/logger": "^1.0.0",
       tslib: "^2.2.0",
       ...(hasPaging && {
@@ -382,7 +382,7 @@ function emitBrandedPackage(
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
-    packageInfo.devDependencies["@azure/identity"] = "^3.3.0";
+    packageInfo.devDependencies["@azure/identity"] = "^4.0.1";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
     packageInfo.devDependencies["mocha"] = "^10.0.0";
     packageInfo.devDependencies["@types/mocha"] = "^10.0.0";

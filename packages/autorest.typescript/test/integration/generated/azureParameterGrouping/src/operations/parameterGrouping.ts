@@ -159,7 +159,7 @@ const postReservedWordsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel,
     },
   },
-  queryParameters: [Parameters.from, Parameters.accept1],
+  queryParameters: [Parameters.fromParam, Parameters.accept1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer,

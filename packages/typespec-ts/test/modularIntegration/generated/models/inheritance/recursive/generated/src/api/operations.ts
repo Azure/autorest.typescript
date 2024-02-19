@@ -27,7 +27,7 @@ export function _putSend(
         extension: !input["extension"]
           ? input["extension"]
           : input["extension"].map((p) => ({
-              extension: !p.extension ? undefined : (p.extension as any),
+              extension: !p.extension ? undefined : p.extension,
               level: p["level"],
             })),
         level: input["level"],
@@ -72,7 +72,7 @@ export async function _getDeserialize(
     extension: !result.body["extension"]
       ? result.body["extension"]
       : result.body["extension"].map((p) => ({
-          extension: !p.extension ? undefined : (p.extension as any),
+          extension: !p.extension ? undefined : p.extension,
           level: p["level"],
         })),
     level: result.body["level"],

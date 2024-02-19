@@ -86,6 +86,7 @@ export function buildClient(model: RLCModel): File | undefined {
     credentialScopes,
     credentialKeyHeaderName,
     customHttpAuthHeaderName,
+    customHttpAuthSharedKeyPrefix,
     branded
   } = model.options;
   const credentialTypes = credentialScopes ? ["TokenCredential"] : [];
@@ -139,7 +140,9 @@ export function buildClient(model: RLCModel): File | undefined {
     ],
     returnType: clientInterfaceName,
     isDefaultExport: false,
-    statements: getClientFactoryBody(model, clientInterfaceName)
+    statements: getClientFactoryBody(model, clientInterfaceName, {
+      isMultipleCredential: credentialTypes.length > 1
+    })
   };
 
   if (!multiClient || !batch || batch.length === 1) {
@@ -183,6 +186,11 @@ export function buildClient(model: RLCModel): File | undefined {
     ]);
   }
 
+  const includeKeyCredentialHelper =
+    customHttpAuthHeaderName &&
+    customHttpAuthSharedKeyPrefix &&
+    credentialTypes.length > 1 &&
+    credentialTypes.includes("KeyCredential");
   if (
     addCredentials &&
     isSecurityInfoDefined(
@@ -193,7 +201,9 @@ export function buildClient(model: RLCModel): File | undefined {
   ) {
     clientFile.addImportDeclarations([
       {
-        namedImports: credentialTypes,
+        namedImports: credentialTypes.concat(
+          includeKeyCredentialHelper ? ["isKeyCredential"] : []
+        ),
         moduleSpecifier: getImportSpecifier(
           "coreAuth",
           model.importInfo.runtimeImports
@@ -226,9 +236,14 @@ function isSecurityInfoDefined(
   );
 }
 
+interface GetClientFactoryOptions {
+  isMultipleCredential: boolean;
+}
+
 export function getClientFactoryBody(
   model: RLCModel,
-  clientTypeName: string
+  clientTypeName: string,
+  options: GetClientFactoryOptions = { isMultipleCredential: false }
 ): string | WriterFunction | (string | WriterFunction | StatementStructures)[] {
   if (!model.options || !model.options.packageDetails || !model.urlInfo) {
     return "";
@@ -270,7 +285,7 @@ export function getClientFactoryBody(
   let apiVersionStatement: string = "";
   // Set the default api-version when we have a default AND its position is query
   if (
-    (model.apiVersionInfo?.definedPosition === "query") &&
+    model.apiVersionInfo?.definedPosition === "query" &&
     !!model.apiVersionInfo?.defaultValue
   ) {
     apiVersionStatement = `options.apiVersion = options.apiVersion ?? "${model.apiVersionInfo?.defaultValue}"`;
@@ -351,7 +366,18 @@ export function getClientFactoryBody(
     model.options;
   let customHttpAuthStatement = "";
   if (customHttpAuthHeaderName && customHttpAuthSharedKeyPrefix) {
-    customHttpAuthStatement = `
+    if (options.isMultipleCredential) {
+      customHttpAuthStatement = `if (isKeyCredential(credentials)) {
+        client.pipeline.addPolicy({
+          name: "customKeyCredentialPolicy",
+          async sendRequest(request, next) {
+            request.headers.set("Authorization", "bearer " + credentials.key);
+            return next(request);
+          },
+        });
+      }`;
+    } else {
+      customHttpAuthStatement = `
       client.pipeline.addPolicy({
         name: "customKeyCredentialPolicy",
         async sendRequest(request, next) {
@@ -359,11 +385,13 @@ export function getClientFactoryBody(
           return next(request);
         }
       });`;
+    }
   }
 
   let apiVersionPolicyStatement = "";
   if (model.apiVersionInfo?.definedPosition !== "query") {
-    apiVersionPolicyStatement = "client.pipeline.removePolicy({name: 'ApiVersionPolicy'})";
+    apiVersionPolicyStatement =
+      "client.pipeline.removePolicy({name: 'ApiVersionPolicy'})";
   }
   let returnStatement = `return client;`;
 
