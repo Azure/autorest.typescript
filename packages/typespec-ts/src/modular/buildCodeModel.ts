@@ -1031,8 +1031,7 @@ function emitModel(
   }
   const effectiveName = getEffectiveSchemaType(context.program, type).name;
   const overridedModelName =
-    getClientNameOverride(context.program, type, "javascript") ??
-    getProjectedName(context.program, type, "client") ??
+    getClientNameOverride(context, type) ??
     getFriendlyName(context.program, type);
   const fullNamespaceName =
     getModelNamespaceName(context, type.namespace!)
