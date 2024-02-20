@@ -505,7 +505,7 @@ function getSchemaForModel(
   const program = dpgContext.program;
   const overridedModelName =
     getFriendlyName(program, model) ??
-    resolveEncodedName(program, model, "json");
+    resolveEncodedName(program, model, "application/json");
   const fullNamespaceName =
     overridedModelName ??
     getModelNamespaceName(dpgContext, model.namespace!)
@@ -654,7 +654,7 @@ function getSchemaForModel(
     };
   }
   for (const [propName, prop] of model.properties) {
-    const restApiName = resolveEncodedName(program, prop, "json");
+    const restApiName = resolveEncodedName(program, prop, "application/json");
     const name = `"${restApiName ?? propName}"`;
     if (!isSchemaProperty(program, prop)) {
       continue;
@@ -766,10 +766,10 @@ function applyIntrinsicDecorators(
     newTarget.description = docStr;
   }
 
-  const restApiName = resolveEncodedName(program, type, "json");
-  if (restApiName) {
-    newTarget.name = restApiName;
-  }
+  // const restApiName = resolveEncodedName(program, type, "application/json");
+  // if (restApiName) {
+  //   newTarget.name = restApiName;
+  // }
 
   const summaryStr = getSummary(program, type);
   if (isString && !target.summary && summaryStr) {

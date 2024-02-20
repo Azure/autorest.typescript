@@ -54,6 +54,7 @@ ${needAzureCore ? 'import "@azure-tools/typespec-azure-core";' : ""}
 using TypeSpec.Rest; 
 using TypeSpec.Http;
 using TypeSpec.Versioning;
+${needTCGC ? "using Azure.ClientGenerator.Core;" : ""}
 ${needAzureCore ? "using Azure.Core;" : ""}
 
 ${needNamespaces ? namespace : ""}

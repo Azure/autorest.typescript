@@ -242,14 +242,15 @@ export async function emitClientFactoryFromTypeSpec(
 export async function emitResponsesFromTypeSpec(
   tspContent: string,
   needAzureCore: boolean = false,
-  withRawContent: boolean = false
+  withRawContent: boolean = false,
+  needTCGC: boolean = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
     true,
     needAzureCore,
     false,
-    false,
+    needTCGC,
     withRawContent
   );
   const dpgContext = createDpgContextTestHelper(context.program);

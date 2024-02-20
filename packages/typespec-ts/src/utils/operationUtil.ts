@@ -159,7 +159,11 @@ export function getOperationGroupName(
 }
 
 export function getOperationName(program: Program, operation: Operation) {
-  const projectedOperationName = resolveEncodedName(program, operation, "json");
+  const projectedOperationName = resolveEncodedName(
+    program,
+    operation,
+    "application/json"
+  );
 
   return normalizeName(
     projectedOperationName ?? operation.name,
