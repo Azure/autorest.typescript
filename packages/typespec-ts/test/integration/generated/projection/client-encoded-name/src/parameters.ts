@@ -1,20 +1,21 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
 import {
-  JsonProjectedNameModel,
-  ClientProjectedNameModel,
-  LanguageProjectedNameModel,
-  JsonAndClientProjectedNameModel,
-  ModelWithClientProjectedName,
-  ModelWithLanguageProjectedName,
+  JsonEncodedNameModel,
+  ClientNameModel,
+  LanguageClientNameModel,
+  ClientNameAndJsonEncodedNameModel,
+  ModelWithClientClientName,
+  ModelWithLanguageClientName,
 } from "./models";
 
 export type OperationParameters = RequestParameters;
 
 export interface ParameterQueryParamProperties {
-  "default-name": string;
+  defaultName: string;
 }
 
 export interface ParameterQueryParam {
@@ -23,41 +24,51 @@ export interface ParameterQueryParam {
 
 export type ParameterParameters = ParameterQueryParam & RequestParameters;
 
+export interface HeaderHeaders {
+  "default-name": string;
+}
+
+export interface HeaderHeaderParam {
+  headers: RawHttpHeadersInput & HeaderHeaders;
+}
+
+export type HeaderParameters = HeaderHeaderParam & RequestParameters;
+
 export interface PropertyJsonBodyParam {
-  body?: JsonProjectedNameModel;
+  body?: JsonEncodedNameModel;
 }
 
 export type PropertyJsonParameters = PropertyJsonBodyParam & RequestParameters;
 
 export interface PropertyClientBodyParam {
-  body?: ClientProjectedNameModel;
+  body?: ClientNameModel;
 }
 
 export type PropertyClientParameters = PropertyClientBodyParam &
   RequestParameters;
 
 export interface PropertyLanguageBodyParam {
-  body?: LanguageProjectedNameModel;
+  body?: LanguageClientNameModel;
 }
 
 export type PropertyLanguageParameters = PropertyLanguageBodyParam &
   RequestParameters;
 
 export interface PropertyJsonAndClientBodyParam {
-  body?: JsonAndClientProjectedNameModel;
+  body?: ClientNameAndJsonEncodedNameModel;
 }
 
 export type PropertyJsonAndClientParameters = PropertyJsonAndClientBodyParam &
   RequestParameters;
 
 export interface ModelClientBodyParam {
-  body?: ModelWithClientProjectedName;
+  body?: ModelWithClientClientName;
 }
 
 export type ModelClientParameters = ModelClientBodyParam & RequestParameters;
 
 export interface ModelLanguageBodyParam {
-  body?: ModelWithLanguageProjectedName;
+  body?: ModelWithLanguageClientName;
 }
 
 export type ModelLanguageParameters = ModelLanguageBodyParam &

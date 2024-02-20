@@ -8,8 +8,8 @@ options:
     addCredentials: false
     azureSdkForJs: false
     isTypeSpecTest: true
-    title: ProjectionClient
+    title: ClientEncodedNameClient
     enableOperationGroup: true
     packageDetails:
-      name: "@msinternal/projection"
-      description: "Projection Test Service"
+      name: "@msinternal/client-encoded-name"
+      description: "Client Encoded Name Test Service"

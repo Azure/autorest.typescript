@@ -1,32 +1,32 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export interface JsonProjectedNameModel {
+export interface JsonEncodedNameModel {
   /** Pass in true */
   wireName: boolean;
 }
 
-export interface ClientProjectedNameModel {
+export interface ClientNameModel {
   /** Pass in true */
   defaultName: boolean;
 }
 
-export interface LanguageProjectedNameModel {
+export interface LanguageClientNameModel {
   /** Pass in true */
   defaultName: boolean;
 }
 
-export interface JsonAndClientProjectedNameModel {
+export interface ClientNameAndJsonEncodedNameModel {
   /** Pass in true */
   wireName: boolean;
 }
 
-export interface ModelWithClientProjectedName {
+export interface ModelWithClientClientName {
   /** Pass in true */
   defaultName: boolean;
 }
 
-export interface ModelWithLanguageProjectedName {
+export interface ModelWithLanguageClientName {
   /** Pass in true */
   defaultName: boolean;
 }
