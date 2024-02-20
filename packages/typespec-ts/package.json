@@ -93,7 +93,7 @@
   "dependencies": {
     "prettier": "^3.1.0",
     "tslib": "^2.3.1",
-    "@azure-tools/rlc-common": "workspace:^0.23.0",
+    "@azure-tools/rlc-common": "^0.23.0-alpha.20240218.1",
     "ts-morph": "^15.1.0",
     "fs-extra": "^11.1.0"
   },
