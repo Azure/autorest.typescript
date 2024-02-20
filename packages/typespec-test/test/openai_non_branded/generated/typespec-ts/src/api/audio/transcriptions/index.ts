@@ -13,6 +13,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  uint8ArrayToString,
   createRestError,
 } from "@typespec/ts-http-runtime";
 import { AudioTranscriptionsCreateOptions } from "../../../models/options.js";
@@ -31,7 +32,7 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        file: audio["file"],
+        file: uint8ArrayToString(audio["file"], "base64"),
         model: audio["model"],
         prompt: audio["prompt"],
         response_format: audio["responseFormat"],
