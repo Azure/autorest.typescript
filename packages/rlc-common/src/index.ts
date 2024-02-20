@@ -16,6 +16,7 @@ export * from "./buildParameterTypes.js";
 export * from "./buildIsUnexpectedHelper.js";
 export * from "./buildTopLevelIndexFile.js";
 export * from "./buildIndexFile.js";
+export * from "./buildVersionedIndex.js";
 export * from "./buildPaginateHelper.js";
 export * from "./buildPollingHelper.js";
 export * from "./test/buildKarmaConfig.js";

@@ -77,7 +77,8 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
     enableOperationGroup: { type: "boolean", nullable: true },
     enableModelNamespace: { type: "boolean", nullable: true },
     hierarchyClient: { type: "boolean", nullable: true },
-    branded: { type: "boolean", nullable: true, default: true }
+    branded: { type: "boolean", nullable: true, default: true },
+    experimental: { type: "boolean", nullable: true, default: false }
   },
   required: []
 };

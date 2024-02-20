@@ -33,7 +33,7 @@ export function transformRLCOptions(
     emitterOptions,
     dpgContext.generationPathDetail?.rootDir ?? ""
   );
-  const batch = getRLCClients(dpgContext);
+  const batch = getRLCClients(dpgContext.program);
   options.batch = batch;
   return options;
 }
@@ -175,7 +175,7 @@ function getHierarchyClient(emitterOptions: RLCOptions) {
 }
 
 function detectIfNameConflicts(dpgContext: SdkContext) {
-  const clients = getRLCClients(dpgContext);
+  const clients = getRLCClients(dpgContext.program);
   const program = dpgContext.program;
   for (const client of clients) {
     // only consider it's conflict when there are conflicts in the same client

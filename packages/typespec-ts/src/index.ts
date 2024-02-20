@@ -1,7 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Program, EmitContext } from "@typespec/compiler";
+import {
+  Program,
+  EmitContext,
+  listServices,
+  Namespace,
+  ProjectionApplication,
+  getService,
+  projectProgram,
+  Service
+} from "@typespec/compiler";
 import * as fsextra from "fs-extra";
 import { existsSync } from "fs";
 import {
@@ -30,7 +39,8 @@ import {
   RLCOptions,
   hasUnexpectedHelper,
   RLCModel,
-  buildSamples
+  buildSamples,
+  buildVersionedIndexFile
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
@@ -59,10 +69,79 @@ import {
   buildPagingTypes,
   buildPagingHelpers as buildModularPagingHelpers
 } from "./modular/buildPagingFiles.js";
+import { buildVersionProjections } from "@typespec/versioning";
 
 export * from "./lib.js";
 
+type ProjectedVersions = Record<string, { service: Service; program: Program }>;
+
+function projectVersions(context: EmitContext): ProjectedVersions {
+  let program = context.program;
+  const services = listServices(program);
+  const projectedVersions: ProjectedVersions = {};
+
+  if (services.length === 0) {
+    services.push({ type: program.getGlobalNamespaceType() });
+  }
+
+  for (const service of services) {
+    const commonProjections: ProjectionApplication[] = [
+      {
+        projectionName: "target",
+        arguments: ["json"]
+      }
+    ];
+    const originalProgram = program;
+    const versions = buildVersionProjections(program, service.type);
+    for (const record of versions) {
+      const projectedProgram = (program = projectProgram(originalProgram, [
+        ...commonProjections,
+        ...record.projections
+      ]));
+      const projectedServiceNs: Namespace =
+        projectedProgram.projector.projectedTypes.get(
+          service.type
+        ) as Namespace;
+
+      const currentVersion = record.version ?? "default";
+      if (projectedServiceNs === projectedProgram.getGlobalNamespaceType()) {
+        projectedVersions[currentVersion] = {
+          service: {
+            type: projectedProgram.getGlobalNamespaceType()
+          },
+          program
+        };
+      } else {
+        const svc = getService(program, projectedServiceNs);
+        if (svc) {
+          projectedVersions[currentVersion] = { service, program };
+        }
+      }
+    }
+  }
+
+  return projectedVersions;
+}
+
+async function isMultiVersion(
+  projectedVersions: ProjectedVersions,
+  options: RLCOptions
+) {
+  // TODO: Support multi-version for modular
+  return (
+    !options.isModularLibrary &&
+    options.experimental &&
+    Object.keys(projectedVersions).length > 1
+  );
+}
+
 export async function $onEmit(context: EmitContext) {
+  const projectedVersions = projectVersions(context);
+
+  if (projectedVersions === undefined) {
+    throw new Error("projectedVersions is undefined");
+  }
+
   /** Shared status */
   const program: Program = context.program;
   const emitterOptions: RLCOptions = context.options;
@@ -70,6 +149,7 @@ export async function $onEmit(context: EmitContext) {
     context,
     "@azure-tools/typespec-ts"
   ) as SdkContext;
+
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
@@ -125,34 +205,98 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateRLCSources() {
-    const clients = getRLCClients(dpgContext);
-    for (const client of clients) {
-      const rlcModels = await transformRLCModel(client, dpgContext);
-      rlcCodeModels.push(rlcModels);
-      serviceNameToRlcModelsMap.set(client.service.name, rlcModels);
-      needUnexpectedHelper.set(
-        getClientName(rlcModels),
-        hasUnexpectedHelper(rlcModels)
-      );
+    const multiVersion = await isMultiVersion(
+      projectedVersions,
+      emitterOptions
+    );
+    for (const version in projectedVersions) {
+      let currentVersion: string | undefined;
+      let versionedProgram = dpgContext.program;
 
-      await emitModels(rlcModels, program);
-      await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
-      await emitContentByBuilder(program, buildResponseTypes, rlcModels);
-      await emitContentByBuilder(program, buildClient, rlcModels);
-      await emitContentByBuilder(program, buildParameterTypes, rlcModels);
-      await emitContentByBuilder(program, buildIsUnexpectedHelper, rlcModels);
-      await emitContentByBuilder(program, buildIndexFile, rlcModels);
-      await emitContentByBuilder(program, buildLogger, rlcModels);
-      await emitContentByBuilder(program, buildTopLevelIndex, rlcModels);
-      await emitContentByBuilder(program, buildRLCPaginateHelper, rlcModels);
-      await emitContentByBuilder(program, buildPollingHelper, rlcModels);
-      await emitContentByBuilder(program, buildSerializeHelper, rlcModels);
-      await emitContentByBuilder(
-        program,
-        buildSamples,
-        rlcModels,
-        dpgContext.generationPathDetail?.metadataDir
-      );
+      if (multiVersion) {
+        currentVersion = version;
+        versionedProgram = projectedVersions[currentVersion]!.program;
+      }
+
+      const clients = getRLCClients(versionedProgram);
+      for (const client of clients) {
+        const rlcModels = await transformRLCModel(
+          client,
+          { ...dpgContext, program: versionedProgram },
+          currentVersion
+        );
+        rlcCodeModels.push(rlcModels);
+        serviceNameToRlcModelsMap.set(client.service.name, rlcModels);
+        needUnexpectedHelper.set(
+          getClientName(rlcModels),
+          hasUnexpectedHelper(rlcModels)
+        );
+
+        await emitModels(rlcModels, versionedProgram);
+        await emitContentByBuilder(
+          versionedProgram,
+          buildClientDefinitions,
+          rlcModels
+        );
+        await emitContentByBuilder(
+          versionedProgram,
+          buildResponseTypes,
+          rlcModels
+        );
+        await emitContentByBuilder(versionedProgram, buildClient, rlcModels);
+        await emitContentByBuilder(
+          versionedProgram,
+          buildParameterTypes,
+          rlcModels
+        );
+        await emitContentByBuilder(
+          versionedProgram,
+          buildIsUnexpectedHelper,
+          rlcModels
+        );
+        await emitContentByBuilder(versionedProgram, buildIndexFile, rlcModels);
+        await emitContentByBuilder(versionedProgram, buildLogger, rlcModels);
+        await emitContentByBuilder(
+          versionedProgram,
+          buildTopLevelIndex,
+          rlcModels
+        );
+        await emitContentByBuilder(
+          versionedProgram,
+          buildRLCPaginateHelper,
+          rlcModels
+        );
+        await emitContentByBuilder(
+          versionedProgram,
+          buildPollingHelper,
+          rlcModels
+        );
+        await emitContentByBuilder(
+          versionedProgram,
+          buildSerializeHelper,
+          rlcModels
+        );
+        await emitContentByBuilder(versionedProgram, buildSamples, rlcModels, {
+          emitterOutputDir: dpgContext.generationPathDetail?.metadataDir
+        });
+      }
+
+      if (!multiVersion) {
+        break;
+      }
+    }
+
+    if (multiVersion) {
+      const client = getRLCClients(dpgContext.program)[0];
+      if (!client) {
+        throw new Error("No client found in the program");
+      }
+
+      const rlcModels = await transformRLCModel(client, dpgContext);
+      const versions = Object.keys(projectedVersions);
+      await emitContentByBuilder(program, buildVersionedIndexFile, rlcModels, {
+        versions
+      });
     }
   }
 
@@ -263,12 +407,10 @@ export async function $onEmit(context: EmitContext) {
         commonBuilders.push(buildTsConfig);
       }
       // build metadata relevant files
-      await emitContentByBuilder(
-        program,
-        commonBuilders,
-        rlcClient,
-        dpgContext.generationPathDetail?.metadataDir
-      );
+      await emitContentByBuilder(program, commonBuilders, rlcClient, {
+        emitterOutputDir: dpgContext.generationPathDetail?.metadataDir,
+        versions: []
+      });
 
       if (option.isModularLibrary) {
         const project = new Project();
@@ -310,7 +452,7 @@ export async function $onEmit(context: EmitContext) {
           buildSampleTest
         ],
         rlcClient,
-        dpgContext.generationPathDetail?.metadataDir
+        { emitterOutputDir: dpgContext.generationPathDetail?.metadataDir }
       );
     }
   }

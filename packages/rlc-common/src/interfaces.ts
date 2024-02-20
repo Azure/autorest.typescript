@@ -108,7 +108,12 @@ export interface ApiVersionInfo {
   isCrossedVersion?: boolean;
 }
 
-export type ApiVersionPosition = "path" | "query" | "baseurl" | "duplicate" | "none";
+export type ApiVersionPosition =
+  | "path"
+  | "query"
+  | "baseurl"
+  | "duplicate"
+  | "none";
 export interface HelperFunctionDetails {
   hasPaging?: boolean;
   hasLongRunning?: boolean;
@@ -225,6 +230,10 @@ export interface RLCOptions {
   branded?: boolean;
   enableModelNamespace?: boolean;
   hierarchyClient?: boolean;
+  /**
+   * Flag to enable experimental codegen features
+   */
+  experimental?: boolean;
 }
 
 export interface ServiceInfo {
@@ -352,8 +361,14 @@ export interface ResponseMetadata {
 export type ResponseHeaderSchema = Schema;
 export type ResponseBodySchema = Schema;
 
+export type ContentBuilderOptions = VersionedBuilderOptions;
+
+export interface VersionedBuilderOptions {
+  versions?: string[];
+}
+
 export type ContentBuilder = {
-  (model: RLCModel): File | File[] | undefined;
+  (model: RLCModel, options?: ContentBuilderOptions): File | File[] | undefined;
 };
 
 export type SampleParameterPosition = "client" | "path" | "method";

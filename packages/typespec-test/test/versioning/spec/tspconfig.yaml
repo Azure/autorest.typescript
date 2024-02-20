@@ -1,0 +1,14 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    azureSdkForJs: false
+    isModularLibrary: false
+    experimental: true
+    generateTest: false
+    generateSample: false
+    hierarchyClient: false
+    "emitter-output-dir": "{project-root}/../generated/typespec-ts"
+    packageDetails:
+      name: "@msinternal/versioning"
+      description: "Versioning Test"
