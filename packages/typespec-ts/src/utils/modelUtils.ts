@@ -504,7 +504,8 @@ function getSchemaForModel(
 
   const program = dpgContext.program;
   const overridedModelName =
-    getFriendlyName(program, model) ?? resolveEncodedName(program, model, "json");
+    getFriendlyName(program, model) ??
+    resolveEncodedName(program, model, "json");
   const fullNamespaceName =
     overridedModelName ??
     getModelNamespaceName(dpgContext, model.namespace!)

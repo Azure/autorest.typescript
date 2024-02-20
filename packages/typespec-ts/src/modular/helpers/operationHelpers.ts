@@ -512,7 +512,7 @@ function buildBodyParameter(
   if (bodyParameter) {
     return `\nbody: ${bodyParameter.clientName},`;
   }
-  
+
   return "";
 }
 
