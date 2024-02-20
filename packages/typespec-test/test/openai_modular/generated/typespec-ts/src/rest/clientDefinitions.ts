@@ -46,7 +46,7 @@ export interface GetAudioTranscriptionAsPlainText {
    * written language corresponding to the language it was spoken in.
    */
   post(
-    options?: GetAudioTranscriptionAsPlainTextParameters,
+    options: GetAudioTranscriptionAsPlainTextParameters,
   ): StreamableMethod<
     | GetAudioTranscriptionAsPlainText200Response
     | GetAudioTranscriptionAsPlainTextDefaultResponse
@@ -66,7 +66,7 @@ export interface GetAudioTranscriptionAsPlainText {
 export interface GetAudioTranslationAsPlainText {
   /** Gets English language transcribed text and associated metadata from provided spoken audio data. */
   post(
-    options?: GetAudioTranslationAsPlainTextParameters,
+    options: GetAudioTranslationAsPlainTextParameters,
   ): StreamableMethod<
     | GetAudioTranslationAsPlainText200Response
     | GetAudioTranslationAsPlainTextDefaultResponse

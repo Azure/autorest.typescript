@@ -73,6 +73,7 @@ export function _getAudioTranscriptionAsPlainTextSend(
     .path("/deployments/{deploymentId}/audio/transcriptions", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
         file: uint8ArrayToString(body["file"], "base64"),
         filename: body["filename"],
@@ -215,6 +216,7 @@ export function _getAudioTranslationAsPlainTextSend(
     .path("/deployments/{deploymentId}/audio/translations", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
+      contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
         file: uint8ArrayToString(body["file"], "base64"),
         filename: body["filename"],

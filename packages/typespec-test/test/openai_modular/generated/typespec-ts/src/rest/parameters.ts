@@ -16,8 +16,15 @@ export interface GetAudioTranscriptionAsPlainTextBodyParam {
   body?: AudioTranscriptionOptions;
 }
 
+export interface GetAudioTranscriptionAsPlainTextMediaTypesParam {
+  /** The content type for the operation. Always multipart/form-data for this operation. */
+  contentType: "multipart/form-data";
+}
+
 export type GetAudioTranscriptionAsPlainTextParameters =
-  GetAudioTranscriptionAsPlainTextBodyParam & RequestParameters;
+  GetAudioTranscriptionAsPlainTextMediaTypesParam &
+    GetAudioTranscriptionAsPlainTextBodyParam &
+    RequestParameters;
 
 export interface GetAudioTranscriptionAsResponseObjectBodyParam {
   body?: AudioTranscriptionOptions;
@@ -37,8 +44,15 @@ export interface GetAudioTranslationAsPlainTextBodyParam {
   body?: AudioTranslationOptions;
 }
 
+export interface GetAudioTranslationAsPlainTextMediaTypesParam {
+  /** The content type for the operation. Always multipart/form-data for this operation. */
+  contentType: "multipart/form-data";
+}
+
 export type GetAudioTranslationAsPlainTextParameters =
-  GetAudioTranslationAsPlainTextBodyParam & RequestParameters;
+  GetAudioTranslationAsPlainTextMediaTypesParam &
+    GetAudioTranslationAsPlainTextBodyParam &
+    RequestParameters;
 
 export interface GetAudioTranslationAsResponseObjectBodyParam {
   body?: AudioTranslationOptions;
