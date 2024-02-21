@@ -340,12 +340,6 @@ function generateRLCIndex(file: SourceFile, model: RLCModel) {
 }
 
 function reExportFileHelperFromCore(file: SourceFile, model: RLCModel) {
-  // TODO: remember to remove this when non-branded core has exported file helper
-  // https://github.com/Azure/autorest.typescript/issues/2299
-  const branded = model.options?.branded ?? true;
-  if (branded === false) {
-    return;
-  }
   if (needsFilePolyfil(model)) {
     file.addExportDeclarations([
       {
