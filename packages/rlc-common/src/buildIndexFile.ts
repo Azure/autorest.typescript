@@ -5,7 +5,7 @@ import { Project, SourceFile } from "ts-morph";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import {
   hasCsvCollection,
-  hasFileTypeIncluded,
+  needsFilePolyfil,
   hasInputModels,
   hasMultiCollection,
   hasOutputModels,
@@ -340,7 +340,7 @@ function generateRLCIndex(file: SourceFile, model: RLCModel) {
 }
 
 function reExportFileHelperFromCore(file: SourceFile, model: RLCModel) {
-  if (hasFileTypeIncluded(model)) {
+  if (needsFilePolyfil(model)) {
     file.addExportDeclarations([
       {
         moduleSpecifier: getImportSpecifier(

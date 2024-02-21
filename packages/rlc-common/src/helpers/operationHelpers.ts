@@ -123,9 +123,9 @@ function hasSchemaContextObject(model: RLCModel, schemaUsage: SchemaContext[]) {
   return objectSchemas.length > 0;
 }
 
-export function hasFileTypeIncluded(model: RLCModel) {
+export function needsFilePolyfil(model: RLCModel) {
   return model.parameters?.some(
     (p: OperationParameter) =>
-      p.parameters?.some((p) => p.body?.hasFileTypeIncluded)
+      p.parameters?.some((p) => p.body?.needsFilePolyfil)
   );
 }
