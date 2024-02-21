@@ -4,6 +4,8 @@
 
 ```ts
 
+/// <reference types="node" />
+
 import { Client } from '@typespec/ts-http-runtime';
 import { ClientOptions } from '@typespec/ts-http-runtime';
 import { HttpResponse } from '@typespec/ts-http-runtime';
@@ -100,7 +102,7 @@ export interface TodoItemsAttachmentsCreateFileAttachment404Response extends Htt
 export interface TodoItemsAttachmentsCreateFileAttachmentBodyParam {
     // (undocumented)
     body?: {
-        contents: string;
+        contents: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
     };
 }
 
@@ -190,7 +192,7 @@ export interface TodoItemsCreateFormBodyParam {
     // (undocumented)
     body?: {
         item: TodoItem;
-        attachments?: (TodoUrlAttachment | string)[];
+        attachments?: (TodoUrlAttachment | string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File)[];
     };
 }
 
