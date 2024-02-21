@@ -26,6 +26,8 @@ import {
   predictDefaultValue,
   getSerializeTypeName,
   BINARY_AND_FILE_TYPE_UNION
+  enrichBinaryTypeInBody,
+  getSerializeTypeName
 } from "../utils/modelUtils.js";
 
 import {
@@ -333,7 +335,11 @@ function getRequestBodyType(
     ?.filter((h) => h.name === "contentType")
     .map((h) => h.param.type);
   const hasMergeAndPatchType = isMediaTypeJsonMergePatch(contentTypes ?? []);
-  if (hasMergeAndPatchType && (bodySchema as ObjectSchema).properties) {
+  if (
+    hasMergeAndPatchType &&
+    Boolean(bodySchema.name) &&
+    (bodySchema as ObjectSchema).properties
+  ) {
     typeName = `${typeName}ResourceMergeAndPatch`;
   }
   return typeName;
