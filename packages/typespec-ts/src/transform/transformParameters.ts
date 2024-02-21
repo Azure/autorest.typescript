@@ -288,7 +288,7 @@ function transformRequestBody(
 
   return {
     isPartialBody: false,
-    hasFileTypeIncluded: isMultpartFileUpload(),
+    needsFilePolyfil: isMultpartFileUpload(),
     body: [
       {
         properties: schema.properties,
