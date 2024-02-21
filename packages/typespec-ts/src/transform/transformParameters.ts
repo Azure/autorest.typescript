@@ -26,8 +26,6 @@ import {
   predictDefaultValue,
   getSerializeTypeName,
   BINARY_AND_FILE_TYPE_UNION
-  enrichBinaryTypeInBody,
-  getSerializeTypeName
 } from "../utils/modelUtils.js";
 
 import {

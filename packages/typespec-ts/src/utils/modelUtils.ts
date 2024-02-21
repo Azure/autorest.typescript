@@ -158,7 +158,7 @@ export function getSchemaForType(
   }
 
   if (type.kind === "ModelProperty") {
-    return getSchemaForType(dpgContext, type.type, usage, needRef, type);
+    return getSchemaForType(dpgContext, type.type, options);
   }
 
   if (type.kind === "Model") {
