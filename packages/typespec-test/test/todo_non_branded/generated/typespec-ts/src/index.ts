@@ -8,5 +8,11 @@ export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./models";
 export * from "./outputModels";
+export {
+  createFile,
+  createFileFromStream,
+  type CreateFileOptions,
+  type CreateFileFromStreamOptions,
+} from "@typespec/ts-http-runtime";
 
 export default TodoClient;

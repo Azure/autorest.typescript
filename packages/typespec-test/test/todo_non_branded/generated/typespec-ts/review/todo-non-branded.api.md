@@ -8,6 +8,10 @@
 
 import { Client } from '@typespec/ts-http-runtime';
 import { ClientOptions } from '@typespec/ts-http-runtime';
+import { createFile } from '@typespec/ts-http-runtime';
+import { createFileFromStream } from '@typespec/ts-http-runtime';
+import { CreateFileFromStreamOptions } from '@typespec/ts-http-runtime';
+import { CreateFileOptions } from '@typespec/ts-http-runtime';
 import { HttpResponse } from '@typespec/ts-http-runtime';
 import { KeyCredential } from '@typespec/ts-http-runtime';
 import { RequestParameters } from '@typespec/ts-http-runtime';
@@ -16,6 +20,14 @@ import { StreamableMethod } from '@typespec/ts-http-runtime';
 // @public
 function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): TodoClient;
 export default createClient;
+
+export { createFile }
+
+export { createFileFromStream }
+
+export { CreateFileFromStreamOptions }
+
+export { CreateFileOptions }
 
 // @public (undocumented)
 export interface ErrorModelOutput {
