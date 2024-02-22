@@ -9,7 +9,10 @@ export interface CreateTranscriptionRequest {
    * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
    * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
    */
-  file: string;
+  file:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
     | NodeJS.ReadableStream
     | File;
   /** ID of the model to use. Only `whisper-1` is currently available. */
@@ -47,7 +50,10 @@ export interface CreateTranslationRequest {
    * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
    * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
    */
-  file: string;
+  file:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
     | NodeJS.ReadableStream
     | File;
   /** ID of the model to use. Only `whisper-1` is currently available. */
@@ -431,7 +437,10 @@ export interface CreateFileRequest {
    * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
    * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
    */
-  file: string;
+  file:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
     | NodeJS.ReadableStream
     | File;
   /**
@@ -574,7 +583,10 @@ export interface CreateImageEditRequest {
    * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
    * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
    */
-  image: string;
+  image:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
     | NodeJS.ReadableStream
     | File;
   /**
@@ -585,7 +597,10 @@ export interface CreateImageEditRequest {
    * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
    * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
    */
-  mask?: string;
+  mask?:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
     | NodeJS.ReadableStream
     | File;
   /** The number of images to generate. Must be between 1 and 10. */
@@ -605,7 +620,10 @@ export interface CreateImageVariationRequest {
    * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
    * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
    */
-  image: string;
+  image:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
     | NodeJS.ReadableStream
     | File;
   /** The number of images to generate. Must be between 1 and 10. */
