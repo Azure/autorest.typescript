@@ -5,11 +5,7 @@ export interface CreateTranscriptionRequest {
    * The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4,
    * mpeg, mpga, m4a, ogg, wav, or webm.
    */
-  file:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
+  file: string;
   /** ID of the model to use. Only `whisper-1` is currently available. */
   model: string | "whisper-1";
   /**
@@ -42,11 +38,7 @@ export interface CreateTranslationRequest {
    * The audio file object (not file name) to translate, in one of these formats: flac, mp3, mp4,
    * mpeg, mpga, m4a, ogg, wav, or webm.
    */
-  file:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
+  file: string;
   /** ID of the model to use. Only `whisper-1` is currently available. */
   model: string | "whisper-1";
   /**
@@ -425,11 +417,7 @@ export interface CreateFileRequest {
    *
    * If the `purpose` is set to "fine-tune", the file will be used for fine-tuning.
    */
-  file:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
+  file: string;
   /**
    * The intended purpose of the uploaded documents. Use "fine-tune" for
    * [fine-tuning](/docs/api-reference/fine-tuning). This allows us to validate the format of the
@@ -567,21 +555,13 @@ export interface CreateImageEditRequest {
    * The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not
    * provided, image must have transparency, which will be used as the mask.
    */
-  image:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
+  image: string;
   /**
    * An additional image whose fully transparent areas (e.g. where alpha is zero) indicate where
    * `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions
    * as `image`.
    */
-  mask?:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
+  mask?: string;
   /** The number of images to generate. Must be between 1 and 10. */
   n?: number | null;
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
@@ -596,11 +576,7 @@ export interface CreateImageVariationRequest {
    * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB,
    * and square.
    */
-  image:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
+  image: string;
   /** The number of images to generate. Must be between 1 and 10. */
   n?: number | null;
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */

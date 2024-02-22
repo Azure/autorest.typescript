@@ -12,6 +12,20 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
+export interface AudioSpeechOptions {
+    input: string;
+    responseFormat?: AudioSpeechOutputFormat;
+    speed?: number;
+    voice: AudioSpeechVoice;
+}
+
+// @public
+export type AudioSpeechOutputFormat = string;
+
+// @public
+export type AudioSpeechVoice = string;
+
+// @public
 export type AudioTaskLabel = string;
 
 // @public
@@ -651,7 +665,7 @@ export interface Embeddings {
 // @public
 export interface EmbeddingsOptions {
     input: string[];
-    inputType: string;
+    inputType?: string;
     model?: string;
     user?: string;
 }
@@ -684,7 +698,12 @@ export interface FunctionName {
 }
 
 // @public (undocumented)
+export interface GetAudioSpeechOptions extends OperationOptions {
+}
+
+// @public (undocumented)
 export interface GetAudioTranscriptionAsPlainTextOptions extends OperationOptions {
+    contentType?: string;
 }
 
 // @public (undocumented)
@@ -694,6 +713,7 @@ export interface GetAudioTranscriptionAsResponseObjectOptions extends OperationO
 
 // @public (undocumented)
 export interface GetAudioTranslationAsPlainTextOptions extends OperationOptions {
+    contentType?: string;
 }
 
 // @public (undocumented)
@@ -845,6 +865,7 @@ export type OnYourDataVectorizationSourceUnion = OnYourDataEndpointVectorization
 // @public (undocumented)
 export class OpenAIClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions);
+    getAudioSpeech(deploymentId: string, body: AudioSpeechOptions, options?: GetAudioSpeechOptions): Promise<Uint8Array>;
     getAudioTranscriptionAsPlainText(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsPlainTextOptions): Promise<string>;
     getAudioTranscriptionAsResponseObject(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsResponseObjectOptions): Promise<AudioTranscription>;
     getAudioTranslationAsPlainText(deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsPlainTextOptions): Promise<string>;

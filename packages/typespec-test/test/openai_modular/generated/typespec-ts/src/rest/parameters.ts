@@ -8,16 +8,23 @@ import {
   CompletionsOptions,
   ChatCompletionsOptions,
   ImageGenerationOptions,
-  EmbeddingsOptions,
   AudioSpeechOptions,
+  EmbeddingsOptions,
 } from "./models.js";
 
 export interface GetAudioTranscriptionAsPlainTextBodyParam {
   body?: AudioTranscriptionOptions;
 }
 
+export interface GetAudioTranscriptionAsPlainTextMediaTypesParam {
+  /** The content type for the operation. Always multipart/form-data for this operation. */
+  contentType: "multipart/form-data";
+}
+
 export type GetAudioTranscriptionAsPlainTextParameters =
-  GetAudioTranscriptionAsPlainTextBodyParam & RequestParameters;
+  GetAudioTranscriptionAsPlainTextMediaTypesParam &
+    GetAudioTranscriptionAsPlainTextBodyParam &
+    RequestParameters;
 
 export interface GetAudioTranscriptionAsResponseObjectBodyParam {
   body?: AudioTranscriptionOptions;
@@ -37,8 +44,15 @@ export interface GetAudioTranslationAsPlainTextBodyParam {
   body?: AudioTranslationOptions;
 }
 
+export interface GetAudioTranslationAsPlainTextMediaTypesParam {
+  /** The content type for the operation. Always multipart/form-data for this operation. */
+  contentType: "multipart/form-data";
+}
+
 export type GetAudioTranslationAsPlainTextParameters =
-  GetAudioTranslationAsPlainTextBodyParam & RequestParameters;
+  GetAudioTranslationAsPlainTextMediaTypesParam &
+    GetAudioTranslationAsPlainTextBodyParam &
+    RequestParameters;
 
 export interface GetAudioTranslationAsResponseObjectBodyParam {
   body?: AudioTranslationOptions;
@@ -75,18 +89,18 @@ export interface GetImageGenerationsBodyParam {
 export type GetImageGenerationsParameters = GetImageGenerationsBodyParam &
   RequestParameters;
 
-export interface GetEmbeddingsBodyParam {
-  body?: EmbeddingsOptions;
-}
-
-export type GetEmbeddingsParameters = GetEmbeddingsBodyParam &
-  RequestParameters;
-
 export interface GetAudioSpeechBodyParam {
   body?: AudioSpeechOptions;
 }
 
 export type GetAudioSpeechParameters = GetAudioSpeechBodyParam &
+  RequestParameters;
+
+export interface GetEmbeddingsBodyParam {
+  body?: EmbeddingsOptions;
+}
+
+export type GetEmbeddingsParameters = GetEmbeddingsBodyParam &
   RequestParameters;
 export type GetAzureBatchImageGenerationOperationStatusParameters =
   RequestParameters;
