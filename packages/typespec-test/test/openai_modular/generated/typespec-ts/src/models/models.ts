@@ -1616,6 +1616,25 @@ export interface ImageGenerationData {
   revisedPrompt?: string;
 }
 
+/** A representation of the request options that control the behavior of a text-to-speech operation. */
+export interface AudioSpeechOptions {
+  /** The text to generate audio for. The maximum length is 4096 characters. */
+  input: string;
+  /** The voice to use for text-to-speech. */
+  voice: AudioSpeechVoice;
+  /** The audio output format for the spoken text. By default, the MP3 format will be used. */
+  responseFormat?: AudioSpeechOutputFormat;
+  /** The speed of speech for generated audio. Values are valid in the range from 0.25 to 4.0, with 1.0 the default and higher values corresponding to faster speech. */
+  speed?: number;
+}
+
+/** The available voices for text-to-speech. */
+/** "alloy", "echo", "fable", "onyx", "nova", "shimmer" */
+export type AudioSpeechVoice = string;
+/** The supported audio output formats for text-to-speech. */
+/** "mp3", "opus", "aac", "flac" */
+export type AudioSpeechOutputFormat = string;
+
 /**
  * The configuration information for an embeddings request.
  * Embeddings measure the relatedness of text strings and are commonly used for search, clustering,
@@ -1641,8 +1660,8 @@ export interface EmbeddingsOptions {
    * as we have observed inferior results when newlines are present.
    */
   input: string[];
-  /** type of embedding search to use */
-  inputType: string;
+  /** When using Azure OpenAI, specifies the input type to use for embedding search. */
+  inputType?: string;
 }
 
 /**

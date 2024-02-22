@@ -14,6 +14,7 @@ import {
   ChatCompletions,
   ImageGenerationOptions,
   ImageGenerations,
+  AudioSpeechOptions,
   EmbeddingsOptions,
   Embeddings,
 } from "./models/models.js";
@@ -25,6 +26,7 @@ import {
   GetCompletionsOptions,
   GetChatCompletionsOptions,
   GetImageGenerationsOptions,
+  GetAudioSpeechOptions,
   GetEmbeddingsOptions,
 } from "./models/options.js";
 import {
@@ -38,6 +40,7 @@ import {
   getCompletions,
   getChatCompletions,
   getImageGenerations,
+  getAudioSpeech,
   getEmbeddings,
 } from "./api/index.js";
 
@@ -156,6 +159,15 @@ export class OpenAIClient {
     options: GetImageGenerationsOptions = { requestOptions: {} },
   ): Promise<ImageGenerations> {
     return getImageGenerations(this._client, deploymentId, body, options);
+  }
+
+  /** Generates text-to-speech audio from the input text. */
+  getAudioSpeech(
+    deploymentId: string,
+    body: AudioSpeechOptions,
+    options: GetAudioSpeechOptions = { requestOptions: {} },
+  ): Promise<Uint8Array> {
+    return getAudioSpeech(this._client, deploymentId, body, options);
   }
 
   /** Return the embeddings for a given prompt. */

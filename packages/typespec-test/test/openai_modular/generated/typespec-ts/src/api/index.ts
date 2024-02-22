@@ -14,5 +14,6 @@ export {
   getCompletions,
   getChatCompletions,
   getImageGenerations,
+  getAudioSpeech,
   getEmbeddings,
 } from "./operations.js";
