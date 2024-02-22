@@ -31,11 +31,11 @@ import {
   Union,
   Type,
   IntrinsicType,
-  getProjectedName,
   isNullType,
   getEncode,
   isTemplateDeclarationOrInstance,
-  UsageFlags
+  UsageFlags,
+  resolveEncodedName
 } from "@typespec/compiler";
 import {
   getAuthentication,
@@ -977,7 +977,8 @@ function emitProperty(
   // const [clientName, jsonName] = getPropertyNames(context, property);
   const clientName = property.name;
   const jsonName =
-    getProjectedName(context.program, property, "json") ?? property.name;
+    resolveEncodedName(context.program, property, "application/json") ??
+    property.name;
 
   if (property.model) {
     getType(context, property.model, { usage });
@@ -1568,7 +1569,8 @@ function emitOperationGroups(
     const name =
       context.rlcOptions?.hierarchyClient ||
       context.rlcOptions?.enableOperationGroup
-        ? operationGroup.type.name
+        ? getClientNameOverride(context, operationGroup.type) ??
+          operationGroup.type.name
         : "";
     const hierarchies =
       context.rlcOptions?.hierarchyClient ||
