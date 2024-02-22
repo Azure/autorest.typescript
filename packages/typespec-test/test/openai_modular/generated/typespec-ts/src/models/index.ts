@@ -111,6 +111,9 @@ export {
   ImageGenerationStyle,
   ImageGenerations,
   ImageGenerationData,
+  AudioSpeechOptions,
+  AudioSpeechVoice,
+  AudioSpeechOutputFormat,
   EmbeddingsOptions,
   Embeddings,
   EmbeddingItem,
@@ -134,5 +137,6 @@ export {
   GetCompletionsOptions,
   GetChatCompletionsOptions,
   GetImageGenerationsOptions,
+  GetAudioSpeechOptions,
   GetEmbeddingsOptions,
 } from "./options.js";
