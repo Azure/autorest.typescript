@@ -72,7 +72,17 @@ export type TodoItemsCreateJsonParameters = TodoItemsCreateJsonMediaTypesParam &
   RequestParameters;
 
 export interface TodoItemsCreateFormBodyParam {
-  body?: { item: TodoItem; attachments?: (TodoUrlAttachment | string)[] };
+  body?: {
+    item: TodoItem;
+    attachments?: (
+      | TodoUrlAttachment
+      | string
+      | Uint8Array
+      | ReadableStream<Uint8Array>
+      | NodeJS.ReadableStream
+      | File
+    )[];
+  };
 }
 
 export interface TodoItemsCreateFormMediaTypesParam {
@@ -112,7 +122,14 @@ export type TodoItemsAttachmentsCreateUrlAttachmentParameters =
     RequestParameters;
 
 export interface TodoItemsAttachmentsCreateFileAttachmentBodyParam {
-  body?: { contents: string };
+  body?: {
+    contents:
+      | string
+      | Uint8Array
+      | ReadableStream<Uint8Array>
+      | NodeJS.ReadableStream
+      | File;
+  };
 }
 
 export interface TodoItemsAttachmentsCreateFileAttachmentMediaTypesParam {
