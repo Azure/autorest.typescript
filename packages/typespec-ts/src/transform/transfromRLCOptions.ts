@@ -45,12 +45,17 @@ function extractRLCOptions(
 ): RLCOptions {
   const program = dpgContext.program;
   const includeShortcuts = getIncludeShortcuts(emitterOptions);
+  const branded = getBranded(emitterOptions);
   const packageDetails = getPackageDetails(program, emitterOptions);
   const serviceInfo = getServiceInfo(program);
   const azureSdkForJs = getAzureSdkForJs(emitterOptions);
   const generateMetadata: undefined | boolean =
     getGenerateMetadata(emitterOptions);
-  const generateTest: undefined | boolean = getGenerateTest(emitterOptions);
+  const generateTest: undefined | boolean = getGenerateTest(
+    emitterOptions,
+    branded
+  );
+  const generateSample: undefined | boolean = getGenerateSample(emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
   const azureOutputDirectory = getAzureOutputDirectory(generationRootDir);
   const enableOperationGroup = getEnableOperationGroup(
@@ -65,11 +70,12 @@ function extractRLCOptions(
   return {
     ...emitterOptions,
     ...credentialInfo,
-    branded: getBranded(emitterOptions),
+    branded,
     includeShortcuts,
     packageDetails,
     generateMetadata,
     generateTest,
+    generateSample,
     azureSdkForJs,
     serviceInfo,
     azureOutputDirectory,
@@ -241,7 +247,13 @@ function getPackageDetails(
       packageDetails.scopeName = nameParts[0]?.replace("@", "");
     }
   }
-  return packageDetails;
+  return (
+    packageDetails ?? {
+      name: "@msinternal/unamedpackage",
+      nameWithoutScope: "unamedpackage",
+      version: "1.0.0-beta.1"
+    }
+  );
 }
 
 function getServiceInfo(program: Program): ServiceInfo {
@@ -269,14 +281,41 @@ function getGenerateMetadata(emitterOptions: RLCOptions) {
   return Boolean(emitterOptions.generateMetadata);
 }
 
-function getGenerateTest(emitterOptions: RLCOptions) {
+/**
+ * In azure scope, by default we generate test.
+ * @param emitterOptions
+ * @returns
+ */
+function getGenerateTest(emitterOptions: RLCOptions, branded: boolean) {
   if (
-    emitterOptions.generateTest === undefined ||
-    emitterOptions.generateTest === null
+    !branded &&
+    (emitterOptions.generateTest === undefined ||
+      emitterOptions.generateTest === null)
+  ) {
+    return undefined;
+  } else if (
+    branded &&
+    (emitterOptions.generateTest === undefined ||
+      emitterOptions.generateTest === null)
+  ) {
+    return true;
+  }
+  return Boolean(emitterOptions.generateTest);
+}
+
+/**
+ * In azure scope, by default we generate test.
+ * @param emitterOptions
+ * @returns
+ */
+function getGenerateSample(emitterOptions: RLCOptions) {
+  if (
+    emitterOptions.generateSample === undefined ||
+    emitterOptions.generateSample === null
   ) {
     return undefined;
   }
-  return Boolean(emitterOptions.generateTest);
+  return Boolean(emitterOptions.generateSample);
 }
 
 export function getCredentialInfo(

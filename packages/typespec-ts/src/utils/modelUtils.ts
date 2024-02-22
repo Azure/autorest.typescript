@@ -151,6 +151,11 @@ export function getSchemaForType(
     }
     return builtinType;
   }
+
+  if (type.kind === "ModelProperty") {
+    return getSchemaForType(dpgContext, type.type, usage, needRef, type);
+  }
+
   if (type.kind === "Model") {
     const schema = getSchemaForModel(dpgContext, type, usage, needRef) as any;
     if (isAnonymousObjectSchema(schema)) {
@@ -234,8 +239,12 @@ export function getEffectiveModelFromType(program: Program, type: Type): Type {
   }
   return type;
 }
-export function includeDerivedModel(model: Model): boolean {
+export function includeDerivedModel(
+  model: Model,
+  needRef: boolean = false
+): boolean {
   return (
+    !needRef &&
     !isTemplateDeclaration(model) &&
     (!model.templateMapper ||
       !model.templateMapper.args ||
@@ -590,10 +599,12 @@ function getSchemaForModel(
   }
   modelSchema.properties = {};
 
-  const derivedModels = model.derivedModels.filter(includeDerivedModel);
-
   // getSchemaOrRef on all children to push them into components.schemas
   const discriminator = getDiscriminator(program, model);
+  // should respect needRef for derived models unless there's a discriminator in base model
+  const derivedModels = model.derivedModels.filter((dm) => {
+    return includeDerivedModel(dm, discriminator ? false : needRef);
+  });
   if (derivedModels.length > 0) {
     modelSchema.children = {
       all: [],
