@@ -5,7 +5,7 @@ import { Project, SourceFile } from "ts-morph";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import {
   hasCsvCollection,
-  needsFilePolyfil,
+  needsFilePolyfil, 
   hasInputModels,
   hasMultiCollection,
   hasOutputModels,
