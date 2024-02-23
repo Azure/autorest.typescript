@@ -2,7 +2,7 @@ import { assert } from "chai";
 import ClientEncodedNameClientFactory, {
   ClientEncodedNameClient
 } from "./generated/projection/client-encoded-name/src/index.js";
-describe.only("ClientEncodedNameClient Rest Client", () => {
+describe("ClientEncodedNameClient Rest Client", () => {
   let client: ClientEncodedNameClient;
 
   beforeEach(() => {
@@ -21,7 +21,7 @@ describe.only("ClientEncodedNameClient Rest Client", () => {
         .post({
           body: { wireName: true }
         });
-      assert.strictEqual(result.status, "404");
+      assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -34,7 +34,7 @@ describe.only("ClientEncodedNameClient Rest Client", () => {
         .post({
           body: { defaultName: true }
         });
-      assert.strictEqual(result.status, "404");
+      assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -47,7 +47,7 @@ describe.only("ClientEncodedNameClient Rest Client", () => {
         .post({
           body: { defaultName: true }
         });
-      assert.strictEqual(result.status, "404");
+      assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -62,7 +62,7 @@ describe.only("ClientEncodedNameClient Rest Client", () => {
         .post({
           body: { wireName: true }
         });
-      assert.strictEqual(result.status, "404");
+      assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -73,7 +73,7 @@ describe.only("ClientEncodedNameClient Rest Client", () => {
       const result = await client
         .path("/projection/client-name-and-encoded-name/operation")
         .post();
-      assert.strictEqual(result.status, "404");
+      assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -86,7 +86,7 @@ describe.only("ClientEncodedNameClient Rest Client", () => {
         .post({
           queryParameters: { defaultName: "true" }
         });
-      assert.strictEqual(result.status, "404");
+      assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -99,7 +99,7 @@ describe.only("ClientEncodedNameClient Rest Client", () => {
         .post({
           headers: { "default-name": "true" }
         });
-      assert.strictEqual(result.status, "404");
+      assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -112,7 +112,7 @@ describe.only("ClientEncodedNameClient Rest Client", () => {
         .post({
           body: { defaultName: true }
         });
-      assert.strictEqual(result.status, "404");
+      assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -125,7 +125,7 @@ describe.only("ClientEncodedNameClient Rest Client", () => {
         .post({
           body: { defaultName: true }
         });
-      assert.strictEqual(result.status, "404");
+      assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
     }
