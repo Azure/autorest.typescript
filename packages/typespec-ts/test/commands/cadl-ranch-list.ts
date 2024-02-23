@@ -6,6 +6,10 @@ export interface TypeSpecRanchConfig {
 
 export const rlcTsps: TypeSpecRanchConfig[] = [
   {
+    outputPath: "payload/multipart",
+    inputPath: "payload/multipart"
+  },
+  {
     outputPath: "union-body",
     inputPath: "union-body"
   },
@@ -333,6 +337,14 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/inheritance/recursive",
     inputPath: "type/model/inheritance/recursive"
+  },
+  {
+    outputPath: "unions",
+    inputPath: "type/union"
+  },
+  {
+    outputPath: "scalar",
+    inputPath: "type/scalar"
   }
 ];
 

@@ -4,15 +4,15 @@
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  AnalyzeTextOptions,
-  AnalyzeTextResult,
-  AnalyzeImageOptions,
-  AnalyzeImageResult,
   TextBlocklist,
   AddOrUpdateBlockItemsOptions,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
   RemoveBlockItemsOptions,
+  AnalyzeImageOptions,
+  AnalyzeImageResult,
+  AnalyzeTextOptions,
+  AnalyzeTextResult,
 } from "./models/models.js";
 import {
   AnalyzeTextRequestOptions,

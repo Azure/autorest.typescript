@@ -138,9 +138,9 @@ function transformHeaders(
       if (!value) {
         continue;
       }
-      const typeSchema = getSchemaForType(dpgContext, value!.type, [
-        SchemaContext.Output
-      ]) as Schema;
+      const typeSchema = getSchemaForType(dpgContext, value!.type, {
+        usage: [SchemaContext.Output]
+      }) as Schema;
       const type = getTypeName(typeSchema, [SchemaContext.Output]);
       getImportedModelName(typeSchema, [SchemaContext.Output])?.forEach(
         importedModels.add,
@@ -185,9 +185,9 @@ function transformBody(
       descriptions.add("Value may contain any sequence of octets");
       continue;
     }
-    const bodySchema = getSchemaForType(dpgContext, body!.type, [
-      SchemaContext.Output
-    ]) as Schema;
+    const bodySchema = getSchemaForType(dpgContext, body!.type, {
+      usage: [SchemaContext.Output]
+    }) as Schema;
     fromCore = bodySchema.fromCore ?? false;
     const bodyType = getTypeName(bodySchema);
     const importedNames = getImportedModelName(bodySchema);

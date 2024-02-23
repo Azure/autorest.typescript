@@ -34,7 +34,7 @@ export async function _unionFloatLiteralGetDeserialize(
   }
 
   return {
-    property: result.body["property"] as any,
+    property: result.body["property"],
   };
 }
 

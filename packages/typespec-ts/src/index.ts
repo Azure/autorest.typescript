@@ -49,6 +49,7 @@ import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
+import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
 import { join } from "path";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
@@ -96,6 +97,14 @@ export async function $onEmit(context: EmitContext) {
       await calculateGenerationDir();
     dpgContext.generationPathDetail = generationPathDetail;
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
+    const hasTestFolder = await fsextra.pathExists(
+      join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
+    );
+    options.generateTest =
+      options.generateTest === true ||
+      (options.generateTest === undefined &&
+        !hasTestFolder &&
+        options.branded);
     dpgContext.rlcOptions = options;
   }
 
@@ -188,6 +197,7 @@ export async function $onEmit(context: EmitContext) {
         buildModelsOptions(modularCodeModel, subClient);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
+        buildSerializeUtils(modularCodeModel);
         // build paging files
         buildPagingTypes(modularCodeModel, subClient);
         buildModularPagingHelpers(
@@ -261,7 +271,6 @@ export async function $onEmit(context: EmitContext) {
     const shouldGenerateMetadata =
       option.generateMetadata === true ||
       (option.generateMetadata === undefined && !hasPackageFile);
-
     if (shouldGenerateMetadata) {
       const commonBuilders = [
         buildRollupConfig,
@@ -306,13 +315,7 @@ export async function $onEmit(context: EmitContext) {
     }
 
     // Generate test relevant files
-    const hasTestFolder = await fsextra.pathExists(
-      join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
-    );
-    const shouldGenerateTest =
-      option.generateTest === true ||
-      (option.generateTest === undefined && !hasTestFolder);
-    if (shouldGenerateTest && isBranded) {
+    if (option.generateTest && isBranded) {
       await emitContentByBuilder(
         program,
         [

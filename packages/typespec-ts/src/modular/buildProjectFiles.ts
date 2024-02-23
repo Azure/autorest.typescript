@@ -6,7 +6,6 @@ import {
   hasPagingOperation
 } from "./helpers/operationHelpers.js";
 import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
-import { PackageDetails } from "@azure-tools/rlc-common";
 
 // =========== utils =============
 function appendPathWhenFormat(
@@ -23,7 +22,7 @@ function appendPathWhenFormat(
   return path;
 }
 
-function appednPathWhenLint(generateTest?: boolean) {
+function appendPathWhenLint(generateTest?: boolean) {
   return generateTest ? "test" : "";
 }
 
@@ -85,34 +84,21 @@ function buildExportsForMultiClient(
   return packageInfo;
 }
 
-function buildPackageDetails(packageDetails?: PackageDetails) {
-  return (
-    packageDetails ?? {
-      name: "@msinternal/unamedpackage",
-      nameWithoutScope: "unamedpackage",
-      version: "1.0.0-beta.1"
-    }
-  );
-}
-
 // Prepare package info without scripts and devDependencies and dependencies ect
 function initPackageInfo(codeModel: ModularCodeModel) {
-  let { packageDetails, generateTest, branded } = codeModel.options;
-  branded = branded ?? true;
-  generateTest = generateTest === true || generateTest === undefined;
-  packageDetails = buildPackageDetails(packageDetails);
-  const description = packageDetails.description
-    ? packageDetails.description
+  const { packageDetails, generateTest, branded } = codeModel.options;
+  const description = packageDetails!.description
+    ? packageDetails!.description
     : `A generated SDK for ${codeModel.clients[0]?.name}.`;
   const packageInfo = {
-    name: `${packageDetails.name}`,
+    name: `${packageDetails!.name}`,
     "sdk-type": "client",
     ...(branded
       ? {
           author: "Microsoft Corporation"
         }
       : {}),
-    version: `${packageDetails.version}`,
+    version: `${packageDetails!.version}`,
     description,
     keywords: [
       "node",
@@ -125,7 +111,7 @@ function initPackageInfo(codeModel: ModularCodeModel) {
     type: "module",
     main: "dist/index.js",
     module: "./dist-esm/src/index.js",
-    types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
+    types: `./types/${packageDetails!.nameWithoutScope}.d.ts`,
     exports: {
       ".": {
         types: "./types/src/index.d.ts",
@@ -152,7 +138,7 @@ function initPackageInfo(codeModel: ModularCodeModel) {
     files: [
       "dist/",
       generateTest && branded ? "dist-esm/src/" : "dist-esm/",
-      `types/${packageDetails.nameWithoutScope}.d.ts`,
+      `types/${packageDetails!.nameWithoutScope}.d.ts`,
       "README.md",
       "LICENSE",
       "review/*"
@@ -168,8 +154,7 @@ function initPackageInfo(codeModel: ModularCodeModel) {
 export function emitPackage(
   project: Project,
   metadataDir: string,
-  codeModel: ModularCodeModel,
-  hasSamplesGenerated = false
+  codeModel: ModularCodeModel
 ) {
   const packageJsonFile = project.createSourceFile(
     `${metadataDir}/package.json`,
@@ -180,7 +165,7 @@ export function emitPackage(
   );
   const branded = codeModel.options.branded ?? true;
   const packageInfo = branded
-    ? emitBrandedPackage(codeModel, hasSamplesGenerated)
+    ? emitBrandedPackage(codeModel)
     : emitNonBrandedPackage(codeModel);
   packageJsonFile.addStatements(JSON.stringify(packageInfo));
   return packageJsonFile;
@@ -237,25 +222,21 @@ function emitNonBrandedPackage(codeModel: ModularCodeModel) {
   return packageInfo;
 }
 
-function emitBrandedPackage(
-  codeModel: ModularCodeModel,
-  hasSamplesGenerated: boolean
-) {
-  const hasLRO = hasLROOperation(codeModel),
-    hasPaging = hasPagingOperation(codeModel);
-  const { azureOutputDirectory, azureSdkForJs, sourceFrom, isModularLibrary } =
-    codeModel.options;
-  let { packageDetails, generateTest, generateSample } = codeModel.options;
-  packageDetails = buildPackageDetails(packageDetails);
-  // Take the undefined as true by default
-  generateTest = generateTest === true || generateTest === undefined;
-  generateSample =
-    (generateSample === true || generateSample === undefined) &&
-    hasSamplesGenerated;
-  const clientPackageName = packageDetails.name;
+function emitBrandedPackage(codeModel: ModularCodeModel) {
+  const hasLRO = hasLROOperation(codeModel, true),
+    hasPaging = hasPagingOperation(codeModel, true);
+  const {
+    azureOutputDirectory,
+    azureSdkForJs,
+    sourceFrom,
+    isModularLibrary,
+    generateTest,
+    generateSample,
+    packageDetails
+  } = codeModel.options;
+  const clientPackageName = packageDetails!.name;
   let apiRefUrlQueryParameter: string = "";
-  packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
-  if (packageDetails.version.includes("beta")) {
+  if (packageDetails!.version!.includes("beta")) {
     apiRefUrlQueryParameter = "?view=azure-node-preview";
   }
   const packageInfo = {
@@ -286,10 +267,10 @@ function emitBrandedPackage(
       "integration-test:browser": "echo skipped",
       "integration-test:node": "echo skipped",
       "integration-test": "echo skipped",
-      "lint:fix": `eslint package.json api-extractor.json src ${appednPathWhenLint(
+      "lint:fix": `eslint package.json api-extractor.json src ${appendPathWhenLint(
         generateTest
       )} --ext .ts --fix --fix-type [problem,suggestion]`,
-      lint: `eslint package.json api-extractor.json src ${appednPathWhenLint(
+      lint: `eslint package.json api-extractor.json src ${appendPathWhenLint(
         generateTest
       )} --ext .ts`,
       pack: "npm pack 2>&1",
@@ -303,9 +284,9 @@ function emitBrandedPackage(
     sideEffects: false,
     autoPublish: false,
     dependencies: {
-      "@azure/core-auth": "^1.3.0",
-      "@azure-rest/core-client": "^1.1.6",
-      "@azure/core-rest-pipeline": "^1.12.0",
+      "@azure/core-auth": "^1.6.0",
+      "@azure-rest/core-client": "^1.2.0",
+      "@azure/core-rest-pipeline": "^1.14.0",
       "@azure/logger": "^1.0.0",
       tslib: "^2.2.0",
       ...(hasPaging && {
@@ -383,7 +364,7 @@ function emitBrandedPackage(
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
-    packageInfo.devDependencies["@azure/identity"] = "^3.3.0";
+    packageInfo.devDependencies["@azure/identity"] = "^4.0.1";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
     packageInfo.devDependencies["mocha"] = "^10.0.0";
     packageInfo.devDependencies["@types/mocha"] = "^10.0.0";
@@ -513,8 +494,7 @@ const modularTsConfigNotInSDKRepo: Record<string, any> = {
 export function emitTsConfig(
   project: Project,
   srcPath: string,
-  codeModel: ModularCodeModel,
-  hasSamplesGenerated = false
+  codeModel: ModularCodeModel
 ) {
   const tsConfigFile = project.createSourceFile(
     `${srcPath}/tsconfig.json`,
@@ -525,14 +505,10 @@ export function emitTsConfig(
   );
 
   const { packageDetails, azureSdkForJs } = codeModel.options || {};
-  let { generateTest, generateSample } = codeModel.options || {};
+  const { generateTest, generateSample } = codeModel.options || {};
   const isBranded = codeModel.options?.branded ?? true;
   // Take the undefined as true by default
-  generateTest = generateTest === true || generateTest === undefined;
-  generateSample =
-    (generateSample === true || generateSample === undefined) &&
-    hasSamplesGenerated;
-  const clientPackageName = packageDetails?.name ?? "@msinternal/unamedpackage";
+  const clientPackageName = packageDetails!.name;
   const tsConfig = (
     !isBranded
       ? modularTsConfigNotInSDKRepo

@@ -100,6 +100,9 @@ export async function transformRLCModel(
     options?.generateSample ===
       true /* Enable mock sample content if generateSample === true */
   );
+  options.generateSample =
+    (options.generateSample === true || options.generateSample === undefined) &&
+    (model.sampleGroups ?? []).length > 0;
   return model;
 }
 
@@ -123,13 +126,11 @@ export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {
           continue;
         }
 
-        const schema = getSchemaForType(
-          dpgContext,
-          type,
-          [SchemaContext.Exception, SchemaContext.Input],
-          false,
-          property!
-        );
+        const schema = getSchemaForType(dpgContext, type, {
+          usage: [SchemaContext.Exception, SchemaContext.Input],
+          needRef: false,
+          relevantProperty: property
+        });
         urlParameters.push({
           oriName: key,
           name: normalizeName(key, NameType.Parameter, true),
