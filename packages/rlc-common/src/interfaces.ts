@@ -108,7 +108,12 @@ export interface ApiVersionInfo {
   isCrossedVersion?: boolean;
 }
 
-export type ApiVersionPosition = "path" | "query" | "baseurl" | "duplicate" | "none";
+export type ApiVersionPosition =
+  | "path"
+  | "query"
+  | "baseurl"
+  | "duplicate"
+  | "none";
 export interface HelperFunctionDetails {
   hasPaging?: boolean;
   hasLongRunning?: boolean;
@@ -321,8 +326,17 @@ export interface ParameterMetadatas {
 }
 
 export interface ParameterBodyMetadata {
-  // In case of formData we'd get multiple properties in body marked as partialBody
+  /**
+   * In case of formData we'd get multiple properties in body marked as partialBody
+   * If yes, rlc-common would prepare the whole part shape;
+   * usually false in typespec source because rlc-common doesn't have to prepare the whole part shape
+   */
   isPartialBody?: boolean;
+  /**
+   * The `File` type is only available in the browser and Node 20, so we need to check if the file type is included in the body
+   * If yes, we need to export the helpers for customers. This would be useful in multipart/form-data to upload files
+   */
+  needsFilePolyfil?: boolean;
   body?: ParameterBodySchema[];
 }
 
