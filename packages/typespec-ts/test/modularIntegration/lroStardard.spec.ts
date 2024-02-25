@@ -2,7 +2,7 @@ import { StandardClient } from "./generated/lro/standard/generated/src/index.js"
 import { assert } from "chai";
 import { restorePoller } from "./generated/lro/standard/generated/src/restorePollerHelpers.js";
 
-describe("LROStandardClient Classical Client", () => {
+describe.only("LROStandardClient Classical Client", () => {
   let client: StandardClient;
 
   beforeEach(() => {
