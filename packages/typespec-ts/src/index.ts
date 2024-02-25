@@ -102,9 +102,7 @@ export async function $onEmit(context: EmitContext) {
     );
     options.generateTest =
       options.generateTest === true ||
-      (options.generateTest === undefined &&
-        !hasTestFolder &&
-        options.branded);
+      (options.generateTest === undefined && !hasTestFolder && options.branded);
     dpgContext.rlcOptions = options;
   }
 
@@ -415,5 +413,6 @@ export function removeUnusedInterfaces(project: Project) {
     interfaceDeclaration.interfaceDeclaration.remove();
   });
 
+  // Remove the unused interfaces
   project.getSourceFiles().forEach((file) => file.fixUnusedIdentifiers());
 }

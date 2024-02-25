@@ -3,11 +3,11 @@
 
 import { PollerLike, OperationState } from "@marygao/core-lro";
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { User, ExportedUser } from "./models/models.js";
+import { User, ExportedUser, OperationState } from "./models/models.js";
 import {
   CreateOrReplaceOptions,
   DeleteOperationOptions,
-  ExportOperationOptions
+  ExportOperationOptions,
 } from "./models/options.js";
 import {
   createOrReplace,
@@ -15,7 +15,7 @@ import {
   exportOperation,
   createStandard,
   StandardClientOptions,
-  StandardContext
+  StandardContext,
 } from "./api/index.js";
 
 export { StandardClientOptions } from "./api/StandardContext.js";
@@ -35,7 +35,7 @@ export class StandardClient {
   createOrReplace(
     name: string,
     resource: User,
-    options: CreateOrReplaceOptions = { requestOptions: {} }
+    options: CreateOrReplaceOptions = { requestOptions: {} },
   ): PollerLike<OperationState<User>, User> {
     return createOrReplace(this._client, name, resource, options);
   }
@@ -43,7 +43,7 @@ export class StandardClient {
   /** Deletes a User */
   deleteOperation(
     name: string,
-    options: DeleteOperationOptions = { requestOptions: {} }
+    options: DeleteOperationOptions = { requestOptions: {} },
   ): PollerLike<OperationState<void>, void> {
     return deleteOperation(this._client, name, options);
   }
@@ -52,7 +52,7 @@ export class StandardClient {
   exportOperation(
     name: string,
     format: string,
-    options: ExportOperationOptions = { requestOptions: {} }
+    options: ExportOperationOptions = { requestOptions: {} },
   ): PollerLike<OperationState<ExportedUser>, ExportedUser> {
     return exportOperation(this._client, name, format, options);
   }

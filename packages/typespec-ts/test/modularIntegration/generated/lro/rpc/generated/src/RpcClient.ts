@@ -3,13 +3,17 @@
 
 import { PollerLike, OperationState } from "@marygao/core-lro";
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { GenerationOptions, GenerationResult } from "./models/models.js";
+import {
+  GenerationOptions,
+  GenerationResult,
+  OperationState,
+} from "./models/models.js";
 import { LongRunningRpcOptions } from "./models/options.js";
 import {
   longRunningRpc,
   createRpc,
   RpcClientOptions,
-  RpcContext
+  RpcContext,
 } from "./api/index.js";
 
 export { RpcClientOptions } from "./api/RpcContext.js";
@@ -28,7 +32,7 @@ export class RpcClient {
   /** Generate data. */
   longRunningRpc(
     body: GenerationOptions,
-    options: LongRunningRpcOptions = { requestOptions: {} }
+    options: LongRunningRpcOptions = { requestOptions: {} },
   ): PollerLike<OperationState<GenerationResult>, GenerationResult> {
     return longRunningRpc(this._client, body, options);
   }

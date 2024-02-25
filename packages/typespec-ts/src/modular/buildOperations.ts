@@ -55,11 +55,17 @@ export function buildOperationFiles(
       }api/${operationFileName}.ts`
     );
 
-    // We need to import the paging helpers and types explicitly because ts-morph may not be able to find correct ones.
-    importLroDependencies(
-      operationGroupFile,
-      operationGroup.namespaceHierarchies.length
-    );
+    const modelsFilters = new Set<string>();
+    const hasLro = operationGroup.operations.some((o) => isLROOperation(o));
+    if (hasLro) {
+      // We need to import the lro helpers and types explicitly because ts-morph may not be able to find correct ones.
+      importLroDependencies(
+        operationGroupFile,
+        operationGroup.namespaceHierarchies.length
+      );
+      // Add the OperationState to the modelsFilters so that it will not be imported again.
+      modelsFilters.add("OperationState");
+    }
 
     // Import models used from ./models.ts
     // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
@@ -68,7 +74,8 @@ export function buildOperationFiles(
       operationGroupFile,
       codeModel.project,
       subfolder,
-      operationGroup.namespaceHierarchies.length
+      operationGroup.namespaceHierarchies.length,
+      modelsFilters
     );
 
     // Import the deserializeUtils
@@ -180,7 +187,8 @@ export function importModels(
   sourceFile: SourceFile,
   project: Project,
   subfolder: string = "",
-  importLayer: number = 0
+  importLayer: number = 0,
+  filters: Set<string> = new Set<string>()
 ) {
   const hasModelsImport = sourceFile.getImportDeclarations().some((i) => {
     return i.getModuleSpecifierValue().endsWith(`models/models.js`);
@@ -192,8 +200,11 @@ export function importModels(
   );
   const models: string[] = [];
 
-  for (const entry of modelsFile?.getExportedDeclarations().entries() ?? []) {
-    models.push(entry[0]);
+  for (const [name] of modelsFile?.getExportedDeclarations().entries() ?? []) {
+    if (filters.has(name)) {
+      continue;
+    }
+    models.push(name);
   }
 
   if (models.length > 0 && !hasModelsImport) {
