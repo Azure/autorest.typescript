@@ -1,7 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Next } from "@marygao/core-lro";
+import {
+  PollerLike,
+  OperationState,
+  ResourceLocationConfig,
+  LongRunningOperation,
+  createHttpPoller,
+  OperationResponse,
+} from "@marygao/core-lro";
 
 import {
   Client,
@@ -21,12 +28,12 @@ export interface GetLongRunningPollerOptions<TResponse> {
   /**
    * The potential location of the result of the LRO if specified by the LRO extension in the swagger.
    */
-  resourceLocationConfig?: Next.ResourceLocationConfig;
+  resourceLocationConfig?: ResourceLocationConfig;
   /**
    * The original url of the LRO
-   * Should be set when restoreFrom is set
+   * Should not be null when restoreFrom is set
    */
-  initialUri?: string;
+  initialUrl?: string;
   /**
    * A serialized poller which can be used to resume an existing paused Long-Running-Operation.
    */
@@ -43,7 +50,7 @@ export function getLongRunningPoller<
   client: Client,
   processResponseBody: (result: TResponse) => PromiseLike<TResult>,
   options: GetLongRunningPollerOptions<TResponse>,
-): Next.PollerLike<Next.OperationState<TResult>, TResult> {
+): PollerLike<OperationState<TResult>, TResult> {
   const { restoreFrom, getInitialResponse } = options;
   if (!restoreFrom && !getInitialResponse) {
     throw new Error(
@@ -51,7 +58,7 @@ export function getLongRunningPoller<
     );
   }
   let initialResponse: TResponse | undefined = undefined;
-  const poller: Next.LongRunningOperation<TResponse> = {
+  const poller: LongRunningOperation<TResponse> = {
     sendInitialRequest: async () => {
       if (!getInitialResponse) {
         throw new Error("getInitialResponse is required if init a new poller");
@@ -68,15 +75,15 @@ export function getLongRunningPoller<
       const response = await client
         .pathUnchecked(path)
         .get({ abortSignal: options.abortSignal ?? pollOptions?.abortSignal });
-      if (options.initialUri || initialResponse) {
+      if (options.initialUrl || initialResponse) {
         response.headers["x-ms-original-url"] =
-          options.initialUri ?? initialResponse!.request.url;
+          options.initialUrl ?? initialResponse!.request.url;
       }
 
       return getLroResponse(response as TResponse);
     },
   };
-  return Next.createHttpPoller(poller, {
+  return createHttpPoller(poller, {
     intervalInMs: options?.updateIntervalInMs,
     resourceLocationConfig: options?.resourceLocationConfig,
     restoreFrom: options?.restoreFrom,
@@ -93,7 +100,7 @@ export function getLongRunningPoller<
  */
 function getLroResponse<TResponse extends PathUncheckedResponse>(
   response: TResponse,
-): Next.OperationResponse<TResponse> {
+): OperationResponse<TResponse> {
   if (isUnexpected(response as PathUncheckedResponse)) {
     createRestError(
       `Status code of the response is not a number. Value: ${response.status}`,

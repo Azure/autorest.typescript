@@ -294,7 +294,7 @@ function emitBrandedPackage(codeModel: ModularCodeModel) {
       }),
       ...(hasLRO && {
         "@marygao/core-lro": "3.0.0-beta.1",
-        "@azure/abort-controller": "^1.0.0"
+        "@azure/abort-controller": "^2.0.0"
       }),
       ...(isModularLibrary && {
         "@azure/core-util": "^1.4.0"

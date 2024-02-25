@@ -1,7 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Next } from "@marygao/core-lro";
+import {
+  PollerLike,
+  OperationState,
+  deserializeState,
+  ResourceLocationConfig,
+} from "@marygao/core-lro";
 import { StandardContext } from "./api/StandardContext.js";
 import { StandardClient } from "./StandardClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
@@ -10,7 +15,6 @@ import {
   _deleteOperationDeserialize,
   _exportOperationDeserialize,
 } from "./api/operations.js";
-
 import {
   PathUncheckedResponse,
   OperationOptions,
@@ -48,23 +52,23 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
   serializedState: string,
   sourceOperation: (
     ...args: any[]
-  ) => Next.PollerLike<Next.OperationState<TResult>, TResult>,
+  ) => PollerLike<OperationState<TResult>, TResult>,
   options?: RestorePollerOptions<TResult>,
-): Next.PollerLike<Next.OperationState<TResult>, TResult> {
-  const pollerConfig = Next.deserializeState(serializedState).config;
-  const initialUri = pollerConfig.initialUri;
+): PollerLike<OperationState<TResult>, TResult> {
+  const pollerConfig = deserializeState(serializedState).config;
+  const { initialUrl } = pollerConfig;
   const requestMethod = pollerConfig.requestMethod;
-  if (!initialUri || !requestMethod) {
+  if (!initialUrl || !requestMethod) {
     throw new Error(
       `Invalid serialized state: ${serializedState} for sourceOperation ${sourceOperation?.name}`,
     );
   }
   const resourceLocationConfig = pollerConfig?.metadata?.[
     "resourceLocationConfig"
-  ] as Next.ResourceLocationConfig | undefined;
+  ] as ResourceLocationConfig | undefined;
   const deserializeHelper =
     options?.processResponseBody ??
-    getDeserializationHelper(initialUri, requestMethod);
+    getDeserializationHelper(initialUrl, requestMethod);
   if (!deserializeHelper) {
     throw new Error(
       `Please ensure the operation is in this client! We can't find its deserializeHelper for ${sourceOperation?.name}.`,
@@ -78,7 +82,7 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
       abortSignal: options?.abortSignal,
       resourceLocationConfig,
       restoreFrom: serializedState,
-      initialUri: initialUri,
+      initialUrl,
     },
   );
 }

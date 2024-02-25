@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { getLongRunningPoller } from "./pollingHelpers.js";
-import { Next } from "@marygao/core-lro";
+import { PollerLike, OperationState } from "@marygao/core-lro";
 import { User, ExportedUser } from "../models/models.js";
 import {
   CreateOrReplace200Response,
@@ -16,36 +16,34 @@ import {
   ExportOperation202Response,
   ExportOperationDefaultResponse,
   isUnexpected,
-  StandardContext as Client,
+  StandardContext as Client
 } from "../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  createRestError,
+  createRestError
 } from "@azure-rest/core-client";
 import {
   CreateOrReplaceOptions,
   DeleteOperationOptions,
-  ExportOperationOptions,
+  ExportOperationOptions
 } from "../models/options.js";
 
 export function _createOrReplaceSend(
   context: Client,
   name: string,
   resource: User,
-  options: CreateOrReplaceOptions = { requestOptions: {} },
+  options: CreateOrReplaceOptions = { requestOptions: {} }
 ): StreamableMethod<
   | CreateOrReplace200Response
   | CreateOrReplace201Response
   | CreateOrReplaceDefaultResponse
   | CreateOrReplaceLogicalResponse
 > {
-  return context
-    .path("/azure/core/lro/standard/users/{name}", name)
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: { role: resource["role"] },
-    });
+  return context.path("/azure/core/lro/standard/users/{name}", name).put({
+    ...operationOptionsToRequestParameters(options),
+    body: { role: resource["role"] }
+  });
 }
 
 export async function _createOrReplaceDeserialize(
@@ -53,7 +51,7 @@ export async function _createOrReplaceDeserialize(
     | CreateOrReplace200Response
     | CreateOrReplace201Response
     | CreateOrReplaceDefaultResponse
-    | CreateOrReplaceLogicalResponse,
+    | CreateOrReplaceLogicalResponse
 ): Promise<User> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -62,7 +60,7 @@ export async function _createOrReplaceDeserialize(
   result = result as CreateOrReplaceLogicalResponse;
   return {
     name: result.body["name"],
-    role: result.body["role"],
+    role: result.body["role"]
   };
 }
 
@@ -71,20 +69,20 @@ export function createOrReplace(
   context: Client,
   name: string,
   resource: User,
-  options: CreateOrReplaceOptions = { requestOptions: {} },
-): Next.PollerLike<Next.OperationState<User>, User> {
+  options: CreateOrReplaceOptions = { requestOptions: {} }
+): PollerLike<OperationState<User>, User> {
   return getLongRunningPoller(context, _createOrReplaceDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
-      _createOrReplaceSend(context, name, resource, options),
-  }) as Next.PollerLike<Next.OperationState<User>, User>;
+      _createOrReplaceSend(context, name, resource, options)
+  }) as PollerLike<OperationState<User>, User>;
 }
 
 export function _deleteOperationSend(
   context: Client,
   name: string,
-  options: DeleteOperationOptions = { requestOptions: {} },
+  options: DeleteOperationOptions = { requestOptions: {} }
 ): StreamableMethod<
   | DeleteOperation202Response
   | DeleteOperationDefaultResponse
@@ -99,7 +97,7 @@ export async function _deleteOperationDeserialize(
   result:
     | DeleteOperation202Response
     | DeleteOperationDefaultResponse
-    | DeleteLogicalResponse,
+    | DeleteLogicalResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -113,20 +111,20 @@ export async function _deleteOperationDeserialize(
 export function deleteOperation(
   context: Client,
   name: string,
-  options: DeleteOperationOptions = { requestOptions: {} },
-): Next.PollerLike<Next.OperationState<void>, void> {
+  options: DeleteOperationOptions = { requestOptions: {} }
+): PollerLike<OperationState<void>, void> {
   return getLongRunningPoller(context, _deleteOperationDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
-    getInitialResponse: () => _deleteOperationSend(context, name, options),
-  }) as Next.PollerLike<Next.OperationState<void>, void>;
+    getInitialResponse: () => _deleteOperationSend(context, name, options)
+  }) as PollerLike<OperationState<void>, void>;
 }
 
 export function _exportOperationSend(
   context: Client,
   name: string,
   format: string,
-  options: ExportOperationOptions = { requestOptions: {} },
+  options: ExportOperationOptions = { requestOptions: {} }
 ): StreamableMethod<
   | ExportOperation202Response
   | ExportOperationDefaultResponse
@@ -136,7 +134,7 @@ export function _exportOperationSend(
     .path("/azure/core/lro/standard/users/{name}:export", name)
     .post({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { format: format },
+      queryParameters: { format: format }
     });
 }
 
@@ -144,7 +142,7 @@ export async function _exportOperationDeserialize(
   result:
     | ExportOperation202Response
     | ExportOperationDefaultResponse
-    | ExportLogicalResponse,
+    | ExportLogicalResponse
 ): Promise<ExportedUser> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -154,13 +152,13 @@ export async function _exportOperationDeserialize(
   if (result?.body?.result === undefined) {
     throw createRestError(
       `Expected a result in the response at position "result.body.result"`,
-      result,
+      result
     );
   }
 
   return {
     name: result.body.result["name"],
-    resourceUri: result.body.result["resourceUri"],
+    resourceUri: result.body.result["resourceUri"]
   };
 }
 
@@ -169,12 +167,12 @@ export function exportOperation(
   context: Client,
   name: string,
   format: string,
-  options: ExportOperationOptions = { requestOptions: {} },
-): Next.PollerLike<Next.OperationState<ExportedUser>, ExportedUser> {
+  options: ExportOperationOptions = { requestOptions: {} }
+): PollerLike<OperationState<ExportedUser>, ExportedUser> {
   return getLongRunningPoller(context, _exportOperationDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
-      _exportOperationSend(context, name, format, options),
-  }) as Next.PollerLike<Next.OperationState<ExportedUser>, ExportedUser>;
+      _exportOperationSend(context, name, format, options)
+  }) as PollerLike<OperationState<ExportedUser>, ExportedUser>;
 }

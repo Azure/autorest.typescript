@@ -368,7 +368,7 @@ function getLroOnlyOperatonFunction(operation: Operation, clientType: string) {
     isExported: true,
     name: normalizeName(operation.name, NameType.Operation, true),
     parameters,
-    returnType: `Next.PollerLike<Next.OperationState<${returnType.type}>, ${returnType.type}>`
+    returnType: `PollerLike<OperationState<${returnType.type}>, ${returnType.type}>`
   };
 
   const statements: string[] = [];
@@ -379,9 +379,7 @@ function getLroOnlyOperatonFunction(operation: Operation, clientType: string) {
     getInitialResponse: () => _${name}Send(${parameters
       .map((p) => p.name)
       .join(", ")})
-  }) as Next.PollerLike<Next.OperationState<${returnType.type}>, ${
-    returnType.type
-  }>;
+  }) as PollerLike<OperationState<${returnType.type}>, ${returnType.type}>;
   `);
 
   return {
@@ -646,7 +644,7 @@ function buildBodyParameter(
   if (bodyParameter) {
     return `\nbody: ${bodyParameter.clientName},`;
   }
-  
+
   return "";
 }
 

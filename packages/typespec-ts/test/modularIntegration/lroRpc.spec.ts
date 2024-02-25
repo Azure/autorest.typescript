@@ -1,7 +1,7 @@
 import { RpcClient } from "./generated/lro/rpc/generated/src/index.js";
 import { assert } from "chai";
 
-describe("RpcClient Classical Client", () => {
+describe.only("RpcClient Classical Client", () => {
   let client: RpcClient;
 
   beforeEach(() => {

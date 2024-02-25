@@ -12,7 +12,15 @@ import { buildLroDeserDetailMap } from "./buildOperations.js";
 export function importLroCoreDependencies(clientFile: SourceFile) {
   clientFile.addImportDeclaration({
     moduleSpecifier: `@marygao/core-lro`,
-    namedImports: ["Next"]
+    namedImports: [
+      "PollerLike",
+      "OperationState",
+      "deserializeState",
+      "ResourceLocationConfig",
+      "LongRunningOperation",
+      "createHttpPoller",
+      "OperationResponse"
+    ]
   });
 }
 
@@ -51,8 +59,7 @@ export function buildRestorePollerHelper(
   const clientNames = importClientContext(client, restorePollerFile);
   importGetPollerHelper(restorePollerFile);
   const deserializeMap = importDeserializeHelpers(client, restorePollerFile);
-  const restorePollerHelperContent = `
-      import {
+  const restorePollerHelperContent = `import {
         PathUncheckedResponse,
         OperationOptions
       } from "@azure-rest/core-client";
@@ -86,23 +93,23 @@ export function buildRestorePollerHelper(
         serializedState: string,
         sourceOperation: (
           ...args: any[]
-        ) => Next.PollerLike<Next.OperationState<TResult>, TResult>,
+        ) => PollerLike<OperationState<TResult>, TResult>,
         options?: RestorePollerOptions<TResult>
-      ): Next.PollerLike<Next.OperationState<TResult>, TResult> {
-        const pollerConfig = Next.deserializeState(serializedState).config;
-        const initialUri = pollerConfig.initialUri;
+      ): PollerLike<OperationState<TResult>, TResult> {
+        const pollerConfig = deserializeState(serializedState).config;
+        const { initialUrl } = pollerConfig;
         const requestMethod = pollerConfig.requestMethod;
-        if (!initialUri || !requestMethod) {
+        if (!initialUrl || !requestMethod) {
           throw new Error(
             \`Invalid serialized state: \${serializedState} for sourceOperation \${sourceOperation?.name}\`
           );
         }
         const resourceLocationConfig = pollerConfig?.metadata?.[
           "resourceLocationConfig"
-        ] as Next.ResourceLocationConfig | undefined;
+        ] as ResourceLocationConfig | undefined;
         const deserializeHelper =
           options?.processResponseBody ??
-          getDeserializationHelper(initialUri, requestMethod);
+          getDeserializationHelper(initialUrl, requestMethod);
         if (!deserializeHelper) {
           throw new Error(
             \`Please ensure the operation is in this client! We can't find its deserializeHelper for \${sourceOperation?.name}.\`
@@ -116,7 +123,7 @@ export function buildRestorePollerHelper(
             abortSignal: options?.abortSignal,
             resourceLocationConfig,
             restoreFrom: serializedState,
-            initialUri: initialUri
+            initialUrl
           }
         );
       }
@@ -305,12 +312,12 @@ export function buildGetPollerHelper(
     /**
      * The potential location of the result of the LRO if specified by the LRO extension in the swagger.
      */
-    resourceLocationConfig?: Next.ResourceLocationConfig;
+    resourceLocationConfig?: ResourceLocationConfig;
     /**
      * The original url of the LRO
-     * Should be set when restoreFrom is set
+     * Should not be null when restoreFrom is set
      */
-    initialUri?: string;
+    initialUrl?: string;
     /**
      * A serialized poller which can be used to resume an existing paused Long-Running-Operation.
      */
@@ -327,7 +334,7 @@ export function buildGetPollerHelper(
     client: Client,
     processResponseBody: (result: TResponse) => PromiseLike<TResult>,
     options: GetLongRunningPollerOptions<TResponse>
-  ): Next.PollerLike<Next.OperationState<TResult>, TResult> {
+  ): PollerLike<OperationState<TResult>, TResult> {
     const { restoreFrom, getInitialResponse } = options;
     if (!restoreFrom && !getInitialResponse) {
       throw new Error(
@@ -335,7 +342,7 @@ export function buildGetPollerHelper(
       );
     }
     let initialResponse: TResponse | undefined = undefined;
-    const poller: Next.LongRunningOperation<TResponse> = {
+    const poller: LongRunningOperation<TResponse> = {
       sendInitialRequest: async () => {
         if (!getInitialResponse) {
           throw new Error("getInitialResponse is required if init a new poller");
@@ -352,15 +359,15 @@ export function buildGetPollerHelper(
         const response = await client
           .pathUnchecked(path)
           .get({ abortSignal: options.abortSignal ?? pollOptions?.abortSignal });
-        if (options.initialUri || initialResponse) {
+        if (options.initialUrl || initialResponse) {
           response.headers["x-ms-original-url"] =
-            options.initialUri ?? initialResponse!.request.url;
+            options.initialUrl ?? initialResponse!.request.url;
         }
   
         return getLroResponse(response as TResponse);
       }
     };
-    return Next.createHttpPoller(poller, {
+    return createHttpPoller(poller, {
       intervalInMs: options?.updateIntervalInMs,
       resourceLocationConfig: options?.resourceLocationConfig,
       restoreFrom: options?.restoreFrom,
@@ -377,7 +384,7 @@ export function buildGetPollerHelper(
    */
   function getLroResponse<TResponse extends PathUncheckedResponse>(
     response: TResponse
-  ): Next.OperationResponse<TResponse> {
+  ): OperationResponse<TResponse> {
     ${checkResponseStatus}
     return {
       flatResponse: response,
