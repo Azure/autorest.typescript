@@ -133,7 +133,9 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
     exports.push("UnexpectedHelper");
   }
 
-  if (hasPollingOperations(model)) {
+  // TODO: Disable LRO poller tentatively and remember to remove this when new LRO in RLC is ready
+  // https://github.com/Azure/autorest.typescript/issues/2230
+  if (hasPollingOperations(model) && !model.options?.isModularLibrary) {
     file.addImportDeclaration({
       namespaceImport: "PollingHelper",
       moduleSpecifier: getImportModuleName(
@@ -297,7 +299,9 @@ function generateRLCIndex(file: SourceFile, model: RLCModel) {
     ]);
   }
 
-  if (hasPollingOperations(model)) {
+  // TODO: Disable LRO poller tentatively and remember to remove this when new LRO in RLC is ready
+  // https://github.com/Azure/autorest.typescript/issues/2230
+  if (hasPollingOperations(model) && !model.options?.isModularLibrary) {
     file.addExportDeclarations([
       {
         moduleSpecifier: getImportModuleName(

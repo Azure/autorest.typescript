@@ -6,7 +6,7 @@ import {
   OperationState,
   deserializeState,
   ResourceLocationConfig,
-} from "@marygao/core-lro";
+} from "@azure/core-lro";
 import { RpcContext } from "./api/RpcContext.js";
 import { RpcClient } from "./RpcClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";

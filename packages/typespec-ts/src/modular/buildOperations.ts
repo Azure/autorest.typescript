@@ -54,28 +54,22 @@ export function buildOperationFiles(
         subfolder && subfolder !== "" ? subfolder + "/" : ""
       }api/${operationFileName}.ts`
     );
-
-    const modelsFilters = new Set<string>();
-    const hasLro = operationGroup.operations.some((o) => isLROOperation(o));
-    if (hasLro) {
-      // We need to import the lro helpers and types explicitly because ts-morph may not be able to find correct ones.
-      importLroDependencies(
-        operationGroupFile,
-        operationGroup.namespaceHierarchies.length
-      );
-      // Add the OperationState to the modelsFilters so that it will not be imported again.
-      modelsFilters.add("OperationState");
-    }
+    // We need to import the lro helpers and types explicitly because ts-morph may not be able to find correct ones.
+    importLroDependencies(
+      operationGroupFile,
+      operationGroup.namespaceHierarchies.length
+    );
 
     // Import models used from ./models.ts
     // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
+    const hasLro = operationGroup.operations.some((o) => isLROOperation(o));
     importModels(
       srcPath,
       operationGroupFile,
       codeModel.project,
       subfolder,
       operationGroup.namespaceHierarchies.length,
-      modelsFilters
+      hasLro ? new Set<string>().add("OperationState") : undefined
     );
 
     // Import the deserializeUtils

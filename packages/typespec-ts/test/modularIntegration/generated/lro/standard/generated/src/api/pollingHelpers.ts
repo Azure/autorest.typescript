@@ -8,7 +8,7 @@ import {
   LongRunningOperation,
   createHttpPoller,
   OperationResponse,
-} from "@marygao/core-lro";
+} from "@azure/core-lro";
 
 import {
   Client,

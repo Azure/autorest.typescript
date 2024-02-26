@@ -240,7 +240,6 @@ importers:
       '@azure/core-rest-pipeline': ^1.14.0
       '@azure/core-util': ^1.4.0
       '@azure/logger': ^1.0.4
-      '@marygao/core-lro': 3.0.0-beta.1
       '@types/chai': ^4.3.1
       '@types/fs-extra': ^9.0.13
       '@types/mocha': ^9.1.1
@@ -286,7 +285,6 @@ importers:
       '@azure/core-rest-pipeline': 1.14.0
       '@azure/core-util': 1.5.0
       '@azure/logger': 1.0.4
-      '@marygao/core-lro': 3.0.0-beta.1
       '@types/chai': 4.3.6
       '@types/fs-extra': 9.0.13
       '@types/mocha': 9.1.1
@@ -888,16 +886,6 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
-    dev: true
-
-  /@marygao/core-lro/3.0.0-beta.1:
-    resolution: {integrity: sha512-0eE/yEpjxurKMlfywjzQcfDzLPm7w5eikjjl+BL4qFBVGmbF6WNh5cecANFmb0IMmISTeUPIR/fWubY8lBSzcg==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      '@azure/abort-controller': 2.0.0
-      '@azure/core-util': 1.5.0
-      '@azure/logger': 1.0.4
-      tslib: 2.6.2
     dev: true
 
   /@microsoft.azure/autorest.testserver/3.3.48:

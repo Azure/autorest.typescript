@@ -6,7 +6,7 @@ import {
   OperationState,
   deserializeState,
   ResourceLocationConfig,
-} from "@marygao/core-lro";
+} from "@azure/core-lro";
 import { StandardContext } from "./api/StandardContext.js";
 import { StandardClient } from "./StandardClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";

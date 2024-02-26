@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { PollerLike, OperationState } from "@marygao/core-lro";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { User, ExportedUser, OperationState } from "./models/models.js";
+import { User, ExportedUser } from "./models/models.js";
 import {
   CreateOrReplaceOptions,
   DeleteOperationOptions,

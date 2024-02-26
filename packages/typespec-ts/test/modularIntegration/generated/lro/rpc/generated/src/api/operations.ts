@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { getLongRunningPoller } from "./pollingHelpers.js";
-import { PollerLike, OperationState } from "@marygao/core-lro";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import { GenerationOptions, GenerationResult } from "../models/models.js";
 import {
   isUnexpected,

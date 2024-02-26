@@ -293,7 +293,7 @@ function emitBrandedPackage(codeModel: ModularCodeModel) {
         "@azure/core-paging": "^1.5.0"
       }),
       ...(hasLRO && {
-        "@marygao/core-lro": "3.0.0-beta.1",
+        "@azure/core-lro": "3.0.0-beta.1",
         "@azure/abort-controller": "^2.0.0"
       }),
       ...(isModularLibrary && {

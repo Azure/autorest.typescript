@@ -11,7 +11,7 @@ import { buildLroDeserDetailMap } from "./buildOperations.js";
  */
 export function importLroCoreDependencies(clientFile: SourceFile) {
   clientFile.addImportDeclaration({
-    moduleSpecifier: `@marygao/core-lro`,
+    moduleSpecifier: `@azure/core-lro`,
     namedImports: [
       "PollerLike",
       "OperationState",

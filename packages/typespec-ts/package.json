@@ -70,7 +70,6 @@
     "cross-env": "^7.0.3",
     "@azure/core-paging": "^1.5.0",
     "@azure/core-lro": "^2.5.4",
-    "@marygao/core-lro": "3.0.0-beta.1",
     "@azure/core-rest-pipeline": "^1.14.0",
     "@azure/abort-controller": "^2.0.0",
     "@azure/logger": "^1.0.4",

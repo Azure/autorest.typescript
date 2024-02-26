@@ -1,13 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { PollerLike, OperationState } from "@marygao/core-lro";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import { Pipeline } from "@azure/core-rest-pipeline";
-import {
-  GenerationOptions,
-  GenerationResult,
-  OperationState,
-} from "./models/models.js";
+import { GenerationOptions, GenerationResult } from "./models/models.js";
 import { LongRunningRpcOptions } from "./models/options.js";
 import {
   longRunningRpc,

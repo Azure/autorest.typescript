@@ -19,7 +19,10 @@ import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
-import { getOperationFunction } from "./helpers/operationHelpers.js";
+import {
+  getOperationFunction,
+  isLROOperation
+} from "./helpers/operationHelpers.js";
 import { getImportSpecifier } from "@azure-tools/rlc-common";
 import { importLroCoreDependencies } from "./buildLroFiles.js";
 
@@ -93,7 +96,15 @@ export function buildClassicalClient(
   importLroCoreDependencies(clientFile);
   importCredential(codeModel.runtimeImports, clientFile);
   importPipeline(codeModel.runtimeImports, clientFile);
-  importAllModels(clientFile, srcPath, subfolder);
+  const hasLro = client.operationGroups.some((og) =>
+    og.operations.some(isLROOperation)
+  );
+  importAllModels(
+    clientFile,
+    srcPath,
+    subfolder,
+    hasLro ? new Set(["OperationState"]) : undefined
+  );
   buildClientOperationGroups(clientFile, client, clientClass);
   importAllApis(clientFile, srcPath, subfolder);
   clientFile.fixMissingImports();
@@ -125,7 +136,8 @@ function importAllApis(
 function importAllModels(
   clientFile: SourceFile,
   srcPath: string,
-  subfolder: string
+  subfolder: string,
+  filters: Set<string> = new Set<string>()
 ) {
   const project = clientFile.getProject();
   const apiModels = project.getSourceFile(
@@ -136,7 +148,9 @@ function importAllModels(
     return;
   }
 
-  const exported = [...apiModels.getExportedDeclarations().keys()];
+  const exported = [...apiModels.getExportedDeclarations().keys()].filter(
+    (n) => !filters.has(n)
+  );
 
   if (exported.length > 0) {
     clientFile.addImportDeclaration({
