@@ -77,7 +77,7 @@ describe("NameAndEncodedName Client", () => {
 
   it("should work with model client", async () => {
     try {
-      const result = await client.model.client({ defaultName: true });
+      const result = await client.clientModel.client({ defaultName: true });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -86,7 +86,7 @@ describe("NameAndEncodedName Client", () => {
 
   it("should work with model language", async () => {
     try {
-      const result = await client.model.language({ defaultName: true });
+      const result = await client.clientModel.language({ defaultName: true });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);

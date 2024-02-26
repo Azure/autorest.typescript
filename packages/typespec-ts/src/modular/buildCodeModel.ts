@@ -1566,16 +1566,18 @@ function emitOperationGroups(
   }
   for (const operationGroup of listOperationGroups(context, client, true)) {
     const operations: HrlcOperation[] = [];
+    const overrideName = getClientNameOverride(context, operationGroup.type);
     const name =
       context.rlcOptions?.hierarchyClient ||
       context.rlcOptions?.enableOperationGroup
-        ? getClientNameOverride(context, operationGroup.type) ??
-          operationGroup.type.name
+        ? overrideName ?? operationGroup.type.name
         : "";
     const hierarchies =
       context.rlcOptions?.hierarchyClient ||
       context.rlcOptions?.enableOperationGroup
-        ? operationGroup.groupPath.split(".")
+        ? overrideName
+          ? [overrideName]
+          : operationGroup.groupPath.split(".")
         : [];
     if (hierarchies[0]?.endsWith("Client")) {
       hierarchies.shift();

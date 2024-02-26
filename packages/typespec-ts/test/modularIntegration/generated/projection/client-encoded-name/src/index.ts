@@ -19,7 +19,7 @@ export {
   PropertyClientOptions,
   PropertyLanguageOptions,
   PropertyJsonAndClientOptions,
-  ModelClientOptions,
-  ModelLanguageOptions,
+  ClientModelClientOptions,
+  ClientModelLanguageOptions,
 } from "./models/index.js";
-export { ModelOperations, PropertyOperations } from "./classic/index.js";
+export { ClientModelOperations, PropertyOperations } from "./classic/index.js";

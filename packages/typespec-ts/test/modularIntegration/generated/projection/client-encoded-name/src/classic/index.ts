@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { ModelOperations } from "./model/index.js";
+export { ClientModelOperations } from "./clientModel/index.js";
 export { PropertyOperations } from "./property/index.js";

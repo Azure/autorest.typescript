@@ -17,6 +17,6 @@ export interface PropertyLanguageOptions extends OperationOptions {}
 
 export interface PropertyJsonAndClientOptions extends OperationOptions {}
 
-export interface ModelClientOptions extends OperationOptions {}
+export interface ClientModelClientOptions extends OperationOptions {}
 
-export interface ModelLanguageOptions extends OperationOptions {}
+export interface ClientModelLanguageOptions extends OperationOptions {}

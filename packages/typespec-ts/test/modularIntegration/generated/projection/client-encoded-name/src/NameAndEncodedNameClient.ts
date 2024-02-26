@@ -11,7 +11,10 @@ import {
   getPropertyOperations,
   PropertyOperations,
 } from "./classic/property/index.js";
-import { getModelOperations, ModelOperations } from "./classic/model/index.js";
+import {
+  getClientModelOperations,
+  ClientModelOperations,
+} from "./classic/clientModel/index.js";
 import {
   createNameAndEncodedName,
   NameAndEncodedNameClientOptions,
@@ -33,7 +36,7 @@ export class NameAndEncodedNameClient {
     this._client = createNameAndEncodedName(options);
     this.pipeline = this._client.pipeline;
     this.property = getPropertyOperations(this._client);
-    this.model = getModelOperations(this._client);
+    this.clientModel = getClientModelOperations(this._client);
   }
 
   operation(options: OperationOptions = { requestOptions: {} }): Promise<void> {
@@ -56,6 +59,6 @@ export class NameAndEncodedNameClient {
 
   /** The operation groups for Property */
   public readonly property: PropertyOperations;
-  /** The operation groups for Model */
-  public readonly model: ModelOperations;
+  /** The operation groups for ClientModel */
+  public readonly clientModel: ClientModelOperations;
 }

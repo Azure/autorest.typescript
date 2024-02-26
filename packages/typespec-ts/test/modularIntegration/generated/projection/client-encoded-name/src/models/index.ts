@@ -17,6 +17,6 @@ export {
   PropertyClientOptions,
   PropertyLanguageOptions,
   PropertyJsonAndClientOptions,
-  ModelClientOptions,
-  ModelLanguageOptions,
+  ClientModelClientOptions,
+  ClientModelLanguageOptions,
 } from "./options.js";
