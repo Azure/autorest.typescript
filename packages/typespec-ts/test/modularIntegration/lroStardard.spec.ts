@@ -2,7 +2,7 @@ import { StandardClient } from "./generated/lro/standard/generated/src/index.js"
 import { assert } from "chai";
 import { restorePoller } from "./generated/lro/standard/generated/src/restorePollerHelpers.js";
 
-describe.only("LROStandardClient Classical Client", () => {
+describe("LROStandardClient Classical Client", () => {
   let client: StandardClient;
 
   beforeEach(() => {
@@ -76,14 +76,14 @@ describe.only("LROStandardClient Classical Client", () => {
       //        }
       //     }
       //  }
-      console.log(restoredPoller);
+      // console.log(restoredPoller);
       const newPoller = restorePoller(
         client,
         restoredPoller,
         client.createOrReplace
       );
       const result = await newPoller.pollUntilDone();
-      console.log(result);
+      // console.log(result);
       assert.strictEqual(result.name, "madge");
       assert.strictEqual(result.role, "contributor");
     });
@@ -139,14 +139,14 @@ describe.only("LROStandardClient Classical Client", () => {
       //        }
       //     }
       //  }
-      console.log(restoredPoller);
+      // console.log(restoredPoller);
       const newPoller = restorePoller(
         client,
         restoredPoller,
         client.deleteOperation
       );
       const result = await newPoller.pollUntilDone();
-      console.log(result);
+      // console.log(result);
       assert.strictEqual(result, undefined);
     });
   });
@@ -198,14 +198,14 @@ describe.only("LROStandardClient Classical Client", () => {
       //        }
       //     }
       //  }
-      console.log(restoredPoller);
+      // console.log(restoredPoller);
       const newPoller = restorePoller(
         client,
         restoredPoller,
         client.exportOperation
       );
       const result = await newPoller.pollUntilDone();
-      console.log(result);
+      // console.log(result);
       assert.deepEqual(result, {
         name: "madge",
         resourceUri: "/users/madge"

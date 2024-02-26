@@ -36,7 +36,7 @@
     "regen-test-baselines": "npm run generate-tsp-only && npm run generate-tsp-only:non-branded",
     "integration-test:alone": "npm run integration-test:alone:rlc && npm run integration-test:alone:modular",
     "integration-test:alone:rlc": "cross-env TS_NODE_PROJECT=tsconfig.integration.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./test/integration/*.spec.ts",
-    "integration-test:alone:modular": "cross-env TS_NODE_PROJECT=tsconfig.integration.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./test/modularIntegration/*.spec.ts",
+    "integration-test:alone:modular": "node --loader ts-node/esm ./test/commands/prepare-deps.ts && cross-env TS_NODE_PROJECT=tsconfig.integration.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./test/modularIntegration/*.spec.ts",
     "integration-test:alone:non-branded-rlc": "cross-env TS_NODE_PROJECT=tsconfig.integration.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./test/nonBrandedIntegration/rlc/*.spec.ts",
     "integration-test:alone:non-branded-modular": "cross-env TS_NODE_PROJECT=tsconfig.integration.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./test/nonBrandedIntegration/modular/*.spec.ts",
     "stop-test-server": "npx cadl-ranch server stop",
