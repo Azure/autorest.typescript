@@ -94,9 +94,9 @@ export function buildParameterTypes(model: RLCModel) {
         i
       );
 
-      const bodyTypeAlias = buildBodyTypeAlias(parameter, partialBodyTypeNames);
-      if (bodyTypeAlias) {
-        parametersFile.addTypeAlias(bodyTypeAlias);
+      const bodyInterface = buildBodyTypeAlias(parameter, partialBodyTypeNames);
+      if (bodyInterface) {
+        parametersFile.addInterface(bodyInterface);
       }
 
       // Add interfaces for body and query parameters
@@ -489,13 +489,32 @@ export function buildBodyTypeAlias(
     partialBodyTypeNames.add(typeName);
   }
   if (contentType.includes("application/merge-patch+json")) {
-    const type = `Partial<${schema.typeName}>`;
+    if (schema.properties) {
+      Object.entries(schema.properties)?.forEach((p) => {
+        if (p[1].required) {
+          p[1].typeName += " | undefined";
+          p[1].outputTypeName += " | undefined";
+        } else {
+          p[1].typeName += " | null | undefined";
+          p[1].outputTypeName += " | null | undefined";
+        }
+      });
+    }
+    const bodySignature = getPropertyFromSchema(schema);
+
     return {
-      // kind: StructureKind.TypeAlias,
-      ...(description && { docs: [{ description }] }),
-      name: `${typeName}`,
-      type,
-      isExported: true
-    };
+      isExported: true,
+      kind: StructureKind.Interface,
+      name: typeName,
+      docs: [description],
+      properties: [
+        {
+          docs: bodySignature.docs,
+          name: "body",
+          type: bodySignature.type,
+          hasQuestionToken: bodySignature.hasQuestionToken
+        }
+      ]
+    }
   }
 }
