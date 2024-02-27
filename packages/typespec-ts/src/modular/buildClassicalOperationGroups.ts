@@ -10,6 +10,7 @@ import { SourceFile } from "ts-morph";
 import { importModels, importPagingDependencies } from "./buildOperations.js";
 import { importLroCoreDependencies } from "./buildLroFiles.js";
 import { isLROOperation } from "./helpers/operationHelpers.js";
+import { buildModelImportFilters } from "./helpers/modelHelpers.js";
 
 export function buildClassicOperationFiles(
   codeModel: ModularCodeModel,
@@ -46,14 +47,15 @@ export function buildClassicOperationFiles(
 
       // Import models used from ./models.ts
       // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
-      const hasLro = operationGroup.operations.some((o) => isLROOperation(o));
       importModels(
         srcPath,
         classicFile,
         codeModel.project,
         subfolder,
         operationGroup.namespaceHierarchies.length,
-        hasLro ? new Set<string>().add("OperationState") : undefined
+        buildModelImportFilters(
+          operationGroup.operations.some((o) => isLROOperation(o))
+        )
       );
       importApis(classicFile, client, codeModel, operationGroup);
       // We need to import the paging helpers and types explicitly because ts-morph may not be able to find them.
@@ -111,14 +113,15 @@ export function buildClassicOperationFiles(
         importLroCoreDependencies(classicFile);
         // Import models used from ./models.ts
         // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
-        const hasLro = operationGroup.operations.some((o) => isLROOperation(o));
         importModels(
           srcPath,
           classicFile,
           codeModel.project,
           subfolder,
           layer,
-          hasLro ? new Set<string>().add("OperationState") : undefined
+          buildModelImportFilters(
+            operationGroup.operations.some((o) => isLROOperation(o))
+          )
         );
         importApis(classicFile, client, codeModel, operationGroup, layer);
 

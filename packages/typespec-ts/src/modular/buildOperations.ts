@@ -21,6 +21,7 @@ import {
 import { importLroCoreDependencies } from "./buildLroFiles.js";
 import { OperationPathAndDeserDetails } from "./interfaces.js";
 import { getOperationName } from "./helpers/namingHelpers.js";
+import { buildModelImportFilters } from "./helpers/modelHelpers.js";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -62,14 +63,15 @@ export function buildOperationFiles(
 
     // Import models used from ./models.ts
     // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
-    const hasLro = operationGroup.operations.some((o) => isLROOperation(o));
     importModels(
       srcPath,
       operationGroupFile,
       codeModel.project,
       subfolder,
       operationGroup.namespaceHierarchies.length,
-      hasLro ? new Set<string>().add("OperationState") : undefined
+      buildModelImportFilters(
+        operationGroup.operations.some((o) => isLROOperation(o))
+      )
     );
 
     // Import the deserializeUtils

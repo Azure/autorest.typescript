@@ -25,6 +25,7 @@ import {
 } from "./helpers/operationHelpers.js";
 import { getImportSpecifier } from "@azure-tools/rlc-common";
 import { importLroCoreDependencies } from "./buildLroFiles.js";
+import { buildModelImportFilters } from "./helpers/modelHelpers.js";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
@@ -96,14 +97,13 @@ export function buildClassicalClient(
   importLroCoreDependencies(clientFile);
   importCredential(codeModel.runtimeImports, clientFile);
   importPipeline(codeModel.runtimeImports, clientFile);
-  const hasLro = client.operationGroups.some((og) =>
-    og.operations.some(isLROOperation)
-  );
   importAllModels(
     clientFile,
     srcPath,
     subfolder,
-    hasLro ? new Set(["OperationState"]) : undefined
+    buildModelImportFilters(
+      client.operationGroups.some((og) => og.operations.some(isLROOperation))
+    )
   );
   buildClientOperationGroups(clientFile, client, clientClass);
   importAllApis(clientFile, srcPath, subfolder);
