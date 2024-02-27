@@ -1406,7 +1406,7 @@ function emitUnion(
   type: Union,
   usage: UsageFlags
 ): Record<string, any> {
-  const sdkType = getSdkUnion(context, type);
+  const [sdkType] = getSdkUnion(context, type);
   const nonNullOptions = getNonNullOptions(type);
   if (sdkType === undefined) {
     throw Error("Should not have an empty union");
@@ -1471,6 +1471,8 @@ function emitUnion(
       xmlMetadata: {}
     };
   } else {
+    const a = sdkType.__raw!;
+    console.log(a);
     return {
       ...emitType(context, sdkType.__raw!, usage),
       nullable: sdkType.nullable
