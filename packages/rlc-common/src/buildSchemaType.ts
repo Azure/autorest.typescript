@@ -4,6 +4,7 @@
 import { Project } from "ts-morph";
 import * as path from "path";
 import {
+  buildMergeModelDefinitions,
   buildObjectAliases,
   buildObjectInterfaces,
   buildPolymorphicAliases
@@ -43,6 +44,12 @@ export function generateModelFiles(
     schemaContext
   );
 
+  const mergeModelDefinitions = buildMergeModelDefinitions(
+    model,
+    importedModels,
+    schemaContext
+  );
+
   const objectTypeAliases = buildPolymorphicAliases(model, schemaContext);
 
   const objectAliases = buildObjectAliases(
@@ -60,6 +67,9 @@ export function generateModelFiles(
     });
 
     modelsFile.addInterfaces(objectsDefinitions);
+    if (mergeModelDefinitions && mergeModelDefinitions.length > 0) {
+      modelsFile.addInterfaces(mergeModelDefinitions);
+    }
     modelsFile.addTypeAliases(objectTypeAliases);
     modelsFile.addTypeAliases(objectAliases);
     if (importedModels.has("Paged")) {

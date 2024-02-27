@@ -12,6 +12,7 @@ import { isDictionarySchema, isObjectSchema } from "./helpers/schemaHelpers.js";
 import {
   ObjectSchema,
   Parameter,
+  ParameterMetadatas,
   Property,
   RLCModel,
   SchemaContext
@@ -116,6 +117,82 @@ export function buildPolymorphicAliases(
   return objectAliases;
 }
 
+export function buildMergeModelDefinitions(
+  model: RLCModel,
+  partialBodyTypeNames: Set<string>,
+  schemaUsage: SchemaContext[]
+) {
+  if (!model.parameters || !schemaUsage.includes(SchemaContext.Input)) {
+    return;
+  }
+  const mergeModelDefinitions: InterfaceDeclarationStructure[] = [];
+  for (const requestParameter of model.parameters) {
+    const requestCount = requestParameter?.parameters?.length ?? 0;
+    for (let i = 0; i < requestCount; i++) {
+      const parameter = requestParameter.parameters[i];
+      const bodyInterface = buildMergeModel(parameter, partialBodyTypeNames);
+      if (bodyInterface) {
+        mergeModelDefinitions.push(bodyInterface);
+      }
+    }
+  }
+  return mergeModelDefinitions;
+}
+
+function buildMergeModel(
+  parameters: ParameterMetadatas,
+  partialBodyTypeNames: Set<string>
+): InterfaceDeclarationStructure | undefined {
+  const bodyParameters = parameters.body;
+  if (
+    !bodyParameters ||
+    !bodyParameters?.body ||
+    !bodyParameters?.body.length
+  ) {
+    return undefined;
+  }
+  const schema = bodyParameters.body[0] as ObjectSchema;
+  const headerParameters = (parameters.parameters || []).filter(
+    (p) => p.type === "header" && p.name === "contentType"
+  );
+  if (!headerParameters.length || headerParameters.length > 1) {
+    return undefined;
+  }
+
+  const contentType = headerParameters[0].param.type;
+  const description = `${schema.description}`;
+  const typeName = `${schema.typeName}ResourceMergeAndPatch`;
+  if (partialBodyTypeNames.has(typeName)) {
+    return undefined;
+  } else {
+    partialBodyTypeNames.add(typeName);
+  }
+  if (contentType.includes("application/merge-patch+json")) {
+    if (schema.properties) {
+      const bodySignature = getPropertySignatures(
+        schema.properties,
+        [SchemaContext.Input],
+        partialBodyTypeNames
+      );
+
+      bodySignature.map((p) => {
+        if (!p.hasQuestionToken) {
+          p.type += " | undefined";
+        } else {
+          p.type += " | null | undefined";
+        }
+        return p;
+      });
+      return {
+        isExported: true,
+        kind: StructureKind.Interface,
+        name: typeName,
+        docs: [description],
+        properties: bodySignature
+      };
+    }
+  }
+}
 /**
  * Gets a base name for an object schema this is tipically used with suffixes when building interface or type names
  */
@@ -405,7 +482,7 @@ export function getImmediateParentsNames(
   return [...parents, ...extendFrom];
 }
 
-function getPropertySignatures(
+export function getPropertySignatures(
   properties: { [key: string]: Property },
   schemaUsage: SchemaContext[],
   importedModels: Set<string>

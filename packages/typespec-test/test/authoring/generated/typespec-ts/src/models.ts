@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { ProjectResourceMergeAndPatch } from "@azure-rest/core-client";
+
 /** The details of a project. */
 export interface Project {
   /** The project kind. */
@@ -38,4 +40,24 @@ export interface SwapDeploymentsOptions {
   firstDeploymentName: string;
   /** Represents the second deployment name. */
   secondDeploymentName: string;
+}
+
+/** The resource instance. */
+export interface ProjectResourceMergeAndPatch {
+  /** The project kind. */
+  projectKind:
+    | "CustomSingleLabelClassification"
+    | "CustomMultiLabelClassification"
+    | "CustomEntityRecognition"
+    | undefined;
+  /** The storage container name. */
+  storageInputContainerName: string | undefined;
+  /** The project settings. */
+  settings?: ProjectSettings | null | undefined;
+  /** Whether the project would be used for multiple languages or not. */
+  multilingual?: boolean | null | undefined;
+  /** The project description. */
+  description?: string | null | undefined;
+  /** The project language. This is BCP-47 representation of a language. For example, use "en" for English, "en-gb" for English (UK), "es" for Spanish etc. */
+  language: string | undefined;
 }

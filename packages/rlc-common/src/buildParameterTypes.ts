@@ -14,7 +14,8 @@ import {
   ParameterMetadata,
   ParameterMetadatas,
   RLCModel,
-  Schema
+  Schema,
+  SchemaContext
 } from "./interfaces.js";
 import {
   getImportModuleName,
@@ -27,7 +28,6 @@ export function buildParameterTypes(model: RLCModel) {
   const project = new Project();
   const srcPath = model.srcPath;
   const filePath = path.join(srcPath, `parameters.ts`);
-  const partialBodyTypeNames = new Set<string>();
   const parametersFile = project.createSourceFile(filePath, undefined, {
     overwrite: true
   });
@@ -93,11 +93,6 @@ export function buildParameterTypes(model: RLCModel) {
         internalReferences,
         i
       );
-
-      const bodyInterface = buildBodyTypeAlias(parameter, partialBodyTypeNames);
-      if (bodyInterface) {
-        parametersFile.addInterface(bodyInterface);
-      }
 
       // Add interfaces for body and query parameters
       parametersFile.addInterfaces([
@@ -457,64 +452,5 @@ function buildBodyParametersDefinition(
         ]
       }
     ];
-  }
-}
-
-export function buildBodyTypeAlias(
-  parameters: ParameterMetadatas,
-  partialBodyTypeNames: Set<string>
-) {
-  const bodyParameters = parameters.body;
-  if (
-    !bodyParameters ||
-    !bodyParameters?.body ||
-    !bodyParameters?.body.length
-  ) {
-    return undefined;
-  }
-  const schema = bodyParameters.body[0] as ObjectSchema;
-  const headerParameters = (parameters.parameters || []).filter(
-    (p) => p.type === "header" && p.name === "contentType"
-  );
-  if (!headerParameters.length || headerParameters.length > 1) {
-    return undefined;
-  }
-
-  const contentType = headerParameters[0].param.type;
-  const description = `${schema.description}`;
-  const typeName = `${schema.typeName}ResourceMergeAndPatch`;
-  if (partialBodyTypeNames.has(typeName)) {
-    return null;
-  } else {
-    partialBodyTypeNames.add(typeName);
-  }
-  if (contentType.includes("application/merge-patch+json")) {
-    if (schema.properties) {
-      Object.entries(schema.properties)?.forEach((p) => {
-        if (p[1].required) {
-          p[1].typeName += " | undefined";
-          p[1].outputTypeName += " | undefined";
-        } else {
-          p[1].typeName += " | null | undefined";
-          p[1].outputTypeName += " | null | undefined";
-        }
-      });
-    }
-    const bodySignature = getPropertyFromSchema(schema);
-
-    return {
-      isExported: true,
-      kind: StructureKind.Interface,
-      name: typeName,
-      docs: [description],
-      properties: [
-        {
-          docs: bodySignature.docs,
-          name: "body",
-          type: bodySignature.type,
-          hasQuestionToken: bodySignature.hasQuestionToken
-        }
-      ]
-    }
   }
 }

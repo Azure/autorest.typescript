@@ -3,14 +3,11 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 import {
-  Project,
+  ProjectResourceMergeAndPatch,
   TrainingJobOptions,
   Deployment,
   SwapDeploymentsOptions,
 } from "./models";
-
-/** The resource instance. */
-export type ProjectResourceMergeAndPatch = Partial<Project>;
 
 export interface CreateOrUpdateBodyParam {
   /** The resource instance. */
