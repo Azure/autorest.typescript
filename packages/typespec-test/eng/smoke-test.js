@@ -73,7 +73,7 @@ function copyFile(path) {
 const failed = [];
 
 function build(path) {
-  const command = `cd ${path}/generated/typespec-ts && npm install && npm run build`;
+  const command = `cd ${path}/generated/typespec-ts && npm install && npm run build && npm run lint`;
   console.log(command);
   try {
     const result = execSync(command, {
