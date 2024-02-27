@@ -2,10 +2,10 @@
 // Licensed under the MIT license.
 
 export {
+  User,
   Widget,
   ListWidgetsPagesResults,
   CreateWidget,
-  User,
   UpdateWidget,
   AnalyzeResult,
   OperationState,

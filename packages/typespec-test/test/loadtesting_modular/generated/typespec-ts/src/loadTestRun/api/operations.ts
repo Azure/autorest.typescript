@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { getLongRunningPoller } from "./pollingHelpers.js";
-import { Next } from "@marygao/core-lro";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   FileInfo,
   TestRun,
@@ -165,13 +165,13 @@ export function testRun(
   testRunId: string,
   resource: TestRun,
   options: TestRunOptions = { requestOptions: {} },
-): Next.PollerLike<Next.OperationState<TestRun>, TestRun> {
+): PollerLike<OperationState<TestRun>, TestRun> {
   return getLongRunningPoller(context, _testRunDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
       _testRunSend(context, testRunId, resource, options),
-  }) as Next.PollerLike<Next.OperationState<TestRun>, TestRun>;
+  }) as PollerLike<OperationState<TestRun>, TestRun>;
 }
 
 export function _createOrUpdateAppComponentsSend(

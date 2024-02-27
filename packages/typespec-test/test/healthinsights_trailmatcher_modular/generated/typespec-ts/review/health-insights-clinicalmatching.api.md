@@ -11,10 +11,11 @@ import { ErrorModel } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
-import { Next } from '@marygao/core-lro';
 import { OperationOptions } from '@azure-rest/core-client';
+import { OperationState } from '@azure/core-lro';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { PollerLike } from '@azure/core-lro';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -61,7 +62,7 @@ export type ClinicalDocumentType = string;
 // @public (undocumented)
 export class ClinicalMatchingClient {
     constructor(endpoint: string, credential: KeyCredential, options?: ClinicalMatchingClientOptions);
-    matchTrials(body: TrialMatcherData, options?: MatchTrialsOptions): Next.PollerLike<Next.OperationState<TrialMatcherResults>, TrialMatcherResults>;
+    matchTrials(body: TrialMatcherData, options?: MatchTrialsOptions): PollerLike<OperationState<TrialMatcherResults>, TrialMatcherResults>;
     readonly pipeline: Pipeline;
 }
 
@@ -245,7 +246,7 @@ export type RepeatabilityResult = "accepted" | "rejected";
 // Warning: (ae-forgotten-export) The symbol "AzureHealthInsightsContext" needs to be exported by the entry point index.d.ts
 //
 // @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: AzureHealthInsightsContext | ClinicalMatchingClient, serializedState: string, sourceOperation: (...args: any[]) => Next.PollerLike<Next.OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): Next.PollerLike<Next.OperationState<TResult>, TResult>;
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: AzureHealthInsightsContext | ClinicalMatchingClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
 
 // @public (undocumented)
 export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {

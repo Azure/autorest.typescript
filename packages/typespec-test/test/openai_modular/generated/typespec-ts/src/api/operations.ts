@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { getLongRunningPoller } from "./pollingHelpers.js";
-import { Next } from "@marygao/core-lro";
 import {
   AudioTranscriptionOptions,
   AudioTranscription,
@@ -12,7 +10,6 @@ import {
   Completions,
   ChatCompletionsOptions,
   ChatCompletions,
-  ImageGenerations,
   ImageGenerationOptions,
   ImageGenerations,
   AudioSpeechOptions,
@@ -1005,39 +1002,29 @@ export function _getEmbeddingsSend(
 export async function _getEmbeddingsDeserialize(
   result: GetEmbeddings200Response | GetEmbeddingsDefaultResponse,
 ): Promise<Embeddings> {
-): Promise<ImageGenerations> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
-  result = result as BeginAzureBatchImageGenerationLogicalResponse;
-  if (result?.body?.result === undefined) {
-    throw createRestError(
-      `Expected a result in the response at position "result.body.result"`,
-      result,
-    );
-  }
-
   return {
-    created: new Date(result.body.result["created"]),
-    data: result.body.result["data"] as any,
+    data: result.body["data"].map((p) => ({
+      embedding: p["embedding"],
+      index: p["index"],
+    })),
+    usage: {
+      promptTokens: result.body.usage["prompt_tokens"],
+      totalTokens: result.body.usage["total_tokens"],
+    },
   };
 }
 
 /** Return the embeddings for a given prompt. */
-export function beginAzureBatchImageGeneration(
+export async function getEmbeddings(
   context: Client,
   deploymentId: string,
   body: EmbeddingsOptions,
-): Next.PollerLike<Next.OperationState<ImageGenerations>, ImageGenerations> {
-  return getLongRunningPoller(
+  options: GetEmbeddingsOptions = { requestOptions: {} },
+): Promise<Embeddings> {
   const result = await _getEmbeddingsSend(context, deploymentId, body, options);
-    _beginAzureBatchImageGenerationDeserialize,
-    {
-      updateIntervalInMs: options?.updateIntervalInMs,
-      abortSignal: options?.abortSignal,
-      getInitialResponse: () =>
-        _beginAzureBatchImageGenerationSend(context, body, options),
-    },
-  ) as Next.PollerLike<Next.OperationState<ImageGenerations>, ImageGenerations>;
+  return _getEmbeddingsDeserialize(result);
 }

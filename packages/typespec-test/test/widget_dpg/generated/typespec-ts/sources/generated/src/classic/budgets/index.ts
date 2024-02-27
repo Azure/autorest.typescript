@@ -4,7 +4,7 @@
 import { WidgetServiceContext } from "../../api/WidgetServiceContext.js";
 import { User } from "../../models/models.js";
 import { createOrReplace, createOrUpdate } from "../../api/budgets/index.js";
-import { Next } from "@marygao/core-lro";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   BudgetsCreateOrReplaceOptions,
   BudgetsCreateOrUpdateOptions,
@@ -15,12 +15,12 @@ export interface BudgetsOperations {
     name: string,
     resource: User,
     options?: BudgetsCreateOrReplaceOptions,
-  ) => Next.PollerLike<Next.OperationState<User>, User>;
+  ) => PollerLike<OperationState<User>, User>;
   createOrUpdate: (
     name: string,
     resource: User,
     options?: BudgetsCreateOrUpdateOptions,
-  ) => Next.PollerLike<Next.OperationState<User>, User>;
+  ) => PollerLike<OperationState<User>, User>;
 }
 
 export function getBudgets(context: WidgetServiceContext) {

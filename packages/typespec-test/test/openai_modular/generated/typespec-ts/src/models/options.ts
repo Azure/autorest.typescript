@@ -36,7 +36,3 @@ export interface GetImageGenerationsOptions extends OperationOptions {}
 export interface GetAudioSpeechOptions extends OperationOptions {}
 
 export interface GetEmbeddingsOptions extends OperationOptions {}
-  extends OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-}

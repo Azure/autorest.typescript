@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Next } from "@marygao/core-lro";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { TrialMatcherData, TrialMatcherResults } from "./models/models.js";
@@ -33,10 +33,7 @@ export class ClinicalMatchingClient {
   matchTrials(
     body: TrialMatcherData,
     options: MatchTrialsOptions = { requestOptions: {} },
-  ): Next.PollerLike<
-    Next.OperationState<TrialMatcherResults>,
-    TrialMatcherResults
-  > {
+  ): PollerLike<OperationState<TrialMatcherResults>, TrialMatcherResults> {
     return matchTrials(this._client, body, options);
   }
 }

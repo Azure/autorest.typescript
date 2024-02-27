@@ -7,10 +7,10 @@ export {
 } from "./WidgetServiceClient.js";
 export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
+  User,
   Widget,
   ListWidgetsPagesResults,
   CreateWidget,
-  User,
   UpdateWidget,
   AnalyzeResult,
   OperationState,

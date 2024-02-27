@@ -4,20 +4,11 @@
 
 ```ts
 
-import { AbortSignalLike } from '@azure/abort-controller';
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorModel } from '@azure-rest/core-client';
-import { ErrorResponse } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
-import { Next } from '@marygao/core-lro';
 import { OperationOptions } from '@azure-rest/core-client';
-import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -206,7 +197,7 @@ export interface AzureGroundingEnhancementLine {
 
 // @public
 export interface AzureGroundingEnhancementLineSpan {
-    updateIntervalInMs?: number;
+    length: number;
     offset: number;
     polygon: AzureGroundingEnhancementCoordinatePoint[];
     text: string;
@@ -874,7 +865,7 @@ export type OnYourDataVectorizationSourceUnion = OnYourDataEndpointVectorization
 // @public (undocumented)
 export class OpenAIClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions);
-    beginAzureBatchImageGeneration(body: ImageGenerationOptions, options?: BeginAzureBatchImageGenerationOptions): Next.PollerLike<Next.OperationState<ImageGenerations>, ImageGenerations>;
+    getAudioSpeech(deploymentId: string, body: AudioSpeechOptions, options?: GetAudioSpeechOptions): Promise<Uint8Array>;
     getAudioTranscriptionAsPlainText(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsPlainTextOptions): Promise<string>;
     getAudioTranscriptionAsResponseObject(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsResponseObjectOptions): Promise<AudioTranscription>;
     getAudioTranslationAsPlainText(deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsPlainTextOptions): Promise<string>;
@@ -896,16 +887,16 @@ export interface PineconeChatExtensionConfiguration extends AzureChatExtensionCo
     type: "Pinecone";
 }
 
-// Warning: (ae-forgotten-export) The symbol "OpenAIContext" needs to be exported by the entry point index.d.ts
-//
 // @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: OpenAIContext | OpenAIClient, serializedState: string, sourceOperation: (...args: any[]) => Next.PollerLike<Next.OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): Next.PollerLike<Next.OperationState<TResult>, TResult>;
-
-// @public (undocumented)
-export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
-    abortSignal?: AbortSignalLike;
-    processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
-    updateIntervalInMs?: number;
+export interface PineconeChatExtensionParameters {
+    authentication?: OnYourDataAuthenticationOptionsUnion;
+    embeddingDependency: OnYourDataVectorizationSourceUnion;
+    environment: string;
+    fieldsMapping: PineconeFieldMappingOptions;
+    indexName: string;
+    inScope?: boolean;
+    roleInformation?: string;
+    strictness?: number;
     topNDocuments?: number;
 }
 

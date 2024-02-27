@@ -3,9 +3,9 @@
 
 import { WidgetServiceContext } from "../../api/WidgetServiceContext.js";
 import {
+  User,
   Widget,
   CreateWidget,
-  User,
   UpdateWidget,
   AnalyzeResult,
 } from "../../models/models.js";
@@ -21,7 +21,7 @@ import {
   analyzeWidget,
 } from "../../api/widgets/index.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
-import { Next } from "@marygao/core-lro";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   WidgetsListWidgetsOptions,
   WidgetsListWidgetsPagesOptions,
@@ -62,7 +62,7 @@ export interface WidgetsOperations {
     name: string,
     resource: User,
     options?: WidgetsCreateOrReplaceOptions,
-  ) => Next.PollerLike<Next.OperationState<User>, User>;
+  ) => PollerLike<OperationState<User>, User>;
   updateWidget: (
     id: string,
     body: UpdateWidget,

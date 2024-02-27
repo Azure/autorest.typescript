@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 export { OpenAIClient, OpenAIClientOptions } from "./OpenAIClient.js";
-export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   AudioTranscriptionOptions,
   AudioTranscriptionFormat,

@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { getLongRunningPoller } from "./pollingHelpers.js";
-import { Next } from "@marygao/core-lro";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import { TrialMatcherData, TrialMatcherResults } from "../models/models.js";
 import {
   isUnexpected,
@@ -286,16 +286,10 @@ export function matchTrials(
   context: Client,
   body: TrialMatcherData,
   options: MatchTrialsOptions = { requestOptions: {} },
-): Next.PollerLike<
-  Next.OperationState<TrialMatcherResults>,
-  TrialMatcherResults
-> {
+): PollerLike<OperationState<TrialMatcherResults>, TrialMatcherResults> {
   return getLongRunningPoller(context, _matchTrialsDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () => _matchTrialsSend(context, body, options),
-  }) as Next.PollerLike<
-    Next.OperationState<TrialMatcherResults>,
-    TrialMatcherResults
-  >;
+  }) as PollerLike<OperationState<TrialMatcherResults>, TrialMatcherResults>;
 }

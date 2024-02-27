@@ -2,12 +2,12 @@
 // Licensed under the MIT license.
 
 import { getLongRunningPoller } from "../pollingHelpers.js";
-import { Next } from "@marygao/core-lro";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import {
+  User,
   Widget,
   ListWidgetsPagesResults,
   CreateWidget,
-  User,
   UpdateWidget,
   AnalyzeResult,
 } from "../../models/models.js";
@@ -367,13 +367,13 @@ export function createOrReplace(
   name: string,
   resource: User,
   options: WidgetsCreateOrReplaceOptions = { requestOptions: {} },
-): Next.PollerLike<Next.OperationState<User>, User> {
+): PollerLike<OperationState<User>, User> {
   return getLongRunningPoller(context, _createOrReplaceDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
       _createOrReplaceSend(context, name, resource, options),
-  }) as Next.PollerLike<Next.OperationState<User>, User>;
+  }) as PollerLike<OperationState<User>, User>;
 }
 
 export function _updateWidgetSend(

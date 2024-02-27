@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Next } from "@marygao/core-lro";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
@@ -13,7 +12,6 @@ import {
   Completions,
   ChatCompletionsOptions,
   ChatCompletions,
-  ImageGenerations,
   ImageGenerationOptions,
   ImageGenerations,
   AudioSpeechOptions,
@@ -176,7 +174,7 @@ export class OpenAIClient {
   getEmbeddings(
     deploymentId: string,
     body: EmbeddingsOptions,
-  ): Next.PollerLike<Next.OperationState<ImageGenerations>, ImageGenerations> {
+    options: GetEmbeddingsOptions = { requestOptions: {} },
   ): Promise<Embeddings> {
     return getEmbeddings(this._client, deploymentId, body, options);
   }

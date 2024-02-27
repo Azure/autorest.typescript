@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { getLongRunningPoller } from "../pollingHelpers.js";
-import { Next } from "@marygao/core-lro";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import { User } from "../../models/models.js";
 import {
   BudgetsCreateOrReplace200Response,
@@ -70,13 +70,13 @@ export function createOrReplace(
   name: string,
   resource: User,
   options: BudgetsCreateOrReplaceOptions = { requestOptions: {} },
-): Next.PollerLike<Next.OperationState<User>, User> {
+): PollerLike<OperationState<User>, User> {
   return getLongRunningPoller(context, _createOrReplaceDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
       _createOrReplaceSend(context, name, resource, options),
-  }) as Next.PollerLike<Next.OperationState<User>, User>;
+  }) as PollerLike<OperationState<User>, User>;
 }
 
 export function _createOrUpdateSend(
@@ -120,11 +120,11 @@ export function createOrUpdate(
   name: string,
   resource: User,
   options: BudgetsCreateOrUpdateOptions = { requestOptions: {} },
-): Next.PollerLike<Next.OperationState<User>, User> {
+): PollerLike<OperationState<User>, User> {
   return getLongRunningPoller(context, _createOrUpdateDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
     getInitialResponse: () =>
       _createOrUpdateSend(context, name, resource, options),
-  }) as Next.PollerLike<Next.OperationState<User>, User>;
+  }) as PollerLike<OperationState<User>, User>;
 }

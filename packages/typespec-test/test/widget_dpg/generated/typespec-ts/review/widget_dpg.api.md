@@ -9,10 +9,11 @@ import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
-import { Next } from '@marygao/core-lro';
 import { OperationOptions } from '@azure-rest/core-client';
+import { OperationState as OperationState_2 } from '@azure/core-lro';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { PollerLike } from '@azure/core-lro';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -38,9 +39,9 @@ export interface BudgetsCreateOrUpdateOptions extends OperationOptions {
 // @public (undocumented)
 export interface BudgetsOperations {
     // (undocumented)
-    createOrReplace: (name: string, resource: User, options?: BudgetsCreateOrReplaceOptions) => Next.PollerLike<Next.OperationState<User>, User>;
+    createOrReplace: (name: string, resource: User, options?: BudgetsCreateOrReplaceOptions) => PollerLike<OperationState_2<User>, User>;
     // (undocumented)
-    createOrUpdate: (name: string, resource: User, options?: BudgetsCreateOrUpdateOptions) => Next.PollerLike<Next.OperationState<User>, User>;
+    createOrUpdate: (name: string, resource: User, options?: BudgetsCreateOrUpdateOptions) => PollerLike<OperationState_2<User>, User>;
 }
 
 // @public
@@ -78,7 +79,7 @@ export interface PageSettings {
 // Warning: (ae-forgotten-export) The symbol "WidgetServiceContext" needs to be exported by the entry point index.d.ts
 //
 // @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: WidgetServiceContext | WidgetServiceClient, serializedState: string, sourceOperation: (...args: any[]) => Next.PollerLike<Next.OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): Next.PollerLike<Next.OperationState<TResult>, TResult>;
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: WidgetServiceContext | WidgetServiceClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState_2<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState_2<TResult>, TResult>;
 
 // @public (undocumented)
 export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
@@ -161,7 +162,7 @@ export interface WidgetsOperations {
     // (undocumented)
     analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptions) => Promise<AnalyzeResult>;
     // (undocumented)
-    createOrReplace: (name: string, resource: User, options?: WidgetsCreateOrReplaceOptions) => Next.PollerLike<Next.OperationState<User>, User>;
+    createOrReplace: (name: string, resource: User, options?: WidgetsCreateOrReplaceOptions) => PollerLike<OperationState_2<User>, User>;
     // (undocumented)
     createWidget: (body: CreateWidget, options?: WidgetsCreateWidgetOptions) => Promise<Widget>;
     // (undocumented)
