@@ -6,6 +6,10 @@ export interface TypeSpecRanchConfig {
 
 export const rlcTsps: TypeSpecRanchConfig[] = [
   // {
+  //   outputPath: "payload/multipart",
+  //   inputPath: "payload/multipart"
+  // },
+  // {
   //   outputPath: "union-body",
   //   inputPath: "union-body"
   // },
@@ -157,10 +161,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   //   outputPath: "parameters/spread",
   //   inputPath: "parameters/spread"
   // },
-  {
-    outputPath: "projection/client-encoded-name",
-    inputPath: "projection/client-encoded-name"
-  },
+  // {
+  //   outputPath: "projection",
+  //   inputPath: "projection/projected-name"
+  // },
   // {
   //   outputPath: "server/path/single",
   //   inputPath: "server/path/single"
@@ -208,7 +212,15 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   // {
   //   outputPath: "payload/pageable",
   //   inputPath: "payload/pageable"
-  // }
+  // },
+  {
+    outputPath: "client/naming",
+    inputPath: "client/naming"
+  },
+  {
+    outputPath: "serialization/encoded-name/json",
+    inputPath: "serialization/encoded-name/json"
+  }
 ];
 
 export const nonBrandedRlcTsps: TypeSpecRanchConfig[] = [
@@ -327,9 +339,7 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   //   outputPath: "models/propertyTypes",
   //   inputPath: "type/property/value-types"
   // },
-  // {  outputPath: "arrays/items",
-  //   inputPath: "type/array"
-  // },
+  // { outputPath: "arrays/items", inputPath: "type/array" },
   // {
   //   outputPath: "models/inheritance/recursive",
   //   inputPath: "type/model/inheritance/recursive"
@@ -343,9 +353,13 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   //   inputPath: "type/scalar"
   // },
   {
-    outputPath: "projection/client-encoded-name",
-    inputPath: "projection/client-encoded-name"
+    outputPath: "client/naming",
+    inputPath: "client/naming"
   },
+  {
+    outputPath: "serialization/encoded-name/json",
+    inputPath: "serialization/encoded-name/json"
+  }
 ];
 
 export const nonBrandedModularTsps: TypeSpecRanchConfig[] = [

@@ -9,7 +9,7 @@ export interface ArrayClientOptions extends ClientOptions {}
 
 export { ArrayContext } from "../rest/index.js";
 
-/** Illustrates various of dictionaries. */
+/** Illustrates various types of arrays. */
 export function createArray(options: ArrayClientOptions = {}): ArrayContext {
   const clientContext = getClient(options);
   return clientContext;

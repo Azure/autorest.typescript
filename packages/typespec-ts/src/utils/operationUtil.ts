@@ -43,6 +43,7 @@ import {
 import { isByteOrByteUnion } from "./modelUtils.js";
 import { SdkContext } from "./interfaces.js";
 import { getOperationNamespaceInterfaceName } from "./namespaceUtils.js";
+import { KnownMediaType, knownMediaType } from "./mediaTypes.js";
 
 // Sorts the responses by status code
 export function sortedOperationResponses(responses: HttpOperationResponse[]) {
@@ -185,18 +186,11 @@ export function isBinaryPayload(
   body: Type,
   contentType: string | string[]
 ) {
-  const allContentTypes = Array.isArray(contentType)
-    ? contentType
-    : [contentType];
-  for (const type of allContentTypes) {
-    const contentType = `"${type}"`;
-    if (
-      contentType !== `"application/json"` &&
-      contentType !== `"text/plain"` &&
-      contentType !== `"application/json" | "text/plain"` &&
-      contentType !== `"text/plain" | "application/json"` &&
-      isByteOrByteUnion(dpgContext, body)
-    ) {
+  const knownMediaTypes: KnownMediaType[] = (
+    Array.isArray(contentType) ? contentType : [contentType]
+  ).map((ct) => knownMediaType(ct));
+  for (const type of knownMediaTypes) {
+    if (type === KnownMediaType.Binary && isByteOrByteUnion(dpgContext, body)) {
       return true;
     }
   }

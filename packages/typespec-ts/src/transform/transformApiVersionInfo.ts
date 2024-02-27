@@ -71,13 +71,11 @@ function getOperationApiVersion(
         (p.type === "query" || p.type === "path") && isApiVersion(dpgContext, p)
     );
     params.map((p) => {
-      const type = getSchemaForType(
-        dpgContext,
-        p.param.type,
-        [SchemaContext.Exception, SchemaContext.Input],
-        false,
-        p.param
-      );
+      const type = getSchemaForType(dpgContext, p.param.type, {
+        usage: [SchemaContext.Exception, SchemaContext.Input],
+        needRef: false,
+        relevantProperty: p.param
+      });
       if (p.type !== "header") {
         locations.add(p.type);
       }
@@ -106,13 +104,11 @@ function getOperationApiVersion(
           isApiVersion(dpgContext, p)
       );
       params.map((p) => {
-        const type = getSchemaForType(
-          dpgContext,
-          p.param.type,
-          [SchemaContext.Exception, SchemaContext.Input],
-          false,
-          p.param
-        );
+        const type = getSchemaForType(dpgContext, p.param.type, {
+          usage: [SchemaContext.Exception, SchemaContext.Input],
+          needRef: false,
+          relevantProperty: p.param
+        });
         if (p.type !== "header") {
           locations.add(p.type);
         }
