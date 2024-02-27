@@ -9,7 +9,6 @@ export function buildModelImportFilters(
   if (!hasLroImport) {
     return undefined;
   }
-  // If there is an LRO import then we should filter out the OperationState model
-  // Because it is already imported in core-lro
+  // If there is an LRO import then we should filter out the OperationState model because it is already imported in core-lro
   return new Set(["OperationState"]);
 }

@@ -413,7 +413,6 @@ export function removeUnusedInterfaces(project: Project) {
     interfaceDeclaration.interfaceDeclaration.remove();
   });
 
-  // For optimal results, sometimes this method needs to be called again. There could be nodes
-  // that are only referenced in unused declarations and in this case, another call will also remove them.
+  // There could be nodes that are only referenced in unused declarations and in this case, we need another call to remove them.
   project.getSourceFiles().forEach((file) => file.fixUnusedIdentifiers());
 }

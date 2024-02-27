@@ -122,6 +122,8 @@ export function getDeserializePrivateFunction(
       type: getRLCResponseType(operation.rlcResponse)
     }
   ];
+  // TODO: Support LRO + paging operation
+  // https://github.com/Azure/autorest.typescript/issues/2313
   const isLroOnly = isLROOnlyOperation(operation);
 
   // TODO: Support operation overloads
@@ -177,7 +179,8 @@ export function getDeserializePrivateFunction(
   }
 
   // TODO: Hard-coded for LRO PATCH case for now
-  // Considering 1) there exists issues in getLroMetadata() for PATCH and 2) we don't have real case yet
+  // https://github.com/Azure/autorest.typescript/issues/2314
+  // Considering 1) there exists issues in getLroMetadata() for PATCH and 2) we don't have real case yet in DPG
   if (isLroOnly && operation.method.toLowerCase() === "patch") {
     statements.push(`return result.body as any`);
     return {
@@ -311,8 +314,8 @@ export function getOperationFunction(
     // Case 2: lro-only operation
     return getLroOnlyOperatonFunction(operation, clientType);
   } else if (isLro && isPaging) {
-    // Case 3: both paging + lro operation
-    // TODO: Not supported and emit warning
+    // Case 3: both paging + lro operation is not supported yet so handle them as normal operation and customization may be needed
+    // https://github.com/Azure/autorest.typescript/issues/2313
   }
 
   // Extract required parameters
