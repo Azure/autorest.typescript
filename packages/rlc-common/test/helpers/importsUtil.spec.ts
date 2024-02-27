@@ -21,7 +21,7 @@ describe("#buildRuntimeImports", () => {
     expect(imports.commonFallback).to.deep.equal({
       type: "commonFallback",
       specifier: "@typespec/ts-http-runtime",
-      version: "1.0.0-alpha.20231129.4"
+      version: "1.0.0-alpha.20240226.9"
     });
     expect(imports.restClient).to.be.undefined;
   });
