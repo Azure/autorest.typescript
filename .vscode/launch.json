@@ -112,7 +112,7 @@
     {
       "name": "[TypeSpec] Smoke Test Debug",
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/typespec-test/test/loadtesting_modular",
+      "cwd": "${workspaceFolder}/packages/typespec-test/test/customWrapper",
       "runtimeArgs": ["tsp", "compile", "./spec"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
@@ -124,11 +124,10 @@
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/typespec-ts",
       "runtimeArgs": [
-        "node",
-        "--loader",
-        "ts-node/esm",
+        "ts-node",
         "./test/commands/gen-cadl-ranch.ts",
-        "--tag=modular"
+        "--tag=rlc",
+        "--debug"
       ],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
@@ -170,7 +169,7 @@
         "--timeout",
         "999999",
         "--colors",
-        "./test/modularIntegration/*.spec.ts"
+        "./test/integration/*.spec.ts"
       ],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
