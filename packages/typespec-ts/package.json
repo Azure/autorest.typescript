@@ -74,7 +74,7 @@
     "@azure/logger": "^1.0.4",
     "@azure/core-util": "^1.4.0",
     "eslint-plugin-require-extensions": "0.1.3",
-    "@typespec/ts-http-runtime": "1.0.0-alpha.20231129.4",
+    "@typespec/ts-http-runtime": "1.0.0-alpha.20240226.9",
     "@azure-tools/typespec-azure-core": ">=0.39.0 <1.0.0",
     "@azure-tools/typespec-client-generator-core": ">=0.39.0 <1.0.0",
     "@typespec/compiler": ">=0.53.0 <1.0.0",

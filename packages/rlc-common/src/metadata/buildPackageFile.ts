@@ -327,7 +327,7 @@ function restLevelPackage(model: RLCModel) {
   if (!branded) {
     const runtimeLibVersion =
       model.importInfo.runtimeImports.commonFallback?.version ??
-      "1.0.0-alpha.20231129.4";
+      "1.0.0-alpha.20240226.9";
     packageInfo.dependencies = {
       tslib: "^2.2.0",
       "@typespec/ts-http-runtime": runtimeLibVersion
