@@ -12,7 +12,7 @@ describe("#buildRuntimeImports", () => {
     expect(imports.restClient).to.deep.equal({
       type: "restClient",
       specifier: "@azure-rest/core-client",
-      version: "^1.1.6"
+      version: "^1.2.0"
     });
   });
 
