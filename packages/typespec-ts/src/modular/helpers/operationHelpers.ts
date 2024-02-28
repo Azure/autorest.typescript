@@ -912,7 +912,7 @@ export function getRequestModelMapping(
     const propertyFullName = `${propertyPath}.${property.clientName}`;
     if (property.type.type === "model") {
       let definition;
-      if (property.type.isCoreErrorType) {
+      if (property.type.coreTypeInfo === "ErrorType") {
         definition = `"${property.restApiName}": ${getNullableCheck(
           propertyFullName,
           property.type
@@ -1007,7 +1007,7 @@ export function getResponseMapping(
     const propertyFullName = `${propertyPath}.${property.restApiName}`;
     if (property.type.type === "model") {
       let definition;
-      if (property.type.isCoreErrorType) {
+      if (property.type.coreTypeInfo === "ErrorType") {
         definition = `"${property.clientName}": ${getNullableCheck(
           propertyFullName,
           property.type

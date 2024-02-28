@@ -44,7 +44,6 @@ export {
   TimeSeriesElement,
   MetricValue,
   DimensionValue,
-  OperationState,
   Interval,
   DimensionValueList,
 } from "./models.js";

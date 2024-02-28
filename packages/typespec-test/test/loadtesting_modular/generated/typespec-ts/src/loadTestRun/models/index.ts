@@ -47,7 +47,6 @@ export {
   MetricValue,
   DimensionValue,
   PagedTestRun,
-  OperationState,
   Interval,
   PagedDimensionValueList,
   DimensionValueList,

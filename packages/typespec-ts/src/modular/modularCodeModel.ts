@@ -100,7 +100,7 @@ export interface Type {
   format?: string;
   properties?: Property[];
   types?: Type[];
-  isCoreErrorType?: boolean;
+  coreTypeInfo?: "ErrorType" | "LroType";
   usage?: UsageFlags;
   alias?: string;
   aliasType?: string;

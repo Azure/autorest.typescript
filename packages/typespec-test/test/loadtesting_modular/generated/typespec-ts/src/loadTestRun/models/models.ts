@@ -531,9 +531,6 @@ export interface PagedTestRun {
   nextLink?: string;
 }
 
-/** Enum describing allowed operation states. */
-/** "NotStarted", "Running", "Succeeded", "Failed", "Canceled" */
-export type OperationState = string;
 /** "PT5S", "PT10S", "PT1M", "PT5M", "PT1H" */
 export type Interval = string;
 

@@ -1554,16 +1554,35 @@ export function trimUsage(model: any) {
   return ordered;
 }
 
+export function buildCoreTypeInfo(t?: Type) {
+  return isAzureCoreErrorType(t)
+    ? "ErrorType"
+    : isAzureCoreLroType(t)
+      ? "LroType"
+      : undefined;
+}
+
 export function isAzureCoreErrorType(t?: Type): boolean {
   if (
     t?.kind !== "Model" ||
     !["error", "errorresponse", "innererror"].includes(t.name.toLowerCase())
   )
     return false;
+  return isAzureCoreFoundationsNamespace(t);
+}
+
+// Check if the type in the Azure.Core.Foundations has an LRO type in core
+export function isAzureCoreLroType(t?: Type): boolean {
+  if (t?.kind !== "Enum" || !["operationstate"].includes(t.name.toLowerCase()))
+    return false;
+  return isAzureCoreFoundationsNamespace(t);
+}
+
+function isAzureCoreFoundationsNamespace(t?: Type): boolean {
   const namespaces = ".Azure.Core.Foundations".split(".");
   while (
     namespaces.length > 0 &&
-    (t?.kind === "Model" || t?.kind === "Namespace") &&
+    (t?.kind === "Model" || t?.kind === "Enum" || t?.kind === "Namespace") &&
     t.namespace?.name === namespaces.pop()
   ) {
     t = t.namespace;

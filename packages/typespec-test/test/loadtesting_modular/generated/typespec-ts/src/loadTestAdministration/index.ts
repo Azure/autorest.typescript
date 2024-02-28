@@ -48,7 +48,6 @@ export {
   TimeSeriesElement,
   MetricValue,
   DimensionValue,
-  OperationState,
   Interval,
   DimensionValueList,
   CreateOrUpdateTestOptions,

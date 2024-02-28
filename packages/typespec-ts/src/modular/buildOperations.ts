@@ -21,7 +21,6 @@ import {
 import { importLroCoreDependencies } from "./buildLroFiles.js";
 import { OperationPathAndDeserDetails } from "./interfaces.js";
 import { getOperationName } from "./helpers/namingHelpers.js";
-import { buildModelImportFilters } from "./helpers/modelHelpers.js";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -68,10 +67,7 @@ export function buildOperationFiles(
       operationGroupFile,
       codeModel.project,
       subfolder,
-      operationGroup.namespaceHierarchies.length,
-      buildModelImportFilters(
-        operationGroup.operations.some((o) => isLROOperation(o))
-      )
+      operationGroup.namespaceHierarchies.length
     );
 
     // Import the deserializeUtils
@@ -183,8 +179,7 @@ export function importModels(
   sourceFile: SourceFile,
   project: Project,
   subfolder: string = "",
-  importLayer: number = 0,
-  filters: Set<string> = new Set<string>()
+  importLayer: number = 0
 ) {
   const hasModelsImport = sourceFile.getImportDeclarations().some((i) => {
     return i.getModuleSpecifierValue().endsWith(`models/models.js`);
@@ -197,9 +192,6 @@ export function importModels(
   const models: string[] = [];
 
   for (const [name] of modelsFile?.getExportedDeclarations().entries() ?? []) {
-    if (filters.has(name)) {
-      continue;
-    }
     models.push(name);
   }
 

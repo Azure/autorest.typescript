@@ -85,6 +85,7 @@ import {
   Property
 } from "./modularCodeModel.js";
 import {
+  buildCoreTypeInfo,
   getBodyType,
   getEnrichedDefaultApiVersion,
   isAzureCoreErrorType
@@ -1109,7 +1110,7 @@ function emitModel(
       ? applyCasing(modelName, { casing: CASING })
       : modelName,
     base: modelName === "" ? "json" : "dpg",
-    isCoreErrorType: isAzureCoreErrorType(type),
+    coreTypeInfo: buildCoreTypeInfo(type),
     usage
   };
 }
@@ -1141,7 +1142,8 @@ function emitEnum(program: Program, type: Enum): Record<string, any> {
     description: getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
-    isFixed: isFixed(program, type)
+    isFixed: isFixed(program, type),
+    coreTypeInfo: buildCoreTypeInfo(type)
   };
 }
 
