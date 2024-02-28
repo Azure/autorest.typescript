@@ -43,7 +43,6 @@ import {
   EncodeData,
   isRecordModelType,
   isArrayModelType,
-  resolveEncodedName
 } from "@typespec/compiler";
 import { reportDiagnostic } from "../lib.js";
 import {
@@ -68,6 +67,7 @@ import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
 import { extractPagedMetadataNested } from "./operationUtil.js";
 import {
   getDefaultApiVersion,
+  getWireName,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
 import { GetSchemaOptions, SdkContext } from "./interfaces.js";
@@ -562,7 +562,7 @@ function getSchemaForModel(
   const program = dpgContext.program;
   const overridedModelName =
     getFriendlyName(program, model) ??
-    resolveEncodedName(program, model, "application/json");
+    getWireName(dpgContext, model);
   const fullNamespaceName =
     overridedModelName ??
     getModelNamespaceName(dpgContext, model.namespace!)
@@ -713,7 +713,7 @@ function getSchemaForModel(
     };
   }
   for (const [propName, prop] of model.properties) {
-    const restApiName = resolveEncodedName(program, prop, "application/json");
+    const restApiName = getWireName(dpgContext, prop);
     const name = `"${restApiName ?? propName}"`;
     if (!isSchemaProperty(program, prop)) {
       continue;
@@ -835,11 +835,6 @@ function applyIntrinsicDecorators(
   if (isString && !target?.documentation && docStr) {
     newTarget.description = docStr;
   }
-
-  // const restApiName = resolveEncodedName(program, type, "application/json");
-  // if (restApiName) {
-  //   newTarget.name = restApiName;
-  // }
 
   const summaryStr = getSummary(program, type);
   if (isString && !target.summary && summaryStr) {

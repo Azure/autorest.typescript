@@ -34,8 +34,7 @@ import {
   isNullType,
   getEncode,
   isTemplateDeclarationOrInstance,
-  UsageFlags,
-  resolveEncodedName
+  UsageFlags
 } from "@typespec/compiler";
 import {
   getAuthentication,
@@ -68,7 +67,8 @@ import {
   getSdkBuiltInType,
   getClientType,
   SdkEnumValueType,
-  getClientNameOverride
+  getLibraryName,
+  getWireName
 } from "@azure-tools/typespec-client-generator-core";
 import {
   ModularCodeModel,
@@ -812,7 +812,7 @@ function emitBasicOperation(
     sourceOperation
   );
   const sourceOperationName = getOperationName(
-    context.program,
+    context,
     sourceOperation
   );
   const sourceRoutePath = ignoreDiagnostics(
@@ -977,7 +977,7 @@ function emitProperty(
   // const [clientName, jsonName] = getPropertyNames(context, property);
   const clientName = property.name;
   const jsonName =
-    resolveEncodedName(context.program, property, "application/json") ??
+    getWireName(context, property) ??
     property.name;
 
   if (property.model) {
@@ -1032,7 +1032,7 @@ function emitModel(
   }
   const effectiveName = getEffectiveSchemaType(context.program, type).name;
   const overridedModelName =
-    getClientNameOverride(context, type) ??
+    getLibraryName(context, type) ??
     getFriendlyName(context.program, type);
   const fullNamespaceName =
     getModelNamespaceName(context, type.namespace!)
@@ -1566,7 +1566,7 @@ function emitOperationGroups(
   }
   for (const operationGroup of listOperationGroups(context, client, true)) {
     const operations: HrlcOperation[] = [];
-    const overrideName = getClientNameOverride(context, operationGroup.type);
+    const overrideName = getLibraryName(context, operationGroup.type);
     const name =
       context.rlcOptions?.hierarchyClient ||
       context.rlcOptions?.enableOperationGroup

@@ -15,7 +15,6 @@ import {
   Model,
   Operation,
   Program,
-  resolveEncodedName,
   Type
 } from "@typespec/compiler";
 import {
@@ -32,6 +31,7 @@ import {
 } from "@azure-tools/typespec-azure-core";
 import {
   SdkClient,
+  getWireName,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
@@ -79,7 +79,7 @@ export function getOperationResponseTypes(
       const statusCode = getOperationStatuscode(r);
       const responseName = getResponseTypeName(
         getOperationGroupName(dpgContext, operation),
-        getOperationName(dpgContext.program, operation.operation),
+        getOperationName(dpgContext, operation.operation),
         statusCode
       );
       return responseName;
@@ -159,11 +159,10 @@ export function getOperationGroupName(
     .join("");
 }
 
-export function getOperationName(program: Program, operation: Operation) {
-  const projectedOperationName = resolveEncodedName(
-    program,
+export function getOperationName(dpgContext: SdkContext, operation: Operation) {
+  const projectedOperationName = getWireName(
+    dpgContext,
     operation,
-    "application/json"
   );
 
   return normalizeName(
@@ -264,7 +263,7 @@ export function getOperationLroOverload(
  * @returns
  */
 export function extractOperationLroDetail(
-  program: Program,
+  dpgContext: SdkContext,
   operation: HttpOperation,
   responsesTypes: ResponseTypes,
   operationGroupName: string
@@ -273,7 +272,7 @@ export function extractOperationLroDetail(
 
   let precedence = OPERATION_LRO_LOW_PRIORITY;
   const operationLroOverload = getOperationLroOverload(
-    program,
+    dpgContext.program,
     operation,
     responsesTypes
   );
@@ -283,11 +282,11 @@ export function extractOperationLroDetail(
       success: [
         getLroLogicalResponseName(
           operationGroupName,
-          getOperationName(program, operation.operation)
+          getOperationName(dpgContext, operation.operation)
         )
       ]
     };
-    const metadata = getLroMetadata(program, operation.operation);
+    const metadata = getLroMetadata(dpgContext.program, operation.operation);
     precedence =
       metadata?.finalStep &&
       metadata.finalStep.kind === "pollingSuccessProperty" &&
@@ -298,7 +297,7 @@ export function extractOperationLroDetail(
   }
 
   return {
-    isLongRunning: Boolean(getLroMetadata(program, operation.operation)),
+    isLongRunning: Boolean(getLroMetadata(dpgContext.program, operation.operation)),
     logicalResponseTypes,
     operationLroOverload,
     precedence
