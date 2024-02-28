@@ -212,6 +212,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "payload/pageable",
     inputPath: "payload/pageable"
+  },
+  {
+    outputPath: "payload/content-negotiation",
+    inputPath: "payload/content-negotiation"
   }
 ];
 
