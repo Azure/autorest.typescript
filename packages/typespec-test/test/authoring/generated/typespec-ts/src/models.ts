@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ProjectResourceMergeAndPatch } from "@azure-rest/core-client";
-
 /** The details of a project. */
 export interface Project {
   /** The project kind. */

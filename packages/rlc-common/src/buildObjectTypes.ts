@@ -162,11 +162,6 @@ function buildMergeModel(
   const contentType = headerParameters[0].param.type;
   const description = `${schema.description}`;
   const typeName = `${schema.typeName}ResourceMergeAndPatch`;
-  if (partialBodyTypeNames.has(typeName)) {
-    return undefined;
-  } else {
-    partialBodyTypeNames.add(typeName);
-  }
   if (contentType.includes("application/merge-patch+json")) {
     if (schema.properties) {
       const bodySignature = getPropertySignatures(

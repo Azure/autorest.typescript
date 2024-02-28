@@ -10,12 +10,10 @@ import {
 } from "ts-morph";
 import * as path from "path";
 import {
-  ObjectSchema,
   ParameterMetadata,
   ParameterMetadatas,
   RLCModel,
   Schema,
-  SchemaContext
 } from "./interfaces.js";
 import {
   getImportModuleName,
