@@ -521,5 +521,71 @@ describe("Client Factory generation", () => {
     `
       );
     });
+
+    it("should generate both credentials if include BearerAuth and OAuth2Auth", async () => {
+      const models = await emitClientFactoryFromTypeSpec(`
+      @useAuth(
+        BearerAuth |
+          OAuth2Auth<[{
+            type: OAuth2FlowType.implicit,
+            authorizationUrl: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+            scopes: ["https://petstor.com/default"]
+          }]>)
+      @service( {title: "PetStoreClient"})
+      namespace PetStore;
+      `);
+      assert.ok(models);
+      assertEqualContent(
+        models!.content,
+        `
+        import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import { logger } from "./logger";
+        import { TokenCredential, KeyCredential, isKeyCredential } from "@azure/core-auth";
+        import { testClient } from "./clientDefinitions";
+        
+        /**
+         * Initialize a new instance of \`testClient\`
+         * @param endpoint - The parameter endpoint
+         * @param credentials - uniquely identify client credential
+         * @param options - the parameter for all optional parameters
+         */
+        export default function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
+        const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
+        
+        const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
+        const userAgentPrefix =
+            options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+            ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
+            : \`\${userAgentInfo}\`;
+        options = {
+            ...options,
+            userAgentOptions: {
+            userAgentPrefix,
+            },
+            loggingOptions: {
+              logger: options.loggingOptions?.logger ?? logger.info
+            },
+            credentials: {
+              scopes: options.credentials?.scopes ?? ["https://petstor.com/default"],
+            },
+        };
+        
+        const client = getClient(baseUrl, credentials, options) as testClient;
+
+        if (isKeyCredential(credentials)) {
+          client.pipeline.addPolicy({
+            name: "customKeyCredentialPolicy",
+            async sendRequest(request, next) {
+              request.headers.set("Authorization", "bearer " + credentials.key);
+              return next(request);
+            },
+          });
+        }
+        
+        return client;
+    }
+    `
+      );
+    });
   });
 });

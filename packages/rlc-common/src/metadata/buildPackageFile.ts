@@ -56,9 +56,10 @@ function restLevelPackage(model: RLCModel) {
     isTypeSpecTest,
     sourceFrom,
     multiClient,
-    batch
+    batch,
+    branded
   } = model.options;
-  let { generateTest, generateSample } = model.options;
+  const { generateTest, generateSample } = model.options;
   if (
     multiClient &&
     batch &&
@@ -67,12 +68,6 @@ function restLevelPackage(model: RLCModel) {
   ) {
     return;
   }
-
-  // Take the undefined as true by default
-  generateTest = generateTest === true || generateTest === undefined;
-  generateSample =
-    (generateSample === true || generateSample === undefined) &&
-    (model.sampleGroups ?? []).length > 0;
   const clientPackageName = packageDetails.name;
   let apiRefUrlQueryParameter: string = "";
   packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
@@ -136,10 +131,10 @@ function restLevelPackage(model: RLCModel) {
       "integration-test:browser": "echo skipped",
       "integration-test:node": "echo skipped",
       "integration-test": "echo skipped",
-      "lint:fix": `eslint package.json api-extractor.json src ${appednPathWhenLint(
+      "lint:fix": `eslint package.json api-extractor.json src ${appendPathWhenLint(
         generateTest
       )} --ext .ts --fix --fix-type [problem,suggestion]`,
-      lint: `eslint package.json api-extractor.json src ${appednPathWhenLint(
+      lint: `eslint package.json api-extractor.json src ${appendPathWhenLint(
         generateTest
       )} --ext .ts`,
       pack: "npm pack 2>&1",
@@ -240,7 +235,7 @@ function restLevelPackage(model: RLCModel) {
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
-    packageInfo.devDependencies["@azure/identity"] = "^3.3.0";
+    packageInfo.devDependencies["@azure/identity"] = "^4.0.1";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
     packageInfo.devDependencies["mocha"] = "^10.0.0";
     packageInfo.devDependencies["esm"] = "^3.2.18";
@@ -329,6 +324,15 @@ function restLevelPackage(model: RLCModel) {
     }
   }
 
+  if (!branded) {
+    const runtimeLibVersion =
+      model.importInfo.runtimeImports.commonFallback?.version ??
+      "1.0.0-alpha.20240226.9";
+    packageInfo.dependencies = {
+      tslib: "^2.2.0",
+      "@typespec/ts-http-runtime": runtimeLibVersion
+    };
+  }
   return packageInfo;
 }
 
@@ -346,7 +350,7 @@ function appendPathWhenFormat(
   return path;
 }
 
-function appednPathWhenLint(generateTest?: boolean) {
+function appendPathWhenLint(generateTest?: boolean) {
   return generateTest ? "test" : "";
 }
 

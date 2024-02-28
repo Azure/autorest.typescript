@@ -26,6 +26,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { uint8ArrayToString } from "@azure/core-util";
 import {
   FilesListOptions,
   FilesCreateOptions,
@@ -83,7 +84,10 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: { file: file["file"], purpose: file["purpose"] },
+      body: {
+        file: uint8ArrayToString(file["file"], "base64"),
+        purpose: file["purpose"],
+      },
     });
 }
 

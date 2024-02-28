@@ -23,6 +23,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  uint8ArrayToString,
   createRestError,
 } from "@typespec/ts-http-runtime";
 import {
@@ -82,7 +83,10 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: { file: file["file"], purpose: file["purpose"] },
+      body: {
+        file: uint8ArrayToString(file["file"], "base64"),
+        purpose: file["purpose"],
+      },
     });
 }
 

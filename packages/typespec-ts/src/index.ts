@@ -93,6 +93,14 @@ export async function $onEmit(context: EmitContext) {
       await calculateGenerationDir();
     dpgContext.generationPathDetail = generationPathDetail;
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
+    const hasTestFolder = await fsextra.pathExists(
+      join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
+    );
+    options.generateTest =
+      options.generateTest === true ||
+      (options.generateTest === undefined &&
+        !hasTestFolder &&
+        options.branded);
     dpgContext.rlcOptions = options;
   }
 
@@ -248,7 +256,6 @@ export async function $onEmit(context: EmitContext) {
     const shouldGenerateMetadata =
       option.generateMetadata === true ||
       (option.generateMetadata === undefined && !hasPackageFile);
-
     if (shouldGenerateMetadata) {
       const commonBuilders = [
         buildRollupConfig,
@@ -293,13 +300,7 @@ export async function $onEmit(context: EmitContext) {
     }
 
     // Generate test relevant files
-    const hasTestFolder = await fsextra.pathExists(
-      join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
-    );
-    const shouldGenerateTest =
-      option.generateTest === true ||
-      (option.generateTest === undefined && !hasTestFolder);
-    if (shouldGenerateTest && isBranded) {
+    if (option.generateTest && isBranded) {
       await emitContentByBuilder(
         program,
         [

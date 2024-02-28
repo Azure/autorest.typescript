@@ -509,6 +509,10 @@ function buildBodyParameter(
     return `\nbody: ${bodyParameter.clientName},`;
   }
 
+  if (bodyParameter) {
+    return `\nbody: ${bodyParameter.clientName},`;
+  }
+  
   return "";
 }
 
@@ -790,11 +794,15 @@ export function getRequestModelMapping(
               }`
         }`;
       } else if (isPolymorphicUnion(property.type)) {
+        let nullOrUndefinedPrefix = "";
+        if (property.optional || property.type.nullable) {
+          nullOrUndefinedPrefix = `!${propertyFullName} ? ${propertyFullName} :`;
+        }
         const deserializeFunctionName = getDeserializeFunctionName(
           property.type,
           "serialize"
         );
-        definition = `"${property.restApiName}": ${deserializeFunctionName}(${propertyFullName})`;
+        definition = `"${property.restApiName}": ${nullOrUndefinedPrefix}${deserializeFunctionName}(${propertyFullName})`;
       } else {
         definition = `"${property.restApiName}": ${getNullableCheck(
           propertyFullName,
@@ -881,11 +889,15 @@ export function getResponseMapping(
               }`
         }`;
       } else if (isSpecialHandledUnion(property.type)) {
+        let nullOrUndefinedPrefix = "";
+        if (property.optional || property.type.nullable) {
+          nullOrUndefinedPrefix = `!${propertyFullName} ? ${propertyFullName} :`;
+        }
         const deserializeFunctionName = getDeserializeFunctionName(
           property.type,
           "deserialize"
         );
-        definition = `"${property.clientName}": ${deserializeFunctionName}(${propertyFullName})`;
+        definition = `"${property.clientName}": ${nullOrUndefinedPrefix}${deserializeFunctionName}(${propertyFullName})`;
       } else {
         definition = `"${property.clientName}": ${getNullableCheck(
           propertyFullName,
@@ -972,11 +984,15 @@ export function deserializeResponseValue(
             [...typeStack, type.elementType]
           )}}))`;
         } else if (isPolymorphicUnion(type.elementType)) {
+          let nullOrUndefinedPrefix = "";
+          if (type.elementType.nullable) {
+            nullOrUndefinedPrefix = `!p ? p :`;
+          }
           const deserializeFunctionName = getDeserializeFunctionName(
             type.elementType,
             "deserialize"
           );
-          return `${prefix}.map(p => ${deserializeFunctionName}(p))`;
+          return `${prefix}.map(p => ${nullOrUndefinedPrefix}${deserializeFunctionName}(p))`;
         }
         return `${prefix}`;
       } else if (
@@ -1077,11 +1093,15 @@ export function serializeRequestValue(
         type.elementType?.type === "model" &&
         isPolymorphicUnion(type.elementType)
       ) {
+        let nullOrUndefinedPrefix = "";
+        if (type.elementType.nullable) {
+          nullOrUndefinedPrefix = `!p ? p :`;
+        }
         const serializeFunctionName = getDeserializeFunctionName(
           type.elementType,
           "serialize"
         );
-        return `${prefix}.map(p => ${serializeFunctionName}(p))`;
+        return `${prefix}.map(p => ${nullOrUndefinedPrefix}${serializeFunctionName}(p))`;
       } else {
         return clientValue;
       }

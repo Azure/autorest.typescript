@@ -15,6 +15,16 @@ export interface LivenessSessionCreationContent {
 export interface LivenessWithVerifySessionCreationContent {
   /** The json for creating liveness session. */
   Parameters: LivenessSessionCreationContent;
-  /** The image stream for verify. */
-  VerifyImage: string;
+  /**
+   * The image stream for verify.
+   *
+   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
+   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
+   */
+  VerifyImage:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream
+    | File;
 }

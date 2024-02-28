@@ -8,6 +8,7 @@ import {
   CompletionsOptions,
   ChatCompletionsOptions,
   ImageGenerationOptions,
+  AudioSpeechOptions,
   EmbeddingsOptions,
 } from "./models.js";
 
@@ -15,8 +16,15 @@ export interface GetAudioTranscriptionAsPlainTextBodyParam {
   body?: AudioTranscriptionOptions;
 }
 
+export interface GetAudioTranscriptionAsPlainTextMediaTypesParam {
+  /** The content type for the operation. Always multipart/form-data for this operation. */
+  contentType: "multipart/form-data";
+}
+
 export type GetAudioTranscriptionAsPlainTextParameters =
-  GetAudioTranscriptionAsPlainTextBodyParam & RequestParameters;
+  GetAudioTranscriptionAsPlainTextMediaTypesParam &
+    GetAudioTranscriptionAsPlainTextBodyParam &
+    RequestParameters;
 
 export interface GetAudioTranscriptionAsResponseObjectBodyParam {
   body?: AudioTranscriptionOptions;
@@ -36,8 +44,15 @@ export interface GetAudioTranslationAsPlainTextBodyParam {
   body?: AudioTranslationOptions;
 }
 
+export interface GetAudioTranslationAsPlainTextMediaTypesParam {
+  /** The content type for the operation. Always multipart/form-data for this operation. */
+  contentType: "multipart/form-data";
+}
+
 export type GetAudioTranslationAsPlainTextParameters =
-  GetAudioTranslationAsPlainTextBodyParam & RequestParameters;
+  GetAudioTranslationAsPlainTextMediaTypesParam &
+    GetAudioTranslationAsPlainTextBodyParam &
+    RequestParameters;
 
 export interface GetAudioTranslationAsResponseObjectBodyParam {
   body?: AudioTranslationOptions;
@@ -67,18 +82,18 @@ export interface GetChatCompletionsBodyParam {
 export type GetChatCompletionsParameters = GetChatCompletionsBodyParam &
   RequestParameters;
 
-export interface GetChatCompletionsWithAzureExtensionsBodyParam {
-  body?: ChatCompletionsOptions;
-}
-
-export type GetChatCompletionsWithAzureExtensionsParameters =
-  GetChatCompletionsWithAzureExtensionsBodyParam & RequestParameters;
-
 export interface GetImageGenerationsBodyParam {
   body?: ImageGenerationOptions;
 }
 
 export type GetImageGenerationsParameters = GetImageGenerationsBodyParam &
+  RequestParameters;
+
+export interface GetAudioSpeechBodyParam {
+  body?: AudioSpeechOptions;
+}
+
+export type GetAudioSpeechParameters = GetAudioSpeechBodyParam &
   RequestParameters;
 
 export interface GetEmbeddingsBodyParam {
