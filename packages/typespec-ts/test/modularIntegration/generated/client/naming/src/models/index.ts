@@ -11,7 +11,7 @@ export {
 export {
   OperationOptions,
   ParameterOptions,
-  ClientOptions,
+  ClientRequestOptions,
   LanguageOptions,
   CompatibleWithEncodedNameOptions,
   RequestOptions,

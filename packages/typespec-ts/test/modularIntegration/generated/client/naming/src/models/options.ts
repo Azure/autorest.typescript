@@ -7,7 +7,7 @@ export interface OperationOptions extends OperationOptions {}
 
 export interface ParameterOptions extends OperationOptions {}
 
-export interface ClientOptions extends OperationOptions {}
+export interface ClientRequestOptions extends OperationOptions {}
 
 export interface LanguageOptions extends OperationOptions {}
 

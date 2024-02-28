@@ -10,7 +10,7 @@ export {
   TSModel,
   OperationOptions,
   ParameterOptions,
-  ClientOptions,
+  ClientRequestOptions,
   LanguageOptions,
   CompatibleWithEncodedNameOptions,
   RequestOptions,

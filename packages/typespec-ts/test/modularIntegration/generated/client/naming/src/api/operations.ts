@@ -20,11 +20,11 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   createRestError,
-  ClientOptions,
   OperationOptions,
 } from "@azure-rest/core-client";
 import {
   ParameterOptions,
+  ClientRequestOptions,
   LanguageOptions,
   CompatibleWithEncodedNameOptions,
   RequestOptions,
@@ -93,7 +93,7 @@ export async function parameter(
 export function _clientSend(
   context: Client,
   body: ClientNameModel,
-  options: ClientOptions = { requestOptions: {} },
+  options: ClientRequestOptions = { requestOptions: {} },
 ): StreamableMethod<PropertyClient204Response> {
   return context
     .path("/client/naming/property/client")
@@ -116,7 +116,7 @@ export async function _clientDeserialize(
 export async function client(
   context: Client,
   body: ClientNameModel,
-  options: ClientOptions = { requestOptions: {} },
+  options: ClientRequestOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _clientSend(context, body, options);
   return _clientDeserialize(result);

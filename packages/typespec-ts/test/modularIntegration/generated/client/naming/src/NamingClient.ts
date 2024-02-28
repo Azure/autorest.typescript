@@ -10,7 +10,7 @@ import {
 import {
   OperationOptions,
   ParameterOptions,
-  ClientOptions,
+  ClientRequestOptions,
   LanguageOptions,
   CompatibleWithEncodedNameOptions,
   RequestOptions,
@@ -60,7 +60,7 @@ export class NamingClient {
 
   client(
     body: ClientNameModel,
-    options: ClientOptions = { requestOptions: {} },
+    options: ClientRequestOptions = { requestOptions: {} },
   ): Promise<void> {
     return client(this._client, body, options);
   }

@@ -340,7 +340,7 @@ export function getOperationOptionsName(
       ? getClassicalLayerPrefix(operation, NameType.Interface)
       : "";
   const optionName = `${prefix}${toPascalCase(operation.name)}Options`;
-  if (operation.bodyParameter?.type.name === optionName) {
+  if (operation.bodyParameter?.type.name === optionName || optionName === "ClientOptions") {
     return optionName.replace(/Options$/, "RequestOptions");
   }
   return optionName;
