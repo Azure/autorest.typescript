@@ -2,7 +2,7 @@ import { assert } from "chai";
 import SerializationEncodedNameJsonClientFactory, {
   SerializationEncodedNameJsonClient
 } from "./generated/serialization/encoded-name/json/src/index.js";
-describe.only("ClientEncodedNameClient Rest Client", () => {
+describe("ClientEncodedNameClient Rest Client", () => {
   let client: SerializationEncodedNameJsonClient;
 
   beforeEach(() => {
