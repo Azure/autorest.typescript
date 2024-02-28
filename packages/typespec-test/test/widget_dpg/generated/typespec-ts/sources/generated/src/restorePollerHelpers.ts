@@ -35,15 +35,6 @@ export interface RestorePollerOptions<
   processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
 }
 
-const deserializeMap: Record<string, Function> = {
-  "PUT /widgets/widgets/createOrReplace/users/{name}":
-    _createOrReplaceDeserialize,
-  "PUT /budgets/widgets/createOrReplace/users/{name}":
-    _createOrReplaceDeserializeBudgets,
-  "PATCH /budgets/widgets/createOrUpdate/users/{name}":
-    _createOrUpdateDeserialize,
-};
-
 /**
  * Creates a poller from the serialized state of another poller. This can be
  * useful when you want to create pollers on a different host or a poller
@@ -58,16 +49,15 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
   options?: RestorePollerOptions<TResult>,
 ): PollerLike<OperationState<TResult>, TResult> {
   const pollerConfig = deserializeState(serializedState).config;
-  const { initialUrl } = pollerConfig;
-  const requestMethod = pollerConfig.requestMethod;
+  const { initialUrl, requestMethod, metadata } = pollerConfig;
   if (!initialUrl || !requestMethod) {
     throw new Error(
       `Invalid serialized state: ${serializedState} for sourceOperation ${sourceOperation?.name}`,
     );
   }
-  const resourceLocationConfig = pollerConfig?.metadata?.[
-    "resourceLocationConfig"
-  ] as ResourceLocationConfig | undefined;
+  const resourceLocationConfig = metadata?.["resourceLocationConfig"] as
+    | ResourceLocationConfig
+    | undefined;
   const deserializeHelper =
     options?.processResponseBody ??
     getDeserializationHelper(initialUrl, requestMethod);
@@ -88,6 +78,15 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
     },
   );
 }
+
+const deserializeMap: Record<string, Function> = {
+  "PUT /widgets/widgets/createOrReplace/users/{name}":
+    _createOrReplaceDeserialize,
+  "PUT /budgets/widgets/createOrReplace/users/{name}":
+    _createOrReplaceDeserializeBudgets,
+  "PATCH /budgets/widgets/createOrUpdate/users/{name}":
+    _createOrUpdateDeserialize,
+};
 
 function getDeserializationHelper(
   urlStr: string,
