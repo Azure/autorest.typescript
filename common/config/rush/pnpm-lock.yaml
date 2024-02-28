@@ -12,7 +12,7 @@ importers:
       '@autorest/testmodeler': ^2.4.0
       '@azure-rest/core-client': ^1.2.0
       '@azure-tools/codegen': ^2.9.1
-      '@azure-tools/rlc-common': workspace:^0.22.0
+      '@azure-tools/rlc-common': workspace:^0.23.0
       '@azure-tools/test-recorder': ^3.0.0
       '@azure/abort-controller': ^1.0.1
       '@azure/core-auth': ^1.6.0
@@ -194,7 +194,7 @@ importers:
       '@azure-tools/typespec-autorest': '>=0.39.0 <1.0.0'
       '@azure-tools/typespec-azure-core': '>=0.39.0 <1.0.0'
       '@azure-tools/typespec-client-generator-core': '>=0.39.0 <1.0.0'
-      '@azure-tools/typespec-ts': workspace:^0.22.0
+      '@azure-tools/typespec-ts': workspace:^0.23.0
       '@types/mocha': ^5.2.7
       '@types/node': ^18.0.0
       '@typespec/compiler': '>=0.53.0 <1.0.0'
@@ -230,7 +230,7 @@ importers:
       '@azure-tools/cadl-ranch': ^0.12.0
       '@azure-tools/cadl-ranch-expect': ^0.13.0
       '@azure-tools/cadl-ranch-specs': ^0.30.0
-      '@azure-tools/rlc-common': workspace:^0.22.0
+      '@azure-tools/rlc-common': workspace:^0.23.0
       '@azure-tools/typespec-azure-core': '>=0.39.0 <1.0.0'
       '@azure-tools/typespec-client-generator-core': '>=0.39.0 <1.0.0'
       '@azure/core-auth': ^1.6.0
@@ -248,7 +248,7 @@ importers:
       '@typespec/compiler': '>=0.53.0 <1.0.0'
       '@typespec/http': '>=0.53.0 <1.0.0'
       '@typespec/rest': '>=0.53.0 <1.0.0'
-      '@typespec/ts-http-runtime': 1.0.0-alpha.20231129.4
+      '@typespec/ts-http-runtime': 1.0.0-alpha.20240226.9
       '@typespec/versioning': '>=0.53.0 <1.0.0'
       chai: ^4.3.6
       chalk: ^4.0.0
@@ -292,7 +292,7 @@ importers:
       '@typespec/compiler': 0.53.0
       '@typespec/http': 0.53.0_@typespec+compiler@0.53.0
       '@typespec/rest': 0.53.0_nzwoo2agqoebfftes3rwmlmylm
-      '@typespec/ts-http-runtime': 1.0.0-alpha.20231129.4
+      '@typespec/ts-http-runtime': 1.0.0-alpha.20240226.9
       '@typespec/versioning': 0.53.0_@typespec+compiler@0.53.0
       chai: 4.3.8
       chalk: 4.1.2
@@ -1370,12 +1370,12 @@ packages:
       '@typespec/compiler': 0.53.0
       '@typespec/http': 0.53.0_@typespec+compiler@0.53.0
 
-  /@typespec/ts-http-runtime/1.0.0-alpha.20231129.4:
-    resolution: {integrity: sha512-H2bI/Pxc31/y0p9bMzKoplA/BuoxpHrT71NJkdPCRugvyTlYFPbrdxWOBqrFr175HKjy4pzaiBn4Dg5+tXpfhg==}
+  /@typespec/ts-http-runtime/1.0.0-alpha.20240226.9:
+    resolution: {integrity: sha512-c1srD2gidsKNiK4YJ1yAMsJdKYIXaRpWdnu5mcyhP3GQ4b89fUQ5pGXLsaF1rimmxpOaI1cENgEWFC7pRf580A==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      http-proxy-agent: 5.0.0
-      https-proxy-agent: 5.0.1
+      http-proxy-agent: 7.0.0
+      https-proxy-agent: 7.0.2
       tslib: 2.6.2
     transitivePeerDependencies:
       - supports-color

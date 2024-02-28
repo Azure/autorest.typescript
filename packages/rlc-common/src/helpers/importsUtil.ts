@@ -13,7 +13,7 @@ export function buildRuntimeImports(branded = true): Imports {
       commonFallback: {
         type: "commonFallback",
         specifier: "@typespec/ts-http-runtime",
-        version: "1.0.0-alpha.20231129.4"
+        version: "1.0.0-alpha.20240226.9"
       }
     } as Imports;
   } else {
@@ -21,17 +21,17 @@ export function buildRuntimeImports(branded = true): Imports {
       restClient: {
         type: "restClient",
         specifier: "@azure-rest/core-client",
-        version: "^1.1.6"
+        version: "^1.2.0"
       },
       coreAuth: {
         type: "coreAuth",
         specifier: "@azure/core-auth",
-        version: "^1.3.0"
+        version: "^1.6.0"
       },
       restPipeline: {
         type: "restPipeline",
         specifier: "@azure/core-rest-pipeline",
-        version: "^1.12.0"
+        version: "^1.14.0"
       },
       coreUtil: {
         type: "coreUtil",
@@ -41,12 +41,12 @@ export function buildRuntimeImports(branded = true): Imports {
       coreLogger: {
         type: "coreLogger",
         specifier: "@azure/logger",
-        version: "^1.0.0"
+        version: "^1.0.4"
       },
       azureEslintPlugin: {
         type: "azureEslintPlugin",
         specifier: "@azure/eslint-plugin-azure-sdk",
-        version: "^1.0.0"
+        version: "^3.0.0"
       },
       azureTestRecorder: {
         type: "azureTestRecorder",
