@@ -6,7 +6,6 @@ export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   User,
   ExportedUser,
-  OperationState,
   CreateOrReplaceOptions,
   DeleteOperationOptions,
   ExportOperationOptions,

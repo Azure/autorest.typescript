@@ -16,7 +16,3 @@ export interface ExportedUser {
   /** The exported URI. */
   resourceUri: string;
 }
-
-/** Enum describing allowed operation states. */
-/** "NotStarted", "Running", "Succeeded", "Failed", "Canceled" */
-export type OperationState = string;
