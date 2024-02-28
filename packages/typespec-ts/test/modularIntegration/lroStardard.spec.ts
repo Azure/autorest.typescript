@@ -1,6 +1,10 @@
-import { StandardClient } from "./generated/lro/standard/generated/src/index.js";
+import {
+  StandardClient,
+  User
+} from "./generated/lro/standard/generated/src/index.js";
 import { assert } from "chai";
 import { restorePoller } from "./generated/lro/standard/generated/src/restorePollerHelpers.js";
+import { OperationState } from "@azure/core-lro";
 
 describe("LROStandardClient Classical Client", () => {
   let client: StandardClient;
@@ -12,6 +16,11 @@ describe("LROStandardClient Classical Client", () => {
   });
 
   describe("createOrReplace", () => {
+    it("just call without await", async () => {
+      client.createOrReplace("madge", {
+        role: "contributor"
+      } as any);
+    });
     it("should await poller result directly", async () => {
       try {
         const result = await client.createOrReplace("madge", {
@@ -71,28 +80,122 @@ describe("LROStandardClient Classical Client", () => {
       //           },
       //           "operationLocation":"http://localhost:3000/azure/core/lro/standard/users/madge/operations/operation1",
       //           "resourceLocation":"http://localhost:3000/azure/core/lro/standard/users/madge?api-version=2022-12-01-preview",
-      //           "initialUri":"http://localhost:3000/azure/core/lro/standard/users/madge?api-version=2022-12-01-preview",
+      //           "initialUrl":"http://localhost:3000/azure/core/lro/standard/users/madge?api-version=2022-12-01-preview",
       //           "requestMethod":"PUT"
       //        }
       //     }
       //  }
-      // console.log(restoredPoller);
       const newPoller = restorePoller(
         client,
         restoredPoller,
         client.createOrReplace
       );
       const result = await newPoller.pollUntilDone();
-      // console.log(result);
       assert.strictEqual(result.name, "madge");
       assert.strictEqual(result.role, "contributor");
     });
 
-    it("onProgress callback", async () => {});
+    it("should get in-the-middle values by onProgress/operationState", async () => {
+      const poller = client.createOrReplace("madge", {
+        role: "contributor"
+      } as any);
+      const states: string[] = [];
+      const operations: OperationState<User>[] = [];
+      poller.onProgress((state) => {
+        states.push(state.status);
+        operations.push(poller.operationState!);
+        assert.strictEqual(state, poller.operationState);
+      });
+      const res1 = await poller;
+      const res2 = poller.result;
+      assert.deepEqual(res1, res2);
+      assert.strictEqual(operations.length, 2);
+      assert.strictEqual(states.length, 2);
+      assert.deepEqual(states, ["running", "succeeded"]);
+    });
 
-    it("abort signal", async () => {});
+    // Skip this case: https://github.com/Azure/autorest.typescript/issues/2316
+    it.skip("should abort signal", async () => {
+      const abortController = new AbortController();
+      const poller = client.createOrReplace(
+        "madge",
+        {
+          role: "contributor"
+        } as any,
+        {
+          abortSignal: abortController.signal
+        }
+      );
+      await poller.submitted();
+      assert.strictEqual(poller.operationState?.status, "running");
+      abortController.abort();
+      poller.poll();
+      assert.strictEqual(poller.operationState?.status, "cancelled");
+    });
 
-    it("exception handling", async () => {});
+    // Skip this case: https://github.com/Azure/azure-sdk-for-js/issues/28694
+    it.skip("submitted should catch the inital error", async () => {
+      try {
+        const poller = client.createOrReplace("madge", {
+          role: "foo"
+        } as any);
+        assert.isNotNull(poller);
+        await poller.submitted();
+        assert.fail("Expected an exception");
+      } catch (err: any) {
+        assert.strictEqual(
+          err.message,
+          "The long-running operation has failed"
+        );
+      }
+    });
+
+    it("poll should catch the inital error", async () => {
+      try {
+        const poller = client.createOrReplace("madge", {
+          role: "foo"
+        } as any);
+        assert.isNotNull(poller);
+        await poller.poll();
+        assert.fail("Expected an exception");
+      } catch (err: any) {
+        assert.strictEqual(
+          err.message,
+          "The long-running operation has failed"
+        );
+      }
+    });
+
+    it("pollUntilDone should catch the inital error", async () => {
+      try {
+        const poller = client.createOrReplace("madge", {
+          role: "foo"
+        } as any);
+        assert.isNotNull(poller);
+        await poller.pollUntilDone();
+        assert.fail("Expected an exception");
+      } catch (err: any) {
+        assert.strictEqual(
+          err.message,
+          "The long-running operation has failed"
+        );
+      }
+    });
+
+    it("await should catch inital exception", async () => {
+      try {
+        await client.createOrReplace("madge", {
+          role: "foo"
+        } as any);
+        assert.fail("Expected an exception");
+      } catch (err: any) {
+        console.log(err);
+        assert.strictEqual(
+          err.message,
+          "The long-running operation has failed"
+        );
+      }
+    });
   });
 
   describe("delete", () => {
@@ -139,14 +242,12 @@ describe("LROStandardClient Classical Client", () => {
       //        }
       //     }
       //  }
-      // console.log(restoredPoller);
       const newPoller = restorePoller(
         client,
         restoredPoller,
         client.deleteOperation
       );
       const result = await newPoller.pollUntilDone();
-      // console.log(result);
       assert.strictEqual(result, undefined);
     });
   });
@@ -193,19 +294,17 @@ describe("LROStandardClient Classical Client", () => {
       //              "mode":"OperationLocation"
       //           },
       //           "operationLocation":"http://localhost:3000/azure/core/lro/standard/users/madge/operations/operation3",
-      //           "initialUri":"http://localhost:3000/azure/core/lro/standard/users/madge:export?format=json&api-version=2022-12-01-preview",
+      //           "initialUrl":"http://localhost:3000/azure/core/lro/standard/users/madge:export?format=json&api-version=2022-12-01-preview",
       //           "requestMethod":"POST"
       //        }
       //     }
       //  }
-      // console.log(restoredPoller);
       const newPoller = restorePoller(
         client,
         restoredPoller,
         client.exportOperation
       );
       const result = await newPoller.pollUntilDone();
-      // console.log(result);
       assert.deepEqual(result, {
         name: "madge",
         resourceUri: "/users/madge"

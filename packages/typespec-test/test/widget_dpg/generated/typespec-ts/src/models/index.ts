@@ -8,7 +8,6 @@ export {
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
-  OperationState,
 } from "./models.js";
 export {
   WidgetsListWidgetsOptions,

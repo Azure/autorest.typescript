@@ -10,7 +10,7 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
-import { OperationState as OperationState_2 } from '@azure/core-lro';
+import { OperationState } from '@azure/core-lro';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
@@ -39,9 +39,9 @@ export interface BudgetsCreateOrUpdateOptions extends OperationOptions {
 // @public (undocumented)
 export interface BudgetsOperations {
     // (undocumented)
-    createOrReplace: (name: string, resource: User, options?: BudgetsCreateOrReplaceOptions) => PollerLike<OperationState_2<User>, User>;
+    createOrReplace: (name: string, resource: User, options?: BudgetsCreateOrReplaceOptions) => PollerLike<OperationState<User>, User>;
     // (undocumented)
-    createOrUpdate: (name: string, resource: User, options?: BudgetsCreateOrUpdateOptions) => PollerLike<OperationState_2<User>, User>;
+    createOrUpdate: (name: string, resource: User, options?: BudgetsCreateOrUpdateOptions) => PollerLike<OperationState<User>, User>;
 }
 
 // @public
@@ -62,9 +62,6 @@ export interface ListWidgetsPagesResults {
 }
 
 // @public
-export type OperationState = string;
-
-// @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
@@ -79,7 +76,7 @@ export interface PageSettings {
 // Warning: (ae-forgotten-export) The symbol "WidgetServiceContext" needs to be exported by the entry point index.d.ts
 //
 // @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: WidgetServiceContext | WidgetServiceClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState_2<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState_2<TResult>, TResult>;
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: WidgetServiceContext | WidgetServiceClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
 
 // @public (undocumented)
 export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
@@ -162,7 +159,7 @@ export interface WidgetsOperations {
     // (undocumented)
     analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptions) => Promise<AnalyzeResult>;
     // (undocumented)
-    createOrReplace: (name: string, resource: User, options?: WidgetsCreateOrReplaceOptions) => PollerLike<OperationState_2<User>, User>;
+    createOrReplace: (name: string, resource: User, options?: WidgetsCreateOrReplaceOptions) => PollerLike<OperationState<User>, User>;
     // (undocumented)
     createWidget: (body: CreateWidget, options?: WidgetsCreateWidgetOptions) => Promise<Widget>;
     // (undocumented)

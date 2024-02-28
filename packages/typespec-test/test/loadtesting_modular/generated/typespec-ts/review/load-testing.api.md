@@ -12,7 +12,7 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
-import { OperationState as OperationState_2 } from '@azure/core-lro';
+import { OperationState } from '@azure/core-lro';
 import { Paged } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -248,7 +248,7 @@ export class LoadTestRunClient {
     listTestRuns(options?: ListTestRunsOptions): LoadTestRunClientPagedAsyncIterableIterator<LoadTestRunClientTestRun>;
     readonly pipeline: Pipeline;
     stopTestRun(testRunId: string, options?: StopTestRunOptions): Promise<LoadTestRunClientTestRun>;
-    testRun(testRunId: string, resource: LoadTestRunClientTestRun, options?: TestRunOptions): PollerLike<OperationState_2<LoadTestRunClientTestRun>, LoadTestRunClientTestRun>;
+    testRun(testRunId: string, resource: LoadTestRunClientTestRun, options?: TestRunOptions): PollerLike<OperationState<LoadTestRunClientTestRun>, LoadTestRunClientTestRun>;
 }
 
 // @public
@@ -387,9 +387,6 @@ export interface LoadTestRunClientNameAndDesc {
     description?: string;
     name?: string;
 }
-
-// @public
-export type LoadTestRunClientOperationState = string;
 
 // @public
 export interface LoadTestRunClientOptionalLoadTestConfig {
@@ -616,9 +613,6 @@ export interface NameAndDesc {
 }
 
 // @public
-export type OperationState = string;
-
-// @public
 export interface OptionalLoadTestConfig {
     duration?: number;
     endpointUrl?: string;
@@ -697,7 +691,7 @@ export interface ResourceMetric {
 // Warning: (ae-forgotten-export) The symbol "AzureLoadTestingContext" needs to be exported by the entry point index.d.ts
 //
 // @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: AzureLoadTestingContext | LoadTestRunClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState_2<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState_2<TResult>, TResult>;
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: AzureLoadTestingContext | LoadTestRunClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
 
 // @public (undocumented)
 export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {

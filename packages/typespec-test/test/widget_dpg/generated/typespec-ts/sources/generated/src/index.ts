@@ -13,7 +13,6 @@ export {
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
-  OperationState,
   WidgetsListWidgetsOptions,
   WidgetsListWidgetsPagesOptions,
   WidgetsQueryWidgetsPagesOptions,
