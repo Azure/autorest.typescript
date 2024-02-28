@@ -31,10 +31,6 @@ export interface RestorePollerOptions<
   processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
 }
 
-const deserializeMap: Record<string, Function> = {
-  "PATCH /test-runs/{testRunId}": _testRunDeserialize,
-};
-
 /**
  * Creates a poller from the serialized state of another poller. This can be
  * useful when you want to create pollers on a different host or a poller
@@ -49,16 +45,15 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
   options?: RestorePollerOptions<TResult>,
 ): PollerLike<OperationState<TResult>, TResult> {
   const pollerConfig = deserializeState(serializedState).config;
-  const { initialUrl } = pollerConfig;
-  const requestMethod = pollerConfig.requestMethod;
+  const { initialUrl, requestMethod, metadata } = pollerConfig;
   if (!initialUrl || !requestMethod) {
     throw new Error(
       `Invalid serialized state: ${serializedState} for sourceOperation ${sourceOperation?.name}`,
     );
   }
-  const resourceLocationConfig = pollerConfig?.metadata?.[
-    "resourceLocationConfig"
-  ] as ResourceLocationConfig | undefined;
+  const resourceLocationConfig = metadata?.["resourceLocationConfig"] as
+    | ResourceLocationConfig
+    | undefined;
   const deserializeHelper =
     options?.processResponseBody ??
     getDeserializationHelper(initialUrl, requestMethod);
@@ -79,6 +74,10 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
     },
   );
 }
+
+const deserializeMap: Record<string, Function> = {
+  "PATCH /test-runs/{testRunId}": _testRunDeserialize,
+};
 
 function getDeserializationHelper(
   urlStr: string,

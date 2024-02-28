@@ -79,10 +79,6 @@ export function buildRestorePollerHelper(
         processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
       }
       
-      const deserializeMap: Record<string, Function> = {
-        ${deserializeMap.join(",\n")}
-      };
-      
       /**
        * Creates a poller from the serialized state of another poller. This can be
        * useful when you want to create pollers on a different host or a poller
@@ -97,16 +93,15 @@ export function buildRestorePollerHelper(
         options?: RestorePollerOptions<TResult>
       ): PollerLike<OperationState<TResult>, TResult> {
         const pollerConfig = deserializeState(serializedState).config;
-        const { initialUrl } = pollerConfig;
-        const requestMethod = pollerConfig.requestMethod;
+        const { initialUrl, requestMethod, metadata } = pollerConfig;
         if (!initialUrl || !requestMethod) {
           throw new Error(
             \`Invalid serialized state: \${serializedState} for sourceOperation \${sourceOperation?.name}\`
           );
         }
-        const resourceLocationConfig = pollerConfig?.metadata?.[
-          "resourceLocationConfig"
-        ] as ResourceLocationConfig | undefined;
+        const resourceLocationConfig = metadata?.["resourceLocationConfig"] as
+          | ResourceLocationConfig
+          | undefined;
         const deserializeHelper =
           options?.processResponseBody ??
           getDeserializationHelper(initialUrl, requestMethod);
@@ -128,6 +123,10 @@ export function buildRestorePollerHelper(
         );
       }
       
+      const deserializeMap: Record<string, Function> = {
+        ${deserializeMap.join(",\n")}
+      };
+
       function getDeserializationHelper(
         urlStr: string,
         method: string
@@ -345,7 +344,7 @@ export function buildGetPollerHelper(
     const poller: LongRunningOperation<TResponse> = {
       sendInitialRequest: async () => {
         if (!getInitialResponse) {
-          throw new Error("getInitialResponse is required if init a new poller");
+          throw new Error("getInitialResponse is required when initializing a new poller");
         }
         initialResponse = await getInitialResponse();
         return getLroResponse(initialResponse);
