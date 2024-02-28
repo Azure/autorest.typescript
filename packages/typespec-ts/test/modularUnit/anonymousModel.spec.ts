@@ -913,7 +913,7 @@ describe("anonymous model", () => {
           baz: {
             foo: int32[];
             bas: string;
-            @projectedName("json", "test")
+            @encodedName("application/json", "test")
             bar?: SimpleModel[];
             nonemptyAnomyous: { a: string };
             nonemptyAnomyousArray: { b?: Record<string> }[];
