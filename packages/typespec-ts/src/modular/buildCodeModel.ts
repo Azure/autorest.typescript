@@ -811,10 +811,7 @@ function emitBasicOperation(
     context,
     sourceOperation
   );
-  const sourceOperationName = getOperationName(
-    context,
-    sourceOperation
-  );
+  const sourceOperationName = getOperationName(context, sourceOperation);
   const sourceRoutePath = ignoreDiagnostics(
     getHttpOperation(context.program, operation)
   ).path;
@@ -976,9 +973,7 @@ function emitProperty(
 
   // const [clientName, jsonName] = getPropertyNames(context, property);
   const clientName = property.name;
-  const jsonName =
-    getWireName(context, property) ??
-    property.name;
+  const jsonName = getWireName(context, property) ?? property.name;
 
   if (property.model) {
     getType(context, property.model, { usage });
@@ -1032,8 +1027,7 @@ function emitModel(
   }
   const effectiveName = getEffectiveSchemaType(context.program, type).name;
   const overridedModelName =
-    getLibraryName(context, type) ??
-    getFriendlyName(context.program, type);
+    getLibraryName(context, type) ?? getFriendlyName(context.program, type);
   const fullNamespaceName =
     getModelNamespaceName(context, type.namespace!)
       .map((nsName) => {

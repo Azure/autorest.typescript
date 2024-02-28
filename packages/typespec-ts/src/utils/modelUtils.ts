@@ -42,7 +42,7 @@ import {
   getEncode,
   EncodeData,
   isRecordModelType,
-  isArrayModelType,
+  isArrayModelType
 } from "@typespec/compiler";
 import { reportDiagnostic } from "../lib.js";
 import {
@@ -561,8 +561,7 @@ function getSchemaForModel(
 
   const program = dpgContext.program;
   const overridedModelName =
-    getFriendlyName(program, model) ??
-    getWireName(dpgContext, model);
+    getFriendlyName(program, model) ?? getWireName(dpgContext, model);
   const fullNamespaceName =
     overridedModelName ??
     getModelNamespaceName(dpgContext, model.namespace!)

@@ -160,10 +160,7 @@ export function getOperationGroupName(
 }
 
 export function getOperationName(dpgContext: SdkContext, operation: Operation) {
-  const projectedOperationName = getWireName(
-    dpgContext,
-    operation,
-  );
+  const projectedOperationName = getWireName(dpgContext, operation);
 
   return normalizeName(
     projectedOperationName ?? operation.name,
@@ -297,7 +294,9 @@ export function extractOperationLroDetail(
   }
 
   return {
-    isLongRunning: Boolean(getLroMetadata(dpgContext.program, operation.operation)),
+    isLongRunning: Boolean(
+      getLroMetadata(dpgContext.program, operation.operation)
+    ),
     logicalResponseTypes,
     operationLroOverload,
     precedence
