@@ -563,15 +563,12 @@ function getSchemaForModel(
   const overridedModelName =
     getFriendlyName(program, model) ?? getWireName(dpgContext, model);
   const fullNamespaceName =
-    overridedModelName ??
     getModelNamespaceName(dpgContext, model.namespace!)
       .map((nsName) => {
         return normalizeName(nsName, NameType.Interface);
       })
       .join("") + model.name;
-  let name = dpgContext.rlcOptions?.enableModelNamespace
-    ? fullNamespaceName
-    : model.name;
+  let name = model.name;
   if (
     !overridedModelName &&
     model.templateMapper &&
@@ -595,7 +592,12 @@ function getSchemaForModel(
   }
 
   const modelSchema: ObjectSchema = {
-    name: overridedModelName ?? name,
+    name:
+      overridedModelName !== name
+        ? overridedModelName
+        : dpgContext.rlcOptions?.enableModelNamespace
+          ? fullNamespaceName
+          : name,
     type: "object",
     description: getDoc(program, model) ?? ""
   };

@@ -1036,12 +1036,13 @@ function emitModel(
       .join("") +
     (effectiveName ? effectiveName : getName(context.program, type));
   let modelName =
-    overridedModelName ??
-    (context.rlcOptions?.enableModelNamespace
-      ? fullNamespaceName
-      : effectiveName
-        ? effectiveName
-        : getName(context.program, type));
+    overridedModelName !== type.name
+      ? overridedModelName
+      : context.rlcOptions?.enableModelNamespace
+        ? fullNamespaceName
+        : effectiveName
+          ? effectiveName
+          : getName(context.program, type);
   if (
     !overridedModelName &&
     type.templateMapper &&
@@ -1569,9 +1570,7 @@ function emitOperationGroups(
     const hierarchies =
       context.rlcOptions?.hierarchyClient ||
       context.rlcOptions?.enableOperationGroup
-        ? overrideName
-          ? [overrideName]
-          : operationGroup.groupPath.split(".")
+        ? operationGroup.groupPath.split(".")
         : [];
     if (hierarchies[0]?.endsWith("Client")) {
       hierarchies.shift();
