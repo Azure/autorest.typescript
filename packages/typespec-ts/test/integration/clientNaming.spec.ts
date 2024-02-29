@@ -2,7 +2,7 @@ import { assert } from "chai";
 import NamingClientFactory, {
   NamingClient
 } from "./generated/client/naming/src/index.js";
-describe.only("ClientEncodedNameClient Rest Client", () => {
+describe("ClientEncodedNameClient Rest Client", () => {
   let client: NamingClient;
 
   beforeEach(() => {
