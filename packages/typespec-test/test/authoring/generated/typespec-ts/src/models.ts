@@ -43,19 +43,18 @@ export interface SwapDeploymentsOptions {
 /** The resource instance. */
 export interface ProjectResourceMergeAndPatch {
   /** The project kind. */
-  projectKind:
+  projectKind?:
     | "CustomSingleLabelClassification"
     | "CustomMultiLabelClassification"
-    | "CustomEntityRecognition"
-    | undefined;
+    | "CustomEntityRecognition";
   /** The storage container name. */
-  storageInputContainerName: string | undefined;
+  storageInputContainerName?: string;
   /** The project settings. */
-  settings?: ProjectSettings | null | undefined;
+  settings?: ProjectSettings | null;
   /** Whether the project would be used for multiple languages or not. */
-  multilingual?: boolean | null | undefined;
+  multilingual?: boolean | null;
   /** The project description. */
-  description?: string | null | undefined;
+  description?: string | null;
   /** The project language. This is BCP-47 representation of a language. For example, use "en" for English, "en-gb" for English (UK), "es" for Spanish etc. */
-  language: string | undefined;
+  language?: string;
 }

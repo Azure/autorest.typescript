@@ -130,7 +130,7 @@ export function buildMergeModelDefinitions(
     const requestCount = requestParameter?.parameters?.length ?? 0;
     for (let i = 0; i < requestCount; i++) {
       const parameter = requestParameter.parameters[i];
-      const bodyInterface = buildMergeModel(parameter, partialBodyTypeNames);
+      const bodyInterface = buildMergeModel(model, parameter, partialBodyTypeNames);
       if (bodyInterface) {
         mergeModelDefinitions.push(bodyInterface);
       }
@@ -140,6 +140,7 @@ export function buildMergeModelDefinitions(
 }
 
 function buildMergeModel(
+  model: RLCModel,
   parameters: ParameterMetadatas,
   partialBodyTypeNames: Set<string>
 ): InterfaceDeclarationStructure | undefined {
@@ -172,9 +173,9 @@ function buildMergeModel(
 
       bodySignature.map((p) => {
         if (!p.hasQuestionToken) {
-          p.type += " | undefined";
+          p.hasQuestionToken = true;
         } else {
-          p.type += " | null | undefined";
+          p.type += " | null";
         }
         return p;
       });

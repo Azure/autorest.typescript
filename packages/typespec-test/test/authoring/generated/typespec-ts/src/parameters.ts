@@ -3,7 +3,7 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 import {
-  Project,
+  ProjectResourceMergeAndPatch,
   TrainingJobOptions,
   Deployment,
   SwapDeploymentsOptions,

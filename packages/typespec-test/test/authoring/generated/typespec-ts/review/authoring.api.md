@@ -779,7 +779,14 @@ export interface ProjectOutput {
 }
 
 // @public
-export type ProjectResourceMergeAndPatch = Partial<Project>;
+export interface ProjectResourceMergeAndPatch {
+    description?: string | null;
+    language?: string;
+    multilingual?: boolean | null;
+    projectKind?: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
+    settings?: ProjectSettings | null;
+    storageInputContainerName?: string;
+}
 
 // @public
 export interface ProjectSettings extends Record<string, string> {
