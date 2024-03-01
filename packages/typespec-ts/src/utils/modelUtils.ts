@@ -402,6 +402,9 @@ function getSchemaForUnion(
     } else {
       schema.type = "union";
       schema.typeName = union.name ?? unionAlias;
+      schema.outputTypeName = union.name
+        ? union.name + "Output"
+        : outputUnionAlias;
     }
   }
 
@@ -413,17 +416,6 @@ function getSchemaForUnionVariant(
   variant: UnionVariant,
   options?: GetSchemaOptions
 ): Schema {
-  if (variant.type.kind === "String") {
-    return { name: `"${String(variant.name)}"`, type: "string" };
-  } else if (
-    variant.type.kind === "Number" ||
-    variant.type.kind === "Boolean"
-  ) {
-    return {
-      name: `${String(variant.name)}`,
-      type: variant.type.kind.toLowerCase()
-    };
-  }
   return getSchemaForType(dpgContext, variant.type, options);
 }
 
@@ -768,7 +760,14 @@ function getSchemaForModel(
       name === `"${propertyName}"` &&
       modelSchema.discriminator
     ) {
-      modelSchema.discriminator.type = propSchema.typeName ?? propSchema.type;
+      modelSchema.discriminator = {
+        ...modelSchema.discriminator,
+        ...{
+          type: propSchema.typeName ?? propSchema.type,
+          typeName: propSchema.typeName,
+          outputTypeName: propSchema.outputTypeName
+        }
+      };
       continue;
     }
 

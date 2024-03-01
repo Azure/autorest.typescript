@@ -11,7 +11,7 @@ export interface DogParent {
 /** Golden dog model */
 export interface Golden extends DogParent {
   /** discriminator property */
-  kind: string;
+  kind: "golden";
 }
 
 /** Test fixed enum type for discriminator */

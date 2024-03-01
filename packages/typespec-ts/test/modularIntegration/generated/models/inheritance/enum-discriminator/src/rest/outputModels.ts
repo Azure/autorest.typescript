@@ -5,13 +5,13 @@
 export interface DogOutputParent {
   /** Weight of the dog */
   weight: number;
-  kind: DogKind;
+  kind: DogKindOutput;
 }
 
 /** Golden dog model */
 export interface GoldenOutput extends DogOutputParent {
   /** discriminator property */
-  kind: string;
+  kind: "golden";
 }
 
 /** Test fixed enum type for discriminator */
