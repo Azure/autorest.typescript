@@ -4,11 +4,11 @@
 export {
   Dog,
   Golden,
-  DogKind,
   Snake,
   Cobra,
   SnakeKind,
   DogUnion,
+  DogKind,
   SnakeUnion,
 } from "./models.js";
 export {

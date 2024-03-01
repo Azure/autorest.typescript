@@ -208,7 +208,7 @@ export function getSchemaForType(
     return getSchemaForEnumMember(program, type);
   }
   if (isUnknownType(type)) {
-    const returnType: any = { type: "unknown" };
+    const returnType: any = { name: "unknown", type: "unknown" };
     if (usage && usage.includes(SchemaContext.Output)) {
       returnType.outputTypeName = "any";
       returnType.typeName = "unknown";
@@ -216,10 +216,10 @@ export function getSchemaForType(
     return returnType;
   }
   if (isNeverType(type)) {
-    return { type: "never" };
+    return { name: "never", type: "never" };
   }
   if (isNullType(type)) {
-    return { type: "null" };
+    return { name: "null", type: "null" };
   }
   reportDiagnostic(program, {
     code: "invalid-schema",
@@ -413,7 +413,18 @@ function getSchemaForUnionVariant(
   variant: UnionVariant,
   options?: GetSchemaOptions
 ): Schema {
-  return getSchemaForType(dpgContext, variant, options);
+  if (variant.type.kind === "String") {
+    return { name: `"${String(variant.name)}"`, type: "string" };
+  } else if (
+    variant.type.kind === "Number" ||
+    variant.type.kind === "Boolean"
+  ) {
+    return {
+      name: `${String(variant.name)}`,
+      type: variant.type.kind.toLowerCase()
+    };
+  }
+  return getSchemaForType(dpgContext, variant.type, options);
 }
 
 // An openapi "string" can be defined in several different ways in typespec
@@ -427,6 +438,9 @@ function isOasString(type: Type): boolean {
   } else if (type.kind === "Union") {
     // A union where all variants are an OasString
     return type.options.every((o) => isOasString(o));
+  } else if (type.kind === "UnionVariant") {
+    // A union variant where the type is an OasString
+    return isOasString(type.type);
   }
   return false;
 }
@@ -436,7 +450,8 @@ function isStringLiteral(type: Type): boolean {
     type.kind === "String" ||
     (type.kind === "Union" && type.options.every((o) => o.kind === "String")) ||
     (type.kind === "EnumMember" &&
-      typeof (type.value ?? type.name) === "string")
+      typeof (type.value ?? type.name) === "string") ||
+    (type.kind === "UnionVariant" && type.type.kind === "String")
   );
 }
 
@@ -451,6 +466,8 @@ function getStringValues(type: Type): string[] {
         .filter((x) => x !== undefined);
     case "EnumMember":
       return typeof type.value !== "number" ? [type.value ?? type.name] : [];
+    case "UnionVariant":
+      return getStringValues(type.type);
     default:
       return [];
   }
@@ -888,8 +905,9 @@ function getSchemaForEnumMember(program: Program, e: EnumMember) {
 
 function getSchemaForEnum(dpgContext: SdkContext, e: Enum) {
   const values = [];
-  const type = enumMemberType(e.members.values().next().value);
-  for (const option of e.members.values()) {
+  const memberValues = e.members.values();
+  const type = enumMemberType(memberValues.next().value);
+  for (const option of memberValues) {
     if (type !== enumMemberType(option)) {
       reportDiagnostic(dpgContext.program, {
         code: "union-unsupported",
@@ -916,7 +934,8 @@ function getSchemaForEnum(dpgContext: SdkContext, e: Enum) {
 }
 
 function enumMemberType(member: EnumMember) {
-  if (typeof member.value === "number") {
+  const memberValue = member.value;
+  if (typeof memberValue === "number") {
     return "number";
   }
   return "string";

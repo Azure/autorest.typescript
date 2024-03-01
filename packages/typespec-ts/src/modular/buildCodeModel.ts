@@ -1532,7 +1532,7 @@ function emitType(
     case "Union":
       return emitUnion(context, type, usage);
     case "UnionVariant":
-      return {};
+      return emitType(context, type.type, usage);
     case "Enum":
       return emitEnum(context.program, type);
     case "EnumMember":

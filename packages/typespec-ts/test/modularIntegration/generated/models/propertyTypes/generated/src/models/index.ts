@@ -21,7 +21,6 @@ export {
   CollectionsStringProperty,
   ModelProperty,
   ExtensibleEnumProperty,
-  InnerEnum,
   EnumProperty,
   FixedInnerEnum,
   DurationProperty,
@@ -33,6 +32,7 @@ export {
   BytesProperty,
   StringProperty,
   BooleanProperty,
+  InnerEnum,
 } from "./models.js";
 export {
   BooleanGetOptions,
