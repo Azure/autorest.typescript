@@ -7,7 +7,7 @@ import {
 
 describe("#buildRuntimeImports", () => {
   it("should return the correct import set for branded scope", () => {
-    const imports = buildRuntimeImports(true);
+    const imports = buildRuntimeImports("azure");
     expect(imports.commonFallback).to.be.undefined;
     expect(imports.restClient).to.deep.equal({
       type: "restClient",
@@ -17,7 +17,7 @@ describe("#buildRuntimeImports", () => {
   });
 
   it("should return the correct import set for non-branded scope", () => {
-    const imports = buildRuntimeImports(false);
+    const imports = buildRuntimeImports(undefined);
     expect(imports.commonFallback).to.deep.equal({
       type: "commonFallback",
       specifier: "@typespec/ts-http-runtime",

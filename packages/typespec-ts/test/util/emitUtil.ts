@@ -51,7 +51,7 @@ export async function emitPageHelperFromTypeSpec(
   const clients = getRLCClients(dpgContext);
   let helperDetail;
   if (clients && clients[0]) {
-    helperDetail = transformHelperFunctionDetails(clients[0], dpgContext);
+    helperDetail = transformHelperFunctionDetails(clients[0], dpgContext, "azure");
   }
   expectDiagnosticEmpty(program.diagnostics);
   return buildPaginateHelper({
@@ -230,6 +230,7 @@ export async function emitClientFactoryFromTypeSpec(
         name: "test",
         version: "1.0.0-beta.1"
       },
+      flavor: "azure",
       ...creadentialInfo
     },
     importInfo: {

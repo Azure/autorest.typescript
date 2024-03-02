@@ -640,9 +640,9 @@ function emitOperation(
   rlcModels: RLCModel,
   hierarchies: string[]
 ): HrlcOperation {
-  const isBranded = rlcModels.options?.branded ?? true;
+  const isAzureFlavor = rlcModels.options?.flavor === "azure";
   // Skip to extract paging and lro information for non-branded clients.
-  if (!isBranded) {
+  if (!isAzureFlavor) {
     return emitBasicOperation(
       context,
       operation,
@@ -1885,7 +1885,7 @@ export function emitCodeModel(
     clients: [],
     types: [],
     project,
-    runtimeImports: buildRuntimeImports(dpgContext.rlcOptions?.branded ?? true)
+    runtimeImports: buildRuntimeImports(dpgContext.rlcOptions?.flavor)
   };
 
   typesMap.clear();

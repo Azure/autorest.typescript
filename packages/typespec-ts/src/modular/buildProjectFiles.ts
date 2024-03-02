@@ -86,14 +86,14 @@ function buildExportsForMultiClient(
 
 // Prepare package info without scripts and devDependencies and dependencies ect
 function initPackageInfo(codeModel: ModularCodeModel) {
-  const { packageDetails, generateTest, branded } = codeModel.options;
+  const { packageDetails, generateTest, flavor } = codeModel.options;
   const description = packageDetails!.description
     ? packageDetails!.description
     : `A generated SDK for ${codeModel.clients[0]?.name}.`;
   const packageInfo = {
     name: `${packageDetails!.name}`,
     "sdk-type": "client",
-    ...(branded
+    ...(flavor === "azure"
       ? {
           author: "Microsoft Corporation"
         }
@@ -102,7 +102,7 @@ function initPackageInfo(codeModel: ModularCodeModel) {
     description,
     keywords: [
       "node",
-      ...(branded ? ["azure", "cloud"] : []),
+      ...(flavor === "azure" ? ["azure", "cloud"] : []),
       "typescript",
       "browser",
       "isomorphic"
@@ -127,7 +127,7 @@ function initPackageInfo(codeModel: ModularCodeModel) {
         import: "./dist-esm/src/models/index.js"
       }
     },
-    ...(branded
+    ...(flavor === "azure"
       ? {
           repository: "github:Azure/azure-sdk-for-js",
           bugs: {
@@ -137,7 +137,7 @@ function initPackageInfo(codeModel: ModularCodeModel) {
       : {}),
     files: [
       "dist/",
-      generateTest && branded ? "dist-esm/src/" : "dist-esm/",
+      generateTest && flavor === "azure" ? "dist-esm/src/" : "dist-esm/",
       `types/${packageDetails!.nameWithoutScope}.d.ts`,
       "README.md",
       "LICENSE",
@@ -163,10 +163,10 @@ export function emitPackage(
       overwrite: true
     }
   );
-  const branded = codeModel.options.branded ?? true;
-  const packageInfo = branded
-    ? emitBrandedPackage(codeModel)
-    : emitNonBrandedPackage(codeModel);
+  const packageInfo =
+    codeModel.options?.flavor === "azure"
+      ? emitBrandedPackage(codeModel)
+      : emitNonBrandedPackage(codeModel);
   packageJsonFile.addStatements(JSON.stringify(packageInfo));
   return packageJsonFile;
 }
@@ -505,21 +505,21 @@ export function emitTsConfig(
 
   const { packageDetails, azureSdkForJs } = codeModel.options || {};
   const { generateTest, generateSample } = codeModel.options || {};
-  const isBranded = codeModel.options?.branded ?? true;
+  const isAzureFlavor = codeModel.options?.flavor === "azure";
   // Take the undefined as true by default
   const clientPackageName = packageDetails!.name;
   const tsConfig = (
-    !isBranded
+    !isAzureFlavor
       ? modularTsConfigNotInSDKRepo
       : azureSdkForJs
         ? modularTsConfigInSDKRepo
         : modularTsConfigNotInSDKRepo
   ) as any;
 
-  if (generateTest && isBranded) {
+  if (generateTest && isAzureFlavor) {
     tsConfig.include.push("./test/**/*.ts");
   }
-  if (generateSample && isBranded) {
+  if (generateSample && isAzureFlavor) {
     tsConfig.include.push("samples-dev/**/*.ts");
     tsConfig.compilerOptions["paths"] = {};
     tsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];

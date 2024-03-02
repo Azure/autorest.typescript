@@ -9,8 +9,8 @@ export function buildLogger(model: RLCModel) {
   if (!model.options) {
     return undefined;
   }
-  // Disable logger for non-branded packages
-  if (model.options.branded === false) {
+  // Disable logger for non-Azure packages
+  if (model.options.flavor !== "azure") {
     return undefined;
   }
   const project = new Project();

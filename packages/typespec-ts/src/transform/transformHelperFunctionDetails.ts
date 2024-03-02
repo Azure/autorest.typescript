@@ -3,7 +3,7 @@ import {
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
-import { HelperFunctionDetails } from "@azure-tools/rlc-common";
+import { HelperFunctionDetails, PackageFlavor } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
 import { getHttpOperation, HttpOperation } from "@typespec/http";
 import {
@@ -19,7 +19,7 @@ import { SdkContext } from "../utils/interfaces.js";
 export function transformHelperFunctionDetails(
   client: SdkClient,
   dpgContext: SdkContext,
-  isBranded: boolean = true
+  flavor?: PackageFlavor
 ): HelperFunctionDetails {
   const program = dpgContext.program;
   const serializeInfo = extractSpecialSerializeInfo(
@@ -27,8 +27,8 @@ export function transformHelperFunctionDetails(
     client,
     dpgContext
   );
-  // Disbale paging and long running for non-branded clients.
-  if (!isBranded) {
+  // Disbale paging and long running for non-Azure clients.
+  if (flavor !== "azure") {
     return {
       hasLongRunning: false,
       hasPaging: false,

@@ -14,8 +14,7 @@ const esLintConfig = {
 };
 
 export function buildEsLintConfig(model: RLCModel) {
-  const branded = model.options?.branded ?? true;
-  if (branded === false) {
+  if (model.options?.flavor !== "azure") {
     return;
   }
   const project = new Project();
