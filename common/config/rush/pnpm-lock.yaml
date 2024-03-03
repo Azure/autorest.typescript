@@ -227,9 +227,9 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       '@azure-rest/core-client': ^1.2.0
-      '@azure-tools/cadl-ranch': ^0.12.2
+      '@azure-tools/cadl-ranch': ^0.12.3
       '@azure-tools/cadl-ranch-expect': ^0.13.1
-      '@azure-tools/cadl-ranch-specs': ^0.31.0
+      '@azure-tools/cadl-ranch-specs': ^0.31.1
       '@azure-tools/rlc-common': workspace:^0.23.0
       '@azure-tools/typespec-azure-core': '>=0.39.1 <1.0.0'
       '@azure-tools/typespec-client-generator-core': 0.40.0-dev.17
@@ -272,9 +272,9 @@ importers:
       tslib: 2.6.2
     devDependencies:
       '@azure-rest/core-client': 1.2.0
-      '@azure-tools/cadl-ranch': 0.12.2_ybis3rmh5yx43xxwy2nufp7hja
+      '@azure-tools/cadl-ranch': 0.12.3_ybis3rmh5yx43xxwy2nufp7hja
       '@azure-tools/cadl-ranch-expect': 0.13.1_q7zdglulimeg6ck2usxqapplfy
-      '@azure-tools/cadl-ranch-specs': 0.31.0_urikjfavtt5hv5hzs3sfye3ute
+      '@azure-tools/cadl-ranch-specs': 0.31.1_urikjfavtt5hv5hzs3sfye3ute
       '@azure-tools/typespec-azure-core': 0.39.1_q34ckh5iqgco67bb3gv7iu6bsa
       '@azure-tools/typespec-client-generator-core': 0.40.0-dev.17_q7zdglulimeg6ck2usxqapplfy
       '@azure/core-auth': 1.6.0
@@ -399,8 +399,8 @@ packages:
       '@typespec/versioning': 0.53.0_@typespec+compiler@0.53.1
     dev: true
 
-  /@azure-tools/cadl-ranch-specs/0.31.0_urikjfavtt5hv5hzs3sfye3ute:
-    resolution: {integrity: sha512-NsSFhOTiYr7T2PjoFww1vieN6MSMIeVReU/CjlPhaZF2hiKfFffGRvIS8lWXv8QpySHi1/O8p5YasKqMUACwgA==}
+  /@azure-tools/cadl-ranch-specs/0.31.1_urikjfavtt5hv5hzs3sfye3ute:
+    resolution: {integrity: sha512-+QmgTGrHEUEnAoPfomrfKk5e/PFi4wAwZoyiwdoxjg9Ua8CfrCox90onoCpK5rsIpntveb4uzWEqfv5Otgmg0A==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@azure-tools/cadl-ranch-expect': ~0.13.1
@@ -410,7 +410,7 @@ packages:
       '@typespec/rest': ~0.53.0
       '@typespec/versioning': ~0.53.0
     dependencies:
-      '@azure-tools/cadl-ranch': 0.12.2_ybis3rmh5yx43xxwy2nufp7hja
+      '@azure-tools/cadl-ranch': 0.12.3_ybis3rmh5yx43xxwy2nufp7hja
       '@azure-tools/cadl-ranch-api': 0.4.3
       '@azure-tools/cadl-ranch-expect': 0.13.1_q7zdglulimeg6ck2usxqapplfy
       '@azure-tools/typespec-azure-core': 0.39.1_q34ckh5iqgco67bb3gv7iu6bsa
@@ -424,8 +424,8 @@ packages:
       - supports-color
     dev: true
 
-  /@azure-tools/cadl-ranch/0.12.2_ybis3rmh5yx43xxwy2nufp7hja:
-    resolution: {integrity: sha512-Zc2kf5UJ8bcBcryQ5Lp7CIDP5gg2bRepYfBJM3c6mWSgIY6FcALqQLDlVip1oHY0HsGhJ08pSlvZHJ2czlf/DA==}
+  /@azure-tools/cadl-ranch/0.12.3_ybis3rmh5yx43xxwy2nufp7hja:
+    resolution: {integrity: sha512-P84ad0eH3W6nHC8+ytEexUlMEQjS6GX3uXpzUQQibfmBJABJ88Kd3KICMDo+Daa6r2Fhfwe7IOrsCKWfRFybBg==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:

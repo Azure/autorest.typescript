@@ -76,7 +76,7 @@ export interface DurationPropertyOutput {
 /** Model with enum properties */
 export interface EnumPropertyOutput {
   /** Property */
-  property: "ValueTwo";
+  property: "ValueOne" | "ValueTwo";
 }
 
 /** Model with extensible enum properties */

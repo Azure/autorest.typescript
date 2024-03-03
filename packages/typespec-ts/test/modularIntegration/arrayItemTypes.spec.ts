@@ -26,7 +26,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "float32",
-    defaultValue: [42.42]
+    defaultValue: [43.125]
   },
   {
     type: "datetime",
@@ -49,7 +49,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "nullable-float",
-    defaultValue: [1.2, null, 3.0]
+    defaultValue: [1.25, null, 3.0]
   }
 ];
 describe("Array Item-Types Client", () => {

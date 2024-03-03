@@ -27,7 +27,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "float",
-    defaultValue: 42.42
+    defaultValue: 43.125
   },
   {
     type: "decimal",
@@ -39,7 +39,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "datetime",
-    defaultValue: new Date("2022-08-26T18:38:00Z"),
+    defaultValue: new Date("2022-08-26T18:38:00Z")
   },
   {
     type: "duration",
@@ -55,7 +55,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "model",
-    defaultValue: {property: "hello"}
+    defaultValue: { property: "hello" }
   },
   {
     type: "collections/string",
@@ -103,7 +103,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "float/literal",
-    defaultValue: 42.42
+    defaultValue: 43.125
   },
   {
     type: "boolean/literal",
@@ -119,7 +119,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "union/float/literal",
-    defaultValue: 43.43
+    defaultValue: 46.875
   }
 ];
 

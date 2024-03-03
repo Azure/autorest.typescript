@@ -8,7 +8,7 @@ import { ServiceContext } from "./clientDefinitions.js";
 /**
  * Initialize a new instance of `ServiceContext`
  * @param endpoint - Need to be set as 'http://localhost:3000' in client.
- * @param clientParam - Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. Possible values: "multi-client", "renamed-operation", "two-operation-group"
+ * @param clientParam - Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. Possible values: "default", "multi-client", "renamed-operation", "two-operation-group"
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(

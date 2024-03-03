@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { NamingClient } from "./generated/client/naming/src/index.js";
-describe.only("NameAndEncodedName Client", () => {
+describe("NameAndEncodedName Client", () => {
   let client: NamingClient;
 
   beforeEach(() => {
