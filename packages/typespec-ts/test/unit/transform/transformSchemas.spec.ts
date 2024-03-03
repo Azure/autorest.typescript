@@ -767,7 +767,7 @@ describe("#transformSchemas", () => {
             },
             usage: ["input", "output"]
           },
-          { type: "null" }
+          { name: "null", type: "null" }
         ]
       } as any);
     });

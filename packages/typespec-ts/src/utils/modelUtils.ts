@@ -904,8 +904,11 @@ function getSchemaForEnumMember(program: Program, e: EnumMember) {
 
 function getSchemaForEnum(dpgContext: SdkContext, e: Enum) {
   const values = [];
-  const memberValues = e.members.values();
-  const type = enumMemberType(memberValues.next().value);
+  const memberValues = Array.from(e.members.values());
+  if (memberValues.length === 0) {
+    return {};
+  }
+  const type = enumMemberType(memberValues[0]!);
   for (const option of memberValues) {
     if (type !== enumMemberType(option)) {
       reportDiagnostic(dpgContext.program, {
