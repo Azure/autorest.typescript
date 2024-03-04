@@ -20,9 +20,9 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   createRestError,
-  OperationOptions,
 } from "@azure-rest/core-client";
 import {
+  ClientNameOptions,
   ParameterOptions,
   ClientRequestOptions,
   LanguageOptions,
@@ -31,16 +31,16 @@ import {
   ResponseOptions,
 } from "../models/options.js";
 
-export function _operationSend(
+export function _clientNameSend(
   context: Client,
-  options: OperationOptions = { requestOptions: {} },
+  options: ClientNameOptions = { requestOptions: {} },
 ): StreamableMethod<Operation204Response> {
   return context
     .path("/client/naming/operation")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _operationDeserialize(
+export async function _clientNameDeserialize(
   result: Operation204Response,
 ): Promise<void> {
   if (result.status !== "204") {
@@ -50,24 +50,24 @@ export async function _operationDeserialize(
   return;
 }
 
-export async function operation(
+export async function clientName(
   context: Client,
-  options: OperationOptions = { requestOptions: {} },
+  options: ClientNameOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _operationSend(context, options);
-  return _operationDeserialize(result);
+  const result = await _clientNameSend(context, options);
+  return _clientNameDeserialize(result);
 }
 
 export function _parameterSend(
   context: Client,
-  defaultName: string,
+  clientName: string,
   options: ParameterOptions = { requestOptions: {} },
 ): StreamableMethod<Parameter204Response> {
   return context
     .path("/client/naming/parameter")
     .post({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { defaultName: defaultName },
+      queryParameters: { defaultName: clientName },
     });
 }
 
@@ -83,10 +83,10 @@ export async function _parameterDeserialize(
 
 export async function parameter(
   context: Client,
-  defaultName: string,
+  clientName: string,
   options: ParameterOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _parameterSend(context, defaultName, options);
+  const result = await _parameterSend(context, clientName, options);
   return _parameterDeserialize(result);
 }
 
@@ -99,7 +99,7 @@ export function _clientSend(
     .path("/client/naming/property/client")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { defaultName: body["defaultName"] },
+      body: { defaultName: body["clientName"] },
     });
 }
 
@@ -131,7 +131,7 @@ export function _languageSend(
     .path("/client/naming/property/language")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { defaultName: body["defaultName"] },
+      body: { defaultName: body["tSName"] },
     });
 }
 
@@ -163,7 +163,7 @@ export function _compatibleWithEncodedNameSend(
     .path("/client/naming/property/compatible-with-encoded-name")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { wireName: body["defaultName"] },
+      body: { wireName: body["clientName"] },
     });
 }
 
@@ -188,14 +188,14 @@ export async function compatibleWithEncodedName(
 
 export function _requestSend(
   context: Client,
-  defaultName: string,
+  clientName: string,
   options: RequestOptions = { requestOptions: {} },
 ): StreamableMethod<HeaderRequest204Response> {
   return context
     .path("/client/naming/header")
     .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { "default-name": defaultName },
+      headers: { "default-name": clientName },
     });
 }
 
@@ -211,10 +211,10 @@ export async function _requestDeserialize(
 
 export async function request(
   context: Client,
-  defaultName: string,
+  clientName: string,
   options: RequestOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _requestSend(context, defaultName, options);
+  const result = await _requestSend(context, clientName, options);
   return _requestDeserialize(result);
 }
 

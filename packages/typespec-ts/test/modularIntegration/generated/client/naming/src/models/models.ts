@@ -3,17 +3,17 @@
 
 export interface ClientNameModel {
   /** Pass in true */
-  defaultName: boolean;
+  clientName: boolean;
 }
 
 export interface LanguageClientNameModel {
   /** Pass in true */
-  defaultName: boolean;
+  tSName: boolean;
 }
 
 export interface ClientNameAndJsonEncodedNameModel {
   /** Pass in true */
-  defaultName: boolean;
+  clientName: boolean;
 }
 
 export interface ClientModel {

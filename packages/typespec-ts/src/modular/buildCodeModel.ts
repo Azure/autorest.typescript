@@ -399,29 +399,38 @@ type ParamBase = {
   description: string;
   addedOn: string | undefined;
   clientName: string;
+  restApiName: string;
   inOverload: boolean;
   format?: string;
 };
 function emitParamBase(
-  program: Program,
+  context: SdkContext,
   parameter: ModelProperty | Type
 ): ParamBase {
   let optional: boolean;
   let name: string;
+  let restApiName: string;
   let description: string = "";
   let addedOn: string | undefined;
   let format: string | undefined;
 
+  const program = context.program;
+
   if (parameter.kind === "ModelProperty") {
-    const newParameter = applyEncoding(program, parameter, parameter);
     optional = parameter.optional;
-    name = parameter.name;
+    name = getLibraryName(context, parameter);
+    if (name === "If-Match") {
+      parameter;
+    }
+    restApiName = getWireName(context, parameter);
     description = getDocStr(program, parameter);
     addedOn = getAddedOnVersion(program, parameter);
+    const newParameter = applyEncoding(program, parameter, parameter);
     format = newParameter.format;
   } else {
     optional = false;
     name = "body";
+    restApiName = "body";
   }
 
   return {
@@ -429,6 +438,7 @@ function emitParamBase(
     description,
     addedOn,
     clientName: applyCasing(name, { casing: CASING }),
+    restApiName,
     inOverload: false,
     format
   };
@@ -437,7 +447,6 @@ function emitParamBase(
 type BodyParameter = ParamBase & {
   contentTypes: string[];
   type: Type;
-  restApiName: string;
   location: "body";
   // defaultContentType: string;
   isBinaryPayload: boolean;
@@ -449,7 +458,7 @@ function emitBodyParameter(
 ): BodyParameter {
   const params = httpOperation.parameters;
   const body = params.body!;
-  const base = emitParamBase(context.program, body.parameter ?? body.type);
+  const base = emitParamBase(context, body.parameter ?? body.type);
   let contentTypes = body.contentTypes;
   if (contentTypes.length === 0) {
     contentTypes = ["application/json"];
@@ -462,7 +471,6 @@ function emitBodyParameter(
   return {
     contentTypes,
     type,
-    restApiName: body.parameter?.name ?? "body",
     location: "body",
     ...base,
     isBinaryPayload: isBinaryPayload(context, body.type, contentTypes)
@@ -474,7 +482,10 @@ function emitParameter(
   parameter: HttpOperationParameter | HttpServerParameter,
   implementation: string
 ): Parameter {
-  const base = emitParamBase(context.program, parameter.param);
+  if (parameter.name === "If-Match") {
+    parameter;
+  }
+  const base = emitParamBase(context, parameter.param);
   let type = getType(context, parameter.param.type, {
     usage: UsageFlags.Input
   });
@@ -902,7 +913,9 @@ function emitBasicOperation(
     }
   }
 
-  const name = applyCasing(operation.name, { casing: CASING });
+  const name = applyCasing(getLibraryName(context, operation), {
+    casing: CASING
+  });
 
   /** handle name collision between operation name and parameter signature */
   if (bodyParameter) {
@@ -972,8 +985,8 @@ function emitProperty(
   }
 
   // const [clientName, jsonName] = getPropertyNames(context, property);
-  const clientName = property.name;
-  const jsonName = getWireName(context, property) ?? property.name;
+  const clientName = getLibraryName(context, property);
+  const jsonName = getWireName(context, property);
 
   if (property.model) {
     getType(context, property.model, { usage });
@@ -1812,7 +1825,10 @@ function emitClients(
   const clients = listClients(context);
   const retval: HrlcClient[] = [];
   for (const client of clients) {
-    const clientName = client.name.replace("Client", "");
+    const clientName = getLibraryName(context, client.type).replace(
+      "Client",
+      ""
+    );
     if (getNamespace(context, client.name) !== namespace) {
       continue;
     }

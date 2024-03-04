@@ -7,7 +7,7 @@ export {
   NamingContext,
 } from "./NamingContext.js";
 export {
-  operation,
+  clientName,
   parameter,
   client,
   language,

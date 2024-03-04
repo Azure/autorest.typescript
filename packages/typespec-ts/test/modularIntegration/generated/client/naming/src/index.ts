@@ -8,7 +8,7 @@ export {
   ClientNameAndJsonEncodedNameModel,
   ClientModel,
   TSModel,
-  OperationOptions,
+  ClientNameOptions,
   ParameterOptions,
   ClientRequestOptions,
   LanguageOptions,

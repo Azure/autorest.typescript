@@ -8,7 +8,7 @@ import {
   ClientNameAndJsonEncodedNameModel,
 } from "./models/models.js";
 import {
-  OperationOptions,
+  ClientNameOptions,
   ParameterOptions,
   ClientRequestOptions,
   LanguageOptions,
@@ -24,7 +24,7 @@ import {
   createNaming,
   NamingClientOptions,
   NamingContext,
-  operation,
+  clientName,
   parameter,
   client,
   language,
@@ -47,15 +47,17 @@ export class NamingClient {
     this.clientModel = getClientModelOperations(this._client);
   }
 
-  operation(options: OperationOptions = { requestOptions: {} }): Promise<void> {
-    return operation(this._client, options);
+  clientName(
+    options: ClientNameOptions = { requestOptions: {} },
+  ): Promise<void> {
+    return clientName(this._client, options);
   }
 
   parameter(
-    defaultName: string,
+    clientName: string,
     options: ParameterOptions = { requestOptions: {} },
   ): Promise<void> {
-    return parameter(this._client, defaultName, options);
+    return parameter(this._client, clientName, options);
   }
 
   client(
@@ -80,10 +82,10 @@ export class NamingClient {
   }
 
   request(
-    defaultName: string,
+    clientName: string,
     options: RequestOptions = { requestOptions: {} },
   ): Promise<void> {
-    return request(this._client, defaultName, options);
+    return request(this._client, clientName, options);
   }
 
   response(options: ResponseOptions = { requestOptions: {} }): Promise<void> {

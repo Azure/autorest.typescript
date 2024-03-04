@@ -9,7 +9,7 @@ export {
   TSModel,
 } from "./models.js";
 export {
-  OperationOptions,
+  ClientNameOptions,
   ParameterOptions,
   ClientRequestOptions,
   LanguageOptions,

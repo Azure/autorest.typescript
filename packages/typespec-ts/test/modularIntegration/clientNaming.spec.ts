@@ -14,7 +14,7 @@ describe("NameAndEncodedName Client", () => {
 
   it("should work with property client", async () => {
     try {
-      const result = await client.client({ defaultName: true });
+      const result = await client.client({ clientName: true });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -23,7 +23,7 @@ describe("NameAndEncodedName Client", () => {
 
   it("should work with property language", async () => {
     try {
-      const result = await client.language({ defaultName: true });
+      const result = await client.language({ tSName: true });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -33,7 +33,7 @@ describe("NameAndEncodedName Client", () => {
   it("should work with property compatibleWithEncodedName", async () => {
     try {
       const result = await client.compatibleWithEncodedName({
-        defaultName: true
+        clientName: true
       });
       assert.isUndefined(result);
     } catch (err) {
@@ -43,7 +43,7 @@ describe("NameAndEncodedName Client", () => {
 
   it("should work with operation", async () => {
     try {
-      const result = await client.operation();
+      const result = await client.clientName();
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
