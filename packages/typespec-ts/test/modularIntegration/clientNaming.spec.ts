@@ -70,9 +70,11 @@ describe("NameAndEncodedName Client", () => {
 
   it("should work with header response", async () => {
     try {
-      const result = await client.response({onResponse: function (res) {
-        assert.strictEqual(res.headers.get("default-name"), "true");
-      }});
+      const result = await client.response({
+        onResponse: function (res) {
+          assert.strictEqual(res.headers.get("default-name"), "true");
+        }
+      });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);

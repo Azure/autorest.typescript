@@ -85,6 +85,7 @@ describe("ClientEncodedNameClient Rest Client", () => {
   it("should get header response", async () => {
     try {
       const result = await client.path("/client/naming/header").get();
+      assert.strictEqual(result.headers["default-name"], "true");
       assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);

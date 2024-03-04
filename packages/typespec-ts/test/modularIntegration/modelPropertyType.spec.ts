@@ -231,7 +231,6 @@ describe("ModelsPropertyTypesClient Rest Client", () => {
           default:
             throw new Error(`Unknown type ${item.type}`);
         }
-        console.log(result);
         assert.deepEqual(result.property, item.defaultValue);
       } catch (err) {
         assert.fail(err as string);
