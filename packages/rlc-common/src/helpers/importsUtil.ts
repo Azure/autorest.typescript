@@ -7,7 +7,7 @@ import { ImportType, Imports, PackageFlavor } from "../interfaces.js";
  * @returns
  */
 export function buildRuntimeImports(
-  flavor: PackageFlavor = "azure"
+  flavor?: PackageFlavor
 ): Imports {
   if (flavor === "azure") {
     return {

@@ -41,7 +41,7 @@ describe("#getImportSpecifier", () => {
   });
 
   describe("#branded", () => {
-    const branded = buildRuntimeImports(true);
+    const branded = buildRuntimeImports("azure");
     it("should return the correct import specifier for core auth", () => {
       expect(getImportSpecifier("coreAuth", branded)).to.equal(
         "@azure/core-auth"
@@ -54,7 +54,7 @@ describe("#getImportSpecifier", () => {
   });
 
   describe("#non-branded", () => {
-    const nonBranded = buildRuntimeImports(false);
+    const nonBranded = buildRuntimeImports(undefined);
     it("should return the correct import specifier for core auth", () => {
       expect(getImportSpecifier("coreAuth", nonBranded)).to.equal(
         "@typespec/ts-http-runtime"

@@ -62,7 +62,7 @@ export async function emitPageHelperFromTypeSpec(
     schemas: [],
     importInfo: {
       internalImports: initInternalImports(),
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
@@ -122,7 +122,7 @@ export async function emitModelsFromTypeSpec(
     libraryName: "test",
     importInfo: {
       internalImports: initInternalImports(),
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
@@ -161,7 +161,7 @@ export async function emitParameterFromTypeSpec(
     parameters,
     importInfo: {
       internalImports: importSet,
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
@@ -186,7 +186,7 @@ export async function emitClientDefinitionFromTypeSpec(
     paths,
     importInfo: {
       internalImports: initInternalImports(),
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
@@ -235,7 +235,7 @@ export async function emitClientFactoryFromTypeSpec(
     },
     importInfo: {
       internalImports: initInternalImports(),
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
@@ -269,7 +269,7 @@ export async function emitResponsesFromTypeSpec(
     responses,
     importInfo: {
       internalImports: importSet,
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
