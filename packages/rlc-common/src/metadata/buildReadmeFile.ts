@@ -162,7 +162,9 @@ interface Metadata {
 export function buildReadmeFile(model: RLCModel) {
   const metadata = createMetadata(model) ?? {};
   const readmeFileContents = hbs.compile(
-    model.options?.flavor === "azure" ? azureReadmeTemplate : nonBrandedReadmeTemplate,
+    model.options?.flavor === "azure"
+      ? azureReadmeTemplate
+      : nonBrandedReadmeTemplate,
     { noEscape: true }
   );
   return {

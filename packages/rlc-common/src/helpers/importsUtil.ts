@@ -6,9 +6,7 @@ import { ImportType, Imports, PackageFlavor } from "../interfaces.js";
  * @param flavor flavor of SDK to generate, if any. When set to "azure", Azure Core packages will be used. When unset, the generic `ts-http-runtime` package will be used.
  * @returns
  */
-export function buildRuntimeImports(
-  flavor?: PackageFlavor
-): Imports {
+export function buildRuntimeImports(flavor?: PackageFlavor): Imports {
   if (flavor === "azure") {
     return {
       restClient: {
