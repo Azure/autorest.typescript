@@ -479,9 +479,6 @@ function emitParameter(
   parameter: HttpOperationParameter | HttpServerParameter,
   implementation: string
 ): Parameter {
-  if (parameter.name === "If-Match") {
-    parameter;
-  }
   const base = emitParamBase(context, parameter.param);
   let type = getType(context, parameter.param.type, {
     usage: UsageFlags.Input
@@ -990,7 +987,7 @@ function emitProperty(
   }
   const type = getType(context, property.type, { usage });
   return {
-    clientName: clientName,
+    clientName: applyCasing(clientName, { casing: CASING }),
     restApiName: jsonName,
     type: newProperty.format ? { ...type, format: newProperty.format } : type,
     optional: property.optional,

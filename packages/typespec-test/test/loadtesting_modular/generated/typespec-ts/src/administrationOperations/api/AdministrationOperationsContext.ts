@@ -6,14 +6,14 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { AzureLoadTestingContext } from "../../rest/index.js";
 import getClient from "../../rest/index.js";
 
-export interface LoadTestRunClientOptions extends ClientOptions {}
+export interface AdministrationOperationsClientOptions extends ClientOptions {}
 
 export { AzureLoadTestingContext } from "../../rest/index.js";
 
-export function createLoadTestRun(
+export function createAdministrationOperations(
   endpoint: string,
   credential: TokenCredential,
-  options: LoadTestRunClientOptions = {},
+  options: AdministrationOperationsClientOptions = {},
 ): AzureLoadTestingContext {
   const clientContext = getClient(endpoint, credential, options);
   return clientContext;

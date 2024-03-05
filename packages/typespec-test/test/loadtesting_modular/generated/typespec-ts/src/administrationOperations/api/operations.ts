@@ -274,18 +274,17 @@ export async function _createOrUpdateTestDeserialize(
                     "validationFailureDetails"
                   ],
               },
-          additionalFileInfo: !result.body.inputArtifacts?.[
-            "additionalFileInfo"
-          ]
-            ? result.body.inputArtifacts?.["additionalFileInfo"]
-            : result.body.inputArtifacts?.["additionalFileInfo"].map((p) => ({
-                url: p["url"],
-                fileName: p["fileName"],
-                fileType: p["fileType"],
-                expireDateTime: p["expireDateTime"],
-                validationStatus: p["validationStatus"],
-                validationFailureDetails: p["validationFailureDetails"],
-              })),
+          additionalFileInfo:
+            result.body.inputArtifacts?.["additionalFileInfo"] === undefined
+              ? result.body.inputArtifacts?.["additionalFileInfo"]
+              : result.body.inputArtifacts?.["additionalFileInfo"].map((p) => ({
+                  url: p["url"],
+                  fileName: p["fileName"],
+                  fileType: p["fileType"],
+                  expireDateTime: p["expireDateTime"],
+                  validationStatus: p["validationStatus"],
+                  validationFailureDetails: p["validationFailureDetails"],
+                })),
         },
     testId: result.body["testId"],
     description: result.body["description"],
@@ -665,18 +664,17 @@ export async function _getTestDeserialize(
                     "validationFailureDetails"
                   ],
               },
-          additionalFileInfo: !result.body.inputArtifacts?.[
-            "additionalFileInfo"
-          ]
-            ? result.body.inputArtifacts?.["additionalFileInfo"]
-            : result.body.inputArtifacts?.["additionalFileInfo"].map((p) => ({
-                url: p["url"],
-                fileName: p["fileName"],
-                fileType: p["fileType"],
-                expireDateTime: p["expireDateTime"],
-                validationStatus: p["validationStatus"],
-                validationFailureDetails: p["validationFailureDetails"],
-              })),
+          additionalFileInfo:
+            result.body.inputArtifacts?.["additionalFileInfo"] === undefined
+              ? result.body.inputArtifacts?.["additionalFileInfo"]
+              : result.body.inputArtifacts?.["additionalFileInfo"].map((p) => ({
+                  url: p["url"],
+                  fileName: p["fileName"],
+                  fileType: p["fileType"],
+                  expireDateTime: p["expireDateTime"],
+                  validationStatus: p["validationStatus"],
+                  validationFailureDetails: p["validationFailureDetails"],
+                })),
         },
     testId: result.body["testId"],
     description: result.body["description"],
@@ -936,16 +934,17 @@ export async function _listTestsDeserialize(
                       "validationFailureDetails"
                     ],
                 },
-            additionalFileInfo: !p.inputArtifacts?.["additionalFileInfo"]
-              ? p.inputArtifacts?.["additionalFileInfo"]
-              : p.inputArtifacts?.["additionalFileInfo"].map((p) => ({
-                  url: p["url"],
-                  fileName: p["fileName"],
-                  fileType: p["fileType"],
-                  expireDateTime: p["expireDateTime"],
-                  validationStatus: p["validationStatus"],
-                  validationFailureDetails: p["validationFailureDetails"],
-                })),
+            additionalFileInfo:
+              p.inputArtifacts?.["additionalFileInfo"] === undefined
+                ? p.inputArtifacts?.["additionalFileInfo"]
+                : p.inputArtifacts?.["additionalFileInfo"].map((p) => ({
+                    url: p["url"],
+                    fileName: p["fileName"],
+                    fileType: p["fileType"],
+                    expireDateTime: p["expireDateTime"],
+                    validationStatus: p["validationStatus"],
+                    validationFailureDetails: p["validationFailureDetails"],
+                  })),
           },
       testId: p["testId"],
       description: p["description"],

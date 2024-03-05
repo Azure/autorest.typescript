@@ -168,9 +168,10 @@ export async function _testRunDeserialize(
           name: result.body.certificate?.["name"],
         },
     environmentVariables: result.body["environmentVariables"],
-    errorDetails: !result.body["errorDetails"]
-      ? result.body["errorDetails"]
-      : result.body["errorDetails"].map((p) => ({ message: p["message"] })),
+    errorDetails:
+      result.body["errorDetails"] === undefined
+        ? result.body["errorDetails"]
+        : result.body["errorDetails"].map((p) => ({ message: p["message"] })),
     testRunStatistics: result.body["testRunStatistics"],
     loadTestConfiguration: !result.body.loadTestConfiguration
       ? undefined
@@ -297,21 +298,23 @@ export async function _testRunDeserialize(
                           "validationFailureDetails"
                         ],
                     },
-                additionalFileInfo: !result.body.testArtifacts
-                  ?.inputArtifacts?.["additionalFileInfo"]
-                  ? result.body.testArtifacts?.inputArtifacts?.[
-                      "additionalFileInfo"
-                    ]
-                  : result.body.testArtifacts?.inputArtifacts?.[
-                      "additionalFileInfo"
-                    ].map((p) => ({
-                      url: p["url"],
-                      fileName: p["fileName"],
-                      fileType: p["fileType"],
-                      expireDateTime: p["expireDateTime"],
-                      validationStatus: p["validationStatus"],
-                      validationFailureDetails: p["validationFailureDetails"],
-                    })),
+                additionalFileInfo:
+                  result.body.testArtifacts?.inputArtifacts?.[
+                    "additionalFileInfo"
+                  ] === undefined
+                    ? result.body.testArtifacts?.inputArtifacts?.[
+                        "additionalFileInfo"
+                      ]
+                    : result.body.testArtifacts?.inputArtifacts?.[
+                        "additionalFileInfo"
+                      ].map((p) => ({
+                        url: p["url"],
+                        fileName: p["fileName"],
+                        fileType: p["fileType"],
+                        expireDateTime: p["expireDateTime"],
+                        validationStatus: p["validationStatus"],
+                        validationFailureDetails: p["validationFailureDetails"],
+                      })),
               },
           outputArtifacts: !result.body.testArtifacts?.outputArtifacts
             ? undefined
@@ -660,9 +663,10 @@ export async function _getTestRunDeserialize(
           name: result.body.certificate?.["name"],
         },
     environmentVariables: result.body["environmentVariables"],
-    errorDetails: !result.body["errorDetails"]
-      ? result.body["errorDetails"]
-      : result.body["errorDetails"].map((p) => ({ message: p["message"] })),
+    errorDetails:
+      result.body["errorDetails"] === undefined
+        ? result.body["errorDetails"]
+        : result.body["errorDetails"].map((p) => ({ message: p["message"] })),
     testRunStatistics: result.body["testRunStatistics"],
     loadTestConfiguration: !result.body.loadTestConfiguration
       ? undefined
@@ -789,21 +793,23 @@ export async function _getTestRunDeserialize(
                           "validationFailureDetails"
                         ],
                     },
-                additionalFileInfo: !result.body.testArtifacts
-                  ?.inputArtifacts?.["additionalFileInfo"]
-                  ? result.body.testArtifacts?.inputArtifacts?.[
-                      "additionalFileInfo"
-                    ]
-                  : result.body.testArtifacts?.inputArtifacts?.[
-                      "additionalFileInfo"
-                    ].map((p) => ({
-                      url: p["url"],
-                      fileName: p["fileName"],
-                      fileType: p["fileType"],
-                      expireDateTime: p["expireDateTime"],
-                      validationStatus: p["validationStatus"],
-                      validationFailureDetails: p["validationFailureDetails"],
-                    })),
+                additionalFileInfo:
+                  result.body.testArtifacts?.inputArtifacts?.[
+                    "additionalFileInfo"
+                  ] === undefined
+                    ? result.body.testArtifacts?.inputArtifacts?.[
+                        "additionalFileInfo"
+                      ]
+                    : result.body.testArtifacts?.inputArtifacts?.[
+                        "additionalFileInfo"
+                      ].map((p) => ({
+                        url: p["url"],
+                        fileName: p["fileName"],
+                        fileType: p["fileType"],
+                        expireDateTime: p["expireDateTime"],
+                        validationStatus: p["validationStatus"],
+                        validationFailureDetails: p["validationFailureDetails"],
+                      })),
               },
           outputArtifacts: !result.body.testArtifacts?.outputArtifacts
             ? undefined
@@ -1024,21 +1030,25 @@ export async function _listMetricDefinitionsDeserialize(
 
   return {
     value: result.body["value"].map((p) => ({
-      dimensions: !p["dimensions"]
-        ? p["dimensions"]
-        : p["dimensions"].map((p) => ({
-            description: p["description"],
-            name: p["name"],
-          })),
+      dimensions:
+        p["dimensions"] === undefined
+          ? p["dimensions"]
+          : p["dimensions"].map((p) => ({
+              description: p["description"],
+              name: p["name"],
+            })),
       description: p["description"],
       name: p["name"],
       namespace: p["namespace"],
       primaryAggregationType: p["primaryAggregationType"],
       supportedAggregationTypes: p["supportedAggregationTypes"],
       unit: p["unit"],
-      metricAvailabilities: !p["metricAvailabilities"]
-        ? p["metricAvailabilities"]
-        : p["metricAvailabilities"].map((p) => ({ timeGrain: p["timeGrain"] })),
+      metricAvailabilities:
+        p["metricAvailabilities"] === undefined
+          ? p["metricAvailabilities"]
+          : p["metricAvailabilities"].map((p) => ({
+              timeGrain: p["timeGrain"],
+            })),
     })),
   };
 }
@@ -1113,12 +1123,13 @@ export function _listMetricsSend(
         timespan: options?.timespan,
       },
       body: {
-        filters: !body["filters"]
-          ? body["filters"]
-          : body["filters"].map((p) => ({
-              name: p["name"],
-              values: p["values"],
-            })),
+        filters:
+          body["filters"] === undefined
+            ? body["filters"]
+            : body["filters"].map((p) => ({
+                name: p["name"],
+                values: p["values"],
+              })),
       },
     });
 }
@@ -1134,18 +1145,20 @@ export async function _listMetricsDeserialize(
 
   return {
     value: result.body["value"].map((p) => ({
-      data: !p["data"]
-        ? p["data"]
-        : p["data"].map((p) => ({
-            timestamp: p["timestamp"],
-            value: p["value"],
-          })),
-      dimensionValues: !p["dimensionValues"]
-        ? p["dimensionValues"]
-        : p["dimensionValues"].map((p) => ({
-            name: p["name"],
-            value: p["value"],
-          })),
+      data:
+        p["data"] === undefined
+          ? p["data"]
+          : p["data"].map((p) => ({
+              timestamp: p["timestamp"],
+              value: p["value"],
+            })),
+      dimensionValues:
+        p["dimensionValues"] === undefined
+          ? p["dimensionValues"]
+          : p["dimensionValues"].map((p) => ({
+              name: p["name"],
+              value: p["value"],
+            })),
     })),
     nextLink: result.body["nextLink"],
   };
@@ -1212,9 +1225,10 @@ export async function _listTestRunsDeserialize(
             name: p.certificate?.["name"],
           },
       environmentVariables: p["environmentVariables"],
-      errorDetails: !p["errorDetails"]
-        ? p["errorDetails"]
-        : p["errorDetails"].map((p) => ({ message: p["message"] })),
+      errorDetails:
+        p["errorDetails"] === undefined
+          ? p["errorDetails"]
+          : p["errorDetails"].map((p) => ({ message: p["message"] })),
       testRunStatistics: p["testRunStatistics"],
       loadTestConfiguration: !p.loadTestConfiguration
         ? undefined
@@ -1356,20 +1370,21 @@ export async function _listTestRunsDeserialize(
                             "validationFailureDetails"
                           ],
                       },
-                  additionalFileInfo: !p.testArtifacts?.inputArtifacts?.[
-                    "additionalFileInfo"
-                  ]
-                    ? p.testArtifacts?.inputArtifacts?.["additionalFileInfo"]
-                    : p.testArtifacts?.inputArtifacts?.[
-                        "additionalFileInfo"
-                      ].map((p) => ({
-                        url: p["url"],
-                        fileName: p["fileName"],
-                        fileType: p["fileType"],
-                        expireDateTime: p["expireDateTime"],
-                        validationStatus: p["validationStatus"],
-                        validationFailureDetails: p["validationFailureDetails"],
-                      })),
+                  additionalFileInfo:
+                    p.testArtifacts?.inputArtifacts?.["additionalFileInfo"] ===
+                    undefined
+                      ? p.testArtifacts?.inputArtifacts?.["additionalFileInfo"]
+                      : p.testArtifacts?.inputArtifacts?.[
+                          "additionalFileInfo"
+                        ].map((p) => ({
+                          url: p["url"],
+                          fileName: p["fileName"],
+                          fileType: p["fileType"],
+                          expireDateTime: p["expireDateTime"],
+                          validationStatus: p["validationStatus"],
+                          validationFailureDetails:
+                            p["validationFailureDetails"],
+                        })),
                 },
             outputArtifacts: !p.testArtifacts?.outputArtifacts
               ? undefined
@@ -1500,9 +1515,10 @@ export async function _stopTestRunDeserialize(
           name: result.body.certificate?.["name"],
         },
     environmentVariables: result.body["environmentVariables"],
-    errorDetails: !result.body["errorDetails"]
-      ? result.body["errorDetails"]
-      : result.body["errorDetails"].map((p) => ({ message: p["message"] })),
+    errorDetails:
+      result.body["errorDetails"] === undefined
+        ? result.body["errorDetails"]
+        : result.body["errorDetails"].map((p) => ({ message: p["message"] })),
     testRunStatistics: result.body["testRunStatistics"],
     loadTestConfiguration: !result.body.loadTestConfiguration
       ? undefined
@@ -1629,21 +1645,23 @@ export async function _stopTestRunDeserialize(
                           "validationFailureDetails"
                         ],
                     },
-                additionalFileInfo: !result.body.testArtifacts
-                  ?.inputArtifacts?.["additionalFileInfo"]
-                  ? result.body.testArtifacts?.inputArtifacts?.[
-                      "additionalFileInfo"
-                    ]
-                  : result.body.testArtifacts?.inputArtifacts?.[
-                      "additionalFileInfo"
-                    ].map((p) => ({
-                      url: p["url"],
-                      fileName: p["fileName"],
-                      fileType: p["fileType"],
-                      expireDateTime: p["expireDateTime"],
-                      validationStatus: p["validationStatus"],
-                      validationFailureDetails: p["validationFailureDetails"],
-                    })),
+                additionalFileInfo:
+                  result.body.testArtifacts?.inputArtifacts?.[
+                    "additionalFileInfo"
+                  ] === undefined
+                    ? result.body.testArtifacts?.inputArtifacts?.[
+                        "additionalFileInfo"
+                      ]
+                    : result.body.testArtifacts?.inputArtifacts?.[
+                        "additionalFileInfo"
+                      ].map((p) => ({
+                        url: p["url"],
+                        fileName: p["fileName"],
+                        fileType: p["fileType"],
+                        expireDateTime: p["expireDateTime"],
+                        validationStatus: p["validationStatus"],
+                        validationFailureDetails: p["validationFailureDetails"],
+                      })),
               },
           outputArtifacts: !result.body.testArtifacts?.outputArtifacts
             ? undefined

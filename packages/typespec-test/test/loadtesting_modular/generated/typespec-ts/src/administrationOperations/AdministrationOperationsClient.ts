@@ -25,8 +25,8 @@ import {
 } from "./models/options.js";
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
-  createLoadTestAdministration,
-  LoadTestAdministrationClientOptions,
+  createAdministrationOperations,
+  AdministrationOperationsClientOptions,
   AzureLoadTestingContext,
   createOrUpdateTest,
   createOrUpdateAppComponents,
@@ -42,9 +42,9 @@ import {
   deleteTest,
 } from "./api/index.js";
 
-export { LoadTestAdministrationClientOptions } from "./api/LoadTestAdministrationContext.js";
+export { AdministrationOperationsClientOptions } from "./api/AdministrationOperationsContext.js";
 
-export class LoadTestAdministrationClient {
+export class AdministrationOperationsClient {
   private _client: AzureLoadTestingContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
@@ -52,9 +52,13 @@ export class LoadTestAdministrationClient {
   constructor(
     endpoint: string,
     credential: TokenCredential,
-    options: LoadTestAdministrationClientOptions = {},
+    options: AdministrationOperationsClientOptions = {},
   ) {
-    this._client = createLoadTestAdministration(endpoint, credential, options);
+    this._client = createAdministrationOperations(
+      endpoint,
+      credential,
+      options,
+    );
     this.pipeline = this._client.pipeline;
   }
 

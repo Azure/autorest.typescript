@@ -1757,7 +1757,7 @@ export interface PoolUsageMetrics {
 // @public
 export interface PublicIpAddressConfiguration {
     ipAddressIds?: string[];
-    IpAddressProvisioningType?: IPAddressProvisioningType;
+    ipAddressProvisioningType?: IPAddressProvisioningType;
 }
 
 // @public (undocumented)

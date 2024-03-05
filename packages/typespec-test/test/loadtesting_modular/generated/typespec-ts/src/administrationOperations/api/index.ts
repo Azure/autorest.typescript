@@ -2,10 +2,10 @@
 // Licensed under the MIT license.
 
 export {
-  createLoadTestAdministration,
-  LoadTestAdministrationClientOptions,
+  createAdministrationOperations,
+  AdministrationOperationsClientOptions,
   AzureLoadTestingContext,
-} from "./LoadTestAdministrationContext.js";
+} from "./AdministrationOperationsContext.js";
 export {
   createOrUpdateTest,
   createOrUpdateAppComponents,

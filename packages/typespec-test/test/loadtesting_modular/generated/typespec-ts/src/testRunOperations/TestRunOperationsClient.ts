@@ -32,9 +32,6 @@ import {
 } from "./models/options.js";
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
-  createLoadTestRun,
-  LoadTestRunClientOptions,
-  AzureLoadTestingContext,
   testRun,
   createOrUpdateAppComponents,
   createOrUpdateServerMetricsConfig,
@@ -49,11 +46,14 @@ import {
   listMetrics,
   listTestRuns,
   stopTestRun,
+  createTestRunOperations,
+  TestRunOperationsClientOptions,
+  AzureLoadTestingContext,
 } from "./api/index.js";
 
-export { LoadTestRunClientOptions } from "./api/LoadTestRunContext.js";
+export { TestRunOperationsClientOptions } from "./api/TestRunOperationsContext.js";
 
-export class LoadTestRunClient {
+export class TestRunOperationsClient {
   private _client: AzureLoadTestingContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
@@ -61,9 +61,9 @@ export class LoadTestRunClient {
   constructor(
     endpoint: string,
     credential: TokenCredential,
-    options: LoadTestRunClientOptions = {},
+    options: TestRunOperationsClientOptions = {},
   ) {
-    this._client = createLoadTestRun(endpoint, credential, options);
+    this._client = createTestRunOperations(endpoint, credential, options);
     this.pipeline = this._client.pipeline;
   }
 

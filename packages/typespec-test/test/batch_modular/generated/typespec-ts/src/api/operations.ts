@@ -641,7 +641,7 @@ export function _createPoolSend(
                 : {
                     provision:
                       body.networkConfiguration?.publicIpAddressConfiguration?.[
-                        "IpAddressProvisioningType"
+                        "ipAddressProvisioningType"
                       ],
                     ipAddressIds:
                       body.networkConfiguration?.publicIpAddressConfiguration?.[
@@ -1130,7 +1130,7 @@ export async function _listPoolsDeserialize(
                     ?.publicIPAddressConfiguration
                     ? undefined
                     : {
-                        IpAddressProvisioningType:
+                        ipAddressProvisioningType:
                           p.networkConfiguration
                             ?.publicIPAddressConfiguration?.["provision"],
                         ipAddressIds:
@@ -1799,7 +1799,7 @@ export async function _getPoolDeserialize(
             ?.publicIPAddressConfiguration
             ? undefined
             : {
-                IpAddressProvisioningType:
+                ipAddressProvisioningType:
                   result.body.networkConfiguration
                     ?.publicIPAddressConfiguration?.["provision"],
                 ipAddressIds:
@@ -3648,7 +3648,7 @@ export async function _getJobDeserialize(
                           ?.publicIPAddressConfiguration
                           ? undefined
                           : {
-                              IpAddressProvisioningType:
+                              ipAddressProvisioningType:
                                 result.body.poolInfo.autoPoolSpecification?.pool
                                   ?.networkConfiguration
                                   ?.publicIPAddressConfiguration?.["provision"],
@@ -4391,7 +4391,7 @@ export function _updateJobSend(
                                         body.poolInfo?.autoPoolSpecification
                                           ?.pool?.networkConfiguration
                                           ?.publicIpAddressConfiguration?.[
-                                          "IpAddressProvisioningType"
+                                          "ipAddressProvisioningType"
                                         ],
                                       ipAddressIds:
                                         body.poolInfo?.autoPoolSpecification
@@ -5132,7 +5132,7 @@ export function _replaceJobSend(
                                     body.poolInfo.autoPoolSpecification?.pool
                                       ?.networkConfiguration
                                       ?.publicIpAddressConfiguration?.[
-                                      "IpAddressProvisioningType"
+                                      "ipAddressProvisioningType"
                                     ],
                                   ipAddressIds:
                                     body.poolInfo.autoPoolSpecification?.pool
@@ -6348,7 +6348,7 @@ export function _createJobSend(
                                     body.poolInfo.autoPoolSpecification?.pool
                                       ?.networkConfiguration
                                       ?.publicIpAddressConfiguration?.[
-                                      "IpAddressProvisioningType"
+                                      "ipAddressProvisioningType"
                                     ],
                                   ipAddressIds:
                                     body.poolInfo.autoPoolSpecification?.pool
@@ -7459,7 +7459,7 @@ export async function _listJobsDeserialize(
                                   ?.publicIPAddressConfiguration
                                   ? undefined
                                   : {
-                                      IpAddressProvisioningType:
+                                      ipAddressProvisioningType:
                                         p.poolInfo.autoPoolSpecification?.pool
                                           ?.networkConfiguration
                                           ?.publicIPAddressConfiguration?.[
@@ -8640,7 +8640,7 @@ export async function _listJobsFromScheduleDeserialize(
                                   ?.publicIPAddressConfiguration
                                   ? undefined
                                   : {
-                                      IpAddressProvisioningType:
+                                      ipAddressProvisioningType:
                                         p.poolInfo.autoPoolSpecification?.pool
                                           ?.networkConfiguration
                                           ?.publicIPAddressConfiguration?.[
@@ -10601,7 +10601,7 @@ export async function _getJobScheduleDeserialize(
                             ?.publicIPAddressConfiguration
                             ? undefined
                             : {
-                                IpAddressProvisioningType:
+                                ipAddressProvisioningType:
                                   result.body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.networkConfiguration
@@ -11890,7 +11890,7 @@ export function _updateJobScheduleSend(
                                             .autoPoolSpecification?.pool
                                             ?.networkConfiguration
                                             ?.publicIpAddressConfiguration?.[
-                                            "IpAddressProvisioningType"
+                                            "ipAddressProvisioningType"
                                           ],
                                         ipAddressIds:
                                           body.jobSpecification?.poolInfo
@@ -13147,7 +13147,7 @@ export function _replaceJobScheduleSend(
                                         .autoPoolSpecification?.pool
                                         ?.networkConfiguration
                                         ?.publicIpAddressConfiguration?.[
-                                        "IpAddressProvisioningType"
+                                        "ipAddressProvisioningType"
                                       ],
                                     ipAddressIds:
                                       body.jobSpecification.poolInfo
@@ -14503,7 +14503,7 @@ export function _createJobScheduleSend(
                                         .autoPoolSpecification?.pool
                                         ?.networkConfiguration
                                         ?.publicIpAddressConfiguration?.[
-                                        "IpAddressProvisioningType"
+                                        "ipAddressProvisioningType"
                                       ],
                                     ipAddressIds:
                                       body.jobSpecification.poolInfo
@@ -15775,7 +15775,7 @@ export async function _listJobSchedulesDeserialize(
                                     ?.publicIPAddressConfiguration
                                     ? undefined
                                     : {
-                                        IpAddressProvisioningType:
+                                        ipAddressProvisioningType:
                                           p.jobSpecification.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.networkConfiguration
