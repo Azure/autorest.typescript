@@ -24,12 +24,13 @@ export function _putSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       body: {
-        extension: !input["extension"]
-          ? input["extension"]
-          : input["extension"].map((p) => ({
-              extension: !p.extension ? undefined : p.extension,
-              level: p["level"],
-            })),
+        extension:
+          input["extension"] === undefined
+            ? input["extension"]
+            : input["extension"].map((p) => ({
+                extension: !p.extension ? undefined : p.extension,
+                level: p["level"],
+              })),
         level: input["level"],
       },
     });
@@ -69,12 +70,13 @@ export async function _getDeserialize(
   }
 
   return {
-    extension: !result.body["extension"]
-      ? result.body["extension"]
-      : result.body["extension"].map((p) => ({
-          extension: !p.extension ? undefined : p.extension,
-          level: p["level"],
-        })),
+    extension:
+      result.body["extension"] === undefined
+        ? result.body["extension"]
+        : result.body["extension"].map((p) => ({
+            extension: !p.extension ? undefined : p.extension,
+            level: p["level"],
+          })),
     level: result.body["level"],
   };
 }
