@@ -1778,9 +1778,8 @@ describe("inheritance & polymorphism", () => {
         true
       );
       assert.isUndefined(schemaOutput);
-      const paramOutput = await emitModularOperationsFromTypeSpec(
-        tspDefinition
-      );
+      const paramOutput =
+        await emitModularOperationsFromTypeSpec(tspDefinition);
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
       await assertEqualContent(
@@ -1854,10 +1853,9 @@ describe("inheritance & polymorphism", () => {
         | "text/plain; charset=utf-8"
         | "text/vnd.ms.protobuf";
         `
-      )
-      const paramOutput = await emitModularOperationsFromTypeSpec(
-        tspDefinition
       );
+      const paramOutput =
+        await emitModularOperationsFromTypeSpec(tspDefinition);
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
       await assertEqualContent(
@@ -1952,5 +1950,68 @@ describe("inheritance & polymorphism", () => {
         `
       );
     });
+  });
+});
+
+describe("`is`", () => {
+  it("should generate correct name and properties if A is B<Template>", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(`
+    model B<Parameter> {
+      prop1: string;
+      prop2: Parameter;
+    }
+    model A is B<string> {
+      @query
+      name: string;
+    };
+      op read(@body body: A): void;
+      `);
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface A {
+        prop1: string;
+        prop2: string;
+      }`
+    );
+  });
+});
+
+describe("visibility", () => {
+  it("should generate readonly for @visibility('read')", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(`
+      model A  {
+        @visibility("read")
+        exactVersion?: string;
+      };
+      op read(@body body: A): void;
+      `);
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface A {
+        readonly exactVersion?: string;
+      }`
+    );
+  });
+
+  it("should not generate readonly for @visibility('read', 'create')", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(`
+      model A  {
+        @visibility("read", "create")
+        exactVersion?: string;
+      };
+      op read(@body body: A): void;
+      `);
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface A {
+        exactVersion?: string;
+      }`
+    );
   });
 });

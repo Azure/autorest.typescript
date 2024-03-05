@@ -150,29 +150,4 @@ describe("model type", () => {
       );
     });
   });
-
-  describe("`is`", () => {
-    it("should generate correct name and properties if A is B<Template>", async () => {
-      const modelFile = await emitModularModelsFromTypeSpec(`
-      model B<Parameter> {
-        prop1: string;
-        prop2: Parameter;
-      }
-      model A is B<string> {
-        @query
-        name: string;
-      };
-        op read(@body body: A): void;
-        `);
-      assert.ok(modelFile);
-      await assertEqualContent(
-        modelFile!.getFullText()!,
-        `
-        export interface A {
-          prop1: string;
-          prop2: string;
-        }`
-      );
-    });
-  });
 });
