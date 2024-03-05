@@ -73,7 +73,21 @@ export function _dataTypesCreateSend(
       dataProductName,
       dataTypeName,
     )
-    .put({ ...operationOptionsToRequestParameters(options), body: resource });
+    .put({
+      ...operationOptionsToRequestParameters(options),
+      body: {
+        properties: !resource.properties
+          ? undefined
+          : {
+              state: resource.properties?.["state"],
+              storageOutputRetention:
+                resource.properties?.["storageOutputRetention"],
+              databaseCacheRetention:
+                resource.properties?.["databaseCacheRetention"],
+              databaseRetention: resource.properties?.["databaseRetention"],
+            },
+      },
+    });
 }
 
 export async function _dataTypesCreateDeserialize(
@@ -248,7 +262,18 @@ export function _dataTypesUpdateSend(
     )
     .patch({
       ...operationOptionsToRequestParameters(options),
-      body: { properties: !properties.properties ? undefined : {} },
+      body: {
+        properties: !properties.properties
+          ? undefined
+          : {
+              state: properties.properties?.["state"],
+              storageOutputRetention:
+                properties.properties?.["storageOutputRetention"],
+              databaseCacheRetention:
+                properties.properties?.["databaseCacheRetention"],
+              databaseRetention: properties.properties?.["databaseRetention"],
+            },
+      },
     });
 }
 

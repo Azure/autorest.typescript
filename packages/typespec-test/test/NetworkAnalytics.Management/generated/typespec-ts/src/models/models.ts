@@ -37,7 +37,7 @@ export type createdByType = string;
 /** The resource model definition for an Azure Resource Manager tracked top level resource */
 export interface TrackedResourceBase extends ArmResource {
   /** The geo-location where the resource lives */
-  readonly location: string;
+  location: string;
   /** Resource tags. */
   tags?: Record<string, string>;
 }
@@ -45,7 +45,7 @@ export interface TrackedResourceBase extends ArmResource {
 /** The data product resource. */
 export interface DataProduct extends TrackedResourceBase {
   /** The resource-specific properties for this resource. */
-  readonly properties?: DataProductProperties;
+  properties?: DataProductProperties;
   /** The managed service identities assigned to this resource. */
   identity?: ManagedIdentityProperties;
 }
@@ -57,35 +57,35 @@ export interface DataProductProperties {
   /** Latest provisioning state  of data product. */
   readonly provisioningState?: ProvisioningState;
   /** Data product publisher name. */
-  readonly publisher: string;
+  publisher: string;
   /** Product name of data product. */
-  readonly product: string;
+  product: string;
   /** Major version of data product. */
-  readonly majorVersion: string;
+  majorVersion: string;
   /** List of name or email associated with data product resource deployment. */
-  readonly owners?: string[];
+  owners?: string[];
   /** Flag to enable or disable redundancy for data product. */
-  readonly redundancy?: ControlState;
+  redundancy?: ControlState;
   /** Purview account url for data product to connect to. */
-  readonly purviewAccount?: string;
+  purviewAccount?: string;
   /** Purview collection url for data product to connect to. */
-  readonly purviewCollection?: string;
+  purviewCollection?: string;
   /** Flag to enable or disable private link for data product resource. */
-  readonly privateLinksEnabled?: ControlState;
+  privateLinksEnabled?: ControlState;
   /** Flag to enable or disable public access of data product resource. */
-  readonly publicNetworkAccess?: ControlState;
+  publicNetworkAccess?: ControlState;
   /** Flag to enable customer managed key encryption for data product. */
-  readonly customerManagedKeyEncryptionEnabled?: ControlState;
+  customerManagedKeyEncryptionEnabled?: ControlState;
   /** Customer managed encryption key details for data product. */
-  readonly customerEncryptionKey?: EncryptionKeyDetails;
+  customerEncryptionKey?: EncryptionKeyDetails;
   /** Network rule set for data product. */
-  readonly networkacls?: DataProductNetworkAcls;
+  networkacls?: DataProductNetworkAcls;
   /** Managed resource group configuration. */
   managedResourceGroupConfiguration?: ManagedResourceGroupConfiguration;
   /** List of available minor versions of the data product resource. */
   readonly availableMinorVersions?: string[];
   /** Current configured minor version of the data product resource. */
-  readonly currentMinorVersion?: string;
+  currentMinorVersion?: string;
   /** Documentation link for the data product based on definition file. */
   readonly documentation?: string;
   /** Resource links which exposed to the customer to query the data. */
@@ -216,15 +216,15 @@ export interface DataProductUpdate {
 /** The updatable properties of the DataProduct. */
 export interface DataProductUpdateProperties {
   /** List of name or email associated with data product resource deployment. */
-  readonly owners?: string[];
+  owners?: string[];
   /** Purview account url for data product to connect to. */
-  readonly purviewAccount?: string;
+  purviewAccount?: string;
   /** Purview collection url for data product to connect to. */
-  readonly purviewCollection?: string;
+  purviewCollection?: string;
   /** Flag to enable or disable private link for data product resource. */
-  readonly privateLinksEnabled?: ControlState;
+  privateLinksEnabled?: ControlState;
   /** Current configured minor version of the data product resource. */
-  readonly currentMinorVersion?: string;
+  currentMinorVersion?: string;
 }
 
 /** The provisioning state of a resource type. */
@@ -309,7 +309,7 @@ export interface ProxyResourceBase extends ArmResource {}
 /** The data type resource. */
 export interface DataType extends ProxyResourceBase {
   /** The resource-specific properties for this resource. */
-  readonly properties?: DataTypeProperties;
+  properties?: DataTypeProperties;
 }
 
 /** The data type properties */
@@ -317,15 +317,15 @@ export interface DataTypeProperties {
   /** Latest provisioning state  of data product. */
   readonly provisioningState?: ProvisioningState;
   /** State of data type. */
-  readonly state?: DataTypeState;
+  state?: DataTypeState;
   /** Reason for the state of data type. */
   readonly stateReason?: string;
   /** Field for storage output retention in days. */
-  readonly storageOutputRetention?: number;
+  storageOutputRetention?: number;
   /** Field for database cache retention in days. */
-  readonly databaseCacheRetention?: number;
+  databaseCacheRetention?: number;
   /** Field for database data retention in days. */
-  readonly databaseRetention?: number;
+  databaseRetention?: number;
   /** Url for data visualization. */
   readonly visualizationUrl?: string;
 }
@@ -338,13 +338,13 @@ export interface DataTypeUpdate {
 /** The updatable properties of the DataType. */
 export interface DataTypeUpdateProperties {
   /** State of data type. */
-  readonly state?: DataTypeState;
+  state?: DataTypeState;
   /** Field for storage output retention in days. */
-  readonly storageOutputRetention?: number;
+  storageOutputRetention?: number;
   /** Field for database cache retention in days. */
-  readonly databaseCacheRetention?: number;
+  databaseCacheRetention?: number;
   /** Field for database data retention in days. */
-  readonly databaseRetention?: number;
+  databaseRetention?: number;
 }
 
 /** The details for container sas creation. */
@@ -374,7 +374,7 @@ export interface DataTypeListResult {
 /** The data catalog resource. */
 export interface DataProductsCatalog extends ProxyResourceBase {
   /** The resource-specific properties for this resource. */
-  readonly properties?: DataProductsCatalogProperties;
+  properties?: DataProductsCatalogProperties;
 }
 
 /** Details for data catalog properties. */

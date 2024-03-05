@@ -88,7 +88,69 @@ export function _dataProductsCreateSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       body: {
+        location: resource["location"],
         tags: resource["tags"],
+        properties: !resource.properties
+          ? undefined
+          : {
+              publisher: resource.properties?.["publisher"],
+              product: resource.properties?.["product"],
+              majorVersion: resource.properties?.["majorVersion"],
+              owners: resource.properties?.["owners"],
+              redundancy: resource.properties?.["redundancy"],
+              purviewAccount: resource.properties?.["purviewAccount"],
+              purviewCollection: resource.properties?.["purviewCollection"],
+              privateLinksEnabled: resource.properties?.["privateLinksEnabled"],
+              publicNetworkAccess: resource.properties?.["publicNetworkAccess"],
+              customerManagedKeyEncryptionEnabled:
+                resource.properties?.["customerManagedKeyEncryptionEnabled"],
+              customerEncryptionKey: !resource.properties?.customerEncryptionKey
+                ? undefined
+                : {
+                    keyVaultUri:
+                      resource.properties?.customerEncryptionKey?.[
+                        "keyVaultUri"
+                      ],
+                    keyName:
+                      resource.properties?.customerEncryptionKey?.["keyName"],
+                    keyVersion:
+                      resource.properties?.customerEncryptionKey?.[
+                        "keyVersion"
+                      ],
+                  },
+              networkacls: !resource.properties?.networkacls
+                ? undefined
+                : {
+                    virtualNetworkRule: resource.properties?.networkacls?.[
+                      "virtualNetworkRule"
+                    ].map((p) => ({
+                      id: p["id"],
+                      action: p["action"],
+                      state: p["state"],
+                    })),
+                    ipRules: resource.properties?.networkacls?.["ipRules"].map(
+                      (p) => ({ value: p["value"], action: p["action"] }),
+                    ),
+                    allowedQueryIpRangeList:
+                      resource.properties?.networkacls?.[
+                        "allowedQueryIpRangeList"
+                      ],
+                    defaultAction:
+                      resource.properties?.networkacls?.["defaultAction"],
+                  },
+              managedResourceGroupConfiguration: !resource.properties
+                ?.managedResourceGroupConfiguration
+                ? undefined
+                : {
+                    name: resource.properties
+                      ?.managedResourceGroupConfiguration?.["name"],
+                    location:
+                      resource.properties?.managedResourceGroupConfiguration?.[
+                        "location"
+                      ],
+                  },
+              currentMinorVersion: resource.properties?.["currentMinorVersion"],
+            },
         identity: !resource.identity
           ? undefined
           : {
@@ -453,7 +515,17 @@ export function _dataProductsUpdateSend(
                 properties.identity?.["userAssignedIdentities"],
             },
         tags: properties["tags"],
-        properties: !properties.properties ? undefined : {},
+        properties: !properties.properties
+          ? undefined
+          : {
+              owners: properties.properties?.["owners"],
+              purviewAccount: properties.properties?.["purviewAccount"],
+              purviewCollection: properties.properties?.["purviewCollection"],
+              privateLinksEnabled:
+                properties.properties?.["privateLinksEnabled"],
+              currentMinorVersion:
+                properties.properties?.["currentMinorVersion"],
+            },
       },
     });
 }
