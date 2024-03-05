@@ -2240,7 +2240,7 @@ describe("Input/output model type", () => {
     });
   });
 
-  describe("'is' keyword generation", () => {
+  describe("`is` keyword generation", () => {
     it("should handle A is B, only A is referenced", async () => {
       const tspDefinition = `
       model B {
@@ -2310,6 +2310,37 @@ describe("Input/output model type", () => {
       await verifyPropertyType(tspType, inputModelName, {
         additionalTypeSpecDefinition: tspDefinition,
         outputType: `${inputModelName}`
+      });
+    });
+
+    it.skip("Should generate correct name and properties if A `is` B with template arguments", async () => {
+      const tspDefinition = `
+      model B<Parameter> {
+        prop1: string;
+        prop2: Parameter;
+      }
+      model A is B<string> {
+        @query
+        name: string;
+      };
+      `;
+      const tspType = "A";
+      const inputModelName = "A";
+      await verifyPropertyType(tspType, inputModelName, {
+        additionalTypeSpecDefinition: tspDefinition,
+        outputType: `${inputModelName}Output`,
+        additionalInputContent: `
+        export interface ${inputModelName} {
+          prop1:string;
+          prop2:string;
+          name:string;
+        }`,
+        additionalOutputContent: `
+        export interface ${inputModelName}Output {
+          prop1:string;
+          prop2:string;
+          name: string;
+        }`
       });
     });
   });
