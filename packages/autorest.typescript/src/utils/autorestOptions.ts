@@ -3,6 +3,7 @@ import { AutorestOptions, getHost, getSession } from "../autorestSession";
 import { DependencyInfo, TracingInfo } from "../models/clientDetails";
 import { PackageDetails } from "../models/packageDetails";
 import { NameType, normalizeName } from "./nameUtils";
+import { PackageFlavor } from "@azure-tools/rlc-common";
 
 /**
  * Extracts common autorest options
@@ -337,9 +338,7 @@ async function getCoreHttpCompatMode(
   return (await host.getValue("core-http-compat-mode")) || false;
 }
 
-async function getFlavor(
-  host: AutorestExtensionHost
-): Promise<"azure" | undefined> {
+async function getFlavor(host: AutorestExtensionHost): Promise<PackageFlavor> {
   const flavor = await host.getValue<string>("flavor");
 
   if (flavor) {
@@ -357,7 +356,10 @@ async function getFlavor(
 
   const scopeName = (await getPackageDetails(host)).scopeName;
 
-  if (scopeName && (scopeName.startsWith("azure") || scopeName.startsWith("msinternal"))) {
+  if (
+    scopeName &&
+    (scopeName.startsWith("azure") || scopeName.startsWith("msinternal"))
+  ) {
     return "azure";
   } else {
     return undefined;

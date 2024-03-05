@@ -226,7 +226,7 @@ function getIncludeShortcuts(emitterOptions: EmitterOptions) {
 function getFlavor(
   emitterOptions: EmitterOptions,
   packageDetails?: PackageDetails
-): PackageFlavor | undefined {
+): PackageFlavor {
   const flavor = emitterOptions.flavor;
 
   if (flavor !== undefined) {
