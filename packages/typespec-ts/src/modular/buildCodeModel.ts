@@ -251,20 +251,25 @@ function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
     return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
   }
 
-  let effective: Model;
+  // If type is an anonymous model, tries to find a named model that has the same properties
+  let effective: Model | undefined = undefined;
   if (type.kind === "Union") {
     const nonNullOptions = [...type.variants.values()]
       .map((x) => x.type)
       .filter((t) => !isNullType(t));
-    if (nonNullOptions.length === 1 && nonNullOptions[0]?.kind === "Model") {
+    if (
+      nonNullOptions.length === 1 &&
+      nonNullOptions[0]?.kind === "Model" &&
+      nonNullOptions[0]?.name === ""
+    ) {
       effective = getEffectiveModelType(program, nonNullOptions[0]);
     }
     return type as any;
-  } else {
+  } else if (type.name === "") {
     effective = getEffectiveModelType(program, type, isSchemaProperty);
   }
 
-  if (effective.name) {
+  if (effective?.name) {
     return effective;
   }
   return type as Model;
