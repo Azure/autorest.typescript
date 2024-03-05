@@ -972,7 +972,7 @@ export function deserializeResponseValue(
         : `${restValue} !== undefined? new Date(${restValue}): undefined`;
     case "list": {
       const prefix =
-        required && !type.nullable
+        required && type.nullable === false
           ? `${restValue}`
           : `!${restValue} ? ${restValue} : ${restValue}`;
       if (type.elementType?.type === "model") {
@@ -1067,9 +1067,9 @@ export function serializeRequestValue(
       }
     case "list": {
       const prefix =
-        required && !type.nullable
+        required && type.nullable === false
           ? `${clientValue}`
-          : `!${clientValue} ? ${clientValue} : ${clientValue}`;
+          : `!${clientValue}? ${clientValue}: ${clientValue}`;
       if (type.elementType?.type === "model" && !type.elementType.aliasType) {
         return `${prefix}.map(p => ({${getRequestModelMapping(
           type.elementType,

@@ -313,7 +313,7 @@ export function _listApplicationsSend(
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
         maxresults: options?.maxresults,
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
       },
     });
 }
@@ -365,7 +365,7 @@ export function _getApplicationSend(
     .path("/applications/{applicationId}", applicationId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -411,7 +411,7 @@ export function _listPoolUsageMetricsSend(
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
         maxresults: options?.maxresults,
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         starttime: options?.starttime?.toISOString(),
         endtime: options?.endtime?.toISOString(),
         $filter: options?.$filter,
@@ -472,7 +472,7 @@ export function _createPoolSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         id: body["id"],
         displayName: body["displayName"],
@@ -500,7 +500,7 @@ export function _createPoolSend(
                   ],
               },
               nodeAgentSKUId:
-                body.virtualMachineConfiguration?.["nodeAgentSKUId"],
+                body.virtualMachineConfiguration?.["nodeAgentSkuId"],
               windowsConfiguration: !body.virtualMachineConfiguration
                 ?.windowsConfiguration
                 ? undefined
@@ -515,7 +515,7 @@ export function _createPoolSend(
                 : body.virtualMachineConfiguration?.["dataDisks"].map((p) => ({
                     lun: p["lun"],
                     caching: p["caching"],
-                    diskSizeGB: p["diskSizeGB"],
+                    diskSizeGB: p["diskSizeGb"],
                     storageAccountType: p["storageAccountType"],
                   })),
               licenseType: body.virtualMachineConfiguration?.["licenseType"],
@@ -604,37 +604,41 @@ export function _createPoolSend(
                 ?.endpointConfiguration
                 ? undefined
                 : {
-                    inboundNATPools:
-                      body.networkConfiguration?.endpointConfiguration?.[
-                        "inboundNATPools"
-                      ].map((p) => ({
-                        name: p["name"],
-                        protocol: p["protocol"],
-                        backendPort: p["backendPort"],
-                        frontendPortRangeStart: p["frontendPortRangeStart"],
-                        frontendPortRangeEnd: p["frontendPortRangeEnd"],
-                        networkSecurityGroupRules: !p[
-                          "networkSecurityGroupRules"
+                    inboundNATPools: !body.networkConfiguration
+                      ?.endpointConfiguration?.["inboundNatPools"]
+                      ? body.networkConfiguration?.endpointConfiguration?.[
+                          "inboundNatPools"
                         ]
-                          ? p["networkSecurityGroupRules"]
-                          : p["networkSecurityGroupRules"].map((p) => ({
-                              priority: p["priority"],
-                              access: p["access"],
-                              sourceAddressPrefix: p["sourceAddressPrefix"],
-                              sourcePortRanges: p["sourcePortRanges"],
-                            })),
-                      })),
+                      : body.networkConfiguration?.endpointConfiguration?.[
+                          "inboundNatPools"
+                        ].map((p) => ({
+                          name: p["name"],
+                          protocol: p["protocol"],
+                          backendPort: p["backendPort"],
+                          frontendPortRangeStart: p["frontendPortRangeStart"],
+                          frontendPortRangeEnd: p["frontendPortRangeEnd"],
+                          networkSecurityGroupRules: !p[
+                            "networkSecurityGroupRules"
+                          ]
+                            ? p["networkSecurityGroupRules"]
+                            : p["networkSecurityGroupRules"].map((p) => ({
+                                priority: p["priority"],
+                                access: p["access"],
+                                sourceAddressPrefix: p["sourceAddressPrefix"],
+                                sourcePortRanges: p["sourcePortRanges"],
+                              })),
+                        })),
                   },
               publicIPAddressConfiguration: !body.networkConfiguration
-                ?.publicIPAddressConfiguration
+                ?.publicIpAddressConfiguration
                 ? undefined
                 : {
                     provision:
-                      body.networkConfiguration?.publicIPAddressConfiguration?.[
-                        "provision"
+                      body.networkConfiguration?.publicIpAddressConfiguration?.[
+                        "IpAddressProvisioningType"
                       ],
                     ipAddressIds:
-                      body.networkConfiguration?.publicIPAddressConfiguration?.[
+                      body.networkConfiguration?.publicIpAddressConfiguration?.[
                         "ipAddressIds"
                       ],
                   },
@@ -859,7 +863,7 @@ export function _listPoolsSend(
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
         maxresults: options?.maxresults,
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
         $select: options?.$select,
         $expand: options?.$expand,
@@ -926,7 +930,7 @@ export async function _listPoolsDeserialize(
                       "exactVersion"
                     ],
                 },
-                nodeAgentSKUId:
+                nodeAgentSkuId:
                   p.virtualMachineConfiguration?.["nodeAgentSKUId"],
                 windowsConfiguration: !p.virtualMachineConfiguration
                   ?.windowsConfiguration
@@ -942,7 +946,7 @@ export async function _listPoolsDeserialize(
                   : p.virtualMachineConfiguration?.["dataDisks"].map((p) => ({
                       lun: p["lun"],
                       caching: p["caching"],
-                      diskSizeGB: p["diskSizeGB"],
+                      diskSizeGb: p["diskSizeGB"],
                       storageAccountType: p["storageAccountType"],
                     })),
                 licenseType: p.virtualMachineConfiguration?.["licenseType"],
@@ -1065,32 +1069,36 @@ export async function _listPoolsDeserialize(
                   ?.endpointConfiguration
                   ? undefined
                   : {
-                      inboundNATPools:
-                        p.networkConfiguration?.endpointConfiguration?.[
-                          "inboundNATPools"
-                        ].map((p) => ({
-                          name: p["name"],
-                          protocol: p["protocol"],
-                          backendPort: p["backendPort"],
-                          frontendPortRangeStart: p["frontendPortRangeStart"],
-                          frontendPortRangeEnd: p["frontendPortRangeEnd"],
-                          networkSecurityGroupRules: !p[
-                            "networkSecurityGroupRules"
+                      inboundNatPools: !p.networkConfiguration
+                        ?.endpointConfiguration?.["inboundNATPools"]
+                        ? p.networkConfiguration?.endpointConfiguration?.[
+                            "inboundNATPools"
                           ]
-                            ? p["networkSecurityGroupRules"]
-                            : p["networkSecurityGroupRules"].map((p) => ({
-                                priority: p["priority"],
-                                access: p["access"],
-                                sourceAddressPrefix: p["sourceAddressPrefix"],
-                                sourcePortRanges: p["sourcePortRanges"],
-                              })),
-                        })),
+                        : p.networkConfiguration?.endpointConfiguration?.[
+                            "inboundNATPools"
+                          ].map((p) => ({
+                            name: p["name"],
+                            protocol: p["protocol"],
+                            backendPort: p["backendPort"],
+                            frontendPortRangeStart: p["frontendPortRangeStart"],
+                            frontendPortRangeEnd: p["frontendPortRangeEnd"],
+                            networkSecurityGroupRules: !p[
+                              "networkSecurityGroupRules"
+                            ]
+                              ? p["networkSecurityGroupRules"]
+                              : p["networkSecurityGroupRules"].map((p) => ({
+                                  priority: p["priority"],
+                                  access: p["access"],
+                                  sourceAddressPrefix: p["sourceAddressPrefix"],
+                                  sourcePortRanges: p["sourcePortRanges"],
+                                })),
+                          })),
                     },
-                publicIPAddressConfiguration: !p.networkConfiguration
+                publicIpAddressConfiguration: !p.networkConfiguration
                   ?.publicIPAddressConfiguration
                   ? undefined
                   : {
-                      provision:
+                      IpAddressProvisioningType:
                         p.networkConfiguration?.publicIPAddressConfiguration?.[
                           "provision"
                         ],
@@ -1245,7 +1253,7 @@ export async function _listPoolsDeserialize(
                       lastUpdateTime: new Date(
                         p.stats?.resourceStats?.["lastUpdateTime"],
                       ),
-                      avgCPUPercentage:
+                      avgCpuPercentage:
                         p.stats?.resourceStats?.["avgCPUPercentage"],
                       avgMemoryGiB: p.stats?.resourceStats?.["avgMemoryGiB"],
                       peakMemoryGiB: p.stats?.resourceStats?.["peakMemoryGiB"],
@@ -1379,7 +1387,7 @@ export function _deletePoolSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -1441,7 +1449,7 @@ export function _poolExistsSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -1492,7 +1500,7 @@ export function _getPoolSend(
           : {}),
       },
       queryParameters: {
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $select: options?.$select,
         $expand: options?.$expand,
       },
@@ -1560,7 +1568,7 @@ export async function _getPoolDeserialize(
                 "exactVersion"
               ],
           },
-          nodeAgentSKUId:
+          nodeAgentSkuId:
             result.body.virtualMachineConfiguration?.["nodeAgentSKUId"],
           windowsConfiguration: !result.body.virtualMachineConfiguration
             ?.windowsConfiguration
@@ -1576,7 +1584,7 @@ export async function _getPoolDeserialize(
                 (p) => ({
                   lun: p["lun"],
                   caching: p["caching"],
-                  diskSizeGB: p["diskSizeGB"],
+                  diskSizeGb: p["diskSizeGB"],
                   storageAccountType: p["storageAccountType"],
                 }),
               ),
@@ -1695,30 +1703,34 @@ export async function _getPoolDeserialize(
             ?.endpointConfiguration
             ? undefined
             : {
-                inboundNATPools:
-                  result.body.networkConfiguration?.endpointConfiguration?.[
-                    "inboundNATPools"
-                  ].map((p) => ({
-                    name: p["name"],
-                    protocol: p["protocol"],
-                    backendPort: p["backendPort"],
-                    frontendPortRangeStart: p["frontendPortRangeStart"],
-                    frontendPortRangeEnd: p["frontendPortRangeEnd"],
-                    networkSecurityGroupRules: !p["networkSecurityGroupRules"]
-                      ? p["networkSecurityGroupRules"]
-                      : p["networkSecurityGroupRules"].map((p) => ({
-                          priority: p["priority"],
-                          access: p["access"],
-                          sourceAddressPrefix: p["sourceAddressPrefix"],
-                          sourcePortRanges: p["sourcePortRanges"],
-                        })),
-                  })),
+                inboundNatPools: !result.body.networkConfiguration
+                  ?.endpointConfiguration?.["inboundNATPools"]
+                  ? result.body.networkConfiguration?.endpointConfiguration?.[
+                      "inboundNATPools"
+                    ]
+                  : result.body.networkConfiguration?.endpointConfiguration?.[
+                      "inboundNATPools"
+                    ].map((p) => ({
+                      name: p["name"],
+                      protocol: p["protocol"],
+                      backendPort: p["backendPort"],
+                      frontendPortRangeStart: p["frontendPortRangeStart"],
+                      frontendPortRangeEnd: p["frontendPortRangeEnd"],
+                      networkSecurityGroupRules: !p["networkSecurityGroupRules"]
+                        ? p["networkSecurityGroupRules"]
+                        : p["networkSecurityGroupRules"].map((p) => ({
+                            priority: p["priority"],
+                            access: p["access"],
+                            sourceAddressPrefix: p["sourceAddressPrefix"],
+                            sourcePortRanges: p["sourcePortRanges"],
+                          })),
+                    })),
               },
-          publicIPAddressConfiguration: !result.body.networkConfiguration
+          publicIpAddressConfiguration: !result.body.networkConfiguration
             ?.publicIPAddressConfiguration
             ? undefined
             : {
-                provision:
+                IpAddressProvisioningType:
                   result.body.networkConfiguration
                     ?.publicIPAddressConfiguration?.["provision"],
                 ipAddressIds:
@@ -1879,7 +1891,7 @@ export async function _getPoolDeserialize(
                 lastUpdateTime: new Date(
                   result.body.stats?.resourceStats?.["lastUpdateTime"],
                 ),
-                avgCPUPercentage:
+                avgCpuPercentage:
                   result.body.stats?.resourceStats?.["avgCPUPercentage"],
                 avgMemoryGiB:
                   result.body.stats?.resourceStats?.["avgMemoryGiB"],
@@ -2011,7 +2023,7 @@ export function _updatePoolSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         startTask: !body.startTask
           ? undefined
@@ -2151,7 +2163,7 @@ export function _disablePoolAutoScaleSend(
     .path("/pools/{poolId}/disableautoscale", poolId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -2204,7 +2216,7 @@ export function _enablePoolAutoScaleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         autoScaleFormula: body["autoScaleFormula"],
         autoScaleEvaluationInterval: body["autoScaleEvaluationInterval"],
@@ -2255,7 +2267,7 @@ export function _evaluatePoolAutoScaleSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: { autoScaleFormula: body["autoScaleFormula"] },
     });
 }
@@ -2334,7 +2346,7 @@ export function _resizePoolSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         targetDedicatedNodes: body["targetDedicatedNodes"],
         targetLowPriorityNodes: body["targetLowPriorityNodes"],
@@ -2396,7 +2408,7 @@ export function _stopPoolResizeSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -2443,7 +2455,7 @@ export function _replacePoolPropertiesSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         startTask: !body.startTask
           ? undefined
@@ -2521,20 +2533,27 @@ export function _replacePoolPropertiesSend(
               maxTaskRetryCount: body.startTask?.["maxTaskRetryCount"],
               waitForSuccess: body.startTask?.["waitForSuccess"],
             },
-        certificateReferences: body["certificateReferences"].map((p) => ({
-          thumbprint: p["thumbprint"],
-          thumbprintAlgorithm: p["thumbprintAlgorithm"],
-          storeLocation: p["storeLocation"],
-          storeName: p["storeName"],
-          visibility: p["visibility"],
-        })),
-        applicationPackageReferences: body["applicationPackageReferences"].map(
-          (p) => ({ applicationId: p["applicationId"], version: p["version"] }),
-        ),
-        metadata: body["metadata"].map((p) => ({
-          name: p["name"],
-          value: p["value"],
-        })),
+        certificateReferences: !body["certificateReferences"]
+          ? body["certificateReferences"]
+          : body["certificateReferences"].map((p) => ({
+              thumbprint: p["thumbprint"],
+              thumbprintAlgorithm: p["thumbprintAlgorithm"],
+              storeLocation: p["storeLocation"],
+              storeName: p["storeName"],
+              visibility: p["visibility"],
+            })),
+        applicationPackageReferences: !body["applicationPackageReferences"]
+          ? body["applicationPackageReferences"]
+          : body["applicationPackageReferences"].map((p) => ({
+              applicationId: p["applicationId"],
+              version: p["version"],
+            })),
+        metadata: !body["metadata"]
+          ? body["metadata"]
+          : body["metadata"].map((p) => ({
+              name: p["name"],
+              value: p["value"],
+            })),
         targetNodeCommunicationMode: body["targetNodeCommunicationMode"],
       },
     });
@@ -2599,7 +2618,7 @@ export function _removeNodesSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         nodeList: body["nodeList"],
         resizeTimeout: body["resizeTimeout"],
@@ -2645,7 +2664,7 @@ export function _listSupportedImagesSend(
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
         maxresults: options?.maxresults,
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
       },
     });
@@ -2662,7 +2681,7 @@ export async function _listSupportedImagesDeserialize(
     value: !result.body["value"]
       ? result.body["value"]
       : result.body["value"].map((p) => ({
-          nodeAgentSKUId: p["nodeAgentSKUId"],
+          nodeAgentSkuId: p["nodeAgentSKUId"],
           imageReference: {
             publisher: p.imageReference["publisher"],
             offer: p.imageReference["offer"],
@@ -2708,7 +2727,7 @@ export function _listPoolNodeCountsSend(
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
         maxresults: options?.maxresults,
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
       },
     });
@@ -2807,7 +2826,7 @@ export function _deleteJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -2864,7 +2883,7 @@ export function _getJobSend(
           : {}),
       },
       queryParameters: {
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $select: options?.$select,
         $expand: options?.$expand,
       },
@@ -3321,7 +3340,7 @@ export async function _getJobDeserialize(
                               "exactVersion"
                             ],
                         },
-                        nodeAgentSKUId:
+                        nodeAgentSkuId:
                           result.body.poolInfo.autoPoolSpecification?.pool
                             ?.virtualMachineConfiguration?.["nodeAgentSKUId"],
                         windowsConfiguration: !result.body.poolInfo
@@ -3345,7 +3364,7 @@ export async function _getJobDeserialize(
                             ].map((p) => ({
                               lun: p["lun"],
                               caching: p["caching"],
-                              diskSizeGB: p["diskSizeGB"],
+                              diskSizeGb: p["diskSizeGB"],
                               storageAccountType: p["storageAccountType"],
                             })),
                         licenseType:
@@ -3508,39 +3527,46 @@ export async function _getJobDeserialize(
                           ?.endpointConfiguration
                           ? undefined
                           : {
-                              inboundNATPools:
-                                result.body.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
-                                  "inboundNATPools"
-                                ].map((p) => ({
-                                  name: p["name"],
-                                  protocol: p["protocol"],
-                                  backendPort: p["backendPort"],
-                                  frontendPortRangeStart:
-                                    p["frontendPortRangeStart"],
-                                  frontendPortRangeEnd:
-                                    p["frontendPortRangeEnd"],
-                                  networkSecurityGroupRules: !p[
-                                    "networkSecurityGroupRules"
-                                  ]
-                                    ? p["networkSecurityGroupRules"]
-                                    : p["networkSecurityGroupRules"].map(
-                                        (p) => ({
-                                          priority: p["priority"],
-                                          access: p["access"],
-                                          sourceAddressPrefix:
-                                            p["sourceAddressPrefix"],
-                                          sourcePortRanges:
-                                            p["sourcePortRanges"],
-                                        }),
-                                      ),
-                                })),
+                              inboundNatPools: !result.body.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.networkConfiguration?.endpointConfiguration?.[
+                                "inboundNATPools"
+                              ]
+                                ? result.body.poolInfo.autoPoolSpecification
+                                    ?.pool?.networkConfiguration
+                                    ?.endpointConfiguration?.["inboundNATPools"]
+                                : result.body.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                    "inboundNATPools"
+                                  ].map((p) => ({
+                                    name: p["name"],
+                                    protocol: p["protocol"],
+                                    backendPort: p["backendPort"],
+                                    frontendPortRangeStart:
+                                      p["frontendPortRangeStart"],
+                                    frontendPortRangeEnd:
+                                      p["frontendPortRangeEnd"],
+                                    networkSecurityGroupRules: !p[
+                                      "networkSecurityGroupRules"
+                                    ]
+                                      ? p["networkSecurityGroupRules"]
+                                      : p["networkSecurityGroupRules"].map(
+                                          (p) => ({
+                                            priority: p["priority"],
+                                            access: p["access"],
+                                            sourceAddressPrefix:
+                                              p["sourceAddressPrefix"],
+                                            sourcePortRanges:
+                                              p["sourcePortRanges"],
+                                          }),
+                                        ),
+                                  })),
                             },
-                        publicIPAddressConfiguration: !result.body.poolInfo
+                        publicIpAddressConfiguration: !result.body.poolInfo
                           .autoPoolSpecification?.pool?.networkConfiguration
                           ?.publicIPAddressConfiguration
                           ? undefined
                           : {
-                              provision:
+                              IpAddressProvisioningType:
                                 result.body.poolInfo.autoPoolSpecification?.pool
                                   ?.networkConfiguration
                                   ?.publicIPAddressConfiguration?.["provision"],
@@ -3938,7 +3964,7 @@ export function _updateJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         priority: body["priority"],
         allowTaskPreemption: body["allowTaskPreemption"],
@@ -4018,7 +4044,7 @@ export function _updateJobSend(
                                 nodeAgentSKUId:
                                   body.poolInfo?.autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration?.[
-                                    "nodeAgentSKUId"
+                                    "nodeAgentSkuId"
                                   ],
                                 windowsConfiguration: !body.poolInfo
                                   ?.autoPoolSpecification?.pool
@@ -4046,7 +4072,7 @@ export function _updateJobSend(
                                     ].map((p) => ({
                                       lun: p["lun"],
                                       caching: p["caching"],
-                                      diskSizeGB: p["diskSizeGB"],
+                                      diskSizeGB: p["diskSizeGb"],
                                       storageAccountType:
                                         p["storageAccountType"],
                                     })),
@@ -4226,49 +4252,59 @@ export function _updateJobSend(
                                   ?.networkConfiguration?.endpointConfiguration
                                   ? undefined
                                   : {
-                                      inboundNATPools:
-                                        body.poolInfo?.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
-                                          "inboundNATPools"
-                                        ].map((p) => ({
-                                          name: p["name"],
-                                          protocol: p["protocol"],
-                                          backendPort: p["backendPort"],
-                                          frontendPortRangeStart:
-                                            p["frontendPortRangeStart"],
-                                          frontendPortRangeEnd:
-                                            p["frontendPortRangeEnd"],
-                                          networkSecurityGroupRules: !p[
-                                            "networkSecurityGroupRules"
+                                      inboundNATPools: !body.poolInfo
+                                        ?.autoPoolSpecification?.pool
+                                        ?.networkConfiguration
+                                        ?.endpointConfiguration?.[
+                                        "inboundNatPools"
+                                      ]
+                                        ? body.poolInfo?.autoPoolSpecification
+                                            ?.pool?.networkConfiguration
+                                            ?.endpointConfiguration?.[
+                                            "inboundNatPools"
                                           ]
-                                            ? p["networkSecurityGroupRules"]
-                                            : p[
-                                                "networkSecurityGroupRules"
-                                              ].map((p) => ({
-                                                priority: p["priority"],
-                                                access: p["access"],
-                                                sourceAddressPrefix:
-                                                  p["sourceAddressPrefix"],
-                                                sourcePortRanges:
-                                                  p["sourcePortRanges"],
-                                              })),
-                                        })),
+                                        : body.poolInfo?.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                            "inboundNatPools"
+                                          ].map((p) => ({
+                                            name: p["name"],
+                                            protocol: p["protocol"],
+                                            backendPort: p["backendPort"],
+                                            frontendPortRangeStart:
+                                              p["frontendPortRangeStart"],
+                                            frontendPortRangeEnd:
+                                              p["frontendPortRangeEnd"],
+                                            networkSecurityGroupRules: !p[
+                                              "networkSecurityGroupRules"
+                                            ]
+                                              ? p["networkSecurityGroupRules"]
+                                              : p[
+                                                  "networkSecurityGroupRules"
+                                                ].map((p) => ({
+                                                  priority: p["priority"],
+                                                  access: p["access"],
+                                                  sourceAddressPrefix:
+                                                    p["sourceAddressPrefix"],
+                                                  sourcePortRanges:
+                                                    p["sourcePortRanges"],
+                                                })),
+                                          })),
                                     },
                                 publicIPAddressConfiguration: !body.poolInfo
                                   ?.autoPoolSpecification?.pool
                                   ?.networkConfiguration
-                                  ?.publicIPAddressConfiguration
+                                  ?.publicIpAddressConfiguration
                                   ? undefined
                                   : {
                                       provision:
                                         body.poolInfo?.autoPoolSpecification
                                           ?.pool?.networkConfiguration
-                                          ?.publicIPAddressConfiguration?.[
-                                          "provision"
+                                          ?.publicIpAddressConfiguration?.[
+                                          "IpAddressProvisioningType"
                                         ],
                                       ipAddressIds:
                                         body.poolInfo?.autoPoolSpecification
                                           ?.pool?.networkConfiguration
-                                          ?.publicIPAddressConfiguration?.[
+                                          ?.publicIpAddressConfiguration?.[
                                           "ipAddressIds"
                                         ],
                                     },
@@ -4676,7 +4712,7 @@ export function _replaceJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         priority: body["priority"],
         allowTaskPreemption: body["allowTaskPreemption"],
@@ -4751,7 +4787,7 @@ export function _replaceJobSend(
                             nodeAgentSKUId:
                               body.poolInfo.autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.[
-                                "nodeAgentSKUId"
+                                "nodeAgentSkuId"
                               ],
                             windowsConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool
@@ -4775,7 +4811,7 @@ export function _replaceJobSend(
                                 ].map((p) => ({
                                   lun: p["lun"],
                                   caching: p["caching"],
-                                  diskSizeGB: p["diskSizeGB"],
+                                  diskSizeGB: p["diskSizeGb"],
                                   storageAccountType: p["storageAccountType"],
                                 })),
                             licenseType:
@@ -4945,48 +4981,56 @@ export function _replaceJobSend(
                               ?.endpointConfiguration
                               ? undefined
                               : {
-                                  inboundNATPools:
-                                    body.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
-                                      "inboundNATPools"
-                                    ].map((p) => ({
-                                      name: p["name"],
-                                      protocol: p["protocol"],
-                                      backendPort: p["backendPort"],
-                                      frontendPortRangeStart:
-                                        p["frontendPortRangeStart"],
-                                      frontendPortRangeEnd:
-                                        p["frontendPortRangeEnd"],
-                                      networkSecurityGroupRules: !p[
-                                        "networkSecurityGroupRules"
+                                  inboundNATPools: !body.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.networkConfiguration
+                                    ?.endpointConfiguration?.["inboundNatPools"]
+                                    ? body.poolInfo.autoPoolSpecification?.pool
+                                        ?.networkConfiguration
+                                        ?.endpointConfiguration?.[
+                                        "inboundNatPools"
                                       ]
-                                        ? p["networkSecurityGroupRules"]
-                                        : p["networkSecurityGroupRules"].map(
-                                            (p) => ({
-                                              priority: p["priority"],
-                                              access: p["access"],
-                                              sourceAddressPrefix:
-                                                p["sourceAddressPrefix"],
-                                              sourcePortRanges:
-                                                p["sourcePortRanges"],
-                                            }),
-                                          ),
-                                    })),
+                                    : body.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                        "inboundNatPools"
+                                      ].map((p) => ({
+                                        name: p["name"],
+                                        protocol: p["protocol"],
+                                        backendPort: p["backendPort"],
+                                        frontendPortRangeStart:
+                                          p["frontendPortRangeStart"],
+                                        frontendPortRangeEnd:
+                                          p["frontendPortRangeEnd"],
+                                        networkSecurityGroupRules: !p[
+                                          "networkSecurityGroupRules"
+                                        ]
+                                          ? p["networkSecurityGroupRules"]
+                                          : p["networkSecurityGroupRules"].map(
+                                              (p) => ({
+                                                priority: p["priority"],
+                                                access: p["access"],
+                                                sourceAddressPrefix:
+                                                  p["sourceAddressPrefix"],
+                                                sourcePortRanges:
+                                                  p["sourcePortRanges"],
+                                              }),
+                                            ),
+                                      })),
                                 },
                             publicIPAddressConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool?.networkConfiguration
-                              ?.publicIPAddressConfiguration
+                              ?.publicIpAddressConfiguration
                               ? undefined
                               : {
                                   provision:
                                     body.poolInfo.autoPoolSpecification?.pool
                                       ?.networkConfiguration
-                                      ?.publicIPAddressConfiguration?.[
-                                      "provision"
+                                      ?.publicIpAddressConfiguration?.[
+                                      "IpAddressProvisioningType"
                                     ],
                                   ipAddressIds:
                                     body.poolInfo.autoPoolSpecification?.pool
                                       ?.networkConfiguration
-                                      ?.publicIPAddressConfiguration?.[
+                                      ?.publicIpAddressConfiguration?.[
                                       "ipAddressIds"
                                     ],
                                 },
@@ -5358,7 +5402,7 @@ export function _disableJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: { disableTasks: body["disableTasks"] },
     });
 }
@@ -5416,7 +5460,7 @@ export function _enableJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -5474,7 +5518,7 @@ export function _terminateJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: { terminateReason: body["terminateReason"] },
     });
 }
@@ -5519,7 +5563,7 @@ export function _createJobSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         id: body["id"],
         displayName: body["displayName"],
@@ -5939,7 +5983,7 @@ export function _createJobSend(
                             nodeAgentSKUId:
                               body.poolInfo.autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.[
-                                "nodeAgentSKUId"
+                                "nodeAgentSkuId"
                               ],
                             windowsConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool
@@ -5963,7 +6007,7 @@ export function _createJobSend(
                                 ].map((p) => ({
                                   lun: p["lun"],
                                   caching: p["caching"],
-                                  diskSizeGB: p["diskSizeGB"],
+                                  diskSizeGB: p["diskSizeGb"],
                                   storageAccountType: p["storageAccountType"],
                                 })),
                             licenseType:
@@ -6133,48 +6177,56 @@ export function _createJobSend(
                               ?.endpointConfiguration
                               ? undefined
                               : {
-                                  inboundNATPools:
-                                    body.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
-                                      "inboundNATPools"
-                                    ].map((p) => ({
-                                      name: p["name"],
-                                      protocol: p["protocol"],
-                                      backendPort: p["backendPort"],
-                                      frontendPortRangeStart:
-                                        p["frontendPortRangeStart"],
-                                      frontendPortRangeEnd:
-                                        p["frontendPortRangeEnd"],
-                                      networkSecurityGroupRules: !p[
-                                        "networkSecurityGroupRules"
+                                  inboundNATPools: !body.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.networkConfiguration
+                                    ?.endpointConfiguration?.["inboundNatPools"]
+                                    ? body.poolInfo.autoPoolSpecification?.pool
+                                        ?.networkConfiguration
+                                        ?.endpointConfiguration?.[
+                                        "inboundNatPools"
                                       ]
-                                        ? p["networkSecurityGroupRules"]
-                                        : p["networkSecurityGroupRules"].map(
-                                            (p) => ({
-                                              priority: p["priority"],
-                                              access: p["access"],
-                                              sourceAddressPrefix:
-                                                p["sourceAddressPrefix"],
-                                              sourcePortRanges:
-                                                p["sourcePortRanges"],
-                                            }),
-                                          ),
-                                    })),
+                                    : body.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                        "inboundNatPools"
+                                      ].map((p) => ({
+                                        name: p["name"],
+                                        protocol: p["protocol"],
+                                        backendPort: p["backendPort"],
+                                        frontendPortRangeStart:
+                                          p["frontendPortRangeStart"],
+                                        frontendPortRangeEnd:
+                                          p["frontendPortRangeEnd"],
+                                        networkSecurityGroupRules: !p[
+                                          "networkSecurityGroupRules"
+                                        ]
+                                          ? p["networkSecurityGroupRules"]
+                                          : p["networkSecurityGroupRules"].map(
+                                              (p) => ({
+                                                priority: p["priority"],
+                                                access: p["access"],
+                                                sourceAddressPrefix:
+                                                  p["sourceAddressPrefix"],
+                                                sourcePortRanges:
+                                                  p["sourcePortRanges"],
+                                              }),
+                                            ),
+                                      })),
                                 },
                             publicIPAddressConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool?.networkConfiguration
-                              ?.publicIPAddressConfiguration
+                              ?.publicIpAddressConfiguration
                               ? undefined
                               : {
                                   provision:
                                     body.poolInfo.autoPoolSpecification?.pool
                                       ?.networkConfiguration
-                                      ?.publicIPAddressConfiguration?.[
-                                      "provision"
+                                      ?.publicIpAddressConfiguration?.[
+                                      "IpAddressProvisioningType"
                                     ],
                                   ipAddressIds:
                                     body.poolInfo.autoPoolSpecification?.pool
                                       ?.networkConfiguration
-                                      ?.publicIPAddressConfiguration?.[
+                                      ?.publicIpAddressConfiguration?.[
                                       "ipAddressIds"
                                     ],
                                 },
@@ -6538,7 +6590,7 @@ export function _listJobsSend(
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
         maxresults: options?.maxresults,
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
         $select: options?.$select,
         $expand: options?.$expand,
@@ -6991,7 +7043,7 @@ export async function _listJobsDeserialize(
                                     ?.virtualMachineConfiguration
                                     ?.imageReference["exactVersion"],
                               },
-                              nodeAgentSKUId:
+                              nodeAgentSkuId:
                                 p.poolInfo.autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.[
                                   "nodeAgentSKUId"
@@ -7018,7 +7070,7 @@ export async function _listJobsDeserialize(
                                   ].map((p) => ({
                                     lun: p["lun"],
                                     caching: p["caching"],
-                                    diskSizeGB: p["diskSizeGB"],
+                                    diskSizeGb: p["diskSizeGB"],
                                     storageAccountType: p["storageAccountType"],
                                   })),
                               licenseType:
@@ -7197,40 +7249,50 @@ export async function _listJobsDeserialize(
                                 ?.networkConfiguration?.endpointConfiguration
                                 ? undefined
                                 : {
-                                    inboundNATPools:
-                                      p.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
-                                        "inboundNATPools"
-                                      ].map((p) => ({
-                                        name: p["name"],
-                                        protocol: p["protocol"],
-                                        backendPort: p["backendPort"],
-                                        frontendPortRangeStart:
-                                          p["frontendPortRangeStart"],
-                                        frontendPortRangeEnd:
-                                          p["frontendPortRangeEnd"],
-                                        networkSecurityGroupRules: !p[
-                                          "networkSecurityGroupRules"
+                                    inboundNatPools: !p.poolInfo
+                                      .autoPoolSpecification?.pool
+                                      ?.networkConfiguration
+                                      ?.endpointConfiguration?.[
+                                      "inboundNATPools"
+                                    ]
+                                      ? p.poolInfo.autoPoolSpecification?.pool
+                                          ?.networkConfiguration
+                                          ?.endpointConfiguration?.[
+                                          "inboundNATPools"
                                         ]
-                                          ? p["networkSecurityGroupRules"]
-                                          : p["networkSecurityGroupRules"].map(
-                                              (p) => ({
+                                      : p.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                          "inboundNATPools"
+                                        ].map((p) => ({
+                                          name: p["name"],
+                                          protocol: p["protocol"],
+                                          backendPort: p["backendPort"],
+                                          frontendPortRangeStart:
+                                            p["frontendPortRangeStart"],
+                                          frontendPortRangeEnd:
+                                            p["frontendPortRangeEnd"],
+                                          networkSecurityGroupRules: !p[
+                                            "networkSecurityGroupRules"
+                                          ]
+                                            ? p["networkSecurityGroupRules"]
+                                            : p[
+                                                "networkSecurityGroupRules"
+                                              ].map((p) => ({
                                                 priority: p["priority"],
                                                 access: p["access"],
                                                 sourceAddressPrefix:
                                                   p["sourceAddressPrefix"],
                                                 sourcePortRanges:
                                                   p["sourcePortRanges"],
-                                              }),
-                                            ),
-                                      })),
+                                              })),
+                                        })),
                                   },
-                              publicIPAddressConfiguration: !p.poolInfo
+                              publicIpAddressConfiguration: !p.poolInfo
                                 .autoPoolSpecification?.pool
                                 ?.networkConfiguration
                                 ?.publicIPAddressConfiguration
                                 ? undefined
                                 : {
-                                    provision:
+                                    IpAddressProvisioningType:
                                       p.poolInfo.autoPoolSpecification?.pool
                                         ?.networkConfiguration
                                         ?.publicIPAddressConfiguration?.[
@@ -7645,7 +7707,7 @@ export function _listJobsFromScheduleSend(
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
         maxresults: options?.maxresults,
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
         $select: options?.$select,
         $expand: options?.$expand,
@@ -8098,7 +8160,7 @@ export async function _listJobsFromScheduleDeserialize(
                                     ?.virtualMachineConfiguration
                                     ?.imageReference["exactVersion"],
                               },
-                              nodeAgentSKUId:
+                              nodeAgentSkuId:
                                 p.poolInfo.autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.[
                                   "nodeAgentSKUId"
@@ -8125,7 +8187,7 @@ export async function _listJobsFromScheduleDeserialize(
                                   ].map((p) => ({
                                     lun: p["lun"],
                                     caching: p["caching"],
-                                    diskSizeGB: p["diskSizeGB"],
+                                    diskSizeGb: p["diskSizeGB"],
                                     storageAccountType: p["storageAccountType"],
                                   })),
                               licenseType:
@@ -8304,40 +8366,50 @@ export async function _listJobsFromScheduleDeserialize(
                                 ?.networkConfiguration?.endpointConfiguration
                                 ? undefined
                                 : {
-                                    inboundNATPools:
-                                      p.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
-                                        "inboundNATPools"
-                                      ].map((p) => ({
-                                        name: p["name"],
-                                        protocol: p["protocol"],
-                                        backendPort: p["backendPort"],
-                                        frontendPortRangeStart:
-                                          p["frontendPortRangeStart"],
-                                        frontendPortRangeEnd:
-                                          p["frontendPortRangeEnd"],
-                                        networkSecurityGroupRules: !p[
-                                          "networkSecurityGroupRules"
+                                    inboundNatPools: !p.poolInfo
+                                      .autoPoolSpecification?.pool
+                                      ?.networkConfiguration
+                                      ?.endpointConfiguration?.[
+                                      "inboundNATPools"
+                                    ]
+                                      ? p.poolInfo.autoPoolSpecification?.pool
+                                          ?.networkConfiguration
+                                          ?.endpointConfiguration?.[
+                                          "inboundNATPools"
                                         ]
-                                          ? p["networkSecurityGroupRules"]
-                                          : p["networkSecurityGroupRules"].map(
-                                              (p) => ({
+                                      : p.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                          "inboundNATPools"
+                                        ].map((p) => ({
+                                          name: p["name"],
+                                          protocol: p["protocol"],
+                                          backendPort: p["backendPort"],
+                                          frontendPortRangeStart:
+                                            p["frontendPortRangeStart"],
+                                          frontendPortRangeEnd:
+                                            p["frontendPortRangeEnd"],
+                                          networkSecurityGroupRules: !p[
+                                            "networkSecurityGroupRules"
+                                          ]
+                                            ? p["networkSecurityGroupRules"]
+                                            : p[
+                                                "networkSecurityGroupRules"
+                                              ].map((p) => ({
                                                 priority: p["priority"],
                                                 access: p["access"],
                                                 sourceAddressPrefix:
                                                   p["sourceAddressPrefix"],
                                                 sourcePortRanges:
                                                   p["sourcePortRanges"],
-                                              }),
-                                            ),
-                                      })),
+                                              })),
+                                        })),
                                   },
-                              publicIPAddressConfiguration: !p.poolInfo
+                              publicIpAddressConfiguration: !p.poolInfo
                                 .autoPoolSpecification?.pool
                                 ?.networkConfiguration
                                 ?.publicIPAddressConfiguration
                                 ? undefined
                                 : {
-                                    provision:
+                                    IpAddressProvisioningType:
                                       p.poolInfo.autoPoolSpecification?.pool
                                         ?.networkConfiguration
                                         ?.publicIPAddressConfiguration?.[
@@ -8756,7 +8828,7 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
         maxresults: options?.maxresults,
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
         $select: options?.$select,
       },
@@ -8941,7 +9013,7 @@ export function _getJobTaskCountsSend(
     .path("/jobs/{jobId}/taskcounts", jobId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -8999,7 +9071,7 @@ export function _createCertificateSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         thumbprint: body["thumbprint"],
         thumbprintAlgorithm: body["thumbprintAlgorithm"],
@@ -9042,7 +9114,7 @@ export function _listCertificatesSend(
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
         maxresults: options?.maxresults,
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
         $select: options?.$select,
       },
@@ -9130,7 +9202,7 @@ export function _cancelCertificateDeletionSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -9186,7 +9258,7 @@ export function _deleteCertificateSend(
     )
     .delete({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -9240,7 +9312,10 @@ export function _getCertificateSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut, $select: options?.$select },
+      queryParameters: {
+        timeOut: options?.timeOutInSeconds,
+        $select: options?.$select,
+      },
     });
 }
 
@@ -9333,7 +9408,7 @@ export function _jobScheduleExistsSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -9385,7 +9460,7 @@ export function _deleteJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -9439,7 +9514,7 @@ export function _getJobScheduleSend(
           : {}),
       },
       queryParameters: {
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $select: options?.$select,
         $expand: options?.$expand,
       },
@@ -9988,7 +10063,7 @@ export async function _getJobScheduleDeserialize(
                                 "exactVersion"
                               ],
                           },
-                          nodeAgentSKUId:
+                          nodeAgentSkuId:
                             result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration?.["nodeAgentSKUId"],
@@ -10016,7 +10091,7 @@ export async function _getJobScheduleDeserialize(
                               ].map((p) => ({
                                 lun: p["lun"],
                                 caching: p["caching"],
-                                diskSizeGB: p["diskSizeGB"],
+                                diskSizeGb: p["diskSizeGB"],
                                 storageAccountType: p["storageAccountType"],
                               })),
                           licenseType:
@@ -10195,40 +10270,49 @@ export async function _getJobScheduleDeserialize(
                             ?.networkConfiguration?.endpointConfiguration
                             ? undefined
                             : {
-                                inboundNATPools:
-                                  result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
-                                    "inboundNATPools"
-                                  ].map((p) => ({
-                                    name: p["name"],
-                                    protocol: p["protocol"],
-                                    backendPort: p["backendPort"],
-                                    frontendPortRangeStart:
-                                      p["frontendPortRangeStart"],
-                                    frontendPortRangeEnd:
-                                      p["frontendPortRangeEnd"],
-                                    networkSecurityGroupRules: !p[
-                                      "networkSecurityGroupRules"
+                                inboundNatPools: !result.body.jobSpecification
+                                  .poolInfo.autoPoolSpecification?.pool
+                                  ?.networkConfiguration
+                                  ?.endpointConfiguration?.["inboundNATPools"]
+                                  ? result.body.jobSpecification.poolInfo
+                                      .autoPoolSpecification?.pool
+                                      ?.networkConfiguration
+                                      ?.endpointConfiguration?.[
+                                      "inboundNATPools"
                                     ]
-                                      ? p["networkSecurityGroupRules"]
-                                      : p["networkSecurityGroupRules"].map(
-                                          (p) => ({
-                                            priority: p["priority"],
-                                            access: p["access"],
-                                            sourceAddressPrefix:
-                                              p["sourceAddressPrefix"],
-                                            sourcePortRanges:
-                                              p["sourcePortRanges"],
-                                          }),
-                                        ),
-                                  })),
+                                  : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                      "inboundNATPools"
+                                    ].map((p) => ({
+                                      name: p["name"],
+                                      protocol: p["protocol"],
+                                      backendPort: p["backendPort"],
+                                      frontendPortRangeStart:
+                                        p["frontendPortRangeStart"],
+                                      frontendPortRangeEnd:
+                                        p["frontendPortRangeEnd"],
+                                      networkSecurityGroupRules: !p[
+                                        "networkSecurityGroupRules"
+                                      ]
+                                        ? p["networkSecurityGroupRules"]
+                                        : p["networkSecurityGroupRules"].map(
+                                            (p) => ({
+                                              priority: p["priority"],
+                                              access: p["access"],
+                                              sourceAddressPrefix:
+                                                p["sourceAddressPrefix"],
+                                              sourcePortRanges:
+                                                p["sourcePortRanges"],
+                                            }),
+                                          ),
+                                    })),
                               },
-                          publicIPAddressConfiguration: !result.body
+                          publicIpAddressConfiguration: !result.body
                             .jobSpecification.poolInfo.autoPoolSpecification
                             ?.pool?.networkConfiguration
                             ?.publicIPAddressConfiguration
                             ? undefined
                             : {
-                                provision:
+                                IpAddressProvisioningType:
                                   result.body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.networkConfiguration
@@ -10656,7 +10740,7 @@ export function _updateJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         schedule: !body.schedule
           ? undefined
@@ -11187,7 +11271,7 @@ export function _updateJobScheduleSend(
                                     body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration?.[
-                                      "nodeAgentSKUId"
+                                      "nodeAgentSkuId"
                                     ],
                                   windowsConfiguration: !body.jobSpecification
                                     ?.poolInfo.autoPoolSpecification?.pool
@@ -11216,7 +11300,7 @@ export function _updateJobScheduleSend(
                                       ].map((p) => ({
                                         lun: p["lun"],
                                         caching: p["caching"],
-                                        diskSizeGB: p["diskSizeGB"],
+                                        diskSizeGB: p["diskSizeGb"],
                                         storageAccountType:
                                           p["storageAccountType"],
                                       })),
@@ -11424,52 +11508,63 @@ export function _updateJobScheduleSend(
                                     ?.endpointConfiguration
                                     ? undefined
                                     : {
-                                        inboundNATPools:
-                                          body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
-                                            "inboundNATPools"
-                                          ].map((p) => ({
-                                            name: p["name"],
-                                            protocol: p["protocol"],
-                                            backendPort: p["backendPort"],
-                                            frontendPortRangeStart:
-                                              p["frontendPortRangeStart"],
-                                            frontendPortRangeEnd:
-                                              p["frontendPortRangeEnd"],
-                                            networkSecurityGroupRules: !p[
-                                              "networkSecurityGroupRules"
+                                        inboundNATPools: !body.jobSpecification
+                                          ?.poolInfo.autoPoolSpecification?.pool
+                                          ?.networkConfiguration
+                                          ?.endpointConfiguration?.[
+                                          "inboundNatPools"
+                                        ]
+                                          ? body.jobSpecification?.poolInfo
+                                              .autoPoolSpecification?.pool
+                                              ?.networkConfiguration
+                                              ?.endpointConfiguration?.[
+                                              "inboundNatPools"
                                             ]
-                                              ? p["networkSecurityGroupRules"]
-                                              : p[
-                                                  "networkSecurityGroupRules"
-                                                ].map((p) => ({
-                                                  priority: p["priority"],
-                                                  access: p["access"],
-                                                  sourceAddressPrefix:
-                                                    p["sourceAddressPrefix"],
-                                                  sourcePortRanges:
-                                                    p["sourcePortRanges"],
-                                                })),
-                                          })),
+                                          : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                              "inboundNatPools"
+                                            ].map((p) => ({
+                                              name: p["name"],
+                                              protocol: p["protocol"],
+                                              backendPort: p["backendPort"],
+                                              frontendPortRangeStart:
+                                                p["frontendPortRangeStart"],
+                                              frontendPortRangeEnd:
+                                                p["frontendPortRangeEnd"],
+                                              networkSecurityGroupRules: !p[
+                                                "networkSecurityGroupRules"
+                                              ]
+                                                ? p["networkSecurityGroupRules"]
+                                                : p[
+                                                    "networkSecurityGroupRules"
+                                                  ].map((p) => ({
+                                                    priority: p["priority"],
+                                                    access: p["access"],
+                                                    sourceAddressPrefix:
+                                                      p["sourceAddressPrefix"],
+                                                    sourcePortRanges:
+                                                      p["sourcePortRanges"],
+                                                  })),
+                                            })),
                                       },
                                   publicIPAddressConfiguration: !body
                                     .jobSpecification?.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.networkConfiguration
-                                    ?.publicIPAddressConfiguration
+                                    ?.publicIpAddressConfiguration
                                     ? undefined
                                     : {
                                         provision:
                                           body.jobSpecification?.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.networkConfiguration
-                                            ?.publicIPAddressConfiguration?.[
-                                            "provision"
+                                            ?.publicIpAddressConfiguration?.[
+                                            "IpAddressProvisioningType"
                                           ],
                                         ipAddressIds:
                                           body.jobSpecification?.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.networkConfiguration
-                                            ?.publicIPAddressConfiguration?.[
+                                            ?.publicIpAddressConfiguration?.[
                                             "ipAddressIds"
                                           ],
                                       },
@@ -11925,7 +12020,7 @@ export function _replaceJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         schedule: {
           doNotRunUntil: body.schedule["doNotRunUntil"]?.toISOString(),
@@ -12431,7 +12526,7 @@ export function _replaceJobScheduleSend(
                                 body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.[
-                                  "nodeAgentSKUId"
+                                  "nodeAgentSkuId"
                                 ],
                               windowsConfiguration: !body.jobSpecification
                                 .poolInfo.autoPoolSpecification?.pool
@@ -12458,7 +12553,7 @@ export function _replaceJobScheduleSend(
                                   ].map((p) => ({
                                     lun: p["lun"],
                                     caching: p["caching"],
-                                    diskSizeGB: p["diskSizeGB"],
+                                    diskSizeGB: p["diskSizeGb"],
                                     storageAccountType: p["storageAccountType"],
                                   })),
                               licenseType:
@@ -12640,51 +12735,62 @@ export function _replaceJobScheduleSend(
                                 ?.networkConfiguration?.endpointConfiguration
                                 ? undefined
                                 : {
-                                    inboundNATPools:
-                                      body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
-                                        "inboundNATPools"
-                                      ].map((p) => ({
-                                        name: p["name"],
-                                        protocol: p["protocol"],
-                                        backendPort: p["backendPort"],
-                                        frontendPortRangeStart:
-                                          p["frontendPortRangeStart"],
-                                        frontendPortRangeEnd:
-                                          p["frontendPortRangeEnd"],
-                                        networkSecurityGroupRules: !p[
-                                          "networkSecurityGroupRules"
+                                    inboundNATPools: !body.jobSpecification
+                                      .poolInfo.autoPoolSpecification?.pool
+                                      ?.networkConfiguration
+                                      ?.endpointConfiguration?.[
+                                      "inboundNatPools"
+                                    ]
+                                      ? body.jobSpecification.poolInfo
+                                          .autoPoolSpecification?.pool
+                                          ?.networkConfiguration
+                                          ?.endpointConfiguration?.[
+                                          "inboundNatPools"
                                         ]
-                                          ? p["networkSecurityGroupRules"]
-                                          : p["networkSecurityGroupRules"].map(
-                                              (p) => ({
+                                      : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                          "inboundNatPools"
+                                        ].map((p) => ({
+                                          name: p["name"],
+                                          protocol: p["protocol"],
+                                          backendPort: p["backendPort"],
+                                          frontendPortRangeStart:
+                                            p["frontendPortRangeStart"],
+                                          frontendPortRangeEnd:
+                                            p["frontendPortRangeEnd"],
+                                          networkSecurityGroupRules: !p[
+                                            "networkSecurityGroupRules"
+                                          ]
+                                            ? p["networkSecurityGroupRules"]
+                                            : p[
+                                                "networkSecurityGroupRules"
+                                              ].map((p) => ({
                                                 priority: p["priority"],
                                                 access: p["access"],
                                                 sourceAddressPrefix:
                                                   p["sourceAddressPrefix"],
                                                 sourcePortRanges:
                                                   p["sourcePortRanges"],
-                                              }),
-                                            ),
-                                      })),
+                                              })),
+                                        })),
                                   },
                               publicIPAddressConfiguration: !body
                                 .jobSpecification.poolInfo.autoPoolSpecification
                                 ?.pool?.networkConfiguration
-                                ?.publicIPAddressConfiguration
+                                ?.publicIpAddressConfiguration
                                 ? undefined
                                 : {
                                     provision:
                                       body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.networkConfiguration
-                                        ?.publicIPAddressConfiguration?.[
-                                        "provision"
+                                        ?.publicIpAddressConfiguration?.[
+                                        "IpAddressProvisioningType"
                                       ],
                                     ipAddressIds:
                                       body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.networkConfiguration
-                                        ?.publicIPAddressConfiguration?.[
+                                        ?.publicIpAddressConfiguration?.[
                                         "ipAddressIds"
                                       ],
                                   },
@@ -13092,7 +13198,7 @@ export function _disableJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -13141,7 +13247,7 @@ export function _enableJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -13190,7 +13296,7 @@ export function _terminateJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -13232,7 +13338,7 @@ export function _createJobScheduleSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         id: body["id"],
         displayName: body["displayName"],
@@ -13740,7 +13846,7 @@ export function _createJobScheduleSend(
                                 body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.[
-                                  "nodeAgentSKUId"
+                                  "nodeAgentSkuId"
                                 ],
                               windowsConfiguration: !body.jobSpecification
                                 .poolInfo.autoPoolSpecification?.pool
@@ -13767,7 +13873,7 @@ export function _createJobScheduleSend(
                                   ].map((p) => ({
                                     lun: p["lun"],
                                     caching: p["caching"],
-                                    diskSizeGB: p["diskSizeGB"],
+                                    diskSizeGB: p["diskSizeGb"],
                                     storageAccountType: p["storageAccountType"],
                                   })),
                               licenseType:
@@ -13949,51 +14055,62 @@ export function _createJobScheduleSend(
                                 ?.networkConfiguration?.endpointConfiguration
                                 ? undefined
                                 : {
-                                    inboundNATPools:
-                                      body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
-                                        "inboundNATPools"
-                                      ].map((p) => ({
-                                        name: p["name"],
-                                        protocol: p["protocol"],
-                                        backendPort: p["backendPort"],
-                                        frontendPortRangeStart:
-                                          p["frontendPortRangeStart"],
-                                        frontendPortRangeEnd:
-                                          p["frontendPortRangeEnd"],
-                                        networkSecurityGroupRules: !p[
-                                          "networkSecurityGroupRules"
+                                    inboundNATPools: !body.jobSpecification
+                                      .poolInfo.autoPoolSpecification?.pool
+                                      ?.networkConfiguration
+                                      ?.endpointConfiguration?.[
+                                      "inboundNatPools"
+                                    ]
+                                      ? body.jobSpecification.poolInfo
+                                          .autoPoolSpecification?.pool
+                                          ?.networkConfiguration
+                                          ?.endpointConfiguration?.[
+                                          "inboundNatPools"
                                         ]
-                                          ? p["networkSecurityGroupRules"]
-                                          : p["networkSecurityGroupRules"].map(
-                                              (p) => ({
+                                      : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                          "inboundNatPools"
+                                        ].map((p) => ({
+                                          name: p["name"],
+                                          protocol: p["protocol"],
+                                          backendPort: p["backendPort"],
+                                          frontendPortRangeStart:
+                                            p["frontendPortRangeStart"],
+                                          frontendPortRangeEnd:
+                                            p["frontendPortRangeEnd"],
+                                          networkSecurityGroupRules: !p[
+                                            "networkSecurityGroupRules"
+                                          ]
+                                            ? p["networkSecurityGroupRules"]
+                                            : p[
+                                                "networkSecurityGroupRules"
+                                              ].map((p) => ({
                                                 priority: p["priority"],
                                                 access: p["access"],
                                                 sourceAddressPrefix:
                                                   p["sourceAddressPrefix"],
                                                 sourcePortRanges:
                                                   p["sourcePortRanges"],
-                                              }),
-                                            ),
-                                      })),
+                                              })),
+                                        })),
                                   },
                               publicIPAddressConfiguration: !body
                                 .jobSpecification.poolInfo.autoPoolSpecification
                                 ?.pool?.networkConfiguration
-                                ?.publicIPAddressConfiguration
+                                ?.publicIpAddressConfiguration
                                 ? undefined
                                 : {
                                     provision:
                                       body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.networkConfiguration
-                                        ?.publicIPAddressConfiguration?.[
-                                        "provision"
+                                        ?.publicIpAddressConfiguration?.[
+                                        "IpAddressProvisioningType"
                                       ],
                                     ipAddressIds:
                                       body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.networkConfiguration
-                                        ?.publicIPAddressConfiguration?.[
+                                        ?.publicIpAddressConfiguration?.[
                                         "ipAddressIds"
                                       ],
                                   },
@@ -14376,7 +14493,7 @@ export function _listJobSchedulesSend(
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
         maxresults: options?.maxresults,
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
         $select: options?.$select,
         $expand: options?.$expand,
@@ -14927,7 +15044,7 @@ export async function _listJobSchedulesDeserialize(
                                       ?.virtualMachineConfiguration
                                       ?.imageReference["exactVersion"],
                                 },
-                                nodeAgentSKUId:
+                                nodeAgentSkuId:
                                   p.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration?.[
@@ -14960,7 +15077,7 @@ export async function _listJobSchedulesDeserialize(
                                     ].map((p) => ({
                                       lun: p["lun"],
                                       caching: p["caching"],
-                                      diskSizeGB: p["diskSizeGB"],
+                                      diskSizeGb: p["diskSizeGB"],
                                       storageAccountType:
                                         p["storageAccountType"],
                                     })),
@@ -15144,41 +15261,52 @@ export async function _listJobSchedulesDeserialize(
                                   ?.networkConfiguration?.endpointConfiguration
                                   ? undefined
                                   : {
-                                      inboundNATPools:
-                                        p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
-                                          "inboundNATPools"
-                                        ].map((p) => ({
-                                          name: p["name"],
-                                          protocol: p["protocol"],
-                                          backendPort: p["backendPort"],
-                                          frontendPortRangeStart:
-                                            p["frontendPortRangeStart"],
-                                          frontendPortRangeEnd:
-                                            p["frontendPortRangeEnd"],
-                                          networkSecurityGroupRules: !p[
-                                            "networkSecurityGroupRules"
+                                      inboundNatPools: !p.jobSpecification
+                                        .poolInfo.autoPoolSpecification?.pool
+                                        ?.networkConfiguration
+                                        ?.endpointConfiguration?.[
+                                        "inboundNATPools"
+                                      ]
+                                        ? p.jobSpecification.poolInfo
+                                            .autoPoolSpecification?.pool
+                                            ?.networkConfiguration
+                                            ?.endpointConfiguration?.[
+                                            "inboundNATPools"
                                           ]
-                                            ? p["networkSecurityGroupRules"]
-                                            : p[
-                                                "networkSecurityGroupRules"
-                                              ].map((p) => ({
-                                                priority: p["priority"],
-                                                access: p["access"],
-                                                sourceAddressPrefix:
-                                                  p["sourceAddressPrefix"],
-                                                sourcePortRanges:
-                                                  p["sourcePortRanges"],
-                                              })),
-                                        })),
+                                        : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                            "inboundNATPools"
+                                          ].map((p) => ({
+                                            name: p["name"],
+                                            protocol: p["protocol"],
+                                            backendPort: p["backendPort"],
+                                            frontendPortRangeStart:
+                                              p["frontendPortRangeStart"],
+                                            frontendPortRangeEnd:
+                                              p["frontendPortRangeEnd"],
+                                            networkSecurityGroupRules: !p[
+                                              "networkSecurityGroupRules"
+                                            ]
+                                              ? p["networkSecurityGroupRules"]
+                                              : p[
+                                                  "networkSecurityGroupRules"
+                                                ].map((p) => ({
+                                                  priority: p["priority"],
+                                                  access: p["access"],
+                                                  sourceAddressPrefix:
+                                                    p["sourceAddressPrefix"],
+                                                  sourcePortRanges:
+                                                    p["sourcePortRanges"],
+                                                })),
+                                          })),
                                     },
-                                publicIPAddressConfiguration: !p
+                                publicIpAddressConfiguration: !p
                                   .jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.networkConfiguration
                                   ?.publicIPAddressConfiguration
                                   ? undefined
                                   : {
-                                      provision:
+                                      IpAddressProvisioningType:
                                         p.jobSpecification.poolInfo
                                           .autoPoolSpecification?.pool
                                           ?.networkConfiguration
@@ -15619,7 +15747,7 @@ export function _createTaskSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         id: body["id"],
         displayName: body["displayName"],
@@ -15855,7 +15983,7 @@ export function _listTasksSend(
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
         maxresults: options?.maxresults,
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
         $select: options?.$select,
         $expand: options?.$expand,
@@ -16195,204 +16323,215 @@ export function _createTaskCollectionSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
-        value: collection["value"].map((p) => ({
-          id: p["id"],
-          displayName: p["displayName"],
-          exitConditions: !p.exitConditions
-            ? undefined
-            : {
-                exitCodes: !p.exitConditions?.["exitCodes"]
-                  ? p.exitConditions?.["exitCodes"]
-                  : p.exitConditions?.["exitCodes"].map((p) => ({
-                      code: p["code"],
-                      exitOptions: {
-                        jobAction: p.exitOptions["jobAction"],
-                        dependencyAction: p.exitOptions["dependencyAction"],
-                      },
-                    })),
-                exitCodeRanges: !p.exitConditions?.["exitCodeRanges"]
-                  ? p.exitConditions?.["exitCodeRanges"]
-                  : p.exitConditions?.["exitCodeRanges"].map((p) => ({
-                      start: p["start"],
-                      end: p["end"],
-                      exitOptions: {
-                        jobAction: p.exitOptions["jobAction"],
-                        dependencyAction: p.exitOptions["dependencyAction"],
-                      },
-                    })),
-                preProcessingError: !p.exitConditions?.preProcessingError
-                  ? undefined
-                  : {
-                      jobAction:
-                        p.exitConditions?.preProcessingError?.["jobAction"],
-                      dependencyAction:
-                        p.exitConditions?.preProcessingError?.[
-                          "dependencyAction"
-                        ],
-                    },
-                fileUploadError: !p.exitConditions?.fileUploadError
-                  ? undefined
-                  : {
-                      jobAction:
-                        p.exitConditions?.fileUploadError?.["jobAction"],
-                      dependencyAction:
-                        p.exitConditions?.fileUploadError?.["dependencyAction"],
-                    },
-                default: !p.exitConditions?.default
-                  ? undefined
-                  : {
-                      jobAction: p.exitConditions?.default?.["jobAction"],
-                      dependencyAction:
-                        p.exitConditions?.default?.["dependencyAction"],
-                    },
-              },
-          commandLine: p["commandLine"],
-          containerSettings: !p.containerSettings
-            ? undefined
-            : {
-                containerRunOptions:
-                  p.containerSettings?.["containerRunOptions"],
-                imageName: p.containerSettings?.["imageName"],
-                registry: !p.containerSettings?.registry
-                  ? undefined
-                  : {
-                      username: p.containerSettings?.registry?.["username"],
-                      password: p.containerSettings?.registry?.["password"],
-                      registryServer:
-                        p.containerSettings?.registry?.["registryServer"],
-                      identityReference: !p.containerSettings?.registry
-                        ?.identityReference
+        value: !collection["value"]
+          ? collection["value"]
+          : collection["value"].map((p) => ({
+              id: p["id"],
+              displayName: p["displayName"],
+              exitConditions: !p.exitConditions
+                ? undefined
+                : {
+                    exitCodes: !p.exitConditions?.["exitCodes"]
+                      ? p.exitConditions?.["exitCodes"]
+                      : p.exitConditions?.["exitCodes"].map((p) => ({
+                          code: p["code"],
+                          exitOptions: {
+                            jobAction: p.exitOptions["jobAction"],
+                            dependencyAction: p.exitOptions["dependencyAction"],
+                          },
+                        })),
+                    exitCodeRanges: !p.exitConditions?.["exitCodeRanges"]
+                      ? p.exitConditions?.["exitCodeRanges"]
+                      : p.exitConditions?.["exitCodeRanges"].map((p) => ({
+                          start: p["start"],
+                          end: p["end"],
+                          exitOptions: {
+                            jobAction: p.exitOptions["jobAction"],
+                            dependencyAction: p.exitOptions["dependencyAction"],
+                          },
+                        })),
+                    preProcessingError: !p.exitConditions?.preProcessingError
+                      ? undefined
+                      : {
+                          jobAction:
+                            p.exitConditions?.preProcessingError?.["jobAction"],
+                          dependencyAction:
+                            p.exitConditions?.preProcessingError?.[
+                              "dependencyAction"
+                            ],
+                        },
+                    fileUploadError: !p.exitConditions?.fileUploadError
+                      ? undefined
+                      : {
+                          jobAction:
+                            p.exitConditions?.fileUploadError?.["jobAction"],
+                          dependencyAction:
+                            p.exitConditions?.fileUploadError?.[
+                              "dependencyAction"
+                            ],
+                        },
+                    default: !p.exitConditions?.default
+                      ? undefined
+                      : {
+                          jobAction: p.exitConditions?.default?.["jobAction"],
+                          dependencyAction:
+                            p.exitConditions?.default?.["dependencyAction"],
+                        },
+                  },
+              commandLine: p["commandLine"],
+              containerSettings: !p.containerSettings
+                ? undefined
+                : {
+                    containerRunOptions:
+                      p.containerSettings?.["containerRunOptions"],
+                    imageName: p.containerSettings?.["imageName"],
+                    registry: !p.containerSettings?.registry
+                      ? undefined
+                      : {
+                          username: p.containerSettings?.registry?.["username"],
+                          password: p.containerSettings?.registry?.["password"],
+                          registryServer:
+                            p.containerSettings?.registry?.["registryServer"],
+                          identityReference: !p.containerSettings?.registry
+                            ?.identityReference
+                            ? undefined
+                            : {
+                                resourceId:
+                                  p.containerSettings?.registry
+                                    ?.identityReference?.["resourceId"],
+                              },
+                        },
+                    workingDirectory: p.containerSettings?.["workingDirectory"],
+                  },
+              resourceFiles: !p["resourceFiles"]
+                ? p["resourceFiles"]
+                : p["resourceFiles"].map((p) => ({
+                    autoStorageContainerName: p["autoStorageContainerName"],
+                    storageContainerUrl: p["storageContainerUrl"],
+                    httpUrl: p["httpUrl"],
+                    blobPrefix: p["blobPrefix"],
+                    filePath: p["filePath"],
+                    fileMode: p["fileMode"],
+                    identityReference: !p.identityReference
+                      ? undefined
+                      : { resourceId: p.identityReference?.["resourceId"] },
+                  })),
+              outputFiles: !p["outputFiles"]
+                ? p["outputFiles"]
+                : p["outputFiles"].map((p) => ({
+                    filePattern: p["filePattern"],
+                    destination: {
+                      container: !p.destination.container
                         ? undefined
                         : {
-                            resourceId:
-                              p.containerSettings?.registry
-                                ?.identityReference?.["resourceId"],
+                            path: p.destination.container?.["path"],
+                            containerUrl:
+                              p.destination.container?.["containerUrl"],
+                            identityReference: !p.destination.container
+                              ?.identityReference
+                              ? undefined
+                              : {
+                                  resourceId:
+                                    p.destination.container
+                                      ?.identityReference?.["resourceId"],
+                                },
+                            uploadHeaders: !p.destination.container?.[
+                              "uploadHeaders"
+                            ]
+                              ? p.destination.container?.["uploadHeaders"]
+                              : p.destination.container?.["uploadHeaders"].map(
+                                  (p) => ({
+                                    name: p["name"],
+                                    value: p["value"],
+                                  }),
+                                ),
                           },
                     },
-                workingDirectory: p.containerSettings?.["workingDirectory"],
-              },
-          resourceFiles: !p["resourceFiles"]
-            ? p["resourceFiles"]
-            : p["resourceFiles"].map((p) => ({
-                autoStorageContainerName: p["autoStorageContainerName"],
-                storageContainerUrl: p["storageContainerUrl"],
-                httpUrl: p["httpUrl"],
-                blobPrefix: p["blobPrefix"],
-                filePath: p["filePath"],
-                fileMode: p["fileMode"],
-                identityReference: !p.identityReference
-                  ? undefined
-                  : { resourceId: p.identityReference?.["resourceId"] },
-              })),
-          outputFiles: !p["outputFiles"]
-            ? p["outputFiles"]
-            : p["outputFiles"].map((p) => ({
-                filePattern: p["filePattern"],
-                destination: {
-                  container: !p.destination.container
-                    ? undefined
-                    : {
-                        path: p.destination.container?.["path"],
-                        containerUrl: p.destination.container?.["containerUrl"],
-                        identityReference: !p.destination.container
-                          ?.identityReference
-                          ? undefined
-                          : {
-                              resourceId:
-                                p.destination.container?.identityReference?.[
-                                  "resourceId"
-                                ],
-                            },
-                        uploadHeaders: !p.destination.container?.[
-                          "uploadHeaders"
-                        ]
-                          ? p.destination.container?.["uploadHeaders"]
-                          : p.destination.container?.["uploadHeaders"].map(
-                              (p) => ({ name: p["name"], value: p["value"] }),
-                            ),
-                      },
-                },
-                uploadOptions: {
-                  uploadCondition: p.uploadOptions["uploadCondition"],
-                },
-              })),
-          environmentSettings: !p["environmentSettings"]
-            ? p["environmentSettings"]
-            : p["environmentSettings"].map((p) => ({
-                name: p["name"],
-                value: p["value"],
-              })),
-          affinityInfo: !p.affinityInfo
-            ? undefined
-            : { affinityId: p.affinityInfo?.["affinityId"] },
-          constraints: !p.constraints
-            ? undefined
-            : {
-                maxWallClockTime: p.constraints?.["maxWallClockTime"],
-                retentionTime: p.constraints?.["retentionTime"],
-                maxTaskRetryCount: p.constraints?.["maxTaskRetryCount"],
-              },
-          requiredSlots: p["requiredSlots"],
-          userIdentity: !p.userIdentity
-            ? undefined
-            : {
-                username: p.userIdentity?.["username"],
-                autoUser: !p.userIdentity?.autoUser
-                  ? undefined
-                  : {
-                      scope: p.userIdentity?.autoUser?.["scope"],
-                      elevationLevel:
-                        p.userIdentity?.autoUser?.["elevationLevel"],
+                    uploadOptions: {
+                      uploadCondition: p.uploadOptions["uploadCondition"],
                     },
-              },
-          multiInstanceSettings: !p.multiInstanceSettings
-            ? undefined
-            : {
-                numberOfInstances:
-                  p.multiInstanceSettings?.["numberOfInstances"],
-                coordinationCommandLine:
-                  p.multiInstanceSettings?.["coordinationCommandLine"],
-                commonResourceFiles: !p.multiInstanceSettings?.[
-                  "commonResourceFiles"
-                ]
-                  ? p.multiInstanceSettings?.["commonResourceFiles"]
-                  : p.multiInstanceSettings?.["commonResourceFiles"].map(
-                      (p) => ({
-                        autoStorageContainerName: p["autoStorageContainerName"],
-                        storageContainerUrl: p["storageContainerUrl"],
-                        httpUrl: p["httpUrl"],
-                        blobPrefix: p["blobPrefix"],
-                        filePath: p["filePath"],
-                        fileMode: p["fileMode"],
-                        identityReference: !p.identityReference
-                          ? undefined
-                          : { resourceId: p.identityReference?.["resourceId"] },
-                      }),
-                    ),
-              },
-          dependsOn: !p.dependsOn
-            ? undefined
-            : {
-                taskIds: p.dependsOn?.["taskIds"],
-                taskIdRanges: !p.dependsOn?.["taskIdRanges"]
-                  ? p.dependsOn?.["taskIdRanges"]
-                  : p.dependsOn?.["taskIdRanges"].map((p) => ({
-                      start: p["start"],
-                      end: p["end"],
-                    })),
-              },
-          applicationPackageReferences: !p["applicationPackageReferences"]
-            ? p["applicationPackageReferences"]
-            : p["applicationPackageReferences"].map((p) => ({
-                applicationId: p["applicationId"],
-                version: p["version"],
-              })),
-          authenticationTokenSettings: !p.authenticationTokenSettings
-            ? undefined
-            : { access: p.authenticationTokenSettings?.["access"] },
-        })),
+                  })),
+              environmentSettings: !p["environmentSettings"]
+                ? p["environmentSettings"]
+                : p["environmentSettings"].map((p) => ({
+                    name: p["name"],
+                    value: p["value"],
+                  })),
+              affinityInfo: !p.affinityInfo
+                ? undefined
+                : { affinityId: p.affinityInfo?.["affinityId"] },
+              constraints: !p.constraints
+                ? undefined
+                : {
+                    maxWallClockTime: p.constraints?.["maxWallClockTime"],
+                    retentionTime: p.constraints?.["retentionTime"],
+                    maxTaskRetryCount: p.constraints?.["maxTaskRetryCount"],
+                  },
+              requiredSlots: p["requiredSlots"],
+              userIdentity: !p.userIdentity
+                ? undefined
+                : {
+                    username: p.userIdentity?.["username"],
+                    autoUser: !p.userIdentity?.autoUser
+                      ? undefined
+                      : {
+                          scope: p.userIdentity?.autoUser?.["scope"],
+                          elevationLevel:
+                            p.userIdentity?.autoUser?.["elevationLevel"],
+                        },
+                  },
+              multiInstanceSettings: !p.multiInstanceSettings
+                ? undefined
+                : {
+                    numberOfInstances:
+                      p.multiInstanceSettings?.["numberOfInstances"],
+                    coordinationCommandLine:
+                      p.multiInstanceSettings?.["coordinationCommandLine"],
+                    commonResourceFiles: !p.multiInstanceSettings?.[
+                      "commonResourceFiles"
+                    ]
+                      ? p.multiInstanceSettings?.["commonResourceFiles"]
+                      : p.multiInstanceSettings?.["commonResourceFiles"].map(
+                          (p) => ({
+                            autoStorageContainerName:
+                              p["autoStorageContainerName"],
+                            storageContainerUrl: p["storageContainerUrl"],
+                            httpUrl: p["httpUrl"],
+                            blobPrefix: p["blobPrefix"],
+                            filePath: p["filePath"],
+                            fileMode: p["fileMode"],
+                            identityReference: !p.identityReference
+                              ? undefined
+                              : {
+                                  resourceId:
+                                    p.identityReference?.["resourceId"],
+                                },
+                          }),
+                        ),
+                  },
+              dependsOn: !p.dependsOn
+                ? undefined
+                : {
+                    taskIds: p.dependsOn?.["taskIds"],
+                    taskIdRanges: !p.dependsOn?.["taskIdRanges"]
+                      ? p.dependsOn?.["taskIdRanges"]
+                      : p.dependsOn?.["taskIdRanges"].map((p) => ({
+                          start: p["start"],
+                          end: p["end"],
+                        })),
+                  },
+              applicationPackageReferences: !p["applicationPackageReferences"]
+                ? p["applicationPackageReferences"]
+                : p["applicationPackageReferences"].map((p) => ({
+                    applicationId: p["applicationId"],
+                    version: p["version"],
+                  })),
+              authenticationTokenSettings: !p.authenticationTokenSettings
+                ? undefined
+                : { access: p.authenticationTokenSettings?.["access"] },
+            })),
       },
     });
 }
@@ -16492,7 +16631,7 @@ export function _deleteTaskSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -16548,7 +16687,7 @@ export function _getTaskSend(
           : {}),
       },
       queryParameters: {
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $select: options?.$select,
         $expand: options?.$expand,
       },
@@ -16892,7 +17031,7 @@ export function _replaceTaskSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         constraints: !body.constraints
           ? undefined
@@ -16937,7 +17076,10 @@ export function _listSubTasksSend(
     .path("/jobs/{jobId}/tasks/{taskId}/subtasksinfo", jobId, taskId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut, $select: options?.$select },
+      queryParameters: {
+        timeOut: options?.timeOutInSeconds,
+        $select: options?.$select,
+      },
     });
 }
 
@@ -17038,7 +17180,7 @@ export function _terminateTaskSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -17091,7 +17233,7 @@ export function _reactivateTaskSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -17141,7 +17283,7 @@ export function _deleteTaskFileSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         recursive: options?.recursive,
       },
     });
@@ -17202,7 +17344,7 @@ export function _getTaskFileSend(
           ? { "ocp-range": options?.ocpRange }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -17260,7 +17402,7 @@ export function _getTaskFilePropertiesSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -17306,7 +17448,7 @@ export function _listTaskFilesSend(
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
         maxresults: options?.maxresults,
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
         recursive: options?.recursive,
       },
@@ -17373,7 +17515,7 @@ export function _createNodeUserSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         name: body["name"],
         isAdmin: body["isAdmin"],
@@ -17431,7 +17573,7 @@ export function _deleteNodeUserSend(
     )
     .delete({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -17488,7 +17630,7 @@ export function _replaceNodeUserSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         password: body["password"],
         expiryTime: body["expiryTime"]?.toISOString(),
@@ -17542,7 +17684,10 @@ export function _getNodeSend(
     .path("/pools/{poolId}/nodes/{nodeId}", poolId, nodeId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut, $select: options?.$select },
+      queryParameters: {
+        timeOut: options?.timeOutInSeconds,
+        $select: options?.$select,
+      },
     });
 }
 
@@ -17773,16 +17918,20 @@ export async function _getNodeDeserialize(
     endpointConfiguration: !result.body.endpointConfiguration
       ? undefined
       : {
-          inboundEndpoints: result.body.endpointConfiguration?.[
+          inboundEndpoints: !result.body.endpointConfiguration?.[
             "inboundEndpoints"
-          ].map((p) => ({
-            name: p["name"],
-            protocol: p["protocol"],
-            publicIPAddress: p["publicIPAddress"],
-            publicFQDN: p["publicFQDN"],
-            frontendPort: p["frontendPort"],
-            backendPort: p["backendPort"],
-          })),
+          ]
+            ? result.body.endpointConfiguration?.["inboundEndpoints"]
+            : result.body.endpointConfiguration?.["inboundEndpoints"].map(
+                (p) => ({
+                  name: p["name"],
+                  protocol: p["protocol"],
+                  publicIpAddress: p["publicIPAddress"],
+                  publicFQDN: p["publicFQDN"],
+                  frontendPort: p["frontendPort"],
+                  backendPort: p["backendPort"],
+                }),
+              ),
         },
     nodeAgentInfo: !result.body.nodeAgentInfo
       ? undefined
@@ -17843,7 +17992,7 @@ export function _rebootNodeSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: { nodeRebootOption: body["nodeRebootOption"] },
     });
 }
@@ -17884,7 +18033,7 @@ export function _reimageNodeSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: { nodeReimageOption: body["nodeReimageOption"] },
     });
 }
@@ -17931,7 +18080,7 @@ export function _disableNodeSchedulingSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         nodeDisableSchedulingOption: body["nodeDisableSchedulingOption"],
       },
@@ -17983,7 +18132,7 @@ export function _enableNodeSchedulingSend(
     .path("/pools/{poolId}/nodes/{nodeId}/enablescheduling", poolId, nodeId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -18029,7 +18178,7 @@ export function _getNodeRemoteLoginSettingsSend(
     .path("/pools/{poolId}/nodes/{nodeId}/remoteloginsettings", poolId, nodeId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -18043,7 +18192,7 @@ export async function _getNodeRemoteLoginSettingsDeserialize(
   }
 
   return {
-    remoteLoginIPAddress: result.body["remoteLoginIPAddress"],
+    remoteLoginIpAddress: result.body["remoteLoginIPAddress"],
     remoteLoginPort: result.body["remoteLoginPort"],
   };
 }
@@ -18082,7 +18231,7 @@ export function _getNodeRemoteDesktopFileSend(
     .path("/pools/{poolId}/nodes/{nodeId}/rdp", poolId, nodeId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -18139,7 +18288,7 @@ export function _uploadNodeLogsSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
       body: {
         containerUrl: body["containerUrl"],
         startTime: body["startTime"].toISOString(),
@@ -18198,7 +18347,7 @@ export function _listNodesSend(
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
         maxresults: options?.maxresults,
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
         $select: options?.$select,
       },
@@ -18432,16 +18581,16 @@ export async function _listNodesDeserialize(
           endpointConfiguration: !p.endpointConfiguration
             ? undefined
             : {
-                inboundEndpoints: p.endpointConfiguration?.[
-                  "inboundEndpoints"
-                ].map((p) => ({
-                  name: p["name"],
-                  protocol: p["protocol"],
-                  publicIPAddress: p["publicIPAddress"],
-                  publicFQDN: p["publicFQDN"],
-                  frontendPort: p["frontendPort"],
-                  backendPort: p["backendPort"],
-                })),
+                inboundEndpoints: !p.endpointConfiguration?.["inboundEndpoints"]
+                  ? p.endpointConfiguration?.["inboundEndpoints"]
+                  : p.endpointConfiguration?.["inboundEndpoints"].map((p) => ({
+                      name: p["name"],
+                      protocol: p["protocol"],
+                      publicIpAddress: p["publicIPAddress"],
+                      publicFQDN: p["publicFQDN"],
+                      frontendPort: p["frontendPort"],
+                      backendPort: p["backendPort"],
+                    })),
               },
           nodeAgentInfo: !p.nodeAgentInfo
             ? undefined
@@ -18506,7 +18655,10 @@ export function _getNodeExtensionSend(
     )
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOut, $select: options?.$select },
+      queryParameters: {
+        timeOut: options?.timeOutInSeconds,
+        $select: options?.$select,
+      },
     });
 }
 
@@ -18593,7 +18745,7 @@ export function _listNodeExtensionsSend(
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
         maxresults: options?.maxresults,
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $select: options?.$select,
       },
     });
@@ -18687,7 +18839,7 @@ export function _deleteNodeFileSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         recursive: options?.recursive,
       },
     });
@@ -18748,7 +18900,7 @@ export function _getNodeFileSend(
           ? { "ocp-range": options?.ocpRange }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -18808,7 +18960,7 @@ export function _getNodeFilePropertiesSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOut },
+      queryParameters: { timeOut: options?.timeOutInSeconds },
     });
 }
 
@@ -18854,7 +19006,7 @@ export function _listNodeFilesSend(
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
         maxresults: options?.maxresults,
-        timeOut: options?.timeOut,
+        timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
         recursive: options?.recursive,
       },
