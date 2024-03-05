@@ -51,7 +51,7 @@ export async function emitPageHelperFromTypeSpec(
   const clients = getRLCClients(dpgContext);
   let helperDetail;
   if (clients && clients[0]) {
-    helperDetail = transformHelperFunctionDetails(clients[0], dpgContext);
+    helperDetail = transformHelperFunctionDetails(clients[0], dpgContext, "azure");
   }
   expectDiagnosticEmpty(program.diagnostics);
   return buildPaginateHelper({
@@ -62,7 +62,7 @@ export async function emitPageHelperFromTypeSpec(
     schemas: [],
     importInfo: {
       internalImports: initInternalImports(),
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
@@ -122,7 +122,7 @@ export async function emitModelsFromTypeSpec(
     libraryName: "test",
     importInfo: {
       internalImports: initInternalImports(),
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
@@ -161,7 +161,7 @@ export async function emitParameterFromTypeSpec(
     parameters,
     importInfo: {
       internalImports: importSet,
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
@@ -186,7 +186,7 @@ export async function emitClientDefinitionFromTypeSpec(
     paths,
     importInfo: {
       internalImports: initInternalImports(),
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
@@ -230,11 +230,12 @@ export async function emitClientFactoryFromTypeSpec(
         name: "test",
         version: "1.0.0-beta.1"
       },
+      flavor: "azure",
       ...creadentialInfo
     },
     importInfo: {
       internalImports: initInternalImports(),
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
@@ -268,7 +269,7 @@ export async function emitResponsesFromTypeSpec(
     responses,
     importInfo: {
       internalImports: importSet,
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }

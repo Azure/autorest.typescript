@@ -186,6 +186,11 @@ export interface OperationLroDetail {
   precedence?: number;
 }
 
+/**
+ * Flavor of the package to generate. If "azure", an Azure-branded package should be generated. If left undefined, a package without Azure branding will be generated.
+ */
+export type PackageFlavor = "azure" | undefined;
+
 export interface RLCOptions {
   includeShortcuts?: boolean;
   multiClient?: boolean;
@@ -227,7 +232,7 @@ export interface RLCOptions {
   sourceFrom?: "TypeSpec" | "Swagger";
   isModularLibrary?: boolean;
   enableOperationGroup?: boolean;
-  branded?: boolean;
+  flavor?: PackageFlavor;
   enableModelNamespace?: boolean;
   hierarchyClient?: boolean;
 }
