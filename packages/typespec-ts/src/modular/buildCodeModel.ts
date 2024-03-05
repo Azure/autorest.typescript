@@ -419,9 +419,6 @@ function emitParamBase(
   if (parameter.kind === "ModelProperty") {
     optional = parameter.optional;
     name = getLibraryName(context, parameter);
-    if (name === "If-Match") {
-      parameter;
-    }
     restApiName = getWireName(context, parameter);
     description = getDocStr(program, parameter);
     addedOn = getAddedOnVersion(program, parameter);
