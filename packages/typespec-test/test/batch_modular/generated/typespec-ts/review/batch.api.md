@@ -1136,7 +1136,7 @@ export interface InstanceViewStatus {
 }
 
 // @public
-export type IPAddressProvisioningType = string;
+export type IpAddressProvisioningType = string;
 
 // @public
 export type JobAction = string;
@@ -1757,7 +1757,7 @@ export interface PoolUsageMetrics {
 // @public
 export interface PublicIpAddressConfiguration {
     ipAddressIds?: string[];
-    ipAddressProvisioningType?: IPAddressProvisioningType;
+    ipAddressProvisioningType?: IpAddressProvisioningType;
 }
 
 // @public (undocumented)

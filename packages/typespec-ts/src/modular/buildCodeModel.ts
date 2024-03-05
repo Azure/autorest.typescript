@@ -1100,7 +1100,8 @@ function enumName(name: string): string {
   return applyCasing(name, { casing: CASING }).toUpperCase();
 }
 
-function emitEnum(program: Program, type: Enum): Record<string, any> {
+function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
+  const program = context.program;
   const enumValues = [];
   for (const m of type.members.values()) {
     enumValues.push({
@@ -1112,7 +1113,7 @@ function emitEnum(program: Program, type: Enum): Record<string, any> {
 
   return {
     type: "enum",
-    name: type.name,
+    name: getLibraryName(context, type),
     description: getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
@@ -1387,7 +1388,9 @@ function emitUnion(
     throw Error("Should not have an empty union");
   }
   if (sdkType.kind === "union") {
-    const unionName = type.name;
+    const unionName = Boolean(getLibraryName(context, type))
+      ? getLibraryName(context, type)
+      : type.name;
     const discriminatorPropertyName = getDiscriminator(context.program, type)
       ?.propertyName;
     const variantTypes = sdkType.values.map((x) => {
@@ -1541,7 +1544,7 @@ function emitType(
     case "UnionVariant":
       return emitType(context, type.type, usage);
     case "Enum":
-      return emitEnum(context.program, type);
+      return emitEnum(context, type);
     case "EnumMember":
       return emitEnumMember(context, type);
     default:

@@ -1573,14 +1573,14 @@ export type NetworkSecurityGroupRuleAccess = string;
 /** The public IP Address configuration of the networking configuration of a Pool. */
 export interface PublicIpAddressConfiguration {
   /** The provisioning type for Public IP Addresses for the Pool. The default value is BatchManaged. */
-  ipAddressProvisioningType?: IPAddressProvisioningType;
+  ipAddressProvisioningType?: IpAddressProvisioningType;
   /** The list of public IPs which the Batch service will use when provisioning Compute Nodes. The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100 Spot/Low-priority nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would need at least 3 public IPs specified. Each element of this collection is of the form: /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}. */
   ipAddressIds?: string[];
 }
 
 /** IPAddressProvisioningType enums */
 /** "batchmanaged", "usermanaged", "nopublicipaddresses" */
-export type IPAddressProvisioningType = string;
+export type IpAddressProvisioningType = string;
 
 /**
  * Properties used to create a user used to execute Tasks on an Azure Batch
