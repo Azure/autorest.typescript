@@ -3,7 +3,7 @@
 
 import { NetworkAnalyticsContext } from "../../api/NetworkAnalyticsContext.js";
 import {
-  ProxyResource,
+  DataType,
   DataTypeUpdate,
   ContainerSaS,
   ContainerSasToken,
@@ -35,16 +35,16 @@ export interface DataTypesOperations {
     resourceGroupName: string,
     dataProductName: string,
     dataTypeName: string,
-    resource: ProxyResource,
+    resource: DataType,
     options?: DataTypesCreateOptions,
-  ) => Promise<ProxyResource>;
+  ) => Promise<DataType>;
   get: (
     subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
     dataTypeName: string,
     options?: DataTypesGetOptions,
-  ) => Promise<ProxyResource>;
+  ) => Promise<DataType>;
   update: (
     subscriptionId: string,
     resourceGroupName: string,
@@ -52,7 +52,7 @@ export interface DataTypesOperations {
     dataTypeName: string,
     properties: DataTypeUpdate,
     options?: DataTypesUpdateOptions,
-  ) => PollerLike<OperationState<ProxyResource>, ProxyResource>;
+  ) => PollerLike<OperationState<DataType>, DataType>;
   deleteOperation: (
     subscriptionId: string,
     resourceGroupName: string,
@@ -81,7 +81,7 @@ export interface DataTypesOperations {
     resourceGroupName: string,
     dataProductName: string,
     options?: DataTypesListByDataProductOptions,
-  ) => PagedAsyncIterableIterator<ProxyResource>;
+  ) => PagedAsyncIterableIterator<DataType>;
 }
 
 export function getDataTypes(context: NetworkAnalyticsContext) {
@@ -91,7 +91,7 @@ export function getDataTypes(context: NetworkAnalyticsContext) {
       resourceGroupName: string,
       dataProductName: string,
       dataTypeName: string,
-      resource: ProxyResource,
+      resource: DataType,
       options?: DataTypesCreateOptions,
     ) =>
       dataTypesCreate(

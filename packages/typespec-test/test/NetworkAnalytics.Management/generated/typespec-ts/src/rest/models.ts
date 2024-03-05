@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
-export interface ProxyResource extends ProxyResourceBase {
+/** The data catalog resource. */
+export interface DataProductsCatalog extends ProxyResourceBase {
   /** The resource-specific properties for this resource. */
   properties?: DataProductsCatalogProperties;
 }
@@ -171,8 +171,8 @@ export interface UserAssignedIdentity {
 /** The base extension resource. */
 export interface ExtensionResourceBase extends ArmResource {}
 
-/** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
-export interface ProxyResource extends ProxyResourceBase {
+/** The data type resource. */
+export interface DataType extends ProxyResourceBase {
   /** The resource-specific properties for this resource. */
   properties?: DataTypeProperties;
 }

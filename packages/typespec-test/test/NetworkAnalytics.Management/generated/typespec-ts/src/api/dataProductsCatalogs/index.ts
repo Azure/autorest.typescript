@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import {
-  ProxyResource,
+  DataProductsCatalog,
   DataProductsCatalogListResult,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
@@ -49,7 +49,7 @@ export async function _dataProductsCatalogsGetDeserialize(
   result:
     | DataProductsCatalogsGet200Response
     | DataProductsCatalogsGetDefaultResponse,
-): Promise<ProxyResource> {
+): Promise<DataProductsCatalog> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -97,7 +97,7 @@ export async function dataProductsCatalogsGet(
   subscriptionId: string,
   resourceGroupName: string,
   options: DataProductsCatalogsGetOptions = { requestOptions: {} },
-): Promise<ProxyResource> {
+): Promise<DataProductsCatalog> {
   const result = await _dataProductsCatalogsGetSend(
     context,
     subscriptionId,
@@ -184,7 +184,7 @@ export function dataProductsCatalogsListByResourceGroup(
   options: DataProductsCatalogsListByResourceGroupOptions = {
     requestOptions: {},
   },
-): PagedAsyncIterableIterator<ProxyResource> {
+): PagedAsyncIterableIterator<DataProductsCatalog> {
   return buildPagedAsyncIterator(
     context,
     () =>
@@ -273,7 +273,7 @@ export function dataProductsCatalogsListBySubscription(
   options: DataProductsCatalogsListBySubscriptionOptions = {
     requestOptions: {},
   },
-): PagedAsyncIterableIterator<ProxyResource> {
+): PagedAsyncIterableIterator<DataProductsCatalog> {
   return buildPagedAsyncIterator(
     context,
     () =>

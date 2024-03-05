@@ -307,7 +307,7 @@ export interface DataProductListResult {
 export interface ProxyResourceBase extends ArmResource {}
 
 /** The data type resource. */
-export interface ProxyResource extends ProxyResourceBase {
+export interface DataType extends ProxyResourceBase {
   /** The resource-specific properties for this resource. */
   readonly properties?: DataTypeProperties;
 }
@@ -366,13 +366,13 @@ export interface ContainerSasToken {
 /** The response of a DataType list operation. */
 export interface DataTypeListResult {
   /** The DataType items on this page */
-  value: ProxyResource[];
+  value: DataType[];
   /** The link to the next page of items */
   nextLink?: string;
 }
 
 /** The data catalog resource. */
-export interface ProxyResource extends ProxyResourceBase {
+export interface DataProductsCatalog extends ProxyResourceBase {
   /** The resource-specific properties for this resource. */
   readonly properties?: DataProductsCatalogProperties;
 }
@@ -412,7 +412,7 @@ export interface DataProductVersion {
 /** The response of a DataProductsCatalog list operation. */
 export interface DataProductsCatalogListResult {
   /** The DataProductsCatalog items on this page */
-  value: ProxyResource[];
+  value: DataProductsCatalog[];
   /** The link to the next page of items */
   nextLink?: string;
 }

@@ -6,8 +6,9 @@ import { HttpResponse } from "@azure-rest/core-client";
 import {
   PagedOperationOutput,
   ErrorResponseOutput,
-  ProxyResourceOutput,
+  DataProductsCatalogOutput,
   DataProductsCatalogListResultOutput,
+  DataTypeOutput,
   ContainerSasTokenOutput,
   DataTypeListResultOutput,
   DataProductOutput,
@@ -31,7 +32,7 @@ export interface OperationsListDefaultResponse extends HttpResponse {
 /** Azure operation completed successfully. */
 export interface DataProductsCatalogsGet200Response extends HttpResponse {
   status: "200";
-  body: ProxyResourceOutput;
+  body: DataProductsCatalogOutput;
 }
 
 export interface DataProductsCatalogsGetDefaultResponse extends HttpResponse {
@@ -68,7 +69,7 @@ export interface DataProductsCatalogsListBySubscriptionDefaultResponse
 /** Resource 'DataType' update operation succeeded */
 export interface DataTypesCreate200Response extends HttpResponse {
   status: "200";
-  body: ProxyResourceOutput;
+  body: DataTypeOutput;
 }
 
 export interface DataTypesCreate201Headers {
@@ -79,7 +80,7 @@ export interface DataTypesCreate201Headers {
 /** Resource 'DataType' create operation succeeded */
 export interface DataTypesCreate201Response extends HttpResponse {
   status: "201";
-  body: ProxyResourceOutput;
+  body: DataTypeOutput;
   headers: RawHttpHeaders & DataTypesCreate201Headers;
 }
 
@@ -91,7 +92,7 @@ export interface DataTypesCreateDefaultResponse extends HttpResponse {
 /** Azure operation completed successfully. */
 export interface DataTypesGet200Response extends HttpResponse {
   status: "200";
-  body: ProxyResourceOutput;
+  body: DataTypeOutput;
 }
 
 export interface DataTypesGetDefaultResponse extends HttpResponse {
@@ -102,7 +103,7 @@ export interface DataTypesGetDefaultResponse extends HttpResponse {
 /** Azure operation completed successfully. */
 export interface DataTypesUpdate200Response extends HttpResponse {
   status: "200";
-  body: ProxyResourceOutput;
+  body: DataTypeOutput;
 }
 
 export interface DataTypesUpdate202Headers {
@@ -126,7 +127,7 @@ export interface DataTypesUpdateDefaultResponse extends HttpResponse {
 /** The final response for long-running update operation */
 export interface DataTypesUpdateLogicalResponse extends HttpResponse {
   status: "200";
-  body: ProxyResourceOutput;
+  body: DataTypeOutput;
 }
 
 export interface DataTypesDeleteOperation202Headers {

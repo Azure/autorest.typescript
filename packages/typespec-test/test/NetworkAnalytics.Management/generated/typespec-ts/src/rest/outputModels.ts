@@ -65,8 +65,8 @@ export interface ErrorAdditionalInfoOutput {
   readonly info?: Record<string, any>;
 }
 
-/** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
-export interface ProxyResourceOutput extends ProxyResourceBaseOutput {
+/** The data catalog resource. */
+export interface DataProductsCatalogOutput extends ProxyResourceBaseOutput {
   /** The resource-specific properties for this resource. */
   properties?: DataProductsCatalogPropertiesOutput;
 }
@@ -294,8 +294,8 @@ export interface UserAssignedIdentityOutput {
 /** The base extension resource. */
 export interface ExtensionResourceBaseOutput extends ArmResourceOutput {}
 
-/** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
-export interface ProxyResourceOutput extends ProxyResourceBaseOutput {
+/** The data type resource. */
+export interface DataTypeOutput extends ProxyResourceBaseOutput {
   /** The resource-specific properties for this resource. */
   properties?: DataTypePropertiesOutput;
 }

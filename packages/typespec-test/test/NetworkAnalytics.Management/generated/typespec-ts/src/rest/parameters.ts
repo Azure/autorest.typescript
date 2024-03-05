@@ -3,7 +3,7 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 import {
-  ProxyResource,
+  DataType,
   DataTypeUpdate,
   ContainerSaS,
   DataProduct,
@@ -23,7 +23,7 @@ export type DataProductsCatalogsListBySubscriptionParameters =
 
 export interface DataTypesCreateBodyParam {
   /** Resource create parameters. */
-  body: ProxyResource;
+  body: DataType;
 }
 
 export type DataTypesCreateParameters = DataTypesCreateBodyParam &

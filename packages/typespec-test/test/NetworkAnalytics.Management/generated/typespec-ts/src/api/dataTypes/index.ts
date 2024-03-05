@@ -4,7 +4,7 @@
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
-  ProxyResource,
+  DataType,
   DataTypeUpdate,
   ContainerSaS,
   ContainerSasToken,
@@ -58,7 +58,7 @@ export function _dataTypesCreateSend(
   resourceGroupName: string,
   dataProductName: string,
   dataTypeName: string,
-  resource: ProxyResource,
+  resource: DataType,
   options: DataTypesCreateOptions = { requestOptions: {} },
 ): StreamableMethod<
   | DataTypesCreate200Response
@@ -81,7 +81,7 @@ export async function _dataTypesCreateDeserialize(
     | DataTypesCreate200Response
     | DataTypesCreate201Response
     | DataTypesCreateDefaultResponse,
-): Promise<ProxyResource> {
+): Promise<DataType> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -128,9 +128,9 @@ export async function dataTypesCreate(
   resourceGroupName: string,
   dataProductName: string,
   dataTypeName: string,
-  resource: ProxyResource,
+  resource: DataType,
   options: DataTypesCreateOptions = { requestOptions: {} },
-): Promise<ProxyResource> {
+): Promise<DataType> {
   const result = await _dataTypesCreateSend(
     context,
     subscriptionId,
@@ -164,7 +164,7 @@ export function _dataTypesGetSend(
 
 export async function _dataTypesGetDeserialize(
   result: DataTypesGet200Response | DataTypesGetDefaultResponse,
-): Promise<ProxyResource> {
+): Promise<DataType> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -212,7 +212,7 @@ export async function dataTypesGet(
   dataProductName: string,
   dataTypeName: string,
   options: DataTypesGetOptions = { requestOptions: {} },
-): Promise<ProxyResource> {
+): Promise<DataType> {
   const result = await _dataTypesGetSend(
     context,
     subscriptionId,
@@ -258,7 +258,7 @@ export async function _dataTypesUpdateDeserialize(
     | DataTypesUpdate202Response
     | DataTypesUpdateDefaultResponse
     | DataTypesUpdateLogicalResponse,
-): Promise<ProxyResource> {
+): Promise<DataType> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -275,7 +275,7 @@ export function dataTypesUpdate(
   dataTypeName: string,
   properties: DataTypeUpdate,
   options: DataTypesUpdateOptions = { requestOptions: {} },
-): PollerLike<OperationState<ProxyResource>, ProxyResource> {
+): PollerLike<OperationState<DataType>, DataType> {
   return getLongRunningPoller(context, _dataTypesUpdateDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
@@ -289,7 +289,7 @@ export function dataTypesUpdate(
         properties,
         options,
       ),
-  }) as PollerLike<OperationState<ProxyResource>, ProxyResource>;
+  }) as PollerLike<OperationState<DataType>, DataType>;
 }
 
 export function _dataTypesDeleteOperationSend(
@@ -563,7 +563,7 @@ export function dataTypesListByDataProduct(
   resourceGroupName: string,
   dataProductName: string,
   options: DataTypesListByDataProductOptions = { requestOptions: {} },
-): PagedAsyncIterableIterator<ProxyResource> {
+): PagedAsyncIterableIterator<DataType> {
   return buildPagedAsyncIterator(
     context,
     () =>

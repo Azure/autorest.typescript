@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { NetworkAnalyticsContext } from "../../api/NetworkAnalyticsContext.js";
-import { ProxyResource } from "../../models/models.js";
+import { DataProductsCatalog } from "../../models/models.js";
 import {
   dataProductsCatalogsGet,
   dataProductsCatalogsListByResourceGroup,
@@ -20,16 +20,16 @@ export interface DataProductsCatalogsOperations {
     subscriptionId: string,
     resourceGroupName: string,
     options?: DataProductsCatalogsGetOptions,
-  ) => Promise<ProxyResource>;
+  ) => Promise<DataProductsCatalog>;
   listByResourceGroup: (
     subscriptionId: string,
     resourceGroupName: string,
     options?: DataProductsCatalogsListByResourceGroupOptions,
-  ) => PagedAsyncIterableIterator<ProxyResource>;
+  ) => PagedAsyncIterableIterator<DataProductsCatalog>;
   listBySubscription: (
     subscriptionId: string,
     options?: DataProductsCatalogsListBySubscriptionOptions,
-  ) => PagedAsyncIterableIterator<ProxyResource>;
+  ) => PagedAsyncIterableIterator<DataProductsCatalog>;
 }
 
 export function getDataProductsCatalogs(context: NetworkAnalyticsContext) {
