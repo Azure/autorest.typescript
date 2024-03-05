@@ -1388,7 +1388,7 @@ function emitUnion(
     throw Error("Should not have an empty union");
   }
   if (sdkType.kind === "union") {
-    const unionName = Boolean(getLibraryName(context, type))
+    const unionName = getLibraryName(context, type)
       ? getLibraryName(context, type)
       : type.name;
     const discriminatorPropertyName = getDiscriminator(context.program, type)
