@@ -229,7 +229,8 @@ export function getSchemaForType(
   return undefined;
 }
 export function getEffectiveModelFromType(program: Program, type: Type): Type {
-  if (type.kind === "Model") {
+  // Only adopt the logic from getEffectiveModelType when it is anonymous model
+  if (type.kind === "Model" && type.name === "") {
     const effective = getEffectiveModelType(program, type, isSchemaProperty);
     if (effective.name) {
       return effective;
