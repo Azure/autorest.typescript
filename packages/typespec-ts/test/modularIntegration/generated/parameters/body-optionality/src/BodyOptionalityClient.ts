@@ -6,17 +6,17 @@ import { BodyModel } from "./models/models.js";
 import {
   RequiredExplicitOptions,
   RequiredImplicitOptions,
-  SetOptions,
-  OmitOptions,
 } from "./models/options.js";
+import {
+  getOptionalExplicitOperations,
+  OptionalExplicitOperations,
+} from "./classic/optionalExplicit/index.js";
 import {
   createBodyOptionality,
   BodyOptionalityClientOptions,
   BodyOptionalityContext,
   requiredExplicit,
   requiredImplicit,
-  set,
-  omit,
 } from "./api/index.js";
 
 export { BodyOptionalityClientOptions } from "./api/BodyOptionalityContext.js";
@@ -30,6 +30,7 @@ export class BodyOptionalityClient {
   constructor(options: BodyOptionalityClientOptions = {}) {
     this._client = createBodyOptionality(options);
     this.pipeline = this._client.pipeline;
+    this.optionalExplicit = getOptionalExplicitOperations(this._client);
   }
 
   requiredExplicit(
@@ -46,17 +47,6 @@ export class BodyOptionalityClient {
     return requiredImplicit(this._client, body, options);
   }
 
-  set(
-    body: BodyModel,
-    options: SetOptions = { requestOptions: {} },
-  ): Promise<void> {
-    return set(this._client, body, options);
-  }
-
-  omit(
-    body: BodyModel,
-    options: OmitOptions = { requestOptions: {} },
-  ): Promise<void> {
-    return omit(this._client, body, options);
-  }
+  /** The operation groups for OptionalExplicit */
+  public readonly optionalExplicit: OptionalExplicitOperations;
 }

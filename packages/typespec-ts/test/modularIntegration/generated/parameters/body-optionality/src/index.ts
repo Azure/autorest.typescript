@@ -9,6 +9,7 @@ export {
   BodyModel,
   RequiredExplicitOptions,
   RequiredImplicitOptions,
-  SetOptions,
-  OmitOptions,
+  OptionalExplicitSetOptions,
+  OptionalExplicitOmitOptions,
 } from "./models/index.js";
+export { OptionalExplicitOperations } from "./classic/index.js";

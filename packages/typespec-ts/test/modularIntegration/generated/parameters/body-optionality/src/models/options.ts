@@ -7,6 +7,6 @@ export interface RequiredExplicitOptions extends OperationOptions {}
 
 export interface RequiredImplicitOptions extends OperationOptions {}
 
-export interface SetOptions extends OperationOptions {}
+export interface OptionalExplicitSetOptions extends OperationOptions {}
 
-export interface OmitOptions extends OperationOptions {}
+export interface OptionalExplicitOmitOptions extends OperationOptions {}

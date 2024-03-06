@@ -6,4 +6,4 @@ export {
   BodyOptionalityClientOptions,
   BodyOptionalityContext,
 } from "./BodyOptionalityContext.js";
-export { requiredExplicit, requiredImplicit, set, omit } from "./operations.js";
+export { requiredExplicit, requiredImplicit } from "./operations.js";

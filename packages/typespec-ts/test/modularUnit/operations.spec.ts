@@ -29,9 +29,8 @@ describe("operations", () => {
           ...Bar): OkResponse;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -163,8 +162,8 @@ describe("operations", () => {
   });
 
   // TODO: need to fix the tests
-  describe.skip("array as body", () => {
-    it("should generate required model array as request body", async () => {
+  describe("array as body", () => {
+    it.only("should generate required model array as request body", async () => {
       const tspContent = `
         model Bar {
           prop1: string;
@@ -173,9 +172,8 @@ describe("operations", () => {
         op read(@body bars?: Bar[]): OkResponse;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -219,9 +217,8 @@ describe("operations", () => {
         op read(@body bars: Bar[]): OkResponse;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -265,9 +262,8 @@ describe("operations", () => {
         op read(): { a: Bar}[] | null;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -311,9 +307,8 @@ describe("operations", () => {
         op read(@body bars?: Bar[]): Bar[] | null;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -366,9 +361,8 @@ describe("operations", () => {
         op read(...Foo): OkResponse;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -454,9 +448,8 @@ describe("operations", () => {
         op read(): Foo;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(

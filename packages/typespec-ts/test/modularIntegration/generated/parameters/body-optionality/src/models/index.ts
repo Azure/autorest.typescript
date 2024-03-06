@@ -5,6 +5,6 @@ export { BodyModel } from "./models.js";
 export {
   RequiredExplicitOptions,
   RequiredImplicitOptions,
-  SetOptions,
-  OmitOptions,
+  OptionalExplicitSetOptions,
+  OptionalExplicitOmitOptions,
 } from "./options.js";

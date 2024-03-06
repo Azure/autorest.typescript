@@ -9,7 +9,6 @@ options:
     azureSdkForJs: false
     isTypeSpecTest: true
     isModularLibrary: true
-    hierarchyClient: false
     packageDetails:
       name: "@msinternal/body-optionality"
       description: "Parameter Body Optionality Test Service"
