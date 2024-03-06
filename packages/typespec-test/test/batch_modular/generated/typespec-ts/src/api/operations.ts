@@ -5643,7 +5643,10 @@ export function _terminateJobSend(
           : {}),
       },
       queryParameters: { timeOut: options?.timeOutInSeconds },
-      body: !body ? undefined : { terminateReason: body["terminateReason"] },
+      body:
+        body === undefined
+          ? body
+          : { terminateReason: body["terminateReason"] },
     });
 }
 
@@ -18551,7 +18554,10 @@ export function _rebootNodeSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: { timeOut: options?.timeOutInSeconds },
-      body: !body ? undefined : { nodeRebootOption: body["nodeRebootOption"] },
+      body:
+        body === undefined
+          ? body
+          : { nodeRebootOption: body["nodeRebootOption"] },
     });
 }
 
@@ -18592,9 +18598,10 @@ export function _reimageNodeSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: { timeOut: options?.timeOutInSeconds },
-      body: !body
-        ? undefined
-        : { nodeReimageOption: body["nodeReimageOption"] },
+      body:
+        body === undefined
+          ? body
+          : { nodeReimageOption: body["nodeReimageOption"] },
     });
 }
 
@@ -18641,9 +18648,12 @@ export function _disableNodeSchedulingSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: { timeOut: options?.timeOutInSeconds },
-      body: !body
-        ? undefined
-        : { nodeDisableSchedulingOption: body["nodeDisableSchedulingOption"] },
+      body:
+        body === undefined
+          ? body
+          : {
+              nodeDisableSchedulingOption: body["nodeDisableSchedulingOption"],
+            },
     });
 }
 

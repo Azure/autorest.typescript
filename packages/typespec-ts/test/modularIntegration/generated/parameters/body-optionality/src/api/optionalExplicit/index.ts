@@ -26,7 +26,7 @@ export function _setSend(
     .path("/parameters/body-optionality/optional-explicit/set")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: !body ? undefined : { name: body["name"] },
+      body: body === undefined ? body : { name: body["name"] },
     });
 }
 
@@ -58,7 +58,7 @@ export function _omitSend(
     .path("/parameters/body-optionality/optional-explicit/omit")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: !body ? undefined : { name: body["name"] },
+      body: body === undefined ? body : { name: body["name"] },
     });
 }
 
