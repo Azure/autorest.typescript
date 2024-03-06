@@ -42,13 +42,14 @@ export function _createSend(
                 arguments: p.functionCall?.["arguments"],
               },
         })),
-        functions: !body["functions"]
-          ? body["functions"]
-          : body["functions"].map((p) => ({
-              name: p["name"],
-              description: p["description"],
-              parameters: p["parameters"],
-            })),
+        functions:
+          body["functions"] === undefined
+            ? body["functions"]
+            : body["functions"].map((p) => ({
+                name: p["name"],
+                description: p["description"],
+                parameters: p["parameters"],
+              })),
         function_call: body["functionCall"],
         temperature: body["temperature"],
         top_p: body["topP"],

@@ -383,7 +383,7 @@ export interface InboundEndpoint {
   /** The protocol of the endpoint. */
   protocol: InboundEndpointProtocol;
   /** The public IP address of the Compute Node. */
-  publicIPAddress?: string;
+  publicIpAddress?: string;
   /** The public fully qualified domain name for the Compute Node. */
   publicFQDN?: string;
   /** The public port number of the endpoint. */
@@ -466,7 +466,7 @@ export type DisableBatchNodeSchedulingOption = string;
 /** The remote login settings for a Compute Node. */
 export interface BatchNodeRemoteLoginSettingsResult {
   /** The IP address used for remote login to the Compute Node. */
-  remoteLoginIPAddress: string;
+  remoteLoginIpAddress: string;
   /** The port used for remote login to the Compute Node. */
   remoteLoginPort: number;
 }
@@ -1382,7 +1382,7 @@ export interface VirtualMachineConfiguration {
   /** A reference to the Azure Virtual Machines Marketplace Image or the custom Virtual Machine Image to use. */
   imageReference: ImageReference;
   /** The SKU of the Batch Compute Node agent to be provisioned on Compute Nodes in the Pool. The Batch Compute Node agent is a program that runs on each Compute Node in the Pool, and provides the command-and-control interface between the Compute Node and the Batch service. There are different implementations of the Compute Node agent, known as SKUs, for different operating systems. You must specify a Compute Node agent SKU which matches the selected Image reference. To get the list of supported Compute Node agent SKUs along with their list of verified Image references, see the 'List supported Compute Node agent SKUs' operation. */
-  nodeAgentSKUId: string;
+  nodeAgentSkuId: string;
   /** Windows operating system settings on the virtual machine. This property must not be specified if the imageReference property specifies a Linux OS Image. */
   windowsConfiguration?: WindowsConfiguration;
   /** The configuration for data disks attached to the Compute Nodes in the Pool. This property must be specified if the Compute Nodes in the Pool need to have empty data disks attached to them. This cannot be updated. Each Compute Node gets its own disk (the disk is not a file share). Existing disks cannot be attached, each attached disk is empty. When the Compute Node is removed from the Pool, the disk and all data associated with it is also deleted. The disk is not formatted after being attached, it must be formatted before use - for more information see https://docs.microsoft.com/en-us/azure/virtual-machines/linux/classic/attach-disk#initialize-a-new-data-disk-in-linux and https://docs.microsoft.com/en-us/azure/virtual-machines/windows/attach-disk-ps#add-an-empty-data-disk-to-a-virtual-machine. */
@@ -1428,7 +1428,7 @@ export interface DataDisk {
   /** The type of caching to be enabled for the data disks. The default value for caching is readwrite. For information about the caching options see: https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/27/exploring-windows-azure-drives-disks-and-images/. */
   caching?: CachingType;
   /** The initial disk size in gigabytes. */
-  diskSizeGB: number;
+  diskSizeGb: number;
   /** The storage Account type to be used for the data disk. If omitted, the default is "standard_lrs". */
   storageAccountType?: StorageAccountType;
 }
@@ -1520,7 +1520,7 @@ export interface NetworkConfiguration {
   /** The configuration for endpoints on Compute Nodes in the Batch Pool. Pool endpoint configuration is only supported on Pools with the virtualMachineConfiguration property. */
   endpointConfiguration?: PoolEndpointConfiguration;
   /** The Public IPAddress configuration for Compute Nodes in the Batch Pool. Public IP configuration property is only supported on Pools with the virtualMachineConfiguration property. */
-  publicIPAddressConfiguration?: PublicIpAddressConfiguration;
+  publicIpAddressConfiguration?: PublicIpAddressConfiguration;
   /** Whether this pool should enable accelerated networking. Accelerated networking enables single root I/O virtualization (SR-IOV) to a VM, which may lead to improved networking performance. For more details, see: https://learn.microsoft.com/azure/virtual-network/accelerated-networking-overview. */
   enableAcceleratedNetworking?: boolean;
 }
@@ -1532,7 +1532,7 @@ export type DynamicVNetAssignmentScope = string;
 /** The endpoint configuration for a Pool. */
 export interface PoolEndpointConfiguration {
   /** A list of inbound NAT Pools that can be used to address specific ports on an individual Compute Node externally. The maximum number of inbound NAT Pools per Batch Pool is 5. If the maximum number of inbound NAT Pools is exceeded the request fails with HTTP status code 400. This cannot be specified if the IPAddressProvisioningType is NoPublicIPAddresses. */
-  inboundNATPools: InboundNATPool[];
+  inboundNatPools: InboundNATPool[];
 }
 
 /**
@@ -1573,14 +1573,14 @@ export type NetworkSecurityGroupRuleAccess = string;
 /** The public IP Address configuration of the networking configuration of a Pool. */
 export interface PublicIpAddressConfiguration {
   /** The provisioning type for Public IP Addresses for the Pool. The default value is BatchManaged. */
-  provision?: IPAddressProvisioningType;
+  ipAddressProvisioningType?: IpAddressProvisioningType;
   /** The list of public IPs which the Batch service will use when provisioning Compute Nodes. The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100 Spot/Low-priority nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would need at least 3 public IPs specified. Each element of this collection is of the form: /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}. */
   ipAddressIds?: string[];
 }
 
 /** IPAddressProvisioningType enums */
 /** "batchmanaged", "usermanaged", "nopublicipaddresses" */
-export type IPAddressProvisioningType = string;
+export type IpAddressProvisioningType = string;
 
 /**
  * Properties used to create a user used to execute Tasks on an Azure Batch
@@ -2177,7 +2177,7 @@ export interface AccountListSupportedImagesResult {
  */
 export interface ImageInformation {
   /** The ID of the Compute Node agent SKU which the Image supports. */
-  nodeAgentSKUId: string;
+  nodeAgentSkuId: string;
   /** The reference to the Azure Virtual Machine's Marketplace Image. */
   imageReference: ImageReference;
   /** The type of operating system (e.g. Windows or Linux) of the Image. */
@@ -2485,7 +2485,7 @@ export interface ResourceStatistics {
   /** The time at which the statistics were last updated. All statistics are limited to the range between startTime and lastUpdateTime. */
   lastUpdateTime: Date;
   /** The average CPU usage across all Compute Nodes in the Pool (percentage per node). */
-  avgCPUPercentage: number;
+  avgCpuPercentage: number;
   /** The average memory usage in GiB across all Compute Nodes in the Pool. */
   avgMemoryGiB: number;
   /** The peak memory usage in GiB across all Compute Nodes in the Pool. */

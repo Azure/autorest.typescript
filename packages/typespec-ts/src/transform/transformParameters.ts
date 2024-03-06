@@ -90,7 +90,7 @@ export function transformToParameterTypes(
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
       operationGroup: getOperationGroupName(dpgContext, route),
-      operationName: getOperationName(program, route.operation),
+      operationName: getOperationName(dpgContext, route.operation),
       parameters: []
     };
     // transform query param

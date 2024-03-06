@@ -913,7 +913,7 @@ describe("anonymous model", () => {
           baz: {
             foo: int32[];
             bas: string;
-            @projectedName("json", "test")
+            @encodedName("application/json", "test")
             bar?: SimpleModel[];
             nonemptyAnomyous: { a: string };
             nonemptyAnomyousArray: { b?: Record<string> }[];
@@ -975,7 +975,10 @@ describe("anonymous model", () => {
               baz: {
                 foo: result.body.baz["foo"],
                 bas: result.body.baz["bas"],
-                bar: !result.body.baz["test"] ? result.body.baz["test"] : result.body.baz["test"].map((p) => ({ test: p["test"] })),
+                bar:
+                  result.body.baz["test"] === undefined
+                    ? result.body.baz["test"]
+                    : result.body.baz["test"].map((p) => ({ test: p["test"] })),
                 nonemptyAnomyous: { a: result.body.baz.nonemptyAnomyous["a"] },
                 nonemptyAnomyousArray: result.body.baz["nonemptyAnomyousArray"].map((p) => ({ b: p["b"] })),
                 nonemptyAnomyousDict: result.body.baz["nonemptyAnomyousDict"],

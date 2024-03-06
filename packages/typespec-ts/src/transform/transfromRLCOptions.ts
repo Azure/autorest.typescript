@@ -190,7 +190,7 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
     const clientOperations = listOperationsInOperationGroup(dpgContext, client);
     for (const clientOp of clientOperations) {
       const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-      const name = getOperationName(program, route.operation);
+      const name = getOperationName(dpgContext, route.operation);
       if (nameSet.has(name)) {
         return true;
       } else {
@@ -205,7 +205,7 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
       );
       for (const op of operations) {
         const route = ignoreDiagnostics(getHttpOperation(program, op));
-        const name = getOperationName(program, route.operation);
+        const name = getOperationName(dpgContext, route.operation);
         if (nameSet.has(name)) {
           return true;
         } else {
