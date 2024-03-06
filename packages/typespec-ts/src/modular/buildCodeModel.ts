@@ -1113,7 +1113,9 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
 
   return {
     type: "enum",
-    name: getLibraryName(context, type),
+    name: getLibraryName(context, type)
+      ? getLibraryName(context, type)
+      : type.name,
     description: getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
@@ -1421,7 +1423,9 @@ function emitUnion(
     };
   } else if (sdkType.kind === "enum") {
     return {
-      name: sdkType.name,
+      name: getLibraryName(context, type)
+        ? getLibraryName(context, type)
+        : type.name,
       nullable: sdkType.nullable,
       description: sdkType.description || `Type of ${sdkType.name}`,
       internal: true,
