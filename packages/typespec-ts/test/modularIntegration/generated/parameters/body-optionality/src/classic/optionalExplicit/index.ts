@@ -10,18 +10,21 @@ import {
 } from "../../models/options.js";
 
 export interface OptionalExplicitOperations {
-  set: (body: BodyModel, options?: OptionalExplicitSetOptions) => Promise<void>;
+  set: (
+    body?: BodyModel,
+    options?: OptionalExplicitSetOptions,
+  ) => Promise<void>;
   omit: (
-    body: BodyModel,
+    body?: BodyModel,
     options?: OptionalExplicitOmitOptions,
   ) => Promise<void>;
 }
 
 export function getOptionalExplicit(context: BodyOptionalityContext) {
   return {
-    set: (body: BodyModel, options?: OptionalExplicitSetOptions) =>
+    set: (body?: BodyModel, options?: OptionalExplicitSetOptions) =>
       set(context, body, options),
-    omit: (body: BodyModel, options?: OptionalExplicitOmitOptions) =>
+    omit: (body?: BodyModel, options?: OptionalExplicitOmitOptions) =>
       omit(context, body, options),
   };
 }
