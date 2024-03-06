@@ -148,7 +148,6 @@
         "999999",
         "--colors",
         "./test/unit/**/*.spec.ts"
-
       ],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
