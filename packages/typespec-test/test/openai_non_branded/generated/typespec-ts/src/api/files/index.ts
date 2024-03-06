@@ -1,8 +1,8 @@
 // Licensed under the MIT license.
 
 import {
-  ListFilesResponse,
   OpenAIFile,
+  ListFilesResponse,
   CreateFileRequest,
   DeleteFileResponse,
 } from "../../models/models.js";
@@ -23,6 +23,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  uint8ArrayToString,
   createRestError,
 } from "@typespec/ts-http-runtime";
 import {
@@ -58,7 +59,7 @@ export async function _listDeserialize(
       createdAt: new Date(p["createdAt"]),
       filename: p["filename"],
       purpose: p["purpose"],
-      status: p["status"] as any,
+      status: p["status"],
       statusDetails: p["status_details"],
     })),
   };
@@ -82,7 +83,10 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: { file: file["file"], purpose: file["purpose"] },
+      body: {
+        file: uint8ArrayToString(file["file"], "base64"),
+        purpose: file["purpose"],
+      },
     });
 }
 
@@ -100,7 +104,7 @@ export async function _createDeserialize(
     createdAt: new Date(result.body["createdAt"]),
     filename: result.body["filename"],
     purpose: result.body["purpose"],
-    status: result.body["status"] as any,
+    status: result.body["status"],
     statusDetails: result.body["status_details"],
   };
 }
@@ -138,7 +142,7 @@ export async function _retrieveDeserialize(
     createdAt: new Date(result.body["createdAt"]),
     filename: result.body["filename"],
     purpose: result.body["purpose"],
-    status: result.body["status"] as any,
+    status: result.body["status"],
     statusDetails: result.body["status_details"],
   };
 }

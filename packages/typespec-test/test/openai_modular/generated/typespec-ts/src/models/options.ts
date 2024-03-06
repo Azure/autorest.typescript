@@ -3,17 +3,36 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface GetEmbeddingsOptions extends OperationOptions {}
+export interface GetAudioTranscriptionAsPlainTextOptions
+  extends OperationOptions {
+  /** The content type for the operation. Always multipart/form-data for this operation. */
+  contentType?: string;
+}
+
+export interface GetAudioTranscriptionAsResponseObjectOptions
+  extends OperationOptions {
+  /** The content type for the operation. Always multipart/form-data for this operation. */
+  contentType?: string;
+}
+
+export interface GetAudioTranslationAsPlainTextOptions
+  extends OperationOptions {
+  /** The content type for the operation. Always multipart/form-data for this operation. */
+  contentType?: string;
+}
+
+export interface GetAudioTranslationAsResponseObjectOptions
+  extends OperationOptions {
+  /** The content type for the operation. Always multipart/form-data for this operation. */
+  contentType?: string;
+}
 
 export interface GetCompletionsOptions extends OperationOptions {}
 
 export interface GetChatCompletionsOptions extends OperationOptions {}
 
-export interface GetChatCompletionsWithAzureExtensionsOptions
-  extends OperationOptions {}
+export interface GetImageGenerationsOptions extends OperationOptions {}
 
-export interface GetAzureBatchImageGenerationOperationStatusOptions
-  extends OperationOptions {}
+export interface GetAudioSpeechOptions extends OperationOptions {}
 
-export interface BeginAzureBatchImageGenerationOptions
-  extends OperationOptions {}
+export interface GetEmbeddingsOptions extends OperationOptions {}

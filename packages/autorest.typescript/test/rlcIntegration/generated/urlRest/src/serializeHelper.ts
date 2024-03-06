@@ -9,6 +9,6 @@ export function buildSsvCollection(items: string[] | number[]): string {
   return items.join(" ");
 }
 
-export function buildTsvCollection(items: string[] | number[]) {
+export function buildTsvCollection(items: string[] | number[]): string {
   return items.join("\t");
 }

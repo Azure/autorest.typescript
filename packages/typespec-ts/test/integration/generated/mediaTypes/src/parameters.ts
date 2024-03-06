@@ -15,7 +15,8 @@ export interface GetByUnionOnlyBodyParam {
     | string
     | Uint8Array
     | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
+    | NodeJS.ReadableStream
+    | string;
 }
 
 export interface GetByUnionOnlyMediaTypesParam {
@@ -93,7 +94,8 @@ export interface GetByOverloadParentBodyParam {
     | string
     | Uint8Array
     | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
+    | NodeJS.ReadableStream
+    | string;
 }
 
 export interface GetByOverloadParentMediaTypesParam {

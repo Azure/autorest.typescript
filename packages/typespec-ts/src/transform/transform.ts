@@ -72,7 +72,11 @@ export async function transformRLCModel(
     client,
     dpgContext
   );
-  const helperDetails = transformHelperFunctionDetails(client, dpgContext);
+  const helperDetails = transformHelperFunctionDetails(
+    client,
+    dpgContext,
+    options.flavor
+  );
   // Enrich client-level annotation detail
   helperDetails.clientLroOverload = getClientLroOverload(paths);
   const urlInfo = transformUrlInfo(dpgContext);
@@ -92,7 +96,7 @@ export async function transformRLCModel(
     telemetryOptions,
     importInfo: {
       internalImports: importSet,
-      runtimeImports: buildRuntimeImports(options.branded)
+      runtimeImports: buildRuntimeImports(options.flavor)
     }
   };
   model.sampleGroups = transformSampleGroups(
@@ -100,6 +104,9 @@ export async function transformRLCModel(
     options?.generateSample ===
       true /* Enable mock sample content if generateSample === true */
   );
+  options.generateSample =
+    (options.generateSample === true || options.generateSample === undefined) &&
+    (model.sampleGroups ?? []).length > 0;
   return model;
 }
 
@@ -123,13 +130,11 @@ export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {
           continue;
         }
 
-        const schema = getSchemaForType(
-          dpgContext,
-          type,
-          [SchemaContext.Exception, SchemaContext.Input],
-          false,
-          property!
-        );
+        const schema = getSchemaForType(dpgContext, type, {
+          usage: [SchemaContext.Exception, SchemaContext.Input],
+          needRef: false,
+          relevantProperty: property
+        });
         urlParameters.push({
           oriName: key,
           name: normalizeName(key, NameType.Parameter, true),

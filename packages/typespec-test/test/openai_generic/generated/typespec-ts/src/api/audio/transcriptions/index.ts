@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import {
-  CreateTranscriptionResponse,
   CreateTranscriptionRequest,
+  CreateTranscriptionResponse,
 } from "../../../models/models.js";
 import {
   AudioTranscriptionsCreate200Response,
@@ -16,6 +16,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { uint8ArrayToString } from "@azure/core-util";
 import { AudioTranscriptionsCreateOptions } from "../../../models/options.js";
 
 export function _createSend(
@@ -32,7 +33,7 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        file: audio["file"],
+        file: uint8ArrayToString(audio["file"], "base64"),
         model: audio["model"],
         prompt: audio["prompt"],
         response_format: audio["responseFormat"],

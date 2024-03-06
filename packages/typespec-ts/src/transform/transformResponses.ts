@@ -75,7 +75,7 @@ export function transformToResponseTypes(
   function transformToResponseTypesForRoute(route: HttpOperation) {
     const rlcOperationUnit: OperationResponse = {
       operationGroup: getOperationGroupName(dpgContext, route),
-      operationName: getOperationName(program, route.operation),
+      operationName: getOperationName(dpgContext, route.operation),
       path: route.path,
       responses: []
     };
@@ -138,9 +138,9 @@ function transformHeaders(
       if (!value) {
         continue;
       }
-      const typeSchema = getSchemaForType(dpgContext, value!.type, [
-        SchemaContext.Output
-      ]) as Schema;
+      const typeSchema = getSchemaForType(dpgContext, value!.type, {
+        usage: [SchemaContext.Output]
+      }) as Schema;
       const type = getTypeName(typeSchema, [SchemaContext.Output]);
       getImportedModelName(typeSchema, [SchemaContext.Output])?.forEach(
         importedModels.add,
@@ -185,9 +185,9 @@ function transformBody(
       descriptions.add("Value may contain any sequence of octets");
       continue;
     }
-    const bodySchema = getSchemaForType(dpgContext, body!.type, [
-      SchemaContext.Output
-    ]) as Schema;
+    const bodySchema = getSchemaForType(dpgContext, body!.type, {
+      usage: [SchemaContext.Output]
+    }) as Schema;
     fromCore = bodySchema.fromCore ?? false;
     const bodyType = getTypeName(bodySchema);
     const importedNames = getImportedModelName(bodySchema);
@@ -237,7 +237,7 @@ function transformLroLogicalResponse(
     description: `The final response for long-running ${route.operation.name} operation`,
     predefinedName: getLroLogicalResponseName(
       operationGroupName,
-      getOperationName(dpgContext.program, route.operation)
+      getOperationName(dpgContext, route.operation)
     ),
     body: successResp?.body
   };

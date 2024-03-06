@@ -4,8 +4,16 @@
 import {
   ExtendsUnknownGetParameters,
   ExtendsUnknownPutParameters,
+  ExtendsUnknownDerivedGetParameters,
+  ExtendsUnknownDerivedPutParameters,
+  ExtendsUnknownDiscriminatedGetParameters,
+  ExtendsUnknownDiscriminatedPutParameters,
   IsUnknownGetParameters,
   IsUnknownPutParameters,
+  IsUnknownDerivedGetParameters,
+  IsUnknownDerivedPutParameters,
+  IsUnknownDiscriminatedGetParameters,
+  IsUnknownDiscriminatedPutParameters,
   ExtendsStringGetParameters,
   ExtendsStringPutParameters,
   IsStringGetParameters,
@@ -26,8 +34,16 @@ import {
 import {
   ExtendsUnknownGet200Response,
   ExtendsUnknownPut204Response,
+  ExtendsUnknownDerivedGet200Response,
+  ExtendsUnknownDerivedPut204Response,
+  ExtendsUnknownDiscriminatedGet200Response,
+  ExtendsUnknownDiscriminatedPut204Response,
   IsUnknownGet200Response,
   IsUnknownPut204Response,
+  IsUnknownDerivedGet200Response,
+  IsUnknownDerivedPut204Response,
+  IsUnknownDiscriminatedGet200Response,
+  IsUnknownDiscriminatedPut204Response,
   ExtendsStringGet200Response,
   ExtendsStringPut204Response,
   IsStringGet200Response,
@@ -58,6 +74,28 @@ export interface ExtendsUnknownGet {
   ): StreamableMethod<ExtendsUnknownPut204Response>;
 }
 
+export interface ExtendsUnknownDerivedGet {
+  /** Get call */
+  get(
+    options?: ExtendsUnknownDerivedGetParameters,
+  ): StreamableMethod<ExtendsUnknownDerivedGet200Response>;
+  /** Put operation */
+  put(
+    options: ExtendsUnknownDerivedPutParameters,
+  ): StreamableMethod<ExtendsUnknownDerivedPut204Response>;
+}
+
+export interface ExtendsUnknownDiscriminatedGet {
+  /** Get call */
+  get(
+    options?: ExtendsUnknownDiscriminatedGetParameters,
+  ): StreamableMethod<ExtendsUnknownDiscriminatedGet200Response>;
+  /** Put operation */
+  put(
+    options: ExtendsUnknownDiscriminatedPutParameters,
+  ): StreamableMethod<ExtendsUnknownDiscriminatedPut204Response>;
+}
+
 export interface IsUnknownGet {
   /** Get call */
   get(
@@ -67,6 +105,28 @@ export interface IsUnknownGet {
   put(
     options: IsUnknownPutParameters,
   ): StreamableMethod<IsUnknownPut204Response>;
+}
+
+export interface IsUnknownDerivedGet {
+  /** Get call */
+  get(
+    options?: IsUnknownDerivedGetParameters,
+  ): StreamableMethod<IsUnknownDerivedGet200Response>;
+  /** Put operation */
+  put(
+    options: IsUnknownDerivedPutParameters,
+  ): StreamableMethod<IsUnknownDerivedPut204Response>;
+}
+
+export interface IsUnknownDiscriminatedGet {
+  /** Get call */
+  get(
+    options?: IsUnknownDiscriminatedGetParameters,
+  ): StreamableMethod<IsUnknownDiscriminatedGet200Response>;
+  /** Put operation */
+  put(
+    options: IsUnknownDiscriminatedPutParameters,
+  ): StreamableMethod<IsUnknownDiscriminatedPut204Response>;
 }
 
 export interface ExtendsStringGet {
@@ -152,8 +212,24 @@ export interface Routes {
   (
     path: "/type/property/additionalProperties/extendsRecordUnknown",
   ): ExtendsUnknownGet;
+  /** Resource for '/type/property/additionalProperties/extendsRecordUnknownDerived' has methods for the following verbs: get, put */
+  (
+    path: "/type/property/additionalProperties/extendsRecordUnknownDerived",
+  ): ExtendsUnknownDerivedGet;
+  /** Resource for '/type/property/additionalProperties/extendsUnknownDiscriminated' has methods for the following verbs: get, put */
+  (
+    path: "/type/property/additionalProperties/extendsUnknownDiscriminated",
+  ): ExtendsUnknownDiscriminatedGet;
   /** Resource for '/type/property/additionalProperties/isRecordUnknown' has methods for the following verbs: get, put */
   (path: "/type/property/additionalProperties/isRecordUnknown"): IsUnknownGet;
+  /** Resource for '/type/property/additionalProperties/isRecordUnknownDerived' has methods for the following verbs: get, put */
+  (
+    path: "/type/property/additionalProperties/isRecordUnknownDerived",
+  ): IsUnknownDerivedGet;
+  /** Resource for '/type/property/additionalProperties/isUnknownDiscriminated' has methods for the following verbs: get, put */
+  (
+    path: "/type/property/additionalProperties/isUnknownDiscriminated",
+  ): IsUnknownDiscriminatedGet;
   /** Resource for '/type/property/additionalProperties/extendsRecordString' has methods for the following verbs: get, put */
   (
     path: "/type/property/additionalProperties/extendsRecordString",

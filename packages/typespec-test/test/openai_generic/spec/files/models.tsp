@@ -12,7 +12,6 @@ model CreateFileRequest {
    *
    * If the `purpose` is set to "fine-tune", the file will be used for fine-tuning.
    */
-  @encode("binary")
   file: bytes;
 
   /**

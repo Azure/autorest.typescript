@@ -2,15 +2,15 @@
 // Licensed under the MIT license.
 
 import {
-  AnalyzeTextOptions,
-  AnalyzeTextResult,
-  AnalyzeImageOptions,
-  AnalyzeImageResult,
   TextBlocklist,
   AddOrUpdateBlockItemsOptions,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
   RemoveBlockItemsOptions,
+  AnalyzeImageOptions,
+  AnalyzeImageResult,
+  AnalyzeTextOptions,
+  AnalyzeTextResult,
   PagedTextBlocklist,
   PagedTextBlockItem,
 } from "../models/models.js";
@@ -87,13 +87,14 @@ export async function _analyzeTextDeserialize(
   }
 
   return {
-    blocklistsMatchResults: !result.body["blocklistsMatchResults"]
-      ? result.body["blocklistsMatchResults"]
-      : result.body["blocklistsMatchResults"].map((p) => ({
-          blocklistName: p["blocklistName"],
-          blockItemId: p["blockItemId"],
-          blockItemText: p["blockItemText"],
-        })),
+    blocklistsMatchResults:
+      result.body["blocklistsMatchResults"] === undefined
+        ? result.body["blocklistsMatchResults"]
+        : result.body["blocklistsMatchResults"].map((p) => ({
+            blocklistName: p["blocklistName"],
+            blockItemId: p["blockItemId"],
+            blockItemText: p["blockItemText"],
+          })),
     analyzeResults: result.body["analyzeResults"].map((p) => ({
       category: p["category"],
       severity: p["severity"],
@@ -356,13 +357,14 @@ export async function _addOrUpdateBlockItemsDeserialize(
   }
 
   return {
-    value: !result.body["value"]
-      ? result.body["value"]
-      : result.body["value"].map((p) => ({
-          blockItemId: p["blockItemId"],
-          description: p["description"],
-          text: p["text"],
-        })),
+    value:
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => ({
+            blockItemId: p["blockItemId"],
+            description: p["description"],
+            text: p["text"],
+          })),
   };
 }
 

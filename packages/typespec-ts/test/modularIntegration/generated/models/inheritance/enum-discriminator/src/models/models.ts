@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 /** Test extensible enum type for discriminator */
-export interface DogParent {
+export interface Dog {
   /** the discriminator possible values: golden */
   kind: DogKind;
   /** Weight of the dog */
@@ -10,17 +10,13 @@ export interface DogParent {
 }
 
 /** Golden dog model */
-export interface Golden extends DogParent {
+export interface Golden extends Dog {
   /** discriminator property */
   kind: "golden";
 }
 
-/** extensible enum type for discriminator */
-/** "golden" */
-export type DogKind = string;
-
 /** Test fixed enum type for discriminator */
-export interface SnakeParent {
+export interface Snake {
   /** the discriminator possible values: cobra */
   kind: SnakeKind;
   /** Length of the snake */
@@ -28,7 +24,7 @@ export interface SnakeParent {
 }
 
 /** Cobra model */
-export interface Cobra extends SnakeParent {
+export interface Cobra extends Snake {
   /** discriminator property */
   kind: "cobra";
 }
@@ -36,7 +32,9 @@ export interface Cobra extends SnakeParent {
 /** fixed enum type for discriminator */
 /** */
 export type SnakeKind = "cobra";
-/** Alias for Dog */
-export type Dog = Golden | DogParent;
-/** Alias for Snake */
-export type Snake = Cobra | SnakeParent;
+/** Alias for DogUnion */
+export type DogUnion = Golden | Dog;
+/** Alias for DogKind */
+export type DogKind = string | "golden";
+/** Alias for SnakeUnion */
+export type SnakeUnion = Cobra | Snake;
