@@ -466,7 +466,7 @@ function buildBodyParameter(
 
     if (bodyParameter && bodyParts.length > 0) {
       const optionalBody = bodyParameter.optional
-        ? `!${bodyParameter.clientName} ? undefined : `
+        ? `${bodyParameter.clientName} === undefined ? ${bodyParameter.clientName} : `
         : "";
       return `\nbody: ${optionalBody}{${bodyParts.join(",\n")}},`;
     } else if (bodyParameter && bodyParts.length === 0) {
