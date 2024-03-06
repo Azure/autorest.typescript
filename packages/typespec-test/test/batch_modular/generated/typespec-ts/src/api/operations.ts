@@ -5618,7 +5618,7 @@ export async function enableJob(
 export function _terminateJobSend(
   context: Client,
   jobId: string,
-  body: BatchJobTerminateOptions,
+  body?: BatchJobTerminateOptions,
   options: TerminateJobOptions = { requestOptions: {} },
 ): StreamableMethod<TerminateJob202Response | TerminateJobDefaultResponse> {
   return context
@@ -5643,7 +5643,7 @@ export function _terminateJobSend(
           : {}),
       },
       queryParameters: { timeOut: options?.timeOutInSeconds },
-      body: { terminateReason: body["terminateReason"] },
+      body: !body ? undefined : { terminateReason: body["terminateReason"] },
     });
 }
 
@@ -5668,7 +5668,7 @@ export async function _terminateJobDeserialize(
 export async function terminateJob(
   context: Client,
   jobId: string,
-  body: BatchJobTerminateOptions,
+  body?: BatchJobTerminateOptions,
   options: TerminateJobOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _terminateJobSend(context, jobId, body, options);
@@ -18540,7 +18540,7 @@ export function _rebootNodeSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  body: NodeRebootOptions,
+  body?: NodeRebootOptions,
   options: RebootNodeOptions = { requestOptions: {} },
 ): StreamableMethod<RebootNode202Response | RebootNodeDefaultResponse> {
   return context
@@ -18551,7 +18551,7 @@ export function _rebootNodeSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: { timeOut: options?.timeOutInSeconds },
-      body: { nodeRebootOption: body["nodeRebootOption"] },
+      body: !body ? undefined : { nodeRebootOption: body["nodeRebootOption"] },
     });
 }
 
@@ -18570,7 +18570,7 @@ export async function rebootNode(
   context: Client,
   poolId: string,
   nodeId: string,
-  body: NodeRebootOptions,
+  body?: NodeRebootOptions,
   options: RebootNodeOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _rebootNodeSend(context, poolId, nodeId, body, options);
@@ -18581,7 +18581,7 @@ export function _reimageNodeSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  body: NodeReimageOptions,
+  body?: NodeReimageOptions,
   options: ReimageNodeOptions = { requestOptions: {} },
 ): StreamableMethod<ReimageNode202Response | ReimageNodeDefaultResponse> {
   return context
@@ -18592,7 +18592,9 @@ export function _reimageNodeSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: { timeOut: options?.timeOutInSeconds },
-      body: { nodeReimageOption: body["nodeReimageOption"] },
+      body: !body
+        ? undefined
+        : { nodeReimageOption: body["nodeReimageOption"] },
     });
 }
 
@@ -18615,7 +18617,7 @@ export async function reimageNode(
   context: Client,
   poolId: string,
   nodeId: string,
-  body: NodeReimageOptions,
+  body?: NodeReimageOptions,
   options: ReimageNodeOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _reimageNodeSend(context, poolId, nodeId, body, options);
@@ -18626,7 +18628,7 @@ export function _disableNodeSchedulingSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  body: NodeDisableSchedulingOptions,
+  body?: NodeDisableSchedulingOptions,
   options: DisableNodeSchedulingOptions = { requestOptions: {} },
 ): StreamableMethod<
   DisableNodeScheduling200Response | DisableNodeSchedulingDefaultResponse
@@ -18639,9 +18641,9 @@ export function _disableNodeSchedulingSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: { timeOut: options?.timeOutInSeconds },
-      body: {
-        nodeDisableSchedulingOption: body["nodeDisableSchedulingOption"],
-      },
+      body: !body
+        ? undefined
+        : { nodeDisableSchedulingOption: body["nodeDisableSchedulingOption"] },
     });
 }
 
@@ -18665,7 +18667,7 @@ export async function disableNodeScheduling(
   context: Client,
   poolId: string,
   nodeId: string,
-  body: NodeDisableSchedulingOptions,
+  body?: NodeDisableSchedulingOptions,
   options: DisableNodeSchedulingOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _disableNodeSchedulingSend(
