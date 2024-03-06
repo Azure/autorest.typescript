@@ -36,6 +36,14 @@ export interface ErrorModelOutput {
 }
 
 // @public (undocumented)
+export interface InvalidTodoItemOutput extends ErrorModelOutput {
+}
+
+// @public
+export interface InvalidUserResponseOutput extends ErrorModelOutput {
+}
+
+// @public (undocumented)
 export interface Routes {
     (path: "/users"): UsersCreate;
     (path: "/validate"): UsersValidate;
@@ -194,7 +202,7 @@ export interface TodoItemsCreateForm200Response extends HttpResponse {
 // @public
 export interface TodoItemsCreateForm422Response extends HttpResponse {
     // (undocumented)
-    body: ErrorModelOutput;
+    body: InvalidTodoItemOutput;
     // (undocumented)
     status: "422";
 }
@@ -228,7 +236,7 @@ export interface TodoItemsCreateJson200Response extends HttpResponse {
 // @public
 export interface TodoItemsCreateJson422Response extends HttpResponse {
     // (undocumented)
-    body: ErrorModelOutput;
+    body: InvalidTodoItemOutput;
     // (undocumented)
     status: "422";
 }
@@ -413,6 +421,10 @@ export interface UserCreatedResponseOutput {
     username: string;
 }
 
+// @public
+export interface UserExistsResponseOutput extends ErrorModelOutput {
+}
+
 // @public (undocumented)
 export interface UsersCreate {
     // (undocumented)
@@ -430,7 +442,7 @@ export interface UsersCreate200Response extends HttpResponse {
 // @public
 export interface UsersCreate409Response extends HttpResponse {
     // (undocumented)
-    body: ErrorModelOutput;
+    body: UserExistsResponseOutput;
     // (undocumented)
     status: "409";
 }
@@ -438,7 +450,7 @@ export interface UsersCreate409Response extends HttpResponse {
 // @public
 export interface UsersCreate422Response extends HttpResponse {
     // (undocumented)
-    body: ErrorModelOutput;
+    body: InvalidUserResponseOutput;
     // (undocumented)
     status: "422";
 }
@@ -575,7 +587,7 @@ export interface UsersValidate200Response extends HttpResponse {
 // @public
 export interface UsersValidate422Response extends HttpResponse {
     // (undocumented)
-    body: ErrorModelOutput;
+    body: InvalidUserResponseOutput;
     // (undocumented)
     status: "422";
 }
