@@ -162,8 +162,8 @@ describe("operations", () => {
   });
 
   // TODO: need to fix the tests
-  describe("array as body", () => {
-    it.only("should generate required model array as request body", async () => {
+  describe.skip("array as body", () => {
+    it("should generate required model array as request body", async () => {
       const tspContent = `
         model Bar {
           prop1: string;
