@@ -129,8 +129,15 @@ function handleConstantType(type: Type): TypeMetadata {
  */
 function handleEnumType(type: Type): TypeMetadata {
   if (!type.name) {
+    const valueType = !type.isFixed
+      ? ((type.values?.[0] as Type).valueType?.type ?? "string") + " | "
+      : "";
     return {
-      name: type.values?.map(e => { return getType(e as Type).name}).join(" | ") ?? "string",
+      name: `${valueType}${type.values
+        ?.map((e) => {
+          return getType(e as Type).name;
+        })
+        .join(" | ")}`,
       nullable: type.nullable
     };
   }
