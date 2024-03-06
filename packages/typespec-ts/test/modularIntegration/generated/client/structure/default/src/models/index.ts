@@ -5,8 +5,11 @@ export { ClientType } from "./models.js";
 export {
   OneOptions,
   TwoOptions,
-  ThreeOptions,
-  FourOptions,
-  FiveOptions,
-  SixOptions,
+  BazFooSevenOptions,
+  QuxEightOptions,
+  QuxBarNineOptions,
+  FooThreeOptions,
+  FooFourOptions,
+  BarFiveOptions,
+  BarSixOptions,
 } from "./options.js";

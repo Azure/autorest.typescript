@@ -40,7 +40,7 @@ describe("UnionsClient Rest Client", () => {
     }
   });
 
-  it.skip("should get strings extensible union", async () => {
+  it("should get strings extensible union", async () => {
     try {
       const result = await client.path("/type/union/string-extensible").get();
       assert.strictEqual(result.status, "200");
@@ -50,7 +50,7 @@ describe("UnionsClient Rest Client", () => {
     }
   });
 
-  it.skip("should post strings extensible union", async () => {
+  it("should post strings extensible union", async () => {
     try {
       const result = await client.path("/type/union/string-extensible").post({
         body: {
@@ -63,7 +63,7 @@ describe("UnionsClient Rest Client", () => {
     }
   });
 
-  it.skip("should get strings extensible named union", async () => {
+  it("should get strings extensible named union", async () => {
     try {
       const result = await client
         .path("/type/union/string-extensible-named")
@@ -75,7 +75,7 @@ describe("UnionsClient Rest Client", () => {
     }
   });
 
-  it.skip("should post strings extensible named union", async () => {
+  it("should post strings extensible named union", async () => {
     try {
       const result = await client
         .path("/type/union/string-extensible-named")

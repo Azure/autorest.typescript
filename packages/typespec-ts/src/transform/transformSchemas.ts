@@ -17,6 +17,7 @@ import {
   isAzureCoreErrorType
 } from "../utils/modelUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { KnownMediaType, extractMediaTypes } from "../utils/mediaTypes.js";
 
 export function transformSchemas(
   program: Program,
@@ -28,8 +29,19 @@ export function transformSchemas(
     SchemaContext[]
   >();
   const schemaMap: Map<any, any> = new Map<any, any>();
-  const operationGroups = listOperationGroups(dpgContext, client);
+  const requestBodySet = new Set<Type>();
+  const contentTypeMap = new Map<Type, KnownMediaType[]>();
   const modelKey = Symbol("typescript-models-" + client.name);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    transformSchemaForRoute(route);
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
@@ -44,15 +56,6 @@ export function transformSchemas(
       transformSchemaForRoute(route);
     }
   }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    transformSchemaForRoute(route);
-  }
   function transformSchemaForRoute(route: HttpOperation) {
     if (route.parameters) {
       for (const param of route.parameters.parameters) {
@@ -64,6 +67,13 @@ export function transformSchemas(
       bodyModel &&
       (bodyModel.kind === "Model" || bodyModel.kind === "Union")
     ) {
+      requestBodySet.add(bodyModel);
+      const contentTypes: KnownMediaType[] = extractMediaTypes(
+        route.parameters.body?.contentTypes ?? []
+      );
+      if (contentTypes.length > 0) {
+        contentTypeMap.set(bodyModel, contentTypes);
+      }
       getGeneratedModels(bodyModel, SchemaContext.Input);
     }
     for (const resp of route.responses) {
@@ -87,7 +97,12 @@ export function transformSchemas(
     }
   }
   program.stateMap(modelKey).forEach((context, tspModel) => {
-    const model = getSchemaForType(dpgContext, tspModel, context);
+    const model = getSchemaForType(dpgContext, tspModel, {
+      usage: context,
+      isRequestBody: requestBodySet.has(tspModel),
+      isParentRequestBody: false,
+      mediaTypes: contentTypeMap.get(tspModel)
+    });
     if (model) {
       model.usage = context;
     }
@@ -190,7 +205,9 @@ export function transformSchemas(
       ) {
         getGeneratedModels(baseModel, context);
       }
-      const derivedModels = model.derivedModels.filter(includeDerivedModel);
+      const derivedModels = model.derivedModels.filter((dm) => {
+        return includeDerivedModel(dm);
+      });
 
       // getSchemaOrRef on all children to push them into components.schemas
       for (const child of derivedModels) {

@@ -30,6 +30,7 @@ import {
   buildModelsOptions
 } from "../../src/modular/emitModels.js";
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";
+import { buildSerializeUtils } from "../../src/modular/buildSerializeUtils.js";
 import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { Project } from "ts-morph";
 
@@ -50,7 +51,7 @@ export async function emitPageHelperFromTypeSpec(
   const clients = getRLCClients(dpgContext);
   let helperDetail;
   if (clients && clients[0]) {
-    helperDetail = transformHelperFunctionDetails(clients[0], dpgContext);
+    helperDetail = transformHelperFunctionDetails(clients[0], dpgContext, "azure");
   }
   expectDiagnosticEmpty(program.diagnostics);
   return buildPaginateHelper({
@@ -61,7 +62,7 @@ export async function emitPageHelperFromTypeSpec(
     schemas: [],
     importInfo: {
       internalImports: initInternalImports(),
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
@@ -121,7 +122,7 @@ export async function emitModelsFromTypeSpec(
     libraryName: "test",
     importInfo: {
       internalImports: initInternalImports(),
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
@@ -160,7 +161,7 @@ export async function emitParameterFromTypeSpec(
     parameters,
     importInfo: {
       internalImports: importSet,
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
@@ -185,7 +186,7 @@ export async function emitClientDefinitionFromTypeSpec(
     paths,
     importInfo: {
       internalImports: initInternalImports(),
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
@@ -229,11 +230,12 @@ export async function emitClientFactoryFromTypeSpec(
         name: "test",
         version: "1.0.0-beta.1"
       },
+      flavor: "azure",
       ...creadentialInfo
     },
     importInfo: {
       internalImports: initInternalImports(),
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
@@ -241,14 +243,15 @@ export async function emitClientFactoryFromTypeSpec(
 export async function emitResponsesFromTypeSpec(
   tspContent: string,
   needAzureCore: boolean = false,
-  withRawContent: boolean = false
+  withRawContent: boolean = false,
+  needTCGC: boolean = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
     true,
     needAzureCore,
     false,
-    false,
+    needTCGC,
     withRawContent
   );
   const dpgContext = createDpgContextTestHelper(context.program);
@@ -267,7 +270,7 @@ export async function emitResponsesFromTypeSpec(
     responses,
     importInfo: {
       internalImports: importSet,
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports("azure")
     }
   });
 }
@@ -333,6 +336,43 @@ export async function emitModularModelsFromTypeSpec(
         );
       }
       return buildModels(modularCodeModel, modularCodeModel.clients[0]);
+    }
+  }
+  expectDiagnosticEmpty(dpgContext.program.diagnostics);
+  return undefined;
+}
+
+export async function emitModularSerializeUtilsFromTypeSpec(
+  tspContent: string
+) {
+  const context = await rlcEmitterFor(tspContent);
+  const dpgContext = createDpgContextTestHelper(context.program);
+  const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
+    string,
+    RLCModel
+  >();
+  const project = new Project();
+  const clients = getRLCClients(dpgContext);
+  if (clients && clients[0]) {
+    dpgContext.rlcOptions!.isModularLibrary = true;
+    const rlcModels = await transformRLCModel(clients[0], dpgContext);
+    serviceNameToRlcModelsMap.set(clients[0].service.name, rlcModels);
+    const modularCodeModel = emitCodeModel(
+      dpgContext,
+      serviceNameToRlcModelsMap,
+      "",
+      project,
+      {
+        casing: "camel"
+      }
+    );
+    if (
+      modularCodeModel &&
+      modularCodeModel.clients &&
+      modularCodeModel.clients.length > 0 &&
+      modularCodeModel.clients[0]
+    ) {
+      return buildSerializeUtils(modularCodeModel);
     }
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);

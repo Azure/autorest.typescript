@@ -43,9 +43,18 @@ export function transformToResponseTypes(
   dpgContext: SdkContext
 ): OperationResponse[] {
   const program = dpgContext.program;
-  const operationGroups = listOperationGroups(dpgContext, client);
   const rlcResponses: OperationResponse[] = [];
   const inputImportedSet = new Set<string>();
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    transformToResponseTypesForRoute(route);
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
@@ -60,22 +69,13 @@ export function transformToResponseTypes(
       transformToResponseTypesForRoute(route);
     }
   }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    transformToResponseTypesForRoute(route);
-  }
   if (inputImportedSet.size > 0) {
     importDetails.response.importsSet = inputImportedSet;
   }
   function transformToResponseTypesForRoute(route: HttpOperation) {
     const rlcOperationUnit: OperationResponse = {
       operationGroup: getOperationGroupName(dpgContext, route),
-      operationName: getOperationName(program, route.operation),
+      operationName: getOperationName(dpgContext, route.operation),
       path: route.path,
       responses: []
     };
@@ -138,9 +138,9 @@ function transformHeaders(
       if (!value) {
         continue;
       }
-      const typeSchema = getSchemaForType(dpgContext, value!.type, [
-        SchemaContext.Output
-      ]) as Schema;
+      const typeSchema = getSchemaForType(dpgContext, value!.type, {
+        usage: [SchemaContext.Output]
+      }) as Schema;
       const type = getTypeName(typeSchema, [SchemaContext.Output]);
       getImportedModelName(typeSchema, [SchemaContext.Output])?.forEach(
         importedModels.add,
@@ -185,9 +185,9 @@ function transformBody(
       descriptions.add("Value may contain any sequence of octets");
       continue;
     }
-    const bodySchema = getSchemaForType(dpgContext, body!.type, [
-      SchemaContext.Output
-    ]) as Schema;
+    const bodySchema = getSchemaForType(dpgContext, body!.type, {
+      usage: [SchemaContext.Output]
+    }) as Schema;
     fromCore = bodySchema.fromCore ?? false;
     const bodyType = getTypeName(bodySchema);
     const importedNames = getImportedModelName(bodySchema);
@@ -237,7 +237,7 @@ function transformLroLogicalResponse(
     description: `The final response for long-running ${route.operation.name} operation`,
     predefinedName: getLroLogicalResponseName(
       operationGroupName,
-      getOperationName(dpgContext.program, route.operation)
+      getOperationName(dpgContext, route.operation)
     ),
     body: successResp?.body
   };

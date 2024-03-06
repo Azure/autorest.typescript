@@ -6,13 +6,13 @@ export {
   NestedDiscriminatorClientOptions,
 } from "./NestedDiscriminatorClient.js";
 export {
-  FishParent,
-  SharkParent,
+  Fish,
+  Shark,
   SawShark,
   GoblinShark,
   Salmon,
-  Fish,
-  Shark,
+  FishUnion,
+  SharkUnion,
   GetModelOptions,
   PutModelOptions,
   GetRecursiveModelOptions,

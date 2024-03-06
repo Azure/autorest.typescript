@@ -35,9 +35,6 @@ export class RenamedOperationClient {
     this.group = getGroupOperations(this._client);
   }
 
-  /** The operation groups for Group */
-  public readonly group: GroupOperations;
-
   renamedOne(
     options: RenamedOneOptions = { requestOptions: {} },
   ): Promise<void> {
@@ -55,4 +52,7 @@ export class RenamedOperationClient {
   ): Promise<void> {
     return renamedFive(this._client, options);
   }
+
+  /** The operation groups for Group */
+  public readonly group: GroupOperations;
 }

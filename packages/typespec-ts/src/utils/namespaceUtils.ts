@@ -5,7 +5,7 @@ import {
   isService,
   Operation
 } from "@typespec/compiler";
-import { SdkContext } from "../utils/interfaces.js";
+import { SdkContext } from "./interfaces.js";
 
 export function getModelNamespaceName(
   dpgContext: SdkContext,
@@ -40,7 +40,11 @@ export function getOperationNamespaceInterfaceName(
       result.push(operation.interface.name);
       return result;
     }
-    if (operation.interface.namespace) {
+    if (
+      operation.interface.namespace &&
+      !isGlobalNamespace(dpgContext.program, operation.interface.namespace) &&
+      !isService(dpgContext.program, operation.interface.namespace)
+    ) {
       result.push(
         ...getModelNamespaceName(dpgContext, operation.interface.namespace)
       );

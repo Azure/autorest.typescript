@@ -2,6 +2,7 @@ import {
   NameType,
   normalizeName,
   PackageDetails,
+  PackageFlavor,
   RLCOptions,
   ServiceInfo
 } from "@azure-tools/rlc-common";
@@ -12,7 +13,7 @@ import {
   Program
 } from "@typespec/compiler";
 import { getAuthentication, getHttpOperation } from "@typespec/http";
-import { reportDiagnostic } from "../lib.js";
+import { EmitterOptions, reportDiagnostic } from "../lib.js";
 import { getDefaultService } from "../utils/modelUtils.js";
 import { getRLCClients } from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
@@ -24,7 +25,7 @@ import { getOperationName } from "../utils/operationUtil.js";
 import { detectModelConflicts } from "../utils/namespaceUtils.js";
 
 export function transformRLCOptions(
-  emitterOptions: RLCOptions,
+  emitterOptions: EmitterOptions,
   dpgContext: SdkContext
 ): RLCOptions {
   // Extract the options from emitter option
@@ -40,17 +41,22 @@ export function transformRLCOptions(
 
 function extractRLCOptions(
   dpgContext: SdkContext,
-  emitterOptions: RLCOptions,
+  emitterOptions: EmitterOptions,
   generationRootDir: string
 ): RLCOptions {
   const program = dpgContext.program;
   const includeShortcuts = getIncludeShortcuts(emitterOptions);
   const packageDetails = getPackageDetails(program, emitterOptions);
+  const flavor = getFlavor(emitterOptions, packageDetails);
   const serviceInfo = getServiceInfo(program);
   const azureSdkForJs = getAzureSdkForJs(emitterOptions);
   const generateMetadata: undefined | boolean =
     getGenerateMetadata(emitterOptions);
-  const generateTest: undefined | boolean = getGenerateTest(emitterOptions);
+  const generateTest: undefined | boolean = getGenerateTest(
+    emitterOptions,
+    flavor
+  );
+  const generateSample: undefined | boolean = getGenerateSample(emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
   const azureOutputDirectory = getAzureOutputDirectory(generationRootDir);
   const enableOperationGroup = getEnableOperationGroup(
@@ -65,11 +71,12 @@ function extractRLCOptions(
   return {
     ...emitterOptions,
     ...credentialInfo,
-    branded: getBranded(emitterOptions),
+    flavor,
     includeShortcuts,
     packageDetails,
     generateMetadata,
     generateTest,
+    generateSample,
     azureSdkForJs,
     serviceInfo,
     azureOutputDirectory,
@@ -137,7 +144,7 @@ function processAuth(program: Program) {
 
 function getEnableOperationGroup(
   dpgContext: SdkContext,
-  emitterOptions: RLCOptions
+  emitterOptions: EmitterOptions
 ) {
   if (
     emitterOptions.enableOperationGroup === true ||
@@ -151,7 +158,7 @@ function getEnableOperationGroup(
 
 function getEnableModelNamespace(
   dpgContext: SdkContext,
-  emitterOptions: RLCOptions
+  emitterOptions: EmitterOptions
 ) {
   if (
     emitterOptions.enableModelNamespace === true ||
@@ -163,7 +170,7 @@ function getEnableModelNamespace(
   return detectModelConflicts(dpgContext);
 }
 
-function getHierarchyClient(emitterOptions: RLCOptions) {
+function getHierarchyClient(emitterOptions: EmitterOptions) {
   if (
     emitterOptions.hierarchyClient === true ||
     emitterOptions.hierarchyClient === false
@@ -180,7 +187,17 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
   for (const client of clients) {
     // only consider it's conflict when there are conflicts in the same client
     const nameSet = new Set<string>();
-    const operationGroups = listOperationGroups(dpgContext, client);
+    const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+    for (const clientOp of clientOperations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+      const name = getOperationName(dpgContext, route.operation);
+      if (nameSet.has(name)) {
+        return true;
+      } else {
+        nameSet.add(name);
+      }
+    }
+    const operationGroups = listOperationGroups(dpgContext, client, true);
     for (const operationGroup of operationGroups) {
       const operations = listOperationsInOperationGroup(
         dpgContext,
@@ -188,22 +205,12 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
       );
       for (const op of operations) {
         const route = ignoreDiagnostics(getHttpOperation(program, op));
-        const name = getOperationName(program, route.operation);
+        const name = getOperationName(dpgContext, route.operation);
         if (nameSet.has(name)) {
           return true;
         } else {
           nameSet.add(name);
         }
-      }
-    }
-    const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-    for (const clientOp of clientOperations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-      const name = getOperationName(program, route.operation);
-      if (nameSet.has(name)) {
-        return true;
-      } else {
-        nameSet.add(name);
       }
     }
   }
@@ -212,17 +219,43 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
   return false;
 }
 
-function getIncludeShortcuts(emitterOptions: RLCOptions) {
+function getIncludeShortcuts(emitterOptions: EmitterOptions) {
   return Boolean(emitterOptions.includeShortcuts);
 }
 
-function getBranded(emitterOptions: RLCOptions) {
-  return emitterOptions.branded !== undefined ? emitterOptions.branded : true;
+function getFlavor(
+  emitterOptions: EmitterOptions,
+  packageDetails?: PackageDetails
+): PackageFlavor {
+  const flavor = emitterOptions.flavor;
+
+  if (flavor !== undefined) {
+    if (flavor.toLowerCase() === "azure") {
+      return "azure";
+    } else {
+      return undefined;
+    }
+  }
+
+  const branded = emitterOptions.branded;
+  if (branded !== undefined) {
+    return branded ? "azure" : undefined;
+  }
+
+  const scopeName = packageDetails?.scopeName;
+  if (
+    scopeName !== undefined &&
+    (scopeName.startsWith("azure") || scopeName.startsWith("msinternal"))
+  ) {
+    return "azure";
+  } else {
+    return undefined;
+  }
 }
 
 function getPackageDetails(
   program: Program,
-  emitterOptions: RLCOptions
+  emitterOptions: EmitterOptions
 ): PackageDetails {
   const packageDetails: PackageDetails = {
     ...emitterOptions.packageDetails,
@@ -241,7 +274,13 @@ function getPackageDetails(
       packageDetails.scopeName = nameParts[0]?.replace("@", "");
     }
   }
-  return packageDetails;
+  return (
+    packageDetails ?? {
+      name: "@msinternal/unamedpackage",
+      nameWithoutScope: "unamedpackage",
+      version: "1.0.0-beta.1"
+    }
+  );
 }
 
 function getServiceInfo(program: Program): ServiceInfo {
@@ -252,14 +291,14 @@ function getServiceInfo(program: Program): ServiceInfo {
   };
 }
 
-function getAzureSdkForJs(emitterOptions: RLCOptions) {
+function getAzureSdkForJs(emitterOptions: EmitterOptions) {
   return emitterOptions.azureSdkForJs === undefined ||
     emitterOptions.azureSdkForJs === null
     ? true
     : Boolean(emitterOptions.azureSdkForJs);
 }
 
-function getGenerateMetadata(emitterOptions: RLCOptions) {
+function getGenerateMetadata(emitterOptions: EmitterOptions) {
   if (
     emitterOptions.generateMetadata === undefined ||
     emitterOptions.generateMetadata === null
@@ -269,19 +308,46 @@ function getGenerateMetadata(emitterOptions: RLCOptions) {
   return Boolean(emitterOptions.generateMetadata);
 }
 
-function getGenerateTest(emitterOptions: RLCOptions) {
+/**
+ * In azure scope, by default we generate test.
+ * @param emitterOptions
+ * @returns
+ */
+function getGenerateTest(emitterOptions: EmitterOptions, flavor?: "azure") {
   if (
-    emitterOptions.generateTest === undefined ||
-    emitterOptions.generateTest === null
+    flavor !== "azure" &&
+    (emitterOptions.generateTest === undefined ||
+      emitterOptions.generateTest === null)
   ) {
     return undefined;
+  } else if (
+    flavor === "azure" &&
+    (emitterOptions.generateTest === undefined ||
+      emitterOptions.generateTest === null)
+  ) {
+    return true;
   }
   return Boolean(emitterOptions.generateTest);
 }
 
+/**
+ * In azure scope, by default we generate test.
+ * @param emitterOptions
+ * @returns
+ */
+function getGenerateSample(emitterOptions: EmitterOptions) {
+  if (
+    emitterOptions.generateSample === undefined ||
+    emitterOptions.generateSample === null
+  ) {
+    return undefined;
+  }
+  return Boolean(emitterOptions.generateSample);
+}
+
 export function getCredentialInfo(
   program: Program,
-  emitterOptions: RLCOptions
+  emitterOptions: EmitterOptions
 ) {
   const securityInfo = processAuth(program);
   const addCredentials =

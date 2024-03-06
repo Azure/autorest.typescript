@@ -11,7 +11,6 @@ import {
   normalizeName
 } from "@azure-tools/rlc-common";
 import {
-  getProjectedName,
   ignoreDiagnostics,
   Model,
   Operation,
@@ -32,6 +31,7 @@ import {
 } from "@azure-tools/typespec-azure-core";
 import {
   SdkClient,
+  getWireName,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
@@ -43,6 +43,7 @@ import {
 import { isByteOrByteUnion } from "./modelUtils.js";
 import { SdkContext } from "./interfaces.js";
 import { getOperationNamespaceInterfaceName } from "./namespaceUtils.js";
+import { KnownMediaType, knownMediaType } from "./mediaTypes.js";
 
 // Sorts the responses by status code
 export function sortedOperationResponses(responses: HttpOperationResponse[]) {
@@ -78,7 +79,7 @@ export function getOperationResponseTypes(
       const statusCode = getOperationStatuscode(r);
       const responseName = getResponseTypeName(
         getOperationGroupName(dpgContext, operation),
-        getOperationName(dpgContext.program, operation.operation),
+        getOperationName(dpgContext, operation.operation),
         statusCode
       );
       return responseName;
@@ -158,8 +159,8 @@ export function getOperationGroupName(
     .join("");
 }
 
-export function getOperationName(program: Program, operation: Operation) {
-  const projectedOperationName = getProjectedName(program, operation, "json");
+export function getOperationName(dpgContext: SdkContext, operation: Operation) {
+  const projectedOperationName = getWireName(dpgContext, operation);
 
   return normalizeName(
     projectedOperationName ?? operation.name,
@@ -181,18 +182,11 @@ export function isBinaryPayload(
   body: Type,
   contentType: string | string[]
 ) {
-  const allContentTypes = Array.isArray(contentType)
-    ? contentType
-    : [contentType];
-  for (const type of allContentTypes) {
-    const contentType = `"${type}"`;
-    if (
-      contentType !== `"application/json"` &&
-      contentType !== `"text/plain"` &&
-      contentType !== `"application/json" | "text/plain"` &&
-      contentType !== `"text/plain" | "application/json"` &&
-      isByteOrByteUnion(dpgContext, body)
-    ) {
+  const knownMediaTypes: KnownMediaType[] = (
+    Array.isArray(contentType) ? contentType : [contentType]
+  ).map((ct) => knownMediaType(ct));
+  for (const type of knownMediaTypes) {
+    if (type === KnownMediaType.Binary && isByteOrByteUnion(dpgContext, body)) {
       return true;
     }
   }
@@ -266,7 +260,7 @@ export function getOperationLroOverload(
  * @returns
  */
 export function extractOperationLroDetail(
-  program: Program,
+  dpgContext: SdkContext,
   operation: HttpOperation,
   responsesTypes: ResponseTypes,
   operationGroupName: string
@@ -275,7 +269,7 @@ export function extractOperationLroDetail(
 
   let precedence = OPERATION_LRO_LOW_PRIORITY;
   const operationLroOverload = getOperationLroOverload(
-    program,
+    dpgContext.program,
     operation,
     responsesTypes
   );
@@ -285,22 +279,24 @@ export function extractOperationLroDetail(
       success: [
         getLroLogicalResponseName(
           operationGroupName,
-          getOperationName(program, operation.operation)
+          getOperationName(dpgContext, operation.operation)
         )
       ]
     };
-    const metadata = getLroMetadata(program, operation.operation);
+    const metadata = getLroMetadata(dpgContext.program, operation.operation);
     precedence =
       metadata?.finalStep &&
-      metadata?.finalStep.target &&
       metadata.finalStep.kind === "pollingSuccessProperty" &&
+      metadata?.finalStep.target &&
       metadata?.finalStep?.target?.name === "result"
         ? OPERATION_LRO_HIGH_PRIORITY
         : OPERATION_LRO_LOW_PRIORITY;
   }
 
   return {
-    isLongRunning: Boolean(getLroMetadata(program, operation.operation)),
+    isLongRunning: Boolean(
+      getLroMetadata(dpgContext.program, operation.operation)
+    ),
     logicalResponseTypes,
     operationLroOverload,
     precedence
@@ -312,7 +308,18 @@ export function hasPollingOperations(
   client: SdkClient,
   dpgContext: SdkContext
 ) {
-  const operationGroups = listOperationGroups(dpgContext, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    if (isLongRunningOperation(program, route)) {
+      return true;
+    }
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
@@ -329,18 +336,6 @@ export function hasPollingOperations(
       }
     }
   }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    if (isLongRunningOperation(program, route)) {
-      return true;
-    }
-  }
-
   return false;
 }
 
@@ -359,7 +354,18 @@ export function hasPagingOperations(
   client: SdkClient,
   dpgContext: SdkContext
 ) {
-  const operationGroups = listOperationGroups(dpgContext, client);
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    if (isPagingOperation(program, route)) {
+      return true;
+    }
+  }
+  const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
@@ -374,17 +380,6 @@ export function hasPagingOperations(
       if (isPagingOperation(program, route)) {
         return true;
       }
-    }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    // ignore overload base operation
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    if (isPagingOperation(program, route)) {
-      return true;
     }
   }
   return false;

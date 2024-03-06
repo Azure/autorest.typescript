@@ -58,7 +58,7 @@ describe("api operations in Modular", () => {
       );
     });
 
-    it("should handle contentTypes has binary data if self defined scalar", async () => {
+    it("should handle contentTypes has binary data if self defined scalar for upload", async () => {
       const tspContent = `
       @encode("binary")
       scalar BinaryBytes extends bytes;
@@ -122,7 +122,6 @@ describe("api operations in Modular", () => {
         @header contentType: "multipart/form-data",
         @body body: {
           name: string;
-          @encode("binary")
           file: bytes;
         }
       ): void;
@@ -140,6 +139,7 @@ describe("api operations in Modular", () => {
            operationOptionsToRequestParameters,
            createRestError
          } from "@azure-rest/core-client";
+         import { uint8ArrayToString } from "@azure/core-util";
          export function _uploadFileSend(
            context: Client,
            name: string,
@@ -151,7 +151,7 @@ describe("api operations in Modular", () => {
              .post({
                ...operationOptionsToRequestParameters(options),
                contentType: (options.contentType as any) ?? "multipart/form-data",
-               body: { name: name, file: file },
+               body: { name: name, file: uint8ArrayToString(file, "base64") },
              });
          }
          export async function _uploadFileDeserialize(
@@ -177,7 +177,6 @@ describe("api operations in Modular", () => {
 
     it("should handle contentTypes has multiple form data array", async () => {
       const tspContent = `
-      @encode("binary")
       scalar BinaryBytes extends bytes;
   
       @route("/uploadFiles")
@@ -201,6 +200,7 @@ describe("api operations in Modular", () => {
            operationOptionsToRequestParameters,
            createRestError
          } from "@azure-rest/core-client";
+         import { uint8ArrayToString } from "@azure/core-util";
          export function _uploadFilesSend(
            context: Client,
            files: Uint8Array[],
@@ -211,7 +211,7 @@ describe("api operations in Modular", () => {
              .post({
                ...operationOptionsToRequestParameters(options),
                contentType: (options.contentType as any) ?? "multipart/form-data",
-               body: { files: files.map((p) => p) },
+               body: { files: files.map((p) => uint8ArrayToString(p, "base64")) },
              });
          }
          export async function _uploadFilesDeserialize(
@@ -285,7 +285,7 @@ describe("api operations in Modular", () => {
       );
     });
 
-    it("should handle contentTypes has binary data if self defined scalar", async () => {
+    it("should handle contentTypes has binary data if self defined scalar for download", async () => {
       const tspContent = `
       @encode("binary")
       scalar BinaryBytes extends bytes;
@@ -345,8 +345,6 @@ describe("api operations in Modular", () => {
         @header contentType: "multipart/form-data";
         @body body: {
           name: string;
-      
-          @encode("binary")
           file: bytes;
         };
       };
@@ -364,6 +362,7 @@ describe("api operations in Modular", () => {
            operationOptionsToRequestParameters,
            createRestError
          } from "@azure-rest/core-client";
+         import { stringToUint8Array } from "@azure/core-util";
          export function _downloadFileSend(
            context: Client,
            options: DownloadFileOptions = { requestOptions: {} }
@@ -378,7 +377,13 @@ describe("api operations in Modular", () => {
            if (result.status !== "200") {
              throw createRestError(result);
            }
-           return { name: result.body["name"], file: result.body["file"] };
+            return {
+              name: result.body["name"],
+              file:
+                typeof result.body["file"] === "string"
+                  ? stringToUint8Array(result.body["file"], "base64")
+                  : result.body["file"],
+            };
          }
          export async function downloadFile(
            context: Client,
@@ -393,7 +398,6 @@ describe("api operations in Modular", () => {
 
     it("should handle contentTypes has multiple form data array", async () => {
       const tspContent = `
-      @encode("binary")
       scalar BinaryBytes extends bytes;
   
       @route("/downloadFile")
@@ -419,6 +423,7 @@ describe("api operations in Modular", () => {
            operationOptionsToRequestParameters,
            createRestError
          } from "@azure-rest/core-client";
+         import { stringToUint8Array } from "@azure/core-util";
          export function _downloadFileSend(
            context: Client,
            options: DownloadFileOptions = { requestOptions: {} }
@@ -433,10 +438,12 @@ describe("api operations in Modular", () => {
            if (result.status !== "200") {
               throw createRestError(result);
            }
-           return {
-             name: result.body["name"],
-             file: result.body["file"].map((p) => p),
-           };
+            return {
+              name: result.body["name"],
+              file: result.body["file"].map((p) =>
+                typeof p === "string" ? stringToUint8Array(p, "base64") : p,
+              ),
+            };
          }
          export async function downloadFile(
            context: Client,
