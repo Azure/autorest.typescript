@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Bird, Dinosaur } from "../models/models.js";
+import { BirdUnion, DinosaurUnion } from "../models/models.js";
 import {
   GetLegacyModel200Response,
   GetMissingDiscriminator200Response,
@@ -38,7 +38,7 @@ export function _getModelSend(
 
 export async function _getModelDeserialize(
   result: GetModel200Response,
-): Promise<Bird> {
+): Promise<BirdUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -49,14 +49,14 @@ export async function _getModelDeserialize(
 export async function getModel(
   context: Client,
   options: GetModelOptions = { requestOptions: {} },
-): Promise<Bird> {
+): Promise<BirdUnion> {
   const result = await _getModelSend(context, options);
   return _getModelDeserialize(result);
 }
 
 export function _putModelSend(
   context: Client,
-  input: Bird,
+  input: BirdUnion,
   options: PutModelOptions = { requestOptions: {} },
 ): StreamableMethod<PutModel204Response> {
   return context
@@ -76,7 +76,7 @@ export async function _putModelDeserialize(
 
 export async function putModel(
   context: Client,
-  input: Bird,
+  input: BirdUnion,
   options: PutModelOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putModelSend(context, input, options);
@@ -94,7 +94,7 @@ export function _getRecursiveModelSend(
 
 export async function _getRecursiveModelDeserialize(
   result: GetRecursiveModel200Response,
-): Promise<Bird> {
+): Promise<BirdUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -105,14 +105,14 @@ export async function _getRecursiveModelDeserialize(
 export async function getRecursiveModel(
   context: Client,
   options: GetRecursiveModelOptions = { requestOptions: {} },
-): Promise<Bird> {
+): Promise<BirdUnion> {
   const result = await _getRecursiveModelSend(context, options);
   return _getRecursiveModelDeserialize(result);
 }
 
 export function _putRecursiveModelSend(
   context: Client,
-  input: Bird,
+  input: BirdUnion,
   options: PutRecursiveModelOptions = { requestOptions: {} },
 ): StreamableMethod<PutRecursiveModel204Response> {
   return context
@@ -132,7 +132,7 @@ export async function _putRecursiveModelDeserialize(
 
 export async function putRecursiveModel(
   context: Client,
-  input: Bird,
+  input: BirdUnion,
   options: PutRecursiveModelOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putRecursiveModelSend(context, input, options);
@@ -150,7 +150,7 @@ export function _getMissingDiscriminatorSend(
 
 export async function _getMissingDiscriminatorDeserialize(
   result: GetMissingDiscriminator200Response,
-): Promise<Bird> {
+): Promise<BirdUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -161,7 +161,7 @@ export async function _getMissingDiscriminatorDeserialize(
 export async function getMissingDiscriminator(
   context: Client,
   options: GetMissingDiscriminatorOptions = { requestOptions: {} },
-): Promise<Bird> {
+): Promise<BirdUnion> {
   const result = await _getMissingDiscriminatorSend(context, options);
   return _getMissingDiscriminatorDeserialize(result);
 }
@@ -177,7 +177,7 @@ export function _getWrongDiscriminatorSend(
 
 export async function _getWrongDiscriminatorDeserialize(
   result: GetWrongDiscriminator200Response,
-): Promise<Bird> {
+): Promise<BirdUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -188,7 +188,7 @@ export async function _getWrongDiscriminatorDeserialize(
 export async function getWrongDiscriminator(
   context: Client,
   options: GetWrongDiscriminatorOptions = { requestOptions: {} },
-): Promise<Bird> {
+): Promise<BirdUnion> {
   const result = await _getWrongDiscriminatorSend(context, options);
   return _getWrongDiscriminatorDeserialize(result);
 }
@@ -204,7 +204,7 @@ export function _getLegacyModelSend(
 
 export async function _getLegacyModelDeserialize(
   result: GetLegacyModel200Response,
-): Promise<Dinosaur> {
+): Promise<DinosaurUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -215,7 +215,7 @@ export async function _getLegacyModelDeserialize(
 export async function getLegacyModel(
   context: Client,
   options: GetLegacyModelOptions = { requestOptions: {} },
-): Promise<Dinosaur> {
+): Promise<DinosaurUnion> {
   const result = await _getLegacyModelSend(context, options);
   return _getLegacyModelDeserialize(result);
 }

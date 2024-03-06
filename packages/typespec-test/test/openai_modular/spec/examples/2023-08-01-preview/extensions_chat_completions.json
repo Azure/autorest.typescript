@@ -8,23 +8,17 @@
     "body": {
       "messages": [
         {
-          "role": "system",
-          "content": "you are a helpful assistant that talks like a pirate"
-        },
-        {
           "role": "user",
           "content": "can you tell me how to care for a parrot?"
         }
       ],
       "dataSources": [
         {
-          "type": "azureChatExtensionType",
+          "type": "AzureCognitiveSearch",
           "parameters": {
-            "source_specific_parameter_1": "foo",
-            "source_specific_parameter_2": {
-              "complex_types": "like this",
-              "are_supported": true
-            }
+            "endpoint": "https://your-search-endpoint.search.windows.net/",
+            "key": "{search admin key}",
+            "indexName": "{index name}"
           }
         }
       ]

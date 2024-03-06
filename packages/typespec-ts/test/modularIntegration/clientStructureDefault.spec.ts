@@ -62,4 +62,31 @@ describe("Client Structure Default Rest Client", () => {
       assert.fail(err as string);
     }
   });
+
+  it("should call operation seven correctly", async () => {
+    try {
+      const result = await client.baz.foo.seven();
+      assert.strictEqual(result, undefined);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should call operation eight correctly", async () => {
+    try {
+      const result = await client.qux.eight();
+      assert.strictEqual(result, undefined);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should call operation nine correctly", async () => {
+    try {
+      const result = await client.qux.bar.nine();
+      assert.strictEqual(result, undefined);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
 });

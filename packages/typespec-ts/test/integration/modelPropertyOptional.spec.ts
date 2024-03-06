@@ -417,7 +417,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/float/literal/all")
         .get();
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.property, 1.2);
+      assert.strictEqual(result.body.property, 1.25);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -440,7 +440,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
       const result = await client
         .path("/type/property/optional/float/literal/all")
         .put({
-          body: { property: 1.2 }
+          body: { property: 1.25 }
         });
       assert.strictEqual(result.status, "204");
     } catch (err) {
@@ -617,7 +617,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/union/float/literal/all")
         .get();
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.property, 2.3);
+      assert.strictEqual(result.body.property, 2.375);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -640,7 +640,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
       const result = await client
         .path("/type/property/optional/union/float/literal/all")
         .put({
-          body: { property: 2.3 }
+          body: { property: 2.375 }
         });
       assert.strictEqual(result.status, "204");
     } catch (err) {

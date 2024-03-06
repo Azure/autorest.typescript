@@ -6,6 +6,10 @@ export interface TypeSpecRanchConfig {
 
 export const rlcTsps: TypeSpecRanchConfig[] = [
   {
+    outputPath: "payload/multipart",
+    inputPath: "payload/multipart"
+  },
+  {
     outputPath: "union-body",
     inputPath: "union-body"
   },
@@ -100,6 +104,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/inheritance-single-discriminator",
     inputPath: "type/model/inheritance/single-discriminator"
+  },
+  {
+    outputPath: "models/inheritance-recursive",
+    inputPath: "type/model/inheritance/recursive"
   },
   {
     outputPath: "models/propertyOptional",
@@ -204,6 +212,14 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "payload/pageable",
     inputPath: "payload/pageable"
+  },
+  {
+    outputPath: "client/naming",
+    inputPath: "client/naming"
+  },
+  {
+    outputPath: "serialization/encoded-name/json",
+    inputPath: "serialization/encoded-name/json"
   }
 ];
 
@@ -318,6 +334,31 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/empty",
     inputPath: "type/model/empty"
+  },
+  {
+    outputPath: "models/propertyTypes",
+    inputPath: "type/property/value-types"
+  },
+  { outputPath: "arrays/items", inputPath: "type/array" },
+  {
+    outputPath: "models/inheritance/recursive",
+    inputPath: "type/model/inheritance/recursive"
+  },
+  {
+    outputPath: "unions",
+    inputPath: "type/union"
+  },
+  {
+    outputPath: "scalar",
+    inputPath: "type/scalar"
+  },
+  {
+    outputPath: "client/naming",
+    inputPath: "client/naming"
+  },
+  {
+    outputPath: "serialization/encoded-name/json",
+    inputPath: "serialization/encoded-name/json"
   }
 ];
 

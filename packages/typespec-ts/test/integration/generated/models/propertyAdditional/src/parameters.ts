@@ -4,7 +4,11 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import {
   ExtendsUnknownAdditionalProperties,
+  ExtendsUnknownAdditionalPropertiesDerived,
+  ExtendsUnknownAdditionalPropertiesDiscriminated,
   IsUnknownAdditionalProperties,
+  IsUnknownAdditionalPropertiesDerived,
+  IsUnknownAdditionalPropertiesDiscriminated,
   ExtendsStringAdditionalProperties,
   IsStringAdditionalProperties,
   ExtendsFloatAdditionalProperties,
@@ -24,6 +28,24 @@ export interface ExtendsUnknownPutBodyParam {
 
 export type ExtendsUnknownPutParameters = ExtendsUnknownPutBodyParam &
   RequestParameters;
+export type ExtendsUnknownDerivedGetParameters = RequestParameters;
+
+export interface ExtendsUnknownDerivedPutBodyParam {
+  /** body */
+  body: ExtendsUnknownAdditionalPropertiesDerived;
+}
+
+export type ExtendsUnknownDerivedPutParameters =
+  ExtendsUnknownDerivedPutBodyParam & RequestParameters;
+export type ExtendsUnknownDiscriminatedGetParameters = RequestParameters;
+
+export interface ExtendsUnknownDiscriminatedPutBodyParam {
+  /** body */
+  body: ExtendsUnknownAdditionalPropertiesDiscriminated;
+}
+
+export type ExtendsUnknownDiscriminatedPutParameters =
+  ExtendsUnknownDiscriminatedPutBodyParam & RequestParameters;
 export type IsUnknownGetParameters = RequestParameters;
 
 export interface IsUnknownPutBodyParam {
@@ -32,6 +54,24 @@ export interface IsUnknownPutBodyParam {
 }
 
 export type IsUnknownPutParameters = IsUnknownPutBodyParam & RequestParameters;
+export type IsUnknownDerivedGetParameters = RequestParameters;
+
+export interface IsUnknownDerivedPutBodyParam {
+  /** body */
+  body: IsUnknownAdditionalPropertiesDerived;
+}
+
+export type IsUnknownDerivedPutParameters = IsUnknownDerivedPutBodyParam &
+  RequestParameters;
+export type IsUnknownDiscriminatedGetParameters = RequestParameters;
+
+export interface IsUnknownDiscriminatedPutBodyParam {
+  /** body */
+  body: IsUnknownAdditionalPropertiesDiscriminated;
+}
+
+export type IsUnknownDiscriminatedPutParameters =
+  IsUnknownDiscriminatedPutBodyParam & RequestParameters;
 export type ExtendsStringGetParameters = RequestParameters;
 
 export interface ExtendsStringPutBodyParam {

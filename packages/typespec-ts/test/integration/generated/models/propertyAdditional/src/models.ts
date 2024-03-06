@@ -8,10 +8,64 @@ export interface ExtendsUnknownAdditionalProperties
   name: string;
 }
 
+/** The model extends from Record<unknown> with a discriminator. */
+export interface ExtendsUnknownAdditionalPropertiesDiscriminatedParent
+  extends Record<string, unknown> {
+  /** The name property */
+  name: string;
+  kind: string;
+}
+
+/** The derived discriminated type */
+export interface ExtendsUnknownAdditionalPropertiesDiscriminatedDerived
+  extends ExtendsUnknownAdditionalPropertiesDiscriminatedParent {
+  kind: "derived";
+  /** The index property */
+  index: number;
+  /** The age property */
+  age?: number;
+}
+
+/** The model extends from a type that extends from Record<unknown>. */
+export interface ExtendsUnknownAdditionalPropertiesDerived
+  extends ExtendsUnknownAdditionalProperties {
+  /** The index property */
+  index: number;
+  /** The age property */
+  age?: number;
+}
+
 /** The model is from Record<unknown> type. */
 export interface IsUnknownAdditionalProperties extends Record<string, unknown> {
   /** The name property */
   name: string;
+}
+
+/** The model extends from a type that is Record<unknown> type */
+export interface IsUnknownAdditionalPropertiesDerived
+  extends IsUnknownAdditionalProperties {
+  /** The index property */
+  index: number;
+  /** The age property */
+  age?: number;
+}
+
+/** The model is Record<unknown> with a discriminator. */
+export interface IsUnknownAdditionalPropertiesDiscriminatedParent
+  extends Record<string, unknown> {
+  /** The name property */
+  name: string;
+  kind: string;
+}
+
+/** The derived discriminated type */
+export interface IsUnknownAdditionalPropertiesDiscriminatedDerived
+  extends IsUnknownAdditionalPropertiesDiscriminatedParent {
+  kind: "derived";
+  /** The index property */
+  index: number;
+  /** The age property */
+  age?: number;
 }
 
 /** The model extends from Record<string> type. */
@@ -61,3 +115,12 @@ export interface ExtendsModelArrayAdditionalProperties
 /** The model is from Record<ModelForRecord[]> type. */
 export interface IsModelArrayAdditionalProperties
   extends Record<string, Array<ModelForRecord>> {}
+
+/** The model extends from Record<unknown> with a discriminator. */
+export type ExtendsUnknownAdditionalPropertiesDiscriminated =
+  | ExtendsUnknownAdditionalPropertiesDiscriminatedParent
+  | ExtendsUnknownAdditionalPropertiesDiscriminatedDerived;
+/** The model is Record<unknown> with a discriminator. */
+export type IsUnknownAdditionalPropertiesDiscriminated =
+  | IsUnknownAdditionalPropertiesDiscriminatedParent
+  | IsUnknownAdditionalPropertiesDiscriminatedDerived;

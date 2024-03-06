@@ -438,8 +438,35 @@
           "description": "The ordered index associated with this chat completions choice."
         },
         "finish_reason": {
-          "$ref": "#/definitions/CompletionsFinishReason",
+          "type": "string",
           "description": "The reason that this chat completions choice completed its generated.",
+          "enum": [
+            "stop",
+            "length",
+            "content_filter",
+            "function_call"
+          ],
+          "x-ms-enum": {
+            "modelAsString": false,
+            "values": [
+              {
+                "name": "stopped",
+                "value": "stop"
+              },
+              {
+                "name": "tokenLimitReached",
+                "value": "length"
+              },
+              {
+                "name": "contentFiltered",
+                "value": "content_filter"
+              },
+              {
+                "name": "functionCall",
+                "value": "function_call"
+              }
+            ]
+          },
           "x-nullable": true,
           "x-ms-client-name": "finishReason"
         },
@@ -684,8 +711,35 @@
           ]
         },
         "finish_reason": {
-          "$ref": "#/definitions/CompletionsFinishReason",
+          "type": "string",
           "description": "Reason for finishing",
+          "enum": [
+            "stop",
+            "length",
+            "content_filter",
+            "function_call"
+          ],
+          "x-ms-enum": {
+            "modelAsString": false,
+            "values": [
+              {
+                "name": "stopped",
+                "value": "stop"
+              },
+              {
+                "name": "tokenLimitReached",
+                "value": "length"
+              },
+              {
+                "name": "contentFiltered",
+                "value": "content_filter"
+              },
+              {
+                "name": "functionCall",
+                "value": "function_call"
+              }
+            ]
+          },
           "x-nullable": true,
           "x-ms-client-name": "finishReason"
         }
@@ -1221,9 +1275,35 @@
           "default": 1
         },
         "size": {
-          "$ref": "#/definitions/ImageSize",
+          "type": "string",
           "description": "The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024 (defaults to 1024x1024).",
-          "default": "1024x1024"
+          "default": "1024x1024",
+          "enum": [
+            "256x256",
+            "512x512",
+            "1024x1024"
+          ],
+          "x-ms-enum": {
+            "name": "ImageSize",
+            "modelAsString": true,
+            "values": [
+              {
+                "name": "Size256x256",
+                "value": "256x256",
+                "description": "Image size of 256x256."
+              },
+              {
+                "name": "Size512x512",
+                "value": "512x512",
+                "description": "Image size of 512x512."
+              },
+              {
+                "name": "Size1024x1024",
+                "value": "1024x1024",
+                "description": "Image size of 1024x1024."
+              }
+            ]
+          }
         },
         "response_format": {
           "$ref": "#/definitions/ImageGenerationResponseFormat",

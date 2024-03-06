@@ -37,7 +37,7 @@ import { transformSchemas } from "./transformSchemas";
 import { transformRLCSampleData } from "../../generators/samples/rlcSampleGenerator";
 
 export function transform(model: CodeModel): RLCModel {
-  const { srcPath } = getAutorestOptions();
+  const { srcPath, flavor } = getAutorestOptions();
   const importDetails = initInternalImports();
   const urlInfo = transformUrlInfo(model);
   const rlcModel: RLCModel = {
@@ -56,10 +56,13 @@ export function transform(model: CodeModel): RLCModel {
     apiVersionInfo: transformApiVersion(model, urlInfo),
     importInfo: {
       internalImports: importDetails,
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports(flavor)
     }
   };
   rlcModel.sampleGroups = transformRLCSampleData(model, rlcModel);
+  rlcModel.options!.generateSample =
+    rlcModel.options!.generateSample &&
+    (rlcModel.sampleGroups ?? []).length > 0;
   return rlcModel;
 }
 
@@ -98,12 +101,12 @@ function getOperationQueryApiVersion(
 
   const apiVersionParam = model.globalParameters
     .filter(
-      gp =>
+      (gp) =>
         gp.implementation === ImplementationLocation.Client &&
         gp.protocol.http?.in === ParameterLocation.Query
     )
     .find(
-      param =>
+      (param) =>
         getLanguageMetadata(param.language).serializedName === "api-version"
     );
 
@@ -139,7 +142,7 @@ export function transformHelperDetails(
         nextLinkName && nextLinks.add(`${nextLinkName}`);
         itemName && itemNames.add(`${itemName}`);
       }
-      operation.signatureParameters?.forEach(parameter => {
+      operation.signatureParameters?.forEach((parameter) => {
         const serializeInfo = getSpecialSerializeInfo(parameter);
         hasMultiCollection = hasMultiCollection
           ? hasMultiCollection
