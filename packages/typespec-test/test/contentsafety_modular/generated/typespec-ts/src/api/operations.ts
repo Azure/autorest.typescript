@@ -210,7 +210,10 @@ export function _createOrUpdateTextBlocklistSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: { description: resource["description"] },
+      body: {
+        blocklistName: resource["blocklistName"],
+        description: resource["description"],
+      },
     });
 }
 
