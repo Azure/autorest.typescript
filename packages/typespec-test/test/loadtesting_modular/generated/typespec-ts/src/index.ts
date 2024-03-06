@@ -73,8 +73,12 @@ export {
 export {
   restorePoller,
   RestorePollerOptions,
-} from "./loadTestRun/restorePollerHelpers.js";
+} from "./testRunOperations/restorePollerHelpers.js";
 export {
+  Test as TestRunOperationsClientTest,
+  PassFailCriteria as TestRunOperationsClientPassFailCriteria,
+  PassFailMetric as TestRunOperationsClientPassFailMetric,
+  PFMetrics as TestRunOperationsClientPFMetrics,
   PFAgFunc as TestRunOperationsClientPFAgFunc,
   PFAction as TestRunOperationsClientPFAction,
   PFResult as TestRunOperationsClientPFResult,

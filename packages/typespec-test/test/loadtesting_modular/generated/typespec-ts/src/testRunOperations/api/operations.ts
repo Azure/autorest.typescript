@@ -157,9 +157,6 @@ export async function _testRunDeserialize(
   }
 
   return result.body as any;
-      result.body["errorDetails"] === undefined
-                    "additionalFileInfo"
-                  ] === undefined
 }
 
 /** Create and start a new test run with the given name. */

@@ -226,7 +226,6 @@ export interface LoadTestConfiguration {
     splitAllCSVs?: boolean;
 }
 
-    testRun(testRunId: string, resource: LoadTestRunClientTestRun, options?: TestRunOptions): PollerLike<OperationState<LoadTestRunClientTestRun>, LoadTestRunClientTestRun>;
 // @public
 export interface MetricAvailability {
     timeGrain?: TimeGrain;
@@ -339,6 +338,18 @@ export interface ResourceMetric {
     resourceId: string;
     resourceType: string;
     unit?: string;
+}
+
+// Warning: (ae-forgotten-export) The symbol "AzureLoadTestingContext" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: AzureLoadTestingContext | TestRunOperationsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+
+// @public (undocumented)
+export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
+    abortSignal?: AbortSignalLike;
+    processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -462,7 +473,7 @@ export class TestRunOperationsClient {
     listTestRuns(options?: ListTestRunsOptions): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTestRun>;
     readonly pipeline: Pipeline;
     stopTestRun(testRunId: string, options?: StopTestRunOptions): Promise<TestRunOperationsClientTestRun>;
-    testRun(testRunId: string, resource: TestRunOperationsClientTestRun, options?: TestRunOptions): Promise<TestRunOperationsClientTestRun>;
+    testRun(testRunId: string, resource: TestRunOperationsClientTestRun, options?: TestRunOptions): PollerLike<OperationState<TestRunOperationsClientTestRun>, TestRunOperationsClientTestRun>;
 }
 
 // @public
@@ -668,18 +679,6 @@ export interface TestRunOperationsClientResourceMetric {
     resourceId: string;
     resourceType: string;
     unit?: string;
-}
-
-// Warning: (ae-forgotten-export) The symbol "AzureLoadTestingContext" needs to be exported by the entry point index.d.ts
-//
-// @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: AzureLoadTestingContext | LoadTestRunClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
-
-// @public (undocumented)
-export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
-    abortSignal?: AbortSignalLike;
-    processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
-    updateIntervalInMs?: number;
 }
 
 // @public
