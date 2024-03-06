@@ -22,7 +22,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { stringToUint8Array } from "@azure/core-util";
+import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
 import {
   ImagesCreateOptions,
   ImagesCreateEditOptions,
@@ -90,8 +90,11 @@ export function _createEditSend(
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
         prompt: image["prompt"],
-        image: image["image"],
-        mask: image["mask"],
+        image: uint8ArrayToString(image["image"], "base64"),
+        mask:
+          image["mask"] !== undefined
+            ? uint8ArrayToString(image["mask"], "base64")
+            : undefined,
         n: image["n"],
         size: image["size"],
         response_format: image["responseFormat"],
@@ -141,7 +144,7 @@ export function _createVariationSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        image: image["image"],
+        image: uint8ArrayToString(image["image"], "base64"),
         n: image["n"],
         size: image["size"],
         response_format: image["responseFormat"],

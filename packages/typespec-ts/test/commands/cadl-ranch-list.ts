@@ -6,6 +6,10 @@ export interface TypeSpecRanchConfig {
 
 export const rlcTsps: TypeSpecRanchConfig[] = [
   {
+    outputPath: "payload/multipart",
+    inputPath: "payload/multipart"
+  },
+  {
     outputPath: "union-body",
     inputPath: "union-body"
   },
@@ -208,6 +212,14 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "payload/pageable",
     inputPath: "payload/pageable"
+  },
+  {
+    outputPath: "client/naming",
+    inputPath: "client/naming"
+  },
+  {
+    outputPath: "serialization/encoded-name/json",
+    inputPath: "serialization/encoded-name/json"
   }
 ];
 
@@ -327,9 +339,7 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     outputPath: "models/propertyTypes",
     inputPath: "type/property/value-types"
   },
-  {  outputPath: "arrays/items",
-    inputPath: "type/array"
-  },
+  { outputPath: "arrays/items", inputPath: "type/array" },
   {
     outputPath: "models/inheritance/recursive",
     inputPath: "type/model/inheritance/recursive"
@@ -349,6 +359,14 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "scalar",
     inputPath: "type/scalar"
+  },
+  {
+    outputPath: "client/naming",
+    inputPath: "client/naming"
+  },
+  {
+    outputPath: "serialization/encoded-name/json",
+    inputPath: "serialization/encoded-name/json"
   }
 ];
 

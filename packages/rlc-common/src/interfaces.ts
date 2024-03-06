@@ -108,7 +108,12 @@ export interface ApiVersionInfo {
   isCrossedVersion?: boolean;
 }
 
-export type ApiVersionPosition = "path" | "query" | "baseurl" | "duplicate" | "none";
+export type ApiVersionPosition =
+  | "path"
+  | "query"
+  | "baseurl"
+  | "duplicate"
+  | "none";
 export interface HelperFunctionDetails {
   hasPaging?: boolean;
   hasLongRunning?: boolean;
@@ -181,6 +186,11 @@ export interface OperationLroDetail {
   precedence?: number;
 }
 
+/**
+ * Flavor of the package to generate. If "azure", an Azure-branded package should be generated. If left undefined, a package without Azure branding will be generated.
+ */
+export type PackageFlavor = "azure" | undefined;
+
 export interface RLCOptions {
   includeShortcuts?: boolean;
   multiClient?: boolean;
@@ -222,7 +232,7 @@ export interface RLCOptions {
   sourceFrom?: "TypeSpec" | "Swagger";
   isModularLibrary?: boolean;
   enableOperationGroup?: boolean;
-  branded?: boolean;
+  flavor?: PackageFlavor;
   enableModelNamespace?: boolean;
   hierarchyClient?: boolean;
 }
@@ -321,8 +331,17 @@ export interface ParameterMetadatas {
 }
 
 export interface ParameterBodyMetadata {
-  // In case of formData we'd get multiple properties in body marked as partialBody
+  /**
+   * In case of formData we'd get multiple properties in body marked as partialBody
+   * If yes, rlc-common would prepare the whole part shape;
+   * usually false in typespec source because rlc-common doesn't have to prepare the whole part shape
+   */
   isPartialBody?: boolean;
+  /**
+   * The `File` type is only available in the browser and Node 20, so we need to check if the file type is included in the body
+   * If yes, we need to export the helpers for customers. This would be useful in multipart/form-data to upload files
+   */
+  needsFilePolyfil?: boolean;
   body?: ParameterBodySchema[];
 }
 

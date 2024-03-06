@@ -122,14 +122,15 @@ export async function _createDeserialize(
       status: p["status"],
       statusDetails: p["status_details"],
     })),
-    events: !result.body["events"]
-      ? result.body["events"]
-      : result.body["events"].map((p) => ({
-          object: p["object"],
-          createdAt: new Date(p["created_at"]),
-          level: p["level"],
-          message: p["message"],
-        })),
+    events:
+      result.body["events"] === undefined
+        ? result.body["events"]
+        : result.body["events"].map((p) => ({
+            object: p["object"],
+            createdAt: new Date(p["created_at"]),
+            level: p["level"],
+            message: p["message"],
+          })),
   };
 }
 
@@ -210,14 +211,15 @@ export async function _listDeserialize(
         status: p["status"],
         statusDetails: p["status_details"],
       })),
-      events: !p["events"]
-        ? p["events"]
-        : p["events"].map((p) => ({
-            object: p["object"],
-            createdAt: new Date(p["created_at"]),
-            level: p["level"],
-            message: p["message"],
-          })),
+      events:
+        p["events"] === undefined
+          ? p["events"]
+          : p["events"].map((p) => ({
+              object: p["object"],
+              createdAt: new Date(p["created_at"]),
+              level: p["level"],
+              message: p["message"],
+            })),
     })),
   };
 }
@@ -301,14 +303,15 @@ export async function _retrieveDeserialize(
       status: p["status"],
       statusDetails: p["status_details"],
     })),
-    events: !result.body["events"]
-      ? result.body["events"]
-      : result.body["events"].map((p) => ({
-          object: p["object"],
-          createdAt: new Date(p["created_at"]),
-          level: p["level"],
-          message: p["message"],
-        })),
+    events:
+      result.body["events"] === undefined
+        ? result.body["events"]
+        : result.body["events"].map((p) => ({
+            object: p["object"],
+            createdAt: new Date(p["created_at"]),
+            level: p["level"],
+            message: p["message"],
+          })),
   };
 }
 
@@ -434,14 +437,15 @@ export async function _cancelDeserialize(
       status: p["status"],
       statusDetails: p["status_details"],
     })),
-    events: !result.body["events"]
-      ? result.body["events"]
-      : result.body["events"].map((p) => ({
-          object: p["object"],
-          createdAt: new Date(p["created_at"]),
-          level: p["level"],
-          message: p["message"],
-        })),
+    events:
+      result.body["events"] === undefined
+        ? result.body["events"]
+        : result.body["events"].map((p) => ({
+            object: p["object"],
+            createdAt: new Date(p["created_at"]),
+            level: p["level"],
+            message: p["message"],
+          })),
   };
 }
 

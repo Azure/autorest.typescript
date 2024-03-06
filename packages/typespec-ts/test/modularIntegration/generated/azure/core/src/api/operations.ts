@@ -80,12 +80,13 @@ export function _createOrUpdateSend(
       queryParameters: { "api-version": "2022-12-01-preview" },
       body: {
         name: resource["name"],
-        orders: !resource["orders"]
-          ? resource["orders"]
-          : resource["orders"].map((p) => ({
-              userId: p["userId"],
-              detail: p["detail"],
-            })),
+        orders:
+          resource["orders"] === undefined
+            ? resource["orders"]
+            : resource["orders"].map((p) => ({
+                userId: p["userId"],
+                detail: p["detail"],
+              })),
       },
     });
 }
@@ -103,13 +104,14 @@ export async function _createOrUpdateDeserialize(
   return {
     id: result.body["id"],
     name: result.body["name"],
-    orders: !result.body["orders"]
-      ? result.body["orders"]
-      : result.body["orders"].map((p) => ({
-          id: p["id"],
-          userId: p["userId"],
-          detail: p["detail"],
-        })),
+    orders:
+      result.body["orders"] === undefined
+        ? result.body["orders"]
+        : result.body["orders"].map((p) => ({
+            id: p["id"],
+            userId: p["userId"],
+            detail: p["detail"],
+          })),
     etag: result.body["etag"],
   };
 }
@@ -142,12 +144,13 @@ export function _createOrReplaceSend(
       queryParameters: { "api-version": "2022-12-01-preview" },
       body: {
         name: resource["name"],
-        orders: !resource["orders"]
-          ? resource["orders"]
-          : resource["orders"].map((p) => ({
-              userId: p["userId"],
-              detail: p["detail"],
-            })),
+        orders:
+          resource["orders"] === undefined
+            ? resource["orders"]
+            : resource["orders"].map((p) => ({
+                userId: p["userId"],
+                detail: p["detail"],
+              })),
       },
     });
 }
@@ -165,13 +168,14 @@ export async function _createOrReplaceDeserialize(
   return {
     id: result.body["id"],
     name: result.body["name"],
-    orders: !result.body["orders"]
-      ? result.body["orders"]
-      : result.body["orders"].map((p) => ({
-          id: p["id"],
-          userId: p["userId"],
-          detail: p["detail"],
-        })),
+    orders:
+      result.body["orders"] === undefined
+        ? result.body["orders"]
+        : result.body["orders"].map((p) => ({
+            id: p["id"],
+            userId: p["userId"],
+            detail: p["detail"],
+          })),
     etag: result.body["etag"],
   };
 }
@@ -210,13 +214,14 @@ export async function _getDeserialize(
   return {
     id: result.body["id"],
     name: result.body["name"],
-    orders: !result.body["orders"]
-      ? result.body["orders"]
-      : result.body["orders"].map((p) => ({
-          id: p["id"],
-          userId: p["userId"],
-          detail: p["detail"],
-        })),
+    orders:
+      result.body["orders"] === undefined
+        ? result.body["orders"]
+        : result.body["orders"].map((p) => ({
+            id: p["id"],
+            userId: p["userId"],
+            detail: p["detail"],
+          })),
     etag: result.body["etag"],
   };
 }
@@ -272,13 +277,14 @@ export async function _listDeserialize(
     value: result.body["value"].map((p) => ({
       id: p["id"],
       name: p["name"],
-      orders: !p["orders"]
-        ? p["orders"]
-        : p["orders"].map((p) => ({
-            id: p["id"],
-            userId: p["userId"],
-            detail: p["detail"],
-          })),
+      orders:
+        p["orders"] === undefined
+          ? p["orders"]
+          : p["orders"].map((p) => ({
+              id: p["id"],
+              userId: p["userId"],
+              detail: p["detail"],
+            })),
       etag: p["etag"],
     })),
     nextLink: result.body["nextLink"],
@@ -321,13 +327,14 @@ export async function _listWithPageDeserialize(
     value: result.body["value"].map((p) => ({
       id: p["id"],
       name: p["name"],
-      orders: !p["orders"]
-        ? p["orders"]
-        : p["orders"].map((p) => ({
-            id: p["id"],
-            userId: p["userId"],
-            detail: p["detail"],
-          })),
+      orders:
+        p["orders"] === undefined
+          ? p["orders"]
+          : p["orders"].map((p) => ({
+              id: p["id"],
+              userId: p["userId"],
+              detail: p["detail"],
+            })),
       etag: p["etag"],
     })),
     nextLink: result.body["nextLink"],
@@ -377,13 +384,14 @@ export async function _listWithParametersDeserialize(
     value: result.body["value"].map((p) => ({
       id: p["id"],
       name: p["name"],
-      orders: !p["orders"]
-        ? p["orders"]
-        : p["orders"].map((p) => ({
-            id: p["id"],
-            userId: p["userId"],
-            detail: p["detail"],
-          })),
+      orders:
+        p["orders"] === undefined
+          ? p["orders"]
+          : p["orders"].map((p) => ({
+              id: p["id"],
+              userId: p["userId"],
+              detail: p["detail"],
+            })),
       etag: p["etag"],
     })),
     nextLink: result.body["nextLink"],
@@ -431,13 +439,14 @@ export async function _listWithCustomPageModelDeserialize(
     items: result.body["items"].map((p) => ({
       id: p["id"],
       name: p["name"],
-      orders: !p["orders"]
-        ? p["orders"]
-        : p["orders"].map((p) => ({
-            id: p["id"],
-            userId: p["userId"],
-            detail: p["detail"],
-          })),
+      orders:
+        p["orders"] === undefined
+          ? p["orders"]
+          : p["orders"].map((p) => ({
+              id: p["id"],
+              userId: p["userId"],
+              detail: p["detail"],
+            })),
       etag: p["etag"],
     })),
     nextLink: result.body["nextLink"],
@@ -518,13 +527,14 @@ export async function _exportOperationDeserialize(
   return {
     id: result.body["id"],
     name: result.body["name"],
-    orders: !result.body["orders"]
-      ? result.body["orders"]
-      : result.body["orders"].map((p) => ({
-          id: p["id"],
-          userId: p["userId"],
-          detail: p["detail"],
-        })),
+    orders:
+      result.body["orders"] === undefined
+        ? result.body["orders"]
+        : result.body["orders"].map((p) => ({
+            id: p["id"],
+            userId: p["userId"],
+            detail: p["detail"],
+          })),
     etag: result.body["etag"],
   };
 }

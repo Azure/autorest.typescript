@@ -3,6 +3,7 @@ import { AutorestOptions, getHost, getSession } from "../autorestSession";
 import { DependencyInfo, TracingInfo } from "../models/clientDetails";
 import { PackageDetails } from "../models/packageDetails";
 import { NameType, normalizeName } from "./nameUtils";
+import { PackageFlavor } from "@azure-tools/rlc-common";
 
 /**
  * Extracts common autorest options
@@ -42,7 +43,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const coreHttpCompatMode = await getCoreHttpCompatMode(host);
   const azureSdkForJs = await getAzureSdkForJs(host);
   const dependencyInfo = await getDependencyInfo(host);
-  const branded = await getBranded(host);
+  const flavor = await getFlavor(host);
 
   return {
     azureArm,
@@ -77,7 +78,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     coreHttpCompatMode,
     dependencyInfo,
     useLegacyLro,
-    branded
+    flavor
   };
 }
 
@@ -116,7 +117,9 @@ async function getGenerateSample(
 
 async function getGenerateTest(host: AutorestExtensionHost): Promise<boolean> {
   const generateTest = await host.getValue("generate-test");
-  return generateTest === null ? false : Boolean(generateTest);
+  return generateTest === null || generateTest === undefined
+    ? false
+    : Boolean(generateTest);
 }
 
 async function getAzureSdkForJs(host: AutorestExtensionHost): Promise<boolean> {
@@ -269,9 +272,8 @@ async function getPackageDetails(
   const name = normalizeName(model.language.default.name, NameType.File);
   // TODO: Look for an existing package.json and
   const packageName: string = (await host.getValue("package-name")) || name;
-  const packageNameParts: RegExpMatchArray | null = packageName.match(
-    /(^@(.*)\/)?(.*)/
-  );
+  const packageNameParts: RegExpMatchArray | null =
+    packageName.match(/(^@(.*)\/)?(.*)/);
   if (!packageNameParts) {
     throw new Error("Expecting valid package name");
   }
@@ -290,9 +292,8 @@ async function getPackageDetails(
 export async function getSecurityScopes(
   host: AutorestExtensionHost
 ): Promise<string[] | undefined> {
-  const securityScopes: string | undefined = await host.getValue(
-    "security-scopes"
-  );
+  const securityScopes: string | undefined =
+    await host.getValue("security-scopes");
   if (securityScopes !== undefined && typeof securityScopes === "string") {
     return securityScopes.split(",");
   }
@@ -337,8 +338,32 @@ async function getCoreHttpCompatMode(
   return (await host.getValue("core-http-compat-mode")) || false;
 }
 
-async function getBranded(host: AutorestExtensionHost): Promise<boolean> {
-  return (await host.getValue("branded")) ?? true;
+async function getFlavor(host: AutorestExtensionHost): Promise<PackageFlavor> {
+  const flavor = await host.getValue<string>("flavor");
+
+  if (flavor) {
+    if (flavor.toLowerCase() === "azure") {
+      return "azure";
+    } else {
+      return undefined;
+    }
+  }
+
+  const branded = await host.getValue("branded");
+  if (branded !== undefined) {
+    return branded ? "azure" : undefined;
+  }
+
+  const scopeName = (await getPackageDetails(host)).scopeName;
+
+  if (
+    scopeName &&
+    (scopeName.startsWith("azure") || scopeName.startsWith("msinternal"))
+  ) {
+    return "azure";
+  } else {
+    return undefined;
+  }
 }
 
 async function getDependencyInfo(

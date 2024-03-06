@@ -14,6 +14,7 @@ import {
   ChatCompletions,
   ImageGenerationOptions,
   ImageGenerations,
+  AudioSpeechOptions,
   EmbeddingsOptions,
   Embeddings,
 } from "./models/models.js";
@@ -24,8 +25,8 @@ import {
   GetAudioTranslationAsResponseObjectOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,
-  GetChatCompletionsWithAzureExtensionsOptions,
   GetImageGenerationsOptions,
+  GetAudioSpeechOptions,
   GetEmbeddingsOptions,
 } from "./models/options.js";
 import {
@@ -38,8 +39,8 @@ import {
   getAudioTranslationAsResponseObject,
   getCompletions,
   getChatCompletions,
-  getChatCompletionsWithAzureExtensions,
   getImageGenerations,
+  getAudioSpeech,
   getEmbeddings,
 } from "./api/index.js";
 
@@ -151,26 +152,6 @@ export class OpenAIClient {
     return getChatCompletions(this._client, deploymentId, body, options);
   }
 
-  /**
-   * Gets chat completions for the provided chat messages.
-   * This is an Azure-specific version of chat completions that supports integration with configured data sources and
-   * other augmentations to the base chat completions capabilities.
-   */
-  getChatCompletionsWithAzureExtensions(
-    deploymentId: string,
-    body: ChatCompletionsOptions,
-    options: GetChatCompletionsWithAzureExtensionsOptions = {
-      requestOptions: {},
-    },
-  ): Promise<ChatCompletions> {
-    return getChatCompletionsWithAzureExtensions(
-      this._client,
-      deploymentId,
-      body,
-      options,
-    );
-  }
-
   /** Creates an image given a prompt. */
   getImageGenerations(
     deploymentId: string,
@@ -178,6 +159,15 @@ export class OpenAIClient {
     options: GetImageGenerationsOptions = { requestOptions: {} },
   ): Promise<ImageGenerations> {
     return getImageGenerations(this._client, deploymentId, body, options);
+  }
+
+  /** Generates text-to-speech audio from the input text. */
+  getAudioSpeech(
+    deploymentId: string,
+    body: AudioSpeechOptions,
+    options: GetAudioSpeechOptions = { requestOptions: {} },
+  ): Promise<Uint8Array> {
+    return getAudioSpeech(this._client, deploymentId, body, options);
   }
 
   /** Return the embeddings for a given prompt. */

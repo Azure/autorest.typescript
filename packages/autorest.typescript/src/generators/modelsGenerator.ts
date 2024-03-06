@@ -680,7 +680,7 @@ function writeOptionalParameters(
   function buildParamDetails(p: ParameterDetails): PropertySignatureStructure {
     const description = getParameterDescription(p, operationFullName);
     return {
-      name: normalizeName(p.name, NameType.Parameter),
+      name: normalizeName(p.propertyName, NameType.Parameter),
       hasQuestionToken: true,
       type: p.typeDetails.typeName,
       docs: description ? [description] : undefined,

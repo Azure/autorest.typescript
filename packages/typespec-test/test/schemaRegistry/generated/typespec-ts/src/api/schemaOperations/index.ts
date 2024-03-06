@@ -31,6 +31,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
 import {
   SchemaOperationsListSchemaGroupsOptions,
   SchemaOperationsGetSchemaByIdOptions,
@@ -42,22 +43,20 @@ import {
 
 export function _listSchemaGroupsSend(
   context: Client,
-  options: SchemaOperationsListSchemaGroupsOptions = { requestOptions: {} },
+  options: SchemaOperationsListSchemaGroupsOptions = { requestOptions: {} }
 ): StreamableMethod<
   ListSchemaGroups200Response | ListSchemaGroupsDefaultResponse
 > {
-  return context
-    .path("/$schemaGroups")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2023-07-01" },
-    }) as StreamableMethod<
+  return context.path("/$schemaGroups").get({
+    ...operationOptionsToRequestParameters(options),
+    queryParameters: { "api-version": "2023-07-01" },
+  }) as StreamableMethod<
     ListSchemaGroups200Response | ListSchemaGroupsDefaultResponse
   >;
 }
 
 export async function _listSchemaGroupsDeserialize(
-  result: ListSchemaGroups200Response | ListSchemaGroupsDefaultResponse,
+  result: ListSchemaGroups200Response | ListSchemaGroupsDefaultResponse
 ): Promise<PagedSchemaGroup> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -72,44 +71,44 @@ export async function _listSchemaGroupsDeserialize(
 /** Gets the list of schema groups user is authorized to access. */
 export function listSchemaGroups(
   context: Client,
-  options: SchemaOperationsListSchemaGroupsOptions = { requestOptions: {} },
+  options: SchemaOperationsListSchemaGroupsOptions = { requestOptions: {} }
 ): PagedAsyncIterableIterator<SchemaGroup> {
   return buildPagedAsyncIterator(
     context,
     () => _listSchemaGroupsSend(context, options),
     _listSchemaGroupsDeserialize,
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink" }
   );
 }
 
 export function _getSchemaByIdSend(
   context: Client,
   id: string,
-  options: SchemaOperationsGetSchemaByIdOptions = { requestOptions: {} },
+  options: SchemaOperationsGetSchemaByIdOptions = { requestOptions: {} }
 ): StreamableMethod<GetSchemaById200Response | GetSchemaByIdDefaultResponse> {
-  return context
-    .path("/$schemaGroups/$schemas/{id}", id)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2023-07-01" },
-    });
+  return context.path("/$schemaGroups/$schemas/{id}", id).get({
+    ...operationOptionsToRequestParameters(options),
+    queryParameters: { "api-version": "2023-07-01" },
+  });
 }
 
 export async function _getSchemaByIdDeserialize(
-  result: GetSchemaById200Response | GetSchemaByIdDefaultResponse,
+  result: GetSchemaById200Response | GetSchemaByIdDefaultResponse
 ): Promise<Uint8Array> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 /** Gets a registered schema by its unique ID.  Azure Schema Registry guarantees that ID is unique within a namespace. Operation response type is based on serialization of schema requested. */
 export async function getSchemaById(
   context: Client,
   id: string,
-  options: SchemaOperationsGetSchemaByIdOptions = { requestOptions: {} },
+  options: SchemaOperationsGetSchemaByIdOptions = { requestOptions: {} }
 ): Promise<Uint8Array> {
   const result = await _getSchemaByIdSend(context, id, options);
   return _getSchemaByIdDeserialize(result);
@@ -119,7 +118,7 @@ export function _listSchemaVersionsSend(
   context: Client,
   groupName: string,
   name: string,
-  options: SchemaOperationsListSchemaVersionsOptions = { requestOptions: {} },
+  options: SchemaOperationsListSchemaVersionsOptions = { requestOptions: {} }
 ): StreamableMethod<
   ListSchemaVersions200Response | ListSchemaVersionsDefaultResponse
 > {
@@ -132,7 +131,7 @@ export function _listSchemaVersionsSend(
 }
 
 export async function _listSchemaVersionsDeserialize(
-  result: ListSchemaVersions200Response | ListSchemaVersionsDefaultResponse,
+  result: ListSchemaVersions200Response | ListSchemaVersionsDefaultResponse
 ): Promise<PagedVersion> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -151,13 +150,13 @@ export function listSchemaVersions(
   context: Client,
   groupName: string,
   name: string,
-  options: SchemaOperationsListSchemaVersionsOptions = { requestOptions: {} },
+  options: SchemaOperationsListSchemaVersionsOptions = { requestOptions: {} }
 ): PagedAsyncIterableIterator<SchemaVersion> {
   return buildPagedAsyncIterator(
     context,
     () => _listSchemaVersionsSend(context, groupName, name, options),
     _listSchemaVersionsDeserialize,
-    { itemName: "value", nextLinkName: "nextLink" },
+    { itemName: "value", nextLinkName: "nextLink" }
   );
 }
 
@@ -166,7 +165,7 @@ export function _getSchemaByVersionSend(
   groupName: string,
   name: string,
   schemaVersion: number,
-  options: SchemaOperationsGetSchemaByVersionOptions = { requestOptions: {} },
+  options: SchemaOperationsGetSchemaByVersionOptions = { requestOptions: {} }
 ): StreamableMethod<
   GetSchemaByVersion200Response | GetSchemaByVersionDefaultResponse
 > {
@@ -175,7 +174,7 @@ export function _getSchemaByVersionSend(
       "/$schemaGroups/{groupName}/schemas/{name}/versions/{schemaVersion}",
       groupName,
       name,
-      schemaVersion,
+      schemaVersion
     )
     .get({
       ...operationOptionsToRequestParameters(options),
@@ -184,13 +183,15 @@ export function _getSchemaByVersionSend(
 }
 
 export async function _getSchemaByVersionDeserialize(
-  result: GetSchemaByVersion200Response | GetSchemaByVersionDefaultResponse,
+  result: GetSchemaByVersion200Response | GetSchemaByVersionDefaultResponse
 ): Promise<Uint8Array> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 /** Gets one specific version of one schema. */
@@ -199,14 +200,14 @@ export async function getSchemaByVersion(
   groupName: string,
   name: string,
   schemaVersion: number,
-  options: SchemaOperationsGetSchemaByVersionOptions = { requestOptions: {} },
+  options: SchemaOperationsGetSchemaByVersionOptions = { requestOptions: {} }
 ): Promise<Uint8Array> {
   const result = await _getSchemaByVersionSend(
     context,
     groupName,
     name,
     schemaVersion,
-    options,
+    options
   );
   return _getSchemaByVersionDeserialize(result);
 }
@@ -217,7 +218,7 @@ export function _getSchemaIdByContentSend(
   name: string,
   contentType: SchemaContentTypeValues,
   schemaContent: Uint8Array,
-  options: SchemaOperationsGetSchemaIdByContentOptions = { requestOptions: {} },
+  options: SchemaOperationsGetSchemaIdByContentOptions = { requestOptions: {} }
 ): StreamableMethod<
   GetSchemaIdByContent204Response | GetSchemaIdByContentDefaultResponse
 > {
@@ -226,13 +227,12 @@ export function _getSchemaIdByContentSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
-      queryParameters: { "api-version": "2023-07-01" },
-      body: schemaContent,
+      body: uint8ArrayToString(schemaContent, "base64"),
     });
 }
 
 export async function _getSchemaIdByContentDeserialize(
-  result: GetSchemaIdByContent204Response | GetSchemaIdByContentDefaultResponse,
+  result: GetSchemaIdByContent204Response | GetSchemaIdByContentDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -248,7 +248,7 @@ export async function getSchemaIdByContent(
   name: string,
   contentType: SchemaContentTypeValues,
   schemaContent: Uint8Array,
-  options: SchemaOperationsGetSchemaIdByContentOptions = { requestOptions: {} },
+  options: SchemaOperationsGetSchemaIdByContentOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _getSchemaIdByContentSend(
     context,
@@ -256,7 +256,7 @@ export async function getSchemaIdByContent(
     name,
     contentType,
     schemaContent,
-    options,
+    options
   );
   return _getSchemaIdByContentDeserialize(result);
 }
@@ -267,20 +267,19 @@ export function _registerSchemaSend(
   name: string,
   contentType: SchemaContentTypeValues,
   content: Uint8Array,
-  options: SchemaOperationsRegisterSchemaOptions = { requestOptions: {} },
+  options: SchemaOperationsRegisterSchemaOptions = { requestOptions: {} }
 ): StreamableMethod<RegisterSchema204Response | RegisterSchemaDefaultResponse> {
   return context
     .path("/$schemaGroups/{groupName}/schemas/{name}", groupName, name)
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
-      queryParameters: { "api-version": "2023-07-01" },
-      body: content,
+      body: uint8ArrayToString(content, "base64"),
     });
 }
 
 export async function _registerSchemaDeserialize(
-  result: RegisterSchema204Response | RegisterSchemaDefaultResponse,
+  result: RegisterSchema204Response | RegisterSchemaDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -296,7 +295,7 @@ export async function registerSchema(
   name: string,
   contentType: SchemaContentTypeValues,
   content: Uint8Array,
-  options: SchemaOperationsRegisterSchemaOptions = { requestOptions: {} },
+  options: SchemaOperationsRegisterSchemaOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _registerSchemaSend(
     context,
@@ -304,7 +303,7 @@ export async function registerSchema(
     name,
     contentType,
     content,
-    options,
+    options
   );
   return _registerSchemaDeserialize(result);
 }

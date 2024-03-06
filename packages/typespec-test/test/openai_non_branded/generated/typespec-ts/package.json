@@ -97,7 +97,7 @@
   "autoPublish": false,
   "dependencies": {
     "tslib": "^2.2.0",
-    "@typespec/ts-http-runtime": "1.0.0-alpha.20231129.4"
+    "@typespec/ts-http-runtime": "1.0.0-alpha.20240226.9"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.31.1",

@@ -13,7 +13,7 @@ export {
   getAudioTranslationAsResponseObject,
   getCompletions,
   getChatCompletions,
-  getChatCompletionsWithAzureExtensions,
   getImageGenerations,
+  getAudioSpeech,
   getEmbeddings,
 } from "./operations.js";

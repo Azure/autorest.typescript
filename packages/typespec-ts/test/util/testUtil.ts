@@ -56,6 +56,7 @@ ${needAzureCore ? 'import "@azure-tools/typespec-azure-core";' : ""}
 using TypeSpec.Rest; 
 using TypeSpec.Http;
 using TypeSpec.Versioning;
+${needTCGC ? "using Azure.ClientGenerator.Core;" : ""}
 ${needAzureCore ? "using Azure.Core;" : ""}
 ${needNamespaces ? namespace : ""}
 ${withVersionedApiVersion && needNamespaces ? 'enum Versions { v2022_05_15_preview: "2022-05-15-preview"}' : ""}
@@ -77,7 +78,7 @@ export function createDpgContextTestHelper(program: Program): SdkContext {
         main: "@azure-tools/typespec-ts",
         metadata: { name: "@azure-tools/typespec-ts" }
       }
-    ],
+    ]
   };
   const resolvedOptions = { ...defaultOptions };
   program.emitters = resolvedOptions.emitters as any;
@@ -85,7 +86,7 @@ export function createDpgContextTestHelper(program: Program): SdkContext {
     program: program,
     generateProtocolMethods: resolvedOptions.generateProtocolMethods,
     generateConvenienceMethods: resolvedOptions.generateConvenienceMethods,
-    rlcOptions: {},
+    rlcOptions: { flavor: "azure" },
     generationPathDetail: {},
     emitterName: "@azure-tools/typespec-ts"
   } as SdkContext;
