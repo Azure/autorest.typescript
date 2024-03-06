@@ -20,3 +20,13 @@ export interface JsonAndClientProjectedNameModel {
   /** Pass in true */
   wireName: boolean;
 }
+
+export interface ModelWithClientProjectedName {
+  /** Pass in true */
+  defaultName: boolean;
+}
+
+export interface ModelWithLanguageProjectedName {
+  /** Pass in true */
+  defaultName: boolean;
+}

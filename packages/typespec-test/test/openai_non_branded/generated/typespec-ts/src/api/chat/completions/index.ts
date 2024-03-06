@@ -1,8 +1,8 @@
 // Licensed under the MIT license.
 
 import {
-  CreateChatCompletionResponse,
   CreateChatCompletionRequest,
+  CreateChatCompletionResponse,
 } from "../../../models/models.js";
 import {
   ChatCompletionsCreate200Response,
@@ -41,13 +41,14 @@ export function _createSend(
                 arguments: p.functionCall?.["arguments"],
               },
         })),
-        functions: !body["functions"]
-          ? body["functions"]
-          : body["functions"].map((p) => ({
-              name: p["name"],
-              description: p["description"],
-              parameters: p["parameters"],
-            })),
+        functions:
+          body["functions"] === undefined
+            ? body["functions"]
+            : body["functions"].map((p) => ({
+                name: p["name"],
+                description: p["description"],
+                parameters: p["parameters"],
+              })),
         function_call: body["functionCall"],
         temperature: body["temperature"],
         top_p: body["topP"],
@@ -80,7 +81,7 @@ export async function _createDeserialize(
     choices: result.body["choices"].map((p) => ({
       index: p["index"],
       message: {
-        role: p.message["role"] as any,
+        role: p.message["role"],
         content: p.message["content"],
         functionCall: !p.message.function_call
           ? undefined
@@ -89,7 +90,7 @@ export async function _createDeserialize(
               arguments: p.message.function_call?.["arguments"],
             },
       },
-      finishReason: p["finish_reason"] as any,
+      finishReason: p["finish_reason"],
     })),
     usage: !result.body.usage
       ? undefined

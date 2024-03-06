@@ -5,7 +5,7 @@
 export interface DogParent {
   /** Weight of the dog */
   weight: number;
-  kind: string;
+  kind: DogKind;
 }
 
 /** Golden dog model */
@@ -31,3 +31,5 @@ export interface Cobra extends SnakeParent {
 export type Dog = DogParent | Golden;
 /** Test fixed enum type for discriminator */
 export type Snake = SnakeParent | Cobra;
+/** Alias for DogKind */
+export type DogKind = string | "golden";

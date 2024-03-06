@@ -10,16 +10,8 @@ export type ListSchemaVersionsParameters = RequestParameters;
 export type GetSchemaByVersionParameters = RequestParameters;
 
 export interface GetSchemaIdByContentBodyParam {
-  /**
-   * String representation (UTF-8) of the registered schema.
-   *
-   * Value may contain any sequence of octets
-   */
-  body:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
+  /** String representation (UTF-8) of the registered schema. */
+  body: string;
 }
 
 export interface GetSchemaIdByContentMediaTypesParam {
@@ -33,16 +25,8 @@ export type GetSchemaIdByContentParameters =
     RequestParameters;
 
 export interface RegisterSchemaBodyParam {
-  /**
-   * String representation (UTF-8) of the schema.
-   *
-   * Value may contain any sequence of octets
-   */
-  body:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
+  /** String representation (UTF-8) of the schema. */
+  body: string;
 }
 
 export interface RegisterSchemaMediaTypesParam {

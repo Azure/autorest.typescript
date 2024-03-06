@@ -78,7 +78,7 @@ function transformOperation(
   for (const resp of sortedOperationResponses(route.responses)) {
     const respName = getResponseTypeName(
       operationGroupName,
-      getOperationName(program, route.operation),
+      getOperationName(dpgContext, route.operation),
       getOperationStatuscode(resp)
     );
     respNames.push(respName);
@@ -89,15 +89,15 @@ function transformOperation(
     hasOptionalOptions: !hasRequiredOptions(dpgContext, route.parameters),
     optionsName: getParameterTypeName(
       operationGroupName,
-      getOperationName(program, route.operation)
+      getOperationName(dpgContext, route.operation)
     ),
     responseTypes,
     returnType: respNames.join(" | "),
     successStatus: getOperationSuccessStatus(route),
-    operationName: getOperationName(program, route.operation),
+    operationName: getOperationName(dpgContext, route.operation),
     operationHelperDetail: {
       lroDetails: extractOperationLroDetail(
-        program,
+        dpgContext,
         route,
         responseTypes,
         operationGroupName
@@ -116,7 +116,7 @@ function transformOperation(
     paths[route.path] = {
       description: getDoc(program, route.operation) ?? "",
       name: escapeCoreName(
-        getOperationName(program, route.operation) || "Client"
+        getOperationName(dpgContext, route.operation) || "Client"
       ),
       pathParameters: route.parameters.parameters
         .filter((p) => p.type === "path")

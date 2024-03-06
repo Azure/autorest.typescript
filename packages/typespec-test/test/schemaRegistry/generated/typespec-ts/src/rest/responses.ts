@@ -46,8 +46,7 @@ export interface GetSchemaById200Headers {
 /** The request has succeeded. */
 export interface GetSchemaById200Response extends HttpResponse {
   status: "200";
-  /** Value may contain any sequence of octets */
-  body: Uint8Array;
+  body: string;
   headers: RawHttpHeaders & GetSchemaById200Headers;
 }
 
@@ -99,8 +98,7 @@ export interface GetSchemaByVersion200Headers {
 /** The request has succeeded. */
 export interface GetSchemaByVersion200Response extends HttpResponse {
   status: "200";
-  /** Value may contain any sequence of octets */
-  body: Uint8Array;
+  body: string;
   headers: RawHttpHeaders & GetSchemaByVersion200Headers;
 }
 

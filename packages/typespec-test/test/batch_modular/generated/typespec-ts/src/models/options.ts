@@ -13,7 +13,7 @@ export interface ListApplicationsOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
 }
 
 export interface GetApplicationOptions extends OperationOptions {
@@ -21,7 +21,7 @@ export interface GetApplicationOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
 }
 
 export interface ListPoolUsageMetricsOptions extends OperationOptions {
@@ -34,7 +34,7 @@ export interface ListPoolUsageMetricsOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * The earliest time from which to include metrics. This must be at least two and
    * a half hours before the current time. If not specified this defaults to the
@@ -59,7 +59,7 @@ export interface CreatePoolOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
@@ -74,7 +74,7 @@ export interface ListPoolsOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-pools.
@@ -91,7 +91,7 @@ export interface DeletePoolOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -123,7 +123,7 @@ export interface PoolExistsOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -155,7 +155,7 @@ export interface GetPoolOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -191,7 +191,7 @@ export interface UpdatePoolOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -225,7 +225,7 @@ export interface DisablePoolAutoScaleOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
 }
 
 export interface EnablePoolAutoScaleOptions extends OperationOptions {
@@ -233,7 +233,7 @@ export interface EnablePoolAutoScaleOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -267,7 +267,7 @@ export interface EvaluatePoolAutoScaleOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
@@ -277,7 +277,7 @@ export interface ResizePoolOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -311,7 +311,7 @@ export interface StopPoolResizeOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -343,7 +343,7 @@ export interface ReplacePoolPropertiesOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
@@ -353,7 +353,7 @@ export interface RemoveNodesOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -392,7 +392,7 @@ export interface ListSupportedImagesOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
@@ -410,7 +410,7 @@ export interface ListPoolNodeCountsOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
@@ -423,7 +423,7 @@ export interface DeleteJobOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -455,7 +455,7 @@ export interface GetJobOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -491,7 +491,7 @@ export interface UpdateJobOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -525,7 +525,7 @@ export interface ReplaceJobOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -559,7 +559,7 @@ export interface DisableJobOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -593,7 +593,7 @@ export interface EnableJobOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -625,7 +625,7 @@ export interface TerminateJobOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -659,7 +659,7 @@ export interface CreateJobOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
@@ -674,7 +674,7 @@ export interface ListJobsOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-jobs.
@@ -696,7 +696,7 @@ export interface ListJobsFromScheduleOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-jobs-in-a-job-schedule.
@@ -719,7 +719,7 @@ export interface ListJobPreparationAndReleaseTaskStatusOptions
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-preparation-and-release-status.
@@ -734,7 +734,7 @@ export interface GetJobTaskCountsOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
 }
 
 export interface CreateCertificateOptions extends OperationOptions {
@@ -742,7 +742,7 @@ export interface CreateCertificateOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
@@ -757,7 +757,7 @@ export interface ListCertificatesOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-certificates.
@@ -772,7 +772,7 @@ export interface CancelCertificateDeletionOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
 }
 
 export interface DeleteCertificateOptions extends OperationOptions {
@@ -780,7 +780,7 @@ export interface DeleteCertificateOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
 }
 
 export interface GetCertificateOptions extends OperationOptions {
@@ -788,7 +788,7 @@ export interface GetCertificateOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** An OData $select clause. */
   $select?: string[];
 }
@@ -798,7 +798,7 @@ export interface JobScheduleExistsOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -830,7 +830,7 @@ export interface DeleteJobScheduleOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -862,7 +862,7 @@ export interface GetJobScheduleOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -898,7 +898,7 @@ export interface UpdateJobScheduleOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -932,7 +932,7 @@ export interface ReplaceJobScheduleOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -966,7 +966,7 @@ export interface DisableJobScheduleOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -998,7 +998,7 @@ export interface EnableJobScheduleOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -1030,7 +1030,7 @@ export interface TerminateJobScheduleOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -1062,7 +1062,7 @@ export interface CreateJobScheduleOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
@@ -1077,7 +1077,7 @@ export interface ListJobSchedulesOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.
@@ -1094,7 +1094,7 @@ export interface CreateTaskOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
@@ -1109,7 +1109,7 @@ export interface ListTasksOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-tasks.
@@ -1126,7 +1126,7 @@ export interface CreateTaskCollectionOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
@@ -1136,7 +1136,7 @@ export interface DeleteTaskOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -1168,7 +1168,7 @@ export interface GetTaskOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -1204,7 +1204,7 @@ export interface ReplaceTaskOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -1238,7 +1238,7 @@ export interface ListSubTasksOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** An OData $select clause. */
   $select?: string[];
 }
@@ -1248,7 +1248,7 @@ export interface TerminateTaskOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -1280,7 +1280,7 @@ export interface ReactivateTaskOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -1312,7 +1312,7 @@ export interface DeleteTaskFileOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * Whether to delete children of a directory. If the filePath parameter represents
    * a directory instead of a file, you can set recursive to true to delete the
@@ -1327,7 +1327,7 @@ export interface GetTaskFileOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * A timestamp indicating the last modified time of the resource known to the
    * client. The operation will be performed only if the resource on the service has
@@ -1352,7 +1352,7 @@ export interface GetTaskFilePropertiesOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * A timestamp indicating the last modified time of the resource known to the
    * client. The operation will be performed only if the resource on the service has
@@ -1377,7 +1377,7 @@ export interface ListTaskFilesOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-task-files.
@@ -1395,7 +1395,7 @@ export interface CreateNodeUserOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
@@ -1405,7 +1405,7 @@ export interface DeleteNodeUserOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
 }
 
 export interface ReplaceNodeUserOptions extends OperationOptions {
@@ -1413,7 +1413,7 @@ export interface ReplaceNodeUserOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
@@ -1423,7 +1423,7 @@ export interface GetNodeOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** An OData $select clause. */
   $select?: string[];
 }
@@ -1433,7 +1433,7 @@ export interface RebootNodeOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
@@ -1443,7 +1443,7 @@ export interface ReimageNodeOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
@@ -1453,7 +1453,7 @@ export interface DisableNodeSchedulingOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
@@ -1463,7 +1463,7 @@ export interface EnableNodeSchedulingOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
 }
 
 export interface GetNodeRemoteLoginSettingsOptions extends OperationOptions {
@@ -1471,7 +1471,7 @@ export interface GetNodeRemoteLoginSettingsOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
 }
 
 export interface GetNodeRemoteDesktopFileOptions extends OperationOptions {
@@ -1479,7 +1479,7 @@ export interface GetNodeRemoteDesktopFileOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
 }
 
 export interface UploadNodeLogsOptions extends OperationOptions {
@@ -1487,7 +1487,7 @@ export interface UploadNodeLogsOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
@@ -1502,7 +1502,7 @@ export interface ListNodesOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.
@@ -1517,7 +1517,7 @@ export interface GetNodeExtensionOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** An OData $select clause. */
   $select?: string[];
 }
@@ -1532,7 +1532,7 @@ export interface ListNodeExtensionsOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /** An OData $select clause. */
   $select?: string[];
 }
@@ -1542,7 +1542,7 @@ export interface DeleteNodeFileOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * Whether to delete children of a directory. If the filePath parameter represents
    * a directory instead of a file, you can set recursive to true to delete the
@@ -1557,7 +1557,7 @@ export interface GetNodeFileOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * A timestamp indicating the last modified time of the resource known to the
    * client. The operation will be performed only if the resource on the service has
@@ -1582,7 +1582,7 @@ export interface GetNodeFilePropertiesOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * A timestamp indicating the last modified time of the resource known to the
    * client. The operation will be performed only if the resource on the service has
@@ -1607,7 +1607,7 @@ export interface ListNodeFilesOptions extends OperationOptions {
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
-  timeOut?: number;
+  timeOutInSeconds?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-compute-node-files.

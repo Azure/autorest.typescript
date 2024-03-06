@@ -49,6 +49,7 @@ import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
+import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
 import { join } from "path";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
@@ -58,13 +59,14 @@ import {
   buildPagingTypes,
   buildPagingHelpers as buildModularPagingHelpers
 } from "./modular/buildPagingFiles.js";
+import { EmitterOptions } from "./lib.js";
 
 export * from "./lib.js";
 
 export async function $onEmit(context: EmitContext) {
   /** Shared status */
   const program: Program = context.program;
-  const emitterOptions: RLCOptions = context.options;
+  const emitterOptions: EmitterOptions = context.options;
   const dpgContext = createSdkContext(
     context,
     "@azure-tools/typespec-ts"
@@ -92,6 +94,14 @@ export async function $onEmit(context: EmitContext) {
       await calculateGenerationDir();
     dpgContext.generationPathDetail = generationPathDetail;
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
+    const hasTestFolder = await fsextra.pathExists(
+      join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
+    );
+    options.generateTest =
+      options.generateTest === true ||
+      (options.generateTest === undefined &&
+        !hasTestFolder &&
+        options.flavor === "azure");
     dpgContext.rlcOptions = options;
   }
 
@@ -184,6 +194,7 @@ export async function $onEmit(context: EmitContext) {
         buildModelsOptions(modularCodeModel, subClient);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
+        buildSerializeUtils(modularCodeModel);
         buildPagingTypes(modularCodeModel, subClient);
         buildModularPagingHelpers(
           modularCodeModel,
@@ -238,7 +249,7 @@ export async function $onEmit(context: EmitContext) {
     }
     const rlcClient: RLCModel = rlcCodeModels[0];
     const option = dpgContext.rlcOptions!;
-    const isBranded = option.branded ?? true;
+    const isAzureFlavor = option.flavor === "azure";
     // Generate metadata
     const hasPackageFile = await existsSync(
       join(dpgContext.generationPathDetail?.metadataDir ?? "", "package.json")
@@ -246,14 +257,13 @@ export async function $onEmit(context: EmitContext) {
     const shouldGenerateMetadata =
       option.generateMetadata === true ||
       (option.generateMetadata === undefined && !hasPackageFile);
-
     if (shouldGenerateMetadata) {
       const commonBuilders = [
         buildRollupConfig,
         buildApiExtractorConfig,
         buildReadmeFile
       ];
-      if (isBranded) {
+      if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
       }
       if (!option.isModularLibrary) {
@@ -291,13 +301,7 @@ export async function $onEmit(context: EmitContext) {
     }
 
     // Generate test relevant files
-    const hasTestFolder = await fsextra.pathExists(
-      join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
-    );
-    const shouldGenerateTest =
-      option.generateTest === true ||
-      (option.generateTest === undefined && !hasTestFolder);
-    if (shouldGenerateTest && isBranded) {
+    if (option.generateTest && isAzureFlavor) {
       await emitContentByBuilder(
         program,
         [
