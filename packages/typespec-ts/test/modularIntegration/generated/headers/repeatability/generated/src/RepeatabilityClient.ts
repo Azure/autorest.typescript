@@ -2,13 +2,13 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
+import { ImmediateSuccessOptions } from "./models/options.js";
 import {
   immediateSuccess,
   createRepeatability,
   RepeatabilityClientOptions,
   RepeatabilityContext,
 } from "./api/index.js";
-import { ImmediateSuccessOptions } from "./models/options.js";
 
 export { RepeatabilityClientOptions } from "./api/RepeatabilityContext.js";
 
