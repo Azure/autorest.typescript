@@ -75,7 +75,7 @@ export function transformToResponseTypes(
   function transformToResponseTypesForRoute(route: HttpOperation) {
     const rlcOperationUnit: OperationResponse = {
       operationGroup: getOperationGroupName(dpgContext, route),
-      operationName: getOperationName(program, route.operation),
+      operationName: getOperationName(dpgContext, route.operation),
       path: route.path,
       responses: []
     };
@@ -237,7 +237,7 @@ function transformLroLogicalResponse(
     description: `The final response for long-running ${route.operation.name} operation`,
     predefinedName: getLroLogicalResponseName(
       operationGroupName,
-      getOperationName(dpgContext.program, route.operation)
+      getOperationName(dpgContext, route.operation)
     ),
     body: successResp?.body
   };

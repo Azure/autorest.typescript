@@ -132,7 +132,7 @@ export {
   NetworkSecurityGroupRule,
   NetworkSecurityGroupRuleAccess,
   PublicIpAddressConfiguration,
-  IPAddressProvisioningType,
+  IpAddressProvisioningType,
   UserAccount,
   LinuxUserConfiguration,
   WindowsUserConfiguration,

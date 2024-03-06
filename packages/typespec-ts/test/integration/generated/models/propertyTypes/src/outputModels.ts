@@ -81,12 +81,8 @@ export interface EnumPropertyOutput {
 
 /** Model with extensible enum properties */
 export interface ExtensibleEnumPropertyOutput {
-  /**
-   * Property
-   *
-   * Possible values: "ValueOne", "ValueTwo"
-   */
-  property: string;
+  /** Property */
+  property: InnerEnumOutput;
 }
 
 /** Model with model properties */
@@ -167,7 +163,7 @@ export interface IntLiteralPropertyOutput {
 /** Model with a float literal property. */
 export interface FloatLiteralPropertyOutput {
   /** Property */
-  property: 42.42;
+  property: 43.125;
 }
 
 /** Model with a boolean literal property. */
@@ -191,5 +187,8 @@ export interface UnionIntLiteralPropertyOutput {
 /** Model with a union of float literal as property. */
 export interface UnionFloatLiteralPropertyOutput {
   /** Property */
-  property: 42.42 | 43.43;
+  property: 43.125 | 46.875;
 }
+
+/** Alias for InnerEnumOutput */
+export type InnerEnumOutput = string | "ValueOne" | "ValueTwo";

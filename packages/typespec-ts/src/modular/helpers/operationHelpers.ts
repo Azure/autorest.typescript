@@ -475,7 +475,10 @@ export function getOperationOptionsName(
       ? getClassicalLayerPrefix(operation, NameType.Interface)
       : "";
   const optionName = `${prefix}${toPascalCase(operation.name)}Options`;
-  if (operation.bodyParameter?.type.name === optionName) {
+  if (
+    operation.bodyParameter?.type.name === optionName ||
+    optionName === "ClientOptions"
+  ) {
     return optionName.replace(/Options$/, "RequestOptions");
   }
   return optionName;
@@ -1098,6 +1101,12 @@ export function deserializeResponseValue(
   typeStack: Type[] = [],
   format?: string
 ): string {
+  const requiredPrefix = required === false ? `${restValue} === undefined` : "";
+  const nullablePrefix = type.nullable ? `${restValue} === null` : "";
+  const requiredOrNullablePrefix =
+    requiredPrefix !== "" && nullablePrefix !== ""
+      ? `(${requiredPrefix} || ${nullablePrefix})`
+      : `${requiredPrefix}${nullablePrefix}`;
   switch (type.type) {
     case "datetime":
       return required
@@ -1109,7 +1118,7 @@ export function deserializeResponseValue(
       const prefix =
         required && !type.nullable
           ? `${restValue}`
-          : `!${restValue} ? ${restValue} : ${restValue}`;
+          : `${requiredOrNullablePrefix} ? ${restValue} : ${restValue}`;
       if (type.elementType?.type === "model") {
         if (!type.elementType.aliasType) {
           return `${prefix}.map(p => ({${getResponseMapping(
@@ -1184,6 +1193,12 @@ export function serializeRequestValue(
   typeStack: Type[] = [],
   format?: string
 ): string {
+  const requiredPrefix = required === false ? `${clientValue} === undefined` : "";
+  const nullablePrefix = type.nullable ? `${clientValue} === null` : "";
+  const requiredOrNullablePrefix =
+    requiredPrefix !== "" && nullablePrefix !== ""
+      ? `(${requiredPrefix} || ${nullablePrefix})`
+      : `${requiredPrefix}${nullablePrefix}`;
   switch (type.type) {
     case "datetime":
       switch (type.format ?? format) {
@@ -1204,7 +1219,7 @@ export function serializeRequestValue(
       const prefix =
         required && !type.nullable
           ? `${clientValue}`
-          : `!${clientValue} ? ${clientValue} : ${clientValue}`;
+          : `${requiredOrNullablePrefix}? ${clientValue}: ${clientValue}`;
       if (type.elementType?.type === "model" && !type.elementType.aliasType) {
         return `${prefix}.map(p => ({${getRequestModelMapping(
           type.elementType,

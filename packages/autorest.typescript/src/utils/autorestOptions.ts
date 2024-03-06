@@ -3,6 +3,7 @@ import { AutorestOptions, getHost, getSession } from "../autorestSession";
 import { DependencyInfo, TracingInfo } from "../models/clientDetails";
 import { PackageDetails } from "../models/packageDetails";
 import { NameType, normalizeName } from "./nameUtils";
+import { PackageFlavor } from "@azure-tools/rlc-common";
 
 /**
  * Extracts common autorest options
@@ -42,7 +43,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const coreHttpCompatMode = await getCoreHttpCompatMode(host);
   const azureSdkForJs = await getAzureSdkForJs(host);
   const dependencyInfo = await getDependencyInfo(host);
-  const branded = await getBranded(host);
+  const flavor = await getFlavor(host);
 
   return {
     azureArm,
@@ -77,7 +78,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     coreHttpCompatMode,
     dependencyInfo,
     useLegacyLro,
-    branded
+    flavor
   };
 }
 
@@ -337,8 +338,32 @@ async function getCoreHttpCompatMode(
   return (await host.getValue("core-http-compat-mode")) || false;
 }
 
-async function getBranded(host: AutorestExtensionHost): Promise<boolean> {
-  return (await host.getValue("branded")) ?? true;
+async function getFlavor(host: AutorestExtensionHost): Promise<PackageFlavor> {
+  const flavor = await host.getValue<string>("flavor");
+
+  if (flavor) {
+    if (flavor.toLowerCase() === "azure") {
+      return "azure";
+    } else {
+      return undefined;
+    }
+  }
+
+  const branded = await host.getValue("branded");
+  if (branded !== undefined) {
+    return branded ? "azure" : undefined;
+  }
+
+  const scopeName = (await getPackageDetails(host)).scopeName;
+
+  if (
+    scopeName &&
+    (scopeName.startsWith("azure") || scopeName.startsWith("msinternal"))
+  ) {
+    return "azure";
+  } else {
+    return undefined;
+  }
 }
 
 async function getDependencyInfo(

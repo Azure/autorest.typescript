@@ -147,8 +147,8 @@ describe("ClientRequestIdClient", () => {
         .path("/type/property/additionalProperties/extendsRecordFloat")
         .get();
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.id, 42.42);
-      assert.strictEqual(result.body["prop"], 42.42);
+      assert.strictEqual(result.body.id, 43.125);
+      assert.strictEqual(result.body["prop"], 43.125);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -160,8 +160,8 @@ describe("ClientRequestIdClient", () => {
         .path("/type/property/additionalProperties/extendsRecordFloat")
         .put({
           body: {
-            id: 42.42,
-            prop: 42.42
+            id: 43.125,
+            prop: 43.125
           }
         });
       assert.strictEqual(result.status, "204");
@@ -176,8 +176,8 @@ describe("ClientRequestIdClient", () => {
         .path("/type/property/additionalProperties/isRecordFloat")
         .get();
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.id, 42.42);
-      assert.strictEqual(result.body["prop"], 42.42);
+      assert.strictEqual(result.body.id, 43.125);
+      assert.strictEqual(result.body["prop"], 43.125);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -189,8 +189,8 @@ describe("ClientRequestIdClient", () => {
         .path("/type/property/additionalProperties/isRecordFloat")
         .put({
           body: {
-            id: 42.42,
-            prop: 42.42
+            id: 43.125,
+            prop: 43.125
           }
         });
       assert.strictEqual(result.status, "204");

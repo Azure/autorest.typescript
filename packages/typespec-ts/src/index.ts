@@ -59,6 +59,7 @@ import {
   buildPagingTypes,
   buildPagingHelpers as buildModularPagingHelpers
 } from "./modular/buildPagingFiles.js";
+import { EmitterOptions } from "./lib.js";
 import {
   buildGetPollerHelper,
   buildRestorePollerHelper
@@ -69,7 +70,7 @@ export * from "./lib.js";
 export async function $onEmit(context: EmitContext) {
   /** Shared status */
   const program: Program = context.program;
-  const emitterOptions: RLCOptions = context.options;
+  const emitterOptions: EmitterOptions = context.options;
   const dpgContext = createSdkContext(
     context,
     "@azure-tools/typespec-ts"
@@ -103,6 +104,7 @@ export async function $onEmit(context: EmitContext) {
     options.generateTest =
       options.generateTest === true ||
       (options.generateTest === undefined && !hasTestFolder && options.branded);
+        options.flavor === "azure");
     dpgContext.rlcOptions = options;
   }
 
@@ -261,7 +263,7 @@ export async function $onEmit(context: EmitContext) {
     }
     const rlcClient: RLCModel = rlcCodeModels[0];
     const option = dpgContext.rlcOptions!;
-    const isBranded = option.branded ?? true;
+    const isAzureFlavor = option.flavor === "azure";
     // Generate metadata
     const hasPackageFile = await existsSync(
       join(dpgContext.generationPathDetail?.metadataDir ?? "", "package.json")
@@ -275,7 +277,7 @@ export async function $onEmit(context: EmitContext) {
         buildApiExtractorConfig,
         buildReadmeFile
       ];
-      if (isBranded) {
+      if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
       }
       if (!option.isModularLibrary) {
@@ -313,7 +315,7 @@ export async function $onEmit(context: EmitContext) {
     }
 
     // Generate test relevant files
-    if (option.generateTest && isBranded) {
+    if (option.generateTest && isAzureFlavor) {
       await emitContentByBuilder(
         program,
         [
