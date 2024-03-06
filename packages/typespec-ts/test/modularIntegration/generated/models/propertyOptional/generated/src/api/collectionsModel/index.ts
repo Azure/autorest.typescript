@@ -38,9 +38,10 @@ export async function _collectionsModelGetAllDeserialize(
   }
 
   return {
-    property: !result.body["property"]
-      ? result.body["property"]
-      : result.body["property"].map((p) => ({ property: p["property"] })),
+    property:
+      result.body["property"] === undefined
+        ? result.body["property"]
+        : result.body["property"].map((p) => ({ property: p["property"] })),
   };
 }
 
@@ -70,9 +71,10 @@ export async function _collectionsModelGetDefaultDeserialize(
   }
 
   return {
-    property: !result.body["property"]
-      ? result.body["property"]
-      : result.body["property"].map((p) => ({ property: p["property"] })),
+    property:
+      result.body["property"] === undefined
+        ? result.body["property"]
+        : result.body["property"].map((p) => ({ property: p["property"] })),
   };
 }
 
@@ -95,9 +97,10 @@ export function _collectionsModelPutAllSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       body: {
-        property: !body["property"]
-          ? body["property"]
-          : body["property"].map((p) => ({ property: p["property"] })),
+        property:
+          body["property"] === undefined
+            ? body["property"]
+            : body["property"].map((p) => ({ property: p["property"] })),
       },
     });
 }
@@ -132,9 +135,10 @@ export function _collectionsModelPutDefaultSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       body: {
-        property: !body["property"]
-          ? body["property"]
-          : body["property"].map((p) => ({ property: p["property"] })),
+        property:
+          body["property"] === undefined
+            ? body["property"]
+            : body["property"].map((p) => ({ property: p["property"] })),
       },
     });
 }

@@ -38,7 +38,7 @@ export async function _unionStringLiteralGetAllDeserialize(
   }
 
   return {
-    property: result.body["property"] as any,
+    property: result.body["property"],
   };
 }
 
@@ -68,7 +68,7 @@ export async function _unionStringLiteralGetDefaultDeserialize(
   }
 
   return {
-    property: result.body["property"] as any,
+    property: result.body["property"],
   };
 }
 

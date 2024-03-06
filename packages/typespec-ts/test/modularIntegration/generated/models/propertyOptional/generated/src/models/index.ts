@@ -2,20 +2,20 @@
 // Licensed under the MIT license.
 
 export {
-  StringProperty,
-  BytesProperty,
-  DatetimeProperty,
-  DurationProperty,
-  CollectionsByteProperty,
-  CollectionsModelProperty,
-  StringLiteralProperty,
-  IntLiteralProperty,
-  FloatLiteralProperty,
-  BooleanLiteralProperty,
-  UnionStringLiteralProperty,
-  UnionIntLiteralProperty,
-  UnionFloatLiteralProperty,
   RequiredAndOptionalProperty,
+  UnionFloatLiteralProperty,
+  UnionIntLiteralProperty,
+  UnionStringLiteralProperty,
+  BooleanLiteralProperty,
+  FloatLiteralProperty,
+  IntLiteralProperty,
+  StringLiteralProperty,
+  CollectionsModelProperty,
+  StringProperty,
+  CollectionsByteProperty,
+  DurationProperty,
+  DatetimeProperty,
+  BytesProperty,
 } from "./models.js";
 export {
   StringGetAllOptions,

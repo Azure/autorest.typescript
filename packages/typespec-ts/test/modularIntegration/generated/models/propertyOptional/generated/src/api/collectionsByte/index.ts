@@ -39,11 +39,12 @@ export async function _collectionsByteGetAllDeserialize(
   }
 
   return {
-    property: !result.body["property"]
-      ? result.body["property"]
-      : result.body["property"].map((p) =>
-          typeof p === "string" ? stringToUint8Array(p, "base64") : p,
-        ),
+    property:
+      result.body["property"] === undefined
+        ? result.body["property"]
+        : result.body["property"].map((p) =>
+            typeof p === "string" ? stringToUint8Array(p, "base64") : p,
+          ),
   };
 }
 
@@ -73,11 +74,12 @@ export async function _collectionsByteGetDefaultDeserialize(
   }
 
   return {
-    property: !result.body["property"]
-      ? result.body["property"]
-      : result.body["property"].map((p) =>
-          typeof p === "string" ? stringToUint8Array(p, "base64") : p,
-        ),
+    property:
+      result.body["property"] === undefined
+        ? result.body["property"]
+        : result.body["property"].map((p) =>
+            typeof p === "string" ? stringToUint8Array(p, "base64") : p,
+          ),
   };
 }
 
@@ -100,11 +102,12 @@ export function _collectionsBytePutAllSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       body: {
-        property: !body["property"]
-          ? body["property"]
-          : body["property"].map((p) =>
-              p !== undefined ? uint8ArrayToString(p, "base64") : undefined,
-            ),
+        property:
+          body["property"] === undefined
+            ? body["property"]
+            : body["property"].map((p) =>
+                p !== undefined ? uint8ArrayToString(p, "base64") : undefined,
+              ),
       },
     });
 }
@@ -139,11 +142,12 @@ export function _collectionsBytePutDefaultSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       body: {
-        property: !body["property"]
-          ? body["property"]
-          : body["property"].map((p) =>
-              p !== undefined ? uint8ArrayToString(p, "base64") : undefined,
-            ),
+        property:
+          body["property"] === undefined
+            ? body["property"]
+            : body["property"].map((p) =>
+                p !== undefined ? uint8ArrayToString(p, "base64") : undefined,
+              ),
       },
     });
 }

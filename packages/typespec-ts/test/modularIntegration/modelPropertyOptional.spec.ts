@@ -13,12 +13,11 @@ describe.only("Single Server Path Client", () => {
   });
   it("should work with no param", async () => {
     try {
-      console.log("1111111111");
-      await client.bytes.getDefault();
+      const res = await client.string.getAll();
       //   assert.deepEqual(result, {});
       //   assert.deepEqual(result.property, "hello");
+      console.log(res);
     } catch (err) {
-      console.log("11111111111", err);
       assert.fail(err as string);
     }
   });
