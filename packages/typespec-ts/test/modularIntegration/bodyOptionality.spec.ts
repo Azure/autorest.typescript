@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { BodyOptionalityClient } from "./generated/parameters/body-optionality/src/index.js";
-describe.only("Body Optionality Client", () => {
+describe("Body Optionality Client", () => {
   let client: BodyOptionalityClient;
 
   beforeEach(() => {
@@ -30,9 +30,9 @@ describe.only("Body Optionality Client", () => {
     }
   });
 
-  it.skip("should support optional-explicit omitted body", async () => {
+  it("should support optional-explicit omitted body", async () => {
     try {
-      const result = await client.optionalExplicit.omit({ name: "foo" }); //expected rawBodyEquals(undefined)
+      const result = await client.optionalExplicit.omit();
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
