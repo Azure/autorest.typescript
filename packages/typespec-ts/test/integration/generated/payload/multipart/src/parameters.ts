@@ -8,7 +8,7 @@ import {
   JsonPartRequest,
   BinaryArrayPartsRequest,
   JsonArrayPartsRequest,
-  MultiBinaryPartsRequest
+  MultiBinaryPartsRequest,
 } from "./models";
 
 export interface FormDataBasicBodyParam {
@@ -19,14 +19,9 @@ export interface FormDataBasicMediaTypesParam {
   contentType: "multipart/form-data";
 }
 
-interface BounderyOptions {
-  boundary: string;
-}
-
 export type FormDataBasicParameters = FormDataBasicMediaTypesParam &
   FormDataBasicBodyParam &
-  RequestParameters &
-  BounderyOptions;
+  RequestParameters;
 
 export interface FormDataComplexBodyParam {
   body: ComplexPartsRequest;
