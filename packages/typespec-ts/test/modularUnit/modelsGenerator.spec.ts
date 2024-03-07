@@ -1978,6 +1978,33 @@ describe("`is`", () => {
   });
 });
 
+describe("`extends`", () => {
+  it("should generate correct name and properties if A extends B", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(`
+      model B {
+        prop1: string;
+        prop2: string;
+      }
+      model A extends B {
+        @query
+        name: string;
+      };
+      op read(@body body: A): void;
+      `);
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface B {
+        prop1: string;
+        prop2: string;
+      }
+      
+      export interface A extends B {}`
+    );
+  });
+});
+
 describe("visibility", () => {
   it("should generate readonly for @visibility('read')", async () => {
     const modelFile = await emitModularModelsFromTypeSpec(`
