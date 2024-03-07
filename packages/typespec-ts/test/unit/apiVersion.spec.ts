@@ -263,7 +263,7 @@ describe("api-version", () => {
       });
     });
     describe("without default value", () => {
-      it("no @service or @versioned", async () => {
+      it("no @versioned", async () => {
         const def = buildQueryDefinition({
           "@versioned": false
         });

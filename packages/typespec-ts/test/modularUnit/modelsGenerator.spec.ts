@@ -1525,7 +1525,8 @@ describe("inheritance & polymorphism", () => {
       await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
-        /** Alias for SchemaContentTypeValues */
+        /** Type of SchemaContentTypeValues */
+        /** */
         export type SchemaContentTypeValues =
           | "application/json; serialization=Avro"
           | "application/json; serialization=json"
@@ -1623,7 +1624,8 @@ describe("inheritance & polymorphism", () => {
       await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
-        /** Alias for SchemaContentTypeValues */
+        /** Type of SchemaContentTypeValues */
+        /** */
         export type SchemaContentTypeValues =
           | "application/json; serialization=Avro"
           | "application/json; serialization=json"
@@ -1778,9 +1780,8 @@ describe("inheritance & polymorphism", () => {
         true
       );
       assert.isUndefined(schemaOutput);
-      const paramOutput = await emitModularOperationsFromTypeSpec(
-        tspDefinition
-      );
+      const paramOutput =
+        await emitModularOperationsFromTypeSpec(tspDefinition);
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
       await assertEqualContent(
@@ -1854,10 +1855,9 @@ describe("inheritance & polymorphism", () => {
         | "text/plain; charset=utf-8"
         | "text/vnd.ms.protobuf";
         `
-      )
-      const paramOutput = await emitModularOperationsFromTypeSpec(
-        tspDefinition
       );
+      const paramOutput =
+        await emitModularOperationsFromTypeSpec(tspDefinition);
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
       await assertEqualContent(

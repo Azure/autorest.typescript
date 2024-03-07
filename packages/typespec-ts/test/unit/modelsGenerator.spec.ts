@@ -3512,7 +3512,7 @@ describe("Input/output model type", () => {
         tspDefinition,
         false,
         false,
-        false,
+        true,
         true
       );
       assert.ok(paramOutput);
@@ -3586,7 +3586,7 @@ describe("Input/output model type", () => {
         tspDefinition,
         false,
         false,
-        false,
+        true,
         true
       );
       assert.ok(paramOutput);
@@ -3728,7 +3728,6 @@ describe("Input/output model type", () => {
         assert.isUndefined(outputModelFile);
         const paramOutput = await emitParameterFromTypeSpec(
           tspContent,
-          false,
           false,
           false,
           true,
