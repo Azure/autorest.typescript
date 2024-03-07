@@ -6,9 +6,11 @@ import { RLCModel } from "../interfaces.js";
 
 export function buildRollupConfig(model: RLCModel) {
   const azureSdkForJs = Boolean(model.options?.azureSdkForJs);
-  const isBranded = model.options?.branded ?? true;
   // Only generate the file when it is not in sdk repo
-  if (isBranded && (azureSdkForJs === true || azureSdkForJs === undefined)) {
+  if (
+    model.options?.flavor === "azure" &&
+    (azureSdkForJs === true || azureSdkForJs === undefined)
+  ) {
     return;
   }
 

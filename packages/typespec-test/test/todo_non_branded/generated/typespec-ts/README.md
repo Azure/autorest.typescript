@@ -4,7 +4,7 @@
 
 Key links:
 
-- [Package (NPM)](https://www.npmjs.com/package/@msinternal/todo-non-branded)
+- [Package (NPM)](https://www.npmjs.com/package/@notabrand/todo-non-branded)
 
 ## Getting started
 
@@ -12,10 +12,10 @@ Key links:
 
 - LTS versions of Node.js
 
-### Install the `@msinternal/todo-non-branded` package
+### Install the `@notabrand/todo-non-branded` package
 
 Install the Todo REST client REST client library for JavaScript with `npm`:
 
 ```bash
-npm install @msinternal/todo-non-branded
+npm install @notabrand/todo-non-branded
 ```

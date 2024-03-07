@@ -87,7 +87,7 @@ export function buildClient(model: RLCModel): File | undefined {
     credentialKeyHeaderName,
     customHttpAuthHeaderName,
     customHttpAuthSharedKeyPrefix,
-    branded
+    flavor
   } = model.options;
   const credentialTypes = credentialScopes ? ["TokenCredential"] : [];
 
@@ -171,7 +171,7 @@ export function buildClient(model: RLCModel): File | undefined {
       )
     }
   ]);
-  if (branded !== false) {
+  if (flavor === "azure") {
     clientFile.addImportDeclarations([
       {
         namedImports: ["logger"],
@@ -248,7 +248,7 @@ export function getClientFactoryBody(
   if (!model.options || !model.options.packageDetails || !model.urlInfo) {
     return "";
   }
-  const { includeShortcuts, packageDetails, branded, addCredentials } =
+  const { includeShortcuts, packageDetails, flavor, addCredentials } =
     model.options;
   let clientPackageName =
     packageDetails!.nameWithoutScope ?? packageDetails?.name ?? "";
@@ -336,7 +336,7 @@ export function getClientFactoryBody(
     ? `apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "${credentialKeyHeaderName}",`
     : "";
   const loggerOptions =
-    branded !== false
+    flavor === "azure"
       ? `,
   loggingOptions: {
     logger: options.loggingOptions?.logger ?? logger.info

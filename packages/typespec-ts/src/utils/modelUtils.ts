@@ -32,7 +32,6 @@ import {
   isNullType,
   Scalar,
   UnionVariant,
-  getProjectedName,
   StringLiteral,
   BooleanLiteral,
   NoTarget,
@@ -68,6 +67,7 @@ import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
 import { extractPagedMetadataNested } from "./operationUtil.js";
 import {
   getDefaultApiVersion,
+  getWireName,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
 import { GetSchemaOptions, SdkContext } from "./interfaces.js";
@@ -208,7 +208,7 @@ export function getSchemaForType(
     return getSchemaForEnumMember(program, type);
   }
   if (isUnknownType(type)) {
-    const returnType: any = { type: "unknown" };
+    const returnType: any = { name: "unknown", type: "unknown" };
     if (usage && usage.includes(SchemaContext.Output)) {
       returnType.outputTypeName = "any";
       returnType.typeName = "unknown";
@@ -216,10 +216,10 @@ export function getSchemaForType(
     return returnType;
   }
   if (isNeverType(type)) {
-    return { type: "never" };
+    return { name: "never", type: "never" };
   }
   if (isNullType(type)) {
-    return { type: "null" };
+    return { name: "null", type: "null" };
   }
   reportDiagnostic(program, {
     code: "invalid-schema",
@@ -406,6 +406,9 @@ function getSchemaForUnion(
     } else {
       schema.type = "union";
       schema.typeName = union.name ?? unionAlias;
+      schema.outputTypeName = union.name
+        ? union.name + "Output"
+        : outputUnionAlias;
     }
   }
 
@@ -417,7 +420,7 @@ function getSchemaForUnionVariant(
   variant: UnionVariant,
   options?: GetSchemaOptions
 ): Schema {
-  return getSchemaForType(dpgContext, variant, options);
+  return getSchemaForType(dpgContext, variant.type, options);
 }
 
 // An openapi "string" can be defined in several different ways in typespec
@@ -431,6 +434,9 @@ function isOasString(type: Type): boolean {
   } else if (type.kind === "Union") {
     // A union where all variants are an OasString
     return type.options.every((o) => isOasString(o));
+  } else if (type.kind === "UnionVariant") {
+    // A union variant where the type is an OasString
+    return isOasString(type.type);
   }
   return false;
 }
@@ -440,7 +446,8 @@ function isStringLiteral(type: Type): boolean {
     type.kind === "String" ||
     (type.kind === "Union" && type.options.every((o) => o.kind === "String")) ||
     (type.kind === "EnumMember" &&
-      typeof (type.value ?? type.name) === "string")
+      typeof (type.value ?? type.name) === "string") ||
+    (type.kind === "UnionVariant" && type.type.kind === "String")
   );
 }
 
@@ -455,6 +462,8 @@ function getStringValues(type: Type): string[] {
         .filter((x) => x !== undefined);
     case "EnumMember":
       return typeof type.value !== "number" ? [type.value ?? type.name] : [];
+    case "UnionVariant":
+      return getStringValues(type.type);
     default:
       return [];
   }
@@ -565,17 +574,14 @@ function getSchemaForModel(
 
   const program = dpgContext.program;
   const overridedModelName =
-    getFriendlyName(program, model) ?? getProjectedName(program, model, "json");
+    getFriendlyName(program, model) ?? getWireName(dpgContext, model);
   const fullNamespaceName =
-    overridedModelName ??
     getModelNamespaceName(dpgContext, model.namespace!)
       .map((nsName) => {
         return normalizeName(nsName, NameType.Interface);
       })
       .join("") + model.name;
-  let name = dpgContext.rlcOptions?.enableModelNamespace
-    ? fullNamespaceName
-    : model.name;
+  let name = model.name;
   if (
     !overridedModelName &&
     model.templateMapper &&
@@ -599,7 +605,12 @@ function getSchemaForModel(
   }
 
   const modelSchema: ObjectSchema = {
-    name: overridedModelName ?? name,
+    name:
+      overridedModelName !== name
+        ? overridedModelName
+        : dpgContext.rlcOptions?.enableModelNamespace
+          ? fullNamespaceName
+          : name,
     type: "object",
     description: getDoc(program, model) ?? ""
   };
@@ -716,7 +727,7 @@ function getSchemaForModel(
     };
   }
   for (const [propName, prop] of model.properties) {
-    const restApiName = getProjectedName(program, prop, "json");
+    const restApiName = getWireName(dpgContext, prop);
     const name = `"${restApiName ?? propName}"`;
     if (!isSchemaProperty(program, prop)) {
       continue;
@@ -753,7 +764,14 @@ function getSchemaForModel(
       name === `"${propertyName}"` &&
       modelSchema.discriminator
     ) {
-      modelSchema.discriminator.type = propSchema.typeName ?? propSchema.type;
+      modelSchema.discriminator = {
+        ...modelSchema.discriminator,
+        ...{
+          type: propSchema.typeName ?? propSchema.type,
+          typeName: propSchema.typeName,
+          outputTypeName: propSchema.outputTypeName
+        }
+      };
       continue;
     }
 
@@ -839,11 +857,6 @@ function applyIntrinsicDecorators(
     newTarget.description = docStr;
   }
 
-  const restApiName = getProjectedName(program, type, "json");
-  if (restApiName) {
-    newTarget.name = restApiName;
-  }
-
   const summaryStr = getSummary(program, type);
   if (isString && !target.summary && summaryStr) {
     newTarget.summary = summaryStr;
@@ -895,8 +908,12 @@ function getSchemaForEnumMember(program: Program, e: EnumMember) {
 
 function getSchemaForEnum(dpgContext: SdkContext, e: Enum) {
   const values = [];
-  const type = enumMemberType(e.members.values().next().value);
-  for (const option of e.members.values()) {
+  const memberValues = Array.from(e.members.values());
+  if (memberValues.length === 0) {
+    return {};
+  }
+  const type = enumMemberType(memberValues[0]!);
+  for (const option of memberValues) {
     if (type !== enumMemberType(option)) {
       reportDiagnostic(dpgContext.program, {
         code: "union-unsupported",
@@ -923,7 +940,8 @@ function getSchemaForEnum(dpgContext: SdkContext, e: Enum) {
 }
 
 function enumMemberType(member: EnumMember) {
-  if (typeof member.value === "number") {
+  const memberValue = member.value;
+  if (typeof memberValue === "number") {
     return "number";
   }
   return "string";

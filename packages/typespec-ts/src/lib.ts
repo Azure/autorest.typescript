@@ -9,7 +9,11 @@ import {
 import { RLCOptions } from "@azure-tools/rlc-common";
 import { Options } from "prettier";
 
-export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
+export interface EmitterOptions extends RLCOptions {
+  branded?: boolean;
+}
+
+export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
   type: "object",
   additionalProperties: true,
   properties: {
@@ -77,7 +81,8 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
     enableOperationGroup: { type: "boolean", nullable: true },
     enableModelNamespace: { type: "boolean", nullable: true },
     hierarchyClient: { type: "boolean", nullable: true },
-    branded: { type: "boolean", nullable: true, default: true }
+    branded: { type: "boolean", nullable: true },
+    flavor: { type: "string", nullable: true }
   },
   required: []
 };

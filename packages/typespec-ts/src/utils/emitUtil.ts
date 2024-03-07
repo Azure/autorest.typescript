@@ -8,14 +8,14 @@ import { prettierJSONOptions, prettierTypeScriptOptions } from "../lib.js";
 
 export async function emitModels(rlcModels: RLCModel, program: Program) {
   const schemaOutput = buildSchemaTypes(rlcModels);
-  const isBranded = rlcModels?.options?.branded ?? true;
+  const isAzureFlavor = rlcModels?.options?.flavor === "azure";
   if (schemaOutput) {
     const { inputModelFile, outputModelFile } = schemaOutput;
     if (inputModelFile) {
-      await emitFile(inputModelFile, program, isBranded);
+      await emitFile(inputModelFile, program, isAzureFlavor);
     }
     if (outputModelFile) {
-      await emitFile(outputModelFile, program, isBranded);
+      await emitFile(outputModelFile, program, isAzureFlavor);
     }
   }
 }
@@ -29,7 +29,7 @@ export async function emitContentByBuilder(
   if (!Array.isArray(builderFnOrList)) {
     builderFnOrList = [builderFnOrList];
   }
-  const isBranded = rlcModels?.options?.branded ?? true;
+  const isAzureFlavor = rlcModels?.options?.flavor === "azure";
   for (const builderFn of builderFnOrList) {
     let contentFiles: File[] | File | undefined = builderFn(rlcModels);
     if (!contentFiles) {
@@ -39,7 +39,7 @@ export async function emitContentByBuilder(
       contentFiles = [contentFiles];
     }
     for (const file of contentFiles) {
-      await emitFile(file, program, isBranded, emitterOutputDir);
+      await emitFile(file, program, isAzureFlavor, emitterOutputDir);
     }
   }
 }
@@ -47,14 +47,14 @@ export async function emitContentByBuilder(
 async function emitFile(
   file: File,
   program: Program,
-  isBranded: boolean,
+  isAzureFlavor: boolean,
   emitterOutputDir?: string
 ) {
   const host: CompilerHost = program.host;
   const filePath = join(emitterOutputDir ?? "", file.path);
   const isJson = /\.json$/gi.test(filePath);
   const isSourceCode = /\.(ts|js)$/gi.test(filePath);
-  const microsoftHeader = isBranded
+  const microsoftHeader = isAzureFlavor
     ? `// Copyright (c) Microsoft Corporation.\n`
     : "";
   const licenseHeader = `${microsoftHeader}// Licensed under the MIT license.\n`;

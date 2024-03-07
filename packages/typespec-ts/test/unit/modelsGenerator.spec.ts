@@ -26,6 +26,7 @@ describe("Input/output model type", () => {
     inputType: string,
     options?: VerifyPropertyConfig,
     needAzureCore: boolean = false,
+    needTCGC: boolean = false,
     additionalImports: string = ""
   ) {
     const defaultOption: VerifyPropertyConfig = {
@@ -56,7 +57,8 @@ describe("Input/output model type", () => {
     @route("/models")
     @get
     op getModel(@body input: InputOutputModel): InputOutputModel;`,
-      needAzureCore
+      needAzureCore,
+      needTCGC
     );
     assert.ok(schemaOutput);
     const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -2342,14 +2344,13 @@ describe("Input/output model type", () => {
     });
   });
 
-  describe("@projectedName", () => {
+  describe("@clientName & @encodedName", () => {
     it("should generate projected json name for property", async () => {
       const tspDefinition = `
       @doc("This is a Foo model.")
       model FooModel {
-        @projectedName("json", "xJson")
-        @projectedName("javascript", "MadeForTS")
-        @projectedName("client", "NotToUseMeAsName") // Should be ignored
+        @encodedName("application/json", "xJson")
+        @clientName("MadeForTS", "javascript")
         x: int32;
 
         y: string;
@@ -2357,22 +2358,28 @@ describe("Input/output model type", () => {
       `;
       const tspType = "FooModel";
       const inputModelName = "FooModel";
-      await verifyPropertyType(tspType, inputModelName, {
-        additionalTypeSpecDefinition: tspDefinition,
-        outputType: `FooModelOutput`,
-        additionalInputContent: `
+      await verifyPropertyType(
+        tspType,
+        inputModelName,
+        {
+          additionalTypeSpecDefinition: tspDefinition,
+          outputType: `FooModelOutput`,
+          additionalInputContent: `
         /** This is a Foo model. */
         export interface FooModel {
           xJson: number;
           y: string;
         }`,
-        additionalOutputContent: `
+          additionalOutputContent: `
         /** This is a Foo model. */
         export interface FooModelOutput {
           xJson: number;
           y: string;
         }`
-      });
+        },
+        false,
+        true
+      );
     });
 
     it("should generate augmented projected json name for property", async () => {
@@ -2382,32 +2389,38 @@ describe("Input/output model type", () => {
         x: int32;
       }
 
-      @@projectedName(FooModel.x, "client", "NotToUseMeAsName"); // Should be ignored
-      @@projectedName(FooModel.x, "javascript", "MadeForTS");
-      @@projectedName(FooModel.x, "json", "xJson");
+      @@clientName(FooModel.x, "NotToUseMeAsName"); // Should be ignored
+      @@clientName(FooModel.x, "MadeForTS", "javascript");
+      @@encodedName(FooModel.x, "application/json", "xJson");
       `;
       const tspType = "FooModel";
       const inputModelName = "FooModel";
-      await verifyPropertyType(tspType, inputModelName, {
-        additionalTypeSpecDefinition: tspDefinition,
-        outputType: `FooModelOutput`,
-        additionalInputContent: `
+      await verifyPropertyType(
+        tspType,
+        inputModelName,
+        {
+          additionalTypeSpecDefinition: tspDefinition,
+          outputType: `FooModelOutput`,
+          additionalInputContent: `
         /** This is a Foo model. */
         export interface FooModel {
           xJson: number;
         }`,
-        additionalOutputContent: `
+          additionalOutputContent: `
         /** This is a Foo model. */
         export interface FooModelOutput {
           xJson: number;
         }`
-      });
+        },
+        false,
+        true
+      );
     });
 
     it("should generate friendly name over projected model name", async () => {
       const tspDefinition = `
-      @projectedName("javascript", "CustomProjectedModelTS")
-      @projectedName("json", "CustomProjectedModel")
+      @clientName("CustomProjectedModelTS", "javascript")
+      @encodedName("application/json", "CustomProjectedModel")
       @friendlyName("CustomFriendlyModel")
       @doc("This is a Foo model.")
       model FooModel {
@@ -2416,25 +2429,31 @@ describe("Input/output model type", () => {
       `;
       const tspType = "FooModel";
       const inputModelName = "CustomFriendlyModel";
-      await verifyPropertyType(tspType, inputModelName, {
-        additionalTypeSpecDefinition: tspDefinition,
-        outputType: `CustomFriendlyModelOutput`,
-        additionalInputContent: `
+      await verifyPropertyType(
+        tspType,
+        inputModelName,
+        {
+          additionalTypeSpecDefinition: tspDefinition,
+          outputType: `CustomFriendlyModelOutput`,
+          additionalInputContent: `
         /** This is a Foo model. */
         export interface CustomFriendlyModel {
           x: number;
         }`,
-        additionalOutputContent: `
+          additionalOutputContent: `
         /** This is a Foo model. */
         export interface CustomFriendlyModelOutput {
           x: number;
         }`
-      });
+        },
+        false,
+        true
+      );
     });
 
     it("should ignore projected javascript model name", async () => {
       const tspDefinition = `
-      @projectedName("javascript", "CustomProjectedModelTS")
+      @clientName("CustomProjectedModelTS", "javascript")
       @doc("This is a Foo model.")
       model FooModel {
         x: int32;
@@ -2442,26 +2461,32 @@ describe("Input/output model type", () => {
       `;
       const tspType = "FooModel";
       const inputModelName = "FooModel";
-      await verifyPropertyType(tspType, inputModelName, {
-        additionalTypeSpecDefinition: tspDefinition,
-        outputType: `FooModelOutput`,
-        additionalInputContent: `
+      await verifyPropertyType(
+        tspType,
+        inputModelName,
+        {
+          additionalTypeSpecDefinition: tspDefinition,
+          outputType: `FooModelOutput`,
+          additionalInputContent: `
         /** This is a Foo model. */
         export interface FooModel {
           x: number;
         }`,
-        additionalOutputContent: `
+          additionalOutputContent: `
         /** This is a Foo model. */
         export interface FooModelOutput {
           x: number;
         }`
-      });
+        },
+        false,
+        true
+      );
     });
 
     it("should generate projected operation name for parameter", async () => {
       const parameters = await emitParameterFromTypeSpec(
         `
-        @projectedName("json", "testRunOperation")
+        @encodedName("application/json", "testRunOperation")
         op test(): string;
         `
       );
@@ -2479,7 +2504,7 @@ describe("Input/output model type", () => {
     it("should generate projected operation name for response", async () => {
       const parameters = await emitResponsesFromTypeSpec(
         `
-        @projectedName("json", "testRunOperation")
+        @encodedName("application/json", "testRunOperation")
         op test(): string;
         `
       );
@@ -2501,9 +2526,12 @@ describe("Input/output model type", () => {
     it("should not generate projected javascript name in RLC", async () => {
       const parameters = await emitResponsesFromTypeSpec(
         `
-        @projectedName("javascript", "testRunOperation")
+        @clientName("testRunOperation", "javascript")
         op test(): string;
-        `
+        `,
+        false,
+        false,
+        true
       );
       assert.ok(parameters);
       await assertEqualContent(
@@ -2516,7 +2544,7 @@ describe("Input/output model type", () => {
           status: "200";
          body: string;
         }
-          `
+        `
       );
     });
   });
@@ -2609,6 +2637,7 @@ describe("Input/output model type", () => {
           `
         },
         true,
+        false,
         `import { ErrorResponse } from "@azure-rest/core-client"`
       );
     });
@@ -2645,6 +2674,7 @@ describe("Input/output model type", () => {
           `
         },
         true,
+        false,
         `import { InnerError } from "@azure-rest/core-client"`
       );
     });
@@ -2681,6 +2711,7 @@ describe("Input/output model type", () => {
           `
         },
         true,
+        false,
         `import { ErrorModel } from "@azure-rest/core-client"`
       );
     });
@@ -2717,6 +2748,7 @@ describe("Input/output model type", () => {
           `
         },
         true,
+        false,
         `import { ErrorModel } from "@azure-rest/core-client"`
       );
     });
@@ -2753,6 +2785,7 @@ describe("Input/output model type", () => {
           `
         },
         true,
+        false,
         `import { ErrorModel } from "@azure-rest/core-client"`
       );
     });

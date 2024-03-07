@@ -212,6 +212,14 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "payload/pageable",
     inputPath: "payload/pageable"
+  },
+  {
+    outputPath: "client/naming",
+    inputPath: "client/naming"
+  },
+  {
+    outputPath: "serialization/encoded-name/json",
+    inputPath: "serialization/encoded-name/json"
   }
 ];
 
@@ -223,6 +231,10 @@ export const nonBrandedRlcTsps: TypeSpecRanchConfig[] = [
 ];
 
 export const modularTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "parameters/body-optionality",
+    inputPath: "parameters/body-optionality"
+  },
   {
     outputPath: "models/usage",
     inputPath: "type/model/usage"
@@ -343,6 +355,14 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "scalar",
     inputPath: "type/scalar"
+  },
+  {
+    outputPath: "client/naming",
+    inputPath: "client/naming"
+  },
+  {
+    outputPath: "serialization/encoded-name/json",
+    inputPath: "serialization/encoded-name/json"
   }
 ];
 

@@ -37,7 +37,7 @@ import { transformSchemas } from "./transformSchemas";
 import { transformRLCSampleData } from "../../generators/samples/rlcSampleGenerator";
 
 export function transform(model: CodeModel): RLCModel {
-  const { srcPath } = getAutorestOptions();
+  const { srcPath, flavor } = getAutorestOptions();
   const importDetails = initInternalImports();
   const urlInfo = transformUrlInfo(model);
   const rlcModel: RLCModel = {
@@ -56,7 +56,7 @@ export function transform(model: CodeModel): RLCModel {
     apiVersionInfo: transformApiVersion(model, urlInfo),
     importInfo: {
       internalImports: importDetails,
-      runtimeImports: buildRuntimeImports()
+      runtimeImports: buildRuntimeImports(flavor)
     }
   };
   rlcModel.sampleGroups = transformRLCSampleData(model, rlcModel);
