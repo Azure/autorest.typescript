@@ -142,6 +142,37 @@ describe("model type", () => {
       );
     });
 
+    it.skip("union of enum", async () => {
+      const modelFile = await emitModularModelsFromTypeSpec(`
+      enum LR {
+        left,
+        right,
+      }
+      enum UD {
+        up,
+        down,
+      }
+
+      model Test {
+        color: LR | UD;
+      }
+      op read(@body body: Test): void;
+        `);
+      assert.ok(modelFile);
+      await assertEqualContent(
+        modelFile!.getFullText()!,
+        `
+        export interface Test {
+          color: Color | null;
+        }
+
+        /** Type of Color */
+        /** "1", "2" */
+        export type Color = string;
+        `
+      );
+    });
+
     it("nullable numeric literal", async () => {
       const modelFile = await emitModularModelsFromTypeSpec(`
         model Test {
