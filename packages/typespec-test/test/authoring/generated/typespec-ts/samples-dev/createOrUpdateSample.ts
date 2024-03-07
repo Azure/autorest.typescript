@@ -30,6 +30,7 @@ async function createOrUpdateSample() {
         description: "{Your description}",
         language: "{Your language}",
       },
+      queryParameters: { "api-version": "{Your api-version}" },
       contentType: "application/merge-patch+json",
     });
   const poller = await getLongRunningPoller(client, initialResponse);

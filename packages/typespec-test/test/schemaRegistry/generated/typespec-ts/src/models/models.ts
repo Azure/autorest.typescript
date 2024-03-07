@@ -27,7 +27,7 @@ export interface PagedSchemaGroup {
   /** The SchemaGroup items on this page */
   value: SchemaGroup[];
   /** The link to the next page of items */
-  nextLink?: string;
+  readonly nextLink?: string;
 }
 
 /** Schema Group resource. */
@@ -41,7 +41,7 @@ export interface PagedVersion {
   /** The Version items on this page */
   value: SchemaVersion[];
   /** The link to the next page of items */
-  nextLink?: string;
+  readonly nextLink?: string;
 }
 
 /** Schema versions resource. */

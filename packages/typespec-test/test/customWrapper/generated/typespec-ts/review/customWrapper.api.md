@@ -76,7 +76,18 @@ export interface DeployProjectDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type DeployProjectParameters = DeployProjectBodyParam & RequestParameters;
+export type DeployProjectParameters = DeployProjectQueryParam & DeployProjectBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface DeployProjectQueryParam {
+    // (undocumented)
+    queryParameters: DeployProjectQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface DeployProjectQueryParamProperties {
+    "api-version": string;
+}
 
 // @public (undocumented)
 export interface GetDeployment {
@@ -108,7 +119,18 @@ export interface GetDeploymentDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetDeploymentParameters = RequestParameters;
+export type GetDeploymentParameters = GetDeploymentQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface GetDeploymentQueryParam {
+    // (undocumented)
+    queryParameters: GetDeploymentQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface GetDeploymentQueryParamProperties {
+    "api-version": string;
+}
 
 // @public (undocumented)
 export function isUnexpected(response: GetDeployment200Response | GetDeploymentDefaultResponse): response is GetDeploymentDefaultResponse;

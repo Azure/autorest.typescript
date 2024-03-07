@@ -100,7 +100,18 @@ export interface CreateOrUpdateMediaTypesParam {
 }
 
 // @public (undocumented)
-export type CreateOrUpdateParameters = CreateOrUpdateMediaTypesParam & CreateOrUpdateBodyParam & RequestParameters;
+export type CreateOrUpdateParameters = CreateOrUpdateQueryParam & CreateOrUpdateMediaTypesParam & CreateOrUpdateBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface CreateOrUpdateQueryParam {
+    // (undocumented)
+    queryParameters: CreateOrUpdateQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface CreateOrUpdateQueryParamProperties {
+    "api-version": string;
+}
 
 // @public (undocumented)
 export interface DeleteDeployment202Headers {
@@ -141,7 +152,18 @@ export interface DeleteDeploymentLogicalResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type DeleteDeploymentParameters = RequestParameters;
+export type DeleteDeploymentParameters = DeleteDeploymentQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface DeleteDeploymentQueryParam {
+    // (undocumented)
+    queryParameters: DeleteDeploymentQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface DeleteDeploymentQueryParamProperties {
+    "api-version": string;
+}
 
 // @public
 export interface DeleteLogicalResponse extends HttpResponse {
@@ -182,7 +204,18 @@ export interface DeleteOperationDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type DeleteParameters = RequestParameters;
+export type DeleteParameters = DeleteQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface DeleteQueryParam {
+    // (undocumented)
+    queryParameters: DeleteQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface DeleteQueryParamProperties {
+    "api-version": string;
+}
 
 // @public
 export interface Deployment {
@@ -264,7 +297,18 @@ export interface DeployProjectLogicalResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type DeployProjectParameters = DeployProjectBodyParam & RequestParameters;
+export type DeployProjectParameters = DeployProjectQueryParam & DeployProjectBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface DeployProjectQueryParam {
+    // (undocumented)
+    queryParameters: DeployProjectQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface DeployProjectQueryParamProperties {
+    "api-version": string;
+}
 
 // @public (undocumented)
 export interface Export {
@@ -316,6 +360,7 @@ export interface ExportQueryParam {
 
 // @public (undocumented)
 export interface ExportQueryParamProperties {
+    "api-version": string;
     projectFileVersion: string;
 }
 
@@ -376,7 +421,18 @@ export interface GetDeploymentDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetDeploymentParameters = RequestParameters;
+export type GetDeploymentParameters = GetDeploymentQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface GetDeploymentQueryParam {
+    // (undocumented)
+    queryParameters: GetDeploymentQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface GetDeploymentQueryParamProperties {
+    "api-version": string;
+}
 
 // @public (undocumented)
 export interface GetDeploymentStatus {
@@ -407,7 +463,18 @@ export interface GetDeploymentStatusDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetDeploymentStatusParameters = RequestParameters;
+export type GetDeploymentStatusParameters = GetDeploymentStatusQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface GetDeploymentStatusQueryParam {
+    // (undocumented)
+    queryParameters: GetDeploymentStatusQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface GetDeploymentStatusQueryParamProperties {
+    "api-version": string;
+}
 
 // @public
 export function getLongRunningPoller<TResult extends CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse>(client: Client, initialResponse: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
@@ -440,7 +507,18 @@ export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise
 }>;
 
 // @public (undocumented)
-export type GetParameters = RequestParameters;
+export type GetParameters = GetQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface GetQueryParam {
+    // (undocumented)
+    queryParameters: GetQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface GetQueryParamProperties {
+    "api-version": string;
+}
 
 // @public (undocumented)
 export interface GetSupportedLanguages {
@@ -476,11 +554,12 @@ export type GetSupportedLanguagesParameters = GetSupportedLanguagesQueryParam & 
 // @public (undocumented)
 export interface GetSupportedLanguagesQueryParam {
     // (undocumented)
-    queryParameters?: GetSupportedLanguagesQueryParamProperties;
+    queryParameters: GetSupportedLanguagesQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface GetSupportedLanguagesQueryParamProperties {
+    "api-version": string;
     maxpagesize?: number;
     skip?: number;
     top?: number;
@@ -515,7 +594,18 @@ export interface GetSwapDeploymentsStatusDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetSwapDeploymentsStatusParameters = RequestParameters;
+export type GetSwapDeploymentsStatusParameters = GetSwapDeploymentsStatusQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface GetSwapDeploymentsStatusQueryParam {
+    // (undocumented)
+    queryParameters: GetSwapDeploymentsStatusQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface GetSwapDeploymentsStatusQueryParamProperties {
+    "api-version": string;
+}
 
 // @public (undocumented)
 export interface Importx {
@@ -557,7 +647,18 @@ export interface ImportxLogicalResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ImportxParameters = RequestParameters;
+export type ImportxParameters = ImportxQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface ImportxQueryParam {
+    // (undocumented)
+    queryParameters: ImportxQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface ImportxQueryParamProperties {
+    "api-version": string;
+}
 
 // @public (undocumented)
 export function isUnexpected(response: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse): response is CreateOrUpdateDefaultResponse;
@@ -642,7 +743,18 @@ export interface ListDeploymentsDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ListDeploymentsParameters = RequestParameters;
+export type ListDeploymentsParameters = ListDeploymentsQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface ListDeploymentsQueryParam {
+    // (undocumented)
+    queryParameters: ListDeploymentsQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface ListDeploymentsQueryParamProperties {
+    "api-version": string;
+}
 
 // @public (undocumented)
 export interface ListProjects {
@@ -673,7 +785,18 @@ export interface ListProjectsDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ListProjectsParameters = RequestParameters;
+export type ListProjectsParameters = ListProjectsQueryParam & RequestParameters;
+
+// @public (undocumented)
+export interface ListProjectsQueryParam {
+    // (undocumented)
+    queryParameters: ListProjectsQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface ListProjectsQueryParamProperties {
+    "api-version": string;
+}
 
 // @public (undocumented)
 export interface ListTrainingConfigVersions {
@@ -709,11 +832,12 @@ export type ListTrainingConfigVersionsParameters = ListTrainingConfigVersionsQue
 // @public (undocumented)
 export interface ListTrainingConfigVersionsQueryParam {
     // (undocumented)
-    queryParameters?: ListTrainingConfigVersionsQueryParamProperties;
+    queryParameters: ListTrainingConfigVersionsQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface ListTrainingConfigVersionsQueryParamProperties {
+    "api-version": string;
     maxpagesize?: number;
     skip?: number;
     top?: number;
@@ -874,7 +998,18 @@ export interface SwapDeploymentsOptions {
 }
 
 // @public (undocumented)
-export type SwapDeploymentsParameters = SwapDeploymentsBodyParam & RequestParameters;
+export type SwapDeploymentsParameters = SwapDeploymentsQueryParam & SwapDeploymentsBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface SwapDeploymentsQueryParam {
+    // (undocumented)
+    queryParameters: SwapDeploymentsQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface SwapDeploymentsQueryParamProperties {
+    "api-version": string;
+}
 
 // @public (undocumented)
 export interface Train {
@@ -932,7 +1067,18 @@ export interface TrainLogicalResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type TrainParameters = TrainBodyParam & RequestParameters;
+export type TrainParameters = TrainQueryParam & TrainBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface TrainQueryParam {
+    // (undocumented)
+    queryParameters: TrainQueryParamProperties;
+}
+
+// @public (undocumented)
+export interface TrainQueryParamProperties {
+    "api-version": string;
+}
 
 // (No @packageDocumentation comment for this package)
 

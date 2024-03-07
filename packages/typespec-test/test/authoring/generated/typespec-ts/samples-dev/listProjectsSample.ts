@@ -18,7 +18,7 @@ async function listProjectsSample() {
   const client = createAuthoringClient(endpoint, credential);
   const initialResponse = await client
     .path("/authoring/analyze-text/projects")
-    .get();
+    .get({ queryParameters: { "api-version": "{Your api-version}" } });
   const pageData = paginate(client, initialResponse);
   const result = [];
   for await (const item of pageData) {

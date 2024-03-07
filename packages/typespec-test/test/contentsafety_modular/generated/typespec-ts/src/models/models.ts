@@ -136,7 +136,7 @@ export interface PagedTextBlocklist {
   /** The TextBlocklist items on this page */
   value: TextBlocklist[];
   /** The link to the next page of items */
-  nextLink?: string;
+  readonly nextLink?: string;
 }
 
 /** Paged collection of TextBlockItem items */
@@ -144,5 +144,5 @@ export interface PagedTextBlockItem {
   /** The TextBlockItem items on this page */
   value: TextBlockItem[];
   /** The link to the next page of items */
-  nextLink?: string;
+  readonly nextLink?: string;
 }

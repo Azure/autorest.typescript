@@ -22,7 +22,10 @@ async function exportSample() {
   const initialResponse = await client
     .path("/authoring/analyze-text/projects/{projectName}:export", projectName)
     .post({
-      queryParameters: { projectFileVersion: "{Your projectFileVersion}" },
+      queryParameters: {
+        "api-version": "{Your api-version}",
+        projectFileVersion: "{Your projectFileVersion}",
+      },
     });
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();

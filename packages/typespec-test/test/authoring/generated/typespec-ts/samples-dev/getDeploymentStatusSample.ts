@@ -26,7 +26,7 @@ async function getDeploymentStatusSample() {
       deploymentName,
       jobId,
     )
-    .get();
+    .get({ queryParameters: { "api-version": "{Your api-version}" } });
   console.log(result);
 }
 

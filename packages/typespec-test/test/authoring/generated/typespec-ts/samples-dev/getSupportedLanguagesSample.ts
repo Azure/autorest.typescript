@@ -18,7 +18,14 @@ async function getSupportedLanguagesSample() {
   const client = createAuthoringClient(endpoint, credential);
   const initialResponse = await client
     .path("/authoring/analyze-text/projects/global/languages")
-    .get({ queryParameters: { top: 123, skip: 123, maxpagesize: 123 } });
+    .get({
+      queryParameters: {
+        "api-version": "{Your api-version}",
+        top: 123,
+        skip: 123,
+        maxpagesize: 123,
+      },
+    });
   const pageData = paginate(client, initialResponse);
   const result = [];
   for await (const item of pageData) {
