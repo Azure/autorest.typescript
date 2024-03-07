@@ -1525,8 +1525,7 @@ describe("inheritance & polymorphism", () => {
       await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
-        /** Type of SchemaContentTypeValues */
-        /** */
+        /** Alias for SchemaContentTypeValues */
         export type SchemaContentTypeValues =
           | "application/json; serialization=Avro"
           | "application/json; serialization=json"
@@ -1624,8 +1623,7 @@ describe("inheritance & polymorphism", () => {
       await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
-        /** Type of SchemaContentTypeValues */
-        /** */
+        /** Alias for SchemaContentTypeValues */
         export type SchemaContentTypeValues =
           | "application/json; serialization=Avro"
           | "application/json; serialization=json"
