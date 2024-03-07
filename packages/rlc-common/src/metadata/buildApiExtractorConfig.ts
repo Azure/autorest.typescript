@@ -8,6 +8,15 @@ export function buildApiExtractorConfig(model: RLCModel) {
   const { packageDetails, isModularLibrary, generateTest, generateSample } =
     model.options || {};
   const project = new Project();
+
+  let mainEntryPointFilePath = "./dist/esm/index.d.ts";
+
+  if (model.options?.moduleKind === "cjs") {
+    mainEntryPointFilePath = `./types${
+      generateTest || isModularLibrary ? "/src" : ""
+    }/index.d.ts`;
+  }
+
   const config = {
     $schema:
       "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",

@@ -97,23 +97,25 @@ function restLevelPackage(model: RLCModel) {
     bugs: {
       url: "https://github.com/Azure/azure-sdk-for-js/issues"
     },
-    files: [
-      "dist/",
-      generateTest ? "dist-esm/src/" : "dist-esm/",
-      `types/${packageDetails.nameWithoutScope ?? packageDetails.name}.d.ts`,
-      "README.md",
-      "LICENSE",
-      "review/*"
-    ],
+    files:
+      model.options?.moduleKind === "esm"
+        ? ["dist", "README.md", "LICENSE", "review/*"]
+        : [
+            "dist/",
+            generateTest ? "dist-esm/src/" : "dist-esm/",
+            `types/${
+              packageDetails.nameWithoutScope ?? packageDetails.name
+            }.d.ts`,
+            "README.md",
+            "LICENSE",
+            "review/*"
+          ],
     engines: {
       node: ">=18.0.0"
     },
     scripts: {
-      "build:browser": "echo skipped.",
-      "build:node": "echo skipped.",
-      "build:samples": "echo skipped.",
-      "build:test": "echo skipped.",
-      "build:debug": "echo skipped.",
+      "build:test": "npm run clean && tshy && dev-tool run build-test",
+      build: "npm run clean && tshy && npm run extract-api",
       "check-format": `prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}" ${appendPathWhenFormat(
         generateTest,
         generateSample
@@ -177,7 +179,8 @@ function restLevelPackage(model: RLCModel) {
       prettier: "^3.1.0",
       rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
-      typescript: "~5.3.3"
+      typescript: "~5.3.3",
+      ...(model.options?.moduleKind === "esm" && { tshy: "1.11.1" })
     }
   };
 
@@ -202,12 +205,15 @@ function restLevelPackage(model: RLCModel) {
         prefix: "package-version"
       });
     }
-    packageInfo.scripts["build"] =
-      "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && api-extractor run --local";
-    packageInfo.scripts["build:debug"] =
-      "tsc -p . && dev-tool run bundle && api-extractor run --local";
-    packageInfo.scripts["build:browser"] = "tsc -p . && dev-tool run bundle";
-    packageInfo.scripts["build:node"] = "tsc -p . && dev-tool run bundle";
+
+    if (model.options?.moduleKind === "cjs") {
+      packageInfo.scripts["build"] =
+        "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && api-extractor run --local";
+      packageInfo.scripts["build:debug"] =
+        "tsc -p . && dev-tool run bundle && api-extractor run --local";
+      packageInfo.scripts["build:browser"] = "tsc -p . && dev-tool run bundle";
+      packageInfo.scripts["build:node"] = "tsc -p . && dev-tool run bundle";
+    }
     packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
     packageInfo.devDependencies["@azure/eslint-plugin-azure-sdk"] = "^3.0.0";
     // azsdkjs repo use dev-tool to run vendored prettier
@@ -217,7 +223,7 @@ function restLevelPackage(model: RLCModel) {
     packageInfo.scripts["format"] =
       dtxPrettierCmd + packageInfo.scripts["format"];
     delete packageInfo.devDependencies.prettier;
-  } else {
+  } else if (model.options?.moduleKind === "cjs") {
     packageInfo.scripts["build"] =
       "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api";
     packageInfo.scripts["minify"] =
@@ -230,33 +236,44 @@ function restLevelPackage(model: RLCModel) {
     packageInfo.devDependencies["rollup-plugin-sourcemaps"] = "^0.6.3";
     packageInfo.devDependencies["uglify-js"] = "^3.4.9";
   }
-
   if (isTypeSpecTest) {
     packageInfo["type"] = "module";
   }
 
   if (generateTest) {
-    packageInfo.module = `./dist-esm/src/index.js`;
+    if (model.options?.moduleKind === "cjs") {
+      packageInfo.module = `./dist-esm/src/index.js`;
+      packageInfo.devDependencies["mocha"] = "^10.0.0";
+      packageInfo.devDependencies["esm"] = "^3.2.18";
+      packageInfo.devDependencies["@types/mocha"] = "^10.0.0";
+      packageInfo.devDependencies["cross-env"] = "^7.0.2";
+      packageInfo.devDependencies["@types/chai"] = "^4.2.8";
+      packageInfo.devDependencies["chai"] = "^4.2.0";
+      packageInfo.devDependencies["cross-env"] = "^7.0.2";
+      packageInfo.devDependencies["karma-chrome-launcher"] = "^3.0.0";
+      packageInfo.devDependencies["karma-coverage"] = "^2.0.0";
+      packageInfo.devDependencies["karma-env-preprocessor"] = "^0.1.1";
+      packageInfo.devDependencies["karma-firefox-launcher"] = "^2.1.2";
+      packageInfo.devDependencies["karma-junit-reporter"] = "^2.0.1";
+      packageInfo.devDependencies["karma-mocha-reporter"] = "^2.2.5";
+      packageInfo.devDependencies["karma-mocha"] = "^2.0.1";
+      packageInfo.devDependencies["karma-source-map-support"] = "~1.4.0";
+      packageInfo.devDependencies["karma-sourcemap-loader"] = "^0.4.0";
+      packageInfo.devDependencies["karma"] = "^6.2.0";
+      packageInfo.scripts["build:browser"] =
+        "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1";
+      packageInfo.scripts["build:node"] =
+        "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1";
+      packageInfo.scripts["build:test"] = "tsc -p . && rollup -c 2>&1";
+    } else if (model.options?.moduleKind === "esm") {
+      packageInfo.devDependencies["@vitest/browser"] = "^1.3.1";
+      packageInfo.devDependencies["@vitest/coverage-istanbul"] = "^1.3.1";
+      packageInfo.devDependencies["playwright"] = "^1.41.2";
+      packageInfo.devDependencies["vitest"] = "^1.3.1";
+    }
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
     packageInfo.devDependencies["@azure/identity"] = "^4.0.1";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
-    packageInfo.devDependencies["mocha"] = "^10.0.0";
-    packageInfo.devDependencies["esm"] = "^3.2.18";
-    packageInfo.devDependencies["@types/mocha"] = "^10.0.0";
-    packageInfo.devDependencies["cross-env"] = "^7.0.2";
-    packageInfo.devDependencies["@types/chai"] = "^4.2.8";
-    packageInfo.devDependencies["chai"] = "^4.2.0";
-    packageInfo.devDependencies["cross-env"] = "^7.0.2";
-    packageInfo.devDependencies["karma-chrome-launcher"] = "^3.0.0";
-    packageInfo.devDependencies["karma-coverage"] = "^2.0.0";
-    packageInfo.devDependencies["karma-env-preprocessor"] = "^0.1.1";
-    packageInfo.devDependencies["karma-firefox-launcher"] = "^2.1.2";
-    packageInfo.devDependencies["karma-junit-reporter"] = "^2.0.1";
-    packageInfo.devDependencies["karma-mocha-reporter"] = "^2.2.5";
-    packageInfo.devDependencies["karma-mocha"] = "^2.0.1";
-    packageInfo.devDependencies["karma-source-map-support"] = "~1.4.0";
-    packageInfo.devDependencies["karma-sourcemap-loader"] = "^0.4.0";
-    packageInfo.devDependencies["karma"] = "^6.2.0";
     packageInfo.devDependencies["c8"] = "^8.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
     packageInfo.devDependencies["ts-node"] = "^10.0.0";
@@ -266,11 +283,6 @@ function restLevelPackage(model: RLCModel) {
       "npm run clean && npm run build:test && npm run unit-test:node";
     packageInfo.scripts["test:browser"] =
       "npm run clean && npm run build:test && npm run unit-test:browser";
-    packageInfo.scripts["build:browser"] =
-      "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1";
-    packageInfo.scripts["build:node"] =
-      "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1";
-    packageInfo.scripts["build:test"] = "tsc -p . && rollup -c 2>&1";
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";
     packageInfo.scripts["unit-test:node"] =
@@ -285,7 +297,9 @@ function restLevelPackage(model: RLCModel) {
       "npm run integration-test:node && npm run integration-test:browser";
 
     if (azureSdkForJs) {
-      packageInfo.scripts["build:test"] = "tsc -p . && dev-tool run bundle";
+      if (model.options?.moduleKind === "cjs") {
+        packageInfo.scripts["build:test"] = "tsc -p . && dev-tool run bundle";
+      }
       packageInfo.scripts["integration-test:browser"] =
         "dev-tool run test:browser";
       packageInfo.scripts["unit-test:browser"] = "dev-tool run test:browser";

@@ -8,7 +8,7 @@ import {
   CompletionsOutput,
   ChatCompletionsOutput,
   BatchImageGenerationOperationResponseOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface GetEmbeddings200Response extends HttpResponse {

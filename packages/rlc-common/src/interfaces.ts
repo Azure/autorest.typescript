@@ -231,6 +231,7 @@ export interface RLCOptions {
   azureArm?: boolean;
   sourceFrom?: "TypeSpec" | "Swagger";
   isModularLibrary?: boolean;
+  moduleKind?: "esm" | "cjs";
   enableOperationGroup?: boolean;
   flavor?: PackageFlavor;
   enableModelNamespace?: boolean;
