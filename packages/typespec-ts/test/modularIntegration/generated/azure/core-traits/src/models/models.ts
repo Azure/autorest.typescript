@@ -21,6 +21,5 @@ export interface UserActionResponse {
   userActionResult: string;
 }
 
-/** Repeatability Result header options */
-/** */
+/** Alias for RepeatabilityResult */
 export type RepeatabilityResult = "accepted" | "rejected";

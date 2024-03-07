@@ -112,10 +112,6 @@ export interface ExtensibleEnumProperty {
   property: InnerEnum;
 }
 
-/** Enum that will be used as a property for model EnumProperty. Extensible. */
-/** "ValueOne", "ValueTwo" */
-export type InnerEnum = string;
-
 /** Model with enum properties */
 export interface EnumProperty {
   /** Property */
@@ -179,3 +175,6 @@ export interface BooleanProperty {
   /** Property */
   property: boolean;
 }
+
+/** Alias for InnerEnum */
+export type InnerEnum = string | "ValueOne" | "ValueTwo";

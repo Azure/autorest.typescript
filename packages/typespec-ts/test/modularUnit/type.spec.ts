@@ -163,12 +163,8 @@ describe("model type", () => {
         modelFile!.getFullText()!,
         `
         export interface Test {
-          color: Color | null;
+          color: "left" | "right" | "up" | "down";
         }
-
-        /** Type of Color */
-        /** "1", "2" */
-        export type Color = string;
         `
       );
     });
