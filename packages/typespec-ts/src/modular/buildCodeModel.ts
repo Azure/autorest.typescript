@@ -1422,7 +1422,7 @@ function emitUnion(
     return {
       name: getLibraryName(context, type)
         ? getLibraryName(context, type)
-        : type.name,
+        : type.name ?? sdkType.name,
       nullable: sdkType.nullable,
       description: sdkType.description || `Type of ${sdkType.name}`,
       internal: true,

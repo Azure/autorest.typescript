@@ -18,7 +18,7 @@ describe("model type", () => {
         export interface Test {
           color: "red" | "blue";
         }`
-      ); 
+      );
     });
 
     it("string enum member", async () => {
@@ -113,6 +113,32 @@ describe("model type", () => {
         export interface Test {
           color: 1;
         }`
+      );
+    });
+
+    it("nullable enum", async () => {
+      const modelFile = await emitModularModelsFromTypeSpec(`
+        enum Color {
+          Color1: 1,
+          Color2: 2
+        }
+        model Test {
+          color: Color | null;
+        }
+        op read(@body body: Test): void;
+        `);
+      assert.ok(modelFile);
+      await assertEqualContent(
+        modelFile!.getFullText()!,
+        `
+        export interface Test {
+          color: Color | null;
+        }
+
+        /** Type of Color */
+        /** "1", "2" */
+        export type Color = string;
+        `
       );
     });
 
