@@ -3378,7 +3378,6 @@ describe("Input/output model type", () => {
         tspDefinition,
         false,
         false,
-        false,
         true
       );
       assert.ok(paramOutput);
