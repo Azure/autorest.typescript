@@ -27,7 +27,7 @@ export function _stringExtensibleGetSend(
 
 export async function _stringExtensibleGetDeserialize(
   result: StringExtensibleGet200Response,
-): Promise<{ prop: "b" | "c" }> {
+): Promise<{ prop: string | "b" | "c" }> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -40,14 +40,14 @@ export async function _stringExtensibleGetDeserialize(
 export async function stringExtensibleGet(
   context: Client,
   options: StringExtensibleGetOptions = { requestOptions: {} },
-): Promise<{ prop: "b" | "c" }> {
+): Promise<{ prop: string | "b" | "c" }> {
   const result = await _stringExtensibleGetSend(context, options);
   return _stringExtensibleGetDeserialize(result);
 }
 
 export function _stringExtensibleSendSend(
   context: Client,
-  prop: "b" | "c",
+  prop: string | "b" | "c",
   options: StringExtensibleSendOptions = { requestOptions: {} },
 ): StreamableMethod<StringExtensibleSend204Response> {
   return context
@@ -70,7 +70,7 @@ export async function _stringExtensibleSendDeserialize(
 
 export async function stringExtensibleSend(
   context: Client,
-  prop: "b" | "c",
+  prop: string | "b" | "c",
   options: StringExtensibleSendOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _stringExtensibleSendSend(context, prop, options);

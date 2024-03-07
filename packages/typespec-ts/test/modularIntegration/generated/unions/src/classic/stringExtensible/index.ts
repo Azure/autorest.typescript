@@ -12,9 +12,11 @@ import {
 } from "../../models/options.js";
 
 export interface StringExtensibleOperations {
-  get: (options?: StringExtensibleGetOptions) => Promise<{ prop: "b" | "c" }>;
+  get: (
+    options?: StringExtensibleGetOptions,
+  ) => Promise<{ prop: string | "b" | "c" }>;
   send: (
-    prop: "b" | "c",
+    prop: string | "b" | "c",
     options?: StringExtensibleSendOptions,
   ) => Promise<void>;
 }
@@ -23,7 +25,7 @@ export function getStringExtensible(context: UnionContext) {
   return {
     get: (options?: StringExtensibleGetOptions) =>
       stringExtensibleGet(context, options),
-    send: (prop: "b" | "c", options?: StringExtensibleSendOptions) =>
+    send: (prop: string | "b" | "c", options?: StringExtensibleSendOptions) =>
       stringExtensibleSend(context, prop, options),
   };
 }
