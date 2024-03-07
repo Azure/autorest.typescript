@@ -1,3 +1,10 @@
+## 6.0.18 (2024-03-07)
+
+- [Feature] Upgrade TypeSpec compiler to 0.54.0. Please refer to [#2334](https://github.com/Azure/autorest.typescript/pull/2334)
+- [Feature] Support clientName and encodedName. Please refer to [#2297](https://github.com/Azure/autorest.typescript/pull/2297)
+- [Feature] Change branded to flavor. Please refer to [#2332](https://github.com/Azure/autorest.typescript/pull/2332)
+- [Feature] Upgrade non-branded core version. Please refer to [#2306](https://github.com/Azure/autorest.typescript/pull/2306)
+
 ## 6.0.17 (2024-02-27)
 
 - [Feature] Upgrade TypeSpec compiler to 0.53.0. Please refer to [#2286](https://github.com/Azure/autorest.typescript/pull/2286).
