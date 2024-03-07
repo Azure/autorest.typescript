@@ -1654,8 +1654,7 @@ describe("Input/output model type", () => {
           input: duration): NoContentResponse;
         `,
           false,
-          false,
-          true
+          false
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -1675,8 +1674,7 @@ describe("Input/output model type", () => {
           input: duration): NoContentResponse;
         `,
           false,
-          false,
-          true
+          false
         );
         assert.ok(schemaOutput);
         await assertEqualContent(
@@ -3236,13 +3234,13 @@ describe("Input/output model type", () => {
       import "@typespec/http";
       import "@typespec/rest";
 
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+
       @service({
         title: "Widget Service",
       })
       namespace DemoService;
-      
-      using TypeSpec.Http;
-      using TypeSpec.Rest;
       
       union SchemaContentTypeValues {
         avro: "application/json; serialization=Avro",
@@ -3293,7 +3291,6 @@ describe("Input/output model type", () => {
 
       const paramOutput = await emitParameterFromTypeSpec(
         tspDefinition,
-        false,
         false,
         false,
         true
@@ -3658,7 +3655,6 @@ describe("Input/output model type", () => {
       assert.isUndefined(inputModelFile);
       const paramOutput = await emitParameterFromTypeSpec(
         tspDefinition,
-        false,
         false,
         false,
         true
