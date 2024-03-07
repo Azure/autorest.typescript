@@ -18,7 +18,7 @@ describe("model type", () => {
         export interface Test {
           color: "red" | "blue";
         }`
-      ); 
+      );
     });
 
     it("string enum member", async () => {

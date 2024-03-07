@@ -4,7 +4,7 @@
 /** Text Blocklist. */
 export interface TextBlocklist {
   /** Text blocklist name. */
-  readonly blocklistName: string;
+  blocklistName: string;
   /** Text blocklist description. */
   description?: string;
 }
@@ -32,7 +32,7 @@ export interface AddOrUpdateBlockItemsResult {
 /** Item in TextBlocklist. */
 export interface TextBlockItem {
   /** Block Item Id. It will be uuid. */
-  readonly blockItemId: string;
+  blockItemId: string;
   /** Block item description. */
   description?: string;
   /** Block item content. */

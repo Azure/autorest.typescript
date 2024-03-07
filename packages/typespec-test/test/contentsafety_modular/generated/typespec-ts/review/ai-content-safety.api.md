@@ -175,7 +175,7 @@ export interface TextAnalyzeSeverityResult {
 
 // @public
 export interface TextBlockItem {
-    readonly blockItemId: string;
+    blockItemId: string;
     description?: string;
     text: string;
 }
@@ -188,7 +188,7 @@ export interface TextBlockItemInfo {
 
 // @public
 export interface TextBlocklist {
-    readonly blocklistName: string;
+    blocklistName: string;
     description?: string;
 }
 
