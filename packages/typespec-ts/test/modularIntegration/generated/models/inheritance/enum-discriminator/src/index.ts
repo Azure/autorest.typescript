@@ -8,11 +8,11 @@ export {
 export {
   Dog,
   Golden,
-  DogKind,
   Snake,
   Cobra,
   SnakeKind,
   DogUnion,
+  DogKind,
   SnakeUnion,
   GetExtensibleModelOptions,
   PutExtensibleModelOptions,

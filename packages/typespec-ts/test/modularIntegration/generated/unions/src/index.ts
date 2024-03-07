@@ -8,6 +8,8 @@ export {
   MixedLiteralsCases,
   StringAndArrayCases,
   EnumsOnlyCases,
+  LR,
+  UD,
   Dog,
   StringExtensibleNamedUnion,
   StringsOnlyGetOptions,

@@ -7,11 +7,11 @@ export {
   ListItemInputBody,
   UserListResults,
   PagedUser,
-  ListItemInputExtensibleEnum,
   PagedFirstItem,
   FirstItem,
   PagedSecondItem,
   SecondItem,
+  ListItemInputExtensibleEnum,
 } from "./models.js";
 export {
   CreateOrUpdateOptions,
