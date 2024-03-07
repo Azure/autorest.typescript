@@ -114,8 +114,13 @@ function restLevelPackage(model: RLCModel) {
       node: ">=18.0.0"
     },
     scripts: {
-      "build:test": "npm run clean && tshy && dev-tool run build-test",
-      build: "npm run clean && tshy && npm run extract-api",
+      ...(model.options?.moduleKind === "cjs" && {
+        "build:browser": "echo skipped.",
+        "build:node": "echo skipped.",
+        "build:samples": "echo skipped.",
+        "build:test": "echo skipped.",
+        "build:debug": "echo skipped."
+      }),
       "check-format": `prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}" ${appendPathWhenFormat(
         generateTest,
         generateSample
@@ -184,6 +189,14 @@ function restLevelPackage(model: RLCModel) {
     }
   };
 
+  if (model.options?.moduleKind === "esm") {
+    packageInfo.scripts["build"] =
+      "npm run clean && tshy && npm run extract-api";
+  } else {
+    packageInfo.scripts["build"] =
+      "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api";
+  }
+
   if (azureOutputDirectory) {
     packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}/README.md`;
   }
@@ -236,11 +249,15 @@ function restLevelPackage(model: RLCModel) {
     packageInfo.devDependencies["rollup-plugin-sourcemaps"] = "^0.6.3";
     packageInfo.devDependencies["uglify-js"] = "^3.4.9";
   }
+
   if (isTypeSpecTest) {
     packageInfo["type"] = "module";
   }
 
   if (generateTest) {
+    packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
+    packageInfo.devDependencies["@azure/identity"] = "^4.0.1";
+    packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
     if (model.options?.moduleKind === "cjs") {
       packageInfo.module = `./dist-esm/src/index.js`;
       packageInfo.devDependencies["mocha"] = "^10.0.0";
@@ -271,9 +288,6 @@ function restLevelPackage(model: RLCModel) {
       packageInfo.devDependencies["playwright"] = "^1.41.2";
       packageInfo.devDependencies["vitest"] = "^1.3.1";
     }
-    packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
-    packageInfo.devDependencies["@azure/identity"] = "^4.0.1";
-    packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
     packageInfo.devDependencies["c8"] = "^8.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
     packageInfo.devDependencies["ts-node"] = "^10.0.0";

@@ -37,11 +37,11 @@ const restLevelTsConfigInAzureSdkForJs: (
 const restLevelTsConfigNotInAzureSdkForJs: (
   model: RLCModel
 ) => Record<string, any> = function (model: RLCModel) {
-  const { options = {} } = model;
+  const { options } = model;
   return {
     compilerOptions: {
       target: "ES2017",
-      module: options.moduleKind ? "NodeNext" : "es6",
+      module: options?.moduleKind === "esm" ? "NodeNext" : "es6",
       lib: [],
       declaration: true,
       declarationMap: true,
@@ -55,11 +55,11 @@ const restLevelTsConfigNotInAzureSdkForJs: (
       noImplicitReturns: true,
       noFallthroughCasesInSwitch: true,
       forceConsistentCasingInFileNames: true,
-      moduleResolution: options.moduleKind ? "NodeNext" : "node",
+      moduleResolution: options?.moduleKind === "esm" ? "NodeNext" : "node",
       allowSyntheticDefaultImports: true,
       esModuleInterop: true,
-      outDir: options.moduleKind === "cjs" ? "./dist-esm" : undefined,
-      declarationDir: options.moduleKind === "cjs" ? "./types" : undefined
+      outDir: options?.moduleKind === "cjs" ? "./dist-esm" : undefined,
+      declarationDir: options?.moduleKind === "cjs" ? "./types" : undefined
     },
     include: ["./src/**/*.ts"]
   };
