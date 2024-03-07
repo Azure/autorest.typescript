@@ -83,7 +83,7 @@ import {
 } from "./modularCodeModel.js";
 import {
   getBodyType,
-  getEnrichedDefaultApiVersion,
+  getDefaultApiVersionString,
   isAzureCoreErrorType
 } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
@@ -520,10 +520,7 @@ function emitParameter(
       clientDefaultValue = defaultApiVersion.value;
     }
     if (!clientDefaultValue) {
-      clientDefaultValue = getEnrichedDefaultApiVersion(
-        context.program,
-        context
-      );
+      clientDefaultValue = getDefaultApiVersionString(context.program, context);
     }
   }
   return { clientDefaultValue, ...base, ...paramMap };

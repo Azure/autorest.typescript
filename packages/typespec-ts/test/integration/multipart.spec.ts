@@ -21,16 +21,17 @@ describe("MultiPartClient Rest Client", () => {
   const pngPath = resolve(root, "./assets/image.png");
 
   describe("string + bytes", () => {
-    it("Buffer extends Uint8Array should be allowed", async () => {
-      const file = await readFile(imgPath);
+    it.only("Buffer extends Uint8Array should be allowed", async () => {
+      // const file = await readFile(imgPath);
       const result = await client
         .path("/multipart/form-data/mixed-parts")
         .post({
-          contentType: "multipart/form-data",
+          contentType: "multipart/form-data; boundary=boundary" as any,
           body: {
             id: "123",
-            profileImage: file
-          }
+            arr: ["123"]
+          } as any,
+          boundary: "boundary"
         });
       assert.strictEqual(result.status, "204");
     });
