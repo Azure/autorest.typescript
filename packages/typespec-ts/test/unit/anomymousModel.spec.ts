@@ -6,7 +6,7 @@ import {
 } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
-describe("anonymous model", () => {
+describe.only("anonymous model", () => {
   describe("model property in request & response", () => {
     it("input only", async () => {
       const tsp = `
@@ -35,6 +35,9 @@ describe("anonymous model", () => {
             arrayOfEmptyObj: {}[];
             arrayOfSimpleAnonymousObj: { foo: string; }[];
             arrayOfOtherModel: Bar[];
+            arrayOfUnionObj: (string | int32 | "foo")[];
+            arrayOfUnionOfOtherModel: (Bar | EmptyObj | null)[];
+            arrayOfUnionOfAnonymousObj: ({ foo: string; } | { bar: string; })[];
           };
       }
       @route("/models")
@@ -67,6 +70,9 @@ describe("anonymous model", () => {
           arrayOfEmptyObj: Record<string, unknown>[];
           arrayOfSimpleAnonymousObj: { foo: string; }[];
           arrayOfOtherModel: Array<Bar>;
+          arrayOfUnionObj: (string | number | "foo")[];
+          arrayOfUnionOfOtherModel: (Bar | EmptyObj | null)[];
+          arrayOfUnionOfAnonymousObj: ({ foo: string } | { bar: string })[];
         };
       }
 
@@ -107,6 +113,9 @@ describe("anonymous model", () => {
             arrayOfEmptyObj: {}[];
             arrayOfSimpleAnonymousObj: { foo: string; }[];
             arrayOfOtherModel: Bar[];
+            arrayOfUnionObj: (string | int32 | "foo")[];
+            arrayOfUnionOfOtherModel: (Bar | EmptyObj | null)[];
+            arrayOfUnionOfAnonymousObj: ({ foo: string; } | { bar: string; })[];
           }
       }
       @route("/models")
@@ -140,6 +149,9 @@ describe("anonymous model", () => {
               arrayOfEmptyObj: Record<string, any>[];
               arrayOfSimpleAnonymousObj: { foo: string }[];
               arrayOfOtherModel: Array<BarOutput>;
+              arrayOfUnionObj: (string | number | "foo")[];
+              arrayOfUnionOfOtherModel: (BarOutput | EmptyObjOutput | null)[];
+              arrayOfUnionOfAnonymousObj: ({ foo: string } | { bar: string })[];
           };
       }
 
@@ -175,6 +187,9 @@ describe("anonymous model", () => {
             arrayOfEmptyObj: {}[];
             arrayOfSimpleAnonymousObj: { foo: string; }[];
             arrayOfOtherModel: Bar[];
+            arrayOfUnionObj: (string | int32 | "foo")[];
+            arrayOfUnionOfOtherModel: (Bar | EmptyObj | null)[];
+            arrayOfUnionOfAnonymousObj: ({ foo: string; } | { bar: string; })[];
           }
       }
       @route("/models")
@@ -206,6 +221,9 @@ describe("anonymous model", () => {
               arrayOfEmptyObj: Record<string, any>[];
               arrayOfSimpleAnonymousObj: { foo: string }[];
               arrayOfOtherModel: Array<BarOutput>;
+              arrayOfUnionObj: (string | number | "foo")[];
+              arrayOfUnionOfOtherModel: (BarOutput | EmptyObjOutput | null)[];
+              arrayOfUnionOfAnonymousObj: ({ foo: string } | { bar: string })[];
           };
       }
 
@@ -236,6 +254,9 @@ describe("anonymous model", () => {
           arrayOfEmptyObj: Record<string, unknown>[];
           arrayOfSimpleAnonymousObj: { foo: string; }[];
           arrayOfOtherModel: Array<Bar>;
+          arrayOfUnionObj: (string | number | "foo")[];
+          arrayOfUnionOfOtherModel: (Bar | EmptyObj | null)[];
+          arrayOfUnionOfAnonymousObj: ({ foo: string } | { bar: string })[];
         };
       }
 
@@ -254,13 +275,33 @@ describe("anonymous model", () => {
         bas: string;
       }
 
+      model EmptyObj {
+
+      }
+
       @route("/models")
       @get
       op getModel(@body input: {
-        bar: Bar;
         baz: string;
         arr: string[];
         obj: { foo: string; };
+        record: Record<string>;
+        unionObj: string | int32 | "foo";
+        unionOfAnonymousObj: { foo: string; } | { bar: string; };
+        unionOfOtherModel: Bar | null;
+        emptyObj: {};
+        referOtherModel: Bar;
+        namedEmptyObj: EmptyObj;
+        recordOfEmptyObj: Record<{}>;
+        recordOfOtherModel: Record<Bar>;
+        recordOfRecordOfEmptyObj: Record<Record<{}>>;
+        recordOfAnonymousObj: Record<{ foo: string; }>;
+        arrayOfEmptyObj: {}[];
+        arrayOfSimpleAnonymousObj: { foo: string; }[];
+        arrayOfOtherModel: Bar[];
+        arrayOfUnionObj: (string | int32 | "foo")[];
+        arrayOfUnionOfOtherModel: (Bar | EmptyObj | null)[];
+        arrayOfUnionOfAnonymousObj: ({ foo: string; } | { bar: string; })[];
       }): void;
       `);
       assert.ok(schemaOutput);
