@@ -270,30 +270,8 @@
           "description": "The ordered index associated with this chat completions choice."
         },
         "finish_reason": {
-          "type": "string",
+          "$ref": "#/definitions/CompletionsFinishReason",
           "description": "The reason that this chat completions choice completed its generated.",
-          "enum": [
-            "stop",
-            "length",
-            "content_filter"
-          ],
-          "x-ms-enum": {
-            "modelAsString": false,
-            "values": [
-              {
-                "name": "stopped",
-                "value": "stop"
-              },
-              {
-                "name": "tokenLimitReached",
-                "value": "length"
-              },
-              {
-                "name": "contentFiltered",
-                "value": "content_filter"
-              }
-            ]
-          },
           "x-nullable": true,
           "x-ms-client-name": "finishReason"
         },
@@ -492,30 +470,8 @@
           ]
         },
         "finish_reason": {
-          "type": "string",
+          "$ref": "#/definitions/CompletionsFinishReason",
           "description": "Reason for finishing",
-          "enum": [
-            "stop",
-            "length",
-            "content_filter"
-          ],
-          "x-ms-enum": {
-            "modelAsString": false,
-            "values": [
-              {
-                "name": "stopped",
-                "value": "stop"
-              },
-              {
-                "name": "tokenLimitReached",
-                "value": "length"
-              },
-              {
-                "name": "contentFiltered",
-                "value": "content_filter"
-              }
-            ]
-          },
           "x-nullable": true,
           "x-ms-client-name": "finishReason"
         }

@@ -143,13 +143,13 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 
 // @public
 export interface PagedTextBlockItem {
-    nextLink?: string;
+    readonly nextLink?: string;
     value: TextBlockItem[];
 }
 
 // @public
 export interface PagedTextBlocklist {
-    nextLink?: string;
+    readonly nextLink?: string;
     value: TextBlocklist[];
 }
 

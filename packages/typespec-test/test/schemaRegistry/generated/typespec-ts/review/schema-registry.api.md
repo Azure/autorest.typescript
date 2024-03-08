@@ -26,13 +26,13 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 
 // @public
 export interface PagedSchemaGroup {
-    nextLink?: string;
+    readonly nextLink?: string;
     value: SchemaGroup[];
 }
 
 // @public
 export interface PagedVersion {
-    nextLink?: string;
+    readonly nextLink?: string;
     value: SchemaVersion[];
 }
 
