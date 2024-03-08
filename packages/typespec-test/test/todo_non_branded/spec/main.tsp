@@ -65,7 +65,6 @@ model TodoItem {
   // https://github.com/microsoft/typespec/issues/2926
   labels: TodoLabel[];
 
-
 }
 
 union TodoLabel {
