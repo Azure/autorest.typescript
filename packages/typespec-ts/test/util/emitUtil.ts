@@ -283,12 +283,13 @@ export async function getRLCClientsFromTypeSpec(tspContent: string) {
 export async function emitModularModelsFromTypeSpec(
   tspContent: string,
   needOptions: boolean = false,
-  withRawContent: boolean = false
+  withRawContent: boolean = false,
+  needAzureCore: boolean = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
     true,
-    false,
+    needAzureCore,
     false,
     withRawContent
   );
