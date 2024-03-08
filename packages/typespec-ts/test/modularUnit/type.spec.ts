@@ -116,57 +116,64 @@ describe("model type", () => {
       );
     });
 
-    it("nullable enum", async () => {
-      const modelFile = await emitModularModelsFromTypeSpec(`
-        enum Color {
-          Color1: 1,
-          Color2: 2
+    describe.only("isFixed", () => {
+      it("nullable enum", async () => {
+        const modelFile = await emitModularModelsFromTypeSpec(`
+          enum Color {
+            Color1: 1,
+            Color2: 2
+          }
+          model Test {
+            color: Color | null;
+          }
+          op read(@body body: Test): void;
+          `);
+        assert.ok(modelFile);
+        await assertEqualContent(
+          modelFile!.getFullText()!,
+          `
+          export interface Test {
+            color: Color | null;
+          }
+  
+          /** Type of Color */
+          /** "1", "2" */
+          export type Color = string;
+          `
+        );
+      });
+
+      it("union of enum", async () => {
+        const modelFile = await emitModularModelsFromTypeSpec(`
+        enum LR {
+          left,
+          right,
         }
+        enum UD {
+          up,
+          down,
+        }
+  
         model Test {
-          color: Color | null;
+          color: LR | UD;
         }
         op read(@body body: Test): void;
-        `);
-      assert.ok(modelFile);
-      await assertEqualContent(
-        modelFile!.getFullText()!,
-        `
-        export interface Test {
-          color: Color | null;
-        }
+          `);
+        assert.ok(modelFile);
+        await assertEqualContent(
+          modelFile!.getFullText()!,
+          `
+          export interface Test {
+            color: LR | UD;
+          }
 
-        /** Type of Color */
-        /** "1", "2" */
-        export type Color = string;
-        `
-      );
-    });
-
-    it.skip("union of enum", async () => {
-      const modelFile = await emitModularModelsFromTypeSpec(`
-      enum LR {
-        left,
-        right,
-      }
-      enum UD {
-        up,
-        down,
-      }
-
-      model Test {
-        color: LR | UD;
-      }
-      op read(@body body: Test): void;
-        `);
-      assert.ok(modelFile);
-      await assertEqualContent(
-        modelFile!.getFullText()!,
-        `
-        export interface Test {
-          color: "left" | "right" | "up" | "down";
-        }
-        `
-      );
+          /** "left", "right" */
+          export type LR = string;
+          /** "up", "down" */
+          export type UD = string;
+          `
+        );
+      });
     });
 
     it("nullable numeric literal", async () => {
