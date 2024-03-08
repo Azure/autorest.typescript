@@ -14,6 +14,9 @@ export interface AnalyzeResult {
     summary: string;
 }
 
+// @public
+export type BytesKnownEncoding = string;
+
 // @public (undocumented)
 export interface CreateWidget {
     color: "red" | "blue";
@@ -35,6 +38,8 @@ export interface UpdateWidget {
 // @public (undocumented)
 export interface Widget {
     color: "red" | "blue";
+    // (undocumented)
+    enumInNotAzure: BytesKnownEncoding;
     id: string;
     weight: number;
 }

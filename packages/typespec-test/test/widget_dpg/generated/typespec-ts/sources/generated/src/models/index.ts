@@ -2,6 +2,7 @@
 
 export {
   Widget,
+  BytesKnownEncoding,
   ListWidgetsPagesResults,
   CreateWidget,
   UpdateWidget,

@@ -103,6 +103,7 @@ export async function _listWidgetsDeserialize(
         id: p["id"],
         weight: p["weight"],
         color: p["color"],
+        enumInNotAzure: p["enumInNotAzure"],
       }));
 }
 
@@ -160,6 +161,7 @@ export async function _listWidgetsPagesDeserialize(
       id: p["id"],
       weight: p["weight"],
       color: p["color"],
+      enumInNotAzure: p["enumInNotAzure"],
     })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
@@ -203,6 +205,7 @@ export async function _queryWidgetsPagesDeserialize(
       id: p["id"],
       weight: p["weight"],
       color: p["color"],
+      enumInNotAzure: p["enumInNotAzure"],
     })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
@@ -239,6 +242,7 @@ export async function _getWidgetDeserialize(
     id: result.body["id"],
     weight: result.body["weight"],
     color: result.body["color"],
+    enumInNotAzure: result.body["enumInNotAzure"],
   };
 }
 
@@ -276,6 +280,7 @@ export async function _createWidgetDeserialize(
     id: result.body["id"],
     weight: result.body["weight"],
     color: result.body["color"],
+    enumInNotAzure: result.body["enumInNotAzure"],
   };
 }
 
@@ -319,6 +324,7 @@ export async function _updateWidgetDeserialize(
     id: result.body["id"],
     weight: result.body["weight"],
     color: result.body["color"],
+    enumInNotAzure: result.body["enumInNotAzure"],
   };
 }
 

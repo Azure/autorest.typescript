@@ -6,6 +6,7 @@ export {
 } from "./WidgetServiceClient.js";
 export {
   Widget,
+  BytesKnownEncoding,
   ListWidgetsPagesResults,
   CreateWidget,
   UpdateWidget,

@@ -16,6 +16,12 @@ model Widget {
     weight: int32;
     @doc("The color of the widget.")
     color: "red" | "blue";
+    enumInNotAzure: BytesKnownEncoding;
+}
+
+enum BytesKnownEncoding {
+    base64,
+    base64url,
 }
 
 model CreateWidget {

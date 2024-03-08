@@ -7,7 +7,11 @@ export interface Widget {
   weight: number;
   /** The color of the widget. */
   color: "red" | "blue";
+  enumInNotAzure: BytesKnownEncoding;
 }
+
+/** "base64", "base64url" */
+export type BytesKnownEncoding = string;
 
 export interface ListWidgetsPagesResults {
   /** The current page of results. */

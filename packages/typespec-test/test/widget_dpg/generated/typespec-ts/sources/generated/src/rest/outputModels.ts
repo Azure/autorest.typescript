@@ -7,6 +7,8 @@ export interface WidgetOutput {
   weight: number;
   /** The color of the widget. */
   color: "red" | "blue";
+  /** Possible values: "base64", "base64url" */
+  enumInNotAzure: string;
 }
 
 export interface WidgetErrorOutput {
