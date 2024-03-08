@@ -1381,11 +1381,32 @@ function mapTypeSpecType(
   }
 }
 
+function isExtensibleEnum(context: SdkContext, type: Enum): boolean {
+  if (isFixed(context.program, type)) {
+    return false;
+  }
+
+  if (context.rlcOptions?.flavor === "azure") {
+    return true;
+  }
+
+  return false;
+}
+
 function emitUnion(
   context: SdkContext,
   type: Union,
   usage: UsageFlags
 ): Record<string, any> {
+  let isVariantExtensible = false;
+  for (const [_, variant] of type.variants) {
+    if (variant.type.kind === "Enum") {
+      if (isExtensibleEnum(context, variant.type)) {
+        isVariantExtensible = true;
+        break;
+      }
+    }
+  }
   const sdkType = getSdkUnion(context, type);
   const nonNullOptions = getNonNullOptions(type);
   if (sdkType === undefined) {
@@ -1434,7 +1455,7 @@ function emitUnion(
       type: sdkType.kind,
       valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
       values: sdkType.values.map((x) => emitEnumMember(context, x)),
-      isFixed: sdkType.isFixed,
+      isFixed: isVariantExtensible ? false : sdkType.isFixed,
       xmlMetadata: {},
       usage
     };
