@@ -216,7 +216,7 @@ describe("model type", () => {
           );
         });
 
-        it("nullable @fixed enum would be intepreted as azure enum which is fixed", async () => {
+        it("nullable @fixed enum would be intepreted as un-branded enum which is fixed", async () => {
           const modelFile = await emitModularModelsFromTypeSpec(
             `
             @fixed
