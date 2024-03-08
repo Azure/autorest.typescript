@@ -10,6 +10,7 @@ import { SdkContext } from "../../src/utils/interfaces.js";
 import { assert } from "chai";
 import { format } from "prettier";
 import { prettierTypeScriptOptions } from "../../src/lib.js";
+import { PackageFlavor } from "@azure-tools/rlc-common";
 
 export async function createRLCEmitterTestHost() {
   return createTestHost({
@@ -66,7 +67,10 @@ ${code}
   return host;
 }
 
-export function createDpgContextTestHelper(program: Program): SdkContext {
+export function createDpgContextTestHelper(
+  program: Program,
+  flavor?: PackageFlavor
+): SdkContext {
   const defaultOptions = {
     generateProtocolMethods: true,
     generateConvenienceMethods: true,
@@ -79,13 +83,15 @@ export function createDpgContextTestHelper(program: Program): SdkContext {
   };
   const resolvedOptions = { ...defaultOptions };
   program.emitters = resolvedOptions.emitters as any;
+  const options = { flavor: flavor };
   return {
     program: program,
     generateProtocolMethods: resolvedOptions.generateProtocolMethods,
     generateConvenienceMethods: resolvedOptions.generateConvenienceMethods,
-    rlcOptions: { flavor: "azure" },
+    rlcOptions: options,
     generationPathDetail: {},
-    emitterName: "@azure-tools/typespec-ts"
+    emitterName: "@azure-tools/typespec-ts",
+    emitContext: { options } as any
   } as SdkContext;
 }
 

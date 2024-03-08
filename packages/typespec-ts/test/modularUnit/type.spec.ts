@@ -118,8 +118,9 @@ describe("model type", () => {
 
     describe("flavor", () => {
       describe("azure", () => {
-        it.only("nullable enum without @fixed would be interpreted as non-branded enum whichi is extensible", async () => {
-          const modelFile = await emitModularModelsFromTypeSpec(`
+        it.only("enum would be interpreted as extensible enum in azure", async () => {
+          const modelFile = await emitModularModelsFromTypeSpec(
+            `
             enum Color {
               Color1: 1,
               Color2: 2
@@ -128,7 +129,12 @@ describe("model type", () => {
               color: Color | null;
             }
             op read(@body body: Test): void;
-            `);
+            `,
+            undefined,
+            undefined,
+            undefined,
+            "azure"
+          );
           assert.ok(modelFile);
           await assertEqualContent(
             modelFile!.getFullText()!,
@@ -159,7 +165,8 @@ describe("model type", () => {
             `,
             undefined,
             undefined,
-            true
+            true,
+            "azure"
           );
           assert.ok(modelFile);
           await assertEqualContent(
@@ -176,7 +183,72 @@ describe("model type", () => {
           );
         });
       });
-      describe("un-branded", () => {});
+      describe("un-branded", () => {
+        it.only("enum would be interpreted as fixed enum in un-branded environment", async () => {
+          const modelFile = await emitModularModelsFromTypeSpec(
+            `
+            enum Color {
+              Color1: 1,
+              Color2: 2
+            }
+            model Test {
+              color: Color | null;
+            }
+            op read(@body body: Test): void;
+            `,
+            undefined,
+            undefined,
+            undefined,
+            undefined // un-branded
+          );
+          assert.ok(modelFile);
+          await assertEqualContent(
+            modelFile!.getFullText()!,
+            `
+            export interface Test {
+              color: Color | null;
+            }
+    
+            /** Type of Color */
+            /** */
+            export type Color = "1" | "2";
+            `
+          );
+        });
+
+        it("nullable @fixed enum would be intepreted as azure enum which is fixed", async () => {
+          const modelFile = await emitModularModelsFromTypeSpec(
+            `
+            @fixed
+            enum Color {
+              Color1: 1,
+              Color2: 2
+            }
+            model Test {
+              color: Color | null;
+            }
+            op read(@body body: Test): void;
+            `,
+            undefined,
+            undefined,
+            true,
+            undefined // un-branded
+          );
+          assert.ok(modelFile);
+          await assertEqualContent(
+            modelFile!.getFullText()!,
+            `
+            export interface Test {
+              color: Color | null;
+            }
+    
+            /** Type of Color */
+            /** */
+            export type Color = "1" | "2";
+            `
+          );
+        });
+      });
     });
 
     it.skip("union of enum", async () => {

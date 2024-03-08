@@ -7,6 +7,7 @@ import {
   buildRuntimeImports,
   buildSchemaTypes,
   initInternalImports,
+  PackageFlavor,
   RLCModel,
   Schema
 } from "@azure-tools/rlc-common";
@@ -284,7 +285,8 @@ export async function emitModularModelsFromTypeSpec(
   tspContent: string,
   needOptions: boolean = false,
   withRawContent: boolean = false,
-  needAzureCore: boolean = false
+  needAzureCore: boolean = false,
+  flavor?: PackageFlavor
 ) {
   const context = await rlcEmitterFor(
     tspContent,
@@ -293,7 +295,7 @@ export async function emitModularModelsFromTypeSpec(
     false,
     withRawContent
   );
-  const dpgContext = createDpgContextTestHelper(context.program);
+  const dpgContext = createDpgContextTestHelper(context.program, flavor);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
     RLCModel
