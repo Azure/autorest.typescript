@@ -26,7 +26,7 @@ async function deleteDeploymentSample() {
       projectName,
       deploymentName,
     )
-    .delete({ queryParameters: { "api-version": "{Your api-version}" } });
+    .delete();
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   console.log(result);

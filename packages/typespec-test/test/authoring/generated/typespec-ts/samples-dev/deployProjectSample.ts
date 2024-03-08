@@ -26,10 +26,7 @@ async function deployProjectSample() {
       projectName,
       deploymentName,
     )
-    .put({
-      body: {},
-      queryParameters: { "api-version": "{Your api-version}" },
-    });
+    .put({ body: {} });
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   console.log(result);

@@ -18,14 +18,7 @@ async function listTrainingConfigVersionsSample() {
   const client = createAuthoringClient(endpoint, credential);
   const initialResponse = await client
     .path("/authoring/analyze-text/projects/global/training-config-versions")
-    .get({
-      queryParameters: {
-        "api-version": "{Your api-version}",
-        top: 123,
-        skip: 123,
-        maxpagesize: 123,
-      },
-    });
+    .get({ queryParameters: { top: 123, skip: 123, maxpagesize: 123 } });
   const pageData = paginate(client, initialResponse);
   const result = [];
   for await (const item of pageData) {
