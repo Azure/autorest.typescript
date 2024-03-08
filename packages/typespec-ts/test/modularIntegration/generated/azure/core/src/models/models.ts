@@ -52,6 +52,10 @@ export interface PagedUser {
   readonly nextLink?: string;
 }
 
+/** An extensible enum input parameter. */
+/** "First", "Second" */
+export type ListItemInputExtensibleEnum = string;
+
 /** Paged collection of FirstItem items */
 export interface PagedFirstItem {
   /** The FirstItem items on this page */
@@ -79,6 +83,3 @@ export interface SecondItem {
   /** The name of the item. */
   readonly name: string;
 }
-
-/** Alias for ListItemInputExtensibleEnum */
-export type ListItemInputExtensibleEnum = string | "First" | "Second";
