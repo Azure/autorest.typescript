@@ -1,4 +1,3 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
 import {
@@ -29,7 +28,7 @@ import {
   AnalyzeWidget200Response,
   AnalyzeWidgetDefaultResponse,
 } from "./responses.js";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import { Client, StreamableMethod } from "@typespec/ts-http-runtime";
 
 export interface ListWidgets {
   /**

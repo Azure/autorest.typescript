@@ -1,4 +1,3 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
 import WidgetServiceClient from "./widgetServiceClient.js";
@@ -10,7 +9,6 @@ export * from "./clientDefinitions.js";
 export * from "./isUnexpected.js";
 export * from "./models.js";
 export * from "./outputModels.js";
-export * from "./paginateHelper.js";
 export * from "./serializeHelper.js";
 
 export default WidgetServiceClient;

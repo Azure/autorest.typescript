@@ -1,8 +1,6 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "../logger.js";
+import { getClient, ClientOptions } from "@typespec/ts-http-runtime";
 import { WidgetServiceContext } from "./clientDefinitions.js";
 
 /**
@@ -25,9 +23,6 @@ export default function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix,
-    },
-    loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
 

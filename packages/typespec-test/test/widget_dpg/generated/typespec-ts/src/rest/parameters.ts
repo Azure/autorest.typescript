@@ -1,8 +1,7 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
-import { RequestParameters } from "@azure-rest/core-client";
+import { RawHttpHeadersInput } from "@typespec/ts-http-runtime";
+import { RequestParameters } from "@typespec/ts-http-runtime";
 import { CreateWidget, UpdateWidget } from "./models.js";
 
 export interface ListWidgetsHeaders {

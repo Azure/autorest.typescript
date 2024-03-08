@@ -1,7 +1,6 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Pipeline } from "@azure/core-rest-pipeline";
+import { Pipeline } from "@typespec/ts-http-runtime";
 import {
   getWidgetsOperations,
   WidgetsOperations,

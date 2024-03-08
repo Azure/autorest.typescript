@@ -64,6 +64,14 @@ model TodoItem {
   // Want the read form to be normalized to TodoLabelRecord[], but can't
   // https://github.com/microsoft/typespec/issues/2926
   labels: TodoLabel[];
+  enumInNoAzure?: TodoStatus;
+
+}
+
+enum TodoStatus {
+  NotStarted,
+  InProgress,
+  Completed,
 }
 
 union TodoLabel {

@@ -1,9 +1,9 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
 import { WidgetServiceContext } from "../../api/WidgetServiceContext.js";
 import {
   Widget,
+  ListWidgetsPagesResults,
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
@@ -18,7 +18,6 @@ import {
   deleteWidget,
   analyzeWidget,
 } from "../../api/widgets/index.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import {
   WidgetsListWidgetsOptions,
   WidgetsListWidgetsPagesOptions,
@@ -43,12 +42,12 @@ export interface WidgetsOperations {
     page: number,
     pageSize: number,
     options?: WidgetsListWidgetsPagesOptions,
-  ) => PagedAsyncIterableIterator<Widget>;
+  ) => Promise<ListWidgetsPagesResults>;
   queryWidgetsPages: (
     page: number,
     pageSize: number,
     options?: WidgetsQueryWidgetsPagesOptions,
-  ) => PagedAsyncIterableIterator<Widget>;
+  ) => Promise<ListWidgetsPagesResults>;
   getWidget: (id: string, options?: WidgetsGetWidgetOptions) => Promise<Widget>;
   createWidget: (
     body: CreateWidget,

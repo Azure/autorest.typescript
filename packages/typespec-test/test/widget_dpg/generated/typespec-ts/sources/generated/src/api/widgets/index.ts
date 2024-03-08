@@ -1,4 +1,3 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
 import {
@@ -8,8 +7,6 @@ import {
   UpdateWidget,
   AnalyzeResult,
 } from "../../models/models.js";
-import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
-import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
   AnalyzeWidget200Response,
   AnalyzeWidgetDefaultResponse,
@@ -34,9 +31,9 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  uint8ArrayToString,
   createRestError,
-} from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
+} from "@typespec/ts-http-runtime";
 import {
   WidgetsListWidgetsOptions,
   WidgetsListWidgetsPagesOptions,
@@ -168,18 +165,14 @@ export async function _listWidgetsPagesDeserialize(
   };
 }
 
-export function listWidgetsPages(
+export async function listWidgetsPages(
   context: Client,
   page: number,
   pageSize: number,
   options: WidgetsListWidgetsPagesOptions = { requestOptions: {} },
-): PagedAsyncIterableIterator<Widget> {
-  return buildPagedAsyncIterator(
-    context,
-    () => _listWidgetsPagesSend(context, page, pageSize, options),
-    _listWidgetsPagesDeserialize,
-    { itemName: "results", nextLinkName: "odata.nextLink" },
-  );
+): Promise<ListWidgetsPagesResults> {
+  const result = await _listWidgetsPagesSend(context, page, pageSize, options);
+  return _listWidgetsPagesDeserialize(result);
 }
 
 export function _queryWidgetsPagesSend(
@@ -215,18 +208,14 @@ export async function _queryWidgetsPagesDeserialize(
   };
 }
 
-export function queryWidgetsPages(
+export async function queryWidgetsPages(
   context: Client,
   page: number,
   pageSize: number,
   options: WidgetsQueryWidgetsPagesOptions = { requestOptions: {} },
-): PagedAsyncIterableIterator<Widget> {
-  return buildPagedAsyncIterator(
-    context,
-    () => _queryWidgetsPagesSend(context, page, pageSize, options),
-    _queryWidgetsPagesDeserialize,
-    { itemName: "results", nextLinkName: "odata.nextLink" },
-  );
+): Promise<ListWidgetsPagesResults> {
+  const result = await _queryWidgetsPagesSend(context, page, pageSize, options);
+  return _queryWidgetsPagesDeserialize(result);
 }
 
 export function _getWidgetSend(

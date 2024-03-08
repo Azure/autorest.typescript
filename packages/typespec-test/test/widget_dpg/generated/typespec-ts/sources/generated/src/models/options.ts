@@ -1,7 +1,6 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { OperationOptions } from "@azure-rest/core-client";
+import { OperationOptions } from "@typespec/ts-http-runtime";
 
 export interface WidgetsListWidgetsOptions extends OperationOptions {
   optionalHeader?: string;

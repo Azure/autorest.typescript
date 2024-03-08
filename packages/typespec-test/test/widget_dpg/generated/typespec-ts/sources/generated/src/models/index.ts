@@ -1,4 +1,3 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
 export {
@@ -18,8 +17,3 @@ export {
   WidgetsDeleteWidgetOptions,
   WidgetsAnalyzeWidgetOptions,
 } from "./options.js";
-export {
-  PageSettings,
-  ContinuablePage,
-  PagedAsyncIterableIterator,
-} from "./pagingTypes.js";
