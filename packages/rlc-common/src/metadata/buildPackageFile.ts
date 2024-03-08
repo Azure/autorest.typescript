@@ -291,36 +291,77 @@ function restLevelPackage(model: RLCModel) {
     packageInfo.devDependencies["c8"] = "^8.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
     packageInfo.devDependencies["ts-node"] = "^10.0.0";
-    packageInfo.scripts["test"] =
-      "npm run clean && npm run build:test && npm run unit-test";
-    packageInfo.scripts["test:node"] =
-      "npm run clean && npm run build:test && npm run unit-test:node";
-    packageInfo.scripts["test:browser"] =
-      "npm run clean && npm run build:test && npm run unit-test:browser";
-    packageInfo.scripts["unit-test"] =
-      "npm run unit-test:node && npm run unit-test:browser";
-    packageInfo.scripts["unit-test:node"] =
-      // eslint-disable-next-line no-useless-escape
-      `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"`;
-    packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
-    packageInfo.scripts["integration-test:browser"] =
-      "karma start --single-run";
-    packageInfo.scripts["integration-test:node"] =
-      'nyc mocha -r esm --require source-map-support/register --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
-    packageInfo.scripts["integration-test"] =
-      "npm run integration-test:node && npm run integration-test:browser";
-
+    if (model.options?.moduleKind === "cjs") {
+      packageInfo.scripts["test"] =
+        "npm run clean && npm run build:test && npm run unit-test";
+      packageInfo.scripts["test:node"] =
+        "npm run clean && npm run build:test && npm run unit-test:node";
+      packageInfo.scripts["test:browser"] =
+        "npm run clean && npm run build:test && npm run unit-test:browser";
+      packageInfo.scripts["unit-test"] =
+        "npm run unit-test:node && npm run unit-test:browser";
+      packageInfo.scripts["unit-test:node"] =
+        // eslint-disable-next-line no-useless-escape
+        `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"`;
+      packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
+      packageInfo.scripts["integration-test:browser"] =
+        "karma start --single-run";
+      packageInfo.scripts["integration-test:node"] =
+        'nyc mocha -r esm --require source-map-support/register --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
+      packageInfo.scripts["integration-test"] =
+        "npm run integration-test:node && npm run integration-test:browser";
+    } else if (model.options?.moduleKind === "esm") {
+      packageInfo.scripts["integration-test:browser"] = "echo skipped";
+      packageInfo.scripts["integration-test:node"] = "echo skipped";
+      packageInfo.scripts["integration-test"] =
+        "npm run integration-test:node && npm run integration-test:browser";
+      packageInfo.scripts["test:browser"] =
+        "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser";
+      packageInfo.scripts["test:node"] =
+        "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node";
+      // TODO: Replace bundle
+      packageInfo.scripts["test"] =
+        "npm run clean && tshy && npm run unit-test:node && npm run unit-test:browser && npm run integration-test";
+      packageInfo.scripts["unit-test:browser"] =
+        "vitest -c vitest.browser.config.ts";
+      packageInfo.scripts["unit-test:node"] = "vitest -c vitest.config.ts";
+      packageInfo.scripts["unit-test"] =
+        "npm run unit-test:node && npm run unit-test:browser";
+    }
     if (azureSdkForJs) {
       if (model.options?.moduleKind === "cjs") {
         packageInfo.scripts["build:test"] = "tsc -p . && dev-tool run bundle";
+      } else if (model.options?.moduleKind === "esm") {
+        packageInfo.scripts["build:test"] =
+          "npm run clean && tshy && dev-tool run build-test";
       }
-      packageInfo.scripts["integration-test:browser"] =
-        "dev-tool run test:browser";
-      packageInfo.scripts["unit-test:browser"] = "dev-tool run test:browser";
-      packageInfo.scripts["unit-test:node"] =
-        "dev-tool run test:node-ts-input -- --timeout 1200000 --exclude 'test/**/browser/*.spec.ts' 'test/**/*.spec.ts'";
-      packageInfo.scripts["integration-test:node"] =
-        "dev-tool run test:node-js-input -- --timeout 5000000 'dist-esm/test/**/*.spec.js'";
+
+      if (model.options?.moduleKind === "cjs") {
+        packageInfo.scripts["integration-test:browser"] =
+          "dev-tool run test:browser";
+        packageInfo.scripts["unit-test:browser"] = "dev-tool run test:browser";
+        packageInfo.scripts["unit-test:node"] =
+          "dev-tool run test:node-ts-input -- --timeout 1200000 --exclude 'test/**/browser/*.spec.ts' 'test/**/*.spec.ts'";
+        packageInfo.scripts["integration-test:node"] =
+          "dev-tool run test:node-js-input -- --timeout 5000000 'dist-esm/test/**/*.spec.js'";
+      } else if (model.options?.moduleKind === "esm") {
+        packageInfo.scripts["integration-test:browser"] = "echo skipped";
+        packageInfo.scripts["integration-test:node"] = "echo skipped";
+        packageInfo.scripts["integration-test"] =
+          "npm run integration-test:node && npm run integration-test:browser";
+        packageInfo.scripts["test:browser"] =
+          "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser";
+        packageInfo.scripts["test:node"] =
+          "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node";
+        packageInfo.scripts["test"] =
+          "npm run clean && tshy && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test";
+        packageInfo.scripts["unit-test:browser"] =
+          "npm run build:test && dev-tool run test:vitest --no-test-proxy --browser";
+        packageInfo.scripts["unit-test:node"] =
+          "dev-tool run test:vitest --no-test-proxy";
+        packageInfo.scripts["unit-test"] =
+          "npm run unit-test:node && npm run unit-test:browser";
+      }
     }
 
     if (isTypeSpecTest) {

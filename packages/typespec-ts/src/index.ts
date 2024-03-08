@@ -30,7 +30,8 @@ import {
   RLCOptions,
   hasUnexpectedHelper,
   RLCModel,
-  buildSamples
+  buildSamples,
+  buildVitestConfig
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
@@ -263,6 +264,10 @@ export async function $onEmit(context: EmitContext) {
         buildApiExtractorConfig,
         buildReadmeFile
       ];
+      if (option.moduleKind === "esm") {
+        commonBuilders.push((model) => buildVitestConfig(model, "node"));
+        commonBuilders.push((model) => buildVitestConfig(model, "browser"));
+      }
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
       }
