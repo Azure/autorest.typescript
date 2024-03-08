@@ -16,12 +16,20 @@ export interface UserCreatedResponseOutput {
   token: string;
 }
 
+/** The user already exists */
+export interface UserExistsResponseOutput extends ErrorModelOutput {}
+
 export interface ErrorModelOutput {
   /** A machine readable error code */
   code: string;
   /** A human readable message */
   message: string;
 }
+
+/** The user is invalid (e.g. forgot to enter email address) */
+export interface InvalidUserResponseOutput extends ErrorModelOutput {}
+
+export interface InvalidTodoItemOutput extends ErrorModelOutput {}
 
 export interface TodoPageOutput {
   /** The items in the page */

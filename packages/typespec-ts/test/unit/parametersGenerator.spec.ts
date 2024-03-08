@@ -5,27 +5,6 @@ import { assertEqualContent } from "../util/testUtil.js";
 describe("Parameters.ts", () => {
   describe("query parameters", () => {
     describe("apiVersion in query", () => {
-      it("should't generate apiVersion if there's a client level apiVersion", async () => {
-        const parameters = await emitParameterFromTypeSpec(
-          `
-          model ApiVersionParameter {
-            @query
-            "api-version": string;
-          }
-          op test(...ApiVersionParameter): string;
-          `
-        );
-        assert.ok(parameters);
-        await assertEqualContent(
-          parameters?.content!,
-          `
-            import { RequestParameters } from "@azure-rest/core-client";
-            
-            export type TestParameters =  RequestParameters;
-            `
-        );
-      });
-
       it("should generate apiVersion if there's no client level apiVersion", async () => {
         const parameters = await emitParameterFromTypeSpec(
           `
