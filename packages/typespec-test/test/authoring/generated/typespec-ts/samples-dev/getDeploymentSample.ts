@@ -24,7 +24,7 @@ async function getDeploymentSample() {
       projectName,
       deploymentName,
     )
-    .get({ queryParameters: { "api-version": "{Your api-version}" } });
+    .get();
   console.log(result);
 }
 

@@ -26,7 +26,7 @@ async function getSwapDeploymentsStatusSample() {
       deploymentName,
       jobId,
     )
-    .get({ queryParameters: { "api-version": "{Your api-version}" } });
+    .get();
   console.log(result);
 }
 

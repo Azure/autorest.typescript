@@ -69,18 +69,7 @@ export interface CreateLedgerEntryDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type CreateLedgerEntryParameters = CreateLedgerEntryQueryParam & CreateLedgerEntryBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface CreateLedgerEntryQueryParam {
-    // (undocumented)
-    queryParameters: CreateLedgerEntryQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface CreateLedgerEntryQueryParamProperties {
-    "api-version": string;
-}
+export type CreateLedgerEntryParameters = CreateLedgerEntryBodyParam & RequestParameters;
 
 // @public
 export interface CreateOrUpdateUser200Response extends HttpResponse {
@@ -124,18 +113,7 @@ export interface CreateOrUpdateUserMediaTypesParam {
 }
 
 // @public (undocumented)
-export type CreateOrUpdateUserParameters = CreateOrUpdateUserQueryParam & CreateOrUpdateUserMediaTypesParam & CreateOrUpdateUserBodyParam & RequestParameters;
-
-// @public (undocumented)
-export interface CreateOrUpdateUserQueryParam {
-    // (undocumented)
-    queryParameters: CreateOrUpdateUserQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface CreateOrUpdateUserQueryParamProperties {
-    "api-version": string;
-}
+export type CreateOrUpdateUserParameters = CreateOrUpdateUserMediaTypesParam & CreateOrUpdateUserBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface DeleteUser {
@@ -166,18 +144,7 @@ export interface DeleteUserDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type DeleteUserParameters = DeleteUserQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface DeleteUserQueryParam {
-    // (undocumented)
-    queryParameters: DeleteUserQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface DeleteUserQueryParamProperties {
-    "api-version": string;
-}
+export type DeleteUserParameters = RequestParameters;
 
 // @public
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
@@ -209,18 +176,7 @@ export interface GetConsortiumMembersDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetConsortiumMembersParameters = GetConsortiumMembersQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface GetConsortiumMembersQueryParam {
-    // (undocumented)
-    queryParameters: GetConsortiumMembersQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface GetConsortiumMembersQueryParamProperties {
-    "api-version": string;
-}
+export type GetConsortiumMembersParameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetConstitution {
@@ -249,18 +205,7 @@ export interface GetConstitutionDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetConstitutionParameters = GetConstitutionQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface GetConstitutionQueryParam {
-    // (undocumented)
-    queryParameters: GetConstitutionQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface GetConstitutionQueryParamProperties {
-    "api-version": string;
-}
+export type GetConstitutionParameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetCurrentLedgerEntry {
@@ -296,12 +241,11 @@ export type GetCurrentLedgerEntryParameters = GetCurrentLedgerEntryQueryParam & 
 // @public (undocumented)
 export interface GetCurrentLedgerEntryQueryParam {
     // (undocumented)
-    queryParameters: GetCurrentLedgerEntryQueryParamProperties;
+    queryParameters?: GetCurrentLedgerEntryQueryParamProperties;
 }
 
 // @public (undocumented)
 export interface GetCurrentLedgerEntryQueryParamProperties {
-    "api-version": string;
     collectionId?: string;
 }
 
@@ -332,18 +276,7 @@ export interface GetEnclaveQuotesDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetEnclaveQuotesParameters = GetEnclaveQuotesQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface GetEnclaveQuotesQueryParam {
-    // (undocumented)
-    queryParameters: GetEnclaveQuotesQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface GetEnclaveQuotesQueryParamProperties {
-    "api-version": string;
-}
+export type GetEnclaveQuotesParameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetLedgerEntry {
@@ -374,18 +307,7 @@ export interface GetLedgerEntryDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetLedgerEntryParameters = GetLedgerEntryQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface GetLedgerEntryQueryParam {
-    // (undocumented)
-    queryParameters: GetLedgerEntryQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface GetLedgerEntryQueryParamProperties {
-    "api-version": string;
-}
+export type GetLedgerEntryParameters = RequestParameters;
 
 // @public
 export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
@@ -422,18 +344,7 @@ export interface GetReceiptDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetReceiptParameters = GetReceiptQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface GetReceiptQueryParam {
-    // (undocumented)
-    queryParameters: GetReceiptQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface GetReceiptQueryParamProperties {
-    "api-version": string;
-}
+export type GetReceiptParameters = RequestParameters;
 
 // @public (undocumented)
 export interface GetTransactionStatus {
@@ -464,18 +375,7 @@ export interface GetTransactionStatusDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetTransactionStatusParameters = GetTransactionStatusQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface GetTransactionStatusQueryParam {
-    // (undocumented)
-    queryParameters: GetTransactionStatusQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface GetTransactionStatusQueryParamProperties {
-    "api-version": string;
-}
+export type GetTransactionStatusParameters = RequestParameters;
 
 // @public
 export interface GetUser200Response extends HttpResponse {
@@ -501,18 +401,7 @@ export interface GetUserDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type GetUserParameters = GetUserQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface GetUserQueryParam {
-    // (undocumented)
-    queryParameters: GetUserQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface GetUserQueryParamProperties {
-    "api-version": string;
-}
+export type GetUserParameters = RequestParameters;
 
 // @public (undocumented)
 export function isUnexpected(response: ListCollections200Response | ListCollectionsDefaultResponse): response is ListCollectionsDefaultResponse;
@@ -608,18 +497,7 @@ export interface ListCollectionsDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ListCollectionsParameters = ListCollectionsQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ListCollectionsQueryParam {
-    // (undocumented)
-    queryParameters: ListCollectionsQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ListCollectionsQueryParamProperties {
-    "api-version": string;
-}
+export type ListCollectionsParameters = RequestParameters;
 
 // @public (undocumented)
 export interface ListLedgerEntries {
@@ -650,18 +528,7 @@ export interface ListLedgerEntriesDefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export type ListLedgerEntriesParameters = ListLedgerEntriesQueryParam & RequestParameters;
-
-// @public (undocumented)
-export interface ListLedgerEntriesQueryParam {
-    // (undocumented)
-    queryParameters: ListLedgerEntriesQueryParamProperties;
-}
-
-// @public (undocumented)
-export interface ListLedgerEntriesQueryParamProperties {
-    "api-version": string;
-}
+export type ListLedgerEntriesParameters = RequestParameters;
 
 // @public
 export interface PagedLedgerEntriesOutput {
