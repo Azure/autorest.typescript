@@ -1399,6 +1399,10 @@ function emitUnion(
   usage: UsageFlags
 ): Record<string, any> {
   let isVariantExtensible = false;
+
+  /**
+   * This is a temporary workaround to handle TCGC reporting incorrect isFixed for Unions with Enum variants
+   */
   for (const [_, variant] of type.variants) {
     if (variant.type.kind === "Enum") {
       if (isExtensibleEnum(context, variant.type)) {
