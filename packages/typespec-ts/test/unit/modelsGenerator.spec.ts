@@ -2312,6 +2312,34 @@ describe("Input/output model type", () => {
         outputType: `${inputModelName}`
       });
     });
+    it("should generate correct name and properties if A `is` B with template arguments", async () => {
+      const tspDefinition = `
+      model B<Parameter> {
+        prop1: string;
+        prop2: Parameter;
+      }
+      model A is B<string> {
+        @query
+        name: string;
+      };
+      `;
+      const tspType = "A";
+      const inputModelName = "A";
+      await verifyPropertyType(tspType, inputModelName, {
+        additionalTypeSpecDefinition: tspDefinition,
+        outputType: `${inputModelName}Output`,
+        additionalInputContent: `
+        export interface ${inputModelName} {
+          prop1:string;
+          prop2:string;
+        }`,
+        additionalOutputContent: `
+        export interface ${inputModelName}Output {
+          prop1:string;
+          prop2:string;
+        }`
+      });
+    });
   });
 
   describe("@clientName & @encodedName", () => {

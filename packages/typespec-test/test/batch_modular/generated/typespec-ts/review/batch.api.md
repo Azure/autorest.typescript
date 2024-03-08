@@ -138,7 +138,7 @@ export class BatchClient {
     deleteTaskFile(jobId: string, taskId: string, filePath: string, options?: DeleteTaskFileOptions): Promise<void>;
     disableJob(jobId: string, body: BatchJobDisableOptions, options?: DisableJobOptions): Promise<void>;
     disableJobSchedule(jobScheduleId: string, options?: DisableJobScheduleOptions): Promise<void>;
-    disableNodeScheduling(poolId: string, nodeId: string, body: NodeDisableSchedulingOptions, options?: DisableNodeSchedulingOptions): Promise<void>;
+    disableNodeScheduling(poolId: string, nodeId: string, body?: NodeDisableSchedulingOptions, options?: DisableNodeSchedulingOptions): Promise<void>;
     disablePoolAutoScale(poolId: string, options?: DisablePoolAutoScaleOptions): Promise<void>;
     enableJob(jobId: string, options?: EnableJobOptions): Promise<void>;
     enableJobSchedule(jobScheduleId: string, options?: EnableJobScheduleOptions): Promise<void>;
@@ -180,8 +180,8 @@ export class BatchClient {
     readonly pipeline: Pipeline;
     poolExists(poolId: string, options?: PoolExistsOptions): Promise<void>;
     reactivateTask(jobId: string, taskId: string, options?: ReactivateTaskOptions): Promise<void>;
-    rebootNode(poolId: string, nodeId: string, body: NodeRebootOptions, options?: RebootNodeOptions): Promise<void>;
-    reimageNode(poolId: string, nodeId: string, body: NodeReimageOptions, options?: ReimageNodeOptions): Promise<void>;
+    rebootNode(poolId: string, nodeId: string, body?: NodeRebootOptions, options?: RebootNodeOptions): Promise<void>;
+    reimageNode(poolId: string, nodeId: string, body?: NodeReimageOptions, options?: ReimageNodeOptions): Promise<void>;
     removeNodes(poolId: string, body: NodeRemoveOptions, options?: RemoveNodesOptions): Promise<void>;
     replaceJob(jobId: string, body: BatchJob, options?: ReplaceJobOptions): Promise<void>;
     replaceJobSchedule(jobScheduleId: string, body: BatchJobSchedule, options?: ReplaceJobScheduleOptions): Promise<void>;
@@ -190,7 +190,7 @@ export class BatchClient {
     replaceTask(jobId: string, taskId: string, body: BatchTask, options?: ReplaceTaskOptions): Promise<void>;
     resizePool(poolId: string, body: BatchPoolResizeOptions, options?: ResizePoolOptions): Promise<void>;
     stopPoolResize(poolId: string, options?: StopPoolResizeOptions): Promise<void>;
-    terminateJob(jobId: string, body: BatchJobTerminateOptions, options?: TerminateJobOptions): Promise<void>;
+    terminateJob(jobId: string, body?: BatchJobTerminateOptions, options?: TerminateJobOptions): Promise<void>;
     terminateJobSchedule(jobScheduleId: string, options?: TerminateJobScheduleOptions): Promise<void>;
     terminateTask(jobId: string, taskId: string, options?: TerminateTaskOptions): Promise<void>;
     updateJob(jobId: string, body: BatchJobUpdateOptions, options?: UpdateJobOptions): Promise<void>;
