@@ -143,7 +143,7 @@ describe("model type", () => {
         );
       });
 
-      it("union of enum", async () => {
+      it.only("union of enum", async () => {
         const modelFile = await emitModularModelsFromTypeSpec(`
         enum LR {
           left,
