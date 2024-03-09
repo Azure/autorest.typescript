@@ -6,7 +6,7 @@ import {
 } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
-describe.only("anonymous model", () => {
+describe("anonymous model", () => {
   describe("model property in request & response", () => {
     it("input only", async () => {
       const tsp = `

@@ -727,9 +727,6 @@ function getSchemaForModel(
     };
   }
   for (const [propName, prop] of model.properties) {
-    if (propName === "attachments") {
-      prop;
-    }
     const restApiName = getWireName(dpgContext, prop);
     const name = `"${restApiName ?? propName}"`;
     if (!isSchemaProperty(program, prop)) {
