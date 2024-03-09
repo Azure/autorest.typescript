@@ -14,7 +14,6 @@ describe.only("anonymous model", () => {
         bas: string;
       }
       model EmptyObj {
-
       }
       model Foo {
           bar: {
@@ -169,6 +168,8 @@ describe.only("anonymous model", () => {
       model Bar {
         bas: string;
       }
+      model EmptyObj {
+      }
       model Foo {
           bar: {
             baz: string;
@@ -230,6 +231,9 @@ describe.only("anonymous model", () => {
       export interface BarOutput {
         bas: string;
       }
+
+      export interface EmptyObjOutput {}
+
       `
       );
 
@@ -263,6 +267,8 @@ describe.only("anonymous model", () => {
       export interface Bar {
         bas: string;
       }
+
+      export interface EmptyObj {}
       `
       );
     });
@@ -279,6 +285,10 @@ describe.only("anonymous model", () => {
 
       }
 
+      model Attachment {
+        description: string;
+        url: string;
+      }
       @route("/models")
       @get
       op getModel(@body input: {
@@ -302,6 +312,7 @@ describe.only("anonymous model", () => {
         arrayOfUnionObj: (string | int32 | "foo")[];
         arrayOfUnionOfOtherModel: (Bar | EmptyObj | null)[];
         arrayOfUnionOfAnonymousObj: ({ foo: string; } | { bar: string; })[];
+        attachments: (Attachment | bytes)[]
       }): void;
       `);
       assert.ok(schemaOutput);
@@ -310,11 +321,36 @@ describe.only("anonymous model", () => {
         schemaOutput?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import { Bar } from "./models";
+        import { Bar, EmptyObj, Attachment } from "./models";
         
         export interface GetModelBodyParam {
-          body: { bar: Bar; baz: string; arr: string[]; obj: { foo: string } };
-        };
+          body: {
+            baz: string;
+            arr: string[];
+            obj: { foo: string };
+            record: Record<string, string>;
+            unionObj: string | number | "foo";
+            unionOfAnonymousObj: { foo: string } | { bar: string };
+            unionOfOtherModel: Bar | null;
+            emptyObj: Record<string, unknown>;
+            referOtherModel: Bar;
+            namedEmptyObj: EmptyObj;
+            recordOfEmptyObj: Record<string, Record<string, unknown>>;
+            recordOfOtherModel: Record<string, Bar>;
+            recordOfRecordOfEmptyObj: Record<
+              string,
+              Record<string, Record<string, unknown>>
+            >;
+            recordOfAnonymousObj: Record<string, { foo: string }>;
+            arrayOfEmptyObj: Record<string, unknown>[];
+            arrayOfSimpleAnonymousObj: { foo: string }[];
+            arrayOfOtherModel: Array<Bar>;
+            arrayOfUnionObj: (string | number | "foo")[];
+            arrayOfUnionOfOtherModel: (Bar | EmptyObj | null)[];
+            arrayOfUnionOfAnonymousObj: ({ foo: string } | { bar: string })[];
+            attachments: (Attachment | string)[];
+          };
+        }
         
         export type GetModelParameters = GetModelBodyParam & RequestParameters;
         `
@@ -327,13 +363,39 @@ describe.only("anonymous model", () => {
         bas: string;
       }
 
+      model EmptyObj {
+
+      }
+
+      model Attachment {
+        description: string;
+        url: string;
+      }
+
       @route("/models")
       @get
       op getModel(): {
-        bar: Bar;
         baz: string;
         arr: string[];
         obj: { foo: string; };
+        record: Record<string>;
+        unionObj: string | int32 | "foo";
+        unionOfAnonymousObj: { foo: string; } | { bar: string; };
+        unionOfOtherModel: Bar | null;
+        emptyObj: {};
+        referOtherModel: Bar;
+        namedEmptyObj: EmptyObj;
+        recordOfEmptyObj: Record<{}>;
+        recordOfOtherModel: Record<Bar>;
+        recordOfRecordOfEmptyObj: Record<Record<{}>>;
+        recordOfAnonymousObj: Record<{ foo: string; }>;
+        arrayOfEmptyObj: {}[];
+        arrayOfSimpleAnonymousObj: { foo: string; }[];
+        arrayOfOtherModel: Bar[];
+        arrayOfUnionObj: (string | int32 | "foo")[];
+        arrayOfUnionOfOtherModel: (Bar | EmptyObj | null)[];
+        arrayOfUnionOfAnonymousObj: ({ foo: string; } | { bar: string; })[];
+        attachments: (Attachment | bytes)[];
       };
       `;
       const schemaOutput = await emitResponsesFromTypeSpec(tsp);
@@ -347,6 +409,13 @@ describe.only("anonymous model", () => {
       export interface BarOutput {
         bas: string;
       }
+      
+      export interface EmptyObjOutput {}
+      
+      export interface AttachmentOutput {
+        description: string;
+        url: string;
+      }
       `
       );
       // console.log(schemaOutput);
@@ -354,13 +423,38 @@ describe.only("anonymous model", () => {
         schemaOutput?.content!,
         `
         import { HttpResponse } from "@azure-rest/core-client";
-        import { BarOutput } from "./outputModels";
+        import { BarOutput, EmptyObjOutput, AttachmentOutput } from "./outputModels";
         
         /** The request has succeeded. */
         export interface GetModel200Response extends HttpResponse {
           status: "200";
-          body: { bar: BarOutput; baz: string; arr: string[]; obj: { foo: string } };
-        };
+          body: {
+            baz: string;
+            arr: string[];
+            obj: { foo: string };
+            record: Record<string, string>;
+            unionObj: string | number | "foo";
+            unionOfAnonymousObj: { foo: string } | { bar: string };
+            unionOfOtherModel: BarOutput | null;
+            emptyObj: Record<string, any>;
+            referOtherModel: BarOutput;
+            namedEmptyObj: EmptyObjOutput;
+            recordOfEmptyObj: Record<string, Record<string, any>>;
+            recordOfOtherModel: Record<string, BarOutput>;
+            recordOfRecordOfEmptyObj: Record<
+              string,
+              Record<string, Record<string, any>>
+            >;
+            recordOfAnonymousObj: Record<string, { foo: string }>;
+            arrayOfEmptyObj: Record<string, any>[];
+            arrayOfSimpleAnonymousObj: { foo: string }[];
+            arrayOfOtherModel: Array<BarOutput>;
+            arrayOfUnionObj: (string | number | "foo")[];
+            arrayOfUnionOfOtherModel: (BarOutput | EmptyObjOutput | null)[];
+            arrayOfUnionOfAnonymousObj: ({ foo: string } | { bar: string })[];
+            attachments: (AttachmentOutput | string)[];
+          };
+        }
         `
       );
     });
