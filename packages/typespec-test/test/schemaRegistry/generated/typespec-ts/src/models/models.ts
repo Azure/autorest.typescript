@@ -36,6 +36,14 @@ export interface SchemaGroup {
   readonly groupName: string;
 }
 
+/** Type of SchemaContentTypeValues */
+/** */
+export type SchemaContentTypeValues =
+  | "application/json; serialization=Avro"
+  | "application/json; serialization=json"
+  | "text/plain; charset=utf-8"
+  | "text/vnd.ms.protobuf";
+
 /** Paged collection of Version items */
 export interface PagedVersion {
   /** The Version items on this page */
@@ -49,10 +57,3 @@ export interface SchemaVersion {
   /** Version number of specific schema. */
   readonly schemaVersion: number;
 }
-
-/** Alias for SchemaContentTypeValues */
-export type SchemaContentTypeValues =
-  | "application/json; serialization=Avro"
-  | "application/json; serialization=json"
-  | "text/plain; charset=utf-8"
-  | "text/vnd.ms.protobuf";

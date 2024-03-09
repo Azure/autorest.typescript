@@ -1,3 +1,7 @@
+## 0.25.0 (2024-03-08)
+
+- [Feature] Upgrade @azure-tools/typespec-client-generator-core to 0.40.0. Please refer to [#2341](https://github.com/Azure/autorest.typescript/pull/2341).
+  
 ## 0.24.0 (2024-03-07)
 
 - [Feature] Upgrade TypeSpec compiler to 0.54.0. Please refer to [#2334](https://github.com/Azure/autorest.typescript/pull/2334).
