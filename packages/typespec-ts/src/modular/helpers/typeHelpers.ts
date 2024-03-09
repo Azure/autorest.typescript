@@ -128,12 +128,18 @@ function handleConstantType(type: Type): TypeMetadata {
  * Handles the conversion of enum types to TypeScript representation metadata.
  */
 function handleEnumType(type: Type): TypeMetadata {
-  if (
-    !type.name &&
-    (!type?.valueType?.type ||
-      !["string", "number"].includes(type?.valueType?.type))
-  ) {
-    throw new Error("Unable to process enum without name");
+  if (!type.name) {
+    const valueType = !type.isFixed
+      ? ((type.values?.[0] as Type).valueType?.type ?? "string") + " | "
+      : "";
+    return {
+      name: `${valueType}${type.values
+        ?.map((e) => {
+          return getType(e as Type).name;
+        })
+        .join(" | ")}`,
+      nullable: type.nullable
+    };
   }
   const name = handleNullableTypeName({
     name: type.name,

@@ -83,7 +83,7 @@ import {
 } from "./modularCodeModel.js";
 import {
   getBodyType,
-  getEnrichedDefaultApiVersion,
+  getDefaultApiVersionString,
   isAzureCoreErrorType
 } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
@@ -252,20 +252,25 @@ function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
     return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
   }
 
-  let effective: Model;
+  // If type is an anonymous model, tries to find a named model that has the same properties
+  let effective: Model | undefined = undefined;
   if (type.kind === "Union") {
     const nonNullOptions = [...type.variants.values()]
       .map((x) => x.type)
       .filter((t) => !isNullType(t));
-    if (nonNullOptions.length === 1 && nonNullOptions[0]?.kind === "Model") {
+    if (
+      nonNullOptions.length === 1 &&
+      nonNullOptions[0]?.kind === "Model" &&
+      nonNullOptions[0]?.name === ""
+    ) {
       effective = getEffectiveModelType(program, nonNullOptions[0]);
     }
     return type as any;
-  } else {
+  } else if (type.name === "") {
     effective = getEffectiveModelType(program, type, isSchemaProperty);
   }
 
-  if (effective.name) {
+  if (effective?.name) {
     return effective;
   }
   return type as Model;
@@ -520,10 +525,7 @@ function emitParameter(
       clientDefaultValue = defaultApiVersion.value;
     }
     if (!clientDefaultValue) {
-      clientDefaultValue = getEnrichedDefaultApiVersion(
-        context.program,
-        context
-      );
+      clientDefaultValue = getDefaultApiVersionString(context.program, context);
     }
   }
   return { clientDefaultValue, ...base, ...paramMap };
@@ -951,7 +953,7 @@ function isReadOnly(program: Program, type: ModelProperty): boolean {
   // Only "read" should be readOnly
   const visibility = getVisibility(program, type);
   if (visibility) {
-    return visibility.includes("read");
+    return visibility.includes("read") && visibility.length === 1;
   } else {
     return false;
   }
@@ -1113,7 +1115,9 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
 
   return {
     type: "enum",
-    name: getLibraryName(context, type),
+    name: getLibraryName(context, type)
+      ? getLibraryName(context, type)
+      : type.name,
     description: getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
@@ -1377,11 +1381,36 @@ function mapTypeSpecType(
   }
 }
 
+function isExtensibleEnum(context: SdkContext, type: Enum): boolean {
+  if (isFixed(context.program, type)) {
+    return false;
+  }
+
+  if (context.rlcOptions?.flavor === "azure") {
+    return true;
+  }
+
+  return false;
+}
+
 function emitUnion(
   context: SdkContext,
   type: Union,
   usage: UsageFlags
 ): Record<string, any> {
+  let isVariantExtensible = false;
+
+  /**
+   * This is a temporary workaround to handle TCGC reporting incorrect isFixed for Unions with Enum variants
+   */
+  for (const [_, variant] of type.variants) {
+    if (variant.type.kind === "Enum") {
+      if (isExtensibleEnum(context, variant.type)) {
+        isVariantExtensible = true;
+        break;
+      }
+    }
+  }
   const sdkType = getSdkUnion(context, type);
   const nonNullOptions = getNonNullOptions(type);
   if (sdkType === undefined) {
@@ -1421,14 +1450,16 @@ function emitUnion(
     };
   } else if (sdkType.kind === "enum") {
     return {
-      name: sdkType.name,
+      name: getLibraryName(context, type)
+        ? getLibraryName(context, type)
+        : type.name ?? sdkType.name,
       nullable: sdkType.nullable,
       description: sdkType.description || `Type of ${sdkType.name}`,
       internal: true,
       type: sdkType.kind,
       valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
       values: sdkType.values.map((x) => emitEnumMember(context, x)),
-      isFixed: sdkType.isFixed,
+      isFixed: isVariantExtensible ? false : sdkType.isFixed,
       xmlMetadata: {},
       usage
     };

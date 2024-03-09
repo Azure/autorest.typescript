@@ -3,9 +3,11 @@
 import { HttpResponse } from "@typespec/ts-http-runtime";
 import {
   UserCreatedResponseOutput,
-  ErrorModelOutput,
+  UserExistsResponseOutput,
+  InvalidUserResponseOutput,
   TodoPageOutput,
   TodoItemOutput,
+  InvalidTodoItemOutput,
   TodoAttachmentOutput,
 } from "./outputModels";
 
@@ -18,13 +20,13 @@ export interface UsersCreate200Response extends HttpResponse {
 /** The request conflicts with the current state of the server. */
 export interface UsersCreate409Response extends HttpResponse {
   status: "409";
-  body: ErrorModelOutput;
+  body: UserExistsResponseOutput;
 }
 
 /** Client error */
 export interface UsersCreate422Response extends HttpResponse {
   status: "422";
-  body: ErrorModelOutput;
+  body: InvalidUserResponseOutput;
 }
 
 /** The request has succeeded. */
@@ -35,7 +37,7 @@ export interface UsersValidate200Response extends HttpResponse {
 /** Client error */
 export interface UsersValidate422Response extends HttpResponse {
   status: "422";
-  body: ErrorModelOutput;
+  body: InvalidUserResponseOutput;
 }
 
 /** The request has succeeded. */
@@ -88,7 +90,7 @@ export interface TodoItemsCreateJson200Response extends HttpResponse {
 /** Client error */
 export interface TodoItemsCreateJson422Response extends HttpResponse {
   status: "422";
-  body: ErrorModelOutput;
+  body: InvalidTodoItemOutput;
 }
 
 /** The request has succeeded. */
@@ -100,7 +102,7 @@ export interface TodoItemsCreateForm200Response extends HttpResponse {
 /** Client error */
 export interface TodoItemsCreateForm422Response extends HttpResponse {
   status: "422";
-  body: ErrorModelOutput;
+  body: InvalidTodoItemOutput;
 }
 
 /** The request has succeeded. */
