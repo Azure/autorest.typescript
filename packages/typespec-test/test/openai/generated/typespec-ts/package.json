@@ -1,7 +1,5 @@
 {
   "name": "@msinternal/openai",
-  "sdk-type": "client",
-  "author": "Microsoft Corporation",
   "version": "1.0.0-beta.1",
   "description": "OpenAI Inference Service",
   "keywords": [
@@ -13,95 +11,20 @@
     "isomorphic"
   ],
   "license": "MIT",
-  "main": "./dist/commonjs/index.js",
-  "types": "./dist/commonjs/index.d.ts",
-  "repository": "github:Azure/azure-sdk-for-js",
-  "bugs": {
-    "url": "https://github.com/Azure/azure-sdk-for-js/issues"
-  },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE",
-    "review/*"
-  ],
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "scripts": {
-    "check-format": "prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"test/**/*.ts\" \"samples-dev/**/*.ts\"",
-    "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
-    "execute:samples": "echo skipped",
-    "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
-    "format": "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"test/**/*.ts\" \"samples-dev/**/*.ts\"",
-    "generate:client": "echo skipped",
-    "integration-test:browser": "echo skipped",
-    "integration-test:node": "echo skipped",
-    "integration-test": "npm run integration-test:node && npm run integration-test:browser",
-    "lint:fix": "eslint package.json api-extractor.json src test --ext .ts --fix --fix-type [problem,suggestion]",
-    "lint": "eslint package.json api-extractor.json src test --ext .ts",
-    "pack": "npm pack 2>&1",
-    "test:browser": "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser",
-    "test:node": "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node",
-    "test": "npm run clean && tshy && npm run unit-test:node && npm run unit-test:browser && npm run integration-test",
-    "unit-test": "npm run unit-test:node && npm run unit-test:browser",
-    "unit-test:node": "vitest -c vitest.config.ts",
-    "unit-test:browser": "vitest -c vitest.browser.config.ts",
-    "build": "npm run clean && tshy && npm run extract-api"
-  },
+  "author": "Microsoft Corporation",
   "sideEffects": false,
-  "autoPublish": false,
-  "dependencies": {
-    "@azure/core-auth": "^1.6.0",
-    "@azure-rest/core-client": "^1.2.0",
-    "@azure/core-rest-pipeline": "^1.14.0",
-    "@azure/logger": "^1.0.0",
-    "tslib": "^2.2.0",
-    "@azure/core-lro": "^2.5.4",
-    "@azure/abort-controller": "^1.0.0"
-  },
-  "devDependencies": {
-    "@microsoft/api-extractor": "^7.31.1",
-    "autorest": "latest",
-    "@types/node": "^18.0.0",
-    "dotenv": "^16.0.0",
-    "eslint": "^8.0.0",
-    "mkdirp": "^2.1.2",
-    "prettier": "^3.1.0",
-    "rimraf": "^5.0.0",
-    "source-map-support": "^0.5.9",
-    "typescript": "~5.3.3",
-    "tshy": "1.11.1",
-    "@azure-tools/test-credential": "^1.0.0",
-    "@azure/identity": "^4.0.1",
-    "@azure-tools/test-recorder": "^3.0.0",
-    "@vitest/browser": "^1.3.1",
-    "@vitest/coverage-istanbul": "^1.3.1",
-    "playwright": "^1.41.2",
-    "vitest": "^1.3.1",
-    "c8": "^8.0.0",
-    "ts-node": "^10.0.0"
-  },
-  "browser": {
-    "./dist-esm/test/public/utils/env.js": "./dist-esm/test/public/utils/env.browser.js"
-  },
-  "//sampleConfiguration": {
-    "productName": "Azure OpenAI API",
-    "productSlugs": [
-      "azure"
-    ],
-    "disableDocsMs": true,
-    "apiRefLink": "https://docs.microsoft.com/javascript/api/@msinternal/openai?view=azure-node-preview"
-  },
-  "tshy": {
-    "exports": {
-      "./package.json": "./package.json",
-      ".": "./src/index.ts"
-    }
-  },
+  "type": "module",
   "exports": {
     "./package.json": "./package.json",
     ".": {
+      "browser": {
+        "types": "./dist/browser/index.d.ts",
+        "default": "./dist/browser/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/index.d.ts",
+        "default": "./dist/react-native/index.js"
+      },
       "import": {
         "types": "./dist/esm/index.d.ts",
         "default": "./dist/esm/index.js"
@@ -112,5 +35,78 @@
       }
     }
   },
-  "type": "module"
+  "main": "./dist/commonjs/index.js",
+  "types": "./dist/commonjs/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "review/*"
+  ],
+  "scripts": {
+    "build": "npm run clean && tshy && npm run extract-api",
+    "check-format": "prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"test/**/*.ts\" \"samples-dev/**/*.ts\"",
+    "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
+    "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
+    "format": "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"test/**/*.ts\" \"samples-dev/**/*.ts\"",
+    "integration-test": "npm run integration-test:node && npm run integration-test:browser",
+    "integration-test:browser": "echo skipped",
+    "integration-test:node": "echo skipped",
+    "lint": "eslint package.json api-extractor.json src  --ext .ts",
+    "lint:fix": "eslint package.json api-extractor.json src  --ext .ts --fix --fix-type [problem,suggestion]",
+    "pack": "npm pack 2>&1",
+    "test": "npm run clean && tshy && npm run unit-test:node && npm run unit-test:browser && npm run integration-test",
+    "test:browser": "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser",
+    "test:node": "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node",
+    "unit-test": "npm run unit-test:node && npm run unit-test:browser",
+    "unit-test:browser": "vitest -c vitest.browser.config.ts",
+    "unit-test:node": "vitest -c vitest.config.ts"
+  },
+  "dependencies": {
+    "@azure-rest/core-client": "^1.2.0",
+    "@azure/abort-controller": "^1.0.0",
+    "@azure/core-auth": "^1.6.0",
+    "@azure/core-lro": "^2.5.4",
+    "@azure/core-rest-pipeline": "^1.5.0",
+    "@azure/logger": "^1.0.0",
+    "tslib": "^2.6.2"
+  },
+  "devDependencies": {
+    "@azure-tools/test-credential": "^1.0.0",
+    "@azure-tools/test-recorder": "^3.0.0",
+    "@azure/core-util": "^1.0.0",
+    "@azure/identity": "^4.0.1",
+    "@microsoft/api-extractor": "^7.40.3",
+    "@types/node": "^18.0.0",
+    "@vitest/browser": "^1.3.1",
+    "@vitest/coverage-istanbul": "^1.3.1",
+    "dotenv": "^16.0.0",
+    "eslint": "^8.55.0",
+    "mkdirp": "^2.1.2",
+    "playwright": "^1.41.2",
+    "prettier": "^3.2.5",
+    "rimraf": "^5.0.5",
+    "tshy": "1.11.1",
+    "typescript": "~5.3.3",
+    "vitest": "^1.3.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "autoPublish": false,
+  "tshy": {
+    "exports": {
+      "./package.json": "./package.json",
+      ".": "./src/index.ts"
+    },
+    "dialects": [
+      "esm",
+      "commonjs"
+    ],
+    "esmDialects": [
+      "browser",
+      "react-native"
+    ],
+    "selfLink": false
+  }
 }

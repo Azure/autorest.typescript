@@ -1,5 +1,8 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { Project } from "ts-morph";
-import { RLCModel } from "../interfaces";
+import { RLCModel } from "../interfaces.js";
 
 const nodeConfig = `export default defineConfig({
   test: {
