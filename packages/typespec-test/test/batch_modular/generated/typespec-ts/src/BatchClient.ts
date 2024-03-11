@@ -442,10 +442,9 @@ export class BatchClient {
    * use a list query.
    */
   listPoolNodeCounts(
-    apiVersion: string,
     options: ListPoolNodeCountsOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<PoolNodeCounts> {
-    return listPoolNodeCounts(this._client, apiVersion, options);
+    return listPoolNodeCounts(this._client, options);
   }
 
   /**
@@ -459,20 +458,18 @@ export class BatchClient {
    * that the Job is being deleted.
    */
   deleteJob(
-    apiVersion: string,
     jobId: string,
     options: DeleteJobOptions = { requestOptions: {} },
   ): Promise<void> {
-    return deleteJob(this._client, apiVersion, jobId, options);
+    return deleteJob(this._client, jobId, options);
   }
 
   /** Gets information about the specified Job. */
   getJob(
-    apiVersion: string,
     jobId: string,
     options: GetJobOptions = { requestOptions: {} },
   ): Promise<BatchJob> {
-    return getJob(this._client, apiVersion, jobId, options);
+    return getJob(this._client, jobId, options);
   }
 
   /**
@@ -481,12 +478,11 @@ export class BatchClient {
    * element, then the Job keeps the existing constraints.
    */
   updateJob(
-    apiVersion: string,
     jobId: string,
     body: BatchJobUpdateOptions,
     options: UpdateJobOptions = { requestOptions: {} },
   ): Promise<void> {
-    return updateJob(this._client, apiVersion, jobId, body, options);
+    return updateJob(this._client, jobId, body, options);
   }
 
   /**
@@ -495,12 +491,11 @@ export class BatchClient {
    * with this request, then the Batch service will remove the existing constraints.
    */
   replaceJob(
-    apiVersion: string,
     jobId: string,
     body: BatchJob,
     options: ReplaceJobOptions = { requestOptions: {} },
   ): Promise<void> {
-    return replaceJob(this._client, apiVersion, jobId, body, options);
+    return replaceJob(this._client, jobId, body, options);
   }
 
   /**
@@ -514,12 +509,11 @@ export class BatchClient {
    * the request fails with status code 409.
    */
   disableJob(
-    apiVersion: string,
     jobId: string,
     body: BatchJobDisableOptions,
     options: DisableJobOptions = { requestOptions: {} },
   ): Promise<void> {
-    return disableJob(this._client, apiVersion, jobId, body, options);
+    return disableJob(this._client, jobId, body, options);
   }
 
   /**
@@ -531,11 +525,10 @@ export class BatchClient {
    * than 180 days ago, those Tasks will not run.
    */
   enableJob(
-    apiVersion: string,
     jobId: string,
     options: EnableJobOptions = { requestOptions: {} },
   ): Promise<void> {
-    return enableJob(this._client, apiVersion, jobId, options);
+    return enableJob(this._client, jobId, options);
   }
 
   /**
@@ -547,12 +540,11 @@ export class BatchClient {
    * Tasks cannot be added and any remaining active Tasks will not be scheduled.
    */
   terminateJob(
-    apiVersion: string,
     jobId: string,
     body?: BatchJobTerminateOptions,
     options: TerminateJobOptions = { requestOptions: {} },
   ): Promise<void> {
-    return terminateJob(this._client, apiVersion, jobId, body, options);
+    return terminateJob(this._client, jobId, body, options);
   }
 
   /**
@@ -567,33 +559,25 @@ export class BatchClient {
    * engineers.
    */
   createJob(
-    apiVersion: string,
     body: BatchJobCreateOptions,
     options: CreateJobOptions = { requestOptions: {} },
   ): Promise<void> {
-    return createJob(this._client, apiVersion, body, options);
+    return createJob(this._client, body, options);
   }
 
   /** Lists all of the Jobs in the specified Account. */
   listJobs(
-    apiVersion: string,
     options: ListJobsOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<BatchJob> {
-    return listJobs(this._client, apiVersion, options);
+    return listJobs(this._client, options);
   }
 
   /** Lists the Jobs that have been created under the specified Job Schedule. */
   listJobsFromSchedule(
-    apiVersion: string,
     jobScheduleId: string,
     options: ListJobsFromScheduleOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<BatchJob> {
-    return listJobsFromSchedule(
-      this._client,
-      apiVersion,
-      jobScheduleId,
-      options,
-    );
+    return listJobsFromSchedule(this._client, jobScheduleId, options);
   }
 
   /**
@@ -620,28 +604,25 @@ export class BatchClient {
    * up to date. If you need exact task counts, use a list query.
    */
   getJobTaskCounts(
-    apiVersion: string,
     jobId: string,
     options: GetJobTaskCountsOptions = { requestOptions: {} },
   ): Promise<TaskCountsResult> {
-    return getJobTaskCounts(this._client, apiVersion, jobId, options);
+    return getJobTaskCounts(this._client, jobId, options);
   }
 
   /** Creates a Certificate to the specified Account. */
   createCertificate(
-    apiVersion: string,
     body: BatchCertificate,
     options: CreateCertificateOptions = { requestOptions: {} },
   ): Promise<void> {
-    return createCertificate(this._client, apiVersion, body, options);
+    return createCertificate(this._client, body, options);
   }
 
   /** Lists all of the Certificates that have been added to the specified Account. */
   listCertificates(
-    apiVersion: string,
     options: ListCertificatesOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<BatchCertificate> {
-    return listCertificates(this._client, apiVersion, options);
+    return listCertificates(this._client, options);
   }
 
   /**
@@ -654,14 +635,12 @@ export class BatchClient {
    * then you can try again to delete the Certificate.
    */
   cancelCertificateDeletion(
-    apiVersion: string,
     thumbprintAlgorithm: string,
     thumbprint: string,
     options: CancelCertificateDeletionOptions = { requestOptions: {} },
   ): Promise<void> {
     return cancelCertificateDeletion(
       this._client,
-      apiVersion,
       thumbprintAlgorithm,
       thumbprint,
       options,
@@ -680,14 +659,12 @@ export class BatchClient {
    * active if you decide that you want to continue using the Certificate.
    */
   deleteCertificate(
-    apiVersion: string,
     thumbprintAlgorithm: string,
     thumbprint: string,
     options: DeleteCertificateOptions = { requestOptions: {} },
   ): Promise<void> {
     return deleteCertificate(
       this._client,
-      apiVersion,
       thumbprintAlgorithm,
       thumbprint,
       options,
@@ -696,14 +673,12 @@ export class BatchClient {
 
   /** Gets information about the specified Certificate. */
   getCertificate(
-    apiVersion: string,
     thumbprintAlgorithm: string,
     thumbprint: string,
     options: GetCertificateOptions = { requestOptions: {} },
   ): Promise<BatchCertificate> {
     return getCertificate(
       this._client,
-      apiVersion,
       thumbprintAlgorithm,
       thumbprint,
       options,
@@ -712,11 +687,10 @@ export class BatchClient {
 
   /** Checks the specified Job Schedule exists. */
   jobScheduleExists(
-    apiVersion: string,
     jobScheduleId: string,
     options: JobScheduleExistsOptions = { requestOptions: {} },
   ): Promise<void> {
-    return jobScheduleExists(this._client, apiVersion, jobScheduleId, options);
+    return jobScheduleExists(this._client, jobScheduleId, options);
   }
 
   /**
@@ -727,20 +701,18 @@ export class BatchClient {
    * though they are still counted towards Account lifetime statistics.
    */
   deleteJobSchedule(
-    apiVersion: string,
     jobScheduleId: string,
     options: DeleteJobScheduleOptions = { requestOptions: {} },
   ): Promise<void> {
-    return deleteJobSchedule(this._client, apiVersion, jobScheduleId, options);
+    return deleteJobSchedule(this._client, jobScheduleId, options);
   }
 
   /** Gets information about the specified Job Schedule. */
   getJobSchedule(
-    apiVersion: string,
     jobScheduleId: string,
     options: GetJobScheduleOptions = { requestOptions: {} },
   ): Promise<BatchJobSchedule> {
-    return getJobSchedule(this._client, apiVersion, jobScheduleId, options);
+    return getJobSchedule(this._client, jobScheduleId, options);
   }
 
   /**
@@ -751,18 +723,11 @@ export class BatchClient {
    * running Jobs are unaffected.
    */
   updateJobSchedule(
-    apiVersion: string,
     jobScheduleId: string,
     body: BatchJobScheduleUpdateOptions,
     options: UpdateJobScheduleOptions = { requestOptions: {} },
   ): Promise<void> {
-    return updateJobSchedule(
-      this._client,
-      apiVersion,
-      jobScheduleId,
-      body,
-      options,
-    );
+    return updateJobSchedule(this._client, jobScheduleId, body, options);
   }
 
   /**
@@ -773,67 +738,50 @@ export class BatchClient {
    * running Jobs are unaffected.
    */
   replaceJobSchedule(
-    apiVersion: string,
     jobScheduleId: string,
     body: BatchJobSchedule,
     options: ReplaceJobScheduleOptions = { requestOptions: {} },
   ): Promise<void> {
-    return replaceJobSchedule(
-      this._client,
-      apiVersion,
-      jobScheduleId,
-      body,
-      options,
-    );
+    return replaceJobSchedule(this._client, jobScheduleId, body, options);
   }
 
   /** No new Jobs will be created until the Job Schedule is enabled again. */
   disableJobSchedule(
-    apiVersion: string,
     jobScheduleId: string,
     options: DisableJobScheduleOptions = { requestOptions: {} },
   ): Promise<void> {
-    return disableJobSchedule(this._client, apiVersion, jobScheduleId, options);
+    return disableJobSchedule(this._client, jobScheduleId, options);
   }
 
   /** Enables a Job Schedule. */
   enableJobSchedule(
-    apiVersion: string,
     jobScheduleId: string,
     options: EnableJobScheduleOptions = { requestOptions: {} },
   ): Promise<void> {
-    return enableJobSchedule(this._client, apiVersion, jobScheduleId, options);
+    return enableJobSchedule(this._client, jobScheduleId, options);
   }
 
   /** Terminates a Job Schedule. */
   terminateJobSchedule(
-    apiVersion: string,
     jobScheduleId: string,
     options: TerminateJobScheduleOptions = { requestOptions: {} },
   ): Promise<void> {
-    return terminateJobSchedule(
-      this._client,
-      apiVersion,
-      jobScheduleId,
-      options,
-    );
+    return terminateJobSchedule(this._client, jobScheduleId, options);
   }
 
   /** Creates a Job Schedule to the specified Account. */
   createJobSchedule(
-    apiVersion: string,
     body: BatchJobScheduleCreateOptions,
     options: CreateJobScheduleOptions = { requestOptions: {} },
   ): Promise<void> {
-    return createJobSchedule(this._client, apiVersion, body, options);
+    return createJobSchedule(this._client, body, options);
   }
 
   /** Lists all of the Job Schedules in the specified Account. */
   listJobSchedules(
-    apiVersion: string,
     options: ListJobSchedulesOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<BatchJobSchedule> {
-    return listJobSchedules(this._client, apiVersion, options);
+    return listJobSchedules(this._client, options);
   }
 
   /**
@@ -842,12 +790,11 @@ export class BatchClient {
    * the Batch service and left in whatever state it was in at that time.
    */
   createTask(
-    apiVersion: string,
     jobId: string,
     body: BatchTaskCreateOptions,
     options: CreateTaskOptions = { requestOptions: {} },
   ): Promise<void> {
-    return createTask(this._client, apiVersion, jobId, body, options);
+    return createTask(this._client, jobId, body, options);
   }
 
   /**
@@ -856,11 +803,10 @@ export class BatchClient {
    * information about subtasks.
    */
   listTasks(
-    apiVersion: string,
     jobId: string,
     options: ListTasksOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<BatchTask> {
-    return listTasks(this._client, apiVersion, jobId, options);
+    return listTasks(this._client, jobId, options);
   }
 
   /**
@@ -880,18 +826,11 @@ export class BatchClient {
    * service and left in whatever state it was in at that time.
    */
   createTaskCollection(
-    apiVersion: string,
     jobId: string,
     collection: BatchTaskCollection,
     options: CreateTaskCollectionOptions = { requestOptions: {} },
   ): Promise<TaskAddCollectionResult> {
-    return createTaskCollection(
-      this._client,
-      apiVersion,
-      jobId,
-      collection,
-      options,
-    );
+    return createTaskCollection(this._client, jobId, collection, options);
   }
 
   /**
@@ -902,12 +841,11 @@ export class BatchClient {
    * background.
    */
   deleteTask(
-    apiVersion: string,
     jobId: string,
     taskId: string,
     options: DeleteTaskOptions = { requestOptions: {} },
   ): Promise<void> {
-    return deleteTask(this._client, apiVersion, jobId, taskId, options);
+    return deleteTask(this._client, jobId, taskId, options);
   }
 
   /**
@@ -916,33 +854,30 @@ export class BatchClient {
    * information about subtasks.
    */
   getTask(
-    apiVersion: string,
     jobId: string,
     taskId: string,
     options: GetTaskOptions = { requestOptions: {} },
   ): Promise<BatchTask> {
-    return getTask(this._client, apiVersion, jobId, taskId, options);
+    return getTask(this._client, jobId, taskId, options);
   }
 
   /** Updates the properties of the specified Task. */
   replaceTask(
-    apiVersion: string,
     jobId: string,
     taskId: string,
     body: BatchTask,
     options: ReplaceTaskOptions = { requestOptions: {} },
   ): Promise<void> {
-    return replaceTask(this._client, apiVersion, jobId, taskId, body, options);
+    return replaceTask(this._client, jobId, taskId, body, options);
   }
 
   /** If the Task is not a multi-instance Task then this returns an empty collection. */
   listSubTasks(
-    apiVersion: string,
     jobId: string,
     taskId: string,
     options: ListSubTasksOptions = { requestOptions: {} },
   ): Promise<BatchTaskListSubtasksResult> {
-    return listSubTasks(this._client, apiVersion, jobId, taskId, options);
+    return listSubTasks(this._client, jobId, taskId, options);
   }
 
   /**
@@ -951,12 +886,11 @@ export class BatchClient {
    * primary task; subtasks are then terminated asynchronously in the background.
    */
   terminateTask(
-    apiVersion: string,
     jobId: string,
     taskId: string,
     options: TerminateTaskOptions = { requestOptions: {} },
   ): Promise<void> {
-    return terminateTask(this._client, apiVersion, jobId, taskId, options);
+    return terminateTask(this._client, jobId, taskId, options);
   }
 
   /**
@@ -969,53 +903,35 @@ export class BatchClient {
    * will fail if the Job has completed (or is terminating or deleting).
    */
   reactivateTask(
-    apiVersion: string,
     jobId: string,
     taskId: string,
     options: ReactivateTaskOptions = { requestOptions: {} },
   ): Promise<void> {
-    return reactivateTask(this._client, apiVersion, jobId, taskId, options);
+    return reactivateTask(this._client, jobId, taskId, options);
   }
 
   /** Deletes the specified Task file from the Compute Node where the Task ran. */
   deleteTaskFile(
-    apiVersion: string,
     jobId: string,
     taskId: string,
     filePath: string,
     options: DeleteTaskFileOptions = { requestOptions: {} },
   ): Promise<void> {
-    return deleteTaskFile(
-      this._client,
-      apiVersion,
-      jobId,
-      taskId,
-      filePath,
-      options,
-    );
+    return deleteTaskFile(this._client, jobId, taskId, filePath, options);
   }
 
   /** Returns the content of the specified Task file. */
   getTaskFile(
-    apiVersion: string,
     jobId: string,
     taskId: string,
     filePath: string,
     options: GetTaskFileOptions = { requestOptions: {} },
   ): Promise<Uint8Array> {
-    return getTaskFile(
-      this._client,
-      apiVersion,
-      jobId,
-      taskId,
-      filePath,
-      options,
-    );
+    return getTaskFile(this._client, jobId, taskId, filePath, options);
   }
 
   /** Gets the properties of the specified Task file. */
   getTaskFileProperties(
-    apiVersion: string,
     jobId: string,
     taskId: string,
     filePath: string,
@@ -1023,7 +939,6 @@ export class BatchClient {
   ): Promise<void> {
     return getTaskFileProperties(
       this._client,
-      apiVersion,
       jobId,
       taskId,
       filePath,
@@ -1033,12 +948,11 @@ export class BatchClient {
 
   /** Lists the files in a Task's directory on its Compute Node. */
   listTaskFiles(
-    apiVersion: string,
     jobId: string,
     taskId: string,
     options: ListTaskFilesOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<NodeFile> {
-    return listTaskFiles(this._client, apiVersion, jobId, taskId, options);
+    return listTaskFiles(this._client, jobId, taskId, options);
   }
 
   /**
@@ -1046,20 +960,12 @@ export class BatchClient {
    * running state.
    */
   createNodeUser(
-    apiVersion: string,
     poolId: string,
     nodeId: string,
     body: BatchNodeUserCreateOptions,
     options: CreateNodeUserOptions = { requestOptions: {} },
   ): Promise<void> {
-    return createNodeUser(
-      this._client,
-      apiVersion,
-      poolId,
-      nodeId,
-      body,
-      options,
-    );
+    return createNodeUser(this._client, poolId, nodeId, body, options);
   }
 
   /**
@@ -1067,20 +973,12 @@ export class BatchClient {
    * running state.
    */
   deleteNodeUser(
-    apiVersion: string,
     poolId: string,
     nodeId: string,
     userName: string,
     options: DeleteNodeUserOptions = { requestOptions: {} },
   ): Promise<void> {
-    return deleteNodeUser(
-      this._client,
-      apiVersion,
-      poolId,
-      nodeId,
-      userName,
-      options,
-    );
+    return deleteNodeUser(this._client, poolId, nodeId, userName, options);
   }
 
   /**
@@ -1090,7 +988,6 @@ export class BatchClient {
    * Account on a Compute Node only when it is in the idle or running state.
    */
   replaceNodeUser(
-    apiVersion: string,
     poolId: string,
     nodeId: string,
     userName: string,
@@ -1099,7 +996,6 @@ export class BatchClient {
   ): Promise<void> {
     return replaceNodeUser(
       this._client,
-      apiVersion,
       poolId,
       nodeId,
       userName,
@@ -1110,23 +1006,21 @@ export class BatchClient {
 
   /** Gets information about the specified Compute Node. */
   getNode(
-    apiVersion: string,
     poolId: string,
     nodeId: string,
     options: GetNodeOptions = { requestOptions: {} },
   ): Promise<BatchNode> {
-    return getNode(this._client, apiVersion, poolId, nodeId, options);
+    return getNode(this._client, poolId, nodeId, options);
   }
 
   /** You can restart a Compute Node only if it is in an idle or running state. */
   rebootNode(
-    apiVersion: string,
     poolId: string,
     nodeId: string,
     body?: NodeRebootOptions,
     options: RebootNodeOptions = { requestOptions: {} },
   ): Promise<void> {
-    return rebootNode(this._client, apiVersion, poolId, nodeId, body, options);
+    return rebootNode(this._client, poolId, nodeId, body, options);
   }
 
   /**
@@ -1135,13 +1029,12 @@ export class BatchClient {
    * cloud service configuration property.
    */
   reimageNode(
-    apiVersion: string,
     poolId: string,
     nodeId: string,
     body?: NodeReimageOptions,
     options: ReimageNodeOptions = { requestOptions: {} },
   ): Promise<void> {
-    return reimageNode(this._client, apiVersion, poolId, nodeId, body, options);
+    return reimageNode(this._client, poolId, nodeId, body, options);
   }
 
   /**
@@ -1149,20 +1042,12 @@ export class BatchClient {
    * scheduling state is enabled.
    */
   disableNodeScheduling(
-    apiVersion: string,
     poolId: string,
     nodeId: string,
     body?: NodeDisableSchedulingOptions,
     options: DisableNodeSchedulingOptions = { requestOptions: {} },
   ): Promise<void> {
-    return disableNodeScheduling(
-      this._client,
-      apiVersion,
-      poolId,
-      nodeId,
-      body,
-      options,
-    );
+    return disableNodeScheduling(this._client, poolId, nodeId, body, options);
   }
 
   /**
@@ -1170,18 +1055,11 @@ export class BatchClient {
    * state is disabled
    */
   enableNodeScheduling(
-    apiVersion: string,
     poolId: string,
     nodeId: string,
     options: EnableNodeSchedulingOptions = { requestOptions: {} },
   ): Promise<void> {
-    return enableNodeScheduling(
-      this._client,
-      apiVersion,
-      poolId,
-      nodeId,
-      options,
-    );
+    return enableNodeScheduling(this._client, poolId, nodeId, options);
   }
 
   /**
@@ -1192,18 +1070,11 @@ export class BatchClient {
    * API.
    */
   getNodeRemoteLoginSettings(
-    apiVersion: string,
     poolId: string,
     nodeId: string,
     options: GetNodeRemoteLoginSettingsOptions = { requestOptions: {} },
   ): Promise<BatchNodeRemoteLoginSettingsResult> {
-    return getNodeRemoteLoginSettings(
-      this._client,
-      apiVersion,
-      poolId,
-      nodeId,
-      options,
-    );
+    return getNodeRemoteLoginSettings(this._client, poolId, nodeId, options);
   }
 
   /**
@@ -1213,18 +1084,11 @@ export class BatchClient {
    * configuration, see the GetRemoteLoginSettings API.
    */
   getNodeRemoteDesktopFile(
-    apiVersion: string,
     poolId: string,
     nodeId: string,
     options: GetNodeRemoteDesktopFileOptions = { requestOptions: {} },
   ): Promise<Uint8Array> {
-    return getNodeRemoteDesktopFile(
-      this._client,
-      apiVersion,
-      poolId,
-      nodeId,
-      options,
-    );
+    return getNodeRemoteDesktopFile(this._client, poolId, nodeId, options);
   }
 
   /**
@@ -1234,34 +1098,24 @@ export class BatchClient {
    * support to aid in debugging issues with the Batch service.
    */
   uploadNodeLogs(
-    apiVersion: string,
     poolId: string,
     nodeId: string,
     body: UploadBatchServiceLogsOptions,
     options: UploadNodeLogsOptions = { requestOptions: {} },
   ): Promise<UploadBatchServiceLogsResult> {
-    return uploadNodeLogs(
-      this._client,
-      apiVersion,
-      poolId,
-      nodeId,
-      body,
-      options,
-    );
+    return uploadNodeLogs(this._client, poolId, nodeId, body, options);
   }
 
   /** Lists the Compute Nodes in the specified Pool. */
   listNodes(
-    apiVersion: string,
     poolId: string,
     options: ListNodesOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<BatchNode> {
-    return listNodes(this._client, apiVersion, poolId, options);
+    return listNodes(this._client, poolId, options);
   }
 
   /** Gets information about the specified Compute Node Extension. */
   getNodeExtension(
-    apiVersion: string,
     poolId: string,
     nodeId: string,
     extensionName: string,
@@ -1269,7 +1123,6 @@ export class BatchClient {
   ): Promise<NodeVMExtension> {
     return getNodeExtension(
       this._client,
-      apiVersion,
       poolId,
       nodeId,
       extensionName,
@@ -1288,43 +1141,26 @@ export class BatchClient {
 
   /** Deletes the specified file from the Compute Node. */
   deleteNodeFile(
-    apiVersion: string,
     poolId: string,
     nodeId: string,
     filePath: string,
     options: DeleteNodeFileOptions = { requestOptions: {} },
   ): Promise<void> {
-    return deleteNodeFile(
-      this._client,
-      apiVersion,
-      poolId,
-      nodeId,
-      filePath,
-      options,
-    );
+    return deleteNodeFile(this._client, poolId, nodeId, filePath, options);
   }
 
   /** Returns the content of the specified Compute Node file. */
   getNodeFile(
-    apiVersion: string,
     poolId: string,
     nodeId: string,
     filePath: string,
     options: GetNodeFileOptions = { requestOptions: {} },
   ): Promise<Uint8Array> {
-    return getNodeFile(
-      this._client,
-      apiVersion,
-      poolId,
-      nodeId,
-      filePath,
-      options,
-    );
+    return getNodeFile(this._client, poolId, nodeId, filePath, options);
   }
 
   /** Gets the properties of the specified Compute Node file. */
   getNodeFileProperties(
-    apiVersion: string,
     poolId: string,
     nodeId: string,
     filePath: string,
@@ -1332,7 +1168,6 @@ export class BatchClient {
   ): Promise<void> {
     return getNodeFileProperties(
       this._client,
-      apiVersion,
       poolId,
       nodeId,
       filePath,
@@ -1342,11 +1177,10 @@ export class BatchClient {
 
   /** Lists all of the files in Task directories on the specified Compute Node. */
   listNodeFiles(
-    apiVersion: string,
     poolId: string,
     nodeId: string,
     options: ListNodeFilesOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<NodeFile> {
-    return listNodeFiles(this._client, apiVersion, poolId, nodeId, options);
+    return listNodeFiles(this._client, poolId, nodeId, options);
   }
 }

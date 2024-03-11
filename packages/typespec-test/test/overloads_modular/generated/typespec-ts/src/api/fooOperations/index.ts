@@ -29,7 +29,6 @@ export function _getAvatarAsPngSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "image/png",
-      queryParameters: { "api-version": "2022-08-30" },
       body: image,
     }) as StreamableMethod<
     GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse
@@ -68,7 +67,6 @@ export function _getAvatarAsJpegSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "image/jpeg",
-      queryParameters: { "api-version": "2022-08-30" },
       body: image,
     }) as StreamableMethod<
     GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse
