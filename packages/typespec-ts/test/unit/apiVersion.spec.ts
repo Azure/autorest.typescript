@@ -252,18 +252,6 @@ const buildPathReturn_WithoutDefault = () => {
 describe("api-version", () => {
   describe("defined in query position", () => {
     describe("with default value", () => {
-<<<<<<< HEAD
-      it("in @serivce", async () => {
-        const def = buildQueryDefinition({
-          "@service": true
-        });
-        const expectedRes = buildDefaultReturn(false, true);
-        const models = await emitClientFactoryFromTypeSpec(def);
-        assert.ok(models);
-        await assertEqualContent(models!.content, expectedRes);
-      });
-=======
->>>>>>> main
       it("in @versioned", async () => {
         const def = buildQueryDefinition({
           "@versioned": true
@@ -288,18 +276,6 @@ describe("api-version", () => {
   });
   describe("defined in url path", () => {
     describe("with default value", () => {
-<<<<<<< HEAD
-      it("in @serivce", async () => {
-        const def = buildPathDefinition({
-          "@service": true
-        });
-        const expectedRes = buildPathReturn_WithoutDefault();
-        const models = await emitClientFactoryFromTypeSpec(def);
-        assert.ok(models);
-        await assertEqualContent(models!.content, expectedRes);
-      });
-=======
->>>>>>> main
       it("in @versioned", async () => {
         const def = buildPathDefinition({
           "@versioned": true
@@ -324,18 +300,6 @@ describe("api-version", () => {
   });
   describe("defined in both positions[path preferred]", () => {
     describe("with default value", () => {
-<<<<<<< HEAD
-      it("in @serivce", async () => {
-        const def = buildMixedDefinition({
-          "@service": true
-        });
-        const expectedRes = buildPathReturn_WithoutDefault();
-        const models = await emitClientFactoryFromTypeSpec(def);
-        assert.ok(models);
-        await assertEqualContent(models!.content, expectedRes);
-      });
-=======
->>>>>>> main
       it("in @versioned", async () => {
         const def = buildMixedDefinition({
           "@versioned": true
