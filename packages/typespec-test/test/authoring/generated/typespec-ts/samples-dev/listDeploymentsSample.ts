@@ -22,7 +22,7 @@ async function listDeploymentsSample() {
       "/authoring/analyze-text/projects/{projectName}/deployments",
       projectName,
     )
-    .get({ queryParameters: { "api-version": "{Your api-version}" } });
+    .get();
   const pageData = paginate(client, initialResponse);
   const result = [];
   for await (const item of pageData) {

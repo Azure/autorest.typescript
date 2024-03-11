@@ -21,7 +21,7 @@ async function importxSample() {
   const projectName = "{Your projectName}";
   const initialResponse = await client
     .path("/authoring/analyze-text/projects/{projectName}:importx", projectName)
-    .post({ queryParameters: { "api-version": "{Your api-version}" } });
+    .post();
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   console.log(result);

@@ -7,9 +7,9 @@ export {
   ContentTypeEnum,
   PagedSchemaGroup,
   SchemaGroup,
+  SchemaContentTypeValues,
   PagedVersion,
   SchemaVersion,
-  SchemaContentTypeValues,
 } from "./models.js";
 export {
   SchemaOperationsListSchemaGroupsOptions,

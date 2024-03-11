@@ -41,7 +41,7 @@ export interface PagedUser {
   /** The User items on this page */
   value: User[];
   /** The link to the next page of items */
-  nextLink?: string;
+  readonly nextLink?: string;
 }
 
 /** Paged collection of User items */
@@ -49,15 +49,19 @@ export interface PagedUser {
   /** The User items on this page */
   value: User[];
   /** The link to the next page of items */
-  nextLink?: string;
+  readonly nextLink?: string;
 }
+
+/** An extensible enum input parameter. */
+/** "First", "Second" */
+export type ListItemInputExtensibleEnum = string;
 
 /** Paged collection of FirstItem items */
 export interface PagedFirstItem {
   /** The FirstItem items on this page */
   value: FirstItem[];
   /** The link to the next page of items */
-  nextLink?: string;
+  readonly nextLink?: string;
 }
 
 /** First item. */
@@ -71,7 +75,7 @@ export interface PagedSecondItem {
   /** The SecondItem items on this page */
   value: SecondItem[];
   /** The link to the next page of items */
-  nextLink?: string;
+  readonly nextLink?: string;
 }
 
 /** Second item. */
@@ -79,6 +83,3 @@ export interface SecondItem {
   /** The name of the item. */
   readonly name: string;
 }
-
-/** Alias for ListItemInputExtensibleEnum */
-export type ListItemInputExtensibleEnum = string | "First" | "Second";

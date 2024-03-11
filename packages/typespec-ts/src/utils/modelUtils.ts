@@ -229,7 +229,11 @@ export function getSchemaForType(
   return undefined;
 }
 export function getEffectiveModelFromType(program: Program, type: Type): Type {
-  if (type.kind === "Model") {
+  /**
+   * If type is an anonymous model, tries to find a named model that has the same
+   * set of properties when non-schema properties are excluded.
+   */
+  if (type.kind === "Model" && type.name === "") {
     const effective = getEffectiveModelType(program, type, isSchemaProperty);
     if (effective.name) {
       return effective;
@@ -1489,7 +1493,7 @@ export function predictDefaultValue(
   if (!serviceNamespace) {
     return;
   }
-  const defaultApiVersion = getEnrichedDefaultApiVersion(program, dpgContext);
+  const defaultApiVersion = getDefaultApiVersionString(program, dpgContext);
   if (param && isApiVersion(dpgContext, param) && defaultApiVersion) {
     return defaultApiVersion;
   }
@@ -1530,31 +1534,16 @@ export function getDefaultService(program: Program): Service | undefined {
   }
   return services[0];
 }
-
 /**
- * Get the default api-version both from versioned and service decorator
- * TODO: remember to switch to TCGC once the fix is done
- * @param program
- * @param dpgContext
- * @returns default api-version value
+ * Return the default api version from the program; undefined if no default
  */
-export function getEnrichedDefaultApiVersion(
+export function getDefaultApiVersionString(
   program: Program,
   dpgContext: SdkContext
 ): string | undefined {
-  const serviceNamespace = getDefaultService(program);
-  if (!serviceNamespace) {
-    return;
-  }
-
-  const defaultVersion = getDefaultApiVersion(
-    dpgContext,
-    serviceNamespace!.type
-  );
-  if (defaultVersion) {
-    return defaultVersion.value;
-  }
-  return;
+  return getDefaultService(program)
+    ? getDefaultApiVersion(dpgContext, getDefaultService(program)!.type)?.value
+    : undefined;
 }
 
 export function trimUsage(model: any) {

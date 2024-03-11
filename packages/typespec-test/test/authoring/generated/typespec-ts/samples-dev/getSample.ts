@@ -19,7 +19,7 @@ async function getSample() {
   const projectName = "{Your projectName}";
   const result = await client
     .path("/authoring/analyze-text/projects/{projectName}", projectName)
-    .get({ queryParameters: { "api-version": "{Your api-version}" } });
+    .get();
   console.log(result);
 }
 

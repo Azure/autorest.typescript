@@ -240,6 +240,10 @@ export const nonBrandedRlcTsps: TypeSpecRanchConfig[] = [
 
 export const modularTsps: TypeSpecRanchConfig[] = [
   {
+    outputPath: "parameters/body-optionality",
+    inputPath: "parameters/body-optionality"
+  },
+  {
     outputPath: "models/usage",
     inputPath: "type/model/usage"
   },

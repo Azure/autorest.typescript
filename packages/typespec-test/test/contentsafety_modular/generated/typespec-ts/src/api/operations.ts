@@ -217,7 +217,10 @@ export function _createOrUpdateTextBlocklistSend(
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
       queryParameters: { "api-version": "2023-10-01" },
-      body: { description: resource["description"] },
+      body: {
+        blocklistName: resource["blocklistName"],
+        description: resource["description"],
+      },
     });
 }
 

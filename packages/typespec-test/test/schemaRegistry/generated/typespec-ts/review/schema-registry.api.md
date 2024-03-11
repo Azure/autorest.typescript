@@ -26,13 +26,13 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 
 // @public
 export interface PagedSchemaGroup {
-    nextLink?: string;
+    readonly nextLink?: string;
     value: SchemaGroup[];
 }
 
 // @public
 export interface PagedVersion {
-    nextLink?: string;
+    readonly nextLink?: string;
     value: SchemaVersion[];
 }
 
@@ -41,7 +41,7 @@ export interface PageSettings {
     continuationToken?: string;
 }
 
-// @public
+// @public (undocumented)
 export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";
 
 // @public
