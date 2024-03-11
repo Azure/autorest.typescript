@@ -4,5 +4,15 @@
 import { RequestParameters } from "@azure-rest/core-client";
 
 export type WithoutApiVersionParameters = RequestParameters;
-export type WithQueryApiVersionParameters = RequestParameters;
+
+export interface WithQueryApiVersionQueryParamProperties {
+  "api-version": string;
+}
+
+export interface WithQueryApiVersionQueryParam {
+  queryParameters: WithQueryApiVersionQueryParamProperties;
+}
+
+export type WithQueryApiVersionParameters = WithQueryApiVersionQueryParam &
+  RequestParameters;
 export type WithPathApiVersionParameters = RequestParameters;

@@ -8,7 +8,8 @@ import {
   ParameterBodyMetadata,
   ParameterMetadata,
   Schema,
-  SchemaContext
+  SchemaContext,
+  ApiVersionInfo
 } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Program, Type } from "@typespec/compiler";
 import {
@@ -46,6 +47,7 @@ import {
   hasMediaType,
   isMediaTypeJsonMergePatch
 } from "../utils/mediaTypes.js";
+import { getOperationApiVersion } from "./transformApiVersionInfo.js";
 
 export function transformToParameterTypes(
   importDetails: Imports,
@@ -55,6 +57,7 @@ export function transformToParameterTypes(
   const program = dpgContext.program;
   const rlcParameters: OperationParameter[] = [];
   const outputImportedSet = new Set<string>();
+  const queryVersionDetail = getOperationApiVersion(client, dpgContext);
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
@@ -97,6 +100,7 @@ export function transformToParameterTypes(
     const queryParams = transformQueryParameters(
       dpgContext,
       parameters,
+      { queryVersionDetail },
       outputImportedSet
     );
     // transform path param
@@ -205,12 +209,17 @@ function getParameterName(name: string) {
 function transformQueryParameters(
   dpgContext: SdkContext,
   parameters: HttpOperationParameters,
+  options: { queryVersionDetail: ApiVersionInfo | undefined },
   importModels: Set<string> = new Set<string>()
 ): ParameterMetadata[] {
   const queryParameters = parameters.parameters.filter(
     (p) =>
       p.type === "query" &&
-      !(isApiVersion(dpgContext, p) && predictDefaultValue(dpgContext, p.param))
+      !(
+        isApiVersion(dpgContext, p) &&
+        predictDefaultValue(dpgContext, p.param) &&
+        options.queryVersionDetail
+      )
   );
   if (!queryParameters.length) {
     return [];

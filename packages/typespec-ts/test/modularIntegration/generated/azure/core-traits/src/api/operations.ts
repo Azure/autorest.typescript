@@ -48,7 +48,6 @@ export function _smokeTestSend(
           ? { "x-ms-client-request-id": options?.clientRequestId }
           : {}),
       },
-      queryParameters: { "api-version": "2022-12-01-preview" },
     });
 }
 
@@ -99,7 +98,6 @@ export function _repeatableActionSend(
             }
           : {}),
       },
-      queryParameters: { "api-version": "2022-12-01-preview" },
       body: { userActionValue: body["userActionValue"] },
     });
 }

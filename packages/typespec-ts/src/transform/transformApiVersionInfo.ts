@@ -4,7 +4,7 @@ import {
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
-import { ignoreDiagnostics, Program } from "@typespec/compiler";
+import { ignoreDiagnostics } from "@typespec/compiler";
 import {
   ApiVersionInfo,
   UrlInfo,
@@ -27,11 +27,7 @@ export function transformApiVersionInfo(
   urlInfo?: UrlInfo
 ): ApiVersionInfo | undefined {
   const program = dpgContext.program;
-  const queryVersionDetail = getOperationApiVersion(
-    client,
-    program,
-    dpgContext
-  );
+  const queryVersionDetail = getOperationApiVersion(client, dpgContext);
   const pathVersionDetail = extractPathApiVersion(urlInfo);
   const isCrossedVersion =
     pathVersionDetail?.isCrossedVersion || queryVersionDetail?.isCrossedVersion;
@@ -52,9 +48,8 @@ export function transformApiVersionInfo(
   };
 }
 
-function getOperationApiVersion(
+export function getOperationApiVersion(
   client: SdkClient,
-  program: Program,
   dpgContext: SdkContext
 ): ApiVersionInfo | undefined {
   const apiVersionTypes = new Set<string>();
@@ -64,7 +59,9 @@ function getOperationApiVersion(
   let hasApiVersionInOperation = true;
   for (const clientOp of clientOperations) {
     hasApiVersionInOperation = false;
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    const route = ignoreDiagnostics(
+      getHttpOperation(dpgContext.program, clientOp)
+    );
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -103,7 +100,7 @@ function getOperationApiVersion(
     );
     for (const op of operations) {
       hasApiVersionInOperation = false;
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = ignoreDiagnostics(getHttpOperation(dpgContext.program, op));
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;

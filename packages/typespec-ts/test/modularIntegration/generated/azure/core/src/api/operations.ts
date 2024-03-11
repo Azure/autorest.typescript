@@ -77,7 +77,6 @@ export function _createOrUpdateSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      queryParameters: { "api-version": "2022-12-01-preview" },
       body: {
         name: resource["name"],
         orders:
@@ -141,7 +140,6 @@ export function _createOrReplaceSend(
     .path("/azure/core/basic/users/{id}", id)
     .put({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2022-12-01-preview" },
       body: {
         name: resource["name"],
         orders:
@@ -198,10 +196,7 @@ export function _getSend(
 ): StreamableMethod<Get200Response | GetDefaultResponse> {
   return context
     .path("/azure/core/basic/users/{id}", id)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2022-12-01-preview" },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(
@@ -245,7 +240,6 @@ export function _listSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2022-12-01-preview",
         top: options?.top,
         skip: options?.skip,
         maxpagesize: options?.maxpagesize,
@@ -310,10 +304,7 @@ export function _listWithPageSend(
 ): StreamableMethod<ListWithPage200Response | ListWithPageDefaultResponse> {
   return context
     .path("/azure/core/basic/page")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2022-12-01-preview" },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listWithPageDeserialize(
@@ -365,10 +356,7 @@ export function _listWithParametersSend(
     .path("/azure/core/basic/parameters")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": "2022-12-01-preview",
-        another: options?.another,
-      },
+      queryParameters: { another: options?.another },
       body: { inputName: bodyInput["inputName"] },
     });
 }
@@ -420,10 +408,7 @@ export function _listWithCustomPageModelSend(
 > {
   return context
     .path("/azure/core/basic/custom-page")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2022-12-01-preview" },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listWithCustomPageModelDeserialize(
@@ -475,10 +460,7 @@ export function _deleteOperationSend(
 > {
   return context
     .path("/azure/core/basic/users/{id}", id)
-    .delete({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2022-12-01-preview" },
-    });
+    .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteOperationDeserialize(
@@ -513,7 +495,7 @@ export function _exportOperationSend(
     .path("/azure/core/basic/users/{id}:export", id)
     .post({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2022-12-01-preview", format: format },
+      queryParameters: { format: format },
     });
 }
 
@@ -556,10 +538,7 @@ export function _listFirstItemSend(
 ): StreamableMethod<ListFirstItem200Response | ListFirstItemDefaultResponse> {
   return context
     .path("/azure/core/basic/first-item")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2022-12-01-preview" },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listFirstItemDeserialize(
@@ -594,10 +573,7 @@ export function _listSecondItemSend(
 ): StreamableMethod<ListSecondItem200Response | ListSecondItemDefaultResponse> {
   return context
     .path("/azure/core/basic/second-item")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2022-12-01-preview" },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listSecondItemDeserialize(
