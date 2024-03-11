@@ -1374,7 +1374,7 @@ export function getImportedModelName(
     case "dictionary": {
       const ret = new Set<string>();
       [(schema as DictionarySchema).additionalProperties]
-        .filter((i?: Schema) => !!i && i.type === "object")
+        .filter((i?: Schema) => !!i)
         .forEach((i?: Schema) =>
           getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );
@@ -1384,7 +1384,7 @@ export function getImportedModelName(
     case "union": {
       const ret = new Set<string>();
       ((schema as Schema).enum ?? [])
-        .filter((i?: Schema) => !!i && i.type === "object")
+        .filter((i?: Schema) => !!i)
         .forEach((i?: Schema) =>
           getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );
