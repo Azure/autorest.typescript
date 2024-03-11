@@ -13,13 +13,7 @@ import { TokenCredential } from '@azure/core-auth';
 export type AccessScope = string;
 
 // @public
-export interface AccountListSupportedImagesResult {
-    "odata.nextLink"?: string;
-    value?: ImageInformation[];
-}
-
-// @public
-export interface AffinityInformation {
+export interface AffinityInfo {
     affinityId: string;
 }
 
@@ -27,28 +21,16 @@ export interface AffinityInformation {
 export type AllocationState = string;
 
 // @public
-export interface ApplicationListResult {
-    "odata.nextLink"?: string;
-    value?: BatchApplication[];
-}
-
-// @public
-export interface ApplicationPackageReference {
-    applicationId: string;
-    version?: string;
-}
-
-// @public
 export interface AuthenticationTokenSettings {
     access?: AccessScope[];
 }
 
 // @public
-export interface AutoPoolSpecification {
-    autoPoolIdPrefix?: string;
-    keepAlive?: boolean;
-    pool?: PoolSpecification;
-    poolLifetimeOption: PoolLifetimeOption;
+export interface AutomaticOsUpgradePolicy {
+    disableAutomaticRollback?: boolean;
+    enableAutomaticOSUpgrade?: boolean;
+    osRollingUpgradeDeferral?: boolean;
+    useRollingUpgradePolicy?: boolean;
 }
 
 // @public
@@ -95,6 +77,12 @@ export interface AzureFileShareConfiguration {
 }
 
 // @public
+export interface BatchAccountListSupportedImagesResult {
+    "odata.nextLink"?: string;
+    value?: ImageInfo[];
+}
+
+// @public
 export interface BatchApplication {
     displayName: string;
     id: string;
@@ -102,32 +90,79 @@ export interface BatchApplication {
 }
 
 // @public
+export interface BatchApplicationListResult {
+    "odata.nextLink"?: string;
+    value?: BatchApplication[];
+}
+
+// @public
+export interface BatchApplicationPackageReference {
+    applicationId: string;
+    version?: string;
+}
+
+// @public
+export interface BatchAutoPoolSpecification {
+    autoPoolIdPrefix?: string;
+    keepAlive?: boolean;
+    pool?: BatchPoolSpecification;
+    poolLifetimeOption: BatchPoolLifetimeOption;
+}
+
+// @public
 export interface BatchCertificate {
-    certificateFormat?: CertificateFormat;
-    data: Uint8Array;
-    readonly deleteCertificateError?: DeleteCertificateError;
+    certificateFormat?: BatchCertificateFormat;
+    data: string;
+    readonly deleteCertificateError?: DeleteBatchCertificateError;
     password?: string;
-    readonly previousState?: CertificateState;
+    readonly previousState?: BatchCertificateState;
     readonly previousStateTransitionTime?: Date;
-    readonly publicData?: Uint8Array;
-    readonly state?: CertificateState;
+    readonly publicData?: string;
+    readonly state?: BatchCertificateState;
     readonly stateTransitionTime?: Date;
     thumbprint: string;
     thumbprintAlgorithm: string;
     readonly url?: string;
 }
 
+// @public
+export type BatchCertificateFormat = string;
+
+// @public
+export interface BatchCertificateListResult {
+    "odata.nextLink"?: string;
+    value?: BatchCertificate[];
+}
+
+// @public
+export interface BatchCertificateReference {
+    storeLocation?: BatchCertificateStoreLocation;
+    storeName?: string;
+    thumbprint: string;
+    thumbprintAlgorithm: string;
+    visibility?: BatchCertificateVisibility[];
+}
+
+// @public
+export type BatchCertificateState = string;
+
+// @public
+export type BatchCertificateStoreLocation = string;
+
+// @public
+export type BatchCertificateVisibility = string;
+
 // @public (undocumented)
 export class BatchClient {
     constructor(endpoint: string, credential: TokenCredential, options?: BatchClientOptions);
     cancelCertificateDeletion(thumbprintAlgorithm: string, thumbprint: string, options?: CancelCertificateDeletionOptions): Promise<void>;
-    createCertificate(body: BatchCertificate, options?: CreateCertificateOptions): Promise<void>;
-    createJob(body: BatchJobCreateOptions, options?: CreateJobOptions): Promise<void>;
-    createJobSchedule(body: BatchJobScheduleCreateOptions, options?: CreateJobScheduleOptions): Promise<void>;
-    createNodeUser(poolId: string, nodeId: string, body: BatchNodeUserCreateOptions, options?: CreateNodeUserOptions): Promise<void>;
-    createPool(body: BatchPoolCreateOptions, options?: CreatePoolOptions): Promise<void>;
-    createTask(jobId: string, body: BatchTaskCreateOptions, options?: CreateTaskOptions): Promise<void>;
-    createTaskCollection(jobId: string, collection: BatchTaskCollection, options?: CreateTaskCollectionOptions): Promise<TaskAddCollectionResult>;
+    createCertificate(certificate: BatchCertificate, options?: CreateCertificateOptions): Promise<void>;
+    createJob(job: BatchJobCreateContent, options?: CreateJobOptions): Promise<void>;
+    createJobSchedule(jobSchedule: BatchJobScheduleCreateContent, options?: CreateJobScheduleOptions): Promise<void>;
+    createNodeUser(poolId: string, nodeId: string, user: BatchNodeUserCreateContent, options?: CreateNodeUserOptions): Promise<void>;
+    createPool(pool: BatchPoolCreateContent, options?: CreatePoolOptions): Promise<void>;
+    createTask(jobId: string, task: BatchTaskCreateContent, options?: CreateTaskOptions): Promise<void>;
+    createTaskCollection(jobId: string, taskCollection: BatchTaskGroup, options?: CreateTaskCollectionOptions): Promise<BatchTaskAddCollectionResult>;
     deleteCertificate(thumbprintAlgorithm: string, thumbprint: string, options?: DeleteCertificateOptions): Promise<void>;
     deleteJob(jobId: string, options?: DeleteJobOptions): Promise<void>;
     deleteJobSchedule(jobScheduleId: string, options?: DeleteJobScheduleOptions): Promise<void>;
@@ -136,26 +171,26 @@ export class BatchClient {
     deletePool(poolId: string, options?: DeletePoolOptions): Promise<void>;
     deleteTask(jobId: string, taskId: string, options?: DeleteTaskOptions): Promise<void>;
     deleteTaskFile(jobId: string, taskId: string, filePath: string, options?: DeleteTaskFileOptions): Promise<void>;
-    disableJob(jobId: string, body: BatchJobDisableOptions, options?: DisableJobOptions): Promise<void>;
+    disableJob(jobId: string, content: BatchJobDisableContent, options?: DisableJobOptions): Promise<void>;
     disableJobSchedule(jobScheduleId: string, options?: DisableJobScheduleOptions): Promise<void>;
-    disableNodeScheduling(poolId: string, nodeId: string, body?: NodeDisableSchedulingOptions, options?: DisableNodeSchedulingOptions): Promise<void>;
+    disableNodeScheduling(poolId: string, nodeId: string, parameters?: BatchNodeDisableSchedulingContent, options?: DisableNodeSchedulingOptions): Promise<void>;
     disablePoolAutoScale(poolId: string, options?: DisablePoolAutoScaleOptions): Promise<void>;
     enableJob(jobId: string, options?: EnableJobOptions): Promise<void>;
     enableJobSchedule(jobScheduleId: string, options?: EnableJobScheduleOptions): Promise<void>;
     enableNodeScheduling(poolId: string, nodeId: string, options?: EnableNodeSchedulingOptions): Promise<void>;
-    enablePoolAutoScale(poolId: string, body: BatchPoolEnableAutoScaleOptions, options?: EnablePoolAutoScaleOptions): Promise<void>;
-    evaluatePoolAutoScale(poolId: string, body: BatchPoolEvaluateAutoScaleOptions, options?: EvaluatePoolAutoScaleOptions): Promise<AutoScaleRun>;
+    enablePoolAutoScale(poolId: string, content: BatchPoolEnableAutoScaleContent, options?: EnablePoolAutoScaleOptions): Promise<void>;
+    evaluatePoolAutoScale(poolId: string, content: BatchPoolEvaluateAutoScaleContent, options?: EvaluatePoolAutoScaleOptions): Promise<AutoScaleRun>;
     getApplication(applicationId: string, options?: GetApplicationOptions): Promise<BatchApplication>;
     getCertificate(thumbprintAlgorithm: string, thumbprint: string, options?: GetCertificateOptions): Promise<BatchCertificate>;
     getJob(jobId: string, options?: GetJobOptions): Promise<BatchJob>;
     getJobSchedule(jobScheduleId: string, options?: GetJobScheduleOptions): Promise<BatchJobSchedule>;
-    getJobTaskCounts(jobId: string, options?: GetJobTaskCountsOptions): Promise<TaskCountsResult>;
+    getJobTaskCounts(jobId: string, options?: GetJobTaskCountsOptions): Promise<BatchTaskCountsResult>;
     getNode(poolId: string, nodeId: string, options?: GetNodeOptions): Promise<BatchNode>;
-    getNodeExtension(poolId: string, nodeId: string, extensionName: string, options?: GetNodeExtensionOptions): Promise<NodeVMExtension>;
+    getNodeExtension(poolId: string, nodeId: string, extensionName: string, options?: GetNodeExtensionOptions): Promise<BatchNodeVMExtension>;
     getNodeFile(poolId: string, nodeId: string, filePath: string, options?: GetNodeFileOptions): Promise<Uint8Array>;
     getNodeFileProperties(poolId: string, nodeId: string, filePath: string, options?: GetNodeFilePropertiesOptions): Promise<void>;
     getNodeRemoteDesktopFile(poolId: string, nodeId: string, options?: GetNodeRemoteDesktopFileOptions): Promise<Uint8Array>;
-    getNodeRemoteLoginSettings(poolId: string, nodeId: string, options?: GetNodeRemoteLoginSettingsOptions): Promise<BatchNodeRemoteLoginSettingsResult>;
+    getNodeRemoteLoginSettings(poolId: string, nodeId: string, options?: GetNodeRemoteLoginSettingsOptions): Promise<BatchNodeRemoteLoginSettings>;
     getPool(poolId: string, options?: GetPoolOptions): Promise<BatchPool>;
     getTask(jobId: string, taskId: string, options?: GetTaskOptions): Promise<BatchTask>;
     getTaskFile(jobId: string, taskId: string, filePath: string, options?: GetTaskFileOptions): Promise<Uint8Array>;
@@ -163,40 +198,40 @@ export class BatchClient {
     jobScheduleExists(jobScheduleId: string, options?: JobScheduleExistsOptions): Promise<void>;
     listApplications(options?: ListApplicationsOptions): PagedAsyncIterableIterator<BatchApplication>;
     listCertificates(options?: ListCertificatesOptions): PagedAsyncIterableIterator<BatchCertificate>;
-    listJobPreparationAndReleaseTaskStatus(jobId: string, options?: ListJobPreparationAndReleaseTaskStatusOptions): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation>;
+    listJobPreparationAndReleaseTaskStatus(jobId: string, options?: ListJobPreparationAndReleaseTaskStatusOptions): PagedAsyncIterableIterator<BatchJobPreparationAndReleaseTaskStatus>;
     listJobs(options?: ListJobsOptions): PagedAsyncIterableIterator<BatchJob>;
     listJobSchedules(options?: ListJobSchedulesOptions): PagedAsyncIterableIterator<BatchJobSchedule>;
     listJobsFromSchedule(jobScheduleId: string, options?: ListJobsFromScheduleOptions): PagedAsyncIterableIterator<BatchJob>;
-    listNodeExtensions(poolId: string, nodeId: string, options?: ListNodeExtensionsOptions): PagedAsyncIterableIterator<NodeVMExtension>;
-    listNodeFiles(poolId: string, nodeId: string, options?: ListNodeFilesOptions): PagedAsyncIterableIterator<NodeFile>;
+    listNodeExtensions(poolId: string, nodeId: string, options?: ListNodeExtensionsOptions): PagedAsyncIterableIterator<BatchNodeVMExtension>;
+    listNodeFiles(poolId: string, nodeId: string, options?: ListNodeFilesOptions): PagedAsyncIterableIterator<BatchNodeFile>;
     listNodes(poolId: string, options?: ListNodesOptions): PagedAsyncIterableIterator<BatchNode>;
-    listPoolNodeCounts(options?: ListPoolNodeCountsOptions): PagedAsyncIterableIterator<PoolNodeCounts>;
+    listPoolNodeCounts(options?: ListPoolNodeCountsOptions): PagedAsyncIterableIterator<BatchPoolNodeCounts>;
     listPools(options?: ListPoolsOptions): PagedAsyncIterableIterator<BatchPool>;
-    listPoolUsageMetrics(options?: ListPoolUsageMetricsOptions): PagedAsyncIterableIterator<PoolUsageMetrics>;
-    listSubTasks(jobId: string, taskId: string, options?: ListSubTasksOptions): Promise<BatchTaskListSubtasksResult>;
-    listSupportedImages(options?: ListSupportedImagesOptions): PagedAsyncIterableIterator<ImageInformation>;
-    listTaskFiles(jobId: string, taskId: string, options?: ListTaskFilesOptions): PagedAsyncIterableIterator<NodeFile>;
+    listPoolUsageMetrics(options?: ListPoolUsageMetricsOptions): PagedAsyncIterableIterator<BatchPoolUsageMetrics>;
+    listSubTasks(jobId: string, taskId: string, options?: ListSubTasksOptions): PagedAsyncIterableIterator<BatchSubtask>;
+    listSupportedImages(options?: ListSupportedImagesOptions): PagedAsyncIterableIterator<ImageInfo>;
+    listTaskFiles(jobId: string, taskId: string, options?: ListTaskFilesOptions): PagedAsyncIterableIterator<BatchNodeFile>;
     listTasks(jobId: string, options?: ListTasksOptions): PagedAsyncIterableIterator<BatchTask>;
     readonly pipeline: Pipeline;
     poolExists(poolId: string, options?: PoolExistsOptions): Promise<void>;
     reactivateTask(jobId: string, taskId: string, options?: ReactivateTaskOptions): Promise<void>;
-    rebootNode(poolId: string, nodeId: string, body?: NodeRebootOptions, options?: RebootNodeOptions): Promise<void>;
-    reimageNode(poolId: string, nodeId: string, body?: NodeReimageOptions, options?: ReimageNodeOptions): Promise<void>;
-    removeNodes(poolId: string, body: NodeRemoveOptions, options?: RemoveNodesOptions): Promise<void>;
-    replaceJob(jobId: string, body: BatchJob, options?: ReplaceJobOptions): Promise<void>;
-    replaceJobSchedule(jobScheduleId: string, body: BatchJobSchedule, options?: ReplaceJobScheduleOptions): Promise<void>;
-    replaceNodeUser(poolId: string, nodeId: string, userName: string, body: BatchNodeUserUpdateOptions, options?: ReplaceNodeUserOptions): Promise<void>;
-    replacePoolProperties(poolId: string, body: BatchPoolReplaceOptions, options?: ReplacePoolPropertiesOptions): Promise<void>;
-    replaceTask(jobId: string, taskId: string, body: BatchTask, options?: ReplaceTaskOptions): Promise<void>;
-    resizePool(poolId: string, body: BatchPoolResizeOptions, options?: ResizePoolOptions): Promise<void>;
+    rebootNode(poolId: string, nodeId: string, parameters?: BatchNodeRebootContent, options?: RebootNodeOptions): Promise<void>;
+    reimageNode(poolId: string, nodeId: string, parameters?: BatchNodeReimageContent, options?: ReimageNodeOptions): Promise<void>;
+    removeNodes(poolId: string, content: BatchNodeRemoveContent, options?: RemoveNodesOptions): Promise<void>;
+    replaceJob(jobId: string, job: BatchJob, options?: ReplaceJobOptions): Promise<void>;
+    replaceJobSchedule(jobScheduleId: string, jobSchedule: BatchJobSchedule, options?: ReplaceJobScheduleOptions): Promise<void>;
+    replaceNodeUser(poolId: string, nodeId: string, userName: string, content: BatchNodeUserUpdateContent, options?: ReplaceNodeUserOptions): Promise<void>;
+    replacePoolProperties(poolId: string, pool: BatchPoolReplaceContent, options?: ReplacePoolPropertiesOptions): Promise<void>;
+    replaceTask(jobId: string, taskId: string, task: BatchTask, options?: ReplaceTaskOptions): Promise<void>;
+    resizePool(poolId: string, content: BatchPoolResizeContent, options?: ResizePoolOptions): Promise<void>;
     stopPoolResize(poolId: string, options?: StopPoolResizeOptions): Promise<void>;
-    terminateJob(jobId: string, body?: BatchJobTerminateOptions, options?: TerminateJobOptions): Promise<void>;
+    terminateJob(jobId: string, parameters?: BatchJobTerminateContent, options?: TerminateJobOptions): Promise<void>;
     terminateJobSchedule(jobScheduleId: string, options?: TerminateJobScheduleOptions): Promise<void>;
     terminateTask(jobId: string, taskId: string, options?: TerminateTaskOptions): Promise<void>;
-    updateJob(jobId: string, body: BatchJobUpdateOptions, options?: UpdateJobOptions): Promise<void>;
-    updateJobSchedule(jobScheduleId: string, body: BatchJobScheduleUpdateOptions, options?: UpdateJobScheduleOptions): Promise<void>;
-    updatePool(poolId: string, body: BatchPoolUpdateOptions, options?: UpdatePoolOptions): Promise<void>;
-    uploadNodeLogs(poolId: string, nodeId: string, body: UploadBatchServiceLogsOptions, options?: UploadNodeLogsOptions): Promise<UploadBatchServiceLogsResult>;
+    updateJob(jobId: string, job: BatchJobUpdateContent, options?: UpdateJobOptions): Promise<void>;
+    updateJobSchedule(jobScheduleId: string, jobSchedule: BatchJobScheduleUpdateContent, options?: UpdateJobScheduleOptions): Promise<void>;
+    updatePool(poolId: string, pool: BatchPoolUpdateContent, options?: UpdatePoolOptions): Promise<void>;
+    uploadNodeLogs(poolId: string, nodeId: string, content: UploadBatchServiceLogsContent, options?: UploadNodeLogsOptions): Promise<UploadBatchServiceLogsResult>;
 }
 
 // @public (undocumented)
@@ -206,7 +241,7 @@ export interface BatchClientOptions extends ClientOptions {
 // @public
 export interface BatchError {
     code: string;
-    message?: ErrorMessage;
+    message?: BatchErrorMessage;
     values?: BatchErrorDetail[];
 }
 
@@ -217,64 +252,82 @@ export interface BatchErrorDetail {
 }
 
 // @public
+export interface BatchErrorMessage {
+    lang?: string;
+    value?: string;
+}
+
+// @public
 export interface BatchJob {
     allowTaskPreemption?: boolean;
     readonly commonEnvironmentSettings?: EnvironmentSetting[];
-    constraints?: JobConstraints;
+    constraints?: BatchJobConstraints;
     readonly creationTime?: Date;
     readonly displayName?: string;
     readonly eTag?: string;
-    readonly executionInfo?: JobExecutionInformation;
+    readonly executionInfo?: BatchJobExecutionInfo;
     readonly id?: string;
-    readonly jobManagerTask?: JobManagerTask;
-    readonly jobPreparationTask?: JobPreparationTask;
-    readonly jobReleaseTask?: JobReleaseTask;
+    readonly jobManagerTask?: BatchJobManagerTask;
+    readonly jobPreparationTask?: BatchJobPreparationTask;
+    readonly jobReleaseTask?: BatchJobReleaseTask;
     readonly lastModified?: Date;
     maxParallelTasks?: number;
     metadata?: MetadataItem[];
-    readonly networkConfiguration?: JobNetworkConfiguration;
-    onAllTasksComplete?: OnAllTasksComplete;
-    readonly onTaskFailure?: OnTaskFailure;
-    poolInfo: PoolInformation;
-    readonly previousState?: JobState;
+    readonly networkConfiguration?: BatchJobNetworkConfiguration;
+    onAllTasksComplete?: OnAllBatchTasksComplete;
+    readonly onTaskFailure?: OnBatchTaskFailure;
+    poolInfo: BatchPoolInfo;
+    readonly previousState?: BatchJobState;
     readonly previousStateTransitionTime?: Date;
     priority?: number;
-    readonly state?: JobState;
+    readonly state?: BatchJobState;
     readonly stateTransitionTime?: Date;
-    readonly stats?: JobStatistics;
+    readonly stats?: BatchJobStatistics;
     readonly url?: string;
     readonly usesTaskDependencies?: boolean;
 }
 
 // @public
-export interface BatchJobCreateOptions {
+export type BatchJobAction = string;
+
+// @public
+export interface BatchJobConstraints {
+    maxTaskRetryCount?: number;
+    maxWallClockTime?: string;
+}
+
+// @public
+export interface BatchJobCreateContent {
     allowTaskPreemption?: boolean;
     commonEnvironmentSettings?: EnvironmentSetting[];
-    constraints?: JobConstraints;
+    constraints?: BatchJobConstraints;
     displayName?: string;
     id: string;
-    jobManagerTask?: JobManagerTask;
-    jobPreparationTask?: JobPreparationTask;
-    jobReleaseTask?: JobReleaseTask;
+    jobManagerTask?: BatchJobManagerTask;
+    jobPreparationTask?: BatchJobPreparationTask;
+    jobReleaseTask?: BatchJobReleaseTask;
     maxParallelTasks?: number;
     metadata?: MetadataItem[];
-    networkConfiguration?: JobNetworkConfiguration;
-    onAllTasksComplete?: OnAllTasksComplete;
-    onTaskFailure?: OnTaskFailure;
-    poolInfo: PoolInformation;
+    networkConfiguration?: BatchJobNetworkConfiguration;
+    onAllTasksComplete?: OnAllBatchTasksComplete;
+    onTaskFailure?: OnBatchTaskFailure;
+    poolInfo: BatchPoolInfo;
     priority?: number;
     usesTaskDependencies?: boolean;
 }
 
 // @public
-export interface BatchJobDisableOptions {
-    disableTasks: DisableJobOption;
+export interface BatchJobDisableContent {
+    disableTasks: DisableBatchJobOption;
 }
 
 // @public
-export interface BatchJobListPreparationAndReleaseTaskStatusResult {
-    "odata.nextLink"?: string;
-    value?: JobPreparationAndReleaseTaskExecutionInformation[];
+export interface BatchJobExecutionInfo {
+    endTime?: Date;
+    poolId?: string;
+    schedulingError?: BatchJobSchedulingError;
+    startTime: Date;
+    terminationReason?: string;
 }
 
 // @public
@@ -284,31 +337,144 @@ export interface BatchJobListResult {
 }
 
 // @public
+export interface BatchJobManagerTask {
+    allowLowPriorityNode?: boolean;
+    applicationPackageReferences?: BatchApplicationPackageReference[];
+    authenticationTokenSettings?: AuthenticationTokenSettings;
+    commandLine: string;
+    constraints?: BatchTaskConstraints;
+    containerSettings?: BatchTaskContainerSettings;
+    displayName?: string;
+    environmentSettings?: EnvironmentSetting[];
+    id: string;
+    killJobOnCompletion?: boolean;
+    outputFiles?: OutputFile[];
+    requiredSlots?: number;
+    resourceFiles?: ResourceFile[];
+    runExclusive?: boolean;
+    userIdentity?: UserIdentity;
+}
+
+// @public
+export interface BatchJobNetworkConfiguration {
+    subnetId: string;
+}
+
+// @public
+export interface BatchJobPreparationAndReleaseTaskStatus {
+    jobPreparationTaskExecutionInfo?: BatchJobPreparationTaskExecutionInfo;
+    jobReleaseTaskExecutionInfo?: BatchJobReleaseTaskExecutionInfo;
+    nodeId?: string;
+    nodeUrl?: string;
+    poolId?: string;
+}
+
+// @public
+export interface BatchJobPreparationAndReleaseTaskStatusListResult {
+    "odata.nextLink"?: string;
+    value?: BatchJobPreparationAndReleaseTaskStatus[];
+}
+
+// @public
+export interface BatchJobPreparationTask {
+    commandLine: string;
+    constraints?: BatchTaskConstraints;
+    containerSettings?: BatchTaskContainerSettings;
+    environmentSettings?: EnvironmentSetting[];
+    id?: string;
+    rerunOnNodeRebootAfterSuccess?: boolean;
+    resourceFiles?: ResourceFile[];
+    userIdentity?: UserIdentity;
+    waitForSuccess?: boolean;
+}
+
+// @public
+export interface BatchJobPreparationTaskExecutionInfo {
+    containerInfo?: BatchTaskContainerExecutionInfo;
+    endTime?: Date;
+    exitCode?: number;
+    failureInfo?: BatchTaskFailureInfo;
+    lastRetryTime?: Date;
+    result?: BatchTaskExecutionResult;
+    retryCount: number;
+    startTime: Date;
+    state: BatchJobPreparationTaskState;
+    taskRootDirectory?: string;
+    taskRootDirectoryUrl?: string;
+}
+
+// @public
+export type BatchJobPreparationTaskState = string;
+
+// @public
+export interface BatchJobReleaseTask {
+    commandLine: string;
+    containerSettings?: BatchTaskContainerSettings;
+    environmentSettings?: EnvironmentSetting[];
+    id?: string;
+    maxWallClockTime?: string;
+    resourceFiles?: ResourceFile[];
+    retentionTime?: string;
+    userIdentity?: UserIdentity;
+}
+
+// @public
+export interface BatchJobReleaseTaskExecutionInfo {
+    containerInfo?: BatchTaskContainerExecutionInfo;
+    endTime?: Date;
+    exitCode?: number;
+    failureInfo?: BatchTaskFailureInfo;
+    result?: BatchTaskExecutionResult;
+    startTime: Date;
+    state: BatchJobReleaseTaskState;
+    taskRootDirectory?: string;
+    taskRootDirectoryUrl?: string;
+}
+
+// @public
+export type BatchJobReleaseTaskState = string;
+
+// @public
 export interface BatchJobSchedule {
     readonly creationTime?: Date;
     readonly displayName?: string;
     readonly eTag?: string;
-    readonly executionInfo?: JobScheduleExecutionInformation;
+    readonly executionInfo?: BatchJobScheduleExecutionInfo;
     readonly id?: string;
-    jobSpecification: JobSpecification;
+    jobSpecification: BatchJobSpecification;
     readonly lastModified?: Date;
     metadata?: MetadataItem[];
-    readonly previousState?: JobScheduleState;
+    readonly previousState?: BatchJobScheduleState;
     readonly previousStateTransitionTime?: Date;
-    schedule: Schedule;
-    readonly state?: JobScheduleState;
+    schedule?: BatchJobScheduleConfiguration;
+    readonly state?: BatchJobScheduleState;
     readonly stateTransitionTime?: Date;
-    readonly stats?: JobScheduleStatistics;
+    readonly stats?: BatchJobScheduleStatistics;
     readonly url?: string;
 }
 
 // @public
-export interface BatchJobScheduleCreateOptions {
+export interface BatchJobScheduleConfiguration {
+    doNotRunAfter?: Date;
+    doNotRunUntil?: Date;
+    recurrenceInterval?: string;
+    startWindow?: string;
+}
+
+// @public
+export interface BatchJobScheduleCreateContent {
     displayName?: string;
     id: string;
-    jobSpecification: JobSpecification;
+    jobSpecification: BatchJobSpecification;
     metadata?: MetadataItem[];
-    schedule: Schedule;
+    schedule: BatchJobScheduleConfiguration;
+}
+
+// @public
+export interface BatchJobScheduleExecutionInfo {
+    endTime?: Date;
+    nextRunTime?: Date;
+    recentJob?: RecentBatchJob;
 }
 
 // @public
@@ -318,25 +484,94 @@ export interface BatchJobScheduleListResult {
 }
 
 // @public
-export interface BatchJobScheduleUpdateOptions {
-    jobSpecification?: JobSpecification;
+export type BatchJobScheduleState = string;
+
+// @public
+export interface BatchJobScheduleStatistics {
+    kernelCpuTime: string;
+    lastUpdateTime: Date;
+    numFailedTasks: number;
+    numSucceededTasks: number;
+    numTaskRetries: number;
+    readIOGiB: number;
+    readIOps: number;
+    startTime: Date;
+    url: string;
+    userCpuTime: string;
+    waitTime: string;
+    wallClockTime: string;
+    writeIOGiB: number;
+    writeIOps: number;
+}
+
+// @public
+export interface BatchJobScheduleUpdateContent {
+    jobSpecification?: BatchJobSpecification;
     metadata?: MetadataItem[];
-    schedule?: Schedule;
+    schedule?: BatchJobScheduleConfiguration;
 }
 
 // @public
-export interface BatchJobTerminateOptions {
-    terminateReason?: string;
+export interface BatchJobSchedulingError {
+    category: ErrorCategory;
+    code?: string;
+    details?: NameValuePair[];
+    message?: string;
 }
 
 // @public
-export interface BatchJobUpdateOptions {
+export interface BatchJobSpecification {
     allowTaskPreemption?: boolean;
-    constraints?: JobConstraints;
+    commonEnvironmentSettings?: EnvironmentSetting[];
+    constraints?: BatchJobConstraints;
+    displayName?: string;
+    jobManagerTask?: BatchJobManagerTask;
+    jobPreparationTask?: BatchJobPreparationTask;
+    jobReleaseTask?: BatchJobReleaseTask;
     maxParallelTasks?: number;
     metadata?: MetadataItem[];
-    onAllTasksComplete?: OnAllTasksComplete;
-    poolInfo?: PoolInformation;
+    networkConfiguration?: BatchJobNetworkConfiguration;
+    onAllTasksComplete?: OnAllBatchTasksComplete;
+    onTaskFailure?: OnBatchTaskFailure;
+    poolInfo: BatchPoolInfo;
+    priority?: number;
+    usesTaskDependencies?: boolean;
+}
+
+// @public
+export type BatchJobState = string;
+
+// @public
+export interface BatchJobStatistics {
+    kernelCpuTime: string;
+    lastUpdateTime: Date;
+    numFailedTasks: number;
+    numSucceededTasks: number;
+    numTaskRetries: number;
+    readIOGiB: number;
+    readIOps: number;
+    startTime: Date;
+    url: string;
+    userCpuTime: string;
+    waitTime: string;
+    wallClockTime: string;
+    writeIOGiB: number;
+    writeIOps: number;
+}
+
+// @public
+export interface BatchJobTerminateContent {
+    terminationReason?: string;
+}
+
+// @public
+export interface BatchJobUpdateContent {
+    allowTaskPreemption?: boolean;
+    constraints?: BatchJobConstraints;
+    maxParallelTasks?: number;
+    metadata?: MetadataItem[];
+    onAllTasksComplete?: OnAllBatchTasksComplete;
+    poolInfo?: BatchPoolInfo;
     priority?: number;
 }
 
@@ -344,20 +579,20 @@ export interface BatchJobUpdateOptions {
 export interface BatchNode {
     affinityId?: string;
     allocationTime?: Date;
-    certificateReferences?: CertificateReference[];
+    certificateReferences?: BatchCertificateReference[];
     endpointConfiguration?: BatchNodeEndpointConfiguration;
     errors?: BatchNodeError[];
     id?: string;
     ipAddress?: string;
     isDedicated?: boolean;
     lastBootTime?: Date;
-    nodeAgentInfo?: NodeAgentInformation;
-    recentTasks?: TaskInformation[];
+    nodeAgentInfo?: BatchNodeAgentInfo;
+    recentTasks?: BatchTaskInfo[];
     runningTasksCount?: number;
     runningTaskSlotsCount?: number;
     schedulingState?: SchedulingState;
-    startTask?: StartTask;
-    startTaskInfo?: StartTaskInformation;
+    startTask?: BatchStartTask;
+    startTaskInfo?: BatchStartTaskInfo;
     state?: BatchNodeState;
     stateTransitionTime?: Date;
     totalTasksRun?: number;
@@ -368,7 +603,43 @@ export interface BatchNode {
 }
 
 // @public
+export interface BatchNodeAgentInfo {
+    lastUpdateTime: Date;
+    version: string;
+}
+
+// @public
+export type BatchNodeCommunicationMode = string;
+
+// @public
+export interface BatchNodeCounts {
+    creating: number;
+    idle: number;
+    leavingPool: number;
+    offline: number;
+    preempted: number;
+    rebooting: number;
+    reimaging: number;
+    running: number;
+    starting: number;
+    startTaskFailed: number;
+    total: number;
+    unknown: number;
+    unusable: number;
+    upgradingOS: number;
+    waitingForStartTask: number;
+}
+
+// @public
 export type BatchNodeDeallocationOption = string;
+
+// @public
+export interface BatchNodeDisableSchedulingContent {
+    nodeDisableSchedulingOption?: BatchNodeDisableSchedulingOption;
+}
+
+// @public
+export type BatchNodeDisableSchedulingOption = string;
 
 // @public
 export interface BatchNodeEndpointConfiguration {
@@ -383,6 +654,20 @@ export interface BatchNodeError {
 }
 
 // @public
+export interface BatchNodeFile {
+    isDirectory?: boolean;
+    name?: string;
+    properties?: FileProperties;
+    url?: string;
+}
+
+// @public
+export interface BatchNodeFileListResult {
+    "odata.nextLink"?: string;
+    value?: BatchNodeFile[];
+}
+
+// @public
 export type BatchNodeFillType = string;
 
 // @public
@@ -391,7 +676,7 @@ export interface BatchNodeIdentityReference {
 }
 
 // @public
-export interface BatchNodeInformation {
+export interface BatchNodeInfo {
     affinityId?: string;
     nodeId?: string;
     nodeUrl?: string;
@@ -407,22 +692,47 @@ export interface BatchNodeListResult {
 }
 
 // @public
+export interface BatchNodePlacementConfiguration {
+    policy?: BatchNodePlacementPolicyType;
+}
+
+// @public
+export type BatchNodePlacementPolicyType = string;
+
+// @public
+export interface BatchNodeRebootContent {
+    nodeRebootOption?: BatchNodeRebootOption;
+}
+
+// @public
 export type BatchNodeRebootOption = string;
+
+// @public
+export interface BatchNodeReimageContent {
+    nodeReimageOption?: BatchNodeReimageOption;
+}
 
 // @public
 export type BatchNodeReimageOption = string;
 
 // @public
-export interface BatchNodeRemoteLoginSettingsResult {
+export interface BatchNodeRemoteLoginSettings {
     remoteLoginIpAddress: string;
     remoteLoginPort: number;
+}
+
+// @public
+export interface BatchNodeRemoveContent {
+    nodeDeallocationOption?: BatchNodeDeallocationOption;
+    nodeList: string[];
+    resizeTimeout?: string;
 }
 
 // @public
 export type BatchNodeState = string;
 
 // @public
-export interface BatchNodeUserCreateOptions {
+export interface BatchNodeUserCreateContent {
     expiryTime?: Date;
     isAdmin?: boolean;
     name: string;
@@ -431,10 +741,23 @@ export interface BatchNodeUserCreateOptions {
 }
 
 // @public
-export interface BatchNodeUserUpdateOptions {
+export interface BatchNodeUserUpdateContent {
     expiryTime?: Date;
     password?: string;
     sshPublicKey?: string;
+}
+
+// @public
+export interface BatchNodeVMExtension {
+    instanceView?: VMExtensionInstanceView;
+    provisioningState?: string;
+    vmExtension?: VMExtension;
+}
+
+// @public
+export interface BatchNodeVMExtensionListResult {
+    "odata.nextLink"?: string;
+    value?: BatchNodeVMExtension[];
 }
 
 // @public
@@ -442,16 +765,16 @@ export interface BatchPool {
     readonly allocationState?: AllocationState;
     readonly allocationStateTransitionTime?: Date;
     readonly applicationLicenses?: string[];
-    readonly applicationPackageReferences?: ApplicationPackageReference[];
+    readonly applicationPackageReferences?: BatchApplicationPackageReference[];
     readonly autoScaleEvaluationInterval?: string;
     readonly autoScaleFormula?: string;
     readonly autoScaleRun?: AutoScaleRun;
-    readonly certificateReferences?: CertificateReference[];
+    readonly certificateReferences?: BatchCertificateReference[];
     readonly cloudServiceConfiguration?: CloudServiceConfiguration;
     readonly creationTime?: Date;
     readonly currentDedicatedNodes?: number;
     readonly currentLowPriorityNodes?: number;
-    readonly currentNodeCommunicationMode?: NodeCommunicationMode;
+    readonly currentNodeCommunicationMode?: BatchNodeCommunicationMode;
     readonly displayName?: string;
     readonly enableAutoScale?: boolean;
     readonly enableInterNodeCommunication?: boolean;
@@ -464,15 +787,17 @@ export interface BatchPool {
     readonly networkConfiguration?: NetworkConfiguration;
     readonly resizeErrors?: ResizeError[];
     readonly resizeTimeout?: string;
-    startTask?: StartTask;
-    readonly state?: PoolState;
+    readonly resourceTags?: Record<string, string>;
+    startTask?: BatchStartTask;
+    readonly state?: BatchPoolState;
     readonly stateTransitionTime?: Date;
-    readonly stats?: PoolStatistics;
+    readonly stats?: BatchPoolStatistics;
     readonly targetDedicatedNodes?: number;
     readonly targetLowPriorityNodes?: number;
-    targetNodeCommunicationMode?: NodeCommunicationMode;
-    readonly taskSchedulingPolicy?: TaskSchedulingPolicy;
+    targetNodeCommunicationMode?: BatchNodeCommunicationMode;
+    readonly taskSchedulingPolicy?: BatchTaskSchedulingPolicy;
     readonly taskSlotsPerNode?: number;
+    upgradePolicy?: UpgradePolicy;
     readonly url?: string;
     readonly userAccounts?: UserAccount[];
     readonly virtualMachineConfiguration?: VirtualMachineConfiguration;
@@ -480,12 +805,12 @@ export interface BatchPool {
 }
 
 // @public
-export interface BatchPoolCreateOptions {
+export interface BatchPoolCreateContent {
     applicationLicenses?: string[];
-    applicationPackageReferences?: ApplicationPackageReference[];
+    applicationPackageReferences?: BatchApplicationPackageReference[];
     autoScaleEvaluationInterval?: string;
     autoScaleFormula?: string;
-    certificateReferences?: CertificateReference[];
+    certificateReferences?: BatchCertificateReference[];
     cloudServiceConfiguration?: CloudServiceConfiguration;
     displayName?: string;
     enableAutoScale?: boolean;
@@ -495,33 +820,52 @@ export interface BatchPoolCreateOptions {
     mountConfiguration?: MountConfiguration[];
     networkConfiguration?: NetworkConfiguration;
     resizeTimeout?: string;
-    startTask?: StartTask;
+    resourceTags?: Record<string, string>;
+    startTask?: BatchStartTask;
     targetDedicatedNodes?: number;
     targetLowPriorityNodes?: number;
-    targetNodeCommunicationMode?: NodeCommunicationMode;
-    taskSchedulingPolicy?: TaskSchedulingPolicy;
+    targetNodeCommunicationMode?: BatchNodeCommunicationMode;
+    taskSchedulingPolicy?: BatchTaskSchedulingPolicy;
     taskSlotsPerNode?: number;
+    upgradePolicy?: UpgradePolicy;
     userAccounts?: UserAccount[];
     virtualMachineConfiguration?: VirtualMachineConfiguration;
     vmSize: string;
 }
 
 // @public
-export interface BatchPoolEnableAutoScaleOptions {
+export interface BatchPoolEnableAutoScaleContent {
     autoScaleEvaluationInterval?: string;
     autoScaleFormula?: string;
 }
 
 // @public
-export interface BatchPoolEvaluateAutoScaleOptions {
+export interface BatchPoolEndpointConfiguration {
+    inboundNatPools: InboundNATPool[];
+}
+
+// @public
+export interface BatchPoolEvaluateAutoScaleContent {
     autoScaleFormula: string;
 }
 
 // @public
 export interface BatchPoolIdentity {
-    type: PoolIdentityType;
+    type: BatchPoolIdentityType;
     userAssignedIdentities?: UserAssignedIdentity[];
 }
+
+// @public
+export type BatchPoolIdentityType = string;
+
+// @public
+export interface BatchPoolInfo {
+    autoPoolSpecification?: BatchAutoPoolSpecification;
+    poolId?: string;
+}
+
+// @public
+export type BatchPoolLifetimeOption = string;
 
 // @public
 export interface BatchPoolListResult {
@@ -530,16 +874,35 @@ export interface BatchPoolListResult {
 }
 
 // @public
-export interface BatchPoolReplaceOptions {
-    applicationPackageReferences: ApplicationPackageReference[];
-    certificateReferences: CertificateReference[];
-    metadata: MetadataItem[];
-    startTask?: StartTask;
-    targetNodeCommunicationMode?: NodeCommunicationMode;
+export interface BatchPoolListUsageMetricsResult {
+    "odata.nextLink"?: string;
+    value?: BatchPoolUsageMetrics[];
 }
 
 // @public
-export interface BatchPoolResizeOptions {
+export interface BatchPoolNodeCounts {
+    dedicated?: BatchNodeCounts;
+    lowPriority?: BatchNodeCounts;
+    poolId: string;
+}
+
+// @public
+export interface BatchPoolNodeCountsListResult {
+    "odata.nextLink"?: string;
+    value?: BatchPoolNodeCounts[];
+}
+
+// @public
+export interface BatchPoolReplaceContent {
+    applicationPackageReferences: BatchApplicationPackageReference[];
+    certificateReferences: BatchCertificateReference[];
+    metadata: MetadataItem[];
+    startTask?: BatchStartTask;
+    targetNodeCommunicationMode?: BatchNodeCommunicationMode;
+}
+
+// @public
+export interface BatchPoolResizeContent {
     nodeDeallocationOption?: BatchNodeDeallocationOption;
     resizeTimeout?: string;
     targetDedicatedNodes?: number;
@@ -547,59 +910,228 @@ export interface BatchPoolResizeOptions {
 }
 
 // @public
-export interface BatchPoolUpdateOptions {
-    applicationPackageReferences?: ApplicationPackageReference[];
-    certificateReferences?: CertificateReference[];
-    metadata?: MetadataItem[];
-    startTask?: StartTask;
-    targetNodeCommunicationMode?: NodeCommunicationMode;
+export interface BatchPoolResourceStatistics {
+    avgCpuPercentage: number;
+    avgDiskGiB: number;
+    avgMemoryGiB: number;
+    diskReadGiB: number;
+    diskReadIOps: number;
+    diskWriteGiB: number;
+    diskWriteIOps: number;
+    lastUpdateTime: Date;
+    networkReadGiB: number;
+    networkWriteGiB: number;
+    peakDiskGiB: number;
+    peakMemoryGiB: number;
+    startTime: Date;
 }
 
 // @public
+export interface BatchPoolSpecification {
+    applicationLicenses?: string[];
+    applicationPackageReferences?: BatchApplicationPackageReference[];
+    autoScaleEvaluationInterval?: string;
+    autoScaleFormula?: string;
+    certificateReferences?: BatchCertificateReference[];
+    cloudServiceConfiguration?: CloudServiceConfiguration;
+    displayName?: string;
+    enableAutoScale?: boolean;
+    enableInterNodeCommunication?: boolean;
+    metadata?: MetadataItem[];
+    mountConfiguration?: MountConfiguration[];
+    networkConfiguration?: NetworkConfiguration;
+    resizeTimeout?: string;
+    resourceTags?: string;
+    startTask?: BatchStartTask;
+    targetDedicatedNodes?: number;
+    targetLowPriorityNodes?: number;
+    targetNodeCommunicationMode?: BatchNodeCommunicationMode;
+    taskSchedulingPolicy?: BatchTaskSchedulingPolicy;
+    taskSlotsPerNode?: number;
+    upgradePolicy?: UpgradePolicy;
+    userAccounts?: UserAccount[];
+    virtualMachineConfiguration?: VirtualMachineConfiguration;
+    vmSize: string;
+}
+
+// @public
+export type BatchPoolState = string;
+
+// @public
+export interface BatchPoolStatistics {
+    lastUpdateTime: Date;
+    resourceStats?: BatchPoolResourceStatistics;
+    startTime: Date;
+    url: string;
+    usageStats?: BatchPoolUsageStatistics;
+}
+
+// @public
+export interface BatchPoolUpdateContent {
+    applicationPackageReferences?: BatchApplicationPackageReference[];
+    certificateReferences?: BatchCertificateReference[];
+    metadata?: MetadataItem[];
+    startTask?: BatchStartTask;
+    targetNodeCommunicationMode?: BatchNodeCommunicationMode;
+}
+
+// @public
+export interface BatchPoolUsageMetrics {
+    endTime: Date;
+    poolId: string;
+    startTime: Date;
+    totalCoreHours: number;
+    vmSize: string;
+}
+
+// @public
+export interface BatchPoolUsageStatistics {
+    dedicatedCoreTime: string;
+    lastUpdateTime: Date;
+    startTime: Date;
+}
+
+// @public
+export interface BatchStartTask {
+    commandLine: string;
+    containerSettings?: BatchTaskContainerSettings;
+    environmentSettings?: EnvironmentSetting[];
+    maxTaskRetryCount?: number;
+    resourceFiles?: ResourceFile[];
+    userIdentity?: UserIdentity;
+    waitForSuccess?: boolean;
+}
+
+// @public
+export interface BatchStartTaskInfo {
+    containerInfo?: BatchTaskContainerExecutionInfo;
+    endTime?: Date;
+    exitCode?: number;
+    failureInfo?: BatchTaskFailureInfo;
+    lastRetryTime?: Date;
+    result?: BatchTaskExecutionResult;
+    retryCount: number;
+    startTime: Date;
+    state: BatchStartTaskState;
+}
+
+// @public
+export type BatchStartTaskState = string;
+
+// @public
+export interface BatchSubtask {
+    containerInfo?: BatchTaskContainerExecutionInfo;
+    endTime?: Date;
+    exitCode?: number;
+    failureInfo?: BatchTaskFailureInfo;
+    id?: number;
+    nodeInfo?: BatchNodeInfo;
+    previousState?: BatchSubtaskState;
+    previousStateTransitionTime?: Date;
+    result?: BatchTaskExecutionResult;
+    startTime?: Date;
+    state?: BatchSubtaskState;
+    stateTransitionTime?: Date;
+}
+
+// @public
+export type BatchSubtaskState = string;
+
+// @public
 export interface BatchTask {
-    readonly affinityInfo?: AffinityInformation;
-    readonly applicationPackageReferences?: ApplicationPackageReference[];
+    readonly affinityInfo?: AffinityInfo;
+    readonly applicationPackageReferences?: BatchApplicationPackageReference[];
     readonly authenticationTokenSettings?: AuthenticationTokenSettings;
     readonly commandLine?: string;
-    constraints?: TaskConstraints;
-    readonly containerSettings?: TaskContainerSettings;
+    constraints?: BatchTaskConstraints;
+    readonly containerSettings?: BatchTaskContainerSettings;
     readonly creationTime?: Date;
-    readonly dependsOn?: TaskDependencies;
+    readonly dependsOn?: BatchTaskDependencies;
     readonly displayName?: string;
     readonly environmentSettings?: EnvironmentSetting[];
     readonly eTag?: string;
-    readonly executionInfo?: TaskExecutionInformation;
+    readonly executionInfo?: BatchTaskExecutionInfo;
     readonly exitConditions?: ExitConditions;
     readonly id?: string;
     readonly lastModified?: Date;
     readonly multiInstanceSettings?: MultiInstanceSettings;
-    readonly nodeInfo?: BatchNodeInformation;
+    readonly nodeInfo?: BatchNodeInfo;
     readonly outputFiles?: OutputFile[];
-    readonly previousState?: TaskState;
+    readonly previousState?: BatchTaskState;
     readonly previousStateTransitionTime?: Date;
     readonly requiredSlots?: number;
     readonly resourceFiles?: ResourceFile[];
-    readonly state?: TaskState;
+    readonly state?: BatchTaskState;
     readonly stateTransitionTime?: Date;
-    readonly stats?: TaskStatistics;
+    readonly stats?: BatchTaskStatistics;
     readonly url?: string;
     readonly userIdentity?: UserIdentity;
 }
 
 // @public
-export interface BatchTaskCollection {
-    value: BatchTaskCreateOptions[];
+export interface BatchTaskAddCollectionResult {
+    value?: BatchTaskAddResult[];
 }
 
 // @public
-export interface BatchTaskCreateOptions {
-    affinityInfo?: AffinityInformation;
-    applicationPackageReferences?: ApplicationPackageReference[];
+export interface BatchTaskAddResult {
+    error?: BatchError;
+    eTag?: string;
+    lastModified?: Date;
+    location?: string;
+    status: BatchTaskAddStatus;
+    taskId: string;
+}
+
+// @public
+export type BatchTaskAddStatus = string;
+
+// @public
+export interface BatchTaskConstraints {
+    maxTaskRetryCount?: number;
+    maxWallClockTime?: string;
+    retentionTime?: string;
+}
+
+// @public
+export interface BatchTaskContainerExecutionInfo {
+    containerId?: string;
+    error?: string;
+    state?: string;
+}
+
+// @public
+export interface BatchTaskContainerSettings {
+    containerRunOptions?: string;
+    imageName: string;
+    registry?: ContainerRegistry;
+    workingDirectory?: ContainerWorkingDirectory;
+}
+
+// @public
+export interface BatchTaskCounts {
+    active: number;
+    completed: number;
+    failed: number;
+    running: number;
+    succeeded: number;
+}
+
+// @public
+export interface BatchTaskCountsResult {
+    taskCounts: BatchTaskCounts;
+    taskSlotCounts: BatchTaskSlotCounts;
+}
+
+// @public
+export interface BatchTaskCreateContent {
+    affinityInfo?: AffinityInfo;
+    applicationPackageReferences?: BatchApplicationPackageReference[];
     authenticationTokenSettings?: AuthenticationTokenSettings;
     commandLine: string;
-    constraints?: TaskConstraints;
-    containerSettings?: TaskContainerSettings;
-    dependsOn?: TaskDependencies;
+    constraints?: BatchTaskConstraints;
+    containerSettings?: BatchTaskContainerSettings;
+    dependsOn?: BatchTaskDependencies;
     displayName?: string;
     environmentSettings?: EnvironmentSetting[];
     exitConditions?: ExitConditions;
@@ -612,6 +1144,58 @@ export interface BatchTaskCreateOptions {
 }
 
 // @public
+export interface BatchTaskDependencies {
+    taskIdRanges?: BatchTaskIdRange[];
+    taskIds?: string[];
+}
+
+// @public
+export interface BatchTaskExecutionInfo {
+    containerInfo?: BatchTaskContainerExecutionInfo;
+    endTime?: Date;
+    exitCode?: number;
+    failureInfo?: BatchTaskFailureInfo;
+    lastRequeueTime?: Date;
+    lastRetryTime?: Date;
+    requeueCount: number;
+    result?: BatchTaskExecutionResult;
+    retryCount: number;
+    startTime?: Date;
+}
+
+// @public
+export type BatchTaskExecutionResult = string;
+
+// @public
+export interface BatchTaskFailureInfo {
+    category: ErrorCategory;
+    code?: string;
+    details?: NameValuePair[];
+    message?: string;
+}
+
+// @public
+export interface BatchTaskGroup {
+    value: BatchTaskCreateContent[];
+}
+
+// @public
+export interface BatchTaskIdRange {
+    end: number;
+    start: number;
+}
+
+// @public
+export interface BatchTaskInfo {
+    executionInfo?: BatchTaskExecutionInfo;
+    jobId?: string;
+    subtaskId?: number;
+    taskId?: string;
+    taskState: BatchTaskState;
+    taskUrl?: string;
+}
+
+// @public
 export interface BatchTaskListResult {
     "odata.nextLink"?: string;
     value?: BatchTask[];
@@ -619,7 +1203,40 @@ export interface BatchTaskListResult {
 
 // @public
 export interface BatchTaskListSubtasksResult {
-    value?: SubtaskInformation[];
+    "odata.nextLink"?: string;
+    value?: BatchSubtask[];
+}
+
+// @public
+export interface BatchTaskSchedulingPolicy {
+    nodeFillType: BatchNodeFillType;
+}
+
+// @public
+export interface BatchTaskSlotCounts {
+    active: number;
+    completed: number;
+    failed: number;
+    running: number;
+    succeeded: number;
+}
+
+// @public
+export type BatchTaskState = string;
+
+// @public
+export interface BatchTaskStatistics {
+    kernelCpuTime: string;
+    lastUpdateTime: Date;
+    readIOGiB: number;
+    readIOps: number;
+    startTime: Date;
+    url: string;
+    userCpuTime: string;
+    waitTime: string;
+    wallClockTime: string;
+    writeIOGiB: number;
+    writeIOps: number;
 }
 
 // @public
@@ -627,35 +1244,9 @@ export type CachingType = string;
 
 // @public (undocumented)
 export interface CancelCertificateDeletionOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     timeOutInSeconds?: number;
 }
-
-// @public
-export type CertificateFormat = string;
-
-// @public
-export interface CertificateListResult {
-    "odata.nextLink"?: string;
-    value?: BatchCertificate[];
-}
-
-// @public
-export interface CertificateReference {
-    storeLocation?: CertificateStoreLocation;
-    storeName?: string;
-    thumbprint: string;
-    thumbprintAlgorithm: string;
-    visibility?: CertificateVisibility[];
-}
-
-// @public
-export type CertificateState = string;
-
-// @public
-export type CertificateStoreLocation = string;
-
-// @public
-export type CertificateVisibility = string;
 
 // @public
 export interface CifsMountConfiguration {
@@ -700,42 +1291,49 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 
 // @public (undocumented)
 export interface CreateCertificateOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface CreateJobOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface CreateJobScheduleOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface CreateNodeUserOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface CreatePoolOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface CreateTaskCollectionOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface CreateTaskOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     timeOutInSeconds?: number;
 }
@@ -744,12 +1342,12 @@ export interface CreateTaskOptions extends OperationOptions {
 export interface DataDisk {
     caching?: CachingType;
     diskSizeGb: number;
-    lun: number;
+    logicalUnitNumber: number;
     storageAccountType?: StorageAccountType;
 }
 
 // @public
-export interface DeleteCertificateError {
+export interface DeleteBatchCertificateError {
     code?: string;
     message?: string;
     values?: NameValuePair[];
@@ -757,11 +1355,13 @@ export interface DeleteCertificateError {
 
 // @public (undocumented)
 export interface DeleteCertificateOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface DeleteJobOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -771,6 +1371,7 @@ export interface DeleteJobOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface DeleteJobScheduleOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -780,17 +1381,20 @@ export interface DeleteJobScheduleOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface DeleteNodeFileOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     recursive?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface DeleteNodeUserOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface DeletePoolOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -800,12 +1404,14 @@ export interface DeletePoolOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface DeleteTaskFileOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     recursive?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface DeleteTaskOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -825,13 +1431,11 @@ export interface DiffDiskSettings {
 }
 
 // @public
-export type DisableBatchNodeSchedulingOption = string;
-
-// @public
-export type DisableJobOption = string;
+export type DisableBatchJobOption = string;
 
 // @public (undocumented)
 export interface DisableJobOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -842,6 +1446,7 @@ export interface DisableJobOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface DisableJobScheduleOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -851,12 +1456,14 @@ export interface DisableJobScheduleOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface DisableNodeSchedulingOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface DisablePoolAutoScaleOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     timeOutInSeconds?: number;
 }
 
@@ -876,6 +1483,7 @@ export type ElevationLevel = string;
 
 // @public (undocumented)
 export interface EnableJobOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -885,6 +1493,7 @@ export interface EnableJobOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface EnableJobScheduleOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -894,11 +1503,13 @@ export interface EnableJobScheduleOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface EnableNodeSchedulingOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface EnablePoolAutoScaleOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -916,14 +1527,9 @@ export interface EnvironmentSetting {
 // @public
 export type ErrorCategory = string;
 
-// @public
-export interface ErrorMessage {
-    lang?: string;
-    value?: string;
-}
-
 // @public (undocumented)
 export interface EvaluatePoolAutoScaleOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     timeOutInSeconds?: number;
 }
@@ -953,7 +1559,7 @@ export interface ExitConditions {
 // @public
 export interface ExitOptions {
     dependencyAction?: DependencyAction;
-    jobAction?: JobAction;
+    jobAction?: BatchJobAction;
 }
 
 // @public
@@ -967,50 +1573,57 @@ export interface FileProperties {
 
 // @public (undocumented)
 export interface GetApplicationOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface GetCertificateOptions extends OperationOptions {
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface GetJobOptions extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface GetJobScheduleOptions extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface GetJobTaskCountsOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface GetNodeExtensionOptions extends OperationOptions {
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface GetNodeFileOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifModifiedSince?: Date;
     ifUnmodifiedSince?: Date;
     ocpRange?: string;
@@ -1019,6 +1632,7 @@ export interface GetNodeFileOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface GetNodeFilePropertiesOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifModifiedSince?: Date;
     ifUnmodifiedSince?: Date;
     timeOutInSeconds?: number;
@@ -1026,33 +1640,38 @@ export interface GetNodeFilePropertiesOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface GetNodeOptions extends OperationOptions {
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface GetNodeRemoteDesktopFileOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface GetNodeRemoteLoginSettingsOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface GetPoolOptions extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface GetTaskFileOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifModifiedSince?: Date;
     ifUnmodifiedSince?: Date;
     ocpRange?: string;
@@ -1061,6 +1680,7 @@ export interface GetTaskFileOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface GetTaskFilePropertiesOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifModifiedSince?: Date;
     ifUnmodifiedSince?: Date;
     timeOutInSeconds?: number;
@@ -1068,12 +1688,13 @@ export interface GetTaskFilePropertiesOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface GetTaskOptions extends OperationOptions {
-    $expand?: string[];
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
+    expand?: string[];
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
@@ -1084,13 +1705,13 @@ export interface HttpHeader {
 }
 
 // @public
-export interface ImageInformation {
+export interface ImageInfo {
     batchSupportEndOfLife?: Date;
     capabilities?: string[];
     imageReference: ImageReference;
     nodeAgentSkuId: string;
     osType: OSType;
-    verificationType: VerificationType;
+    verificationType: ImageVerificationType;
 }
 
 // @public
@@ -1104,13 +1725,16 @@ export interface ImageReference {
 }
 
 // @public
+export type ImageVerificationType = string;
+
+// @public
 export interface InboundEndpoint {
     backendPort: number;
     frontendPort: number;
     name: string;
     protocol: InboundEndpointProtocol;
-    publicFQDN?: string;
-    publicIpAddress?: string;
+    publicFQDN: string;
+    publicIpAddress: string;
 }
 
 // @public
@@ -1132,205 +1756,20 @@ export interface InstanceViewStatus {
     displayStatus?: string;
     level?: StatusLevelTypes;
     message?: string;
-    time?: string;
+    time?: Date;
 }
 
 // @public
 export type IpAddressProvisioningType = string;
 
-// @public
-export type JobAction = string;
-
-// @public
-export interface JobConstraints {
-    maxTaskRetryCount?: number;
-    maxWallClockTime?: string;
-}
-
-// @public
-export interface JobExecutionInformation {
-    endTime?: Date;
-    poolId?: string;
-    schedulingError?: JobSchedulingError;
-    startTime: Date;
-    terminateReason?: string;
-}
-
-// @public
-export interface JobManagerTask {
-    allowLowPriorityNode?: boolean;
-    applicationPackageReferences?: ApplicationPackageReference[];
-    authenticationTokenSettings?: AuthenticationTokenSettings;
-    commandLine: string;
-    constraints?: TaskConstraints;
-    containerSettings?: TaskContainerSettings;
-    displayName?: string;
-    environmentSettings?: EnvironmentSetting[];
-    id: string;
-    killJobOnCompletion?: boolean;
-    outputFiles?: OutputFile[];
-    requiredSlots?: number;
-    resourceFiles?: ResourceFile[];
-    runExclusive?: boolean;
-    userIdentity?: UserIdentity;
-}
-
-// @public
-export interface JobNetworkConfiguration {
-    subnetId: string;
-}
-
-// @public
-export interface JobPreparationAndReleaseTaskExecutionInformation {
-    jobPreparationTaskExecutionInfo?: JobPreparationTaskExecutionInformation;
-    jobReleaseTaskExecutionInfo?: JobReleaseTaskExecutionInformation;
-    nodeId?: string;
-    nodeUrl?: string;
-    poolId?: string;
-}
-
-// @public
-export interface JobPreparationTask {
-    commandLine: string;
-    constraints?: TaskConstraints;
-    containerSettings?: TaskContainerSettings;
-    environmentSettings?: EnvironmentSetting[];
-    id?: string;
-    rerunOnNodeRebootAfterSuccess?: boolean;
-    resourceFiles?: ResourceFile[];
-    userIdentity?: UserIdentity;
-    waitForSuccess?: boolean;
-}
-
-// @public
-export interface JobPreparationTaskExecutionInformation {
-    containerInfo?: TaskContainerExecutionInformation;
-    endTime?: Date;
-    exitCode?: number;
-    failureInfo?: TaskFailureInformation;
-    lastRetryTime?: Date;
-    result?: TaskExecutionResult;
-    retryCount: number;
-    startTime: Date;
-    state: JobPreparationTaskState;
-    taskRootDirectory?: string;
-    taskRootDirectoryUrl?: string;
-}
-
-// @public
-export type JobPreparationTaskState = string;
-
-// @public
-export interface JobReleaseTask {
-    commandLine: string;
-    containerSettings?: TaskContainerSettings;
-    environmentSettings?: EnvironmentSetting[];
-    id?: string;
-    maxWallClockTime?: string;
-    resourceFiles?: ResourceFile[];
-    retentionTime?: string;
-    userIdentity?: UserIdentity;
-}
-
-// @public
-export interface JobReleaseTaskExecutionInformation {
-    containerInfo?: TaskContainerExecutionInformation;
-    endTime?: Date;
-    exitCode?: number;
-    failureInfo?: TaskFailureInformation;
-    result?: TaskExecutionResult;
-    startTime: Date;
-    state: JobReleaseTaskState;
-    taskRootDirectory?: string;
-    taskRootDirectoryUrl?: string;
-}
-
-// @public
-export type JobReleaseTaskState = string;
-
-// @public
-export interface JobScheduleExecutionInformation {
-    endTime?: Date;
-    nextRunTime?: Date;
-    recentJob?: RecentJob;
-}
-
 // @public (undocumented)
 export interface JobScheduleExistsOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
     timeOutInSeconds?: number;
-}
-
-// @public
-export type JobScheduleState = string;
-
-// @public
-export interface JobScheduleStatistics {
-    kernelCPUTime: string;
-    lastUpdateTime: Date;
-    numFailedTasks: number;
-    numSucceededTasks: number;
-    numTaskRetries: number;
-    readIOGiB: number;
-    readIOps: number;
-    startTime: Date;
-    url: string;
-    userCPUTime: string;
-    waitTime: string;
-    wallClockTime: string;
-    writeIOGiB: number;
-    writeIOps: number;
-}
-
-// @public
-export interface JobSchedulingError {
-    category: ErrorCategory;
-    code?: string;
-    details?: NameValuePair[];
-    message?: string;
-}
-
-// @public
-export interface JobSpecification {
-    allowTaskPreemption?: boolean;
-    commonEnvironmentSettings?: EnvironmentSetting[];
-    constraints?: JobConstraints;
-    displayName?: string;
-    jobManagerTask?: JobManagerTask;
-    jobPreparationTask?: JobPreparationTask;
-    jobReleaseTask?: JobReleaseTask;
-    maxParallelTasks?: number;
-    metadata?: MetadataItem[];
-    networkConfiguration?: JobNetworkConfiguration;
-    onAllTasksComplete?: OnAllTasksComplete;
-    onTaskFailure?: OnTaskFailure;
-    poolInfo: PoolInformation;
-    priority?: number;
-    usesTaskDependencies?: boolean;
-}
-
-// @public
-export type JobState = string;
-
-// @public
-export interface JobStatistics {
-    kernelCPUTime: string;
-    lastUpdateTime: Date;
-    numFailedTasks: number;
-    numSucceededTasks: number;
-    numTaskRetries: number;
-    readIOGiB: number;
-    readIOps: number;
-    startTime: Date;
-    url: string;
-    userCPUTime: string;
-    waitTime: string;
-    wallClockTime: string;
-    writeIOGiB: number;
-    writeIOps: number;
 }
 
 // @public
@@ -1342,63 +1781,71 @@ export interface LinuxUserConfiguration {
 
 // @public (undocumented)
 export interface ListApplicationsOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     maxresults?: number;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface ListCertificatesOptions extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface ListJobPreparationAndReleaseTaskStatusOptions extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface ListJobSchedulesOptions extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface ListJobsFromScheduleOptions extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface ListJobsOptions extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface ListNodeExtensionsOptions extends OperationOptions {
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface ListNodeFilesOptions extends OperationOptions {
-    $filter?: string;
+    apiVersion?: "2024-02-01.19.0";
+    filter?: string;
     maxresults?: number;
     recursive?: boolean;
     timeOutInSeconds?: number;
@@ -1406,32 +1853,36 @@ export interface ListNodeFilesOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ListNodesOptions extends OperationOptions {
-    $filter?: string;
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface ListPoolNodeCountsOptions extends OperationOptions {
-    $filter?: string;
+    apiVersion?: "2024-02-01.19.0";
+    filter?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface ListPoolsOptions extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface ListPoolUsageMetricsOptions extends OperationOptions {
-    $filter?: string;
+    apiVersion?: "2024-02-01.19.0";
     endtime?: Date;
+    filter?: string;
     maxresults?: number;
     starttime?: Date;
     timeOutInSeconds?: number;
@@ -1439,20 +1890,23 @@ export interface ListPoolUsageMetricsOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ListSubTasksOptions extends OperationOptions {
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface ListSupportedImagesOptions extends OperationOptions {
-    $filter?: string;
+    apiVersion?: "2024-02-01.19.0";
+    filter?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface ListTaskFilesOptions extends OperationOptions {
-    $filter?: string;
+    apiVersion?: "2024-02-01.19.0";
+    filter?: string;
     maxresults?: number;
     recursive?: boolean;
     timeOutInSeconds?: number;
@@ -1460,15 +1914,21 @@ export interface ListTaskFilesOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ListTasksOptions extends OperationOptions {
-    $expand?: string[];
-    $filter?: string;
-    $select?: string[];
+    apiVersion?: "2024-02-01.19.0";
+    expand?: string[];
+    filter?: string;
     maxresults?: number;
+    select?: string[];
     timeOutInSeconds?: number;
 }
 
 // @public
 export type LoginMode = string;
+
+// @public
+export interface ManagedDisk {
+    storageAccountType: StorageAccountType;
+}
 
 // @public
 export interface MetadataItem {
@@ -1501,7 +1961,7 @@ export interface NameValuePair {
 export interface NetworkConfiguration {
     dynamicVNetAssignmentScope?: DynamicVNetAssignmentScope;
     enableAcceleratedNetworking?: boolean;
-    endpointConfiguration?: PoolEndpointConfiguration;
+    endpointConfiguration?: BatchPoolEndpointConfiguration;
     publicIpAddressConfiguration?: PublicIpAddressConfiguration;
     subnetId?: string;
 }
@@ -1525,98 +1985,18 @@ export interface NfsMountConfiguration {
 }
 
 // @public
-export interface NodeAgentInformation {
-    lastUpdateTime: Date;
-    version: string;
-}
+export type OnAllBatchTasksComplete = string;
 
 // @public
-export type NodeCommunicationMode = string;
-
-// @public
-export interface NodeCounts {
-    creating: number;
-    idle: number;
-    leavingPool: number;
-    offline: number;
-    preempted: number;
-    rebooting: number;
-    reimaging: number;
-    running: number;
-    starting: number;
-    startTaskFailed: number;
-    total: number;
-    unknown: number;
-    unusable: number;
-    waitingForStartTask: number;
-}
-
-// @public
-export interface NodeDisableSchedulingOptions {
-    nodeDisableSchedulingOption?: DisableBatchNodeSchedulingOption;
-}
-
-// @public
-export interface NodeFile {
-    isDirectory?: boolean;
-    name?: string;
-    properties?: FileProperties;
-    url?: string;
-}
-
-// @public
-export interface NodeFileListResult {
-    "odata.nextLink"?: string;
-    value?: NodeFile[];
-}
-
-// @public
-export interface NodePlacementConfiguration {
-    policy?: NodePlacementPolicyType;
-}
-
-// @public
-export type NodePlacementPolicyType = string;
-
-// @public
-export interface NodeRebootOptions {
-    nodeRebootOption?: BatchNodeRebootOption;
-}
-
-// @public
-export interface NodeReimageOptions {
-    nodeReimageOption?: BatchNodeReimageOption;
-}
-
-// @public
-export interface NodeRemoveOptions {
-    nodeDeallocationOption?: BatchNodeDeallocationOption;
-    nodeList: string[];
-    resizeTimeout?: string;
-}
-
-// @public
-export interface NodeVMExtension {
-    instanceView?: VMExtensionInstanceView;
-    provisioningState?: string;
-    vmExtension?: VMExtension;
-}
-
-// @public
-export interface NodeVMExtensionList {
-    "odata.nextLink"?: string;
-    value?: NodeVMExtension[];
-}
-
-// @public
-export type OnAllTasksComplete = string;
-
-// @public
-export type OnTaskFailure = string;
+export type OnBatchTaskFailure = string;
 
 // @public
 export interface OSDisk {
+    caching?: CachingType;
+    diskSizeGB?: number;
     ephemeralOSDiskSettings?: DiffDiskSettings;
+    managedDisk?: ManagedDisk;
+    writeAcceleratorEnabled?: boolean;
 }
 
 // @public
@@ -1626,7 +2006,7 @@ export type OSType = string;
 export interface OutputFile {
     destination: OutputFileDestination;
     filePattern: string;
-    uploadOptions: OutputFileUploadOptions;
+    uploadOptions: OutputFileUploadConfig;
 }
 
 // @public
@@ -1646,7 +2026,7 @@ export interface OutputFileDestination {
 export type OutputFileUploadCondition = string;
 
 // @public
-export interface OutputFileUploadOptions {
+export interface OutputFileUploadConfig {
     uploadCondition: OutputFileUploadCondition;
 }
 
@@ -1662,96 +2042,14 @@ export interface PageSettings {
     continuationToken?: string;
 }
 
-// @public
-export interface PoolEndpointConfiguration {
-    inboundNatPools: InboundNATPool[];
-}
-
 // @public (undocumented)
 export interface PoolExistsOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
     ifUnmodifiedSince?: Date;
     timeOutInSeconds?: number;
-}
-
-// @public
-export type PoolIdentityType = string;
-
-// @public
-export interface PoolInformation {
-    autoPoolSpecification?: AutoPoolSpecification;
-    poolId?: string;
-}
-
-// @public
-export type PoolLifetimeOption = string;
-
-// @public
-export interface PoolListUsageMetricsResult {
-    "odata.nextLink"?: string;
-    value?: PoolUsageMetrics[];
-}
-
-// @public
-export interface PoolNodeCounts {
-    dedicated?: NodeCounts;
-    lowPriority?: NodeCounts;
-    poolId: string;
-}
-
-// @public
-export interface PoolNodeCountsListResult {
-    "odata.nextLink"?: string;
-    value?: PoolNodeCounts[];
-}
-
-// @public
-export interface PoolSpecification {
-    applicationLicenses?: string[];
-    applicationPackageReferences?: ApplicationPackageReference[];
-    autoScaleEvaluationInterval?: string;
-    autoScaleFormula?: string;
-    certificateReferences?: CertificateReference[];
-    cloudServiceConfiguration?: CloudServiceConfiguration;
-    displayName?: string;
-    enableAutoScale?: boolean;
-    enableInterNodeCommunication?: boolean;
-    metadata?: MetadataItem[];
-    mountConfiguration?: MountConfiguration[];
-    networkConfiguration?: NetworkConfiguration;
-    resizeTimeout?: string;
-    startTask?: StartTask;
-    targetDedicatedNodes?: number;
-    targetLowPriorityNodes?: number;
-    targetNodeCommunicationMode?: NodeCommunicationMode;
-    taskSchedulingPolicy?: TaskSchedulingPolicy;
-    taskSlotsPerNode?: number;
-    userAccounts?: UserAccount[];
-    virtualMachineConfiguration?: VirtualMachineConfiguration;
-    vmSize: string;
-}
-
-// @public
-export type PoolState = string;
-
-// @public
-export interface PoolStatistics {
-    lastUpdateTime: Date;
-    resourceStats?: ResourceStatistics;
-    startTime: Date;
-    url: string;
-    usageStats?: UsageStatistics;
-}
-
-// @public
-export interface PoolUsageMetrics {
-    endTime: Date;
-    poolId: string;
-    startTime: Date;
-    totalCoreHours: number;
-    vmSize: string;
 }
 
 // @public
@@ -1762,6 +2060,7 @@ export interface PublicIpAddressConfiguration {
 
 // @public (undocumented)
 export interface ReactivateTaskOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -1771,24 +2070,27 @@ export interface ReactivateTaskOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface RebootNodeOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public
-export interface RecentJob {
+export interface RecentBatchJob {
     id?: string;
     url?: string;
 }
 
 // @public (undocumented)
 export interface ReimageNodeOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface RemoveNodesOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -1799,6 +2101,7 @@ export interface RemoveNodesOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ReplaceJobOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -1809,6 +2112,7 @@ export interface ReplaceJobOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ReplaceJobScheduleOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -1819,18 +2123,21 @@ export interface ReplaceJobScheduleOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ReplaceNodeUserOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface ReplacePoolPropertiesOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface ReplaceTaskOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -1848,6 +2155,7 @@ export interface ResizeError {
 
 // @public (undocumented)
 export interface ResizePoolOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -1868,65 +2176,40 @@ export interface ResourceFile {
 }
 
 // @public
-export interface ResourceStatistics {
-    avgCpuPercentage: number;
-    avgDiskGiB: number;
-    avgMemoryGiB: number;
-    diskReadGiB: number;
-    diskReadIOps: number;
-    diskWriteGiB: number;
-    diskWriteIOps: number;
-    lastUpdateTime: Date;
-    networkReadGiB: number;
-    networkWriteGiB: number;
-    peakDiskGiB: number;
-    peakMemoryGiB: number;
-    startTime: Date;
-}
-
-// @public
-export interface Schedule {
-    doNotRunAfter?: Date;
-    doNotRunUntil?: Date;
-    recurrenceInterval?: string;
-    startWindow?: string;
+export interface RollingUpgradePolicy {
+    enableCrossZoneUpgrade?: boolean;
+    maxBatchInstancePercent?: number;
+    maxUnhealthyInstancePercent?: number;
+    maxUnhealthyUpgradedInstancePercent?: number;
+    pauseTimeBetweenBatches?: string;
+    prioritizeUnhealthyInstances?: boolean;
+    rollbackFailedInstancesOnPolicyBreach?: boolean;
 }
 
 // @public
 export type SchedulingState = string;
 
 // @public
-export interface StartTask {
-    commandLine: string;
-    containerSettings?: TaskContainerSettings;
-    environmentSettings?: EnvironmentSetting[];
-    maxTaskRetryCount?: number;
-    resourceFiles?: ResourceFile[];
-    userIdentity?: UserIdentity;
-    waitForSuccess?: boolean;
+export interface SecurityProfile {
+    encryptionAtHost: boolean;
+    securityType: SecurityTypes;
+    uefiSettings: UefiSettings;
 }
 
 // @public
-export interface StartTaskInformation {
-    containerInfo?: TaskContainerExecutionInformation;
-    endTime?: Date;
-    exitCode?: number;
-    failureInfo?: TaskFailureInformation;
-    lastRetryTime?: Date;
-    result?: TaskExecutionResult;
-    retryCount: number;
-    startTime: Date;
-    state: StartTaskState;
-}
+export type SecurityTypes = string;
 
 // @public
-export type StartTaskState = string;
+export interface ServiceArtifactReference {
+    id: string;
+}
 
 // @public
 export type StatusLevelTypes = string;
 
 // @public (undocumented)
 export interface StopPoolResizeOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -1937,161 +2220,9 @@ export interface StopPoolResizeOptions extends OperationOptions {
 // @public
 export type StorageAccountType = string;
 
-// @public
-export interface SubtaskInformation {
-    containerInfo?: TaskContainerExecutionInformation;
-    endTime?: Date;
-    exitCode?: number;
-    failureInfo?: TaskFailureInformation;
-    id?: number;
-    nodeInfo?: BatchNodeInformation;
-    previousState?: SubtaskState;
-    previousStateTransitionTime?: Date;
-    result?: TaskExecutionResult;
-    startTime?: Date;
-    state?: SubtaskState;
-    stateTransitionTime?: Date;
-}
-
-// @public
-export type SubtaskState = string;
-
-// @public
-export interface TaskAddCollectionResult {
-    value?: TaskAddResult[];
-}
-
-// @public
-export interface TaskAddResult {
-    error?: BatchError;
-    eTag?: string;
-    lastModified?: Date;
-    location?: string;
-    status: TaskAddStatus;
-    taskId: string;
-}
-
-// @public
-export type TaskAddStatus = string;
-
-// @public
-export interface TaskConstraints {
-    maxTaskRetryCount?: number;
-    maxWallClockTime?: string;
-    retentionTime?: string;
-}
-
-// @public
-export interface TaskContainerExecutionInformation {
-    containerId?: string;
-    error?: string;
-    state?: string;
-}
-
-// @public
-export interface TaskContainerSettings {
-    containerRunOptions?: string;
-    imageName: string;
-    registry?: ContainerRegistry;
-    workingDirectory?: ContainerWorkingDirectory;
-}
-
-// @public
-export interface TaskCounts {
-    active: number;
-    completed: number;
-    failed: number;
-    running: number;
-    succeeded: number;
-}
-
-// @public
-export interface TaskCountsResult {
-    taskCounts: TaskCounts;
-    taskSlotCounts: TaskSlotCounts;
-}
-
-// @public
-export interface TaskDependencies {
-    taskIdRanges?: TaskIdRange[];
-    taskIds?: string[];
-}
-
-// @public
-export interface TaskExecutionInformation {
-    containerInfo?: TaskContainerExecutionInformation;
-    endTime?: Date;
-    exitCode?: number;
-    failureInfo?: TaskFailureInformation;
-    lastRequeueTime?: Date;
-    lastRetryTime?: Date;
-    requeueCount: number;
-    result?: TaskExecutionResult;
-    retryCount: number;
-    startTime?: Date;
-}
-
-// @public
-export type TaskExecutionResult = string;
-
-// @public
-export interface TaskFailureInformation {
-    category: ErrorCategory;
-    code?: string;
-    details?: NameValuePair[];
-    message?: string;
-}
-
-// @public
-export interface TaskIdRange {
-    end: number;
-    start: number;
-}
-
-// @public
-export interface TaskInformation {
-    executionInfo?: TaskExecutionInformation;
-    jobId?: string;
-    subtaskId?: number;
-    taskId?: string;
-    taskState: TaskState;
-    taskUrl?: string;
-}
-
-// @public
-export interface TaskSchedulingPolicy {
-    nodeFillType: BatchNodeFillType;
-}
-
-// @public
-export interface TaskSlotCounts {
-    active: number;
-    completed: number;
-    failed: number;
-    running: number;
-    succeeded: number;
-}
-
-// @public
-export type TaskState = string;
-
-// @public
-export interface TaskStatistics {
-    kernelCPUTime: string;
-    lastUpdateTime: Date;
-    readIOGiB: number;
-    readIOps: number;
-    startTime: Date;
-    url: string;
-    userCPUTime: string;
-    waitTime: string;
-    wallClockTime: string;
-    writeIOGiB: number;
-    writeIOps: number;
-}
-
 // @public (undocumented)
 export interface TerminateJobOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -2102,6 +2233,7 @@ export interface TerminateJobOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface TerminateJobScheduleOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -2111,6 +2243,7 @@ export interface TerminateJobScheduleOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface TerminateTaskOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -2118,8 +2251,15 @@ export interface TerminateTaskOptions extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
+// @public
+export interface UefiSettings {
+    secureBootEnabled?: boolean;
+    vTpmEnabled?: boolean;
+}
+
 // @public (undocumented)
 export interface UpdateJobOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -2130,6 +2270,7 @@ export interface UpdateJobOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface UpdateJobScheduleOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -2140,6 +2281,7 @@ export interface UpdateJobScheduleOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface UpdatePoolOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -2149,7 +2291,17 @@ export interface UpdatePoolOptions extends OperationOptions {
 }
 
 // @public
-export interface UploadBatchServiceLogsOptions {
+export type UpgradeMode = string;
+
+// @public
+export interface UpgradePolicy {
+    automaticOSUpgradePolicy?: AutomaticOsUpgradePolicy;
+    mode: UpgradeMode;
+    rollingUpgradePolicy?: RollingUpgradePolicy;
+}
+
+// @public
+export interface UploadBatchServiceLogsContent {
     containerUrl: string;
     endTime?: Date;
     identityReference?: BatchNodeIdentityReference;
@@ -2164,15 +2316,9 @@ export interface UploadBatchServiceLogsResult {
 
 // @public (undocumented)
 export interface UploadNodeLogsOptions extends OperationOptions {
+    apiVersion?: "2024-02-01.19.0";
     contentType?: string;
     timeOutInSeconds?: number;
-}
-
-// @public
-export interface UsageStatistics {
-    dedicatedCoreTime: string;
-    lastUpdateTime: Date;
-    startTime: Date;
 }
 
 // @public
@@ -2198,9 +2344,6 @@ export interface UserIdentity {
 }
 
 // @public
-export type VerificationType = string;
-
-// @public
 export interface VirtualMachineConfiguration {
     containerConfiguration?: ContainerConfiguration;
     dataDisks?: DataDisk[];
@@ -2209,14 +2352,17 @@ export interface VirtualMachineConfiguration {
     imageReference: ImageReference;
     licenseType?: string;
     nodeAgentSkuId: string;
-    nodePlacementConfiguration?: NodePlacementConfiguration;
+    nodePlacementConfiguration?: BatchNodePlacementConfiguration;
     osDisk?: OSDisk;
+    securityProfile?: SecurityProfile;
+    serviceArtifactReference?: ServiceArtifactReference;
     windowsConfiguration?: WindowsConfiguration;
 }
 
 // @public
 export interface VirtualMachineInfo {
     imageReference?: ImageReference;
+    scaleSetVmResourceId?: string;
 }
 
 // @public
