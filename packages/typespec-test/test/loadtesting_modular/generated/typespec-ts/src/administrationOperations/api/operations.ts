@@ -78,6 +78,7 @@ export function _createOrUpdateTestSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
+      queryParameters: { "api-version": "2022-11-01" },
       body: {
         passFailCriteria: !body.passFailCriteria
           ? undefined
@@ -326,6 +327,7 @@ export function _createOrUpdateAppComponentsSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
+      queryParameters: { "api-version": "2022-11-01" },
       body: { components: body["components"] },
     });
 }
@@ -382,6 +384,7 @@ export function _createOrUpdateServerMetricsConfigSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
+      queryParameters: { "api-version": "2022-11-01" },
       body: { metrics: body["metrics"] },
     });
 }
@@ -432,7 +435,10 @@ export function _getAppComponentsSend(
 > {
   return context
     .path("/tests/{testId}/app-components", testId)
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2022-11-01" },
+    });
 }
 
 export async function _getAppComponentsDeserialize(
@@ -474,7 +480,10 @@ export function _getServerMetricsConfigSend(
 > {
   return context
     .path("/tests/{testId}/server-metrics-config", testId)
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2022-11-01" },
+    });
 }
 
 export async function _getServerMetricsConfigDeserialize(
@@ -516,7 +525,10 @@ export function _getTestSend(
 > {
   return context
     .path("/tests/{testId}", testId)
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2022-11-01" },
+    });
 }
 
 export async function _getTestDeserialize(
@@ -710,7 +722,10 @@ export function _getTestFileSend(
 > {
   return context
     .path("/tests/{testId}/files/{fileName}", testId, fileName)
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2022-11-01" },
+    });
 }
 
 export async function _getTestFileDeserialize(
@@ -753,7 +768,10 @@ export function _listTestFilesSend(
 > {
   return context
     .path("/tests/{testId}/files", testId)
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2022-11-01" },
+    });
 }
 
 export async function _listTestFilesDeserialize(
@@ -804,6 +822,7 @@ export function _listTestsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": "2022-11-01",
         orderby: options?.orderby,
         search: options?.search,
         lastModifiedStartTime: options?.lastModifiedStartTime,
@@ -992,7 +1011,10 @@ export function _uploadTestFileSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/octet-stream",
-      queryParameters: { fileType: options?.fileType },
+      queryParameters: {
+        "api-version": "2022-11-01",
+        fileType: options?.fileType,
+      },
       body: body,
     });
 }
@@ -1049,7 +1071,10 @@ export function _deleteTestFileSend(
 > {
   return context
     .path("/tests/{testId}/files/{fileName}", testId, fileName)
-    .delete({ ...operationOptionsToRequestParameters(options) });
+    .delete({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2022-11-01" },
+    });
 }
 
 export async function _deleteTestFileDeserialize(
@@ -1085,7 +1110,10 @@ export function _deleteTestSend(
 > {
   return context
     .path("/tests/{testId}", testId)
-    .delete({ ...operationOptionsToRequestParameters(options) });
+    .delete({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2022-11-01" },
+    });
 }
 
 export async function _deleteTestDeserialize(

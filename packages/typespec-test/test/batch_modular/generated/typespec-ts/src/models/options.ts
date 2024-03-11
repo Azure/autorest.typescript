@@ -5,33 +5,42 @@ import { OperationOptions } from "@azure-rest/core-client";
 
 export interface ListApplicationsOptions extends OperationOptions {
   /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOutInSeconds?: number;
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOutInSeconds?: number;
 }
 
 export interface GetApplicationOptions extends OperationOptions {
   /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  apiVersion?: "2023-05-01.17.0";
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
 }
 
 export interface ListPoolUsageMetricsOptions extends OperationOptions {
   /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOutInSeconds?: number;
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOutInSeconds?: number;
   /**
    * The earliest time from which to include metrics. This must be at least two and
    * a half hours before the current time. If not specified this defaults to the
@@ -48,13 +57,16 @@ export interface ListPoolUsageMetricsOptions extends OperationOptions {
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.
    */
-  filter?: string;
+  $filter?: string;
 }
 
 export interface CreatePoolOptions extends OperationOptions {
   /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  apiVersion?: "2023-05-01.17.0";
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
@@ -62,42 +74,36 @@ export interface CreatePoolOptions extends OperationOptions {
 
 export interface ListPoolsOptions extends OperationOptions {
   /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOutInSeconds?: number;
+  apiVersion?: "2023-05-01.17.0";
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
   /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOutInSeconds?: number;
+  /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-pools.
    */
-  filter?: string;
+  $filter?: string;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
   /** An OData $expand clause. */
-  expand?: string[];
+  $expand?: string[];
 }
 
 export interface DeletePoolOptions extends OperationOptions {
   /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  apiVersion?: "2023-05-01.17.0";
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -110,25 +116,28 @@ export interface DeletePoolOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
 }
 
 export interface PoolExistsOptions extends OperationOptions {
   /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  apiVersion?: "2023-05-01.17.0";
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -141,25 +150,28 @@ export interface PoolExistsOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
 }
 
 export interface GetPoolOptions extends OperationOptions {
   /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  apiVersion?: "2023-05-01.17.0";
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -172,31 +184,32 @@ export interface GetPoolOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
   /** An OData $expand clause. */
-  expand?: string[];
+  $expand?: string[];
 }
 
 export interface UpdatePoolOptions extends OperationOptions {
   /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  apiVersion?: "2023-05-01.17.0";
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /** Type of content */
-  contentType?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -209,32 +222,40 @@ export interface UpdatePoolOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
+  /** Type of content */
+  contentType?: string;
 }
 
 export interface DisablePoolAutoScaleOptions extends OperationOptions {
   /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  apiVersion?: "2023-05-01.17.0";
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
 }
 
 export interface EnablePoolAutoScaleOptions extends OperationOptions {
   /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  apiVersion?: "2023-05-01.17.0";
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -247,14 +268,29 @@ export interface EnablePoolAutoScaleOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
   /** Type of content */
   contentType?: string;
 }
 
 export interface EvaluatePoolAutoScaleOptions extends OperationOptions {
   /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  apiVersion?: "2023-05-01.17.0";
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
@@ -262,21 +298,12 @@ export interface EvaluatePoolAutoScaleOptions extends OperationOptions {
 
 export interface ResizePoolOptions extends OperationOptions {
   /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  apiVersion?: "2023-05-01.17.0";
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -289,27 +316,30 @@ export interface ResizePoolOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
   /** Type of content */
   contentType?: string;
 }
 
 export interface StopPoolResizeOptions extends OperationOptions {
   /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  apiVersion?: "2023-05-01.17.0";
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -322,12 +352,27 @@ export interface StopPoolResizeOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
 }
 
 export interface ReplacePoolPropertiesOptions extends OperationOptions {
   /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  apiVersion?: "2023-05-01.17.0";
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
@@ -335,21 +380,12 @@ export interface ReplacePoolPropertiesOptions extends OperationOptions {
 
 export interface RemoveNodesOptions extends OperationOptions {
   /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  apiVersion?: "2023-05-01.17.0";
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -362,61 +398,64 @@ export interface RemoveNodesOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
   /** Type of content */
   contentType?: string;
 }
 
 export interface ListSupportedImagesOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOutInSeconds?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
   /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOutInSeconds?: number;
+  /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
    */
-  filter?: string;
+  $filter?: string;
 }
 
 export interface ListPoolNodeCountsOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOutInSeconds?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
   /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOutInSeconds?: number;
+  /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
    */
-  filter?: string;
+  $filter?: string;
 }
 
 export interface DeleteJobOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -429,25 +468,26 @@ export interface DeleteJobOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
 }
 
 export interface GetJobOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -460,31 +500,30 @@ export interface GetJobOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
   /** An OData $expand clause. */
-  expand?: string[];
+  $expand?: string[];
 }
 
 export interface UpdateJobOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /** Type of content */
-  contentType?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -497,27 +536,28 @@ export interface UpdateJobOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
+  /** Type of content */
+  contentType?: string;
 }
 
 export interface ReplaceJobOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /** Type of content */
-  contentType?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -530,25 +570,28 @@ export interface ReplaceJobOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
+  /** Type of content */
+  contentType?: string;
 }
 
 export interface DisableJobOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -561,27 +604,28 @@ export interface DisableJobOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
   /** Type of content */
   contentType?: string;
 }
 
 export interface EnableJobOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -594,25 +638,26 @@ export interface EnableJobOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
 }
 
 export interface TerminateJobOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -625,156 +670,167 @@ export interface TerminateJobOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
   /** Type of content */
   contentType?: string;
 }
 
 export interface CreateJobOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
 
 export interface ListJobsOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOutInSeconds?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOutInSeconds?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-jobs.
    */
-  filter?: string;
+  $filter?: string;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
   /** An OData $expand clause. */
-  expand?: string[];
+  $expand?: string[];
 }
 
 export interface ListJobsFromScheduleOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOutInSeconds?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOutInSeconds?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-jobs-in-a-job-schedule.
    */
-  filter?: string;
+  $filter?: string;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
   /** An OData $expand clause. */
-  expand?: string[];
+  $expand?: string[];
 }
 
 export interface ListJobPreparationAndReleaseTaskStatusOptions
   extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOutInSeconds?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
   /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOutInSeconds?: number;
+  /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-preparation-and-release-status.
    */
-  filter?: string;
+  $filter?: string;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
 }
 
 export interface GetJobTaskCountsOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
 }
 
 export interface CreateCertificateOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
 
 export interface ListCertificatesOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOutInSeconds?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
   /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOutInSeconds?: number;
+  /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-certificates.
    */
-  filter?: string;
+  $filter?: string;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
 }
 
 export interface CancelCertificateDeletionOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
 }
 
 export interface DeleteCertificateOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
 }
 
 export interface GetCertificateOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
 }
 
 export interface JobScheduleExistsOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -787,25 +843,26 @@ export interface JobScheduleExistsOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
 }
 
 export interface DeleteJobScheduleOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -818,25 +875,26 @@ export interface DeleteJobScheduleOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
 }
 
 export interface GetJobScheduleOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -849,31 +907,30 @@ export interface GetJobScheduleOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
   /** An OData $expand clause. */
-  expand?: string[];
+  $expand?: string[];
 }
 
 export interface UpdateJobScheduleOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /** Type of content */
-  contentType?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -886,27 +943,28 @@ export interface UpdateJobScheduleOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
+  /** Type of content */
+  contentType?: string;
 }
 
 export interface ReplaceJobScheduleOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /** Type of content */
-  contentType?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -919,25 +977,28 @@ export interface ReplaceJobScheduleOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
+  /** Type of content */
+  contentType?: string;
 }
 
 export interface DisableJobScheduleOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -950,25 +1011,26 @@ export interface DisableJobScheduleOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
 }
 
 export interface EnableJobScheduleOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -981,25 +1043,26 @@ export interface EnableJobScheduleOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
 }
 
 export interface TerminateJobScheduleOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -1012,94 +1075,100 @@ export interface TerminateJobScheduleOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
 }
 
 export interface CreateJobScheduleOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
 
 export interface ListJobSchedulesOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOutInSeconds?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
   /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOutInSeconds?: number;
+  /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.
    */
-  filter?: string;
+  $filter?: string;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
   /** An OData $expand clause. */
-  expand?: string[];
+  $expand?: string[];
 }
 
 export interface CreateTaskOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
 
 export interface ListTasksOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOutInSeconds?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
   /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOutInSeconds?: number;
+  /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-tasks.
    */
-  filter?: string;
+  $filter?: string;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
   /** An OData $expand clause. */
-  expand?: string[];
+  $expand?: string[];
 }
 
 export interface CreateTaskCollectionOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
 
 export interface DeleteTaskOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -1112,25 +1181,26 @@ export interface DeleteTaskOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
 }
 
 export interface GetTaskOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -1143,31 +1213,30 @@ export interface GetTaskOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
   /** An OData $expand clause. */
-  expand?: string[];
+  $expand?: string[];
 }
 
 export interface ReplaceTaskOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /** Type of content */
-  contentType?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -1180,34 +1249,38 @@ export interface ReplaceTaskOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
+  /** Type of content */
+  contentType?: string;
 }
 
 export interface ListSubTasksOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
 }
 
 export interface TerminateTaskOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -1220,25 +1293,26 @@ export interface TerminateTaskOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
 }
 
 export interface ReactivateTaskOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  ifModifiedSince?: Date;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  ifUnmodifiedSince?: Date;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
@@ -1251,12 +1325,25 @@ export interface ReactivateTaskOptions extends OperationOptions {
    * service does not match the value specified by the client.
    */
   ifNoneMatch?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  ifModifiedSince?: Date;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  ifUnmodifiedSince?: Date;
 }
 
 export interface DeleteTaskFileOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /**
    * Whether to delete children of a directory. If the filePath parameter represents
@@ -1268,9 +1355,10 @@ export interface DeleteTaskFileOptions extends OperationOptions {
 }
 
 export interface GetTaskFileOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /**
    * A timestamp indicating the last modified time of the resource known to the
@@ -1292,9 +1380,10 @@ export interface GetTaskFileOptions extends OperationOptions {
 }
 
 export interface GetTaskFilePropertiesOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /**
    * A timestamp indicating the last modified time of the resource known to the
@@ -1311,20 +1400,21 @@ export interface GetTaskFilePropertiesOptions extends OperationOptions {
 }
 
 export interface ListTaskFilesOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOutInSeconds?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
   /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOutInSeconds?: number;
+  /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-task-files.
    */
-  filter?: string;
+  $filter?: string;
   /**
    * Whether to list children of the Task directory. This parameter can be used in
    * combination with the filter parameter to list specific type of files.
@@ -1333,142 +1423,157 @@ export interface ListTaskFilesOptions extends OperationOptions {
 }
 
 export interface CreateNodeUserOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
 
 export interface DeleteNodeUserOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
 }
 
 export interface ReplaceNodeUserOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
 
 export interface GetNodeOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
 }
 
 export interface RebootNodeOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
 
 export interface ReimageNodeOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
 
 export interface DisableNodeSchedulingOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
 
 export interface EnableNodeSchedulingOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
 }
 
 export interface GetNodeRemoteLoginSettingsOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
 }
 
 export interface GetNodeRemoteDesktopFileOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
 }
 
 export interface UploadNodeLogsOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** Type of content */
   contentType?: string;
 }
 
 export interface ListNodesOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOutInSeconds?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOutInSeconds?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.
    */
-  filter?: string;
+  $filter?: string;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
 }
 
 export interface GetNodeExtensionOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
 }
 
 export interface ListNodeExtensionsOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOutInSeconds?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOutInSeconds?: number;
   /** An OData $select clause. */
-  select?: string[];
+  $select?: string[];
 }
 
 export interface DeleteNodeFileOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /**
    * Whether to delete children of a directory. If the filePath parameter represents
@@ -1480,9 +1585,10 @@ export interface DeleteNodeFileOptions extends OperationOptions {
 }
 
 export interface GetNodeFileOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /**
    * A timestamp indicating the last modified time of the resource known to the
@@ -1504,9 +1610,10 @@ export interface GetNodeFileOptions extends OperationOptions {
 }
 
 export interface GetNodeFilePropertiesOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOutInSeconds?: number;
   /**
    * A timestamp indicating the last modified time of the resource known to the
@@ -1523,20 +1630,21 @@ export interface GetNodeFilePropertiesOptions extends OperationOptions {
 }
 
 export interface ListNodeFilesOptions extends OperationOptions {
-  /** The API version to use for this operation. */
-  apiVersion?: "2024-02-01.19.0";
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOutInSeconds?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
   /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOutInSeconds?: number;
+  /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-compute-node-files.
    */
-  filter?: string;
+  $filter?: string;
   /** Whether to list children of a directory. */
   recursive?: boolean;
 }

@@ -4,34 +4,40 @@
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
 import {
-  BatchPoolCreateContent,
-  BatchPoolUpdateContent,
-  BatchPoolEnableAutoScaleContent,
-  BatchPoolEvaluateAutoScaleContent,
-  BatchPoolResizeContent,
-  BatchPoolReplaceContent,
-  BatchNodeRemoveContent,
-  BatchJobUpdateContent,
+  BatchPoolCreateOptions,
+  BatchPoolUpdateOptions,
+  BatchPoolEnableAutoScaleOptions,
+  BatchPoolEvaluateAutoScaleOptions,
+  BatchPoolResizeOptions,
+  BatchPoolReplaceOptions,
+  NodeRemoveOptions,
+  BatchJobUpdateOptions,
   BatchJob,
-  BatchJobDisableContent,
-  BatchJobTerminateContent,
-  BatchJobCreateContent,
+  BatchJobDisableOptions,
+  BatchJobTerminateOptions,
+  BatchJobCreateOptions,
   BatchCertificate,
-  BatchJobScheduleUpdateContent,
+  BatchJobScheduleUpdateOptions,
   BatchJobSchedule,
-  BatchJobScheduleCreateContent,
-  BatchTaskCreateContent,
-  BatchTaskGroup,
+  BatchJobScheduleCreateOptions,
+  BatchTaskCreateOptions,
+  BatchTaskCollection,
   BatchTask,
-  BatchNodeUserCreateContent,
-  BatchNodeUserUpdateContent,
-  BatchNodeRebootContent,
-  BatchNodeReimageContent,
-  BatchNodeDisableSchedulingContent,
-  UploadBatchServiceLogsContent,
+  BatchNodeUserCreateOptions,
+  BatchNodeUserUpdateOptions,
+  NodeRebootOptions,
+  NodeReimageOptions,
+  NodeDisableSchedulingOptions,
+  UploadBatchServiceLogsOptions,
 } from "./models.js";
 
 export interface ListApplicationsHeaders {
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -39,22 +45,19 @@ export interface ListApplicationsHeaders {
   "client-request-id"?: string;
   /** Whether the server should return the client-request-id in the response. */
   "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
 }
 
 export interface ListApplicationsQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOut?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
 }
 
 export interface ListApplicationsQueryParam {
@@ -86,7 +89,10 @@ export interface GetApplicationHeaders {
 }
 
 export interface GetApplicationQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -104,34 +110,37 @@ export type GetApplicationParameters = GetApplicationQueryParam &
 
 export interface ListPoolUsageMetricsHeaders {
   /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    */
   "client-request-id"?: string;
   /** Whether the server should return the client-request-id in the response. */
   "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
 }
 
 export interface ListPoolUsageMetricsQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOut?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
   /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /**
    * The earliest time from which to include metrics. This must be at least two and
    * a half hours before the current time. If not specified this defaults to the
    * start time of the last aggregation interval currently available.
    */
-  startTime?: Date | string;
+  starttime?: Date | string;
   /**
    * The latest time from which to include metrics. This must be at least two hours
    * before the current time. If not specified this defaults to the end time of the
@@ -175,11 +184,14 @@ export interface CreatePoolHeaders {
 
 export interface CreatePoolBodyParam {
   /** The Pool to be created. */
-  body: BatchPoolCreateContent;
+  body: BatchPoolCreateOptions;
 }
 
 export interface CreatePoolQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -204,28 +216,31 @@ export type CreatePoolParameters = CreatePoolQueryParam &
 
 export interface ListPoolsHeaders {
   /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    */
   "client-request-id"?: string;
   /** Whether the server should return the client-request-id in the response. */
   "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
 }
 
 export interface ListPoolsQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOut?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-pools.
@@ -264,33 +279,36 @@ export interface DeletePoolHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface DeletePoolQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -321,33 +339,36 @@ export interface PoolExistsHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface PoolExistsQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -378,33 +399,36 @@ export interface GetPoolHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface GetPoolQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
   /** An OData $select clause. */
   $select?: string[];
@@ -439,38 +463,41 @@ export interface UpdatePoolHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface UpdatePoolBodyParam {
   /** The pool properties to update. */
-  body: BatchPoolUpdateContent;
+  body: BatchPoolUpdateOptions;
 }
 
 export interface UpdatePoolQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -510,7 +537,10 @@ export interface DisablePoolAutoScaleHeaders {
 }
 
 export interface DisablePoolAutoScaleQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -541,38 +571,41 @@ export interface EnablePoolAutoScaleHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface EnablePoolAutoScaleBodyParam {
   /** The options to use for enabling automatic scaling. */
-  body: BatchPoolEnableAutoScaleContent;
+  body: BatchPoolEnableAutoScaleOptions;
 }
 
 export interface EnablePoolAutoScaleQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -613,11 +646,14 @@ export interface EvaluatePoolAutoScaleHeaders {
 
 export interface EvaluatePoolAutoScaleBodyParam {
   /** The options to use for evaluating the automatic scaling formula. */
-  body: BatchPoolEvaluateAutoScaleContent;
+  body: BatchPoolEvaluateAutoScaleOptions;
 }
 
 export interface EvaluatePoolAutoScaleQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -655,38 +691,41 @@ export interface ResizePoolHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface ResizePoolBodyParam {
   /** The options to use for resizing the pool. */
-  body: BatchPoolResizeContent;
+  body: BatchPoolResizeOptions;
 }
 
 export interface ResizePoolQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -724,33 +763,36 @@ export interface StopPoolResizeHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface StopPoolResizeQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -784,11 +826,14 @@ export interface ReplacePoolPropertiesHeaders {
 
 export interface ReplacePoolPropertiesBodyParam {
   /** The options to use for replacing properties on the pool. */
-  body: BatchPoolReplaceContent;
+  body: BatchPoolReplaceOptions;
 }
 
 export interface ReplacePoolPropertiesQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -826,38 +871,41 @@ export interface RemoveNodesHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface RemoveNodesBodyParam {
   /** The options to use for removing the node. */
-  body: BatchNodeRemoveContent;
+  body: NodeRemoveOptions;
 }
 
 export interface RemoveNodesQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -882,28 +930,31 @@ export type RemoveNodesParameters = RemoveNodesQueryParam &
 
 export interface ListSupportedImagesHeaders {
   /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    */
   "client-request-id"?: string;
   /** Whether the server should return the client-request-id in the response. */
   "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
 }
 
 export interface ListSupportedImagesQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOut?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
@@ -925,28 +976,31 @@ export type ListSupportedImagesParameters = ListSupportedImagesQueryParam &
 
 export interface ListPoolNodeCountsHeaders {
   /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    */
   "client-request-id"?: string;
   /** Whether the server should return the client-request-id in the response. */
   "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
 }
 
 export interface ListPoolNodeCountsQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOut?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
@@ -981,33 +1035,36 @@ export interface DeleteJobHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface DeleteJobQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -1038,33 +1095,36 @@ export interface GetJobHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface GetJobQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
   /** An OData $select clause. */
   $select?: string[];
@@ -1099,38 +1159,41 @@ export interface UpdateJobHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface UpdateJobBodyParam {
   /** The options to use for updating the Job. */
-  body: BatchJobUpdateContent;
+  body: BatchJobUpdateOptions;
 }
 
 export interface UpdateJobQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -1168,29 +1231,29 @@ export interface ReplaceJobHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface ReplaceJobBodyParam {
@@ -1199,7 +1262,10 @@ export interface ReplaceJobBodyParam {
 }
 
 export interface ReplaceJobQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -1237,38 +1303,41 @@ export interface DisableJobHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface DisableJobBodyParam {
   /** The options to use for disabling the Job. */
-  body: BatchJobDisableContent;
+  body: BatchJobDisableOptions;
 }
 
 export interface DisableJobQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -1306,33 +1375,36 @@ export interface EnableJobHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface EnableJobQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -1363,38 +1435,41 @@ export interface TerminateJobHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface TerminateJobBodyParam {
   /** The options to use for terminating the Job. */
-  body?: BatchJobTerminateContent;
+  body?: BatchJobTerminateOptions;
 }
 
 export interface TerminateJobQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -1435,11 +1510,14 @@ export interface CreateJobHeaders {
 
 export interface CreateJobBodyParam {
   /** The Job to be created. */
-  body: BatchJobCreateContent;
+  body: BatchJobCreateOptions;
 }
 
 export interface CreateJobQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -1464,28 +1542,31 @@ export type CreateJobParameters = CreateJobQueryParam &
 
 export interface ListJobsHeaders {
   /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    */
   "client-request-id"?: string;
   /** Whether the server should return the client-request-id in the response. */
   "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
 }
 
 export interface ListJobsQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOut?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-jobs.
@@ -1511,28 +1592,31 @@ export type ListJobsParameters = ListJobsQueryParam &
 
 export interface ListJobsFromScheduleHeaders {
   /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    */
   "client-request-id"?: string;
   /** Whether the server should return the client-request-id in the response. */
   "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
 }
 
 export interface ListJobsFromScheduleQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOut?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-jobs-in-a-job-schedule.
@@ -1558,28 +1642,31 @@ export type ListJobsFromScheduleParameters = ListJobsFromScheduleQueryParam &
 
 export interface ListJobPreparationAndReleaseTaskStatusHeaders {
   /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    */
   "client-request-id"?: string;
   /** Whether the server should return the client-request-id in the response. */
   "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
 }
 
 export interface ListJobPreparationAndReleaseTaskStatusQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOut?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-preparation-and-release-status.
@@ -1619,7 +1706,10 @@ export interface GetJobTaskCountsHeaders {
 }
 
 export interface GetJobTaskCountsQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -1657,7 +1747,10 @@ export interface CreateCertificateBodyParam {
 }
 
 export interface CreateCertificateQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -1682,28 +1775,31 @@ export type CreateCertificateParameters = CreateCertificateQueryParam &
 
 export interface ListCertificatesHeaders {
   /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    */
   "client-request-id"?: string;
   /** Whether the server should return the client-request-id in the response. */
   "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
 }
 
 export interface ListCertificatesQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOut?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-certificates.
@@ -1742,7 +1838,10 @@ export interface CancelCertificateDeletionHeaders {
 }
 
 export interface CancelCertificateDeletionQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -1776,7 +1875,10 @@ export interface DeleteCertificateHeaders {
 }
 
 export interface DeleteCertificateQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -1809,7 +1911,10 @@ export interface GetCertificateHeaders {
 }
 
 export interface GetCertificateQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
   /** An OData $select clause. */
   $select?: string[];
@@ -1842,33 +1947,36 @@ export interface JobScheduleExistsHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface JobScheduleExistsQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -1899,33 +2007,36 @@ export interface DeleteJobScheduleHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface DeleteJobScheduleQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -1956,33 +2067,36 @@ export interface GetJobScheduleHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface GetJobScheduleQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
   /** An OData $select clause. */
   $select?: string[];
@@ -2017,38 +2131,41 @@ export interface UpdateJobScheduleHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface UpdateJobScheduleBodyParam {
   /** The options to use for updating the Job Schedule. */
-  body: BatchJobScheduleUpdateContent;
+  body: BatchJobScheduleUpdateOptions;
 }
 
 export interface UpdateJobScheduleQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -2086,29 +2203,29 @@ export interface ReplaceJobScheduleHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface ReplaceJobScheduleBodyParam {
@@ -2117,7 +2234,10 @@ export interface ReplaceJobScheduleBodyParam {
 }
 
 export interface ReplaceJobScheduleQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -2155,33 +2275,36 @@ export interface DisableJobScheduleHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface DisableJobScheduleQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -2212,33 +2335,36 @@ export interface EnableJobScheduleHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface EnableJobScheduleQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -2269,33 +2395,36 @@ export interface TerminateJobScheduleHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface TerminateJobScheduleQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -2329,11 +2458,14 @@ export interface CreateJobScheduleHeaders {
 
 export interface CreateJobScheduleBodyParam {
   /** The Job Schedule to be created. */
-  body: BatchJobScheduleCreateContent;
+  body: BatchJobScheduleCreateOptions;
 }
 
 export interface CreateJobScheduleQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -2358,28 +2490,31 @@ export type CreateJobScheduleParameters = CreateJobScheduleQueryParam &
 
 export interface ListJobSchedulesHeaders {
   /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    */
   "client-request-id"?: string;
   /** Whether the server should return the client-request-id in the response. */
   "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
 }
 
 export interface ListJobSchedulesQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOut?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.
@@ -2421,11 +2556,14 @@ export interface CreateTaskHeaders {
 
 export interface CreateTaskBodyParam {
   /** The Task to be created. */
-  body: BatchTaskCreateContent;
+  body: BatchTaskCreateOptions;
 }
 
 export interface CreateTaskQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -2450,28 +2588,31 @@ export type CreateTaskParameters = CreateTaskQueryParam &
 
 export interface ListTasksHeaders {
   /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    */
   "client-request-id"?: string;
   /** Whether the server should return the client-request-id in the response. */
   "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
 }
 
 export interface ListTasksQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOut?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-tasks.
@@ -2513,11 +2654,14 @@ export interface CreateTaskCollectionHeaders {
 
 export interface CreateTaskCollectionBodyParam {
   /** The Tasks to be added. */
-  body: BatchTaskGroup;
+  body: BatchTaskCollection;
 }
 
 export interface CreateTaskCollectionQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -2555,33 +2699,36 @@ export interface DeleteTaskHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface DeleteTaskQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -2612,33 +2759,36 @@ export interface GetTaskHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface GetTaskQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
   /** An OData $select clause. */
   $select?: string[];
@@ -2673,29 +2823,29 @@ export interface ReplaceTaskHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface ReplaceTaskBodyParam {
@@ -2704,7 +2854,10 @@ export interface ReplaceTaskBodyParam {
 }
 
 export interface ReplaceTaskQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -2744,7 +2897,10 @@ export interface ListSubTasksHeaders {
 }
 
 export interface ListSubTasksQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
   /** An OData $select clause. */
   $select?: string[];
@@ -2777,33 +2933,36 @@ export interface TerminateTaskHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface TerminateTaskQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -2834,33 +2993,36 @@ export interface ReactivateTaskHeaders {
    */
   "ocp-date"?: string;
   /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "If-Modified-Since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "If-Unmodified-Since"?: string;
-  /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service exactly matches the value specified by the client.
    */
-  "If-Match"?: string;
+  "if-match"?: string;
   /**
    * An ETag value associated with the version of the resource known to the client.
    * The operation will be performed only if the resource's current ETag on the
    * service does not match the value specified by the client.
    */
-  "If-None-Match"?: string;
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
 }
 
 export interface ReactivateTaskQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -2893,7 +3055,10 @@ export interface DeleteTaskFileHeaders {
 }
 
 export interface DeleteTaskFileQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
   /**
    * Whether to delete children of a directory. If the filePath parameter represents
@@ -2935,13 +3100,13 @@ export interface GetTaskFileHeaders {
    * client. The operation will be performed only if the resource on the service has
    * been modified since the specified time.
    */
-  "If-Modified-Since"?: string;
+  "if-modified-since"?: string;
   /**
    * A timestamp indicating the last modified time of the resource known to the
    * client. The operation will be performed only if the resource on the service has
    * not been modified since the specified time.
    */
-  "If-Unmodified-Since"?: string;
+  "if-unmodified-since"?: string;
   /**
    * The byte range to be retrieved. The default is to retrieve the entire file. The
    * format is bytes=startRange-endRange.
@@ -2950,7 +3115,10 @@ export interface GetTaskFileHeaders {
 }
 
 export interface GetTaskFileQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -2985,17 +3153,20 @@ export interface GetTaskFilePropertiesHeaders {
    * client. The operation will be performed only if the resource on the service has
    * been modified since the specified time.
    */
-  "If-Modified-Since"?: string;
+  "if-modified-since"?: string;
   /**
    * A timestamp indicating the last modified time of the resource known to the
    * client. The operation will be performed only if the resource on the service has
    * not been modified since the specified time.
    */
-  "If-Unmodified-Since"?: string;
+  "if-unmodified-since"?: string;
 }
 
 export interface GetTaskFilePropertiesQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -3013,28 +3184,31 @@ export type GetTaskFilePropertiesParameters = GetTaskFilePropertiesQueryParam &
 
 export interface ListTaskFilesHeaders {
   /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    */
   "client-request-id"?: string;
   /** Whether the server should return the client-request-id in the response. */
   "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
 }
 
 export interface ListTaskFilesQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOut?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-task-files.
@@ -3077,11 +3251,14 @@ export interface CreateNodeUserHeaders {
 
 export interface CreateNodeUserBodyParam {
   /** The options to use for creating the user. */
-  body: BatchNodeUserCreateContent;
+  body: BatchNodeUserCreateOptions;
 }
 
 export interface CreateNodeUserQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -3121,7 +3298,10 @@ export interface DeleteNodeUserHeaders {
 }
 
 export interface DeleteNodeUserQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -3155,11 +3335,14 @@ export interface ReplaceNodeUserHeaders {
 
 export interface ReplaceNodeUserBodyParam {
   /** The options to use for updating the user. */
-  body: BatchNodeUserUpdateContent;
+  body: BatchNodeUserUpdateOptions;
 }
 
 export interface ReplaceNodeUserQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -3199,7 +3382,10 @@ export interface GetNodeHeaders {
 }
 
 export interface GetNodeQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
   /** An OData $select clause. */
   $select?: string[];
@@ -3235,11 +3421,14 @@ export interface RebootNodeHeaders {
 
 export interface RebootNodeBodyParam {
   /** The options to use for rebooting the Compute Node. */
-  body?: BatchNodeRebootContent;
+  body?: NodeRebootOptions;
 }
 
 export interface RebootNodeQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -3280,11 +3469,14 @@ export interface ReimageNodeHeaders {
 
 export interface ReimageNodeBodyParam {
   /** The options to use for reimaging the Compute Node. */
-  body?: BatchNodeReimageContent;
+  body?: NodeReimageOptions;
 }
 
 export interface ReimageNodeQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -3325,11 +3517,14 @@ export interface DisableNodeSchedulingHeaders {
 
 export interface DisableNodeSchedulingBodyParam {
   /** The options to use for disabling scheduling on the Compute Node. */
-  body?: BatchNodeDisableSchedulingContent;
+  body?: NodeDisableSchedulingOptions;
 }
 
 export interface DisableNodeSchedulingQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -3369,7 +3564,10 @@ export interface EnableNodeSchedulingHeaders {
 }
 
 export interface EnableNodeSchedulingQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -3402,7 +3600,10 @@ export interface GetNodeRemoteLoginSettingsHeaders {
 }
 
 export interface GetNodeRemoteLoginSettingsQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -3436,7 +3637,10 @@ export interface GetNodeRemoteDesktopFileHeaders {
 }
 
 export interface GetNodeRemoteDesktopFileQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -3471,11 +3675,14 @@ export interface UploadNodeLogsHeaders {
 
 export interface UploadNodeLogsBodyParam {
   /** The Azure Batch service log files upload options. */
-  body: UploadBatchServiceLogsContent;
+  body: UploadBatchServiceLogsOptions;
 }
 
 export interface UploadNodeLogsQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -3500,28 +3707,31 @@ export type UploadNodeLogsParameters = UploadNodeLogsQueryParam &
 
 export interface ListNodesHeaders {
   /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    */
   "client-request-id"?: string;
   /** Whether the server should return the client-request-id in the response. */
   "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
 }
 
 export interface ListNodesQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOut?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.
@@ -3560,7 +3770,10 @@ export interface GetNodeExtensionHeaders {
 }
 
 export interface GetNodeExtensionQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
   /** An OData $select clause. */
   $select?: string[];
@@ -3580,28 +3793,31 @@ export type GetNodeExtensionParameters = GetNodeExtensionQueryParam &
 
 export interface ListNodeExtensionsHeaders {
   /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    */
   "client-request-id"?: string;
   /** Whether the server should return the client-request-id in the response. */
   "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
 }
 
 export interface ListNodeExtensionsQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOut?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
   /** An OData $select clause. */
   $select?: string[];
 }
@@ -3635,7 +3851,10 @@ export interface DeleteNodeFileHeaders {
 }
 
 export interface DeleteNodeFileQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
   /**
    * Whether to delete children of a directory. If the filePath parameter represents
@@ -3677,13 +3896,13 @@ export interface GetNodeFileHeaders {
    * client. The operation will be performed only if the resource on the service has
    * been modified since the specified time.
    */
-  "If-Modified-Since"?: string;
+  "if-modified-since"?: string;
   /**
    * A timestamp indicating the last modified time of the resource known to the
    * client. The operation will be performed only if the resource on the service has
    * not been modified since the specified time.
    */
-  "If-Unmodified-Since"?: string;
+  "if-unmodified-since"?: string;
   /**
    * The byte range to be retrieved. The default is to retrieve the entire file. The
    * format is bytes=startRange-endRange.
@@ -3692,7 +3911,10 @@ export interface GetNodeFileHeaders {
 }
 
 export interface GetNodeFileQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -3727,17 +3949,20 @@ export interface GetNodeFilePropertiesHeaders {
    * client. The operation will be performed only if the resource on the service has
    * been modified since the specified time.
    */
-  "If-Modified-Since"?: string;
+  "if-modified-since"?: string;
   /**
    * A timestamp indicating the last modified time of the resource known to the
    * client. The operation will be performed only if the resource on the service has
    * not been modified since the specified time.
    */
-  "If-Unmodified-Since"?: string;
+  "if-unmodified-since"?: string;
 }
 
 export interface GetNodeFilePropertiesQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
   timeOut?: number;
 }
 
@@ -3755,28 +3980,31 @@ export type GetNodeFilePropertiesParameters = GetNodeFilePropertiesQueryParam &
 
 export interface ListNodeFilesHeaders {
   /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    */
   "client-request-id"?: string;
   /** Whether the server should return the client-request-id in the response. */
   "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
 }
 
 export interface ListNodeFilesQueryParamProperties {
-  /** The maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. If the value is larger than 30, the default will be used instead.". */
-  timeOut?: number;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
   /**
    * An OData $filter clause. For more information on constructing this filter, see
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-compute-node-files.

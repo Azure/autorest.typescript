@@ -74,6 +74,7 @@ export function _getAudioTranscriptionAsPlainTextSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
+      queryParameters: { "api-version": "2024-02-15-preview" },
       body: {
         file: uint8ArrayToString(body["file"], "base64"),
         filename: body["filename"],
@@ -136,6 +137,7 @@ export function _getAudioTranscriptionAsResponseObjectSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
+      queryParameters: { "api-version": "2024-02-15-preview" },
       body: {
         file: uint8ArrayToString(body["file"], "base64"),
         filename: body["filename"],
@@ -218,6 +220,7 @@ export function _getAudioTranslationAsPlainTextSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
+      queryParameters: { "api-version": "2024-02-15-preview" },
       body: {
         file: uint8ArrayToString(body["file"], "base64"),
         filename: body["filename"],
@@ -274,6 +277,7 @@ export function _getAudioTranslationAsResponseObjectSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
+      queryParameters: { "api-version": "2024-02-15-preview" },
       body: {
         file: uint8ArrayToString(body["file"], "base64"),
         filename: body["filename"],
@@ -346,6 +350,7 @@ export function _getCompletionsSend(
     .path("/deployments/{deploymentId}/completions", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2024-02-15-preview" },
       body: {
         prompt: body["prompt"],
         max_tokens: body["maxTokens"],
@@ -561,6 +566,7 @@ export function _getChatCompletionsSend(
     .path("/deployments/{deploymentId}/chat/completions", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2024-02-15-preview" },
       body: {
         messages: body["messages"].map((p) =>
           serializeChatRequestMessageUnion(p),
@@ -905,6 +911,7 @@ export function _getImageGenerationsSend(
     .path("/deployments/{deploymentId}/images/generations", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2024-02-15-preview" },
       body: {
         model: body["model"],
         prompt: body["prompt"],
@@ -961,6 +968,7 @@ export function _getAudioSpeechSend(
     .path("/deployments/{deploymentId}/audio/speech", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2024-02-15-preview" },
       body: {
         input: body["input"],
         voice: body["voice"],
@@ -1006,6 +1014,7 @@ export function _getEmbeddingsSend(
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": "2024-02-15-preview" },
       body: {
         user: body["user"],
         model: body["model"],

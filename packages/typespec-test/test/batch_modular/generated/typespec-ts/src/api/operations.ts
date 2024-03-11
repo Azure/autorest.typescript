@@ -2,60 +2,59 @@
 // Licensed under the MIT license.
 
 import {
-  BatchApplicationListResult,
-  BatchApplication,
-  BatchPoolListUsageMetricsResult,
-  BatchPoolUsageMetrics,
-  BatchPoolCreateContent,
+  BatchNodeUserCreateOptions,
+  BatchNodeUserUpdateOptions,
+  BatchNode,
+  NodeRebootOptions,
+  NodeReimageOptions,
+  NodeDisableSchedulingOptions,
+  BatchNodeRemoteLoginSettingsResult,
+  UploadBatchServiceLogsOptions,
+  UploadBatchServiceLogsResult,
+  BatchNodeListResult,
+  NodeVMExtension,
+  NodeVMExtensionList,
+  NodeFileListResult,
+  NodeFile,
+  BatchTaskCreateOptions,
+  BatchTaskListResult,
+  BatchTask,
+  BatchTaskCollection,
+  TaskAddCollectionResult,
+  BatchTaskListSubtasksResult,
+  BatchJobSchedule,
+  BatchJobScheduleUpdateOptions,
+  BatchJobScheduleCreateOptions,
+  BatchJobScheduleListResult,
+  BatchCertificate,
+  CertificateListResult,
+  BatchJob,
+  BatchJobUpdateOptions,
+  BatchJobDisableOptions,
+  BatchJobTerminateOptions,
+  BatchJobCreateOptions,
+  BatchJobListResult,
+  BatchJobListPreparationAndReleaseTaskStatusResult,
+  JobPreparationAndReleaseTaskExecutionInformation,
+  TaskCountsResult,
+  AccountListSupportedImagesResult,
+  ImageInformation,
+  PoolNodeCountsListResult,
+  PoolNodeCounts,
+  PoolListUsageMetricsResult,
+  PoolUsageMetrics,
+  BatchPoolCreateOptions,
   BatchPoolListResult,
   BatchPool,
   AutoScaleRun,
-  BatchPoolUpdateContent,
-  BatchPoolEnableAutoScaleContent,
-  BatchPoolEvaluateAutoScaleContent,
-  BatchPoolResizeContent,
-  BatchPoolReplaceContent,
-  BatchNodeRemoveContent,
-  BatchAccountListSupportedImagesResult,
-  ImageInfo,
-  BatchPoolNodeCountsListResult,
-  BatchPoolNodeCounts,
-  BatchJob,
-  BatchJobUpdateContent,
-  BatchJobDisableContent,
-  BatchJobTerminateContent,
-  BatchJobCreateContent,
-  BatchJobListResult,
-  BatchJobPreparationAndReleaseTaskStatusListResult,
-  BatchJobPreparationAndReleaseTaskStatus,
-  BatchTaskCountsResult,
-  BatchCertificate,
-  BatchCertificateListResult,
-  BatchJobSchedule,
-  BatchJobScheduleUpdateContent,
-  BatchJobScheduleCreateContent,
-  BatchJobScheduleListResult,
-  BatchTaskCreateContent,
-  BatchTaskListResult,
-  BatchTask,
-  BatchTaskGroup,
-  BatchTaskAddCollectionResult,
-  BatchTaskListSubtasksResult,
-  BatchSubtask,
-  BatchNodeFileListResult,
-  BatchNodeFile,
-  BatchNodeUserCreateContent,
-  BatchNodeUserUpdateContent,
-  BatchNode,
-  BatchNodeRebootContent,
-  BatchNodeReimageContent,
-  BatchNodeDisableSchedulingContent,
-  BatchNodeRemoteLoginSettings,
-  UploadBatchServiceLogsContent,
-  UploadBatchServiceLogsResult,
-  BatchNodeListResult,
-  BatchNodeVMExtension,
-  BatchNodeVMExtensionListResult,
+  BatchPoolUpdateOptions,
+  BatchPoolEnableAutoScaleOptions,
+  BatchPoolEvaluateAutoScaleOptions,
+  BatchPoolResizeOptions,
+  BatchPoolReplaceOptions,
+  NodeRemoveOptions,
+  ApplicationListResult,
+  BatchApplication,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
@@ -222,6 +221,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import {
   ListApplicationsOptions,
   GetApplicationOptions,
@@ -312,16 +312,16 @@ export function _listApplicationsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
-        timeOut: options?.timeOutInSeconds,
+        "api-version": "2023-05-01.17.0",
         maxresults: options?.maxresults,
+        timeOut: options?.timeOutInSeconds,
       },
     });
 }
 
 export async function _listApplicationsDeserialize(
   result: ListApplications200Response | ListApplicationsDefaultResponse,
-): Promise<BatchApplicationListResult> {
+): Promise<ApplicationListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -368,7 +368,7 @@ export function _getApplicationSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -415,19 +415,19 @@ export function _listPoolUsageMetricsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
-        timeOut: options?.timeOutInSeconds,
+        "api-version": "2023-05-01.17.0",
         maxresults: options?.maxresults,
-        startTime: options?.starttime?.toISOString(),
+        timeOut: options?.timeOutInSeconds,
+        starttime: options?.starttime?.toISOString(),
         endtime: options?.endtime?.toISOString(),
-        $filter: options?.filter,
+        $filter: options?.$filter,
       },
     });
 }
 
 export async function _listPoolUsageMetricsDeserialize(
   result: ListPoolUsageMetrics200Response | ListPoolUsageMetricsDefaultResponse,
-): Promise<BatchPoolListUsageMetricsResult> {
+): Promise<PoolListUsageMetricsResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -458,7 +458,7 @@ export async function _listPoolUsageMetricsDeserialize(
 export function listPoolUsageMetrics(
   context: Client,
   options: ListPoolUsageMetricsOptions = { requestOptions: {} },
-): PagedAsyncIterableIterator<BatchPoolUsageMetrics> {
+): PagedAsyncIterableIterator<PoolUsageMetrics> {
   return buildPagedAsyncIterator(
     context,
     () => _listPoolUsageMetricsSend(context, options),
@@ -469,7 +469,7 @@ export function listPoolUsageMetrics(
 
 export function _createPoolSend(
   context: Client,
-  pool: BatchPoolCreateContent,
+  body: BatchPoolCreateOptions,
   options: CreatePoolOptions = { requestOptions: {} },
 ): StreamableMethod<CreatePool201Response | CreatePoolDefaultResponse> {
   return context
@@ -480,74 +480,74 @@ export function _createPoolSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        id: pool["id"],
-        displayName: pool["displayName"],
-        vmSize: pool["vmSize"],
-        cloudServiceConfiguration: !pool.cloudServiceConfiguration
+        id: body["id"],
+        displayName: body["displayName"],
+        vmSize: body["vmSize"],
+        cloudServiceConfiguration: !body.cloudServiceConfiguration
           ? undefined
           : {
-              osFamily: pool.cloudServiceConfiguration?.["osFamily"],
-              osVersion: pool.cloudServiceConfiguration?.["osVersion"],
+              osFamily: body.cloudServiceConfiguration?.["osFamily"],
+              osVersion: body.cloudServiceConfiguration?.["osVersion"],
             },
-        virtualMachineConfiguration: !pool.virtualMachineConfiguration
+        virtualMachineConfiguration: !body.virtualMachineConfiguration
           ? undefined
           : {
               imageReference: {
                 publisher:
-                  pool.virtualMachineConfiguration?.imageReference["publisher"],
+                  body.virtualMachineConfiguration?.imageReference["publisher"],
                 offer:
-                  pool.virtualMachineConfiguration?.imageReference["offer"],
-                sku: pool.virtualMachineConfiguration?.imageReference["sku"],
+                  body.virtualMachineConfiguration?.imageReference["offer"],
+                sku: body.virtualMachineConfiguration?.imageReference["sku"],
                 version:
-                  pool.virtualMachineConfiguration?.imageReference["version"],
+                  body.virtualMachineConfiguration?.imageReference["version"],
                 virtualMachineImageId:
-                  pool.virtualMachineConfiguration?.imageReference[
+                  body.virtualMachineConfiguration?.imageReference[
                     "virtualMachineImageId"
                   ],
               },
               nodeAgentSKUId:
-                pool.virtualMachineConfiguration?.["nodeAgentSkuId"],
-              windowsConfiguration: !pool.virtualMachineConfiguration
+                body.virtualMachineConfiguration?.["nodeAgentSkuId"],
+              windowsConfiguration: !body.virtualMachineConfiguration
                 ?.windowsConfiguration
                 ? undefined
                 : {
                     enableAutomaticUpdates:
-                      pool.virtualMachineConfiguration?.windowsConfiguration?.[
+                      body.virtualMachineConfiguration?.windowsConfiguration?.[
                         "enableAutomaticUpdates"
                       ],
                   },
               dataDisks:
-                pool.virtualMachineConfiguration?.["dataDisks"] === undefined
-                  ? pool.virtualMachineConfiguration?.["dataDisks"]
-                  : pool.virtualMachineConfiguration?.["dataDisks"].map(
+                body.virtualMachineConfiguration?.["dataDisks"] === undefined
+                  ? body.virtualMachineConfiguration?.["dataDisks"]
+                  : body.virtualMachineConfiguration?.["dataDisks"].map(
                       (p) => ({
-                        lun: p["logicalUnitNumber"],
+                        lun: p["lun"],
                         caching: p["caching"],
                         diskSizeGB: p["diskSizeGb"],
                         storageAccountType: p["storageAccountType"],
                       }),
                     ),
-              licenseType: pool.virtualMachineConfiguration?.["licenseType"],
-              containerConfiguration: !pool.virtualMachineConfiguration
+              licenseType: body.virtualMachineConfiguration?.["licenseType"],
+              containerConfiguration: !body.virtualMachineConfiguration
                 ?.containerConfiguration
                 ? undefined
                 : {
-                    type: pool.virtualMachineConfiguration
+                    type: body.virtualMachineConfiguration
                       ?.containerConfiguration?.["type"],
                     containerImageNames:
-                      pool.virtualMachineConfiguration
+                      body.virtualMachineConfiguration
                         ?.containerConfiguration?.["containerImageNames"],
                     containerRegistries:
-                      pool.virtualMachineConfiguration
+                      body.virtualMachineConfiguration
                         ?.containerConfiguration?.["containerRegistries"] ===
                       undefined
-                        ? pool.virtualMachineConfiguration
+                        ? body.virtualMachineConfiguration
                             ?.containerConfiguration?.["containerRegistries"]
-                        : pool.virtualMachineConfiguration?.containerConfiguration?.[
+                        : body.virtualMachineConfiguration?.containerConfiguration?.[
                             "containerRegistries"
                           ].map((p) => ({
                             username: p["username"],
@@ -561,26 +561,26 @@ export function _createPoolSend(
                                 },
                           })),
                   },
-              diskEncryptionConfiguration: !pool.virtualMachineConfiguration
+              diskEncryptionConfiguration: !body.virtualMachineConfiguration
                 ?.diskEncryptionConfiguration
                 ? undefined
                 : {
                     targets:
-                      pool.virtualMachineConfiguration
+                      body.virtualMachineConfiguration
                         ?.diskEncryptionConfiguration?.["targets"],
                   },
-              nodePlacementConfiguration: !pool.virtualMachineConfiguration
+              nodePlacementConfiguration: !body.virtualMachineConfiguration
                 ?.nodePlacementConfiguration
                 ? undefined
                 : {
                     policy:
-                      pool.virtualMachineConfiguration
+                      body.virtualMachineConfiguration
                         ?.nodePlacementConfiguration?.["policy"],
                   },
               extensions:
-                pool.virtualMachineConfiguration?.["extensions"] === undefined
-                  ? pool.virtualMachineConfiguration?.["extensions"]
-                  : pool.virtualMachineConfiguration?.["extensions"].map(
+                body.virtualMachineConfiguration?.["extensions"] === undefined
+                  ? body.virtualMachineConfiguration?.["extensions"]
+                  : body.virtualMachineConfiguration?.["extensions"].map(
                       (p) => ({
                         name: p["name"],
                         publisher: p["publisher"],
@@ -593,83 +593,38 @@ export function _createPoolSend(
                         provisionAfterExtensions: p["provisionAfterExtensions"],
                       }),
                     ),
-              osDisk: !pool.virtualMachineConfiguration?.osDisk
+              osDisk: !body.virtualMachineConfiguration?.osDisk
                 ? undefined
                 : {
-                    ephemeralOSDiskSettings: !pool.virtualMachineConfiguration
+                    ephemeralOSDiskSettings: !body.virtualMachineConfiguration
                       ?.osDisk?.ephemeralOSDiskSettings
                       ? undefined
                       : {
                           placement:
-                            pool.virtualMachineConfiguration?.osDisk
+                            body.virtualMachineConfiguration?.osDisk
                               ?.ephemeralOSDiskSettings?.["placement"],
                         },
-                    caching:
-                      pool.virtualMachineConfiguration?.osDisk?.["caching"],
-                    diskSizeGB:
-                      pool.virtualMachineConfiguration?.osDisk?.["diskSizeGB"],
-                    managedDisk: !pool.virtualMachineConfiguration?.osDisk
-                      ?.managedDisk
-                      ? undefined
-                      : {
-                          storageAccountType:
-                            pool.virtualMachineConfiguration?.osDisk
-                              ?.managedDisk?.["storageAccountType"],
-                        },
-                    writeAcceleratorEnabled:
-                      pool.virtualMachineConfiguration?.osDisk?.[
-                        "writeAcceleratorEnabled"
-                      ],
-                  },
-              securityProfile: !pool.virtualMachineConfiguration
-                ?.securityProfile
-                ? undefined
-                : {
-                    encryptionAtHost:
-                      pool.virtualMachineConfiguration?.securityProfile?.[
-                        "encryptionAtHost"
-                      ],
-                    securityType:
-                      pool.virtualMachineConfiguration?.securityProfile?.[
-                        "securityType"
-                      ],
-                    uefiSettings: {
-                      secureBootEnabled:
-                        pool.virtualMachineConfiguration?.securityProfile
-                          ?.uefiSettings["secureBootEnabled"],
-                      vTpmEnabled:
-                        pool.virtualMachineConfiguration?.securityProfile
-                          ?.uefiSettings["vTpmEnabled"],
-                    },
-                  },
-              serviceArtifactReference: !pool.virtualMachineConfiguration
-                ?.serviceArtifactReference
-                ? undefined
-                : {
-                    id: pool.virtualMachineConfiguration
-                      ?.serviceArtifactReference?.["id"],
                   },
             },
-        resizeTimeout: pool["resizeTimeout"],
-        resourceTags: pool["resourceTags"],
-        targetDedicatedNodes: pool["targetDedicatedNodes"],
-        targetLowPriorityNodes: pool["targetLowPriorityNodes"],
-        enableAutoScale: pool["enableAutoScale"],
-        autoScaleFormula: pool["autoScaleFormula"],
-        autoScaleEvaluationInterval: pool["autoScaleEvaluationInterval"],
-        enableInterNodeCommunication: pool["enableInterNodeCommunication"],
-        networkConfiguration: !pool.networkConfiguration
+        resizeTimeout: body["resizeTimeout"],
+        targetDedicatedNodes: body["targetDedicatedNodes"],
+        targetLowPriorityNodes: body["targetLowPriorityNodes"],
+        enableAutoScale: body["enableAutoScale"],
+        autoScaleFormula: body["autoScaleFormula"],
+        autoScaleEvaluationInterval: body["autoScaleEvaluationInterval"],
+        enableInterNodeCommunication: body["enableInterNodeCommunication"],
+        networkConfiguration: !body.networkConfiguration
           ? undefined
           : {
-              subnetId: pool.networkConfiguration?.["subnetId"],
+              subnetId: body.networkConfiguration?.["subnetId"],
               dynamicVNetAssignmentScope:
-                pool.networkConfiguration?.["dynamicVNetAssignmentScope"],
-              endpointConfiguration: !pool.networkConfiguration
+                body.networkConfiguration?.["dynamicVNetAssignmentScope"],
+              endpointConfiguration: !body.networkConfiguration
                 ?.endpointConfiguration
                 ? undefined
                 : {
                     inboundNATPools:
-                      pool.networkConfiguration?.endpointConfiguration?.[
+                      body.networkConfiguration?.endpointConfiguration?.[
                         "inboundNatPools"
                       ].map((p) => ({
                         name: p["name"],
@@ -688,65 +643,65 @@ export function _createPoolSend(
                               })),
                       })),
                   },
-              publicIPAddressConfiguration: !pool.networkConfiguration
+              publicIPAddressConfiguration: !body.networkConfiguration
                 ?.publicIpAddressConfiguration
                 ? undefined
                 : {
                     provision:
-                      pool.networkConfiguration?.publicIpAddressConfiguration?.[
+                      body.networkConfiguration?.publicIpAddressConfiguration?.[
                         "ipAddressProvisioningType"
                       ],
                     ipAddressIds:
-                      pool.networkConfiguration?.publicIpAddressConfiguration?.[
+                      body.networkConfiguration?.publicIpAddressConfiguration?.[
                         "ipAddressIds"
                       ],
                   },
               enableAcceleratedNetworking:
-                pool.networkConfiguration?.["enableAcceleratedNetworking"],
+                body.networkConfiguration?.["enableAcceleratedNetworking"],
             },
-        startTask: !pool.startTask
+        startTask: !body.startTask
           ? undefined
           : {
-              commandLine: pool.startTask?.["commandLine"],
-              containerSettings: !pool.startTask?.containerSettings
+              commandLine: body.startTask?.["commandLine"],
+              containerSettings: !body.startTask?.containerSettings
                 ? undefined
                 : {
                     containerRunOptions:
-                      pool.startTask?.containerSettings?.[
+                      body.startTask?.containerSettings?.[
                         "containerRunOptions"
                       ],
-                    imageName: pool.startTask?.containerSettings?.["imageName"],
-                    registry: !pool.startTask?.containerSettings?.registry
+                    imageName: body.startTask?.containerSettings?.["imageName"],
+                    registry: !body.startTask?.containerSettings?.registry
                       ? undefined
                       : {
                           username:
-                            pool.startTask?.containerSettings?.registry?.[
+                            body.startTask?.containerSettings?.registry?.[
                               "username"
                             ],
                           password:
-                            pool.startTask?.containerSettings?.registry?.[
+                            body.startTask?.containerSettings?.registry?.[
                               "password"
                             ],
                           registryServer:
-                            pool.startTask?.containerSettings?.registry?.[
+                            body.startTask?.containerSettings?.registry?.[
                               "registryServer"
                             ],
-                          identityReference: !pool.startTask?.containerSettings
+                          identityReference: !body.startTask?.containerSettings
                             ?.registry?.identityReference
                             ? undefined
                             : {
                                 resourceId:
-                                  pool.startTask?.containerSettings?.registry
+                                  body.startTask?.containerSettings?.registry
                                     ?.identityReference?.["resourceId"],
                               },
                         },
                     workingDirectory:
-                      pool.startTask?.containerSettings?.["workingDirectory"],
+                      body.startTask?.containerSettings?.["workingDirectory"],
                   },
               resourceFiles:
-                pool.startTask?.["resourceFiles"] === undefined
-                  ? pool.startTask?.["resourceFiles"]
-                  : pool.startTask?.["resourceFiles"].map((p) => ({
+                body.startTask?.["resourceFiles"] === undefined
+                  ? body.startTask?.["resourceFiles"]
+                  : body.startTask?.["resourceFiles"].map((p) => ({
                       autoStorageContainerName: p["autoStorageContainerName"],
                       storageContainerUrl: p["storageContainerUrl"],
                       httpUrl: p["httpUrl"],
@@ -758,34 +713,34 @@ export function _createPoolSend(
                         : { resourceId: p.identityReference?.["resourceId"] },
                     })),
               environmentSettings:
-                pool.startTask?.["environmentSettings"] === undefined
-                  ? pool.startTask?.["environmentSettings"]
-                  : pool.startTask?.["environmentSettings"].map((p) => ({
+                body.startTask?.["environmentSettings"] === undefined
+                  ? body.startTask?.["environmentSettings"]
+                  : body.startTask?.["environmentSettings"].map((p) => ({
                       name: p["name"],
                       value: p["value"],
                     })),
-              userIdentity: !pool.startTask?.userIdentity
+              userIdentity: !body.startTask?.userIdentity
                 ? undefined
                 : {
-                    username: pool.startTask?.userIdentity?.["username"],
-                    autoUser: !pool.startTask?.userIdentity?.autoUser
+                    username: body.startTask?.userIdentity?.["username"],
+                    autoUser: !body.startTask?.userIdentity?.autoUser
                       ? undefined
                       : {
                           scope:
-                            pool.startTask?.userIdentity?.autoUser?.["scope"],
+                            body.startTask?.userIdentity?.autoUser?.["scope"],
                           elevationLevel:
-                            pool.startTask?.userIdentity?.autoUser?.[
+                            body.startTask?.userIdentity?.autoUser?.[
                               "elevationLevel"
                             ],
                         },
                   },
-              maxTaskRetryCount: pool.startTask?.["maxTaskRetryCount"],
-              waitForSuccess: pool.startTask?.["waitForSuccess"],
+              maxTaskRetryCount: body.startTask?.["maxTaskRetryCount"],
+              waitForSuccess: body.startTask?.["waitForSuccess"],
             },
         certificateReferences:
-          pool["certificateReferences"] === undefined
-            ? pool["certificateReferences"]
-            : pool["certificateReferences"].map((p) => ({
+          body["certificateReferences"] === undefined
+            ? body["certificateReferences"]
+            : body["certificateReferences"].map((p) => ({
                 thumbprint: p["thumbprint"],
                 thumbprintAlgorithm: p["thumbprintAlgorithm"],
                 storeLocation: p["storeLocation"],
@@ -793,21 +748,21 @@ export function _createPoolSend(
                 visibility: p["visibility"],
               })),
         applicationPackageReferences:
-          pool["applicationPackageReferences"] === undefined
-            ? pool["applicationPackageReferences"]
-            : pool["applicationPackageReferences"].map((p) => ({
+          body["applicationPackageReferences"] === undefined
+            ? body["applicationPackageReferences"]
+            : body["applicationPackageReferences"].map((p) => ({
                 applicationId: p["applicationId"],
                 version: p["version"],
               })),
-        applicationLicenses: pool["applicationLicenses"],
-        taskSlotsPerNode: pool["taskSlotsPerNode"],
-        taskSchedulingPolicy: !pool.taskSchedulingPolicy
+        applicationLicenses: body["applicationLicenses"],
+        taskSlotsPerNode: body["taskSlotsPerNode"],
+        taskSchedulingPolicy: !body.taskSchedulingPolicy
           ? undefined
-          : { nodeFillType: pool.taskSchedulingPolicy?.["nodeFillType"] },
+          : { nodeFillType: body.taskSchedulingPolicy?.["nodeFillType"] },
         userAccounts:
-          pool["userAccounts"] === undefined
-            ? pool["userAccounts"]
-            : pool["userAccounts"].map((p) => ({
+          body["userAccounts"] === undefined
+            ? body["userAccounts"]
+            : body["userAccounts"].map((p) => ({
                 name: p["name"],
                 password: p["password"],
                 elevationLevel: p["elevationLevel"],
@@ -824,16 +779,16 @@ export function _createPoolSend(
                   : { loginMode: p.windowsUserConfiguration?.["loginMode"] },
               })),
         metadata:
-          pool["metadata"] === undefined
-            ? pool["metadata"]
-            : pool["metadata"].map((p) => ({
+          body["metadata"] === undefined
+            ? body["metadata"]
+            : body["metadata"].map((p) => ({
                 name: p["name"],
                 value: p["value"],
               })),
         mountConfiguration:
-          pool["mountConfiguration"] === undefined
-            ? pool["mountConfiguration"]
-            : pool["mountConfiguration"].map((p) => ({
+          body["mountConfiguration"] === undefined
+            ? body["mountConfiguration"]
+            : body["mountConfiguration"].map((p) => ({
                 azureBlobFileSystemConfiguration:
                   !p.azureBlobFileSystemConfiguration
                     ? undefined
@@ -894,65 +849,7 @@ export function _createPoolSend(
                         p.azureFileShareConfiguration?.["mountOptions"],
                     },
               })),
-        targetNodeCommunicationMode: pool["targetNodeCommunicationMode"],
-        upgradePolicy: !pool.upgradePolicy
-          ? undefined
-          : {
-              mode: pool.upgradePolicy?.["mode"],
-              automaticOsUpgradePolicy: !pool.upgradePolicy
-                ?.automaticOSUpgradePolicy
-                ? undefined
-                : {
-                    disableAutomaticRollback:
-                      pool.upgradePolicy?.automaticOSUpgradePolicy?.[
-                        "disableAutomaticRollback"
-                      ],
-                    enableAutomaticOsUpgrade:
-                      pool.upgradePolicy?.automaticOSUpgradePolicy?.[
-                        "enableAutomaticOSUpgrade"
-                      ],
-                    useRollingUpgradePolicy:
-                      pool.upgradePolicy?.automaticOSUpgradePolicy?.[
-                        "useRollingUpgradePolicy"
-                      ],
-                    osRollingUpgradeDeferral:
-                      pool.upgradePolicy?.automaticOSUpgradePolicy?.[
-                        "osRollingUpgradeDeferral"
-                      ],
-                  },
-              rollingUpgradePolicy: !pool.upgradePolicy?.rollingUpgradePolicy
-                ? undefined
-                : {
-                    enableCrossZoneUpgrade:
-                      pool.upgradePolicy?.rollingUpgradePolicy?.[
-                        "enableCrossZoneUpgrade"
-                      ],
-                    maxBatchInstancePercent:
-                      pool.upgradePolicy?.rollingUpgradePolicy?.[
-                        "maxBatchInstancePercent"
-                      ],
-                    maxUnhealthyInstancePercent:
-                      pool.upgradePolicy?.rollingUpgradePolicy?.[
-                        "maxUnhealthyInstancePercent"
-                      ],
-                    maxUnhealthyUpgradedInstancePercent:
-                      pool.upgradePolicy?.rollingUpgradePolicy?.[
-                        "maxUnhealthyUpgradedInstancePercent"
-                      ],
-                    pauseTimeBetweenBatches:
-                      pool.upgradePolicy?.rollingUpgradePolicy?.[
-                        "pauseTimeBetweenBatches"
-                      ],
-                    prioritizeUnhealthyInstances:
-                      pool.upgradePolicy?.rollingUpgradePolicy?.[
-                        "prioritizeUnhealthyInstances"
-                      ],
-                    rollbackFailedInstancesOnPolicyBreach:
-                      pool.upgradePolicy?.rollingUpgradePolicy?.[
-                        "rollbackFailedInstancesOnPolicyBreach"
-                      ],
-                  },
-            },
+        targetNodeCommunicationMode: body["targetNodeCommunicationMode"],
       },
     });
 }
@@ -974,10 +871,10 @@ export async function _createPoolDeserialize(
  */
 export async function createPool(
   context: Client,
-  pool: BatchPoolCreateContent,
+  body: BatchPoolCreateOptions,
   options: CreatePoolOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _createPoolSend(context, pool, options);
+  const result = await _createPoolSend(context, body, options);
   return _createPoolDeserialize(result);
 }
 
@@ -990,12 +887,12 @@ export function _listPoolsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
-        timeOut: options?.timeOutInSeconds,
+        "api-version": "2023-05-01.17.0",
         maxresults: options?.maxresults,
-        $filter: options?.filter,
-        $select: options?.select,
-        $expand: options?.expand,
+        timeOut: options?.timeOutInSeconds,
+        $filter: options?.$filter,
+        $select: options?.$select,
+        $expand: options?.$expand,
       },
     });
 }
@@ -1079,7 +976,7 @@ export async function _listPoolsDeserialize(
                       ? p.virtualMachineConfiguration?.["dataDisks"]
                       : p.virtualMachineConfiguration?.["dataDisks"].map(
                           (p) => ({
-                            logicalUnitNumber: p["lun"],
+                            lun: p["lun"],
                             caching: p["caching"],
                             diskSizeGb: p["diskSizeGB"],
                             storageAccountType: p["storageAccountType"],
@@ -1163,50 +1060,6 @@ export async function _listPoolsDeserialize(
                                 p.virtualMachineConfiguration?.osDisk
                                   ?.ephemeralOSDiskSettings?.["placement"],
                             },
-                        caching:
-                          p.virtualMachineConfiguration?.osDisk?.["caching"],
-                        diskSizeGB:
-                          p.virtualMachineConfiguration?.osDisk?.["diskSizeGB"],
-                        managedDisk: !p.virtualMachineConfiguration?.osDisk
-                          ?.managedDisk
-                          ? undefined
-                          : {
-                              storageAccountType:
-                                p.virtualMachineConfiguration?.osDisk
-                                  ?.managedDisk?.["storageAccountType"],
-                            },
-                        writeAcceleratorEnabled:
-                          p.virtualMachineConfiguration?.osDisk?.[
-                            "writeAcceleratorEnabled"
-                          ],
-                      },
-                  securityProfile: !p.virtualMachineConfiguration
-                    ?.securityProfile
-                    ? undefined
-                    : {
-                        encryptionAtHost:
-                          p.virtualMachineConfiguration?.securityProfile?.[
-                            "encryptionAtHost"
-                          ],
-                        securityType:
-                          p.virtualMachineConfiguration?.securityProfile?.[
-                            "securityType"
-                          ],
-                        uefiSettings: {
-                          secureBootEnabled:
-                            p.virtualMachineConfiguration?.securityProfile
-                              ?.uefiSettings["secureBootEnabled"],
-                          vTpmEnabled:
-                            p.virtualMachineConfiguration?.securityProfile
-                              ?.uefiSettings["vTpmEnabled"],
-                        },
-                      },
-                  serviceArtifactReference: !p.virtualMachineConfiguration
-                    ?.serviceArtifactReference
-                    ? undefined
-                    : {
-                        id: p.virtualMachineConfiguration
-                          ?.serviceArtifactReference?.["id"],
                       },
                 },
             resizeTimeout: p["resizeTimeout"],
@@ -1224,7 +1077,6 @@ export async function _listPoolsDeserialize(
                             value: p["value"],
                           })),
                   })),
-            resourceTags: p["resourceTags"],
             currentDedicatedNodes: p["currentDedicatedNodes"],
             currentLowPriorityNodes: p["currentLowPriorityNodes"],
             targetDedicatedNodes: p["targetDedicatedNodes"],
@@ -1564,64 +1416,6 @@ export async function _listPoolsDeserialize(
                 },
             targetNodeCommunicationMode: p["targetNodeCommunicationMode"],
             currentNodeCommunicationMode: p["currentNodeCommunicationMode"],
-            upgradePolicy: !p.upgradePolicy
-              ? undefined
-              : {
-                  mode: p.upgradePolicy?.["mode"],
-                  automaticOSUpgradePolicy: !p.upgradePolicy
-                    ?.automaticOsUpgradePolicy
-                    ? undefined
-                    : {
-                        disableAutomaticRollback:
-                          p.upgradePolicy?.automaticOsUpgradePolicy?.[
-                            "disableAutomaticRollback"
-                          ],
-                        enableAutomaticOSUpgrade:
-                          p.upgradePolicy?.automaticOsUpgradePolicy?.[
-                            "enableAutomaticOsUpgrade"
-                          ],
-                        useRollingUpgradePolicy:
-                          p.upgradePolicy?.automaticOsUpgradePolicy?.[
-                            "useRollingUpgradePolicy"
-                          ],
-                        osRollingUpgradeDeferral:
-                          p.upgradePolicy?.automaticOsUpgradePolicy?.[
-                            "osRollingUpgradeDeferral"
-                          ],
-                      },
-                  rollingUpgradePolicy: !p.upgradePolicy?.rollingUpgradePolicy
-                    ? undefined
-                    : {
-                        enableCrossZoneUpgrade:
-                          p.upgradePolicy?.rollingUpgradePolicy?.[
-                            "enableCrossZoneUpgrade"
-                          ],
-                        maxBatchInstancePercent:
-                          p.upgradePolicy?.rollingUpgradePolicy?.[
-                            "maxBatchInstancePercent"
-                          ],
-                        maxUnhealthyInstancePercent:
-                          p.upgradePolicy?.rollingUpgradePolicy?.[
-                            "maxUnhealthyInstancePercent"
-                          ],
-                        maxUnhealthyUpgradedInstancePercent:
-                          p.upgradePolicy?.rollingUpgradePolicy?.[
-                            "maxUnhealthyUpgradedInstancePercent"
-                          ],
-                        pauseTimeBetweenBatches:
-                          p.upgradePolicy?.rollingUpgradePolicy?.[
-                            "pauseTimeBetweenBatches"
-                          ],
-                        prioritizeUnhealthyInstances:
-                          p.upgradePolicy?.rollingUpgradePolicy?.[
-                            "prioritizeUnhealthyInstances"
-                          ],
-                        rollbackFailedInstancesOnPolicyBreach:
-                          p.upgradePolicy?.rollingUpgradePolicy?.[
-                            "rollbackFailedInstancesOnPolicyBreach"
-                          ],
-                      },
-                },
           })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
@@ -1650,21 +1444,21 @@ export function _deletePoolSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -1715,21 +1509,21 @@ export function _poolExistsSend(
     .head({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -1768,24 +1562,24 @@ export function _getPoolSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
-        $select: options?.select,
-        $expand: options?.expand,
+        $select: options?.$select,
+        $expand: options?.$expand,
       },
     });
 }
@@ -1866,7 +1660,7 @@ export async function _getPoolDeserialize(
               ? result.body.virtualMachineConfiguration?.["dataDisks"]
               : result.body.virtualMachineConfiguration?.["dataDisks"].map(
                   (p) => ({
-                    logicalUnitNumber: p["lun"],
+                    lun: p["lun"],
                     caching: p["caching"],
                     diskSizeGb: p["diskSizeGB"],
                     storageAccountType: p["storageAccountType"],
@@ -1943,52 +1737,6 @@ export async function _getPoolDeserialize(
                         result.body.virtualMachineConfiguration?.osDisk
                           ?.ephemeralOSDiskSettings?.["placement"],
                     },
-                caching:
-                  result.body.virtualMachineConfiguration?.osDisk?.["caching"],
-                diskSizeGB:
-                  result.body.virtualMachineConfiguration?.osDisk?.[
-                    "diskSizeGB"
-                  ],
-                managedDisk: !result.body.virtualMachineConfiguration?.osDisk
-                  ?.managedDisk
-                  ? undefined
-                  : {
-                      storageAccountType:
-                        result.body.virtualMachineConfiguration?.osDisk
-                          ?.managedDisk?.["storageAccountType"],
-                    },
-                writeAcceleratorEnabled:
-                  result.body.virtualMachineConfiguration?.osDisk?.[
-                    "writeAcceleratorEnabled"
-                  ],
-              },
-          securityProfile: !result.body.virtualMachineConfiguration
-            ?.securityProfile
-            ? undefined
-            : {
-                encryptionAtHost:
-                  result.body.virtualMachineConfiguration?.securityProfile?.[
-                    "encryptionAtHost"
-                  ],
-                securityType:
-                  result.body.virtualMachineConfiguration?.securityProfile?.[
-                    "securityType"
-                  ],
-                uefiSettings: {
-                  secureBootEnabled:
-                    result.body.virtualMachineConfiguration?.securityProfile
-                      ?.uefiSettings["secureBootEnabled"],
-                  vTpmEnabled:
-                    result.body.virtualMachineConfiguration?.securityProfile
-                      ?.uefiSettings["vTpmEnabled"],
-                },
-              },
-          serviceArtifactReference: !result.body.virtualMachineConfiguration
-            ?.serviceArtifactReference
-            ? undefined
-            : {
-                id: result.body.virtualMachineConfiguration
-                  ?.serviceArtifactReference?.["id"],
               },
         },
     resizeTimeout: result.body["resizeTimeout"],
@@ -2006,7 +1754,6 @@ export async function _getPoolDeserialize(
                     value: p["value"],
                   })),
           })),
-    resourceTags: result.body["resourceTags"],
     currentDedicatedNodes: result.body["currentDedicatedNodes"],
     currentLowPriorityNodes: result.body["currentLowPriorityNodes"],
     targetDedicatedNodes: result.body["targetDedicatedNodes"],
@@ -2328,64 +2075,6 @@ export async function _getPoolDeserialize(
         },
     targetNodeCommunicationMode: result.body["targetNodeCommunicationMode"],
     currentNodeCommunicationMode: result.body["currentNodeCommunicationMode"],
-    upgradePolicy: !result.body.upgradePolicy
-      ? undefined
-      : {
-          mode: result.body.upgradePolicy?.["mode"],
-          automaticOSUpgradePolicy: !result.body.upgradePolicy
-            ?.automaticOsUpgradePolicy
-            ? undefined
-            : {
-                disableAutomaticRollback:
-                  result.body.upgradePolicy?.automaticOsUpgradePolicy?.[
-                    "disableAutomaticRollback"
-                  ],
-                enableAutomaticOSUpgrade:
-                  result.body.upgradePolicy?.automaticOsUpgradePolicy?.[
-                    "enableAutomaticOsUpgrade"
-                  ],
-                useRollingUpgradePolicy:
-                  result.body.upgradePolicy?.automaticOsUpgradePolicy?.[
-                    "useRollingUpgradePolicy"
-                  ],
-                osRollingUpgradeDeferral:
-                  result.body.upgradePolicy?.automaticOsUpgradePolicy?.[
-                    "osRollingUpgradeDeferral"
-                  ],
-              },
-          rollingUpgradePolicy: !result.body.upgradePolicy?.rollingUpgradePolicy
-            ? undefined
-            : {
-                enableCrossZoneUpgrade:
-                  result.body.upgradePolicy?.rollingUpgradePolicy?.[
-                    "enableCrossZoneUpgrade"
-                  ],
-                maxBatchInstancePercent:
-                  result.body.upgradePolicy?.rollingUpgradePolicy?.[
-                    "maxBatchInstancePercent"
-                  ],
-                maxUnhealthyInstancePercent:
-                  result.body.upgradePolicy?.rollingUpgradePolicy?.[
-                    "maxUnhealthyInstancePercent"
-                  ],
-                maxUnhealthyUpgradedInstancePercent:
-                  result.body.upgradePolicy?.rollingUpgradePolicy?.[
-                    "maxUnhealthyUpgradedInstancePercent"
-                  ],
-                pauseTimeBetweenBatches:
-                  result.body.upgradePolicy?.rollingUpgradePolicy?.[
-                    "pauseTimeBetweenBatches"
-                  ],
-                prioritizeUnhealthyInstances:
-                  result.body.upgradePolicy?.rollingUpgradePolicy?.[
-                    "prioritizeUnhealthyInstances"
-                  ],
-                rollbackFailedInstancesOnPolicyBreach:
-                  result.body.upgradePolicy?.rollingUpgradePolicy?.[
-                    "rollbackFailedInstancesOnPolicyBreach"
-                  ],
-              },
-        },
   };
 }
 
@@ -2402,7 +2091,7 @@ export async function getPool(
 export function _updatePoolSend(
   context: Client,
   poolId: string,
-  pool: BatchPoolUpdateContent,
+  body: BatchPoolUpdateOptions,
   options: UpdatePoolOptions = { requestOptions: {} },
 ): StreamableMethod<UpdatePool200Response | UpdatePoolDefaultResponse> {
   return context
@@ -2413,67 +2102,67 @@ export function _updatePoolSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        startTask: !pool.startTask
+        startTask: !body.startTask
           ? undefined
           : {
-              commandLine: pool.startTask?.["commandLine"],
-              containerSettings: !pool.startTask?.containerSettings
+              commandLine: body.startTask?.["commandLine"],
+              containerSettings: !body.startTask?.containerSettings
                 ? undefined
                 : {
                     containerRunOptions:
-                      pool.startTask?.containerSettings?.[
+                      body.startTask?.containerSettings?.[
                         "containerRunOptions"
                       ],
-                    imageName: pool.startTask?.containerSettings?.["imageName"],
-                    registry: !pool.startTask?.containerSettings?.registry
+                    imageName: body.startTask?.containerSettings?.["imageName"],
+                    registry: !body.startTask?.containerSettings?.registry
                       ? undefined
                       : {
                           username:
-                            pool.startTask?.containerSettings?.registry?.[
+                            body.startTask?.containerSettings?.registry?.[
                               "username"
                             ],
                           password:
-                            pool.startTask?.containerSettings?.registry?.[
+                            body.startTask?.containerSettings?.registry?.[
                               "password"
                             ],
                           registryServer:
-                            pool.startTask?.containerSettings?.registry?.[
+                            body.startTask?.containerSettings?.registry?.[
                               "registryServer"
                             ],
-                          identityReference: !pool.startTask?.containerSettings
+                          identityReference: !body.startTask?.containerSettings
                             ?.registry?.identityReference
                             ? undefined
                             : {
                                 resourceId:
-                                  pool.startTask?.containerSettings?.registry
+                                  body.startTask?.containerSettings?.registry
                                     ?.identityReference?.["resourceId"],
                               },
                         },
                     workingDirectory:
-                      pool.startTask?.containerSettings?.["workingDirectory"],
+                      body.startTask?.containerSettings?.["workingDirectory"],
                   },
               resourceFiles:
-                pool.startTask?.["resourceFiles"] === undefined
-                  ? pool.startTask?.["resourceFiles"]
-                  : pool.startTask?.["resourceFiles"].map((p) => ({
+                body.startTask?.["resourceFiles"] === undefined
+                  ? body.startTask?.["resourceFiles"]
+                  : body.startTask?.["resourceFiles"].map((p) => ({
                       autoStorageContainerName: p["autoStorageContainerName"],
                       storageContainerUrl: p["storageContainerUrl"],
                       httpUrl: p["httpUrl"],
@@ -2485,34 +2174,34 @@ export function _updatePoolSend(
                         : { resourceId: p.identityReference?.["resourceId"] },
                     })),
               environmentSettings:
-                pool.startTask?.["environmentSettings"] === undefined
-                  ? pool.startTask?.["environmentSettings"]
-                  : pool.startTask?.["environmentSettings"].map((p) => ({
+                body.startTask?.["environmentSettings"] === undefined
+                  ? body.startTask?.["environmentSettings"]
+                  : body.startTask?.["environmentSettings"].map((p) => ({
                       name: p["name"],
                       value: p["value"],
                     })),
-              userIdentity: !pool.startTask?.userIdentity
+              userIdentity: !body.startTask?.userIdentity
                 ? undefined
                 : {
-                    username: pool.startTask?.userIdentity?.["username"],
-                    autoUser: !pool.startTask?.userIdentity?.autoUser
+                    username: body.startTask?.userIdentity?.["username"],
+                    autoUser: !body.startTask?.userIdentity?.autoUser
                       ? undefined
                       : {
                           scope:
-                            pool.startTask?.userIdentity?.autoUser?.["scope"],
+                            body.startTask?.userIdentity?.autoUser?.["scope"],
                           elevationLevel:
-                            pool.startTask?.userIdentity?.autoUser?.[
+                            body.startTask?.userIdentity?.autoUser?.[
                               "elevationLevel"
                             ],
                         },
                   },
-              maxTaskRetryCount: pool.startTask?.["maxTaskRetryCount"],
-              waitForSuccess: pool.startTask?.["waitForSuccess"],
+              maxTaskRetryCount: body.startTask?.["maxTaskRetryCount"],
+              waitForSuccess: body.startTask?.["waitForSuccess"],
             },
         certificateReferences:
-          pool["certificateReferences"] === undefined
-            ? pool["certificateReferences"]
-            : pool["certificateReferences"].map((p) => ({
+          body["certificateReferences"] === undefined
+            ? body["certificateReferences"]
+            : body["certificateReferences"].map((p) => ({
                 thumbprint: p["thumbprint"],
                 thumbprintAlgorithm: p["thumbprintAlgorithm"],
                 storeLocation: p["storeLocation"],
@@ -2520,20 +2209,20 @@ export function _updatePoolSend(
                 visibility: p["visibility"],
               })),
         applicationPackageReferences:
-          pool["applicationPackageReferences"] === undefined
-            ? pool["applicationPackageReferences"]
-            : pool["applicationPackageReferences"].map((p) => ({
+          body["applicationPackageReferences"] === undefined
+            ? body["applicationPackageReferences"]
+            : body["applicationPackageReferences"].map((p) => ({
                 applicationId: p["applicationId"],
                 version: p["version"],
               })),
         metadata:
-          pool["metadata"] === undefined
-            ? pool["metadata"]
-            : pool["metadata"].map((p) => ({
+          body["metadata"] === undefined
+            ? body["metadata"]
+            : body["metadata"].map((p) => ({
                 name: p["name"],
                 value: p["value"],
               })),
-        targetNodeCommunicationMode: pool["targetNodeCommunicationMode"],
+        targetNodeCommunicationMode: body["targetNodeCommunicationMode"],
       },
     });
 }
@@ -2556,10 +2245,10 @@ export async function _updatePoolDeserialize(
 export async function updatePool(
   context: Client,
   poolId: string,
-  pool: BatchPoolUpdateContent,
+  body: BatchPoolUpdateOptions,
   options: UpdatePoolOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _updatePoolSend(context, poolId, pool, options);
+  const result = await _updatePoolSend(context, poolId, body, options);
   return _updatePoolDeserialize(result);
 }
 
@@ -2575,7 +2264,7 @@ export function _disablePoolAutoScaleSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -2604,7 +2293,7 @@ export async function disablePoolAutoScale(
 export function _enablePoolAutoScaleSend(
   context: Client,
   poolId: string,
-  content: BatchPoolEnableAutoScaleContent,
+  body: BatchPoolEnableAutoScaleOptions,
   options: EnablePoolAutoScaleOptions = { requestOptions: {} },
 ): StreamableMethod<
   EnablePoolAutoScale200Response | EnablePoolAutoScaleDefaultResponse
@@ -2617,26 +2306,26 @@ export function _enablePoolAutoScaleSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        autoScaleFormula: content["autoScaleFormula"],
-        autoScaleEvaluationInterval: content["autoScaleEvaluationInterval"],
+        autoScaleFormula: body["autoScaleFormula"],
+        autoScaleEvaluationInterval: body["autoScaleEvaluationInterval"],
       },
     });
 }
@@ -2662,22 +2351,17 @@ export async function _enablePoolAutoScaleDeserialize(
 export async function enablePoolAutoScale(
   context: Client,
   poolId: string,
-  content: BatchPoolEnableAutoScaleContent,
+  body: BatchPoolEnableAutoScaleOptions,
   options: EnablePoolAutoScaleOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _enablePoolAutoScaleSend(
-    context,
-    poolId,
-    content,
-    options,
-  );
+  const result = await _enablePoolAutoScaleSend(context, poolId, body, options);
   return _enablePoolAutoScaleDeserialize(result);
 }
 
 export function _evaluatePoolAutoScaleSend(
   context: Client,
   poolId: string,
-  content: BatchPoolEvaluateAutoScaleContent,
+  body: BatchPoolEvaluateAutoScaleOptions,
   options: EvaluatePoolAutoScaleOptions = { requestOptions: {} },
 ): StreamableMethod<
   EvaluatePoolAutoScale200Response | EvaluatePoolAutoScaleDefaultResponse
@@ -2690,10 +2374,10 @@ export function _evaluatePoolAutoScaleSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
-      body: { autoScaleFormula: content["autoScaleFormula"] },
+      body: { autoScaleFormula: body["autoScaleFormula"] },
     });
 }
 
@@ -2733,13 +2417,13 @@ export async function _evaluatePoolAutoScaleDeserialize(
 export async function evaluatePoolAutoScale(
   context: Client,
   poolId: string,
-  content: BatchPoolEvaluateAutoScaleContent,
+  body: BatchPoolEvaluateAutoScaleOptions,
   options: EvaluatePoolAutoScaleOptions = { requestOptions: {} },
 ): Promise<AutoScaleRun> {
   const result = await _evaluatePoolAutoScaleSend(
     context,
     poolId,
-    content,
+    body,
     options,
   );
   return _evaluatePoolAutoScaleDeserialize(result);
@@ -2748,7 +2432,7 @@ export async function evaluatePoolAutoScale(
 export function _resizePoolSend(
   context: Client,
   poolId: string,
-  content: BatchPoolResizeContent,
+  body: BatchPoolResizeOptions,
   options: ResizePoolOptions = { requestOptions: {} },
 ): StreamableMethod<ResizePool202Response | ResizePoolDefaultResponse> {
   return context
@@ -2759,28 +2443,28 @@ export function _resizePoolSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        targetDedicatedNodes: content["targetDedicatedNodes"],
-        targetLowPriorityNodes: content["targetLowPriorityNodes"],
-        resizeTimeout: content["resizeTimeout"],
-        nodeDeallocationOption: content["nodeDeallocationOption"],
+        targetDedicatedNodes: body["targetDedicatedNodes"],
+        targetLowPriorityNodes: body["targetLowPriorityNodes"],
+        resizeTimeout: body["resizeTimeout"],
+        nodeDeallocationOption: body["nodeDeallocationOption"],
       },
     });
 }
@@ -2807,10 +2491,10 @@ export async function _resizePoolDeserialize(
 export async function resizePool(
   context: Client,
   poolId: string,
-  content: BatchPoolResizeContent,
+  body: BatchPoolResizeOptions,
   options: ResizePoolOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _resizePoolSend(context, poolId, content, options);
+  const result = await _resizePoolSend(context, poolId, body, options);
   return _resizePoolDeserialize(result);
 }
 
@@ -2824,21 +2508,21 @@ export function _stopPoolResizeSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -2875,7 +2559,7 @@ export async function stopPoolResize(
 export function _replacePoolPropertiesSend(
   context: Client,
   poolId: string,
-  pool: BatchPoolReplaceContent,
+  body: BatchPoolReplaceOptions,
   options: ReplacePoolPropertiesOptions = { requestOptions: {} },
 ): StreamableMethod<
   ReplacePoolProperties204Response | ReplacePoolPropertiesDefaultResponse
@@ -2888,53 +2572,53 @@ export function _replacePoolPropertiesSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        startTask: !pool.startTask
+        startTask: !body.startTask
           ? undefined
           : {
-              commandLine: pool.startTask?.["commandLine"],
-              containerSettings: !pool.startTask?.containerSettings
+              commandLine: body.startTask?.["commandLine"],
+              containerSettings: !body.startTask?.containerSettings
                 ? undefined
                 : {
                     containerRunOptions:
-                      pool.startTask?.containerSettings?.[
+                      body.startTask?.containerSettings?.[
                         "containerRunOptions"
                       ],
-                    imageName: pool.startTask?.containerSettings?.["imageName"],
-                    registry: !pool.startTask?.containerSettings?.registry
+                    imageName: body.startTask?.containerSettings?.["imageName"],
+                    registry: !body.startTask?.containerSettings?.registry
                       ? undefined
                       : {
                           username:
-                            pool.startTask?.containerSettings?.registry?.[
+                            body.startTask?.containerSettings?.registry?.[
                               "username"
                             ],
                           password:
-                            pool.startTask?.containerSettings?.registry?.[
+                            body.startTask?.containerSettings?.registry?.[
                               "password"
                             ],
                           registryServer:
-                            pool.startTask?.containerSettings?.registry?.[
+                            body.startTask?.containerSettings?.registry?.[
                               "registryServer"
                             ],
-                          identityReference: !pool.startTask?.containerSettings
+                          identityReference: !body.startTask?.containerSettings
                             ?.registry?.identityReference
                             ? undefined
                             : {
                                 resourceId:
-                                  pool.startTask?.containerSettings?.registry
+                                  body.startTask?.containerSettings?.registry
                                     ?.identityReference?.["resourceId"],
                               },
                         },
                     workingDirectory:
-                      pool.startTask?.containerSettings?.["workingDirectory"],
+                      body.startTask?.containerSettings?.["workingDirectory"],
                   },
               resourceFiles:
-                pool.startTask?.["resourceFiles"] === undefined
-                  ? pool.startTask?.["resourceFiles"]
-                  : pool.startTask?.["resourceFiles"].map((p) => ({
+                body.startTask?.["resourceFiles"] === undefined
+                  ? body.startTask?.["resourceFiles"]
+                  : body.startTask?.["resourceFiles"].map((p) => ({
                       autoStorageContainerName: p["autoStorageContainerName"],
                       storageContainerUrl: p["storageContainerUrl"],
                       httpUrl: p["httpUrl"],
@@ -2946,45 +2630,45 @@ export function _replacePoolPropertiesSend(
                         : { resourceId: p.identityReference?.["resourceId"] },
                     })),
               environmentSettings:
-                pool.startTask?.["environmentSettings"] === undefined
-                  ? pool.startTask?.["environmentSettings"]
-                  : pool.startTask?.["environmentSettings"].map((p) => ({
+                body.startTask?.["environmentSettings"] === undefined
+                  ? body.startTask?.["environmentSettings"]
+                  : body.startTask?.["environmentSettings"].map((p) => ({
                       name: p["name"],
                       value: p["value"],
                     })),
-              userIdentity: !pool.startTask?.userIdentity
+              userIdentity: !body.startTask?.userIdentity
                 ? undefined
                 : {
-                    username: pool.startTask?.userIdentity?.["username"],
-                    autoUser: !pool.startTask?.userIdentity?.autoUser
+                    username: body.startTask?.userIdentity?.["username"],
+                    autoUser: !body.startTask?.userIdentity?.autoUser
                       ? undefined
                       : {
                           scope:
-                            pool.startTask?.userIdentity?.autoUser?.["scope"],
+                            body.startTask?.userIdentity?.autoUser?.["scope"],
                           elevationLevel:
-                            pool.startTask?.userIdentity?.autoUser?.[
+                            body.startTask?.userIdentity?.autoUser?.[
                               "elevationLevel"
                             ],
                         },
                   },
-              maxTaskRetryCount: pool.startTask?.["maxTaskRetryCount"],
-              waitForSuccess: pool.startTask?.["waitForSuccess"],
+              maxTaskRetryCount: body.startTask?.["maxTaskRetryCount"],
+              waitForSuccess: body.startTask?.["waitForSuccess"],
             },
-        certificateReferences: pool["certificateReferences"].map((p) => ({
+        certificateReferences: body["certificateReferences"].map((p) => ({
           thumbprint: p["thumbprint"],
           thumbprintAlgorithm: p["thumbprintAlgorithm"],
           storeLocation: p["storeLocation"],
           storeName: p["storeName"],
           visibility: p["visibility"],
         })),
-        applicationPackageReferences: pool["applicationPackageReferences"].map(
+        applicationPackageReferences: body["applicationPackageReferences"].map(
           (p) => ({ applicationId: p["applicationId"], version: p["version"] }),
         ),
-        metadata: pool["metadata"].map((p) => ({
+        metadata: body["metadata"].map((p) => ({
           name: p["name"],
           value: p["value"],
         })),
-        targetNodeCommunicationMode: pool["targetNodeCommunicationMode"],
+        targetNodeCommunicationMode: body["targetNodeCommunicationMode"],
       },
     });
 }
@@ -3009,13 +2693,13 @@ export async function _replacePoolPropertiesDeserialize(
 export async function replacePoolProperties(
   context: Client,
   poolId: string,
-  pool: BatchPoolReplaceContent,
+  body: BatchPoolReplaceOptions,
   options: ReplacePoolPropertiesOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _replacePoolPropertiesSend(
     context,
     poolId,
-    pool,
+    body,
     options,
   );
   return _replacePoolPropertiesDeserialize(result);
@@ -3024,7 +2708,7 @@ export async function replacePoolProperties(
 export function _removeNodesSend(
   context: Client,
   poolId: string,
-  content: BatchNodeRemoveContent,
+  body: NodeRemoveOptions,
   options: RemoveNodesOptions = { requestOptions: {} },
 ): StreamableMethod<RemoveNodes202Response | RemoveNodesDefaultResponse> {
   return context
@@ -3035,27 +2719,27 @@ export function _removeNodesSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        nodeList: content["nodeList"],
-        resizeTimeout: content["resizeTimeout"],
-        nodeDeallocationOption: content["nodeDeallocationOption"],
+        nodeList: body["nodeList"],
+        resizeTimeout: body["resizeTimeout"],
+        nodeDeallocationOption: body["nodeDeallocationOption"],
       },
     });
 }
@@ -3078,10 +2762,10 @@ export async function _removeNodesDeserialize(
 export async function removeNodes(
   context: Client,
   poolId: string,
-  content: BatchNodeRemoveContent,
+  body: NodeRemoveOptions,
   options: RemoveNodesOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _removeNodesSend(context, poolId, content, options);
+  const result = await _removeNodesSend(context, poolId, body, options);
   return _removeNodesDeserialize(result);
 }
 
@@ -3096,17 +2780,16 @@ export function _listSupportedImagesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
-        timeOut: options?.timeOutInSeconds,
         maxresults: options?.maxresults,
-        $filter: options?.filter,
+        timeOut: options?.timeOutInSeconds,
+        $filter: options?.$filter,
       },
     });
 }
 
 export async function _listSupportedImagesDeserialize(
   result: ListSupportedImages200Response | ListSupportedImagesDefaultResponse,
-): Promise<BatchAccountListSupportedImagesResult> {
+): Promise<AccountListSupportedImagesResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -3141,7 +2824,7 @@ export async function _listSupportedImagesDeserialize(
 export function listSupportedImages(
   context: Client,
   options: ListSupportedImagesOptions = { requestOptions: {} },
-): PagedAsyncIterableIterator<ImageInfo> {
+): PagedAsyncIterableIterator<ImageInformation> {
   return buildPagedAsyncIterator(
     context,
     () => _listSupportedImagesSend(context, options),
@@ -3152,6 +2835,7 @@ export function listSupportedImages(
 
 export function _listPoolNodeCountsSend(
   context: Client,
+  apiVersion: string,
   options: ListPoolNodeCountsOptions = { requestOptions: {} },
 ): StreamableMethod<
   ListPoolNodeCounts200Response | ListPoolNodeCountsDefaultResponse
@@ -3161,17 +2845,17 @@ export function _listPoolNodeCountsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
-        timeOut: options?.timeOutInSeconds,
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
-        $filter: options?.filter,
+        timeOut: options?.timeOutInSeconds,
+        $filter: options?.$filter,
       },
     });
 }
 
 export async function _listPoolNodeCountsDeserialize(
   result: ListPoolNodeCounts200Response | ListPoolNodeCountsDefaultResponse,
-): Promise<BatchPoolNodeCountsListResult> {
+): Promise<PoolNodeCountsListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -3199,7 +2883,6 @@ export async function _listPoolNodeCountsDeserialize(
                   unusable: p.dedicated?.["unusable"],
                   waitingForStartTask: p.dedicated?.["waitingForStartTask"],
                   total: p.dedicated?.["total"],
-                  upgradingOS: p.dedicated?.["upgradingOs"],
                 },
             lowPriority: !p.lowPriority
               ? undefined
@@ -3218,7 +2901,6 @@ export async function _listPoolNodeCountsDeserialize(
                   unusable: p.lowPriority?.["unusable"],
                   waitingForStartTask: p.lowPriority?.["waitingForStartTask"],
                   total: p.lowPriority?.["total"],
-                  upgradingOS: p.lowPriority?.["upgradingOs"],
                 },
           })),
     "odata.nextLink": result.body["odata.nextLink"],
@@ -3232,11 +2914,12 @@ export async function _listPoolNodeCountsDeserialize(
  */
 export function listPoolNodeCounts(
   context: Client,
+  apiVersion: string,
   options: ListPoolNodeCountsOptions = { requestOptions: {} },
-): PagedAsyncIterableIterator<BatchPoolNodeCounts> {
+): PagedAsyncIterableIterator<PoolNodeCounts> {
   return buildPagedAsyncIterator(
     context,
-    () => _listPoolNodeCountsSend(context, options),
+    () => _listPoolNodeCountsSend(context, apiVersion, options),
     _listPoolNodeCountsDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
@@ -3244,6 +2927,7 @@ export function listPoolNodeCounts(
 
 export function _deleteJobSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: DeleteJobOptions = { requestOptions: {} },
 ): StreamableMethod<DeleteJob202Response | DeleteJobDefaultResponse> {
@@ -3252,21 +2936,21 @@ export function _deleteJobSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -3294,15 +2978,17 @@ export async function _deleteJobDeserialize(
  */
 export async function deleteJob(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: DeleteJobOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _deleteJobSend(context, jobId, options);
+  const result = await _deleteJobSend(context, apiVersion, jobId, options);
   return _deleteJobDeserialize(result);
 }
 
 export function _getJobSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: GetJobOptions = { requestOptions: {} },
 ): StreamableMethod<GetJob200Response | GetJobDefaultResponse> {
@@ -3311,24 +2997,24 @@ export function _getJobSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
-        $select: options?.select,
-        $expand: options?.expand,
+        $select: options?.$select,
+        $expand: options?.$expand,
       },
     });
 }
@@ -3812,7 +3498,7 @@ export async function _getJobDeserialize(
                             : result.body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                 "dataDisks"
                               ].map((p) => ({
-                                logicalUnitNumber: p["lun"],
+                                lun: p["lun"],
                                 caching: p["caching"],
                                 diskSizeGb: p["diskSizeGB"],
                                 storageAccountType: p["storageAccountType"],
@@ -3922,72 +3608,6 @@ export async function _getJobDeserialize(
                                         "placement"
                                       ],
                                   },
-                              caching:
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.osDisk?.[
-                                  "caching"
-                                ],
-                              diskSizeGB:
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.osDisk?.[
-                                  "diskSizeGB"
-                                ],
-                              managedDisk: !result.body.poolInfo
-                                .autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.osDisk
-                                ?.managedDisk
-                                ? undefined
-                                : {
-                                    storageAccountType:
-                                      result.body.poolInfo.autoPoolSpecification
-                                        ?.pool?.virtualMachineConfiguration
-                                        ?.osDisk?.managedDisk?.[
-                                        "storageAccountType"
-                                      ],
-                                  },
-                              writeAcceleratorEnabled:
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.osDisk?.[
-                                  "writeAcceleratorEnabled"
-                                ],
-                            },
-                        securityProfile: !result.body.poolInfo
-                          .autoPoolSpecification?.pool
-                          ?.virtualMachineConfiguration?.securityProfile
-                          ? undefined
-                          : {
-                              encryptionAtHost:
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration
-                                  ?.securityProfile?.["encryptionAtHost"],
-                              securityType:
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration
-                                  ?.securityProfile?.["securityType"],
-                              uefiSettings: {
-                                secureBootEnabled:
-                                  result.body.poolInfo.autoPoolSpecification
-                                    ?.pool?.virtualMachineConfiguration
-                                    ?.securityProfile?.uefiSettings[
-                                    "secureBootEnabled"
-                                  ],
-                                vTpmEnabled:
-                                  result.body.poolInfo.autoPoolSpecification
-                                    ?.pool?.virtualMachineConfiguration
-                                    ?.securityProfile?.uefiSettings[
-                                    "vTpmEnabled"
-                                  ],
-                              },
-                            },
-                        serviceArtifactReference: !result.body.poolInfo
-                          .autoPoolSpecification?.pool
-                          ?.virtualMachineConfiguration
-                          ?.serviceArtifactReference
-                          ? undefined
-                          : {
-                              id: result.body.poolInfo.autoPoolSpecification
-                                ?.pool?.virtualMachineConfiguration
-                                ?.serviceArtifactReference?.["id"],
                             },
                       },
                   taskSlotsPerNode:
@@ -4005,10 +3625,6 @@ export async function _getJobDeserialize(
                   resizeTimeout:
                     result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "resizeTimeout"
-                    ],
-                  resourceTags:
-                    result.body.poolInfo.autoPoolSpecification?.pool?.[
-                      "resourceTags"
                     ],
                   targetDedicatedNodes:
                     result.body.poolInfo.autoPoolSpecification?.pool?.[
@@ -4394,80 +4010,6 @@ export async function _getJobDeserialize(
                     result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "targetNodeCommunicationMode"
                     ],
-                  upgradePolicy: !result.body.poolInfo.autoPoolSpecification
-                    ?.pool?.upgradePolicy
-                    ? undefined
-                    : {
-                        mode: result.body.poolInfo.autoPoolSpecification?.pool
-                          ?.upgradePolicy?.["mode"],
-                        automaticOSUpgradePolicy: !result.body.poolInfo
-                          .autoPoolSpecification?.pool?.upgradePolicy
-                          ?.automaticOsUpgradePolicy
-                          ? undefined
-                          : {
-                              disableAutomaticRollback:
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.upgradePolicy?.automaticOsUpgradePolicy?.[
-                                  "disableAutomaticRollback"
-                                ],
-                              enableAutomaticOSUpgrade:
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.upgradePolicy?.automaticOsUpgradePolicy?.[
-                                  "enableAutomaticOsUpgrade"
-                                ],
-                              useRollingUpgradePolicy:
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.upgradePolicy?.automaticOsUpgradePolicy?.[
-                                  "useRollingUpgradePolicy"
-                                ],
-                              osRollingUpgradeDeferral:
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.upgradePolicy?.automaticOsUpgradePolicy?.[
-                                  "osRollingUpgradeDeferral"
-                                ],
-                            },
-                        rollingUpgradePolicy: !result.body.poolInfo
-                          .autoPoolSpecification?.pool?.upgradePolicy
-                          ?.rollingUpgradePolicy
-                          ? undefined
-                          : {
-                              enableCrossZoneUpgrade:
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                  "enableCrossZoneUpgrade"
-                                ],
-                              maxBatchInstancePercent:
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                  "maxBatchInstancePercent"
-                                ],
-                              maxUnhealthyInstancePercent:
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                  "maxUnhealthyInstancePercent"
-                                ],
-                              maxUnhealthyUpgradedInstancePercent:
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                  "maxUnhealthyUpgradedInstancePercent"
-                                ],
-                              pauseTimeBetweenBatches:
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                  "pauseTimeBetweenBatches"
-                                ],
-                              prioritizeUnhealthyInstances:
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                  "prioritizeUnhealthyInstances"
-                                ],
-                              rollbackFailedInstancesOnPolicyBreach:
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                  "rollbackFailedInstancesOnPolicyBreach"
-                                ],
-                            },
-                      },
                 },
           },
     },
@@ -4508,7 +4050,7 @@ export async function _getJobDeserialize(
                         "details"
                       ].map((p) => ({ name: p["name"], value: p["value"] })),
               },
-          terminationReason: result.body.executionInfo?.["terminateReason"],
+          terminateReason: result.body.executionInfo?.["terminateReason"],
         },
     stats: !result.body.stats
       ? undefined
@@ -4516,8 +4058,8 @@ export async function _getJobDeserialize(
           url: result.body.stats?.["url"],
           startTime: new Date(result.body.stats?.["startTime"]),
           lastUpdateTime: new Date(result.body.stats?.["lastUpdateTime"]),
-          userCpuTime: result.body.stats?.["userCPUTime"],
-          kernelCpuTime: result.body.stats?.["kernelCPUTime"],
+          userCPUTime: result.body.stats?.["userCPUTime"],
+          kernelCPUTime: result.body.stats?.["kernelCPUTime"],
           wallClockTime: result.body.stats?.["wallClockTime"],
           readIOps: result.body.stats?.["readIOps"],
           writeIOps: result.body.stats?.["writeIOps"],
@@ -4534,17 +4076,19 @@ export async function _getJobDeserialize(
 /** Gets information about the specified Job. */
 export async function getJob(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: GetJobOptions = { requestOptions: {} },
 ): Promise<BatchJob> {
-  const result = await _getJobSend(context, jobId, options);
+  const result = await _getJobSend(context, apiVersion, jobId, options);
   return _getJobDeserialize(result);
 }
 
 export function _updateJobSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
-  job: BatchJobUpdateContent,
+  body: BatchJobUpdateOptions,
   options: UpdateJobOptions = { requestOptions: {} },
 ): StreamableMethod<UpdateJob200Response | UpdateJobDefaultResponse> {
   return context
@@ -4555,166 +4099,168 @@ export function _updateJobSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        priority: job["priority"],
-        allowTaskPreemption: job["allowTaskPreemption"],
-        maxParallelTasks: job["maxParallelTasks"],
-        constraints: !job.constraints
+        priority: body["priority"],
+        allowTaskPreemption: body["allowTaskPreemption"],
+        maxParallelTasks: body["maxParallelTasks"],
+        constraints: !body.constraints
           ? undefined
           : {
-              maxWallClockTime: job.constraints?.["maxWallClockTime"],
-              maxTaskRetryCount: job.constraints?.["maxTaskRetryCount"],
+              maxWallClockTime: body.constraints?.["maxWallClockTime"],
+              maxTaskRetryCount: body.constraints?.["maxTaskRetryCount"],
             },
-        poolInfo: !job.poolInfo
+        poolInfo: !body.poolInfo
           ? undefined
           : {
-              poolId: job.poolInfo?.["poolId"],
-              autoPoolSpecification: !job.poolInfo?.autoPoolSpecification
+              poolId: body.poolInfo?.["poolId"],
+              autoPoolSpecification: !body.poolInfo?.autoPoolSpecification
                 ? undefined
                 : {
                     autoPoolIdPrefix:
-                      job.poolInfo?.autoPoolSpecification?.["autoPoolIdPrefix"],
+                      body.poolInfo?.autoPoolSpecification?.[
+                        "autoPoolIdPrefix"
+                      ],
                     poolLifetimeOption:
-                      job.poolInfo?.autoPoolSpecification?.[
+                      body.poolInfo?.autoPoolSpecification?.[
                         "poolLifetimeOption"
                       ],
                     keepAlive:
-                      job.poolInfo?.autoPoolSpecification?.["keepAlive"],
-                    pool: !job.poolInfo?.autoPoolSpecification?.pool
+                      body.poolInfo?.autoPoolSpecification?.["keepAlive"],
+                    pool: !body.poolInfo?.autoPoolSpecification?.pool
                       ? undefined
                       : {
                           displayName:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "displayName"
                             ],
                           vmSize:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "vmSize"
                             ],
-                          cloudServiceConfiguration: !job.poolInfo
+                          cloudServiceConfiguration: !body.poolInfo
                             ?.autoPoolSpecification?.pool
                             ?.cloudServiceConfiguration
                             ? undefined
                             : {
                                 osFamily:
-                                  job.poolInfo?.autoPoolSpecification?.pool
+                                  body.poolInfo?.autoPoolSpecification?.pool
                                     ?.cloudServiceConfiguration?.["osFamily"],
                                 osVersion:
-                                  job.poolInfo?.autoPoolSpecification?.pool
+                                  body.poolInfo?.autoPoolSpecification?.pool
                                     ?.cloudServiceConfiguration?.["osVersion"],
                               },
-                          virtualMachineConfiguration: !job.poolInfo
+                          virtualMachineConfiguration: !body.poolInfo
                             ?.autoPoolSpecification?.pool
                             ?.virtualMachineConfiguration
                             ? undefined
                             : {
                                 imageReference: {
                                   publisher:
-                                    job.poolInfo?.autoPoolSpecification?.pool
+                                    body.poolInfo?.autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.imageReference["publisher"],
                                   offer:
-                                    job.poolInfo?.autoPoolSpecification?.pool
+                                    body.poolInfo?.autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.imageReference["offer"],
-                                  sku: job.poolInfo?.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
+                                  sku: body.poolInfo?.autoPoolSpecification
+                                    ?.pool?.virtualMachineConfiguration
                                     ?.imageReference["sku"],
                                   version:
-                                    job.poolInfo?.autoPoolSpecification?.pool
+                                    body.poolInfo?.autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.imageReference["version"],
                                   virtualMachineImageId:
-                                    job.poolInfo?.autoPoolSpecification?.pool
+                                    body.poolInfo?.autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.imageReference["virtualMachineImageId"],
                                 },
                                 nodeAgentSKUId:
-                                  job.poolInfo?.autoPoolSpecification?.pool
+                                  body.poolInfo?.autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration?.[
                                     "nodeAgentSkuId"
                                   ],
-                                windowsConfiguration: !job.poolInfo
+                                windowsConfiguration: !body.poolInfo
                                   ?.autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration
                                   ?.windowsConfiguration
                                   ? undefined
                                   : {
                                       enableAutomaticUpdates:
-                                        job.poolInfo?.autoPoolSpecification
+                                        body.poolInfo?.autoPoolSpecification
                                           ?.pool?.virtualMachineConfiguration
                                           ?.windowsConfiguration?.[
                                           "enableAutomaticUpdates"
                                         ],
                                     },
                                 dataDisks:
-                                  job.poolInfo?.autoPoolSpecification?.pool
+                                  body.poolInfo?.autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration?.[
                                     "dataDisks"
                                   ] === undefined
-                                    ? job.poolInfo?.autoPoolSpecification?.pool
+                                    ? body.poolInfo?.autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration?.[
                                         "dataDisks"
                                       ]
-                                    : job.poolInfo?.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                    : body.poolInfo?.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                         "dataDisks"
                                       ].map((p) => ({
-                                        lun: p["logicalUnitNumber"],
+                                        lun: p["lun"],
                                         caching: p["caching"],
                                         diskSizeGB: p["diskSizeGb"],
                                         storageAccountType:
                                           p["storageAccountType"],
                                       })),
                                 licenseType:
-                                  job.poolInfo?.autoPoolSpecification?.pool
+                                  body.poolInfo?.autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration?.[
                                     "licenseType"
                                   ],
-                                containerConfiguration: !job.poolInfo
+                                containerConfiguration: !body.poolInfo
                                   ?.autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration
                                   ?.containerConfiguration
                                   ? undefined
                                   : {
-                                      type: job.poolInfo?.autoPoolSpecification
+                                      type: body.poolInfo?.autoPoolSpecification
                                         ?.pool?.virtualMachineConfiguration
                                         ?.containerConfiguration?.["type"],
                                       containerImageNames:
-                                        job.poolInfo?.autoPoolSpecification
+                                        body.poolInfo?.autoPoolSpecification
                                           ?.pool?.virtualMachineConfiguration
                                           ?.containerConfiguration?.[
                                           "containerImageNames"
                                         ],
                                       containerRegistries:
-                                        job.poolInfo?.autoPoolSpecification
+                                        body.poolInfo?.autoPoolSpecification
                                           ?.pool?.virtualMachineConfiguration
                                           ?.containerConfiguration?.[
                                           "containerRegistries"
                                         ] === undefined
-                                          ? job.poolInfo?.autoPoolSpecification
+                                          ? body.poolInfo?.autoPoolSpecification
                                               ?.pool
                                               ?.virtualMachineConfiguration
                                               ?.containerConfiguration?.[
                                               "containerRegistries"
                                             ]
-                                          : job.poolInfo?.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                          : body.poolInfo?.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
                                               "containerRegistries"
                                             ].map((p) => ({
                                               username: p["username"],
@@ -4732,42 +4278,42 @@ export function _updateJobSend(
                                                     },
                                             })),
                                     },
-                                diskEncryptionConfiguration: !job.poolInfo
+                                diskEncryptionConfiguration: !body.poolInfo
                                   ?.autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration
                                   ?.diskEncryptionConfiguration
                                   ? undefined
                                   : {
                                       targets:
-                                        job.poolInfo?.autoPoolSpecification
+                                        body.poolInfo?.autoPoolSpecification
                                           ?.pool?.virtualMachineConfiguration
                                           ?.diskEncryptionConfiguration?.[
                                           "targets"
                                         ],
                                     },
-                                nodePlacementConfiguration: !job.poolInfo
+                                nodePlacementConfiguration: !body.poolInfo
                                   ?.autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration
                                   ?.nodePlacementConfiguration
                                   ? undefined
                                   : {
                                       policy:
-                                        job.poolInfo?.autoPoolSpecification
+                                        body.poolInfo?.autoPoolSpecification
                                           ?.pool?.virtualMachineConfiguration
                                           ?.nodePlacementConfiguration?.[
                                           "policy"
                                         ],
                                     },
                                 extensions:
-                                  job.poolInfo?.autoPoolSpecification?.pool
+                                  body.poolInfo?.autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration?.[
                                     "extensions"
                                   ] === undefined
-                                    ? job.poolInfo?.autoPoolSpecification?.pool
+                                    ? body.poolInfo?.autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration?.[
                                         "extensions"
                                       ]
-                                    : job.poolInfo?.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                    : body.poolInfo?.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                         "extensions"
                                       ].map((p) => ({
                                         name: p["name"],
@@ -4785,18 +4331,18 @@ export function _updateJobSend(
                                         provisionAfterExtensions:
                                           p["provisionAfterExtensions"],
                                       })),
-                                osDisk: !job.poolInfo?.autoPoolSpecification
+                                osDisk: !body.poolInfo?.autoPoolSpecification
                                   ?.pool?.virtualMachineConfiguration?.osDisk
                                   ? undefined
                                   : {
-                                      ephemeralOSDiskSettings: !job.poolInfo
+                                      ephemeralOSDiskSettings: !body.poolInfo
                                         ?.autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration?.osDisk
                                         ?.ephemeralOSDiskSettings
                                         ? undefined
                                         : {
                                             placement:
-                                              job.poolInfo
+                                              body.poolInfo
                                                 ?.autoPoolSpecification?.pool
                                                 ?.virtualMachineConfiguration
                                                 ?.osDisk
@@ -4804,137 +4350,67 @@ export function _updateJobSend(
                                                 "placement"
                                               ],
                                           },
-                                      caching:
-                                        job.poolInfo?.autoPoolSpecification
-                                          ?.pool?.virtualMachineConfiguration
-                                          ?.osDisk?.["caching"],
-                                      diskSizeGB:
-                                        job.poolInfo?.autoPoolSpecification
-                                          ?.pool?.virtualMachineConfiguration
-                                          ?.osDisk?.["diskSizeGB"],
-                                      managedDisk: !job.poolInfo
-                                        ?.autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration?.osDisk
-                                        ?.managedDisk
-                                        ? undefined
-                                        : {
-                                            storageAccountType:
-                                              job.poolInfo
-                                                ?.autoPoolSpecification?.pool
-                                                ?.virtualMachineConfiguration
-                                                ?.osDisk?.managedDisk?.[
-                                                "storageAccountType"
-                                              ],
-                                          },
-                                      writeAcceleratorEnabled:
-                                        job.poolInfo?.autoPoolSpecification
-                                          ?.pool?.virtualMachineConfiguration
-                                          ?.osDisk?.["writeAcceleratorEnabled"],
-                                    },
-                                securityProfile: !job.poolInfo
-                                  ?.autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.securityProfile
-                                  ? undefined
-                                  : {
-                                      encryptionAtHost:
-                                        job.poolInfo?.autoPoolSpecification
-                                          ?.pool?.virtualMachineConfiguration
-                                          ?.securityProfile?.[
-                                          "encryptionAtHost"
-                                        ],
-                                      securityType:
-                                        job.poolInfo?.autoPoolSpecification
-                                          ?.pool?.virtualMachineConfiguration
-                                          ?.securityProfile?.["securityType"],
-                                      uefiSettings: {
-                                        secureBootEnabled:
-                                          job.poolInfo?.autoPoolSpecification
-                                            ?.pool?.virtualMachineConfiguration
-                                            ?.securityProfile?.uefiSettings[
-                                            "secureBootEnabled"
-                                          ],
-                                        vTpmEnabled:
-                                          job.poolInfo?.autoPoolSpecification
-                                            ?.pool?.virtualMachineConfiguration
-                                            ?.securityProfile?.uefiSettings[
-                                            "vTpmEnabled"
-                                          ],
-                                      },
-                                    },
-                                serviceArtifactReference: !job.poolInfo
-                                  ?.autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration
-                                  ?.serviceArtifactReference
-                                  ? undefined
-                                  : {
-                                      id: job.poolInfo?.autoPoolSpecification
-                                        ?.pool?.virtualMachineConfiguration
-                                        ?.serviceArtifactReference?.["id"],
                                     },
                               },
                           taskSlotsPerNode:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "taskSlotsPerNode"
                             ],
-                          taskSchedulingPolicy: !job.poolInfo
+                          taskSchedulingPolicy: !body.poolInfo
                             ?.autoPoolSpecification?.pool?.taskSchedulingPolicy
                             ? undefined
                             : {
                                 nodeFillType:
-                                  job.poolInfo?.autoPoolSpecification?.pool
+                                  body.poolInfo?.autoPoolSpecification?.pool
                                     ?.taskSchedulingPolicy?.["nodeFillType"],
                               },
                           resizeTimeout:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "resizeTimeout"
                             ],
-                          resourceTags:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
-                              "resourceTags"
-                            ],
                           targetDedicatedNodes:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "targetDedicatedNodes"
                             ],
                           targetLowPriorityNodes:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "targetLowPriorityNodes"
                             ],
                           enableAutoScale:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "enableAutoScale"
                             ],
                           autoScaleFormula:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "autoScaleFormula"
                             ],
                           autoScaleEvaluationInterval:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "autoScaleEvaluationInterval"
                             ],
                           enableInterNodeCommunication:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "enableInterNodeCommunication"
                             ],
-                          networkConfiguration: !job.poolInfo
+                          networkConfiguration: !body.poolInfo
                             ?.autoPoolSpecification?.pool?.networkConfiguration
                             ? undefined
                             : {
                                 subnetId:
-                                  job.poolInfo?.autoPoolSpecification?.pool
+                                  body.poolInfo?.autoPoolSpecification?.pool
                                     ?.networkConfiguration?.["subnetId"],
                                 dynamicVNetAssignmentScope:
-                                  job.poolInfo?.autoPoolSpecification?.pool
+                                  body.poolInfo?.autoPoolSpecification?.pool
                                     ?.networkConfiguration?.[
                                     "dynamicVNetAssignmentScope"
                                   ],
-                                endpointConfiguration: !job.poolInfo
+                                endpointConfiguration: !body.poolInfo
                                   ?.autoPoolSpecification?.pool
                                   ?.networkConfiguration?.endpointConfiguration
                                   ? undefined
                                   : {
                                       inboundNATPools:
-                                        job.poolInfo?.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                        body.poolInfo?.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                           "inboundNatPools"
                                         ].map((p) => ({
                                           name: p["name"],
@@ -4960,81 +4436,81 @@ export function _updateJobSend(
                                                 })),
                                         })),
                                     },
-                                publicIPAddressConfiguration: !job.poolInfo
+                                publicIPAddressConfiguration: !body.poolInfo
                                   ?.autoPoolSpecification?.pool
                                   ?.networkConfiguration
                                   ?.publicIpAddressConfiguration
                                   ? undefined
                                   : {
                                       provision:
-                                        job.poolInfo?.autoPoolSpecification
+                                        body.poolInfo?.autoPoolSpecification
                                           ?.pool?.networkConfiguration
                                           ?.publicIpAddressConfiguration?.[
                                           "ipAddressProvisioningType"
                                         ],
                                       ipAddressIds:
-                                        job.poolInfo?.autoPoolSpecification
+                                        body.poolInfo?.autoPoolSpecification
                                           ?.pool?.networkConfiguration
                                           ?.publicIpAddressConfiguration?.[
                                           "ipAddressIds"
                                         ],
                                     },
                                 enableAcceleratedNetworking:
-                                  job.poolInfo?.autoPoolSpecification?.pool
+                                  body.poolInfo?.autoPoolSpecification?.pool
                                     ?.networkConfiguration?.[
                                     "enableAcceleratedNetworking"
                                   ],
                               },
-                          startTask: !job.poolInfo?.autoPoolSpecification?.pool
+                          startTask: !body.poolInfo?.autoPoolSpecification?.pool
                             ?.startTask
                             ? undefined
                             : {
                                 commandLine:
-                                  job.poolInfo?.autoPoolSpecification?.pool
+                                  body.poolInfo?.autoPoolSpecification?.pool
                                     ?.startTask?.["commandLine"],
-                                containerSettings: !job.poolInfo
+                                containerSettings: !body.poolInfo
                                   ?.autoPoolSpecification?.pool?.startTask
                                   ?.containerSettings
                                   ? undefined
                                   : {
                                       containerRunOptions:
-                                        job.poolInfo?.autoPoolSpecification
+                                        body.poolInfo?.autoPoolSpecification
                                           ?.pool?.startTask
                                           ?.containerSettings?.[
                                           "containerRunOptions"
                                         ],
                                       imageName:
-                                        job.poolInfo?.autoPoolSpecification
+                                        body.poolInfo?.autoPoolSpecification
                                           ?.pool?.startTask
                                           ?.containerSettings?.["imageName"],
-                                      registry: !job.poolInfo
+                                      registry: !body.poolInfo
                                         ?.autoPoolSpecification?.pool?.startTask
                                         ?.containerSettings?.registry
                                         ? undefined
                                         : {
                                             username:
-                                              job.poolInfo
+                                              body.poolInfo
                                                 ?.autoPoolSpecification?.pool
                                                 ?.startTask?.containerSettings
                                                 ?.registry?.["username"],
                                             password:
-                                              job.poolInfo
+                                              body.poolInfo
                                                 ?.autoPoolSpecification?.pool
                                                 ?.startTask?.containerSettings
                                                 ?.registry?.["password"],
                                             registryServer:
-                                              job.poolInfo
+                                              body.poolInfo
                                                 ?.autoPoolSpecification?.pool
                                                 ?.startTask?.containerSettings
                                                 ?.registry?.["registryServer"],
-                                            identityReference: !job.poolInfo
+                                            identityReference: !body.poolInfo
                                               ?.autoPoolSpecification?.pool
                                               ?.startTask?.containerSettings
                                               ?.registry?.identityReference
                                               ? undefined
                                               : {
                                                   resourceId:
-                                                    job.poolInfo
+                                                    body.poolInfo
                                                       ?.autoPoolSpecification
                                                       ?.pool?.startTask
                                                       ?.containerSettings
@@ -5045,18 +4521,18 @@ export function _updateJobSend(
                                                 },
                                           },
                                       workingDirectory:
-                                        job.poolInfo?.autoPoolSpecification
+                                        body.poolInfo?.autoPoolSpecification
                                           ?.pool?.startTask
                                           ?.containerSettings?.[
                                           "workingDirectory"
                                         ],
                                     },
                                 resourceFiles:
-                                  job.poolInfo?.autoPoolSpecification?.pool
+                                  body.poolInfo?.autoPoolSpecification?.pool
                                     ?.startTask?.["resourceFiles"] === undefined
-                                    ? job.poolInfo?.autoPoolSpecification?.pool
+                                    ? body.poolInfo?.autoPoolSpecification?.pool
                                         ?.startTask?.["resourceFiles"]
-                                    : job.poolInfo?.autoPoolSpecification?.pool?.startTask?.[
+                                    : body.poolInfo?.autoPoolSpecification?.pool?.startTask?.[
                                         "resourceFiles"
                                       ].map((p) => ({
                                         autoStorageContainerName:
@@ -5077,59 +4553,59 @@ export function _updateJobSend(
                                             },
                                       })),
                                 environmentSettings:
-                                  job.poolInfo?.autoPoolSpecification?.pool
+                                  body.poolInfo?.autoPoolSpecification?.pool
                                     ?.startTask?.["environmentSettings"] ===
                                   undefined
-                                    ? job.poolInfo?.autoPoolSpecification?.pool
+                                    ? body.poolInfo?.autoPoolSpecification?.pool
                                         ?.startTask?.["environmentSettings"]
-                                    : job.poolInfo?.autoPoolSpecification?.pool?.startTask?.[
+                                    : body.poolInfo?.autoPoolSpecification?.pool?.startTask?.[
                                         "environmentSettings"
                                       ].map((p) => ({
                                         name: p["name"],
                                         value: p["value"],
                                       })),
-                                userIdentity: !job.poolInfo
+                                userIdentity: !body.poolInfo
                                   ?.autoPoolSpecification?.pool?.startTask
                                   ?.userIdentity
                                   ? undefined
                                   : {
                                       username:
-                                        job.poolInfo?.autoPoolSpecification
+                                        body.poolInfo?.autoPoolSpecification
                                           ?.pool?.startTask?.userIdentity?.[
                                           "username"
                                         ],
-                                      autoUser: !job.poolInfo
+                                      autoUser: !body.poolInfo
                                         ?.autoPoolSpecification?.pool?.startTask
                                         ?.userIdentity?.autoUser
                                         ? undefined
                                         : {
                                             scope:
-                                              job.poolInfo
+                                              body.poolInfo
                                                 ?.autoPoolSpecification?.pool
                                                 ?.startTask?.userIdentity
                                                 ?.autoUser?.["scope"],
                                             elevationLevel:
-                                              job.poolInfo
+                                              body.poolInfo
                                                 ?.autoPoolSpecification?.pool
                                                 ?.startTask?.userIdentity
                                                 ?.autoUser?.["elevationLevel"],
                                           },
                                     },
                                 maxTaskRetryCount:
-                                  job.poolInfo?.autoPoolSpecification?.pool
+                                  body.poolInfo?.autoPoolSpecification?.pool
                                     ?.startTask?.["maxTaskRetryCount"],
                                 waitForSuccess:
-                                  job.poolInfo?.autoPoolSpecification?.pool
+                                  body.poolInfo?.autoPoolSpecification?.pool
                                     ?.startTask?.["waitForSuccess"],
                               },
                           certificateReferences:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "certificateReferences"
                             ] === undefined
-                              ? job.poolInfo?.autoPoolSpecification?.pool?.[
+                              ? body.poolInfo?.autoPoolSpecification?.pool?.[
                                   "certificateReferences"
                                 ]
-                              : job.poolInfo?.autoPoolSpecification?.pool?.[
+                              : body.poolInfo?.autoPoolSpecification?.pool?.[
                                   "certificateReferences"
                                 ].map((p) => ({
                                   thumbprint: p["thumbprint"],
@@ -5139,30 +4615,30 @@ export function _updateJobSend(
                                   visibility: p["visibility"],
                                 })),
                           applicationPackageReferences:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "applicationPackageReferences"
                             ] === undefined
-                              ? job.poolInfo?.autoPoolSpecification?.pool?.[
+                              ? body.poolInfo?.autoPoolSpecification?.pool?.[
                                   "applicationPackageReferences"
                                 ]
-                              : job.poolInfo?.autoPoolSpecification?.pool?.[
+                              : body.poolInfo?.autoPoolSpecification?.pool?.[
                                   "applicationPackageReferences"
                                 ].map((p) => ({
                                   applicationId: p["applicationId"],
                                   version: p["version"],
                                 })),
                           applicationLicenses:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "applicationLicenses"
                             ],
                           userAccounts:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "userAccounts"
                             ] === undefined
-                              ? job.poolInfo?.autoPoolSpecification?.pool?.[
+                              ? body.poolInfo?.autoPoolSpecification?.pool?.[
                                   "userAccounts"
                                 ]
-                              : job.poolInfo?.autoPoolSpecification?.pool?.[
+                              : body.poolInfo?.autoPoolSpecification?.pool?.[
                                   "userAccounts"
                                 ].map((p) => ({
                                   name: p["name"],
@@ -5194,26 +4670,26 @@ export function _updateJobSend(
                                         },
                                 })),
                           metadata:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "metadata"
                             ] === undefined
-                              ? job.poolInfo?.autoPoolSpecification?.pool?.[
+                              ? body.poolInfo?.autoPoolSpecification?.pool?.[
                                   "metadata"
                                 ]
-                              : job.poolInfo?.autoPoolSpecification?.pool?.[
+                              : body.poolInfo?.autoPoolSpecification?.pool?.[
                                   "metadata"
                                 ].map((p) => ({
                                   name: p["name"],
                                   value: p["value"],
                                 })),
                           mountConfiguration:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "mountConfiguration"
                             ] === undefined
-                              ? job.poolInfo?.autoPoolSpecification?.pool?.[
+                              ? body.poolInfo?.autoPoolSpecification?.pool?.[
                                   "mountConfiguration"
                                 ]
-                              : job.poolInfo?.autoPoolSpecification?.pool?.[
+                              : body.poolInfo?.autoPoolSpecification?.pool?.[
                                   "mountConfiguration"
                                 ].map((p) => ({
                                   azureBlobFileSystemConfiguration:
@@ -5330,102 +4806,17 @@ export function _updateJobSend(
                                         },
                                 })),
                           targetNodeCommunicationMode:
-                            job.poolInfo?.autoPoolSpecification?.pool?.[
+                            body.poolInfo?.autoPoolSpecification?.pool?.[
                               "targetNodeCommunicationMode"
                             ],
-                          upgradePolicy: !job.poolInfo?.autoPoolSpecification
-                            ?.pool?.upgradePolicy
-                            ? undefined
-                            : {
-                                mode: job.poolInfo?.autoPoolSpecification?.pool
-                                  ?.upgradePolicy?.["mode"],
-                                automaticOsUpgradePolicy: !job.poolInfo
-                                  ?.autoPoolSpecification?.pool?.upgradePolicy
-                                  ?.automaticOSUpgradePolicy
-                                  ? undefined
-                                  : {
-                                      disableAutomaticRollback:
-                                        job.poolInfo?.autoPoolSpecification
-                                          ?.pool?.upgradePolicy
-                                          ?.automaticOSUpgradePolicy?.[
-                                          "disableAutomaticRollback"
-                                        ],
-                                      enableAutomaticOsUpgrade:
-                                        job.poolInfo?.autoPoolSpecification
-                                          ?.pool?.upgradePolicy
-                                          ?.automaticOSUpgradePolicy?.[
-                                          "enableAutomaticOSUpgrade"
-                                        ],
-                                      useRollingUpgradePolicy:
-                                        job.poolInfo?.autoPoolSpecification
-                                          ?.pool?.upgradePolicy
-                                          ?.automaticOSUpgradePolicy?.[
-                                          "useRollingUpgradePolicy"
-                                        ],
-                                      osRollingUpgradeDeferral:
-                                        job.poolInfo?.autoPoolSpecification
-                                          ?.pool?.upgradePolicy
-                                          ?.automaticOSUpgradePolicy?.[
-                                          "osRollingUpgradeDeferral"
-                                        ],
-                                    },
-                                rollingUpgradePolicy: !job.poolInfo
-                                  ?.autoPoolSpecification?.pool?.upgradePolicy
-                                  ?.rollingUpgradePolicy
-                                  ? undefined
-                                  : {
-                                      enableCrossZoneUpgrade:
-                                        job.poolInfo?.autoPoolSpecification
-                                          ?.pool?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "enableCrossZoneUpgrade"
-                                        ],
-                                      maxBatchInstancePercent:
-                                        job.poolInfo?.autoPoolSpecification
-                                          ?.pool?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "maxBatchInstancePercent"
-                                        ],
-                                      maxUnhealthyInstancePercent:
-                                        job.poolInfo?.autoPoolSpecification
-                                          ?.pool?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "maxUnhealthyInstancePercent"
-                                        ],
-                                      maxUnhealthyUpgradedInstancePercent:
-                                        job.poolInfo?.autoPoolSpecification
-                                          ?.pool?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "maxUnhealthyUpgradedInstancePercent"
-                                        ],
-                                      pauseTimeBetweenBatches:
-                                        job.poolInfo?.autoPoolSpecification
-                                          ?.pool?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "pauseTimeBetweenBatches"
-                                        ],
-                                      prioritizeUnhealthyInstances:
-                                        job.poolInfo?.autoPoolSpecification
-                                          ?.pool?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "prioritizeUnhealthyInstances"
-                                        ],
-                                      rollbackFailedInstancesOnPolicyBreach:
-                                        job.poolInfo?.autoPoolSpecification
-                                          ?.pool?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "rollbackFailedInstancesOnPolicyBreach"
-                                        ],
-                                    },
-                              },
                         },
                   },
             },
-        onAllTasksComplete: job["onAllTasksComplete"],
+        onAllTasksComplete: body["onAllTasksComplete"],
         metadata:
-          job["metadata"] === undefined
-            ? job["metadata"]
-            : job["metadata"].map((p) => ({
+          body["metadata"] === undefined
+            ? body["metadata"]
+            : body["metadata"].map((p) => ({
                 name: p["name"],
                 value: p["value"],
               })),
@@ -5450,18 +4841,26 @@ export async function _updateJobDeserialize(
  */
 export async function updateJob(
   context: Client,
+  apiVersion: string,
   jobId: string,
-  job: BatchJobUpdateContent,
+  body: BatchJobUpdateOptions,
   options: UpdateJobOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _updateJobSend(context, jobId, job, options);
+  const result = await _updateJobSend(
+    context,
+    apiVersion,
+    jobId,
+    body,
+    options,
+  );
   return _updateJobDeserialize(result);
 }
 
 export function _replaceJobSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
-  job: BatchJob,
+  body: BatchJob,
   options: ReplaceJobOptions = { requestOptions: {} },
 ): StreamableMethod<ReplaceJob200Response | ReplaceJobDefaultResponse> {
   return context
@@ -5472,156 +4871,156 @@ export function _replaceJobSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        priority: job["priority"],
-        allowTaskPreemption: job["allowTaskPreemption"],
-        maxParallelTasks: job["maxParallelTasks"],
-        constraints: !job.constraints
+        priority: body["priority"],
+        allowTaskPreemption: body["allowTaskPreemption"],
+        maxParallelTasks: body["maxParallelTasks"],
+        constraints: !body.constraints
           ? undefined
           : {
-              maxWallClockTime: job.constraints?.["maxWallClockTime"],
-              maxTaskRetryCount: job.constraints?.["maxTaskRetryCount"],
+              maxWallClockTime: body.constraints?.["maxWallClockTime"],
+              maxTaskRetryCount: body.constraints?.["maxTaskRetryCount"],
             },
         poolInfo: {
-          poolId: job.poolInfo["poolId"],
-          autoPoolSpecification: !job.poolInfo.autoPoolSpecification
+          poolId: body.poolInfo["poolId"],
+          autoPoolSpecification: !body.poolInfo.autoPoolSpecification
             ? undefined
             : {
                 autoPoolIdPrefix:
-                  job.poolInfo.autoPoolSpecification?.["autoPoolIdPrefix"],
+                  body.poolInfo.autoPoolSpecification?.["autoPoolIdPrefix"],
                 poolLifetimeOption:
-                  job.poolInfo.autoPoolSpecification?.["poolLifetimeOption"],
-                keepAlive: job.poolInfo.autoPoolSpecification?.["keepAlive"],
-                pool: !job.poolInfo.autoPoolSpecification?.pool
+                  body.poolInfo.autoPoolSpecification?.["poolLifetimeOption"],
+                keepAlive: body.poolInfo.autoPoolSpecification?.["keepAlive"],
+                pool: !body.poolInfo.autoPoolSpecification?.pool
                   ? undefined
                   : {
                       displayName:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "displayName"
                         ],
                       vmSize:
-                        job.poolInfo.autoPoolSpecification?.pool?.["vmSize"],
-                      cloudServiceConfiguration: !job.poolInfo
+                        body.poolInfo.autoPoolSpecification?.pool?.["vmSize"],
+                      cloudServiceConfiguration: !body.poolInfo
                         .autoPoolSpecification?.pool?.cloudServiceConfiguration
                         ? undefined
                         : {
                             osFamily:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.cloudServiceConfiguration?.["osFamily"],
                             osVersion:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.cloudServiceConfiguration?.["osVersion"],
                           },
-                      virtualMachineConfiguration: !job.poolInfo
+                      virtualMachineConfiguration: !body.poolInfo
                         .autoPoolSpecification?.pool
                         ?.virtualMachineConfiguration
                         ? undefined
                         : {
                             imageReference: {
                               publisher:
-                                job.poolInfo.autoPoolSpecification?.pool
+                                body.poolInfo.autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.imageReference[
                                   "publisher"
                                 ],
                               offer:
-                                job.poolInfo.autoPoolSpecification?.pool
+                                body.poolInfo.autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.imageReference[
                                   "offer"
                                 ],
-                              sku: job.poolInfo.autoPoolSpecification?.pool
+                              sku: body.poolInfo.autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.imageReference[
                                 "sku"
                               ],
                               version:
-                                job.poolInfo.autoPoolSpecification?.pool
+                                body.poolInfo.autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.imageReference[
                                   "version"
                                 ],
                               virtualMachineImageId:
-                                job.poolInfo.autoPoolSpecification?.pool
+                                body.poolInfo.autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.imageReference[
                                   "virtualMachineImageId"
                                 ],
                             },
                             nodeAgentSKUId:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.[
                                 "nodeAgentSkuId"
                               ],
-                            windowsConfiguration: !job.poolInfo
+                            windowsConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration
                               ?.windowsConfiguration
                               ? undefined
                               : {
                                   enableAutomaticUpdates:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.windowsConfiguration?.[
                                       "enableAutomaticUpdates"
                                     ],
                                 },
                             dataDisks:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.["dataDisks"] ===
                               undefined
-                                ? job.poolInfo.autoPoolSpecification?.pool
+                                ? body.poolInfo.autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration?.["dataDisks"]
-                                : job.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                : body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                     "dataDisks"
                                   ].map((p) => ({
-                                    lun: p["logicalUnitNumber"],
+                                    lun: p["lun"],
                                     caching: p["caching"],
                                     diskSizeGB: p["diskSizeGb"],
                                     storageAccountType: p["storageAccountType"],
                                   })),
                             licenseType:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.["licenseType"],
-                            containerConfiguration: !job.poolInfo
+                            containerConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration
                               ?.containerConfiguration
                               ? undefined
                               : {
-                                  type: job.poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
+                                  type: body.poolInfo.autoPoolSpecification
+                                    ?.pool?.virtualMachineConfiguration
                                     ?.containerConfiguration?.["type"],
                                   containerImageNames:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.containerConfiguration?.[
                                       "containerImageNames"
                                     ],
                                   containerRegistries:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.containerConfiguration?.[
                                       "containerRegistries"
                                     ] === undefined
-                                      ? job.poolInfo.autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
+                                      ? body.poolInfo.autoPoolSpecification
+                                          ?.pool?.virtualMachineConfiguration
                                           ?.containerConfiguration?.[
                                           "containerRegistries"
                                         ]
-                                      : job.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                      : body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
                                           "containerRegistries"
                                         ].map((p) => ({
                                           username: p["username"],
@@ -5638,40 +5037,40 @@ export function _replaceJobSend(
                                                 },
                                         })),
                                 },
-                            diskEncryptionConfiguration: !job.poolInfo
+                            diskEncryptionConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration
                               ?.diskEncryptionConfiguration
                               ? undefined
                               : {
                                   targets:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.diskEncryptionConfiguration?.[
                                       "targets"
                                     ],
                                 },
-                            nodePlacementConfiguration: !job.poolInfo
+                            nodePlacementConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration
                               ?.nodePlacementConfiguration
                               ? undefined
                               : {
                                   policy:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.nodePlacementConfiguration?.["policy"],
                                 },
                             extensions:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.[
                                 "extensions"
                               ] === undefined
-                                ? job.poolInfo.autoPoolSpecification?.pool
+                                ? body.poolInfo.autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration?.[
                                     "extensions"
                                   ]
-                                : job.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                : body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                     "extensions"
                                   ].map((p) => ({
                                     name: p["name"],
@@ -5687,154 +5086,84 @@ export function _replaceJobSend(
                                     provisionAfterExtensions:
                                       p["provisionAfterExtensions"],
                                   })),
-                            osDisk: !job.poolInfo.autoPoolSpecification?.pool
+                            osDisk: !body.poolInfo.autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration?.osDisk
                               ? undefined
                               : {
-                                  ephemeralOSDiskSettings: !job.poolInfo
+                                  ephemeralOSDiskSettings: !body.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration?.osDisk
                                     ?.ephemeralOSDiskSettings
                                     ? undefined
                                     : {
                                         placement:
-                                          job.poolInfo.autoPoolSpecification
+                                          body.poolInfo.autoPoolSpecification
                                             ?.pool?.virtualMachineConfiguration
                                             ?.osDisk?.ephemeralOSDiskSettings?.[
                                             "placement"
                                           ],
                                       },
-                                  caching:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration?.osDisk?.[
-                                      "caching"
-                                    ],
-                                  diskSizeGB:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration?.osDisk?.[
-                                      "diskSizeGB"
-                                    ],
-                                  managedDisk: !job.poolInfo
-                                    .autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration?.osDisk
-                                    ?.managedDisk
-                                    ? undefined
-                                    : {
-                                        storageAccountType:
-                                          job.poolInfo.autoPoolSpecification
-                                            ?.pool?.virtualMachineConfiguration
-                                            ?.osDisk?.managedDisk?.[
-                                            "storageAccountType"
-                                          ],
-                                      },
-                                  writeAcceleratorEnabled:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration?.osDisk?.[
-                                      "writeAcceleratorEnabled"
-                                    ],
-                                },
-                            securityProfile: !job.poolInfo.autoPoolSpecification
-                              ?.pool?.virtualMachineConfiguration
-                              ?.securityProfile
-                              ? undefined
-                              : {
-                                  encryptionAtHost:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration
-                                      ?.securityProfile?.["encryptionAtHost"],
-                                  securityType:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration
-                                      ?.securityProfile?.["securityType"],
-                                  uefiSettings: {
-                                    secureBootEnabled:
-                                      job.poolInfo.autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration
-                                        ?.securityProfile?.uefiSettings[
-                                        "secureBootEnabled"
-                                      ],
-                                    vTpmEnabled:
-                                      job.poolInfo.autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration
-                                        ?.securityProfile?.uefiSettings[
-                                        "vTpmEnabled"
-                                      ],
-                                  },
-                                },
-                            serviceArtifactReference: !job.poolInfo
-                              .autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration
-                              ?.serviceArtifactReference
-                              ? undefined
-                              : {
-                                  id: job.poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.serviceArtifactReference?.["id"],
                                 },
                           },
                       taskSlotsPerNode:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "taskSlotsPerNode"
                         ],
-                      taskSchedulingPolicy: !job.poolInfo.autoPoolSpecification
+                      taskSchedulingPolicy: !body.poolInfo.autoPoolSpecification
                         ?.pool?.taskSchedulingPolicy
                         ? undefined
                         : {
                             nodeFillType:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.taskSchedulingPolicy?.["nodeFillType"],
                           },
                       resizeTimeout:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "resizeTimeout"
                         ],
-                      resourceTags:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
-                          "resourceTags"
-                        ],
                       targetDedicatedNodes:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "targetDedicatedNodes"
                         ],
                       targetLowPriorityNodes:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "targetLowPriorityNodes"
                         ],
                       enableAutoScale:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "enableAutoScale"
                         ],
                       autoScaleFormula:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "autoScaleFormula"
                         ],
                       autoScaleEvaluationInterval:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "autoScaleEvaluationInterval"
                         ],
                       enableInterNodeCommunication:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "enableInterNodeCommunication"
                         ],
-                      networkConfiguration: !job.poolInfo.autoPoolSpecification
+                      networkConfiguration: !body.poolInfo.autoPoolSpecification
                         ?.pool?.networkConfiguration
                         ? undefined
                         : {
                             subnetId:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.networkConfiguration?.["subnetId"],
                             dynamicVNetAssignmentScope:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.networkConfiguration?.[
                                 "dynamicVNetAssignmentScope"
                               ],
-                            endpointConfiguration: !job.poolInfo
+                            endpointConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool?.networkConfiguration
                               ?.endpointConfiguration
                               ? undefined
                               : {
                                   inboundNATPools:
-                                    job.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                    body.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                       "inboundNatPools"
                                     ].map((p) => ({
                                       name: p["name"],
@@ -5860,77 +5189,77 @@ export function _replaceJobSend(
                                             ),
                                     })),
                                 },
-                            publicIPAddressConfiguration: !job.poolInfo
+                            publicIPAddressConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool?.networkConfiguration
                               ?.publicIpAddressConfiguration
                               ? undefined
                               : {
                                   provision:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.networkConfiguration
                                       ?.publicIpAddressConfiguration?.[
                                       "ipAddressProvisioningType"
                                     ],
                                   ipAddressIds:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.networkConfiguration
                                       ?.publicIpAddressConfiguration?.[
                                       "ipAddressIds"
                                     ],
                                 },
                             enableAcceleratedNetworking:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.networkConfiguration?.[
                                 "enableAcceleratedNetworking"
                               ],
                           },
-                      startTask: !job.poolInfo.autoPoolSpecification?.pool
+                      startTask: !body.poolInfo.autoPoolSpecification?.pool
                         ?.startTask
                         ? undefined
                         : {
                             commandLine:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.startTask?.["commandLine"],
-                            containerSettings: !job.poolInfo
+                            containerSettings: !body.poolInfo
                               .autoPoolSpecification?.pool?.startTask
                               ?.containerSettings
                               ? undefined
                               : {
                                   containerRunOptions:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.startTask?.containerSettings?.[
                                       "containerRunOptions"
                                     ],
                                   imageName:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.startTask?.containerSettings?.[
                                       "imageName"
                                     ],
-                                  registry: !job.poolInfo.autoPoolSpecification
+                                  registry: !body.poolInfo.autoPoolSpecification
                                     ?.pool?.startTask?.containerSettings
                                     ?.registry
                                     ? undefined
                                     : {
                                         username:
-                                          job.poolInfo.autoPoolSpecification
+                                          body.poolInfo.autoPoolSpecification
                                             ?.pool?.startTask?.containerSettings
                                             ?.registry?.["username"],
                                         password:
-                                          job.poolInfo.autoPoolSpecification
+                                          body.poolInfo.autoPoolSpecification
                                             ?.pool?.startTask?.containerSettings
                                             ?.registry?.["password"],
                                         registryServer:
-                                          job.poolInfo.autoPoolSpecification
+                                          body.poolInfo.autoPoolSpecification
                                             ?.pool?.startTask?.containerSettings
                                             ?.registry?.["registryServer"],
-                                        identityReference: !job.poolInfo
+                                        identityReference: !body.poolInfo
                                           .autoPoolSpecification?.pool
                                           ?.startTask?.containerSettings
                                           ?.registry?.identityReference
                                           ? undefined
                                           : {
                                               resourceId:
-                                                job.poolInfo
+                                                body.poolInfo
                                                   .autoPoolSpecification?.pool
                                                   ?.startTask?.containerSettings
                                                   ?.registry
@@ -5940,17 +5269,17 @@ export function _replaceJobSend(
                                             },
                                       },
                                   workingDirectory:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.startTask?.containerSettings?.[
                                       "workingDirectory"
                                     ],
                                 },
                             resourceFiles:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.startTask?.["resourceFiles"] === undefined
-                                ? job.poolInfo.autoPoolSpecification?.pool
+                                ? body.poolInfo.autoPoolSpecification?.pool
                                     ?.startTask?.["resourceFiles"]
-                                : job.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                : body.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                     "resourceFiles"
                                   ].map((p) => ({
                                     autoStorageContainerName:
@@ -5969,53 +5298,53 @@ export function _replaceJobSend(
                                         },
                                   })),
                             environmentSettings:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.startTask?.["environmentSettings"] ===
                               undefined
-                                ? job.poolInfo.autoPoolSpecification?.pool
+                                ? body.poolInfo.autoPoolSpecification?.pool
                                     ?.startTask?.["environmentSettings"]
-                                : job.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                : body.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                     "environmentSettings"
                                   ].map((p) => ({
                                     name: p["name"],
                                     value: p["value"],
                                   })),
-                            userIdentity: !job.poolInfo.autoPoolSpecification
+                            userIdentity: !body.poolInfo.autoPoolSpecification
                               ?.pool?.startTask?.userIdentity
                               ? undefined
                               : {
                                   username:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.startTask?.userIdentity?.["username"],
-                                  autoUser: !job.poolInfo.autoPoolSpecification
+                                  autoUser: !body.poolInfo.autoPoolSpecification
                                     ?.pool?.startTask?.userIdentity?.autoUser
                                     ? undefined
                                     : {
                                         scope:
-                                          job.poolInfo.autoPoolSpecification
+                                          body.poolInfo.autoPoolSpecification
                                             ?.pool?.startTask?.userIdentity
                                             ?.autoUser?.["scope"],
                                         elevationLevel:
-                                          job.poolInfo.autoPoolSpecification
+                                          body.poolInfo.autoPoolSpecification
                                             ?.pool?.startTask?.userIdentity
                                             ?.autoUser?.["elevationLevel"],
                                       },
                                 },
                             maxTaskRetryCount:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.startTask?.["maxTaskRetryCount"],
                             waitForSuccess:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.startTask?.["waitForSuccess"],
                           },
                       certificateReferences:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "certificateReferences"
                         ] === undefined
-                          ? job.poolInfo.autoPoolSpecification?.pool?.[
+                          ? body.poolInfo.autoPoolSpecification?.pool?.[
                               "certificateReferences"
                             ]
-                          : job.poolInfo.autoPoolSpecification?.pool?.[
+                          : body.poolInfo.autoPoolSpecification?.pool?.[
                               "certificateReferences"
                             ].map((p) => ({
                               thumbprint: p["thumbprint"],
@@ -6025,30 +5354,30 @@ export function _replaceJobSend(
                               visibility: p["visibility"],
                             })),
                       applicationPackageReferences:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "applicationPackageReferences"
                         ] === undefined
-                          ? job.poolInfo.autoPoolSpecification?.pool?.[
+                          ? body.poolInfo.autoPoolSpecification?.pool?.[
                               "applicationPackageReferences"
                             ]
-                          : job.poolInfo.autoPoolSpecification?.pool?.[
+                          : body.poolInfo.autoPoolSpecification?.pool?.[
                               "applicationPackageReferences"
                             ].map((p) => ({
                               applicationId: p["applicationId"],
                               version: p["version"],
                             })),
                       applicationLicenses:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "applicationLicenses"
                         ],
                       userAccounts:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "userAccounts"
                         ] === undefined
-                          ? job.poolInfo.autoPoolSpecification?.pool?.[
+                          ? body.poolInfo.autoPoolSpecification?.pool?.[
                               "userAccounts"
                             ]
-                          : job.poolInfo.autoPoolSpecification?.pool?.[
+                          : body.poolInfo.autoPoolSpecification?.pool?.[
                               "userAccounts"
                             ].map((p) => ({
                               name: p["name"],
@@ -6075,26 +5404,26 @@ export function _replaceJobSend(
                                     },
                             })),
                       metadata:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "metadata"
                         ] === undefined
-                          ? job.poolInfo.autoPoolSpecification?.pool?.[
+                          ? body.poolInfo.autoPoolSpecification?.pool?.[
                               "metadata"
                             ]
-                          : job.poolInfo.autoPoolSpecification?.pool?.[
+                          : body.poolInfo.autoPoolSpecification?.pool?.[
                               "metadata"
                             ].map((p) => ({
                               name: p["name"],
                               value: p["value"],
                             })),
                       mountConfiguration:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "mountConfiguration"
                         ] === undefined
-                          ? job.poolInfo.autoPoolSpecification?.pool?.[
+                          ? body.poolInfo.autoPoolSpecification?.pool?.[
                               "mountConfiguration"
                             ]
-                          : job.poolInfo.autoPoolSpecification?.pool?.[
+                          : body.poolInfo.autoPoolSpecification?.pool?.[
                               "mountConfiguration"
                             ].map((p) => ({
                               azureBlobFileSystemConfiguration:
@@ -6193,95 +5522,17 @@ export function _replaceJobSend(
                                     },
                             })),
                       targetNodeCommunicationMode:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "targetNodeCommunicationMode"
                         ],
-                      upgradePolicy: !job.poolInfo.autoPoolSpecification?.pool
-                        ?.upgradePolicy
-                        ? undefined
-                        : {
-                            mode: job.poolInfo.autoPoolSpecification?.pool
-                              ?.upgradePolicy?.["mode"],
-                            automaticOsUpgradePolicy: !job.poolInfo
-                              .autoPoolSpecification?.pool?.upgradePolicy
-                              ?.automaticOSUpgradePolicy
-                              ? undefined
-                              : {
-                                  disableAutomaticRollback:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy
-                                      ?.automaticOSUpgradePolicy?.[
-                                      "disableAutomaticRollback"
-                                    ],
-                                  enableAutomaticOsUpgrade:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy
-                                      ?.automaticOSUpgradePolicy?.[
-                                      "enableAutomaticOSUpgrade"
-                                    ],
-                                  useRollingUpgradePolicy:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy
-                                      ?.automaticOSUpgradePolicy?.[
-                                      "useRollingUpgradePolicy"
-                                    ],
-                                  osRollingUpgradeDeferral:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy
-                                      ?.automaticOSUpgradePolicy?.[
-                                      "osRollingUpgradeDeferral"
-                                    ],
-                                },
-                            rollingUpgradePolicy: !job.poolInfo
-                              .autoPoolSpecification?.pool?.upgradePolicy
-                              ?.rollingUpgradePolicy
-                              ? undefined
-                              : {
-                                  enableCrossZoneUpgrade:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                      "enableCrossZoneUpgrade"
-                                    ],
-                                  maxBatchInstancePercent:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                      "maxBatchInstancePercent"
-                                    ],
-                                  maxUnhealthyInstancePercent:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                      "maxUnhealthyInstancePercent"
-                                    ],
-                                  maxUnhealthyUpgradedInstancePercent:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                      "maxUnhealthyUpgradedInstancePercent"
-                                    ],
-                                  pauseTimeBetweenBatches:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                      "pauseTimeBetweenBatches"
-                                    ],
-                                  prioritizeUnhealthyInstances:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                      "prioritizeUnhealthyInstances"
-                                    ],
-                                  rollbackFailedInstancesOnPolicyBreach:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                      "rollbackFailedInstancesOnPolicyBreach"
-                                    ],
-                                },
-                          },
                     },
               },
         },
-        onAllTasksComplete: job["onAllTasksComplete"],
+        onAllTasksComplete: body["onAllTasksComplete"],
         metadata:
-          job["metadata"] === undefined
-            ? job["metadata"]
-            : job["metadata"].map((p) => ({
+          body["metadata"] === undefined
+            ? body["metadata"]
+            : body["metadata"].map((p) => ({
                 name: p["name"],
                 value: p["value"],
               })),
@@ -6306,18 +5557,26 @@ export async function _replaceJobDeserialize(
  */
 export async function replaceJob(
   context: Client,
+  apiVersion: string,
   jobId: string,
-  job: BatchJob,
+  body: BatchJob,
   options: ReplaceJobOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _replaceJobSend(context, jobId, job, options);
+  const result = await _replaceJobSend(
+    context,
+    apiVersion,
+    jobId,
+    body,
+    options,
+  );
   return _replaceJobDeserialize(result);
 }
 
 export function _disableJobSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
-  content: BatchJobDisableContent,
+  body: BatchJobDisableOptions,
   options: DisableJobOptions = { requestOptions: {} },
 ): StreamableMethod<DisableJob202Response | DisableJobDefaultResponse> {
   return context
@@ -6328,24 +5587,24 @@ export function _disableJobSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
-      body: { disableTasks: content["disableTasks"] },
+      body: { disableTasks: body["disableTasks"] },
     });
 }
 
@@ -6371,16 +5630,24 @@ export async function _disableJobDeserialize(
  */
 export async function disableJob(
   context: Client,
+  apiVersion: string,
   jobId: string,
-  content: BatchJobDisableContent,
+  body: BatchJobDisableOptions,
   options: DisableJobOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _disableJobSend(context, jobId, content, options);
+  const result = await _disableJobSend(
+    context,
+    apiVersion,
+    jobId,
+    body,
+    options,
+  );
   return _disableJobDeserialize(result);
 }
 
 export function _enableJobSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: EnableJobOptions = { requestOptions: {} },
 ): StreamableMethod<EnableJob202Response | EnableJobDefaultResponse> {
@@ -6389,21 +5656,21 @@ export function _enableJobSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -6429,17 +5696,19 @@ export async function _enableJobDeserialize(
  */
 export async function enableJob(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: EnableJobOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _enableJobSend(context, jobId, options);
+  const result = await _enableJobSend(context, apiVersion, jobId, options);
   return _enableJobDeserialize(result);
 }
 
 export function _terminateJobSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
-  parameters?: BatchJobTerminateContent,
+  body?: BatchJobTerminateOptions,
   options: TerminateJobOptions = { requestOptions: {} },
 ): StreamableMethod<TerminateJob202Response | TerminateJobDefaultResponse> {
   return context
@@ -6450,27 +5719,27 @@ export function _terminateJobSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body:
-        parameters === undefined
-          ? parameters
-          : { terminateReason: parameters["terminationReason"] },
+        body === undefined
+          ? body
+          : { terminateReason: body["terminateReason"] },
     });
 }
 
@@ -6494,17 +5763,25 @@ export async function _terminateJobDeserialize(
  */
 export async function terminateJob(
   context: Client,
+  apiVersion: string,
   jobId: string,
-  parameters?: BatchJobTerminateContent,
+  body?: BatchJobTerminateOptions,
   options: TerminateJobOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _terminateJobSend(context, jobId, parameters, options);
+  const result = await _terminateJobSend(
+    context,
+    apiVersion,
+    jobId,
+    body,
+    options,
+  );
   return _terminateJobDeserialize(result);
 }
 
 export function _createJobSend(
   context: Client,
-  job: BatchJobCreateContent,
+  apiVersion: string,
+  body: BatchJobCreateOptions,
   options: CreateJobOptions = { requestOptions: {} },
 ): StreamableMethod<CreateJob201Response | CreateJobDefaultResponse> {
   return context
@@ -6515,72 +5792,72 @@ export function _createJobSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        id: job["id"],
-        displayName: job["displayName"],
-        usesTaskDependencies: job["usesTaskDependencies"],
-        priority: job["priority"],
-        allowTaskPreemption: job["allowTaskPreemption"],
-        maxParallelTasks: job["maxParallelTasks"],
-        constraints: !job.constraints
+        id: body["id"],
+        displayName: body["displayName"],
+        usesTaskDependencies: body["usesTaskDependencies"],
+        priority: body["priority"],
+        allowTaskPreemption: body["allowTaskPreemption"],
+        maxParallelTasks: body["maxParallelTasks"],
+        constraints: !body.constraints
           ? undefined
           : {
-              maxWallClockTime: job.constraints?.["maxWallClockTime"],
-              maxTaskRetryCount: job.constraints?.["maxTaskRetryCount"],
+              maxWallClockTime: body.constraints?.["maxWallClockTime"],
+              maxTaskRetryCount: body.constraints?.["maxTaskRetryCount"],
             },
-        jobManagerTask: !job.jobManagerTask
+        jobManagerTask: !body.jobManagerTask
           ? undefined
           : {
-              id: job.jobManagerTask?.["id"],
-              displayName: job.jobManagerTask?.["displayName"],
-              commandLine: job.jobManagerTask?.["commandLine"],
-              containerSettings: !job.jobManagerTask?.containerSettings
+              id: body.jobManagerTask?.["id"],
+              displayName: body.jobManagerTask?.["displayName"],
+              commandLine: body.jobManagerTask?.["commandLine"],
+              containerSettings: !body.jobManagerTask?.containerSettings
                 ? undefined
                 : {
                     containerRunOptions:
-                      job.jobManagerTask?.containerSettings?.[
+                      body.jobManagerTask?.containerSettings?.[
                         "containerRunOptions"
                       ],
                     imageName:
-                      job.jobManagerTask?.containerSettings?.["imageName"],
-                    registry: !job.jobManagerTask?.containerSettings?.registry
+                      body.jobManagerTask?.containerSettings?.["imageName"],
+                    registry: !body.jobManagerTask?.containerSettings?.registry
                       ? undefined
                       : {
                           username:
-                            job.jobManagerTask?.containerSettings?.registry?.[
+                            body.jobManagerTask?.containerSettings?.registry?.[
                               "username"
                             ],
                           password:
-                            job.jobManagerTask?.containerSettings?.registry?.[
+                            body.jobManagerTask?.containerSettings?.registry?.[
                               "password"
                             ],
                           registryServer:
-                            job.jobManagerTask?.containerSettings?.registry?.[
+                            body.jobManagerTask?.containerSettings?.registry?.[
                               "registryServer"
                             ],
-                          identityReference: !job.jobManagerTask
+                          identityReference: !body.jobManagerTask
                             ?.containerSettings?.registry?.identityReference
                             ? undefined
                             : {
                                 resourceId:
-                                  job.jobManagerTask?.containerSettings
+                                  body.jobManagerTask?.containerSettings
                                     ?.registry?.identityReference?.[
                                     "resourceId"
                                   ],
                               },
                         },
                     workingDirectory:
-                      job.jobManagerTask?.containerSettings?.[
+                      body.jobManagerTask?.containerSettings?.[
                         "workingDirectory"
                       ],
                   },
               resourceFiles:
-                job.jobManagerTask?.["resourceFiles"] === undefined
-                  ? job.jobManagerTask?.["resourceFiles"]
-                  : job.jobManagerTask?.["resourceFiles"].map((p) => ({
+                body.jobManagerTask?.["resourceFiles"] === undefined
+                  ? body.jobManagerTask?.["resourceFiles"]
+                  : body.jobManagerTask?.["resourceFiles"].map((p) => ({
                       autoStorageContainerName: p["autoStorageContainerName"],
                       storageContainerUrl: p["storageContainerUrl"],
                       httpUrl: p["httpUrl"],
@@ -6592,9 +5869,9 @@ export function _createJobSend(
                         : { resourceId: p.identityReference?.["resourceId"] },
                     })),
               outputFiles:
-                job.jobManagerTask?.["outputFiles"] === undefined
-                  ? job.jobManagerTask?.["outputFiles"]
-                  : job.jobManagerTask?.["outputFiles"].map((p) => ({
+                body.jobManagerTask?.["outputFiles"] === undefined
+                  ? body.jobManagerTask?.["outputFiles"]
+                  : body.jobManagerTask?.["outputFiles"].map((p) => ({
                       filePattern: p["filePattern"],
                       destination: {
                         container: !p.destination.container
@@ -6628,111 +5905,111 @@ export function _createJobSend(
                       },
                     })),
               environmentSettings:
-                job.jobManagerTask?.["environmentSettings"] === undefined
-                  ? job.jobManagerTask?.["environmentSettings"]
-                  : job.jobManagerTask?.["environmentSettings"].map((p) => ({
+                body.jobManagerTask?.["environmentSettings"] === undefined
+                  ? body.jobManagerTask?.["environmentSettings"]
+                  : body.jobManagerTask?.["environmentSettings"].map((p) => ({
                       name: p["name"],
                       value: p["value"],
                     })),
-              constraints: !job.jobManagerTask?.constraints
+              constraints: !body.jobManagerTask?.constraints
                 ? undefined
                 : {
                     maxWallClockTime:
-                      job.jobManagerTask?.constraints?.["maxWallClockTime"],
+                      body.jobManagerTask?.constraints?.["maxWallClockTime"],
                     retentionTime:
-                      job.jobManagerTask?.constraints?.["retentionTime"],
+                      body.jobManagerTask?.constraints?.["retentionTime"],
                     maxTaskRetryCount:
-                      job.jobManagerTask?.constraints?.["maxTaskRetryCount"],
+                      body.jobManagerTask?.constraints?.["maxTaskRetryCount"],
                   },
-              requiredSlots: job.jobManagerTask?.["requiredSlots"],
-              killJobOnCompletion: job.jobManagerTask?.["killJobOnCompletion"],
-              userIdentity: !job.jobManagerTask?.userIdentity
+              requiredSlots: body.jobManagerTask?.["requiredSlots"],
+              killJobOnCompletion: body.jobManagerTask?.["killJobOnCompletion"],
+              userIdentity: !body.jobManagerTask?.userIdentity
                 ? undefined
                 : {
-                    username: job.jobManagerTask?.userIdentity?.["username"],
-                    autoUser: !job.jobManagerTask?.userIdentity?.autoUser
+                    username: body.jobManagerTask?.userIdentity?.["username"],
+                    autoUser: !body.jobManagerTask?.userIdentity?.autoUser
                       ? undefined
                       : {
                           scope:
-                            job.jobManagerTask?.userIdentity?.autoUser?.[
+                            body.jobManagerTask?.userIdentity?.autoUser?.[
                               "scope"
                             ],
                           elevationLevel:
-                            job.jobManagerTask?.userIdentity?.autoUser?.[
+                            body.jobManagerTask?.userIdentity?.autoUser?.[
                               "elevationLevel"
                             ],
                         },
                   },
-              runExclusive: job.jobManagerTask?.["runExclusive"],
+              runExclusive: body.jobManagerTask?.["runExclusive"],
               applicationPackageReferences:
-                job.jobManagerTask?.["applicationPackageReferences"] ===
+                body.jobManagerTask?.["applicationPackageReferences"] ===
                 undefined
-                  ? job.jobManagerTask?.["applicationPackageReferences"]
-                  : job.jobManagerTask?.["applicationPackageReferences"].map(
+                  ? body.jobManagerTask?.["applicationPackageReferences"]
+                  : body.jobManagerTask?.["applicationPackageReferences"].map(
                       (p) => ({
                         applicationId: p["applicationId"],
                         version: p["version"],
                       }),
                     ),
-              authenticationTokenSettings: !job.jobManagerTask
+              authenticationTokenSettings: !body.jobManagerTask
                 ?.authenticationTokenSettings
                 ? undefined
                 : {
                     access:
-                      job.jobManagerTask?.authenticationTokenSettings?.[
+                      body.jobManagerTask?.authenticationTokenSettings?.[
                         "access"
                       ],
                   },
               allowLowPriorityNode:
-                job.jobManagerTask?.["allowLowPriorityNode"],
+                body.jobManagerTask?.["allowLowPriorityNode"],
             },
-        jobPreparationTask: !job.jobPreparationTask
+        jobPreparationTask: !body.jobPreparationTask
           ? undefined
           : {
-              id: job.jobPreparationTask?.["id"],
-              commandLine: job.jobPreparationTask?.["commandLine"],
-              containerSettings: !job.jobPreparationTask?.containerSettings
+              id: body.jobPreparationTask?.["id"],
+              commandLine: body.jobPreparationTask?.["commandLine"],
+              containerSettings: !body.jobPreparationTask?.containerSettings
                 ? undefined
                 : {
                     containerRunOptions:
-                      job.jobPreparationTask?.containerSettings?.[
+                      body.jobPreparationTask?.containerSettings?.[
                         "containerRunOptions"
                       ],
                     imageName:
-                      job.jobPreparationTask?.containerSettings?.["imageName"],
-                    registry: !job.jobPreparationTask?.containerSettings
+                      body.jobPreparationTask?.containerSettings?.["imageName"],
+                    registry: !body.jobPreparationTask?.containerSettings
                       ?.registry
                       ? undefined
                       : {
                           username:
-                            job.jobPreparationTask?.containerSettings
+                            body.jobPreparationTask?.containerSettings
                               ?.registry?.["username"],
                           password:
-                            job.jobPreparationTask?.containerSettings
+                            body.jobPreparationTask?.containerSettings
                               ?.registry?.["password"],
                           registryServer:
-                            job.jobPreparationTask?.containerSettings
+                            body.jobPreparationTask?.containerSettings
                               ?.registry?.["registryServer"],
-                          identityReference: !job.jobPreparationTask
+                          identityReference: !body.jobPreparationTask
                             ?.containerSettings?.registry?.identityReference
                             ? undefined
                             : {
                                 resourceId:
-                                  job.jobPreparationTask?.containerSettings
+                                  body.jobPreparationTask?.containerSettings
                                     ?.registry?.identityReference?.[
                                     "resourceId"
                                   ],
                               },
                         },
                     workingDirectory:
-                      job.jobPreparationTask?.containerSettings?.[
+                      body.jobPreparationTask?.containerSettings?.[
                         "workingDirectory"
                       ],
                   },
               resourceFiles:
-                job.jobPreparationTask?.["resourceFiles"] === undefined
-                  ? job.jobPreparationTask?.["resourceFiles"]
-                  : job.jobPreparationTask?.["resourceFiles"].map((p) => ({
+                body.jobPreparationTask?.["resourceFiles"] === undefined
+                  ? body.jobPreparationTask?.["resourceFiles"]
+                  : body.jobPreparationTask?.["resourceFiles"].map((p) => ({
                       autoStorageContainerName: p["autoStorageContainerName"],
                       storageContainerUrl: p["storageContainerUrl"],
                       httpUrl: p["httpUrl"],
@@ -6744,94 +6021,96 @@ export function _createJobSend(
                         : { resourceId: p.identityReference?.["resourceId"] },
                     })),
               environmentSettings:
-                job.jobPreparationTask?.["environmentSettings"] === undefined
-                  ? job.jobPreparationTask?.["environmentSettings"]
-                  : job.jobPreparationTask?.["environmentSettings"].map(
+                body.jobPreparationTask?.["environmentSettings"] === undefined
+                  ? body.jobPreparationTask?.["environmentSettings"]
+                  : body.jobPreparationTask?.["environmentSettings"].map(
                       (p) => ({ name: p["name"], value: p["value"] }),
                     ),
-              constraints: !job.jobPreparationTask?.constraints
+              constraints: !body.jobPreparationTask?.constraints
                 ? undefined
                 : {
                     maxWallClockTime:
-                      job.jobPreparationTask?.constraints?.["maxWallClockTime"],
+                      body.jobPreparationTask?.constraints?.[
+                        "maxWallClockTime"
+                      ],
                     retentionTime:
-                      job.jobPreparationTask?.constraints?.["retentionTime"],
+                      body.jobPreparationTask?.constraints?.["retentionTime"],
                     maxTaskRetryCount:
-                      job.jobPreparationTask?.constraints?.[
+                      body.jobPreparationTask?.constraints?.[
                         "maxTaskRetryCount"
                       ],
                   },
-              waitForSuccess: job.jobPreparationTask?.["waitForSuccess"],
-              userIdentity: !job.jobPreparationTask?.userIdentity
+              waitForSuccess: body.jobPreparationTask?.["waitForSuccess"],
+              userIdentity: !body.jobPreparationTask?.userIdentity
                 ? undefined
                 : {
                     username:
-                      job.jobPreparationTask?.userIdentity?.["username"],
-                    autoUser: !job.jobPreparationTask?.userIdentity?.autoUser
+                      body.jobPreparationTask?.userIdentity?.["username"],
+                    autoUser: !body.jobPreparationTask?.userIdentity?.autoUser
                       ? undefined
                       : {
                           scope:
-                            job.jobPreparationTask?.userIdentity?.autoUser?.[
+                            body.jobPreparationTask?.userIdentity?.autoUser?.[
                               "scope"
                             ],
                           elevationLevel:
-                            job.jobPreparationTask?.userIdentity?.autoUser?.[
+                            body.jobPreparationTask?.userIdentity?.autoUser?.[
                               "elevationLevel"
                             ],
                         },
                   },
               rerunOnNodeRebootAfterSuccess:
-                job.jobPreparationTask?.["rerunOnNodeRebootAfterSuccess"],
+                body.jobPreparationTask?.["rerunOnNodeRebootAfterSuccess"],
             },
-        jobReleaseTask: !job.jobReleaseTask
+        jobReleaseTask: !body.jobReleaseTask
           ? undefined
           : {
-              id: job.jobReleaseTask?.["id"],
-              commandLine: job.jobReleaseTask?.["commandLine"],
-              containerSettings: !job.jobReleaseTask?.containerSettings
+              id: body.jobReleaseTask?.["id"],
+              commandLine: body.jobReleaseTask?.["commandLine"],
+              containerSettings: !body.jobReleaseTask?.containerSettings
                 ? undefined
                 : {
                     containerRunOptions:
-                      job.jobReleaseTask?.containerSettings?.[
+                      body.jobReleaseTask?.containerSettings?.[
                         "containerRunOptions"
                       ],
                     imageName:
-                      job.jobReleaseTask?.containerSettings?.["imageName"],
-                    registry: !job.jobReleaseTask?.containerSettings?.registry
+                      body.jobReleaseTask?.containerSettings?.["imageName"],
+                    registry: !body.jobReleaseTask?.containerSettings?.registry
                       ? undefined
                       : {
                           username:
-                            job.jobReleaseTask?.containerSettings?.registry?.[
+                            body.jobReleaseTask?.containerSettings?.registry?.[
                               "username"
                             ],
                           password:
-                            job.jobReleaseTask?.containerSettings?.registry?.[
+                            body.jobReleaseTask?.containerSettings?.registry?.[
                               "password"
                             ],
                           registryServer:
-                            job.jobReleaseTask?.containerSettings?.registry?.[
+                            body.jobReleaseTask?.containerSettings?.registry?.[
                               "registryServer"
                             ],
-                          identityReference: !job.jobReleaseTask
+                          identityReference: !body.jobReleaseTask
                             ?.containerSettings?.registry?.identityReference
                             ? undefined
                             : {
                                 resourceId:
-                                  job.jobReleaseTask?.containerSettings
+                                  body.jobReleaseTask?.containerSettings
                                     ?.registry?.identityReference?.[
                                     "resourceId"
                                   ],
                               },
                         },
                     workingDirectory:
-                      job.jobReleaseTask?.containerSettings?.[
+                      body.jobReleaseTask?.containerSettings?.[
                         "workingDirectory"
                       ],
                   },
               resourceFiles:
-                job.jobReleaseTask?.["resourceFiles"] === undefined
-                  ? job.jobReleaseTask?.["resourceFiles"]
-                  : job.jobReleaseTask?.["resourceFiles"].map((p) => ({
+                body.jobReleaseTask?.["resourceFiles"] === undefined
+                  ? body.jobReleaseTask?.["resourceFiles"]
+                  : body.jobReleaseTask?.["resourceFiles"].map((p) => ({
                       autoStorageContainerName: p["autoStorageContainerName"],
                       storageContainerUrl: p["storageContainerUrl"],
                       httpUrl: p["httpUrl"],
@@ -6843,162 +6122,162 @@ export function _createJobSend(
                         : { resourceId: p.identityReference?.["resourceId"] },
                     })),
               environmentSettings:
-                job.jobReleaseTask?.["environmentSettings"] === undefined
-                  ? job.jobReleaseTask?.["environmentSettings"]
-                  : job.jobReleaseTask?.["environmentSettings"].map((p) => ({
+                body.jobReleaseTask?.["environmentSettings"] === undefined
+                  ? body.jobReleaseTask?.["environmentSettings"]
+                  : body.jobReleaseTask?.["environmentSettings"].map((p) => ({
                       name: p["name"],
                       value: p["value"],
                     })),
-              maxWallClockTime: job.jobReleaseTask?.["maxWallClockTime"],
-              retentionTime: job.jobReleaseTask?.["retentionTime"],
-              userIdentity: !job.jobReleaseTask?.userIdentity
+              maxWallClockTime: body.jobReleaseTask?.["maxWallClockTime"],
+              retentionTime: body.jobReleaseTask?.["retentionTime"],
+              userIdentity: !body.jobReleaseTask?.userIdentity
                 ? undefined
                 : {
-                    username: job.jobReleaseTask?.userIdentity?.["username"],
-                    autoUser: !job.jobReleaseTask?.userIdentity?.autoUser
+                    username: body.jobReleaseTask?.userIdentity?.["username"],
+                    autoUser: !body.jobReleaseTask?.userIdentity?.autoUser
                       ? undefined
                       : {
                           scope:
-                            job.jobReleaseTask?.userIdentity?.autoUser?.[
+                            body.jobReleaseTask?.userIdentity?.autoUser?.[
                               "scope"
                             ],
                           elevationLevel:
-                            job.jobReleaseTask?.userIdentity?.autoUser?.[
+                            body.jobReleaseTask?.userIdentity?.autoUser?.[
                               "elevationLevel"
                             ],
                         },
                   },
             },
         commonEnvironmentSettings:
-          job["commonEnvironmentSettings"] === undefined
-            ? job["commonEnvironmentSettings"]
-            : job["commonEnvironmentSettings"].map((p) => ({
+          body["commonEnvironmentSettings"] === undefined
+            ? body["commonEnvironmentSettings"]
+            : body["commonEnvironmentSettings"].map((p) => ({
                 name: p["name"],
                 value: p["value"],
               })),
         poolInfo: {
-          poolId: job.poolInfo["poolId"],
-          autoPoolSpecification: !job.poolInfo.autoPoolSpecification
+          poolId: body.poolInfo["poolId"],
+          autoPoolSpecification: !body.poolInfo.autoPoolSpecification
             ? undefined
             : {
                 autoPoolIdPrefix:
-                  job.poolInfo.autoPoolSpecification?.["autoPoolIdPrefix"],
+                  body.poolInfo.autoPoolSpecification?.["autoPoolIdPrefix"],
                 poolLifetimeOption:
-                  job.poolInfo.autoPoolSpecification?.["poolLifetimeOption"],
-                keepAlive: job.poolInfo.autoPoolSpecification?.["keepAlive"],
-                pool: !job.poolInfo.autoPoolSpecification?.pool
+                  body.poolInfo.autoPoolSpecification?.["poolLifetimeOption"],
+                keepAlive: body.poolInfo.autoPoolSpecification?.["keepAlive"],
+                pool: !body.poolInfo.autoPoolSpecification?.pool
                   ? undefined
                   : {
                       displayName:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "displayName"
                         ],
                       vmSize:
-                        job.poolInfo.autoPoolSpecification?.pool?.["vmSize"],
-                      cloudServiceConfiguration: !job.poolInfo
+                        body.poolInfo.autoPoolSpecification?.pool?.["vmSize"],
+                      cloudServiceConfiguration: !body.poolInfo
                         .autoPoolSpecification?.pool?.cloudServiceConfiguration
                         ? undefined
                         : {
                             osFamily:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.cloudServiceConfiguration?.["osFamily"],
                             osVersion:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.cloudServiceConfiguration?.["osVersion"],
                           },
-                      virtualMachineConfiguration: !job.poolInfo
+                      virtualMachineConfiguration: !body.poolInfo
                         .autoPoolSpecification?.pool
                         ?.virtualMachineConfiguration
                         ? undefined
                         : {
                             imageReference: {
                               publisher:
-                                job.poolInfo.autoPoolSpecification?.pool
+                                body.poolInfo.autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.imageReference[
                                   "publisher"
                                 ],
                               offer:
-                                job.poolInfo.autoPoolSpecification?.pool
+                                body.poolInfo.autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.imageReference[
                                   "offer"
                                 ],
-                              sku: job.poolInfo.autoPoolSpecification?.pool
+                              sku: body.poolInfo.autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.imageReference[
                                 "sku"
                               ],
                               version:
-                                job.poolInfo.autoPoolSpecification?.pool
+                                body.poolInfo.autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.imageReference[
                                   "version"
                                 ],
                               virtualMachineImageId:
-                                job.poolInfo.autoPoolSpecification?.pool
+                                body.poolInfo.autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.imageReference[
                                   "virtualMachineImageId"
                                 ],
                             },
                             nodeAgentSKUId:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.[
                                 "nodeAgentSkuId"
                               ],
-                            windowsConfiguration: !job.poolInfo
+                            windowsConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration
                               ?.windowsConfiguration
                               ? undefined
                               : {
                                   enableAutomaticUpdates:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.windowsConfiguration?.[
                                       "enableAutomaticUpdates"
                                     ],
                                 },
                             dataDisks:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.["dataDisks"] ===
                               undefined
-                                ? job.poolInfo.autoPoolSpecification?.pool
+                                ? body.poolInfo.autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration?.["dataDisks"]
-                                : job.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                : body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                     "dataDisks"
                                   ].map((p) => ({
-                                    lun: p["logicalUnitNumber"],
+                                    lun: p["lun"],
                                     caching: p["caching"],
                                     diskSizeGB: p["diskSizeGb"],
                                     storageAccountType: p["storageAccountType"],
                                   })),
                             licenseType:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.["licenseType"],
-                            containerConfiguration: !job.poolInfo
+                            containerConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration
                               ?.containerConfiguration
                               ? undefined
                               : {
-                                  type: job.poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
+                                  type: body.poolInfo.autoPoolSpecification
+                                    ?.pool?.virtualMachineConfiguration
                                     ?.containerConfiguration?.["type"],
                                   containerImageNames:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.containerConfiguration?.[
                                       "containerImageNames"
                                     ],
                                   containerRegistries:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.containerConfiguration?.[
                                       "containerRegistries"
                                     ] === undefined
-                                      ? job.poolInfo.autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
+                                      ? body.poolInfo.autoPoolSpecification
+                                          ?.pool?.virtualMachineConfiguration
                                           ?.containerConfiguration?.[
                                           "containerRegistries"
                                         ]
-                                      : job.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                      : body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
                                           "containerRegistries"
                                         ].map((p) => ({
                                           username: p["username"],
@@ -7015,40 +6294,40 @@ export function _createJobSend(
                                                 },
                                         })),
                                 },
-                            diskEncryptionConfiguration: !job.poolInfo
+                            diskEncryptionConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration
                               ?.diskEncryptionConfiguration
                               ? undefined
                               : {
                                   targets:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.diskEncryptionConfiguration?.[
                                       "targets"
                                     ],
                                 },
-                            nodePlacementConfiguration: !job.poolInfo
+                            nodePlacementConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration
                               ?.nodePlacementConfiguration
                               ? undefined
                               : {
                                   policy:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.nodePlacementConfiguration?.["policy"],
                                 },
                             extensions:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.[
                                 "extensions"
                               ] === undefined
-                                ? job.poolInfo.autoPoolSpecification?.pool
+                                ? body.poolInfo.autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration?.[
                                     "extensions"
                                   ]
-                                : job.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                : body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                     "extensions"
                                   ].map((p) => ({
                                     name: p["name"],
@@ -7064,154 +6343,84 @@ export function _createJobSend(
                                     provisionAfterExtensions:
                                       p["provisionAfterExtensions"],
                                   })),
-                            osDisk: !job.poolInfo.autoPoolSpecification?.pool
+                            osDisk: !body.poolInfo.autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration?.osDisk
                               ? undefined
                               : {
-                                  ephemeralOSDiskSettings: !job.poolInfo
+                                  ephemeralOSDiskSettings: !body.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration?.osDisk
                                     ?.ephemeralOSDiskSettings
                                     ? undefined
                                     : {
                                         placement:
-                                          job.poolInfo.autoPoolSpecification
+                                          body.poolInfo.autoPoolSpecification
                                             ?.pool?.virtualMachineConfiguration
                                             ?.osDisk?.ephemeralOSDiskSettings?.[
                                             "placement"
                                           ],
                                       },
-                                  caching:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration?.osDisk?.[
-                                      "caching"
-                                    ],
-                                  diskSizeGB:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration?.osDisk?.[
-                                      "diskSizeGB"
-                                    ],
-                                  managedDisk: !job.poolInfo
-                                    .autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration?.osDisk
-                                    ?.managedDisk
-                                    ? undefined
-                                    : {
-                                        storageAccountType:
-                                          job.poolInfo.autoPoolSpecification
-                                            ?.pool?.virtualMachineConfiguration
-                                            ?.osDisk?.managedDisk?.[
-                                            "storageAccountType"
-                                          ],
-                                      },
-                                  writeAcceleratorEnabled:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration?.osDisk?.[
-                                      "writeAcceleratorEnabled"
-                                    ],
-                                },
-                            securityProfile: !job.poolInfo.autoPoolSpecification
-                              ?.pool?.virtualMachineConfiguration
-                              ?.securityProfile
-                              ? undefined
-                              : {
-                                  encryptionAtHost:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration
-                                      ?.securityProfile?.["encryptionAtHost"],
-                                  securityType:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration
-                                      ?.securityProfile?.["securityType"],
-                                  uefiSettings: {
-                                    secureBootEnabled:
-                                      job.poolInfo.autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration
-                                        ?.securityProfile?.uefiSettings[
-                                        "secureBootEnabled"
-                                      ],
-                                    vTpmEnabled:
-                                      job.poolInfo.autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration
-                                        ?.securityProfile?.uefiSettings[
-                                        "vTpmEnabled"
-                                      ],
-                                  },
-                                },
-                            serviceArtifactReference: !job.poolInfo
-                              .autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration
-                              ?.serviceArtifactReference
-                              ? undefined
-                              : {
-                                  id: job.poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.serviceArtifactReference?.["id"],
                                 },
                           },
                       taskSlotsPerNode:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "taskSlotsPerNode"
                         ],
-                      taskSchedulingPolicy: !job.poolInfo.autoPoolSpecification
+                      taskSchedulingPolicy: !body.poolInfo.autoPoolSpecification
                         ?.pool?.taskSchedulingPolicy
                         ? undefined
                         : {
                             nodeFillType:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.taskSchedulingPolicy?.["nodeFillType"],
                           },
                       resizeTimeout:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "resizeTimeout"
                         ],
-                      resourceTags:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
-                          "resourceTags"
-                        ],
                       targetDedicatedNodes:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "targetDedicatedNodes"
                         ],
                       targetLowPriorityNodes:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "targetLowPriorityNodes"
                         ],
                       enableAutoScale:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "enableAutoScale"
                         ],
                       autoScaleFormula:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "autoScaleFormula"
                         ],
                       autoScaleEvaluationInterval:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "autoScaleEvaluationInterval"
                         ],
                       enableInterNodeCommunication:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "enableInterNodeCommunication"
                         ],
-                      networkConfiguration: !job.poolInfo.autoPoolSpecification
+                      networkConfiguration: !body.poolInfo.autoPoolSpecification
                         ?.pool?.networkConfiguration
                         ? undefined
                         : {
                             subnetId:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.networkConfiguration?.["subnetId"],
                             dynamicVNetAssignmentScope:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.networkConfiguration?.[
                                 "dynamicVNetAssignmentScope"
                               ],
-                            endpointConfiguration: !job.poolInfo
+                            endpointConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool?.networkConfiguration
                               ?.endpointConfiguration
                               ? undefined
                               : {
                                   inboundNATPools:
-                                    job.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                    body.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                       "inboundNatPools"
                                     ].map((p) => ({
                                       name: p["name"],
@@ -7237,77 +6446,77 @@ export function _createJobSend(
                                             ),
                                     })),
                                 },
-                            publicIPAddressConfiguration: !job.poolInfo
+                            publicIPAddressConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool?.networkConfiguration
                               ?.publicIpAddressConfiguration
                               ? undefined
                               : {
                                   provision:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.networkConfiguration
                                       ?.publicIpAddressConfiguration?.[
                                       "ipAddressProvisioningType"
                                     ],
                                   ipAddressIds:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.networkConfiguration
                                       ?.publicIpAddressConfiguration?.[
                                       "ipAddressIds"
                                     ],
                                 },
                             enableAcceleratedNetworking:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.networkConfiguration?.[
                                 "enableAcceleratedNetworking"
                               ],
                           },
-                      startTask: !job.poolInfo.autoPoolSpecification?.pool
+                      startTask: !body.poolInfo.autoPoolSpecification?.pool
                         ?.startTask
                         ? undefined
                         : {
                             commandLine:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.startTask?.["commandLine"],
-                            containerSettings: !job.poolInfo
+                            containerSettings: !body.poolInfo
                               .autoPoolSpecification?.pool?.startTask
                               ?.containerSettings
                               ? undefined
                               : {
                                   containerRunOptions:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.startTask?.containerSettings?.[
                                       "containerRunOptions"
                                     ],
                                   imageName:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.startTask?.containerSettings?.[
                                       "imageName"
                                     ],
-                                  registry: !job.poolInfo.autoPoolSpecification
+                                  registry: !body.poolInfo.autoPoolSpecification
                                     ?.pool?.startTask?.containerSettings
                                     ?.registry
                                     ? undefined
                                     : {
                                         username:
-                                          job.poolInfo.autoPoolSpecification
+                                          body.poolInfo.autoPoolSpecification
                                             ?.pool?.startTask?.containerSettings
                                             ?.registry?.["username"],
                                         password:
-                                          job.poolInfo.autoPoolSpecification
+                                          body.poolInfo.autoPoolSpecification
                                             ?.pool?.startTask?.containerSettings
                                             ?.registry?.["password"],
                                         registryServer:
-                                          job.poolInfo.autoPoolSpecification
+                                          body.poolInfo.autoPoolSpecification
                                             ?.pool?.startTask?.containerSettings
                                             ?.registry?.["registryServer"],
-                                        identityReference: !job.poolInfo
+                                        identityReference: !body.poolInfo
                                           .autoPoolSpecification?.pool
                                           ?.startTask?.containerSettings
                                           ?.registry?.identityReference
                                           ? undefined
                                           : {
                                               resourceId:
-                                                job.poolInfo
+                                                body.poolInfo
                                                   .autoPoolSpecification?.pool
                                                   ?.startTask?.containerSettings
                                                   ?.registry
@@ -7317,17 +6526,17 @@ export function _createJobSend(
                                             },
                                       },
                                   workingDirectory:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.startTask?.containerSettings?.[
                                       "workingDirectory"
                                     ],
                                 },
                             resourceFiles:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.startTask?.["resourceFiles"] === undefined
-                                ? job.poolInfo.autoPoolSpecification?.pool
+                                ? body.poolInfo.autoPoolSpecification?.pool
                                     ?.startTask?.["resourceFiles"]
-                                : job.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                : body.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                     "resourceFiles"
                                   ].map((p) => ({
                                     autoStorageContainerName:
@@ -7346,53 +6555,53 @@ export function _createJobSend(
                                         },
                                   })),
                             environmentSettings:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.startTask?.["environmentSettings"] ===
                               undefined
-                                ? job.poolInfo.autoPoolSpecification?.pool
+                                ? body.poolInfo.autoPoolSpecification?.pool
                                     ?.startTask?.["environmentSettings"]
-                                : job.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                : body.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                     "environmentSettings"
                                   ].map((p) => ({
                                     name: p["name"],
                                     value: p["value"],
                                   })),
-                            userIdentity: !job.poolInfo.autoPoolSpecification
+                            userIdentity: !body.poolInfo.autoPoolSpecification
                               ?.pool?.startTask?.userIdentity
                               ? undefined
                               : {
                                   username:
-                                    job.poolInfo.autoPoolSpecification?.pool
+                                    body.poolInfo.autoPoolSpecification?.pool
                                       ?.startTask?.userIdentity?.["username"],
-                                  autoUser: !job.poolInfo.autoPoolSpecification
+                                  autoUser: !body.poolInfo.autoPoolSpecification
                                     ?.pool?.startTask?.userIdentity?.autoUser
                                     ? undefined
                                     : {
                                         scope:
-                                          job.poolInfo.autoPoolSpecification
+                                          body.poolInfo.autoPoolSpecification
                                             ?.pool?.startTask?.userIdentity
                                             ?.autoUser?.["scope"],
                                         elevationLevel:
-                                          job.poolInfo.autoPoolSpecification
+                                          body.poolInfo.autoPoolSpecification
                                             ?.pool?.startTask?.userIdentity
                                             ?.autoUser?.["elevationLevel"],
                                       },
                                 },
                             maxTaskRetryCount:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.startTask?.["maxTaskRetryCount"],
                             waitForSuccess:
-                              job.poolInfo.autoPoolSpecification?.pool
+                              body.poolInfo.autoPoolSpecification?.pool
                                 ?.startTask?.["waitForSuccess"],
                           },
                       certificateReferences:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "certificateReferences"
                         ] === undefined
-                          ? job.poolInfo.autoPoolSpecification?.pool?.[
+                          ? body.poolInfo.autoPoolSpecification?.pool?.[
                               "certificateReferences"
                             ]
-                          : job.poolInfo.autoPoolSpecification?.pool?.[
+                          : body.poolInfo.autoPoolSpecification?.pool?.[
                               "certificateReferences"
                             ].map((p) => ({
                               thumbprint: p["thumbprint"],
@@ -7402,30 +6611,30 @@ export function _createJobSend(
                               visibility: p["visibility"],
                             })),
                       applicationPackageReferences:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "applicationPackageReferences"
                         ] === undefined
-                          ? job.poolInfo.autoPoolSpecification?.pool?.[
+                          ? body.poolInfo.autoPoolSpecification?.pool?.[
                               "applicationPackageReferences"
                             ]
-                          : job.poolInfo.autoPoolSpecification?.pool?.[
+                          : body.poolInfo.autoPoolSpecification?.pool?.[
                               "applicationPackageReferences"
                             ].map((p) => ({
                               applicationId: p["applicationId"],
                               version: p["version"],
                             })),
                       applicationLicenses:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "applicationLicenses"
                         ],
                       userAccounts:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "userAccounts"
                         ] === undefined
-                          ? job.poolInfo.autoPoolSpecification?.pool?.[
+                          ? body.poolInfo.autoPoolSpecification?.pool?.[
                               "userAccounts"
                             ]
-                          : job.poolInfo.autoPoolSpecification?.pool?.[
+                          : body.poolInfo.autoPoolSpecification?.pool?.[
                               "userAccounts"
                             ].map((p) => ({
                               name: p["name"],
@@ -7452,26 +6661,26 @@ export function _createJobSend(
                                     },
                             })),
                       metadata:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "metadata"
                         ] === undefined
-                          ? job.poolInfo.autoPoolSpecification?.pool?.[
+                          ? body.poolInfo.autoPoolSpecification?.pool?.[
                               "metadata"
                             ]
-                          : job.poolInfo.autoPoolSpecification?.pool?.[
+                          : body.poolInfo.autoPoolSpecification?.pool?.[
                               "metadata"
                             ].map((p) => ({
                               name: p["name"],
                               value: p["value"],
                             })),
                       mountConfiguration:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "mountConfiguration"
                         ] === undefined
-                          ? job.poolInfo.autoPoolSpecification?.pool?.[
+                          ? body.poolInfo.autoPoolSpecification?.pool?.[
                               "mountConfiguration"
                             ]
-                          : job.poolInfo.autoPoolSpecification?.pool?.[
+                          : body.poolInfo.autoPoolSpecification?.pool?.[
                               "mountConfiguration"
                             ].map((p) => ({
                               azureBlobFileSystemConfiguration:
@@ -7570,99 +6779,21 @@ export function _createJobSend(
                                     },
                             })),
                       targetNodeCommunicationMode:
-                        job.poolInfo.autoPoolSpecification?.pool?.[
+                        body.poolInfo.autoPoolSpecification?.pool?.[
                           "targetNodeCommunicationMode"
                         ],
-                      upgradePolicy: !job.poolInfo.autoPoolSpecification?.pool
-                        ?.upgradePolicy
-                        ? undefined
-                        : {
-                            mode: job.poolInfo.autoPoolSpecification?.pool
-                              ?.upgradePolicy?.["mode"],
-                            automaticOsUpgradePolicy: !job.poolInfo
-                              .autoPoolSpecification?.pool?.upgradePolicy
-                              ?.automaticOSUpgradePolicy
-                              ? undefined
-                              : {
-                                  disableAutomaticRollback:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy
-                                      ?.automaticOSUpgradePolicy?.[
-                                      "disableAutomaticRollback"
-                                    ],
-                                  enableAutomaticOsUpgrade:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy
-                                      ?.automaticOSUpgradePolicy?.[
-                                      "enableAutomaticOSUpgrade"
-                                    ],
-                                  useRollingUpgradePolicy:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy
-                                      ?.automaticOSUpgradePolicy?.[
-                                      "useRollingUpgradePolicy"
-                                    ],
-                                  osRollingUpgradeDeferral:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy
-                                      ?.automaticOSUpgradePolicy?.[
-                                      "osRollingUpgradeDeferral"
-                                    ],
-                                },
-                            rollingUpgradePolicy: !job.poolInfo
-                              .autoPoolSpecification?.pool?.upgradePolicy
-                              ?.rollingUpgradePolicy
-                              ? undefined
-                              : {
-                                  enableCrossZoneUpgrade:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                      "enableCrossZoneUpgrade"
-                                    ],
-                                  maxBatchInstancePercent:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                      "maxBatchInstancePercent"
-                                    ],
-                                  maxUnhealthyInstancePercent:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                      "maxUnhealthyInstancePercent"
-                                    ],
-                                  maxUnhealthyUpgradedInstancePercent:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                      "maxUnhealthyUpgradedInstancePercent"
-                                    ],
-                                  pauseTimeBetweenBatches:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                      "pauseTimeBetweenBatches"
-                                    ],
-                                  prioritizeUnhealthyInstances:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                      "prioritizeUnhealthyInstances"
-                                    ],
-                                  rollbackFailedInstancesOnPolicyBreach:
-                                    job.poolInfo.autoPoolSpecification?.pool
-                                      ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                      "rollbackFailedInstancesOnPolicyBreach"
-                                    ],
-                                },
-                          },
                     },
               },
         },
-        onAllTasksComplete: job["onAllTasksComplete"],
-        onTaskFailure: job["onTaskFailure"],
-        networkConfiguration: !job.networkConfiguration
+        onAllTasksComplete: body["onAllTasksComplete"],
+        onTaskFailure: body["onTaskFailure"],
+        networkConfiguration: !body.networkConfiguration
           ? undefined
-          : { subnetId: job.networkConfiguration?.["subnetId"] },
+          : { subnetId: body.networkConfiguration?.["subnetId"] },
         metadata:
-          job["metadata"] === undefined
-            ? job["metadata"]
-            : job["metadata"].map((p) => ({
+          body["metadata"] === undefined
+            ? body["metadata"]
+            : body["metadata"].map((p) => ({
                 name: p["name"],
                 value: p["value"],
               })),
@@ -7693,15 +6824,17 @@ export async function _createJobDeserialize(
  */
 export async function createJob(
   context: Client,
-  job: BatchJobCreateContent,
+  apiVersion: string,
+  body: BatchJobCreateOptions,
   options: CreateJobOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _createJobSend(context, job, options);
+  const result = await _createJobSend(context, apiVersion, body, options);
   return _createJobDeserialize(result);
 }
 
 export function _listJobsSend(
   context: Client,
+  apiVersion: string,
   options: ListJobsOptions = { requestOptions: {} },
 ): StreamableMethod<ListJobs200Response | ListJobsDefaultResponse> {
   return context
@@ -7709,12 +6842,12 @@ export function _listJobsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
-        timeOut: options?.timeOutInSeconds,
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
-        $filter: options?.filter,
-        $select: options?.select,
-        $expand: options?.expand,
+        timeOut: options?.timeOutInSeconds,
+        $filter: options?.$filter,
+        $select: options?.$select,
+        $expand: options?.$expand,
       },
     });
 }
@@ -8216,7 +7349,7 @@ export async function _listJobsDeserialize(
                                     : p.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                         "dataDisks"
                                       ].map((p) => ({
-                                        logicalUnitNumber: p["lun"],
+                                        lun: p["lun"],
                                         caching: p["caching"],
                                         diskSizeGb: p["diskSizeGB"],
                                         storageAccountType:
@@ -8344,72 +7477,6 @@ export async function _listJobsDeserialize(
                                                 "placement"
                                               ],
                                           },
-                                      caching:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
-                                          ?.osDisk?.["caching"],
-                                      diskSizeGB:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
-                                          ?.osDisk?.["diskSizeGB"],
-                                      managedDisk: !p.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration?.osDisk
-                                        ?.managedDisk
-                                        ? undefined
-                                        : {
-                                            storageAccountType:
-                                              p.poolInfo.autoPoolSpecification
-                                                ?.pool
-                                                ?.virtualMachineConfiguration
-                                                ?.osDisk?.managedDisk?.[
-                                                "storageAccountType"
-                                              ],
-                                          },
-                                      writeAcceleratorEnabled:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
-                                          ?.osDisk?.["writeAcceleratorEnabled"],
-                                    },
-                                securityProfile: !p.poolInfo
-                                  .autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.securityProfile
-                                  ? undefined
-                                  : {
-                                      encryptionAtHost:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
-                                          ?.securityProfile?.[
-                                          "encryptionAtHost"
-                                        ],
-                                      securityType:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
-                                          ?.securityProfile?.["securityType"],
-                                      uefiSettings: {
-                                        secureBootEnabled:
-                                          p.poolInfo.autoPoolSpecification?.pool
-                                            ?.virtualMachineConfiguration
-                                            ?.securityProfile?.uefiSettings[
-                                            "secureBootEnabled"
-                                          ],
-                                        vTpmEnabled:
-                                          p.poolInfo.autoPoolSpecification?.pool
-                                            ?.virtualMachineConfiguration
-                                            ?.securityProfile?.uefiSettings[
-                                            "vTpmEnabled"
-                                          ],
-                                      },
-                                    },
-                                serviceArtifactReference: !p.poolInfo
-                                  .autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration
-                                  ?.serviceArtifactReference
-                                  ? undefined
-                                  : {
-                                      id: p.poolInfo.autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration
-                                        ?.serviceArtifactReference?.["id"],
                                     },
                               },
                           taskSlotsPerNode:
@@ -8427,10 +7494,6 @@ export async function _listJobsDeserialize(
                           resizeTimeout:
                             p.poolInfo.autoPoolSpecification?.pool?.[
                               "resizeTimeout"
-                            ],
-                          resourceTags:
-                            p.poolInfo.autoPoolSpecification?.pool?.[
-                              "resourceTags"
                             ],
                           targetDedicatedNodes:
                             p.poolInfo.autoPoolSpecification?.pool?.[
@@ -8872,91 +7935,6 @@ export async function _listJobsDeserialize(
                             p.poolInfo.autoPoolSpecification?.pool?.[
                               "targetNodeCommunicationMode"
                             ],
-                          upgradePolicy: !p.poolInfo.autoPoolSpecification?.pool
-                            ?.upgradePolicy
-                            ? undefined
-                            : {
-                                mode: p.poolInfo.autoPoolSpecification?.pool
-                                  ?.upgradePolicy?.["mode"],
-                                automaticOSUpgradePolicy: !p.poolInfo
-                                  .autoPoolSpecification?.pool?.upgradePolicy
-                                  ?.automaticOsUpgradePolicy
-                                  ? undefined
-                                  : {
-                                      disableAutomaticRollback:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.automaticOsUpgradePolicy?.[
-                                          "disableAutomaticRollback"
-                                        ],
-                                      enableAutomaticOSUpgrade:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.automaticOsUpgradePolicy?.[
-                                          "enableAutomaticOsUpgrade"
-                                        ],
-                                      useRollingUpgradePolicy:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.automaticOsUpgradePolicy?.[
-                                          "useRollingUpgradePolicy"
-                                        ],
-                                      osRollingUpgradeDeferral:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.automaticOsUpgradePolicy?.[
-                                          "osRollingUpgradeDeferral"
-                                        ],
-                                    },
-                                rollingUpgradePolicy: !p.poolInfo
-                                  .autoPoolSpecification?.pool?.upgradePolicy
-                                  ?.rollingUpgradePolicy
-                                  ? undefined
-                                  : {
-                                      enableCrossZoneUpgrade:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "enableCrossZoneUpgrade"
-                                        ],
-                                      maxBatchInstancePercent:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "maxBatchInstancePercent"
-                                        ],
-                                      maxUnhealthyInstancePercent:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "maxUnhealthyInstancePercent"
-                                        ],
-                                      maxUnhealthyUpgradedInstancePercent:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "maxUnhealthyUpgradedInstancePercent"
-                                        ],
-                                      pauseTimeBetweenBatches:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "pauseTimeBetweenBatches"
-                                        ],
-                                      prioritizeUnhealthyInstances:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "prioritizeUnhealthyInstances"
-                                        ],
-                                      rollbackFailedInstancesOnPolicyBreach:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "rollbackFailedInstancesOnPolicyBreach"
-                                        ],
-                                    },
-                              },
                         },
                   },
             },
@@ -8996,7 +7974,7 @@ export async function _listJobsDeserialize(
                                 (p) => ({ name: p["name"], value: p["value"] }),
                               ),
                       },
-                  terminationReason: p.executionInfo?.["terminateReason"],
+                  terminateReason: p.executionInfo?.["terminateReason"],
                 },
             stats: !p.stats
               ? undefined
@@ -9004,8 +7982,8 @@ export async function _listJobsDeserialize(
                   url: p.stats?.["url"],
                   startTime: new Date(p.stats?.["startTime"]),
                   lastUpdateTime: new Date(p.stats?.["lastUpdateTime"]),
-                  userCpuTime: p.stats?.["userCPUTime"],
-                  kernelCpuTime: p.stats?.["kernelCPUTime"],
+                  userCPUTime: p.stats?.["userCPUTime"],
+                  kernelCPUTime: p.stats?.["kernelCPUTime"],
                   wallClockTime: p.stats?.["wallClockTime"],
                   readIOps: p.stats?.["readIOps"],
                   writeIOps: p.stats?.["writeIOps"],
@@ -9024,11 +8002,12 @@ export async function _listJobsDeserialize(
 /** Lists all of the Jobs in the specified Account. */
 export function listJobs(
   context: Client,
+  apiVersion: string,
   options: ListJobsOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchJob> {
   return buildPagedAsyncIterator(
     context,
-    () => _listJobsSend(context, options),
+    () => _listJobsSend(context, apiVersion, options),
     _listJobsDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
@@ -9036,6 +8015,7 @@ export function listJobs(
 
 export function _listJobsFromScheduleSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: ListJobsFromScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
@@ -9046,12 +8026,12 @@ export function _listJobsFromScheduleSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
-        timeOut: options?.timeOutInSeconds,
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
-        $filter: options?.filter,
-        $select: options?.select,
-        $expand: options?.expand,
+        timeOut: options?.timeOutInSeconds,
+        $filter: options?.$filter,
+        $select: options?.$select,
+        $expand: options?.$expand,
       },
     });
 }
@@ -9553,7 +8533,7 @@ export async function _listJobsFromScheduleDeserialize(
                                     : p.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                         "dataDisks"
                                       ].map((p) => ({
-                                        logicalUnitNumber: p["lun"],
+                                        lun: p["lun"],
                                         caching: p["caching"],
                                         diskSizeGb: p["diskSizeGB"],
                                         storageAccountType:
@@ -9681,72 +8661,6 @@ export async function _listJobsFromScheduleDeserialize(
                                                 "placement"
                                               ],
                                           },
-                                      caching:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
-                                          ?.osDisk?.["caching"],
-                                      diskSizeGB:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
-                                          ?.osDisk?.["diskSizeGB"],
-                                      managedDisk: !p.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration?.osDisk
-                                        ?.managedDisk
-                                        ? undefined
-                                        : {
-                                            storageAccountType:
-                                              p.poolInfo.autoPoolSpecification
-                                                ?.pool
-                                                ?.virtualMachineConfiguration
-                                                ?.osDisk?.managedDisk?.[
-                                                "storageAccountType"
-                                              ],
-                                          },
-                                      writeAcceleratorEnabled:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
-                                          ?.osDisk?.["writeAcceleratorEnabled"],
-                                    },
-                                securityProfile: !p.poolInfo
-                                  .autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.securityProfile
-                                  ? undefined
-                                  : {
-                                      encryptionAtHost:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
-                                          ?.securityProfile?.[
-                                          "encryptionAtHost"
-                                        ],
-                                      securityType:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
-                                          ?.securityProfile?.["securityType"],
-                                      uefiSettings: {
-                                        secureBootEnabled:
-                                          p.poolInfo.autoPoolSpecification?.pool
-                                            ?.virtualMachineConfiguration
-                                            ?.securityProfile?.uefiSettings[
-                                            "secureBootEnabled"
-                                          ],
-                                        vTpmEnabled:
-                                          p.poolInfo.autoPoolSpecification?.pool
-                                            ?.virtualMachineConfiguration
-                                            ?.securityProfile?.uefiSettings[
-                                            "vTpmEnabled"
-                                          ],
-                                      },
-                                    },
-                                serviceArtifactReference: !p.poolInfo
-                                  .autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration
-                                  ?.serviceArtifactReference
-                                  ? undefined
-                                  : {
-                                      id: p.poolInfo.autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration
-                                        ?.serviceArtifactReference?.["id"],
                                     },
                               },
                           taskSlotsPerNode:
@@ -9764,10 +8678,6 @@ export async function _listJobsFromScheduleDeserialize(
                           resizeTimeout:
                             p.poolInfo.autoPoolSpecification?.pool?.[
                               "resizeTimeout"
-                            ],
-                          resourceTags:
-                            p.poolInfo.autoPoolSpecification?.pool?.[
-                              "resourceTags"
                             ],
                           targetDedicatedNodes:
                             p.poolInfo.autoPoolSpecification?.pool?.[
@@ -10209,91 +9119,6 @@ export async function _listJobsFromScheduleDeserialize(
                             p.poolInfo.autoPoolSpecification?.pool?.[
                               "targetNodeCommunicationMode"
                             ],
-                          upgradePolicy: !p.poolInfo.autoPoolSpecification?.pool
-                            ?.upgradePolicy
-                            ? undefined
-                            : {
-                                mode: p.poolInfo.autoPoolSpecification?.pool
-                                  ?.upgradePolicy?.["mode"],
-                                automaticOSUpgradePolicy: !p.poolInfo
-                                  .autoPoolSpecification?.pool?.upgradePolicy
-                                  ?.automaticOsUpgradePolicy
-                                  ? undefined
-                                  : {
-                                      disableAutomaticRollback:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.automaticOsUpgradePolicy?.[
-                                          "disableAutomaticRollback"
-                                        ],
-                                      enableAutomaticOSUpgrade:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.automaticOsUpgradePolicy?.[
-                                          "enableAutomaticOsUpgrade"
-                                        ],
-                                      useRollingUpgradePolicy:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.automaticOsUpgradePolicy?.[
-                                          "useRollingUpgradePolicy"
-                                        ],
-                                      osRollingUpgradeDeferral:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.automaticOsUpgradePolicy?.[
-                                          "osRollingUpgradeDeferral"
-                                        ],
-                                    },
-                                rollingUpgradePolicy: !p.poolInfo
-                                  .autoPoolSpecification?.pool?.upgradePolicy
-                                  ?.rollingUpgradePolicy
-                                  ? undefined
-                                  : {
-                                      enableCrossZoneUpgrade:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "enableCrossZoneUpgrade"
-                                        ],
-                                      maxBatchInstancePercent:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "maxBatchInstancePercent"
-                                        ],
-                                      maxUnhealthyInstancePercent:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "maxUnhealthyInstancePercent"
-                                        ],
-                                      maxUnhealthyUpgradedInstancePercent:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "maxUnhealthyUpgradedInstancePercent"
-                                        ],
-                                      pauseTimeBetweenBatches:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "pauseTimeBetweenBatches"
-                                        ],
-                                      prioritizeUnhealthyInstances:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "prioritizeUnhealthyInstances"
-                                        ],
-                                      rollbackFailedInstancesOnPolicyBreach:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.upgradePolicy
-                                          ?.rollingUpgradePolicy?.[
-                                          "rollbackFailedInstancesOnPolicyBreach"
-                                        ],
-                                    },
-                              },
                         },
                   },
             },
@@ -10333,7 +9158,7 @@ export async function _listJobsFromScheduleDeserialize(
                                 (p) => ({ name: p["name"], value: p["value"] }),
                               ),
                       },
-                  terminationReason: p.executionInfo?.["terminateReason"],
+                  terminateReason: p.executionInfo?.["terminateReason"],
                 },
             stats: !p.stats
               ? undefined
@@ -10341,8 +9166,8 @@ export async function _listJobsFromScheduleDeserialize(
                   url: p.stats?.["url"],
                   startTime: new Date(p.stats?.["startTime"]),
                   lastUpdateTime: new Date(p.stats?.["lastUpdateTime"]),
-                  userCpuTime: p.stats?.["userCPUTime"],
-                  kernelCpuTime: p.stats?.["kernelCPUTime"],
+                  userCPUTime: p.stats?.["userCPUTime"],
+                  kernelCPUTime: p.stats?.["kernelCPUTime"],
                   wallClockTime: p.stats?.["wallClockTime"],
                   readIOps: p.stats?.["readIOps"],
                   writeIOps: p.stats?.["writeIOps"],
@@ -10361,12 +9186,14 @@ export async function _listJobsFromScheduleDeserialize(
 /** Lists the Jobs that have been created under the specified Job Schedule. */
 export function listJobsFromSchedule(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: ListJobsFromScheduleOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchJob> {
   return buildPagedAsyncIterator(
     context,
-    () => _listJobsFromScheduleSend(context, jobScheduleId, options),
+    () =>
+      _listJobsFromScheduleSend(context, apiVersion, jobScheduleId, options),
     _listJobsFromScheduleDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
@@ -10387,11 +9214,10 @@ export function _listJobPreparationAndReleaseTaskStatusSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
-        timeOut: options?.timeOutInSeconds,
         maxresults: options?.maxresults,
-        $filter: options?.filter,
-        $select: options?.select,
+        timeOut: options?.timeOutInSeconds,
+        $filter: options?.$filter,
+        $select: options?.$select,
       },
     });
 }
@@ -10400,7 +9226,7 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
   result:
     | ListJobPreparationAndReleaseTaskStatus200Response
     | ListJobPreparationAndReleaseTaskStatusDefaultResponse,
-): Promise<BatchJobPreparationAndReleaseTaskStatusListResult> {
+): Promise<BatchJobListPreparationAndReleaseTaskStatusResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -10565,7 +9391,7 @@ export function listJobPreparationAndReleaseTaskStatus(
   options: ListJobPreparationAndReleaseTaskStatusOptions = {
     requestOptions: {},
   },
-): PagedAsyncIterableIterator<BatchJobPreparationAndReleaseTaskStatus> {
+): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation> {
   return buildPagedAsyncIterator(
     context,
     () => _listJobPreparationAndReleaseTaskStatusSend(context, jobId, options),
@@ -10576,6 +9402,7 @@ export function listJobPreparationAndReleaseTaskStatus(
 
 export function _getJobTaskCountsSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: GetJobTaskCountsOptions = { requestOptions: {} },
 ): StreamableMethod<
@@ -10586,7 +9413,7 @@ export function _getJobTaskCountsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -10594,7 +9421,7 @@ export function _getJobTaskCountsSend(
 
 export async function _getJobTaskCountsDeserialize(
   result: GetJobTaskCounts200Response | GetJobTaskCountsDefaultResponse,
-): Promise<BatchTaskCountsResult> {
+): Promise<TaskCountsResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -10625,16 +9452,23 @@ export async function _getJobTaskCountsDeserialize(
  */
 export async function getJobTaskCounts(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: GetJobTaskCountsOptions = { requestOptions: {} },
-): Promise<BatchTaskCountsResult> {
-  const result = await _getJobTaskCountsSend(context, jobId, options);
+): Promise<TaskCountsResult> {
+  const result = await _getJobTaskCountsSend(
+    context,
+    apiVersion,
+    jobId,
+    options,
+  );
   return _getJobTaskCountsDeserialize(result);
 }
 
 export function _createCertificateSend(
   context: Client,
-  certificate: BatchCertificate,
+  apiVersion: string,
+  body: BatchCertificate,
   options: CreateCertificateOptions = { requestOptions: {} },
 ): StreamableMethod<
   CreateCertificate201Response | CreateCertificateDefaultResponse
@@ -10647,15 +9481,15 @@ export function _createCertificateSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        thumbprint: certificate["thumbprint"],
-        thumbprintAlgorithm: certificate["thumbprintAlgorithm"],
-        data: certificate["data"],
-        certificateFormat: certificate["certificateFormat"],
-        password: certificate["password"],
+        thumbprint: body["thumbprint"],
+        thumbprintAlgorithm: body["thumbprintAlgorithm"],
+        data: uint8ArrayToString(body["data"], "base64"),
+        certificateFormat: body["certificateFormat"],
+        password: body["password"],
       },
     });
 }
@@ -10673,15 +9507,22 @@ export async function _createCertificateDeserialize(
 /** Creates a Certificate to the specified Account. */
 export async function createCertificate(
   context: Client,
-  certificate: BatchCertificate,
+  apiVersion: string,
+  body: BatchCertificate,
   options: CreateCertificateOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _createCertificateSend(context, certificate, options);
+  const result = await _createCertificateSend(
+    context,
+    apiVersion,
+    body,
+    options,
+  );
   return _createCertificateDeserialize(result);
 }
 
 export function _listCertificatesSend(
   context: Client,
+  apiVersion: string,
   options: ListCertificatesOptions = { requestOptions: {} },
 ): StreamableMethod<
   ListCertificates200Response | ListCertificatesDefaultResponse
@@ -10691,18 +9532,18 @@ export function _listCertificatesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
-        timeOut: options?.timeOutInSeconds,
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
-        $filter: options?.filter,
-        $select: options?.select,
+        timeOut: options?.timeOutInSeconds,
+        $filter: options?.$filter,
+        $select: options?.$select,
       },
     });
 }
 
 export async function _listCertificatesDeserialize(
   result: ListCertificates200Response | ListCertificatesDefaultResponse,
-): Promise<BatchCertificateListResult> {
+): Promise<CertificateListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -10725,7 +9566,10 @@ export async function _listCertificatesDeserialize(
               p["previousStateTransitionTime"] !== undefined
                 ? new Date(p["previousStateTransitionTime"])
                 : undefined,
-            publicData: p["publicData"],
+            publicData:
+              typeof p["publicData"] === "string"
+                ? stringToUint8Array(p["publicData"], "base64")
+                : p["publicData"],
             deleteCertificateError: !p.deleteCertificateError
               ? undefined
               : {
@@ -10739,7 +9583,10 @@ export async function _listCertificatesDeserialize(
                           value: p["value"],
                         })),
                 },
-            data: p["data"],
+            data:
+              typeof p["data"] === "string"
+                ? stringToUint8Array(p["data"], "base64")
+                : p["data"],
             certificateFormat: p["certificateFormat"],
             password: p["password"],
           })),
@@ -10750,11 +9597,12 @@ export async function _listCertificatesDeserialize(
 /** Lists all of the Certificates that have been added to the specified Account. */
 export function listCertificates(
   context: Client,
+  apiVersion: string,
   options: ListCertificatesOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchCertificate> {
   return buildPagedAsyncIterator(
     context,
-    () => _listCertificatesSend(context, options),
+    () => _listCertificatesSend(context, apiVersion, options),
     _listCertificatesDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
@@ -10762,6 +9610,7 @@ export function listCertificates(
 
 export function _cancelCertificateDeletionSend(
   context: Client,
+  apiVersion: string,
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: CancelCertificateDeletionOptions = { requestOptions: {} },
@@ -10778,7 +9627,7 @@ export function _cancelCertificateDeletionSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -10807,12 +9656,14 @@ export async function _cancelCertificateDeletionDeserialize(
  */
 export async function cancelCertificateDeletion(
   context: Client,
+  apiVersion: string,
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: CancelCertificateDeletionOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _cancelCertificateDeletionSend(
     context,
+    apiVersion,
     thumbprintAlgorithm,
     thumbprint,
     options,
@@ -10822,6 +9673,7 @@ export async function cancelCertificateDeletion(
 
 export function _deleteCertificateSend(
   context: Client,
+  apiVersion: string,
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: DeleteCertificateOptions = { requestOptions: {} },
@@ -10837,7 +9689,7 @@ export function _deleteCertificateSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -10866,12 +9718,14 @@ export async function _deleteCertificateDeserialize(
  */
 export async function deleteCertificate(
   context: Client,
+  apiVersion: string,
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: DeleteCertificateOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteCertificateSend(
     context,
+    apiVersion,
     thumbprintAlgorithm,
     thumbprint,
     options,
@@ -10881,6 +9735,7 @@ export async function deleteCertificate(
 
 export function _getCertificateSend(
   context: Client,
+  apiVersion: string,
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: GetCertificateOptions = { requestOptions: {} },
@@ -10894,9 +9749,9 @@ export function _getCertificateSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
-        $select: options?.select,
+        $select: options?.$select,
       },
     });
 }
@@ -10922,7 +9777,10 @@ export async function _getCertificateDeserialize(
       result.body["previousStateTransitionTime"] !== undefined
         ? new Date(result.body["previousStateTransitionTime"])
         : undefined,
-    publicData: result.body["publicData"],
+    publicData:
+      typeof result.body["publicData"] === "string"
+        ? stringToUint8Array(result.body["publicData"], "base64")
+        : result.body["publicData"],
     deleteCertificateError: !result.body.deleteCertificateError
       ? undefined
       : {
@@ -10936,7 +9794,10 @@ export async function _getCertificateDeserialize(
                   value: p["value"],
                 })),
         },
-    data: result.body["data"],
+    data:
+      typeof result.body["data"] === "string"
+        ? stringToUint8Array(result.body["data"], "base64")
+        : result.body["data"],
     certificateFormat: result.body["certificateFormat"],
     password: result.body["password"],
   };
@@ -10945,12 +9806,14 @@ export async function _getCertificateDeserialize(
 /** Gets information about the specified Certificate. */
 export async function getCertificate(
   context: Client,
+  apiVersion: string,
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: GetCertificateOptions = { requestOptions: {} },
 ): Promise<BatchCertificate> {
   const result = await _getCertificateSend(
     context,
+    apiVersion,
     thumbprintAlgorithm,
     thumbprint,
     options,
@@ -10960,6 +9823,7 @@ export async function getCertificate(
 
 export function _jobScheduleExistsSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: JobScheduleExistsOptions = { requestOptions: {} },
 ): StreamableMethod<
@@ -10972,21 +9836,21 @@ export function _jobScheduleExistsSend(
     .head({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -11008,15 +9872,22 @@ export async function _jobScheduleExistsDeserialize(
 /** Checks the specified Job Schedule exists. */
 export async function jobScheduleExists(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: JobScheduleExistsOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _jobScheduleExistsSend(context, jobScheduleId, options);
+  const result = await _jobScheduleExistsSend(
+    context,
+    apiVersion,
+    jobScheduleId,
+    options,
+  );
   return _jobScheduleExistsDeserialize(result);
 }
 
 export function _deleteJobScheduleSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: DeleteJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
@@ -11027,21 +9898,21 @@ export function _deleteJobScheduleSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -11066,15 +9937,22 @@ export async function _deleteJobScheduleDeserialize(
  */
 export async function deleteJobSchedule(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: DeleteJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _deleteJobScheduleSend(context, jobScheduleId, options);
+  const result = await _deleteJobScheduleSend(
+    context,
+    apiVersion,
+    jobScheduleId,
+    options,
+  );
   return _deleteJobScheduleDeserialize(result);
 }
 
 export function _getJobScheduleSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: GetJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<GetJobSchedule200Response | GetJobScheduleDefaultResponse> {
@@ -11083,24 +9961,24 @@ export function _getJobScheduleSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
-        $select: options?.select,
-        $expand: options?.expand,
+        $select: options?.$select,
+        $expand: options?.$expand,
       },
     });
 }
@@ -11135,20 +10013,18 @@ export async function _getJobScheduleDeserialize(
       result.body["previousStateTransitionTime"] !== undefined
         ? new Date(result.body["previousStateTransitionTime"])
         : undefined,
-    schedule: !result.body.schedule
-      ? undefined
-      : {
-          doNotRunUntil:
-            result.body.schedule?.["doNotRunUntil"] !== undefined
-              ? new Date(result.body.schedule?.["doNotRunUntil"])
-              : undefined,
-          doNotRunAfter:
-            result.body.schedule?.["doNotRunAfter"] !== undefined
-              ? new Date(result.body.schedule?.["doNotRunAfter"])
-              : undefined,
-          startWindow: result.body.schedule?.["startWindow"],
-          recurrenceInterval: result.body.schedule?.["recurrenceInterval"],
-        },
+    schedule: {
+      doNotRunUntil:
+        result.body.schedule["doNotRunUntil"] !== undefined
+          ? new Date(result.body.schedule["doNotRunUntil"])
+          : undefined,
+      doNotRunAfter:
+        result.body.schedule["doNotRunAfter"] !== undefined
+          ? new Date(result.body.schedule["doNotRunAfter"])
+          : undefined,
+      startWindow: result.body.schedule["startWindow"],
+      recurrenceInterval: result.body.schedule["recurrenceInterval"],
+    },
     jobSpecification: {
       priority: result.body.jobSpecification["priority"],
       allowTaskPreemption: result.body.jobSpecification["allowTaskPreemption"],
@@ -11685,7 +10561,7 @@ export async function _getJobScheduleDeserialize(
                               : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                   "dataDisks"
                                 ].map((p) => ({
-                                  logicalUnitNumber: p["lun"],
+                                  lun: p["lun"],
                                   caching: p["caching"],
                                   diskSizeGb: p["diskSizeGB"],
                                   storageAccountType: p["storageAccountType"],
@@ -11808,79 +10684,6 @@ export async function _getJobScheduleDeserialize(
                                           "placement"
                                         ],
                                     },
-                                caching:
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration?.osDisk?.[
-                                    "caching"
-                                  ],
-                                diskSizeGB:
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration?.osDisk?.[
-                                    "diskSizeGB"
-                                  ],
-                                managedDisk: !result.body.jobSpecification
-                                  .poolInfo.autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.osDisk
-                                  ?.managedDisk
-                                  ? undefined
-                                  : {
-                                      storageAccountType:
-                                        result.body.jobSpecification.poolInfo
-                                          .autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration?.osDisk
-                                          ?.managedDisk?.["storageAccountType"],
-                                    },
-                                writeAcceleratorEnabled:
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration?.osDisk?.[
-                                    "writeAcceleratorEnabled"
-                                  ],
-                              },
-                          securityProfile: !result.body.jobSpecification
-                            .poolInfo.autoPoolSpecification?.pool
-                            ?.virtualMachineConfiguration?.securityProfile
-                            ? undefined
-                            : {
-                                encryptionAtHost:
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.securityProfile?.["encryptionAtHost"],
-                                securityType:
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.securityProfile?.["securityType"],
-                                uefiSettings: {
-                                  secureBootEnabled:
-                                    result.body.jobSpecification.poolInfo
-                                      .autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration
-                                      ?.securityProfile?.uefiSettings[
-                                      "secureBootEnabled"
-                                    ],
-                                  vTpmEnabled:
-                                    result.body.jobSpecification.poolInfo
-                                      .autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration
-                                      ?.securityProfile?.uefiSettings[
-                                      "vTpmEnabled"
-                                    ],
-                                },
-                              },
-                          serviceArtifactReference: !result.body
-                            .jobSpecification.poolInfo.autoPoolSpecification
-                            ?.pool?.virtualMachineConfiguration
-                            ?.serviceArtifactReference
-                            ? undefined
-                            : {
-                                id: result.body.jobSpecification.poolInfo
-                                  .autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration
-                                  ?.serviceArtifactReference?.["id"],
                               },
                         },
                     taskSlotsPerNode:
@@ -11898,9 +10701,6 @@ export async function _getJobScheduleDeserialize(
                     resizeTimeout:
                       result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.["resizeTimeout"],
-                    resourceTags:
-                      result.body.jobSpecification.poolInfo
-                        .autoPoolSpecification?.pool?.["resourceTags"],
                     targetDedicatedNodes:
                       result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.["targetDedicatedNodes"],
@@ -12326,93 +11126,6 @@ export async function _getJobScheduleDeserialize(
                         .autoPoolSpecification?.pool?.[
                         "targetNodeCommunicationMode"
                       ],
-                    upgradePolicy: !result.body.jobSpecification.poolInfo
-                      .autoPoolSpecification?.pool?.upgradePolicy
-                      ? undefined
-                      : {
-                          mode: result.body.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.upgradePolicy?.[
-                            "mode"
-                          ],
-                          automaticOSUpgradePolicy: !result.body
-                            .jobSpecification.poolInfo.autoPoolSpecification
-                            ?.pool?.upgradePolicy?.automaticOsUpgradePolicy
-                            ? undefined
-                            : {
-                                disableAutomaticRollback:
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool?.upgradePolicy
-                                    ?.automaticOsUpgradePolicy?.[
-                                    "disableAutomaticRollback"
-                                  ],
-                                enableAutomaticOSUpgrade:
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool?.upgradePolicy
-                                    ?.automaticOsUpgradePolicy?.[
-                                    "enableAutomaticOsUpgrade"
-                                  ],
-                                useRollingUpgradePolicy:
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool?.upgradePolicy
-                                    ?.automaticOsUpgradePolicy?.[
-                                    "useRollingUpgradePolicy"
-                                  ],
-                                osRollingUpgradeDeferral:
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool?.upgradePolicy
-                                    ?.automaticOsUpgradePolicy?.[
-                                    "osRollingUpgradeDeferral"
-                                  ],
-                              },
-                          rollingUpgradePolicy: !result.body.jobSpecification
-                            .poolInfo.autoPoolSpecification?.pool?.upgradePolicy
-                            ?.rollingUpgradePolicy
-                            ? undefined
-                            : {
-                                enableCrossZoneUpgrade:
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool?.upgradePolicy
-                                    ?.rollingUpgradePolicy?.[
-                                    "enableCrossZoneUpgrade"
-                                  ],
-                                maxBatchInstancePercent:
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool?.upgradePolicy
-                                    ?.rollingUpgradePolicy?.[
-                                    "maxBatchInstancePercent"
-                                  ],
-                                maxUnhealthyInstancePercent:
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool?.upgradePolicy
-                                    ?.rollingUpgradePolicy?.[
-                                    "maxUnhealthyInstancePercent"
-                                  ],
-                                maxUnhealthyUpgradedInstancePercent:
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool?.upgradePolicy
-                                    ?.rollingUpgradePolicy?.[
-                                    "maxUnhealthyUpgradedInstancePercent"
-                                  ],
-                                pauseTimeBetweenBatches:
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool?.upgradePolicy
-                                    ?.rollingUpgradePolicy?.[
-                                    "pauseTimeBetweenBatches"
-                                  ],
-                                prioritizeUnhealthyInstances:
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool?.upgradePolicy
-                                    ?.rollingUpgradePolicy?.[
-                                    "prioritizeUnhealthyInstances"
-                                  ],
-                                rollbackFailedInstancesOnPolicyBreach:
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool?.upgradePolicy
-                                    ?.rollingUpgradePolicy?.[
-                                    "rollbackFailedInstancesOnPolicyBreach"
-                                  ],
-                              },
-                        },
                   },
             },
       },
@@ -12455,8 +11168,8 @@ export async function _getJobScheduleDeserialize(
           url: result.body.stats?.["url"],
           startTime: new Date(result.body.stats?.["startTime"]),
           lastUpdateTime: new Date(result.body.stats?.["lastUpdateTime"]),
-          userCpuTime: result.body.stats?.["userCPUTime"],
-          kernelCpuTime: result.body.stats?.["kernelCPUTime"],
+          userCPUTime: result.body.stats?.["userCPUTime"],
+          kernelCPUTime: result.body.stats?.["kernelCPUTime"],
           wallClockTime: result.body.stats?.["wallClockTime"],
           readIOps: result.body.stats?.["readIOps"],
           writeIOps: result.body.stats?.["writeIOps"],
@@ -12473,17 +11186,24 @@ export async function _getJobScheduleDeserialize(
 /** Gets information about the specified Job Schedule. */
 export async function getJobSchedule(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: GetJobScheduleOptions = { requestOptions: {} },
 ): Promise<BatchJobSchedule> {
-  const result = await _getJobScheduleSend(context, jobScheduleId, options);
+  const result = await _getJobScheduleSend(
+    context,
+    apiVersion,
+    jobScheduleId,
+    options,
+  );
   return _getJobScheduleDeserialize(result);
 }
 
 export function _updateJobScheduleSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
-  jobSchedule: BatchJobScheduleUpdateContent,
+  body: BatchJobScheduleUpdateOptions,
   options: UpdateJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
   UpdateJobSchedule200Response | UpdateJobScheduleDefaultResponse
@@ -12496,131 +11216,114 @@ export function _updateJobScheduleSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        schedule: !jobSchedule.schedule
+        schedule: !body.schedule
           ? undefined
           : {
-              doNotRunUntil:
-                jobSchedule.schedule?.["doNotRunUntil"]?.toISOString(),
-              doNotRunAfter:
-                jobSchedule.schedule?.["doNotRunAfter"]?.toISOString(),
-              startWindow: jobSchedule.schedule?.["startWindow"],
-              recurrenceInterval: jobSchedule.schedule?.["recurrenceInterval"],
+              doNotRunUntil: body.schedule?.["doNotRunUntil"]?.toISOString(),
+              doNotRunAfter: body.schedule?.["doNotRunAfter"]?.toISOString(),
+              startWindow: body.schedule?.["startWindow"],
+              recurrenceInterval: body.schedule?.["recurrenceInterval"],
             },
-        jobSpecification: !jobSchedule.jobSpecification
+        jobSpecification: !body.jobSpecification
           ? undefined
           : {
-              priority: jobSchedule.jobSpecification?.["priority"],
+              priority: body.jobSpecification?.["priority"],
               allowTaskPreemption:
-                jobSchedule.jobSpecification?.["allowTaskPreemption"],
-              maxParallelTasks:
-                jobSchedule.jobSpecification?.["maxParallelTasks"],
-              displayName: jobSchedule.jobSpecification?.["displayName"],
+                body.jobSpecification?.["allowTaskPreemption"],
+              maxParallelTasks: body.jobSpecification?.["maxParallelTasks"],
+              displayName: body.jobSpecification?.["displayName"],
               usesTaskDependencies:
-                jobSchedule.jobSpecification?.["usesTaskDependencies"],
-              onAllTasksComplete:
-                jobSchedule.jobSpecification?.["onAllTasksComplete"],
-              onTaskFailure: jobSchedule.jobSpecification?.["onTaskFailure"],
-              networkConfiguration: !jobSchedule.jobSpecification
-                ?.networkConfiguration
+                body.jobSpecification?.["usesTaskDependencies"],
+              onAllTasksComplete: body.jobSpecification?.["onAllTasksComplete"],
+              onTaskFailure: body.jobSpecification?.["onTaskFailure"],
+              networkConfiguration: !body.jobSpecification?.networkConfiguration
                 ? undefined
                 : {
                     subnetId:
-                      jobSchedule.jobSpecification?.networkConfiguration?.[
-                        "subnetId"
-                      ],
+                      body.jobSpecification?.networkConfiguration?.["subnetId"],
                   },
-              constraints: !jobSchedule.jobSpecification?.constraints
+              constraints: !body.jobSpecification?.constraints
                 ? undefined
                 : {
                     maxWallClockTime:
-                      jobSchedule.jobSpecification?.constraints?.[
-                        "maxWallClockTime"
-                      ],
+                      body.jobSpecification?.constraints?.["maxWallClockTime"],
                     maxTaskRetryCount:
-                      jobSchedule.jobSpecification?.constraints?.[
-                        "maxTaskRetryCount"
-                      ],
+                      body.jobSpecification?.constraints?.["maxTaskRetryCount"],
                   },
-              jobManagerTask: !jobSchedule.jobSpecification?.jobManagerTask
+              jobManagerTask: !body.jobSpecification?.jobManagerTask
                 ? undefined
                 : {
-                    id: jobSchedule.jobSpecification?.jobManagerTask?.["id"],
+                    id: body.jobSpecification?.jobManagerTask?.["id"],
                     displayName:
-                      jobSchedule.jobSpecification?.jobManagerTask?.[
-                        "displayName"
-                      ],
+                      body.jobSpecification?.jobManagerTask?.["displayName"],
                     commandLine:
-                      jobSchedule.jobSpecification?.jobManagerTask?.[
-                        "commandLine"
-                      ],
-                    containerSettings: !jobSchedule.jobSpecification
-                      ?.jobManagerTask?.containerSettings
+                      body.jobSpecification?.jobManagerTask?.["commandLine"],
+                    containerSettings: !body.jobSpecification?.jobManagerTask
+                      ?.containerSettings
                       ? undefined
                       : {
                           containerRunOptions:
-                            jobSchedule.jobSpecification?.jobManagerTask
+                            body.jobSpecification?.jobManagerTask
                               ?.containerSettings?.["containerRunOptions"],
                           imageName:
-                            jobSchedule.jobSpecification?.jobManagerTask
+                            body.jobSpecification?.jobManagerTask
                               ?.containerSettings?.["imageName"],
-                          registry: !jobSchedule.jobSpecification
-                            ?.jobManagerTask?.containerSettings?.registry
+                          registry: !body.jobSpecification?.jobManagerTask
+                            ?.containerSettings?.registry
                             ? undefined
                             : {
                                 username:
-                                  jobSchedule.jobSpecification?.jobManagerTask
+                                  body.jobSpecification?.jobManagerTask
                                     ?.containerSettings?.registry?.["username"],
                                 password:
-                                  jobSchedule.jobSpecification?.jobManagerTask
+                                  body.jobSpecification?.jobManagerTask
                                     ?.containerSettings?.registry?.["password"],
                                 registryServer:
-                                  jobSchedule.jobSpecification?.jobManagerTask
+                                  body.jobSpecification?.jobManagerTask
                                     ?.containerSettings?.registry?.[
                                     "registryServer"
                                   ],
-                                identityReference: !jobSchedule.jobSpecification
+                                identityReference: !body.jobSpecification
                                   ?.jobManagerTask?.containerSettings?.registry
                                   ?.identityReference
                                   ? undefined
                                   : {
                                       resourceId:
-                                        jobSchedule.jobSpecification
-                                          ?.jobManagerTask?.containerSettings
-                                          ?.registry?.identityReference?.[
-                                          "resourceId"
-                                        ],
+                                        body.jobSpecification?.jobManagerTask
+                                          ?.containerSettings?.registry
+                                          ?.identityReference?.["resourceId"],
                                     },
                               },
                           workingDirectory:
-                            jobSchedule.jobSpecification?.jobManagerTask
+                            body.jobSpecification?.jobManagerTask
                               ?.containerSettings?.["workingDirectory"],
                         },
                     resourceFiles:
-                      jobSchedule.jobSpecification?.jobManagerTask?.[
+                      body.jobSpecification?.jobManagerTask?.[
                         "resourceFiles"
                       ] === undefined
-                        ? jobSchedule.jobSpecification?.jobManagerTask?.[
+                        ? body.jobSpecification?.jobManagerTask?.[
                             "resourceFiles"
                           ]
-                        : jobSchedule.jobSpecification?.jobManagerTask?.[
+                        : body.jobSpecification?.jobManagerTask?.[
                             "resourceFiles"
                           ].map((p) => ({
                             autoStorageContainerName:
@@ -12638,13 +11341,10 @@ export function _updateJobScheduleSend(
                                 },
                           })),
                     outputFiles:
-                      jobSchedule.jobSpecification?.jobManagerTask?.[
-                        "outputFiles"
-                      ] === undefined
-                        ? jobSchedule.jobSpecification?.jobManagerTask?.[
-                            "outputFiles"
-                          ]
-                        : jobSchedule.jobSpecification?.jobManagerTask?.[
+                      body.jobSpecification?.jobManagerTask?.["outputFiles"] ===
+                      undefined
+                        ? body.jobSpecification?.jobManagerTask?.["outputFiles"]
+                        : body.jobSpecification?.jobManagerTask?.[
                             "outputFiles"
                           ].map((p) => ({
                             filePattern: p["filePattern"],
@@ -12686,152 +11386,144 @@ export function _updateJobScheduleSend(
                             },
                           })),
                     environmentSettings:
-                      jobSchedule.jobSpecification?.jobManagerTask?.[
+                      body.jobSpecification?.jobManagerTask?.[
                         "environmentSettings"
                       ] === undefined
-                        ? jobSchedule.jobSpecification?.jobManagerTask?.[
+                        ? body.jobSpecification?.jobManagerTask?.[
                             "environmentSettings"
                           ]
-                        : jobSchedule.jobSpecification?.jobManagerTask?.[
+                        : body.jobSpecification?.jobManagerTask?.[
                             "environmentSettings"
                           ].map((p) => ({
                             name: p["name"],
                             value: p["value"],
                           })),
-                    constraints: !jobSchedule.jobSpecification?.jobManagerTask
+                    constraints: !body.jobSpecification?.jobManagerTask
                       ?.constraints
                       ? undefined
                       : {
                           maxWallClockTime:
-                            jobSchedule.jobSpecification?.jobManagerTask
+                            body.jobSpecification?.jobManagerTask
                               ?.constraints?.["maxWallClockTime"],
                           retentionTime:
-                            jobSchedule.jobSpecification?.jobManagerTask
+                            body.jobSpecification?.jobManagerTask
                               ?.constraints?.["retentionTime"],
                           maxTaskRetryCount:
-                            jobSchedule.jobSpecification?.jobManagerTask
+                            body.jobSpecification?.jobManagerTask
                               ?.constraints?.["maxTaskRetryCount"],
                         },
                     requiredSlots:
-                      jobSchedule.jobSpecification?.jobManagerTask?.[
-                        "requiredSlots"
-                      ],
+                      body.jobSpecification?.jobManagerTask?.["requiredSlots"],
                     killJobOnCompletion:
-                      jobSchedule.jobSpecification?.jobManagerTask?.[
+                      body.jobSpecification?.jobManagerTask?.[
                         "killJobOnCompletion"
                       ],
-                    userIdentity: !jobSchedule.jobSpecification?.jobManagerTask
+                    userIdentity: !body.jobSpecification?.jobManagerTask
                       ?.userIdentity
                       ? undefined
                       : {
                           username:
-                            jobSchedule.jobSpecification?.jobManagerTask
+                            body.jobSpecification?.jobManagerTask
                               ?.userIdentity?.["username"],
-                          autoUser: !jobSchedule.jobSpecification
-                            ?.jobManagerTask?.userIdentity?.autoUser
+                          autoUser: !body.jobSpecification?.jobManagerTask
+                            ?.userIdentity?.autoUser
                             ? undefined
                             : {
                                 scope:
-                                  jobSchedule.jobSpecification?.jobManagerTask
+                                  body.jobSpecification?.jobManagerTask
                                     ?.userIdentity?.autoUser?.["scope"],
                                 elevationLevel:
-                                  jobSchedule.jobSpecification?.jobManagerTask
+                                  body.jobSpecification?.jobManagerTask
                                     ?.userIdentity?.autoUser?.[
                                     "elevationLevel"
                                   ],
                               },
                         },
                     runExclusive:
-                      jobSchedule.jobSpecification?.jobManagerTask?.[
-                        "runExclusive"
-                      ],
+                      body.jobSpecification?.jobManagerTask?.["runExclusive"],
                     applicationPackageReferences:
-                      jobSchedule.jobSpecification?.jobManagerTask?.[
+                      body.jobSpecification?.jobManagerTask?.[
                         "applicationPackageReferences"
                       ] === undefined
-                        ? jobSchedule.jobSpecification?.jobManagerTask?.[
+                        ? body.jobSpecification?.jobManagerTask?.[
                             "applicationPackageReferences"
                           ]
-                        : jobSchedule.jobSpecification?.jobManagerTask?.[
+                        : body.jobSpecification?.jobManagerTask?.[
                             "applicationPackageReferences"
                           ].map((p) => ({
                             applicationId: p["applicationId"],
                             version: p["version"],
                           })),
-                    authenticationTokenSettings: !jobSchedule.jobSpecification
+                    authenticationTokenSettings: !body.jobSpecification
                       ?.jobManagerTask?.authenticationTokenSettings
                       ? undefined
                       : {
                           access:
-                            jobSchedule.jobSpecification?.jobManagerTask
+                            body.jobSpecification?.jobManagerTask
                               ?.authenticationTokenSettings?.["access"],
                         },
                     allowLowPriorityNode:
-                      jobSchedule.jobSpecification?.jobManagerTask?.[
+                      body.jobSpecification?.jobManagerTask?.[
                         "allowLowPriorityNode"
                       ],
                   },
-              jobPreparationTask: !jobSchedule.jobSpecification
-                ?.jobPreparationTask
+              jobPreparationTask: !body.jobSpecification?.jobPreparationTask
                 ? undefined
                 : {
-                    id: jobSchedule.jobSpecification?.jobPreparationTask?.[
-                      "id"
-                    ],
+                    id: body.jobSpecification?.jobPreparationTask?.["id"],
                     commandLine:
-                      jobSchedule.jobSpecification?.jobPreparationTask?.[
+                      body.jobSpecification?.jobPreparationTask?.[
                         "commandLine"
                       ],
-                    containerSettings: !jobSchedule.jobSpecification
+                    containerSettings: !body.jobSpecification
                       ?.jobPreparationTask?.containerSettings
                       ? undefined
                       : {
                           containerRunOptions:
-                            jobSchedule.jobSpecification?.jobPreparationTask
+                            body.jobSpecification?.jobPreparationTask
                               ?.containerSettings?.["containerRunOptions"],
                           imageName:
-                            jobSchedule.jobSpecification?.jobPreparationTask
+                            body.jobSpecification?.jobPreparationTask
                               ?.containerSettings?.["imageName"],
-                          registry: !jobSchedule.jobSpecification
-                            ?.jobPreparationTask?.containerSettings?.registry
+                          registry: !body.jobSpecification?.jobPreparationTask
+                            ?.containerSettings?.registry
                             ? undefined
                             : {
                                 username:
-                                  jobSchedule.jobSpecification
-                                    ?.jobPreparationTask?.containerSettings
-                                    ?.registry?.["username"],
+                                  body.jobSpecification?.jobPreparationTask
+                                    ?.containerSettings?.registry?.["username"],
                                 password:
-                                  jobSchedule.jobSpecification
-                                    ?.jobPreparationTask?.containerSettings
-                                    ?.registry?.["password"],
+                                  body.jobSpecification?.jobPreparationTask
+                                    ?.containerSettings?.registry?.["password"],
                                 registryServer:
-                                  jobSchedule.jobSpecification
-                                    ?.jobPreparationTask?.containerSettings
-                                    ?.registry?.["registryServer"],
-                                identityReference: !jobSchedule.jobSpecification
+                                  body.jobSpecification?.jobPreparationTask
+                                    ?.containerSettings?.registry?.[
+                                    "registryServer"
+                                  ],
+                                identityReference: !body.jobSpecification
                                   ?.jobPreparationTask?.containerSettings
                                   ?.registry?.identityReference
                                   ? undefined
                                   : {
                                       resourceId:
-                                        jobSchedule.jobSpecification
+                                        body.jobSpecification
                                           ?.jobPreparationTask
                                           ?.containerSettings?.registry
                                           ?.identityReference?.["resourceId"],
                                     },
                               },
                           workingDirectory:
-                            jobSchedule.jobSpecification?.jobPreparationTask
+                            body.jobSpecification?.jobPreparationTask
                               ?.containerSettings?.["workingDirectory"],
                         },
                     resourceFiles:
-                      jobSchedule.jobSpecification?.jobPreparationTask?.[
+                      body.jobSpecification?.jobPreparationTask?.[
                         "resourceFiles"
                       ] === undefined
-                        ? jobSchedule.jobSpecification?.jobPreparationTask?.[
+                        ? body.jobSpecification?.jobPreparationTask?.[
                             "resourceFiles"
                           ]
-                        : jobSchedule.jobSpecification?.jobPreparationTask?.[
+                        : body.jobSpecification?.jobPreparationTask?.[
                             "resourceFiles"
                           ].map((p) => ({
                             autoStorageContainerName:
@@ -12849,120 +11541,116 @@ export function _updateJobScheduleSend(
                                 },
                           })),
                     environmentSettings:
-                      jobSchedule.jobSpecification?.jobPreparationTask?.[
+                      body.jobSpecification?.jobPreparationTask?.[
                         "environmentSettings"
                       ] === undefined
-                        ? jobSchedule.jobSpecification?.jobPreparationTask?.[
+                        ? body.jobSpecification?.jobPreparationTask?.[
                             "environmentSettings"
                           ]
-                        : jobSchedule.jobSpecification?.jobPreparationTask?.[
+                        : body.jobSpecification?.jobPreparationTask?.[
                             "environmentSettings"
                           ].map((p) => ({
                             name: p["name"],
                             value: p["value"],
                           })),
-                    constraints: !jobSchedule.jobSpecification
-                      ?.jobPreparationTask?.constraints
+                    constraints: !body.jobSpecification?.jobPreparationTask
+                      ?.constraints
                       ? undefined
                       : {
                           maxWallClockTime:
-                            jobSchedule.jobSpecification?.jobPreparationTask
+                            body.jobSpecification?.jobPreparationTask
                               ?.constraints?.["maxWallClockTime"],
                           retentionTime:
-                            jobSchedule.jobSpecification?.jobPreparationTask
+                            body.jobSpecification?.jobPreparationTask
                               ?.constraints?.["retentionTime"],
                           maxTaskRetryCount:
-                            jobSchedule.jobSpecification?.jobPreparationTask
+                            body.jobSpecification?.jobPreparationTask
                               ?.constraints?.["maxTaskRetryCount"],
                         },
                     waitForSuccess:
-                      jobSchedule.jobSpecification?.jobPreparationTask?.[
+                      body.jobSpecification?.jobPreparationTask?.[
                         "waitForSuccess"
                       ],
-                    userIdentity: !jobSchedule.jobSpecification
-                      ?.jobPreparationTask?.userIdentity
+                    userIdentity: !body.jobSpecification?.jobPreparationTask
+                      ?.userIdentity
                       ? undefined
                       : {
                           username:
-                            jobSchedule.jobSpecification?.jobPreparationTask
+                            body.jobSpecification?.jobPreparationTask
                               ?.userIdentity?.["username"],
-                          autoUser: !jobSchedule.jobSpecification
-                            ?.jobPreparationTask?.userIdentity?.autoUser
+                          autoUser: !body.jobSpecification?.jobPreparationTask
+                            ?.userIdentity?.autoUser
                             ? undefined
                             : {
                                 scope:
-                                  jobSchedule.jobSpecification
-                                    ?.jobPreparationTask?.userIdentity
-                                    ?.autoUser?.["scope"],
+                                  body.jobSpecification?.jobPreparationTask
+                                    ?.userIdentity?.autoUser?.["scope"],
                                 elevationLevel:
-                                  jobSchedule.jobSpecification
-                                    ?.jobPreparationTask?.userIdentity
-                                    ?.autoUser?.["elevationLevel"],
+                                  body.jobSpecification?.jobPreparationTask
+                                    ?.userIdentity?.autoUser?.[
+                                    "elevationLevel"
+                                  ],
                               },
                         },
                     rerunOnNodeRebootAfterSuccess:
-                      jobSchedule.jobSpecification?.jobPreparationTask?.[
+                      body.jobSpecification?.jobPreparationTask?.[
                         "rerunOnNodeRebootAfterSuccess"
                       ],
                   },
-              jobReleaseTask: !jobSchedule.jobSpecification?.jobReleaseTask
+              jobReleaseTask: !body.jobSpecification?.jobReleaseTask
                 ? undefined
                 : {
-                    id: jobSchedule.jobSpecification?.jobReleaseTask?.["id"],
+                    id: body.jobSpecification?.jobReleaseTask?.["id"],
                     commandLine:
-                      jobSchedule.jobSpecification?.jobReleaseTask?.[
-                        "commandLine"
-                      ],
-                    containerSettings: !jobSchedule.jobSpecification
-                      ?.jobReleaseTask?.containerSettings
+                      body.jobSpecification?.jobReleaseTask?.["commandLine"],
+                    containerSettings: !body.jobSpecification?.jobReleaseTask
+                      ?.containerSettings
                       ? undefined
                       : {
                           containerRunOptions:
-                            jobSchedule.jobSpecification?.jobReleaseTask
+                            body.jobSpecification?.jobReleaseTask
                               ?.containerSettings?.["containerRunOptions"],
                           imageName:
-                            jobSchedule.jobSpecification?.jobReleaseTask
+                            body.jobSpecification?.jobReleaseTask
                               ?.containerSettings?.["imageName"],
-                          registry: !jobSchedule.jobSpecification
-                            ?.jobReleaseTask?.containerSettings?.registry
+                          registry: !body.jobSpecification?.jobReleaseTask
+                            ?.containerSettings?.registry
                             ? undefined
                             : {
                                 username:
-                                  jobSchedule.jobSpecification?.jobReleaseTask
+                                  body.jobSpecification?.jobReleaseTask
                                     ?.containerSettings?.registry?.["username"],
                                 password:
-                                  jobSchedule.jobSpecification?.jobReleaseTask
+                                  body.jobSpecification?.jobReleaseTask
                                     ?.containerSettings?.registry?.["password"],
                                 registryServer:
-                                  jobSchedule.jobSpecification?.jobReleaseTask
+                                  body.jobSpecification?.jobReleaseTask
                                     ?.containerSettings?.registry?.[
                                     "registryServer"
                                   ],
-                                identityReference: !jobSchedule.jobSpecification
+                                identityReference: !body.jobSpecification
                                   ?.jobReleaseTask?.containerSettings?.registry
                                   ?.identityReference
                                   ? undefined
                                   : {
                                       resourceId:
-                                        jobSchedule.jobSpecification
-                                          ?.jobReleaseTask?.containerSettings
-                                          ?.registry?.identityReference?.[
-                                          "resourceId"
-                                        ],
+                                        body.jobSpecification?.jobReleaseTask
+                                          ?.containerSettings?.registry
+                                          ?.identityReference?.["resourceId"],
                                     },
                               },
                           workingDirectory:
-                            jobSchedule.jobSpecification?.jobReleaseTask
+                            body.jobSpecification?.jobReleaseTask
                               ?.containerSettings?.["workingDirectory"],
                         },
                     resourceFiles:
-                      jobSchedule.jobSpecification?.jobReleaseTask?.[
+                      body.jobSpecification?.jobReleaseTask?.[
                         "resourceFiles"
                       ] === undefined
-                        ? jobSchedule.jobSpecification?.jobReleaseTask?.[
+                        ? body.jobSpecification?.jobReleaseTask?.[
                             "resourceFiles"
                           ]
-                        : jobSchedule.jobSpecification?.jobReleaseTask?.[
+                        : body.jobSpecification?.jobReleaseTask?.[
                             "resourceFiles"
                           ].map((p) => ({
                             autoStorageContainerName:
@@ -12980,42 +11668,40 @@ export function _updateJobScheduleSend(
                                 },
                           })),
                     environmentSettings:
-                      jobSchedule.jobSpecification?.jobReleaseTask?.[
+                      body.jobSpecification?.jobReleaseTask?.[
                         "environmentSettings"
                       ] === undefined
-                        ? jobSchedule.jobSpecification?.jobReleaseTask?.[
+                        ? body.jobSpecification?.jobReleaseTask?.[
                             "environmentSettings"
                           ]
-                        : jobSchedule.jobSpecification?.jobReleaseTask?.[
+                        : body.jobSpecification?.jobReleaseTask?.[
                             "environmentSettings"
                           ].map((p) => ({
                             name: p["name"],
                             value: p["value"],
                           })),
                     maxWallClockTime:
-                      jobSchedule.jobSpecification?.jobReleaseTask?.[
+                      body.jobSpecification?.jobReleaseTask?.[
                         "maxWallClockTime"
                       ],
                     retentionTime:
-                      jobSchedule.jobSpecification?.jobReleaseTask?.[
-                        "retentionTime"
-                      ],
-                    userIdentity: !jobSchedule.jobSpecification?.jobReleaseTask
+                      body.jobSpecification?.jobReleaseTask?.["retentionTime"],
+                    userIdentity: !body.jobSpecification?.jobReleaseTask
                       ?.userIdentity
                       ? undefined
                       : {
                           username:
-                            jobSchedule.jobSpecification?.jobReleaseTask
+                            body.jobSpecification?.jobReleaseTask
                               ?.userIdentity?.["username"],
-                          autoUser: !jobSchedule.jobSpecification
-                            ?.jobReleaseTask?.userIdentity?.autoUser
+                          autoUser: !body.jobSpecification?.jobReleaseTask
+                            ?.userIdentity?.autoUser
                             ? undefined
                             : {
                                 scope:
-                                  jobSchedule.jobSpecification?.jobReleaseTask
+                                  body.jobSpecification?.jobReleaseTask
                                     ?.userIdentity?.autoUser?.["scope"],
                                 elevationLevel:
-                                  jobSchedule.jobSpecification?.jobReleaseTask
+                                  body.jobSpecification?.jobReleaseTask
                                     ?.userIdentity?.autoUser?.[
                                     "elevationLevel"
                                   ],
@@ -13023,80 +11709,83 @@ export function _updateJobScheduleSend(
                         },
                   },
               commonEnvironmentSettings:
-                jobSchedule.jobSpecification?.["commonEnvironmentSettings"] ===
+                body.jobSpecification?.["commonEnvironmentSettings"] ===
                 undefined
-                  ? jobSchedule.jobSpecification?.["commonEnvironmentSettings"]
-                  : jobSchedule.jobSpecification?.[
-                      "commonEnvironmentSettings"
-                    ].map((p) => ({ name: p["name"], value: p["value"] })),
+                  ? body.jobSpecification?.["commonEnvironmentSettings"]
+                  : body.jobSpecification?.["commonEnvironmentSettings"].map(
+                      (p) => ({ name: p["name"], value: p["value"] }),
+                    ),
               poolInfo: {
-                poolId: jobSchedule.jobSpecification?.poolInfo["poolId"],
-                autoPoolSpecification: !jobSchedule.jobSpecification?.poolInfo
+                poolId: body.jobSpecification?.poolInfo["poolId"],
+                autoPoolSpecification: !body.jobSpecification?.poolInfo
                   .autoPoolSpecification
                   ? undefined
                   : {
                       autoPoolIdPrefix:
-                        jobSchedule.jobSpecification?.poolInfo
-                          .autoPoolSpecification?.["autoPoolIdPrefix"],
+                        body.jobSpecification?.poolInfo.autoPoolSpecification?.[
+                          "autoPoolIdPrefix"
+                        ],
                       poolLifetimeOption:
-                        jobSchedule.jobSpecification?.poolInfo
-                          .autoPoolSpecification?.["poolLifetimeOption"],
+                        body.jobSpecification?.poolInfo.autoPoolSpecification?.[
+                          "poolLifetimeOption"
+                        ],
                       keepAlive:
-                        jobSchedule.jobSpecification?.poolInfo
-                          .autoPoolSpecification?.["keepAlive"],
-                      pool: !jobSchedule.jobSpecification?.poolInfo
+                        body.jobSpecification?.poolInfo.autoPoolSpecification?.[
+                          "keepAlive"
+                        ],
+                      pool: !body.jobSpecification?.poolInfo
                         .autoPoolSpecification?.pool
                         ? undefined
                         : {
                             displayName:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.["displayName"],
                             vmSize:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.["vmSize"],
-                            cloudServiceConfiguration: !jobSchedule
-                              .jobSpecification?.poolInfo.autoPoolSpecification
-                              ?.pool?.cloudServiceConfiguration
+                            cloudServiceConfiguration: !body.jobSpecification
+                              ?.poolInfo.autoPoolSpecification?.pool
+                              ?.cloudServiceConfiguration
                               ? undefined
                               : {
                                   osFamily:
-                                    jobSchedule.jobSpecification?.poolInfo
+                                    body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.cloudServiceConfiguration?.["osFamily"],
                                   osVersion:
-                                    jobSchedule.jobSpecification?.poolInfo
+                                    body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.cloudServiceConfiguration?.[
                                       "osVersion"
                                     ],
                                 },
-                            virtualMachineConfiguration: !jobSchedule
-                              .jobSpecification?.poolInfo.autoPoolSpecification
-                              ?.pool?.virtualMachineConfiguration
+                            virtualMachineConfiguration: !body.jobSpecification
+                              ?.poolInfo.autoPoolSpecification?.pool
+                              ?.virtualMachineConfiguration
                               ? undefined
                               : {
                                   imageReference: {
                                     publisher:
-                                      jobSchedule.jobSpecification?.poolInfo
+                                      body.jobSpecification?.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration
                                         ?.imageReference["publisher"],
                                     offer:
-                                      jobSchedule.jobSpecification?.poolInfo
+                                      body.jobSpecification?.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration
                                         ?.imageReference["offer"],
-                                    sku: jobSchedule.jobSpecification?.poolInfo
+                                    sku: body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.imageReference["sku"],
                                     version:
-                                      jobSchedule.jobSpecification?.poolInfo
+                                      body.jobSpecification?.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration
                                         ?.imageReference["version"],
                                     virtualMachineImageId:
-                                      jobSchedule.jobSpecification?.poolInfo
+                                      body.jobSpecification?.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration
                                         ?.imageReference[
@@ -13104,20 +11793,19 @@ export function _updateJobScheduleSend(
                                       ],
                                   },
                                   nodeAgentSKUId:
-                                    jobSchedule.jobSpecification?.poolInfo
+                                    body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration?.[
                                       "nodeAgentSkuId"
                                     ],
-                                  windowsConfiguration: !jobSchedule
-                                    .jobSpecification?.poolInfo
-                                    .autoPoolSpecification?.pool
+                                  windowsConfiguration: !body.jobSpecification
+                                    ?.poolInfo.autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
                                     ?.windowsConfiguration
                                     ? undefined
                                     : {
                                         enableAutomaticUpdates:
-                                          jobSchedule.jobSpecification?.poolInfo
+                                          body.jobSpecification?.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.virtualMachineConfiguration
                                             ?.windowsConfiguration?.[
@@ -13125,64 +11813,62 @@ export function _updateJobScheduleSend(
                                           ],
                                       },
                                   dataDisks:
-                                    jobSchedule.jobSpecification?.poolInfo
+                                    body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration?.[
                                       "dataDisks"
                                     ] === undefined
-                                      ? jobSchedule.jobSpecification?.poolInfo
+                                      ? body.jobSpecification?.poolInfo
                                           .autoPoolSpecification?.pool
                                           ?.virtualMachineConfiguration?.[
                                           "dataDisks"
                                         ]
-                                      : jobSchedule.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                      : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                           "dataDisks"
                                         ].map((p) => ({
-                                          lun: p["logicalUnitNumber"],
+                                          lun: p["lun"],
                                           caching: p["caching"],
                                           diskSizeGB: p["diskSizeGb"],
                                           storageAccountType:
                                             p["storageAccountType"],
                                         })),
                                   licenseType:
-                                    jobSchedule.jobSpecification?.poolInfo
+                                    body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration?.[
                                       "licenseType"
                                     ],
-                                  containerConfiguration: !jobSchedule
-                                    .jobSpecification?.poolInfo
-                                    .autoPoolSpecification?.pool
+                                  containerConfiguration: !body.jobSpecification
+                                    ?.poolInfo.autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
                                     ?.containerConfiguration
                                     ? undefined
                                     : {
-                                        type: jobSchedule.jobSpecification
-                                          ?.poolInfo.autoPoolSpecification?.pool
+                                        type: body.jobSpecification?.poolInfo
+                                          .autoPoolSpecification?.pool
                                           ?.virtualMachineConfiguration
                                           ?.containerConfiguration?.["type"],
                                         containerImageNames:
-                                          jobSchedule.jobSpecification?.poolInfo
+                                          body.jobSpecification?.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.virtualMachineConfiguration
                                             ?.containerConfiguration?.[
                                             "containerImageNames"
                                           ],
                                         containerRegistries:
-                                          jobSchedule.jobSpecification?.poolInfo
+                                          body.jobSpecification?.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.virtualMachineConfiguration
                                             ?.containerConfiguration?.[
                                             "containerRegistries"
                                           ] === undefined
-                                            ? jobSchedule.jobSpecification
-                                                ?.poolInfo.autoPoolSpecification
-                                                ?.pool
+                                            ? body.jobSpecification?.poolInfo
+                                                .autoPoolSpecification?.pool
                                                 ?.virtualMachineConfiguration
                                                 ?.containerConfiguration?.[
                                                 "containerRegistries"
                                               ]
-                                            : jobSchedule.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                            : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
                                                 "containerRegistries"
                                               ].map((p) => ({
                                                 username: p["username"],
@@ -13200,7 +11886,7 @@ export function _updateJobScheduleSend(
                                                       },
                                               })),
                                       },
-                                  diskEncryptionConfiguration: !jobSchedule
+                                  diskEncryptionConfiguration: !body
                                     .jobSpecification?.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
@@ -13208,14 +11894,14 @@ export function _updateJobScheduleSend(
                                     ? undefined
                                     : {
                                         targets:
-                                          jobSchedule.jobSpecification?.poolInfo
+                                          body.jobSpecification?.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.virtualMachineConfiguration
                                             ?.diskEncryptionConfiguration?.[
                                             "targets"
                                           ],
                                       },
-                                  nodePlacementConfiguration: !jobSchedule
+                                  nodePlacementConfiguration: !body
                                     .jobSpecification?.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
@@ -13223,7 +11909,7 @@ export function _updateJobScheduleSend(
                                     ? undefined
                                     : {
                                         policy:
-                                          jobSchedule.jobSpecification?.poolInfo
+                                          body.jobSpecification?.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.virtualMachineConfiguration
                                             ?.nodePlacementConfiguration?.[
@@ -13231,17 +11917,17 @@ export function _updateJobScheduleSend(
                                           ],
                                       },
                                   extensions:
-                                    jobSchedule.jobSpecification?.poolInfo
+                                    body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration?.[
                                       "extensions"
                                     ] === undefined
-                                      ? jobSchedule.jobSpecification?.poolInfo
+                                      ? body.jobSpecification?.poolInfo
                                           .autoPoolSpecification?.pool
                                           ?.virtualMachineConfiguration?.[
                                           "extensions"
                                         ]
-                                      : jobSchedule.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                      : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                           "extensions"
                                         ].map((p) => ({
                                           name: p["name"],
@@ -13259,12 +11945,12 @@ export function _updateJobScheduleSend(
                                           provisionAfterExtensions:
                                             p["provisionAfterExtensions"],
                                         })),
-                                  osDisk: !jobSchedule.jobSpecification
-                                    ?.poolInfo.autoPoolSpecification?.pool
+                                  osDisk: !body.jobSpecification?.poolInfo
+                                    .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration?.osDisk
                                     ? undefined
                                     : {
-                                        ephemeralOSDiskSettings: !jobSchedule
+                                        ephemeralOSDiskSettings: !body
                                           .jobSpecification?.poolInfo
                                           .autoPoolSpecification?.pool
                                           ?.virtualMachineConfiguration?.osDisk
@@ -13272,8 +11958,7 @@ export function _updateJobScheduleSend(
                                           ? undefined
                                           : {
                                               placement:
-                                                jobSchedule.jobSpecification
-                                                  ?.poolInfo
+                                                body.jobSpecification?.poolInfo
                                                   .autoPoolSpecification?.pool
                                                   ?.virtualMachineConfiguration
                                                   ?.osDisk
@@ -13281,165 +11966,79 @@ export function _updateJobScheduleSend(
                                                   "placement"
                                                 ],
                                             },
-                                        caching:
-                                          jobSchedule.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.virtualMachineConfiguration
-                                            ?.osDisk?.["caching"],
-                                        diskSizeGB:
-                                          jobSchedule.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.virtualMachineConfiguration
-                                            ?.osDisk?.["diskSizeGB"],
-                                        managedDisk: !jobSchedule
-                                          .jobSpecification?.poolInfo
-                                          .autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration?.osDisk
-                                          ?.managedDisk
-                                          ? undefined
-                                          : {
-                                              storageAccountType:
-                                                jobSchedule.jobSpecification
-                                                  ?.poolInfo
-                                                  .autoPoolSpecification?.pool
-                                                  ?.virtualMachineConfiguration
-                                                  ?.osDisk?.managedDisk?.[
-                                                  "storageAccountType"
-                                                ],
-                                            },
-                                        writeAcceleratorEnabled:
-                                          jobSchedule.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.virtualMachineConfiguration
-                                            ?.osDisk?.[
-                                            "writeAcceleratorEnabled"
-                                          ],
-                                      },
-                                  securityProfile: !jobSchedule.jobSpecification
-                                    ?.poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.securityProfile
-                                    ? undefined
-                                    : {
-                                        encryptionAtHost:
-                                          jobSchedule.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.virtualMachineConfiguration
-                                            ?.securityProfile?.[
-                                            "encryptionAtHost"
-                                          ],
-                                        securityType:
-                                          jobSchedule.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.virtualMachineConfiguration
-                                            ?.securityProfile?.["securityType"],
-                                        uefiSettings: {
-                                          secureBootEnabled:
-                                            jobSchedule.jobSpecification
-                                              ?.poolInfo.autoPoolSpecification
-                                              ?.pool
-                                              ?.virtualMachineConfiguration
-                                              ?.securityProfile?.uefiSettings[
-                                              "secureBootEnabled"
-                                            ],
-                                          vTpmEnabled:
-                                            jobSchedule.jobSpecification
-                                              ?.poolInfo.autoPoolSpecification
-                                              ?.pool
-                                              ?.virtualMachineConfiguration
-                                              ?.securityProfile?.uefiSettings[
-                                              "vTpmEnabled"
-                                            ],
-                                        },
-                                      },
-                                  serviceArtifactReference: !jobSchedule
-                                    .jobSpecification?.poolInfo
-                                    .autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.serviceArtifactReference
-                                    ? undefined
-                                    : {
-                                        id: jobSchedule.jobSpecification
-                                          ?.poolInfo.autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
-                                          ?.serviceArtifactReference?.["id"],
                                       },
                                 },
                             taskSlotsPerNode:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "taskSlotsPerNode"
                               ],
-                            taskSchedulingPolicy: !jobSchedule.jobSpecification
+                            taskSchedulingPolicy: !body.jobSpecification
                               ?.poolInfo.autoPoolSpecification?.pool
                               ?.taskSchedulingPolicy
                               ? undefined
                               : {
                                   nodeFillType:
-                                    jobSchedule.jobSpecification?.poolInfo
+                                    body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.taskSchedulingPolicy?.["nodeFillType"],
                                 },
                             resizeTimeout:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.["resizeTimeout"],
-                            resourceTags:
-                              jobSchedule.jobSpecification?.poolInfo
-                                .autoPoolSpecification?.pool?.["resourceTags"],
                             targetDedicatedNodes:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "targetDedicatedNodes"
                               ],
                             targetLowPriorityNodes:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "targetLowPriorityNodes"
                               ],
                             enableAutoScale:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "enableAutoScale"
                               ],
                             autoScaleFormula:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "autoScaleFormula"
                               ],
                             autoScaleEvaluationInterval:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "autoScaleEvaluationInterval"
                               ],
                             enableInterNodeCommunication:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "enableInterNodeCommunication"
                               ],
-                            networkConfiguration: !jobSchedule.jobSpecification
+                            networkConfiguration: !body.jobSpecification
                               ?.poolInfo.autoPoolSpecification?.pool
                               ?.networkConfiguration
                               ? undefined
                               : {
                                   subnetId:
-                                    jobSchedule.jobSpecification?.poolInfo
+                                    body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.networkConfiguration?.["subnetId"],
                                   dynamicVNetAssignmentScope:
-                                    jobSchedule.jobSpecification?.poolInfo
+                                    body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.networkConfiguration?.[
                                       "dynamicVNetAssignmentScope"
                                     ],
-                                  endpointConfiguration: !jobSchedule
-                                    .jobSpecification?.poolInfo
-                                    .autoPoolSpecification?.pool
+                                  endpointConfiguration: !body.jobSpecification
+                                    ?.poolInfo.autoPoolSpecification?.pool
                                     ?.networkConfiguration
                                     ?.endpointConfiguration
                                     ? undefined
                                     : {
                                         inboundNATPools:
-                                          jobSchedule.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                          body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                             "inboundNatPools"
                                           ].map((p) => ({
                                             name: p["name"],
@@ -13465,7 +12064,7 @@ export function _updateJobScheduleSend(
                                                   })),
                                           })),
                                       },
-                                  publicIPAddressConfiguration: !jobSchedule
+                                  publicIPAddressConfiguration: !body
                                     .jobSpecification?.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.networkConfiguration
@@ -13473,14 +12072,14 @@ export function _updateJobScheduleSend(
                                     ? undefined
                                     : {
                                         provision:
-                                          jobSchedule.jobSpecification?.poolInfo
+                                          body.jobSpecification?.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.networkConfiguration
                                             ?.publicIpAddressConfiguration?.[
                                             "ipAddressProvisioningType"
                                           ],
                                         ipAddressIds:
-                                          jobSchedule.jobSpecification?.poolInfo
+                                          body.jobSpecification?.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.networkConfiguration
                                             ?.publicIpAddressConfiguration?.[
@@ -13488,66 +12087,62 @@ export function _updateJobScheduleSend(
                                           ],
                                       },
                                   enableAcceleratedNetworking:
-                                    jobSchedule.jobSpecification?.poolInfo
+                                    body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.networkConfiguration?.[
                                       "enableAcceleratedNetworking"
                                     ],
                                 },
-                            startTask: !jobSchedule.jobSpecification?.poolInfo
+                            startTask: !body.jobSpecification?.poolInfo
                               .autoPoolSpecification?.pool?.startTask
                               ? undefined
                               : {
                                   commandLine:
-                                    jobSchedule.jobSpecification?.poolInfo
+                                    body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool?.startTask?.[
                                       "commandLine"
                                     ],
-                                  containerSettings: !jobSchedule
-                                    .jobSpecification?.poolInfo
-                                    .autoPoolSpecification?.pool?.startTask
-                                    ?.containerSettings
+                                  containerSettings: !body.jobSpecification
+                                    ?.poolInfo.autoPoolSpecification?.pool
+                                    ?.startTask?.containerSettings
                                     ? undefined
                                     : {
                                         containerRunOptions:
-                                          jobSchedule.jobSpecification?.poolInfo
+                                          body.jobSpecification?.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.startTask?.containerSettings?.[
                                             "containerRunOptions"
                                           ],
                                         imageName:
-                                          jobSchedule.jobSpecification?.poolInfo
+                                          body.jobSpecification?.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.startTask?.containerSettings?.[
                                             "imageName"
                                           ],
-                                        registry: !jobSchedule.jobSpecification
+                                        registry: !body.jobSpecification
                                           ?.poolInfo.autoPoolSpecification?.pool
                                           ?.startTask?.containerSettings
                                           ?.registry
                                           ? undefined
                                           : {
                                               username:
-                                                jobSchedule.jobSpecification
-                                                  ?.poolInfo
+                                                body.jobSpecification?.poolInfo
                                                   .autoPoolSpecification?.pool
                                                   ?.startTask?.containerSettings
                                                   ?.registry?.["username"],
                                               password:
-                                                jobSchedule.jobSpecification
-                                                  ?.poolInfo
+                                                body.jobSpecification?.poolInfo
                                                   .autoPoolSpecification?.pool
                                                   ?.startTask?.containerSettings
                                                   ?.registry?.["password"],
                                               registryServer:
-                                                jobSchedule.jobSpecification
-                                                  ?.poolInfo
+                                                body.jobSpecification?.poolInfo
                                                   .autoPoolSpecification?.pool
                                                   ?.startTask?.containerSettings
                                                   ?.registry?.[
                                                   "registryServer"
                                                 ],
-                                              identityReference: !jobSchedule
+                                              identityReference: !body
                                                 .jobSpecification?.poolInfo
                                                 .autoPoolSpecification?.pool
                                                 ?.startTask?.containerSettings
@@ -13555,8 +12150,7 @@ export function _updateJobScheduleSend(
                                                 ? undefined
                                                 : {
                                                     resourceId:
-                                                      jobSchedule
-                                                        .jobSpecification
+                                                      body.jobSpecification
                                                         ?.poolInfo
                                                         .autoPoolSpecification
                                                         ?.pool?.startTask
@@ -13568,21 +12162,21 @@ export function _updateJobScheduleSend(
                                                   },
                                             },
                                         workingDirectory:
-                                          jobSchedule.jobSpecification?.poolInfo
+                                          body.jobSpecification?.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.startTask?.containerSettings?.[
                                             "workingDirectory"
                                           ],
                                       },
                                   resourceFiles:
-                                    jobSchedule.jobSpecification?.poolInfo
+                                    body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool?.startTask?.[
                                       "resourceFiles"
                                     ] === undefined
-                                      ? jobSchedule.jobSpecification?.poolInfo
+                                      ? body.jobSpecification?.poolInfo
                                           .autoPoolSpecification?.pool
                                           ?.startTask?.["resourceFiles"]
-                                      : jobSchedule.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                      : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                           "resourceFiles"
                                         ].map((p) => ({
                                           autoStorageContainerName:
@@ -13604,44 +12198,42 @@ export function _updateJobScheduleSend(
                                                 },
                                         })),
                                   environmentSettings:
-                                    jobSchedule.jobSpecification?.poolInfo
+                                    body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool?.startTask?.[
                                       "environmentSettings"
                                     ] === undefined
-                                      ? jobSchedule.jobSpecification?.poolInfo
+                                      ? body.jobSpecification?.poolInfo
                                           .autoPoolSpecification?.pool
                                           ?.startTask?.["environmentSettings"]
-                                      : jobSchedule.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                      : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                           "environmentSettings"
                                         ].map((p) => ({
                                           name: p["name"],
                                           value: p["value"],
                                         })),
-                                  userIdentity: !jobSchedule.jobSpecification
-                                    ?.poolInfo.autoPoolSpecification?.pool
-                                    ?.startTask?.userIdentity
+                                  userIdentity: !body.jobSpecification?.poolInfo
+                                    .autoPoolSpecification?.pool?.startTask
+                                    ?.userIdentity
                                     ? undefined
                                     : {
                                         username:
-                                          jobSchedule.jobSpecification?.poolInfo
+                                          body.jobSpecification?.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.startTask?.userIdentity?.[
                                             "username"
                                           ],
-                                        autoUser: !jobSchedule.jobSpecification
+                                        autoUser: !body.jobSpecification
                                           ?.poolInfo.autoPoolSpecification?.pool
                                           ?.startTask?.userIdentity?.autoUser
                                           ? undefined
                                           : {
                                               scope:
-                                                jobSchedule.jobSpecification
-                                                  ?.poolInfo
+                                                body.jobSpecification?.poolInfo
                                                   .autoPoolSpecification?.pool
                                                   ?.startTask?.userIdentity
                                                   ?.autoUser?.["scope"],
                                               elevationLevel:
-                                                jobSchedule.jobSpecification
-                                                  ?.poolInfo
+                                                body.jobSpecification?.poolInfo
                                                   .autoPoolSpecification?.pool
                                                   ?.startTask?.userIdentity
                                                   ?.autoUser?.[
@@ -13650,26 +12242,26 @@ export function _updateJobScheduleSend(
                                             },
                                       },
                                   maxTaskRetryCount:
-                                    jobSchedule.jobSpecification?.poolInfo
+                                    body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool?.startTask?.[
                                       "maxTaskRetryCount"
                                     ],
                                   waitForSuccess:
-                                    jobSchedule.jobSpecification?.poolInfo
+                                    body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool?.startTask?.[
                                       "waitForSuccess"
                                     ],
                                 },
                             certificateReferences:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "certificateReferences"
                               ] === undefined
-                                ? jobSchedule.jobSpecification?.poolInfo
+                                ? body.jobSpecification?.poolInfo
                                     .autoPoolSpecification?.pool?.[
                                     "certificateReferences"
                                   ]
-                                : jobSchedule.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.[
+                                : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.[
                                     "certificateReferences"
                                   ].map((p) => ({
                                     thumbprint: p["thumbprint"],
@@ -13680,35 +12272,35 @@ export function _updateJobScheduleSend(
                                     visibility: p["visibility"],
                                   })),
                             applicationPackageReferences:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "applicationPackageReferences"
                               ] === undefined
-                                ? jobSchedule.jobSpecification?.poolInfo
+                                ? body.jobSpecification?.poolInfo
                                     .autoPoolSpecification?.pool?.[
                                     "applicationPackageReferences"
                                   ]
-                                : jobSchedule.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.[
+                                : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.[
                                     "applicationPackageReferences"
                                   ].map((p) => ({
                                     applicationId: p["applicationId"],
                                     version: p["version"],
                                   })),
                             applicationLicenses:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "applicationLicenses"
                               ],
                             userAccounts:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "userAccounts"
                               ] === undefined
-                                ? jobSchedule.jobSpecification?.poolInfo
+                                ? body.jobSpecification?.poolInfo
                                     .autoPoolSpecification?.pool?.[
                                     "userAccounts"
                                   ]
-                                : jobSchedule.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.[
+                                : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.[
                                     "userAccounts"
                                   ].map((p) => ({
                                     name: p["name"],
@@ -13740,27 +12332,27 @@ export function _updateJobScheduleSend(
                                           },
                                   })),
                             metadata:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.["metadata"] ===
                               undefined
-                                ? jobSchedule.jobSpecification?.poolInfo
+                                ? body.jobSpecification?.poolInfo
                                     .autoPoolSpecification?.pool?.["metadata"]
-                                : jobSchedule.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.[
+                                : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.[
                                     "metadata"
                                   ].map((p) => ({
                                     name: p["name"],
                                     value: p["value"],
                                   })),
                             mountConfiguration:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "mountConfiguration"
                               ] === undefined
-                                ? jobSchedule.jobSpecification?.poolInfo
+                                ? body.jobSpecification?.poolInfo
                                     .autoPoolSpecification?.pool?.[
                                     "mountConfiguration"
                                   ]
-                                : jobSchedule.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.[
+                                : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.[
                                     "mountConfiguration"
                                   ].map((p) => ({
                                     azureBlobFileSystemConfiguration:
@@ -13879,125 +12471,25 @@ export function _updateJobScheduleSend(
                                           },
                                   })),
                             targetNodeCommunicationMode:
-                              jobSchedule.jobSpecification?.poolInfo
+                              body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "targetNodeCommunicationMode"
                               ],
-                            upgradePolicy: !jobSchedule.jobSpecification
-                              ?.poolInfo.autoPoolSpecification?.pool
-                              ?.upgradePolicy
-                              ? undefined
-                              : {
-                                  mode: jobSchedule.jobSpecification?.poolInfo
-                                    .autoPoolSpecification?.pool
-                                    ?.upgradePolicy?.["mode"],
-                                  automaticOsUpgradePolicy: !jobSchedule
-                                    .jobSpecification?.poolInfo
-                                    .autoPoolSpecification?.pool?.upgradePolicy
-                                    ?.automaticOSUpgradePolicy
-                                    ? undefined
-                                    : {
-                                        disableAutomaticRollback:
-                                          jobSchedule.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.automaticOSUpgradePolicy?.[
-                                            "disableAutomaticRollback"
-                                          ],
-                                        enableAutomaticOsUpgrade:
-                                          jobSchedule.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.automaticOSUpgradePolicy?.[
-                                            "enableAutomaticOSUpgrade"
-                                          ],
-                                        useRollingUpgradePolicy:
-                                          jobSchedule.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.automaticOSUpgradePolicy?.[
-                                            "useRollingUpgradePolicy"
-                                          ],
-                                        osRollingUpgradeDeferral:
-                                          jobSchedule.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.automaticOSUpgradePolicy?.[
-                                            "osRollingUpgradeDeferral"
-                                          ],
-                                      },
-                                  rollingUpgradePolicy: !jobSchedule
-                                    .jobSpecification?.poolInfo
-                                    .autoPoolSpecification?.pool?.upgradePolicy
-                                    ?.rollingUpgradePolicy
-                                    ? undefined
-                                    : {
-                                        enableCrossZoneUpgrade:
-                                          jobSchedule.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.rollingUpgradePolicy?.[
-                                            "enableCrossZoneUpgrade"
-                                          ],
-                                        maxBatchInstancePercent:
-                                          jobSchedule.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.rollingUpgradePolicy?.[
-                                            "maxBatchInstancePercent"
-                                          ],
-                                        maxUnhealthyInstancePercent:
-                                          jobSchedule.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.rollingUpgradePolicy?.[
-                                            "maxUnhealthyInstancePercent"
-                                          ],
-                                        maxUnhealthyUpgradedInstancePercent:
-                                          jobSchedule.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.rollingUpgradePolicy?.[
-                                            "maxUnhealthyUpgradedInstancePercent"
-                                          ],
-                                        pauseTimeBetweenBatches:
-                                          jobSchedule.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.rollingUpgradePolicy?.[
-                                            "pauseTimeBetweenBatches"
-                                          ],
-                                        prioritizeUnhealthyInstances:
-                                          jobSchedule.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.rollingUpgradePolicy?.[
-                                            "prioritizeUnhealthyInstances"
-                                          ],
-                                        rollbackFailedInstancesOnPolicyBreach:
-                                          jobSchedule.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.rollingUpgradePolicy?.[
-                                            "rollbackFailedInstancesOnPolicyBreach"
-                                          ],
-                                      },
-                                },
                           },
                     },
               },
               metadata:
-                jobSchedule.jobSpecification?.["metadata"] === undefined
-                  ? jobSchedule.jobSpecification?.["metadata"]
-                  : jobSchedule.jobSpecification?.["metadata"].map((p) => ({
+                body.jobSpecification?.["metadata"] === undefined
+                  ? body.jobSpecification?.["metadata"]
+                  : body.jobSpecification?.["metadata"].map((p) => ({
                       name: p["name"],
                       value: p["value"],
                     })),
             },
         metadata:
-          jobSchedule["metadata"] === undefined
-            ? jobSchedule["metadata"]
-            : jobSchedule["metadata"].map((p) => ({
+          body["metadata"] === undefined
+            ? body["metadata"]
+            : body["metadata"].map((p) => ({
                 name: p["name"],
                 value: p["value"],
               })),
@@ -14024,14 +12516,16 @@ export async function _updateJobScheduleDeserialize(
  */
 export async function updateJobSchedule(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
-  jobSchedule: BatchJobScheduleUpdateContent,
+  body: BatchJobScheduleUpdateOptions,
   options: UpdateJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _updateJobScheduleSend(
     context,
+    apiVersion,
     jobScheduleId,
-    jobSchedule,
+    body,
     options,
   );
   return _updateJobScheduleDeserialize(result);
@@ -14039,8 +12533,9 @@ export async function updateJobSchedule(
 
 export function _replaceJobScheduleSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
-  jobSchedule: BatchJobSchedule,
+  body: BatchJobSchedule,
   options: ReplaceJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
   ReplaceJobSchedule200Response | ReplaceJobScheduleDefaultResponse
@@ -14053,122 +12548,105 @@ export function _replaceJobScheduleSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        schedule: !jobSchedule.schedule
-          ? undefined
-          : {
-              doNotRunUntil:
-                jobSchedule.schedule?.["doNotRunUntil"]?.toISOString(),
-              doNotRunAfter:
-                jobSchedule.schedule?.["doNotRunAfter"]?.toISOString(),
-              startWindow: jobSchedule.schedule?.["startWindow"],
-              recurrenceInterval: jobSchedule.schedule?.["recurrenceInterval"],
-            },
+        schedule: {
+          doNotRunUntil: body.schedule["doNotRunUntil"]?.toISOString(),
+          doNotRunAfter: body.schedule["doNotRunAfter"]?.toISOString(),
+          startWindow: body.schedule["startWindow"],
+          recurrenceInterval: body.schedule["recurrenceInterval"],
+        },
         jobSpecification: {
-          priority: jobSchedule.jobSpecification["priority"],
-          allowTaskPreemption:
-            jobSchedule.jobSpecification["allowTaskPreemption"],
-          maxParallelTasks: jobSchedule.jobSpecification["maxParallelTasks"],
-          displayName: jobSchedule.jobSpecification["displayName"],
-          usesTaskDependencies:
-            jobSchedule.jobSpecification["usesTaskDependencies"],
-          onAllTasksComplete:
-            jobSchedule.jobSpecification["onAllTasksComplete"],
-          onTaskFailure: jobSchedule.jobSpecification["onTaskFailure"],
-          networkConfiguration: !jobSchedule.jobSpecification
-            .networkConfiguration
+          priority: body.jobSpecification["priority"],
+          allowTaskPreemption: body.jobSpecification["allowTaskPreemption"],
+          maxParallelTasks: body.jobSpecification["maxParallelTasks"],
+          displayName: body.jobSpecification["displayName"],
+          usesTaskDependencies: body.jobSpecification["usesTaskDependencies"],
+          onAllTasksComplete: body.jobSpecification["onAllTasksComplete"],
+          onTaskFailure: body.jobSpecification["onTaskFailure"],
+          networkConfiguration: !body.jobSpecification.networkConfiguration
             ? undefined
             : {
                 subnetId:
-                  jobSchedule.jobSpecification.networkConfiguration?.[
-                    "subnetId"
-                  ],
+                  body.jobSpecification.networkConfiguration?.["subnetId"],
               },
-          constraints: !jobSchedule.jobSpecification.constraints
+          constraints: !body.jobSpecification.constraints
             ? undefined
             : {
                 maxWallClockTime:
-                  jobSchedule.jobSpecification.constraints?.[
-                    "maxWallClockTime"
-                  ],
+                  body.jobSpecification.constraints?.["maxWallClockTime"],
                 maxTaskRetryCount:
-                  jobSchedule.jobSpecification.constraints?.[
-                    "maxTaskRetryCount"
-                  ],
+                  body.jobSpecification.constraints?.["maxTaskRetryCount"],
               },
-          jobManagerTask: !jobSchedule.jobSpecification.jobManagerTask
+          jobManagerTask: !body.jobSpecification.jobManagerTask
             ? undefined
             : {
-                id: jobSchedule.jobSpecification.jobManagerTask?.["id"],
+                id: body.jobSpecification.jobManagerTask?.["id"],
                 displayName:
-                  jobSchedule.jobSpecification.jobManagerTask?.["displayName"],
+                  body.jobSpecification.jobManagerTask?.["displayName"],
                 commandLine:
-                  jobSchedule.jobSpecification.jobManagerTask?.["commandLine"],
-                containerSettings: !jobSchedule.jobSpecification.jobManagerTask
+                  body.jobSpecification.jobManagerTask?.["commandLine"],
+                containerSettings: !body.jobSpecification.jobManagerTask
                   ?.containerSettings
                   ? undefined
                   : {
                       containerRunOptions:
-                        jobSchedule.jobSpecification.jobManagerTask
+                        body.jobSpecification.jobManagerTask
                           ?.containerSettings?.["containerRunOptions"],
                       imageName:
-                        jobSchedule.jobSpecification.jobManagerTask
+                        body.jobSpecification.jobManagerTask
                           ?.containerSettings?.["imageName"],
-                      registry: !jobSchedule.jobSpecification.jobManagerTask
+                      registry: !body.jobSpecification.jobManagerTask
                         ?.containerSettings?.registry
                         ? undefined
                         : {
                             username:
-                              jobSchedule.jobSpecification.jobManagerTask
+                              body.jobSpecification.jobManagerTask
                                 ?.containerSettings?.registry?.["username"],
                             password:
-                              jobSchedule.jobSpecification.jobManagerTask
+                              body.jobSpecification.jobManagerTask
                                 ?.containerSettings?.registry?.["password"],
                             registryServer:
-                              jobSchedule.jobSpecification.jobManagerTask
+                              body.jobSpecification.jobManagerTask
                                 ?.containerSettings?.registry?.[
                                 "registryServer"
                               ],
-                            identityReference: !jobSchedule.jobSpecification
+                            identityReference: !body.jobSpecification
                               .jobManagerTask?.containerSettings?.registry
                               ?.identityReference
                               ? undefined
                               : {
                                   resourceId:
-                                    jobSchedule.jobSpecification.jobManagerTask
+                                    body.jobSpecification.jobManagerTask
                                       ?.containerSettings?.registry
                                       ?.identityReference?.["resourceId"],
                                 },
                           },
                       workingDirectory:
-                        jobSchedule.jobSpecification.jobManagerTask
+                        body.jobSpecification.jobManagerTask
                           ?.containerSettings?.["workingDirectory"],
                     },
                 resourceFiles:
-                  jobSchedule.jobSpecification.jobManagerTask?.[
-                    "resourceFiles"
-                  ] === undefined
-                    ? jobSchedule.jobSpecification.jobManagerTask?.[
-                        "resourceFiles"
-                      ]
-                    : jobSchedule.jobSpecification.jobManagerTask?.[
+                  body.jobSpecification.jobManagerTask?.["resourceFiles"] ===
+                  undefined
+                    ? body.jobSpecification.jobManagerTask?.["resourceFiles"]
+                    : body.jobSpecification.jobManagerTask?.[
                         "resourceFiles"
                       ].map((p) => ({
                         autoStorageContainerName: p["autoStorageContainerName"],
@@ -14182,302 +12660,179 @@ export function _replaceJobScheduleSend(
                           : { resourceId: p.identityReference?.["resourceId"] },
                       })),
                 outputFiles:
-                  jobSchedule.jobSpecification.jobManagerTask?.[
-                    "outputFiles"
-                  ] === undefined
-                    ? jobSchedule.jobSpecification.jobManagerTask?.[
-                        "outputFiles"
-                      ]
-                    : jobSchedule.jobSpecification.jobManagerTask?.[
-                        "outputFiles"
-                      ].map((p) => ({
-                        filePattern: p["filePattern"],
-                        destination: {
-                          container: !p.destination.container
-                            ? undefined
-                            : {
-                                path: p.destination.container?.["path"],
-                                containerUrl:
-                                  p.destination.container?.["containerUrl"],
-                                identityReference: !p.destination.container
-                                  ?.identityReference
-                                  ? undefined
-                                  : {
-                                      resourceId:
-                                        p.destination.container
-                                          ?.identityReference?.["resourceId"],
-                                    },
-                                uploadHeaders:
-                                  p.destination.container?.["uploadHeaders"] ===
-                                  undefined
-                                    ? p.destination.container?.["uploadHeaders"]
-                                    : p.destination.container?.[
-                                        "uploadHeaders"
-                                      ].map((p) => ({
-                                        name: p["name"],
-                                        value: p["value"],
-                                      })),
-                              },
-                        },
-                        uploadOptions: {
-                          uploadCondition: p.uploadOptions["uploadCondition"],
-                        },
-                      })),
+                  body.jobSpecification.jobManagerTask?.["outputFiles"] ===
+                  undefined
+                    ? body.jobSpecification.jobManagerTask?.["outputFiles"]
+                    : body.jobSpecification.jobManagerTask?.["outputFiles"].map(
+                        (p) => ({
+                          filePattern: p["filePattern"],
+                          destination: {
+                            container: !p.destination.container
+                              ? undefined
+                              : {
+                                  path: p.destination.container?.["path"],
+                                  containerUrl:
+                                    p.destination.container?.["containerUrl"],
+                                  identityReference: !p.destination.container
+                                    ?.identityReference
+                                    ? undefined
+                                    : {
+                                        resourceId:
+                                          p.destination.container
+                                            ?.identityReference?.["resourceId"],
+                                      },
+                                  uploadHeaders:
+                                    p.destination.container?.[
+                                      "uploadHeaders"
+                                    ] === undefined
+                                      ? p.destination.container?.[
+                                          "uploadHeaders"
+                                        ]
+                                      : p.destination.container?.[
+                                          "uploadHeaders"
+                                        ].map((p) => ({
+                                          name: p["name"],
+                                          value: p["value"],
+                                        })),
+                                },
+                          },
+                          uploadOptions: {
+                            uploadCondition: p.uploadOptions["uploadCondition"],
+                          },
+                        }),
+                      ),
                 environmentSettings:
-                  jobSchedule.jobSpecification.jobManagerTask?.[
+                  body.jobSpecification.jobManagerTask?.[
                     "environmentSettings"
                   ] === undefined
-                    ? jobSchedule.jobSpecification.jobManagerTask?.[
+                    ? body.jobSpecification.jobManagerTask?.[
                         "environmentSettings"
                       ]
-                    : jobSchedule.jobSpecification.jobManagerTask?.[
+                    : body.jobSpecification.jobManagerTask?.[
                         "environmentSettings"
                       ].map((p) => ({ name: p["name"], value: p["value"] })),
-                constraints: !jobSchedule.jobSpecification.jobManagerTask
-                  ?.constraints
+                constraints: !body.jobSpecification.jobManagerTask?.constraints
                   ? undefined
                   : {
                       maxWallClockTime:
-                        jobSchedule.jobSpecification.jobManagerTask
-                          ?.constraints?.["maxWallClockTime"],
+                        body.jobSpecification.jobManagerTask?.constraints?.[
+                          "maxWallClockTime"
+                        ],
                       retentionTime:
-                        jobSchedule.jobSpecification.jobManagerTask
-                          ?.constraints?.["retentionTime"],
+                        body.jobSpecification.jobManagerTask?.constraints?.[
+                          "retentionTime"
+                        ],
                       maxTaskRetryCount:
-                        jobSchedule.jobSpecification.jobManagerTask
-                          ?.constraints?.["maxTaskRetryCount"],
+                        body.jobSpecification.jobManagerTask?.constraints?.[
+                          "maxTaskRetryCount"
+                        ],
                     },
                 requiredSlots:
-                  jobSchedule.jobSpecification.jobManagerTask?.[
-                    "requiredSlots"
-                  ],
+                  body.jobSpecification.jobManagerTask?.["requiredSlots"],
                 killJobOnCompletion:
-                  jobSchedule.jobSpecification.jobManagerTask?.[
-                    "killJobOnCompletion"
-                  ],
-                userIdentity: !jobSchedule.jobSpecification.jobManagerTask
+                  body.jobSpecification.jobManagerTask?.["killJobOnCompletion"],
+                userIdentity: !body.jobSpecification.jobManagerTask
                   ?.userIdentity
                   ? undefined
                   : {
                       username:
-                        jobSchedule.jobSpecification.jobManagerTask
-                          ?.userIdentity?.["username"],
-                      autoUser: !jobSchedule.jobSpecification.jobManagerTask
+                        body.jobSpecification.jobManagerTask?.userIdentity?.[
+                          "username"
+                        ],
+                      autoUser: !body.jobSpecification.jobManagerTask
                         ?.userIdentity?.autoUser
                         ? undefined
                         : {
                             scope:
-                              jobSchedule.jobSpecification.jobManagerTask
-                                ?.userIdentity?.autoUser?.["scope"],
+                              body.jobSpecification.jobManagerTask?.userIdentity
+                                ?.autoUser?.["scope"],
                             elevationLevel:
-                              jobSchedule.jobSpecification.jobManagerTask
-                                ?.userIdentity?.autoUser?.["elevationLevel"],
+                              body.jobSpecification.jobManagerTask?.userIdentity
+                                ?.autoUser?.["elevationLevel"],
                           },
                     },
                 runExclusive:
-                  jobSchedule.jobSpecification.jobManagerTask?.["runExclusive"],
+                  body.jobSpecification.jobManagerTask?.["runExclusive"],
                 applicationPackageReferences:
-                  jobSchedule.jobSpecification.jobManagerTask?.[
+                  body.jobSpecification.jobManagerTask?.[
                     "applicationPackageReferences"
                   ] === undefined
-                    ? jobSchedule.jobSpecification.jobManagerTask?.[
+                    ? body.jobSpecification.jobManagerTask?.[
                         "applicationPackageReferences"
                       ]
-                    : jobSchedule.jobSpecification.jobManagerTask?.[
+                    : body.jobSpecification.jobManagerTask?.[
                         "applicationPackageReferences"
                       ].map((p) => ({
                         applicationId: p["applicationId"],
                         version: p["version"],
                       })),
-                authenticationTokenSettings: !jobSchedule.jobSpecification
+                authenticationTokenSettings: !body.jobSpecification
                   .jobManagerTask?.authenticationTokenSettings
                   ? undefined
                   : {
                       access:
-                        jobSchedule.jobSpecification.jobManagerTask
+                        body.jobSpecification.jobManagerTask
                           ?.authenticationTokenSettings?.["access"],
                     },
                 allowLowPriorityNode:
-                  jobSchedule.jobSpecification.jobManagerTask?.[
+                  body.jobSpecification.jobManagerTask?.[
                     "allowLowPriorityNode"
                   ],
               },
-          jobPreparationTask: !jobSchedule.jobSpecification.jobPreparationTask
+          jobPreparationTask: !body.jobSpecification.jobPreparationTask
             ? undefined
             : {
-                id: jobSchedule.jobSpecification.jobPreparationTask?.["id"],
+                id: body.jobSpecification.jobPreparationTask?.["id"],
                 commandLine:
-                  jobSchedule.jobSpecification.jobPreparationTask?.[
-                    "commandLine"
-                  ],
-                containerSettings: !jobSchedule.jobSpecification
-                  .jobPreparationTask?.containerSettings
+                  body.jobSpecification.jobPreparationTask?.["commandLine"],
+                containerSettings: !body.jobSpecification.jobPreparationTask
+                  ?.containerSettings
                   ? undefined
                   : {
                       containerRunOptions:
-                        jobSchedule.jobSpecification.jobPreparationTask
+                        body.jobSpecification.jobPreparationTask
                           ?.containerSettings?.["containerRunOptions"],
                       imageName:
-                        jobSchedule.jobSpecification.jobPreparationTask
+                        body.jobSpecification.jobPreparationTask
                           ?.containerSettings?.["imageName"],
-                      registry: !jobSchedule.jobSpecification.jobPreparationTask
+                      registry: !body.jobSpecification.jobPreparationTask
                         ?.containerSettings?.registry
                         ? undefined
                         : {
                             username:
-                              jobSchedule.jobSpecification.jobPreparationTask
+                              body.jobSpecification.jobPreparationTask
                                 ?.containerSettings?.registry?.["username"],
                             password:
-                              jobSchedule.jobSpecification.jobPreparationTask
+                              body.jobSpecification.jobPreparationTask
                                 ?.containerSettings?.registry?.["password"],
                             registryServer:
-                              jobSchedule.jobSpecification.jobPreparationTask
+                              body.jobSpecification.jobPreparationTask
                                 ?.containerSettings?.registry?.[
                                 "registryServer"
                               ],
-                            identityReference: !jobSchedule.jobSpecification
+                            identityReference: !body.jobSpecification
                               .jobPreparationTask?.containerSettings?.registry
                               ?.identityReference
                               ? undefined
                               : {
                                   resourceId:
-                                    jobSchedule.jobSpecification
-                                      .jobPreparationTask?.containerSettings
-                                      ?.registry?.identityReference?.[
-                                      "resourceId"
-                                    ],
-                                },
-                          },
-                      workingDirectory:
-                        jobSchedule.jobSpecification.jobPreparationTask
-                          ?.containerSettings?.["workingDirectory"],
-                    },
-                resourceFiles:
-                  jobSchedule.jobSpecification.jobPreparationTask?.[
-                    "resourceFiles"
-                  ] === undefined
-                    ? jobSchedule.jobSpecification.jobPreparationTask?.[
-                        "resourceFiles"
-                      ]
-                    : jobSchedule.jobSpecification.jobPreparationTask?.[
-                        "resourceFiles"
-                      ].map((p) => ({
-                        autoStorageContainerName: p["autoStorageContainerName"],
-                        storageContainerUrl: p["storageContainerUrl"],
-                        httpUrl: p["httpUrl"],
-                        blobPrefix: p["blobPrefix"],
-                        filePath: p["filePath"],
-                        fileMode: p["fileMode"],
-                        identityReference: !p.identityReference
-                          ? undefined
-                          : { resourceId: p.identityReference?.["resourceId"] },
-                      })),
-                environmentSettings:
-                  jobSchedule.jobSpecification.jobPreparationTask?.[
-                    "environmentSettings"
-                  ] === undefined
-                    ? jobSchedule.jobSpecification.jobPreparationTask?.[
-                        "environmentSettings"
-                      ]
-                    : jobSchedule.jobSpecification.jobPreparationTask?.[
-                        "environmentSettings"
-                      ].map((p) => ({ name: p["name"], value: p["value"] })),
-                constraints: !jobSchedule.jobSpecification.jobPreparationTask
-                  ?.constraints
-                  ? undefined
-                  : {
-                      maxWallClockTime:
-                        jobSchedule.jobSpecification.jobPreparationTask
-                          ?.constraints?.["maxWallClockTime"],
-                      retentionTime:
-                        jobSchedule.jobSpecification.jobPreparationTask
-                          ?.constraints?.["retentionTime"],
-                      maxTaskRetryCount:
-                        jobSchedule.jobSpecification.jobPreparationTask
-                          ?.constraints?.["maxTaskRetryCount"],
-                    },
-                waitForSuccess:
-                  jobSchedule.jobSpecification.jobPreparationTask?.[
-                    "waitForSuccess"
-                  ],
-                userIdentity: !jobSchedule.jobSpecification.jobPreparationTask
-                  ?.userIdentity
-                  ? undefined
-                  : {
-                      username:
-                        jobSchedule.jobSpecification.jobPreparationTask
-                          ?.userIdentity?.["username"],
-                      autoUser: !jobSchedule.jobSpecification.jobPreparationTask
-                        ?.userIdentity?.autoUser
-                        ? undefined
-                        : {
-                            scope:
-                              jobSchedule.jobSpecification.jobPreparationTask
-                                ?.userIdentity?.autoUser?.["scope"],
-                            elevationLevel:
-                              jobSchedule.jobSpecification.jobPreparationTask
-                                ?.userIdentity?.autoUser?.["elevationLevel"],
-                          },
-                    },
-                rerunOnNodeRebootAfterSuccess:
-                  jobSchedule.jobSpecification.jobPreparationTask?.[
-                    "rerunOnNodeRebootAfterSuccess"
-                  ],
-              },
-          jobReleaseTask: !jobSchedule.jobSpecification.jobReleaseTask
-            ? undefined
-            : {
-                id: jobSchedule.jobSpecification.jobReleaseTask?.["id"],
-                commandLine:
-                  jobSchedule.jobSpecification.jobReleaseTask?.["commandLine"],
-                containerSettings: !jobSchedule.jobSpecification.jobReleaseTask
-                  ?.containerSettings
-                  ? undefined
-                  : {
-                      containerRunOptions:
-                        jobSchedule.jobSpecification.jobReleaseTask
-                          ?.containerSettings?.["containerRunOptions"],
-                      imageName:
-                        jobSchedule.jobSpecification.jobReleaseTask
-                          ?.containerSettings?.["imageName"],
-                      registry: !jobSchedule.jobSpecification.jobReleaseTask
-                        ?.containerSettings?.registry
-                        ? undefined
-                        : {
-                            username:
-                              jobSchedule.jobSpecification.jobReleaseTask
-                                ?.containerSettings?.registry?.["username"],
-                            password:
-                              jobSchedule.jobSpecification.jobReleaseTask
-                                ?.containerSettings?.registry?.["password"],
-                            registryServer:
-                              jobSchedule.jobSpecification.jobReleaseTask
-                                ?.containerSettings?.registry?.[
-                                "registryServer"
-                              ],
-                            identityReference: !jobSchedule.jobSpecification
-                              .jobReleaseTask?.containerSettings?.registry
-                              ?.identityReference
-                              ? undefined
-                              : {
-                                  resourceId:
-                                    jobSchedule.jobSpecification.jobReleaseTask
+                                    body.jobSpecification.jobPreparationTask
                                       ?.containerSettings?.registry
                                       ?.identityReference?.["resourceId"],
                                 },
                           },
                       workingDirectory:
-                        jobSchedule.jobSpecification.jobReleaseTask
+                        body.jobSpecification.jobPreparationTask
                           ?.containerSettings?.["workingDirectory"],
                     },
                 resourceFiles:
-                  jobSchedule.jobSpecification.jobReleaseTask?.[
+                  body.jobSpecification.jobPreparationTask?.[
                     "resourceFiles"
                   ] === undefined
-                    ? jobSchedule.jobSpecification.jobReleaseTask?.[
+                    ? body.jobSpecification.jobPreparationTask?.[
                         "resourceFiles"
                       ]
-                    : jobSchedule.jobSpecification.jobReleaseTask?.[
+                    : body.jobSpecification.jobPreparationTask?.[
                         "resourceFiles"
                       ].map((p) => ({
                         autoStorageContainerName: p["autoStorageContainerName"],
@@ -14491,135 +12846,251 @@ export function _replaceJobScheduleSend(
                           : { resourceId: p.identityReference?.["resourceId"] },
                       })),
                 environmentSettings:
-                  jobSchedule.jobSpecification.jobReleaseTask?.[
+                  body.jobSpecification.jobPreparationTask?.[
                     "environmentSettings"
                   ] === undefined
-                    ? jobSchedule.jobSpecification.jobReleaseTask?.[
+                    ? body.jobSpecification.jobPreparationTask?.[
                         "environmentSettings"
                       ]
-                    : jobSchedule.jobSpecification.jobReleaseTask?.[
+                    : body.jobSpecification.jobPreparationTask?.[
                         "environmentSettings"
                       ].map((p) => ({ name: p["name"], value: p["value"] })),
-                maxWallClockTime:
-                  jobSchedule.jobSpecification.jobReleaseTask?.[
-                    "maxWallClockTime"
-                  ],
-                retentionTime:
-                  jobSchedule.jobSpecification.jobReleaseTask?.[
-                    "retentionTime"
-                  ],
-                userIdentity: !jobSchedule.jobSpecification.jobReleaseTask
+                constraints: !body.jobSpecification.jobPreparationTask
+                  ?.constraints
+                  ? undefined
+                  : {
+                      maxWallClockTime:
+                        body.jobSpecification.jobPreparationTask?.constraints?.[
+                          "maxWallClockTime"
+                        ],
+                      retentionTime:
+                        body.jobSpecification.jobPreparationTask?.constraints?.[
+                          "retentionTime"
+                        ],
+                      maxTaskRetryCount:
+                        body.jobSpecification.jobPreparationTask?.constraints?.[
+                          "maxTaskRetryCount"
+                        ],
+                    },
+                waitForSuccess:
+                  body.jobSpecification.jobPreparationTask?.["waitForSuccess"],
+                userIdentity: !body.jobSpecification.jobPreparationTask
                   ?.userIdentity
                   ? undefined
                   : {
                       username:
-                        jobSchedule.jobSpecification.jobReleaseTask
+                        body.jobSpecification.jobPreparationTask
                           ?.userIdentity?.["username"],
-                      autoUser: !jobSchedule.jobSpecification.jobReleaseTask
+                      autoUser: !body.jobSpecification.jobPreparationTask
                         ?.userIdentity?.autoUser
                         ? undefined
                         : {
                             scope:
-                              jobSchedule.jobSpecification.jobReleaseTask
+                              body.jobSpecification.jobPreparationTask
                                 ?.userIdentity?.autoUser?.["scope"],
                             elevationLevel:
-                              jobSchedule.jobSpecification.jobReleaseTask
+                              body.jobSpecification.jobPreparationTask
                                 ?.userIdentity?.autoUser?.["elevationLevel"],
+                          },
+                    },
+                rerunOnNodeRebootAfterSuccess:
+                  body.jobSpecification.jobPreparationTask?.[
+                    "rerunOnNodeRebootAfterSuccess"
+                  ],
+              },
+          jobReleaseTask: !body.jobSpecification.jobReleaseTask
+            ? undefined
+            : {
+                id: body.jobSpecification.jobReleaseTask?.["id"],
+                commandLine:
+                  body.jobSpecification.jobReleaseTask?.["commandLine"],
+                containerSettings: !body.jobSpecification.jobReleaseTask
+                  ?.containerSettings
+                  ? undefined
+                  : {
+                      containerRunOptions:
+                        body.jobSpecification.jobReleaseTask
+                          ?.containerSettings?.["containerRunOptions"],
+                      imageName:
+                        body.jobSpecification.jobReleaseTask
+                          ?.containerSettings?.["imageName"],
+                      registry: !body.jobSpecification.jobReleaseTask
+                        ?.containerSettings?.registry
+                        ? undefined
+                        : {
+                            username:
+                              body.jobSpecification.jobReleaseTask
+                                ?.containerSettings?.registry?.["username"],
+                            password:
+                              body.jobSpecification.jobReleaseTask
+                                ?.containerSettings?.registry?.["password"],
+                            registryServer:
+                              body.jobSpecification.jobReleaseTask
+                                ?.containerSettings?.registry?.[
+                                "registryServer"
+                              ],
+                            identityReference: !body.jobSpecification
+                              .jobReleaseTask?.containerSettings?.registry
+                              ?.identityReference
+                              ? undefined
+                              : {
+                                  resourceId:
+                                    body.jobSpecification.jobReleaseTask
+                                      ?.containerSettings?.registry
+                                      ?.identityReference?.["resourceId"],
+                                },
+                          },
+                      workingDirectory:
+                        body.jobSpecification.jobReleaseTask
+                          ?.containerSettings?.["workingDirectory"],
+                    },
+                resourceFiles:
+                  body.jobSpecification.jobReleaseTask?.["resourceFiles"] ===
+                  undefined
+                    ? body.jobSpecification.jobReleaseTask?.["resourceFiles"]
+                    : body.jobSpecification.jobReleaseTask?.[
+                        "resourceFiles"
+                      ].map((p) => ({
+                        autoStorageContainerName: p["autoStorageContainerName"],
+                        storageContainerUrl: p["storageContainerUrl"],
+                        httpUrl: p["httpUrl"],
+                        blobPrefix: p["blobPrefix"],
+                        filePath: p["filePath"],
+                        fileMode: p["fileMode"],
+                        identityReference: !p.identityReference
+                          ? undefined
+                          : { resourceId: p.identityReference?.["resourceId"] },
+                      })),
+                environmentSettings:
+                  body.jobSpecification.jobReleaseTask?.[
+                    "environmentSettings"
+                  ] === undefined
+                    ? body.jobSpecification.jobReleaseTask?.[
+                        "environmentSettings"
+                      ]
+                    : body.jobSpecification.jobReleaseTask?.[
+                        "environmentSettings"
+                      ].map((p) => ({ name: p["name"], value: p["value"] })),
+                maxWallClockTime:
+                  body.jobSpecification.jobReleaseTask?.["maxWallClockTime"],
+                retentionTime:
+                  body.jobSpecification.jobReleaseTask?.["retentionTime"],
+                userIdentity: !body.jobSpecification.jobReleaseTask
+                  ?.userIdentity
+                  ? undefined
+                  : {
+                      username:
+                        body.jobSpecification.jobReleaseTask?.userIdentity?.[
+                          "username"
+                        ],
+                      autoUser: !body.jobSpecification.jobReleaseTask
+                        ?.userIdentity?.autoUser
+                        ? undefined
+                        : {
+                            scope:
+                              body.jobSpecification.jobReleaseTask?.userIdentity
+                                ?.autoUser?.["scope"],
+                            elevationLevel:
+                              body.jobSpecification.jobReleaseTask?.userIdentity
+                                ?.autoUser?.["elevationLevel"],
                           },
                     },
               },
           commonEnvironmentSettings:
-            jobSchedule.jobSpecification["commonEnvironmentSettings"] ===
-            undefined
-              ? jobSchedule.jobSpecification["commonEnvironmentSettings"]
-              : jobSchedule.jobSpecification["commonEnvironmentSettings"].map(
-                  (p) => ({ name: p["name"], value: p["value"] }),
-                ),
+            body.jobSpecification["commonEnvironmentSettings"] === undefined
+              ? body.jobSpecification["commonEnvironmentSettings"]
+              : body.jobSpecification["commonEnvironmentSettings"].map((p) => ({
+                  name: p["name"],
+                  value: p["value"],
+                })),
           poolInfo: {
-            poolId: jobSchedule.jobSpecification.poolInfo["poolId"],
-            autoPoolSpecification: !jobSchedule.jobSpecification.poolInfo
+            poolId: body.jobSpecification.poolInfo["poolId"],
+            autoPoolSpecification: !body.jobSpecification.poolInfo
               .autoPoolSpecification
               ? undefined
               : {
                   autoPoolIdPrefix:
-                    jobSchedule.jobSpecification.poolInfo
-                      .autoPoolSpecification?.["autoPoolIdPrefix"],
+                    body.jobSpecification.poolInfo.autoPoolSpecification?.[
+                      "autoPoolIdPrefix"
+                    ],
                   poolLifetimeOption:
-                    jobSchedule.jobSpecification.poolInfo
-                      .autoPoolSpecification?.["poolLifetimeOption"],
+                    body.jobSpecification.poolInfo.autoPoolSpecification?.[
+                      "poolLifetimeOption"
+                    ],
                   keepAlive:
-                    jobSchedule.jobSpecification.poolInfo
-                      .autoPoolSpecification?.["keepAlive"],
-                  pool: !jobSchedule.jobSpecification.poolInfo
-                    .autoPoolSpecification?.pool
+                    body.jobSpecification.poolInfo.autoPoolSpecification?.[
+                      "keepAlive"
+                    ],
+                  pool: !body.jobSpecification.poolInfo.autoPoolSpecification
+                    ?.pool
                     ? undefined
                     : {
                         displayName:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["displayName"],
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["displayName"],
                         vmSize:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["vmSize"],
-                        cloudServiceConfiguration: !jobSchedule.jobSpecification
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["vmSize"],
+                        cloudServiceConfiguration: !body.jobSpecification
                           .poolInfo.autoPoolSpecification?.pool
                           ?.cloudServiceConfiguration
                           ? undefined
                           : {
                               osFamily:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.cloudServiceConfiguration?.["osFamily"],
                               osVersion:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.cloudServiceConfiguration?.["osVersion"],
                             },
-                        virtualMachineConfiguration: !jobSchedule
-                          .jobSpecification.poolInfo.autoPoolSpecification?.pool
+                        virtualMachineConfiguration: !body.jobSpecification
+                          .poolInfo.autoPoolSpecification?.pool
                           ?.virtualMachineConfiguration
                           ? undefined
                           : {
                               imageReference: {
                                 publisher:
-                                  jobSchedule.jobSpecification.poolInfo
+                                  body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
                                     ?.imageReference["publisher"],
                                 offer:
-                                  jobSchedule.jobSpecification.poolInfo
+                                  body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
                                     ?.imageReference["offer"],
-                                sku: jobSchedule.jobSpecification.poolInfo
+                                sku: body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.imageReference[
                                   "sku"
                                 ],
                                 version:
-                                  jobSchedule.jobSpecification.poolInfo
+                                  body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
                                     ?.imageReference["version"],
                                 virtualMachineImageId:
-                                  jobSchedule.jobSpecification.poolInfo
+                                  body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
                                     ?.imageReference["virtualMachineImageId"],
                               },
                               nodeAgentSKUId:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.[
                                   "nodeAgentSkuId"
                                 ],
-                              windowsConfiguration: !jobSchedule
-                                .jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.virtualMachineConfiguration
+                              windowsConfiguration: !body.jobSpecification
+                                .poolInfo.autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration
                                 ?.windowsConfiguration
                                 ? undefined
                                 : {
                                     enableAutomaticUpdates:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration
                                         ?.windowsConfiguration?.[
@@ -14627,62 +13098,62 @@ export function _replaceJobScheduleSend(
                                       ],
                                   },
                               dataDisks:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.[
                                   "dataDisks"
                                 ] === undefined
-                                  ? jobSchedule.jobSpecification.poolInfo
+                                  ? body.jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration?.[
                                       "dataDisks"
                                     ]
-                                  : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                  : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                       "dataDisks"
                                     ].map((p) => ({
-                                      lun: p["logicalUnitNumber"],
+                                      lun: p["lun"],
                                       caching: p["caching"],
                                       diskSizeGB: p["diskSizeGb"],
                                       storageAccountType:
                                         p["storageAccountType"],
                                     })),
                               licenseType:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.[
                                   "licenseType"
                                 ],
-                              containerConfiguration: !jobSchedule
-                                .jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.virtualMachineConfiguration
+                              containerConfiguration: !body.jobSpecification
+                                .poolInfo.autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration
                                 ?.containerConfiguration
                                 ? undefined
                                 : {
-                                    type: jobSchedule.jobSpecification.poolInfo
+                                    type: body.jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.containerConfiguration?.["type"],
                                     containerImageNames:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration
                                         ?.containerConfiguration?.[
                                         "containerImageNames"
                                       ],
                                     containerRegistries:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration
                                         ?.containerConfiguration?.[
                                         "containerRegistries"
                                       ] === undefined
-                                        ? jobSchedule.jobSpecification.poolInfo
+                                        ? body.jobSpecification.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.virtualMachineConfiguration
                                             ?.containerConfiguration?.[
                                             "containerRegistries"
                                           ]
-                                        : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                        : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
                                             "containerRegistries"
                                           ].map((p) => ({
                                             username: p["username"],
@@ -14699,28 +13170,28 @@ export function _replaceJobScheduleSend(
                                                   },
                                           })),
                                   },
-                              diskEncryptionConfiguration: !jobSchedule
+                              diskEncryptionConfiguration: !body
                                 .jobSpecification.poolInfo.autoPoolSpecification
                                 ?.pool?.virtualMachineConfiguration
                                 ?.diskEncryptionConfiguration
                                 ? undefined
                                 : {
                                     targets:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration
                                         ?.diskEncryptionConfiguration?.[
                                         "targets"
                                       ],
                                   },
-                              nodePlacementConfiguration: !jobSchedule
-                                .jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.virtualMachineConfiguration
+                              nodePlacementConfiguration: !body.jobSpecification
+                                .poolInfo.autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration
                                 ?.nodePlacementConfiguration
                                 ? undefined
                                 : {
                                     policy:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration
                                         ?.nodePlacementConfiguration?.[
@@ -14728,17 +13199,17 @@ export function _replaceJobScheduleSend(
                                       ],
                                   },
                               extensions:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.[
                                   "extensions"
                                 ] === undefined
-                                  ? jobSchedule.jobSpecification.poolInfo
+                                  ? body.jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration?.[
                                       "extensions"
                                     ]
-                                  : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                  : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                       "extensions"
                                     ].map((p) => ({
                                       name: p["name"],
@@ -14755,12 +13226,12 @@ export function _replaceJobScheduleSend(
                                       provisionAfterExtensions:
                                         p["provisionAfterExtensions"],
                                     })),
-                              osDisk: !jobSchedule.jobSpecification.poolInfo
+                              osDisk: !body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.osDisk
                                 ? undefined
                                 : {
-                                    ephemeralOSDiskSettings: !jobSchedule
+                                    ephemeralOSDiskSettings: !body
                                       .jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration?.osDisk
@@ -14768,161 +13239,70 @@ export function _replaceJobScheduleSend(
                                       ? undefined
                                       : {
                                           placement:
-                                            jobSchedule.jobSpecification
-                                              .poolInfo.autoPoolSpecification
-                                              ?.pool
+                                            body.jobSpecification.poolInfo
+                                              .autoPoolSpecification?.pool
                                               ?.virtualMachineConfiguration
                                               ?.osDisk
                                               ?.ephemeralOSDiskSettings?.[
                                               "placement"
                                             ],
                                         },
-                                    caching:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration?.osDisk?.[
-                                        "caching"
-                                      ],
-                                    diskSizeGB:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration?.osDisk?.[
-                                        "diskSizeGB"
-                                      ],
-                                    managedDisk: !jobSchedule.jobSpecification
-                                      .poolInfo.autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration?.osDisk
-                                      ?.managedDisk
-                                      ? undefined
-                                      : {
-                                          storageAccountType:
-                                            jobSchedule.jobSpecification
-                                              .poolInfo.autoPoolSpecification
-                                              ?.pool
-                                              ?.virtualMachineConfiguration
-                                              ?.osDisk?.managedDisk?.[
-                                              "storageAccountType"
-                                            ],
-                                        },
-                                    writeAcceleratorEnabled:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration?.osDisk?.[
-                                        "writeAcceleratorEnabled"
-                                      ],
-                                  },
-                              securityProfile: !jobSchedule.jobSpecification
-                                .poolInfo.autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.securityProfile
-                                ? undefined
-                                : {
-                                    encryptionAtHost:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration
-                                        ?.securityProfile?.["encryptionAtHost"],
-                                    securityType:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration
-                                        ?.securityProfile?.["securityType"],
-                                    uefiSettings: {
-                                      secureBootEnabled:
-                                        jobSchedule.jobSpecification.poolInfo
-                                          .autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
-                                          ?.securityProfile?.uefiSettings[
-                                          "secureBootEnabled"
-                                        ],
-                                      vTpmEnabled:
-                                        jobSchedule.jobSpecification.poolInfo
-                                          .autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
-                                          ?.securityProfile?.uefiSettings[
-                                          "vTpmEnabled"
-                                        ],
-                                    },
-                                  },
-                              serviceArtifactReference: !jobSchedule
-                                .jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.virtualMachineConfiguration
-                                ?.serviceArtifactReference
-                                ? undefined
-                                : {
-                                    id: jobSchedule.jobSpecification.poolInfo
-                                      .autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration
-                                      ?.serviceArtifactReference?.["id"],
                                   },
                             },
                         taskSlotsPerNode:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["taskSlotsPerNode"],
-                        taskSchedulingPolicy: !jobSchedule.jobSpecification
-                          .poolInfo.autoPoolSpecification?.pool
-                          ?.taskSchedulingPolicy
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["taskSlotsPerNode"],
+                        taskSchedulingPolicy: !body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.taskSchedulingPolicy
                           ? undefined
                           : {
                               nodeFillType:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.taskSchedulingPolicy?.["nodeFillType"],
                             },
                         resizeTimeout:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["resizeTimeout"],
-                        resourceTags:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["resourceTags"],
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["resizeTimeout"],
                         targetDedicatedNodes:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "targetDedicatedNodes"
-                          ],
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["targetDedicatedNodes"],
                         targetLowPriorityNodes:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "targetLowPriorityNodes"
-                          ],
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["targetLowPriorityNodes"],
                         enableAutoScale:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["enableAutoScale"],
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["enableAutoScale"],
                         autoScaleFormula:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["autoScaleFormula"],
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["autoScaleFormula"],
                         autoScaleEvaluationInterval:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "autoScaleEvaluationInterval"
-                          ],
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["autoScaleEvaluationInterval"],
                         enableInterNodeCommunication:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "enableInterNodeCommunication"
-                          ],
-                        networkConfiguration: !jobSchedule.jobSpecification
-                          .poolInfo.autoPoolSpecification?.pool
-                          ?.networkConfiguration
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["enableInterNodeCommunication"],
+                        networkConfiguration: !body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.networkConfiguration
                           ? undefined
                           : {
                               subnetId:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.networkConfiguration?.["subnetId"],
                               dynamicVNetAssignmentScope:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.networkConfiguration?.[
                                   "dynamicVNetAssignmentScope"
                                 ],
-                              endpointConfiguration: !jobSchedule
-                                .jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.networkConfiguration
-                                ?.endpointConfiguration
+                              endpointConfiguration: !body.jobSpecification
+                                .poolInfo.autoPoolSpecification?.pool
+                                ?.networkConfiguration?.endpointConfiguration
                                 ? undefined
                                 : {
                                     inboundNATPools:
-                                      jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                      body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                         "inboundNatPools"
                                       ].map((p) => ({
                                         name: p["name"],
@@ -14948,21 +13328,21 @@ export function _replaceJobScheduleSend(
                                               })),
                                       })),
                                   },
-                              publicIPAddressConfiguration: !jobSchedule
+                              publicIPAddressConfiguration: !body
                                 .jobSpecification.poolInfo.autoPoolSpecification
                                 ?.pool?.networkConfiguration
                                 ?.publicIpAddressConfiguration
                                 ? undefined
                                 : {
                                     provision:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.networkConfiguration
                                         ?.publicIpAddressConfiguration?.[
                                         "ipAddressProvisioningType"
                                       ],
                                     ipAddressIds:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.networkConfiguration
                                         ?.publicIpAddressConfiguration?.[
@@ -14970,63 +13350,57 @@ export function _replaceJobScheduleSend(
                                       ],
                                   },
                               enableAcceleratedNetworking:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.networkConfiguration?.[
                                   "enableAcceleratedNetworking"
                                 ],
                             },
-                        startTask: !jobSchedule.jobSpecification.poolInfo
+                        startTask: !body.jobSpecification.poolInfo
                           .autoPoolSpecification?.pool?.startTask
                           ? undefined
                           : {
                               commandLine:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool?.startTask?.[
                                   "commandLine"
                                 ],
-                              containerSettings: !jobSchedule.jobSpecification
-                                .poolInfo.autoPoolSpecification?.pool?.startTask
+                              containerSettings: !body.jobSpecification.poolInfo
+                                .autoPoolSpecification?.pool?.startTask
                                 ?.containerSettings
                                 ? undefined
                                 : {
                                     containerRunOptions:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool?.startTask
                                         ?.containerSettings?.[
                                         "containerRunOptions"
                                       ],
                                     imageName:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool?.startTask
                                         ?.containerSettings?.["imageName"],
-                                    registry: !jobSchedule.jobSpecification
-                                      .poolInfo.autoPoolSpecification?.pool
-                                      ?.startTask?.containerSettings?.registry
+                                    registry: !body.jobSpecification.poolInfo
+                                      .autoPoolSpecification?.pool?.startTask
+                                      ?.containerSettings?.registry
                                       ? undefined
                                       : {
                                           username:
-                                            jobSchedule.jobSpecification
-                                              .poolInfo.autoPoolSpecification
-                                              ?.pool?.startTask
-                                              ?.containerSettings?.registry?.[
-                                              "username"
-                                            ],
+                                            body.jobSpecification.poolInfo
+                                              .autoPoolSpecification?.pool
+                                              ?.startTask?.containerSettings
+                                              ?.registry?.["username"],
                                           password:
-                                            jobSchedule.jobSpecification
-                                              .poolInfo.autoPoolSpecification
-                                              ?.pool?.startTask
-                                              ?.containerSettings?.registry?.[
-                                              "password"
-                                            ],
+                                            body.jobSpecification.poolInfo
+                                              .autoPoolSpecification?.pool
+                                              ?.startTask?.containerSettings
+                                              ?.registry?.["password"],
                                           registryServer:
-                                            jobSchedule.jobSpecification
-                                              .poolInfo.autoPoolSpecification
-                                              ?.pool?.startTask
-                                              ?.containerSettings?.registry?.[
-                                              "registryServer"
-                                            ],
-                                          identityReference: !jobSchedule
+                                            body.jobSpecification.poolInfo
+                                              .autoPoolSpecification?.pool
+                                              ?.startTask?.containerSettings
+                                              ?.registry?.["registryServer"],
+                                          identityReference: !body
                                             .jobSpecification.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.startTask?.containerSettings
@@ -15034,8 +13408,7 @@ export function _replaceJobScheduleSend(
                                             ? undefined
                                             : {
                                                 resourceId:
-                                                  jobSchedule.jobSpecification
-                                                    .poolInfo
+                                                  body.jobSpecification.poolInfo
                                                     .autoPoolSpecification?.pool
                                                     ?.startTask
                                                     ?.containerSettings
@@ -15046,22 +13419,22 @@ export function _replaceJobScheduleSend(
                                               },
                                         },
                                     workingDirectory:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool?.startTask
                                         ?.containerSettings?.[
                                         "workingDirectory"
                                       ],
                                   },
                               resourceFiles:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool?.startTask?.[
                                   "resourceFiles"
                                 ] === undefined
-                                  ? jobSchedule.jobSpecification.poolInfo
+                                  ? body.jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool?.startTask?.[
                                       "resourceFiles"
                                     ]
-                                  : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                  : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                       "resourceFiles"
                                     ].map((p) => ({
                                       autoStorageContainerName:
@@ -15082,67 +13455,65 @@ export function _replaceJobScheduleSend(
                                           },
                                     })),
                               environmentSettings:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool?.startTask?.[
                                   "environmentSettings"
                                 ] === undefined
-                                  ? jobSchedule.jobSpecification.poolInfo
+                                  ? body.jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool?.startTask?.[
                                       "environmentSettings"
                                     ]
-                                  : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                  : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                       "environmentSettings"
                                     ].map((p) => ({
                                       name: p["name"],
                                       value: p["value"],
                                     })),
-                              userIdentity: !jobSchedule.jobSpecification
-                                .poolInfo.autoPoolSpecification?.pool?.startTask
+                              userIdentity: !body.jobSpecification.poolInfo
+                                .autoPoolSpecification?.pool?.startTask
                                 ?.userIdentity
                                 ? undefined
                                 : {
                                     username:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool?.startTask
                                         ?.userIdentity?.["username"],
-                                    autoUser: !jobSchedule.jobSpecification
-                                      .poolInfo.autoPoolSpecification?.pool
-                                      ?.startTask?.userIdentity?.autoUser
+                                    autoUser: !body.jobSpecification.poolInfo
+                                      .autoPoolSpecification?.pool?.startTask
+                                      ?.userIdentity?.autoUser
                                       ? undefined
                                       : {
                                           scope:
-                                            jobSchedule.jobSpecification
-                                              .poolInfo.autoPoolSpecification
-                                              ?.pool?.startTask?.userIdentity
+                                            body.jobSpecification.poolInfo
+                                              .autoPoolSpecification?.pool
+                                              ?.startTask?.userIdentity
                                               ?.autoUser?.["scope"],
                                           elevationLevel:
-                                            jobSchedule.jobSpecification
-                                              .poolInfo.autoPoolSpecification
-                                              ?.pool?.startTask?.userIdentity
+                                            body.jobSpecification.poolInfo
+                                              .autoPoolSpecification?.pool
+                                              ?.startTask?.userIdentity
                                               ?.autoUser?.["elevationLevel"],
                                         },
                                   },
                               maxTaskRetryCount:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool?.startTask?.[
                                   "maxTaskRetryCount"
                                 ],
                               waitForSuccess:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool?.startTask?.[
                                   "waitForSuccess"
                                 ],
                             },
                         certificateReferences:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "certificateReferences"
-                          ] === undefined
-                            ? jobSchedule.jobSpecification.poolInfo
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["certificateReferences"] === undefined
+                            ? body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "certificateReferences"
                               ]
-                            : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                            : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                                 "certificateReferences"
                               ].map((p) => ({
                                 thumbprint: p["thumbprint"],
@@ -15152,32 +13523,28 @@ export function _replaceJobScheduleSend(
                                 visibility: p["visibility"],
                               })),
                         applicationPackageReferences:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "applicationPackageReferences"
-                          ] === undefined
-                            ? jobSchedule.jobSpecification.poolInfo
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["applicationPackageReferences"] ===
+                          undefined
+                            ? body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "applicationPackageReferences"
                               ]
-                            : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                            : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                                 "applicationPackageReferences"
                               ].map((p) => ({
                                 applicationId: p["applicationId"],
                                 version: p["version"],
                               })),
                         applicationLicenses:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "applicationLicenses"
-                          ],
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["applicationLicenses"],
                         userAccounts:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["userAccounts"] ===
-                          undefined
-                            ? jobSchedule.jobSpecification.poolInfo
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["userAccounts"] === undefined
+                            ? body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool?.["userAccounts"]
-                            : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                            : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                                 "userAccounts"
                               ].map((p) => ({
                                 name: p["name"],
@@ -15205,27 +13572,24 @@ export function _replaceJobScheduleSend(
                                       },
                               })),
                         metadata:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["metadata"] ===
-                          undefined
-                            ? jobSchedule.jobSpecification.poolInfo
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["metadata"] === undefined
+                            ? body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool?.["metadata"]
-                            : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                            : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                                 "metadata"
                               ].map((p) => ({
                                 name: p["name"],
                                 value: p["value"],
                               })),
                         mountConfiguration:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "mountConfiguration"
-                          ] === undefined
-                            ? jobSchedule.jobSpecification.poolInfo
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["mountConfiguration"] === undefined
+                            ? body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "mountConfiguration"
                               ]
-                            : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                            : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                                 "mountConfiguration"
                               ].map((p) => ({
                                 azureBlobFileSystemConfiguration:
@@ -15333,116 +13697,23 @@ export function _replaceJobScheduleSend(
                                       },
                               })),
                         targetNodeCommunicationMode:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "targetNodeCommunicationMode"
-                          ],
-                        upgradePolicy: !jobSchedule.jobSpecification.poolInfo
-                          .autoPoolSpecification?.pool?.upgradePolicy
-                          ? undefined
-                          : {
-                              mode: jobSchedule.jobSpecification.poolInfo
-                                .autoPoolSpecification?.pool?.upgradePolicy?.[
-                                "mode"
-                              ],
-                              automaticOsUpgradePolicy: !jobSchedule
-                                .jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.upgradePolicy?.automaticOSUpgradePolicy
-                                ? undefined
-                                : {
-                                    disableAutomaticRollback:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy
-                                        ?.automaticOSUpgradePolicy?.[
-                                        "disableAutomaticRollback"
-                                      ],
-                                    enableAutomaticOsUpgrade:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy
-                                        ?.automaticOSUpgradePolicy?.[
-                                        "enableAutomaticOSUpgrade"
-                                      ],
-                                    useRollingUpgradePolicy:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy
-                                        ?.automaticOSUpgradePolicy?.[
-                                        "useRollingUpgradePolicy"
-                                      ],
-                                    osRollingUpgradeDeferral:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy
-                                        ?.automaticOSUpgradePolicy?.[
-                                        "osRollingUpgradeDeferral"
-                                      ],
-                                  },
-                              rollingUpgradePolicy: !jobSchedule
-                                .jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.upgradePolicy?.rollingUpgradePolicy
-                                ? undefined
-                                : {
-                                    enableCrossZoneUpgrade:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                        "enableCrossZoneUpgrade"
-                                      ],
-                                    maxBatchInstancePercent:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                        "maxBatchInstancePercent"
-                                      ],
-                                    maxUnhealthyInstancePercent:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                        "maxUnhealthyInstancePercent"
-                                      ],
-                                    maxUnhealthyUpgradedInstancePercent:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                        "maxUnhealthyUpgradedInstancePercent"
-                                      ],
-                                    pauseTimeBetweenBatches:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                        "pauseTimeBetweenBatches"
-                                      ],
-                                    prioritizeUnhealthyInstances:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                        "prioritizeUnhealthyInstances"
-                                      ],
-                                    rollbackFailedInstancesOnPolicyBreach:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                        "rollbackFailedInstancesOnPolicyBreach"
-                                      ],
-                                  },
-                            },
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["targetNodeCommunicationMode"],
                       },
                 },
           },
           metadata:
-            jobSchedule.jobSpecification["metadata"] === undefined
-              ? jobSchedule.jobSpecification["metadata"]
-              : jobSchedule.jobSpecification["metadata"].map((p) => ({
+            body.jobSpecification["metadata"] === undefined
+              ? body.jobSpecification["metadata"]
+              : body.jobSpecification["metadata"].map((p) => ({
                   name: p["name"],
                   value: p["value"],
                 })),
         },
         metadata:
-          jobSchedule["metadata"] === undefined
-            ? jobSchedule["metadata"]
-            : jobSchedule["metadata"].map((p) => ({
+          body["metadata"] === undefined
+            ? body["metadata"]
+            : body["metadata"].map((p) => ({
                 name: p["name"],
                 value: p["value"],
               })),
@@ -15469,14 +13740,16 @@ export async function _replaceJobScheduleDeserialize(
  */
 export async function replaceJobSchedule(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
-  jobSchedule: BatchJobSchedule,
+  body: BatchJobSchedule,
   options: ReplaceJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _replaceJobScheduleSend(
     context,
+    apiVersion,
     jobScheduleId,
-    jobSchedule,
+    body,
     options,
   );
   return _replaceJobScheduleDeserialize(result);
@@ -15484,6 +13757,7 @@ export async function replaceJobSchedule(
 
 export function _disableJobScheduleSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: DisableJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
@@ -15494,21 +13768,21 @@ export function _disableJobScheduleSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -15527,15 +13801,22 @@ export async function _disableJobScheduleDeserialize(
 /** No new Jobs will be created until the Job Schedule is enabled again. */
 export async function disableJobSchedule(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: DisableJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _disableJobScheduleSend(context, jobScheduleId, options);
+  const result = await _disableJobScheduleSend(
+    context,
+    apiVersion,
+    jobScheduleId,
+    options,
+  );
   return _disableJobScheduleDeserialize(result);
 }
 
 export function _enableJobScheduleSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: EnableJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
@@ -15546,21 +13827,21 @@ export function _enableJobScheduleSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -15579,15 +13860,22 @@ export async function _enableJobScheduleDeserialize(
 /** Enables a Job Schedule. */
 export async function enableJobSchedule(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: EnableJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _enableJobScheduleSend(context, jobScheduleId, options);
+  const result = await _enableJobScheduleSend(
+    context,
+    apiVersion,
+    jobScheduleId,
+    options,
+  );
   return _enableJobScheduleDeserialize(result);
 }
 
 export function _terminateJobScheduleSend(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: TerminateJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
@@ -15598,21 +13886,21 @@ export function _terminateJobScheduleSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -15631,11 +13919,13 @@ export async function _terminateJobScheduleDeserialize(
 /** Terminates a Job Schedule. */
 export async function terminateJobSchedule(
   context: Client,
+  apiVersion: string,
   jobScheduleId: string,
   options: TerminateJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _terminateJobScheduleSend(
     context,
+    apiVersion,
     jobScheduleId,
     options,
   );
@@ -15644,7 +13934,8 @@ export async function terminateJobSchedule(
 
 export function _createJobScheduleSend(
   context: Client,
-  jobSchedule: BatchJobScheduleCreateContent,
+  apiVersion: string,
+  body: BatchJobScheduleCreateOptions,
   options: CreateJobScheduleOptions = { requestOptions: {} },
 ): StreamableMethod<
   CreateJobSchedule201Response | CreateJobScheduleDefaultResponse
@@ -15657,106 +13948,93 @@ export function _createJobScheduleSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        id: jobSchedule["id"],
-        displayName: jobSchedule["displayName"],
+        id: body["id"],
+        displayName: body["displayName"],
         schedule: {
-          doNotRunUntil: jobSchedule.schedule["doNotRunUntil"]?.toISOString(),
-          doNotRunAfter: jobSchedule.schedule["doNotRunAfter"]?.toISOString(),
-          startWindow: jobSchedule.schedule["startWindow"],
-          recurrenceInterval: jobSchedule.schedule["recurrenceInterval"],
+          doNotRunUntil: body.schedule["doNotRunUntil"]?.toISOString(),
+          doNotRunAfter: body.schedule["doNotRunAfter"]?.toISOString(),
+          startWindow: body.schedule["startWindow"],
+          recurrenceInterval: body.schedule["recurrenceInterval"],
         },
         jobSpecification: {
-          priority: jobSchedule.jobSpecification["priority"],
-          allowTaskPreemption:
-            jobSchedule.jobSpecification["allowTaskPreemption"],
-          maxParallelTasks: jobSchedule.jobSpecification["maxParallelTasks"],
-          displayName: jobSchedule.jobSpecification["displayName"],
-          usesTaskDependencies:
-            jobSchedule.jobSpecification["usesTaskDependencies"],
-          onAllTasksComplete:
-            jobSchedule.jobSpecification["onAllTasksComplete"],
-          onTaskFailure: jobSchedule.jobSpecification["onTaskFailure"],
-          networkConfiguration: !jobSchedule.jobSpecification
-            .networkConfiguration
+          priority: body.jobSpecification["priority"],
+          allowTaskPreemption: body.jobSpecification["allowTaskPreemption"],
+          maxParallelTasks: body.jobSpecification["maxParallelTasks"],
+          displayName: body.jobSpecification["displayName"],
+          usesTaskDependencies: body.jobSpecification["usesTaskDependencies"],
+          onAllTasksComplete: body.jobSpecification["onAllTasksComplete"],
+          onTaskFailure: body.jobSpecification["onTaskFailure"],
+          networkConfiguration: !body.jobSpecification.networkConfiguration
             ? undefined
             : {
                 subnetId:
-                  jobSchedule.jobSpecification.networkConfiguration?.[
-                    "subnetId"
-                  ],
+                  body.jobSpecification.networkConfiguration?.["subnetId"],
               },
-          constraints: !jobSchedule.jobSpecification.constraints
+          constraints: !body.jobSpecification.constraints
             ? undefined
             : {
                 maxWallClockTime:
-                  jobSchedule.jobSpecification.constraints?.[
-                    "maxWallClockTime"
-                  ],
+                  body.jobSpecification.constraints?.["maxWallClockTime"],
                 maxTaskRetryCount:
-                  jobSchedule.jobSpecification.constraints?.[
-                    "maxTaskRetryCount"
-                  ],
+                  body.jobSpecification.constraints?.["maxTaskRetryCount"],
               },
-          jobManagerTask: !jobSchedule.jobSpecification.jobManagerTask
+          jobManagerTask: !body.jobSpecification.jobManagerTask
             ? undefined
             : {
-                id: jobSchedule.jobSpecification.jobManagerTask?.["id"],
+                id: body.jobSpecification.jobManagerTask?.["id"],
                 displayName:
-                  jobSchedule.jobSpecification.jobManagerTask?.["displayName"],
+                  body.jobSpecification.jobManagerTask?.["displayName"],
                 commandLine:
-                  jobSchedule.jobSpecification.jobManagerTask?.["commandLine"],
-                containerSettings: !jobSchedule.jobSpecification.jobManagerTask
+                  body.jobSpecification.jobManagerTask?.["commandLine"],
+                containerSettings: !body.jobSpecification.jobManagerTask
                   ?.containerSettings
                   ? undefined
                   : {
                       containerRunOptions:
-                        jobSchedule.jobSpecification.jobManagerTask
+                        body.jobSpecification.jobManagerTask
                           ?.containerSettings?.["containerRunOptions"],
                       imageName:
-                        jobSchedule.jobSpecification.jobManagerTask
+                        body.jobSpecification.jobManagerTask
                           ?.containerSettings?.["imageName"],
-                      registry: !jobSchedule.jobSpecification.jobManagerTask
+                      registry: !body.jobSpecification.jobManagerTask
                         ?.containerSettings?.registry
                         ? undefined
                         : {
                             username:
-                              jobSchedule.jobSpecification.jobManagerTask
+                              body.jobSpecification.jobManagerTask
                                 ?.containerSettings?.registry?.["username"],
                             password:
-                              jobSchedule.jobSpecification.jobManagerTask
+                              body.jobSpecification.jobManagerTask
                                 ?.containerSettings?.registry?.["password"],
                             registryServer:
-                              jobSchedule.jobSpecification.jobManagerTask
+                              body.jobSpecification.jobManagerTask
                                 ?.containerSettings?.registry?.[
                                 "registryServer"
                               ],
-                            identityReference: !jobSchedule.jobSpecification
+                            identityReference: !body.jobSpecification
                               .jobManagerTask?.containerSettings?.registry
                               ?.identityReference
                               ? undefined
                               : {
                                   resourceId:
-                                    jobSchedule.jobSpecification.jobManagerTask
+                                    body.jobSpecification.jobManagerTask
                                       ?.containerSettings?.registry
                                       ?.identityReference?.["resourceId"],
                                 },
                           },
                       workingDirectory:
-                        jobSchedule.jobSpecification.jobManagerTask
+                        body.jobSpecification.jobManagerTask
                           ?.containerSettings?.["workingDirectory"],
                     },
                 resourceFiles:
-                  jobSchedule.jobSpecification.jobManagerTask?.[
-                    "resourceFiles"
-                  ] === undefined
-                    ? jobSchedule.jobSpecification.jobManagerTask?.[
-                        "resourceFiles"
-                      ]
-                    : jobSchedule.jobSpecification.jobManagerTask?.[
+                  body.jobSpecification.jobManagerTask?.["resourceFiles"] ===
+                  undefined
+                    ? body.jobSpecification.jobManagerTask?.["resourceFiles"]
+                    : body.jobSpecification.jobManagerTask?.[
                         "resourceFiles"
                       ].map((p) => ({
                         autoStorageContainerName: p["autoStorageContainerName"],
@@ -15770,302 +14048,179 @@ export function _createJobScheduleSend(
                           : { resourceId: p.identityReference?.["resourceId"] },
                       })),
                 outputFiles:
-                  jobSchedule.jobSpecification.jobManagerTask?.[
-                    "outputFiles"
-                  ] === undefined
-                    ? jobSchedule.jobSpecification.jobManagerTask?.[
-                        "outputFiles"
-                      ]
-                    : jobSchedule.jobSpecification.jobManagerTask?.[
-                        "outputFiles"
-                      ].map((p) => ({
-                        filePattern: p["filePattern"],
-                        destination: {
-                          container: !p.destination.container
-                            ? undefined
-                            : {
-                                path: p.destination.container?.["path"],
-                                containerUrl:
-                                  p.destination.container?.["containerUrl"],
-                                identityReference: !p.destination.container
-                                  ?.identityReference
-                                  ? undefined
-                                  : {
-                                      resourceId:
-                                        p.destination.container
-                                          ?.identityReference?.["resourceId"],
-                                    },
-                                uploadHeaders:
-                                  p.destination.container?.["uploadHeaders"] ===
-                                  undefined
-                                    ? p.destination.container?.["uploadHeaders"]
-                                    : p.destination.container?.[
-                                        "uploadHeaders"
-                                      ].map((p) => ({
-                                        name: p["name"],
-                                        value: p["value"],
-                                      })),
-                              },
-                        },
-                        uploadOptions: {
-                          uploadCondition: p.uploadOptions["uploadCondition"],
-                        },
-                      })),
+                  body.jobSpecification.jobManagerTask?.["outputFiles"] ===
+                  undefined
+                    ? body.jobSpecification.jobManagerTask?.["outputFiles"]
+                    : body.jobSpecification.jobManagerTask?.["outputFiles"].map(
+                        (p) => ({
+                          filePattern: p["filePattern"],
+                          destination: {
+                            container: !p.destination.container
+                              ? undefined
+                              : {
+                                  path: p.destination.container?.["path"],
+                                  containerUrl:
+                                    p.destination.container?.["containerUrl"],
+                                  identityReference: !p.destination.container
+                                    ?.identityReference
+                                    ? undefined
+                                    : {
+                                        resourceId:
+                                          p.destination.container
+                                            ?.identityReference?.["resourceId"],
+                                      },
+                                  uploadHeaders:
+                                    p.destination.container?.[
+                                      "uploadHeaders"
+                                    ] === undefined
+                                      ? p.destination.container?.[
+                                          "uploadHeaders"
+                                        ]
+                                      : p.destination.container?.[
+                                          "uploadHeaders"
+                                        ].map((p) => ({
+                                          name: p["name"],
+                                          value: p["value"],
+                                        })),
+                                },
+                          },
+                          uploadOptions: {
+                            uploadCondition: p.uploadOptions["uploadCondition"],
+                          },
+                        }),
+                      ),
                 environmentSettings:
-                  jobSchedule.jobSpecification.jobManagerTask?.[
+                  body.jobSpecification.jobManagerTask?.[
                     "environmentSettings"
                   ] === undefined
-                    ? jobSchedule.jobSpecification.jobManagerTask?.[
+                    ? body.jobSpecification.jobManagerTask?.[
                         "environmentSettings"
                       ]
-                    : jobSchedule.jobSpecification.jobManagerTask?.[
+                    : body.jobSpecification.jobManagerTask?.[
                         "environmentSettings"
                       ].map((p) => ({ name: p["name"], value: p["value"] })),
-                constraints: !jobSchedule.jobSpecification.jobManagerTask
-                  ?.constraints
+                constraints: !body.jobSpecification.jobManagerTask?.constraints
                   ? undefined
                   : {
                       maxWallClockTime:
-                        jobSchedule.jobSpecification.jobManagerTask
-                          ?.constraints?.["maxWallClockTime"],
+                        body.jobSpecification.jobManagerTask?.constraints?.[
+                          "maxWallClockTime"
+                        ],
                       retentionTime:
-                        jobSchedule.jobSpecification.jobManagerTask
-                          ?.constraints?.["retentionTime"],
+                        body.jobSpecification.jobManagerTask?.constraints?.[
+                          "retentionTime"
+                        ],
                       maxTaskRetryCount:
-                        jobSchedule.jobSpecification.jobManagerTask
-                          ?.constraints?.["maxTaskRetryCount"],
+                        body.jobSpecification.jobManagerTask?.constraints?.[
+                          "maxTaskRetryCount"
+                        ],
                     },
                 requiredSlots:
-                  jobSchedule.jobSpecification.jobManagerTask?.[
-                    "requiredSlots"
-                  ],
+                  body.jobSpecification.jobManagerTask?.["requiredSlots"],
                 killJobOnCompletion:
-                  jobSchedule.jobSpecification.jobManagerTask?.[
-                    "killJobOnCompletion"
-                  ],
-                userIdentity: !jobSchedule.jobSpecification.jobManagerTask
+                  body.jobSpecification.jobManagerTask?.["killJobOnCompletion"],
+                userIdentity: !body.jobSpecification.jobManagerTask
                   ?.userIdentity
                   ? undefined
                   : {
                       username:
-                        jobSchedule.jobSpecification.jobManagerTask
-                          ?.userIdentity?.["username"],
-                      autoUser: !jobSchedule.jobSpecification.jobManagerTask
+                        body.jobSpecification.jobManagerTask?.userIdentity?.[
+                          "username"
+                        ],
+                      autoUser: !body.jobSpecification.jobManagerTask
                         ?.userIdentity?.autoUser
                         ? undefined
                         : {
                             scope:
-                              jobSchedule.jobSpecification.jobManagerTask
-                                ?.userIdentity?.autoUser?.["scope"],
+                              body.jobSpecification.jobManagerTask?.userIdentity
+                                ?.autoUser?.["scope"],
                             elevationLevel:
-                              jobSchedule.jobSpecification.jobManagerTask
-                                ?.userIdentity?.autoUser?.["elevationLevel"],
+                              body.jobSpecification.jobManagerTask?.userIdentity
+                                ?.autoUser?.["elevationLevel"],
                           },
                     },
                 runExclusive:
-                  jobSchedule.jobSpecification.jobManagerTask?.["runExclusive"],
+                  body.jobSpecification.jobManagerTask?.["runExclusive"],
                 applicationPackageReferences:
-                  jobSchedule.jobSpecification.jobManagerTask?.[
+                  body.jobSpecification.jobManagerTask?.[
                     "applicationPackageReferences"
                   ] === undefined
-                    ? jobSchedule.jobSpecification.jobManagerTask?.[
+                    ? body.jobSpecification.jobManagerTask?.[
                         "applicationPackageReferences"
                       ]
-                    : jobSchedule.jobSpecification.jobManagerTask?.[
+                    : body.jobSpecification.jobManagerTask?.[
                         "applicationPackageReferences"
                       ].map((p) => ({
                         applicationId: p["applicationId"],
                         version: p["version"],
                       })),
-                authenticationTokenSettings: !jobSchedule.jobSpecification
+                authenticationTokenSettings: !body.jobSpecification
                   .jobManagerTask?.authenticationTokenSettings
                   ? undefined
                   : {
                       access:
-                        jobSchedule.jobSpecification.jobManagerTask
+                        body.jobSpecification.jobManagerTask
                           ?.authenticationTokenSettings?.["access"],
                     },
                 allowLowPriorityNode:
-                  jobSchedule.jobSpecification.jobManagerTask?.[
+                  body.jobSpecification.jobManagerTask?.[
                     "allowLowPriorityNode"
                   ],
               },
-          jobPreparationTask: !jobSchedule.jobSpecification.jobPreparationTask
+          jobPreparationTask: !body.jobSpecification.jobPreparationTask
             ? undefined
             : {
-                id: jobSchedule.jobSpecification.jobPreparationTask?.["id"],
+                id: body.jobSpecification.jobPreparationTask?.["id"],
                 commandLine:
-                  jobSchedule.jobSpecification.jobPreparationTask?.[
-                    "commandLine"
-                  ],
-                containerSettings: !jobSchedule.jobSpecification
-                  .jobPreparationTask?.containerSettings
+                  body.jobSpecification.jobPreparationTask?.["commandLine"],
+                containerSettings: !body.jobSpecification.jobPreparationTask
+                  ?.containerSettings
                   ? undefined
                   : {
                       containerRunOptions:
-                        jobSchedule.jobSpecification.jobPreparationTask
+                        body.jobSpecification.jobPreparationTask
                           ?.containerSettings?.["containerRunOptions"],
                       imageName:
-                        jobSchedule.jobSpecification.jobPreparationTask
+                        body.jobSpecification.jobPreparationTask
                           ?.containerSettings?.["imageName"],
-                      registry: !jobSchedule.jobSpecification.jobPreparationTask
+                      registry: !body.jobSpecification.jobPreparationTask
                         ?.containerSettings?.registry
                         ? undefined
                         : {
                             username:
-                              jobSchedule.jobSpecification.jobPreparationTask
+                              body.jobSpecification.jobPreparationTask
                                 ?.containerSettings?.registry?.["username"],
                             password:
-                              jobSchedule.jobSpecification.jobPreparationTask
+                              body.jobSpecification.jobPreparationTask
                                 ?.containerSettings?.registry?.["password"],
                             registryServer:
-                              jobSchedule.jobSpecification.jobPreparationTask
+                              body.jobSpecification.jobPreparationTask
                                 ?.containerSettings?.registry?.[
                                 "registryServer"
                               ],
-                            identityReference: !jobSchedule.jobSpecification
+                            identityReference: !body.jobSpecification
                               .jobPreparationTask?.containerSettings?.registry
                               ?.identityReference
                               ? undefined
                               : {
                                   resourceId:
-                                    jobSchedule.jobSpecification
-                                      .jobPreparationTask?.containerSettings
-                                      ?.registry?.identityReference?.[
-                                      "resourceId"
-                                    ],
-                                },
-                          },
-                      workingDirectory:
-                        jobSchedule.jobSpecification.jobPreparationTask
-                          ?.containerSettings?.["workingDirectory"],
-                    },
-                resourceFiles:
-                  jobSchedule.jobSpecification.jobPreparationTask?.[
-                    "resourceFiles"
-                  ] === undefined
-                    ? jobSchedule.jobSpecification.jobPreparationTask?.[
-                        "resourceFiles"
-                      ]
-                    : jobSchedule.jobSpecification.jobPreparationTask?.[
-                        "resourceFiles"
-                      ].map((p) => ({
-                        autoStorageContainerName: p["autoStorageContainerName"],
-                        storageContainerUrl: p["storageContainerUrl"],
-                        httpUrl: p["httpUrl"],
-                        blobPrefix: p["blobPrefix"],
-                        filePath: p["filePath"],
-                        fileMode: p["fileMode"],
-                        identityReference: !p.identityReference
-                          ? undefined
-                          : { resourceId: p.identityReference?.["resourceId"] },
-                      })),
-                environmentSettings:
-                  jobSchedule.jobSpecification.jobPreparationTask?.[
-                    "environmentSettings"
-                  ] === undefined
-                    ? jobSchedule.jobSpecification.jobPreparationTask?.[
-                        "environmentSettings"
-                      ]
-                    : jobSchedule.jobSpecification.jobPreparationTask?.[
-                        "environmentSettings"
-                      ].map((p) => ({ name: p["name"], value: p["value"] })),
-                constraints: !jobSchedule.jobSpecification.jobPreparationTask
-                  ?.constraints
-                  ? undefined
-                  : {
-                      maxWallClockTime:
-                        jobSchedule.jobSpecification.jobPreparationTask
-                          ?.constraints?.["maxWallClockTime"],
-                      retentionTime:
-                        jobSchedule.jobSpecification.jobPreparationTask
-                          ?.constraints?.["retentionTime"],
-                      maxTaskRetryCount:
-                        jobSchedule.jobSpecification.jobPreparationTask
-                          ?.constraints?.["maxTaskRetryCount"],
-                    },
-                waitForSuccess:
-                  jobSchedule.jobSpecification.jobPreparationTask?.[
-                    "waitForSuccess"
-                  ],
-                userIdentity: !jobSchedule.jobSpecification.jobPreparationTask
-                  ?.userIdentity
-                  ? undefined
-                  : {
-                      username:
-                        jobSchedule.jobSpecification.jobPreparationTask
-                          ?.userIdentity?.["username"],
-                      autoUser: !jobSchedule.jobSpecification.jobPreparationTask
-                        ?.userIdentity?.autoUser
-                        ? undefined
-                        : {
-                            scope:
-                              jobSchedule.jobSpecification.jobPreparationTask
-                                ?.userIdentity?.autoUser?.["scope"],
-                            elevationLevel:
-                              jobSchedule.jobSpecification.jobPreparationTask
-                                ?.userIdentity?.autoUser?.["elevationLevel"],
-                          },
-                    },
-                rerunOnNodeRebootAfterSuccess:
-                  jobSchedule.jobSpecification.jobPreparationTask?.[
-                    "rerunOnNodeRebootAfterSuccess"
-                  ],
-              },
-          jobReleaseTask: !jobSchedule.jobSpecification.jobReleaseTask
-            ? undefined
-            : {
-                id: jobSchedule.jobSpecification.jobReleaseTask?.["id"],
-                commandLine:
-                  jobSchedule.jobSpecification.jobReleaseTask?.["commandLine"],
-                containerSettings: !jobSchedule.jobSpecification.jobReleaseTask
-                  ?.containerSettings
-                  ? undefined
-                  : {
-                      containerRunOptions:
-                        jobSchedule.jobSpecification.jobReleaseTask
-                          ?.containerSettings?.["containerRunOptions"],
-                      imageName:
-                        jobSchedule.jobSpecification.jobReleaseTask
-                          ?.containerSettings?.["imageName"],
-                      registry: !jobSchedule.jobSpecification.jobReleaseTask
-                        ?.containerSettings?.registry
-                        ? undefined
-                        : {
-                            username:
-                              jobSchedule.jobSpecification.jobReleaseTask
-                                ?.containerSettings?.registry?.["username"],
-                            password:
-                              jobSchedule.jobSpecification.jobReleaseTask
-                                ?.containerSettings?.registry?.["password"],
-                            registryServer:
-                              jobSchedule.jobSpecification.jobReleaseTask
-                                ?.containerSettings?.registry?.[
-                                "registryServer"
-                              ],
-                            identityReference: !jobSchedule.jobSpecification
-                              .jobReleaseTask?.containerSettings?.registry
-                              ?.identityReference
-                              ? undefined
-                              : {
-                                  resourceId:
-                                    jobSchedule.jobSpecification.jobReleaseTask
+                                    body.jobSpecification.jobPreparationTask
                                       ?.containerSettings?.registry
                                       ?.identityReference?.["resourceId"],
                                 },
                           },
                       workingDirectory:
-                        jobSchedule.jobSpecification.jobReleaseTask
+                        body.jobSpecification.jobPreparationTask
                           ?.containerSettings?.["workingDirectory"],
                     },
                 resourceFiles:
-                  jobSchedule.jobSpecification.jobReleaseTask?.[
+                  body.jobSpecification.jobPreparationTask?.[
                     "resourceFiles"
                   ] === undefined
-                    ? jobSchedule.jobSpecification.jobReleaseTask?.[
+                    ? body.jobSpecification.jobPreparationTask?.[
                         "resourceFiles"
                       ]
-                    : jobSchedule.jobSpecification.jobReleaseTask?.[
+                    : body.jobSpecification.jobPreparationTask?.[
                         "resourceFiles"
                       ].map((p) => ({
                         autoStorageContainerName: p["autoStorageContainerName"],
@@ -16079,135 +14234,251 @@ export function _createJobScheduleSend(
                           : { resourceId: p.identityReference?.["resourceId"] },
                       })),
                 environmentSettings:
-                  jobSchedule.jobSpecification.jobReleaseTask?.[
+                  body.jobSpecification.jobPreparationTask?.[
                     "environmentSettings"
                   ] === undefined
-                    ? jobSchedule.jobSpecification.jobReleaseTask?.[
+                    ? body.jobSpecification.jobPreparationTask?.[
                         "environmentSettings"
                       ]
-                    : jobSchedule.jobSpecification.jobReleaseTask?.[
+                    : body.jobSpecification.jobPreparationTask?.[
                         "environmentSettings"
                       ].map((p) => ({ name: p["name"], value: p["value"] })),
-                maxWallClockTime:
-                  jobSchedule.jobSpecification.jobReleaseTask?.[
-                    "maxWallClockTime"
-                  ],
-                retentionTime:
-                  jobSchedule.jobSpecification.jobReleaseTask?.[
-                    "retentionTime"
-                  ],
-                userIdentity: !jobSchedule.jobSpecification.jobReleaseTask
+                constraints: !body.jobSpecification.jobPreparationTask
+                  ?.constraints
+                  ? undefined
+                  : {
+                      maxWallClockTime:
+                        body.jobSpecification.jobPreparationTask?.constraints?.[
+                          "maxWallClockTime"
+                        ],
+                      retentionTime:
+                        body.jobSpecification.jobPreparationTask?.constraints?.[
+                          "retentionTime"
+                        ],
+                      maxTaskRetryCount:
+                        body.jobSpecification.jobPreparationTask?.constraints?.[
+                          "maxTaskRetryCount"
+                        ],
+                    },
+                waitForSuccess:
+                  body.jobSpecification.jobPreparationTask?.["waitForSuccess"],
+                userIdentity: !body.jobSpecification.jobPreparationTask
                   ?.userIdentity
                   ? undefined
                   : {
                       username:
-                        jobSchedule.jobSpecification.jobReleaseTask
+                        body.jobSpecification.jobPreparationTask
                           ?.userIdentity?.["username"],
-                      autoUser: !jobSchedule.jobSpecification.jobReleaseTask
+                      autoUser: !body.jobSpecification.jobPreparationTask
                         ?.userIdentity?.autoUser
                         ? undefined
                         : {
                             scope:
-                              jobSchedule.jobSpecification.jobReleaseTask
+                              body.jobSpecification.jobPreparationTask
                                 ?.userIdentity?.autoUser?.["scope"],
                             elevationLevel:
-                              jobSchedule.jobSpecification.jobReleaseTask
+                              body.jobSpecification.jobPreparationTask
                                 ?.userIdentity?.autoUser?.["elevationLevel"],
+                          },
+                    },
+                rerunOnNodeRebootAfterSuccess:
+                  body.jobSpecification.jobPreparationTask?.[
+                    "rerunOnNodeRebootAfterSuccess"
+                  ],
+              },
+          jobReleaseTask: !body.jobSpecification.jobReleaseTask
+            ? undefined
+            : {
+                id: body.jobSpecification.jobReleaseTask?.["id"],
+                commandLine:
+                  body.jobSpecification.jobReleaseTask?.["commandLine"],
+                containerSettings: !body.jobSpecification.jobReleaseTask
+                  ?.containerSettings
+                  ? undefined
+                  : {
+                      containerRunOptions:
+                        body.jobSpecification.jobReleaseTask
+                          ?.containerSettings?.["containerRunOptions"],
+                      imageName:
+                        body.jobSpecification.jobReleaseTask
+                          ?.containerSettings?.["imageName"],
+                      registry: !body.jobSpecification.jobReleaseTask
+                        ?.containerSettings?.registry
+                        ? undefined
+                        : {
+                            username:
+                              body.jobSpecification.jobReleaseTask
+                                ?.containerSettings?.registry?.["username"],
+                            password:
+                              body.jobSpecification.jobReleaseTask
+                                ?.containerSettings?.registry?.["password"],
+                            registryServer:
+                              body.jobSpecification.jobReleaseTask
+                                ?.containerSettings?.registry?.[
+                                "registryServer"
+                              ],
+                            identityReference: !body.jobSpecification
+                              .jobReleaseTask?.containerSettings?.registry
+                              ?.identityReference
+                              ? undefined
+                              : {
+                                  resourceId:
+                                    body.jobSpecification.jobReleaseTask
+                                      ?.containerSettings?.registry
+                                      ?.identityReference?.["resourceId"],
+                                },
+                          },
+                      workingDirectory:
+                        body.jobSpecification.jobReleaseTask
+                          ?.containerSettings?.["workingDirectory"],
+                    },
+                resourceFiles:
+                  body.jobSpecification.jobReleaseTask?.["resourceFiles"] ===
+                  undefined
+                    ? body.jobSpecification.jobReleaseTask?.["resourceFiles"]
+                    : body.jobSpecification.jobReleaseTask?.[
+                        "resourceFiles"
+                      ].map((p) => ({
+                        autoStorageContainerName: p["autoStorageContainerName"],
+                        storageContainerUrl: p["storageContainerUrl"],
+                        httpUrl: p["httpUrl"],
+                        blobPrefix: p["blobPrefix"],
+                        filePath: p["filePath"],
+                        fileMode: p["fileMode"],
+                        identityReference: !p.identityReference
+                          ? undefined
+                          : { resourceId: p.identityReference?.["resourceId"] },
+                      })),
+                environmentSettings:
+                  body.jobSpecification.jobReleaseTask?.[
+                    "environmentSettings"
+                  ] === undefined
+                    ? body.jobSpecification.jobReleaseTask?.[
+                        "environmentSettings"
+                      ]
+                    : body.jobSpecification.jobReleaseTask?.[
+                        "environmentSettings"
+                      ].map((p) => ({ name: p["name"], value: p["value"] })),
+                maxWallClockTime:
+                  body.jobSpecification.jobReleaseTask?.["maxWallClockTime"],
+                retentionTime:
+                  body.jobSpecification.jobReleaseTask?.["retentionTime"],
+                userIdentity: !body.jobSpecification.jobReleaseTask
+                  ?.userIdentity
+                  ? undefined
+                  : {
+                      username:
+                        body.jobSpecification.jobReleaseTask?.userIdentity?.[
+                          "username"
+                        ],
+                      autoUser: !body.jobSpecification.jobReleaseTask
+                        ?.userIdentity?.autoUser
+                        ? undefined
+                        : {
+                            scope:
+                              body.jobSpecification.jobReleaseTask?.userIdentity
+                                ?.autoUser?.["scope"],
+                            elevationLevel:
+                              body.jobSpecification.jobReleaseTask?.userIdentity
+                                ?.autoUser?.["elevationLevel"],
                           },
                     },
               },
           commonEnvironmentSettings:
-            jobSchedule.jobSpecification["commonEnvironmentSettings"] ===
-            undefined
-              ? jobSchedule.jobSpecification["commonEnvironmentSettings"]
-              : jobSchedule.jobSpecification["commonEnvironmentSettings"].map(
-                  (p) => ({ name: p["name"], value: p["value"] }),
-                ),
+            body.jobSpecification["commonEnvironmentSettings"] === undefined
+              ? body.jobSpecification["commonEnvironmentSettings"]
+              : body.jobSpecification["commonEnvironmentSettings"].map((p) => ({
+                  name: p["name"],
+                  value: p["value"],
+                })),
           poolInfo: {
-            poolId: jobSchedule.jobSpecification.poolInfo["poolId"],
-            autoPoolSpecification: !jobSchedule.jobSpecification.poolInfo
+            poolId: body.jobSpecification.poolInfo["poolId"],
+            autoPoolSpecification: !body.jobSpecification.poolInfo
               .autoPoolSpecification
               ? undefined
               : {
                   autoPoolIdPrefix:
-                    jobSchedule.jobSpecification.poolInfo
-                      .autoPoolSpecification?.["autoPoolIdPrefix"],
+                    body.jobSpecification.poolInfo.autoPoolSpecification?.[
+                      "autoPoolIdPrefix"
+                    ],
                   poolLifetimeOption:
-                    jobSchedule.jobSpecification.poolInfo
-                      .autoPoolSpecification?.["poolLifetimeOption"],
+                    body.jobSpecification.poolInfo.autoPoolSpecification?.[
+                      "poolLifetimeOption"
+                    ],
                   keepAlive:
-                    jobSchedule.jobSpecification.poolInfo
-                      .autoPoolSpecification?.["keepAlive"],
-                  pool: !jobSchedule.jobSpecification.poolInfo
-                    .autoPoolSpecification?.pool
+                    body.jobSpecification.poolInfo.autoPoolSpecification?.[
+                      "keepAlive"
+                    ],
+                  pool: !body.jobSpecification.poolInfo.autoPoolSpecification
+                    ?.pool
                     ? undefined
                     : {
                         displayName:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["displayName"],
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["displayName"],
                         vmSize:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["vmSize"],
-                        cloudServiceConfiguration: !jobSchedule.jobSpecification
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["vmSize"],
+                        cloudServiceConfiguration: !body.jobSpecification
                           .poolInfo.autoPoolSpecification?.pool
                           ?.cloudServiceConfiguration
                           ? undefined
                           : {
                               osFamily:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.cloudServiceConfiguration?.["osFamily"],
                               osVersion:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.cloudServiceConfiguration?.["osVersion"],
                             },
-                        virtualMachineConfiguration: !jobSchedule
-                          .jobSpecification.poolInfo.autoPoolSpecification?.pool
+                        virtualMachineConfiguration: !body.jobSpecification
+                          .poolInfo.autoPoolSpecification?.pool
                           ?.virtualMachineConfiguration
                           ? undefined
                           : {
                               imageReference: {
                                 publisher:
-                                  jobSchedule.jobSpecification.poolInfo
+                                  body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
                                     ?.imageReference["publisher"],
                                 offer:
-                                  jobSchedule.jobSpecification.poolInfo
+                                  body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
                                     ?.imageReference["offer"],
-                                sku: jobSchedule.jobSpecification.poolInfo
+                                sku: body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.imageReference[
                                   "sku"
                                 ],
                                 version:
-                                  jobSchedule.jobSpecification.poolInfo
+                                  body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
                                     ?.imageReference["version"],
                                 virtualMachineImageId:
-                                  jobSchedule.jobSpecification.poolInfo
+                                  body.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
                                     ?.imageReference["virtualMachineImageId"],
                               },
                               nodeAgentSKUId:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.[
                                   "nodeAgentSkuId"
                                 ],
-                              windowsConfiguration: !jobSchedule
-                                .jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.virtualMachineConfiguration
+                              windowsConfiguration: !body.jobSpecification
+                                .poolInfo.autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration
                                 ?.windowsConfiguration
                                 ? undefined
                                 : {
                                     enableAutomaticUpdates:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration
                                         ?.windowsConfiguration?.[
@@ -16215,62 +14486,62 @@ export function _createJobScheduleSend(
                                       ],
                                   },
                               dataDisks:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.[
                                   "dataDisks"
                                 ] === undefined
-                                  ? jobSchedule.jobSpecification.poolInfo
+                                  ? body.jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration?.[
                                       "dataDisks"
                                     ]
-                                  : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                  : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                       "dataDisks"
                                     ].map((p) => ({
-                                      lun: p["logicalUnitNumber"],
+                                      lun: p["lun"],
                                       caching: p["caching"],
                                       diskSizeGB: p["diskSizeGb"],
                                       storageAccountType:
                                         p["storageAccountType"],
                                     })),
                               licenseType:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.[
                                   "licenseType"
                                 ],
-                              containerConfiguration: !jobSchedule
-                                .jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.virtualMachineConfiguration
+                              containerConfiguration: !body.jobSpecification
+                                .poolInfo.autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration
                                 ?.containerConfiguration
                                 ? undefined
                                 : {
-                                    type: jobSchedule.jobSpecification.poolInfo
+                                    type: body.jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
                                       ?.containerConfiguration?.["type"],
                                     containerImageNames:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration
                                         ?.containerConfiguration?.[
                                         "containerImageNames"
                                       ],
                                     containerRegistries:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration
                                         ?.containerConfiguration?.[
                                         "containerRegistries"
                                       ] === undefined
-                                        ? jobSchedule.jobSpecification.poolInfo
+                                        ? body.jobSpecification.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.virtualMachineConfiguration
                                             ?.containerConfiguration?.[
                                             "containerRegistries"
                                           ]
-                                        : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                        : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
                                             "containerRegistries"
                                           ].map((p) => ({
                                             username: p["username"],
@@ -16287,28 +14558,28 @@ export function _createJobScheduleSend(
                                                   },
                                           })),
                                   },
-                              diskEncryptionConfiguration: !jobSchedule
+                              diskEncryptionConfiguration: !body
                                 .jobSpecification.poolInfo.autoPoolSpecification
                                 ?.pool?.virtualMachineConfiguration
                                 ?.diskEncryptionConfiguration
                                 ? undefined
                                 : {
                                     targets:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration
                                         ?.diskEncryptionConfiguration?.[
                                         "targets"
                                       ],
                                   },
-                              nodePlacementConfiguration: !jobSchedule
-                                .jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.virtualMachineConfiguration
+                              nodePlacementConfiguration: !body.jobSpecification
+                                .poolInfo.autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration
                                 ?.nodePlacementConfiguration
                                 ? undefined
                                 : {
                                     policy:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.virtualMachineConfiguration
                                         ?.nodePlacementConfiguration?.[
@@ -16316,17 +14587,17 @@ export function _createJobScheduleSend(
                                       ],
                                   },
                               extensions:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.virtualMachineConfiguration?.[
                                   "extensions"
                                 ] === undefined
-                                  ? jobSchedule.jobSpecification.poolInfo
+                                  ? body.jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration?.[
                                       "extensions"
                                     ]
-                                  : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                  : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                       "extensions"
                                     ].map((p) => ({
                                       name: p["name"],
@@ -16343,12 +14614,12 @@ export function _createJobScheduleSend(
                                       provisionAfterExtensions:
                                         p["provisionAfterExtensions"],
                                     })),
-                              osDisk: !jobSchedule.jobSpecification.poolInfo
+                              osDisk: !body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.osDisk
                                 ? undefined
                                 : {
-                                    ephemeralOSDiskSettings: !jobSchedule
+                                    ephemeralOSDiskSettings: !body
                                       .jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration?.osDisk
@@ -16356,161 +14627,70 @@ export function _createJobScheduleSend(
                                       ? undefined
                                       : {
                                           placement:
-                                            jobSchedule.jobSpecification
-                                              .poolInfo.autoPoolSpecification
-                                              ?.pool
+                                            body.jobSpecification.poolInfo
+                                              .autoPoolSpecification?.pool
                                               ?.virtualMachineConfiguration
                                               ?.osDisk
                                               ?.ephemeralOSDiskSettings?.[
                                               "placement"
                                             ],
                                         },
-                                    caching:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration?.osDisk?.[
-                                        "caching"
-                                      ],
-                                    diskSizeGB:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration?.osDisk?.[
-                                        "diskSizeGB"
-                                      ],
-                                    managedDisk: !jobSchedule.jobSpecification
-                                      .poolInfo.autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration?.osDisk
-                                      ?.managedDisk
-                                      ? undefined
-                                      : {
-                                          storageAccountType:
-                                            jobSchedule.jobSpecification
-                                              .poolInfo.autoPoolSpecification
-                                              ?.pool
-                                              ?.virtualMachineConfiguration
-                                              ?.osDisk?.managedDisk?.[
-                                              "storageAccountType"
-                                            ],
-                                        },
-                                    writeAcceleratorEnabled:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration?.osDisk?.[
-                                        "writeAcceleratorEnabled"
-                                      ],
-                                  },
-                              securityProfile: !jobSchedule.jobSpecification
-                                .poolInfo.autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.securityProfile
-                                ? undefined
-                                : {
-                                    encryptionAtHost:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration
-                                        ?.securityProfile?.["encryptionAtHost"],
-                                    securityType:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration
-                                        ?.securityProfile?.["securityType"],
-                                    uefiSettings: {
-                                      secureBootEnabled:
-                                        jobSchedule.jobSpecification.poolInfo
-                                          .autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
-                                          ?.securityProfile?.uefiSettings[
-                                          "secureBootEnabled"
-                                        ],
-                                      vTpmEnabled:
-                                        jobSchedule.jobSpecification.poolInfo
-                                          .autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
-                                          ?.securityProfile?.uefiSettings[
-                                          "vTpmEnabled"
-                                        ],
-                                    },
-                                  },
-                              serviceArtifactReference: !jobSchedule
-                                .jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.virtualMachineConfiguration
-                                ?.serviceArtifactReference
-                                ? undefined
-                                : {
-                                    id: jobSchedule.jobSpecification.poolInfo
-                                      .autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration
-                                      ?.serviceArtifactReference?.["id"],
                                   },
                             },
                         taskSlotsPerNode:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["taskSlotsPerNode"],
-                        taskSchedulingPolicy: !jobSchedule.jobSpecification
-                          .poolInfo.autoPoolSpecification?.pool
-                          ?.taskSchedulingPolicy
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["taskSlotsPerNode"],
+                        taskSchedulingPolicy: !body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.taskSchedulingPolicy
                           ? undefined
                           : {
                               nodeFillType:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.taskSchedulingPolicy?.["nodeFillType"],
                             },
                         resizeTimeout:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["resizeTimeout"],
-                        resourceTags:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["resourceTags"],
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["resizeTimeout"],
                         targetDedicatedNodes:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "targetDedicatedNodes"
-                          ],
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["targetDedicatedNodes"],
                         targetLowPriorityNodes:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "targetLowPriorityNodes"
-                          ],
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["targetLowPriorityNodes"],
                         enableAutoScale:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["enableAutoScale"],
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["enableAutoScale"],
                         autoScaleFormula:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["autoScaleFormula"],
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["autoScaleFormula"],
                         autoScaleEvaluationInterval:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "autoScaleEvaluationInterval"
-                          ],
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["autoScaleEvaluationInterval"],
                         enableInterNodeCommunication:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "enableInterNodeCommunication"
-                          ],
-                        networkConfiguration: !jobSchedule.jobSpecification
-                          .poolInfo.autoPoolSpecification?.pool
-                          ?.networkConfiguration
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["enableInterNodeCommunication"],
+                        networkConfiguration: !body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.networkConfiguration
                           ? undefined
                           : {
                               subnetId:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.networkConfiguration?.["subnetId"],
                               dynamicVNetAssignmentScope:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.networkConfiguration?.[
                                   "dynamicVNetAssignmentScope"
                                 ],
-                              endpointConfiguration: !jobSchedule
-                                .jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.networkConfiguration
-                                ?.endpointConfiguration
+                              endpointConfiguration: !body.jobSpecification
+                                .poolInfo.autoPoolSpecification?.pool
+                                ?.networkConfiguration?.endpointConfiguration
                                 ? undefined
                                 : {
                                     inboundNATPools:
-                                      jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                      body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                         "inboundNatPools"
                                       ].map((p) => ({
                                         name: p["name"],
@@ -16536,21 +14716,21 @@ export function _createJobScheduleSend(
                                               })),
                                       })),
                                   },
-                              publicIPAddressConfiguration: !jobSchedule
+                              publicIPAddressConfiguration: !body
                                 .jobSpecification.poolInfo.autoPoolSpecification
                                 ?.pool?.networkConfiguration
                                 ?.publicIpAddressConfiguration
                                 ? undefined
                                 : {
                                     provision:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.networkConfiguration
                                         ?.publicIpAddressConfiguration?.[
                                         "ipAddressProvisioningType"
                                       ],
                                     ipAddressIds:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool
                                         ?.networkConfiguration
                                         ?.publicIpAddressConfiguration?.[
@@ -16558,63 +14738,57 @@ export function _createJobScheduleSend(
                                       ],
                                   },
                               enableAcceleratedNetworking:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
                                   ?.networkConfiguration?.[
                                   "enableAcceleratedNetworking"
                                 ],
                             },
-                        startTask: !jobSchedule.jobSpecification.poolInfo
+                        startTask: !body.jobSpecification.poolInfo
                           .autoPoolSpecification?.pool?.startTask
                           ? undefined
                           : {
                               commandLine:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool?.startTask?.[
                                   "commandLine"
                                 ],
-                              containerSettings: !jobSchedule.jobSpecification
-                                .poolInfo.autoPoolSpecification?.pool?.startTask
+                              containerSettings: !body.jobSpecification.poolInfo
+                                .autoPoolSpecification?.pool?.startTask
                                 ?.containerSettings
                                 ? undefined
                                 : {
                                     containerRunOptions:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool?.startTask
                                         ?.containerSettings?.[
                                         "containerRunOptions"
                                       ],
                                     imageName:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool?.startTask
                                         ?.containerSettings?.["imageName"],
-                                    registry: !jobSchedule.jobSpecification
-                                      .poolInfo.autoPoolSpecification?.pool
-                                      ?.startTask?.containerSettings?.registry
+                                    registry: !body.jobSpecification.poolInfo
+                                      .autoPoolSpecification?.pool?.startTask
+                                      ?.containerSettings?.registry
                                       ? undefined
                                       : {
                                           username:
-                                            jobSchedule.jobSpecification
-                                              .poolInfo.autoPoolSpecification
-                                              ?.pool?.startTask
-                                              ?.containerSettings?.registry?.[
-                                              "username"
-                                            ],
+                                            body.jobSpecification.poolInfo
+                                              .autoPoolSpecification?.pool
+                                              ?.startTask?.containerSettings
+                                              ?.registry?.["username"],
                                           password:
-                                            jobSchedule.jobSpecification
-                                              .poolInfo.autoPoolSpecification
-                                              ?.pool?.startTask
-                                              ?.containerSettings?.registry?.[
-                                              "password"
-                                            ],
+                                            body.jobSpecification.poolInfo
+                                              .autoPoolSpecification?.pool
+                                              ?.startTask?.containerSettings
+                                              ?.registry?.["password"],
                                           registryServer:
-                                            jobSchedule.jobSpecification
-                                              .poolInfo.autoPoolSpecification
-                                              ?.pool?.startTask
-                                              ?.containerSettings?.registry?.[
-                                              "registryServer"
-                                            ],
-                                          identityReference: !jobSchedule
+                                            body.jobSpecification.poolInfo
+                                              .autoPoolSpecification?.pool
+                                              ?.startTask?.containerSettings
+                                              ?.registry?.["registryServer"],
+                                          identityReference: !body
                                             .jobSpecification.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.startTask?.containerSettings
@@ -16622,8 +14796,7 @@ export function _createJobScheduleSend(
                                             ? undefined
                                             : {
                                                 resourceId:
-                                                  jobSchedule.jobSpecification
-                                                    .poolInfo
+                                                  body.jobSpecification.poolInfo
                                                     .autoPoolSpecification?.pool
                                                     ?.startTask
                                                     ?.containerSettings
@@ -16634,22 +14807,22 @@ export function _createJobScheduleSend(
                                               },
                                         },
                                     workingDirectory:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool?.startTask
                                         ?.containerSettings?.[
                                         "workingDirectory"
                                       ],
                                   },
                               resourceFiles:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool?.startTask?.[
                                   "resourceFiles"
                                 ] === undefined
-                                  ? jobSchedule.jobSpecification.poolInfo
+                                  ? body.jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool?.startTask?.[
                                       "resourceFiles"
                                     ]
-                                  : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                  : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                       "resourceFiles"
                                     ].map((p) => ({
                                       autoStorageContainerName:
@@ -16670,67 +14843,65 @@ export function _createJobScheduleSend(
                                           },
                                     })),
                               environmentSettings:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool?.startTask?.[
                                   "environmentSettings"
                                 ] === undefined
-                                  ? jobSchedule.jobSpecification.poolInfo
+                                  ? body.jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool?.startTask?.[
                                       "environmentSettings"
                                     ]
-                                  : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                  : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
                                       "environmentSettings"
                                     ].map((p) => ({
                                       name: p["name"],
                                       value: p["value"],
                                     })),
-                              userIdentity: !jobSchedule.jobSpecification
-                                .poolInfo.autoPoolSpecification?.pool?.startTask
+                              userIdentity: !body.jobSpecification.poolInfo
+                                .autoPoolSpecification?.pool?.startTask
                                 ?.userIdentity
                                 ? undefined
                                 : {
                                     username:
-                                      jobSchedule.jobSpecification.poolInfo
+                                      body.jobSpecification.poolInfo
                                         .autoPoolSpecification?.pool?.startTask
                                         ?.userIdentity?.["username"],
-                                    autoUser: !jobSchedule.jobSpecification
-                                      .poolInfo.autoPoolSpecification?.pool
-                                      ?.startTask?.userIdentity?.autoUser
+                                    autoUser: !body.jobSpecification.poolInfo
+                                      .autoPoolSpecification?.pool?.startTask
+                                      ?.userIdentity?.autoUser
                                       ? undefined
                                       : {
                                           scope:
-                                            jobSchedule.jobSpecification
-                                              .poolInfo.autoPoolSpecification
-                                              ?.pool?.startTask?.userIdentity
+                                            body.jobSpecification.poolInfo
+                                              .autoPoolSpecification?.pool
+                                              ?.startTask?.userIdentity
                                               ?.autoUser?.["scope"],
                                           elevationLevel:
-                                            jobSchedule.jobSpecification
-                                              .poolInfo.autoPoolSpecification
-                                              ?.pool?.startTask?.userIdentity
+                                            body.jobSpecification.poolInfo
+                                              .autoPoolSpecification?.pool
+                                              ?.startTask?.userIdentity
                                               ?.autoUser?.["elevationLevel"],
                                         },
                                   },
                               maxTaskRetryCount:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool?.startTask?.[
                                   "maxTaskRetryCount"
                                 ],
                               waitForSuccess:
-                                jobSchedule.jobSpecification.poolInfo
+                                body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool?.startTask?.[
                                   "waitForSuccess"
                                 ],
                             },
                         certificateReferences:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "certificateReferences"
-                          ] === undefined
-                            ? jobSchedule.jobSpecification.poolInfo
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["certificateReferences"] === undefined
+                            ? body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "certificateReferences"
                               ]
-                            : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                            : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                                 "certificateReferences"
                               ].map((p) => ({
                                 thumbprint: p["thumbprint"],
@@ -16740,32 +14911,28 @@ export function _createJobScheduleSend(
                                 visibility: p["visibility"],
                               })),
                         applicationPackageReferences:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "applicationPackageReferences"
-                          ] === undefined
-                            ? jobSchedule.jobSpecification.poolInfo
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["applicationPackageReferences"] ===
+                          undefined
+                            ? body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "applicationPackageReferences"
                               ]
-                            : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                            : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                                 "applicationPackageReferences"
                               ].map((p) => ({
                                 applicationId: p["applicationId"],
                                 version: p["version"],
                               })),
                         applicationLicenses:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "applicationLicenses"
-                          ],
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["applicationLicenses"],
                         userAccounts:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["userAccounts"] ===
-                          undefined
-                            ? jobSchedule.jobSpecification.poolInfo
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["userAccounts"] === undefined
+                            ? body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool?.["userAccounts"]
-                            : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                            : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                                 "userAccounts"
                               ].map((p) => ({
                                 name: p["name"],
@@ -16793,27 +14960,24 @@ export function _createJobScheduleSend(
                                       },
                               })),
                         metadata:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.["metadata"] ===
-                          undefined
-                            ? jobSchedule.jobSpecification.poolInfo
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["metadata"] === undefined
+                            ? body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool?.["metadata"]
-                            : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                            : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                                 "metadata"
                               ].map((p) => ({
                                 name: p["name"],
                                 value: p["value"],
                               })),
                         mountConfiguration:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "mountConfiguration"
-                          ] === undefined
-                            ? jobSchedule.jobSpecification.poolInfo
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["mountConfiguration"] === undefined
+                            ? body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "mountConfiguration"
                               ]
-                            : jobSchedule.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                            : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
                                 "mountConfiguration"
                               ].map((p) => ({
                                 azureBlobFileSystemConfiguration:
@@ -16921,116 +15085,23 @@ export function _createJobScheduleSend(
                                       },
                               })),
                         targetNodeCommunicationMode:
-                          jobSchedule.jobSpecification.poolInfo
-                            .autoPoolSpecification?.pool?.[
-                            "targetNodeCommunicationMode"
-                          ],
-                        upgradePolicy: !jobSchedule.jobSpecification.poolInfo
-                          .autoPoolSpecification?.pool?.upgradePolicy
-                          ? undefined
-                          : {
-                              mode: jobSchedule.jobSpecification.poolInfo
-                                .autoPoolSpecification?.pool?.upgradePolicy?.[
-                                "mode"
-                              ],
-                              automaticOsUpgradePolicy: !jobSchedule
-                                .jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.upgradePolicy?.automaticOSUpgradePolicy
-                                ? undefined
-                                : {
-                                    disableAutomaticRollback:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy
-                                        ?.automaticOSUpgradePolicy?.[
-                                        "disableAutomaticRollback"
-                                      ],
-                                    enableAutomaticOsUpgrade:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy
-                                        ?.automaticOSUpgradePolicy?.[
-                                        "enableAutomaticOSUpgrade"
-                                      ],
-                                    useRollingUpgradePolicy:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy
-                                        ?.automaticOSUpgradePolicy?.[
-                                        "useRollingUpgradePolicy"
-                                      ],
-                                    osRollingUpgradeDeferral:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy
-                                        ?.automaticOSUpgradePolicy?.[
-                                        "osRollingUpgradeDeferral"
-                                      ],
-                                  },
-                              rollingUpgradePolicy: !jobSchedule
-                                .jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.upgradePolicy?.rollingUpgradePolicy
-                                ? undefined
-                                : {
-                                    enableCrossZoneUpgrade:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                        "enableCrossZoneUpgrade"
-                                      ],
-                                    maxBatchInstancePercent:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                        "maxBatchInstancePercent"
-                                      ],
-                                    maxUnhealthyInstancePercent:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                        "maxUnhealthyInstancePercent"
-                                      ],
-                                    maxUnhealthyUpgradedInstancePercent:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                        "maxUnhealthyUpgradedInstancePercent"
-                                      ],
-                                    pauseTimeBetweenBatches:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                        "pauseTimeBetweenBatches"
-                                      ],
-                                    prioritizeUnhealthyInstances:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                        "prioritizeUnhealthyInstances"
-                                      ],
-                                    rollbackFailedInstancesOnPolicyBreach:
-                                      jobSchedule.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.upgradePolicy?.rollingUpgradePolicy?.[
-                                        "rollbackFailedInstancesOnPolicyBreach"
-                                      ],
-                                  },
-                            },
+                          body.jobSpecification.poolInfo.autoPoolSpecification
+                            ?.pool?.["targetNodeCommunicationMode"],
                       },
                 },
           },
           metadata:
-            jobSchedule.jobSpecification["metadata"] === undefined
-              ? jobSchedule.jobSpecification["metadata"]
-              : jobSchedule.jobSpecification["metadata"].map((p) => ({
+            body.jobSpecification["metadata"] === undefined
+              ? body.jobSpecification["metadata"]
+              : body.jobSpecification["metadata"].map((p) => ({
                   name: p["name"],
                   value: p["value"],
                 })),
         },
         metadata:
-          jobSchedule["metadata"] === undefined
-            ? jobSchedule["metadata"]
-            : jobSchedule["metadata"].map((p) => ({
+          body["metadata"] === undefined
+            ? body["metadata"]
+            : body["metadata"].map((p) => ({
                 name: p["name"],
                 value: p["value"],
               })),
@@ -17051,15 +15122,22 @@ export async function _createJobScheduleDeserialize(
 /** Creates a Job Schedule to the specified Account. */
 export async function createJobSchedule(
   context: Client,
-  jobSchedule: BatchJobScheduleCreateContent,
+  apiVersion: string,
+  body: BatchJobScheduleCreateOptions,
   options: CreateJobScheduleOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _createJobScheduleSend(context, jobSchedule, options);
+  const result = await _createJobScheduleSend(
+    context,
+    apiVersion,
+    body,
+    options,
+  );
   return _createJobScheduleDeserialize(result);
 }
 
 export function _listJobSchedulesSend(
   context: Client,
+  apiVersion: string,
   options: ListJobSchedulesOptions = { requestOptions: {} },
 ): StreamableMethod<
   ListJobSchedules200Response | ListJobSchedulesDefaultResponse
@@ -17069,12 +15147,12 @@ export function _listJobSchedulesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
-        timeOut: options?.timeOutInSeconds,
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
-        $filter: options?.filter,
-        $select: options?.select,
-        $expand: options?.expand,
+        timeOut: options?.timeOutInSeconds,
+        $filter: options?.$filter,
+        $select: options?.$select,
+        $expand: options?.$expand,
       },
     });
 }
@@ -17113,20 +15191,18 @@ export async function _listJobSchedulesDeserialize(
               p["previousStateTransitionTime"] !== undefined
                 ? new Date(p["previousStateTransitionTime"])
                 : undefined,
-            schedule: !p.schedule
-              ? undefined
-              : {
-                  doNotRunUntil:
-                    p.schedule?.["doNotRunUntil"] !== undefined
-                      ? new Date(p.schedule?.["doNotRunUntil"])
-                      : undefined,
-                  doNotRunAfter:
-                    p.schedule?.["doNotRunAfter"] !== undefined
-                      ? new Date(p.schedule?.["doNotRunAfter"])
-                      : undefined,
-                  startWindow: p.schedule?.["startWindow"],
-                  recurrenceInterval: p.schedule?.["recurrenceInterval"],
-                },
+            schedule: {
+              doNotRunUntil:
+                p.schedule["doNotRunUntil"] !== undefined
+                  ? new Date(p.schedule["doNotRunUntil"])
+                  : undefined,
+              doNotRunAfter:
+                p.schedule["doNotRunAfter"] !== undefined
+                  ? new Date(p.schedule["doNotRunAfter"])
+                  : undefined,
+              startWindow: p.schedule["startWindow"],
+              recurrenceInterval: p.schedule["recurrenceInterval"],
+            },
             jobSpecification: {
               priority: p.jobSpecification["priority"],
               allowTaskPreemption: p.jobSpecification["allowTaskPreemption"],
@@ -17702,7 +15778,7 @@ export async function _listJobSchedulesDeserialize(
                                       : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
                                           "dataDisks"
                                         ].map((p) => ({
-                                          logicalUnitNumber: p["lun"],
+                                          lun: p["lun"],
                                           caching: p["caching"],
                                           diskSizeGb: p["diskSizeGB"],
                                           storageAccountType:
@@ -17842,83 +15918,6 @@ export async function _listJobSchedulesDeserialize(
                                                   "placement"
                                                 ],
                                             },
-                                        caching:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.virtualMachineConfiguration
-                                            ?.osDisk?.["caching"],
-                                        diskSizeGB:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.virtualMachineConfiguration
-                                            ?.osDisk?.["diskSizeGB"],
-                                        managedDisk: !p.jobSpecification
-                                          .poolInfo.autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration?.osDisk
-                                          ?.managedDisk
-                                          ? undefined
-                                          : {
-                                              storageAccountType:
-                                                p.jobSpecification.poolInfo
-                                                  .autoPoolSpecification?.pool
-                                                  ?.virtualMachineConfiguration
-                                                  ?.osDisk?.managedDisk?.[
-                                                  "storageAccountType"
-                                                ],
-                                            },
-                                        writeAcceleratorEnabled:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.virtualMachineConfiguration
-                                            ?.osDisk?.[
-                                            "writeAcceleratorEnabled"
-                                          ],
-                                      },
-                                  securityProfile: !p.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.securityProfile
-                                    ? undefined
-                                    : {
-                                        encryptionAtHost:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.virtualMachineConfiguration
-                                            ?.securityProfile?.[
-                                            "encryptionAtHost"
-                                          ],
-                                        securityType:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.virtualMachineConfiguration
-                                            ?.securityProfile?.["securityType"],
-                                        uefiSettings: {
-                                          secureBootEnabled:
-                                            p.jobSpecification.poolInfo
-                                              .autoPoolSpecification?.pool
-                                              ?.virtualMachineConfiguration
-                                              ?.securityProfile?.uefiSettings[
-                                              "secureBootEnabled"
-                                            ],
-                                          vTpmEnabled:
-                                            p.jobSpecification.poolInfo
-                                              .autoPoolSpecification?.pool
-                                              ?.virtualMachineConfiguration
-                                              ?.securityProfile?.uefiSettings[
-                                              "vTpmEnabled"
-                                            ],
-                                        },
-                                      },
-                                  serviceArtifactReference: !p.jobSpecification
-                                    .poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.serviceArtifactReference
-                                    ? undefined
-                                    : {
-                                        id: p.jobSpecification.poolInfo
-                                          .autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration
-                                          ?.serviceArtifactReference?.["id"],
                                       },
                                 },
                             taskSlotsPerNode:
@@ -17936,9 +15935,6 @@ export async function _listJobSchedulesDeserialize(
                             resizeTimeout:
                               p.jobSpecification.poolInfo.autoPoolSpecification
                                 ?.pool?.["resizeTimeout"],
-                            resourceTags:
-                              p.jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.["resourceTags"],
                             targetDedicatedNodes:
                               p.jobSpecification.poolInfo.autoPoolSpecification
                                 ?.pool?.["targetDedicatedNodes"],
@@ -18403,103 +16399,6 @@ export async function _listJobSchedulesDeserialize(
                             targetNodeCommunicationMode:
                               p.jobSpecification.poolInfo.autoPoolSpecification
                                 ?.pool?.["targetNodeCommunicationMode"],
-                            upgradePolicy: !p.jobSpecification.poolInfo
-                              .autoPoolSpecification?.pool?.upgradePolicy
-                              ? undefined
-                              : {
-                                  mode: p.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool
-                                    ?.upgradePolicy?.["mode"],
-                                  automaticOSUpgradePolicy: !p.jobSpecification
-                                    .poolInfo.autoPoolSpecification?.pool
-                                    ?.upgradePolicy?.automaticOsUpgradePolicy
-                                    ? undefined
-                                    : {
-                                        disableAutomaticRollback:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.automaticOsUpgradePolicy?.[
-                                            "disableAutomaticRollback"
-                                          ],
-                                        enableAutomaticOSUpgrade:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.automaticOsUpgradePolicy?.[
-                                            "enableAutomaticOsUpgrade"
-                                          ],
-                                        useRollingUpgradePolicy:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.automaticOsUpgradePolicy?.[
-                                            "useRollingUpgradePolicy"
-                                          ],
-                                        osRollingUpgradeDeferral:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.automaticOsUpgradePolicy?.[
-                                            "osRollingUpgradeDeferral"
-                                          ],
-                                      },
-                                  rollingUpgradePolicy: !p.jobSpecification
-                                    .poolInfo.autoPoolSpecification?.pool
-                                    ?.upgradePolicy?.rollingUpgradePolicy
-                                    ? undefined
-                                    : {
-                                        enableCrossZoneUpgrade:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.rollingUpgradePolicy?.[
-                                            "enableCrossZoneUpgrade"
-                                          ],
-                                        maxBatchInstancePercent:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.rollingUpgradePolicy?.[
-                                            "maxBatchInstancePercent"
-                                          ],
-                                        maxUnhealthyInstancePercent:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.rollingUpgradePolicy?.[
-                                            "maxUnhealthyInstancePercent"
-                                          ],
-                                        maxUnhealthyUpgradedInstancePercent:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.rollingUpgradePolicy?.[
-                                            "maxUnhealthyUpgradedInstancePercent"
-                                          ],
-                                        pauseTimeBetweenBatches:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.rollingUpgradePolicy?.[
-                                            "pauseTimeBetweenBatches"
-                                          ],
-                                        prioritizeUnhealthyInstances:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.rollingUpgradePolicy?.[
-                                            "prioritizeUnhealthyInstances"
-                                          ],
-                                        rollbackFailedInstancesOnPolicyBreach:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.upgradePolicy
-                                            ?.rollingUpgradePolicy?.[
-                                            "rollbackFailedInstancesOnPolicyBreach"
-                                          ],
-                                      },
-                                },
                           },
                     },
               },
@@ -18542,8 +16441,8 @@ export async function _listJobSchedulesDeserialize(
                   url: p.stats?.["url"],
                   startTime: new Date(p.stats?.["startTime"]),
                   lastUpdateTime: new Date(p.stats?.["lastUpdateTime"]),
-                  userCpuTime: p.stats?.["userCPUTime"],
-                  kernelCpuTime: p.stats?.["kernelCPUTime"],
+                  userCPUTime: p.stats?.["userCPUTime"],
+                  kernelCPUTime: p.stats?.["kernelCPUTime"],
                   wallClockTime: p.stats?.["wallClockTime"],
                   readIOps: p.stats?.["readIOps"],
                   writeIOps: p.stats?.["writeIOps"],
@@ -18562,11 +16461,12 @@ export async function _listJobSchedulesDeserialize(
 /** Lists all of the Job Schedules in the specified Account. */
 export function listJobSchedules(
   context: Client,
+  apiVersion: string,
   options: ListJobSchedulesOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchJobSchedule> {
   return buildPagedAsyncIterator(
     context,
-    () => _listJobSchedulesSend(context, options),
+    () => _listJobSchedulesSend(context, apiVersion, options),
     _listJobSchedulesDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
@@ -18574,8 +16474,9 @@ export function listJobSchedules(
 
 export function _createTaskSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
-  task: BatchTaskCreateContent,
+  body: BatchTaskCreateOptions,
   options: CreateTaskOptions = { requestOptions: {} },
 ): StreamableMethod<CreateTask201Response | CreateTaskDefaultResponse> {
   return context
@@ -18586,19 +16487,19 @@ export function _createTaskSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        id: task["id"],
-        displayName: task["displayName"],
-        exitConditions: !task.exitConditions
+        id: body["id"],
+        displayName: body["displayName"],
+        exitConditions: !body.exitConditions
           ? undefined
           : {
               exitCodes:
-                task.exitConditions?.["exitCodes"] === undefined
-                  ? task.exitConditions?.["exitCodes"]
-                  : task.exitConditions?.["exitCodes"].map((p) => ({
+                body.exitConditions?.["exitCodes"] === undefined
+                  ? body.exitConditions?.["exitCodes"]
+                  : body.exitConditions?.["exitCodes"].map((p) => ({
                       code: p["code"],
                       exitOptions: {
                         jobAction: p.exitOptions["jobAction"],
@@ -18606,9 +16507,9 @@ export function _createTaskSend(
                       },
                     })),
               exitCodeRanges:
-                task.exitConditions?.["exitCodeRanges"] === undefined
-                  ? task.exitConditions?.["exitCodeRanges"]
-                  : task.exitConditions?.["exitCodeRanges"].map((p) => ({
+                body.exitConditions?.["exitCodeRanges"] === undefined
+                  ? body.exitConditions?.["exitCodeRanges"]
+                  : body.exitConditions?.["exitCodeRanges"].map((p) => ({
                       start: p["start"],
                       end: p["end"],
                       exitOptions: {
@@ -18616,63 +16517,63 @@ export function _createTaskSend(
                         dependencyAction: p.exitOptions["dependencyAction"],
                       },
                     })),
-              preProcessingError: !task.exitConditions?.preProcessingError
+              preProcessingError: !body.exitConditions?.preProcessingError
                 ? undefined
                 : {
                     jobAction:
-                      task.exitConditions?.preProcessingError?.["jobAction"],
+                      body.exitConditions?.preProcessingError?.["jobAction"],
                     dependencyAction:
-                      task.exitConditions?.preProcessingError?.[
+                      body.exitConditions?.preProcessingError?.[
                         "dependencyAction"
                       ],
                   },
-              fileUploadError: !task.exitConditions?.fileUploadError
+              fileUploadError: !body.exitConditions?.fileUploadError
                 ? undefined
                 : {
                     jobAction:
-                      task.exitConditions?.fileUploadError?.["jobAction"],
+                      body.exitConditions?.fileUploadError?.["jobAction"],
                     dependencyAction:
-                      task.exitConditions?.fileUploadError?.[
+                      body.exitConditions?.fileUploadError?.[
                         "dependencyAction"
                       ],
                   },
-              default: !task.exitConditions?.default
+              default: !body.exitConditions?.default
                 ? undefined
                 : {
-                    jobAction: task.exitConditions?.default?.["jobAction"],
+                    jobAction: body.exitConditions?.default?.["jobAction"],
                     dependencyAction:
-                      task.exitConditions?.default?.["dependencyAction"],
+                      body.exitConditions?.default?.["dependencyAction"],
                   },
             },
-        commandLine: task["commandLine"],
-        containerSettings: !task.containerSettings
+        commandLine: body["commandLine"],
+        containerSettings: !body.containerSettings
           ? undefined
           : {
               containerRunOptions:
-                task.containerSettings?.["containerRunOptions"],
-              imageName: task.containerSettings?.["imageName"],
-              registry: !task.containerSettings?.registry
+                body.containerSettings?.["containerRunOptions"],
+              imageName: body.containerSettings?.["imageName"],
+              registry: !body.containerSettings?.registry
                 ? undefined
                 : {
-                    username: task.containerSettings?.registry?.["username"],
-                    password: task.containerSettings?.registry?.["password"],
+                    username: body.containerSettings?.registry?.["username"],
+                    password: body.containerSettings?.registry?.["password"],
                     registryServer:
-                      task.containerSettings?.registry?.["registryServer"],
-                    identityReference: !task.containerSettings?.registry
+                      body.containerSettings?.registry?.["registryServer"],
+                    identityReference: !body.containerSettings?.registry
                       ?.identityReference
                       ? undefined
                       : {
                           resourceId:
-                            task.containerSettings?.registry
+                            body.containerSettings?.registry
                               ?.identityReference?.["resourceId"],
                         },
                   },
-              workingDirectory: task.containerSettings?.["workingDirectory"],
+              workingDirectory: body.containerSettings?.["workingDirectory"],
             },
         resourceFiles:
-          task["resourceFiles"] === undefined
-            ? task["resourceFiles"]
-            : task["resourceFiles"].map((p) => ({
+          body["resourceFiles"] === undefined
+            ? body["resourceFiles"]
+            : body["resourceFiles"].map((p) => ({
                 autoStorageContainerName: p["autoStorageContainerName"],
                 storageContainerUrl: p["storageContainerUrl"],
                 httpUrl: p["httpUrl"],
@@ -18684,9 +16585,9 @@ export function _createTaskSend(
                   : { resourceId: p.identityReference?.["resourceId"] },
               })),
         outputFiles:
-          task["outputFiles"] === undefined
-            ? task["outputFiles"]
-            : task["outputFiles"].map((p) => ({
+          body["outputFiles"] === undefined
+            ? body["outputFiles"]
+            : body["outputFiles"].map((p) => ({
                 filePattern: p["filePattern"],
                 destination: {
                   container: !p.destination.container
@@ -18717,47 +16618,47 @@ export function _createTaskSend(
                 },
               })),
         environmentSettings:
-          task["environmentSettings"] === undefined
-            ? task["environmentSettings"]
-            : task["environmentSettings"].map((p) => ({
+          body["environmentSettings"] === undefined
+            ? body["environmentSettings"]
+            : body["environmentSettings"].map((p) => ({
                 name: p["name"],
                 value: p["value"],
               })),
-        affinityInfo: !task.affinityInfo
+        affinityInfo: !body.affinityInfo
           ? undefined
-          : { affinityId: task.affinityInfo?.["affinityId"] },
-        constraints: !task.constraints
+          : { affinityId: body.affinityInfo?.["affinityId"] },
+        constraints: !body.constraints
           ? undefined
           : {
-              maxWallClockTime: task.constraints?.["maxWallClockTime"],
-              retentionTime: task.constraints?.["retentionTime"],
-              maxTaskRetryCount: task.constraints?.["maxTaskRetryCount"],
+              maxWallClockTime: body.constraints?.["maxWallClockTime"],
+              retentionTime: body.constraints?.["retentionTime"],
+              maxTaskRetryCount: body.constraints?.["maxTaskRetryCount"],
             },
-        requiredSlots: task["requiredSlots"],
-        userIdentity: !task.userIdentity
+        requiredSlots: body["requiredSlots"],
+        userIdentity: !body.userIdentity
           ? undefined
           : {
-              username: task.userIdentity?.["username"],
-              autoUser: !task.userIdentity?.autoUser
+              username: body.userIdentity?.["username"],
+              autoUser: !body.userIdentity?.autoUser
                 ? undefined
                 : {
-                    scope: task.userIdentity?.autoUser?.["scope"],
+                    scope: body.userIdentity?.autoUser?.["scope"],
                     elevationLevel:
-                      task.userIdentity?.autoUser?.["elevationLevel"],
+                      body.userIdentity?.autoUser?.["elevationLevel"],
                   },
             },
-        multiInstanceSettings: !task.multiInstanceSettings
+        multiInstanceSettings: !body.multiInstanceSettings
           ? undefined
           : {
               numberOfInstances:
-                task.multiInstanceSettings?.["numberOfInstances"],
+                body.multiInstanceSettings?.["numberOfInstances"],
               coordinationCommandLine:
-                task.multiInstanceSettings?.["coordinationCommandLine"],
+                body.multiInstanceSettings?.["coordinationCommandLine"],
               commonResourceFiles:
-                task.multiInstanceSettings?.["commonResourceFiles"] ===
+                body.multiInstanceSettings?.["commonResourceFiles"] ===
                 undefined
-                  ? task.multiInstanceSettings?.["commonResourceFiles"]
-                  : task.multiInstanceSettings?.["commonResourceFiles"].map(
+                  ? body.multiInstanceSettings?.["commonResourceFiles"]
+                  : body.multiInstanceSettings?.["commonResourceFiles"].map(
                       (p) => ({
                         autoStorageContainerName: p["autoStorageContainerName"],
                         storageContainerUrl: p["storageContainerUrl"],
@@ -18771,28 +16672,28 @@ export function _createTaskSend(
                       }),
                     ),
             },
-        dependsOn: !task.dependsOn
+        dependsOn: !body.dependsOn
           ? undefined
           : {
-              taskIds: task.dependsOn?.["taskIds"],
+              taskIds: body.dependsOn?.["taskIds"],
               taskIdRanges:
-                task.dependsOn?.["taskIdRanges"] === undefined
-                  ? task.dependsOn?.["taskIdRanges"]
-                  : task.dependsOn?.["taskIdRanges"].map((p) => ({
+                body.dependsOn?.["taskIdRanges"] === undefined
+                  ? body.dependsOn?.["taskIdRanges"]
+                  : body.dependsOn?.["taskIdRanges"].map((p) => ({
                       start: p["start"],
                       end: p["end"],
                     })),
             },
         applicationPackageReferences:
-          task["applicationPackageReferences"] === undefined
-            ? task["applicationPackageReferences"]
-            : task["applicationPackageReferences"].map((p) => ({
+          body["applicationPackageReferences"] === undefined
+            ? body["applicationPackageReferences"]
+            : body["applicationPackageReferences"].map((p) => ({
                 applicationId: p["applicationId"],
                 version: p["version"],
               })),
-        authenticationTokenSettings: !task.authenticationTokenSettings
+        authenticationTokenSettings: !body.authenticationTokenSettings
           ? undefined
-          : { access: task.authenticationTokenSettings?.["access"] },
+          : { access: body.authenticationTokenSettings?.["access"] },
       },
     });
 }
@@ -18814,16 +16715,24 @@ export async function _createTaskDeserialize(
  */
 export async function createTask(
   context: Client,
+  apiVersion: string,
   jobId: string,
-  task: BatchTaskCreateContent,
+  body: BatchTaskCreateOptions,
   options: CreateTaskOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _createTaskSend(context, jobId, task, options);
+  const result = await _createTaskSend(
+    context,
+    apiVersion,
+    jobId,
+    body,
+    options,
+  );
   return _createTaskDeserialize(result);
 }
 
 export function _listTasksSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: ListTasksOptions = { requestOptions: {} },
 ): StreamableMethod<ListTasks200Response | ListTasksDefaultResponse> {
@@ -18832,12 +16741,12 @@ export function _listTasksSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
-        timeOut: options?.timeOutInSeconds,
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
-        $filter: options?.filter,
-        $select: options?.select,
-        $expand: options?.expand,
+        timeOut: options?.timeOutInSeconds,
+        $filter: options?.$filter,
+        $select: options?.$select,
+        $expand: options?.$expand,
       },
     });
 }
@@ -19124,8 +17033,8 @@ export async function _listTasksDeserialize(
                   url: p.stats?.["url"],
                   startTime: new Date(p.stats?.["startTime"]),
                   lastUpdateTime: new Date(p.stats?.["lastUpdateTime"]),
-                  userCpuTime: p.stats?.["userCPUTime"],
-                  kernelCpuTime: p.stats?.["kernelCPUTime"],
+                  userCPUTime: p.stats?.["userCPUTime"],
+                  kernelCPUTime: p.stats?.["kernelCPUTime"],
                   wallClockTime: p.stats?.["wallClockTime"],
                   readIOps: p.stats?.["readIOps"],
                   writeIOps: p.stats?.["writeIOps"],
@@ -19167,12 +17076,13 @@ export async function _listTasksDeserialize(
  */
 export function listTasks(
   context: Client,
+  apiVersion: string,
   jobId: string,
   options: ListTasksOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchTask> {
   return buildPagedAsyncIterator(
     context,
-    () => _listTasksSend(context, jobId, options),
+    () => _listTasksSend(context, apiVersion, jobId, options),
     _listTasksDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
@@ -19180,8 +17090,9 @@ export function listTasks(
 
 export function _createTaskCollectionSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
-  taskCollection: BatchTaskGroup,
+  collection: BatchTaskCollection,
   options: CreateTaskCollectionOptions = { requestOptions: {} },
 ): StreamableMethod<
   CreateTaskCollection200Response | CreateTaskCollectionDefaultResponse
@@ -19194,11 +17105,11 @@ export function _createTaskCollectionSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        value: taskCollection["value"].map((p) => ({
+        value: collection["value"].map((p) => ({
           id: p["id"],
           displayName: p["displayName"],
           exitConditions: !p.exitConditions
@@ -19413,7 +17324,7 @@ export function _createTaskCollectionSend(
 
 export async function _createTaskCollectionDeserialize(
   result: CreateTaskCollection200Response | CreateTaskCollectionDefaultResponse,
-): Promise<BatchTaskAddCollectionResult> {
+): Promise<TaskAddCollectionResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -19471,14 +17382,16 @@ export async function _createTaskCollectionDeserialize(
  */
 export async function createTaskCollection(
   context: Client,
+  apiVersion: string,
   jobId: string,
-  taskCollection: BatchTaskGroup,
+  collection: BatchTaskCollection,
   options: CreateTaskCollectionOptions = { requestOptions: {} },
-): Promise<BatchTaskAddCollectionResult> {
+): Promise<TaskAddCollectionResult> {
   const result = await _createTaskCollectionSend(
     context,
+    apiVersion,
     jobId,
-    taskCollection,
+    collection,
     options,
   );
   return _createTaskCollectionDeserialize(result);
@@ -19486,6 +17399,7 @@ export async function createTaskCollection(
 
 export function _deleteTaskSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: DeleteTaskOptions = { requestOptions: {} },
@@ -19495,21 +17409,21 @@ export function _deleteTaskSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -19534,16 +17448,24 @@ export async function _deleteTaskDeserialize(
  */
 export async function deleteTask(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: DeleteTaskOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _deleteTaskSend(context, jobId, taskId, options);
+  const result = await _deleteTaskSend(
+    context,
+    apiVersion,
+    jobId,
+    taskId,
+    options,
+  );
   return _deleteTaskDeserialize(result);
 }
 
 export function _getTaskSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: GetTaskOptions = { requestOptions: {} },
@@ -19553,24 +17475,24 @@ export function _getTaskSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
-        $select: options?.select,
-        $expand: options?.expand,
+        $select: options?.$select,
+        $expand: options?.$expand,
       },
     });
 }
@@ -19845,8 +17767,8 @@ export async function _getTaskDeserialize(
           url: result.body.stats?.["url"],
           startTime: new Date(result.body.stats?.["startTime"]),
           lastUpdateTime: new Date(result.body.stats?.["lastUpdateTime"]),
-          userCpuTime: result.body.stats?.["userCPUTime"],
-          kernelCpuTime: result.body.stats?.["kernelCPUTime"],
+          userCPUTime: result.body.stats?.["userCPUTime"],
+          kernelCPUTime: result.body.stats?.["kernelCPUTime"],
           wallClockTime: result.body.stats?.["wallClockTime"],
           readIOps: result.body.stats?.["readIOps"],
           writeIOps: result.body.stats?.["writeIOps"],
@@ -19886,19 +17808,27 @@ export async function _getTaskDeserialize(
  */
 export async function getTask(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: GetTaskOptions = { requestOptions: {} },
 ): Promise<BatchTask> {
-  const result = await _getTaskSend(context, jobId, taskId, options);
+  const result = await _getTaskSend(
+    context,
+    apiVersion,
+    jobId,
+    taskId,
+    options,
+  );
   return _getTaskDeserialize(result);
 }
 
 export function _replaceTaskSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
-  task: BatchTask,
+  body: BatchTask,
   options: ReplaceTaskOptions = { requestOptions: {} },
 ): StreamableMethod<ReplaceTask200Response | ReplaceTaskDefaultResponse> {
   return context
@@ -19909,30 +17839,30 @@ export function _replaceTaskSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        constraints: !task.constraints
+        constraints: !body.constraints
           ? undefined
           : {
-              maxWallClockTime: task.constraints?.["maxWallClockTime"],
-              retentionTime: task.constraints?.["retentionTime"],
-              maxTaskRetryCount: task.constraints?.["maxTaskRetryCount"],
+              maxWallClockTime: body.constraints?.["maxWallClockTime"],
+              retentionTime: body.constraints?.["retentionTime"],
+              maxTaskRetryCount: body.constraints?.["maxTaskRetryCount"],
             },
       },
     });
@@ -19951,17 +17881,26 @@ export async function _replaceTaskDeserialize(
 /** Updates the properties of the specified Task. */
 export async function replaceTask(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
-  task: BatchTask,
+  body: BatchTask,
   options: ReplaceTaskOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _replaceTaskSend(context, jobId, taskId, task, options);
+  const result = await _replaceTaskSend(
+    context,
+    apiVersion,
+    jobId,
+    taskId,
+    body,
+    options,
+  );
   return _replaceTaskDeserialize(result);
 }
 
 export function _listSubTasksSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: ListSubTasksOptions = { requestOptions: {} },
@@ -19971,9 +17910,9 @@ export function _listSubTasksSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
-        $select: options?.select,
+        $select: options?.$select,
       },
     });
 }
@@ -20041,27 +17980,30 @@ export async function _listSubTasksDeserialize(
                 : undefined,
             result: p["result"],
           })),
-    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
 /** If the Task is not a multi-instance Task then this returns an empty collection. */
-export function listSubTasks(
+export async function listSubTasks(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: ListSubTasksOptions = { requestOptions: {} },
-): PagedAsyncIterableIterator<BatchSubtask> {
-  return buildPagedAsyncIterator(
+): Promise<BatchTaskListSubtasksResult> {
+  const result = await _listSubTasksSend(
     context,
-    () => _listSubTasksSend(context, jobId, taskId, options),
-    _listSubTasksDeserialize,
-    { itemName: "value", nextLinkName: "odata.nextLink" },
+    apiVersion,
+    jobId,
+    taskId,
+    options,
   );
+  return _listSubTasksDeserialize(result);
 }
 
 export function _terminateTaskSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: TerminateTaskOptions = { requestOptions: {} },
@@ -20071,21 +18013,21 @@ export function _terminateTaskSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -20108,16 +18050,24 @@ export async function _terminateTaskDeserialize(
  */
 export async function terminateTask(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: TerminateTaskOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _terminateTaskSend(context, jobId, taskId, options);
+  const result = await _terminateTaskSend(
+    context,
+    apiVersion,
+    jobId,
+    taskId,
+    options,
+  );
   return _terminateTaskDeserialize(result);
 }
 
 export function _reactivateTaskSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: ReactivateTaskOptions = { requestOptions: {} },
@@ -20127,21 +18077,21 @@ export function _reactivateTaskSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
-          : {}),
-        ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
-          : {}),
         ...(options?.ifMatch !== undefined
-          ? { "If-Match": options?.ifMatch }
+          ? { "if-match": options?.ifMatch }
           : {}),
         ...(options?.ifNoneMatch !== undefined
-          ? { "If-None-Match": options?.ifNoneMatch }
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -20168,16 +18118,24 @@ export async function _reactivateTaskDeserialize(
  */
 export async function reactivateTask(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: ReactivateTaskOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _reactivateTaskSend(context, jobId, taskId, options);
+  const result = await _reactivateTaskSend(
+    context,
+    apiVersion,
+    jobId,
+    taskId,
+    options,
+  );
   return _reactivateTaskDeserialize(result);
 }
 
 export function _deleteTaskFileSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   filePath: string,
@@ -20193,7 +18151,7 @@ export function _deleteTaskFileSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
         recursive: options?.recursive,
       },
@@ -20213,6 +18171,7 @@ export async function _deleteTaskFileDeserialize(
 /** Deletes the specified Task file from the Compute Node where the Task ran. */
 export async function deleteTaskFile(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   filePath: string,
@@ -20220,6 +18179,7 @@ export async function deleteTaskFile(
 ): Promise<void> {
   const result = await _deleteTaskFileSend(
     context,
+    apiVersion,
     jobId,
     taskId,
     filePath,
@@ -20230,6 +18190,7 @@ export async function deleteTaskFile(
 
 export function _getTaskFileSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   filePath: string,
@@ -20246,17 +18207,17 @@ export function _getTaskFileSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
         ...(options?.ocpRange !== undefined
           ? { "ocp-range": options?.ocpRange }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -20275,6 +18236,7 @@ export async function _getTaskFileDeserialize(
 /** Returns the content of the specified Task file. */
 export async function getTaskFile(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   filePath: string,
@@ -20282,6 +18244,7 @@ export async function getTaskFile(
 ): Promise<Uint8Array> {
   const result = await _getTaskFileSend(
     context,
+    apiVersion,
     jobId,
     taskId,
     filePath,
@@ -20292,6 +18255,7 @@ export async function getTaskFile(
 
 export function _getTaskFilePropertiesSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   filePath: string,
@@ -20310,14 +18274,14 @@ export function _getTaskFilePropertiesSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -20338,6 +18302,7 @@ export async function _getTaskFilePropertiesDeserialize(
 /** Gets the properties of the specified Task file. */
 export async function getTaskFileProperties(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   filePath: string,
@@ -20345,6 +18310,7 @@ export async function getTaskFileProperties(
 ): Promise<void> {
   const result = await _getTaskFilePropertiesSend(
     context,
+    apiVersion,
     jobId,
     taskId,
     filePath,
@@ -20355,6 +18321,7 @@ export async function getTaskFileProperties(
 
 export function _listTaskFilesSend(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: ListTaskFilesOptions = { requestOptions: {} },
@@ -20364,10 +18331,10 @@ export function _listTaskFilesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
-        timeOut: options?.timeOutInSeconds,
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
-        $filter: options?.filter,
+        timeOut: options?.timeOutInSeconds,
+        $filter: options?.$filter,
         recursive: options?.recursive,
       },
     });
@@ -20375,7 +18342,7 @@ export function _listTaskFilesSend(
 
 export async function _listTaskFilesDeserialize(
   result: ListTaskFiles200Response | ListTaskFilesDefaultResponse,
-): Promise<BatchNodeFileListResult> {
+): Promise<NodeFileListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -20408,13 +18375,14 @@ export async function _listTaskFilesDeserialize(
 /** Lists the files in a Task's directory on its Compute Node. */
 export function listTaskFiles(
   context: Client,
+  apiVersion: string,
   jobId: string,
   taskId: string,
   options: ListTaskFilesOptions = { requestOptions: {} },
-): PagedAsyncIterableIterator<BatchNodeFile> {
+): PagedAsyncIterableIterator<NodeFile> {
   return buildPagedAsyncIterator(
     context,
-    () => _listTaskFilesSend(context, jobId, taskId, options),
+    () => _listTaskFilesSend(context, apiVersion, jobId, taskId, options),
     _listTaskFilesDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
@@ -20422,9 +18390,10 @@ export function listTaskFiles(
 
 export function _createNodeUserSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
-  user: BatchNodeUserCreateContent,
+  body: BatchNodeUserCreateOptions,
   options: CreateNodeUserOptions = { requestOptions: {} },
 ): StreamableMethod<CreateNodeUser201Response | CreateNodeUserDefaultResponse> {
   return context
@@ -20435,15 +18404,15 @@ export function _createNodeUserSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        name: user["name"],
-        isAdmin: user["isAdmin"],
-        expiryTime: user["expiryTime"]?.toISOString(),
-        password: user["password"],
-        sshPublicKey: user["sshPublicKey"],
+        name: body["name"],
+        isAdmin: body["isAdmin"],
+        expiryTime: body["expiryTime"]?.toISOString(),
+        password: body["password"],
+        sshPublicKey: body["sshPublicKey"],
       },
     });
 }
@@ -20464,16 +18433,18 @@ export async function _createNodeUserDeserialize(
  */
 export async function createNodeUser(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
-  user: BatchNodeUserCreateContent,
+  body: BatchNodeUserCreateOptions,
   options: CreateNodeUserOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _createNodeUserSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
-    user,
+    body,
     options,
   );
   return _createNodeUserDeserialize(result);
@@ -20481,6 +18452,7 @@ export async function createNodeUser(
 
 export function _deleteNodeUserSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   userName: string,
@@ -20496,7 +18468,7 @@ export function _deleteNodeUserSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -20518,6 +18490,7 @@ export async function _deleteNodeUserDeserialize(
  */
 export async function deleteNodeUser(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   userName: string,
@@ -20525,6 +18498,7 @@ export async function deleteNodeUser(
 ): Promise<void> {
   const result = await _deleteNodeUserSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     userName,
@@ -20535,10 +18509,11 @@ export async function deleteNodeUser(
 
 export function _replaceNodeUserSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   userName: string,
-  content: BatchNodeUserUpdateContent,
+  body: BatchNodeUserUpdateOptions,
   options: ReplaceNodeUserOptions = { requestOptions: {} },
 ): StreamableMethod<
   ReplaceNodeUser200Response | ReplaceNodeUserDefaultResponse
@@ -20556,13 +18531,13 @@ export function _replaceNodeUserSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        password: content["password"],
-        expiryTime: content["expiryTime"]?.toISOString(),
-        sshPublicKey: content["sshPublicKey"],
+        password: body["password"],
+        expiryTime: body["expiryTime"]?.toISOString(),
+        sshPublicKey: body["sshPublicKey"],
       },
     });
 }
@@ -20585,18 +18560,20 @@ export async function _replaceNodeUserDeserialize(
  */
 export async function replaceNodeUser(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   userName: string,
-  content: BatchNodeUserUpdateContent,
+  body: BatchNodeUserUpdateOptions,
   options: ReplaceNodeUserOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _replaceNodeUserSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     userName,
-    content,
+    body,
     options,
   );
   return _replaceNodeUserDeserialize(result);
@@ -20604,6 +18581,7 @@ export async function replaceNodeUser(
 
 export function _getNodeSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: GetNodeOptions = { requestOptions: {} },
@@ -20613,9 +18591,9 @@ export function _getNodeSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
-        $select: options?.select,
+        $select: options?.$select,
       },
     });
 }
@@ -20898,8 +18876,6 @@ export async function _getNodeDeserialize(
                     "exactVersion"
                   ],
               },
-          scaleSetVmResourceId:
-            result.body.virtualMachineInfo?.["scaleSetVmResourceId"],
         },
   };
 }
@@ -20907,19 +18883,27 @@ export async function _getNodeDeserialize(
 /** Gets information about the specified Compute Node. */
 export async function getNode(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: GetNodeOptions = { requestOptions: {} },
 ): Promise<BatchNode> {
-  const result = await _getNodeSend(context, poolId, nodeId, options);
+  const result = await _getNodeSend(
+    context,
+    apiVersion,
+    poolId,
+    nodeId,
+    options,
+  );
   return _getNodeDeserialize(result);
 }
 
 export function _rebootNodeSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
-  parameters?: BatchNodeRebootContent,
+  body?: NodeRebootOptions,
   options: RebootNodeOptions = { requestOptions: {} },
 ): StreamableMethod<RebootNode202Response | RebootNodeDefaultResponse> {
   return context
@@ -20930,13 +18914,13 @@ export function _rebootNodeSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body:
-        parameters === undefined
-          ? parameters
-          : { nodeRebootOption: parameters["nodeRebootOption"] },
+        body === undefined
+          ? body
+          : { nodeRebootOption: body["nodeRebootOption"] },
     });
 }
 
@@ -20953,16 +18937,18 @@ export async function _rebootNodeDeserialize(
 /** You can restart a Compute Node only if it is in an idle or running state. */
 export async function rebootNode(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
-  parameters?: BatchNodeRebootContent,
+  body?: NodeRebootOptions,
   options: RebootNodeOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _rebootNodeSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
-    parameters,
+    body,
     options,
   );
   return _rebootNodeDeserialize(result);
@@ -20970,9 +18956,10 @@ export async function rebootNode(
 
 export function _reimageNodeSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
-  parameters?: BatchNodeReimageContent,
+  body?: NodeReimageOptions,
   options: ReimageNodeOptions = { requestOptions: {} },
 ): StreamableMethod<ReimageNode202Response | ReimageNodeDefaultResponse> {
   return context
@@ -20983,13 +18970,13 @@ export function _reimageNodeSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body:
-        parameters === undefined
-          ? parameters
-          : { nodeReimageOption: parameters["nodeReimageOption"] },
+        body === undefined
+          ? body
+          : { nodeReimageOption: body["nodeReimageOption"] },
     });
 }
 
@@ -21010,16 +18997,18 @@ export async function _reimageNodeDeserialize(
  */
 export async function reimageNode(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
-  parameters?: BatchNodeReimageContent,
+  body?: NodeReimageOptions,
   options: ReimageNodeOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _reimageNodeSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
-    parameters,
+    body,
     options,
   );
   return _reimageNodeDeserialize(result);
@@ -21027,9 +19016,10 @@ export async function reimageNode(
 
 export function _disableNodeSchedulingSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
-  parameters?: BatchNodeDisableSchedulingContent,
+  body?: NodeDisableSchedulingOptions,
   options: DisableNodeSchedulingOptions = { requestOptions: {} },
 ): StreamableMethod<
   DisableNodeScheduling200Response | DisableNodeSchedulingDefaultResponse
@@ -21042,15 +19032,14 @@ export function _disableNodeSchedulingSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body:
-        parameters === undefined
-          ? parameters
+        body === undefined
+          ? body
           : {
-              nodeDisableSchedulingOption:
-                parameters["nodeDisableSchedulingOption"],
+              nodeDisableSchedulingOption: body["nodeDisableSchedulingOption"],
             },
     });
 }
@@ -21073,16 +19062,18 @@ export async function _disableNodeSchedulingDeserialize(
  */
 export async function disableNodeScheduling(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
-  parameters?: BatchNodeDisableSchedulingContent,
+  body?: NodeDisableSchedulingOptions,
   options: DisableNodeSchedulingOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _disableNodeSchedulingSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
-    parameters,
+    body,
     options,
   );
   return _disableNodeSchedulingDeserialize(result);
@@ -21090,6 +19081,7 @@ export async function disableNodeScheduling(
 
 export function _enableNodeSchedulingSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: EnableNodeSchedulingOptions = { requestOptions: {} },
@@ -21101,7 +19093,7 @@ export function _enableNodeSchedulingSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -21123,12 +19115,14 @@ export async function _enableNodeSchedulingDeserialize(
  */
 export async function enableNodeScheduling(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: EnableNodeSchedulingOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _enableNodeSchedulingSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     options,
@@ -21138,6 +19132,7 @@ export async function enableNodeScheduling(
 
 export function _getNodeRemoteLoginSettingsSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: GetNodeRemoteLoginSettingsOptions = { requestOptions: {} },
@@ -21150,7 +19145,7 @@ export function _getNodeRemoteLoginSettingsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -21160,7 +19155,7 @@ export async function _getNodeRemoteLoginSettingsDeserialize(
   result:
     | GetNodeRemoteLoginSettings200Response
     | GetNodeRemoteLoginSettingsDefaultResponse,
-): Promise<BatchNodeRemoteLoginSettings> {
+): Promise<BatchNodeRemoteLoginSettingsResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -21180,12 +19175,14 @@ export async function _getNodeRemoteLoginSettingsDeserialize(
  */
 export async function getNodeRemoteLoginSettings(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: GetNodeRemoteLoginSettingsOptions = { requestOptions: {} },
-): Promise<BatchNodeRemoteLoginSettings> {
+): Promise<BatchNodeRemoteLoginSettingsResult> {
   const result = await _getNodeRemoteLoginSettingsSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     options,
@@ -21195,6 +19192,7 @@ export async function getNodeRemoteLoginSettings(
 
 export function _getNodeRemoteDesktopFileSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: GetNodeRemoteDesktopFileOptions = { requestOptions: {} },
@@ -21206,7 +19204,7 @@ export function _getNodeRemoteDesktopFileSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -21221,7 +19219,9 @@ export async function _getNodeRemoteDesktopFileDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 /**
@@ -21232,12 +19232,14 @@ export async function _getNodeRemoteDesktopFileDeserialize(
  */
 export async function getNodeRemoteDesktopFile(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: GetNodeRemoteDesktopFileOptions = { requestOptions: {} },
 ): Promise<Uint8Array> {
   const result = await _getNodeRemoteDesktopFileSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     options,
@@ -21247,9 +19249,10 @@ export async function getNodeRemoteDesktopFile(
 
 export function _uploadNodeLogsSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
-  content: UploadBatchServiceLogsContent,
+  body: UploadBatchServiceLogsOptions,
   options: UploadNodeLogsOptions = { requestOptions: {} },
 ): StreamableMethod<UploadNodeLogs200Response | UploadNodeLogsDefaultResponse> {
   return context
@@ -21264,16 +19267,16 @@ export function _uploadNodeLogsSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
       body: {
-        containerUrl: content["containerUrl"],
-        startTime: content["startTime"].toISOString(),
-        endTime: content["endTime"]?.toISOString(),
-        identityReference: !content.identityReference
+        containerUrl: body["containerUrl"],
+        startTime: body["startTime"].toISOString(),
+        endTime: body["endTime"]?.toISOString(),
+        identityReference: !body.identityReference
           ? undefined
-          : { resourceId: content.identityReference?.["resourceId"] },
+          : { resourceId: body.identityReference?.["resourceId"] },
       },
     });
 }
@@ -21299,16 +19302,18 @@ export async function _uploadNodeLogsDeserialize(
  */
 export async function uploadNodeLogs(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
-  content: UploadBatchServiceLogsContent,
+  body: UploadBatchServiceLogsOptions,
   options: UploadNodeLogsOptions = { requestOptions: {} },
 ): Promise<UploadBatchServiceLogsResult> {
   const result = await _uploadNodeLogsSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
-    content,
+    body,
     options,
   );
   return _uploadNodeLogsDeserialize(result);
@@ -21316,6 +19321,7 @@ export async function uploadNodeLogs(
 
 export function _listNodesSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   options: ListNodesOptions = { requestOptions: {} },
 ): StreamableMethod<ListNodes200Response | ListNodesDefaultResponse> {
@@ -21324,11 +19330,11 @@ export function _listNodesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
-        timeOut: options?.timeOutInSeconds,
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
-        $filter: options?.filter,
-        $select: options?.select,
+        timeOut: options?.timeOutInSeconds,
+        $filter: options?.$filter,
+        $select: options?.$select,
       },
     });
 }
@@ -21620,8 +19626,6 @@ export async function _listNodesDeserialize(
                             "exactVersion"
                           ],
                       },
-                  scaleSetVmResourceId:
-                    p.virtualMachineInfo?.["scaleSetVmResourceId"],
                 },
           })),
     "odata.nextLink": result.body["odata.nextLink"],
@@ -21631,12 +19635,13 @@ export async function _listNodesDeserialize(
 /** Lists the Compute Nodes in the specified Pool. */
 export function listNodes(
   context: Client,
+  apiVersion: string,
   poolId: string,
   options: ListNodesOptions = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchNode> {
   return buildPagedAsyncIterator(
     context,
-    () => _listNodesSend(context, poolId, options),
+    () => _listNodesSend(context, apiVersion, poolId, options),
     _listNodesDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );
@@ -21644,6 +19649,7 @@ export function listNodes(
 
 export function _getNodeExtensionSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   extensionName: string,
@@ -21661,16 +19667,16 @@ export function _getNodeExtensionSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
-        $select: options?.select,
+        $select: options?.$select,
       },
     });
 }
 
 export async function _getNodeExtensionDeserialize(
   result: GetNodeExtension200Response | GetNodeExtensionDefaultResponse,
-): Promise<BatchNodeVMExtension> {
+): Promise<NodeVMExtension> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -21705,8 +19711,7 @@ export async function _getNodeExtensionDeserialize(
                   displayStatus: p["displayStatus"],
                   level: p["level"],
                   message: p["message"],
-                  time:
-                    p["time"] !== undefined ? new Date(p["time"]) : undefined,
+                  time: p["time"],
                 })),
           subStatuses:
             result.body.instanceView?.["subStatuses"] === undefined
@@ -21716,8 +19721,7 @@ export async function _getNodeExtensionDeserialize(
                   displayStatus: p["displayStatus"],
                   level: p["level"],
                   message: p["message"],
-                  time:
-                    p["time"] !== undefined ? new Date(p["time"]) : undefined,
+                  time: p["time"],
                 })),
         },
   };
@@ -21726,13 +19730,15 @@ export async function _getNodeExtensionDeserialize(
 /** Gets information about the specified Compute Node Extension. */
 export async function getNodeExtension(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   extensionName: string,
   options: GetNodeExtensionOptions = { requestOptions: {} },
-): Promise<BatchNodeVMExtension> {
+): Promise<NodeVMExtension> {
   const result = await _getNodeExtensionSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     extensionName,
@@ -21754,17 +19760,16 @@ export function _listNodeExtensionsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
-        timeOut: options?.timeOutInSeconds,
         maxresults: options?.maxresults,
-        $select: options?.select,
+        timeOut: options?.timeOutInSeconds,
+        $select: options?.$select,
       },
     });
 }
 
 export async function _listNodeExtensionsDeserialize(
   result: ListNodeExtensions200Response | ListNodeExtensionsDefaultResponse,
-): Promise<BatchNodeVMExtensionListResult> {
+): Promise<NodeVMExtensionList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -21803,10 +19808,7 @@ export async function _listNodeExtensionsDeserialize(
                           displayStatus: p["displayStatus"],
                           level: p["level"],
                           message: p["message"],
-                          time:
-                            p["time"] !== undefined
-                              ? new Date(p["time"])
-                              : undefined,
+                          time: p["time"],
                         })),
                   subStatuses:
                     p.instanceView?.["subStatuses"] === undefined
@@ -21816,10 +19818,7 @@ export async function _listNodeExtensionsDeserialize(
                           displayStatus: p["displayStatus"],
                           level: p["level"],
                           message: p["message"],
-                          time:
-                            p["time"] !== undefined
-                              ? new Date(p["time"])
-                              : undefined,
+                          time: p["time"],
                         })),
                 },
           })),
@@ -21833,7 +19832,7 @@ export function listNodeExtensions(
   poolId: string,
   nodeId: string,
   options: ListNodeExtensionsOptions = { requestOptions: {} },
-): PagedAsyncIterableIterator<BatchNodeVMExtension> {
+): PagedAsyncIterableIterator<NodeVMExtension> {
   return buildPagedAsyncIterator(
     context,
     () => _listNodeExtensionsSend(context, poolId, nodeId, options),
@@ -21844,6 +19843,7 @@ export function listNodeExtensions(
 
 export function _deleteNodeFileSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   filePath: string,
@@ -21859,7 +19859,7 @@ export function _deleteNodeFileSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
         recursive: options?.recursive,
       },
@@ -21879,6 +19879,7 @@ export async function _deleteNodeFileDeserialize(
 /** Deletes the specified file from the Compute Node. */
 export async function deleteNodeFile(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   filePath: string,
@@ -21886,6 +19887,7 @@ export async function deleteNodeFile(
 ): Promise<void> {
   const result = await _deleteNodeFileSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     filePath,
@@ -21896,6 +19898,7 @@ export async function deleteNodeFile(
 
 export function _getNodeFileSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   filePath: string,
@@ -21912,17 +19915,17 @@ export function _getNodeFileSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
         ...(options?.ocpRange !== undefined
           ? { "ocp-range": options?.ocpRange }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -21935,12 +19938,15 @@ export async function _getNodeFileDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 /** Returns the content of the specified Compute Node file. */
 export async function getNodeFile(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   filePath: string,
@@ -21948,6 +19954,7 @@ export async function getNodeFile(
 ): Promise<Uint8Array> {
   const result = await _getNodeFileSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     filePath,
@@ -21958,6 +19965,7 @@ export async function getNodeFile(
 
 export function _getNodeFilePropertiesSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   filePath: string,
@@ -21976,14 +19984,14 @@ export function _getNodeFilePropertiesSend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         ...(options?.ifModifiedSince !== undefined
-          ? { "If-Modified-Since": options?.ifModifiedSince?.toUTCString() }
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
           : {}),
         ...(options?.ifUnmodifiedSince !== undefined
-          ? { "If-Unmodified-Since": options?.ifUnmodifiedSince?.toUTCString() }
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
+        "api-version": apiVersion,
         timeOut: options?.timeOutInSeconds,
       },
     });
@@ -22004,6 +20012,7 @@ export async function _getNodeFilePropertiesDeserialize(
 /** Gets the properties of the specified Compute Node file. */
 export async function getNodeFileProperties(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   filePath: string,
@@ -22011,6 +20020,7 @@ export async function getNodeFileProperties(
 ): Promise<void> {
   const result = await _getNodeFilePropertiesSend(
     context,
+    apiVersion,
     poolId,
     nodeId,
     filePath,
@@ -22021,6 +20031,7 @@ export async function getNodeFileProperties(
 
 export function _listNodeFilesSend(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: ListNodeFilesOptions = { requestOptions: {} },
@@ -22030,10 +20041,10 @@ export function _listNodeFilesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2024-02-01.19.0",
-        timeOut: options?.timeOutInSeconds,
+        "api-version": apiVersion,
         maxresults: options?.maxresults,
-        $filter: options?.filter,
+        timeOut: options?.timeOutInSeconds,
+        $filter: options?.$filter,
         recursive: options?.recursive,
       },
     });
@@ -22041,7 +20052,7 @@ export function _listNodeFilesSend(
 
 export async function _listNodeFilesDeserialize(
   result: ListNodeFiles200Response | ListNodeFilesDefaultResponse,
-): Promise<BatchNodeFileListResult> {
+): Promise<NodeFileListResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -22074,13 +20085,14 @@ export async function _listNodeFilesDeserialize(
 /** Lists all of the files in Task directories on the specified Compute Node. */
 export function listNodeFiles(
   context: Client,
+  apiVersion: string,
   poolId: string,
   nodeId: string,
   options: ListNodeFilesOptions = { requestOptions: {} },
-): PagedAsyncIterableIterator<BatchNodeFile> {
+): PagedAsyncIterableIterator<NodeFile> {
   return buildPagedAsyncIterator(
     context,
-    () => _listNodeFilesSend(context, poolId, nodeId, options),
+    () => _listNodeFilesSend(context, apiVersion, poolId, nodeId, options),
     _listNodeFilesDeserialize,
     { itemName: "value", nextLinkName: "odata.nextLink" },
   );

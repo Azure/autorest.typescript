@@ -60,7 +60,10 @@ function getOperationApiVersion(
   const apiVersionTypes = new Set<string>();
   const locations = new Set<ApiVersionPosition>();
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  let hasApiVersionInClient = true;
+  let hasApiVersionInOperation = true;
   for (const clientOp of clientOperations) {
+    hasApiVersionInOperation = false;
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
@@ -82,8 +85,14 @@ function getOperationApiVersion(
       const typeString = JSON.stringify(trimUsage(type));
       apiVersionTypes.add(typeString);
     });
-    if (apiVersionTypes.size > 1) {
+    if (apiVersionTypes.size > 1 || !hasApiVersionInClient) {
       break;
+    }
+    if (params.length === 1) {
+      hasApiVersionInOperation = true;
+    }
+    if (!hasApiVersionInOperation) {
+      hasApiVersionInClient = false;
     }
   }
   const operationGroups = listOperationGroups(dpgContext, client, true);
@@ -93,6 +102,7 @@ function getOperationApiVersion(
       operationGroup
     );
     for (const op of operations) {
+      hasApiVersionInOperation = false;
       const route = ignoreDiagnostics(getHttpOperation(program, op));
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
@@ -116,13 +126,19 @@ function getOperationApiVersion(
         const typeString = JSON.stringify(trimUsage(type));
         apiVersionTypes.add(typeString);
       });
-      if (apiVersionTypes.size > 1) {
+      if (apiVersionTypes.size > 1 || !hasApiVersionInClient) {
         break;
+      }
+      if (params.length === 1) {
+        hasApiVersionInOperation = true;
+      }
+      if (!hasApiVersionInOperation) {
+        hasApiVersionInClient = false;
       }
     }
   }
   // If no api-version parameter defined return directly
-  if (apiVersionTypes.size === 0) {
+  if (apiVersionTypes.size === 0 || !hasApiVersionInClient) {
     return;
   }
   const detail: ApiVersionInfo = {

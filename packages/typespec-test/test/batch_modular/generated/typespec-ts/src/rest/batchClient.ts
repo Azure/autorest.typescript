@@ -18,7 +18,7 @@ export default function createClient(
   options: ClientOptions = {},
 ): BatchContext {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
-  options.apiVersion = options.apiVersion ?? "2024-02-01.19.0";
+
   const userAgentInfo = `azsdk-js-batch-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -45,6 +45,8 @@ export default function createClient(
   };
 
   const client = getClient(baseUrl, credentials, options) as BatchContext;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }

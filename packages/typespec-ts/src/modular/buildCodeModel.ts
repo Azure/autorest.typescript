@@ -855,6 +855,7 @@ function emitBasicOperation(
     const emittedParam = emitParameter(context, param, "Method");
     if (isApiVersion(context, param)) {
       hasApiVersionInOperation = true;
+      emittedParam.isApiVersion = true;
       apiVersionParam = emittedParam;
     }
     parameters.push(emittedParam);
@@ -1749,7 +1750,7 @@ function emitServerParams(
       endpointPathParameters.push(emittedParameter);
       if (
         isApiVersion(context, serverParameter as any) &&
-        apiVersionParam == undefined
+        apiVersionParam === undefined
       ) {
         hasApiVersionInClient = true;
         apiVersionParam = emittedParameter;
@@ -1872,12 +1873,14 @@ function emitClients(
     if (emittedApiVersionParam && hasApiVersionInClient) {
       emittedClient.parameters.push(emittedApiVersionParam);
       // if we have client level api version, we need to remove it from all operations
-      emittedClient.operationGroups.forEach((opGroup) => {
-        opGroup.operations.forEach((op) => {
+      emittedClient.operationGroups.map((opGroup) => {
+        opGroup.operations.map((op) => {
           op.parameters = op.parameters.filter((param) => {
             return !param.isApiVersion;
           });
+          return op;
         });
+        return opGroup;
       });
     }
     retval.push(emittedClient);

@@ -4,34 +4,34 @@
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
 import {
-  BatchApplicationListResultOutput,
+  ApplicationListResultOutput,
   BatchErrorOutput,
   BatchApplicationOutput,
-  BatchPoolListUsageMetricsResultOutput,
+  PoolListUsageMetricsResultOutput,
   BatchPoolListResultOutput,
   BatchPoolOutput,
   AutoScaleRunOutput,
-  BatchAccountListSupportedImagesResultOutput,
-  BatchPoolNodeCountsListResultOutput,
+  AccountListSupportedImagesResultOutput,
+  PoolNodeCountsListResultOutput,
   BatchJobOutput,
   BatchJobListResultOutput,
-  BatchJobPreparationAndReleaseTaskStatusListResultOutput,
-  BatchTaskCountsResultOutput,
-  BatchCertificateListResultOutput,
+  BatchJobListPreparationAndReleaseTaskStatusResultOutput,
+  TaskCountsResultOutput,
+  CertificateListResultOutput,
   BatchCertificateOutput,
   BatchJobScheduleOutput,
   BatchJobScheduleListResultOutput,
   BatchTaskListResultOutput,
-  BatchTaskAddCollectionResultOutput,
+  TaskAddCollectionResultOutput,
   BatchTaskOutput,
   BatchTaskListSubtasksResultOutput,
-  BatchNodeFileListResultOutput,
+  NodeFileListResultOutput,
   BatchNodeOutput,
-  BatchNodeRemoteLoginSettingsOutput,
+  BatchNodeRemoteLoginSettingsResultOutput,
   UploadBatchServiceLogsResultOutput,
   BatchNodeListResultOutput,
-  BatchNodeVMExtensionOutput,
-  BatchNodeVMExtensionListResultOutput,
+  NodeVMExtensionOutput,
+  NodeVMExtensionListOutput,
 } from "./outputModels.js";
 
 export interface ListApplications200Headers {
@@ -48,7 +48,7 @@ export interface ListApplications200Headers {
 /** The request has succeeded. */
 export interface ListApplications200Response extends HttpResponse {
   status: "200";
-  body: BatchApplicationListResultOutput;
+  body: ApplicationListResultOutput;
   headers: RawHttpHeaders & ListApplications200Headers;
 }
 
@@ -94,7 +94,7 @@ export interface ListPoolUsageMetrics200Headers {
 /** The request has succeeded. */
 export interface ListPoolUsageMetrics200Response extends HttpResponse {
   status: "200";
-  body: BatchPoolListUsageMetricsResultOutput;
+  body: PoolListUsageMetricsResultOutput;
   headers: RawHttpHeaders & ListPoolUsageMetrics200Headers;
 }
 
@@ -112,7 +112,7 @@ export interface CreatePool201Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
+  /** The OData ID of the resource to which the request applied */
   dataserviceid: string;
 }
 
@@ -179,7 +179,7 @@ export interface PoolExists200Headers {
   "last-modified"?: string;
 }
 
-/** The request has succeeded. */
+/** A response containing headers related to the Pool, if it exists. */
 export interface PoolExists200Response extends HttpResponse {
   status: "200";
   headers: RawHttpHeaders & PoolExists200Headers;
@@ -227,7 +227,7 @@ export interface UpdatePool200Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
+  /** The OData ID of the resource to which the request applied */
   dataserviceid: string;
 }
 
@@ -251,7 +251,7 @@ export interface DisablePoolAutoScale200Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
+  /** The OData ID of the resource to which the request applied */
   dataserviceid: string;
 }
 
@@ -275,7 +275,7 @@ export interface EnablePoolAutoScale200Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
+  /** The OData ID of the resource to which the request applied */
   dataserviceid: string;
 }
 
@@ -299,7 +299,7 @@ export interface EvaluatePoolAutoScale200Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
+  /** The OData ID of the resource to which the request applied */
   dataserviceid: string;
 }
 
@@ -324,7 +324,7 @@ export interface ResizePool202Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
+  /** The OData ID of the resource to which the request applied */
   dataserviceid: string;
 }
 
@@ -348,7 +348,7 @@ export interface StopPoolResize202Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
+  /** The OData ID of the resource to which the request applied */
   dataserviceid: string;
 }
 
@@ -372,7 +372,7 @@ export interface ReplacePoolProperties204Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
+  /** The OData ID of the resource to which the request applied */
   dataserviceid: string;
 }
 
@@ -396,7 +396,7 @@ export interface RemoveNodes202Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
+  /** The OData ID of the resource to which the request applied */
   dataserviceid: string;
 }
 
@@ -425,7 +425,7 @@ export interface ListSupportedImages200Headers {
 /** The request has succeeded. */
 export interface ListSupportedImages200Response extends HttpResponse {
   status: "200";
-  body: BatchAccountListSupportedImagesResultOutput;
+  body: AccountListSupportedImagesResultOutput;
   headers: RawHttpHeaders & ListSupportedImages200Headers;
 }
 
@@ -439,16 +439,12 @@ export interface ListPoolNodeCounts200Headers {
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
   "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
 }
 
 /** The request has succeeded. */
 export interface ListPoolNodeCounts200Response extends HttpResponse {
   status: "200";
-  body: BatchPoolNodeCountsListResultOutput;
+  body: PoolNodeCountsListResultOutput;
   headers: RawHttpHeaders & ListPoolNodeCounts200Headers;
 }
 
@@ -507,7 +503,7 @@ export interface UpdateJob200Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
+  /** The OData ID of the resource to which the request applied */
   dataserviceid: string;
 }
 
@@ -531,7 +527,7 @@ export interface ReplaceJob200Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
+  /** The OData ID of the resource to which the request applied */
   dataserviceid: string;
 }
 
@@ -555,7 +551,7 @@ export interface DisableJob202Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
+  /** The OData ID of the resource to which the request applied */
   dataserviceid: string;
 }
 
@@ -579,7 +575,7 @@ export interface EnableJob202Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
+  /** The OData ID of the resource to which the request applied */
   dataserviceid: string;
 }
 
@@ -603,7 +599,7 @@ export interface TerminateJob202Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
+  /** The OData ID of the resource to which the request applied */
   dataserviceid: string;
 }
 
@@ -627,7 +623,7 @@ export interface CreateJob201Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
+  /** The OData ID of the resource to which the request applied */
   dataserviceid: string;
 }
 
@@ -703,7 +699,7 @@ export interface ListJobPreparationAndReleaseTaskStatus200Headers {
 export interface ListJobPreparationAndReleaseTaskStatus200Response
   extends HttpResponse {
   status: "200";
-  body: BatchJobPreparationAndReleaseTaskStatusListResultOutput;
+  body: BatchJobListPreparationAndReleaseTaskStatusResultOutput;
   headers: RawHttpHeaders & ListJobPreparationAndReleaseTaskStatus200Headers;
 }
 
@@ -718,16 +714,12 @@ export interface GetJobTaskCounts200Headers {
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
   "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
 }
 
 /** The request has succeeded. */
 export interface GetJobTaskCounts200Response extends HttpResponse {
   status: "200";
-  body: BatchTaskCountsResultOutput;
+  body: TaskCountsResultOutput;
   headers: RawHttpHeaders & GetJobTaskCounts200Headers;
 }
 
@@ -774,7 +766,7 @@ export interface ListCertificates200Headers {
 /** The request has succeeded. */
 export interface ListCertificates200Response extends HttpResponse {
   status: "200";
-  body: BatchCertificateListResultOutput;
+  body: CertificateListResultOutput;
   headers: RawHttpHeaders & ListCertificates200Headers;
 }
 
@@ -1139,16 +1131,12 @@ export interface CreateTaskCollection200Headers {
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
   "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
 }
 
 /** The request has succeeded. */
 export interface CreateTaskCollection200Response extends HttpResponse {
   status: "200";
-  body: BatchTaskAddCollectionResultOutput;
+  body: TaskAddCollectionResultOutput;
   headers: RawHttpHeaders & CreateTaskCollection200Headers;
 }
 
@@ -1393,7 +1381,7 @@ export interface ListTaskFiles200Headers {
 /** The request has succeeded. */
 export interface ListTaskFiles200Response extends HttpResponse {
   status: "200";
-  body: BatchNodeFileListResultOutput;
+  body: NodeFileListResultOutput;
   headers: RawHttpHeaders & ListTaskFiles200Headers;
 }
 
@@ -1601,7 +1589,7 @@ export interface GetNodeRemoteLoginSettings200Headers {
 /** The request has succeeded. */
 export interface GetNodeRemoteLoginSettings200Response extends HttpResponse {
   status: "200";
-  body: BatchNodeRemoteLoginSettingsOutput;
+  body: BatchNodeRemoteLoginSettingsResultOutput;
   headers: RawHttpHeaders & GetNodeRemoteLoginSettings200Headers;
 }
 
@@ -1625,8 +1613,7 @@ export interface GetNodeRemoteDesktopFile200Headers {
 /** The request has succeeded. */
 export interface GetNodeRemoteDesktopFile200Response extends HttpResponse {
   status: "200";
-  /** Value may contain any sequence of octets */
-  body: Uint8Array;
+  body: string;
   headers: RawHttpHeaders & GetNodeRemoteDesktopFile200Headers;
 }
 
@@ -1640,10 +1627,6 @@ export interface UploadNodeLogs200Headers {
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
   "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
 }
 
 /** The request has succeeded. */
@@ -1695,7 +1678,7 @@ export interface GetNodeExtension200Headers {
 /** The request has succeeded. */
 export interface GetNodeExtension200Response extends HttpResponse {
   status: "200";
-  body: BatchNodeVMExtensionOutput;
+  body: NodeVMExtensionOutput;
   headers: RawHttpHeaders & GetNodeExtension200Headers;
 }
 
@@ -1718,7 +1701,7 @@ export interface ListNodeExtensions200Headers {
 /** The request has succeeded. */
 export interface ListNodeExtensions200Response extends HttpResponse {
   status: "200";
-  body: BatchNodeVMExtensionListResultOutput;
+  body: NodeVMExtensionListOutput;
   headers: RawHttpHeaders & ListNodeExtensions200Headers;
 }
 
@@ -1769,8 +1752,7 @@ export interface GetNodeFile200Headers {
 /** The request has succeeded. */
 export interface GetNodeFile200Response extends HttpResponse {
   status: "200";
-  /** Value may contain any sequence of octets */
-  body: Uint8Array;
+  body: string;
   headers: RawHttpHeaders & GetNodeFile200Headers;
 }
 
@@ -1825,7 +1807,7 @@ export interface ListNodeFiles200Headers {
 /** The request has succeeded. */
 export interface ListNodeFiles200Response extends HttpResponse {
   status: "200";
-  body: BatchNodeFileListResultOutput;
+  body: NodeFileListResultOutput;
   headers: RawHttpHeaders & ListNodeFiles200Headers;
 }
 

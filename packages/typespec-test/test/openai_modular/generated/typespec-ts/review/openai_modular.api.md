@@ -699,42 +699,51 @@ export interface FunctionName {
 
 // @public (undocumented)
 export interface GetAudioSpeechOptions extends OperationOptions {
+    apiVersion?: "2024-02-15-preview";
 }
 
 // @public (undocumented)
 export interface GetAudioTranscriptionAsPlainTextOptions extends OperationOptions {
+    apiVersion?: "2024-02-15-preview";
     contentType?: string;
 }
 
 // @public (undocumented)
 export interface GetAudioTranscriptionAsResponseObjectOptions extends OperationOptions {
+    apiVersion?: "2024-02-15-preview";
     contentType?: string;
 }
 
 // @public (undocumented)
 export interface GetAudioTranslationAsPlainTextOptions extends OperationOptions {
+    apiVersion?: "2024-02-15-preview";
     contentType?: string;
 }
 
 // @public (undocumented)
 export interface GetAudioTranslationAsResponseObjectOptions extends OperationOptions {
+    apiVersion?: "2024-02-15-preview";
     contentType?: string;
 }
 
 // @public (undocumented)
 export interface GetChatCompletionsOptions extends OperationOptions {
+    apiVersion?: "2024-02-15-preview";
 }
 
 // @public (undocumented)
 export interface GetCompletionsOptions extends OperationOptions {
+    apiVersion?: "2024-02-15-preview";
 }
 
 // @public (undocumented)
 export interface GetEmbeddingsOptions extends OperationOptions {
+    apiVersion?: "2024-02-15-preview";
 }
 
 // @public (undocumented)
 export interface GetImageGenerationsOptions extends OperationOptions {
+    apiVersion?: "2024-02-15-preview";
 }
 
 // @public

@@ -11,6 +11,7 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public (undocumented)
 export interface AcknowledgeCloudEventsOptions extends OperationOptions {
+    apiVersion?: "2023-06-01-preview";
     contentType?: string;
 }
 
@@ -70,16 +71,19 @@ export interface FailedLockToken {
 
 // @public (undocumented)
 export interface PublishCloudEventOptions extends OperationOptions {
+    apiVersion?: "2023-06-01-preview";
     contentType?: string;
 }
 
 // @public (undocumented)
 export interface PublishCloudEventsOptions extends OperationOptions {
+    apiVersion?: "2023-06-01-preview";
     contentType?: string;
 }
 
 // @public (undocumented)
 export interface ReceiveCloudEventsOptions extends OperationOptions {
+    apiVersion?: "2023-06-01-preview";
     maxEvents?: number;
     maxWaitTime?: number;
 }
@@ -97,6 +101,7 @@ export interface ReceiveResult {
 
 // @public (undocumented)
 export interface RejectCloudEventsOptions extends OperationOptions {
+    apiVersion?: "2023-06-01-preview";
     contentType?: string;
 }
 
@@ -113,6 +118,7 @@ export interface RejectResult {
 
 // @public (undocumented)
 export interface ReleaseCloudEventsOptions extends OperationOptions {
+    apiVersion?: "2023-06-01-preview";
     contentType?: string;
 }
 
