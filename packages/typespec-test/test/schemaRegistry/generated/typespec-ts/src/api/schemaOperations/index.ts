@@ -51,7 +51,6 @@ export function _listSchemaGroupsSend(
     .path("/$schemaGroups")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2023-07-01" },
     }) as StreamableMethod<
     ListSchemaGroups200Response | ListSchemaGroupsDefaultResponse
   >;
@@ -90,10 +89,7 @@ export function _getSchemaByIdSend(
 ): StreamableMethod<GetSchemaById200Response | GetSchemaByIdDefaultResponse> {
   return context
     .path("/$schemaGroups/$schemas/{id}", id)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2023-07-01" },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getSchemaByIdDeserialize(
@@ -128,10 +124,7 @@ export function _listSchemaVersionsSend(
 > {
   return context
     .path("/$schemaGroups/{groupName}/schemas/{name}/versions", groupName, name)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2023-07-01" },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listSchemaVersionsDeserialize(
@@ -180,10 +173,7 @@ export function _getSchemaByVersionSend(
       name,
       schemaVersion,
     )
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2023-07-01" },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getSchemaByVersionDeserialize(
@@ -231,7 +221,6 @@ export function _getSchemaIdByContentSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
-      queryParameters: { "api-version": "2023-07-01" },
       body: uint8ArrayToString(schemaContent, "base64"),
     });
 }
@@ -279,7 +268,6 @@ export function _registerSchemaSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       contentType: contentType,
-      queryParameters: { "api-version": "2023-07-01" },
       body: uint8ArrayToString(content, "base64"),
     });
 }

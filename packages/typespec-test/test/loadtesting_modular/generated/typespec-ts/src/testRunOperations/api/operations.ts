@@ -92,10 +92,7 @@ export function _testRunSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      queryParameters: {
-        "api-version": "2022-11-01",
-        oldTestRunId: options?.oldTestRunId,
-      },
+      queryParameters: { oldTestRunId: options?.oldTestRunId },
       body: {
         passFailCriteria: !resource.passFailCriteria
           ? undefined
@@ -414,7 +411,6 @@ export function _createOrUpdateAppComponentsSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      queryParameters: { "api-version": "2022-11-01" },
       body: { components: body["components"] },
     });
 }
@@ -471,7 +467,6 @@ export function _createOrUpdateServerMetricsConfigSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      queryParameters: { "api-version": "2022-11-01" },
       body: { metrics: body["metrics"] },
     });
 }
@@ -521,10 +516,7 @@ export function _deleteTestRunSend(
 > {
   return context
     .path("/test-runs/{testRunId}", testRunId)
-    .delete({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2022-11-01" },
-    });
+    .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteTestRunDeserialize(
@@ -559,10 +551,7 @@ export function _getAppComponentsSend(
 > {
   return context
     .path("/test-runs/{testRunId}/app-components", testRunId)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2022-11-01" },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getAppComponentsDeserialize(
@@ -607,10 +596,7 @@ export function _getServerMetricsConfigSend(
 > {
   return context
     .path("/test-runs/{testRunId}/server-metrics-config", testRunId)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2022-11-01" },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getServerMetricsConfigDeserialize(
@@ -651,10 +637,7 @@ export function _getTestRunSend(
 > {
   return context
     .path("/test-runs/{testRunId}", testRunId)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2022-11-01" },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getTestRunDeserialize(
@@ -917,10 +900,7 @@ export function _getTestRunFileSend(
 > {
   return context
     .path("/test-runs/{testRunId}/files/{fileName}", testRunId, fileName)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2022-11-01" },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getTestRunFileDeserialize(
@@ -977,7 +957,6 @@ export function _listMetricDimensionValuesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2022-11-01",
         interval: options?.interval,
         metricName: options?.metricName,
         metricNamespace: metricNamespace,
@@ -1036,10 +1015,7 @@ export function _listMetricDefinitionsSend(
     .path("/test-runs/{testRunId}/metric-definitions", testRunId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        "api-version": "2022-11-01",
-        metricNamespace: options?.metricNamespace,
-      },
+      queryParameters: { metricNamespace: options?.metricNamespace },
     });
 }
 
@@ -1097,10 +1073,7 @@ export function _listMetricNamespacesSend(
 > {
   return context
     .path("/test-runs/{testRunId}/metric-namespaces", testRunId)
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2022-11-01" },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listMetricNamespacesDeserialize(
@@ -1143,7 +1116,6 @@ export function _listMetricsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2022-11-01",
         aggregation: options?.aggregation,
         interval: options?.interval,
         metricName: options?.metricName,
@@ -1218,7 +1190,6 @@ export function _listTestRunsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        "api-version": "2022-11-01",
         orderby: options?.orderby,
         search: options?.search,
         testId: options?.testId,
@@ -1518,10 +1489,7 @@ export function _stopTestRunSend(
 > {
   return context
     .path("/test-runs/{testRunId}:stop", testRunId)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": "2022-11-01" },
-    });
+    .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _stopTestRunDeserialize(

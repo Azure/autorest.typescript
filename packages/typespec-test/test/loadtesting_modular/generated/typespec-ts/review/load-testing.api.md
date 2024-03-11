@@ -62,38 +62,32 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 
 // @public (undocumented)
 export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
     // (undocumented)
     contentType?: string;
 }
 
 // @public (undocumented)
 export interface CreateOrUpdateServerMetricsConfigOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
     // (undocumented)
     contentType?: string;
 }
 
 // @public (undocumented)
 export interface CreateOrUpdateTestOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
     // (undocumented)
     contentType?: string;
 }
 
 // @public (undocumented)
 export interface DeleteTestFileOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
 }
 
 // @public (undocumented)
 export interface DeleteTestOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
 }
 
 // @public (undocumented)
 export interface DeleteTestRunOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
 }
 
 // @public
@@ -137,32 +131,26 @@ export type FileType = string;
 
 // @public (undocumented)
 export interface GetAppComponentsOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
 }
 
 // @public (undocumented)
 export interface GetServerMetricsConfigOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
 }
 
 // @public (undocumented)
 export interface GetTestFileOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
 }
 
 // @public (undocumented)
 export interface GetTestOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
 }
 
 // @public (undocumented)
 export interface GetTestRunFileOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
 }
 
 // @public (undocumented)
 export interface GetTestRunOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
 }
 
 // @public
@@ -170,13 +158,11 @@ export type Interval = string;
 
 // @public (undocumented)
 export interface ListMetricDefinitionsOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
     metricNamespace?: string;
 }
 
 // @public (undocumented)
 export interface ListMetricDimensionValuesOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
     interval?: TestRunOperationsClientInterval;
     metricName?: string;
     timespan?: string;
@@ -184,13 +170,11 @@ export interface ListMetricDimensionValuesOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ListMetricNamespacesOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
 }
 
 // @public (undocumented)
 export interface ListMetricsOptions extends OperationOptions {
     aggregation?: string;
-    apiVersion?: "2022-11-01";
     interval?: TestRunOperationsClientInterval;
     metricName?: string;
     metricNamespace?: string;
@@ -199,12 +183,10 @@ export interface ListMetricsOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ListTestFilesOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
 }
 
 // @public (undocumented)
 export interface ListTestRunsOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
     executionFrom?: string;
     executionTo?: string;
     maxpagesize?: number;
@@ -216,7 +198,6 @@ export interface ListTestRunsOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ListTestsOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
     lastModifiedEndTime?: string;
     lastModifiedStartTime?: string;
     maxpagesize?: number;
@@ -360,7 +341,6 @@ export type Status = string;
 
 // @public (undocumented)
 export interface StopTestRunOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
 }
 
 // @public
@@ -502,14 +482,12 @@ export type TestRunOperationsClientContinuablePage<TElement, TPage = TElement[]>
 
 // @public (undocumented)
 export interface TestRunOperationsClientCreateOrUpdateAppComponentsOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
     // (undocumented)
     contentType?: string;
 }
 
 // @public (undocumented)
 export interface TestRunOperationsClientCreateOrUpdateServerMetricsConfigOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
     // (undocumented)
     contentType?: string;
 }
@@ -555,12 +533,10 @@ export type TestRunOperationsClientFileType = string;
 
 // @public (undocumented)
 export interface TestRunOperationsClientGetAppComponentsOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
 }
 
 // @public (undocumented)
 export interface TestRunOperationsClientGetServerMetricsConfigOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
 }
 
 // @public
@@ -800,7 +776,6 @@ export interface TestRunOperationsClientTimeSeriesElement {
 
 // @public (undocumented)
 export interface TestRunOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
     contentType?: string;
     oldTestRunId?: string;
 }
@@ -850,7 +825,6 @@ export interface TimeSeriesElement {
 
 // @public (undocumented)
 export interface UploadTestFileOptions extends OperationOptions {
-    apiVersion?: "2022-11-01";
     // (undocumented)
     contentType?: string;
     fileType?: FileType;

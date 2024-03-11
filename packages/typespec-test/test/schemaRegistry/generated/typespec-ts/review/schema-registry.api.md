@@ -54,27 +54,22 @@ export interface SchemaGroup {
 
 // @public (undocumented)
 export interface SchemaOperationsGetSchemaByIdOptions extends OperationOptions {
-    apiVersion?: "2023-07-01";
 }
 
 // @public (undocumented)
 export interface SchemaOperationsGetSchemaByVersionOptions extends OperationOptions {
-    apiVersion?: "2023-07-01";
 }
 
 // @public (undocumented)
 export interface SchemaOperationsGetSchemaIdByContentOptions extends OperationOptions {
-    apiVersion?: "2023-07-01";
 }
 
 // @public (undocumented)
 export interface SchemaOperationsListSchemaGroupsOptions extends OperationOptions {
-    apiVersion?: "2023-07-01";
 }
 
 // @public (undocumented)
 export interface SchemaOperationsListSchemaVersionsOptions extends OperationOptions {
-    apiVersion?: "2023-07-01";
 }
 
 // @public (undocumented)
@@ -95,7 +90,6 @@ export interface SchemaOperationsOperations {
 
 // @public (undocumented)
 export interface SchemaOperationsRegisterSchemaOptions extends OperationOptions {
-    apiVersion?: "2023-07-01";
 }
 
 // @public
