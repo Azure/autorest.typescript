@@ -275,13 +275,8 @@ function convertClientLevelParameters(
     } else {
       clientParams.push({
         name: "credential",
-        assignment: "const credential = new TokenCredential({Your Token});"
+        assignment: `const credential = {getToken: () => Promise.resolve({ token: "{Your token}", expiresOnTimestamp: 0 })};`
       });
-      addValueInImportedDict(
-        tokenCredentialPackage,
-        "TokenCredential",
-        importedDict
-      );
     }
   }
   return clientParams;
