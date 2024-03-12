@@ -52,28 +52,30 @@ export function _matchTrialsSend(
             : {
                 sex: p.info?.["sex"],
                 birthDate: p.info?.["birthDate"]?.toDateString(),
-                clinicalInfo: !p.info?.["clinicalInfo"]
-                  ? p.info?.["clinicalInfo"]
-                  : p.info?.["clinicalInfo"].map((p) => ({
-                      system: p["system"],
-                      code: p["code"],
-                      name: p["name"],
-                      value: p["value"],
-                    })),
+                clinicalInfo:
+                  p.info?.["clinicalInfo"] === undefined
+                    ? p.info?.["clinicalInfo"]
+                    : p.info?.["clinicalInfo"].map((p) => ({
+                        system: p["system"],
+                        code: p["code"],
+                        name: p["name"],
+                        value: p["value"],
+                      })),
               },
-          data: !p["data"]
-            ? p["data"]
-            : p["data"].map((p) => ({
-                type: p["type"],
-                clinicalType: p["clinicalType"],
-                id: p["id"],
-                language: p["language"],
-                createdDateTime: p["createdDateTime"]?.toISOString(),
-                content: {
-                  sourceType: p.content["sourceType"],
-                  value: p.content["value"],
-                },
-              })),
+          data:
+            p["data"] === undefined
+              ? p["data"]
+              : p["data"].map((p) => ({
+                  type: p["type"],
+                  clinicalType: p["clinicalType"],
+                  id: p["id"],
+                  language: p["language"],
+                  createdDateTime: p["createdDateTime"]?.toISOString(),
+                  content: {
+                    sourceType: p.content["sourceType"],
+                    value: p.content["value"],
+                  },
+                })),
         })),
         configuration: !body.configuration
           ? undefined
@@ -81,105 +83,113 @@ export function _matchTrialsSend(
               verbose: body.configuration?.["verbose"],
               includeEvidence: body.configuration?.["includeEvidence"],
               clinicalTrials: {
-                customTrials: !body.configuration?.clinicalTrials[
-                  "customTrials"
-                ]
-                  ? body.configuration?.clinicalTrials["customTrials"]
-                  : body.configuration?.clinicalTrials["customTrials"].map(
-                      (p) => ({
-                        id: p["id"],
-                        eligibilityCriteriaText: p["eligibilityCriteriaText"],
-                        demographics: !p.demographics
-                          ? undefined
-                          : {
-                              acceptedSex: p.demographics?.["acceptedSex"],
-                              acceptedAgeRange: !p.demographics
-                                ?.acceptedAgeRange
-                                ? undefined
-                                : {
-                                    minimumAge: !p.demographics
-                                      ?.acceptedAgeRange?.minimumAge
-                                      ? undefined
-                                      : {
-                                          unit: p.demographics?.acceptedAgeRange
-                                            ?.minimumAge?.["unit"],
-                                          value:
-                                            p.demographics?.acceptedAgeRange
-                                              ?.minimumAge?.["value"],
-                                        },
-                                    maximumAge: !p.demographics
-                                      ?.acceptedAgeRange?.maximumAge
-                                      ? undefined
-                                      : {
-                                          unit: p.demographics?.acceptedAgeRange
-                                            ?.maximumAge?.["unit"],
-                                          value:
-                                            p.demographics?.acceptedAgeRange
-                                              ?.maximumAge?.["value"],
-                                        },
+                customTrials:
+                  body.configuration?.clinicalTrials["customTrials"] ===
+                  undefined
+                    ? body.configuration?.clinicalTrials["customTrials"]
+                    : body.configuration?.clinicalTrials["customTrials"].map(
+                        (p) => ({
+                          id: p["id"],
+                          eligibilityCriteriaText: p["eligibilityCriteriaText"],
+                          demographics: !p.demographics
+                            ? undefined
+                            : {
+                                acceptedSex: p.demographics?.["acceptedSex"],
+                                acceptedAgeRange: !p.demographics
+                                  ?.acceptedAgeRange
+                                  ? undefined
+                                  : {
+                                      minimumAge: !p.demographics
+                                        ?.acceptedAgeRange?.minimumAge
+                                        ? undefined
+                                        : {
+                                            unit: p.demographics
+                                              ?.acceptedAgeRange?.minimumAge?.[
+                                              "unit"
+                                            ],
+                                            value:
+                                              p.demographics?.acceptedAgeRange
+                                                ?.minimumAge?.["value"],
+                                          },
+                                      maximumAge: !p.demographics
+                                        ?.acceptedAgeRange?.maximumAge
+                                        ? undefined
+                                        : {
+                                            unit: p.demographics
+                                              ?.acceptedAgeRange?.maximumAge?.[
+                                              "unit"
+                                            ],
+                                            value:
+                                              p.demographics?.acceptedAgeRange
+                                                ?.maximumAge?.["value"],
+                                          },
+                                    },
+                              },
+                          metadata: {
+                            phases: p.metadata["phases"],
+                            studyType: p.metadata["studyType"],
+                            recruitmentStatus: p.metadata["recruitmentStatus"],
+                            conditions: p.metadata["conditions"],
+                            sponsors: p.metadata["sponsors"],
+                            contacts:
+                              p.metadata["contacts"] === undefined
+                                ? p.metadata["contacts"]
+                                : p.metadata["contacts"].map((p) => ({
+                                    name: p["name"],
+                                    email: p["email"],
+                                    phone: p["phone"],
+                                  })),
+                            facilities:
+                              p.metadata["facilities"] === undefined
+                                ? p.metadata["facilities"]
+                                : p.metadata["facilities"].map((p) => ({
+                                    name: p["name"],
+                                    city: p["city"],
+                                    state: p["state"],
+                                    countryOrRegion: p["countryOrRegion"],
+                                  })),
+                          },
+                        }),
+                      ),
+                registryFilters:
+                  body.configuration?.clinicalTrials["registryFilters"] ===
+                  undefined
+                    ? body.configuration?.clinicalTrials["registryFilters"]
+                    : body.configuration?.clinicalTrials["registryFilters"].map(
+                        (p) => ({
+                          conditions: p["conditions"],
+                          studyTypes: p["studyTypes"],
+                          recruitmentStatuses: p["recruitmentStatuses"],
+                          sponsors: p["sponsors"],
+                          phases: p["phases"],
+                          purposes: p["purposes"],
+                          ids: p["ids"],
+                          sources: p["sources"],
+                          facilityNames: p["facilityNames"],
+                          facilityLocations:
+                            p["facilityLocations"] === undefined
+                              ? p["facilityLocations"]
+                              : p["facilityLocations"].map((p) => ({
+                                  city: p["city"],
+                                  state: p["state"],
+                                  countryOrRegion: p["countryOrRegion"],
+                                })),
+                          facilityAreas:
+                            p["facilityAreas"] === undefined
+                              ? p["facilityAreas"]
+                              : p["facilityAreas"].map((p) => ({
+                                  type: p["type"],
+                                  geometry: {
+                                    type: p.geometry["type"],
+                                    coordinates: p.geometry["coordinates"],
                                   },
-                            },
-                        metadata: {
-                          phases: p.metadata["phases"],
-                          studyType: p.metadata["studyType"],
-                          recruitmentStatus: p.metadata["recruitmentStatus"],
-                          conditions: p.metadata["conditions"],
-                          sponsors: p.metadata["sponsors"],
-                          contacts: !p.metadata["contacts"]
-                            ? p.metadata["contacts"]
-                            : p.metadata["contacts"].map((p) => ({
-                                name: p["name"],
-                                email: p["email"],
-                                phone: p["phone"],
-                              })),
-                          facilities: !p.metadata["facilities"]
-                            ? p.metadata["facilities"]
-                            : p.metadata["facilities"].map((p) => ({
-                                name: p["name"],
-                                city: p["city"],
-                                state: p["state"],
-                                countryOrRegion: p["countryOrRegion"],
-                              })),
-                        },
-                      }),
-                    ),
-                registryFilters: !body.configuration?.clinicalTrials[
-                  "registryFilters"
-                ]
-                  ? body.configuration?.clinicalTrials["registryFilters"]
-                  : body.configuration?.clinicalTrials["registryFilters"].map(
-                      (p) => ({
-                        conditions: p["conditions"],
-                        studyTypes: p["studyTypes"],
-                        recruitmentStatuses: p["recruitmentStatuses"],
-                        sponsors: p["sponsors"],
-                        phases: p["phases"],
-                        purposes: p["purposes"],
-                        ids: p["ids"],
-                        sources: p["sources"],
-                        facilityNames: p["facilityNames"],
-                        facilityLocations: !p["facilityLocations"]
-                          ? p["facilityLocations"]
-                          : p["facilityLocations"].map((p) => ({
-                              city: p["city"],
-                              state: p["state"],
-                              countryOrRegion: p["countryOrRegion"],
-                            })),
-                        facilityAreas: !p["facilityAreas"]
-                          ? p["facilityAreas"]
-                          : p["facilityAreas"].map((p) => ({
-                              type: p["type"],
-                              geometry: {
-                                type: p.geometry["type"],
-                                coordinates: p.geometry["coordinates"],
-                              },
-                              properties: {
-                                subType: p.properties["subType"],
-                                radius: p.properties["radius"],
-                              },
-                            })),
-                      }),
-                    ),
+                                  properties: {
+                                    subType: p.properties["subType"],
+                                    radius: p.properties["radius"],
+                                  },
+                                })),
+                        }),
+                      ),
               },
             },
       },
@@ -213,28 +223,29 @@ export async function _matchTrialsDeserialize(
         value: p["value"],
         description: p["description"],
         confidenceScore: p["confidenceScore"],
-        evidence: !p["evidence"]
-          ? p["evidence"]
-          : p["evidence"].map((p) => ({
-              eligibilityCriteriaEvidence: p["eligibilityCriteriaEvidence"],
-              patientDataEvidence: !p.patientDataEvidence
-                ? undefined
-                : {
-                    id: p.patientDataEvidence?.["id"],
-                    text: p.patientDataEvidence?.["text"],
-                    offset: p.patientDataEvidence?.["offset"],
-                    length: p.patientDataEvidence?.["length"],
-                  },
-              patientInfoEvidence: !p.patientInfoEvidence
-                ? undefined
-                : {
-                    system: p.patientInfoEvidence?.["system"],
-                    code: p.patientInfoEvidence?.["code"],
-                    name: p.patientInfoEvidence?.["name"],
-                    value: p.patientInfoEvidence?.["value"],
-                  },
-              importance: p["importance"],
-            })),
+        evidence:
+          p["evidence"] === undefined
+            ? p["evidence"]
+            : p["evidence"].map((p) => ({
+                eligibilityCriteriaEvidence: p["eligibilityCriteriaEvidence"],
+                patientDataEvidence: !p.patientDataEvidence
+                  ? undefined
+                  : {
+                      id: p.patientDataEvidence?.["id"],
+                      text: p.patientDataEvidence?.["text"],
+                      offset: p.patientDataEvidence?.["offset"],
+                      length: p.patientDataEvidence?.["length"],
+                    },
+                patientInfoEvidence: !p.patientInfoEvidence
+                  ? undefined
+                  : {
+                      system: p.patientInfoEvidence?.["system"],
+                      code: p.patientInfoEvidence?.["code"],
+                      name: p.patientInfoEvidence?.["name"],
+                      value: p.patientInfoEvidence?.["value"],
+                    },
+                importance: p["importance"],
+              })),
         id: p["id"],
         source: p["source"],
         metadata: !p.metadata
@@ -245,33 +256,36 @@ export async function _matchTrialsDeserialize(
               recruitmentStatus: p.metadata?.["recruitmentStatus"],
               conditions: p.metadata?.["conditions"],
               sponsors: p.metadata?.["sponsors"],
-              contacts: !p.metadata?.["contacts"]
-                ? p.metadata?.["contacts"]
-                : p.metadata?.["contacts"].map((p) => ({
-                    name: p["name"],
-                    email: p["email"],
-                    phone: p["phone"],
-                  })),
-              facilities: !p.metadata?.["facilities"]
-                ? p.metadata?.["facilities"]
-                : p.metadata?.["facilities"].map((p) => ({
-                    name: p["name"],
-                    city: p["city"],
-                    state: p["state"],
-                    countryOrRegion: p["countryOrRegion"],
-                  })),
+              contacts:
+                p.metadata?.["contacts"] === undefined
+                  ? p.metadata?.["contacts"]
+                  : p.metadata?.["contacts"].map((p) => ({
+                      name: p["name"],
+                      email: p["email"],
+                      phone: p["phone"],
+                    })),
+              facilities:
+                p.metadata?.["facilities"] === undefined
+                  ? p.metadata?.["facilities"]
+                  : p.metadata?.["facilities"].map((p) => ({
+                      name: p["name"],
+                      city: p["city"],
+                      state: p["state"],
+                      countryOrRegion: p["countryOrRegion"],
+                    })),
             },
       })),
-      neededClinicalInfo: !p["neededClinicalInfo"]
-        ? p["neededClinicalInfo"]
-        : p["neededClinicalInfo"].map((p) => ({
-            system: p["system"],
-            code: p["code"],
-            name: p["name"],
-            value: p["value"],
-            semanticType: p["semanticType"],
-            category: p["category"],
-          })),
+      neededClinicalInfo:
+        p["neededClinicalInfo"] === undefined
+          ? p["neededClinicalInfo"]
+          : p["neededClinicalInfo"].map((p) => ({
+              system: p["system"],
+              code: p["code"],
+              name: p["name"],
+              value: p["value"],
+              semanticType: p["semanticType"],
+              category: p["category"],
+            })),
     })),
     modelVersion: result.body.results["modelVersion"],
     knowledgeGraphLastUpdateDate:

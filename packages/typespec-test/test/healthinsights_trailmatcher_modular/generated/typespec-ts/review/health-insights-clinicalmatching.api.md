@@ -240,7 +240,7 @@ export interface PatientRecord {
     info?: PatientInfo;
 }
 
-// @public
+// @public (undocumented)
 export type RepeatabilityResult = "accepted" | "rejected";
 
 // Warning: (ae-forgotten-export) The symbol "AzureHealthInsightsContext" needs to be exported by the entry point index.d.ts

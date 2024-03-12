@@ -426,5 +426,6 @@ export interface ExtendedClinicalCodedElement {
   category?: string;
 }
 
-/** Alias for RepeatabilityResult */
+/** Repeatability Result header options */
+/** */
 export type RepeatabilityResult = "accepted" | "rejected";
