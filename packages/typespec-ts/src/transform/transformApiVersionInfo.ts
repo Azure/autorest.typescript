@@ -15,7 +15,7 @@ import {
 } from "@azure-tools/rlc-common";
 import { getHttpOperation } from "@typespec/http";
 import {
-  getEnrichedDefaultApiVersion,
+  getDefaultApiVersionString,
   getSchemaForType,
   trimUsage
 } from "../utils/modelUtils.js";
@@ -37,7 +37,7 @@ export function transformApiVersionInfo(
     pathVersionDetail?.isCrossedVersion || queryVersionDetail?.isCrossedVersion;
   const defaultValue =
     (pathVersionDetail || queryVersionDetail) && !isCrossedVersion
-      ? getEnrichedDefaultApiVersion(program, dpgContext) ??
+      ? getDefaultApiVersionString(program, dpgContext) ??
         pathVersionDetail?.defaultValue ??
         queryVersionDetail?.defaultValue
       : undefined;

@@ -152,7 +152,8 @@ export function buildModels(
   // We are generating both models and enums here
   const coreClientTypes = new Set<string>();
   const coreLroTypes = new Set<string>();
-  const models = extractModels(codeModel);
+  // filter out the models/enums that are anonymous
+  const models = extractModels(codeModel).filter((m) => !!m.name);
   const aliases = extractAliases(codeModel);
   // Skip to generate models.ts if there is no any models
   if (models.length === 0 && aliases.length === 0) {
@@ -165,17 +166,13 @@ export function buildModels(
 
   for (const model of models) {
     if (model.type === "enum") {
-      if (!model.name || modelsFile.getTypeAlias(model.name!)) {
+      if (modelsFile.getTypeAlias(model.name!)) {
         // If the enum is already defined, we don't need to do anything
-        // If the enum is anonymous, we don't build any type alias for it
         continue;
       }
       const enumAlias = buildEnumModel(model);
       modelsFile.addTypeAlias(enumAlias);
     } else {
-      if (!model.name) {
-        continue;
-      }
       const modelInterface = buildModelInterface(model, {
         coreClientTypes,
         coreLroTypes

@@ -274,14 +274,14 @@ function getOperationSignatureParameters(
     });
 
   if (operation.bodyParameter) {
-    parameters.set(
-      operation.bodyParameter?.clientName,
-      buildType(
+    parameters.set(operation.bodyParameter?.clientName, {
+      hasQuestionToken: operation.bodyParameter.optional,
+      ...buildType(
         operation.bodyParameter.clientName,
         operation.bodyParameter.type,
         operation.bodyParameter.type.format
       )
-    );
+    });
   }
   // Add context as the first parameter
   const contextParam = { name: "context", type: clientType };
@@ -600,7 +600,10 @@ function buildBodyParameter(
     );
 
     if (bodyParameter && bodyParts.length > 0) {
-      return `\nbody: {${bodyParts.join(",\n")}},`;
+      const optionalBody = bodyParameter.optional
+        ? `${bodyParameter.clientName} === undefined ? ${bodyParameter.clientName} : `
+        : "";
+      return `\nbody: ${optionalBody}{${bodyParts.join(",\n")}},`;
     } else if (bodyParameter && bodyParts.length === 0) {
       return `\nbody: ${bodyParameter.clientName},`;
     }
@@ -1193,7 +1196,8 @@ export function serializeRequestValue(
   typeStack: Type[] = [],
   format?: string
 ): string {
-  const requiredPrefix = required === false ? `${clientValue} === undefined` : "";
+  const requiredPrefix =
+    required === false ? `${clientValue} === undefined` : "";
   const nullablePrefix = type.nullable ? `${clientValue} === null` : "";
   const requiredOrNullablePrefix =
     requiredPrefix !== "" && nullablePrefix !== ""

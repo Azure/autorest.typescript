@@ -36,19 +36,15 @@ export interface StringAndArrayCases {
 
 export interface EnumsOnlyCases {
   /** This should be receive/send the left variant */
-  lr: LR | UD;
+  lr: string | "left" | "right" | "up" | "down";
   /** This should be receive/send the up variant */
-  ud: UD | UD;
+  ud: string | "up" | "down";
 }
-
-/** "left", "right" */
-export type LR = string;
-/** "up", "down" */
-export type UD = string;
 
 export interface Dog {
   bark: string;
 }
 
-/** Alias for StringExtensibleNamedUnion */
-export type StringExtensibleNamedUnion = string | "b" | "c";
+/** Type of StringExtensibleNamedUnion */
+/** "b", "c" */
+export type StringExtensibleNamedUnion = string;

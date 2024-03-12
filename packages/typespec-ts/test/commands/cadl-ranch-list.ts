@@ -234,6 +234,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   { outputPath: "lro/rpc", inputPath: "azure/core/lro/rpc" },
   { outputPath: "lro/standard", inputPath: "azure/core/lro/standard" },
   {
+    outputPath: "parameters/body-optionality",
+    inputPath: "parameters/body-optionality"
+  },
+  {
     outputPath: "models/usage",
     inputPath: "type/model/usage"
   },
