@@ -26,7 +26,7 @@ import {
   CollectionsModelPatchNonNullParameters,
   CollectionsModelGetNullParameters,
   CollectionsModelPatchNullParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   StringModelGetNonNull200Response,
   StringModelPatchNonNull204Response,
@@ -52,7 +52,7 @@ import {
   CollectionsModelPatchNonNull204Response,
   CollectionsModelGetNull200Response,
   CollectionsModelPatchNull204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface StringModelGetNonNull {

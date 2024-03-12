@@ -7,7 +7,7 @@ import {
   CreateJob202Response,
   CreateJobLogicalResponse,
   CreateJobDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs/{jobId}":

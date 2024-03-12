@@ -8,7 +8,7 @@ import {
   Int32SecondsDurationPropertyOutput,
   FloatSecondsDurationPropertyOutput,
   FloatSecondsDurationArrayPropertyOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface QueryDefault204Response extends HttpResponse {

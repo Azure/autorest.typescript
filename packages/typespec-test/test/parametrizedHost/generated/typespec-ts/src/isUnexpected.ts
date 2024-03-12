@@ -4,7 +4,7 @@
 import {
   ListCollections200Response,
   ListCollectionsDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /app/collections": ["200"],

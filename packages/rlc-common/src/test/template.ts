@@ -168,18 +168,27 @@ export async function createRecorder(context: Context): Promise<Recorder> {
 `;
 
 export const sampleTestContent = `
-// import { createRecorder } from "./utils/recordedClient{{#if isEsm}}.js{{/if}}";
+{{#if isEsm}}
+import { createRecorder } from "./utils/recordedClient.js";
 import { assert, beforeEach, afterEach, it, describe } from "vitest";
+{{/if}}
+
+{{#if isCjs}}
+import { Recorder } from "@azure-tools/test-recorder";
+import { assert } from "chai";
+import { createRecorder } from "./utils/recordedClient{{#if isModularLibrary}}.js{{/if}}";
+import { Context } from "mocha";
+{{/if}}
 
 describe("My test", () => {
-  // let recorder: Recorder;
+  {{#if isEsm}}//{{/if}} let recorder: Recorder;
 
-  beforeEach(async function() {
-    // recorder = await createRecorder(this);
+  beforeEach(async function({{#if isCjs}}this: Context{{/if}}) {
+    {{#if isEsm}}//{{/if}} recorder = await createRecorder(this);
   });
 
   afterEach(async function() {
-    // await recorder.stop();
+    {{#if isEsm}}//{{/if}} await recorder.stop();
   });
 
   it("sample test", async function() {

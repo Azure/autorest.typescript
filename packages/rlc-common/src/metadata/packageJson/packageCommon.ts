@@ -9,6 +9,7 @@ export interface PackageCommonInfoConfig {
   moduleKind: "esm" | "cjs";
   withTests: boolean;
   withSamples: boolean;
+  exports?: Record<string, any>;
 }
 
 /**
@@ -68,7 +69,8 @@ function getEntryPointInformation(config: PackageCommonInfoConfig) {
 function getCjsEntrypointInformation({
   name,
   nameWithoutScope,
-  moduleKind
+  moduleKind,
+  withTests
 }: PackageCommonInfoConfig) {
   if (moduleKind !== "cjs") {
     return;
@@ -78,28 +80,32 @@ function getCjsEntrypointInformation({
 
   return {
     main: "dist/index.js",
-    module: "./dist-esm/index.js",
+    module: withTests ? "./dist-esm/src/index.js" : "./dist-esm/index.js",
     types: types
   };
 }
 
-function getEsmEntrypointInformation({ moduleKind }: PackageCommonInfoConfig) {
-  if (moduleKind !== "esm") {
+function getEsmEntrypointInformation(config: PackageCommonInfoConfig) {
+  if (config.moduleKind !== "esm") {
     return;
   }
 
-  return { tshy: tshyConfig };
+  return { tshy: getTshyConfig(config), type: "module" };
 }
 
-export const tshyConfig = {
-  exports: {
-    "./package.json": "./package.json",
-    ".": "./src/index.ts"
-  },
-  dialects: ["esm", "commonjs"],
-  esmDialects: ["browser", "react-native"],
-  selfLink: false
-};
+export function getTshyConfig(config: PackageCommonInfoConfig) {
+  const { exports = {} } = config;
+  return {
+    exports: {
+      "./package.json": "./package.json",
+      ".": "./src/index.ts",
+      ...exports
+    },
+    dialects: ["esm", "commonjs"],
+    esmDialects: ["browser", "react-native"],
+    selfLink: false
+  };
+}
 
 export function getCommonPackageScripts({
   withTests

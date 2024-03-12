@@ -4,11 +4,11 @@
 import {
   InputToInputOutputParameters,
   OutputToInputOutputParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   InputToInputOutput204Response,
   OutputToInputOutput200Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface InputToInputOutput {

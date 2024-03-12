@@ -3330,7 +3330,7 @@ describe("Input/output model type", () => {
         `
         import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
         import { RequestParameters } from "@azure-rest/core-client";
-        import { SchemaContentTypeValues } from "./models";
+        import { SchemaContentTypeValues } from "./models.js";
         
         export interface GetHeaders {
           "test-header": SchemaContentTypeValues;
@@ -3359,7 +3359,7 @@ describe("Input/output model type", () => {
         `
         import { RawHttpHeaders } from "@azure/core-rest-pipeline";
         import { HttpResponse } from "@azure-rest/core-client";
-        import { SchemaContentTypeValuesOutput } from "./outputModels";
+        import { SchemaContentTypeValuesOutput } from "./outputModels.js";
         
         export interface Get204Headers {
           "test-header": SchemaContentTypeValuesOutput;

@@ -27,7 +27,7 @@ export interface AddOrUpdateBlockItemsResult {
 // @public
 export interface AnalyzeImageOptions {
     categories?: ImageCategory[];
-    image: ImageData_2;
+    image: ImageData;
     outputType?: AnalyzeImageOutputType;
 }
 
@@ -117,11 +117,10 @@ export interface ImageAnalyzeSeverityResult {
 export type ImageCategory = string;
 
 // @public
-interface ImageData_2 {
+export interface ImageData {
     blobUrl?: string;
     content?: Uint8Array;
 }
-export { ImageData_2 as ImageData }
 
 // @public (undocumented)
 export interface ListTextBlocklistItemsOptions extends OperationOptions {

@@ -7,7 +7,7 @@ import {
   DeleteWidgetParameters,
   GetWidgetOperationStatusParameters,
   ListWidgetsParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   GetWidget200Response,
   GetWidgetDefaultResponse,
@@ -20,7 +20,7 @@ import {
   GetWidgetOperationStatusDefaultResponse,
   ListWidgets200Response,
   ListWidgetsDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetWidget {

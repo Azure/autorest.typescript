@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { HttpResponse } from "@azure-rest/core-client";
-import { JsonEncodedNameModelOutput } from "./outputModels";
+import { JsonEncodedNameModelOutput } from "./outputModels.js";
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface PropertySend204Response extends HttpResponse {

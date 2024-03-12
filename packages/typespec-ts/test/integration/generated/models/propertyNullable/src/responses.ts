@@ -9,7 +9,7 @@ import {
   DurationPropertyOutput,
   CollectionsBytePropertyOutput,
   CollectionsModelPropertyOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface StringModelGetNonNull200Response extends HttpResponse {

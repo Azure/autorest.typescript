@@ -48,7 +48,6 @@ import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
-import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
 import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
 import { join } from "path";
@@ -61,6 +60,7 @@ import {
   buildPagingHelpers as buildModularPagingHelpers
 } from "./modular/buildPagingFiles.js";
 import { EmitterOptions } from "./lib.js";
+import { getModuleExports } from "./modular/buildProjectFiles.js";
 
 export * from "./lib.js";
 
@@ -271,10 +271,12 @@ export async function $onEmit(context: EmitContext) {
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
       }
-      if (!option.isModularLibrary) {
-        commonBuilders.push(buildPackageFile);
-        commonBuilders.push(buildTsConfig);
+      let moduleExports = {};
+      if (option.isModularLibrary) {
+        moduleExports = getModuleExports(modularCodeModel);
       }
+      commonBuilders.push((model) => buildPackageFile(model, moduleExports));
+      commonBuilders.push(buildTsConfig);
       // build metadata relevant files
       await emitContentByBuilder(
         program,
@@ -285,16 +287,6 @@ export async function $onEmit(context: EmitContext) {
 
       if (option.isModularLibrary) {
         const project = new Project();
-        emitPackage(
-          project,
-          dpgContext.generationPathDetail?.metadataDir ?? "",
-          modularCodeModel
-        );
-        emitTsConfig(
-          project,
-          dpgContext.generationPathDetail?.metadataDir ?? "",
-          modularCodeModel
-        );
         for (const file of project.getSourceFiles()) {
           await emitContentByBuilder(
             program,

@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { WidgetManagerClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { WidgetManagerClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `WidgetManagerClient`

@@ -14,7 +14,10 @@ import {
 import { buildAzureStandalonePackage } from "./packageJson/buildAzureStandalonePackage.js";
 import { Project } from "ts-morph";
 
-export function buildPackageFile(model: RLCModel) {
+export function buildPackageFile(
+  model: RLCModel,
+  exports?: Record<string, any>
+) {
   const config: PackageCommonInfoConfig = {
     description: getDescription(model),
     moduleKind: model.options?.moduleKind ?? "esm",
@@ -22,8 +25,10 @@ export function buildPackageFile(model: RLCModel) {
     version: getPackageVersion(model),
     withSamples: model.options?.generateSample === true,
     withTests: model.options?.generateTest === true,
-    nameWithoutScope: model.options?.packageDetails?.nameWithoutScope
+    nameWithoutScope: model.options?.packageDetails?.nameWithoutScope,
+    exports
   };
+
   let packageInfo: Record<string, any> = buildFlavorlessPackage(config);
 
   const extendedConfig = {

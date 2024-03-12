@@ -26,22 +26,10 @@ export function buildFlavorlessPackage(config: PackageCommonInfoConfig) {
   return packageInfo;
 }
 
-function getFlavorlessPackageInfo({
-  name,
-  version,
-  description,
-  withSamples,
-  withTests,
-  moduleKind
-}: PackageCommonInfoConfig): Record<string, any> {
-  const commonPackageInfo = getPackageCommonInfo({
-    name,
-    version,
-    description,
-    withSamples,
-    withTests,
-    moduleKind
-  });
+function getFlavorlessPackageInfo(
+  config: PackageCommonInfoConfig
+): Record<string, any> {
+  const commonPackageInfo = getPackageCommonInfo(config);
 
   return {
     ...commonPackageInfo

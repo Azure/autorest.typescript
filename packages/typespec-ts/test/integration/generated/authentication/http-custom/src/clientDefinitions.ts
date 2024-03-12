@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ValidParameters, InvalidParameters } from "./parameters";
+import { ValidParameters, InvalidParameters } from "./parameters.js";
 import {
   Valid204Response,
   Invalid204Response,
   Invalid403Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Valid {

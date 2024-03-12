@@ -3,7 +3,7 @@
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
-import { CollectionOutput } from "./outputModels";
+import { CollectionOutput } from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface ListCollections200Response extends HttpResponse {

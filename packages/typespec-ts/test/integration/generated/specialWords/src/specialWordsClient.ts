@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { SpecialWordsClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { SpecialWordsClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `SpecialWordsClient`

@@ -6,13 +6,13 @@ import {
   RequiredImplicitParameters,
   OptionalExplicitSetModelParameters,
   OptionalExplicitOmitParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   RequiredExplicit204Response,
   RequiredImplicit204Response,
   OptionalExplicitSetModel204Response,
   OptionalExplicitOmit204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface RequiredExplicit {

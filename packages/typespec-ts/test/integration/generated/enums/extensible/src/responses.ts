@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { HttpResponse } from "@azure-rest/core-client";
-import { DaysOfWeekExtensibleEnumOutput } from "./outputModels";
+import { DaysOfWeekExtensibleEnumOutput } from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface GetKnownValue200Response extends HttpResponse {
