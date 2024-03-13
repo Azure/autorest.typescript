@@ -1849,6 +1849,7 @@ function emitClients(
   const clients = listClients(context);
   const retval: HrlcClient[] = [];
   apiVersionParam = undefined;
+  hasApiVersionInClient = true;
   for (const client of clients) {
     const clientName = getLibraryName(context, client.type).replace(
       "Client",
