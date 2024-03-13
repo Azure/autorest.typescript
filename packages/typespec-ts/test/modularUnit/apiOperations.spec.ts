@@ -452,7 +452,7 @@ describe("api operations in Modular", () => {
     });
   });
 
-  describe.only("apiVersion in query", () => {
+  describe("apiVersion in query", () => {
     it("should generate apiVersion if there's a client level apiVersion but without default value", async () => {
       const tspContent = `
       model ApiVersionParameter {
