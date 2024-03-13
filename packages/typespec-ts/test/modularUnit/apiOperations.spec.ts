@@ -1,5 +1,8 @@
 import { assert } from "chai";
-import { emitModularOperationsFromTypeSpec } from "../util/emitUtil.js";
+import {
+  emitModularClientContextFromTypeSpec,
+  emitModularOperationsFromTypeSpec
+} from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("api operations in Modular", () => {
@@ -12,9 +15,8 @@ describe("api operations in Modular", () => {
         @body body: bytes
       ): void;
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -69,9 +71,8 @@ describe("api operations in Modular", () => {
         @body body: BinaryBytes
       ): void;
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -126,9 +127,8 @@ describe("api operations in Modular", () => {
         }
       ): void;
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -187,9 +187,8 @@ describe("api operations in Modular", () => {
         }
       ): void;
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -245,9 +244,8 @@ describe("api operations in Modular", () => {
         @body body: bytes;
       };
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -297,9 +295,8 @@ describe("api operations in Modular", () => {
         @body body: BinaryBytes;
       };
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -349,9 +346,8 @@ describe("api operations in Modular", () => {
         };
       };
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -410,9 +406,8 @@ describe("api operations in Modular", () => {
         };
       };
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -453,6 +448,282 @@ describe("api operations in Modular", () => {
            return _downloadFileDeserialize(result);
          }`,
         true
+      );
+    });
+  });
+
+  describe.only("apiVersion in query", () => {
+    it("should generate apiVersion if there's a client level apiVersion but without default value", async () => {
+      const tspContent = `
+      model ApiVersionParameter {
+        @query
+        "api-version": string;
+      }
+      op test(...ApiVersionParameter): string;
+      `;
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
+      assert.ok(operationFiles);
+      assert.equal(operationFiles?.length, 1);
+      await assertEqualContent(
+        operationFiles?.[0]?.getFullText()!,
+        `
+        import { TestingContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+          createRestError,
+        } from "@azure-rest/core-client";
+        
+        export function _testSend(
+          context: Client,
+          options: TestOptions = { requestOptions: {} },
+        ): StreamableMethod<Test200Response> {
+          return context
+            .path("/")
+            .get({ ...operationOptionsToRequestParameters(options) });
+        }
+        
+        export async function _testDeserialize(
+          result: Test200Response,
+        ): Promise<string> {
+          if (result.status !== "200") {
+            throw createRestError(result);
+          }
+        
+          return result.body;
+        }
+        
+        export async function test(
+          context: Client,
+          options: TestOptions = { requestOptions: {} },
+        ): Promise<string> {
+          const result = await _testSend(context, options);
+          return _testDeserialize(result);
+        }
+        `
+      );
+      const clientContext =
+        await emitModularClientContextFromTypeSpec(tspContent);
+      assert.ok(clientContext);
+      await assertEqualContent(
+        clientContext?.getFullText()!,
+        `
+        import { ClientOptions } from "@azure-rest/core-client";
+        import { TestingContext } from "../rest/index.js";
+        import getClient from "../rest/index.js";
+        
+        export interface TestingClientOptions extends ClientOptions {}
+        
+        export { TestingContext } from "../rest/index.js";
+        
+        export function createTesting(
+          endpoint: string,
+          apiVersion: string,
+          options: TestingClientOptions = {},
+        ): TestingContext {
+          const clientContext = getClient(endpoint, apiVersion, options);
+          return clientContext;
+        }
+        `
+      );
+    });
+
+    it("shouldn't generate apiVersion if there's a client level apiVersion and with default value", async () => {
+      const tspContent = `
+      model ApiVersionParameter {
+        @query
+        "api-version": string;
+      }
+      op test(...ApiVersionParameter): string;
+      `;
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent,
+        false,
+        true,
+        false,
+        false,
+        true
+      );
+      assert.ok(operationFiles);
+      assert.equal(operationFiles?.length, 1);
+      await assertEqualContent(
+        operationFiles?.[0]?.getFullText()!,
+        `
+        import { TestingContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+          createRestError,
+        } from "@azure-rest/core-client";
+        
+        export function _testSend(
+          context: Client,
+          options: TestOptions = { requestOptions: {} },
+        ): StreamableMethod<Test200Response> {
+          return context
+            .path("/")
+            .get({ ...operationOptionsToRequestParameters(options) });
+        }
+        
+        export async function _testDeserialize(
+          result: Test200Response,
+        ): Promise<string> {
+          if (result.status !== "200") {
+            throw createRestError(result);
+          }
+        
+          return result.body;
+        }
+        
+        export async function test(
+          context: Client,
+          options: TestOptions = { requestOptions: {} },
+        ): Promise<string> {
+          const result = await _testSend(context, options);
+          return _testDeserialize(result);
+        }
+        `
+      );
+      const clientContext = await emitModularClientContextFromTypeSpec(
+        tspContent,
+        false,
+        true
+      );
+      assert.ok(clientContext);
+      await assertEqualContent(
+        clientContext?.getFullText()!,
+        `
+        import { ClientOptions } from "@azure-rest/core-client";
+        import { TestingContext } from "../rest/index.js";
+        import getClient from "../rest/index.js";
+        
+        export interface TestingClientOptions extends ClientOptions {}
+        
+        export { TestingContext } from "../rest/index.js";
+        
+        export function createTesting(
+          endpoint: string,
+          options: TestingClientOptions = {},
+        ): TestingContext {
+          const clientContext = getClient(endpoint, options);
+          return clientContext;
+        }
+        `
+      );
+    });
+
+    it("should generate apiVersion if there's no client level apiVersion", async () => {
+      const tspContent = `
+      model ApiVersionParameter {
+        @query
+        "api-version": string;
+      }
+      @route("/test")
+      op test(...ApiVersionParameter): string;
+      @route("/test1")
+      op test1(): string;
+      `;
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent,
+        false,
+        true
+      );
+      assert.ok(operationFiles);
+      assert.equal(operationFiles?.length, 1);
+      await assertEqualContent(
+        operationFiles?.[0]?.getFullText()!,
+        `
+        import { TestingContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+          createRestError,
+        } from "@azure-rest/core-client";
+        
+        export function _testSend(
+          context: Client,
+          apiVersion: string,
+          options: TestOptions = { requestOptions: {} },
+        ): StreamableMethod<Test200Response> {
+          return context
+            .path("/test")
+            .get({
+              ...operationOptionsToRequestParameters(options),
+              queryParameters: { "api-version": apiVersion },
+            });
+        }
+        
+        export async function _testDeserialize(
+          result: Test200Response,
+        ): Promise<string> {
+          if (result.status !== "200") {
+            throw createRestError(result);
+          }
+        
+          return result.body;
+        }
+        
+        export async function test(
+          context: Client,
+          apiVersion: string,
+          options: TestOptions = { requestOptions: {} },
+        ): Promise<string> {
+          const result = await _testSend(context, apiVersion, options);
+          return _testDeserialize(result);
+        }
+        
+        export function _test1Send(
+          context: Client,
+          options: Test1Options = { requestOptions: {} },
+        ): StreamableMethod<Test1200Response> {
+          return context
+            .path("/test1")
+            .get({ ...operationOptionsToRequestParameters(options) });
+        }
+        
+        export async function _test1Deserialize(
+          result: Test1200Response,
+        ): Promise<string> {
+          if (result.status !== "200") {
+            throw createRestError(result);
+          }
+        
+          return result.body;
+        }
+        
+        export async function test1(
+          context: Client,
+          options: Test1Options = { requestOptions: {} },
+        ): Promise<string> {
+          const result = await _test1Send(context, options);
+          return _test1Deserialize(result);
+        }
+        `,
+        true
+      );
+      const clientContext =
+        await emitModularClientContextFromTypeSpec(tspContent);
+      assert.ok(clientContext);
+      await assertEqualContent(
+        clientContext?.getFullText()!,
+        `
+        import { ClientOptions } from "@azure-rest/core-client";
+        import { TestingContext } from "../rest/index.js";
+        import getClient from "../rest/index.js";
+        
+        export interface TestingClientOptions extends ClientOptions {}
+        
+        export { TestingContext } from "../rest/index.js";
+        
+        export function createTesting(
+          endpoint: string,
+          options: TestingClientOptions = {},
+        ): TestingContext {
+          const clientContext = getClient(endpoint, options);
+          return clientContext;
+        }
+        `
       );
     });
   });

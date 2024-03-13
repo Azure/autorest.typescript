@@ -134,7 +134,7 @@ export async function emitParameterFromTypeSpec(
   needTCGC: boolean = false,
   withRawContent: boolean = false,
   mustEmptyDiagnostic: boolean = true,
-  withVersionedApiVersion: boolean = false,
+  withVersionedApiVersion: boolean = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
@@ -142,7 +142,7 @@ export async function emitParameterFromTypeSpec(
     needAzureCore,
     needTCGC,
     withRawContent,
-    withVersionedApiVersion,
+    withVersionedApiVersion
   );
   const dpgContext = createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
@@ -376,14 +376,16 @@ export async function emitModularOperationsFromTypeSpec(
   mustEmptyDiagnostic = true,
   needNamespaces: boolean = true,
   needAzureCore: boolean = false,
-  withRawContent: boolean = false
+  withRawContent: boolean = false,
+  withVersionedApiVersion: boolean = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
     needNamespaces,
     needAzureCore,
     false,
-    withRawContent
+    withRawContent,
+    withVersionedApiVersion
   );
   const dpgContext = createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
@@ -428,14 +430,16 @@ export async function emitModularOperationsFromTypeSpec(
 
 export async function emitModularClientContextFromTypeSpec(
   tspContent: string,
-  withRawContent: boolean = false
+  withRawContent: boolean = false,
+  withVersionedApiVersion: boolean = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
     true,
     false,
     false,
-    withRawContent
+    withRawContent,
+    withVersionedApiVersion
   );
   const dpgContext = createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<

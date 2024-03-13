@@ -1753,6 +1753,7 @@ function emitServerParams(
         apiVersionParam === undefined
       ) {
         hasApiVersionInClient = true;
+        emittedParameter.isApiVersion = true;
         apiVersionParam = emittedParameter;
         continue;
       }
@@ -1832,7 +1833,10 @@ function emitGlobalParameters(
 
 function getApiVersionParameter(): Parameter | void {
   if (apiVersionParam) {
-    return { ...apiVersionParam, isApiVersion: true };
+    return {
+      ...apiVersionParam,
+      isApiVersion: true
+    };
   }
 }
 
@@ -1844,6 +1848,7 @@ function emitClients(
   const program = context.program;
   const clients = listClients(context);
   const retval: HrlcClient[] = [];
+  apiVersionParam = undefined;
   for (const client of clients) {
     const clientName = getLibraryName(context, client.type).replace(
       "Client",
