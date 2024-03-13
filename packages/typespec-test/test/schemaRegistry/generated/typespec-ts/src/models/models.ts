@@ -18,6 +18,15 @@ export interface SchemaProperties {
 /** Represents the format of the schema to be stored by the Schema Registry service. */
 /** "Avro", "Json", "Custom", "Protobuf" */
 export type SchemaFormat = string;
+
+/** The schema content of a schema, along with id and meta properties. */
+export interface Schema {
+  /** The content of the schema. */
+  definition: string;
+  /** The properties of the schema. */
+  properties: SchemaProperties;
+}
+
 /** The content type for the schema. */
 /** "application/octet-stream", "application/json; serialization=Avro", "application/json; serialization=json", "text/vnd.ms.protobuf" */
 export type ContentTypeEnum = string;

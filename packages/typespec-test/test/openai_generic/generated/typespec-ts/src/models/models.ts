@@ -51,6 +51,10 @@ export interface CreateModerationResponse {
   }[];
 }
 
+export interface ErrorResponse {
+  error: Error;
+}
+
 export interface Error {
   type: string;
   message: string;

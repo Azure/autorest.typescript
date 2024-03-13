@@ -230,7 +230,7 @@ export async function $onEmit(context: EmitContext) {
         buildRootIndex(modularCodeModel, subClient, rootIndexFile);
       }
 
-      removeUnusedInterfaces(project);
+      // removeUnusedInterfaces(project);
 
       for (const file of project.getSourceFiles()) {
         await emitContentByBuilder(

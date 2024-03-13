@@ -3,10 +3,12 @@
 
 export {
   Widget,
+  WidgetError,
   ListWidgetsPagesResults,
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
+  NonReferencedMode,
 } from "./models.js";
 export {
   WidgetsListWidgetsOptions,

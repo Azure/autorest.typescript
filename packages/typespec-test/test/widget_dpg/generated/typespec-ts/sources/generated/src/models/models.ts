@@ -10,6 +10,13 @@ export interface Widget {
   color: "red" | "blue";
 }
 
+export interface WidgetError {
+  /** The HTTP error code. */
+  code: number;
+  /** A human-readable message describing the error. */
+  message: string;
+}
+
 export interface ListWidgetsPagesResults {
   /** The current page of results. */
   results: Widget[];
@@ -33,4 +40,11 @@ export interface UpdateWidget {
 
 export interface AnalyzeResult {
   summary: string;
+}
+
+export interface NonReferencedMode {
+  /** The weight of the widget. This is an int32, but must be greater than zero. */
+  prop1: number;
+  /** The color of the widget. */
+  prop2: string;
 }

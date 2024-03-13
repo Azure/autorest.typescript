@@ -25,6 +25,13 @@ model CreateWidget {
     color: "red" | "blue";
 }
 
+model NonReferencedMode {
+    @doc("The weight of the widget. This is an int32, but must be greater than zero.")
+    prop1: int32;
+    @doc("The color of the widget.")
+    prop2: string;
+}
+
 model UpdateWidget {
     @doc("The UUID of this widget. This is generated automatically by the service.")
     @path

@@ -7,10 +7,12 @@ export {
 } from "./WidgetServiceClient.js";
 export {
   Widget,
+  WidgetError,
   ListWidgetsPagesResults,
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
+  NonReferencedMode,
   WidgetsListWidgetsOptions,
   WidgetsListWidgetsPagesOptions,
   WidgetsQueryWidgetsPagesOptions,
