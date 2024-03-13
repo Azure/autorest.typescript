@@ -20,9 +20,7 @@ export function buildApiExtractorConfig(model: RLCModel) {
   const config = {
     $schema:
       "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
-    mainEntryPointFilePath: `./types${
-      generateTest || isModularLibrary || generateSample ? "/src" : ""
-    }/index.d.ts`,
+    mainEntryPointFilePath,
     docModel: {
       enabled: true
     },
