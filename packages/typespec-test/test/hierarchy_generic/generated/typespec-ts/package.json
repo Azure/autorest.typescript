@@ -28,6 +28,7 @@
     ],
     "selfLink": false
   },
+  "type": "module",
   "keywords": [
     "node",
     "azure",
@@ -219,6 +220,5 @@
     }
   },
   "main": "./dist/commonjs/index.js",
-  "types": "./dist/commonjs/index.d.ts",
-  "type": "module"
+  "types": "./dist/commonjs/index.d.ts"
 }

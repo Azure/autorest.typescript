@@ -8,7 +8,7 @@
   "sideEffects": false,
   "autoPublish": false,
   "main": "dist/index.js",
-  "module": "./dist-esm/src/index.js",
+  "module": "./dist-esm/index.js",
   "types": "./types/dpg-customization-rest.d.ts",
   "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
   "author": "Microsoft Corporation",

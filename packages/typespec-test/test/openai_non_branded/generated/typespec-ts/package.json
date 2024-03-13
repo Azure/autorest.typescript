@@ -36,6 +36,7 @@
     ],
     "selfLink": false
   },
+  "type": "module",
   "scripts": {
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
@@ -333,6 +334,5 @@
     }
   },
   "main": "./dist/commonjs/index.js",
-  "types": "./dist/commonjs/index.d.ts",
-  "type": "module"
+  "types": "./dist/commonjs/index.d.ts"
 }
