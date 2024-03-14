@@ -60,6 +60,7 @@ export function getAzurePackageDependencies({
 
 function getAzureCjsCommonInfo({
   withTests,
+  withSamples,
   name,
   nameWithoutScope,
   moduleKind
@@ -71,7 +72,7 @@ function getAzureCjsCommonInfo({
   return {
     files: [
       "dist/",
-      withTests ? "dist-esm/src/" : "dist-esm/",
+      withTests || withSamples ? "dist-esm/src/" : "dist-esm/",
       `types/${nameWithoutScope ?? name}.d.ts`,
       "README.md",
       "LICENSE",

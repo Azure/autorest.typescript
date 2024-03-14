@@ -70,17 +70,18 @@ function getCjsEntrypointInformation({
   name,
   nameWithoutScope,
   moduleKind,
-  withTests
+  withTests,
+  withSamples
 }: PackageCommonInfoConfig) {
   if (moduleKind !== "cjs") {
     return;
   }
 
-  const types = `./types/${nameWithoutScope ?? name}.d.ts`;
+  const types = withTests || withSamples ? `./types/src/${nameWithoutScope ?? name}.d.ts` : `./types/${nameWithoutScope ?? name}.d.ts`;
 
   return {
     main: "dist/index.js",
-    module: withTests ? "./dist-esm/src/index.js" : "./dist-esm/index.js",
+    module: withTests || withSamples ? "./dist-esm/src/index.js" : "./dist-esm/index.js",
     types: types
   };
 }
