@@ -42,7 +42,7 @@ export interface AnalyzeResult {
   summary: string;
 }
 
-export interface NonReferencedMode {
+export interface NonReferencedModel {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
   prop1: number;
   /** The color of the widget. */

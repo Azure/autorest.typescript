@@ -25,7 +25,7 @@ model CreateWidget {
     color: "red" | "blue";
 }
 
-model NonReferencedMode {
+model NonReferencedModel {
     @doc("The weight of the widget. This is an int32, but must be greater than zero.")
     prop1: int32;
     @doc("The color of the widget.")

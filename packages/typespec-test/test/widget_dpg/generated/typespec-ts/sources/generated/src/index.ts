@@ -12,7 +12,7 @@ export {
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
-  NonReferencedMode,
+  NonReferencedModel,
   WidgetsListWidgetsOptions,
   WidgetsListWidgetsPagesOptions,
   WidgetsQueryWidgetsPagesOptions,
