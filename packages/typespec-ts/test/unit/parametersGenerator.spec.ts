@@ -7,7 +7,7 @@ import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Parameters.ts", () => {
   describe("query parameters", () => {
-    describe.only("apiVersion in query", () => {
+    describe("apiVersion in query", () => {
       it("should not generate apiVersion if there's a client level apiVersion but without default value", async () => {
         const tspContent = `
         model ApiVersionParameter {
@@ -37,12 +37,13 @@ describe("Parameters.ts", () => {
           
           /**
            * Initialize a new instance of \`testClient\`
+           * @param endpoint - The parameter endpoint
+           * @param apiVersion - The parameter apiVersion
            * @param options - the parameter for all optional parameters
            */
           export default function createClient(endpoint: string, apiVersion: string, options: ClientOptions = {}): testClient {
-          const baseUrl = options.baseUrl ?? \`{endpoint}\`;
+          const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
           options.apiVersion = options.apiVersion ?? apiVersion;
-          
           const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
           const userAgentPrefix =
               options.userAgentOptions && options.userAgentOptions.userAgentPrefix

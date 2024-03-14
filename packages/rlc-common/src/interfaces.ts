@@ -100,6 +100,7 @@ export interface PathTemplateApiVersion {
 export interface UrlInfo {
   endpoint?: string;
   urlParameters?: PathParameter[];
+  apiVersionInfo?: ApiVersionInfo;
 }
 
 export interface ApiVersionInfo {

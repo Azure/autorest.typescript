@@ -18,7 +18,6 @@ import {
   transformRLCModel,
   transformUrlInfo
 } from "../../src/transform/transform.js";
-import { transformApiVersionInfo } from "../../src/transform/transformApiVersionInfo.js";
 import { transformToResponseTypes } from "../../src/transform/transformResponses.js";
 import { getCredentialInfo } from "../../src/transform/transfromRLCOptions.js";
 import { getRLCClients } from "../../src/utils/clientUtils.js";
@@ -208,12 +207,13 @@ export async function emitClientFactoryFromTypeSpec(
   );
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const urlInfo = transformUrlInfo(dpgContext);
-  const creadentialInfo = getCredentialInfo(program, {});
   const clients = getRLCClients(dpgContext);
-  let apiVersionInfo;
+ 
+  const creadentialInfo = getCredentialInfo(program, {});
+
+  let urlInfo;
   if (clients && clients[0]) {
-    apiVersionInfo = transformApiVersionInfo(clients[0], dpgContext, urlInfo);
+    urlInfo = transformUrlInfo(clients[0], dpgContext);
   }
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
@@ -225,7 +225,7 @@ export async function emitClientFactoryFromTypeSpec(
     schemas: [],
     paths: {},
     urlInfo,
-    apiVersionInfo,
+    apiVersionInfo: urlInfo?.apiVersionInfo,
     options: {
       packageDetails: {
         name: "test",
