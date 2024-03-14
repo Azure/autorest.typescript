@@ -1,11 +1,10 @@
 import { assert } from "chai";
-import { SingleClient } from "./generated/server/path/single/src/index.js";
-import { MultipleClient } from "./generated/server/path/multiple/src/index.js";
-describe("Single Server Path Client", () => {
-  let client: SingleClient;
+import { AccessClient } from "./generated/azure/clientGeneratorCore/access/src/index.js";
+describe("Azure ClientGeneratorCore Access Client", () => {
+  let client: AccessClient;
 
   beforeEach(() => {
-    client = new SingleClient("http://localhost:3000", {
+    client = new AccessClient({
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0
@@ -13,40 +12,10 @@ describe("Single Server Path Client", () => {
     });
   });
 
-  it("should work with no param", async () => {
+  it("should get no decorator in public operation", async () => {
     try {
-      const result = await client.myOp();
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
-});
-
-describe("Multiple Server Path Client", () => {
-  let client: MultipleClient;
-
-  beforeEach(() => {
-    client = new MultipleClient("http://localhost:3000", {
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
-    });
-  });
-
-  it("should work with no param", async () => {
-    try {
-      const result = await client.noOperationParams();
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
-
-  it("should work with param", async () => {
-    try {
-      const result = await client.withOperationPathParam("test");
+      const result = await client.noDecoratorInPublic("myname");
+      console.log(result);
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);

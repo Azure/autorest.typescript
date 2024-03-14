@@ -1,11 +1,10 @@
 import { assert } from "chai";
-import { SingleClient } from "./generated/server/path/single/src/index.js";
-import { MultipleClient } from "./generated/server/path/multiple/src/index.js";
-describe("Single Server Path Client", () => {
-  let client: SingleClient;
+import { UsageClient } from "./generated/azure/clientGeneratorCore/usage/src/index.js";
+describe("Azure ClientGeneratorCore Usage Client", () => {
+  let client: UsageClient;
 
   beforeEach(() => {
-    client = new SingleClient("http://localhost:3000", {
+    client = new UsageClient({
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0
@@ -13,41 +12,19 @@ describe("Single Server Path Client", () => {
     });
   });
 
-  it("should work with no param", async () => {
+  it("should post input usage model in operation", async () => {
     try {
-      const result = await client.myOp();
-      assert.isUndefined(result);
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
-});
-
-describe("Multiple Server Path Client", () => {
-  let client: MultipleClient;
-
-  beforeEach(() => {
-    client = new MultipleClient("http://localhost:3000", {
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
-    });
-  });
-
-  it("should work with no param", async () => {
-    try {
-      const result = await client.noOperationParams();
+      const result = await client.inputToInputOutput({ name: "Madge" });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
     }
   });
 
-  it("should work with param", async () => {
+  it("should get usage model in operation", async () => {
     try {
-      const result = await client.withOperationPathParam("test");
-      assert.isUndefined(result);
+      const result = await client.outputToInputOutput();
+      assert.strictEqual(result.name, "Madge");
     } catch (err) {
       assert.fail(err as string);
     }
