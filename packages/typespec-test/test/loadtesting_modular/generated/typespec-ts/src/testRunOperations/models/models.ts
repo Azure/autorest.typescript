@@ -496,7 +496,7 @@ export interface PagedTimeSeriesElement {
   /** The TimeSeriesElement items on this page */
   value: TimeSeriesElement[];
   /** The link to the next page of items */
-  nextLink?: string;
+  readonly nextLink?: string;
 }
 
 /** The time series returned when a data query is performed. */
@@ -528,7 +528,7 @@ export interface PagedTestRun {
   /** The TestRun items on this page */
   value: TestRun[];
   /** The link to the next page of items */
-  nextLink?: string;
+  readonly nextLink?: string;
 }
 
 /** "PT5S", "PT10S", "PT1M", "PT5M", "PT1H" */
@@ -539,7 +539,7 @@ export interface PagedDimensionValueList {
   /** The DimensionValueList items on this page */
   value: DimensionValueList[];
   /** The link to the next page of items */
-  nextLink?: string;
+  readonly nextLink?: string;
 }
 
 export interface DimensionValueList {

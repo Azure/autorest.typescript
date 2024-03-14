@@ -229,7 +229,11 @@ export function getSchemaForType(
   return undefined;
 }
 export function getEffectiveModelFromType(program: Program, type: Type): Type {
-  if (type.kind === "Model") {
+  /**
+   * If type is an anonymous model, tries to find a named model that has the same
+   * set of properties when non-schema properties are excluded.
+   */
+  if (type.kind === "Model" && type.name === "") {
     const effective = getEffectiveModelType(program, type, isSchemaProperty);
     if (effective.name) {
       return effective;
@@ -994,8 +998,14 @@ function getSchemaForArrayModel(
       if (schema.items.typeName) {
         if (schema.items.type === "dictionary") {
           schema.typeName = `${schema.items.typeName}[]`;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `(${schema.items.outputTypeName})[]`;
+          }
         } else if (schema.items.type === "union") {
           schema.typeName = `(${schema.items.typeName})[]`;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `(${schema.items.outputTypeName})[]`;
+          }
         } else if (
           schema.items.typeName.includes(BINARY_TYPE_UNION) &&
           schema.items.type === "string"
@@ -1337,7 +1347,7 @@ export function getImportedModelName(
     case "array": {
       const ret = new Set<string>();
       [(schema as ArraySchema).items]
-        .filter((i?: Schema) => !!i && i.type === "object")
+        .filter((i?: Schema) => !!i)
         .forEach((i?: Schema) =>
           getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );
@@ -1364,7 +1374,7 @@ export function getImportedModelName(
     case "dictionary": {
       const ret = new Set<string>();
       [(schema as DictionarySchema).additionalProperties]
-        .filter((i?: Schema) => !!i && i.type === "object")
+        .filter((i?: Schema) => !!i)
         .forEach((i?: Schema) =>
           getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );
@@ -1374,7 +1384,7 @@ export function getImportedModelName(
     case "union": {
       const ret = new Set<string>();
       ((schema as Schema).enum ?? [])
-        .filter((i?: Schema) => !!i && i.type === "object")
+        .filter((i?: Schema) => !!i)
         .forEach((i?: Schema) =>
           getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );
@@ -1489,7 +1499,7 @@ export function predictDefaultValue(
   if (!serviceNamespace) {
     return;
   }
-  const defaultApiVersion = getEnrichedDefaultApiVersion(program, dpgContext);
+  const defaultApiVersion = getDefaultApiVersionString(program, dpgContext);
   if (param && isApiVersion(dpgContext, param) && defaultApiVersion) {
     return defaultApiVersion;
   }
@@ -1530,31 +1540,16 @@ export function getDefaultService(program: Program): Service | undefined {
   }
   return services[0];
 }
-
 /**
- * Get the default api-version both from versioned and service decorator
- * TODO: remember to switch to TCGC once the fix is done
- * @param program
- * @param dpgContext
- * @returns default api-version value
+ * Return the default api version from the program; undefined if no default
  */
-export function getEnrichedDefaultApiVersion(
+export function getDefaultApiVersionString(
   program: Program,
   dpgContext: SdkContext
 ): string | undefined {
-  const serviceNamespace = getDefaultService(program);
-  if (!serviceNamespace) {
-    return;
-  }
-
-  const defaultVersion = getDefaultApiVersion(
-    dpgContext,
-    serviceNamespace!.type
-  );
-  if (defaultVersion) {
-    return defaultVersion.value;
-  }
-  return serviceNamespace.version;
+  return getDefaultService(program)
+    ? getDefaultApiVersion(dpgContext, getDefaultService(program)!.type)?.value
+    : undefined;
 }
 
 export function trimUsage(model: any) {

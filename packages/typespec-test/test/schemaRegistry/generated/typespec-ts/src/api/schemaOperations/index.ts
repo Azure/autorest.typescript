@@ -4,9 +4,9 @@
 import {
   PagedSchemaGroup,
   SchemaGroup,
+  SchemaContentTypeValues,
   PagedVersion,
   SchemaVersion,
-  SchemaContentTypeValues,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";

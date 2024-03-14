@@ -541,7 +541,7 @@ export class BatchClient {
    */
   terminateJob(
     jobId: string,
-    body: BatchJobTerminateOptions,
+    body?: BatchJobTerminateOptions,
     options: TerminateJobOptions = { requestOptions: {} },
   ): Promise<void> {
     return terminateJob(this._client, jobId, body, options);
@@ -1017,7 +1017,7 @@ export class BatchClient {
   rebootNode(
     poolId: string,
     nodeId: string,
-    body: NodeRebootOptions,
+    body?: NodeRebootOptions,
     options: RebootNodeOptions = { requestOptions: {} },
   ): Promise<void> {
     return rebootNode(this._client, poolId, nodeId, body, options);
@@ -1031,7 +1031,7 @@ export class BatchClient {
   reimageNode(
     poolId: string,
     nodeId: string,
-    body: NodeReimageOptions,
+    body?: NodeReimageOptions,
     options: ReimageNodeOptions = { requestOptions: {} },
   ): Promise<void> {
     return reimageNode(this._client, poolId, nodeId, body, options);
@@ -1044,7 +1044,7 @@ export class BatchClient {
   disableNodeScheduling(
     poolId: string,
     nodeId: string,
-    body: NodeDisableSchedulingOptions,
+    body?: NodeDisableSchedulingOptions,
     options: DisableNodeSchedulingOptions = { requestOptions: {} },
   ): Promise<void> {
     return disableNodeScheduling(this._client, poolId, nodeId, body, options);

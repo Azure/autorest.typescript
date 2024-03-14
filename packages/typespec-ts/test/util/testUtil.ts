@@ -27,7 +27,6 @@ export async function rlcEmitterFor(
   code: string,
   needNamespaces: boolean = true,
   needAzureCore: boolean = false,
-  ignoreClientApiVersion: boolean = false,
   needTCGC: boolean = false,
   withRawContent: boolean = false
 ): Promise<TestHost> {
@@ -35,8 +34,7 @@ export async function rlcEmitterFor(
   const namespace = `
   #suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
   @service({
-    title: "Azure TypeScript Testing",
-    ${ignoreClientApiVersion ? "" : 'version: "2022-12-16-preview",'}
+    title: "Azure TypeScript Testing"
   })
 
   ${needAzureCore ? "@useDependency(Azure.Core.Versions.v1_0_Preview_2)" : ""} 

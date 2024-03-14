@@ -1525,7 +1525,8 @@ describe("inheritance & polymorphism", () => {
       await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
-        /** Alias for SchemaContentTypeValues */
+        /** Type of SchemaContentTypeValues */
+        /** */
         export type SchemaContentTypeValues =
           | "application/json; serialization=Avro"
           | "application/json; serialization=json"
@@ -1623,7 +1624,8 @@ describe("inheritance & polymorphism", () => {
       await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
-        /** Alias for SchemaContentTypeValues */
+        /** Type of SchemaContentTypeValues */
+        /** */
         export type SchemaContentTypeValues =
           | "application/json; serialization=Avro"
           | "application/json; serialization=json"
@@ -1778,9 +1780,8 @@ describe("inheritance & polymorphism", () => {
         true
       );
       assert.isUndefined(schemaOutput);
-      const paramOutput = await emitModularOperationsFromTypeSpec(
-        tspDefinition
-      );
+      const paramOutput =
+        await emitModularOperationsFromTypeSpec(tspDefinition);
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
       await assertEqualContent(
@@ -1854,10 +1855,9 @@ describe("inheritance & polymorphism", () => {
         | "text/plain; charset=utf-8"
         | "text/vnd.ms.protobuf";
         `
-      )
-      const paramOutput = await emitModularOperationsFromTypeSpec(
-        tspDefinition
       );
+      const paramOutput =
+        await emitModularOperationsFromTypeSpec(tspDefinition);
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
       await assertEqualContent(
@@ -1952,5 +1952,95 @@ describe("inheritance & polymorphism", () => {
         `
       );
     });
+  });
+});
+
+describe("`is`", () => {
+  it("should generate correct name and properties if A is B<Template>", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(`
+    model B<Parameter> {
+      prop1: string;
+      prop2: Parameter;
+    }
+    model A is B<string> {
+      @query
+      name: string;
+    };
+      op read(@body body: A): void;
+      `);
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface A {
+        prop1: string;
+        prop2: string;
+      }`
+    );
+  });
+});
+
+describe("`extends`", () => {
+  it("should generate correct name and properties if A extends B", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(`
+      model B {
+        prop1: string;
+        prop2: string;
+      }
+      model A extends B {
+        @query
+        name: string;
+      };
+      op read(@body body: A): void;
+      `);
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface B {
+        prop1: string;
+        prop2: string;
+      }
+      
+      export interface A extends B {}`
+    );
+  });
+});
+
+describe("visibility", () => {
+  it("should generate readonly for @visibility('read')", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(`
+      model A  {
+        @visibility("read")
+        exactVersion?: string;
+      };
+      op read(@body body: A): void;
+      `);
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface A {
+        readonly exactVersion?: string;
+      }`
+    );
+  });
+
+  it("should not generate readonly for @visibility('read', 'create')", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(`
+      model A  {
+        @visibility("read", "create")
+        exactVersion?: string;
+      };
+      op read(@body body: A): void;
+      `);
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface A {
+        exactVersion?: string;
+      }`
+    );
   });
 });
