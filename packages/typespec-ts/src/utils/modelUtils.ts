@@ -998,8 +998,14 @@ function getSchemaForArrayModel(
       if (schema.items.typeName) {
         if (schema.items.type === "dictionary") {
           schema.typeName = `${schema.items.typeName}[]`;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `(${schema.items.outputTypeName})[]`;
+          }
         } else if (schema.items.type === "union") {
           schema.typeName = `(${schema.items.typeName})[]`;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `(${schema.items.outputTypeName})[]`;
+          }
         } else if (
           schema.items.typeName.includes(BINARY_TYPE_UNION) &&
           schema.items.type === "string"
@@ -1341,7 +1347,7 @@ export function getImportedModelName(
     case "array": {
       const ret = new Set<string>();
       [(schema as ArraySchema).items]
-        .filter((i?: Schema) => !!i && i.type === "object")
+        .filter((i?: Schema) => !!i)
         .forEach((i?: Schema) =>
           getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );
@@ -1368,7 +1374,7 @@ export function getImportedModelName(
     case "dictionary": {
       const ret = new Set<string>();
       [(schema as DictionarySchema).additionalProperties]
-        .filter((i?: Schema) => !!i && i.type === "object")
+        .filter((i?: Schema) => !!i)
         .forEach((i?: Schema) =>
           getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );
@@ -1378,7 +1384,7 @@ export function getImportedModelName(
     case "union": {
       const ret = new Set<string>();
       ((schema as Schema).enum ?? [])
-        .filter((i?: Schema) => !!i && i.type === "object")
+        .filter((i?: Schema) => !!i)
         .forEach((i?: Schema) =>
           getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );

@@ -86,7 +86,10 @@ function restLevelPackage(model: RLCModel) {
     keywords: ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
     license: "MIT",
     main: "dist/index.js",
-    module: generateTest ? "./dist-esm/src/index.js" : "./dist-esm/index.js",
+    module:
+      generateTest || generateSample
+        ? "./dist-esm/src/index.js"
+        : "./dist-esm/index.js",
     types: `./types/${
       packageDetails.nameWithoutScope ?? packageDetails.name
     }.d.ts`,

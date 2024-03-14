@@ -5,6 +5,7 @@ options:
     isModularLibrary: false
     generateMetadata: true
     azureSdkForJs: false
+    generateSample: true
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:
       name: "@notabrand/todo-non-branded"

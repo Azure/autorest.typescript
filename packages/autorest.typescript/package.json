@@ -75,7 +75,7 @@
     "source-map-support": "^0.5.16",
     "ts-morph": "^15.1.0",
     "@azure/core-auth": "^1.6.0",
-    "@azure-tools/rlc-common": "workspace:^0.24.0"
+    "@azure-tools/rlc-common": "workspace:^0.25.0"
   },
   "devDependencies": {
     "@azure-tools/test-recorder": "^3.0.0",
