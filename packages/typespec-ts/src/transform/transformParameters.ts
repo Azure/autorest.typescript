@@ -24,7 +24,6 @@ import {
   getSchemaForType,
   getFormattedPropertyDoc,
   getBodyType,
-  predictDefaultValue,
   getSerializeTypeName,
   BINARY_AND_FILE_TYPE_UNION
 } from "../utils/modelUtils.js";
@@ -217,7 +216,6 @@ function transformQueryParameters(
       p.type === "query" &&
       !(
         isApiVersion(dpgContext, p) &&
-        predictDefaultValue(dpgContext, p.param) &&
         options.queryVersionDetail
       )
   );

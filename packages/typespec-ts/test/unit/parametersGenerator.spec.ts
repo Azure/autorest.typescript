@@ -1,36 +1,68 @@
 import { assert } from "chai";
-import { emitParameterFromTypeSpec } from "../util/emitUtil.js";
+import {
+  emitClientFactoryFromTypeSpec,
+  emitParameterFromTypeSpec
+} from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Parameters.ts", () => {
   describe("query parameters", () => {
-    describe("apiVersion in query", () => {
-      it("should generate apiVersion if there's a client level apiVersion but without default value", async () => {
-        const parameters = await emitParameterFromTypeSpec(
-          `
-          model ApiVersionParameter {
-            @query
-            "api-version": string;
-          }
-          op test(...ApiVersionParameter): string;
-          `
-        );
+    describe.only("apiVersion in query", () => {
+      it("should not generate apiVersion if there's a client level apiVersion but without default value", async () => {
+        const tspContent = `
+        model ApiVersionParameter {
+          @query
+          "api-version": string;
+        }
+        op test(...ApiVersionParameter): string;
+        `;
+        const parameters = await emitParameterFromTypeSpec(tspContent);
         assert.ok(parameters);
         await assertEqualContent(
           parameters?.content!,
           `
             import { RequestParameters } from "@azure-rest/core-client";
-
-            export interface TestQueryParamProperties {
-              "api-version": string;
-            }
             
-            export interface TestQueryParam {
-              queryParameters: TestQueryParamProperties;
-            }
-            
-            export type TestParameters = TestQueryParam & RequestParameters;
+            export type TestParameters = RequestParameters;
             `
+        );
+        const models = await emitClientFactoryFromTypeSpec(tspContent, false, true, false, true);
+        assert.ok(models);
+        await assertEqualContent(
+          models!.content,
+          `
+          import { getClient, ClientOptions } from "@azure-rest/core-client";
+          import { logger } from "./logger";
+          import { testClient } from "./clientDefinitions";
+          
+          /**
+           * Initialize a new instance of \`testClient\`
+           * @param options - the parameter for all optional parameters
+           */
+          export default function createClient(endpoint: string, apiVersion: string, options: ClientOptions = {}): testClient {
+          const baseUrl = options.baseUrl ?? \`{endpoint}\`;
+          options.apiVersion = options.apiVersion ?? apiVersion;
+          
+          const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
+          const userAgentPrefix =
+              options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+              ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
+              : \`\${userAgentInfo}\`;
+          options = {
+              ...options,
+              userAgentOptions: {
+              userAgentPrefix,
+              },
+              loggingOptions: {
+                logger: options.loggingOptions?.logger ?? logger.info
+              },
+          };
+          
+          const client = getClient(baseUrl, options) as testClient;
+          
+          return client;
+      }
+      `
         );
       });
 
@@ -59,14 +91,17 @@ describe("Parameters.ts", () => {
             `
         );
       });
-      it("should generate apiVersion if there's no client level apiVersion", async () => {
+      it("should generate apiVersion in query parameter if there's no client level apiVersion", async () => {
         const parameters = await emitParameterFromTypeSpec(
           `
           model ApiVersionParameter {
             @query
             "api-version": string;
           }
+          @route("/test")
           op test(...ApiVersionParameter): string;
+          @route("/test1")
+          op test1(): string;
           `,
           false,
           true
@@ -86,6 +121,7 @@ describe("Parameters.ts", () => {
             }
             
             export type TestParameters = TestQueryParam & RequestParameters;
+            export type Test1Parameters = RequestParameters;
             `
         );
       });

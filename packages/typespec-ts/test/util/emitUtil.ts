@@ -196,11 +196,12 @@ export async function emitClientFactoryFromTypeSpec(
   tspContent: string,
   needAzureCore: boolean = false,
   mustEmptyDiagnostic = true,
-  withRawContent = false
+  withRawContent = false,
+  needNamespaces = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
-    false,
+    needNamespaces,
     needAzureCore,
     false,
     withRawContent
