@@ -22,7 +22,7 @@ export function buildAzureMonorepoPackage(config: AzureMonorepoInfoConfig) {
   const packageInfo = {
     ...getAzureMonorepoPackageInfo(config),
     ...getAzureMonorepoDependencies(config),
-    ...getAzureMonorepoScripts(config),
+    scripts: getAzureMonorepoScripts(config),
     ...getSampleMetadata(config)
   };
 
@@ -59,7 +59,7 @@ export function getAzureMonorepoPackageInfo(
     constantPaths: []
   };
 
-  addSwaggerMetadata(metadata, "Swagger");
+  addSwaggerMetadata(metadata, config.specSource);
   for (const clientFilePath of config.clientFilePaths) {
     metadata.constantPaths.push({
       path: clientFilePath,
@@ -166,7 +166,6 @@ function getCjsDevDependencies({
   }
 
   return {
-    tshy: "^1.11.1",
     ...testDevDependencies
   };
 }

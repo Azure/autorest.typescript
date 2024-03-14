@@ -77,12 +77,18 @@ function getCjsEntrypointInformation({
     return;
   }
 
-  const types = withTests || withSamples ? `./types/src/${nameWithoutScope ?? name}.d.ts` : `./types/${nameWithoutScope ?? name}.d.ts`;
-
+  const types =
+    withTests || withSamples
+      ? `./types/src/${nameWithoutScope ?? name}.d.ts`
+      : `./types/${nameWithoutScope ?? name}.d.ts`;
+  const main = withTests || withSamples ? "dist/src/index.js" : "dist/index.js";
   return {
-    main: "dist/index.js",
-    module: withTests || withSamples ? "./dist-esm/src/index.js" : "./dist-esm/index.js",
-    types: types
+    main,
+    module:
+      withTests || withSamples
+        ? "./dist-esm/src/index.js"
+        : "./dist-esm/index.js",
+    types
   };
 }
 
