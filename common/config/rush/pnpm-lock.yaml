@@ -248,7 +248,7 @@ importers:
       '@typespec/compiler': '>=0.53.0 <1.0.0'
       '@typespec/http': '>=0.53.0 <1.0.0'
       '@typespec/rest': '>=0.53.0 <1.0.0'
-      '@typespec/ts-http-runtime': 1.0.0-alpha.20240226.9
+      '@typespec/ts-http-runtime': 1.0.0-alpha.20240314.2
       '@typespec/versioning': '>=0.53.0 <1.0.0'
       chai: ^4.3.6
       chalk: ^4.0.0
@@ -292,7 +292,7 @@ importers:
       '@typespec/compiler': 0.53.0
       '@typespec/http': 0.53.0_@typespec+compiler@0.53.0
       '@typespec/rest': 0.53.0_nzwoo2agqoebfftes3rwmlmylm
-      '@typespec/ts-http-runtime': 1.0.0-alpha.20240226.9
+      '@typespec/ts-http-runtime': 1.0.0-alpha.20240314.2
       '@typespec/versioning': 0.53.0_@typespec+compiler@0.53.0
       chai: 4.3.8
       chalk: 4.1.2
@@ -1370,8 +1370,8 @@ packages:
       '@typespec/compiler': 0.53.0
       '@typespec/http': 0.53.0_@typespec+compiler@0.53.0
 
-  /@typespec/ts-http-runtime/1.0.0-alpha.20240226.9:
-    resolution: {integrity: sha512-c1srD2gidsKNiK4YJ1yAMsJdKYIXaRpWdnu5mcyhP3GQ4b89fUQ5pGXLsaF1rimmxpOaI1cENgEWFC7pRf580A==}
+  /@typespec/ts-http-runtime/1.0.0-alpha.20240314.2:
+    resolution: {integrity: sha512-Rc/bFkKLbrEo9KKXiSdRYNSmosZ1W6ycQKEKScpXvK4jaXFNyCvmS0tLv7rEN4EzEEds2fPzEHNtX4e8gMu/lA==}
     engines: {node: '>=18.0.0'}
     dependencies:
       http-proxy-agent: 7.0.0
