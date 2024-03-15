@@ -60,6 +60,7 @@ export async function transformRLCModel(
     NameType.Class
   );
   const importSet = initInternalImports();
+  const urlInfo = transformUrlInfo(client, dpgContext);
   const paths: Paths = transformPaths(program, client, dpgContext);
   const schemas: Schema[] = transformSchemas(program, client, dpgContext);
   const responses: OperationResponse[] = transformToResponseTypes(
@@ -70,7 +71,8 @@ export async function transformRLCModel(
   const parameters: OperationParameter[] = transformToParameterTypes(
     importSet,
     client,
-    dpgContext
+    dpgContext,
+    urlInfo?.apiVersionInfo
   );
   const helperDetails = transformHelperFunctionDetails(
     client,
@@ -79,7 +81,6 @@ export async function transformRLCModel(
   );
   // Enrich client-level annotation detail
   helperDetails.clientLroOverload = getClientLroOverload(paths);
-  const urlInfo = transformUrlInfo(client, dpgContext);
 
   const telemetryOptions = transformTelemetryInfo(dpgContext, client);
   const model: RLCModel = {
@@ -151,8 +152,12 @@ export function transformUrlInfo(
       }
     }
   }
+  let hasApiVersionInUrl = false;
   if (endpoint && urlParameters.length > 0) {
     for (const param of urlParameters) {
+      if (param.oriName === "apiVersion") {
+        hasApiVersionInUrl = true;
+      }
       if (param.oriName) {
         const regexp = new RegExp(`{${param.oriName}}`, "g");
         endpoint = endpoint.replace(regexp, `{${param.name}}`);
@@ -167,7 +172,9 @@ export function transformUrlInfo(
       type: "string"
     });
   }
-  const apiVersionInfo = transformApiVersionInfo(client, dpgContext, {endpoint, urlParameters});
+  const apiVersionInfo = !hasApiVersionInUrl
+    ? transformApiVersionInfo(client, dpgContext, { endpoint, urlParameters })
+    : undefined;
   if (
     apiVersionInfo &&
     urlParameters &&

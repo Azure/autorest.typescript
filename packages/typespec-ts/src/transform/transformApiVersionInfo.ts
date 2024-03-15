@@ -38,6 +38,9 @@ export function transformApiVersionInfo(
         queryVersionDetail?.defaultValue
       : undefined;
 
+  if (pathVersionDetail && queryVersionDetail) {
+    return pathVersionDetail;
+  }
   return {
     definedPosition: extractDefinedPosition(
       queryVersionDetail,

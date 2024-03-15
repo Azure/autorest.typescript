@@ -46,17 +46,16 @@ import {
   hasMediaType,
   isMediaTypeJsonMergePatch
 } from "../utils/mediaTypes.js";
-import { getOperationApiVersion } from "./transformApiVersionInfo.js";
 
 export function transformToParameterTypes(
   importDetails: Imports,
   client: SdkClient,
-  dpgContext: SdkContext
+  dpgContext: SdkContext,
+  apiVersionInfo?: ApiVersionInfo
 ): OperationParameter[] {
   const program = dpgContext.program;
   const rlcParameters: OperationParameter[] = [];
   const outputImportedSet = new Set<string>();
-  const queryVersionDetail = getOperationApiVersion(client, dpgContext);
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
@@ -99,7 +98,7 @@ export function transformToParameterTypes(
     const queryParams = transformQueryParameters(
       dpgContext,
       parameters,
-      { queryVersionDetail },
+      { apiVersionInfo },
       outputImportedSet
     );
     // transform path param
@@ -208,7 +207,7 @@ function getParameterName(name: string) {
 function transformQueryParameters(
   dpgContext: SdkContext,
   parameters: HttpOperationParameters,
-  options: { queryVersionDetail: ApiVersionInfo | undefined },
+  options: { apiVersionInfo: ApiVersionInfo | undefined },
   importModels: Set<string> = new Set<string>()
 ): ParameterMetadata[] {
   const queryParameters = parameters.parameters.filter(
@@ -216,7 +215,7 @@ function transformQueryParameters(
       p.type === "query" &&
       !(
         isApiVersion(dpgContext, p) &&
-        options.queryVersionDetail
+        options.apiVersionInfo?.definedPosition === "query"
       )
   );
   if (!queryParameters.length) {
