@@ -5,14 +5,14 @@ import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 
 export function buildApiExtractorConfig(model: RLCModel) {
-  const { generateTest } = model.options || {};
-  const { packageDetails, isModularLibrary } = model.options || {};
+  const { packageDetails, isModularLibrary, generateTest, generateSample } =
+    model.options || {};
   const project = new Project();
   const config = {
     $schema:
       "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
     mainEntryPointFilePath: `./types${
-      generateTest || isModularLibrary ? "/src" : ""
+      generateTest || isModularLibrary || generateSample ? "/src" : ""
     }/index.d.ts`,
     docModel: {
       enabled: true

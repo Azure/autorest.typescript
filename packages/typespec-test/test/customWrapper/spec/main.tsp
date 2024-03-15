@@ -20,12 +20,17 @@ using Azure.Core.Foundations.Extensions;
 )
 @service({
   title: "Microsoft Cognitive Language Service - Analyze Text Authoring",
-  version: "2022-05-15-preview",
 })
 @useAuth(ApiKeyAuth<ApiKeyLocation.header, "Ocp-Apim-Subscription-Key">)
-@useDependency(Azure.Core.Versions.v1_0_Preview_1)
 @route("/authoring/analyze-text/")
+@versioned(Azure.Language.Authoring.Versions)
 namespace Azure.Language.Authoring;
+
+enum Versions {
+  /** Version 2022-05-15-preview */
+  @useDependency(Azure.Core.Versions.v1_0_Preview_1)
+  `2022-05-15-preview`,
+}
 
 // Common Parameters
 // TODO: Use the common parameter for this

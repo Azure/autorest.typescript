@@ -9,14 +9,20 @@ export interface JobResultOutput {
   readonly jobId: string;
   /** Comment. */
   readonly comment: string;
-  /**
-   * The status of the processing job.
-   *
-   * Possible values: "notStarted", "running", "succeeded", "failed", "canceled", "partiallyCompleted"
-   */
-  readonly status: string;
+  /** The status of the processing job. */
+  readonly status: JobStatusOutput;
   /** Error objects that describes the error when status is "Failed". */
   readonly errors?: Array<ErrorResponse>;
   /** The results. */
   readonly results?: string[];
 }
+
+/** Alias for JobStatusOutput */
+export type JobStatusOutput =
+  | string
+  | "notStarted"
+  | "running"
+  | "Succeeded"
+  | "Failed"
+  | "canceled"
+  | "partiallyCompleted";

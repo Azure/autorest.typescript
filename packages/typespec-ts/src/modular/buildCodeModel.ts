@@ -31,7 +31,6 @@ import {
   Union,
   Type,
   IntrinsicType,
-  getProjectedName,
   isNullType,
   getEncode,
   isTemplateDeclarationOrInstance,
@@ -67,7 +66,9 @@ import {
   SdkBuiltInType,
   getSdkBuiltInType,
   getClientType,
-  SdkEnumValueType
+  SdkEnumValueType,
+  getLibraryName,
+  getWireName
 } from "@azure-tools/typespec-client-generator-core";
 import {
   ModularCodeModel,
@@ -82,7 +83,7 @@ import {
 } from "./modularCodeModel.js";
 import {
   getBodyType,
-  getEnrichedDefaultApiVersion,
+  getDefaultApiVersionString,
   isAzureCoreErrorType
 } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
@@ -251,20 +252,25 @@ function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
     return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
   }
 
-  let effective: Model;
+  // If type is an anonymous model, tries to find a named model that has the same properties
+  let effective: Model | undefined = undefined;
   if (type.kind === "Union") {
     const nonNullOptions = [...type.variants.values()]
       .map((x) => x.type)
       .filter((t) => !isNullType(t));
-    if (nonNullOptions.length === 1 && nonNullOptions[0]?.kind === "Model") {
+    if (
+      nonNullOptions.length === 1 &&
+      nonNullOptions[0]?.kind === "Model" &&
+      nonNullOptions[0]?.name === ""
+    ) {
       effective = getEffectiveModelType(program, nonNullOptions[0]);
     }
     return type as any;
-  } else {
+  } else if (type.name === "") {
     effective = getEffectiveModelType(program, type, isSchemaProperty);
   }
 
-  if (effective.name) {
+  if (effective?.name) {
     return effective;
   }
   return type as Model;
@@ -398,29 +404,35 @@ type ParamBase = {
   description: string;
   addedOn: string | undefined;
   clientName: string;
+  restApiName: string;
   inOverload: boolean;
   format?: string;
 };
 function emitParamBase(
-  program: Program,
+  context: SdkContext,
   parameter: ModelProperty | Type
 ): ParamBase {
   let optional: boolean;
   let name: string;
+  let restApiName: string;
   let description: string = "";
   let addedOn: string | undefined;
   let format: string | undefined;
 
+  const program = context.program;
+
   if (parameter.kind === "ModelProperty") {
-    const newParameter = applyEncoding(program, parameter, parameter);
     optional = parameter.optional;
-    name = parameter.name;
+    name = getLibraryName(context, parameter);
+    restApiName = getWireName(context, parameter);
     description = getDocStr(program, parameter);
     addedOn = getAddedOnVersion(program, parameter);
+    const newParameter = applyEncoding(program, parameter, parameter);
     format = newParameter.format;
   } else {
     optional = false;
     name = "body";
+    restApiName = "body";
   }
 
   return {
@@ -428,6 +440,7 @@ function emitParamBase(
     description,
     addedOn,
     clientName: applyCasing(name, { casing: CASING }),
+    restApiName,
     inOverload: false,
     format
   };
@@ -436,7 +449,6 @@ function emitParamBase(
 type BodyParameter = ParamBase & {
   contentTypes: string[];
   type: Type;
-  restApiName: string;
   location: "body";
   // defaultContentType: string;
   isBinaryPayload: boolean;
@@ -448,7 +460,7 @@ function emitBodyParameter(
 ): BodyParameter {
   const params = httpOperation.parameters;
   const body = params.body!;
-  const base = emitParamBase(context.program, body.parameter ?? body.type);
+  const base = emitParamBase(context, body.parameter ?? body.type);
   let contentTypes = body.contentTypes;
   if (contentTypes.length === 0) {
     contentTypes = ["application/json"];
@@ -461,7 +473,6 @@ function emitBodyParameter(
   return {
     contentTypes,
     type,
-    restApiName: body.parameter?.name ?? "body",
     location: "body",
     ...base,
     isBinaryPayload: isBinaryPayload(context, body.type, contentTypes)
@@ -473,7 +484,7 @@ function emitParameter(
   parameter: HttpOperationParameter | HttpServerParameter,
   implementation: string
 ): Parameter {
-  const base = emitParamBase(context.program, parameter.param);
+  const base = emitParamBase(context, parameter.param);
   let type = getType(context, parameter.param.type, {
     usage: UsageFlags.Input
   });
@@ -514,10 +525,7 @@ function emitParameter(
       clientDefaultValue = defaultApiVersion.value;
     }
     if (!clientDefaultValue) {
-      clientDefaultValue = getEnrichedDefaultApiVersion(
-        context.program,
-        context
-      );
+      clientDefaultValue = getDefaultApiVersionString(context.program, context);
     }
   }
   return { clientDefaultValue, ...base, ...paramMap };
@@ -640,9 +648,9 @@ function emitOperation(
   rlcModels: RLCModel,
   hierarchies: string[]
 ): HrlcOperation {
-  const isBranded = rlcModels.options?.branded ?? true;
+  const isAzureFlavor = rlcModels.options?.flavor === "azure";
   // Skip to extract paging and lro information for non-branded clients.
-  if (!isBranded) {
+  if (!isAzureFlavor) {
     return emitBasicOperation(
       context,
       operation,
@@ -810,10 +818,7 @@ function emitBasicOperation(
     context,
     sourceOperation
   );
-  const sourceOperationName = getOperationName(
-    context.program,
-    sourceOperation
-  );
+  const sourceOperationName = getOperationName(context, sourceOperation);
   const sourceRoutePath = ignoreDiagnostics(
     getHttpOperation(context.program, operation)
   ).path;
@@ -904,7 +909,9 @@ function emitBasicOperation(
     }
   }
 
-  const name = applyCasing(operation.name, { casing: CASING });
+  const name = applyCasing(getLibraryName(context, operation), {
+    casing: CASING
+  });
 
   /** handle name collision between operation name and parameter signature */
   if (bodyParameter) {
@@ -946,7 +953,7 @@ function isReadOnly(program: Program, type: ModelProperty): boolean {
   // Only "read" should be readOnly
   const visibility = getVisibility(program, type);
   if (visibility) {
-    return visibility.includes("read");
+    return visibility.includes("read") && visibility.length === 1;
   } else {
     return false;
   }
@@ -974,9 +981,8 @@ function emitProperty(
   }
 
   // const [clientName, jsonName] = getPropertyNames(context, property);
-  const clientName = property.name;
-  const jsonName =
-    getProjectedName(context.program, property, "json") ?? property.name;
+  const clientName = getLibraryName(context, property);
+  const jsonName = getWireName(context, property);
 
   if (property.model) {
     getType(context, property.model, { usage });
@@ -1030,9 +1036,7 @@ function emitModel(
   }
   const effectiveName = getEffectiveSchemaType(context.program, type).name;
   const overridedModelName =
-    getProjectedName(context.program, type, "javascript") ??
-    getProjectedName(context.program, type, "client") ??
-    getFriendlyName(context.program, type);
+    getLibraryName(context, type) ?? getFriendlyName(context.program, type);
   const fullNamespaceName =
     getModelNamespaceName(context, type.namespace!)
       .map((nsName) => {
@@ -1041,12 +1045,13 @@ function emitModel(
       .join("") +
     (effectiveName ? effectiveName : getName(context.program, type));
   let modelName =
-    overridedModelName ??
-    (context.rlcOptions?.enableModelNamespace
-      ? fullNamespaceName
-      : effectiveName
-        ? effectiveName
-        : getName(context.program, type));
+    overridedModelName !== type.name
+      ? overridedModelName
+      : context.rlcOptions?.enableModelNamespace
+        ? fullNamespaceName
+        : effectiveName
+          ? effectiveName
+          : getName(context.program, type);
   if (
     !overridedModelName &&
     type.templateMapper &&
@@ -1097,7 +1102,8 @@ function enumName(name: string): string {
   return applyCasing(name, { casing: CASING }).toUpperCase();
 }
 
-function emitEnum(program: Program, type: Enum): Record<string, any> {
+function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
+  const program = context.program;
   const enumValues = [];
   for (const m of type.members.values()) {
     enumValues.push({
@@ -1109,7 +1115,9 @@ function emitEnum(program: Program, type: Enum): Record<string, any> {
 
   return {
     type: "enum",
-    name: type.name,
+    name: getLibraryName(context, type)
+      ? getLibraryName(context, type)
+      : type.name,
     description: getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
@@ -1373,18 +1381,45 @@ function mapTypeSpecType(
   }
 }
 
+function isExtensibleEnum(context: SdkContext, type: Enum): boolean {
+  if (isFixed(context.program, type)) {
+    return false;
+  }
+
+  if (context.rlcOptions?.flavor === "azure") {
+    return true;
+  }
+
+  return false;
+}
+
 function emitUnion(
   context: SdkContext,
   type: Union,
   usage: UsageFlags
 ): Record<string, any> {
+  let isVariantExtensible = false;
+
+  /**
+   * This is a temporary workaround to handle TCGC reporting incorrect isFixed for Unions with Enum variants
+   */
+  for (const [_, variant] of type.variants) {
+    if (variant.type.kind === "Enum") {
+      if (isExtensibleEnum(context, variant.type)) {
+        isVariantExtensible = true;
+        break;
+      }
+    }
+  }
   const sdkType = getSdkUnion(context, type);
   const nonNullOptions = getNonNullOptions(type);
   if (sdkType === undefined) {
     throw Error("Should not have an empty union");
   }
   if (sdkType.kind === "union") {
-    const unionName = type.name;
+    const unionName = getLibraryName(context, type)
+      ? getLibraryName(context, type)
+      : type.name;
     const discriminatorPropertyName = getDiscriminator(context.program, type)
       ?.propertyName;
     const variantTypes = sdkType.values.map((x) => {
@@ -1415,14 +1450,16 @@ function emitUnion(
     };
   } else if (sdkType.kind === "enum") {
     return {
-      name: sdkType.name,
+      name: getLibraryName(context, type)
+        ? getLibraryName(context, type)
+        : type.name ?? sdkType.name,
       nullable: sdkType.nullable,
       description: sdkType.description || `Type of ${sdkType.name}`,
       internal: true,
       type: sdkType.kind,
       valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
       values: sdkType.values.map((x) => emitEnumMember(context, x)),
-      isFixed: sdkType.isFixed,
+      isFixed: isVariantExtensible ? false : sdkType.isFixed,
       xmlMetadata: {},
       usage
     };
@@ -1536,9 +1573,9 @@ function emitType(
     case "Union":
       return emitUnion(context, type, usage);
     case "UnionVariant":
-      return {};
+      return emitType(context, type.type, usage);
     case "Enum":
-      return emitEnum(context.program, type);
+      return emitEnum(context, type);
     case "EnumMember":
       return emitEnumMember(context, type);
     default:
@@ -1565,10 +1602,11 @@ function emitOperationGroups(
   }
   for (const operationGroup of listOperationGroups(context, client, true)) {
     const operations: HrlcOperation[] = [];
+    const overrideName = getLibraryName(context, operationGroup.type);
     const name =
       context.rlcOptions?.hierarchyClient ||
       context.rlcOptions?.enableOperationGroup
-        ? operationGroup.type.name
+        ? overrideName ?? operationGroup.type.name
         : "";
     const hierarchies =
       context.rlcOptions?.hierarchyClient ||
@@ -1815,7 +1853,10 @@ function emitClients(
   const clients = listClients(context);
   const retval: HrlcClient[] = [];
   for (const client of clients) {
-    const clientName = client.name.replace("Client", "");
+    const clientName = getLibraryName(context, client.type).replace(
+      "Client",
+      ""
+    );
     if (getNamespace(context, client.name) !== namespace) {
       continue;
     }
@@ -1885,7 +1926,7 @@ export function emitCodeModel(
     clients: [],
     types: [],
     project,
-    runtimeImports: buildRuntimeImports(dpgContext.rlcOptions?.branded ?? true)
+    runtimeImports: buildRuntimeImports(dpgContext.rlcOptions?.flavor)
   };
 
   typesMap.clear();

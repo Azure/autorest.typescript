@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { DatetimeClient } from "./generated/encode/datetime/src/index";
+import { DatetimeClient } from "./generated/encode/datetime/src/index.js";
 describe("EncodeDatetimeClient Rest Client", () => {
   let client: DatetimeClient;
 

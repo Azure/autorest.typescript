@@ -4,8 +4,8 @@
 import { SchemaRegistryContext } from "../../api/SchemaRegistryContext.js";
 import {
   SchemaGroup,
-  SchemaVersion,
   SchemaContentTypeValues,
+  SchemaVersion,
 } from "../../models/models.js";
 import {
   listSchemaGroups,

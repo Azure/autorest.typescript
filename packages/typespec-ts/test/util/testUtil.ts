@@ -27,7 +27,6 @@ export async function rlcEmitterFor(
   code: string,
   needNamespaces: boolean = true,
   needAzureCore: boolean = false,
-  ignoreClientApiVersion: boolean = false,
   needTCGC: boolean = false,
   withRawContent: boolean = false
 ): Promise<TestHost> {
@@ -35,8 +34,7 @@ export async function rlcEmitterFor(
   const namespace = `
   #suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
   @service({
-    title: "Azure TypeScript Testing",
-    ${ignoreClientApiVersion ? "" : 'version: "2022-12-16-preview",'}
+    title: "Azure TypeScript Testing"
   })
 
   ${needAzureCore ? "@useDependency(Azure.Core.Versions.v1_0_Preview_2)" : ""} 
@@ -54,6 +52,7 @@ ${needAzureCore ? 'import "@azure-tools/typespec-azure-core";' : ""}
 using TypeSpec.Rest; 
 using TypeSpec.Http;
 using TypeSpec.Versioning;
+${needTCGC ? "using Azure.ClientGenerator.Core;" : ""}
 ${needAzureCore ? "using Azure.Core;" : ""}
 
 ${needNamespaces ? namespace : ""}
@@ -76,7 +75,7 @@ export function createDpgContextTestHelper(program: Program): SdkContext {
         main: "@azure-tools/typespec-ts",
         metadata: { name: "@azure-tools/typespec-ts" }
       }
-    ],
+    ]
   };
   const resolvedOptions = { ...defaultOptions };
   program.emitters = resolvedOptions.emitters as any;
@@ -84,7 +83,7 @@ export function createDpgContextTestHelper(program: Program): SdkContext {
     program: program,
     generateProtocolMethods: resolvedOptions.generateProtocolMethods,
     generateConvenienceMethods: resolvedOptions.generateConvenienceMethods,
-    rlcOptions: {},
+    rlcOptions: { flavor: "azure" },
     generationPathDetail: {},
     emitterName: "@azure-tools/typespec-ts"
   } as SdkContext;

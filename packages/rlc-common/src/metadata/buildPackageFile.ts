@@ -57,7 +57,7 @@ function restLevelPackage(model: RLCModel) {
     sourceFrom,
     multiClient,
     batch,
-    branded
+    flavor
   } = model.options;
   const { generateTest, generateSample } = model.options;
   if (
@@ -86,7 +86,10 @@ function restLevelPackage(model: RLCModel) {
     keywords: ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
     license: "MIT",
     main: "dist/index.js",
-    module: generateTest ? "./dist-esm/src/index.js" : "./dist-esm/index.js",
+    module:
+      generateTest || generateSample
+        ? "./dist-esm/src/index.js"
+        : "./dist-esm/index.js",
     types: `./types/${
       packageDetails.nameWithoutScope ?? packageDetails.name
     }.d.ts`,
@@ -324,7 +327,7 @@ function restLevelPackage(model: RLCModel) {
     }
   }
 
-  if (!branded) {
+  if (flavor !== "azure") {
     const runtimeLibVersion =
       model.importInfo.runtimeImports.commonFallback?.version ??
       "1.0.0-alpha.20240226.9";

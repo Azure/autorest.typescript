@@ -100,7 +100,7 @@ export async function _listWidgetsDeserialize(
     throw createRestError(result);
   }
 
-  return !result.body
+  return result.body === undefined
     ? result.body
     : result.body.map((p) => ({
         id: p["id"],
