@@ -117,10 +117,11 @@ const buildMixedDefinition = (options: DefinitionOptions) => {
 
 const buildDefaultReturn = (
   hasDefault: boolean,
-  hasQueryDefinition: boolean
+  hasQueryDefinition: boolean,
+  hasApiVersionInClient: boolean = false
 ) => {
   const defaultDef = !hasDefault
-    ? ``
+    ? (hasApiVersionInClient? `options.apiVersion = options.apiVersion ?? apiVersion;`: "")
     : `options.apiVersion = options.apiVersion ?? "2022-05-15-preview";`;
   const apiVersionDef = !hasQueryDefinition
     ? `\n    client.pipeline.removePolicy({ name: "ApiVersionPolicy" });\n    \n`
@@ -132,11 +133,11 @@ const buildDefaultReturn = (
   
   /**
    * Initialize a new instance of \`testClient\`
-   * @param endpoint - The endpoint to use.
+   * @param endpoint - The endpoint to use.${hasApiVersionInClient && !hasDefault? "\n   * @param apiVersion - The parameter apiVersion": ""}
    * @param options - the parameter for all optional parameters
    */
   export default function createClient(
-    endpoint: string,
+    endpoint: string,${hasApiVersionInClient && !hasDefault? "\napiVersion: string,": ""}
     options: ClientOptions = {}
   ): testClient {
     const baseUrl = options.baseUrl ?? \`\${endpoint}/language\`;
@@ -267,7 +268,7 @@ describe("api-version", () => {
         const def = buildQueryDefinition({
           "@versioned": false
         });
-        const expectedRes = buildDefaultReturn(false, true);
+        const expectedRes = buildDefaultReturn(false, true, true);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
         await assertEqualContent(models!.content, expectedRes);

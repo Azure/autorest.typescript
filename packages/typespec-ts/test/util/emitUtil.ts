@@ -148,7 +148,8 @@ export async function emitParameterFromTypeSpec(
   const importSet = initInternalImports();
   let parameters;
   if (clients && clients[0]) {
-    parameters = transformToParameterTypes(importSet, clients[0], dpgContext);
+    const urlInfo = transformUrlInfo(clients[0], dpgContext);
+    parameters = transformToParameterTypes(importSet, clients[0], dpgContext, urlInfo?.apiVersionInfo);
   }
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
