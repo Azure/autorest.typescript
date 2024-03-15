@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { DeploymentCreationParameters } from "./models";
+import { DeploymentCreationParameters } from "./models.js";
 
 export type GetDeploymentParameters = RequestParameters;
 

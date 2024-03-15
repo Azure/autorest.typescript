@@ -7,7 +7,7 @@ import {
   UserOutput,
   OperationStatusOutput,
   ResourceOperationStatusOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 export interface CreateOrReplace200Headers {
   /** The location for monitoring the operation state. */

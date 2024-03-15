@@ -10,7 +10,7 @@ import {
   StringAndArrayCases,
   MixedLiteralsCases,
   MixedTypesCases,
-} from "./models";
+} from "./models.js";
 
 export type StringsOnlyGetParameters = RequestParameters;
 

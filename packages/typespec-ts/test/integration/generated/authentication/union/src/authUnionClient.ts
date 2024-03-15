@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
+import { logger } from "./logger.js";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
-import { AuthUnionClient } from "./clientDefinitions";
+import { AuthUnionClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `AuthUnionClient`

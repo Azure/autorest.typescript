@@ -9,7 +9,7 @@ import {
   Rfc7231DatetimeProperty,
   UnixTimestampDatetimeProperty,
   UnixTimestampArrayDatetimeProperty,
-} from "./models";
+} from "./models.js";
 
 export interface QueryDefaultQueryParamProperties {
   value: Date | string;

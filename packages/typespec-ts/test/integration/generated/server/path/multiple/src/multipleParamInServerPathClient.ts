@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { MultipleParamInServerPathClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { MultipleParamInServerPathClient } from "./clientDefinitions.js";
 
 export interface MultipleParamInServerPathClientOptions extends ClientOptions {
   apiVersion?: string;

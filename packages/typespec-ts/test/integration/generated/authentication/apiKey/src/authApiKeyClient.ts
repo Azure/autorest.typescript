@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
+import { logger } from "./logger.js";
 import { KeyCredential } from "@azure/core-auth";
-import { AuthApiKeyClient } from "./clientDefinitions";
+import { AuthApiKeyClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `AuthApiKeyClient`

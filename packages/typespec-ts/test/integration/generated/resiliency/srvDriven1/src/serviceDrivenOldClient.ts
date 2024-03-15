@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { ServiceDrivenOldClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { ServiceDrivenOldClient } from "./clientDefinitions.js";
 
 export interface ServiceDrivenOldClientOptions extends ClientOptions {
   apiVersion?: string;

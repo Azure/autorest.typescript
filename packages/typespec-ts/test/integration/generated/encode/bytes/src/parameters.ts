@@ -8,7 +8,7 @@ import {
   Base64BytesProperty,
   Base64urlBytesProperty,
   Base64urlArrayBytesProperty,
-} from "./models";
+} from "./models.js";
 
 export interface QueryDefaultQueryParamProperties {
   value: string;

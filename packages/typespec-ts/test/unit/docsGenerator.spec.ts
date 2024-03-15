@@ -73,7 +73,7 @@ describe("Doc generation testing", () => {
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import { UserDetailsParameter } from "./models";
+        import { UserDetailsParameter } from "./models.js";
 
         export interface CreateOrUpdateUserBodyParam {
           body: UserDetailsParameter;
@@ -177,8 +177,8 @@ describe("Doc generation testing", () => {
       await assertEqualContent(
         clientDef?.content!,
         `
-        import { ReadParameters } from "./parameters";
-        import { Read200Response } from "./responses";
+        import { ReadParameters } from "./parameters.js";
+        import { Read200Response } from "./responses.js";
         import { Client, StreamableMethod } from "@azure-rest/core-client";
   
         export interface Read {

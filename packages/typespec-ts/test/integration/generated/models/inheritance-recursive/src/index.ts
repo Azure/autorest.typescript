@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import RecursiveClient from "./recursiveClient";
+import RecursiveClient from "./recursiveClient.js";
 
-export * from "./recursiveClient";
-export * from "./parameters";
-export * from "./responses";
-export * from "./clientDefinitions";
-export * from "./models";
-export * from "./outputModels";
+export * from "./recursiveClient.js";
+export * from "./parameters.js";
+export * from "./responses.js";
+export * from "./clientDefinitions.js";
+export * from "./models.js";
+export * from "./outputModels.js";
 
 export default RecursiveClient;

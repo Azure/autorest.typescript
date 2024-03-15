@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { FixedClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { FixedClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `FixedClient`

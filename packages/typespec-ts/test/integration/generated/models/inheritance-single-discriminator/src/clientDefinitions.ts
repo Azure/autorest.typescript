@@ -9,7 +9,7 @@ import {
   GetMissingDiscriminatorParameters,
   GetWrongDiscriminatorParameters,
   GetLegacyModelParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   GetModel200Response,
   PutModel204Response,
@@ -18,7 +18,7 @@ import {
   GetMissingDiscriminator200Response,
   GetWrongDiscriminator200Response,
   GetLegacyModel200Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetModel {

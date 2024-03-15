@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { GetJobParameters, CreateJobParameters } from "./parameters";
+import { GetJobParameters, CreateJobParameters } from "./parameters.js";
 import {
   GetJob200Response,
   GetJobDefaultResponse,
   CreateJob200Response,
   CreateJob202Response,
   CreateJobDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetJob {

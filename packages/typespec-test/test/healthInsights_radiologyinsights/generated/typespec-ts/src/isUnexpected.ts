@@ -7,7 +7,7 @@ import {
   CreateJob202Response,
   CreateJobLogicalResponse,
   CreateJobDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /radiology-insights/jobs/{id}": ["200"],

@@ -8,7 +8,8 @@ export function buildSampleTest(model: RLCModel) {
   return {
     path: "test/public/sampleTest.spec.ts",
     content: hbs.compile(sampleTestContent, { noEscape: true })({
-      isModularLibrary: model.options?.isModularLibrary ?? false
+      isEsm: model.options?.moduleKind === "esm",
+      isCjs: model.options?.moduleKind === "cjs"
     })
   };
 }

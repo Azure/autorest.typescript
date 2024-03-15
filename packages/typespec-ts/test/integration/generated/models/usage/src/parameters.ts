@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { InputRecord, InputOutputRecord } from "./models";
+import { InputRecord, InputOutputRecord } from "./models.js";
 
 export interface InputBodyParam {
   body: InputRecord;

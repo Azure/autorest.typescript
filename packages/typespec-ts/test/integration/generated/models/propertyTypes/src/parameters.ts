@@ -31,7 +31,7 @@ import {
   UnionStringLiteralProperty,
   UnionIntLiteralProperty,
   UnionFloatLiteralProperty,
-} from "./models";
+} from "./models.js";
 
 export type BooleanModelGetParameters = RequestParameters;
 

@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { HttpResponse } from "@azure-rest/core-client";
-import { ResourceOutput } from "./outputModels";
+import { ResourceOutput } from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface ListByResourceGroup200Response extends HttpResponse {

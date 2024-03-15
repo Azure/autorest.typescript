@@ -18,7 +18,7 @@ import {
   DecimalVerifyVerifyParameters,
   Decimal128VerifyPrepareVerifyParameters,
   Decimal128VerifyVerifyParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   StringModelGet200Response,
   StringModelPut204Response,
@@ -36,7 +36,7 @@ import {
   DecimalVerifyVerify204Response,
   Decimal128VerifyPrepareVerify200Response,
   Decimal128VerifyVerify204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface StringModelGet {

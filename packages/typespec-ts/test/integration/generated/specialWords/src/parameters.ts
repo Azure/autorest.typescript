@@ -37,7 +37,7 @@ import {
   With,
   Yield,
   SameAsModel,
-} from "./models";
+} from "./models.js";
 
 export interface ModelsWithAndBodyParam {
   body: And;
