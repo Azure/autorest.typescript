@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../src/api/index.ts"],"names":[],"mappings":"AAAA,kCAAkC;AAElC,OAAO,EACL,YAAY,GAGb,MAAM,oBAAoB,CAAC","sourcesContent":["// Licensed under the MIT license.\n\nexport {\n  createOpenAI,\n  OpenAIClientOptions,\n  OpenAIContext,\n} from \"./OpenAIContext.js\";\n"]}

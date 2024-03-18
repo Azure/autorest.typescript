@@ -1,0 +1,20 @@
+import { OpenAIFile, ListFilesResponse, CreateFileRequest, DeleteFileResponse } from "../../models/models.js";
+import { FilesCreate200Response, FilesCreateDefaultResponse, FilesDeleteOperation200Response, FilesDeleteOperationDefaultResponse, FilesDownload200Response, FilesDownloadDefaultResponse, FilesList200Response, FilesListDefaultResponse, FilesRetrieve200Response, FilesRetrieveDefaultResponse, OpenAIContext as Client } from "../../rest/index.js";
+import { StreamableMethod } from "@typespec/ts-http-runtime";
+import { FilesListOptions, FilesCreateOptions, FilesRetrieveOptions, FilesDeleteOperationOptions, FilesDownloadOptions } from "../../models/options.js";
+export declare function _listSend(context: Client, options?: FilesListOptions): StreamableMethod<FilesList200Response | FilesListDefaultResponse>;
+export declare function _listDeserialize(result: FilesList200Response | FilesListDefaultResponse): Promise<ListFilesResponse>;
+export declare function list(context: Client, options?: FilesListOptions): Promise<ListFilesResponse>;
+export declare function _createSend(context: Client, file: CreateFileRequest, options?: FilesCreateOptions): StreamableMethod<FilesCreate200Response | FilesCreateDefaultResponse>;
+export declare function _createDeserialize(result: FilesCreate200Response | FilesCreateDefaultResponse): Promise<OpenAIFile>;
+export declare function create(context: Client, file: CreateFileRequest, options?: FilesCreateOptions): Promise<OpenAIFile>;
+export declare function _retrieveSend(context: Client, fileId: string, options?: FilesRetrieveOptions): StreamableMethod<FilesRetrieve200Response | FilesRetrieveDefaultResponse>;
+export declare function _retrieveDeserialize(result: FilesRetrieve200Response | FilesRetrieveDefaultResponse): Promise<OpenAIFile>;
+export declare function retrieve(context: Client, fileId: string, options?: FilesRetrieveOptions): Promise<OpenAIFile>;
+export declare function _deleteOperationSend(context: Client, fileId: string, options?: FilesDeleteOperationOptions): StreamableMethod<FilesDeleteOperation200Response | FilesDeleteOperationDefaultResponse>;
+export declare function _deleteOperationDeserialize(result: FilesDeleteOperation200Response | FilesDeleteOperationDefaultResponse): Promise<DeleteFileResponse>;
+export declare function deleteOperation(context: Client, fileId: string, options?: FilesDeleteOperationOptions): Promise<DeleteFileResponse>;
+export declare function _downloadSend(context: Client, fileId: string, options?: FilesDownloadOptions): StreamableMethod<FilesDownload200Response | FilesDownloadDefaultResponse>;
+export declare function _downloadDeserialize(result: FilesDownload200Response | FilesDownloadDefaultResponse): Promise<string>;
+export declare function download(context: Client, fileId: string, options?: FilesDownloadOptions): Promise<string>;
+//# sourceMappingURL=index.d.ts.map
