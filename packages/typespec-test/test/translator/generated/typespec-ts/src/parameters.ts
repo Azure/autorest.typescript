@@ -3,7 +3,7 @@
 
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
-import { InputTextElement, DictionaryExampleTextElement } from "./models";
+import { InputTextElement, DictionaryExampleTextElement } from "./models.js";
 
 export interface GetLanguagesHeaders {
   /** A client-generated GUID to uniquely identify the request. */

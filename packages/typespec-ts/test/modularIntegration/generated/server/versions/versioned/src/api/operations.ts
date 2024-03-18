@@ -47,14 +47,15 @@ export async function withoutApiVersion(
 
 export function _withQueryApiVersionSend(
   context: Client,
-  apiVersion: string,
   options: WithQueryApiVersionOptions = { requestOptions: {} },
 ): StreamableMethod<WithQueryApiVersion200Response> {
   return context
     .path("/server/versions/versioned/with-query-api-version")
     .head({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": apiVersion },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2022-12-01-preview",
+      },
     });
 }
 
@@ -70,10 +71,9 @@ export async function _withQueryApiVersionDeserialize(
 
 export async function withQueryApiVersion(
   context: Client,
-  apiVersion: string,
   options: WithQueryApiVersionOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _withQueryApiVersionSend(context, apiVersion, options);
+  const result = await _withQueryApiVersionSend(context, options);
   return _withQueryApiVersionDeserialize(result);
 }
 

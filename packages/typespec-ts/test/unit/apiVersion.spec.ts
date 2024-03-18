@@ -128,8 +128,8 @@ const buildDefaultReturn = (
     : ``;
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
-  import { logger } from "./logger";
-  import { testClient } from "./clientDefinitions";
+  import { logger } from "./logger.js";
+  import { testClient } from "./clientDefinitions.js";
   
   /**
    * Initialize a new instance of \`testClient\`
@@ -166,8 +166,8 @@ const buildDefaultReturn = (
 const buildPathReturn_WithDefault = () => {
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
-  import { logger } from "./logger";
-  import { testClient } from "./clientDefinitions";
+  import { logger } from "./logger.js";
+  import { testClient } from "./clientDefinitions.js";
 
   export interface testClientOptions extends ClientOptions {
     apiVersion?: string;
@@ -211,8 +211,8 @@ const buildPathReturn_WithDefault = () => {
 const buildPathReturn_WithoutDefault = () => {
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
-  import { logger } from "./logger";
-  import { testClient } from "./clientDefinitions";
+  import { logger } from "./logger.js";
+  import { testClient } from "./clientDefinitions.js";
   
   /**
    * Initialize a new instance of \`testClient\`

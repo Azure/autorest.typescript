@@ -3,7 +3,7 @@
 
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
-import { BodyParameter } from "./models";
+import { BodyParameter } from "./models.js";
 
 export interface ModelSpreadAsRequestBodyBodyParam {
   body?: BodyParameter;

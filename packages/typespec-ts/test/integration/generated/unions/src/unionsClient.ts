@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { UnionsClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { UnionsClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `UnionsClient`

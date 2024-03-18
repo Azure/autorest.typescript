@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { User } from "./models";
+import { User } from "./models.js";
 
 export interface CreateOrReplaceBodyParam {
   /** The resource instance. */

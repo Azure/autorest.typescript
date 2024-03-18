@@ -9,7 +9,7 @@ import {
   BinaryArrayPartsRequest,
   JsonArrayPartsRequest,
   MultiBinaryPartsRequest,
-} from "./models";
+} from "./models.js";
 
 export interface FormDataBasicBodyParam {
   body: MultiPartRequest;

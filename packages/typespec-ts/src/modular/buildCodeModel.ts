@@ -511,7 +511,10 @@ function emitParameter(
     clientDefaultValue = paramMap.type.value;
   }
 
-  if (isApiVersion(context, parameter as HttpOperationParameter)) {
+  if (
+    isApiVersion(context, parameter as HttpOperationParameter) &&
+    paramMap.location === "query"
+  ) {
     const defaultApiVersion = getDefaultApiVersion(
       context,
       getServiceNamespace(context.program)

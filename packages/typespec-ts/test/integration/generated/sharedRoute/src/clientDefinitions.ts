@@ -10,7 +10,7 @@ import {
   ReturnsStringParameters,
   ProcessIntParameters,
   ProcessStringParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   ListByResourceGroup200Response,
   ListBySubscription200Response,
@@ -20,7 +20,7 @@ import {
   ReturnsString200Response,
   ProcessInt200Response,
   ProcessString200Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ListByResourceGroup {

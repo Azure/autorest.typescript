@@ -103,7 +103,7 @@ import {
   ParametersWithWithParameters,
   ParametersWithYieldParameters,
   ParametersWithCancellationTokenParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   ModelsWithAnd204Response,
   ModelsWithAs204Response,
@@ -206,7 +206,7 @@ import {
   ParametersWithWith204Response,
   ParametersWithYield204Response,
   ParametersWithCancellationToken204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ModelsWithAnd {

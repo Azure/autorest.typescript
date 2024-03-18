@@ -9,7 +9,7 @@ import {
   DurationProperty,
   CollectionsByteProperty,
   CollectionsModelProperty,
-} from "./models";
+} from "./models.js";
 
 export type StringModelGetNonNullParameters = RequestParameters;
 export type StringModelGetNullParameters = RequestParameters;

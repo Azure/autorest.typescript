@@ -82,7 +82,13 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     enableModelNamespace: { type: "boolean", nullable: true },
     hierarchyClient: { type: "boolean", nullable: true },
     branded: { type: "boolean", nullable: true },
-    flavor: { type: "string", nullable: true }
+    flavor: { type: "string", nullable: true },
+    moduleKind: {
+      type: "string",
+      nullable: true,
+      enum: ["esm", "cjs"],
+      default: "esm"
+    }
   },
   required: []
 };

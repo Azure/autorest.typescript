@@ -3,7 +3,7 @@
 
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
-import { Resource } from "./models";
+import { Resource } from "./models.js";
 
 export interface ListByResourceGroupBodyParam {
   body?: Resource;

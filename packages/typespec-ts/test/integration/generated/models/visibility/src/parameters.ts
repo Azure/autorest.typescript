@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { VisibilityModel } from "./models";
+import { VisibilityModel } from "./models.js";
 
 export interface GetModelBodyParam {
   body: VisibilityModel;

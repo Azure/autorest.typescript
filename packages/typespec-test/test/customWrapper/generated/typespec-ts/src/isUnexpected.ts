@@ -7,7 +7,7 @@ import {
   DeployProject200Response,
   DeployProject201Response,
   DeployProjectDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /authoring/analyze-text/deployments/{deploymentName}": ["200"],

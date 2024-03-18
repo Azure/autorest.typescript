@@ -31,7 +31,7 @@ import {
   UnionStringLiteralPropertyOutput,
   UnionIntLiteralPropertyOutput,
   UnionFloatLiteralPropertyOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface BooleanModelGet200Response extends HttpResponse {

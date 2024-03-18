@@ -1,13 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { SmokeTestParameters, RepeatableActionParameters } from "./parameters";
+import {
+  SmokeTestParameters,
+  RepeatableActionParameters,
+} from "./parameters.js";
 import {
   SmokeTest200Response,
   SmokeTestDefaultResponse,
   RepeatableAction200Response,
   RepeatableActionDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface SmokeTest {

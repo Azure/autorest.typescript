@@ -28,7 +28,7 @@ import {
   LoadTestRunGetAppComponentsParameters,
   LoadTestRunCreateOrUpdateServerMetricsConfigParameters,
   LoadTestRunTestRunListServerMetricsConfigParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   LoadTestAdministrationCreateOrUpdateTest200Response,
   LoadTestAdministrationCreateOrUpdateTest201Response,
@@ -88,7 +88,7 @@ import {
   LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse,
   LoadTestRunTestRunListServerMetricsConfig200Response,
   LoadTestRunTestRunListServerMetricsConfigDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface LoadTestAdministrationCreateOrUpdateTest {

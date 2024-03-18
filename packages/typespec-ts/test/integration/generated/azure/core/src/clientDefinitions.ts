@@ -13,7 +13,7 @@ import {
   ExportParameters,
   ListFirstItemParameters,
   ListSecondItemParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   CreateOrUpdate200Response,
   CreateOrUpdate201Response,
@@ -39,7 +39,7 @@ import {
   ListFirstItemDefaultResponse,
   ListSecondItem200Response,
   ListSecondItemDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface CreateOrUpdate {

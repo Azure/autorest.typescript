@@ -4,11 +4,11 @@
 import {
   NoOperationParamsParameters,
   WithOperationPathParamParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   NoOperationParams204Response,
   WithOperationPathParam204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface NoOperationParams {

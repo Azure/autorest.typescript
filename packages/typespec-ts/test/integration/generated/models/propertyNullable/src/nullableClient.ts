@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { NullableClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { NullableClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `NullableClient`

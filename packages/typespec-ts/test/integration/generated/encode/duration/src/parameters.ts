@@ -9,7 +9,7 @@ import {
   Int32SecondsDurationProperty,
   FloatSecondsDurationProperty,
   FloatSecondsDurationArrayProperty,
-} from "./models";
+} from "./models.js";
 
 export interface QueryDefaultQueryParamProperties {
   input: string;

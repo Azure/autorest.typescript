@@ -32,8 +32,8 @@ describe("Parameters.ts", () => {
           models!.content,
           `
           import { getClient, ClientOptions } from "@azure-rest/core-client";
-          import { logger } from "./logger";
-          import { testClient } from "./clientDefinitions";
+          import { logger } from "./logger.js";
+          import { testClient } from "./clientDefinitions.js";
           
           /**
            * Initialize a new instance of \`testClient\`
@@ -422,7 +422,7 @@ describe("Parameters.ts", () => {
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import { SimpleModel } from "./models";
+        import { SimpleModel } from "./models.js";
 
         export interface ReadBodyParam {
           body:Array<SimpleModel>;
@@ -446,7 +446,7 @@ describe("Parameters.ts", () => {
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import { InnerModel } from "./models";
+        import { InnerModel } from "./models.js";
 
         export interface ReadBodyParam {
           body:Array<InnerModel>;
@@ -472,7 +472,7 @@ describe("Parameters.ts", () => {
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import { SimpleModel } from "./models";
+        import { SimpleModel } from "./models.js";
 
         export interface ReadBodyParam {
           body: Record<string, SimpleModel>;

@@ -11,7 +11,7 @@ import {
   HeaderResponseParameters,
   ModelClientParameters,
   ModelLanguageParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   Operation204Response,
   Parameter204Response,
@@ -22,7 +22,7 @@ import {
   HeaderResponse204Response,
   ModelClient204Response,
   ModelLanguage204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Operation {

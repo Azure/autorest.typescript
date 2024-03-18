@@ -5,12 +5,12 @@ import {
   WithoutApiVersionParameters,
   WithQueryApiVersionParameters,
   WithPathApiVersionParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   WithoutApiVersion200Response,
   WithQueryApiVersion200Response,
   WithPathApiVersion200Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface WithoutApiVersion {

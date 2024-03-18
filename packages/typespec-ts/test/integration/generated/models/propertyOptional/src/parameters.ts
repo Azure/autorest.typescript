@@ -17,7 +17,7 @@ import {
   UnionIntLiteralProperty,
   UnionFloatLiteralProperty,
   RequiredAndOptionalProperty,
-} from "./models";
+} from "./models.js";
 
 export type StringModelGetAllParameters = RequestParameters;
 export type StringModelGetDefaultParameters = RequestParameters;
