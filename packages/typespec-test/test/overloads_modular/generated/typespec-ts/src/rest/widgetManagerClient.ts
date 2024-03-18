@@ -18,7 +18,8 @@ export default function createClient(
   credentials: TokenCredential | KeyCredential,
   options: ClientOptions = {},
 ): WidgetManagerContext {
-  const baseUrl = options.baseUrl ?? `${endpoint}/widget`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `${endpoint}/widget`;
   options.apiVersion = options.apiVersion ?? "2022-08-30";
   const userAgentInfo = `azsdk-js-overload_modular-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -42,7 +43,7 @@ export default function createClient(
   };
 
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
     options,
   ) as WidgetManagerContext;

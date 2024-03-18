@@ -18,7 +18,7 @@ export default function createClient(
   credentials: KeyCredential,
   options: ClientOptions = {},
 ): FaceClient {
-  const baseUrl = options.baseUrl ?? `${endpoint}`;
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
 
   const userAgentInfo = `azsdk-js-ai-face-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -39,7 +39,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, credentials, options) as FaceClient;
+  const client = getClient(endpointUrl, credentials, options) as FaceClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 

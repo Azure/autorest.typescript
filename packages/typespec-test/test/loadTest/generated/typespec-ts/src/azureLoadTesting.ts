@@ -17,7 +17,8 @@ export default function createClient(
   credentials: TokenCredential,
   options: ClientOptions = {},
 ): AzureLoadTestingClient {
-  const baseUrl = options.baseUrl ?? `https://${endpoint}`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `https://${endpoint}`;
   options.apiVersion = options.apiVersion ?? "2022-11-01";
   const userAgentInfo = `azsdk-js-load-testing-rest/1.0.1`;
   const userAgentPrefix =
@@ -40,7 +41,7 @@ export default function createClient(
   };
 
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
     options,
   ) as AzureLoadTestingClient;

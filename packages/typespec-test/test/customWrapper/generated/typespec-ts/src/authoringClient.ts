@@ -17,7 +17,8 @@ export default function createClient(
   credentials: KeyCredential,
   options: ClientOptions = {},
 ): AuthoringClient {
-  const baseUrl = options.baseUrl ?? `${endpoint}/language`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `${endpoint}/language`;
   options.apiVersion = options.apiVersion ?? "2022-05-15-preview";
   const userAgentInfo = `azsdk-js-customWrapper-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -38,7 +39,11 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, credentials, options) as AuthoringClient;
+  const client = getClient(
+    endpointUrl,
+    credentials,
+    options,
+  ) as AuthoringClient;
 
   return client;
 }

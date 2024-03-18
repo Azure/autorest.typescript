@@ -18,7 +18,8 @@ export default function createClient(
   credentials: TokenCredential | KeyCredential,
   options: ClientOptions = {},
 ): ContentSafetyContext {
-  const baseUrl = options.baseUrl ?? `${endpoint}/contentsafety`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `${endpoint}/contentsafety`;
   options.apiVersion = options.apiVersion ?? "2023-10-01";
   const userAgentInfo = `azsdk-js-ai-content-safety-rest/1.0.0`;
   const userAgentPrefix =
@@ -43,7 +44,7 @@ export default function createClient(
   };
 
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
     options,
   ) as ContentSafetyContext;

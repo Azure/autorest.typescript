@@ -17,7 +17,7 @@ export default function createClient(
   credentials: TokenCredential | KeyCredential,
   options: ClientOptions = {},
 ): ChatProtocolContext {
-  const baseUrl = options.baseUrl ?? `${endpoint}`;
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
 
   const userAgentInfo = `azsdk-js-ai-chat-protocol-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -33,13 +33,13 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
-      scopes: options.credentials?.scopes ?? [`${baseUrl}/.default`],
+      scopes: options.credentials?.scopes ?? [`${endpointUrl}/.default`],
       apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "api-key",
     },
   };
 
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
     options,
   ) as ChatProtocolContext;

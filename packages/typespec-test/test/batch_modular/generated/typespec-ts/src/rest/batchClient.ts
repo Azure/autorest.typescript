@@ -17,7 +17,7 @@ export default function createClient(
   credentials: TokenCredential,
   options: ClientOptions = {},
 ): BatchContext {
-  const baseUrl = options.baseUrl ?? `${endpoint}`;
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "2023-05-01.17.0";
   const userAgentInfo = `azsdk-js-batch-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -44,7 +44,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, credentials, options) as BatchContext;
+  const client = getClient(endpointUrl, credentials, options) as BatchContext;
 
   return client;
 }
