@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
+import { logger } from "./logger.js";
 import { KeyCredential } from "@azure/core-auth";
-import { FaceClient } from "./clientDefinitions";
+import { FaceClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `FaceClient`

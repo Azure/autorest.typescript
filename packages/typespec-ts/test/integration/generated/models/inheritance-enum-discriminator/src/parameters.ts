@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { Dog, Snake } from "./models";
+import { Dog, Snake } from "./models.js";
 
 export type GetExtensibleModelParameters = RequestParameters;
 

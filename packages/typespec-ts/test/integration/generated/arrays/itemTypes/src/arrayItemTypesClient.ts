@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { ArrayItemTypesClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { ArrayItemTypesClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `ArrayItemTypesClient`

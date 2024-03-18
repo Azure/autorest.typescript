@@ -10,7 +10,7 @@ interface LroDetail {
   clientOverload?: boolean;
   overloadMap?: ResponseMap[];
   importedResponses?: string[];
-  isModularLibrary?: boolean;
+  isEsm?: boolean;
 }
 
 interface ResponseMap {
@@ -42,7 +42,7 @@ function buildLroHelperDetail(model: RLCModel): LroDetail {
   if (!model.helperDetails?.clientLroOverload) {
     return {
       clientOverload: false,
-      isModularLibrary: model.options?.isModularLibrary
+      isEsm: model.options?.moduleKind === "esm"
     };
   }
   const mapDetail = [];
@@ -79,6 +79,6 @@ function buildLroHelperDetail(model: RLCModel): LroDetail {
     clientOverload: responses.size > 0 && mapDetail.length > 0,
     importedResponses: Array.from(responses),
     overloadMap: mapDetail,
-    isModularLibrary: model.options?.isModularLibrary
+    isEsm: model.options?.moduleKind === "esm"
   };
 }

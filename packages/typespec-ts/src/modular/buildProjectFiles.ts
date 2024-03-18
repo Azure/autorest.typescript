@@ -38,18 +38,12 @@ function buildExportsForMultiClient(
         client.name.replace("Client", ""),
         NameType.File
       );
-      packageInfo.exports[`./${subfolder}`] = {
-        types: `./types/src/${subfolder}/index.d.ts`,
-        import: `./dist-esm/src/${subfolder}/index.js`
-      };
-      packageInfo.exports[`./${subfolder}/api`] = {
-        types: `./types/src/${subfolder}/api/index.d.ts`,
-        import: `./dist-esm/src/${subfolder}/api/index.js`
-      };
-      packageInfo.exports[`./${subfolder}/models`] = {
-        types: `./types/src/${subfolder}/models/index.d.ts`,
-        import: `./dist-esm/src/${subfolder}/models/index.js`
-      };
+      packageInfo.exports[`./${subfolder}`] = `./src/${subfolder}/index.ts`;
+
+      packageInfo.exports[`./${subfolder}/api`] =
+        `./src/${subfolder}/api/index.ts`;
+      packageInfo.exports[`./${subfolder}/models`] =
+        `./src/${subfolder}/models/index.ts`;
     }
   }
   if (codeModel.options.hierarchyClient) {
@@ -69,19 +63,24 @@ function buildExportsForMultiClient(
         )}`;
         packageInfo.exports[
           `./${subfolder ? subfolder + "/" : ""}${subApiPath}`
-        ] = {
-          types: `./types/src/${
-            subfolder ? subfolder + "/" : ""
-          }${subApiPath}/index.d.ts`,
-          import: `./dist-esm/src/${
-            subfolder ? subfolder + "/" : ""
-          }${subApiPath}/index.js`
-        };
+        ] = `src/${subfolder ? subfolder + "/" : ""}${subApiPath}/index.ts`;
       }
     }
   }
 
-  return packageInfo;
+  return packageInfo.exports;
+}
+
+export function getModuleExports(codeModel: ModularCodeModel) {
+  const exports = {
+    exports: {
+      ".": "./src/index.ts",
+      "./api": "./src/api/index.ts",
+      "./models": "./src/models/index.ts"
+    }
+  };
+
+  return buildExportsForMultiClient(codeModel, exports);
 }
 
 // Prepare package info without scripts and devDependencies and dependencies ect

@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
+import { logger } from "./logger.js";
 import { KeyCredential } from "@azure/core-auth";
-import { AnomalyDetectorClient } from "./clientDefinitions";
+import { AnomalyDetectorClient } from "./clientDefinitions.js";
 
 export interface AnomalyDetectorClientOptions extends ClientOptions {
   apiVersion?: string;

@@ -5,12 +5,12 @@ import {
   FromNoneParameters,
   FromOneRequiredParameters,
   FromOneOptionalParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   FromNone204Response,
   FromOneRequired204Response,
   FromOneOptional204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface FromNone {

@@ -6,13 +6,13 @@ import {
   PutKnownValueParameters,
   GetUnknownValueParameters,
   PutUnknownValueParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   GetKnownValue200Response,
   PutKnownValue204Response,
   GetUnknownValue200Response,
   PutUnknownValue204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetKnownValue {

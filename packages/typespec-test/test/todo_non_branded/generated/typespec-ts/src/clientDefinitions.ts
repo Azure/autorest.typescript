@@ -16,7 +16,7 @@ import {
   TodoItemsAttachmentsListParameters,
   TodoItemsAttachmentsCreateUrlAttachmentParameters,
   TodoItemsAttachmentsCreateFileAttachmentParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   UsersCreate200Response,
   UsersCreate409Response,
@@ -46,7 +46,7 @@ import {
   TodoItemsAttachmentsCreateUrlAttachment404Response,
   TodoItemsAttachmentsCreateFileAttachment200Response,
   TodoItemsAttachmentsCreateFileAttachment404Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@typespec/ts-http-runtime";
 
 export interface UsersCreate {

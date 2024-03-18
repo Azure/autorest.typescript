@@ -3,7 +3,7 @@
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
-import { JobResultOutput } from "./outputModels";
+import { JobResultOutput } from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface GetJob200Response extends HttpResponse {

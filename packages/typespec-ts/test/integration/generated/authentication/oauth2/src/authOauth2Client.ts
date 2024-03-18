@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
+import { logger } from "./logger.js";
 import { TokenCredential } from "@azure/core-auth";
-import { AuthOauth2Client } from "./clientDefinitions";
+import { AuthOauth2Client } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `AuthOauth2Client`

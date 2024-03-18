@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { EmptyInput, EmptyInputOutput } from "./models";
+import { EmptyInput, EmptyInputOutput } from "./models.js";
 
 export interface PutEmptyBodyParam {
   body: EmptyInput;

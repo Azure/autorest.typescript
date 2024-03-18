@@ -5,7 +5,7 @@ import { RequestParameters } from "@azure-rest/core-client";
 import {
   LivenessSessionCreationContent,
   LivenessWithVerifySessionCreationContent,
-} from "./models";
+} from "./models.js";
 
 export interface CreateLivenessSessionBodyParam {
   body?: LivenessSessionCreationContent;

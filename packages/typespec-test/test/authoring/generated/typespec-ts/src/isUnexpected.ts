@@ -44,7 +44,7 @@ import {
   GetSupportedLanguagesDefaultResponse,
   ListTrainingConfigVersions200Response,
   ListTrainingConfigVersionsDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "PATCH /authoring/analyze-text/projects/{projectName}": ["200", "201"],

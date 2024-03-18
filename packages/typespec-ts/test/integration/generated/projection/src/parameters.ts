@@ -9,7 +9,7 @@ import {
   JsonAndClientProjectedNameModel,
   ModelWithClientProjectedName,
   ModelWithLanguageProjectedName,
-} from "./models";
+} from "./models.js";
 
 export type OperationParameters = RequestParameters;
 

@@ -48,6 +48,7 @@ function extractRLCOptions(
   const includeShortcuts = getIncludeShortcuts(emitterOptions);
   const packageDetails = getPackageDetails(program, emitterOptions);
   const flavor = getFlavor(emitterOptions, packageDetails);
+  const moduleKind = getModuleKind(emitterOptions);
   const serviceInfo = getServiceInfo(program);
   const azureSdkForJs = getAzureSdkForJs(emitterOptions);
   const generateMetadata: undefined | boolean =
@@ -72,6 +73,7 @@ function extractRLCOptions(
     ...emitterOptions,
     ...credentialInfo,
     flavor,
+    moduleKind,
     includeShortcuts,
     packageDetails,
     generateMetadata,
@@ -221,6 +223,10 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
 
 function getIncludeShortcuts(emitterOptions: EmitterOptions) {
   return Boolean(emitterOptions.includeShortcuts);
+}
+
+function getModuleKind(emitterOptions: EmitterOptions) {
+  return emitterOptions.moduleKind ?? "esm";
 }
 
 function getFlavor(

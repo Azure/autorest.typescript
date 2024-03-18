@@ -8,7 +8,7 @@ import {
   GetChatCompletionsWithAzureExtensionsParameters,
   GetAzureBatchImageGenerationOperationStatusParameters,
   BeginAzureBatchImageGenerationParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   GetEmbeddings200Response,
   GetEmbeddingsDefaultResponse,
@@ -22,7 +22,7 @@ import {
   GetAzureBatchImageGenerationOperationStatusDefaultResponse,
   BeginAzureBatchImageGeneration202Response,
   BeginAzureBatchImageGenerationDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetEmbeddings {

@@ -8,7 +8,7 @@ import {
   ResourceOperationStatusOutput,
   OperationStatusOutput,
   PagedWidgetOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface GetWidget200Response extends HttpResponse {

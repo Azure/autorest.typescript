@@ -7,14 +7,14 @@ import {
   GetBySharedRouteForModelParameters,
   GetBySharedRouteForBytesParameters,
   GetByOverloadParentParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   GetByUnionOnly200Response,
   GetBySharedRouteForString200Response,
   GetBySharedRouteForModel200Response,
   GetBySharedRouteForBytes200Response,
   GetByOverloadParent200Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetByUnionOnly {

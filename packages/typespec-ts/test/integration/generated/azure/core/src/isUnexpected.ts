@@ -26,7 +26,7 @@ import {
   ListFirstItemDefaultResponse,
   ListSecondItem200Response,
   ListSecondItemDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "PATCH /azure/core/basic/users/{id}": ["200", "201"],

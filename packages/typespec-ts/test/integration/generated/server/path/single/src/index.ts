@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import SingleParamInServerPathClient from "./singleParamInServerPathClient";
+import SingleParamInServerPathClient from "./singleParamInServerPathClient.js";
 
-export * from "./singleParamInServerPathClient";
-export * from "./parameters";
-export * from "./responses";
-export * from "./clientDefinitions";
+export * from "./singleParamInServerPathClient.js";
+export * from "./parameters.js";
+export * from "./responses.js";
+export * from "./clientDefinitions.js";
 
 export default SingleParamInServerPathClient;

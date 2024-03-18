@@ -17,7 +17,7 @@ import {
   HeaderIso8601ArrayParameters,
   HeaderInt32SecondsParameters,
   HeaderFloatSecondsParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   QueryDefault204Response,
   QueryIso8601204Response,
@@ -34,7 +34,7 @@ import {
   HeaderIso8601Array204Response,
   HeaderInt32Seconds204Response,
   HeaderFloatSeconds204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface QueryDefault {
