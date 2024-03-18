@@ -383,9 +383,6 @@ function getRequestParameters(
       param.location === "query" ||
       param.location === "body"
     ) {
-      if (param.clientName === "apiVersion") {
-        param;
-      }
       parametersImplementation[param.location].push({
         paramMap: getParameterMap(param, runtimeImports),
         param
