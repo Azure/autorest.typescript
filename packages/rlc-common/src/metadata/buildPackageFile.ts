@@ -330,7 +330,7 @@ function restLevelPackage(model: RLCModel) {
   if (flavor !== "azure") {
     const runtimeLibVersion =
       model.importInfo.runtimeImports.commonFallback?.version ??
-      "1.0.0-alpha.20240226.9";
+      "1.0.0-alpha.20240314.2";
     packageInfo.dependencies = {
       tslib: "^2.2.0",
       "@typespec/ts-http-runtime": runtimeLibVersion

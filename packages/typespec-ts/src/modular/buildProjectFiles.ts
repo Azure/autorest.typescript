@@ -174,7 +174,7 @@ export function emitPackage(
 function emitNonBrandedPackage(codeModel: ModularCodeModel) {
   const runtimeLibVersion =
     codeModel.runtimeImports?.commonFallback?.version ??
-    "1.0.0-alpha.20240226.9";
+    "1.0.0-alpha.20240314.2";
   const packageInfo = {
     ...initPackageInfo(codeModel),
     scripts: {
