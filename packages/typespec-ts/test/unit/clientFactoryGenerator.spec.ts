@@ -77,14 +77,14 @@ describe("Client Factory generation", () => {
 
           /**
            * Initialize a new instance of \`testClient\`
-           * @param endpoint - The endpoint to use.
+           * @param endpointParam - The endpoint to use.
            * @param options - the parameter for all optional parameters
            */
           export default function createClient(
-            endpoint: string,
+            endpointParam: string,
             options: ClientOptions = {}
           ): testClient {
-            const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}/language\`;
+            const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language\`;
           
             const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
             const userAgentPrefix =
@@ -148,16 +148,16 @@ describe("Client Factory generation", () => {
             
             /**
              * Initialize a new instance of \`testClient\`
-             * @param endpoint - The endpoint to use.
+             * @param endpointParam - The endpoint to use.
              * @param version - The version to use
              * @param options - the parameter for all optional parameters
              */
             export default function createClient(
-              endpoint: string,
+              endpointParam: string,
               version: "V1" | "V2",
               options: ClientOptions = {}
             ): testClient {
-              const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
+              const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language/\${version}\`;
             
               const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
               const userAgentPrefix =
@@ -217,16 +217,16 @@ describe("Client Factory generation", () => {
             
             /**
              * Initialize a new instance of \`testClient\`
-             * @param endpoint - The endpoint to use.
+             * @param endpointParam - The endpoint to use.
              * @param version - The version to use. Possible values: "v1.1"
              * @param options - the parameter for all optional parameters
              */
             export default function createClient(
-              endpoint: string,
+              endpointParam: string,
               version: string,
               options: ClientOptions = {}
             ): testClient {
-              const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
+              const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language/\${version}\`;
             
               const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
               const userAgentPrefix =
@@ -286,7 +286,7 @@ describe("Client Factory generation", () => {
             import { testClient } from "./clientDefinitions.js";
 
             export interface testClientOptions extends ClientOptions {
-              endpoint?: string;
+              endpointParam?: string;
             }
 
             /**
@@ -298,8 +298,8 @@ describe("Client Factory generation", () => {
               version: string,
               options: testClientOptions = {}
             ): testClient {
-              const endpoint = options.endpoint ?? "http://localhost:3000";
-              const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
+              const endpointParam = options.endpointParam ?? "http://localhost:3000";
+              const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language/\${version}\`;
             
               const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
               const userAgentPrefix =
@@ -343,11 +343,11 @@ describe("Client Factory generation", () => {
         
         /**
          * Initialize a new instance of \`testClient\`
-         * @param endpoint - The parameter endpoint
+         * @param endpointParam - The parameter endpointParam
          * @param options - the parameter for all optional parameters
          */
-        export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
-        const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}\`;
+        export default function createClient(endpointParam: string, options: ClientOptions = {}): testClient {
+        const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`;
         
         const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix =
@@ -431,12 +431,12 @@ describe("Client Factory generation", () => {
 
       /**
        * Initialize a new instance of \`testClient\`
-       * @param endpoint - The parameter endpoint
+       * @param endpointParam - The parameter endpointParam
        * @param credentials - uniquely identify client credential
        * @param options - the parameter for all optional parameters
        */
-      export default function createClient(endpoint: string, credentials: TokenCredential, options: ClientOptions = {}): testClient {
-        const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}\`;
+      export default function createClient(endpointParam: string, credentials: TokenCredential, options: ClientOptions = {}): testClient {
+        const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`;
         
         const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix = options.userAgentOptions && options.userAgentOptions.userAgentPrefix ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`: \`\${userAgentInfo}\`;;
@@ -486,12 +486,12 @@ describe("Client Factory generation", () => {
         
         /**
          * Initialize a new instance of \`testClient\`
-         * @param endpoint - The parameter endpoint
+         * @param endpointParam - The parameter endpointParam
          * @param credentials - uniquely identify client credential
          * @param options - the parameter for all optional parameters
          */
-        export default function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
-        const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpoint}\`;
+        export default function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
+        const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`;
         
         const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix =
@@ -545,12 +545,12 @@ describe("Client Factory generation", () => {
         
         /**
          * Initialize a new instance of \`testClient\`
-         * @param endpoint - The parameter endpoint
+         * @param endpointParam - The parameter endpointParam
          * @param credentials - uniquely identify client credential
          * @param options - the parameter for all optional parameters
          */
-        export default function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
-        const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
+        export default function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
+        const baseUrl = options.baseUrl ?? \`\${endpointParam}\`;
         
         const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix =
