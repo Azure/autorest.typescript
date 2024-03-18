@@ -81,7 +81,7 @@ describe("LROStandardClient Classical Client", () => {
     });
 
     // Skip this case: https://github.com/Azure/azure-sdk-for-js/issues/28694
-    it.skip("submitted should catch the inital error", async () => {
+    it.skip("submitted should catch the initial error", async () => {
       try {
         const poller = client.createOrReplace("madge", {
           role: "foo"
