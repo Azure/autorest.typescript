@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "tslib": "^2.6.2",
-    "@typespec/ts-http-runtime": "1.0.0-alpha.20240314.2"
+    "@typespec/ts-http-runtime": "1.0.0-alpha.20240226.9"
   },
   "exports": {
     "./package.json": "./package.json",
