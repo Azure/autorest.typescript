@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { JobData } from "./models";
+import { JobData } from "./models.js";
 
 export type GetJobParameters = RequestParameters;
 

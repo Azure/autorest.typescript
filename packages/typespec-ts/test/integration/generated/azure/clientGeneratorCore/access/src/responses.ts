@@ -11,7 +11,7 @@ import {
   SharedModelOutput,
   OuterModelOutput,
   AbstractModelOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface NoDecoratorInPublic200Response extends HttpResponse {

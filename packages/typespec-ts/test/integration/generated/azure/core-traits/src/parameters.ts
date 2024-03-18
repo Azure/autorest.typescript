@@ -3,7 +3,7 @@
 
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
-import { UserActionParam } from "./models";
+import { UserActionParam } from "./models.js";
 
 export interface SmokeTestHeaders {
   /** header in request */

@@ -10,7 +10,7 @@ import {
   MetricRequestPayload,
   TestRunAppComponents,
   TestRunServerMetricConfig,
-} from "./models";
+} from "./models.js";
 
 /** Load test model */
 export type TestResourceMergeAndPatch = Partial<Test>;

@@ -18,7 +18,7 @@ import {
   PagedDimensionValueListOutput,
   TestRunAppComponentsOutput,
   TestRunServerMetricConfigOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface LoadTestAdministrationCreateOrUpdateTest200Response

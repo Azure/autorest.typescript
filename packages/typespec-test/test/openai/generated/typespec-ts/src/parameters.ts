@@ -7,7 +7,7 @@ import {
   CompletionsOptions,
   ChatCompletionsOptions,
   ImageGenerationOptions,
-} from "./models";
+} from "./models.js";
 
 export interface GetEmbeddingsBodyParam {
   body?: EmbeddingsOptions;

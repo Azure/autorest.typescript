@@ -17,7 +17,7 @@ import {
   IsModelAdditionalPropertiesOutput,
   ExtendsModelArrayAdditionalPropertiesOutput,
   IsModelArrayAdditionalPropertiesOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface ExtendsUnknownGet200Response extends HttpResponse {

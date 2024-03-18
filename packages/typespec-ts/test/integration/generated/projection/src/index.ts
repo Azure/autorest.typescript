@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import ProjectionClient from "./projectionClient";
+import ProjectionClient from "./projectionClient.js";
 
-export * from "./projectionClient";
-export * from "./parameters";
-export * from "./responses";
-export * from "./clientDefinitions";
-export * from "./models";
+export * from "./projectionClient.js";
+export * from "./parameters.js";
+export * from "./responses.js";
+export * from "./clientDefinitions.js";
+export * from "./models.js";
 
 export default ProjectionClient;

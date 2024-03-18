@@ -15,7 +15,7 @@ import {
   GetWidgetOperationStatusDefaultResponse,
   ListWidgets200Response,
   ListWidgetsDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /widgets/{widgetName}": ["200"],

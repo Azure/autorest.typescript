@@ -9,7 +9,7 @@ import {
   FormDataJsonArrayPartsParameters,
   FormDataMultiBinaryPartsParameters,
   FormDataCheckFileNameAndContentTypeParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   FormDataBasic204Response,
   FormDataComplex204Response,
@@ -18,7 +18,7 @@ import {
   FormDataJsonArrayParts204Response,
   FormDataMultiBinaryParts204Response,
   FormDataCheckFileNameAndContentType204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Basic {

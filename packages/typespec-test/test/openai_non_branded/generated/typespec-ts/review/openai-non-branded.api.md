@@ -611,11 +611,10 @@ export interface FineTuningOperations {
 }
 
 // @public
-interface Image_2 {
+export interface Image {
     b64Json?: Uint8Array;
     url?: string;
 }
-export { Image_2 as Image }
 
 // @public (undocumented)
 export interface ImagesCreateEditOptions extends OperationOptions {
@@ -648,7 +647,7 @@ export interface ImagesResponse {
     // (undocumented)
     created: Date;
     // (undocumented)
-    data: Image_2[];
+    data: Image[];
 }
 
 // @public (undocumented)

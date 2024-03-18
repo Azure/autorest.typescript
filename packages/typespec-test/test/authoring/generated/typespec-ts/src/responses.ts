@@ -13,7 +13,7 @@ import {
   SwapDeploymentsJobOutput,
   PagedSupportedLanguageOutput,
   PagedTrainingConfigVersionOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 export interface CreateOrUpdate200Headers {
   /** The location for monitoring the operation state. */

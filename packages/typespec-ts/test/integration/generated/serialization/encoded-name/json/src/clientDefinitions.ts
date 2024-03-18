@@ -1,8 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { PropertySendParameters, PropertyGetParameters } from "./parameters";
-import { PropertySend204Response, PropertyGet200Response } from "./responses";
+import { PropertySendParameters, PropertyGetParameters } from "./parameters.js";
+import {
+  PropertySend204Response,
+  PropertyGet200Response,
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Send {

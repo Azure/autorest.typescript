@@ -8,7 +8,7 @@ import {
   QueryPipesParameters,
   QueryCsvParameters,
   HeaderCsvParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   QueryMulti204Response,
   QuerySsv204Response,
@@ -16,7 +16,7 @@ import {
   QueryPipes204Response,
   QueryCsv204Response,
   HeaderCsv204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface QueryMulti {

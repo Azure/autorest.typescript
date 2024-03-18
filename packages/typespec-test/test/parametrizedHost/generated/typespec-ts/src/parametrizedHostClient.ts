@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
+import { logger } from "./logger.js";
 import { TokenCredential } from "@azure/core-auth";
-import { ParametrizedHostClient } from "./clientDefinitions";
+import { ParametrizedHostClient } from "./clientDefinitions.js";
 
 export interface ParametrizedHostClientOptions extends ClientOptions {
   host?: string;

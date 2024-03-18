@@ -5,12 +5,12 @@ import {
   PostValidParameters,
   GetValidParameters,
   PutValidParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   PostValid204Response,
   GetValid200Response,
   PutValid200Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface PostValid {

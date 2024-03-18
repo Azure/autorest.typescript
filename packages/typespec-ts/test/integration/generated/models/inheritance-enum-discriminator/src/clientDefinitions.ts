@@ -10,7 +10,7 @@ import {
   PutFixedModelParameters,
   GetFixedModelMissingDiscriminatorParameters,
   GetFixedModelWrongDiscriminatorParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   GetExtensibleModel200Response,
   PutExtensibleModel204Response,
@@ -20,7 +20,7 @@ import {
   PutFixedModel204Response,
   GetFixedModelMissingDiscriminator200Response,
   GetFixedModelWrongDiscriminator200Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetExtensibleModel {

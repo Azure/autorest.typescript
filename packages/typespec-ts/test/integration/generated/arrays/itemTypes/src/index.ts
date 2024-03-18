@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import ArrayItemTypesClient from "./arrayItemTypesClient";
+import ArrayItemTypesClient from "./arrayItemTypesClient.js";
 
-export * from "./arrayItemTypesClient";
-export * from "./parameters";
-export * from "./responses";
-export * from "./clientDefinitions";
-export * from "./models";
-export * from "./outputModels";
+export * from "./arrayItemTypesClient.js";
+export * from "./parameters.js";
+export * from "./responses.js";
+export * from "./clientDefinitions.js";
+export * from "./models.js";
+export * from "./outputModels.js";
 
 export default ArrayItemTypesClient;

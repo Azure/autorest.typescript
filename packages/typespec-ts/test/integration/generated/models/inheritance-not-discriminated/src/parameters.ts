@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { Siamese } from "./models";
+import { Siamese } from "./models.js";
 
 export interface PostValidBodyParam {
   body: Siamese;

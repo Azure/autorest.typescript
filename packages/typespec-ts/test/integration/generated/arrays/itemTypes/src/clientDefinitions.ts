@@ -22,7 +22,7 @@ import {
   ModelValuePutParameters,
   NullableFloatValueGetParameters,
   NullableFloatValuePutParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   Int32ValueGet200Response,
   Int32ValuePut204Response,
@@ -44,7 +44,7 @@ import {
   ModelValuePut204Response,
   NullableFloatValueGet200Response,
   NullableFloatValuePut204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Int32ValueGet {

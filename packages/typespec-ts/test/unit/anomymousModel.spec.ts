@@ -321,7 +321,7 @@ describe("anonymous model", () => {
         schemaOutput?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import { Bar, EmptyObj, Attachment } from "./models";
+        import { Bar, EmptyObj, Attachment } from "./models.js";
         
         export interface GetModelBodyParam {
           body: {
@@ -423,7 +423,7 @@ describe("anonymous model", () => {
         schemaOutput?.content!,
         `
         import { HttpResponse } from "@azure-rest/core-client";
-        import { BarOutput, EmptyObjOutput, AttachmentOutput } from "./outputModels";
+        import { BarOutput, EmptyObjOutput, AttachmentOutput } from "./outputModels.js";
         
         /** The request has succeeded. */
         export interface GetModel200Response extends HttpResponse {

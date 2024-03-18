@@ -58,7 +58,7 @@ import {
   UnionIntLiteralPutParameters,
   UnionFloatLiteralGetParameters,
   UnionFloatLiteralPutParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   BooleanModelGet200Response,
   BooleanModelPut204Response,
@@ -116,7 +116,7 @@ import {
   UnionIntLiteralPut204Response,
   UnionFloatLiteralGet200Response,
   UnionFloatLiteralPut204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface BooleanModelGet {

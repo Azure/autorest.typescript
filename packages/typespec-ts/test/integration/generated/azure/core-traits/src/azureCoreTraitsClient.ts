@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { AzureCoreTraitsClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { AzureCoreTraitsClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `AzureCoreTraitsClient`

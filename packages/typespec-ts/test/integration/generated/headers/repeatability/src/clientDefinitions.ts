@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ImmediateSuccessParameters } from "./parameters";
-import { ImmediateSuccess204Response } from "./responses";
+import { ImmediateSuccessParameters } from "./parameters.js";
+import { ImmediateSuccess204Response } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ImmediateSuccess {

@@ -9,7 +9,7 @@ import {
   BreakSentenceParameters,
   DictionaryLookupParameters,
   DictionaryExamplesParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   GetLanguages200Response,
   GetLanguagesDefaultResponse,
@@ -25,7 +25,7 @@ import {
   DictionaryLookupDefaultResponse,
   DictionaryExamples200Response,
   DictionaryExamplesDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetLanguages {

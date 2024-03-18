@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { BodyModel } from "./models";
+import { BodyModel } from "./models.js";
 
 export interface RequiredExplicitBodyParam {
   body: BodyModel;

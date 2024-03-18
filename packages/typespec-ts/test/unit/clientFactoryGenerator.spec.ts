@@ -19,8 +19,8 @@ describe("Client Factory generation", () => {
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
-        import { logger } from "./logger";
-        import { testClient } from "./clientDefinitions";
+        import { logger } from "./logger.js";
+        import { testClient } from "./clientDefinitions.js";
         
         /**
          * Initialize a new instance of \`testClient\`
@@ -72,8 +72,8 @@ describe("Client Factory generation", () => {
         models!.content,
         `
           import { getClient, ClientOptions } from "@azure-rest/core-client";
-          import { logger } from "./logger";
-          import { testClient } from "./clientDefinitions";
+          import { logger } from "./logger.js";
+          import { testClient } from "./clientDefinitions.js";
 
           /**
            * Initialize a new instance of \`testClient\`
@@ -143,8 +143,8 @@ describe("Client Factory generation", () => {
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
-            import { logger } from "./logger";
-            import { testClient } from "./clientDefinitions";
+            import { logger } from "./logger.js";
+            import { testClient } from "./clientDefinitions.js";
             
             /**
              * Initialize a new instance of \`testClient\`
@@ -212,8 +212,8 @@ describe("Client Factory generation", () => {
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
-            import { logger } from "./logger";
-            import { testClient } from "./clientDefinitions";
+            import { logger } from "./logger.js";
+            import { testClient } from "./clientDefinitions.js";
             
             /**
              * Initialize a new instance of \`testClient\`
@@ -282,8 +282,8 @@ describe("Client Factory generation", () => {
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
-            import { logger } from "./logger";
-            import { testClient } from "./clientDefinitions";
+            import { logger } from "./logger.js";
+            import { testClient } from "./clientDefinitions.js";
 
             export interface testClientOptions extends ClientOptions {
               endpoint?: string;
@@ -338,8 +338,8 @@ describe("Client Factory generation", () => {
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
-        import { logger } from "./logger";
-        import { testClient } from "./clientDefinitions";
+        import { logger } from "./logger.js";
+        import { testClient } from "./clientDefinitions.js";
         
         /**
          * Initialize a new instance of \`testClient\`
@@ -425,9 +425,9 @@ describe("Client Factory generation", () => {
         factoryFile!.content,
         `
       import { getClient, ClientOptions } from "@azure-rest/core-client";
-      import { logger } from "./logger";
+      import { logger } from "./logger.js";
       import { TokenCredential } from "@azure/core-auth";
-      import { testClient } from "./clientDefinitions";
+      import { testClient } from "./clientDefinitions.js";
 
       /**
        * Initialize a new instance of \`testClient\`
@@ -480,9 +480,9 @@ describe("Client Factory generation", () => {
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
-        import { logger } from "./logger";
+        import { logger } from "./logger.js";
         import { TokenCredential, KeyCredential } from "@azure/core-auth";
-        import { testClient } from "./clientDefinitions";
+        import { testClient } from "./clientDefinitions.js";
         
         /**
          * Initialize a new instance of \`testClient\`
@@ -539,9 +539,9 @@ describe("Client Factory generation", () => {
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
-        import { logger } from "./logger";
+        import { logger } from "./logger.js";
         import { TokenCredential, KeyCredential, isKeyCredential } from "@azure/core-auth";
-        import { testClient } from "./clientDefinitions";
+        import { testClient } from "./clientDefinitions.js";
         
         /**
          * Initialize a new instance of \`testClient\`
