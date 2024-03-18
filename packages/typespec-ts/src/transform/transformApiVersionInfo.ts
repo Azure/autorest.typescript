@@ -58,7 +58,7 @@ export function getOperationApiVersion(
   const apiVersionTypes = new Set<string>();
   const locations = new Set<ApiVersionPosition>();
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  let hasApiVersionInClient = true;
+  dpgContext.hasApiVersionInClient = true;
   let hasApiVersionInOperation = true;
   for (const clientOp of clientOperations) {
     hasApiVersionInOperation = false;
@@ -85,14 +85,14 @@ export function getOperationApiVersion(
       const typeString = JSON.stringify(trimUsage(type));
       apiVersionTypes.add(typeString);
     });
-    if (apiVersionTypes.size > 1 || !hasApiVersionInClient) {
+    if (apiVersionTypes.size > 1 || !dpgContext.hasApiVersionInClient) {
       break;
     }
     if (params.length === 1) {
       hasApiVersionInOperation = true;
     }
     if (!hasApiVersionInOperation) {
-      hasApiVersionInClient = false;
+      dpgContext.hasApiVersionInClient = false;
     }
   }
   const operationGroups = listOperationGroups(dpgContext, client, true);
@@ -126,19 +126,19 @@ export function getOperationApiVersion(
         const typeString = JSON.stringify(trimUsage(type));
         apiVersionTypes.add(typeString);
       });
-      if (apiVersionTypes.size > 1 || !hasApiVersionInClient) {
+      if (apiVersionTypes.size > 1 || !dpgContext.hasApiVersionInClient) {
         break;
       }
       if (params.length === 1) {
         hasApiVersionInOperation = true;
       }
       if (!hasApiVersionInOperation) {
-        hasApiVersionInClient = false;
+        dpgContext.hasApiVersionInClient = false;
       }
     }
   }
   // If no api-version parameter defined return directly
-  if (apiVersionTypes.size === 0 || !hasApiVersionInClient) {
+  if (apiVersionTypes.size === 0 || !dpgContext.hasApiVersionInClient) {
     return;
   }
   const detail: ApiVersionInfo = {

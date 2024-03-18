@@ -153,7 +153,6 @@ const typesMap = new Map<EmitterType, HrlcType>();
 const simpleTypesMap = new Map<string, HrlcType>();
 const endpointPathParameters: Record<string, any>[] = [];
 let apiVersionParam: Parameter | undefined = undefined;
-let hasApiVersionInClient = true;
 
 function isSimpleType(
   program: Program,
@@ -512,17 +511,11 @@ function emitParameter(
     clientDefaultValue = paramMap.type.value;
   }
 
-  if (
-    isApiVersion(context, parameter as HttpOperationParameter) &&
-    hasApiVersionInClient
-  ) {
+  if (isApiVersion(context, parameter as HttpOperationParameter)) {
     const defaultApiVersion = getDefaultApiVersion(
       context,
       getServiceNamespace(context.program)
     );
-    paramMap.type = defaultApiVersion
-      ? getConstantType(defaultApiVersion.value)
-      : { type: "string" };
     paramMap.implementation = implementation;
     paramMap.in_docstring = false;
     if (defaultApiVersion) {
@@ -530,6 +523,9 @@ function emitParameter(
     }
     if (!clientDefaultValue) {
       clientDefaultValue = getDefaultApiVersionString(context.program, context);
+    }
+    if (clientDefaultValue !== undefined) {
+      paramMap.optional = true;
     }
   }
   return { clientDefaultValue, ...base, ...paramMap };
@@ -558,23 +554,6 @@ function emitFlattenedParameter(
     type: property["type"],
     defaultToUnsetSentinel: true
   };
-}
-
-function getConstantType(key: string): HrlcType {
-  const cache = simpleTypesMap.get(key);
-  if (cache) {
-    return cache;
-  }
-  const type: HrlcType = {
-    apiVersions: [],
-    clientDefaultValue: null,
-    type: "constant",
-    value: key,
-    valueType: { type: "string" },
-    xmlMetadata: {}
-  };
-  simpleTypesMap.set(key, type);
-  return type;
 }
 
 function emitResponseHeaders(
@@ -847,22 +826,16 @@ function emitBasicOperation(
     namespaceHierarchies.push(operationGroupName);
   }
 
-  let hasApiVersionInOperation = false;
   for (const param of httpOperation.parameters.parameters) {
     if (isIgnoredHeaderParam(param)) {
       continue;
     }
     const emittedParam = emitParameter(context, param, "Method");
     if (isApiVersion(context, param)) {
-      hasApiVersionInOperation = true;
       emittedParam.isApiVersion = true;
       apiVersionParam = emittedParam;
     }
     parameters.push(emittedParam);
-  }
-
-  if (!hasApiVersionInOperation) {
-    hasApiVersionInClient = false;
   }
 
   // Set up responses for operation
@@ -1752,7 +1725,6 @@ function emitServerParams(
         isApiVersion(context, serverParameter as any) &&
         apiVersionParam === undefined
       ) {
-        hasApiVersionInClient = true;
         emittedParameter.isApiVersion = true;
         apiVersionParam = emittedParameter;
         continue;
@@ -1849,7 +1821,6 @@ function emitClients(
   const clients = listClients(context);
   const retval: HrlcClient[] = [];
   apiVersionParam = undefined;
-  hasApiVersionInClient = true;
   for (const client of clients) {
     const clientName = getLibraryName(context, client.type).replace(
       "Client",
@@ -1876,7 +1847,7 @@ function emitClients(
         rlcModels && rlcModels.helperDetails ? rlcModels.helperDetails : {}
     };
     const emittedApiVersionParam = getApiVersionParameter();
-    if (emittedApiVersionParam && hasApiVersionInClient) {
+    if (emittedApiVersionParam && context.hasApiVersionInClient) {
       emittedClient.parameters.push(emittedApiVersionParam);
       // if we have client level api version, we need to remove it from all operations
       emittedClient.operationGroups.map((opGroup) => {

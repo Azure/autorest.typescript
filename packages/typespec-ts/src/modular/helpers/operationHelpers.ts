@@ -383,6 +383,9 @@ function getRequestParameters(
       param.location === "query" ||
       param.location === "body"
     ) {
+      if (param.clientName === "apiVersion") {
+        param;
+      }
       parametersImplementation[param.location].push({
         paramMap: getParameterMap(param, runtimeImports),
         param
@@ -683,6 +686,9 @@ function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
       runtimeImports,
       [param.type]
     ).join(", ")}}`;
+  }
+  if (param.restApiName === "api-version") {
+    return `"${param.restApiName}": ${param.clientDefaultValue ?  `options?.${param.clientName} ?? "${param.clientDefaultValue}"` : `options?.${param.clientName}`}`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,

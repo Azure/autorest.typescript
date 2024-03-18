@@ -6,6 +6,7 @@ import { KnownMediaType } from "./mediaTypes.js";
 export interface SdkContext extends TCGCSdkContext {
   rlcOptions?: RLCOptions;
   generationPathDetail?: GenerationDirDetail;
+  hasApiVersionInClient?: boolean;
 }
 
 export interface GenerationDirDetail {
