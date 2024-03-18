@@ -11,7 +11,7 @@ export default function createClient(
   options: ClientOptions = {},
 ): UsageContext {
   const endpointUrl =
-    options.baseUrl ?? options.baseUrl ?? `http://localhost:3000`;
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-usage-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

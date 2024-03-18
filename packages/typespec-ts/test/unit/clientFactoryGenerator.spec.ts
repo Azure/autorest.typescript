@@ -449,7 +449,7 @@ describe("Client Factory generation", () => {
               logger: options.loggingOptions?.logger ?? logger.info
             },
             credentials: {
-              scopes: options.credentials?.scopes ?? [\`\${baseUrl}/.default\`],
+              scopes: options.credentials?.scopes ?? [\`\${endpointUrl}/.default\`],
             },
         };
 
