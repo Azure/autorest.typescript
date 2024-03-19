@@ -6,8 +6,7 @@ import {
   getSendPrivateFunction,
   getDeserializePrivateFunction,
   getOperationOptionsName,
-  isLROOperation,
-  isLROOnlyOperation
+  isLroOnlyOperation
 } from "./helpers/operationHelpers.js";
 import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
@@ -321,7 +320,7 @@ export function buildOperationOptions(
     name,
     isExported: true,
     extends: ["OperationOptions"],
-    properties: (isLROOperation(operation) ? [lroOptions] : []).concat(
+    properties: (isLroOnlyOperation(operation) ? [lroOptions] : []).concat(
       options.map((p) => {
         return {
           docs: getDocsFromDescription(p.description),
@@ -341,7 +340,7 @@ export function buildLroDeserDetailMap(client: Client) {
   const existingNames = new Set<string>();
   for (const operationGroup of client.operationGroups) {
     const operations = operationGroup.operations.filter((o) =>
-      isLROOnlyOperation(o)
+      isLroOnlyOperation(o)
     );
     // skip this operation group if it has no LRO operations
     if (operations.length === 0) {

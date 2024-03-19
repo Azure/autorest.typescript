@@ -124,7 +124,7 @@ export function getDeserializePrivateFunction(
   ];
   // TODO: Support LRO + paging operation
   // https://github.com/Azure/autorest.typescript/issues/2313
-  const isLroOnly = isLROOnlyOperation(operation);
+  const isLroOnly = isLroOnlyOperation(operation);
 
   // TODO: Support operation overloads
   const response =
@@ -178,23 +178,21 @@ export function getDeserializePrivateFunction(
     }
   }
 
+  let deserializedType = isLroOnly
+    ? operation?.lroMetadata?.finalResult
+    : response.type;
+  let hasLroSubPath = operation?.lroMetadata?.finalResultPath !== undefined;
+  let deserializedRoot = hasLroSubPath
+    ? `result.body.${operation?.lroMetadata?.finalResultPath}`
+    : "result.body";
   // TODO: Hard-coded for LRO PATCH case for now
   // https://github.com/Azure/autorest.typescript/issues/2314
   // Considering 1) there exists issues in getLroMetadata() for PATCH and 2) we don't have real case yet in DPG
   if (isLroOnly && operation.method.toLowerCase() === "patch") {
-    statements.push(`return result.body as any`);
-    return {
-      ...functionStatement,
-      statements
-    };
+    deserializedType = response.type;
+    hasLroSubPath = false;
+    deserializedRoot = "result.body";
   }
-  const deserializedType = isLroOnly
-    ? operation?.lroMetadata?.finalResult
-    : response.type;
-  const hasLroSubPath = operation?.lroMetadata?.finalResultPath !== undefined;
-  const deserializedRoot = hasLroSubPath
-    ? `result.body.${operation?.lroMetadata?.finalResultPath}`
-    : "result.body";
   if (isLroOnly) {
     const lroLogicalResponse = getRLCLroLogicalResponse(operation.rlcResponse);
     statements.push(`result = result as ${lroLogicalResponse};`);
@@ -305,15 +303,13 @@ export function getOperationFunction(
   operation: Operation,
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
-  const isPaging = isPagingOperation(operation);
-  const isLro = isLROOperation(operation);
-  if (isPaging && !isLro) {
+  if (isPagingOnlyOperation(operation)) {
     // Case 1: paging-only operation
     return getPagingOnlyOperationFunction(operation, clientType);
-  } else if (!isPaging && isLro) {
+  } else if (isLroOnlyOperation(operation)) {
     // Case 2: lro-only operation
     return getLroOnlyOperatonFunction(operation, clientType);
-  } else if (isLro && isPaging) {
+  } else if (isLroAndPagingOperation(operation)) {
     // Case 3: both paging + lro operation is not supported yet so handle them as normal operation and customization may be needed
     // https://github.com/Azure/autorest.typescript/issues/2313
   }
@@ -1298,33 +1294,23 @@ function needsDeserialize(type?: Type) {
   );
 }
 
-export function hasLROOperation(
-  codeModel: ModularCodeModel,
-  needRLC: boolean = false
-) {
-  return (codeModel.clients ?? []).some(
-    (c) =>
-      (needRLC ? c.rlcHelperDetails.hasLongRunning : false) ||
-      (c.operationGroups ?? []).some((og) =>
-        (og.operations ?? []).some(isLROOperation)
-      )
-  );
+export function isLroAndPagingOperation(op: Operation): boolean {
+  return op.discriminator === "lropaging";
 }
 
-export function isLROOperation(op: Operation): boolean {
-  return op.discriminator === "lro" || op.discriminator === "lropaging";
-}
-
-export function isLROOnlyOperation(op: Operation): boolean {
+export function isLroOnlyOperation(op: Operation): boolean {
   return op.discriminator === "lro";
 }
 
-export function hasPagingOperation(client: Client, needRLC?: boolean): boolean;
-export function hasPagingOperation(
+export function hasPagingOnlyOperation(
+  client: Client,
+  needRLC?: boolean
+): boolean;
+export function hasPagingOnlyOperation(
   codeModel: ModularCodeModel,
   needRLC?: boolean
 ): boolean;
-export function hasPagingOperation(
+export function hasPagingOnlyOperation(
   clientOrCodeModel: Client | ModularCodeModel,
   needRLC: boolean = false
 ): boolean {
@@ -1338,13 +1324,13 @@ export function hasPagingOperation(
     (c) =>
       (needRLC ? c.rlcHelperDetails.hasPaging : false) ||
       (c.operationGroups ?? []).some((og) =>
-        (og.operations ?? []).some(isPagingOperation)
+        (og.operations ?? []).some(isPagingOnlyOperation)
       )
   );
 }
 
-export function isPagingOperation(op: Operation): boolean {
-  return op.discriminator === "paging" || op.discriminator === "lropaging";
+export function isPagingOnlyOperation(op: Operation): boolean {
+  return op.discriminator === "paging";
 }
 
 export function getAllProperties(type: Type, parents?: Type[]): Property[] {

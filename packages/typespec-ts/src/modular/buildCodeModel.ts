@@ -654,15 +654,16 @@ function emitOperation(
   hierarchies: string[]
 ): HrlcOperation {
   const isAzureFlavor = rlcModels.options?.flavor === "azure";
+  const emittedOperation = emitBasicOperation(
+    context,
+    operation,
+    operationGroupName,
+    rlcModels,
+    hierarchies
+  );
   // Skip to extract paging and lro information for non-branded clients.
   if (!isAzureFlavor) {
-    return emitBasicOperation(
-      context,
-      operation,
-      operationGroupName,
-      rlcModels,
-      hierarchies
-    );
+    return emittedOperation;
   }
   const lro = isLongRunningOperation(
     context.program,
@@ -687,38 +688,20 @@ function emitOperation(
     });
   }
 
-  if (lro && paging) {
-    return emitLroPagingOperation(
-      context,
-      operation,
-      operationGroupName,
-      rlcModels,
-      hierarchies
-    );
-  } else if (paging) {
-    return emitPagingOperation(
-      context,
-      operation,
-      operationGroupName,
-      rlcModels,
-      hierarchies
-    );
-  } else if (lro) {
-    return emitLroOperation(
-      context,
-      operation,
-      operationGroupName,
-      rlcModels,
-      hierarchies
-    );
+  emitExtraInfoForOperation(emittedOperation);
+  return emittedOperation;
+
+  function emitExtraInfoForOperation(operaiton: HrlcOperation) {
+    if (lro) {
+      addLroInformation(context, operation, operaiton);
+    }
+    if (paging) {
+      addPagingInformation(context, operation, operaiton);
+    }
+    if (lro && paging) {
+      operaiton["discriminator"] = "lropaging";
+    }
   }
-  return emitBasicOperation(
-    context,
-    operation,
-    operationGroupName,
-    rlcModels,
-    hierarchies
-  );
 }
 
 function addLroInformation(
@@ -763,62 +746,6 @@ function addPagingInformation(
   }
   emittedOperation["itemName"] = parseItemName(pagedResult);
   emittedOperation["continuationTokenName"] = parseNextLinkName(pagedResult);
-}
-
-function emitLroPagingOperation(
-  context: SdkContext,
-  operation: Operation,
-  operationGroupName: string,
-  rlcModels: RLCModel,
-  hierarchies: string[]
-): HrlcOperation {
-  const emittedOperation = emitBasicOperation(
-    context,
-    operation,
-    operationGroupName,
-    rlcModels,
-    hierarchies
-  );
-  addLroInformation(context, operation, emittedOperation);
-  addPagingInformation(context, operation, emittedOperation);
-  emittedOperation["discriminator"] = "lropaging";
-  return emittedOperation;
-}
-
-function emitLroOperation(
-  context: SdkContext,
-  operation: Operation,
-  operationGroupName: string,
-  rlcModels: RLCModel,
-  hierarchies: string[]
-): HrlcOperation {
-  const emittedOperation = emitBasicOperation(
-    context,
-    operation,
-    operationGroupName,
-    rlcModels,
-    hierarchies
-  );
-  addLroInformation(context, operation, emittedOperation);
-  return emittedOperation;
-}
-
-function emitPagingOperation(
-  context: SdkContext,
-  operation: Operation,
-  operationGroupName: string,
-  rlcModels: RLCModel,
-  hierarchies: string[]
-): HrlcOperation {
-  const emittedOperation = emitBasicOperation(
-    context,
-    operation,
-    operationGroupName,
-    rlcModels,
-    hierarchies
-  );
-  addPagingInformation(context, operation, emittedOperation);
-  return emittedOperation;
 }
 
 function emitBasicOperation(

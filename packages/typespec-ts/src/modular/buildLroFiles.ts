@@ -1,6 +1,6 @@
 import { SourceFile } from "ts-morph";
 import { getClientName } from "./helpers/namingHelpers.js";
-import { isLROOperation } from "./helpers/operationHelpers.js";
+import { isLroOnlyOperation } from "./helpers/operationHelpers.js";
 import { ModularCodeModel, Client } from "./modularCodeModel.js";
 import path from "path";
 import { buildLroDeserDetailMap } from "./buildOperations.js";
@@ -36,7 +36,7 @@ export function buildRestorePollerHelper(
 ) {
   const lros = client.operationGroups
     .flatMap((op) => op.operations)
-    .filter(isLROOperation);
+    .filter(isLroOnlyOperation);
   if (lros.length === 0) {
     return;
   }
@@ -269,7 +269,7 @@ export function buildGetPollerHelper(
 ) {
   const lroOperstions = client.operationGroups
     .flatMap((op) => op.operations)
-    .filter(isLROOperation);
+    .filter(isLroOnlyOperation);
   if (lroOperstions.length === 0) {
     return;
   }
