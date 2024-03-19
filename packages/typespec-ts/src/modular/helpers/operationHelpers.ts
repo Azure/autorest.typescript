@@ -127,10 +127,10 @@ export function getDeserializePrivateFunction(
   const isLroOnly = isLroOnlyOperation(operation);
 
   // TODO: Support operation overloads
-  const response =
-    operation.lroMetadata?.finalEnvelopeResponse ?? operation.responses[0]!;
+  let response = operation.responses[0]!;
   let returnType;
-  if (isLroOnly) {
+  if (isLroOnly && operation.method.toLowerCase() !== "patch") {
+    response = operation.lroMetadata?.finalEnvelopeResponse ?? response;
     returnType = buildLroReturnType(operation);
   } else if (response?.type?.type) {
     returnType = buildType(
@@ -187,7 +187,6 @@ export function getDeserializePrivateFunction(
     : "result.body";
   // TODO: Hard-coded for LRO PATCH case for now
   // https://github.com/Azure/autorest.typescript/issues/2314
-  // Considering 1) there exists issues in getLroMetadata() for PATCH and 2) we don't have real case yet in DPG
   if (isLroOnly && operation.method.toLowerCase() === "patch") {
     deserializedType = response.type;
     hasLroSubPath = false;

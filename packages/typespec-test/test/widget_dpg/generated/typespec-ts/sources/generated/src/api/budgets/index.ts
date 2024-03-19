@@ -111,7 +111,12 @@ export async function _createOrUpdateDeserialize(
     throw createRestError(result);
   }
 
-  return result.body as any;
+  result = result as BudgetsCreateOrUpdateLogicalResponse;
+  return {
+    name: result.body["name"],
+    role: result.body["role"],
+    id: result.body["id"],
+  };
 }
 
 /** Long-running resource create or update operation template. */
