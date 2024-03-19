@@ -11,12 +11,12 @@ export interface ServiceDrivenNewClientOptions extends ClientOptions {
 
 /**
  * Initialize a new instance of `ServiceDrivenNewClient`
- * @param endpoint - Need to be set as 'http://localhost:3000' in client.
+ * @param endpointParam - Need to be set as 'http://localhost:3000' in client.
  * @param serviceDeploymentVersion - Pass in either 'v1' or 'v2'. This represents a version of the service deployment in history. 'v1' is for the deployment when the service had only one api version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'.
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
+  endpointParam: string,
   serviceDeploymentVersion: string,
   options: ServiceDrivenNewClientOptions = {},
 ): ServiceDrivenNewClient {
@@ -24,7 +24,7 @@ export default function createClient(
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
-    `${endpoint}/resiliency/service-driven/client:v2/service:${serviceDeploymentVersion}/api-version:${apiVersion}`;
+    `${endpointParam}/resiliency/service-driven/client:v2/service:${serviceDeploymentVersion}/api-version:${apiVersion}`;
 
   const userAgentInfo = `azsdk-js-srv-driven-2-rest/1.0.0`;
   const userAgentPrefix =

@@ -7,19 +7,19 @@ import { ServiceClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `ServiceClient`
- * @param endpoint - Need to be set as 'http://localhost:3000' in client.
+ * @param endpointParam - Need to be set as 'http://localhost:3000' in client.
  * @param clientParam - Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. Possible values: "default", "multi-client", "renamed-operation", "two-operation-group"
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
+  endpointParam: string,
   clientParam: string,
   options: ClientOptions = {},
 ): ServiceClient {
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
-    `${endpoint}/client/structure/${clientParam}`;
+    `${endpointParam}/client/structure/${clientParam}`;
 
   const userAgentInfo = `azsdk-js-client-structure-twoopgroup-rest/1.0.0`;
   const userAgentPrefix =

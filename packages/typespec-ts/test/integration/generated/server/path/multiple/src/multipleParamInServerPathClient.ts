@@ -11,18 +11,18 @@ export interface MultipleParamInServerPathClientOptions extends ClientOptions {
 
 /**
  * Initialize a new instance of `MultipleParamInServerPathClient`
- * @param endpoint - Pass in http://localhost:3000 for endpoint.
+ * @param endpointParam - Pass in http://localhost:3000 for endpoint.
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
+  endpointParam: string,
   options: MultipleParamInServerPathClientOptions = {},
 ): MultipleParamInServerPathClient {
   const apiVersion = options.apiVersion ?? "v1.0";
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
-    `${endpoint}/server/path/multiple/${apiVersion}`;
+    `${endpointParam}/server/path/multiple/${apiVersion}`;
 
   const userAgentInfo = `azsdk-js-multipleparam-rest/1.0.0-beta.1`;
   const userAgentPrefix =
