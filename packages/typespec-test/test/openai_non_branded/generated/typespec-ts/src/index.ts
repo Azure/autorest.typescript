@@ -4,7 +4,6 @@ export { OpenAIClient, OpenAIClientOptions } from "./OpenAIClient.js";
 export {
   CreateModerationRequest,
   CreateModerationResponse,
-  ErrorResponse,
   Error,
   CreateImageRequest,
   ImagesResponse,

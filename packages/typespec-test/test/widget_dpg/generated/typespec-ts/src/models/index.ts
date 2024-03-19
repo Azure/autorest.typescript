@@ -8,7 +8,7 @@ export {
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
-  NonReferencedMode,
+  NonReferencedModel,
 } from "./models.js";
 export {
   WidgetsListWidgetsOptions,

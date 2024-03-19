@@ -421,12 +421,6 @@ interface Error_2 {
 export { Error_2 as Error }
 
 // @public (undocumented)
-export interface ErrorResponse {
-    // (undocumented)
-    error: Error_2;
-}
-
-// @public (undocumented)
 export interface FilesCreateOptions extends OperationOptions {
     // (undocumented)
     contentType?: string;

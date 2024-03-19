@@ -32,7 +32,7 @@ export interface ListWidgetsPagesResults {
 }
 
 // @public (undocumented)
-export interface NonReferencedMode {
+export interface NonReferencedModel {
     prop1: number;
     prop2: string;
 }

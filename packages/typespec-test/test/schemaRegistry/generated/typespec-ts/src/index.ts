@@ -8,7 +8,6 @@ export {
 export {
   SchemaProperties,
   SchemaFormat,
-  Schema,
   ContentTypeEnum,
   PagedSchemaGroup,
   SchemaGroup,

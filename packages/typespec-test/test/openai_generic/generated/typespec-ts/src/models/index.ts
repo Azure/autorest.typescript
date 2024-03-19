@@ -4,7 +4,6 @@
 export {
   CreateModerationRequest,
   CreateModerationResponse,
-  ErrorResponse,
   Error,
   CreateImageRequest,
   ImagesResponse,
