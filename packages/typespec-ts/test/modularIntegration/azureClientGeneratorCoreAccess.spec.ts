@@ -16,7 +16,7 @@ describe("Azure ClientGeneratorCore Access Client", () => {
     try {
       const result = await client.noDecoratorInPublic("myname");
       console.log(result);
-      assert.isUndefined(result);
+      assert.equal(result.name, "myname");
     } catch (err) {
       assert.fail(err as string);
     }
