@@ -18,7 +18,7 @@ import {
   NoDecoratorInInternalOptions,
   InternalDecoratorInInternalOptions,
   PublicDecoratorInInternalOptions,
-  PublicOptions,
+  PublicOperationOptions,
   InternalOptions,
   OperationOptions,
   DiscriminatorOptions,
@@ -32,7 +32,7 @@ import {
   noDecoratorInInternal,
   internalDecoratorInInternal,
   publicDecoratorInInternal,
-  public,
+  publicOperation,
   internal,
   operation,
   discriminator,
@@ -86,11 +86,11 @@ export class AccessClient {
     return publicDecoratorInInternal(this._client, name, options);
   }
 
-  public(
+  publicOperation(
     name: string,
-    options: PublicOptions = { requestOptions: {} },
+    options: PublicOperationOptions = { requestOptions: {} },
   ): Promise<SharedModel> {
-    return public(this._client, name, options);
+    return publicOperation(this._client, name, options);
   }
 
   internal(

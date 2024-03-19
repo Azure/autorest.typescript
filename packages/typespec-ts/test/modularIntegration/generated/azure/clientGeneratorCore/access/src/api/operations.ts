@@ -19,9 +19,9 @@ import {
   NoDecoratorInInternal200Response,
   NoDecoratorInPublic200Response,
   Operation200Response,
-  Public200Response,
   PublicDecoratorInInternal200Response,
   PublicDecoratorInPublic200Response,
+  PublicOperation200Response,
 } from "../rest/index.js";
 import {
   StreamableMethod,
@@ -35,7 +35,7 @@ import {
   NoDecoratorInInternalOptions,
   InternalDecoratorInInternalOptions,
   PublicDecoratorInInternalOptions,
-  PublicOptions,
+  PublicOperationOptions,
   InternalOptions,
   DiscriminatorOptions,
 } from "../models/options.js";
@@ -220,11 +220,11 @@ export async function publicDecoratorInInternal(
   return _publicDecoratorInInternalDeserialize(result);
 }
 
-export function _publicSend(
+export function _publicOperationSend(
   context: Client,
   name: string,
-  options: PublicOptions = { requestOptions: {} },
-): StreamableMethod<Public200Response> {
+  options: PublicOperationOptions = { requestOptions: {} },
+): StreamableMethod<PublicOperation200Response> {
   return context
     .path("/azure/client-generator-core/access/sharedModelInOperation/public")
     .get({
@@ -233,8 +233,8 @@ export function _publicSend(
     });
 }
 
-export async function _publicDeserialize(
-  result: Public200Response,
+export async function _publicOperationDeserialize(
+  result: PublicOperation200Response,
 ): Promise<SharedModel> {
   if (result.status !== "200") {
     throw createRestError(result);
@@ -245,13 +245,13 @@ export async function _publicDeserialize(
   };
 }
 
-export async function public(
+export async function publicOperation(
   context: Client,
   name: string,
-  options: PublicOptions = { requestOptions: {} },
+  options: PublicOperationOptions = { requestOptions: {} },
 ): Promise<SharedModel> {
-  const result = await _publicSend(context, name, options);
-  return _publicDeserialize(result);
+  const result = await _publicOperationSend(context, name, options);
+  return _publicOperationDeserialize(result);
 }
 
 export function _internalSend(

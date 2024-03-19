@@ -20,7 +20,7 @@ export {
   NoDecoratorInInternalOptions,
   InternalDecoratorInInternalOptions,
   PublicDecoratorInInternalOptions,
-  PublicOptions,
+  PublicOperationOptions,
   InternalOptions,
   OperationOptions,
   DiscriminatorOptions,
