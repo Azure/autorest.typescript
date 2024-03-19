@@ -18,7 +18,7 @@ import {
   NoDecoratorInInternal200Response,
   InternalDecoratorInInternal200Response,
   PublicDecoratorInInternal200Response,
-  Public200Response,
+  PublicOperation200Response,
   Internal200Response,
   Operation200Response,
   Discriminator200Response,
@@ -56,7 +56,7 @@ export interface PublicDecoratorInInternal {
 }
 
 export interface Public {
-  get(options: PublicParameters): StreamableMethod<Public200Response>;
+  get(options: PublicParameters): StreamableMethod<PublicOperation200Response>;
 }
 
 export interface Internal {
