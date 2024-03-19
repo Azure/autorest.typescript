@@ -8,17 +8,17 @@ import { HealthInsightsClinicalMatchingClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `HealthInsightsClinicalMatchingClient`
- * @param endpoint - Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus2.api.cognitive.microsoft.com).
+ * @param endpointParam - Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus2.api.cognitive.microsoft.com).
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
+  endpointParam: string,
   credentials: KeyCredential,
   options: ClientOptions = {},
 ): HealthInsightsClinicalMatchingClient {
   const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `${endpoint}/healthinsights`;
+    options.endpoint ?? options.baseUrl ?? `${endpointParam}/healthinsights`;
   options.apiVersion = options.apiVersion ?? "2023-03-01-preview";
   const userAgentInfo = `azsdk-js-health-insights-clinicalmatching-rest/1.0.0-beta.1`;
   const userAgentPrefix =

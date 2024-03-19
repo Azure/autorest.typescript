@@ -8,17 +8,17 @@ import { AuthoringClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `AuthoringClient`
- * @param endpoint - The endpoint to use.
+ * @param endpointParam - The endpoint to use.
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
+  endpointParam: string,
   credentials: KeyCredential,
   options: ClientOptions = {},
 ): AuthoringClient {
   const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `${endpoint}/language`;
+    options.endpoint ?? options.baseUrl ?? `${endpointParam}/language`;
   options.apiVersion = options.apiVersion ?? "2022-05-15-preview";
   const userAgentInfo = `azsdk-js-customWrapper-rest/1.0.0-beta.1`;
   const userAgentPrefix =

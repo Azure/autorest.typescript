@@ -11,9 +11,9 @@ dotenv.config();
  * @summary call operation Get
  */
 async function todoItemsGetSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = { key: "{Your API key}" };
-  const client = createTodoClient(endpoint, credential);
+  const client = createTodoClient(endpointParam, credential);
   const id = 123;
   const result = await client.path("/items/{id}", id).get();
   console.log(result);

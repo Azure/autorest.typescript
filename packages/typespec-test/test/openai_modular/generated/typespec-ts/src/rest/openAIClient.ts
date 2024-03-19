@@ -8,18 +8,18 @@ import { OpenAIContext } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `OpenAIContext`
- * @param endpoint - Supported Cognitive Services endpoints (protocol and hostname, for example:
+ * @param endpointParam - Supported Cognitive Services endpoints (protocol and hostname, for example:
  * https://westus.api.cognitive.microsoft.com).
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
+  endpointParam: string,
   credentials: TokenCredential | KeyCredential,
   options: ClientOptions = {},
 ): OpenAIContext {
   const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `${endpoint}/openai`;
+    options.endpoint ?? options.baseUrl ?? `${endpointParam}/openai`;
   options.apiVersion = options.apiVersion ?? "2024-02-15-preview";
   const userAgentInfo = `azsdk-js-openai_modular-rest/1.0.0-beta.1`;
   const userAgentPrefix =

@@ -8,17 +8,17 @@ import { FaceClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `FaceClient`
- * @param endpoint - Supported Cognitive Services endpoints (protocol and hostname, for example:
+ * @param endpointParam - Supported Cognitive Services endpoints (protocol and hostname, for example:
  * https://<resource-name>.cognitiveservices.azure.com).
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
+  endpointParam: string,
   credentials: KeyCredential,
   options: ClientOptions = {},
 ): FaceClient {
-  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
 
   const userAgentInfo = `azsdk-js-ai-face-rest/1.0.0-beta.1`;
   const userAgentPrefix =

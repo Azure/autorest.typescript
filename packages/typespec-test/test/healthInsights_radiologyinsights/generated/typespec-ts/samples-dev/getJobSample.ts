@@ -13,9 +13,9 @@ dotenv.config();
  * @summary call operation GetJob
  */
 async function getJobSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAzureHealthInsightsClient(endpoint, credential);
+  const client = createAzureHealthInsightsClient(endpointParam, credential);
   const id = "{Your id}";
   const result = await client.path("/radiology-insights/jobs/{id}", id).get();
   console.log(result);

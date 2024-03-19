@@ -8,17 +8,17 @@ import { AzureLoadTestingContext } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `AzureLoadTestingContext`
- * @param endpoint - A sequence of textual characters.
+ * @param endpointParam - A sequence of textual characters.
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
+  endpointParam: string,
   credentials: TokenCredential,
   options: ClientOptions = {},
 ): AzureLoadTestingContext {
   const endpointUrl =
-    options.endpoint ?? options.baseUrl ?? `https://${endpoint}`;
+    options.endpoint ?? options.baseUrl ?? `https://${endpointParam}`;
   options.apiVersion = options.apiVersion ?? "2022-11-01";
   const userAgentInfo = `azsdk-js-load-testing-rest/1.0.1`;
   const userAgentPrefix =

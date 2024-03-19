@@ -8,16 +8,16 @@ import { ChatProtocolContext } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `ChatProtocolContext`
- * @param endpoint - A sequence of textual characters.
+ * @param endpointParam - A sequence of textual characters.
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
+  endpointParam: string,
   credentials: TokenCredential | KeyCredential,
   options: ClientOptions = {},
 ): ChatProtocolContext {
-  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
 
   const userAgentInfo = `azsdk-js-ai-chat-protocol-rest/1.0.0-beta.1`;
   const userAgentPrefix =

@@ -8,16 +8,16 @@ import { EventGridContext } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `EventGridContext`
- * @param endpoint - The host name of the namespace, e.g. namespaceName1.westus-1.eventgrid.azure.net
+ * @param endpointParam - The host name of the namespace, e.g. namespaceName1.westus-1.eventgrid.azure.net
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
+  endpointParam: string,
   credentials: KeyCredential,
   options: ClientOptions = {},
 ): EventGridContext {
-  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
   options.apiVersion = options.apiVersion ?? "2023-06-01-preview";
   const userAgentInfo = `azsdk-js-eventgrid-rest/1.0.0-beta.1`;
   const userAgentPrefix =

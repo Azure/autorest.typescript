@@ -7,15 +7,15 @@ import { TranslatorClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `TranslatorClient`
- * @param endpoint - Supported Text Translation endpoints (protocol and hostname, for example:
+ * @param endpointParam - Supported Text Translation endpoints (protocol and hostname, for example:
  *     https://api.cognitive.microsofttranslator.com).
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
+  endpointParam: string,
   options: ClientOptions = {},
 ): TranslatorClient {
-  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
   options.apiVersion = options.apiVersion ?? "3.0";
   const userAgentInfo = `azsdk-js-cognitiveservices-translator-rest/1.0.0-beta.1`;
   const userAgentPrefix =

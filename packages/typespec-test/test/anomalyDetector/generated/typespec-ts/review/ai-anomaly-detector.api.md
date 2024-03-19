@@ -26,7 +26,7 @@ export interface AnomalyDetectorClientOptions extends ClientOptions {
 }
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: AnomalyDetectorClientOptions): AnomalyDetectorClient;
+function createClient(endpointParam: string, credentials: KeyCredential, options?: AnomalyDetectorClientOptions): AnomalyDetectorClient;
 export default createClient;
 
 // @public (undocumented)

@@ -12,13 +12,13 @@ export interface AnomalyDetectorClientOptions extends ClientOptions {
 
 /**
  * Initialize a new instance of `AnomalyDetectorClient`
- * @param endpoint - Supported Cognitive Services endpoints (protocol and hostname, for example:
+ * @param endpointParam - Supported Cognitive Services endpoints (protocol and hostname, for example:
  * https://westus2.api.cognitive.microsoft.com).
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
+  endpointParam: string,
   credentials: KeyCredential,
   options: AnomalyDetectorClientOptions = {},
 ): AnomalyDetectorClient {
@@ -26,7 +26,7 @@ export default function createClient(
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
-    `${endpoint}/anomalydetector/${apiVersion}`;
+    `${endpointParam}/anomalydetector/${apiVersion}`;
 
   const userAgentInfo = `azsdk-js-ai-anomaly-detector-rest/1.0.0-beta.1`;
   const userAgentPrefix =

@@ -8,16 +8,16 @@ import { BatchContext } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `BatchContext`
- * @param endpoint - Batch account endpoint (for example: https://batchaccount.eastus2.batch.azure.com).
+ * @param endpointParam - Batch account endpoint (for example: https://batchaccount.eastus2.batch.azure.com).
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
+  endpointParam: string,
   credentials: TokenCredential,
   options: ClientOptions = {},
 ): BatchContext {
-  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
   options.apiVersion = options.apiVersion ?? "2023-05-01.17.0";
   const userAgentInfo = `azsdk-js-batch-rest/1.0.0-beta.1`;
   const userAgentPrefix =
