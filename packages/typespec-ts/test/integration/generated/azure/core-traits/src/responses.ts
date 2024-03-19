@@ -7,7 +7,7 @@ import {
   UserOutput,
   RepeatabilityResultOutput,
   UserActionResponseOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 export interface SmokeTest200Headers {
   bar: string;

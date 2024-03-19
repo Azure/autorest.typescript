@@ -4,11 +4,11 @@
 import {
   RequestUnionBodyParameters,
   ResponseUnionBodyParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   RequestUnionBody200Response,
   ResponseUnionBody200Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface RequestUnionBody {

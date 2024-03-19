@@ -3,7 +3,7 @@
 
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
-import { TrialMatcherData } from "./models";
+import { TrialMatcherData } from "./models.js";
 
 export type GetJobParameters = RequestParameters;
 

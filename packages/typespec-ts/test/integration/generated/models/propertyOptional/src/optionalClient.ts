@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { OptionalClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { OptionalClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `OptionalClient`

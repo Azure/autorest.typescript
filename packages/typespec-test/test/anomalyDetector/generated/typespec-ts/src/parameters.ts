@@ -8,7 +8,7 @@ import {
   MultivariateModelInfo,
   MultivariateMultivariateBatchDetectionOptions,
   MultivariateMultivariateLastDetectionOptions,
-} from "./models";
+} from "./models.js";
 
 export interface DetectUnivariateEntireSeriesBodyParam {
   /** Method of univariate anomaly detection. */

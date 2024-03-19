@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ListParameters } from "./parameters";
-import { List200Response } from "./responses";
+import { ListParameters } from "./parameters.js";
+import { List200Response } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface List {

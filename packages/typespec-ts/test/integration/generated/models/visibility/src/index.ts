@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import VisibilityClient from "./visibilityClient";
+import VisibilityClient from "./visibilityClient.js";
 
-export * from "./visibilityClient";
-export * from "./parameters";
-export * from "./responses";
-export * from "./clientDefinitions";
-export * from "./models";
-export * from "./outputModels";
+export * from "./visibilityClient.js";
+export * from "./parameters.js";
+export * from "./responses.js";
+export * from "./clientDefinitions.js";
+export * from "./models.js";
+export * from "./outputModels.js";
 
 export default VisibilityClient;

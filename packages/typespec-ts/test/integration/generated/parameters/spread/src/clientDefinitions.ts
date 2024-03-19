@@ -6,13 +6,13 @@ import {
   AliasSpreadAsRequestBodyParameters,
   AliasSpreadAsRequestParameterParameters,
   AliasSpreadWithMultipleParametersParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   ModelSpreadAsRequestBody204Response,
   AliasSpreadAsRequestBody204Response,
   AliasSpreadAsRequestParameter204Response,
   AliasSpreadWithMultipleParameters204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ModelSpreadAsRequestBody {

@@ -4,12 +4,12 @@ import {
   InputParameters,
   OutputParameters,
   InputAndOutputParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   Input204Response,
   Output200Response,
   InputAndOutput200Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@typespec/ts-http-runtime";
 
 export interface Input {

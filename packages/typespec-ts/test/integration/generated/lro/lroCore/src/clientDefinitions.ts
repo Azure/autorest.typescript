@@ -5,7 +5,7 @@ import {
   CreateOrReplaceParameters,
   DeleteParameters,
   ExportParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   CreateOrReplace200Response,
   CreateOrReplace201Response,
@@ -14,7 +14,7 @@ import {
   DeleteOperationDefaultResponse,
   ExportOperation202Response,
   ExportOperationDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface CreateOrReplace {

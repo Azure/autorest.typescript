@@ -6,7 +6,7 @@ import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   TrialMatcherResultOutput,
   RepeatabilityResultOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface GetJob200Response extends HttpResponse {

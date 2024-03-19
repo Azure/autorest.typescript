@@ -85,6 +85,12 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     branded: { type: "boolean", nullable: true },
     flavor: { type: "string", nullable: true },
     generateOrphanModels: { type: "boolean", nullable: true },
+    moduleKind: {
+      type: "string",
+      nullable: true,
+      enum: ["esm", "cjs"],
+      default: "esm"
+    }
   },
   required: []
 };

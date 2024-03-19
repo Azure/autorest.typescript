@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { InnerModel } from "./models";
+import { InnerModel } from "./models.js";
 
 export type Int32ValueGetParameters = RequestParameters;
 

@@ -17,7 +17,7 @@ import {
   UnionIntLiteralPropertyOutput,
   UnionFloatLiteralPropertyOutput,
   RequiredAndOptionalPropertyOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface StringModelGetAll200Response extends HttpResponse {

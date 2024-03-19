@@ -18,7 +18,7 @@ import {
   GetSwapDeploymentsStatusParameters,
   GetSupportedLanguagesParameters,
   ListTrainingConfigVersionsParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   CreateOrUpdate200Response,
   CreateOrUpdate201Response,
@@ -54,7 +54,7 @@ import {
   GetSupportedLanguagesDefaultResponse,
   ListTrainingConfigVersions200Response,
   ListTrainingConfigVersionsDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface CreateOrUpdate {

@@ -7,7 +7,7 @@ import {
   RadiologyInsightsResultOutput,
   RepeatabilityResultOutput,
   HealthInsightsOperationStatusOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 export interface GetJob200Headers {
   /** The Retry-After header can indicate how long the client should wait before polling the operation status. */

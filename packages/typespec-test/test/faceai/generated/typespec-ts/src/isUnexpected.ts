@@ -23,7 +23,7 @@ import {
   DeleteLivenessWithVerifySessionDefaultResponse,
   ListLivenessWithVerifySessionAuditEntries200Response,
   ListLivenessWithVerifySessionAuditEntriesDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "POST /face/{apiVersion}/detectLiveness/singleModal/sessions": ["200"],

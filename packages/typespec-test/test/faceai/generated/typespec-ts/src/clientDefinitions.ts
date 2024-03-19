@@ -13,7 +13,7 @@ import {
   GetLivenessWithVerifySessionParameters,
   DeleteLivenessWithVerifySessionParameters,
   ListLivenessWithVerifySessionAuditEntriesParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   CreateLivenessSession200Response,
   CreateLivenessSessionDefaultResponse,
@@ -37,7 +37,7 @@ import {
   DeleteLivenessWithVerifySessionDefaultResponse,
   ListLivenessWithVerifySessionAuditEntries200Response,
   ListLivenessWithVerifySessionAuditEntriesDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface CreateLivenessSession {

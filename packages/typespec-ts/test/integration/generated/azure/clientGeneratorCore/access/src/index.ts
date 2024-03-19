@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import AccessClient from "./accessClient";
+import AccessClient from "./accessClient.js";
 
-export * from "./accessClient";
-export * from "./parameters";
-export * from "./responses";
-export * from "./clientDefinitions";
-export * from "./outputModels";
+export * from "./accessClient.js";
+export * from "./parameters.js";
+export * from "./responses.js";
+export * from "./clientDefinitions.js";
+export * from "./outputModels.js";
 
 export default AccessClient;

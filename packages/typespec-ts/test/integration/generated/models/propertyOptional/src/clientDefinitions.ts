@@ -58,7 +58,7 @@ import {
   RequiredAndOptionalPutAllParameters,
   RequiredAndOptionalGetRequiredOnlyParameters,
   RequiredAndOptionalPutRequiredOnlyParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   StringModelGetAll200Response,
   StringModelPutAll204Response,
@@ -116,7 +116,7 @@ import {
   RequiredAndOptionalPutAll204Response,
   RequiredAndOptionalGetRequiredOnly200Response,
   RequiredAndOptionalPutRequiredOnly204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface StringModelGetAll {

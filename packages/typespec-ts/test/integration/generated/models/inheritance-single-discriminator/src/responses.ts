@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { HttpResponse } from "@azure-rest/core-client";
-import { BirdOutput, DinosaurOutput } from "./outputModels";
+import { BirdOutput, DinosaurOutput } from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface GetModel200Response extends HttpResponse {

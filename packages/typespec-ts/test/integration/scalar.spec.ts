@@ -29,7 +29,7 @@ describe("Scalar Client", () => {
     try {
       const result = await client
         .path("/type/scalar/string")
-        .put({ body: JSON.stringify("test") });
+        .put({ body: "test", headers: { "content-type": "text/plain" } });
       assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
@@ -71,7 +71,7 @@ describe("Scalar Client", () => {
     try {
       const result = await client
         .path("/type/scalar/unknown")
-        .put({ body: JSON.stringify("test") });
+        .put({ body: "test", headers: { "content-type": "text/plain" } });
       assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);

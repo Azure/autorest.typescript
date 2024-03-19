@@ -12,7 +12,7 @@ import {
   ExportOperation202Response,
   ExportLogicalResponse,
   ExportOperationDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "PUT /azure/core/lro/standard/users/{name}": ["200", "201"],

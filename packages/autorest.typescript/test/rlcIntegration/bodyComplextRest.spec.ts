@@ -21,7 +21,7 @@ describe("BodyComplex Rest Client", () => {
   });
 
   describe("Swagger Complex Type BAT", () => {
-    describe("Basic Types Operations", function() {
+    describe("Basic Types Operations", function () {
       it("should get and put valid basic type properties", async () => {
         const result = await client.path("/complex/basic/valid").get();
         try {
@@ -98,12 +98,13 @@ describe("BodyComplex Rest Client", () => {
       });
     });
 
-    describe("Primitive Types Operations", function() {
+    describe("Primitive Types Operations", function () {
       it("should handle getComplexPolymorphismDotSyntax", async () => {
         const result = await client.path("/complex/primitive/double").put({
           body: {
             field1: 3e-100,
-            field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose: -5e-57
+            field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
+              -5e-57
           }
         });
 
@@ -301,7 +302,7 @@ describe("BodyComplex Rest Client", () => {
         assert.equal(resultPut.status, "200");
       });
 
-      it("should get and put valid duration properties", async function() {
+      it("should get and put valid duration properties", async function () {
         const durationString = "P123DT22H14M12.011S";
         const result = await client.path("/complex/primitive/duration").get();
 
@@ -345,7 +346,7 @@ describe("BodyComplex Rest Client", () => {
       });
     });
 
-    describe("Array Types Operations", function() {
+    describe("Array Types Operations", function () {
       it("should get valid array type properties", async () => {
         const testArray: string[] = [
           "1, 2, 3, 4",
@@ -399,7 +400,7 @@ describe("BodyComplex Rest Client", () => {
       });
     });
 
-    describe("Dictionary Types Operations", function() {
+    describe("Dictionary Types Operations", function () {
       it("should get and put valid dictionary type properties", async () => {
         const testDictionary: { [propertyName: string]: any } = {
           txt: "notepad",
@@ -472,7 +473,7 @@ describe("BodyComplex Rest Client", () => {
       });
     });
 
-    describe("Complex Types with Inheritance Operations", function() {
+    describe("Complex Types with Inheritance Operations", function () {
       const siamese: Siamese = {
         breed: "persian",
         color: "green",
@@ -501,7 +502,7 @@ describe("BodyComplex Rest Client", () => {
       });
     });
 
-    describe("Complex Types with ReadOnly Properties", function() {
+    describe("Complex Types with ReadOnly Properties", function () {
       it("should get and put complex types with readonly properties", async () => {
         const result = await client
           .path("/complex/readonlyproperty/valid")
@@ -523,7 +524,7 @@ describe("BodyComplex Rest Client", () => {
       });
     });
 
-    describe("Complex Types with Polymorphism Operations", function() {
+    describe("Complex Types with Polymorphism Operations", function () {
       function isSawShark(fish: FishOutput): fish is SawsharkOutput {
         return fish.fishtype === "sawshark";
       }
@@ -686,7 +687,7 @@ describe("BodyComplex Rest Client", () => {
         ]);
       });
 
-      it("should get valid polymorphic properties", async function() {
+      it("should get valid polymorphic properties", async function () {
         const result = await client.path("/complex/polymorphism/valid").get();
 
         if (isUnexpected(result)) {
@@ -748,7 +749,7 @@ describe("BodyComplex Rest Client", () => {
         assert.equal(resultPut.status, "200");
       });
 
-      it("should throw when required fields are omitted from polymorphic types", async function() {
+      it("should throw when required fields are omitted from polymorphic types", async function () {
         const badFish = {
           fishtype: "sawshark",
           species: "snaggle toothed",
@@ -854,7 +855,7 @@ describe("BodyComplex Rest Client", () => {
         siblings: outputSiblings
       };
 
-      it("should get complicated polymorphic types", async function() {
+      it("should get complicated polymorphic types", async function () {
         const result = await client
           .path("/complex/polymorphism/complicated")
           .get();
@@ -875,7 +876,7 @@ describe("BodyComplex Rest Client", () => {
         assert.deepEqual(result.body, outputSalmon);
       });
 
-      it("should put complicated polymorphic types", async function() {
+      it("should put complicated polymorphic types", async function () {
         const result = await client
           .path("/complex/polymorphism/complicated")
           .put({ body: inputSalmon });
@@ -883,7 +884,7 @@ describe("BodyComplex Rest Client", () => {
         assert.equal(result.status, "200");
       });
 
-      it("should put polymorphic types missing discriminator", async function() {
+      it("should put polymorphic types missing discriminator", async function () {
         const regularSalmon = {
           fishtype: "salmon",
           location: "alaska",
