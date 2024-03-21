@@ -12,7 +12,8 @@ import { SerializationEncodedNameJsonClient } from "./clientDefinitions.js";
 export default function createClient(
   options: ClientOptions = {},
 ): SerializationEncodedNameJsonClient {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-serialization-encoded-name-json-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -29,7 +30,7 @@ export default function createClient(
   };
 
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     options,
   ) as SerializationEncodedNameJsonClient;
 

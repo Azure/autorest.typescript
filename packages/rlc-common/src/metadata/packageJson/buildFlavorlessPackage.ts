@@ -19,7 +19,7 @@ export function buildFlavorlessPackage(config: PackageCommonInfoConfig) {
     devDependencies: getCommonPackageDevDependencies(config),
     dependencies: {
       ...commonPackageDependencies,
-      "@typespec/ts-http-runtime": "1.0.0-alpha.20240226.9"
+      "@typespec/ts-http-runtime": "1.0.0-alpha.20240314.2"
     }
   };
 

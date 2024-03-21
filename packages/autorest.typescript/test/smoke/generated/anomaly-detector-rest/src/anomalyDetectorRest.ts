@@ -19,8 +19,10 @@ export default function createClient(
   credentials: KeyCredential,
   options: ClientOptions = {},
 ): AnomalyDetectorRestClient {
-  const baseUrl =
-    options.baseUrl ?? `${endpoint}/anomalydetector/${apiVersion}`;
+  const endpointUrl =
+    options.endpoint ??
+    options.baseUrl ??
+    `${endpoint}/anomalydetector/${apiVersion}`;
 
   const userAgentInfo = `azsdk-js-anomaly-detector-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -42,7 +44,7 @@ export default function createClient(
   };
 
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
     options,
   ) as AnomalyDetectorRestClient;

@@ -14,7 +14,8 @@ export default function createClient(
   host: string,
   options: ClientOptions = {},
 ): CustomUrlRestClient {
-  const baseUrl = options.baseUrl ?? `http://{accountName}${host}`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://{accountName}${host}`;
   const userAgentInfo = `azsdk-js-custom-url-rest/1.0.0-preview1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -30,7 +31,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as CustomUrlRestClient;
+  const client = getClient(endpointUrl, options) as CustomUrlRestClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return {
