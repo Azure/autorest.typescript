@@ -371,6 +371,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "serialization/encoded-name/json",
     inputPath: "serialization/encoded-name/json"
+  },
+  {
+    outputPath: "property/nullable",
+    inputPath: "type/property/nullable"
   }
 ];
 
