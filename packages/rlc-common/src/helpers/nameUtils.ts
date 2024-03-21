@@ -62,7 +62,7 @@ export const ReservedModelNames: ReservedName[] = [
   { name: "package", reservedFor: [NameType.Parameter] },
   { name: "private", reservedFor: [NameType.Parameter] },
   { name: "protected", reservedFor: [NameType.Parameter] },
-  { name: "public", reservedFor: [NameType.Parameter] },
+  { name: "public", reservedFor: [NameType.Parameter, NameType.Operation] },
   { name: "requestoptions", reservedFor: [NameType.Parameter] },
   { name: "require", reservedFor: [NameType.Parameter] },
   { name: "return", reservedFor: [NameType.Parameter] },
