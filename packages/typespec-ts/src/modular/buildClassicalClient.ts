@@ -38,11 +38,7 @@ export function buildClassicalClient(
   const clientFile = codeModel.project.createSourceFile(
     `${srcPath}/${
       subfolder !== "" ? subfolder + "/" : ""
-    }${classicalClientname}.ts`,
-    undefined,
-    {
-      overwrite: true
-    }
+    }${classicalClientname}.ts`
   );
 
   clientFile.addExportDeclaration({
