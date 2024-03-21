@@ -299,7 +299,7 @@ function generateRLCIndex(file: SourceFile, model: RLCModel) {
     ]);
   }
 
-  // TODO: Disable LRO poller tentatively and remember to remove this when new LRO in RLC is ready
+  // TODO: Disable LRO poller tentatively
   // https://github.com/Azure/autorest.typescript/issues/2230
   if (hasPollingOperations(model) && !model.options?.isModularLibrary) {
     file.addExportDeclarations([
