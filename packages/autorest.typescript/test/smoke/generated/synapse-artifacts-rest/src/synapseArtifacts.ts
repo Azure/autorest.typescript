@@ -17,7 +17,7 @@ export default function createClient(
   credentials: TokenCredential,
   options: ClientOptions = {},
 ): SynapseArtifactsClient {
-  const baseUrl = options.baseUrl ?? `${endpoint}`;
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
 
   const userAgentInfo = `azsdk-js-synapse-artifacts-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -40,7 +40,7 @@ export default function createClient(
   };
 
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
     options,
   ) as SynapseArtifactsClient;

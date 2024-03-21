@@ -12,7 +12,8 @@ import { TraitsContext } from "./clientDefinitions.js";
 export default function createClient(
   options: ClientOptions = {},
 ): TraitsContext {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "2022-12-01-preview";
   const userAgentInfo = `azsdk-js-azure-core-traits-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -29,7 +30,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as TraitsContext;
+  const client = getClient(endpointUrl, options) as TraitsContext;
 
   return client;
 }

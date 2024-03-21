@@ -17,7 +17,7 @@ export function createClient(
   credentials: TokenCredential,
   options: ClientOptions = {},
 ): PurviewAccountClient {
-  const baseUrl = options.baseUrl ?? `${endpoint}`;
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
 
   const userAgentInfo = `azsdk-js-purview-administration-rest/1.0.0-beta.2`;
   const userAgentPrefix =
@@ -40,7 +40,7 @@ export function createClient(
   };
 
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
     options,
   ) as PurviewAccountClient;

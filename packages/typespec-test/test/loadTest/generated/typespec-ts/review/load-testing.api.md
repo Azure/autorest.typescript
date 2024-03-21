@@ -60,7 +60,7 @@ export interface CertificateMetadataOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: TokenCredential, options?: ClientOptions): AzureLoadTestingClient;
+function createClient(endpointParam: string, credentials: TokenCredential, options?: ClientOptions): AzureLoadTestingClient;
 export default createClient;
 
 // @public

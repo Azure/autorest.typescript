@@ -186,7 +186,7 @@ export interface ContactPointOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): AzureHealthInsightsClient;
+function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): AzureHealthInsightsClient;
 export default createClient;
 
 // @public (undocumented)

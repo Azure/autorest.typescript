@@ -154,7 +154,7 @@ export interface ContactDetailsOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): HealthInsightsClinicalMatchingClient;
+function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): HealthInsightsClinicalMatchingClient;
 export default createClient;
 
 // @public (undocumented)

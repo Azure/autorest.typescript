@@ -13,9 +13,9 @@ dotenv.config();
  * @summary call operation GetAzureBatchImageGenerationOperationStatus
  */
 async function getAzureBatchImageGenerationOperationStatusSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createOpenAIClient(endpoint, credential);
+  const client = createOpenAIClient(endpointParam, credential);
   const operationId = "{Your operationId}";
   const result = await client
     .path("/operations/images/{operationId}", operationId)
