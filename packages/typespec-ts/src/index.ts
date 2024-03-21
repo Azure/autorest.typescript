@@ -61,6 +61,10 @@ import {
 } from "./modular/buildPagingFiles.js";
 import { EmitterOptions } from "./lib.js";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
+import {
+  buildGetPollerHelper,
+  buildRestorePollerHelper
+} from "./modular/buildLroFiles.js";
 
 export * from "./lib.js";
 
@@ -196,6 +200,7 @@ export async function $onEmit(context: EmitContext) {
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
         buildSerializeUtils(modularCodeModel);
+        // build paging files
         buildPagingTypes(modularCodeModel, subClient);
         buildModularPagingHelpers(
           modularCodeModel,
@@ -203,6 +208,7 @@ export async function $onEmit(context: EmitContext) {
           hasClientUnexpectedHelper,
           isMultiClients
         );
+        // build operation files
         buildOperationFiles(
           dpgContext,
           modularCodeModel,
@@ -210,6 +216,15 @@ export async function $onEmit(context: EmitContext) {
           hasClientUnexpectedHelper
         );
         buildClientContext(dpgContext, modularCodeModel, subClient);
+
+        // build lro files
+        buildGetPollerHelper(
+          modularCodeModel,
+          subClient,
+          hasClientUnexpectedHelper,
+          isMultiClients
+        );
+        buildRestorePollerHelper(modularCodeModel, subClient);
         buildSubpathIndexFile(modularCodeModel, subClient, "models");
         if (dpgContext.rlcOptions?.hierarchyClient) {
           buildSubpathIndexFile(modularCodeModel, subClient, "api");
@@ -397,4 +412,7 @@ export function removeUnusedInterfaces(project: Project) {
     }
     interfaceDeclaration.interfaceDeclaration.remove();
   });
+
+  // There could be nodes that are only referenced in unused declarations and in this case, we need another call to remove them.
+  project.getSourceFiles().forEach((file) => file.fixUnusedIdentifiers());
 }

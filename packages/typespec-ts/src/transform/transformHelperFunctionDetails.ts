@@ -27,7 +27,7 @@ export function transformHelperFunctionDetails(
     client,
     dpgContext
   );
-  // Disbale paging and long running for non-Azure clients.
+  // Disable paging and long running for non-Azure clients.
   if (flavor !== "azure") {
     return {
       hasLongRunning: false,

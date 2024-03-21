@@ -100,7 +100,7 @@ export interface Type {
   format?: string;
   properties?: Property[];
   types?: Type[];
-  isCoreErrorType?: boolean;
+  coreTypeInfo?: "ErrorType" | "LroType";
   usage?: UsageFlags;
   alias?: string;
   aliasType?: string;
@@ -181,4 +181,14 @@ export interface Operation {
   addedOn?: string;
   rlcResponse?: OperationResponse;
   namespaceHierarchies: string[];
+  lroMetadata?: LroOperationMetadata;
+}
+
+export interface LroOperationMetadata {
+  finalStateVia?: string;
+  finalResult?: Type;
+  /** The TypeSpec type of the object that contains the 'finalResult'. */
+  finalEnvelopeResponse?: Response;
+  /** The path to the field in the 'finalEnvelopeResult' that contains the 'finalResult'. */
+  finalResultPath?: string;
 }

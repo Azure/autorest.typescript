@@ -23,6 +23,12 @@ export function buildPollingHelper(model: RLCModel) {
   if (!hasPollingOperations(model)) {
     return;
   }
+
+  // TODO: Disable LRO poller tentatively and remember to remove this when new LRO in RLC is ready
+  // https://github.com/Azure/autorest.typescript/issues/2230
+  if (model.options?.isModularLibrary) {
+    return;
+  }
   const lroDetail: LroDetail = buildLroHelperDetail(model);
   const readmeFileContents = hbs.compile(pollingContent, { noEscape: true });
   const { srcPath } = model;

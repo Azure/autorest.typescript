@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { getLongRunningPoller } from "./pollingHelpers.js";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   FileInfo,
   TestRun,
@@ -154,6 +156,7 @@ export async function _testRunDeserialize(
     throw createRestError(result);
   }
 
+  result = result as LoadTestRunCreateOrUpdateTestRunLogicalResponse;
   return {
     testRunId: result.body["testRunId"],
     passFailCriteria: !result.body.passFailCriteria
@@ -385,14 +388,18 @@ export async function _testRunDeserialize(
 }
 
 /** Create and start a new test run with the given name. */
-export async function testRun(
+export function testRun(
   context: Client,
   testRunId: string,
   resource: TestRun,
   options: TestRunOptions = { requestOptions: {} },
-): Promise<TestRun> {
-  const result = await _testRunSend(context, testRunId, resource, options);
-  return _testRunDeserialize(result);
+): PollerLike<OperationState<TestRun>, TestRun> {
+  return getLongRunningPoller(context, _testRunDeserialize, {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _testRunSend(context, testRunId, resource, options),
+  }) as PollerLike<OperationState<TestRun>, TestRun>;
 }
 
 export function _createOrUpdateAppComponentsSend(

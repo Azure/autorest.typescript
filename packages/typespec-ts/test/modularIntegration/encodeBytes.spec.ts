@@ -184,7 +184,6 @@ describe("EncodeBytesClient Modular Client", () => {
         );
         assert.isUndefined(result);
       } catch (err) {
-        console.log(JSON.stringify(err));
         assert.fail(err as string);
       }
     });

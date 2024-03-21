@@ -233,6 +233,7 @@ importers:
       '@azure-tools/rlc-common': workspace:^0.25.0
       '@azure-tools/typespec-azure-core': '>=0.40.0 <1.0.0'
       '@azure-tools/typespec-client-generator-core': '>=0.40.0 <1.0.0'
+      '@azure/abort-controller': ^2.0.0
       '@azure/core-auth': ^1.6.0
       '@azure/core-lro': ^2.5.4
       '@azure/core-paging': ^1.5.0
@@ -277,6 +278,7 @@ importers:
       '@azure-tools/cadl-ranch-specs': 0.31.2_tl5l4xe44yzem5nticz333o2oa
       '@azure-tools/typespec-azure-core': 0.40.0_r7faphy27mfblbs27ccm7re44u
       '@azure-tools/typespec-client-generator-core': 0.40.0_7d65p6cqvelxcgmavq4zy7blpy
+      '@azure/abort-controller': 2.0.0
       '@azure/core-auth': 1.6.0
       '@azure/core-lro': 2.5.4
       '@azure/core-paging': 1.5.0

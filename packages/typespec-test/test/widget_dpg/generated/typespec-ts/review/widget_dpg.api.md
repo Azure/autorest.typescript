@@ -4,14 +4,44 @@
 
 ```ts
 
+import { AbortSignalLike } from '@azure/abort-controller';
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
+import { HttpResponse } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
+import { OperationState } from '@azure/core-lro';
+import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { PollerLike } from '@azure/core-lro';
+import { RawHttpHeaders } from '@azure/core-rest-pipeline';
+import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
+import { RequestParameters } from '@azure-rest/core-client';
+import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public (undocumented)
 export interface AnalyzeResult {
     // (undocumented)
     summary: string;
+}
+
+// @public (undocumented)
+export interface BudgetsCreateOrReplaceOptions extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public (undocumented)
+export interface BudgetsCreateOrUpdateOptions extends OperationOptions {
+    contentType?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public (undocumented)
+export interface BudgetsOperations {
+    // (undocumented)
+    createOrReplace: (name: string, resource: User, options?: BudgetsCreateOrReplaceOptions) => PollerLike<OperationState<User>, User>;
+    // (undocumented)
+    createOrUpdate: (name: string, resource: User, options?: BudgetsCreateOrUpdateOptions) => PollerLike<OperationState<User>, User>;
 }
 
 // @public
@@ -43,10 +73,29 @@ export interface PageSettings {
     continuationToken?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "WidgetServiceContext" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: WidgetServiceContext | WidgetServiceClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+
+// @public (undocumented)
+export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
+    abortSignal?: AbortSignalLike;
+    processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
+    updateIntervalInMs?: number;
+}
+
 // @public (undocumented)
 export interface UpdateWidget {
     color?: "red" | "blue";
     weight?: number;
+}
+
+// @public
+export interface User {
+    id: string;
+    readonly name: string;
+    role: string;
 }
 
 // @public (undocumented)
@@ -61,6 +110,11 @@ export interface WidgetsAnalyzeWidgetOptions extends OperationOptions {
 }
 
 // @public (undocumented)
+export interface WidgetsCreateOrReplaceOptions extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public (undocumented)
 export interface WidgetsCreateWidgetOptions extends OperationOptions {
 }
 
@@ -71,6 +125,7 @@ export interface WidgetsDeleteWidgetOptions extends OperationOptions {
 // @public (undocumented)
 export class WidgetServiceClient {
     constructor(endpoint: string, options?: WidgetServiceClientOptions);
+    readonly budgets: BudgetsOperations;
     readonly pipeline: Pipeline;
     readonly widgets: WidgetsOperations;
 }
@@ -103,6 +158,8 @@ export interface WidgetsListWidgetsPagesOptions extends OperationOptions {
 export interface WidgetsOperations {
     // (undocumented)
     analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptions) => Promise<AnalyzeResult>;
+    // (undocumented)
+    createOrReplace: (name: string, resource: User, options?: WidgetsCreateOrReplaceOptions) => PollerLike<OperationState<User>, User>;
     // (undocumented)
     createWidget: (body: CreateWidget, options?: WidgetsCreateWidgetOptions) => Promise<Widget>;
     // (undocumented)

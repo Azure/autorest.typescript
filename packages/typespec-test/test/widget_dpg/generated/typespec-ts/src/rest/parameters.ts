@@ -3,9 +3,9 @@
 
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
-import { CreateWidget, UpdateWidget } from "./models.js";
+import { CreateWidget, User, UpdateWidget } from "./models.js";
 
-export interface ListWidgetsHeaders {
+export interface WidgetsListWidgetsHeaders {
   "required-header": string;
   "optional-header"?: string;
   "nullable-optional-header"?: string | null;
@@ -18,47 +18,83 @@ export interface ListWidgetsHeaders {
   "nullable-date-header"?: string | null;
 }
 
-export interface ListWidgetsHeaderParam {
-  headers: RawHttpHeadersInput & ListWidgetsHeaders;
+export interface WidgetsListWidgetsHeaderParam {
+  headers: RawHttpHeadersInput & WidgetsListWidgetsHeaders;
 }
 
-export type ListWidgetsParameters = ListWidgetsHeaderParam & RequestParameters;
+export type WidgetsListWidgetsParameters = WidgetsListWidgetsHeaderParam &
+  RequestParameters;
 
-export interface ListWidgetsPagesQueryParamProperties {
+export interface WidgetsListWidgetsPagesQueryParamProperties {
   page: number;
   pageSize: number;
 }
 
-export interface ListWidgetsPagesQueryParam {
-  queryParameters: ListWidgetsPagesQueryParamProperties;
+export interface WidgetsListWidgetsPagesQueryParam {
+  queryParameters: WidgetsListWidgetsPagesQueryParamProperties;
 }
 
-export type ListWidgetsPagesParameters = ListWidgetsPagesQueryParam &
-  RequestParameters;
+export type WidgetsListWidgetsPagesParameters =
+  WidgetsListWidgetsPagesQueryParam & RequestParameters;
 
-export interface QueryWidgetsPagesQueryParamProperties {
+export interface WidgetsQueryWidgetsPagesQueryParamProperties {
   page: number;
   pageSize: number;
 }
 
-export interface QueryWidgetsPagesQueryParam {
-  queryParameters: QueryWidgetsPagesQueryParamProperties;
+export interface WidgetsQueryWidgetsPagesQueryParam {
+  queryParameters: WidgetsQueryWidgetsPagesQueryParamProperties;
 }
 
-export type QueryWidgetsPagesParameters = QueryWidgetsPagesQueryParam &
-  RequestParameters;
-export type GetWidgetParameters = RequestParameters;
+export type WidgetsQueryWidgetsPagesParameters =
+  WidgetsQueryWidgetsPagesQueryParam & RequestParameters;
+export type WidgetsGetWidgetParameters = RequestParameters;
 
-export interface CreateWidgetBodyParam {
+export interface WidgetsCreateWidgetBodyParam {
   body?: CreateWidget;
 }
 
-export type CreateWidgetParameters = CreateWidgetBodyParam & RequestParameters;
+export type WidgetsCreateWidgetParameters = WidgetsCreateWidgetBodyParam &
+  RequestParameters;
 
-export interface UpdateWidgetBodyParam {
+export interface WidgetsCreateOrReplaceBodyParam {
+  /** The resource instance. */
+  body: User;
+}
+
+export type WidgetsCreateOrReplaceParameters = WidgetsCreateOrReplaceBodyParam &
+  RequestParameters;
+
+export interface WidgetsUpdateWidgetBodyParam {
   body?: UpdateWidget;
 }
 
-export type UpdateWidgetParameters = UpdateWidgetBodyParam & RequestParameters;
-export type DeleteWidgetParameters = RequestParameters;
-export type AnalyzeWidgetParameters = RequestParameters;
+export type WidgetsUpdateWidgetParameters = WidgetsUpdateWidgetBodyParam &
+  RequestParameters;
+export type WidgetsDeleteWidgetParameters = RequestParameters;
+export type WidgetsAnalyzeWidgetParameters = RequestParameters;
+
+export interface BudgetsCreateOrReplaceBodyParam {
+  /** The resource instance. */
+  body: User;
+}
+
+export type BudgetsCreateOrReplaceParameters = BudgetsCreateOrReplaceBodyParam &
+  RequestParameters;
+/** The resource instance. */
+export type UserResourceMergeAndPatch = Partial<User>;
+
+export interface BudgetsCreateOrUpdateBodyParam {
+  /** The resource instance. */
+  body: UserResourceMergeAndPatch;
+}
+
+export interface BudgetsCreateOrUpdateMediaTypesParam {
+  /** This request has a JSON Merge Patch body. */
+  contentType: "application/merge-patch+json";
+}
+
+export type BudgetsCreateOrUpdateParameters =
+  BudgetsCreateOrUpdateMediaTypesParam &
+    BudgetsCreateOrUpdateBodyParam &
+    RequestParameters;
