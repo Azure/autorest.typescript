@@ -62,7 +62,7 @@ export const ReservedModelNames: ReservedName[] = [
   { name: "package", reservedFor: [NameType.Parameter] },
   { name: "private", reservedFor: [NameType.Parameter] },
   { name: "protected", reservedFor: [NameType.Parameter] },
-  { name: "public", reservedFor: [NameType.Parameter] },
+  { name: "public", reservedFor: [NameType.Parameter, NameType.Operation] },
   { name: "requestoptions", reservedFor: [NameType.Parameter] },
   { name: "require", reservedFor: [NameType.Parameter] },
   { name: "return", reservedFor: [NameType.Parameter] },
@@ -85,7 +85,8 @@ export const ReservedModelNames: ReservedName[] = [
   { name: "yield", reservedFor: [NameType.Parameter] },
   { name: "arguments", reservedFor: [NameType.Parameter] },
   // reserve client for codegen
-  { name: "client", reservedFor: [NameType.Parameter] }
+  { name: "client", reservedFor: [NameType.Parameter] },
+  { name: "endpoint", reservedFor: [NameType.Parameter] }
 ];
 
 export enum CasingConvention {

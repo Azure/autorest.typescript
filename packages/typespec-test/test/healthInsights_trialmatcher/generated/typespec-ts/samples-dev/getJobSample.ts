@@ -13,10 +13,10 @@ dotenv.config();
  * @summary call operation GetJob
  */
 async function getJobSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createHealthInsightsClinicalMatchingClient(
-    endpoint,
+    endpointParam,
     credential,
   );
   const jobId = "{Your jobId}";

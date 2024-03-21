@@ -13,9 +13,9 @@ dotenv.config();
  * @summary call operation GetSwapDeploymentsStatus
  */
 async function getSwapDeploymentsStatusSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAuthoringClient(endpoint, credential);
+  const client = createAuthoringClient(endpointParam, credential);
   const projectName = "{Your projectName}";
   const deploymentName = "{Your deploymentName}";
   const jobId = "{Your jobId}";

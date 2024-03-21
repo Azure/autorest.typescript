@@ -20,7 +20,7 @@ import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
-function createClient(endpoint: string, options?: ClientOptions): WidgetManagerClient;
+function createClient(endpointParam: string, options?: ClientOptions): WidgetManagerClient;
 export default createClient;
 
 // @public (undocumented)

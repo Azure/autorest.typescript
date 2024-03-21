@@ -13,9 +13,9 @@ dotenv.config();
  * @summary call operation ListDeployments
  */
 async function listDeploymentsSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAuthoringClient(endpoint, credential);
+  const client = createAuthoringClient(endpointParam, credential);
   const projectName = "{Your projectName}";
   const initialResponse = await client
     .path(

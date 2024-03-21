@@ -18,7 +18,7 @@ import { RequestParameters } from '@typespec/ts-http-runtime';
 import { StreamableMethod } from '@typespec/ts-http-runtime';
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): TodoClient;
+function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): TodoClient;
 export default createClient;
 
 export { createFile }

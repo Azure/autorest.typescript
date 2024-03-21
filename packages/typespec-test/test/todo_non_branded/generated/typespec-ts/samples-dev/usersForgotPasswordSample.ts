@@ -11,9 +11,9 @@ dotenv.config();
  * @summary call operation ForgotPassword
  */
 async function usersForgotPasswordSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = { key: "{Your API key}" };
-  const client = createTodoClient(endpoint, credential);
+  const client = createTodoClient(endpointParam, credential);
   const result = await client
     .path("/forgot-password")
     .post({ body: { email: "{Your email}" } });

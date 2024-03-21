@@ -11,9 +11,9 @@ dotenv.config();
  * @summary call operation Create
  */
 async function usersCreateSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = { key: "{Your API key}" };
-  const client = createTodoClient(endpoint, credential);
+  const client = createTodoClient(endpointParam, credential);
   const result = await client
     .path("/users")
     .post({

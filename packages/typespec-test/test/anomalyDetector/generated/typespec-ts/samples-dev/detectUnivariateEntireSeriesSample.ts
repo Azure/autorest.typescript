@@ -13,9 +13,9 @@ dotenv.config();
  * @summary call operation DetectUnivariateEntireSeries
  */
 async function detectUnivariateEntireSeriesSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAnomalyDetectorClient(endpoint, credential);
+  const client = createAnomalyDetectorClient(endpointParam, credential);
   const result = await client
     .path("/timeseries/entire/detect")
     .post({

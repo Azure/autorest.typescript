@@ -14,7 +14,7 @@ export default function createClient(
   $host: string,
   options: ClientOptions = {},
 ): SharedRouteClient {
-  const baseUrl = options.baseUrl ?? `${$host}`;
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${$host}`;
 
   const userAgentInfo = `azsdk-js-media-types-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -31,7 +31,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as SharedRouteClient;
+  const client = getClient(endpointUrl, options) as SharedRouteClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 

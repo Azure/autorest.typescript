@@ -37,12 +37,12 @@ describe("Parameters.ts", () => {
           
           /**
            * Initialize a new instance of \`testClient\`
-           * @param endpoint - The parameter endpoint
+           * @param endpointParam - The parameter endpointParam
            * @param apiVersion - The parameter apiVersion
            * @param options - the parameter for all optional parameters
            */
-          export default function createClient(endpoint: string, apiVersion: string, options: ClientOptions = {}): testClient {
-          const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
+          export default function createClient(endpointParam: string, apiVersion: string, options: ClientOptions = {}): testClient {
+          const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`;
           options.apiVersion = options.apiVersion ?? apiVersion;
           const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
           const userAgentPrefix =
@@ -59,7 +59,7 @@ describe("Parameters.ts", () => {
               },
           };
           
-          const client = getClient(baseUrl, options) as testClient;
+          const client = getClient(endpointUrl, options) as testClient;
           
           return client;
       }

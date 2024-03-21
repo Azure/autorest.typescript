@@ -267,7 +267,7 @@ export function getClientFactoryBody(
     }
   }
 
-  let baseUrl: string;
+  let endpointUrl: string;
   if (urlParameters && endpoint) {
     let parsedEndpoint = endpoint;
     urlParameters.forEach((urlParameter) => {
@@ -277,9 +277,9 @@ export function getClientFactoryBody(
       );
     });
 
-    baseUrl = `options.baseUrl ?? \`${parsedEndpoint}\``;
+    endpointUrl = `options.endpoint ?? options.baseUrl ?? \`${parsedEndpoint}\``;
   } else {
-    baseUrl = `options.baseUrl ?? "${endpoint}"`;
+    endpointUrl = `options.endpoint ?? options.baseUrl ?? "${endpoint}"`;
   }
 
   let apiVersionStatement: string = "";
@@ -318,16 +318,16 @@ export function getClientFactoryBody(
     }`
     : "";
 
-  const baseUrlStatement: VariableStatementStructure = {
+  const endpointUrlStatement: VariableStatementStructure = {
     kind: StructureKind.VariableStatement,
     declarationKind: VariableDeclarationKind.Const,
-    declarations: [{ name: "baseUrl", initializer: baseUrl }]
+    declarations: [{ name: "endpointUrl", initializer: endpointUrl }]
   };
 
   const { credentialScopes, credentialKeyHeaderName } = model.options;
   const scopesString = credentialScopes
     ? credentialScopes.map((cs) => `"${cs}"`).join(", ") ||
-      "`${baseUrl}/.default`"
+      "`${endpointUrl}/.default`"
     : "";
   const scopes = scopesString
     ? `scopes: options.credentials?.scopes ?? [${scopesString}],`
@@ -360,7 +360,7 @@ export function getClientFactoryBody(
       }`;
 
   const getClient = `const client = getClient(
-        baseUrl, ${credentialsOptions ? "credentials," : ""} options
+        endpointUrl, ${credentialsOptions ? "credentials," : ""} options
       ) as ${clientTypeName};
       `;
   const { customHttpAuthHeaderName, customHttpAuthSharedKeyPrefix } =
@@ -413,7 +413,7 @@ export function getClientFactoryBody(
 
   return [
     ...optionalUrlParameters,
-    baseUrlStatement,
+    endpointUrlStatement,
     apiVersionStatement,
     userAgentInfoStatement,
     userAgentStatement,

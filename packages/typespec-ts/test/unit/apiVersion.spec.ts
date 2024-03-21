@@ -133,14 +133,14 @@ const buildDefaultReturn = (
   
   /**
    * Initialize a new instance of \`testClient\`
-   * @param endpoint - The endpoint to use.${hasApiVersionInClient && !hasDefault? "\n   * @param apiVersion - The parameter apiVersion": ""}
+   * @param endpointParam - The endpoint to use.${hasApiVersionInClient && !hasDefault? "\n   * @param apiVersion - The parameter apiVersion": ""}
    * @param options - the parameter for all optional parameters
    */
   export default function createClient(
-    endpoint: string,${hasApiVersionInClient && !hasDefault? "\napiVersion: string,": ""}
+    endpointParam: string,${hasApiVersionInClient && !hasDefault? "\napiVersion: string,": ""}
     options: ClientOptions = {}
   ): testClient {
-    const baseUrl = options.baseUrl ?? \`\${endpoint}/language\`;
+    const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language\`;
     ${defaultDef}
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
@@ -157,7 +157,7 @@ const buildDefaultReturn = (
       },
     };
   
-    const client = getClient(baseUrl, options) as testClient;
+    const client = getClient(endpointUrl, options) as testClient;
     ${apiVersionDef}
     return client;
   }`;
@@ -175,15 +175,15 @@ const buildPathReturn_WithDefault = () => {
   
   /**
    * Initialize a new instance of \`testClient\`
-   * @param endpoint - The endpoint to use.
+   * @param endpointParam - The endpoint to use.
    * @param options - the parameter for all optional parameters
    */
   export default function createClient(
-    endpoint: string,
+    endpointParam: string,
     options: testClientOptions = {}
   ): testClient {
     const apiVersion = options.apiVersion ?? "2022-05-15-preview";
-    const baseUrl = options.baseUrl ?? \`\${endpoint}/anomalydetector/\${apiVersion}\`;
+    const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/anomalydetector/\${apiVersion}\`;
 
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
@@ -200,7 +200,7 @@ const buildPathReturn_WithDefault = () => {
       },
     };
   
-    const client = getClient(baseUrl, options) as testClient;
+    const client = getClient(endpointUrl, options) as testClient;
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   
@@ -216,16 +216,16 @@ const buildPathReturn_WithoutDefault = () => {
   
   /**
    * Initialize a new instance of \`testClient\`
-   * @param endpoint - The endpoint to use.
+   * @param endpointParam - The endpoint to use.
    * @param apiVersion - Api Version Possible values: "2022-05-15-preview"
    * @param options - the parameter for all optional parameters
    */
   export default function createClient(
-    endpoint: string,
+    endpointParam: string,
     apiVersion: string,
     options: ClientOptions = {}
   ): testClient {
-    const baseUrl = options.baseUrl ?? \`\${endpoint}/anomalydetector/\${apiVersion}\`;
+    const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/anomalydetector/\${apiVersion}\`;
 
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
@@ -242,7 +242,7 @@ const buildPathReturn_WithoutDefault = () => {
       },
     };
   
-    const client = getClient(baseUrl, options) as testClient;
+    const client = getClient(endpointUrl, options) as testClient;
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   

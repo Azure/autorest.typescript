@@ -12,7 +12,8 @@ import { LegacyClient } from "./clientDefinitions.js";
 export default function createClient(
   options: ClientOptions = {},
 ): LegacyClient {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "2022-12-01-preview";
   const userAgentInfo = `azsdk-js-lro-rpc-rest/1.0.0`;
   const userAgentPrefix =
@@ -29,7 +30,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as LegacyClient;
+  const client = getClient(endpointUrl, options) as LegacyClient;
 
   return client;
 }

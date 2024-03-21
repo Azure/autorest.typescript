@@ -11,9 +11,9 @@ dotenv.config();
  * @summary call operation List
  */
 async function todoItemsListSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = { key: "{Your API key}" };
-  const client = createTodoClient(endpoint, credential);
+  const client = createTodoClient(endpointParam, credential);
   const result = await client
     .path("/items")
     .get({ queryParameters: { limit: 123, offset: 123 } });
