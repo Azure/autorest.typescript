@@ -7,14 +7,14 @@ import { VersionedContext } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `VersionedContext`
- * @param endpoint - Need to be set as 'http://localhost:3000' in client.
+ * @param endpointParam - Need to be set as 'http://localhost:3000' in client.
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
+  endpointParam: string,
   options: ClientOptions = {},
 ): VersionedContext {
-  const baseUrl = options.baseUrl ?? `${endpoint}`;
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
 
   const userAgentInfo = `azsdk-js-versioned-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -31,7 +31,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as VersionedContext;
+  const client = getClient(endpointUrl, options) as VersionedContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
