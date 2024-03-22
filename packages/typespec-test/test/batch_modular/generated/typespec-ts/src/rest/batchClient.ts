@@ -15,7 +15,7 @@ import { BatchContext } from "./clientDefinitions.js";
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential,
-  options: ClientOptions = {},
+  options: ClientOptions = {}
 ): BatchContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
   const userAgentInfo = `azsdk-js-batch-rest/1.0.0-beta.1`;
