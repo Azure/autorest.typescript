@@ -10,11 +10,10 @@ import {
 } from "ts-morph";
 import * as path from "path";
 import {
-  ObjectSchema,
   ParameterMetadata,
   ParameterMetadatas,
   RLCModel,
-  Schema
+  Schema,
 } from "./interfaces.js";
 import {
   getImportModuleName,
@@ -27,7 +26,6 @@ export function buildParameterTypes(model: RLCModel) {
   const project = new Project();
   const srcPath = model.srcPath;
   const filePath = path.join(srcPath, `parameters.ts`);
-  const partialBodyTypeNames = new Set<string>();
   const parametersFile = project.createSourceFile(filePath, undefined, {
     overwrite: true
   });
@@ -93,11 +91,6 @@ export function buildParameterTypes(model: RLCModel) {
         internalReferences,
         i
       );
-
-      const bodyTypeAlias = buildBodyTypeAlias(parameter, partialBodyTypeNames);
-      if (bodyTypeAlias) {
-        parametersFile.addTypeAlias(bodyTypeAlias);
-      }
 
       // Add interfaces for body and query parameters
       parametersFile.addInterfaces([
@@ -457,45 +450,5 @@ function buildBodyParametersDefinition(
         ]
       }
     ];
-  }
-}
-
-export function buildBodyTypeAlias(
-  parameters: ParameterMetadatas,
-  partialBodyTypeNames: Set<string>
-) {
-  const bodyParameters = parameters.body;
-  if (
-    !bodyParameters ||
-    !bodyParameters?.body ||
-    !bodyParameters?.body.length
-  ) {
-    return undefined;
-  }
-  const schema = bodyParameters.body[0] as ObjectSchema;
-  const headerParameters = (parameters.parameters || []).filter(
-    (p) => p.type === "header" && p.name === "contentType"
-  );
-  if (!headerParameters.length || headerParameters.length > 1) {
-    return undefined;
-  }
-
-  const contentType = headerParameters[0].param.type;
-  const description = `${schema.description}`;
-  const typeName = `${schema.typeName}ResourceMergeAndPatch`;
-  if (partialBodyTypeNames.has(typeName)) {
-    return null;
-  } else {
-    partialBodyTypeNames.add(typeName);
-  }
-  if (contentType.includes("application/merge-patch+json")) {
-    const type = `Partial<${schema.typeName}>`;
-    return {
-      // kind: StructureKind.TypeAlias,
-      ...(description && { docs: [{ description }] }),
-      name: `${typeName}`,
-      type,
-      isExported: true
-    };
   }
 }

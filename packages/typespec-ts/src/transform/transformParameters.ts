@@ -325,8 +325,7 @@ function getRequestBodyType(
   headers?: ParameterMetadata[]
 ) {
   const schemaUsage = [SchemaContext.Input, SchemaContext.Exception];
-  const importedNames = getImportedModelName(bodySchema, schemaUsage) ?? [];
-  importedNames.forEach(importedModels.add, importedModels);
+  let importedNames = getImportedModelName(bodySchema, schemaUsage) ?? [];
 
   let typeName = getTypeName(bodySchema, schemaUsage);
   const contentTypes = headers
@@ -339,7 +338,9 @@ function getRequestBodyType(
     (bodySchema as ObjectSchema).properties
   ) {
     typeName = `${typeName}ResourceMergeAndPatch`;
+    importedNames = [typeName];
   }
+  importedNames.forEach(importedModels.add, importedModels);
   return typeName;
 }
 
