@@ -312,6 +312,7 @@ export function _listApplicationsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
       },
@@ -366,7 +367,10 @@ export function _getApplicationSend(
     .path("/applications/{applicationId}", applicationId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -411,6 +415,7 @@ export function _listPoolUsageMetricsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
         starttime: options?.starttime?.toISOString(),
@@ -474,7 +479,10 @@ export function _createPoolSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         id: body["id"],
         displayName: body["displayName"],
@@ -879,6 +887,7 @@ export function _listPoolsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
@@ -1448,7 +1457,10 @@ export function _deletePoolSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -1510,7 +1522,10 @@ export function _poolExistsSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -1561,6 +1576,7 @@ export function _getPoolSend(
           : {}),
       },
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
         $select: options?.$select,
         $expand: options?.$expand,
@@ -2099,7 +2115,10 @@ export function _updatePoolSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         startTask: !body.startTask
           ? undefined
@@ -2244,7 +2263,10 @@ export function _disablePoolAutoScaleSend(
     .path("/pools/{poolId}/disableautoscale", poolId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -2297,7 +2319,10 @@ export function _enablePoolAutoScaleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         autoScaleFormula: body["autoScaleFormula"],
         autoScaleEvaluationInterval: body["autoScaleEvaluationInterval"],
@@ -2348,7 +2373,10 @@ export function _evaluatePoolAutoScaleSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: { autoScaleFormula: body["autoScaleFormula"] },
     });
 }
@@ -2428,7 +2456,10 @@ export function _resizePoolSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         targetDedicatedNodes: body["targetDedicatedNodes"],
         targetLowPriorityNodes: body["targetLowPriorityNodes"],
@@ -2490,7 +2521,10 @@ export function _stopPoolResizeSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -2537,7 +2571,10 @@ export function _replacePoolPropertiesSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         startTask: !body.startTask
           ? undefined
@@ -2695,7 +2732,10 @@ export function _removeNodesSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         nodeList: body["nodeList"],
         resizeTimeout: body["resizeTimeout"],
@@ -2804,6 +2844,7 @@ export function _listPoolNodeCountsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
@@ -2905,7 +2946,10 @@ export function _deleteJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -2962,6 +3006,7 @@ export function _getJobSend(
           : {}),
       },
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
         $select: options?.$select,
         $expand: options?.$expand,
@@ -4060,7 +4105,10 @@ export function _updateJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         priority: body["priority"],
         allowTaskPreemption: body["allowTaskPreemption"],
@@ -4821,7 +4869,10 @@ export function _replaceJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         priority: body["priority"],
         allowTaskPreemption: body["allowTaskPreemption"],
@@ -5526,7 +5577,10 @@ export function _disableJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: { disableTasks: body["disableTasks"] },
     });
 }
@@ -5584,7 +5638,10 @@ export function _enableJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -5642,7 +5699,10 @@ export function _terminateJobSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body:
         body === undefined
           ? body
@@ -5690,7 +5750,10 @@ export function _createJobSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         id: body["id"],
         displayName: body["displayName"],
@@ -6736,6 +6799,7 @@ export function _listJobsSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
@@ -7917,6 +7981,7 @@ export function _listJobsFromScheduleSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
@@ -9299,7 +9364,10 @@ export function _getJobTaskCountsSend(
     .path("/jobs/{jobId}/taskcounts", jobId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -9357,7 +9425,10 @@ export function _createCertificateSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         thumbprint: body["thumbprint"],
         thumbprintAlgorithm: body["thumbprintAlgorithm"],
@@ -9399,6 +9470,7 @@ export function _listCertificatesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
@@ -9490,7 +9562,10 @@ export function _cancelCertificateDeletionSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -9546,7 +9621,10 @@ export function _deleteCertificateSend(
     )
     .delete({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -9601,6 +9679,7 @@ export function _getCertificateSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
         $select: options?.$select,
       },
@@ -9697,7 +9776,10 @@ export function _jobScheduleExistsSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -9749,7 +9831,10 @@ export function _deleteJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -9803,6 +9888,7 @@ export function _getJobScheduleSend(
           : {}),
       },
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
         $select: options?.$select,
         $expand: options?.$expand,
@@ -11049,7 +11135,10 @@ export function _updateJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         schedule: !body.schedule
           ? undefined
@@ -12375,7 +12464,10 @@ export function _replaceJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         schedule: {
           doNotRunUntil: body.schedule["doNotRunUntil"]?.toISOString(),
@@ -13589,7 +13681,10 @@ export function _disableJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -13638,7 +13733,10 @@ export function _enableJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -13687,7 +13785,10 @@ export function _terminateJobScheduleSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -13729,7 +13830,10 @@ export function _createJobScheduleSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         id: body["id"],
         displayName: body["displayName"],
@@ -14919,6 +15023,7 @@ export function _listJobSchedulesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
@@ -16255,7 +16360,10 @@ export function _createTaskSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         id: body["id"],
         displayName: body["displayName"],
@@ -16499,6 +16607,7 @@ export function _listTasksSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
@@ -16859,7 +16968,10 @@ export function _createTaskCollectionSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         value: collection["value"].map((p) => ({
           id: p["id"],
@@ -17171,7 +17283,10 @@ export function _deleteTaskSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -17227,6 +17342,7 @@ export function _getTaskSend(
           : {}),
       },
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
         $select: options?.$select,
         $expand: options?.$expand,
@@ -17581,7 +17697,10 @@ export function _replaceTaskSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         constraints: !body.constraints
           ? undefined
@@ -17627,6 +17746,7 @@ export function _listSubTasksSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
         $select: options?.$select,
       },
@@ -17734,7 +17854,10 @@ export function _terminateTaskSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -17787,7 +17910,10 @@ export function _reactivateTaskSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -17837,6 +17963,7 @@ export function _deleteTaskFileSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
         recursive: options?.recursive,
       },
@@ -17898,7 +18025,10 @@ export function _getTaskFileSend(
           ? { "ocp-range": options?.ocpRange }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -17956,7 +18086,10 @@ export function _getTaskFilePropertiesSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -18001,6 +18134,7 @@ export function _listTaskFilesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
@@ -18070,7 +18204,10 @@ export function _createNodeUserSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         name: body["name"],
         isAdmin: body["isAdmin"],
@@ -18128,7 +18265,10 @@ export function _deleteNodeUserSend(
     )
     .delete({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -18185,7 +18325,10 @@ export function _replaceNodeUserSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         password: body["password"],
         expiryTime: body["expiryTime"]?.toISOString(),
@@ -18240,6 +18383,7 @@ export function _getNodeSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
         $select: options?.$select,
       },
@@ -18553,7 +18697,10 @@ export function _rebootNodeSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body:
         body === undefined
           ? body
@@ -18597,7 +18744,10 @@ export function _reimageNodeSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body:
         body === undefined
           ? body
@@ -18647,7 +18797,10 @@ export function _disableNodeSchedulingSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body:
         body === undefined
           ? body
@@ -18702,7 +18855,10 @@ export function _enableNodeSchedulingSend(
     .path("/pools/{poolId}/nodes/{nodeId}/enablescheduling", poolId, nodeId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -18748,7 +18904,10 @@ export function _getNodeRemoteLoginSettingsSend(
     .path("/pools/{poolId}/nodes/{nodeId}/remoteloginsettings", poolId, nodeId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -18801,7 +18960,10 @@ export function _getNodeRemoteDesktopFileSend(
     .path("/pools/{poolId}/nodes/{nodeId}/rdp", poolId, nodeId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -18858,7 +19020,10 @@ export function _uploadNodeLogsSend(
       contentType:
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
       body: {
         containerUrl: body["containerUrl"],
         startTime: body["startTime"].toISOString(),
@@ -18916,6 +19081,7 @@ export function _listNodesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
@@ -19250,6 +19416,7 @@ export function _getNodeExtensionSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
         $select: options?.$select,
       },
@@ -19438,6 +19605,7 @@ export function _deleteNodeFileSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         timeOut: options?.timeOutInSeconds,
         recursive: options?.recursive,
       },
@@ -19499,7 +19667,10 @@ export function _getNodeFileSend(
           ? { "ocp-range": options?.ocpRange }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -19559,7 +19730,10 @@ export function _getNodeFilePropertiesSend(
           ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
           : {}),
       },
-      queryParameters: { timeOut: options?.timeOutInSeconds },
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
+        timeOut: options?.timeOutInSeconds,
+      },
     });
 }
 
@@ -19604,6 +19778,7 @@ export function _listNodeFilesSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
+        "api-version": options?.apiVersion ?? "2023-05-01.17.0",
         maxresults: options?.maxresults,
         timeOut: options?.timeOutInSeconds,
         $filter: options?.$filter,
