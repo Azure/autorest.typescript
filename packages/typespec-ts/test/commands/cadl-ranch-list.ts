@@ -224,6 +224,14 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "server/endpoint/not-defined",
     inputPath: "server/endpoint/not-defined"
+  },
+  {
+    outputPath: "server/versions/versioned",
+    inputPath: "server/versions/versioned"
+  },
+  {
+    outputPath: "server/versions/not-versioned",
+    inputPath: "server/versions/not-versioned"
   }
 ];
 
@@ -363,6 +371,14 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "unions",
     inputPath: "type/union"
+  },
+  {
+    outputPath: "server/versions/versioned",
+    inputPath: "server/versions/versioned"
+  },
+  {
+    outputPath: "server/versions/not-versioned",
+    inputPath: "server/versions/not-versioned"
   },
   {
     outputPath: "scalar",

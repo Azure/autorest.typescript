@@ -48,6 +48,8 @@ export interface ListApplicationsHeaders {
 }
 
 export interface ListApplicationsQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -61,7 +63,7 @@ export interface ListApplicationsQueryParamProperties {
 }
 
 export interface ListApplicationsQueryParam {
-  queryParameters?: ListApplicationsQueryParamProperties;
+  queryParameters: ListApplicationsQueryParamProperties;
 }
 
 export interface ListApplicationsHeaderParam {
@@ -89,6 +91,8 @@ export interface GetApplicationHeaders {
 }
 
 export interface GetApplicationQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -97,7 +101,7 @@ export interface GetApplicationQueryParamProperties {
 }
 
 export interface GetApplicationQueryParam {
-  queryParameters?: GetApplicationQueryParamProperties;
+  queryParameters: GetApplicationQueryParamProperties;
 }
 
 export interface GetApplicationHeaderParam {
@@ -125,6 +129,8 @@ export interface ListPoolUsageMetricsHeaders {
 }
 
 export interface ListPoolUsageMetricsQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -155,7 +161,7 @@ export interface ListPoolUsageMetricsQueryParamProperties {
 }
 
 export interface ListPoolUsageMetricsQueryParam {
-  queryParameters?: ListPoolUsageMetricsQueryParamProperties;
+  queryParameters: ListPoolUsageMetricsQueryParamProperties;
 }
 
 export interface ListPoolUsageMetricsHeaderParam {
@@ -188,6 +194,8 @@ export interface CreatePoolBodyParam {
 }
 
 export interface CreatePoolQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -196,7 +204,7 @@ export interface CreatePoolQueryParamProperties {
 }
 
 export interface CreatePoolQueryParam {
-  queryParameters?: CreatePoolQueryParamProperties;
+  queryParameters: CreatePoolQueryParamProperties;
 }
 
 export interface CreatePoolHeaderParam {
@@ -231,6 +239,8 @@ export interface ListPoolsHeaders {
 }
 
 export interface ListPoolsQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -253,7 +263,7 @@ export interface ListPoolsQueryParamProperties {
 }
 
 export interface ListPoolsQueryParam {
-  queryParameters?: ListPoolsQueryParamProperties;
+  queryParameters: ListPoolsQueryParamProperties;
 }
 
 export interface ListPoolsHeaderParam {
@@ -305,6 +315,8 @@ export interface DeletePoolHeaders {
 }
 
 export interface DeletePoolQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -313,7 +325,7 @@ export interface DeletePoolQueryParamProperties {
 }
 
 export interface DeletePoolQueryParam {
-  queryParameters?: DeletePoolQueryParamProperties;
+  queryParameters: DeletePoolQueryParamProperties;
 }
 
 export interface DeletePoolHeaderParam {
@@ -365,6 +377,8 @@ export interface PoolExistsHeaders {
 }
 
 export interface PoolExistsQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -373,7 +387,7 @@ export interface PoolExistsQueryParamProperties {
 }
 
 export interface PoolExistsQueryParam {
-  queryParameters?: PoolExistsQueryParamProperties;
+  queryParameters: PoolExistsQueryParamProperties;
 }
 
 export interface PoolExistsHeaderParam {
@@ -425,6 +439,8 @@ export interface GetPoolHeaders {
 }
 
 export interface GetPoolQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -437,7 +453,7 @@ export interface GetPoolQueryParamProperties {
 }
 
 export interface GetPoolQueryParam {
-  queryParameters?: GetPoolQueryParamProperties;
+  queryParameters: GetPoolQueryParamProperties;
 }
 
 export interface GetPoolHeaderParam {
@@ -494,6 +510,8 @@ export interface UpdatePoolBodyParam {
 }
 
 export interface UpdatePoolQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -502,7 +520,7 @@ export interface UpdatePoolQueryParamProperties {
 }
 
 export interface UpdatePoolQueryParam {
-  queryParameters?: UpdatePoolQueryParamProperties;
+  queryParameters: UpdatePoolQueryParamProperties;
 }
 
 export interface UpdatePoolHeaderParam {
@@ -537,6 +555,8 @@ export interface DisablePoolAutoScaleHeaders {
 }
 
 export interface DisablePoolAutoScaleQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -545,7 +565,7 @@ export interface DisablePoolAutoScaleQueryParamProperties {
 }
 
 export interface DisablePoolAutoScaleQueryParam {
-  queryParameters?: DisablePoolAutoScaleQueryParamProperties;
+  queryParameters: DisablePoolAutoScaleQueryParamProperties;
 }
 
 export interface DisablePoolAutoScaleHeaderParam {
@@ -602,6 +622,8 @@ export interface EnablePoolAutoScaleBodyParam {
 }
 
 export interface EnablePoolAutoScaleQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -610,7 +632,7 @@ export interface EnablePoolAutoScaleQueryParamProperties {
 }
 
 export interface EnablePoolAutoScaleQueryParam {
-  queryParameters?: EnablePoolAutoScaleQueryParamProperties;
+  queryParameters: EnablePoolAutoScaleQueryParamProperties;
 }
 
 export interface EnablePoolAutoScaleHeaderParam {
@@ -650,6 +672,8 @@ export interface EvaluatePoolAutoScaleBodyParam {
 }
 
 export interface EvaluatePoolAutoScaleQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -658,7 +682,7 @@ export interface EvaluatePoolAutoScaleQueryParamProperties {
 }
 
 export interface EvaluatePoolAutoScaleQueryParam {
-  queryParameters?: EvaluatePoolAutoScaleQueryParamProperties;
+  queryParameters: EvaluatePoolAutoScaleQueryParamProperties;
 }
 
 export interface EvaluatePoolAutoScaleHeaderParam {
@@ -722,6 +746,8 @@ export interface ResizePoolBodyParam {
 }
 
 export interface ResizePoolQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -730,7 +756,7 @@ export interface ResizePoolQueryParamProperties {
 }
 
 export interface ResizePoolQueryParam {
-  queryParameters?: ResizePoolQueryParamProperties;
+  queryParameters: ResizePoolQueryParamProperties;
 }
 
 export interface ResizePoolHeaderParam {
@@ -789,6 +815,8 @@ export interface StopPoolResizeHeaders {
 }
 
 export interface StopPoolResizeQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -797,7 +825,7 @@ export interface StopPoolResizeQueryParamProperties {
 }
 
 export interface StopPoolResizeQueryParam {
-  queryParameters?: StopPoolResizeQueryParamProperties;
+  queryParameters: StopPoolResizeQueryParamProperties;
 }
 
 export interface StopPoolResizeHeaderParam {
@@ -830,6 +858,8 @@ export interface ReplacePoolPropertiesBodyParam {
 }
 
 export interface ReplacePoolPropertiesQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -838,7 +868,7 @@ export interface ReplacePoolPropertiesQueryParamProperties {
 }
 
 export interface ReplacePoolPropertiesQueryParam {
-  queryParameters?: ReplacePoolPropertiesQueryParamProperties;
+  queryParameters: ReplacePoolPropertiesQueryParamProperties;
 }
 
 export interface ReplacePoolPropertiesHeaderParam {
@@ -902,6 +932,8 @@ export interface RemoveNodesBodyParam {
 }
 
 export interface RemoveNodesQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -910,7 +942,7 @@ export interface RemoveNodesQueryParamProperties {
 }
 
 export interface RemoveNodesQueryParam {
-  queryParameters?: RemoveNodesQueryParamProperties;
+  queryParameters: RemoveNodesQueryParamProperties;
 }
 
 export interface RemoveNodesHeaderParam {
@@ -991,6 +1023,8 @@ export interface ListPoolNodeCountsHeaders {
 }
 
 export interface ListPoolNodeCountsQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1009,7 +1043,7 @@ export interface ListPoolNodeCountsQueryParamProperties {
 }
 
 export interface ListPoolNodeCountsQueryParam {
-  queryParameters?: ListPoolNodeCountsQueryParamProperties;
+  queryParameters: ListPoolNodeCountsQueryParamProperties;
 }
 
 export interface ListPoolNodeCountsHeaderParam {
@@ -1061,6 +1095,8 @@ export interface DeleteJobHeaders {
 }
 
 export interface DeleteJobQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1069,7 +1105,7 @@ export interface DeleteJobQueryParamProperties {
 }
 
 export interface DeleteJobQueryParam {
-  queryParameters?: DeleteJobQueryParamProperties;
+  queryParameters: DeleteJobQueryParamProperties;
 }
 
 export interface DeleteJobHeaderParam {
@@ -1121,6 +1157,8 @@ export interface GetJobHeaders {
 }
 
 export interface GetJobQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1133,7 +1171,7 @@ export interface GetJobQueryParamProperties {
 }
 
 export interface GetJobQueryParam {
-  queryParameters?: GetJobQueryParamProperties;
+  queryParameters: GetJobQueryParamProperties;
 }
 
 export interface GetJobHeaderParam {
@@ -1190,6 +1228,8 @@ export interface UpdateJobBodyParam {
 }
 
 export interface UpdateJobQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1198,7 +1238,7 @@ export interface UpdateJobQueryParamProperties {
 }
 
 export interface UpdateJobQueryParam {
-  queryParameters?: UpdateJobQueryParamProperties;
+  queryParameters: UpdateJobQueryParamProperties;
 }
 
 export interface UpdateJobHeaderParam {
@@ -1262,6 +1302,8 @@ export interface ReplaceJobBodyParam {
 }
 
 export interface ReplaceJobQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1270,7 +1312,7 @@ export interface ReplaceJobQueryParamProperties {
 }
 
 export interface ReplaceJobQueryParam {
-  queryParameters?: ReplaceJobQueryParamProperties;
+  queryParameters: ReplaceJobQueryParamProperties;
 }
 
 export interface ReplaceJobHeaderParam {
@@ -1334,6 +1376,8 @@ export interface DisableJobBodyParam {
 }
 
 export interface DisableJobQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1342,7 +1386,7 @@ export interface DisableJobQueryParamProperties {
 }
 
 export interface DisableJobQueryParam {
-  queryParameters?: DisableJobQueryParamProperties;
+  queryParameters: DisableJobQueryParamProperties;
 }
 
 export interface DisableJobHeaderParam {
@@ -1401,6 +1445,8 @@ export interface EnableJobHeaders {
 }
 
 export interface EnableJobQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1409,7 +1455,7 @@ export interface EnableJobQueryParamProperties {
 }
 
 export interface EnableJobQueryParam {
-  queryParameters?: EnableJobQueryParamProperties;
+  queryParameters: EnableJobQueryParamProperties;
 }
 
 export interface EnableJobHeaderParam {
@@ -1466,6 +1512,8 @@ export interface TerminateJobBodyParam {
 }
 
 export interface TerminateJobQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1474,7 +1522,7 @@ export interface TerminateJobQueryParamProperties {
 }
 
 export interface TerminateJobQueryParam {
-  queryParameters?: TerminateJobQueryParamProperties;
+  queryParameters: TerminateJobQueryParamProperties;
 }
 
 export interface TerminateJobHeaderParam {
@@ -1514,6 +1562,8 @@ export interface CreateJobBodyParam {
 }
 
 export interface CreateJobQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1522,7 +1572,7 @@ export interface CreateJobQueryParamProperties {
 }
 
 export interface CreateJobQueryParam {
-  queryParameters?: CreateJobQueryParamProperties;
+  queryParameters: CreateJobQueryParamProperties;
 }
 
 export interface CreateJobHeaderParam {
@@ -1557,6 +1607,8 @@ export interface ListJobsHeaders {
 }
 
 export interface ListJobsQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1579,7 +1631,7 @@ export interface ListJobsQueryParamProperties {
 }
 
 export interface ListJobsQueryParam {
-  queryParameters?: ListJobsQueryParamProperties;
+  queryParameters: ListJobsQueryParamProperties;
 }
 
 export interface ListJobsHeaderParam {
@@ -1607,6 +1659,8 @@ export interface ListJobsFromScheduleHeaders {
 }
 
 export interface ListJobsFromScheduleQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1629,7 +1683,7 @@ export interface ListJobsFromScheduleQueryParamProperties {
 }
 
 export interface ListJobsFromScheduleQueryParam {
-  queryParameters?: ListJobsFromScheduleQueryParamProperties;
+  queryParameters: ListJobsFromScheduleQueryParamProperties;
 }
 
 export interface ListJobsFromScheduleHeaderParam {
@@ -1706,6 +1760,8 @@ export interface GetJobTaskCountsHeaders {
 }
 
 export interface GetJobTaskCountsQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1714,7 +1770,7 @@ export interface GetJobTaskCountsQueryParamProperties {
 }
 
 export interface GetJobTaskCountsQueryParam {
-  queryParameters?: GetJobTaskCountsQueryParamProperties;
+  queryParameters: GetJobTaskCountsQueryParamProperties;
 }
 
 export interface GetJobTaskCountsHeaderParam {
@@ -1747,6 +1803,8 @@ export interface CreateCertificateBodyParam {
 }
 
 export interface CreateCertificateQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1755,7 +1813,7 @@ export interface CreateCertificateQueryParamProperties {
 }
 
 export interface CreateCertificateQueryParam {
-  queryParameters?: CreateCertificateQueryParamProperties;
+  queryParameters: CreateCertificateQueryParamProperties;
 }
 
 export interface CreateCertificateHeaderParam {
@@ -1790,6 +1848,8 @@ export interface ListCertificatesHeaders {
 }
 
 export interface ListCertificatesQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1810,7 +1870,7 @@ export interface ListCertificatesQueryParamProperties {
 }
 
 export interface ListCertificatesQueryParam {
-  queryParameters?: ListCertificatesQueryParamProperties;
+  queryParameters: ListCertificatesQueryParamProperties;
 }
 
 export interface ListCertificatesHeaderParam {
@@ -1838,6 +1898,8 @@ export interface CancelCertificateDeletionHeaders {
 }
 
 export interface CancelCertificateDeletionQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1846,7 +1908,7 @@ export interface CancelCertificateDeletionQueryParamProperties {
 }
 
 export interface CancelCertificateDeletionQueryParam {
-  queryParameters?: CancelCertificateDeletionQueryParamProperties;
+  queryParameters: CancelCertificateDeletionQueryParamProperties;
 }
 
 export interface CancelCertificateDeletionHeaderParam {
@@ -1875,6 +1937,8 @@ export interface DeleteCertificateHeaders {
 }
 
 export interface DeleteCertificateQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1883,7 +1947,7 @@ export interface DeleteCertificateQueryParamProperties {
 }
 
 export interface DeleteCertificateQueryParam {
-  queryParameters?: DeleteCertificateQueryParamProperties;
+  queryParameters: DeleteCertificateQueryParamProperties;
 }
 
 export interface DeleteCertificateHeaderParam {
@@ -1911,6 +1975,8 @@ export interface GetCertificateHeaders {
 }
 
 export interface GetCertificateQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1921,7 +1987,7 @@ export interface GetCertificateQueryParamProperties {
 }
 
 export interface GetCertificateQueryParam {
-  queryParameters?: GetCertificateQueryParamProperties;
+  queryParameters: GetCertificateQueryParamProperties;
 }
 
 export interface GetCertificateHeaderParam {
@@ -1973,6 +2039,8 @@ export interface JobScheduleExistsHeaders {
 }
 
 export interface JobScheduleExistsQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1981,7 +2049,7 @@ export interface JobScheduleExistsQueryParamProperties {
 }
 
 export interface JobScheduleExistsQueryParam {
-  queryParameters?: JobScheduleExistsQueryParamProperties;
+  queryParameters: JobScheduleExistsQueryParamProperties;
 }
 
 export interface JobScheduleExistsHeaderParam {
@@ -2033,6 +2101,8 @@ export interface DeleteJobScheduleHeaders {
 }
 
 export interface DeleteJobScheduleQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2041,7 +2111,7 @@ export interface DeleteJobScheduleQueryParamProperties {
 }
 
 export interface DeleteJobScheduleQueryParam {
-  queryParameters?: DeleteJobScheduleQueryParamProperties;
+  queryParameters: DeleteJobScheduleQueryParamProperties;
 }
 
 export interface DeleteJobScheduleHeaderParam {
@@ -2093,6 +2163,8 @@ export interface GetJobScheduleHeaders {
 }
 
 export interface GetJobScheduleQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2105,7 +2177,7 @@ export interface GetJobScheduleQueryParamProperties {
 }
 
 export interface GetJobScheduleQueryParam {
-  queryParameters?: GetJobScheduleQueryParamProperties;
+  queryParameters: GetJobScheduleQueryParamProperties;
 }
 
 export interface GetJobScheduleHeaderParam {
@@ -2162,6 +2234,8 @@ export interface UpdateJobScheduleBodyParam {
 }
 
 export interface UpdateJobScheduleQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2170,7 +2244,7 @@ export interface UpdateJobScheduleQueryParamProperties {
 }
 
 export interface UpdateJobScheduleQueryParam {
-  queryParameters?: UpdateJobScheduleQueryParamProperties;
+  queryParameters: UpdateJobScheduleQueryParamProperties;
 }
 
 export interface UpdateJobScheduleHeaderParam {
@@ -2234,6 +2308,8 @@ export interface ReplaceJobScheduleBodyParam {
 }
 
 export interface ReplaceJobScheduleQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2242,7 +2318,7 @@ export interface ReplaceJobScheduleQueryParamProperties {
 }
 
 export interface ReplaceJobScheduleQueryParam {
-  queryParameters?: ReplaceJobScheduleQueryParamProperties;
+  queryParameters: ReplaceJobScheduleQueryParamProperties;
 }
 
 export interface ReplaceJobScheduleHeaderParam {
@@ -2301,6 +2377,8 @@ export interface DisableJobScheduleHeaders {
 }
 
 export interface DisableJobScheduleQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2309,7 +2387,7 @@ export interface DisableJobScheduleQueryParamProperties {
 }
 
 export interface DisableJobScheduleQueryParam {
-  queryParameters?: DisableJobScheduleQueryParamProperties;
+  queryParameters: DisableJobScheduleQueryParamProperties;
 }
 
 export interface DisableJobScheduleHeaderParam {
@@ -2361,6 +2439,8 @@ export interface EnableJobScheduleHeaders {
 }
 
 export interface EnableJobScheduleQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2369,7 +2449,7 @@ export interface EnableJobScheduleQueryParamProperties {
 }
 
 export interface EnableJobScheduleQueryParam {
-  queryParameters?: EnableJobScheduleQueryParamProperties;
+  queryParameters: EnableJobScheduleQueryParamProperties;
 }
 
 export interface EnableJobScheduleHeaderParam {
@@ -2421,6 +2501,8 @@ export interface TerminateJobScheduleHeaders {
 }
 
 export interface TerminateJobScheduleQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2429,7 +2511,7 @@ export interface TerminateJobScheduleQueryParamProperties {
 }
 
 export interface TerminateJobScheduleQueryParam {
-  queryParameters?: TerminateJobScheduleQueryParamProperties;
+  queryParameters: TerminateJobScheduleQueryParamProperties;
 }
 
 export interface TerminateJobScheduleHeaderParam {
@@ -2462,6 +2544,8 @@ export interface CreateJobScheduleBodyParam {
 }
 
 export interface CreateJobScheduleQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2470,7 +2554,7 @@ export interface CreateJobScheduleQueryParamProperties {
 }
 
 export interface CreateJobScheduleQueryParam {
-  queryParameters?: CreateJobScheduleQueryParamProperties;
+  queryParameters: CreateJobScheduleQueryParamProperties;
 }
 
 export interface CreateJobScheduleHeaderParam {
@@ -2505,6 +2589,8 @@ export interface ListJobSchedulesHeaders {
 }
 
 export interface ListJobSchedulesQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2527,7 +2613,7 @@ export interface ListJobSchedulesQueryParamProperties {
 }
 
 export interface ListJobSchedulesQueryParam {
-  queryParameters?: ListJobSchedulesQueryParamProperties;
+  queryParameters: ListJobSchedulesQueryParamProperties;
 }
 
 export interface ListJobSchedulesHeaderParam {
@@ -2560,6 +2646,8 @@ export interface CreateTaskBodyParam {
 }
 
 export interface CreateTaskQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2568,7 +2656,7 @@ export interface CreateTaskQueryParamProperties {
 }
 
 export interface CreateTaskQueryParam {
-  queryParameters?: CreateTaskQueryParamProperties;
+  queryParameters: CreateTaskQueryParamProperties;
 }
 
 export interface CreateTaskHeaderParam {
@@ -2603,6 +2691,8 @@ export interface ListTasksHeaders {
 }
 
 export interface ListTasksQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2625,7 +2715,7 @@ export interface ListTasksQueryParamProperties {
 }
 
 export interface ListTasksQueryParam {
-  queryParameters?: ListTasksQueryParamProperties;
+  queryParameters: ListTasksQueryParamProperties;
 }
 
 export interface ListTasksHeaderParam {
@@ -2658,6 +2748,8 @@ export interface CreateTaskCollectionBodyParam {
 }
 
 export interface CreateTaskCollectionQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2666,7 +2758,7 @@ export interface CreateTaskCollectionQueryParamProperties {
 }
 
 export interface CreateTaskCollectionQueryParam {
-  queryParameters?: CreateTaskCollectionQueryParamProperties;
+  queryParameters: CreateTaskCollectionQueryParamProperties;
 }
 
 export interface CreateTaskCollectionHeaderParam {
@@ -2725,6 +2817,8 @@ export interface DeleteTaskHeaders {
 }
 
 export interface DeleteTaskQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2733,7 +2827,7 @@ export interface DeleteTaskQueryParamProperties {
 }
 
 export interface DeleteTaskQueryParam {
-  queryParameters?: DeleteTaskQueryParamProperties;
+  queryParameters: DeleteTaskQueryParamProperties;
 }
 
 export interface DeleteTaskHeaderParam {
@@ -2785,6 +2879,8 @@ export interface GetTaskHeaders {
 }
 
 export interface GetTaskQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2797,7 +2893,7 @@ export interface GetTaskQueryParamProperties {
 }
 
 export interface GetTaskQueryParam {
-  queryParameters?: GetTaskQueryParamProperties;
+  queryParameters: GetTaskQueryParamProperties;
 }
 
 export interface GetTaskHeaderParam {
@@ -2854,6 +2950,8 @@ export interface ReplaceTaskBodyParam {
 }
 
 export interface ReplaceTaskQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2862,7 +2960,7 @@ export interface ReplaceTaskQueryParamProperties {
 }
 
 export interface ReplaceTaskQueryParam {
-  queryParameters?: ReplaceTaskQueryParamProperties;
+  queryParameters: ReplaceTaskQueryParamProperties;
 }
 
 export interface ReplaceTaskHeaderParam {
@@ -2897,6 +2995,8 @@ export interface ListSubTasksHeaders {
 }
 
 export interface ListSubTasksQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2907,7 +3007,7 @@ export interface ListSubTasksQueryParamProperties {
 }
 
 export interface ListSubTasksQueryParam {
-  queryParameters?: ListSubTasksQueryParamProperties;
+  queryParameters: ListSubTasksQueryParamProperties;
 }
 
 export interface ListSubTasksHeaderParam {
@@ -2959,6 +3059,8 @@ export interface TerminateTaskHeaders {
 }
 
 export interface TerminateTaskQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2967,7 +3069,7 @@ export interface TerminateTaskQueryParamProperties {
 }
 
 export interface TerminateTaskQueryParam {
-  queryParameters?: TerminateTaskQueryParamProperties;
+  queryParameters: TerminateTaskQueryParamProperties;
 }
 
 export interface TerminateTaskHeaderParam {
@@ -3019,6 +3121,8 @@ export interface ReactivateTaskHeaders {
 }
 
 export interface ReactivateTaskQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3027,7 +3131,7 @@ export interface ReactivateTaskQueryParamProperties {
 }
 
 export interface ReactivateTaskQueryParam {
-  queryParameters?: ReactivateTaskQueryParamProperties;
+  queryParameters: ReactivateTaskQueryParamProperties;
 }
 
 export interface ReactivateTaskHeaderParam {
@@ -3055,6 +3159,8 @@ export interface DeleteTaskFileHeaders {
 }
 
 export interface DeleteTaskFileQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3070,7 +3176,7 @@ export interface DeleteTaskFileQueryParamProperties {
 }
 
 export interface DeleteTaskFileQueryParam {
-  queryParameters?: DeleteTaskFileQueryParamProperties;
+  queryParameters: DeleteTaskFileQueryParamProperties;
 }
 
 export interface DeleteTaskFileHeaderParam {
@@ -3115,6 +3221,8 @@ export interface GetTaskFileHeaders {
 }
 
 export interface GetTaskFileQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3123,7 +3231,7 @@ export interface GetTaskFileQueryParamProperties {
 }
 
 export interface GetTaskFileQueryParam {
-  queryParameters?: GetTaskFileQueryParamProperties;
+  queryParameters: GetTaskFileQueryParamProperties;
 }
 
 export interface GetTaskFileHeaderParam {
@@ -3163,6 +3271,8 @@ export interface GetTaskFilePropertiesHeaders {
 }
 
 export interface GetTaskFilePropertiesQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3171,7 +3281,7 @@ export interface GetTaskFilePropertiesQueryParamProperties {
 }
 
 export interface GetTaskFilePropertiesQueryParam {
-  queryParameters?: GetTaskFilePropertiesQueryParamProperties;
+  queryParameters: GetTaskFilePropertiesQueryParamProperties;
 }
 
 export interface GetTaskFilePropertiesHeaderParam {
@@ -3199,6 +3309,8 @@ export interface ListTaskFilesHeaders {
 }
 
 export interface ListTaskFilesQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3222,7 +3334,7 @@ export interface ListTaskFilesQueryParamProperties {
 }
 
 export interface ListTaskFilesQueryParam {
-  queryParameters?: ListTaskFilesQueryParamProperties;
+  queryParameters: ListTaskFilesQueryParamProperties;
 }
 
 export interface ListTaskFilesHeaderParam {
@@ -3255,6 +3367,8 @@ export interface CreateNodeUserBodyParam {
 }
 
 export interface CreateNodeUserQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3263,7 +3377,7 @@ export interface CreateNodeUserQueryParamProperties {
 }
 
 export interface CreateNodeUserQueryParam {
-  queryParameters?: CreateNodeUserQueryParamProperties;
+  queryParameters: CreateNodeUserQueryParamProperties;
 }
 
 export interface CreateNodeUserHeaderParam {
@@ -3298,6 +3412,8 @@ export interface DeleteNodeUserHeaders {
 }
 
 export interface DeleteNodeUserQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3306,7 +3422,7 @@ export interface DeleteNodeUserQueryParamProperties {
 }
 
 export interface DeleteNodeUserQueryParam {
-  queryParameters?: DeleteNodeUserQueryParamProperties;
+  queryParameters: DeleteNodeUserQueryParamProperties;
 }
 
 export interface DeleteNodeUserHeaderParam {
@@ -3339,6 +3455,8 @@ export interface ReplaceNodeUserBodyParam {
 }
 
 export interface ReplaceNodeUserQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3347,7 +3465,7 @@ export interface ReplaceNodeUserQueryParamProperties {
 }
 
 export interface ReplaceNodeUserQueryParam {
-  queryParameters?: ReplaceNodeUserQueryParamProperties;
+  queryParameters: ReplaceNodeUserQueryParamProperties;
 }
 
 export interface ReplaceNodeUserHeaderParam {
@@ -3382,6 +3500,8 @@ export interface GetNodeHeaders {
 }
 
 export interface GetNodeQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3392,7 +3512,7 @@ export interface GetNodeQueryParamProperties {
 }
 
 export interface GetNodeQueryParam {
-  queryParameters?: GetNodeQueryParamProperties;
+  queryParameters: GetNodeQueryParamProperties;
 }
 
 export interface GetNodeHeaderParam {
@@ -3425,6 +3545,8 @@ export interface RebootNodeBodyParam {
 }
 
 export interface RebootNodeQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3433,7 +3555,7 @@ export interface RebootNodeQueryParamProperties {
 }
 
 export interface RebootNodeQueryParam {
-  queryParameters?: RebootNodeQueryParamProperties;
+  queryParameters: RebootNodeQueryParamProperties;
 }
 
 export interface RebootNodeHeaderParam {
@@ -3473,6 +3595,8 @@ export interface ReimageNodeBodyParam {
 }
 
 export interface ReimageNodeQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3481,7 +3605,7 @@ export interface ReimageNodeQueryParamProperties {
 }
 
 export interface ReimageNodeQueryParam {
-  queryParameters?: ReimageNodeQueryParamProperties;
+  queryParameters: ReimageNodeQueryParamProperties;
 }
 
 export interface ReimageNodeHeaderParam {
@@ -3521,6 +3645,8 @@ export interface DisableNodeSchedulingBodyParam {
 }
 
 export interface DisableNodeSchedulingQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3529,7 +3655,7 @@ export interface DisableNodeSchedulingQueryParamProperties {
 }
 
 export interface DisableNodeSchedulingQueryParam {
-  queryParameters?: DisableNodeSchedulingQueryParamProperties;
+  queryParameters: DisableNodeSchedulingQueryParamProperties;
 }
 
 export interface DisableNodeSchedulingHeaderParam {
@@ -3564,6 +3690,8 @@ export interface EnableNodeSchedulingHeaders {
 }
 
 export interface EnableNodeSchedulingQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3572,7 +3700,7 @@ export interface EnableNodeSchedulingQueryParamProperties {
 }
 
 export interface EnableNodeSchedulingQueryParam {
-  queryParameters?: EnableNodeSchedulingQueryParamProperties;
+  queryParameters: EnableNodeSchedulingQueryParamProperties;
 }
 
 export interface EnableNodeSchedulingHeaderParam {
@@ -3600,6 +3728,8 @@ export interface GetNodeRemoteLoginSettingsHeaders {
 }
 
 export interface GetNodeRemoteLoginSettingsQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3608,7 +3738,7 @@ export interface GetNodeRemoteLoginSettingsQueryParamProperties {
 }
 
 export interface GetNodeRemoteLoginSettingsQueryParam {
-  queryParameters?: GetNodeRemoteLoginSettingsQueryParamProperties;
+  queryParameters: GetNodeRemoteLoginSettingsQueryParamProperties;
 }
 
 export interface GetNodeRemoteLoginSettingsHeaderParam {
@@ -3637,6 +3767,8 @@ export interface GetNodeRemoteDesktopFileHeaders {
 }
 
 export interface GetNodeRemoteDesktopFileQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3645,7 +3777,7 @@ export interface GetNodeRemoteDesktopFileQueryParamProperties {
 }
 
 export interface GetNodeRemoteDesktopFileQueryParam {
-  queryParameters?: GetNodeRemoteDesktopFileQueryParamProperties;
+  queryParameters: GetNodeRemoteDesktopFileQueryParamProperties;
 }
 
 export interface GetNodeRemoteDesktopFileHeaderParam {
@@ -3679,6 +3811,8 @@ export interface UploadNodeLogsBodyParam {
 }
 
 export interface UploadNodeLogsQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3687,7 +3821,7 @@ export interface UploadNodeLogsQueryParamProperties {
 }
 
 export interface UploadNodeLogsQueryParam {
-  queryParameters?: UploadNodeLogsQueryParamProperties;
+  queryParameters: UploadNodeLogsQueryParamProperties;
 }
 
 export interface UploadNodeLogsHeaderParam {
@@ -3722,6 +3856,8 @@ export interface ListNodesHeaders {
 }
 
 export interface ListNodesQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3742,7 +3878,7 @@ export interface ListNodesQueryParamProperties {
 }
 
 export interface ListNodesQueryParam {
-  queryParameters?: ListNodesQueryParamProperties;
+  queryParameters: ListNodesQueryParamProperties;
 }
 
 export interface ListNodesHeaderParam {
@@ -3770,6 +3906,8 @@ export interface GetNodeExtensionHeaders {
 }
 
 export interface GetNodeExtensionQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3780,7 +3918,7 @@ export interface GetNodeExtensionQueryParamProperties {
 }
 
 export interface GetNodeExtensionQueryParam {
-  queryParameters?: GetNodeExtensionQueryParamProperties;
+  queryParameters: GetNodeExtensionQueryParamProperties;
 }
 
 export interface GetNodeExtensionHeaderParam {
@@ -3851,6 +3989,8 @@ export interface DeleteNodeFileHeaders {
 }
 
 export interface DeleteNodeFileQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3866,7 +4006,7 @@ export interface DeleteNodeFileQueryParamProperties {
 }
 
 export interface DeleteNodeFileQueryParam {
-  queryParameters?: DeleteNodeFileQueryParamProperties;
+  queryParameters: DeleteNodeFileQueryParamProperties;
 }
 
 export interface DeleteNodeFileHeaderParam {
@@ -3911,6 +4051,8 @@ export interface GetNodeFileHeaders {
 }
 
 export interface GetNodeFileQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3919,7 +4061,7 @@ export interface GetNodeFileQueryParamProperties {
 }
 
 export interface GetNodeFileQueryParam {
-  queryParameters?: GetNodeFileQueryParamProperties;
+  queryParameters: GetNodeFileQueryParamProperties;
 }
 
 export interface GetNodeFileHeaderParam {
@@ -3959,6 +4101,8 @@ export interface GetNodeFilePropertiesHeaders {
 }
 
 export interface GetNodeFilePropertiesQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -3967,7 +4111,7 @@ export interface GetNodeFilePropertiesQueryParamProperties {
 }
 
 export interface GetNodeFilePropertiesQueryParam {
-  queryParameters?: GetNodeFilePropertiesQueryParamProperties;
+  queryParameters: GetNodeFilePropertiesQueryParamProperties;
 }
 
 export interface GetNodeFilePropertiesHeaderParam {
@@ -3995,6 +4139,8 @@ export interface ListNodeFilesHeaders {
 }
 
 export interface ListNodeFilesQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -4015,7 +4161,7 @@ export interface ListNodeFilesQueryParamProperties {
 }
 
 export interface ListNodeFilesQueryParam {
-  queryParameters?: ListNodeFilesQueryParamProperties;
+  queryParameters: ListNodeFilesQueryParamProperties;
 }
 
 export interface ListNodeFilesHeaderParam {

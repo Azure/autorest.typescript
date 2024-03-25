@@ -684,6 +684,16 @@ function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
       [param.type]
     ).join(", ")}}`;
   }
+  if (
+    param.restApiName === "api-version" &&
+    (param as any).location === "query"
+  ) {
+    return `"${param.restApiName}": ${
+      param.clientDefaultValue
+        ? `options?.${param.clientName} ?? "${param.clientDefaultValue}"`
+        : `options?.${param.clientName}`
+    }`;
+  }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
     `options?.${param.clientName}`,
