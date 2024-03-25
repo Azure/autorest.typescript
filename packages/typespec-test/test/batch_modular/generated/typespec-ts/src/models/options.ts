@@ -4,6 +4,8 @@
 import { OperationOptions } from "@azure-rest/core-client";
 
 export interface ListApplicationsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -17,6 +19,8 @@ export interface ListApplicationsOptions extends OperationOptions {
 }
 
 export interface GetApplicationOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -25,6 +29,8 @@ export interface GetApplicationOptions extends OperationOptions {
 }
 
 export interface ListPoolUsageMetricsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -55,6 +61,8 @@ export interface ListPoolUsageMetricsOptions extends OperationOptions {
 }
 
 export interface CreatePoolOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -65,6 +73,8 @@ export interface CreatePoolOptions extends OperationOptions {
 }
 
 export interface ListPoolsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -87,6 +97,8 @@ export interface ListPoolsOptions extends OperationOptions {
 }
 
 export interface DeletePoolOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -119,6 +131,8 @@ export interface DeletePoolOptions extends OperationOptions {
 }
 
 export interface PoolExistsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -151,6 +165,8 @@ export interface PoolExistsOptions extends OperationOptions {
 }
 
 export interface GetPoolOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -187,6 +203,8 @@ export interface GetPoolOptions extends OperationOptions {
 }
 
 export interface UpdatePoolOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -221,6 +239,8 @@ export interface UpdatePoolOptions extends OperationOptions {
 }
 
 export interface DisablePoolAutoScaleOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -229,6 +249,8 @@ export interface DisablePoolAutoScaleOptions extends OperationOptions {
 }
 
 export interface EnablePoolAutoScaleOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -263,6 +285,8 @@ export interface EnablePoolAutoScaleOptions extends OperationOptions {
 }
 
 export interface EvaluatePoolAutoScaleOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -273,6 +297,8 @@ export interface EvaluatePoolAutoScaleOptions extends OperationOptions {
 }
 
 export interface ResizePoolOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -307,6 +333,8 @@ export interface ResizePoolOptions extends OperationOptions {
 }
 
 export interface StopPoolResizeOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -339,6 +367,8 @@ export interface StopPoolResizeOptions extends OperationOptions {
 }
 
 export interface ReplacePoolPropertiesOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -349,6 +379,8 @@ export interface ReplacePoolPropertiesOptions extends OperationOptions {
 }
 
 export interface RemoveNodesOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -401,6 +433,8 @@ export interface ListSupportedImagesOptions extends OperationOptions {
 }
 
 export interface ListPoolNodeCountsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -419,6 +453,8 @@ export interface ListPoolNodeCountsOptions extends OperationOptions {
 }
 
 export interface DeleteJobOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -451,6 +487,8 @@ export interface DeleteJobOptions extends OperationOptions {
 }
 
 export interface GetJobOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -487,6 +525,8 @@ export interface GetJobOptions extends OperationOptions {
 }
 
 export interface UpdateJobOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -521,6 +561,8 @@ export interface UpdateJobOptions extends OperationOptions {
 }
 
 export interface ReplaceJobOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -555,6 +597,8 @@ export interface ReplaceJobOptions extends OperationOptions {
 }
 
 export interface DisableJobOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -589,6 +633,8 @@ export interface DisableJobOptions extends OperationOptions {
 }
 
 export interface EnableJobOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -621,6 +667,8 @@ export interface EnableJobOptions extends OperationOptions {
 }
 
 export interface TerminateJobOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -655,6 +703,8 @@ export interface TerminateJobOptions extends OperationOptions {
 }
 
 export interface CreateJobOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -665,6 +715,8 @@ export interface CreateJobOptions extends OperationOptions {
 }
 
 export interface ListJobsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -687,6 +739,8 @@ export interface ListJobsOptions extends OperationOptions {
 }
 
 export interface ListJobsFromScheduleOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -730,6 +784,8 @@ export interface ListJobPreparationAndReleaseTaskStatusOptions
 }
 
 export interface GetJobTaskCountsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -738,6 +794,8 @@ export interface GetJobTaskCountsOptions extends OperationOptions {
 }
 
 export interface CreateCertificateOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -748,6 +806,8 @@ export interface CreateCertificateOptions extends OperationOptions {
 }
 
 export interface ListCertificatesOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -768,6 +828,8 @@ export interface ListCertificatesOptions extends OperationOptions {
 }
 
 export interface CancelCertificateDeletionOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -776,6 +838,8 @@ export interface CancelCertificateDeletionOptions extends OperationOptions {
 }
 
 export interface DeleteCertificateOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -784,6 +848,8 @@ export interface DeleteCertificateOptions extends OperationOptions {
 }
 
 export interface GetCertificateOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -794,6 +860,8 @@ export interface GetCertificateOptions extends OperationOptions {
 }
 
 export interface JobScheduleExistsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -826,6 +894,8 @@ export interface JobScheduleExistsOptions extends OperationOptions {
 }
 
 export interface DeleteJobScheduleOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -858,6 +928,8 @@ export interface DeleteJobScheduleOptions extends OperationOptions {
 }
 
 export interface GetJobScheduleOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -894,6 +966,8 @@ export interface GetJobScheduleOptions extends OperationOptions {
 }
 
 export interface UpdateJobScheduleOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -928,6 +1002,8 @@ export interface UpdateJobScheduleOptions extends OperationOptions {
 }
 
 export interface ReplaceJobScheduleOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -962,6 +1038,8 @@ export interface ReplaceJobScheduleOptions extends OperationOptions {
 }
 
 export interface DisableJobScheduleOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -994,6 +1072,8 @@ export interface DisableJobScheduleOptions extends OperationOptions {
 }
 
 export interface EnableJobScheduleOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1026,6 +1106,8 @@ export interface EnableJobScheduleOptions extends OperationOptions {
 }
 
 export interface TerminateJobScheduleOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1058,6 +1140,8 @@ export interface TerminateJobScheduleOptions extends OperationOptions {
 }
 
 export interface CreateJobScheduleOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1068,6 +1152,8 @@ export interface CreateJobScheduleOptions extends OperationOptions {
 }
 
 export interface ListJobSchedulesOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1090,6 +1176,8 @@ export interface ListJobSchedulesOptions extends OperationOptions {
 }
 
 export interface CreateTaskOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1100,6 +1188,8 @@ export interface CreateTaskOptions extends OperationOptions {
 }
 
 export interface ListTasksOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1122,6 +1212,8 @@ export interface ListTasksOptions extends OperationOptions {
 }
 
 export interface CreateTaskCollectionOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1132,6 +1224,8 @@ export interface CreateTaskCollectionOptions extends OperationOptions {
 }
 
 export interface DeleteTaskOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1164,6 +1258,8 @@ export interface DeleteTaskOptions extends OperationOptions {
 }
 
 export interface GetTaskOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1200,6 +1296,8 @@ export interface GetTaskOptions extends OperationOptions {
 }
 
 export interface ReplaceTaskOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1234,6 +1332,8 @@ export interface ReplaceTaskOptions extends OperationOptions {
 }
 
 export interface ListSubTasksOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1244,6 +1344,8 @@ export interface ListSubTasksOptions extends OperationOptions {
 }
 
 export interface TerminateTaskOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1276,6 +1378,8 @@ export interface TerminateTaskOptions extends OperationOptions {
 }
 
 export interface ReactivateTaskOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1308,6 +1412,8 @@ export interface ReactivateTaskOptions extends OperationOptions {
 }
 
 export interface DeleteTaskFileOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1323,6 +1429,8 @@ export interface DeleteTaskFileOptions extends OperationOptions {
 }
 
 export interface GetTaskFileOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1348,6 +1456,8 @@ export interface GetTaskFileOptions extends OperationOptions {
 }
 
 export interface GetTaskFilePropertiesOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1368,6 +1478,8 @@ export interface GetTaskFilePropertiesOptions extends OperationOptions {
 }
 
 export interface ListTaskFilesOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1391,6 +1503,8 @@ export interface ListTaskFilesOptions extends OperationOptions {
 }
 
 export interface CreateNodeUserOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1401,6 +1515,8 @@ export interface CreateNodeUserOptions extends OperationOptions {
 }
 
 export interface DeleteNodeUserOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1409,6 +1525,8 @@ export interface DeleteNodeUserOptions extends OperationOptions {
 }
 
 export interface ReplaceNodeUserOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1419,6 +1537,8 @@ export interface ReplaceNodeUserOptions extends OperationOptions {
 }
 
 export interface GetNodeOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1429,6 +1549,8 @@ export interface GetNodeOptions extends OperationOptions {
 }
 
 export interface RebootNodeOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1439,6 +1561,8 @@ export interface RebootNodeOptions extends OperationOptions {
 }
 
 export interface ReimageNodeOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1449,6 +1573,8 @@ export interface ReimageNodeOptions extends OperationOptions {
 }
 
 export interface DisableNodeSchedulingOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1459,6 +1585,8 @@ export interface DisableNodeSchedulingOptions extends OperationOptions {
 }
 
 export interface EnableNodeSchedulingOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1467,6 +1595,8 @@ export interface EnableNodeSchedulingOptions extends OperationOptions {
 }
 
 export interface GetNodeRemoteLoginSettingsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1475,6 +1605,8 @@ export interface GetNodeRemoteLoginSettingsOptions extends OperationOptions {
 }
 
 export interface GetNodeRemoteDesktopFileOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1483,6 +1615,8 @@ export interface GetNodeRemoteDesktopFileOptions extends OperationOptions {
 }
 
 export interface UploadNodeLogsOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1493,6 +1627,8 @@ export interface UploadNodeLogsOptions extends OperationOptions {
 }
 
 export interface ListNodesOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1513,6 +1649,8 @@ export interface ListNodesOptions extends OperationOptions {
 }
 
 export interface GetNodeExtensionOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1538,6 +1676,8 @@ export interface ListNodeExtensionsOptions extends OperationOptions {
 }
 
 export interface DeleteNodeFileOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1553,6 +1693,8 @@ export interface DeleteNodeFileOptions extends OperationOptions {
 }
 
 export interface GetNodeFileOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1578,6 +1720,8 @@ export interface GetNodeFileOptions extends OperationOptions {
 }
 
 export interface GetNodeFilePropertiesOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1598,6 +1742,8 @@ export interface GetNodeFilePropertiesOptions extends OperationOptions {
 }
 
 export interface ListNodeFilesOptions extends OperationOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.

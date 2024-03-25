@@ -627,6 +627,7 @@ export type CachingType = string;
 
 // @public (undocumented)
 export interface CancelCertificateDeletionOptions extends OperationOptions {
+    apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
@@ -700,42 +701,49 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 
 // @public (undocumented)
 export interface CreateCertificateOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface CreateJobOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface CreateJobScheduleOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface CreateNodeUserOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface CreatePoolOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface CreateTaskCollectionOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface CreateTaskOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
@@ -757,11 +765,13 @@ export interface DeleteCertificateError {
 
 // @public (undocumented)
 export interface DeleteCertificateOptions extends OperationOptions {
+    apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface DeleteJobOptions extends OperationOptions {
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -771,6 +781,7 @@ export interface DeleteJobOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface DeleteJobScheduleOptions extends OperationOptions {
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -780,17 +791,20 @@ export interface DeleteJobScheduleOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface DeleteNodeFileOptions extends OperationOptions {
+    apiVersion?: string;
     recursive?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface DeleteNodeUserOptions extends OperationOptions {
+    apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface DeletePoolOptions extends OperationOptions {
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -800,12 +814,14 @@ export interface DeletePoolOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface DeleteTaskFileOptions extends OperationOptions {
+    apiVersion?: string;
     recursive?: boolean;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface DeleteTaskOptions extends OperationOptions {
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -832,6 +848,7 @@ export type DisableJobOption = string;
 
 // @public (undocumented)
 export interface DisableJobOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -842,6 +859,7 @@ export interface DisableJobOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface DisableJobScheduleOptions extends OperationOptions {
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -851,12 +869,14 @@ export interface DisableJobScheduleOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface DisableNodeSchedulingOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface DisablePoolAutoScaleOptions extends OperationOptions {
+    apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
@@ -876,6 +896,7 @@ export type ElevationLevel = string;
 
 // @public (undocumented)
 export interface EnableJobOptions extends OperationOptions {
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -885,6 +906,7 @@ export interface EnableJobOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface EnableJobScheduleOptions extends OperationOptions {
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -894,11 +916,13 @@ export interface EnableJobScheduleOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface EnableNodeSchedulingOptions extends OperationOptions {
+    apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface EnablePoolAutoScaleOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -924,6 +948,7 @@ export interface ErrorMessage {
 
 // @public (undocumented)
 export interface EvaluatePoolAutoScaleOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
@@ -967,12 +992,14 @@ export interface FileProperties {
 
 // @public (undocumented)
 export interface GetApplicationOptions extends OperationOptions {
+    apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface GetCertificateOptions extends OperationOptions {
     $select?: string[];
+    apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
@@ -980,6 +1007,7 @@ export interface GetCertificateOptions extends OperationOptions {
 export interface GetJobOptions extends OperationOptions {
     $expand?: string[];
     $select?: string[];
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -991,6 +1019,7 @@ export interface GetJobOptions extends OperationOptions {
 export interface GetJobScheduleOptions extends OperationOptions {
     $expand?: string[];
     $select?: string[];
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -1000,17 +1029,20 @@ export interface GetJobScheduleOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface GetJobTaskCountsOptions extends OperationOptions {
+    apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface GetNodeExtensionOptions extends OperationOptions {
     $select?: string[];
+    apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface GetNodeFileOptions extends OperationOptions {
+    apiVersion?: string;
     ifModifiedSince?: Date;
     ifUnmodifiedSince?: Date;
     ocpRange?: string;
@@ -1019,6 +1051,7 @@ export interface GetNodeFileOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface GetNodeFilePropertiesOptions extends OperationOptions {
+    apiVersion?: string;
     ifModifiedSince?: Date;
     ifUnmodifiedSince?: Date;
     timeOutInSeconds?: number;
@@ -1027,16 +1060,19 @@ export interface GetNodeFilePropertiesOptions extends OperationOptions {
 // @public (undocumented)
 export interface GetNodeOptions extends OperationOptions {
     $select?: string[];
+    apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface GetNodeRemoteDesktopFileOptions extends OperationOptions {
+    apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface GetNodeRemoteLoginSettingsOptions extends OperationOptions {
+    apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
@@ -1044,6 +1080,7 @@ export interface GetNodeRemoteLoginSettingsOptions extends OperationOptions {
 export interface GetPoolOptions extends OperationOptions {
     $expand?: string[];
     $select?: string[];
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -1053,6 +1090,7 @@ export interface GetPoolOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface GetTaskFileOptions extends OperationOptions {
+    apiVersion?: string;
     ifModifiedSince?: Date;
     ifUnmodifiedSince?: Date;
     ocpRange?: string;
@@ -1061,6 +1099,7 @@ export interface GetTaskFileOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface GetTaskFilePropertiesOptions extends OperationOptions {
+    apiVersion?: string;
     ifModifiedSince?: Date;
     ifUnmodifiedSince?: Date;
     timeOutInSeconds?: number;
@@ -1070,6 +1109,7 @@ export interface GetTaskFilePropertiesOptions extends OperationOptions {
 export interface GetTaskOptions extends OperationOptions {
     $expand?: string[];
     $select?: string[];
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -1257,6 +1297,7 @@ export interface JobScheduleExecutionInformation {
 
 // @public (undocumented)
 export interface JobScheduleExistsOptions extends OperationOptions {
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -1342,6 +1383,7 @@ export interface LinuxUserConfiguration {
 
 // @public (undocumented)
 export interface ListApplicationsOptions extends OperationOptions {
+    apiVersion?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
@@ -1350,6 +1392,7 @@ export interface ListApplicationsOptions extends OperationOptions {
 export interface ListCertificatesOptions extends OperationOptions {
     $filter?: string;
     $select?: string[];
+    apiVersion?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
@@ -1367,6 +1410,7 @@ export interface ListJobSchedulesOptions extends OperationOptions {
     $expand?: string[];
     $filter?: string;
     $select?: string[];
+    apiVersion?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
@@ -1376,6 +1420,7 @@ export interface ListJobsFromScheduleOptions extends OperationOptions {
     $expand?: string[];
     $filter?: string;
     $select?: string[];
+    apiVersion?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
@@ -1385,6 +1430,7 @@ export interface ListJobsOptions extends OperationOptions {
     $expand?: string[];
     $filter?: string;
     $select?: string[];
+    apiVersion?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
@@ -1399,6 +1445,7 @@ export interface ListNodeExtensionsOptions extends OperationOptions {
 // @public (undocumented)
 export interface ListNodeFilesOptions extends OperationOptions {
     $filter?: string;
+    apiVersion?: string;
     maxresults?: number;
     recursive?: boolean;
     timeOutInSeconds?: number;
@@ -1408,6 +1455,7 @@ export interface ListNodeFilesOptions extends OperationOptions {
 export interface ListNodesOptions extends OperationOptions {
     $filter?: string;
     $select?: string[];
+    apiVersion?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
@@ -1415,6 +1463,7 @@ export interface ListNodesOptions extends OperationOptions {
 // @public (undocumented)
 export interface ListPoolNodeCountsOptions extends OperationOptions {
     $filter?: string;
+    apiVersion?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
@@ -1424,6 +1473,7 @@ export interface ListPoolsOptions extends OperationOptions {
     $expand?: string[];
     $filter?: string;
     $select?: string[];
+    apiVersion?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
@@ -1431,6 +1481,7 @@ export interface ListPoolsOptions extends OperationOptions {
 // @public (undocumented)
 export interface ListPoolUsageMetricsOptions extends OperationOptions {
     $filter?: string;
+    apiVersion?: string;
     endtime?: Date;
     maxresults?: number;
     starttime?: Date;
@@ -1440,6 +1491,7 @@ export interface ListPoolUsageMetricsOptions extends OperationOptions {
 // @public (undocumented)
 export interface ListSubTasksOptions extends OperationOptions {
     $select?: string[];
+    apiVersion?: string;
     timeOutInSeconds?: number;
 }
 
@@ -1453,6 +1505,7 @@ export interface ListSupportedImagesOptions extends OperationOptions {
 // @public (undocumented)
 export interface ListTaskFilesOptions extends OperationOptions {
     $filter?: string;
+    apiVersion?: string;
     maxresults?: number;
     recursive?: boolean;
     timeOutInSeconds?: number;
@@ -1463,6 +1516,7 @@ export interface ListTasksOptions extends OperationOptions {
     $expand?: string[];
     $filter?: string;
     $select?: string[];
+    apiVersion?: string;
     maxresults?: number;
     timeOutInSeconds?: number;
 }
@@ -1669,6 +1723,7 @@ export interface PoolEndpointConfiguration {
 
 // @public (undocumented)
 export interface PoolExistsOptions extends OperationOptions {
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -1762,6 +1817,7 @@ export interface PublicIpAddressConfiguration {
 
 // @public (undocumented)
 export interface ReactivateTaskOptions extends OperationOptions {
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -1771,6 +1827,7 @@ export interface ReactivateTaskOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface RebootNodeOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
@@ -1783,12 +1840,14 @@ export interface RecentJob {
 
 // @public (undocumented)
 export interface ReimageNodeOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface RemoveNodesOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -1799,6 +1858,7 @@ export interface RemoveNodesOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ReplaceJobOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -1809,6 +1869,7 @@ export interface ReplaceJobOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ReplaceJobScheduleOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -1819,18 +1880,21 @@ export interface ReplaceJobScheduleOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ReplaceNodeUserOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface ReplacePoolPropertiesOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }
 
 // @public (undocumented)
 export interface ReplaceTaskOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -1848,6 +1912,7 @@ export interface ResizeError {
 
 // @public (undocumented)
 export interface ResizePoolOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -1927,6 +1992,7 @@ export type StatusLevelTypes = string;
 
 // @public (undocumented)
 export interface StopPoolResizeOptions extends OperationOptions {
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -2092,6 +2158,7 @@ export interface TaskStatistics {
 
 // @public (undocumented)
 export interface TerminateJobOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -2102,6 +2169,7 @@ export interface TerminateJobOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface TerminateJobScheduleOptions extends OperationOptions {
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -2111,6 +2179,7 @@ export interface TerminateJobScheduleOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface TerminateTaskOptions extends OperationOptions {
+    apiVersion?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
     ifNoneMatch?: string;
@@ -2120,6 +2189,7 @@ export interface TerminateTaskOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface UpdateJobOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -2130,6 +2200,7 @@ export interface UpdateJobOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface UpdateJobScheduleOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -2140,6 +2211,7 @@ export interface UpdateJobScheduleOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface UpdatePoolOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     ifMatch?: string;
     ifModifiedSince?: Date;
@@ -2164,6 +2236,7 @@ export interface UploadBatchServiceLogsResult {
 
 // @public (undocumented)
 export interface UploadNodeLogsOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     timeOutInSeconds?: number;
 }

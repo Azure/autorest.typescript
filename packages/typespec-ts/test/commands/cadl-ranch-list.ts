@@ -224,6 +224,18 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "azure/core-scalar",
     inputPath: "azure/core/scalar"
+  },
+  {
+    outputPath: "server/endpoint/not-defined",
+    inputPath: "server/endpoint/not-defined"
+  },
+  {
+    outputPath: "server/versions/versioned",
+    inputPath: "server/versions/versioned"
+  },
+  {
+    outputPath: "server/versions/not-versioned",
+    inputPath: "server/versions/not-versioned"
   }
 ];
 
@@ -365,6 +377,14 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     inputPath: "type/union"
   },
   {
+    outputPath: "server/versions/versioned",
+    inputPath: "server/versions/versioned"
+  },
+  {
+    outputPath: "server/versions/not-versioned",
+    inputPath: "server/versions/not-versioned"
+  },
+  {
     outputPath: "scalar",
     inputPath: "type/scalar"
   },
@@ -379,6 +399,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "azure/core-scalar",
     inputPath: "azure/core/scalar"
+  },
+  {
+    outputPath: "server/endpoint/not-defined",
+    inputPath: "server/endpoint/not-defined"
   }
 ];
 

@@ -18,7 +18,6 @@ import {
   transformRLCModel,
   transformUrlInfo
 } from "../../src/transform/transform.js";
-import { transformApiVersionInfo } from "../../src/transform/transformApiVersionInfo.js";
 import { transformToResponseTypes } from "../../src/transform/transformResponses.js";
 import { getCredentialInfo } from "../../src/transform/transfromRLCOptions.js";
 import { getRLCClients } from "../../src/utils/clientUtils.js";
@@ -32,6 +31,7 @@ import {
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 import { buildSerializeUtils } from "../../src/modular/buildSerializeUtils.js";
 import { buildClientContext } from "../../src/modular/buildClientContext.js";
+import { buildClassicalClient } from "../../src/modular/buildClassicalClient.js";
 import { Project } from "ts-morph";
 
 export async function emitPageHelperFromTypeSpec(
@@ -133,21 +133,24 @@ export async function emitParameterFromTypeSpec(
   needAzureCore: boolean = false,
   needTCGC: boolean = false,
   withRawContent: boolean = false,
-  mustEmptyDiagnostic: boolean = true
+  mustEmptyDiagnostic: boolean = true,
+  withVersionedApiVersion: boolean = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
     true,
     needAzureCore,
     needTCGC,
-    withRawContent
+    withRawContent,
+    withVersionedApiVersion
   );
   const dpgContext = createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
   const importSet = initInternalImports();
   let parameters;
   if (clients && clients[0]) {
-    parameters = transformToParameterTypes(importSet, clients[0], dpgContext);
+    const urlInfo = transformUrlInfo(clients[0], dpgContext);
+    parameters = transformToParameterTypes(importSet, clients[0], dpgContext, urlInfo?.apiVersionInfo);
   }
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
@@ -194,23 +197,25 @@ export async function emitClientFactoryFromTypeSpec(
   tspContent: string,
   needAzureCore: boolean = false,
   mustEmptyDiagnostic = true,
-  withRawContent = false
+  withRawContent = false,
+  needNamespaces = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
-    false,
+    needNamespaces,
     needAzureCore,
     false,
     withRawContent
   );
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const urlInfo = transformUrlInfo(dpgContext);
-  const creadentialInfo = getCredentialInfo(program, {});
   const clients = getRLCClients(dpgContext);
-  let apiVersionInfo;
+ 
+  const creadentialInfo = getCredentialInfo(program, {});
+
+  let urlInfo;
   if (clients && clients[0]) {
-    apiVersionInfo = transformApiVersionInfo(clients[0], dpgContext, urlInfo);
+    urlInfo = transformUrlInfo(clients[0], dpgContext);
   }
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
@@ -222,7 +227,7 @@ export async function emitClientFactoryFromTypeSpec(
     schemas: [],
     paths: {},
     urlInfo,
-    apiVersionInfo,
+    apiVersionInfo: urlInfo?.apiVersionInfo,
     options: {
       packageDetails: {
         name: "test",
@@ -374,14 +379,16 @@ export async function emitModularOperationsFromTypeSpec(
   mustEmptyDiagnostic = true,
   needNamespaces: boolean = true,
   needAzureCore: boolean = false,
-  withRawContent: boolean = false
+  withRawContent: boolean = false,
+  withVersionedApiVersion: boolean = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
     needNamespaces,
     needAzureCore,
     false,
-    withRawContent
+    withRawContent,
+    withVersionedApiVersion
   );
   const dpgContext = createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
@@ -426,14 +433,16 @@ export async function emitModularOperationsFromTypeSpec(
 
 export async function emitModularClientContextFromTypeSpec(
   tspContent: string,
-  withRawContent: boolean = false
+  withRawContent: boolean = false,
+  withVersionedApiVersion: boolean = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
     true,
     false,
     false,
-    withRawContent
+    withRawContent,
+    withVersionedApiVersion
   );
   const dpgContext = createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
@@ -462,6 +471,56 @@ export async function emitModularClientContextFromTypeSpec(
       modularCodeModel.clients[0]
     ) {
       return buildClientContext(
+        dpgContext,
+        modularCodeModel,
+        modularCodeModel.clients[0]
+      );
+    }
+  }
+  expectDiagnosticEmpty(dpgContext.program.diagnostics);
+  return undefined;
+}
+
+export async function emitModularClientFromTypeSpec(
+  tspContent: string,
+  withRawContent: boolean = false,
+  withVersionedApiVersion: boolean = false
+) {
+  const context = await rlcEmitterFor(
+    tspContent,
+    true,
+    false,
+    false,
+    withRawContent,
+    withVersionedApiVersion
+  );
+  const dpgContext = createDpgContextTestHelper(context.program);
+  const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
+    string,
+    RLCModel
+  >();
+  const project = new Project();
+  const clients = getRLCClients(dpgContext);
+  if (clients && clients[0]) {
+    dpgContext.rlcOptions!.isModularLibrary = true;
+    const rlcModels = await transformRLCModel(clients[0], dpgContext);
+    serviceNameToRlcModelsMap.set(clients[0].service.name, rlcModels);
+    const modularCodeModel = emitCodeModel(
+      dpgContext,
+      serviceNameToRlcModelsMap,
+      "",
+      project,
+      {
+        casing: "camel"
+      }
+    );
+    if (
+      modularCodeModel &&
+      modularCodeModel.clients &&
+      modularCodeModel.clients.length > 0 &&
+      modularCodeModel.clients[0]
+    ) {
+      return buildClassicalClient(
         dpgContext,
         modularCodeModel,
         modularCodeModel.clients[0]

@@ -289,8 +289,9 @@ export function getClientFactoryBody(
     !!model.apiVersionInfo?.defaultValue
   ) {
     apiVersionStatement = `options.apiVersion = options.apiVersion ?? "${model.apiVersionInfo?.defaultValue}"`;
+  } else if (model.apiVersionInfo?.definedPosition === "query") {
+    apiVersionStatement = `options.apiVersion = options.apiVersion ?? apiVersion`;
   }
-
   if (!clientPackageName.endsWith("-rest")) {
     clientPackageName = clientPackageName + "-rest";
   }

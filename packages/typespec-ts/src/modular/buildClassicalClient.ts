@@ -92,6 +92,7 @@ export function buildClassicalClient(
   importAllApis(clientFile, srcPath, subfolder);
   clientFile.fixMissingImports();
   clientFile.fixUnusedIdentifiers();
+  return clientFile;
 }
 
 function importAllApis(
