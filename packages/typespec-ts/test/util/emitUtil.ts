@@ -31,6 +31,7 @@ import {
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 import { buildSerializeUtils } from "../../src/modular/buildSerializeUtils.js";
 import { buildClientContext } from "../../src/modular/buildClientContext.js";
+import { buildClassicalClient } from "../../src/modular/buildClassicalClient.js";
 import { Project } from "ts-morph";
 
 export async function emitPageHelperFromTypeSpec(
@@ -470,6 +471,56 @@ export async function emitModularClientContextFromTypeSpec(
       modularCodeModel.clients[0]
     ) {
       return buildClientContext(
+        dpgContext,
+        modularCodeModel,
+        modularCodeModel.clients[0]
+      );
+    }
+  }
+  expectDiagnosticEmpty(dpgContext.program.diagnostics);
+  return undefined;
+}
+
+export async function emitModularClientFromTypeSpec(
+  tspContent: string,
+  withRawContent: boolean = false,
+  withVersionedApiVersion: boolean = false
+) {
+  const context = await rlcEmitterFor(
+    tspContent,
+    true,
+    false,
+    false,
+    withRawContent,
+    withVersionedApiVersion
+  );
+  const dpgContext = createDpgContextTestHelper(context.program);
+  const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
+    string,
+    RLCModel
+  >();
+  const project = new Project();
+  const clients = getRLCClients(dpgContext);
+  if (clients && clients[0]) {
+    dpgContext.rlcOptions!.isModularLibrary = true;
+    const rlcModels = await transformRLCModel(clients[0], dpgContext);
+    serviceNameToRlcModelsMap.set(clients[0].service.name, rlcModels);
+    const modularCodeModel = emitCodeModel(
+      dpgContext,
+      serviceNameToRlcModelsMap,
+      "",
+      project,
+      {
+        casing: "camel"
+      }
+    );
+    if (
+      modularCodeModel &&
+      modularCodeModel.clients &&
+      modularCodeModel.clients.length > 0 &&
+      modularCodeModel.clients[0]
+    ) {
+      return buildClassicalClient(
         dpgContext,
         modularCodeModel,
         modularCodeModel.clients[0]

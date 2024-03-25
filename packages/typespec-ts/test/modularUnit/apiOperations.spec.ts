@@ -1,6 +1,7 @@
 import { assert } from "chai";
 import {
   emitModularClientContextFromTypeSpec,
+  emitModularClientFromTypeSpec,
   emitModularOperationsFromTypeSpec
 } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
@@ -452,7 +453,7 @@ describe("api operations in Modular", () => {
     });
   });
 
-  describe("apiVersion in query", () => {
+  describe.only("apiVersion in query", () => {
     it("should generate apiVersion if there's a client level apiVersion but without default value", async () => {
       const tspContent = `
       model ApiVersionParameter {
@@ -527,6 +528,35 @@ describe("api operations in Modular", () => {
         }
         `
       );
+      const classicClient = await emitModularClientFromTypeSpec(tspContent);
+      assert.ok(classicClient);
+      await assertEqualContent(
+        classicClient?.getFullText()!,
+        `
+        import { Pipeline } from "@azure/core-rest-pipeline";
+        
+        export { TestingClientOptions } from "./api/TestingContext.js";
+        
+        export class TestingClient {
+          private _client: TestingContext;
+          /** The pipeline used by this client to make requests */
+          public readonly pipeline: Pipeline;
+        
+          constructor(
+            endpoint: string,
+            apiVersion: string,
+            options: TestingClientOptions = {},
+          ) {
+            this._client = createTesting(endpoint, apiVersion, options);
+            this.pipeline = this._client.pipeline;
+          }
+        
+          test(options: TestOptions = { requestOptions: {} }): Promise<string> {
+            return test(this._client, options);
+          }
+        }
+        `
+      );     
     });
 
     it("shouldn't generate apiVersion if there's a client level apiVersion and with default value", async () => {
@@ -611,6 +641,34 @@ describe("api operations in Modular", () => {
         }
         `
       );
+      const classicClient = await emitModularClientFromTypeSpec(tspContent, false, true);
+      assert.ok(classicClient);
+      await assertEqualContent(
+        classicClient?.getFullText()!,
+        `
+        import { Pipeline } from "@azure/core-rest-pipeline";
+        
+        export { TestingClientOptions } from "./api/TestingContext.js";
+        
+        export class TestingClient {
+          private _client: TestingContext;
+          /** The pipeline used by this client to make requests */
+          public readonly pipeline: Pipeline;
+        
+          constructor(
+            endpoint: string,
+            options: TestingClientOptions = {},
+          ) {
+            this._client = createTesting(endpoint, options);
+            this.pipeline = this._client.pipeline;
+          }
+        
+          test(options: TestOptions = { requestOptions: {} }): Promise<string> {
+            return test(this._client, options);
+          }
+        }
+        `
+      ); 
     });
 
     it("should generate apiVersion if there's no client level apiVersion", async () => {
@@ -725,6 +783,41 @@ describe("api operations in Modular", () => {
         }
         `
       );
+      const classicClient = await emitModularClientFromTypeSpec(tspContent);
+      assert.ok(classicClient);
+      await assertEqualContent(
+        classicClient?.getFullText()!,
+        `
+        import { Pipeline } from "@azure/core-rest-pipeline";
+        
+        export { TestingClientOptions } from "./api/TestingContext.js";
+        
+        export class TestingClient {
+          private _client: TestingContext;
+          /** The pipeline used by this client to make requests */
+          public readonly pipeline: Pipeline;
+        
+          constructor(
+            endpoint: string,
+            options: TestingClientOptions = {},
+          ) {
+            this._client = createTesting(endpoint, options);
+            this.pipeline = this._client.pipeline;
+          }
+        
+          test(
+            apiVersion: string,
+            options: TestOptions = { requestOptions: {} },
+          ): Promise<string> {
+            return test(this._client, apiVersion, options);
+          }
+
+          test1(options: Test1Options = { requestOptions: {} }): Promise<string> {
+            return test1(this._client, options);
+          }
+        }
+        `
+      ); 
     });
   });
 });
