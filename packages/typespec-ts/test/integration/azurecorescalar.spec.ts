@@ -7,10 +7,7 @@ describe("Azure Core Saclar Rest Client", () => {
 
   beforeEach(() => {
     client = AzureCoreScalarClientFactory({
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 

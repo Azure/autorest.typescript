@@ -5,10 +5,7 @@ describe("Scalar Azure core Client", () => {
 
   beforeEach(() => {
     client = new ScalarClient({
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 
