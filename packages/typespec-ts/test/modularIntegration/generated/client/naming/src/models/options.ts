@@ -20,3 +20,7 @@ export interface ResponseOptions extends OperationOptions {}
 export interface ClientModelClientOptions extends OperationOptions {}
 
 export interface ClientModelLanguageOptions extends OperationOptions {}
+
+export interface UnionEnumUnionEnumNameOptions extends OperationOptions {}
+
+export interface UnionEnumUnionEnumMemberNameOptions extends OperationOptions {}

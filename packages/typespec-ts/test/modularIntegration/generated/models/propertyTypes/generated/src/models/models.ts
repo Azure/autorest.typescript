@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** Template type for testing models with specific properties. Pass in the type of the property you are looking for */
+export interface UnionEnumValueProperty {
+  /** Property */
+  property: "value2";
+}
+
 /** Model with a union of float literal as property. */
 export interface UnionFloatLiteralProperty {
   /** Property */

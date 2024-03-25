@@ -16,6 +16,13 @@ export interface ClientNameAndJsonEncodedNameModel {
   clientName: boolean;
 }
 
+/** Type of ClientExtensibleEnum */
+/** "value1" */
+export type ClientExtensibleEnum = string;
+/** Type of ExtensibleEnum */
+/** "value1", "value2" */
+export type ExtensibleEnum = string;
+
 export interface ClientModel {
   /** Pass in true */
   defaultName: boolean;
