@@ -31,7 +31,7 @@ export function getOperationName(
   }
 
   return {
-    name: casingFn(operation.name)
+    name: normalizeName(casingFn(operation.name), NameType.Operation, true)
   };
 }
 
