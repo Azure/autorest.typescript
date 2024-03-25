@@ -117,9 +117,20 @@ describe("Versioned Server Version Client", () => {
     }
   });
 
-  it("should work with param", async () => {
+  it("should work with param with default value", async () => {
     try {
       const result = await client.withQueryApiVersion();
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should work with param with explicit value", async () => {
+    try {
+      const result = await client.withQueryApiVersion({
+        apiVersion: "2022-12-01-preview"
+      });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
