@@ -97,6 +97,10 @@ import {
   UnionFloatLiteralOperations,
 } from "./classic/unionFloatLiteral/index.js";
 import {
+  getUnionEnumValueOperations,
+  UnionEnumValueOperations,
+} from "./classic/unionEnumValue/index.js";
+import {
   createValueTypes,
   ValueTypesClientOptions,
   ValueTypesContext,
@@ -141,6 +145,7 @@ export class ValueTypesClient {
     this.unionStringLiteral = getUnionStringLiteralOperations(this._client);
     this.unionIntLiteral = getUnionIntLiteralOperations(this._client);
     this.unionFloatLiteral = getUnionFloatLiteralOperations(this._client);
+    this.unionEnumValue = getUnionEnumValueOperations(this._client);
   }
 
   /** The operation groups for Boolean */
@@ -199,4 +204,6 @@ export class ValueTypesClient {
   public readonly unionIntLiteral: UnionIntLiteralOperations;
   /** The operation groups for UnionFloatLiteral */
   public readonly unionFloatLiteral: UnionFloatLiteralOperations;
+  /** The operation groups for UnionEnumValue */
+  public readonly unionEnumValue: UnionEnumValueOperations;
 }

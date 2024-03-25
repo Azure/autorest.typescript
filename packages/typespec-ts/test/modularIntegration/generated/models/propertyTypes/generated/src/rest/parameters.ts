@@ -31,6 +31,7 @@ import {
   UnionStringLiteralProperty,
   UnionIntLiteralProperty,
   UnionFloatLiteralProperty,
+  UnionEnumValueProperty,
 } from "./models.js";
 
 export type BooleanModelGetParameters = RequestParameters;
@@ -275,4 +276,13 @@ export interface UnionFloatLiteralPutBodyParam {
 }
 
 export type UnionFloatLiteralPutParameters = UnionFloatLiteralPutBodyParam &
+  RequestParameters;
+export type UnionEnumValueGetParameters = RequestParameters;
+
+export interface UnionEnumValuePutBodyParam {
+  /** body */
+  body: UnionEnumValueProperty;
+}
+
+export type UnionEnumValuePutParameters = UnionEnumValuePutBodyParam &
   RequestParameters;

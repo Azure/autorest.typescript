@@ -9,6 +9,8 @@ import {
   ClientNameAndJsonEncodedNameModel,
   ModelWithClientClientName,
   ModelWithLanguageClientName,
+  ServerExtensibleEnum,
+  ExtensibleEnum,
 } from "./models.js";
 
 export type OperationParameters = RequestParameters;
@@ -68,3 +70,17 @@ export interface ModelLanguageBodyParam {
 
 export type ModelLanguageParameters = ModelLanguageBodyParam &
   RequestParameters;
+
+export interface UnionEnumUnionEnumNameBodyParam {
+  body: ServerExtensibleEnum;
+}
+
+export type UnionEnumUnionEnumNameParameters = UnionEnumUnionEnumNameBodyParam &
+  RequestParameters;
+
+export interface UnionEnumUnionEnumMemberNameBodyParam {
+  body: ExtensibleEnum;
+}
+
+export type UnionEnumUnionEnumMemberNameParameters =
+  UnionEnumUnionEnumMemberNameBodyParam & RequestParameters;
