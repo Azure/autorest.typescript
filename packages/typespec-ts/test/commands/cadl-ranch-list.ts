@@ -395,6 +395,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "server/endpoint/not-defined",
     inputPath: "server/endpoint/not-defined"
+  },
+  {
+    outputPath: "specialWords",
+    inputPath: "special-words"
   }
 ];
 
