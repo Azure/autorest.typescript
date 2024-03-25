@@ -190,5 +190,11 @@ export interface UnionFloatLiteralPropertyOutput {
   property: 43.125 | 46.875;
 }
 
+/** Template type for testing models with specific properties. Pass in the type of the property you are looking for */
+export interface UnionEnumValuePropertyOutput {
+  /** Property */
+  property: "value2";
+}
+
 /** Alias for InnerEnumOutput */
 export type InnerEnumOutput = string | "ValueOne" | "ValueTwo";

@@ -114,3 +114,7 @@ export interface UnionIntLiteralPutOptions extends OperationOptions {}
 export interface UnionFloatLiteralGetOptions extends OperationOptions {}
 
 export interface UnionFloatLiteralPutOptions extends OperationOptions {}
+
+export interface UnionEnumValueGetOptions extends OperationOptions {}
+
+export interface UnionEnumValuePutOptions extends OperationOptions {}

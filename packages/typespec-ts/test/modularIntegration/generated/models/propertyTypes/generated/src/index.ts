@@ -6,6 +6,7 @@ export {
   ValueTypesClientOptions,
 } from "./ValueTypesClient.js";
 export {
+  UnionEnumValueProperty,
   UnionFloatLiteralProperty,
   UnionIntLiteralProperty,
   UnionStringLiteralProperty,
@@ -93,6 +94,8 @@ export {
   UnionIntLiteralPutOptions,
   UnionFloatLiteralGetOptions,
   UnionFloatLiteralPutOptions,
+  UnionEnumValueGetOptions,
+  UnionEnumValuePutOptions,
 } from "./models/index.js";
 export {
   BooleanOperations,
@@ -116,6 +119,7 @@ export {
   NeverOperations,
   StringOperations,
   StringLiteralOperations,
+  UnionEnumValueOperations,
   UnionFloatLiteralOperations,
   UnionIntLiteralOperations,
   UnionStringLiteralOperations,
