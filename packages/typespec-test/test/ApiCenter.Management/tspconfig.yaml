@@ -1,0 +1,14 @@
+emit:
+  - "@azure-tools/typespec-ts"
+  - "@azure-tools/typespec-autorest"
+options:
+  "@azure-tools/typespec-ts":
+    azureSdkForJs: false
+    generateMetadata: true
+    generateTest: false
+    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    packageDetails:
+      name: "@msinternal/arm-apicenter"
+      description: "Management ApiCenter Service"
+  "@azure-tools/typespec-autorest":
+    "emitter-output-dir": "{project-root}/generated/openapi"
