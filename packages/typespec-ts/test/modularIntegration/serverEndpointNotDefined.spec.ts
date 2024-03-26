@@ -5,10 +5,7 @@ describe("NotDefined Server Endpoint Client", () => {
 
   beforeEach(() => {
     client = new NotDefinedClient("http://localhost:3000", {
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 

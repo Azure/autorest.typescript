@@ -453,7 +453,7 @@ describe("api operations in Modular", () => {
     });
   });
 
-  describe.only("apiVersion in query", () => {
+  describe("apiVersion in query", () => {
     it("should generate apiVersion if there's a client level apiVersion but without default value", async () => {
       const tspContent = `
       model ApiVersionParameter {
@@ -556,7 +556,7 @@ describe("api operations in Modular", () => {
           }
         }
         `
-      );     
+      );
     });
 
     it("shouldn't generate apiVersion if there's a client level apiVersion and with default value", async () => {
@@ -641,7 +641,11 @@ describe("api operations in Modular", () => {
         }
         `
       );
-      const classicClient = await emitModularClientFromTypeSpec(tspContent, false, true);
+      const classicClient = await emitModularClientFromTypeSpec(
+        tspContent,
+        false,
+        true
+      );
       assert.ok(classicClient);
       await assertEqualContent(
         classicClient?.getFullText()!,
@@ -668,7 +672,7 @@ describe("api operations in Modular", () => {
           }
         }
         `
-      ); 
+      );
     });
 
     it("should generate apiVersion if there's no client level apiVersion", async () => {
@@ -817,7 +821,7 @@ describe("api operations in Modular", () => {
           }
         }
         `
-      ); 
+      );
     });
   });
 });
