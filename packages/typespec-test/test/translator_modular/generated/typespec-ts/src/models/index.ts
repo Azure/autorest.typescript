@@ -1,0 +1,43 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+export {
+  GetLanguagesResult,
+  TranslationLanguage,
+  TransliterationLanguage,
+  CommonScriptModel,
+  TransliterableScript,
+  SourceDictionaryLanguage,
+  TargetDictionaryLanguage,
+  ErrorDetails,
+  InputTextElement,
+  TranslatedTextElement,
+  DetectedLanguage,
+  Translation,
+  Transliteration,
+  Alignment,
+  SentenceLength,
+  SourceText,
+  TransliteratedText,
+  DetectedLanguageElement,
+  DetectedLanguageWithAlternatives,
+  BreakSentenceElement,
+  DictionaryLookupElement,
+  DictionaryTranslation,
+  BackTranslation,
+  DictionaryExampleTextElement,
+  DictionaryExampleElement,
+  Example,
+  TextTypes,
+  ProfanityActions,
+  ProfanityMarkers,
+} from "./models.js";
+export {
+  TextTranslationGetLanguagesOptions,
+  TextTranslationTranslateOptions,
+  TextTranslationTransliterateOptions,
+  TextTranslationDetectOptions,
+  TextTranslationBreakSentenceOptions,
+  TextTranslationDictionaryLookupOptions,
+  TextTranslationDictionaryExamplesOptions,
+} from "./options.js";

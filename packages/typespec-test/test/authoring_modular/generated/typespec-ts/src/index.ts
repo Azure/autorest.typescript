@@ -1,0 +1,48 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+export { AuthoringClient, AuthoringClientOptions } from "./AuthoringClient.js";
+export {
+  PagedSupportedLanguage,
+  SupportedLanguage,
+  PagedTrainingConfigVersion,
+  TrainingConfigVersion,
+  DeploymentJob,
+  JobStatus,
+  JobWarning,
+  SwapDeploymentsJob,
+  Deployment,
+  SwapDeploymentsOptions,
+  Project,
+  ProjectKind,
+  TrainingJobOptions,
+  OperationStatus,
+  OperationState,
+  PagedProject,
+  PagedDeployment,
+  ProjectsCreateOrUpdateOptions,
+  ProjectsGetOptions,
+  ProjectsDeleteOperationOptions,
+  ProjectsListProjectsOptions,
+  ProjectsExportOperationOptions,
+  ProjectsImportxOptions,
+  ProjectsTrainOptions,
+  DeploymentsGetDeploymentOptions,
+  DeploymentsDeployProjectOptions,
+  DeploymentsDeleteDeploymentOptions,
+  DeploymentsListDeploymentsOptions,
+  DeploymentsSwapDeploymentsOptions,
+  JobsGetDeploymentStatusOptions,
+  JobsGetSwapDeploymentsStatusOptions,
+  GlobalGetSupportedLanguagesOptions,
+  GlobalListTrainingConfigVersionsOptions,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./models/index.js";
+export {
+  DeploymentsOperations,
+  GlobalOperations,
+  JobsOperations,
+  ProjectsOperations,
+} from "./classic/index.js";

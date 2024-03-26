@@ -1,0 +1,1 @@
+{"version":3,"file":"faceClient.d.ts","sourceRoot":"","sources":["../../../src/rest/faceClient.ts"],"names":[],"mappings":"AAGA,OAAO,EAAa,aAAa,EAAE,MAAM,yBAAyB,CAAC;AAEnE,OAAO,EAAE,aAAa,EAAE,MAAM,kBAAkB,CAAC;AACjD,OAAO,EAAE,WAAW,EAAE,MAAM,wBAAwB,CAAC;AAErD;;;;;;GAMG;AACH,MAAM,CAAC,OAAO,UAAU,YAAY,CAClC,aAAa,EAAE,MAAM,EACrB,WAAW,EAAE,aAAa,EAC1B,OAAO,GAAE,aAAkB,GAC1B,WAAW,CA2Bb"}

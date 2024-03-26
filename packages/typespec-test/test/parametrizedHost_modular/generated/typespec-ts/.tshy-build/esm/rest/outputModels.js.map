@@ -1,0 +1,1 @@
+{"version":3,"file":"outputModels.js","sourceRoot":"","sources":["../../../src/rest/outputModels.ts"],"names":[],"mappings":"AAAA,uCAAuC;AACvC,kCAAkC","sourcesContent":["// Copyright (c) Microsoft Corporation.\n// Licensed under the MIT license.\n\n/** Identifier for collections. */\nexport interface CollectionOutput {\n  readonly collectionId: string;\n}\n"]}

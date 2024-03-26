@@ -1,0 +1,1 @@
+{"version":3,"file":"models.js","sourceRoot":"","sources":["../../../src/models/models.ts"],"names":[],"mappings":"AAAA,uCAAuC;AACvC,kCAAkC","sourcesContent":["// Copyright (c) Microsoft Corporation.\n// Licensed under the MIT license.\n\n/** Identifier for collections. */\nexport interface Collection {\n  readonly collectionId: string;\n}\n"]}
