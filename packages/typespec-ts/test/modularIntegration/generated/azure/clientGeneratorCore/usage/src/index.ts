@@ -5,6 +5,7 @@ export { UsageClient, UsageClientOptions } from "./UsageClient.js";
 export {
   InputModel,
   OutputModel,
+  OrphanModel,
   InputToInputOutputOptions,
   OutputToInputOutputOptions,
 } from "./models/index.js";
