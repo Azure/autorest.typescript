@@ -107,6 +107,7 @@ export interface Type {
   discriminator?: string;
   discriminatorValue?: string;
   isPolymorphicBaseModel?: boolean;
+  rlcType?: string;
 }
 
 export interface Client {

@@ -61,6 +61,7 @@ import {
 } from "./modular/buildPagingFiles.js";
 import { EmitterOptions } from "./lib.js";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
+import { buildSerializers } from "./modular/serialization/index.js";
 
 export * from "./lib.js";
 
@@ -195,6 +196,7 @@ export async function $onEmit(context: EmitContext) {
         buildModelsOptions(modularCodeModel, subClient);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
+        buildSerializers(modularCodeModel);
         buildSerializeUtils(modularCodeModel);
         buildPagingTypes(modularCodeModel, subClient);
         buildModularPagingHelpers(

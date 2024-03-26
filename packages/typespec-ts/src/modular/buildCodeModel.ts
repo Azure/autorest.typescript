@@ -84,6 +84,7 @@ import {
 import {
   getBodyType,
   getDefaultApiVersionString,
+  getSchemaName,
   isAzureCoreErrorType
 } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
@@ -389,6 +390,19 @@ function getType(
     } else {
       simpleTypesMap.set(key, newValue);
     }
+  }
+
+  if (type.kind === "Model") {
+    const rlcBaseName = getSchemaName(context, type);
+    newValue.rlcType =
+      newValue.usage &&
+      newValue.usage & UsageFlags.Output &&
+      !(newValue.usage & UsageFlags.Input)
+        ? rlcBaseName + "Output"
+        : rlcBaseName;
+  }
+  if (type.kind === "Enum") {
+    newValue.rlcType = type.name;
   }
 
   return newValue;
@@ -1915,9 +1929,10 @@ export function emitCodeModel(
   simpleTypesMap.clear();
   const allModels = getAllModels(dpgContext);
   for (const model of allModels) {
-    getType(dpgContext, model.__raw!, { usage: model.usage });
+    getType(dpgContext, model.__raw!, {
+      usage: model.usage
+    });
   }
-
   for (const namespace of getNamespaces(dpgContext)) {
     if (namespace === clientNamespaceString) {
       codeModel.clients = emitClients(dpgContext, namespace, rlcModelsMap);

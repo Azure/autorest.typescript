@@ -573,56 +573,13 @@ function getSchemaForModel(
   }
 
   const program = dpgContext.program;
-  const overridedModelName =
-    getFriendlyName(program, model) ?? getWireName(dpgContext, model);
-  const fullNamespaceName =
-    getModelNamespaceName(dpgContext, model.namespace!)
-      .map((nsName) => {
-        return normalizeName(nsName, NameType.Interface);
-      })
-      .join("") + model.name;
-  let name = model.name;
-  if (
-    !overridedModelName &&
-    model.templateMapper &&
-    model.templateMapper.args &&
-    model.templateMapper.args.length > 0 &&
-    getPagedResult(program, model)
-  ) {
-    name =
-      model.templateMapper.args
-        .map((it) => {
-          switch (it.kind) {
-            case "Model":
-              return it.name;
-            case "String":
-              return it.value;
-            default:
-              return "";
-          }
-        })
-        .join("") + "List";
-  }
-
   const isCoreModel = isAzureCoreErrorType(model);
   const modelSchema: ObjectSchema = {
-    name: isCoreModel
-      ? name
-      : overridedModelName !== name
-        ? overridedModelName
-        : dpgContext.rlcOptions?.enableModelNamespace
-          ? fullNamespaceName
-          : name,
+    name: getSchemaName(dpgContext, model),
     type: "object",
     description: getDoc(program, model) ?? "",
     fromCore: isCoreModel
   };
-  // normalized the output name
-  modelSchema.name = normalizeName(
-    modelSchema.name,
-    NameType.Interface,
-    true /** shouldGuard */
-  );
 
   if (modelSchema.name === "Record" && isRecordModelType(program, model)) {
     return getSchemaForRecordModel(dpgContext, model, { usage });
@@ -1628,4 +1585,53 @@ export function getModelInlineSigniture(
 
   schemaSignature += `}`;
   return schemaSignature;
+}
+
+export function getSchemaName(dpgContext: SdkContext, model: Model): string {
+  const program = dpgContext.program;
+  const isCoreModel = isAzureCoreErrorType(model);
+
+  const overridedModelName =
+    getFriendlyName(program, model) ?? getWireName(dpgContext, model);
+  const fullNamespaceName =
+    getModelNamespaceName(dpgContext, model.namespace!)
+      .map((nsName) => {
+        return normalizeName(nsName, NameType.Interface);
+      })
+      .join("") + model.name;
+
+  let name = model.name;
+  if (
+    !overridedModelName &&
+    model.templateMapper &&
+    model.templateMapper.args &&
+    model.templateMapper.args.length > 0 &&
+    getPagedResult(program, model)
+  ) {
+    name =
+      model.templateMapper.args
+        .map((it) => {
+          switch (it.kind) {
+            case "Model":
+              return it.name;
+            case "String":
+              return it.value;
+            default:
+              return "";
+          }
+        })
+        .join("") + "List";
+  }
+
+  return normalizeName(
+    isCoreModel
+      ? name
+      : overridedModelName !== name
+        ? overridedModelName
+        : dpgContext.rlcOptions?.enableModelNamespace
+          ? fullNamespaceName
+          : name,
+    NameType.Interface,
+    true /** shouldGuard */
+  );
 }

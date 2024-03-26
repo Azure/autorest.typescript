@@ -1,55 +1,17 @@
-import {
-  InterfaceDeclarationStructure,
-  OptionalKind,
-  SourceFile,
-  TypeAliasDeclarationStructure
-} from "ts-morph";
+import { SourceFile } from "ts-morph";
 import { getType } from "./helpers/typeHelpers.js";
 import { Client, ModularCodeModel, Type } from "./modularCodeModel.js";
 import * as path from "path";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { buildOperationOptions } from "./buildOperations.js";
 import { getImportSpecifier } from "@azure-tools/rlc-common";
-
-// ====== UTILITIES ======
-
-function isAzureCoreErrorSdkType(t: Type) {
-  return (
-    t.name &&
-    ["error", "errormodel", "innererror", "errorresponse"].includes(
-      t.name.toLowerCase()
-    ) &&
-    t.isCoreErrorType === true
-  );
-}
-
-function getCoreClientErrorType(name: string, coreClientTypes: Set<string>) {
-  const coreClientType: string = name === "Error" ? "ErrorModel" : name;
-  coreClientTypes.add(coreClientType);
-  return coreClientType;
-}
-
-// ====== TYPE EXTRACTION ======
-
-function extractModels(codeModel: ModularCodeModel): Type[] {
-  const models = codeModel.types.filter(
-    (t) =>
-      (t.type === "model" || t.type === "enum") &&
-      !isAzureCoreErrorSdkType(t) &&
-      !(t.type == "model" && t.name === "")
-  );
-
-  for (const model of codeModel.types) {
-    if (model.type === "combined" && model.nullable) {
-      for (const unionModel of model.types ?? []) {
-        if (unionModel.type === "model") {
-          models.push(unionModel);
-        }
-      }
-    }
-  }
-  return models;
-}
+import {
+  InterfaceStructure,
+  isAzureCoreErrorSdkType,
+  getCoreClientErrorType,
+  extractModels,
+  buildEnumModel
+} from "./helpers/modelUtils.js";
 
 /**
  * Extracts all the aliases from the code model
@@ -63,32 +25,6 @@ export function extractAliases(codeModel: ModularCodeModel): Type[] {
   );
   return models;
 }
-// ====== TYPE BUILDERS ======
-function buildEnumModel(
-  model: Type
-): OptionalKind<TypeAliasDeclarationStructure> {
-  return {
-    name: model.name!,
-    isExported: true,
-    docs: [
-      ...getDocsFromDescription(model.description),
-      // If it is a fixed enum we don't need to list the known values in the docs as the
-      // output will be a literal union which is self documenting
-      model.isFixed
-        ? ""
-        : // When we generate an "extensible" enum, the type will be "string" so we list the known values
-          // in the docs for user reference.
-          (model.values ?? []).map((v) => `"${v.value}"`).join(", ")
-    ],
-    type: model.isFixed
-      ? (model.values ?? []).map((v) => `"${v.value}"`).join(" | ")
-      : "string"
-  };
-}
-
-type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
-  extends: string[];
-};
 
 export function buildModelInterface(
   model: Type,
@@ -144,6 +80,8 @@ export function buildModels(
     path.join(`${srcPath}/`, subClient.subfolder ?? "", `models/models.ts`)
   );
 
+  const modelMap = new Map<Type, InterfaceStructure>();
+
   for (const model of models) {
     if (model.type === "enum") {
       if (modelsFile.getTypeAlias(model.name!)) {
@@ -160,6 +98,7 @@ export function buildModels(
           )
         : undefined;
       modelsFile.addInterface(modelInterface);
+      modelMap.set(model, modelInterface);
     }
   }
 
