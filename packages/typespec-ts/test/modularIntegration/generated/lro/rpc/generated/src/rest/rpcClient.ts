@@ -10,7 +10,8 @@ import { RpcContext } from "./clientDefinitions.js";
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(options: ClientOptions = {}): RpcContext {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "2022-12-01-preview";
   const userAgentInfo = `azsdk-js-modular-lro-rpc-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -27,7 +28,7 @@ export default function createClient(options: ClientOptions = {}): RpcContext {
     },
   };
 
-  const client = getClient(baseUrl, options) as RpcContext;
+  const client = getClient(endpointUrl, options) as RpcContext;
 
   return client;
 }

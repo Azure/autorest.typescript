@@ -25,3 +25,8 @@ export interface ModelWithLanguageClientName {
   /** Pass in true */
   defaultName: boolean;
 }
+
+/** Alias for ServerExtensibleEnum */
+export type ServerExtensibleEnum = string | "value1";
+/** Alias for ExtensibleEnum */
+export type ExtensibleEnum = string | "value1" | "value2";

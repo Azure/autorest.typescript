@@ -54,3 +54,13 @@ export interface ModelClient204Response extends HttpResponse {
 export interface ModelLanguage204Response extends HttpResponse {
   status: "204";
 }
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface UnionEnumUnionEnumName204Response extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface UnionEnumUnionEnumMemberName204Response extends HttpResponse {
+  status: "204";
+}

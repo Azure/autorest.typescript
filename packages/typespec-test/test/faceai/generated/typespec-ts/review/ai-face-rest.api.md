@@ -24,7 +24,7 @@ export interface ApiVersionPathParameterOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): FaceClient;
+function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): FaceClient;
 export default createClient;
 
 export { createFile }

@@ -11,6 +11,8 @@ import {
   HeaderResponseParameters,
   ModelClientParameters,
   ModelLanguageParameters,
+  UnionEnumUnionEnumNameParameters,
+  UnionEnumUnionEnumMemberNameParameters,
 } from "./parameters.js";
 import {
   Operation204Response,
@@ -22,6 +24,8 @@ import {
   HeaderResponse204Response,
   ModelClient204Response,
   ModelLanguage204Response,
+  UnionEnumUnionEnumName204Response,
+  UnionEnumUnionEnumMemberName204Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -72,6 +76,18 @@ export interface ModelLanguage {
   ): StreamableMethod<ModelLanguage204Response>;
 }
 
+export interface UnionEnumUnionEnumName {
+  post(
+    options: UnionEnumUnionEnumNameParameters,
+  ): StreamableMethod<UnionEnumUnionEnumName204Response>;
+}
+
+export interface UnionEnumUnionEnumMemberName {
+  post(
+    options: UnionEnumUnionEnumMemberNameParameters,
+  ): StreamableMethod<UnionEnumUnionEnumMemberName204Response>;
+}
+
 export interface Routes {
   /** Resource for '/client/naming/operation' has methods for the following verbs: post */
   (path: "/client/naming/operation"): Operation;
@@ -91,6 +107,12 @@ export interface Routes {
   (path: "/client/naming/model/client"): ModelClient;
   /** Resource for '/client/naming/model/language' has methods for the following verbs: post */
   (path: "/client/naming/model/language"): ModelLanguage;
+  /** Resource for '/client/naming/union-enum/union-enum-name' has methods for the following verbs: post */
+  (path: "/client/naming/union-enum/union-enum-name"): UnionEnumUnionEnumName;
+  /** Resource for '/client/naming/union-enum/union-enum-member-name' has methods for the following verbs: post */
+  (
+    path: "/client/naming/union-enum/union-enum-member-name",
+  ): UnionEnumUnionEnumMemberName;
 }
 
 export type NamingClient = Client & {

@@ -338,6 +338,7 @@ export function _createOrReplaceSend(
     .path("/widgets/widgets/createOrReplace/users/{name}", name)
     .put({
       ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": options?.apiVersion ?? "1.0.0" },
       body: { role: resource["role"], id: resource["id"] },
     });
 }

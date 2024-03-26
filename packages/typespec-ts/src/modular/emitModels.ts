@@ -38,7 +38,7 @@ function getCoreClientErrorType(name: string, coreClientTypes: Set<string>) {
 }
 
 function getCoreLroType(name: string, coreLroTypes: Set<string>) {
-  const coreLroType = name === "OperationState" ? "OperationStatus" : name;
+  const coreLroType = name === "OperationState" ? "CoreOperationStatus" : name;
   coreLroTypes.add(coreLroType);
   return coreLroType;
 }
@@ -205,7 +205,11 @@ export function buildModels(
           "azureCoreLro",
           codeModel.runtimeImports
         ),
-        namedImports: Array.from(coreLroTypes)
+        namedImports: Array.from(coreLroTypes).map((t) =>
+          t === "CoreOperationStatus"
+            ? "OperationStatus as CoreOperationStatus"
+            : t
+        )
       }
     ]);
   }

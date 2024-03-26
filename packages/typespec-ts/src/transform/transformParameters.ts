@@ -8,7 +8,8 @@ import {
   ParameterBodyMetadata,
   ParameterMetadata,
   Schema,
-  SchemaContext
+  SchemaContext,
+  ApiVersionInfo
 } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Program, Type } from "@typespec/compiler";
 import {
@@ -23,7 +24,6 @@ import {
   getSchemaForType,
   getFormattedPropertyDoc,
   getBodyType,
-  predictDefaultValue,
   getSerializeTypeName,
   BINARY_AND_FILE_TYPE_UNION
 } from "../utils/modelUtils.js";
@@ -50,7 +50,8 @@ import {
 export function transformToParameterTypes(
   importDetails: Imports,
   client: SdkClient,
-  dpgContext: SdkContext
+  dpgContext: SdkContext,
+  apiVersionInfo?: ApiVersionInfo
 ): OperationParameter[] {
   const program = dpgContext.program;
   const rlcParameters: OperationParameter[] = [];
@@ -97,6 +98,7 @@ export function transformToParameterTypes(
     const queryParams = transformQueryParameters(
       dpgContext,
       parameters,
+      { apiVersionInfo },
       outputImportedSet
     );
     // transform path param
@@ -205,12 +207,16 @@ function getParameterName(name: string) {
 function transformQueryParameters(
   dpgContext: SdkContext,
   parameters: HttpOperationParameters,
+  options: { apiVersionInfo: ApiVersionInfo | undefined },
   importModels: Set<string> = new Set<string>()
 ): ParameterMetadata[] {
   const queryParameters = parameters.parameters.filter(
     (p) =>
       p.type === "query" &&
-      !(isApiVersion(dpgContext, p) && predictDefaultValue(dpgContext, p.param))
+      !(
+        isApiVersion(dpgContext, p) &&
+        options.apiVersionInfo?.definedPosition === "query"
+      )
   );
   if (!queryParameters.length) {
     return [];

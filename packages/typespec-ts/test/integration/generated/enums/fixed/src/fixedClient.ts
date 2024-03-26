@@ -10,7 +10,8 @@ import { FixedClient } from "./clientDefinitions.js";
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(options: ClientOptions = {}): FixedClient {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-extensible-fixed-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -26,7 +27,7 @@ export default function createClient(options: ClientOptions = {}): FixedClient {
     },
   };
 
-  const client = getClient(baseUrl, options) as FixedClient;
+  const client = getClient(endpointUrl, options) as FixedClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return client;

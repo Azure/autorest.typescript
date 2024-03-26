@@ -21,6 +21,10 @@ import {
   ClientModelOperations,
 } from "./classic/clientModel/index.js";
 import {
+  getUnionEnumOperations,
+  UnionEnumOperations,
+} from "./classic/unionEnum/index.js";
+import {
   createNaming,
   NamingClientOptions,
   NamingContext,
@@ -45,6 +49,7 @@ export class NamingClient {
     this._client = createNaming(options);
     this.pipeline = this._client.pipeline;
     this.clientModel = getClientModelOperations(this._client);
+    this.unionEnum = getUnionEnumOperations(this._client);
   }
 
   clientName(
@@ -94,4 +99,6 @@ export class NamingClient {
 
   /** The operation groups for ClientModel */
   public readonly clientModel: ClientModelOperations;
+  /** The operation groups for UnionEnum */
+  public readonly unionEnum: UnionEnumOperations;
 }

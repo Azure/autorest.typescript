@@ -4,10 +4,13 @@
 export {
   User,
   Widget,
+  WidgetError,
   ListWidgetsPagesResults,
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
+  NonReferencedModel,
+  OperationStatus,
 } from "./models.js";
 export {
   WidgetsListWidgetsOptions,

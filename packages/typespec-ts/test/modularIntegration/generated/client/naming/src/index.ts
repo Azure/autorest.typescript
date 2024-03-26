@@ -6,6 +6,8 @@ export {
   ClientNameModel,
   LanguageClientNameModel,
   ClientNameAndJsonEncodedNameModel,
+  ClientExtensibleEnum,
+  ExtensibleEnum,
   ClientModel,
   TSModel,
   ClientNameOptions,
@@ -17,5 +19,7 @@ export {
   ResponseOptions,
   ClientModelClientOptions,
   ClientModelLanguageOptions,
+  UnionEnumUnionEnumNameOptions,
+  UnionEnumUnionEnumMemberNameOptions,
 } from "./models/index.js";
-export { ClientModelOperations } from "./classic/index.js";
+export { ClientModelOperations, UnionEnumOperations } from "./classic/index.js";

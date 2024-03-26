@@ -516,21 +516,24 @@ function emitParameter(
     clientDefaultValue = paramMap.type.value;
   }
 
-  if (isApiVersion(context, parameter as HttpOperationParameter)) {
+  if (
+    isApiVersion(context, parameter as HttpOperationParameter) &&
+    paramMap.location === "query"
+  ) {
     const defaultApiVersion = getDefaultApiVersion(
       context,
       getServiceNamespace(context.program)
     );
-    paramMap.type = defaultApiVersion
-      ? getConstantType(defaultApiVersion.value)
-      : { type: "string" };
-    paramMap.implementation = "Client";
+    paramMap.implementation = implementation;
     paramMap.in_docstring = false;
     if (defaultApiVersion) {
       clientDefaultValue = defaultApiVersion.value;
     }
     if (!clientDefaultValue) {
       clientDefaultValue = getDefaultApiVersionString(context.program, context);
+    }
+    if (clientDefaultValue !== undefined) {
+      paramMap.optional = true;
     }
   }
   return { clientDefaultValue, ...base, ...paramMap };
@@ -559,23 +562,6 @@ function emitFlattenedParameter(
     type: property["type"],
     defaultToUnsetSentinel: true
   };
-}
-
-function getConstantType(key: string): HrlcType {
-  const cache = simpleTypesMap.get(key);
-  if (cache) {
-    return cache;
-  }
-  const type: HrlcType = {
-    apiVersions: [],
-    clientDefaultValue: null,
-    type: "constant",
-    value: key,
-    valueType: { type: "string" },
-    xmlMetadata: {}
-  };
-  simpleTypesMap.set(key, type);
-  return type;
 }
 
 function emitResponseHeaders(
@@ -804,7 +790,8 @@ function emitBasicOperation(
       continue;
     }
     const emittedParam = emitParameter(context, param, "Method");
-    if (isApiVersion(context, param) && apiVersionParam === undefined) {
+    if (isApiVersion(context, param)) {
+      emittedParam.isApiVersion = true;
       apiVersionParam = emittedParam;
     }
     parameters.push(emittedParam);
@@ -1696,8 +1683,9 @@ function emitServerParams(
       endpointPathParameters.push(emittedParameter);
       if (
         isApiVersion(context, serverParameter as any) &&
-        apiVersionParam == undefined
+        apiVersionParam === undefined
       ) {
+        emittedParameter.isApiVersion = true;
         apiVersionParam = emittedParameter;
         continue;
       }
@@ -1775,27 +1763,10 @@ function emitGlobalParameters(
   return clientParameters;
 }
 
-function getApiVersionParameter(context: SdkContext): Parameter | void {
-  const version = getDefaultApiVersion(
-    context,
-    getServiceNamespace(context.program)
-  );
+function getApiVersionParameter(): Parameter | void {
   if (apiVersionParam) {
-    return { ...apiVersionParam, isApiVersion: true };
-  } else if (version !== undefined) {
     return {
-      clientName: "api_version",
-      clientDefaultValue: version.value,
-      description: "Api Version",
-      implementation: "Client",
-      location: "query",
-      restApiName: "api-version",
-      skipUrlEncoding: false,
-      optional: false,
-      inDocstring: true,
-      inOverload: false,
-      inOverriden: false,
-      type: getConstantType(version.value),
+      ...apiVersionParam,
       isApiVersion: true
     };
   }
@@ -1809,6 +1780,7 @@ function emitClients(
   const program = context.program;
   const clients = listClients(context);
   const retval: HrlcClient[] = [];
+  apiVersionParam = undefined;
   for (const client of clients) {
     const clientName = getLibraryName(context, client.type).replace(
       "Client",
@@ -1834,9 +1806,19 @@ function emitClients(
       rlcHelperDetails:
         rlcModels && rlcModels.helperDetails ? rlcModels.helperDetails : {}
     };
-    const emittedApiVersionParam = getApiVersionParameter(context);
-    if (emittedApiVersionParam) {
+    const emittedApiVersionParam = getApiVersionParameter();
+    if (emittedApiVersionParam && context.hasApiVersionInClient) {
       emittedClient.parameters.push(emittedApiVersionParam);
+      // if we have client level api version, we need to remove it from all operations
+      emittedClient.operationGroups.map((opGroup) => {
+        opGroup.operations.map((op) => {
+          op.parameters = op.parameters.filter((param) => {
+            return !param.isApiVersion;
+          });
+          return op;
+        });
+        return opGroup;
+      });
     }
     retval.push(emittedClient);
   }
