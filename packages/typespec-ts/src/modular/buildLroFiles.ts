@@ -406,4 +406,6 @@ export function buildGetPollerHelper(
   });
   importLroCoreDependencies(fileContent);
   fileContent.addStatements(getLroPollerContent);
+  fileContent.fixMissingImports();
+  fileContent.fixUnusedIdentifiers();
 }
