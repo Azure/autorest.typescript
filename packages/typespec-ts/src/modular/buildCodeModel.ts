@@ -1915,7 +1915,7 @@ export function emitCodeModel(
   simpleTypesMap.clear();
   const allModels = getAllModels(dpgContext);
   for (const model of allModels) {
-    getType(dpgContext, model.__raw!, { usage: model.usage });
+    getType(dpgContext, model.__raw!, { usage: model.usage as UsageFlags });
   }
 
   for (const namespace of getNamespaces(dpgContext)) {
