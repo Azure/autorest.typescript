@@ -62,8 +62,19 @@ export interface WidgetsCreateOrReplaceBodyParam {
   body: User;
 }
 
-export type WidgetsCreateOrReplaceParameters = WidgetsCreateOrReplaceBodyParam &
-  RequestParameters;
+export interface WidgetsCreateOrReplaceQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
+}
+
+export interface WidgetsCreateOrReplaceQueryParam {
+  queryParameters: WidgetsCreateOrReplaceQueryParamProperties;
+}
+
+export type WidgetsCreateOrReplaceParameters =
+  WidgetsCreateOrReplaceQueryParam &
+    WidgetsCreateOrReplaceBodyParam &
+    RequestParameters;
 
 export interface WidgetsUpdateWidgetBodyParam {
   body?: UpdateWidget;
@@ -79,8 +90,19 @@ export interface BudgetsCreateOrReplaceBodyParam {
   body: User;
 }
 
-export type BudgetsCreateOrReplaceParameters = BudgetsCreateOrReplaceBodyParam &
-  RequestParameters;
+export interface BudgetsCreateOrReplaceQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
+}
+
+export interface BudgetsCreateOrReplaceQueryParam {
+  queryParameters: BudgetsCreateOrReplaceQueryParamProperties;
+}
+
+export type BudgetsCreateOrReplaceParameters =
+  BudgetsCreateOrReplaceQueryParam &
+    BudgetsCreateOrReplaceBodyParam &
+    RequestParameters;
 /** The resource instance. */
 export type UserResourceMergeAndPatch = Partial<User>;
 
@@ -89,12 +111,21 @@ export interface BudgetsCreateOrUpdateBodyParam {
   body: UserResourceMergeAndPatch;
 }
 
+export interface BudgetsCreateOrUpdateQueryParamProperties {
+  /** The API version to use for this operation. */
+  "api-version": string;
+}
+
+export interface BudgetsCreateOrUpdateQueryParam {
+  queryParameters: BudgetsCreateOrUpdateQueryParamProperties;
+}
+
 export interface BudgetsCreateOrUpdateMediaTypesParam {
   /** This request has a JSON Merge Patch body. */
   contentType: "application/merge-patch+json";
 }
 
-export type BudgetsCreateOrUpdateParameters =
+export type BudgetsCreateOrUpdateParameters = BudgetsCreateOrUpdateQueryParam &
   BudgetsCreateOrUpdateMediaTypesParam &
-    BudgetsCreateOrUpdateBodyParam &
-    RequestParameters;
+  BudgetsCreateOrUpdateBodyParam &
+  RequestParameters;

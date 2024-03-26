@@ -15,6 +15,7 @@ export {
   UpdateWidget,
   AnalyzeResult,
   NonReferencedModel,
+  OperationStatus,
   WidgetsListWidgetsOptions,
   WidgetsListWidgetsPagesOptions,
   WidgetsQueryWidgetsPagesOptions,

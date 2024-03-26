@@ -15,7 +15,7 @@ export default function createClient(
   options: ClientOptions = {},
 ): WidgetServiceContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-  options.apiVersion = options.apiVersion ?? "1.0.0";
+
   const userAgentInfo = `azsdk-js-widget_dpg-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -32,6 +32,8 @@ export default function createClient(
   };
 
   const client = getClient(endpointUrl, options) as WidgetServiceContext;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }

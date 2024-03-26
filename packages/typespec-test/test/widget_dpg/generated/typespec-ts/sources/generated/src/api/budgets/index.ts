@@ -41,6 +41,7 @@ export function _createOrReplaceSend(
     .path("/budgets/widgets/createOrReplace/users/{name}", name)
     .put({
       ...operationOptionsToRequestParameters(options),
+      queryParameters: { "api-version": options?.apiVersion ?? "1.0.0" },
       body: { role: resource["role"], id: resource["id"] },
     });
 }
@@ -96,6 +97,7 @@ export function _createOrUpdateSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
+      queryParameters: { "api-version": options?.apiVersion ?? "1.0.0" },
       body: { role: resource["role"], id: resource["id"] },
     });
 }

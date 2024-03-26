@@ -7,10 +7,12 @@
 import { AbortSignalLike } from '@azure/abort-controller';
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorModel } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
+import { OperationStatus as OperationStatus_2 } from '@azure/core-lro';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { PollerLike } from '@azure/core-lro';
@@ -27,11 +29,13 @@ export interface AnalyzeResult {
 
 // @public (undocumented)
 export interface BudgetsCreateOrReplaceOptions extends OperationOptions {
+    apiVersion?: string;
     updateIntervalInMs?: number;
 }
 
 // @public (undocumented)
 export interface BudgetsCreateOrUpdateOptions extends OperationOptions {
+    apiVersion?: string;
     contentType?: string;
     updateIntervalInMs?: number;
 }
@@ -65,6 +69,14 @@ export interface ListWidgetsPagesResults {
 export interface NonReferencedModel {
     prop1: number;
     prop2: string;
+}
+
+// @public
+export interface OperationStatus {
+    error?: ErrorModel;
+    id: string;
+    result?: User;
+    status: OperationStatus_2;
 }
 
 // @public
@@ -123,6 +135,7 @@ export interface WidgetsAnalyzeWidgetOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface WidgetsCreateOrReplaceOptions extends OperationOptions {
+    apiVersion?: string;
     updateIntervalInMs?: number;
 }
 

@@ -10,6 +10,7 @@ export {
   UpdateWidget,
   AnalyzeResult,
   NonReferencedModel,
+  OperationStatus,
 } from "./models.js";
 export {
   WidgetsListWidgetsOptions,
