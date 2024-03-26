@@ -9,10 +9,12 @@ export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   User,
   Widget,
+  WidgetError,
   ListWidgetsPagesResults,
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
+  NonReferencedModel,
   WidgetsListWidgetsOptions,
   WidgetsListWidgetsPagesOptions,
   WidgetsQueryWidgetsPagesOptions,

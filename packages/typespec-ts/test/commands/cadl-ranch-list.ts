@@ -220,6 +220,22 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "serialization/encoded-name/json",
     inputPath: "serialization/encoded-name/json"
+  },
+  {
+    outputPath: "azure/core-scalar",
+    inputPath: "azure/core/scalar"
+  },
+  {
+    outputPath: "server/endpoint/not-defined",
+    inputPath: "server/endpoint/not-defined"
+  },
+  {
+    outputPath: "server/versions/versioned",
+    inputPath: "server/versions/versioned"
+  },
+  {
+    outputPath: "server/versions/not-versioned",
+    inputPath: "server/versions/not-versioned"
   }
 ];
 
@@ -233,6 +249,14 @@ export const nonBrandedRlcTsps: TypeSpecRanchConfig[] = [
 export const modularTsps: TypeSpecRanchConfig[] = [
   { outputPath: "lro/rpc", inputPath: "azure/core/lro/rpc" },
   { outputPath: "lro/standard", inputPath: "azure/core/lro/standard" },
+  {
+    outputPath: "azure/clientGeneratorCore/access",
+    inputPath: "azure/client-generator-core/access"
+  },
+  {
+    outputPath: "azure/clientGeneratorCore/usage",
+    inputPath: "azure/client-generator-core/usage"
+  },
   {
     outputPath: "parameters/body-optionality",
     inputPath: "parameters/body-optionality"
@@ -355,6 +379,14 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     inputPath: "type/union"
   },
   {
+    outputPath: "server/versions/versioned",
+    inputPath: "server/versions/versioned"
+  },
+  {
+    outputPath: "server/versions/not-versioned",
+    inputPath: "server/versions/not-versioned"
+  },
+  {
     outputPath: "scalar",
     inputPath: "type/scalar"
   },
@@ -365,6 +397,14 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "serialization/encoded-name/json",
     inputPath: "serialization/encoded-name/json"
+  },
+  {
+    outputPath: "azure/core-scalar",
+    inputPath: "azure/core/scalar"
+  },
+  {
+    outputPath: "server/endpoint/not-defined",
+    inputPath: "server/endpoint/not-defined"
   }
 ];
 

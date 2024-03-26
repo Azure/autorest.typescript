@@ -11,9 +11,9 @@ dotenv.config();
  * @summary call operation CreateUrlAttachment
  */
 async function todoItemsAttachmentsCreateUrlAttachmentSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = { key: "{Your API key}" };
-  const client = createTodoClient(endpoint, credential);
+  const client = createTodoClient(endpointParam, credential);
   const itemId = 123;
   const result = await client
     .path("/items/{itemId}/attachments", itemId)

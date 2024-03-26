@@ -15,7 +15,8 @@ export default function createClient(
   credentials: TokenCredential,
   options: ClientOptions = {},
 ): AuthOauth2Client {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-auth-oauth2-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -36,7 +37,11 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, credentials, options) as AuthOauth2Client;
+  const client = getClient(
+    endpointUrl,
+    credentials,
+    options,
+  ) as AuthOauth2Client;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return client;

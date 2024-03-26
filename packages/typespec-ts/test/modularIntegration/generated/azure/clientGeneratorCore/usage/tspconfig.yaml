@@ -1,0 +1,15 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    "emitter-output-dir": "{project-root}"
+    generateMetadata: true
+    generateTest: false
+    addCredentials: false
+    azureSdkForJs: false
+    isTypeSpecTest: true
+    isModularLibrary: true
+    hierarchyClient: false
+    packageDetails:
+      name: "@msinternal/clientGeneratorCore-usage"
+      description: "Azure clientGenerator Core usage Test Service"

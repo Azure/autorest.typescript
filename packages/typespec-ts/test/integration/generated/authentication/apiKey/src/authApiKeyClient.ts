@@ -15,7 +15,8 @@ export default function createClient(
   credentials: KeyCredential,
   options: ClientOptions = {},
 ): AuthApiKeyClient {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-auth-apikey-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -34,7 +35,11 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, credentials, options) as AuthApiKeyClient;
+  const client = getClient(
+    endpointUrl,
+    credentials,
+    options,
+  ) as AuthApiKeyClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return client;

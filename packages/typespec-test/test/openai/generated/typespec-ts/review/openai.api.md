@@ -218,7 +218,7 @@ export interface ContentFilterResultsOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options?: ClientOptions): OpenAIClient;
+function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, options?: ClientOptions): OpenAIClient;
 export default createClient;
 
 // @public

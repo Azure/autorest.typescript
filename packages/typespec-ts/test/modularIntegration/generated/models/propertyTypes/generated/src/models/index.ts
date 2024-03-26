@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 export {
+  UnionEnumValueProperty,
   UnionFloatLiteralProperty,
   UnionIntLiteralProperty,
   UnionStringLiteralProperty,
@@ -91,4 +92,6 @@ export {
   UnionIntLiteralPutOptions,
   UnionFloatLiteralGetOptions,
   UnionFloatLiteralPutOptions,
+  UnionEnumValueGetOptions,
+  UnionEnumValuePutOptions,
 } from "./options.js";

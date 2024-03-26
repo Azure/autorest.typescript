@@ -26,8 +26,10 @@ export default function createClient(
   const subdomain = options.subdomain ?? "two";
   const sufix = options.sufix ?? "three";
   const apiVersion = options.apiVersion ?? "v1";
-  const baseUrl =
-    options.baseUrl ?? `${host}.${subdomain}.${sufix}.com/${apiVersion}`;
+  const endpointUrl =
+    options.endpoint ??
+    options.baseUrl ??
+    `${host}.${subdomain}.${sufix}.com/${apiVersion}`;
 
   const userAgentInfo = `azsdk-js-parametrized-host-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -50,7 +52,7 @@ export default function createClient(
   };
 
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
     options,
   ) as ParametrizedHostClient;

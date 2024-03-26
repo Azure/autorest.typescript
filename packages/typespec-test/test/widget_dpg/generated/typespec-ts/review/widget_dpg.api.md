@@ -61,6 +61,12 @@ export interface ListWidgetsPagesResults {
     results: Widget[];
 }
 
+// @public (undocumented)
+export interface NonReferencedModel {
+    prop1: number;
+    prop2: string;
+}
+
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
     [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
@@ -103,6 +109,12 @@ export interface Widget {
     color: "red" | "blue";
     id: string;
     weight: number;
+}
+
+// @public (undocumented)
+export interface WidgetError {
+    code: number;
+    message: string;
 }
 
 // @public (undocumented)
