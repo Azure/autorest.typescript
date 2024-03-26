@@ -43,6 +43,11 @@ export function buildRuntimeImports(flavor?: PackageFlavor): Imports {
         type: "azureTestRecorder",
         specifier: "@azure-tools/test-recorder",
         version: "^3.0.0"
+      },
+      azureCoreLro: {
+        type: "azureCoreLro",
+        specifier: "@azure/core-lro",
+        version: "^2.0.0"
       }
     } as Imports;
   } else {
@@ -93,7 +98,8 @@ export function getImportSpecifier(
     coreAuth: "@azure/core-auth",
     restPipeline: "@azure/core-rest-pipeline",
     coreUtil: "@azure/core-util",
-    coreLogger: "@azure/logger"
+    coreLogger: "@azure/logger",
+    azureCoreLro: "@azure/core-lro"
   } as any;
   if (!includeFallback) {
     return imports[importType]?.specifier ?? "";
