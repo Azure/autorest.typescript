@@ -1,0 +1,12 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    azureSdkForJs: false
+    enableOperationGroup: true
+    isModularLibrary: true
+    hierarchyClient: false
+    packageDetails:
+      name: "@azure/arm-sphere"
+      description: Microsoft Sphere Management Client
