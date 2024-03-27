@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   PagedAssetResourceOutput,
   TaskOutput,
@@ -42,7 +42,7 @@ export interface ListAssetResourceDefaultHeaders {
 
 export interface ListAssetResourceDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ListAssetResourceDefaultHeaders;
 }
 
@@ -59,7 +59,7 @@ export interface UpdateAssetsDefaultHeaders {
 
 export interface UpdateAssetsDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & UpdateAssetsDefaultHeaders;
 }
 
@@ -76,7 +76,7 @@ export interface GetAssetResourceDefaultHeaders {
 
 export interface GetAssetResourceDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetAssetResourceDefaultHeaders;
 }
 
@@ -93,7 +93,7 @@ export interface DismissAssetChainDefaultHeaders {
 
 export interface DismissAssetChainDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & DismissAssetChainDefaultHeaders;
 }
 
@@ -110,7 +110,7 @@ export interface GetAssetsExportDefaultHeaders {
 
 export interface GetAssetsExportDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetAssetsExportDefaultHeaders;
 }
 
@@ -127,7 +127,7 @@ export interface GetObservationsDefaultHeaders {
 
 export interface GetObservationsDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetObservationsDefaultHeaders;
 }
 
@@ -144,7 +144,7 @@ export interface GetDeltaDetailsDefaultHeaders {
 
 export interface GetDeltaDetailsDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetDeltaDetailsDefaultHeaders;
 }
 
@@ -161,7 +161,7 @@ export interface GetDeltaSummaryDefaultHeaders {
 
 export interface GetDeltaSummaryDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetDeltaSummaryDefaultHeaders;
 }
 
@@ -178,7 +178,7 @@ export interface ListDataConnectionDefaultHeaders {
 
 export interface ListDataConnectionDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ListDataConnectionDefaultHeaders;
 }
 
@@ -195,7 +195,7 @@ export interface ValidateDataConnectionDefaultHeaders {
 
 export interface ValidateDataConnectionDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ValidateDataConnectionDefaultHeaders;
 }
 
@@ -212,7 +212,7 @@ export interface GetDataConnectionDefaultHeaders {
 
 export interface GetDataConnectionDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetDataConnectionDefaultHeaders;
 }
 
@@ -230,7 +230,7 @@ export interface CreateOrReplaceDataConnectionDefaultHeaders {
 export interface CreateOrReplaceDataConnectionDefaultResponse
   extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & CreateOrReplaceDataConnectionDefaultHeaders;
 }
 
@@ -246,7 +246,7 @@ export interface DeleteDataConnectionDefaultHeaders {
 
 export interface DeleteDataConnectionDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & DeleteDataConnectionDefaultHeaders;
 }
 
@@ -263,7 +263,7 @@ export interface ListDiscoGroupDefaultHeaders {
 
 export interface ListDiscoGroupDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ListDiscoGroupDefaultHeaders;
 }
 
@@ -280,7 +280,7 @@ export interface ValidateDiscoGroupDefaultHeaders {
 
 export interface ValidateDiscoGroupDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ValidateDiscoGroupDefaultHeaders;
 }
 
@@ -297,7 +297,7 @@ export interface GetDiscoGroupDefaultHeaders {
 
 export interface GetDiscoGroupDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetDiscoGroupDefaultHeaders;
 }
 
@@ -314,7 +314,7 @@ export interface CreateOrReplaceDiscoGroupDefaultHeaders {
 
 export interface CreateOrReplaceDiscoGroupDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & CreateOrReplaceDiscoGroupDefaultHeaders;
 }
 
@@ -330,7 +330,7 @@ export interface RunDiscoGroupDefaultHeaders {
 
 export interface RunDiscoGroupDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & RunDiscoGroupDefaultHeaders;
 }
 
@@ -347,7 +347,7 @@ export interface ListRunsDefaultHeaders {
 
 export interface ListRunsDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ListRunsDefaultHeaders;
 }
 
@@ -364,7 +364,7 @@ export interface GetAssetChainSummaryDefaultHeaders {
 
 export interface GetAssetChainSummaryDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetAssetChainSummaryDefaultHeaders;
 }
 
@@ -381,7 +381,7 @@ export interface DismissSeedChainDefaultHeaders {
 
 export interface DismissSeedChainDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & DismissSeedChainDefaultHeaders;
 }
 
@@ -398,7 +398,7 @@ export interface ListDiscoTemplateDefaultHeaders {
 
 export interface ListDiscoTemplateDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ListDiscoTemplateDefaultHeaders;
 }
 
@@ -415,7 +415,7 @@ export interface GetDiscoTemplateDefaultHeaders {
 
 export interface GetDiscoTemplateDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetDiscoTemplateDefaultHeaders;
 }
 
@@ -432,7 +432,7 @@ export interface GetBillableDefaultHeaders {
 
 export interface GetBillableDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetBillableDefaultHeaders;
 }
 
@@ -449,7 +449,7 @@ export interface GetSnapshotDefaultHeaders {
 
 export interface GetSnapshotDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetSnapshotDefaultHeaders;
 }
 
@@ -466,7 +466,7 @@ export interface GetSummaryDefaultHeaders {
 
 export interface GetSummaryDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetSummaryDefaultHeaders;
 }
 
@@ -483,7 +483,7 @@ export interface GetSnapshotExportDefaultHeaders {
 
 export interface GetSnapshotExportDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetSnapshotExportDefaultHeaders;
 }
 
@@ -500,7 +500,7 @@ export interface ListSavedFilterDefaultHeaders {
 
 export interface ListSavedFilterDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ListSavedFilterDefaultHeaders;
 }
 
@@ -517,7 +517,7 @@ export interface GetSavedFilterDefaultHeaders {
 
 export interface GetSavedFilterDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetSavedFilterDefaultHeaders;
 }
 
@@ -535,7 +535,7 @@ export interface CreateOrReplaceSavedFilterDefaultHeaders {
 export interface CreateOrReplaceSavedFilterDefaultResponse
   extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & CreateOrReplaceSavedFilterDefaultHeaders;
 }
 
@@ -551,7 +551,7 @@ export interface DeleteSavedFilterDefaultHeaders {
 
 export interface DeleteSavedFilterDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & DeleteSavedFilterDefaultHeaders;
 }
 
@@ -568,7 +568,7 @@ export interface ListTaskDefaultHeaders {
 
 export interface ListTaskDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & ListTaskDefaultHeaders;
 }
 
@@ -585,7 +585,7 @@ export interface GetTaskDefaultHeaders {
 
 export interface GetTaskDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetTaskDefaultHeaders;
 }
 
@@ -602,7 +602,7 @@ export interface CancelTaskDefaultHeaders {
 
 export interface CancelTaskDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & CancelTaskDefaultHeaders;
 }
 
@@ -619,7 +619,7 @@ export interface RunTaskDefaultHeaders {
 
 export interface RunTaskDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & RunTaskDefaultHeaders;
 }
 
@@ -636,7 +636,7 @@ export interface DownloadTaskDefaultHeaders {
 
 export interface DownloadTaskDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & DownloadTaskDefaultHeaders;
 }
 
@@ -653,7 +653,7 @@ export interface GetCisaCvesDefaultHeaders {
 
 export interface GetCisaCvesDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetCisaCvesDefaultHeaders;
 }
 
@@ -670,6 +670,6 @@ export interface GetCisaCveDefaultHeaders {
 
 export interface GetCisaCveDefaultResponse extends HttpResponse {
   status: string;
-  body: AzureCoreFoundationsErrorResponseOutput;
+  body: ErrorResponse;
   headers: RawHttpHeaders & GetCisaCveDefaultHeaders;
 }

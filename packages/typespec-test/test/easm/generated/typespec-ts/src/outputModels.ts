@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { Paged } from "@azure/core-paging";
-import { AzureCoreFoundationsErrorResponse } from "@azure-rest/core-client";
+import { ErrorResponse } from "@azure-rest/core-client";
 
 /** The items in the current page of results. */
 export interface AssetResourceOutputParent {
@@ -1029,7 +1029,7 @@ export interface AssetChainSummaryResponseOutput {
   /** A list of disco group summaries */
   affectedGroupsSummary: Array<DiscoGroupSummaryResponseOutput>;
   /** The list of exceptions */
-  errors?: Array<AzureCoreFoundationsErrorResponse>;
+  errors?: Array<ErrorResponse>;
 }
 
 /** A list of asset chain summaries per asset kind */

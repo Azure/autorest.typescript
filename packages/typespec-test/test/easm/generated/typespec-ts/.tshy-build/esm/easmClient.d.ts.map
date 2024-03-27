@@ -1,1 +1,0 @@
-{"version":3,"file":"easmClient.d.ts","sourceRoot":"","sources":["../../src/easmClient.ts"],"names":[],"mappings":"AAGA,OAAO,EAAa,aAAa,EAAE,MAAM,yBAAyB,CAAC;AAEnE,OAAO,EAAE,eAAe,EAAE,MAAM,kBAAkB,CAAC;AACnD,OAAO,EAAE,UAAU,EAAE,MAAM,wBAAwB,CAAC;AAEpD;;;;;GAKG;AACH,MAAM,CAAC,OAAO,UAAU,YAAY,CAClC,aAAa,EAAE,MAAM,EACrB,WAAW,EAAE,eAAe,EAC5B,OAAO,GAAE,aAAkB,GAC1B,UAAU,CA0BZ"}
