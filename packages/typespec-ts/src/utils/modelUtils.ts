@@ -604,15 +604,18 @@ function getSchemaForModel(
         .join("") + "List";
   }
 
+  const isCoreModel = isAzureCoreErrorType(model);
   const modelSchema: ObjectSchema = {
-    name:
-      overridedModelName !== name
+    name: isCoreModel
+      ? name
+      : overridedModelName !== name
         ? overridedModelName
         : dpgContext.rlcOptions?.enableModelNamespace
           ? fullNamespaceName
           : name,
     type: "object",
-    description: getDoc(program, model) ?? ""
+    description: getDoc(program, model) ?? "",
+    fromCore: isCoreModel
   };
   // normalized the output name
   modelSchema.name = normalizeName(
@@ -627,10 +630,6 @@ function getSchemaForModel(
   modelSchema.typeName = modelSchema.name;
   if (usage && usage.includes(SchemaContext.Output)) {
     modelSchema.outputTypeName = modelSchema.name + "Output";
-  }
-
-  if (isAzureCoreErrorType(model)) {
-    modelSchema.fromCore = true;
   }
 
   if (getPagedResult(program, model)) {
