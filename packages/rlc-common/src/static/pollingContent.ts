@@ -3,16 +3,6 @@
 
 export const pollingContent = `
 import { Client, HttpResponse } from "@azure-rest/core-client";
-{{#if useLegacyLro}}
-import {
-  LongRunningOperation,
-  LroEngine,
-  LroEngineOptions,
-  LroResponse,
-  PollerLike,
-  PollOperationState
-} from "@azure/core-lro";
-{{else}}
 import {
   CreateHttpPollerOptions,
   LongRunningOperation,
@@ -27,7 +17,6 @@ import {
   {{this}},
   {{/each}}
 } from "./responses{{#if isEsm}}.js{{/if}}";
-{{/if}}
 {{/if}}
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
@@ -47,16 +36,11 @@ export async function getLongRunningPoller<
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 {{/each}}
 {{/if}}
-export {{#unless useLegacyLro}}async {{/unless}}function getLongRunningPoller<TResult extends HttpResponse>(
-  client: Client,
-  initialResponse: TResult,
-  {{#if useLegacyLro}}
-  options: LroEngineOptions<TResult, PollOperationState<TResult>> = {}
-  ): PollerLike<PollOperationState<TResult>, TResult> {
-    {{else}}
+export async function getLongRunningPoller<TResult extends HttpResponse>(
+    client: Client,
+    initialResponse: TResult,
     options: CreateHttpPollerOptions<TResult, OperationState<TResult>> = {}
-    ): Promise<SimplePollerLike<OperationState<TResult>, TResult>> {
-    {{/if}}  
+    ): Promise<SimplePollerLike<OperationState<TResult>, TResult>> { 
     const poller: LongRunningOperation<TResult> = {
     requestMethod: initialResponse.request.method,
     requestPath: initialResponse.request.url,
@@ -81,12 +65,8 @@ export {{#unless useLegacyLro}}async {{/unless}}function getLongRunningPoller<TR
     }
   };
 
-  {{#if useLegacyLro}}
-  return new LroEngine(poller, options);
-  {{else}}
   options.resolveOnUnsuccessful = options.resolveOnUnsuccessful ?? true;
   return createHttpPoller(poller, options);
-  {{/if}}
 }
 
 /**
