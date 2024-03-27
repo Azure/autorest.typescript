@@ -42,7 +42,7 @@ export async function getLongRunningPoller<
   TResult extends {{ this.finalResponses }}
 >(
   client: Client,
-  initialResponse: {{ this.initalResponses }},
+  initialResponse: {{ this.initialResponses }},
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 {{/each}}
