@@ -423,7 +423,7 @@ function emitParamBase(
 
   if (parameter.kind === "ModelProperty") {
     optional = parameter.optional;
-    name = getLibraryName(context, parameter);
+    name = normalizeName(getLibraryName(context, parameter), NameType.Parameter, true);
     restApiName = getWireName(context, parameter);
     description = getDocStr(program, parameter);
     addedOn = getAddedOnVersion(program, parameter);
@@ -896,9 +896,13 @@ function emitBasicOperation(
     }
   }
 
-  const name = applyCasing(getLibraryName(context, operation), {
-    casing: CASING
-  });
+  const name = normalizeName(
+    applyCasing(getLibraryName(context, operation), {
+      casing: CASING
+    }),
+    NameType.Operation,
+    true
+  );
 
   /** handle name collision between operation name and parameter signature */
   if (bodyParameter) {
@@ -968,7 +972,11 @@ function emitProperty(
   }
 
   // const [clientName, jsonName] = getPropertyNames(context, property);
-  const clientName = getLibraryName(context, property);
+  const clientName = normalizeName(
+    getLibraryName(context, property),
+    NameType.Property,
+    true
+  );
   const jsonName = getWireName(context, property);
 
   if (property.model) {
@@ -1022,8 +1030,11 @@ function emitModel(
     baseModel = getType(context, type.baseModel, { usage });
   }
   const effectiveName = getEffectiveSchemaType(context.program, type).name;
-  const overridedModelName =
-    getLibraryName(context, type) ?? getFriendlyName(context.program, type);
+  const overridedModelName = normalizeName(
+    getLibraryName(context, type) ?? getFriendlyName(context.program, type),
+    NameType.Interface,
+    true
+  );
   const fullNamespaceName =
     getModelNamespaceName(context, type.namespace!)
       .map((nsName) => {
@@ -1552,7 +1563,7 @@ function emitType(
 
   switch (type.kind) {
     case "Intrinsic":
-      return { type: type.name };
+      return { type: normalizeName(type.name, NameType.Interface, true) };
     case "Model":
       return emitModel(context, type, usage);
     case "Scalar":
@@ -1589,7 +1600,11 @@ function emitOperationGroups(
   }
   for (const operationGroup of listOperationGroups(context, client, true)) {
     const operations: HrlcOperation[] = [];
-    const overrideName = getLibraryName(context, operationGroup.type);
+    const overrideName = normalizeName(
+      getLibraryName(context, operationGroup.type),
+      NameType.Interface,
+      true
+    );
     const name =
       context.rlcOptions?.hierarchyClient ||
       context.rlcOptions?.enableOperationGroup
