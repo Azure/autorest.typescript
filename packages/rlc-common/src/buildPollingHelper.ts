@@ -14,7 +14,7 @@ interface LroDetail {
 }
 
 interface ResponseMap {
-  initalResponses: string;
+  initialResponses: string;
   finalResponses: string;
   precedence?: number;
 }
@@ -52,20 +52,20 @@ function buildLroHelperDetail(model: RLCModel): LroDetail {
     for (const methodDetails of Object.values(details.methods)) {
       const lroDetail = methodDetails[0].operationHelperDetail?.lroDetails;
       if (lroDetail?.isLongRunning) {
-        const initalResponses = methodDetails[0].responseTypes.success.concat(
+        const initialResponses = methodDetails[0].responseTypes.success.concat(
           methodDetails[0].responseTypes.error
         );
 
-        const finalRespoonse = lroDetail.logicalResponseTypes?.success.concat(
+        const finalResponse = lroDetail.logicalResponseTypes?.success.concat(
           methodDetails[0].responseTypes.error
         );
 
-        if (initalResponses && finalRespoonse) {
-          initalResponses.forEach((n) => responses.add(n));
-          finalRespoonse.forEach((n) => responses.add(n));
+        if (initialResponses && finalResponse) {
+          initialResponses.forEach((n) => responses.add(n));
+          finalResponse.forEach((n) => responses.add(n));
           mapDetail!.push({
-            initalResponses: initalResponses.join("|"),
-            finalResponses: finalRespoonse.join("|"),
+            initialResponses: initialResponses.join("|"),
+            finalResponses: finalResponse.join("|"),
             precedence: lroDetail.precedence ?? OPERATION_LRO_HIGH_PRIORITY
           });
         }
@@ -73,7 +73,7 @@ function buildLroHelperDetail(model: RLCModel): LroDetail {
     }
   }
 
-  // Sorted by the precedecne
+  // Sorted by the precedence
   mapDetail.sort((d1, d2) => d1.precedence - d2.precedence);
   return {
     clientOverload: responses.size > 0 && mapDetail.length > 0,
