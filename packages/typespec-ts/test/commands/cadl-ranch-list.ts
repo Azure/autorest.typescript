@@ -222,6 +222,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "serialization/encoded-name/json"
   },
   {
+    outputPath: "azure/core-scalar",
+    inputPath: "azure/core/scalar"
+  },
+  {
     outputPath: "server/endpoint/not-defined",
     inputPath: "server/endpoint/not-defined"
   },
@@ -391,6 +395,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "serialization/encoded-name/json",
     inputPath: "serialization/encoded-name/json"
+  },
+  {
+    outputPath: "azure/core-scalar",
+    inputPath: "azure/core/scalar"
   },
   {
     outputPath: "server/endpoint/not-defined",

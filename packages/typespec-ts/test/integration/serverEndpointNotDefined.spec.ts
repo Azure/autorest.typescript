@@ -9,10 +9,7 @@ describe("NotDefinedParamInServerEndpoint Rest Client", () => {
     client = NotDefinedParamInServerEndpointClientFactory(
       "http://localhost:3000",
       {
-        allowInsecureConnection: true,
-        retryOptions: {
-          maxRetries: 0
-        }
+        allowInsecureConnection: true
       }
     );
   });
