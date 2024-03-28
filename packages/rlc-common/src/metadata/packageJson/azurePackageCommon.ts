@@ -10,7 +10,7 @@ export interface AzurePackageInfoConfig extends PackageCommonInfoConfig {
   hasLro: boolean;
   hasPaging: boolean;
   specSource: "Swagger" | "TypeSpec";
-  useV3Lro: boolean;
+  useLegacyV2Lro: boolean;
 }
 
 /**
@@ -32,7 +32,7 @@ export function getAzureCommonPackageInfo(config: AzurePackageInfoConfig) {
 export function getAzurePackageDependencies({
   hasLro,
   hasPaging,
-  useV3Lro
+  useLegacyV2Lro
 }: AzurePackageInfoConfig) {
   let dependencies: Record<string, string> = {
     "@azure-rest/core-client": "^1.2.0",
@@ -45,8 +45,8 @@ export function getAzurePackageDependencies({
   if (hasLro) {
     dependencies = {
       ...dependencies,
-      "@azure/core-lro": useV3Lro ? "3.0.0-beta.1" : "^2.5.4",
-      "@azure/abort-controller": useV3Lro ? "^2.0.0" : "^1.0.0"
+      "@azure/core-lro": useLegacyV2Lro ? "^2.5.4" : "3.0.0-beta.1",
+      "@azure/abort-controller": useLegacyV2Lro ? "^1.0.0" : "^2.0.0"
     };
   }
 

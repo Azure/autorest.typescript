@@ -102,7 +102,7 @@ function transformOperation(
         responseTypes,
         operationGroupName
       ),
-      isPageable: isPagingOperation(program, route)
+      isPaging: isPagingOperation(program, route)
     }
   };
   if (
