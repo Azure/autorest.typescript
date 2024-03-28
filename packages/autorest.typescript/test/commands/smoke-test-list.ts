@@ -19,7 +19,7 @@ export enum AutorestParams {
   NotAzureSdkForJs = "--azure-sdk-for-js=false",
   AzureArm = "--azure-arm",
   Security = "--security=AADToken",
-  useLegacyV2Lro = "--use-legacy-v2-lro=true"
+  UseLegacyV2Lro = "--use-legacy-v2-lro=true"
 }
 
 const getArmReadmes = (): SpecDefinition[] => {
@@ -226,7 +226,7 @@ export const readmes: SpecDefinition[] = [
       AutorestParams.GenerateTest,
       AutorestParams.NotAzureSdkForJs,
       AutorestParams.GenerateSamples,
-      AutorestParams.useLegacyV2Lro
+      AutorestParams.UseLegacyV2Lro
     ],
     buildTag: "ci_rlc"
   },
@@ -267,7 +267,7 @@ export const readmes: SpecDefinition[] = [
       AutorestParams.RestClient,
       AutorestParams.NotAzureSdkForJs,
       AutorestParams.GenerateSamples,
-      AutorestParams.useLegacyV2Lro
+      AutorestParams.UseLegacyV2Lro
     ],
     buildTag: "ci_rlc"
   },
@@ -280,7 +280,7 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.RestClient,
       AutorestParams.NotAzureSdkForJs,
-      AutorestParams.useLegacyV2Lro
+      AutorestParams.UseLegacyV2Lro
     ],
     buildTag: "ci_rlc"
   }
