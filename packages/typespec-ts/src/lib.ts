@@ -90,7 +90,8 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       nullable: true,
       enum: ["esm", "cjs"],
       default: "esm"
-    }
+    },
+    useLegacyV2Lro: { type: "boolean", nullable: true }
   },
   required: []
 };
