@@ -6,10 +6,18 @@ import { Client, HttpResponse } from "@azure-rest/core-client";
 import {
   CreateHttpPollerOptions,
   LongRunningOperation,
+  {{#if useLegacyV2Lro}}
   LroResponse,
+  {{else}}
+  OperationResponse,
+  {{/if}}
   OperationState,
   SimplePollerLike,
-  createHttpPoller
+  {{#if useLegacyV2Lro}}
+  createHttpPoller,
+  {{else}}
+  createInitializedHttpPoller,
+  {{/if}}
 } from "@azure/core-lro";
 {{#if clientOverload}}
 import {
@@ -42,8 +50,10 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
     options: CreateHttpPollerOptions<TResult, OperationState<TResult>> = {}
     ): Promise<SimplePollerLike<OperationState<TResult>, TResult>> { 
     const poller: LongRunningOperation<TResult> = {
+    {{#if useLegacyV2Lro}}
     requestMethod: initialResponse.request.method,
     requestPath: initialResponse.request.url,
+    {{/if}}
     sendInitialRequest: async () => {
       // In the case of Rest Clients we are building the LRO poller object from a response that's the reason
       // we are not triggering the initial request here, just extracting the information from the
@@ -66,7 +76,11 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
   };
 
   options.resolveOnUnsuccessful = options.resolveOnUnsuccessful ?? true;
+  {{#if useLegacyV2Lro}}
   return createHttpPoller(poller, options);
+  {{else}}
+  return createInitializedHttpPoller(poller, "SimplePoller", options);
+  {{/if}}
 }
 
 /**
@@ -76,7 +90,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
  */
 function getLroResponse<TResult extends HttpResponse>(
   response: TResult
-): LroResponse<TResult> {
+): {{#if useLegacyV2Lro}}LroResponse{{else}}OperationResponse{{/if}}<TResult> {
   if (Number.isNaN(response.status)) {
     throw new TypeError(
       \`Status code of the response is not a number. Value: \${response.status}\`

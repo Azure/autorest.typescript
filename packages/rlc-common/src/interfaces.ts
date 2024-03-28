@@ -237,6 +237,8 @@ export interface RLCOptions {
   flavor?: PackageFlavor;
   enableModelNamespace?: boolean;
   hierarchyClient?: boolean;
+  // flag to enable the legacy LRO in the generated code, by default it is false
+  useLegacyV2Lro?: boolean;
 }
 
 export interface ServiceInfo {

@@ -11,6 +11,7 @@ interface LroDetail {
   overloadMap?: ResponseMap[];
   importedResponses?: string[];
   isEsm?: boolean;
+  useLegacyV2Lro?: boolean;
 }
 
 interface ResponseMap {
@@ -79,6 +80,7 @@ function buildLroHelperDetail(model: RLCModel): LroDetail {
     clientOverload: responses.size > 0 && mapDetail.length > 0,
     importedResponses: Array.from(responses),
     overloadMap: mapDetail,
-    isEsm: model.options?.moduleKind === "esm"
+    isEsm: model.options?.moduleKind === "esm",
+    useLegacyV2Lro: Boolean(model.options?.useLegacyV2Lro)
   };
 }
