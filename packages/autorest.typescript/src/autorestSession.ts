@@ -44,6 +44,7 @@ export interface AutorestOptions {
   lenientModelDeduplication?: boolean;
   useLegacyLro?: boolean;
   flavor?: PackageFlavor;
+  useLegacyV2Lro?: boolean;
 }
 
 let host: AutorestExtensionHost;

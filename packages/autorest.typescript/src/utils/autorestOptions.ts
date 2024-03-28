@@ -44,6 +44,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const azureSdkForJs = await getAzureSdkForJs(host);
   const dependencyInfo = await getDependencyInfo(host);
   const flavor = await getFlavor(host);
+  const useLegacyV2Lro = await getUseLegacyV2Lro(host);
 
   return {
     azureArm,
@@ -78,12 +79,20 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     coreHttpCompatMode,
     dependencyInfo,
     useLegacyLro,
-    flavor
+    flavor,
+    useLegacyV2Lro
   };
 }
 
 async function getUseLegacyLro(host: AutorestExtensionHost): Promise<boolean> {
   const useLegacyLroOption = await host.getValue("use-legacy-lro");
+  return useLegacyLroOption === null ? false : Boolean(useLegacyLroOption);
+}
+
+async function getUseLegacyV2Lro(
+  host: AutorestExtensionHost
+): Promise<boolean> {
+  const useLegacyLroOption = await host.getValue("use-legacy-v2-lro");
   return useLegacyLroOption === null ? false : Boolean(useLegacyLroOption);
 }
 
