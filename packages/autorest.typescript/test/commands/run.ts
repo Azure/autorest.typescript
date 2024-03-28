@@ -36,6 +36,7 @@ export async function runAutorest(
     generateSample,
     lenientModelDeduplication,
     flavor,
+    useLegacyV2Lro
   } = options;
   let autorestCommand = `autorest${
     /^win/.test(process.platform) ? ".cmd" : ""
@@ -54,7 +55,7 @@ export async function runAutorest(
     Array.isArray(securityScopes) &&
     securityScopes.length > 0
   ) {
-    securityScopes.forEach(item => {
+    securityScopes.forEach((item) => {
       commandArguments.push(`--security-scopes=${item}`);
     });
   } else if (securityScopes !== undefined) {
@@ -143,10 +144,16 @@ export async function runAutorest(
     commandArguments.push(`--generate-sample=${generateSample}`);
   }
 
-  if(flavor === undefined) {
+  if (flavor === undefined) {
     commandArguments.push(`--flavor=azure`);
   } else {
     commandArguments.push(`--flavor=${flavor}`);
+  }
+
+  if (useLegacyV2Lro === undefined) {
+    commandArguments.push(`--use-legacy-v2-lro=true`);
+  } else {
+    commandArguments.push(`--use-legacy-v2-lro=${useLegacyV2Lro}`);
   }
 
   commandArguments.push(

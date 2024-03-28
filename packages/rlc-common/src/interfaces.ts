@@ -172,7 +172,7 @@ export type PathParameter = {
 
 export interface OperationHelperDetail {
   lroDetails?: OperationLroDetail;
-  isPageable?: boolean;
+  isPaging?: boolean;
 }
 
 export const OPERATION_LRO_HIGH_PRIORITY = 0,
@@ -237,6 +237,8 @@ export interface RLCOptions {
   flavor?: PackageFlavor;
   enableModelNamespace?: boolean;
   hierarchyClient?: boolean;
+  // flag to enable the legacy V2 LRO in the generated code, by default it is false
+  useLegacyV2Lro?: boolean;
 }
 
 export interface ServiceInfo {

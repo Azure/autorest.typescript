@@ -85,7 +85,7 @@ export function transformSampleGroups(model: RLCModel, allowMockValue = true) {
         methodParamNames: "",
         method,
         isLRO: detail.operationHelperDetail?.lroDetails?.isLongRunning ?? false,
-        isPaging: detail.operationHelperDetail?.isPageable ?? false,
+        isPaging: detail.operationHelperDetail?.isPaging ?? false,
         useLegacyLro: false
       };
       // client-level, path-level and method-level parameter preparation
@@ -126,7 +126,7 @@ function enrichLROAndPagingInSample(
 ) {
   const isLRO =
       operation.operationHelperDetail?.lroDetails?.isLongRunning ?? false,
-    isPaging = operation.operationHelperDetail?.isPageable ?? false;
+    isPaging = operation.operationHelperDetail?.isPaging ?? false;
   if (isPaging) {
     if (isLRO) {
       // TODO: report warning this is not supported

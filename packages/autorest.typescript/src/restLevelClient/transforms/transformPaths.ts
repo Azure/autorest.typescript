@@ -94,7 +94,7 @@ export function transformPaths(model: CodeModel): Paths {
               lroDetails: {
                 isLongRunning: isLongRunningOperation(operation)
               },
-              isPageable: isPagingOperation(operation)
+              isPaging: isPagingOperation(operation)
             }
           };
 
