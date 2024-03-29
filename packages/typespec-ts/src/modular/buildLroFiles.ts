@@ -275,13 +275,10 @@ export function buildGetPollerHelper(
   }
   const checkResponseStatus = needUnexpectedHelper
     ? `if (isUnexpected(response as PathUncheckedResponse)) {
-        createRestError(
-          \`Status code of the response is not a number. Value: \${response.status}\`,
-          response
-        );
+        throw createRestError(response);
       }`
     : `if (Number.isNaN(response.status)) {
-        createRestError(
+        throw createRestError(
           \`Status code of the response is not a number. Value: \${response.status}\`,
           response
         );

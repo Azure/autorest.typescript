@@ -80,8 +80,7 @@ describe("LROStandardClient Classical Client", () => {
       assert.strictEqual(poller.operationState?.status, "cancelled");
     });
 
-    // Skip this case: https://github.com/Azure/azure-sdk-for-js/issues/28694
-    it.skip("submitted should catch the initial error", async () => {
+    it("submitted should catch the initial error", async () => {
       try {
         const poller = client.createOrReplace("madge", {
           role: "foo"
@@ -92,7 +91,7 @@ describe("LROStandardClient Classical Client", () => {
       } catch (err: any) {
         assert.strictEqual(
           err.message,
-          "The long-running operation has failed"
+          "Body provided doesn't match expected body"
         );
       }
     });
