@@ -5,10 +5,10 @@ import { Client, HttpResponse } from "@azure-rest/core-client";
 import {
   CreateHttpPollerOptions,
   LongRunningOperation,
-  LroResponse,
+  OperationResponse,
   OperationState,
   SimplePollerLike,
-  createHttpPoller,
+  createInitializedHttpPoller,
 } from "@azure/core-lro";
 import {
   CreateOrUpdate200Response,
@@ -119,8 +119,6 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
   options: CreateHttpPollerOptions<TResult, OperationState<TResult>> = {},
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>> {
   const poller: LongRunningOperation<TResult> = {
-    requestMethod: initialResponse.request.method,
-    requestPath: initialResponse.request.url,
     sendInitialRequest: async () => {
       // In the case of Rest Clients we are building the LRO poller object from a response that's the reason
       // we are not triggering the initial request here, just extracting the information from the
@@ -143,7 +141,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
   };
 
   options.resolveOnUnsuccessful = options.resolveOnUnsuccessful ?? true;
-  return createHttpPoller(poller, options);
+  return createInitializedHttpPoller(poller, "SimplePoller", options);
 }
 
 /**
@@ -153,7 +151,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
  */
 function getLroResponse<TResult extends HttpResponse>(
   response: TResult,
-): LroResponse<TResult> {
+): OperationResponse<TResult> {
   if (Number.isNaN(response.status)) {
     throw new TypeError(
       `Status code of the response is not a number. Value: ${response.status}`,
