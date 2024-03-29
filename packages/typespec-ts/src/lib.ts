@@ -224,6 +224,12 @@ const libDef = {
       messages: {
         default: paramMessage`Please note the header ${"type"} is not serializable.`
       }
+    },
+    "disable-legacy-v2-lro": {
+      severity: "warning",
+      messages: {
+        default: `The option useLegacyV2Lro is disabled for modular libraries.`
+      }
     }
   },
   emitter: {
