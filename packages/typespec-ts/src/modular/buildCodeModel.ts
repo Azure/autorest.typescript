@@ -108,6 +108,7 @@ import { buildRuntimeImports } from "@azure-tools/rlc-common";
 import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
 import { getType as getTypeName } from "./helpers/typeHelpers.js";
+import { isReservedName } from "./helpers/namingHelpers.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -423,7 +424,11 @@ function emitParamBase(
 
   if (parameter.kind === "ModelProperty") {
     optional = parameter.optional;
-    name = normalizeName(getLibraryName(context, parameter), NameType.Parameter, true);
+    name = normalizeName(
+      getLibraryName(context, parameter),
+      NameType.Parameter,
+      true
+    );
     restApiName = getWireName(context, parameter);
     description = getDocStr(program, parameter);
     addedOn = getAddedOnVersion(program, parameter);
@@ -896,13 +901,9 @@ function emitBasicOperation(
     }
   }
 
-  const name = normalizeName(
-    applyCasing(getLibraryName(context, operation), {
-      casing: CASING
-    }),
-    NameType.Operation,
-    true
-  );
+  const name = applyCasing(getLibraryName(context, operation), {
+    casing: CASING
+  });
 
   /** handle name collision between operation name and parameter signature */
   if (bodyParameter) {
@@ -919,7 +920,8 @@ function emitBasicOperation(
       param.clientName = param.clientName + "Parameter";
     });
   return {
-    name: normalizeName(name, NameType.Operation, true),
+    oriName: name,
+    name: isReservedName(name, NameType.Operation) ? `\$${name}` : name,
     description: getDocStr(context.program, operation),
     summary: getSummary(context.program, operation) ?? "",
     url: httpOperation.path,
@@ -1563,7 +1565,7 @@ function emitType(
 
   switch (type.kind) {
     case "Intrinsic":
-      return { type: normalizeName(type.name, NameType.Interface, true) };
+      return { type: type.name };
     case "Model":
       return emitModel(context, type, usage);
     case "Scalar":

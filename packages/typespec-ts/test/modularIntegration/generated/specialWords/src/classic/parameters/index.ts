@@ -39,231 +39,173 @@ import {
   parametersWithCancellationToken,
 } from "../../api/parameters/index.js";
 import {
-  ParametersWithAndOptions,
-  ParametersWithAsOptions,
-  ParametersWithAssertOptions,
-  ParametersWithAsyncOptions,
-  ParametersWithAwaitOptions,
-  ParametersWithBreakOptions,
-  ParametersWithClassOptions,
-  ParametersWithConstructorOptions,
-  ParametersWithContinueOptions,
-  ParametersWithDefOptions,
-  ParametersWithDelOptions,
-  ParametersWithElifOptions,
-  ParametersWithElseOptions,
-  ParametersWithExceptOptions,
-  ParametersWithExecOptions,
-  ParametersWithFinallyOptions,
-  ParametersWithForOptions,
-  ParametersWithFromOptions,
-  ParametersWithGlobalOptions,
-  ParametersWithIfOptions,
-  ParametersWithImportOptions,
-  ParametersWithInOptions,
-  ParametersWithIsOptions,
-  ParametersWithLambdaOptions,
-  ParametersWithNotOptions,
-  ParametersWithOrOptions,
-  ParametersWithPassOptions,
-  ParametersWithRaiseOptions,
-  ParametersWithReturnOptions,
-  ParametersWithTryOptions,
-  ParametersWithWhileOptions,
-  ParametersWithWithOptions,
-  ParametersWithYieldOptions,
-  ParametersWithCancellationTokenOptions,
+  WithAndOptions,
+  WithAsOptions,
+  WithAssertOptions,
+  WithAsyncOptions,
+  WithAwaitOptions,
+  WithBreakOptions,
+  WithClassOptions,
+  WithConstructorOptions,
+  WithContinueOptions,
+  WithDefOptions,
+  WithDelOptions,
+  WithElifOptions,
+  WithElseOptions,
+  WithExceptOptions,
+  WithExecOptions,
+  WithFinallyOptions,
+  WithForOptions,
+  WithFromOptions,
+  WithGlobalOptions,
+  WithIfOptions,
+  WithImportOptions,
+  WithInOptions,
+  WithIsOptions,
+  WithLambdaOptions,
+  WithNotOptions,
+  WithOrOptions,
+  WithPassOptions,
+  WithRaiseOptions,
+  WithReturnOptions,
+  WithTryOptions,
+  WithWhileOptions,
+  WithWithOptions,
+  WithYieldOptions,
+  WithCancellationTokenOptions,
 } from "../../models/options.js";
 
 export interface ParametersOperations {
-  withAnd: (and: string, options?: ParametersWithAndOptions) => Promise<void>;
-  withAs: (asParam: string, options?: ParametersWithAsOptions) => Promise<void>;
+  withAnd: (and: string, options?: WithAndOptions) => Promise<void>;
+  withAs: (asParam: string, options?: WithAsOptions) => Promise<void>;
   withAssert: (
     assertParam: string,
-    options?: ParametersWithAssertOptions,
+    options?: WithAssertOptions,
   ) => Promise<void>;
-  withAsync: (
-    asyncParam: string,
-    options?: ParametersWithAsyncOptions,
-  ) => Promise<void>;
-  withAwait: (
-    awaitParam: string,
-    options?: ParametersWithAwaitOptions,
-  ) => Promise<void>;
-  withBreak: (
-    breakParam: string,
-    options?: ParametersWithBreakOptions,
-  ) => Promise<void>;
-  withClass: (
-    classParam: string,
-    options?: ParametersWithClassOptions,
-  ) => Promise<void>;
+  withAsync: (asyncParam: string, options?: WithAsyncOptions) => Promise<void>;
+  withAwait: (awaitParam: string, options?: WithAwaitOptions) => Promise<void>;
+  withBreak: (breakParam: string, options?: WithBreakOptions) => Promise<void>;
+  withClass: (classParam: string, options?: WithClassOptions) => Promise<void>;
   withConstructor: (
     constructorParam: string,
-    options?: ParametersWithConstructorOptions,
+    options?: WithConstructorOptions,
   ) => Promise<void>;
   withContinue: (
     continueParam: string,
-    options?: ParametersWithContinueOptions,
+    options?: WithContinueOptions,
   ) => Promise<void>;
-  withDef: (def: string, options?: ParametersWithDefOptions) => Promise<void>;
-  withDel: (del: string, options?: ParametersWithDelOptions) => Promise<void>;
-  withElif: (
-    elif: string,
-    options?: ParametersWithElifOptions,
-  ) => Promise<void>;
-  withElse: (
-    elseParam: string,
-    options?: ParametersWithElseOptions,
-  ) => Promise<void>;
-  withExcept: (
-    except: string,
-    options?: ParametersWithExceptOptions,
-  ) => Promise<void>;
-  withExec: (
-    exec: string,
-    options?: ParametersWithExecOptions,
-  ) => Promise<void>;
+  withDef: (def: string, options?: WithDefOptions) => Promise<void>;
+  withDel: (del: string, options?: WithDelOptions) => Promise<void>;
+  withElif: (elif: string, options?: WithElifOptions) => Promise<void>;
+  withElse: (elseParam: string, options?: WithElseOptions) => Promise<void>;
+  withExcept: (except: string, options?: WithExceptOptions) => Promise<void>;
+  withExec: (exec: string, options?: WithExecOptions) => Promise<void>;
   withFinally: (
     finallyParam: string,
-    options?: ParametersWithFinallyOptions,
+    options?: WithFinallyOptions,
   ) => Promise<void>;
-  withFor: (
-    forParam: string,
-    options?: ParametersWithForOptions,
-  ) => Promise<void>;
-  withFrom: (
-    fromParam: string,
-    options?: ParametersWithFromOptions,
-  ) => Promise<void>;
-  withGlobal: (
-    global: string,
-    options?: ParametersWithGlobalOptions,
-  ) => Promise<void>;
-  withIf: (ifParam: string, options?: ParametersWithIfOptions) => Promise<void>;
+  withFor: (forParam: string, options?: WithForOptions) => Promise<void>;
+  withFrom: (fromParam: string, options?: WithFromOptions) => Promise<void>;
+  withGlobal: (global: string, options?: WithGlobalOptions) => Promise<void>;
+  withIf: (ifParam: string, options?: WithIfOptions) => Promise<void>;
   withImport: (
     importParam: string,
-    options?: ParametersWithImportOptions,
+    options?: WithImportOptions,
   ) => Promise<void>;
-  withIn: (inParam: string, options?: ParametersWithInOptions) => Promise<void>;
-  withIs: (is: string, options?: ParametersWithIsOptions) => Promise<void>;
-  withLambda: (
-    lambda: string,
-    options?: ParametersWithLambdaOptions,
-  ) => Promise<void>;
-  withNot: (not: string, options?: ParametersWithNotOptions) => Promise<void>;
-  withOr: (or: string, options?: ParametersWithOrOptions) => Promise<void>;
-  withPass: (
-    pass: string,
-    options?: ParametersWithPassOptions,
-  ) => Promise<void>;
-  withRaise: (
-    raise: string,
-    options?: ParametersWithRaiseOptions,
-  ) => Promise<void>;
+  withIn: (inParam: string, options?: WithInOptions) => Promise<void>;
+  withIs: (is: string, options?: WithIsOptions) => Promise<void>;
+  withLambda: (lambda: string, options?: WithLambdaOptions) => Promise<void>;
+  withNot: (not: string, options?: WithNotOptions) => Promise<void>;
+  withOr: (or: string, options?: WithOrOptions) => Promise<void>;
+  withPass: (pass: string, options?: WithPassOptions) => Promise<void>;
+  withRaise: (raise: string, options?: WithRaiseOptions) => Promise<void>;
   withReturn: (
     returnParam: string,
-    options?: ParametersWithReturnOptions,
+    options?: WithReturnOptions,
   ) => Promise<void>;
-  withTry: (
-    tryParam: string,
-    options?: ParametersWithTryOptions,
-  ) => Promise<void>;
-  withWhile: (
-    whileParam: string,
-    options?: ParametersWithWhileOptions,
-  ) => Promise<void>;
-  withWith: (
-    withParam: string,
-    options?: ParametersWithWithOptions,
-  ) => Promise<void>;
-  withYield: (
-    yieldParam: string,
-    options?: ParametersWithYieldOptions,
-  ) => Promise<void>;
+  withTry: (tryParam: string, options?: WithTryOptions) => Promise<void>;
+  withWhile: (whileParam: string, options?: WithWhileOptions) => Promise<void>;
+  withWith: (withParam: string, options?: WithWithOptions) => Promise<void>;
+  withYield: (yieldParam: string, options?: WithYieldOptions) => Promise<void>;
   withCancellationToken: (
     cancellationToken: string,
-    options?: ParametersWithCancellationTokenOptions,
+    options?: WithCancellationTokenOptions,
   ) => Promise<void>;
 }
 
 export function getParameters(context: SpecialWordsContext) {
   return {
-    withAnd: (and: string, options?: ParametersWithAndOptions) =>
+    withAnd: (and: string, options?: WithAndOptions) =>
       parametersWithAnd(context, and, options),
-    withAs: (asParam: string, options?: ParametersWithAsOptions) =>
+    withAs: (asParam: string, options?: WithAsOptions) =>
       parametersWithAs(context, asParam, options),
-    withAssert: (assertParam: string, options?: ParametersWithAssertOptions) =>
+    withAssert: (assertParam: string, options?: WithAssertOptions) =>
       parametersWithAssert(context, assertParam, options),
-    withAsync: (asyncParam: string, options?: ParametersWithAsyncOptions) =>
+    withAsync: (asyncParam: string, options?: WithAsyncOptions) =>
       parametersWithAsync(context, asyncParam, options),
-    withAwait: (awaitParam: string, options?: ParametersWithAwaitOptions) =>
+    withAwait: (awaitParam: string, options?: WithAwaitOptions) =>
       parametersWithAwait(context, awaitParam, options),
-    withBreak: (breakParam: string, options?: ParametersWithBreakOptions) =>
+    withBreak: (breakParam: string, options?: WithBreakOptions) =>
       parametersWithBreak(context, breakParam, options),
-    withClass: (classParam: string, options?: ParametersWithClassOptions) =>
+    withClass: (classParam: string, options?: WithClassOptions) =>
       parametersWithClass(context, classParam, options),
     withConstructor: (
       constructorParam: string,
-      options?: ParametersWithConstructorOptions,
+      options?: WithConstructorOptions,
     ) => parametersWithConstructor(context, constructorParam, options),
-    withContinue: (
-      continueParam: string,
-      options?: ParametersWithContinueOptions,
-    ) => parametersWithContinue(context, continueParam, options),
-    withDef: (def: string, options?: ParametersWithDefOptions) =>
+    withContinue: (continueParam: string, options?: WithContinueOptions) =>
+      parametersWithContinue(context, continueParam, options),
+    withDef: (def: string, options?: WithDefOptions) =>
       parametersWithDef(context, def, options),
-    withDel: (del: string, options?: ParametersWithDelOptions) =>
+    withDel: (del: string, options?: WithDelOptions) =>
       parametersWithDel(context, del, options),
-    withElif: (elif: string, options?: ParametersWithElifOptions) =>
+    withElif: (elif: string, options?: WithElifOptions) =>
       parametersWithElif(context, elif, options),
-    withElse: (elseParam: string, options?: ParametersWithElseOptions) =>
+    withElse: (elseParam: string, options?: WithElseOptions) =>
       parametersWithElse(context, elseParam, options),
-    withExcept: (except: string, options?: ParametersWithExceptOptions) =>
+    withExcept: (except: string, options?: WithExceptOptions) =>
       parametersWithExcept(context, except, options),
-    withExec: (exec: string, options?: ParametersWithExecOptions) =>
+    withExec: (exec: string, options?: WithExecOptions) =>
       parametersWithExec(context, exec, options),
-    withFinally: (
-      finallyParam: string,
-      options?: ParametersWithFinallyOptions,
-    ) => parametersWithFinally(context, finallyParam, options),
-    withFor: (forParam: string, options?: ParametersWithForOptions) =>
+    withFinally: (finallyParam: string, options?: WithFinallyOptions) =>
+      parametersWithFinally(context, finallyParam, options),
+    withFor: (forParam: string, options?: WithForOptions) =>
       parametersWithFor(context, forParam, options),
-    withFrom: (fromParam: string, options?: ParametersWithFromOptions) =>
+    withFrom: (fromParam: string, options?: WithFromOptions) =>
       parametersWithFrom(context, fromParam, options),
-    withGlobal: (global: string, options?: ParametersWithGlobalOptions) =>
+    withGlobal: (global: string, options?: WithGlobalOptions) =>
       parametersWithGlobal(context, global, options),
-    withIf: (ifParam: string, options?: ParametersWithIfOptions) =>
+    withIf: (ifParam: string, options?: WithIfOptions) =>
       parametersWithIf(context, ifParam, options),
-    withImport: (importParam: string, options?: ParametersWithImportOptions) =>
+    withImport: (importParam: string, options?: WithImportOptions) =>
       parametersWithImport(context, importParam, options),
-    withIn: (inParam: string, options?: ParametersWithInOptions) =>
+    withIn: (inParam: string, options?: WithInOptions) =>
       parametersWithIn(context, inParam, options),
-    withIs: (is: string, options?: ParametersWithIsOptions) =>
+    withIs: (is: string, options?: WithIsOptions) =>
       parametersWithIs(context, is, options),
-    withLambda: (lambda: string, options?: ParametersWithLambdaOptions) =>
+    withLambda: (lambda: string, options?: WithLambdaOptions) =>
       parametersWithLambda(context, lambda, options),
-    withNot: (not: string, options?: ParametersWithNotOptions) =>
+    withNot: (not: string, options?: WithNotOptions) =>
       parametersWithNot(context, not, options),
-    withOr: (or: string, options?: ParametersWithOrOptions) =>
+    withOr: (or: string, options?: WithOrOptions) =>
       parametersWithOr(context, or, options),
-    withPass: (pass: string, options?: ParametersWithPassOptions) =>
+    withPass: (pass: string, options?: WithPassOptions) =>
       parametersWithPass(context, pass, options),
-    withRaise: (raise: string, options?: ParametersWithRaiseOptions) =>
+    withRaise: (raise: string, options?: WithRaiseOptions) =>
       parametersWithRaise(context, raise, options),
-    withReturn: (returnParam: string, options?: ParametersWithReturnOptions) =>
+    withReturn: (returnParam: string, options?: WithReturnOptions) =>
       parametersWithReturn(context, returnParam, options),
-    withTry: (tryParam: string, options?: ParametersWithTryOptions) =>
+    withTry: (tryParam: string, options?: WithTryOptions) =>
       parametersWithTry(context, tryParam, options),
-    withWhile: (whileParam: string, options?: ParametersWithWhileOptions) =>
+    withWhile: (whileParam: string, options?: WithWhileOptions) =>
       parametersWithWhile(context, whileParam, options),
-    withWith: (withParam: string, options?: ParametersWithWithOptions) =>
+    withWith: (withParam: string, options?: WithWithOptions) =>
       parametersWithWith(context, withParam, options),
-    withYield: (yieldParam: string, options?: ParametersWithYieldOptions) =>
+    withYield: (yieldParam: string, options?: WithYieldOptions) =>
       parametersWithYield(context, yieldParam, options),
     withCancellationToken: (
       cancellationToken: string,
-      options?: ParametersWithCancellationTokenOptions,
+      options?: WithCancellationTokenOptions,
     ) => parametersWithCancellationToken(context, cancellationToken, options),
   };
 }

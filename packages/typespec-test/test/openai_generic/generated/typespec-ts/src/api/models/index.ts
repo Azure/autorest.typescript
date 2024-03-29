@@ -8,8 +8,8 @@ import {
 } from "../../models/models.js";
 import {
   isUnexpected,
-  ModelsDeleteOperation200Response,
-  ModelsDeleteOperationDefaultResponse,
+  ModelsDelete200Response,
+  ModelsDeleteDefaultResponse,
   ModelsList200Response,
   ModelsListDefaultResponse,
   ModelsRetrieve200Response,
@@ -24,7 +24,7 @@ import {
 import {
   ModelsListOptions,
   ModelsRetrieveOptions,
-  ModelsDeleteOperationOptions,
+  ModelsDeleteOptions,
 } from "../../models/options.js";
 
 export function _listSend(
@@ -96,22 +96,18 @@ export async function retrieve(
   return _retrieveDeserialize(result);
 }
 
-export function _deleteOperationSend(
+export function _$deleteSend(
   context: Client,
   model: string,
-  options: ModelsDeleteOperationOptions = { requestOptions: {} },
-): StreamableMethod<
-  ModelsDeleteOperation200Response | ModelsDeleteOperationDefaultResponse
-> {
+  options: ModelsDeleteOptions = { requestOptions: {} },
+): StreamableMethod<ModelsDelete200Response | ModelsDeleteDefaultResponse> {
   return context
     .path("/models/{model}", model)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _deleteOperationDeserialize(
-  result:
-    | ModelsDeleteOperation200Response
-    | ModelsDeleteOperationDefaultResponse,
+export async function _$deleteDeserialize(
+  result: ModelsDelete200Response | ModelsDeleteDefaultResponse,
 ): Promise<DeleteModelResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -124,11 +120,11 @@ export async function _deleteOperationDeserialize(
   };
 }
 
-export async function deleteOperation(
+export async function $delete(
   context: Client,
   model: string,
-  options: ModelsDeleteOperationOptions = { requestOptions: {} },
+  options: ModelsDeleteOptions = { requestOptions: {} },
 ): Promise<DeleteModelResponse> {
-  const result = await _deleteOperationSend(context, model, options);
-  return _deleteOperationDeserialize(result);
+  const result = await _$deleteSend(context, model, options);
+  return _$deleteDeserialize(result);
 }

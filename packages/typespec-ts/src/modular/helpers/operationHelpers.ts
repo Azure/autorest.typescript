@@ -339,7 +339,7 @@ export function getOperationOptionsName(
     includeGroupName && operation.name.indexOf("_") === -1
       ? getClassicalLayerPrefix(operation, NameType.Interface)
       : "";
-  const optionName = `${prefix}${toPascalCase(operation.name)}Options`;
+  const optionName = `${prefix}${toPascalCase(operation.oriName ?? operation.name)}Options`;
   if (
     operation.bodyParameter?.type.name === optionName ||
     optionName === "ClientOptions"
@@ -1160,6 +1160,9 @@ export function serializeRequestValue(
         return `${clientValue} as any`;
       }
     default:
+      if (clientValue === "constructorParam") {
+        return `${clientValue} as any`;
+      }
       return clientValue;
   }
 }

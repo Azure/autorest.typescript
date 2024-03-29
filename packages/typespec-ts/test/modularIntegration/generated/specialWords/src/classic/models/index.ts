@@ -73,173 +73,150 @@ import {
   modelsWithYield,
 } from "../../api/models/index.js";
 import {
-  ModelsWithAndOptions,
-  ModelsWithAsOptions,
-  ModelsWithAssertOptions,
-  ModelsWithAsyncOptions,
-  ModelsWithAwaitOptions,
-  ModelsWithBreakOptions,
-  ModelsWithClassOptions,
-  ModelsWithConstructorOptions,
-  ModelsWithContinueOptions,
-  ModelsWithDefOptions,
-  ModelsWithDelOptions,
-  ModelsWithElifOptions,
-  ModelsWithElseOptions,
-  ModelsWithExceptOptions,
-  ModelsWithExecOptions,
-  ModelsWithFinallyOptions,
-  ModelsWithForOptions,
-  ModelsWithFromOptions,
-  ModelsWithGlobalOptions,
-  ModelsWithIfOptions,
-  ModelsWithImportOptions,
-  ModelsWithInOptions,
-  ModelsWithIsOptions,
-  ModelsWithLambdaOptions,
-  ModelsWithNotOptions,
-  ModelsWithOrOptions,
-  ModelsWithPassOptions,
-  ModelsWithRaiseOptions,
-  ModelsWithReturnOptions,
-  ModelsWithTryOptions,
-  ModelsWithWhileOptions,
-  ModelsWithWithOptions,
-  ModelsWithYieldOptions,
+  WithAndOptions,
+  WithAsOptions,
+  WithAssertOptions,
+  WithAsyncOptions,
+  WithAwaitOptions,
+  WithBreakOptions,
+  WithClassOptions,
+  WithConstructorOptions,
+  WithContinueOptions,
+  WithDefOptions,
+  WithDelOptions,
+  WithElifOptions,
+  WithElseOptions,
+  WithExceptOptions,
+  WithExecOptions,
+  WithFinallyOptions,
+  WithForOptions,
+  WithFromOptions,
+  WithGlobalOptions,
+  WithIfOptions,
+  WithImportOptions,
+  WithInOptions,
+  WithIsOptions,
+  WithLambdaOptions,
+  WithNotOptions,
+  WithOrOptions,
+  WithPassOptions,
+  WithRaiseOptions,
+  WithReturnOptions,
+  WithTryOptions,
+  WithWhileOptions,
+  WithWithOptions,
+  WithYieldOptions,
 } from "../../models/options.js";
 
 export interface ModelsOperations {
-  withAnd: (body: And, options?: ModelsWithAndOptions) => Promise<void>;
-  withAs: (body: As, options?: ModelsWithAsOptions) => Promise<void>;
-  withAssert: (
-    body: Assert,
-    options?: ModelsWithAssertOptions,
-  ) => Promise<void>;
-  withAsync: (body: Async, options?: ModelsWithAsyncOptions) => Promise<void>;
-  withAwait: (body: Await, options?: ModelsWithAwaitOptions) => Promise<void>;
-  withBreak: (body: Break, options?: ModelsWithBreakOptions) => Promise<void>;
-  withClass: (body: Class, options?: ModelsWithClassOptions) => Promise<void>;
+  withAnd: (body: And, options?: WithAndOptions) => Promise<void>;
+  withAs: (body: As, options?: WithAsOptions) => Promise<void>;
+  withAssert: (body: Assert, options?: WithAssertOptions) => Promise<void>;
+  withAsync: (body: Async, options?: WithAsyncOptions) => Promise<void>;
+  withAwait: (body: Await, options?: WithAwaitOptions) => Promise<void>;
+  withBreak: (body: Break, options?: WithBreakOptions) => Promise<void>;
+  withClass: (body: Class, options?: WithClassOptions) => Promise<void>;
   withConstructor: (
     body: Constructor,
-    options?: ModelsWithConstructorOptions,
+    options?: WithConstructorOptions,
   ) => Promise<void>;
   withContinue: (
     body: Continue,
-    options?: ModelsWithContinueOptions,
+    options?: WithContinueOptions,
   ) => Promise<void>;
-  withDef: (body: Def, options?: ModelsWithDefOptions) => Promise<void>;
-  withDel: (body: Del, options?: ModelsWithDelOptions) => Promise<void>;
-  withElif: (body: Elif, options?: ModelsWithElifOptions) => Promise<void>;
-  withElse: (body: Else, options?: ModelsWithElseOptions) => Promise<void>;
-  withExcept: (
-    body: Except,
-    options?: ModelsWithExceptOptions,
-  ) => Promise<void>;
-  withExec: (body: Exec, options?: ModelsWithExecOptions) => Promise<void>;
-  withFinally: (
-    body: Finally,
-    options?: ModelsWithFinallyOptions,
-  ) => Promise<void>;
-  withFor: (body: For, options?: ModelsWithForOptions) => Promise<void>;
-  withFrom: (body: From, options?: ModelsWithFromOptions) => Promise<void>;
-  withGlobal: (
-    body: Global,
-    options?: ModelsWithGlobalOptions,
-  ) => Promise<void>;
-  withIf: (body: If, options?: ModelsWithIfOptions) => Promise<void>;
-  withImport: (
-    body: Import,
-    options?: ModelsWithImportOptions,
-  ) => Promise<void>;
-  withIn: (body: In, options?: ModelsWithInOptions) => Promise<void>;
-  withIs: (body: Is, options?: ModelsWithIsOptions) => Promise<void>;
-  withLambda: (
-    body: Lambda,
-    options?: ModelsWithLambdaOptions,
-  ) => Promise<void>;
-  withNot: (body: Not, options?: ModelsWithNotOptions) => Promise<void>;
-  withOr: (body: Or, options?: ModelsWithOrOptions) => Promise<void>;
-  withPass: (body: Pass, options?: ModelsWithPassOptions) => Promise<void>;
-  withRaise: (body: Raise, options?: ModelsWithRaiseOptions) => Promise<void>;
-  withReturn: (
-    body: Return,
-    options?: ModelsWithReturnOptions,
-  ) => Promise<void>;
-  withTry: (body: Try, options?: ModelsWithTryOptions) => Promise<void>;
-  withWhile: (body: While, options?: ModelsWithWhileOptions) => Promise<void>;
-  withWith: (body: With, options?: ModelsWithWithOptions) => Promise<void>;
-  withYield: (body: Yield, options?: ModelsWithYieldOptions) => Promise<void>;
+  withDef: (body: Def, options?: WithDefOptions) => Promise<void>;
+  withDel: (body: Del, options?: WithDelOptions) => Promise<void>;
+  withElif: (body: Elif, options?: WithElifOptions) => Promise<void>;
+  withElse: (body: Else, options?: WithElseOptions) => Promise<void>;
+  withExcept: (body: Except, options?: WithExceptOptions) => Promise<void>;
+  withExec: (body: Exec, options?: WithExecOptions) => Promise<void>;
+  withFinally: (body: Finally, options?: WithFinallyOptions) => Promise<void>;
+  withFor: (body: For, options?: WithForOptions) => Promise<void>;
+  withFrom: (body: From, options?: WithFromOptions) => Promise<void>;
+  withGlobal: (body: Global, options?: WithGlobalOptions) => Promise<void>;
+  withIf: (body: If, options?: WithIfOptions) => Promise<void>;
+  withImport: (body: Import, options?: WithImportOptions) => Promise<void>;
+  withIn: (body: In, options?: WithInOptions) => Promise<void>;
+  withIs: (body: Is, options?: WithIsOptions) => Promise<void>;
+  withLambda: (body: Lambda, options?: WithLambdaOptions) => Promise<void>;
+  withNot: (body: Not, options?: WithNotOptions) => Promise<void>;
+  withOr: (body: Or, options?: WithOrOptions) => Promise<void>;
+  withPass: (body: Pass, options?: WithPassOptions) => Promise<void>;
+  withRaise: (body: Raise, options?: WithRaiseOptions) => Promise<void>;
+  withReturn: (body: Return, options?: WithReturnOptions) => Promise<void>;
+  withTry: (body: Try, options?: WithTryOptions) => Promise<void>;
+  withWhile: (body: While, options?: WithWhileOptions) => Promise<void>;
+  withWith: (body: With, options?: WithWithOptions) => Promise<void>;
+  withYield: (body: Yield, options?: WithYieldOptions) => Promise<void>;
 }
 
 export function getModels(context: SpecialWordsContext) {
   return {
-    withAnd: (body: And, options?: ModelsWithAndOptions) =>
+    withAnd: (body: And, options?: WithAndOptions) =>
       modelsWithAnd(context, body, options),
-    withAs: (body: As, options?: ModelsWithAsOptions) =>
+    withAs: (body: As, options?: WithAsOptions) =>
       modelsWithAs(context, body, options),
-    withAssert: (body: Assert, options?: ModelsWithAssertOptions) =>
+    withAssert: (body: Assert, options?: WithAssertOptions) =>
       modelsWithAssert(context, body, options),
-    withAsync: (body: Async, options?: ModelsWithAsyncOptions) =>
+    withAsync: (body: Async, options?: WithAsyncOptions) =>
       modelsWithAsync(context, body, options),
-    withAwait: (body: Await, options?: ModelsWithAwaitOptions) =>
+    withAwait: (body: Await, options?: WithAwaitOptions) =>
       modelsWithAwait(context, body, options),
-    withBreak: (body: Break, options?: ModelsWithBreakOptions) =>
+    withBreak: (body: Break, options?: WithBreakOptions) =>
       modelsWithBreak(context, body, options),
-    withClass: (body: Class, options?: ModelsWithClassOptions) =>
+    withClass: (body: Class, options?: WithClassOptions) =>
       modelsWithClass(context, body, options),
-    withConstructor: (
-      body: Constructor,
-      options?: ModelsWithConstructorOptions,
-    ) => modelsWithConstructor(context, body, options),
-    withContinue: (body: Continue, options?: ModelsWithContinueOptions) =>
+    withConstructor: (body: Constructor, options?: WithConstructorOptions) =>
+      modelsWithConstructor(context, body, options),
+    withContinue: (body: Continue, options?: WithContinueOptions) =>
       modelsWithContinue(context, body, options),
-    withDef: (body: Def, options?: ModelsWithDefOptions) =>
+    withDef: (body: Def, options?: WithDefOptions) =>
       modelsWithDef(context, body, options),
-    withDel: (body: Del, options?: ModelsWithDelOptions) =>
+    withDel: (body: Del, options?: WithDelOptions) =>
       modelsWithDel(context, body, options),
-    withElif: (body: Elif, options?: ModelsWithElifOptions) =>
+    withElif: (body: Elif, options?: WithElifOptions) =>
       modelsWithElif(context, body, options),
-    withElse: (body: Else, options?: ModelsWithElseOptions) =>
+    withElse: (body: Else, options?: WithElseOptions) =>
       modelsWithElse(context, body, options),
-    withExcept: (body: Except, options?: ModelsWithExceptOptions) =>
+    withExcept: (body: Except, options?: WithExceptOptions) =>
       modelsWithExcept(context, body, options),
-    withExec: (body: Exec, options?: ModelsWithExecOptions) =>
+    withExec: (body: Exec, options?: WithExecOptions) =>
       modelsWithExec(context, body, options),
-    withFinally: (body: Finally, options?: ModelsWithFinallyOptions) =>
+    withFinally: (body: Finally, options?: WithFinallyOptions) =>
       modelsWithFinally(context, body, options),
-    withFor: (body: For, options?: ModelsWithForOptions) =>
+    withFor: (body: For, options?: WithForOptions) =>
       modelsWithFor(context, body, options),
-    withFrom: (body: From, options?: ModelsWithFromOptions) =>
+    withFrom: (body: From, options?: WithFromOptions) =>
       modelsWithFrom(context, body, options),
-    withGlobal: (body: Global, options?: ModelsWithGlobalOptions) =>
+    withGlobal: (body: Global, options?: WithGlobalOptions) =>
       modelsWithGlobal(context, body, options),
-    withIf: (body: If, options?: ModelsWithIfOptions) =>
+    withIf: (body: If, options?: WithIfOptions) =>
       modelsWithIf(context, body, options),
-    withImport: (body: Import, options?: ModelsWithImportOptions) =>
+    withImport: (body: Import, options?: WithImportOptions) =>
       modelsWithImport(context, body, options),
-    withIn: (body: In, options?: ModelsWithInOptions) =>
+    withIn: (body: In, options?: WithInOptions) =>
       modelsWithIn(context, body, options),
-    withIs: (body: Is, options?: ModelsWithIsOptions) =>
+    withIs: (body: Is, options?: WithIsOptions) =>
       modelsWithIs(context, body, options),
-    withLambda: (body: Lambda, options?: ModelsWithLambdaOptions) =>
+    withLambda: (body: Lambda, options?: WithLambdaOptions) =>
       modelsWithLambda(context, body, options),
-    withNot: (body: Not, options?: ModelsWithNotOptions) =>
+    withNot: (body: Not, options?: WithNotOptions) =>
       modelsWithNot(context, body, options),
-    withOr: (body: Or, options?: ModelsWithOrOptions) =>
+    withOr: (body: Or, options?: WithOrOptions) =>
       modelsWithOr(context, body, options),
-    withPass: (body: Pass, options?: ModelsWithPassOptions) =>
+    withPass: (body: Pass, options?: WithPassOptions) =>
       modelsWithPass(context, body, options),
-    withRaise: (body: Raise, options?: ModelsWithRaiseOptions) =>
+    withRaise: (body: Raise, options?: WithRaiseOptions) =>
       modelsWithRaise(context, body, options),
-    withReturn: (body: Return, options?: ModelsWithReturnOptions) =>
+    withReturn: (body: Return, options?: WithReturnOptions) =>
       modelsWithReturn(context, body, options),
-    withTry: (body: Try, options?: ModelsWithTryOptions) =>
+    withTry: (body: Try, options?: WithTryOptions) =>
       modelsWithTry(context, body, options),
-    withWhile: (body: While, options?: ModelsWithWhileOptions) =>
+    withWhile: (body: While, options?: WithWhileOptions) =>
       modelsWithWhile(context, body, options),
-    withWith: (body: With, options?: ModelsWithWithOptions) =>
+    withWith: (body: With, options?: WithWithOptions) =>
       modelsWithWith(context, body, options),
-    withYield: (body: Yield, options?: ModelsWithYieldOptions) =>
+    withYield: (body: Yield, options?: WithYieldOptions) =>
       modelsWithYield(context, body, options),
   };
 }

@@ -44,46 +44,46 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  ParametersWithAndOptions,
-  ParametersWithAsOptions,
-  ParametersWithAssertOptions,
-  ParametersWithAsyncOptions,
-  ParametersWithAwaitOptions,
-  ParametersWithBreakOptions,
-  ParametersWithClassOptions,
-  ParametersWithConstructorOptions,
-  ParametersWithContinueOptions,
-  ParametersWithDefOptions,
-  ParametersWithDelOptions,
-  ParametersWithElifOptions,
-  ParametersWithElseOptions,
-  ParametersWithExceptOptions,
-  ParametersWithExecOptions,
-  ParametersWithFinallyOptions,
-  ParametersWithForOptions,
-  ParametersWithFromOptions,
-  ParametersWithGlobalOptions,
-  ParametersWithIfOptions,
-  ParametersWithImportOptions,
-  ParametersWithInOptions,
-  ParametersWithIsOptions,
-  ParametersWithLambdaOptions,
-  ParametersWithNotOptions,
-  ParametersWithOrOptions,
-  ParametersWithPassOptions,
-  ParametersWithRaiseOptions,
-  ParametersWithReturnOptions,
-  ParametersWithTryOptions,
-  ParametersWithWhileOptions,
-  ParametersWithWithOptions,
-  ParametersWithYieldOptions,
-  ParametersWithCancellationTokenOptions,
+  WithAndOptions,
+  WithAsOptions,
+  WithAssertOptions,
+  WithAsyncOptions,
+  WithAwaitOptions,
+  WithBreakOptions,
+  WithClassOptions,
+  WithConstructorOptions,
+  WithContinueOptions,
+  WithDefOptions,
+  WithDelOptions,
+  WithElifOptions,
+  WithElseOptions,
+  WithExceptOptions,
+  WithExecOptions,
+  WithFinallyOptions,
+  WithForOptions,
+  WithFromOptions,
+  WithGlobalOptions,
+  WithIfOptions,
+  WithImportOptions,
+  WithInOptions,
+  WithIsOptions,
+  WithLambdaOptions,
+  WithNotOptions,
+  WithOrOptions,
+  WithPassOptions,
+  WithRaiseOptions,
+  WithReturnOptions,
+  WithTryOptions,
+  WithWhileOptions,
+  WithWithOptions,
+  WithYieldOptions,
+  WithCancellationTokenOptions,
 } from "../../models/options.js";
 
 export function _parametersWithAndSend(
   context: Client,
   and: string,
-  options: ParametersWithAndOptions = { requestOptions: {} },
+  options: WithAndOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithAnd204Response> {
   return context
     .path("/special-words/parameters/and")
@@ -106,7 +106,7 @@ export async function _parametersWithAndDeserialize(
 export async function parametersWithAnd(
   context: Client,
   and: string,
-  options: ParametersWithAndOptions = { requestOptions: {} },
+  options: WithAndOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithAndSend(context, and, options);
   return _parametersWithAndDeserialize(result);
@@ -115,7 +115,7 @@ export async function parametersWithAnd(
 export function _parametersWithAsSend(
   context: Client,
   asParam: string,
-  options: ParametersWithAsOptions = { requestOptions: {} },
+  options: WithAsOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithAs204Response> {
   return context
     .path("/special-words/parameters/as")
@@ -138,7 +138,7 @@ export async function _parametersWithAsDeserialize(
 export async function parametersWithAs(
   context: Client,
   asParam: string,
-  options: ParametersWithAsOptions = { requestOptions: {} },
+  options: WithAsOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithAsSend(context, asParam, options);
   return _parametersWithAsDeserialize(result);
@@ -147,7 +147,7 @@ export async function parametersWithAs(
 export function _parametersWithAssertSend(
   context: Client,
   assertParam: string,
-  options: ParametersWithAssertOptions = { requestOptions: {} },
+  options: WithAssertOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithAssert204Response> {
   return context
     .path("/special-words/parameters/assert")
@@ -170,7 +170,7 @@ export async function _parametersWithAssertDeserialize(
 export async function parametersWithAssert(
   context: Client,
   assertParam: string,
-  options: ParametersWithAssertOptions = { requestOptions: {} },
+  options: WithAssertOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithAssertSend(context, assertParam, options);
   return _parametersWithAssertDeserialize(result);
@@ -179,7 +179,7 @@ export async function parametersWithAssert(
 export function _parametersWithAsyncSend(
   context: Client,
   asyncParam: string,
-  options: ParametersWithAsyncOptions = { requestOptions: {} },
+  options: WithAsyncOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithAsync204Response> {
   return context
     .path("/special-words/parameters/async")
@@ -202,7 +202,7 @@ export async function _parametersWithAsyncDeserialize(
 export async function parametersWithAsync(
   context: Client,
   asyncParam: string,
-  options: ParametersWithAsyncOptions = { requestOptions: {} },
+  options: WithAsyncOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithAsyncSend(context, asyncParam, options);
   return _parametersWithAsyncDeserialize(result);
@@ -211,7 +211,7 @@ export async function parametersWithAsync(
 export function _parametersWithAwaitSend(
   context: Client,
   awaitParam: string,
-  options: ParametersWithAwaitOptions = { requestOptions: {} },
+  options: WithAwaitOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithAwait204Response> {
   return context
     .path("/special-words/parameters/await")
@@ -234,7 +234,7 @@ export async function _parametersWithAwaitDeserialize(
 export async function parametersWithAwait(
   context: Client,
   awaitParam: string,
-  options: ParametersWithAwaitOptions = { requestOptions: {} },
+  options: WithAwaitOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithAwaitSend(context, awaitParam, options);
   return _parametersWithAwaitDeserialize(result);
@@ -243,7 +243,7 @@ export async function parametersWithAwait(
 export function _parametersWithBreakSend(
   context: Client,
   breakParam: string,
-  options: ParametersWithBreakOptions = { requestOptions: {} },
+  options: WithBreakOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithBreak204Response> {
   return context
     .path("/special-words/parameters/break")
@@ -266,7 +266,7 @@ export async function _parametersWithBreakDeserialize(
 export async function parametersWithBreak(
   context: Client,
   breakParam: string,
-  options: ParametersWithBreakOptions = { requestOptions: {} },
+  options: WithBreakOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithBreakSend(context, breakParam, options);
   return _parametersWithBreakDeserialize(result);
@@ -275,7 +275,7 @@ export async function parametersWithBreak(
 export function _parametersWithClassSend(
   context: Client,
   classParam: string,
-  options: ParametersWithClassOptions = { requestOptions: {} },
+  options: WithClassOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithClass204Response> {
   return context
     .path("/special-words/parameters/class")
@@ -298,7 +298,7 @@ export async function _parametersWithClassDeserialize(
 export async function parametersWithClass(
   context: Client,
   classParam: string,
-  options: ParametersWithClassOptions = { requestOptions: {} },
+  options: WithClassOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithClassSend(context, classParam, options);
   return _parametersWithClassDeserialize(result);
@@ -307,13 +307,13 @@ export async function parametersWithClass(
 export function _parametersWithConstructorSend(
   context: Client,
   constructorParam: string,
-  options: ParametersWithConstructorOptions = { requestOptions: {} },
+  options: WithConstructorOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithConstructor204Response> {
   return context
     .path("/special-words/parameters/constructor")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { constructor: constructorParam },
+      queryParameters: { constructor: constructorParam as any },
     });
 }
 
@@ -330,7 +330,7 @@ export async function _parametersWithConstructorDeserialize(
 export async function parametersWithConstructor(
   context: Client,
   constructorParam: string,
-  options: ParametersWithConstructorOptions = { requestOptions: {} },
+  options: WithConstructorOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithConstructorSend(
     context,
@@ -343,7 +343,7 @@ export async function parametersWithConstructor(
 export function _parametersWithContinueSend(
   context: Client,
   continueParam: string,
-  options: ParametersWithContinueOptions = { requestOptions: {} },
+  options: WithContinueOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithContinue204Response> {
   return context
     .path("/special-words/parameters/continue")
@@ -366,7 +366,7 @@ export async function _parametersWithContinueDeserialize(
 export async function parametersWithContinue(
   context: Client,
   continueParam: string,
-  options: ParametersWithContinueOptions = { requestOptions: {} },
+  options: WithContinueOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithContinueSend(
     context,
@@ -379,7 +379,7 @@ export async function parametersWithContinue(
 export function _parametersWithDefSend(
   context: Client,
   def: string,
-  options: ParametersWithDefOptions = { requestOptions: {} },
+  options: WithDefOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithDef204Response> {
   return context
     .path("/special-words/parameters/def")
@@ -402,7 +402,7 @@ export async function _parametersWithDefDeserialize(
 export async function parametersWithDef(
   context: Client,
   def: string,
-  options: ParametersWithDefOptions = { requestOptions: {} },
+  options: WithDefOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithDefSend(context, def, options);
   return _parametersWithDefDeserialize(result);
@@ -411,7 +411,7 @@ export async function parametersWithDef(
 export function _parametersWithDelSend(
   context: Client,
   del: string,
-  options: ParametersWithDelOptions = { requestOptions: {} },
+  options: WithDelOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithDel204Response> {
   return context
     .path("/special-words/parameters/del")
@@ -434,7 +434,7 @@ export async function _parametersWithDelDeserialize(
 export async function parametersWithDel(
   context: Client,
   del: string,
-  options: ParametersWithDelOptions = { requestOptions: {} },
+  options: WithDelOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithDelSend(context, del, options);
   return _parametersWithDelDeserialize(result);
@@ -443,7 +443,7 @@ export async function parametersWithDel(
 export function _parametersWithElifSend(
   context: Client,
   elif: string,
-  options: ParametersWithElifOptions = { requestOptions: {} },
+  options: WithElifOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithElif204Response> {
   return context
     .path("/special-words/parameters/elif")
@@ -466,7 +466,7 @@ export async function _parametersWithElifDeserialize(
 export async function parametersWithElif(
   context: Client,
   elif: string,
-  options: ParametersWithElifOptions = { requestOptions: {} },
+  options: WithElifOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithElifSend(context, elif, options);
   return _parametersWithElifDeserialize(result);
@@ -475,7 +475,7 @@ export async function parametersWithElif(
 export function _parametersWithElseSend(
   context: Client,
   elseParam: string,
-  options: ParametersWithElseOptions = { requestOptions: {} },
+  options: WithElseOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithElse204Response> {
   return context
     .path("/special-words/parameters/else")
@@ -498,7 +498,7 @@ export async function _parametersWithElseDeserialize(
 export async function parametersWithElse(
   context: Client,
   elseParam: string,
-  options: ParametersWithElseOptions = { requestOptions: {} },
+  options: WithElseOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithElseSend(context, elseParam, options);
   return _parametersWithElseDeserialize(result);
@@ -507,7 +507,7 @@ export async function parametersWithElse(
 export function _parametersWithExceptSend(
   context: Client,
   except: string,
-  options: ParametersWithExceptOptions = { requestOptions: {} },
+  options: WithExceptOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithExcept204Response> {
   return context
     .path("/special-words/parameters/except")
@@ -530,7 +530,7 @@ export async function _parametersWithExceptDeserialize(
 export async function parametersWithExcept(
   context: Client,
   except: string,
-  options: ParametersWithExceptOptions = { requestOptions: {} },
+  options: WithExceptOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithExceptSend(context, except, options);
   return _parametersWithExceptDeserialize(result);
@@ -539,7 +539,7 @@ export async function parametersWithExcept(
 export function _parametersWithExecSend(
   context: Client,
   exec: string,
-  options: ParametersWithExecOptions = { requestOptions: {} },
+  options: WithExecOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithExec204Response> {
   return context
     .path("/special-words/parameters/exec")
@@ -562,7 +562,7 @@ export async function _parametersWithExecDeserialize(
 export async function parametersWithExec(
   context: Client,
   exec: string,
-  options: ParametersWithExecOptions = { requestOptions: {} },
+  options: WithExecOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithExecSend(context, exec, options);
   return _parametersWithExecDeserialize(result);
@@ -571,7 +571,7 @@ export async function parametersWithExec(
 export function _parametersWithFinallySend(
   context: Client,
   finallyParam: string,
-  options: ParametersWithFinallyOptions = { requestOptions: {} },
+  options: WithFinallyOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithFinally204Response> {
   return context
     .path("/special-words/parameters/finally")
@@ -594,7 +594,7 @@ export async function _parametersWithFinallyDeserialize(
 export async function parametersWithFinally(
   context: Client,
   finallyParam: string,
-  options: ParametersWithFinallyOptions = { requestOptions: {} },
+  options: WithFinallyOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithFinallySend(
     context,
@@ -607,7 +607,7 @@ export async function parametersWithFinally(
 export function _parametersWithForSend(
   context: Client,
   forParam: string,
-  options: ParametersWithForOptions = { requestOptions: {} },
+  options: WithForOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithFor204Response> {
   return context
     .path("/special-words/parameters/for")
@@ -630,7 +630,7 @@ export async function _parametersWithForDeserialize(
 export async function parametersWithFor(
   context: Client,
   forParam: string,
-  options: ParametersWithForOptions = { requestOptions: {} },
+  options: WithForOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithForSend(context, forParam, options);
   return _parametersWithForDeserialize(result);
@@ -639,7 +639,7 @@ export async function parametersWithFor(
 export function _parametersWithFromSend(
   context: Client,
   fromParam: string,
-  options: ParametersWithFromOptions = { requestOptions: {} },
+  options: WithFromOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithFrom204Response> {
   return context
     .path("/special-words/parameters/from")
@@ -662,7 +662,7 @@ export async function _parametersWithFromDeserialize(
 export async function parametersWithFrom(
   context: Client,
   fromParam: string,
-  options: ParametersWithFromOptions = { requestOptions: {} },
+  options: WithFromOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithFromSend(context, fromParam, options);
   return _parametersWithFromDeserialize(result);
@@ -671,7 +671,7 @@ export async function parametersWithFrom(
 export function _parametersWithGlobalSend(
   context: Client,
   global: string,
-  options: ParametersWithGlobalOptions = { requestOptions: {} },
+  options: WithGlobalOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithGlobal204Response> {
   return context
     .path("/special-words/parameters/global")
@@ -694,7 +694,7 @@ export async function _parametersWithGlobalDeserialize(
 export async function parametersWithGlobal(
   context: Client,
   global: string,
-  options: ParametersWithGlobalOptions = { requestOptions: {} },
+  options: WithGlobalOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithGlobalSend(context, global, options);
   return _parametersWithGlobalDeserialize(result);
@@ -703,7 +703,7 @@ export async function parametersWithGlobal(
 export function _parametersWithIfSend(
   context: Client,
   ifParam: string,
-  options: ParametersWithIfOptions = { requestOptions: {} },
+  options: WithIfOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithIf204Response> {
   return context
     .path("/special-words/parameters/if")
@@ -726,7 +726,7 @@ export async function _parametersWithIfDeserialize(
 export async function parametersWithIf(
   context: Client,
   ifParam: string,
-  options: ParametersWithIfOptions = { requestOptions: {} },
+  options: WithIfOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithIfSend(context, ifParam, options);
   return _parametersWithIfDeserialize(result);
@@ -735,7 +735,7 @@ export async function parametersWithIf(
 export function _parametersWithImportSend(
   context: Client,
   importParam: string,
-  options: ParametersWithImportOptions = { requestOptions: {} },
+  options: WithImportOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithImport204Response> {
   return context
     .path("/special-words/parameters/import")
@@ -758,7 +758,7 @@ export async function _parametersWithImportDeserialize(
 export async function parametersWithImport(
   context: Client,
   importParam: string,
-  options: ParametersWithImportOptions = { requestOptions: {} },
+  options: WithImportOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithImportSend(context, importParam, options);
   return _parametersWithImportDeserialize(result);
@@ -767,7 +767,7 @@ export async function parametersWithImport(
 export function _parametersWithInSend(
   context: Client,
   inParam: string,
-  options: ParametersWithInOptions = { requestOptions: {} },
+  options: WithInOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithIn204Response> {
   return context
     .path("/special-words/parameters/in")
@@ -790,7 +790,7 @@ export async function _parametersWithInDeserialize(
 export async function parametersWithIn(
   context: Client,
   inParam: string,
-  options: ParametersWithInOptions = { requestOptions: {} },
+  options: WithInOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithInSend(context, inParam, options);
   return _parametersWithInDeserialize(result);
@@ -799,7 +799,7 @@ export async function parametersWithIn(
 export function _parametersWithIsSend(
   context: Client,
   is: string,
-  options: ParametersWithIsOptions = { requestOptions: {} },
+  options: WithIsOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithIs204Response> {
   return context
     .path("/special-words/parameters/is")
@@ -822,7 +822,7 @@ export async function _parametersWithIsDeserialize(
 export async function parametersWithIs(
   context: Client,
   is: string,
-  options: ParametersWithIsOptions = { requestOptions: {} },
+  options: WithIsOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithIsSend(context, is, options);
   return _parametersWithIsDeserialize(result);
@@ -831,7 +831,7 @@ export async function parametersWithIs(
 export function _parametersWithLambdaSend(
   context: Client,
   lambda: string,
-  options: ParametersWithLambdaOptions = { requestOptions: {} },
+  options: WithLambdaOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithLambda204Response> {
   return context
     .path("/special-words/parameters/lambda")
@@ -854,7 +854,7 @@ export async function _parametersWithLambdaDeserialize(
 export async function parametersWithLambda(
   context: Client,
   lambda: string,
-  options: ParametersWithLambdaOptions = { requestOptions: {} },
+  options: WithLambdaOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithLambdaSend(context, lambda, options);
   return _parametersWithLambdaDeserialize(result);
@@ -863,7 +863,7 @@ export async function parametersWithLambda(
 export function _parametersWithNotSend(
   context: Client,
   not: string,
-  options: ParametersWithNotOptions = { requestOptions: {} },
+  options: WithNotOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithNot204Response> {
   return context
     .path("/special-words/parameters/not")
@@ -886,7 +886,7 @@ export async function _parametersWithNotDeserialize(
 export async function parametersWithNot(
   context: Client,
   not: string,
-  options: ParametersWithNotOptions = { requestOptions: {} },
+  options: WithNotOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithNotSend(context, not, options);
   return _parametersWithNotDeserialize(result);
@@ -895,7 +895,7 @@ export async function parametersWithNot(
 export function _parametersWithOrSend(
   context: Client,
   or: string,
-  options: ParametersWithOrOptions = { requestOptions: {} },
+  options: WithOrOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithOr204Response> {
   return context
     .path("/special-words/parameters/or")
@@ -918,7 +918,7 @@ export async function _parametersWithOrDeserialize(
 export async function parametersWithOr(
   context: Client,
   or: string,
-  options: ParametersWithOrOptions = { requestOptions: {} },
+  options: WithOrOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithOrSend(context, or, options);
   return _parametersWithOrDeserialize(result);
@@ -927,7 +927,7 @@ export async function parametersWithOr(
 export function _parametersWithPassSend(
   context: Client,
   pass: string,
-  options: ParametersWithPassOptions = { requestOptions: {} },
+  options: WithPassOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithPass204Response> {
   return context
     .path("/special-words/parameters/pass")
@@ -950,7 +950,7 @@ export async function _parametersWithPassDeserialize(
 export async function parametersWithPass(
   context: Client,
   pass: string,
-  options: ParametersWithPassOptions = { requestOptions: {} },
+  options: WithPassOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithPassSend(context, pass, options);
   return _parametersWithPassDeserialize(result);
@@ -959,7 +959,7 @@ export async function parametersWithPass(
 export function _parametersWithRaiseSend(
   context: Client,
   raise: string,
-  options: ParametersWithRaiseOptions = { requestOptions: {} },
+  options: WithRaiseOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithRaise204Response> {
   return context
     .path("/special-words/parameters/raise")
@@ -982,7 +982,7 @@ export async function _parametersWithRaiseDeserialize(
 export async function parametersWithRaise(
   context: Client,
   raise: string,
-  options: ParametersWithRaiseOptions = { requestOptions: {} },
+  options: WithRaiseOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithRaiseSend(context, raise, options);
   return _parametersWithRaiseDeserialize(result);
@@ -991,7 +991,7 @@ export async function parametersWithRaise(
 export function _parametersWithReturnSend(
   context: Client,
   returnParam: string,
-  options: ParametersWithReturnOptions = { requestOptions: {} },
+  options: WithReturnOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithReturn204Response> {
   return context
     .path("/special-words/parameters/return")
@@ -1014,7 +1014,7 @@ export async function _parametersWithReturnDeserialize(
 export async function parametersWithReturn(
   context: Client,
   returnParam: string,
-  options: ParametersWithReturnOptions = { requestOptions: {} },
+  options: WithReturnOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithReturnSend(context, returnParam, options);
   return _parametersWithReturnDeserialize(result);
@@ -1023,7 +1023,7 @@ export async function parametersWithReturn(
 export function _parametersWithTrySend(
   context: Client,
   tryParam: string,
-  options: ParametersWithTryOptions = { requestOptions: {} },
+  options: WithTryOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithTry204Response> {
   return context
     .path("/special-words/parameters/try")
@@ -1046,7 +1046,7 @@ export async function _parametersWithTryDeserialize(
 export async function parametersWithTry(
   context: Client,
   tryParam: string,
-  options: ParametersWithTryOptions = { requestOptions: {} },
+  options: WithTryOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithTrySend(context, tryParam, options);
   return _parametersWithTryDeserialize(result);
@@ -1055,7 +1055,7 @@ export async function parametersWithTry(
 export function _parametersWithWhileSend(
   context: Client,
   whileParam: string,
-  options: ParametersWithWhileOptions = { requestOptions: {} },
+  options: WithWhileOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithWhile204Response> {
   return context
     .path("/special-words/parameters/while")
@@ -1078,7 +1078,7 @@ export async function _parametersWithWhileDeserialize(
 export async function parametersWithWhile(
   context: Client,
   whileParam: string,
-  options: ParametersWithWhileOptions = { requestOptions: {} },
+  options: WithWhileOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithWhileSend(context, whileParam, options);
   return _parametersWithWhileDeserialize(result);
@@ -1087,7 +1087,7 @@ export async function parametersWithWhile(
 export function _parametersWithWithSend(
   context: Client,
   withParam: string,
-  options: ParametersWithWithOptions = { requestOptions: {} },
+  options: WithWithOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithWith204Response> {
   return context
     .path("/special-words/parameters/with")
@@ -1110,7 +1110,7 @@ export async function _parametersWithWithDeserialize(
 export async function parametersWithWith(
   context: Client,
   withParam: string,
-  options: ParametersWithWithOptions = { requestOptions: {} },
+  options: WithWithOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithWithSend(context, withParam, options);
   return _parametersWithWithDeserialize(result);
@@ -1119,7 +1119,7 @@ export async function parametersWithWith(
 export function _parametersWithYieldSend(
   context: Client,
   yieldParam: string,
-  options: ParametersWithYieldOptions = { requestOptions: {} },
+  options: WithYieldOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithYield204Response> {
   return context
     .path("/special-words/parameters/yield")
@@ -1142,7 +1142,7 @@ export async function _parametersWithYieldDeserialize(
 export async function parametersWithYield(
   context: Client,
   yieldParam: string,
-  options: ParametersWithYieldOptions = { requestOptions: {} },
+  options: WithYieldOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithYieldSend(context, yieldParam, options);
   return _parametersWithYieldDeserialize(result);
@@ -1151,7 +1151,7 @@ export async function parametersWithYield(
 export function _parametersWithCancellationTokenSend(
   context: Client,
   cancellationToken: string,
-  options: ParametersWithCancellationTokenOptions = { requestOptions: {} },
+  options: WithCancellationTokenOptions = { requestOptions: {} },
 ): StreamableMethod<ParametersWithCancellationToken204Response> {
   return context
     .path("/special-words/parameters/cancellationToken")
@@ -1174,7 +1174,7 @@ export async function _parametersWithCancellationTokenDeserialize(
 export async function parametersWithCancellationToken(
   context: Client,
   cancellationToken: string,
-  options: ParametersWithCancellationTokenOptions = { requestOptions: {} },
+  options: WithCancellationTokenOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parametersWithCancellationTokenSend(
     context,
