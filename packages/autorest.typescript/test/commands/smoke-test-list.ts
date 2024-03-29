@@ -18,8 +18,7 @@ export enum AutorestParams {
   MultiClient = "--multi-client",
   NotAzureSdkForJs = "--azure-sdk-for-js=false",
   AzureArm = "--azure-arm",
-  Security = "--security=AADToken",
-  UseLegacyV2Lro = "--use-legacy-v2-lro=true"
+  Security = "--security=AADToken"
 }
 
 const getArmReadmes = (): SpecDefinition[] => {
@@ -225,8 +224,7 @@ export const readmes: SpecDefinition[] = [
       AutorestParams.RestClient,
       AutorestParams.GenerateTest,
       AutorestParams.NotAzureSdkForJs,
-      AutorestParams.GenerateSamples,
-      AutorestParams.UseLegacyV2Lro
+      AutorestParams.GenerateSamples
     ],
     buildTag: "ci_rlc"
   },
@@ -266,8 +264,7 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.RestClient,
       AutorestParams.NotAzureSdkForJs,
-      AutorestParams.GenerateSamples,
-      AutorestParams.UseLegacyV2Lro
+      AutorestParams.GenerateSamples
     ],
     buildTag: "ci_rlc"
   },
@@ -277,11 +274,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./smoke/swagger/anomaly-detector-mv-rest.md"
     ),
-    params: [
-      AutorestParams.RestClient,
-      AutorestParams.NotAzureSdkForJs,
-      AutorestParams.UseLegacyV2Lro
-    ],
+    params: [AutorestParams.RestClient, AutorestParams.NotAzureSdkForJs],
     buildTag: "ci_rlc"
   }
   // {
