@@ -11,9 +11,9 @@ import {
   createInitializedHttpPoller,
 } from "@azure/core-lro";
 import {
-  CreateJob202Response,
-  CreateJobDefaultResponse,
-  CreateJobLogicalResponse,
+  LongRunningRpc202Response,
+  LongRunningRpcDefaultResponse,
+  LongRunningRpcLogicalResponse,
 } from "./responses.js";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
@@ -23,10 +23,10 @@ import {
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
 export async function getLongRunningPoller<
-  TResult extends CreateJobLogicalResponse | CreateJobDefaultResponse,
+  TResult extends LongRunningRpcLogicalResponse | LongRunningRpcDefaultResponse,
 >(
   client: Client,
-  initialResponse: CreateJob202Response | CreateJobDefaultResponse,
+  initialResponse: LongRunningRpc202Response | LongRunningRpcDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(

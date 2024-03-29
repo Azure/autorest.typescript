@@ -3,15 +3,13 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
-import { LegacyClient } from "./clientDefinitions.js";
+import { RpcClient } from "./clientDefinitions.js";
 
 /**
- * Initialize a new instance of `LegacyClient`
+ * Initialize a new instance of `RpcClient`
  * @param options - the parameter for all optional parameters
  */
-export default function createClient(
-  options: ClientOptions = {},
-): LegacyClient {
+export default function createClient(options: ClientOptions = {}): RpcClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "2022-12-01-preview";
@@ -30,7 +28,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(endpointUrl, options) as LegacyClient;
+  const client = getClient(endpointUrl, options) as RpcClient;
 
   return client;
 }
