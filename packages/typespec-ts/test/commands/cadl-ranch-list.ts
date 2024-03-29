@@ -87,7 +87,7 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   },
   {
     outputPath: "lro/lroRPC",
-    inputPath: "azure/core/lro/rpc-legacy"
+    inputPath: "azure/core/lro/rpc"
   },
   {
     outputPath: "models/inheritance",
