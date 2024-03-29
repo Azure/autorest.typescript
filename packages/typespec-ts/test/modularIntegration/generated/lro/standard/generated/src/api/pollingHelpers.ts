@@ -104,10 +104,7 @@ function getLroResponse<TResponse extends PathUncheckedResponse>(
   response: TResponse,
 ): OperationResponse<TResponse> {
   if (isUnexpected(response as PathUncheckedResponse)) {
-    createRestError(
-      `Status code of the response is not a number. Value: ${response.status}`,
-      response,
-    );
+    throw createRestError(response);
   }
   return {
     flatResponse: response,
