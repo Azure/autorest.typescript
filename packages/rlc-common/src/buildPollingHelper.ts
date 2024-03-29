@@ -38,7 +38,8 @@ function buildLroHelperDetail(model: RLCModel): LroDetail {
   if (!model.helperDetails?.clientLroOverload) {
     return {
       clientOverload: false,
-      isEsm: model.options?.moduleKind === "esm"
+      isEsm: model.options?.moduleKind === "esm",
+      useLegacyV2Lro: Boolean(model.options?.useLegacyV2Lro)
     };
   }
   const mapDetail = [];

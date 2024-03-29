@@ -92,8 +92,8 @@ async function getUseLegacyLro(host: AutorestExtensionHost): Promise<boolean> {
 async function getUseLegacyV2Lro(
   host: AutorestExtensionHost
 ): Promise<boolean> {
-  const useLegacyLroOption = await host.getValue("use-legacy-v2-lro");
-  return useLegacyLroOption === null ? false : Boolean(useLegacyLroOption);
+  const useLegacyV2LroOption = await host.getValue("use-legacy-v2-lro");
+  return useLegacyV2LroOption === null ? false : Boolean(useLegacyV2LroOption);
 }
 
 async function getHasShortcutMethods(
