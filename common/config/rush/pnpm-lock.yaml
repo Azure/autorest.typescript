@@ -235,11 +235,11 @@ importers:
       '@azure-tools/typespec-client-generator-core': '>=0.40.0 <1.0.0'
       '@azure/abort-controller': ^2.0.0
       '@azure/core-auth': ^1.6.0
+      '@azure/core-lro': 3.0.0-beta.1
       '@azure/core-paging': ^1.5.0
       '@azure/core-rest-pipeline': ^1.14.0
       '@azure/core-util': ^1.4.0
       '@azure/logger': ^1.0.4
-      '@marygao/core-lro': 3.0.0-beta.4
       '@types/chai': ^4.3.1
       '@types/fs-extra': ^9.0.13
       '@types/mocha': ^9.1.1
@@ -280,11 +280,11 @@ importers:
       '@azure-tools/typespec-client-generator-core': 0.40.0_7d65p6cqvelxcgmavq4zy7blpy
       '@azure/abort-controller': 2.0.0
       '@azure/core-auth': 1.6.0
+      '@azure/core-lro': 3.0.0-beta.1
       '@azure/core-paging': 1.5.0
       '@azure/core-rest-pipeline': 1.14.0
       '@azure/core-util': 1.5.0
       '@azure/logger': 1.0.4
-      '@marygao/core-lro': 3.0.0-beta.4
       '@types/chai': 4.3.6
       '@types/fs-extra': 9.0.13
       '@types/mocha': 9.1.1
@@ -627,6 +627,16 @@ packages:
       '@azure/logger': 1.0.4
       tslib: 2.6.2
 
+  /@azure/core-lro/3.0.0-beta.1:
+    resolution: {integrity: sha512-KbkVHWhLnlDQRtIZGCPQFB6y2xgeL7p5iICRYTCDjHBpWX9W/I3HkkvbvK4SordNsKwWbLKfPLrOJKJdsJocEQ==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      '@azure/abort-controller': 2.0.0
+      '@azure/core-util': 1.5.0
+      '@azure/logger': 1.0.4
+      tslib: 2.6.2
+    dev: true
+
   /@azure/core-paging/1.5.0:
     resolution: {integrity: sha512-zqWdVIt+2Z+3wqxEOGzR5hXFZ8MGKK52x4vFLw8n58pR6ZfKRx3EXYTxTaYxYHc/PexPUTyimcTWFJbji9Z6Iw==}
     engines: {node: '>=14.0.0'}
@@ -901,16 +911,6 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
-    dev: true
-
-  /@marygao/core-lro/3.0.0-beta.4:
-    resolution: {integrity: sha512-skMGwgXWGvz99DJZu6HWFfFV+DdSMDnm+O3RZkvYgRufGi3StnLW9i2vtrv+hITLc26tDn0uSCO5e3btkiLQcQ==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      '@azure/abort-controller': 2.0.0
-      '@azure/core-util': 1.5.0
-      '@azure/logger': 1.0.4
-      tslib: 2.6.2
     dev: true
 
   /@microsoft.azure/autorest.testserver/3.3.48:
