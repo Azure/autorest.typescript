@@ -2,10 +2,9 @@
 // Licensed under the MIT license.
 
 export {
-  QueryMultiOptions,
-  QuerySsvOptions,
-  QueryTsvOptions,
-  QueryPipesOptions,
-  QueryCsvOptions,
-  HeaderCsvOptions,
+  MultiOptions,
+  SsvOptions,
+  TsvOptions,
+  PipesOptions,
+  CsvOptions,
 } from "./options.js";

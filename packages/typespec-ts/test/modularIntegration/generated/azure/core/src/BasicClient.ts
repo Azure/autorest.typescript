@@ -16,8 +16,8 @@ import {
   ListWithPageOptions,
   ListWithParametersOptions,
   ListWithCustomPageModelOptions,
-  DeleteOperationOptions,
-  ExportOperationOptions,
+  DeleteOptions,
+  ExportOptions,
   ListFirstItemOptions,
   ListSecondItemOptions,
 } from "./models/options.js";
@@ -33,8 +33,8 @@ import {
   listWithPage,
   listWithParameters,
   listWithCustomPageModel,
-  deleteOperation,
-  exportOperation,
+  $delete,
+  $export,
   listFirstItem,
   listSecondItem,
 } from "./api/index.js";
@@ -105,20 +105,20 @@ export class BasicClient {
   }
 
   /** Deletes a User */
-  deleteOperation(
+  $delete(
     id: number,
-    options: DeleteOperationOptions = { requestOptions: {} },
+    options: DeleteOptions = { requestOptions: {} },
   ): Promise<void> {
-    return deleteOperation(this._client, id, options);
+    return $delete(this._client, id, options);
   }
 
   /** Exports a User */
-  exportOperation(
+  $export(
     id: number,
     format: string,
-    options: ExportOperationOptions = { requestOptions: {} },
+    options: ExportOptions = { requestOptions: {} },
   ): Promise<User> {
-    return exportOperation(this._client, id, format, options);
+    return $export(this._client, id, format, options);
   }
 
   /** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */

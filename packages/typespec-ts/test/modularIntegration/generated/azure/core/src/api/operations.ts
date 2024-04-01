@@ -23,10 +23,10 @@ import {
   CreateOrUpdate200Response,
   CreateOrUpdate201Response,
   CreateOrUpdateDefaultResponse,
-  DeleteOperation204Response,
-  DeleteOperationDefaultResponse,
-  ExportOperation200Response,
-  ExportOperationDefaultResponse,
+  Delete204Response,
+  DeleteDefaultResponse,
+  Export200Response,
+  ExportDefaultResponse,
   Get200Response,
   GetDefaultResponse,
   List200Response,
@@ -55,8 +55,8 @@ import {
   ListWithPageOptions,
   ListWithParametersOptions,
   ListWithCustomPageModelOptions,
-  DeleteOperationOptions,
-  ExportOperationOptions,
+  DeleteOptions,
+  ExportOptions,
   ListFirstItemOptions,
   ListSecondItemOptions,
 } from "../models/options.js";
@@ -451,20 +451,18 @@ export function listWithCustomPageModel(
   );
 }
 
-export function _deleteOperationSend(
+export function _$deleteSend(
   context: Client,
   id: number,
-  options: DeleteOperationOptions = { requestOptions: {} },
-): StreamableMethod<
-  DeleteOperation204Response | DeleteOperationDefaultResponse
-> {
+  options: DeleteOptions = { requestOptions: {} },
+): StreamableMethod<Delete204Response | DeleteDefaultResponse> {
   return context
     .path("/azure/core/basic/users/{id}", id)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _deleteOperationDeserialize(
-  result: DeleteOperation204Response | DeleteOperationDefaultResponse,
+export async function _$deleteDeserialize(
+  result: Delete204Response | DeleteDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -474,23 +472,21 @@ export async function _deleteOperationDeserialize(
 }
 
 /** Deletes a User */
-export async function deleteOperation(
+export async function $delete(
   context: Client,
   id: number,
-  options: DeleteOperationOptions = { requestOptions: {} },
+  options: DeleteOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _deleteOperationSend(context, id, options);
-  return _deleteOperationDeserialize(result);
+  const result = await _$deleteSend(context, id, options);
+  return _$deleteDeserialize(result);
 }
 
-export function _exportOperationSend(
+export function _$exportSend(
   context: Client,
   id: number,
   format: string,
-  options: ExportOperationOptions = { requestOptions: {} },
-): StreamableMethod<
-  ExportOperation200Response | ExportOperationDefaultResponse
-> {
+  options: ExportOptions = { requestOptions: {} },
+): StreamableMethod<Export200Response | ExportDefaultResponse> {
   return context
     .path("/azure/core/basic/users/{id}:export", id)
     .post({
@@ -499,8 +495,8 @@ export function _exportOperationSend(
     });
 }
 
-export async function _exportOperationDeserialize(
-  result: ExportOperation200Response | ExportOperationDefaultResponse,
+export async function _$exportDeserialize(
+  result: Export200Response | ExportDefaultResponse,
 ): Promise<User> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -522,14 +518,14 @@ export async function _exportOperationDeserialize(
 }
 
 /** Exports a User */
-export async function exportOperation(
+export async function $export(
   context: Client,
   id: number,
   format: string,
-  options: ExportOperationOptions = { requestOptions: {} },
+  options: ExportOptions = { requestOptions: {} },
 ): Promise<User> {
-  const result = await _exportOperationSend(context, id, format, options);
-  return _exportOperationDeserialize(result);
+  const result = await _$exportSend(context, id, format, options);
+  return _$exportDeserialize(result);
 }
 
 export function _listFirstItemSend(

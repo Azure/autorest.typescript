@@ -4,23 +4,17 @@
 import { ValueTypesContext } from "../../api/ValueTypesContext.js";
 import { UnknownIntProperty } from "../../models/models.js";
 import { unknownIntGet, unknownIntPut } from "../../api/unknownInt/index.js";
-import {
-  UnknownIntGetOptions,
-  UnknownIntPutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export interface UnknownIntOperations {
-  get: (options?: UnknownIntGetOptions) => Promise<UnknownIntProperty>;
-  put: (
-    body: UnknownIntProperty,
-    options?: UnknownIntPutOptions,
-  ) => Promise<void>;
+  get: (options?: GetOptions) => Promise<UnknownIntProperty>;
+  put: (body: UnknownIntProperty, options?: PutOptions) => Promise<void>;
 }
 
 export function getUnknownInt(context: ValueTypesContext) {
   return {
-    get: (options?: UnknownIntGetOptions) => unknownIntGet(context, options),
-    put: (body: UnknownIntProperty, options?: UnknownIntPutOptions) =>
+    get: (options?: GetOptions) => unknownIntGet(context, options),
+    put: (body: UnknownIntProperty, options?: PutOptions) =>
       unknownIntPut(context, body, options),
   };
 }

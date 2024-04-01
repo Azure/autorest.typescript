@@ -12,14 +12,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  ExtensibleEnumGetOptions,
-  ExtensibleEnumPutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export function _extensibleEnumGetSend(
   context: Client,
-  options: ExtensibleEnumGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): StreamableMethod<ExtensibleEnumGet200Response> {
   return context
     .path("/type/property/value-types/extensible-enum")
@@ -41,7 +38,7 @@ export async function _extensibleEnumGetDeserialize(
 /** Get call */
 export async function extensibleEnumGet(
   context: Client,
-  options: ExtensibleEnumGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): Promise<ExtensibleEnumProperty> {
   const result = await _extensibleEnumGetSend(context, options);
   return _extensibleEnumGetDeserialize(result);
@@ -50,7 +47,7 @@ export async function extensibleEnumGet(
 export function _extensibleEnumPutSend(
   context: Client,
   body: ExtensibleEnumProperty,
-  options: ExtensibleEnumPutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): StreamableMethod<ExtensibleEnumPut204Response> {
   return context
     .path("/type/property/value-types/extensible-enum")
@@ -74,7 +71,7 @@ export async function _extensibleEnumPutDeserialize(
 export async function extensibleEnumPut(
   context: Client,
   body: ExtensibleEnumProperty,
-  options: ExtensibleEnumPutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _extensibleEnumPutSend(context, body, options);
   return _extensibleEnumPutDeserialize(result);

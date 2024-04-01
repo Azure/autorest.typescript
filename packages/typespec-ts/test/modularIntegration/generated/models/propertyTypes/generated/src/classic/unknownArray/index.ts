@@ -7,24 +7,17 @@ import {
   unknownArrayGet,
   unknownArrayPut,
 } from "../../api/unknownArray/index.js";
-import {
-  UnknownArrayGetOptions,
-  UnknownArrayPutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export interface UnknownArrayOperations {
-  get: (options?: UnknownArrayGetOptions) => Promise<UnknownArrayProperty>;
-  put: (
-    body: UnknownArrayProperty,
-    options?: UnknownArrayPutOptions,
-  ) => Promise<void>;
+  get: (options?: GetOptions) => Promise<UnknownArrayProperty>;
+  put: (body: UnknownArrayProperty, options?: PutOptions) => Promise<void>;
 }
 
 export function getUnknownArray(context: ValueTypesContext) {
   return {
-    get: (options?: UnknownArrayGetOptions) =>
-      unknownArrayGet(context, options),
-    put: (body: UnknownArrayProperty, options?: UnknownArrayPutOptions) =>
+    get: (options?: GetOptions) => unknownArrayGet(context, options),
+    put: (body: UnknownArrayProperty, options?: PutOptions) =>
       unknownArrayPut(context, body, options),
   };
 }

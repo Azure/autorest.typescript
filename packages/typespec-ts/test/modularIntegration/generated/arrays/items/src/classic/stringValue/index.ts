@@ -3,20 +3,17 @@
 
 import { ArrayContext } from "../../api/ArrayContext.js";
 import { stringValueGet, stringValuePut } from "../../api/stringValue/index.js";
-import {
-  StringValueGetOptions,
-  StringValuePutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export interface StringValueOperations {
-  get: (options?: StringValueGetOptions) => Promise<string[]>;
-  put: (body: string[], options?: StringValuePutOptions) => Promise<void>;
+  get: (options?: GetOptions) => Promise<string[]>;
+  put: (body: string[], options?: PutOptions) => Promise<void>;
 }
 
 export function getStringValue(context: ArrayContext) {
   return {
-    get: (options?: StringValueGetOptions) => stringValueGet(context, options),
-    put: (body: string[], options?: StringValuePutOptions) =>
+    get: (options?: GetOptions) => stringValueGet(context, options),
+    put: (body: string[], options?: PutOptions) =>
       stringValuePut(context, body, options),
   };
 }

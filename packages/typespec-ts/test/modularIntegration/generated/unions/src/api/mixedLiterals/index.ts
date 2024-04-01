@@ -12,14 +12,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  MixedLiteralsGetOptions,
-  MixedLiteralsSendOptions,
-} from "../../models/options.js";
+import { GetOptions, SendOptions } from "../../models/options.js";
 
 export function _mixedLiteralsGetSend(
   context: Client,
-  options: MixedLiteralsGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): StreamableMethod<MixedLiteralsGet200Response> {
   return context
     .path("/type/union/mixed-literals")
@@ -45,7 +42,7 @@ export async function _mixedLiteralsGetDeserialize(
 
 export async function mixedLiteralsGet(
   context: Client,
-  options: MixedLiteralsGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): Promise<{ prop: MixedLiteralsCases }> {
   const result = await _mixedLiteralsGetSend(context, options);
   return _mixedLiteralsGetDeserialize(result);
@@ -54,7 +51,7 @@ export async function mixedLiteralsGet(
 export function _mixedLiteralsSendSend(
   context: Client,
   prop: MixedLiteralsCases,
-  options: MixedLiteralsSendOptions = { requestOptions: {} },
+  options: SendOptions = { requestOptions: {} },
 ): StreamableMethod<MixedLiteralsSend204Response> {
   return context
     .path("/type/union/mixed-literals")
@@ -84,7 +81,7 @@ export async function _mixedLiteralsSendDeserialize(
 export async function mixedLiteralsSend(
   context: Client,
   prop: MixedLiteralsCases,
-  options: MixedLiteralsSendOptions = { requestOptions: {} },
+  options: SendOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _mixedLiteralsSendSend(context, prop, options);
   return _mixedLiteralsSendDeserialize(result);

@@ -12,14 +12,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  DictionaryStringGetOptions,
-  DictionaryStringPutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export function _dictionaryStringGetSend(
   context: Client,
-  options: DictionaryStringGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): StreamableMethod<DictionaryStringGet200Response> {
   return context
     .path("/type/property/value-types/dictionary/string")
@@ -41,7 +38,7 @@ export async function _dictionaryStringGetDeserialize(
 /** Get call */
 export async function dictionaryStringGet(
   context: Client,
-  options: DictionaryStringGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): Promise<DictionaryStringProperty> {
   const result = await _dictionaryStringGetSend(context, options);
   return _dictionaryStringGetDeserialize(result);
@@ -50,7 +47,7 @@ export async function dictionaryStringGet(
 export function _dictionaryStringPutSend(
   context: Client,
   body: DictionaryStringProperty,
-  options: DictionaryStringPutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): StreamableMethod<DictionaryStringPut204Response> {
   return context
     .path("/type/property/value-types/dictionary/string")
@@ -74,7 +71,7 @@ export async function _dictionaryStringPutDeserialize(
 export async function dictionaryStringPut(
   context: Client,
   body: DictionaryStringProperty,
-  options: DictionaryStringPutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _dictionaryStringPutSend(context, body, options);
   return _dictionaryStringPutDeserialize(result);

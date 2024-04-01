@@ -15,17 +15,17 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  QueryDefaultOptions,
-  QueryIso8601Options,
-  QueryInt32SecondsOptions,
-  QueryFloatSecondsOptions,
-  QueryInt32SecondsArrayOptions,
+  DefaultOptions,
+  Iso8601Options,
+  Int32SecondsOptions,
+  FloatSecondsOptions,
+  Int32SecondsArrayOptions,
 } from "../../models/options.js";
 
 export function _queryDefaultSend(
   context: Client,
   input: string,
-  options: QueryDefaultOptions = { requestOptions: {} },
+  options: DefaultOptions = { requestOptions: {} },
 ): StreamableMethod<QueryDefault204Response> {
   return context
     .path("/encode/duration/query/default")
@@ -48,7 +48,7 @@ export async function _queryDefaultDeserialize(
 export async function queryDefault(
   context: Client,
   input: string,
-  options: QueryDefaultOptions = { requestOptions: {} },
+  options: DefaultOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _queryDefaultSend(context, input, options);
   return _queryDefaultDeserialize(result);
@@ -57,7 +57,7 @@ export async function queryDefault(
 export function _queryIso8601Send(
   context: Client,
   input: string,
-  options: QueryIso8601Options = { requestOptions: {} },
+  options: Iso8601Options = { requestOptions: {} },
 ): StreamableMethod<QueryIso8601204Response> {
   return context
     .path("/encode/duration/query/iso8601")
@@ -80,7 +80,7 @@ export async function _queryIso8601Deserialize(
 export async function queryIso8601(
   context: Client,
   input: string,
-  options: QueryIso8601Options = { requestOptions: {} },
+  options: Iso8601Options = { requestOptions: {} },
 ): Promise<void> {
   const result = await _queryIso8601Send(context, input, options);
   return _queryIso8601Deserialize(result);
@@ -89,7 +89,7 @@ export async function queryIso8601(
 export function _queryInt32SecondsSend(
   context: Client,
   input: number,
-  options: QueryInt32SecondsOptions = { requestOptions: {} },
+  options: Int32SecondsOptions = { requestOptions: {} },
 ): StreamableMethod<QueryInt32Seconds204Response> {
   return context
     .path("/encode/duration/query/int32-seconds")
@@ -112,7 +112,7 @@ export async function _queryInt32SecondsDeserialize(
 export async function queryInt32Seconds(
   context: Client,
   input: number,
-  options: QueryInt32SecondsOptions = { requestOptions: {} },
+  options: Int32SecondsOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _queryInt32SecondsSend(context, input, options);
   return _queryInt32SecondsDeserialize(result);
@@ -121,7 +121,7 @@ export async function queryInt32Seconds(
 export function _queryFloatSecondsSend(
   context: Client,
   input: number,
-  options: QueryFloatSecondsOptions = { requestOptions: {} },
+  options: FloatSecondsOptions = { requestOptions: {} },
 ): StreamableMethod<QueryFloatSeconds204Response> {
   return context
     .path("/encode/duration/query/float-seconds")
@@ -144,7 +144,7 @@ export async function _queryFloatSecondsDeserialize(
 export async function queryFloatSeconds(
   context: Client,
   input: number,
-  options: QueryFloatSecondsOptions = { requestOptions: {} },
+  options: FloatSecondsOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _queryFloatSecondsSend(context, input, options);
   return _queryFloatSecondsDeserialize(result);
@@ -153,7 +153,7 @@ export async function queryFloatSeconds(
 export function _queryInt32SecondsArraySend(
   context: Client,
   input: number[],
-  options: QueryInt32SecondsArrayOptions = { requestOptions: {} },
+  options: Int32SecondsArrayOptions = { requestOptions: {} },
 ): StreamableMethod<QueryInt32SecondsArray204Response> {
   return context
     .path("/encode/duration/query/int32-seconds-array")
@@ -176,7 +176,7 @@ export async function _queryInt32SecondsArrayDeserialize(
 export async function queryInt32SecondsArray(
   context: Client,
   input: number[],
-  options: QueryInt32SecondsArrayOptions = { requestOptions: {} },
+  options: Int32SecondsArrayOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _queryInt32SecondsArraySend(context, input, options);
   return _queryInt32SecondsArrayDeserialize(result);

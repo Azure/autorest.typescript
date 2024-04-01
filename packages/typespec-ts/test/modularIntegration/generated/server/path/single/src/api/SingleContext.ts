@@ -11,9 +11,9 @@ export { SingleContext } from "../rest/index.js";
 
 /** Illustrates server with a single path parameter @server */
 export function createSingle(
-  endpoint: string,
+  endpointParam: string,
   options: SingleClientOptions = {},
 ): SingleContext {
-  const clientContext = getClient(endpoint, options);
+  const clientContext = getClient(endpointParam, options);
   return clientContext;
 }

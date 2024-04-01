@@ -10,36 +10,33 @@ import {
   responseBodyBase64url,
 } from "../../api/responseBody/index.js";
 import {
-  ResponseBodyDefaultOptions,
-  ResponseBodyOctetStreamOptions,
-  ResponseBodyCustomContentTypeOptions,
-  ResponseBodyBase64Options,
-  ResponseBodyBase64urlOptions,
+  DefaultOptions,
+  OctetStreamOptions,
+  CustomContentTypeOptions,
+  Base64Options,
+  Base64urlOptions,
 } from "../../models/options.js";
 
 export interface ResponseBodyOperations {
-  default: (options?: ResponseBodyDefaultOptions) => Promise<Uint8Array>;
-  octetStream: (
-    options?: ResponseBodyOctetStreamOptions,
-  ) => Promise<Uint8Array>;
+  default: (options?: DefaultOptions) => Promise<Uint8Array>;
+  octetStream: (options?: OctetStreamOptions) => Promise<Uint8Array>;
   customContentType: (
-    options?: ResponseBodyCustomContentTypeOptions,
+    options?: CustomContentTypeOptions,
   ) => Promise<Uint8Array>;
-  base64: (options?: ResponseBodyBase64Options) => Promise<Uint8Array>;
-  base64url: (options?: ResponseBodyBase64urlOptions) => Promise<Uint8Array>;
+  base64: (options?: Base64Options) => Promise<Uint8Array>;
+  base64url: (options?: Base64urlOptions) => Promise<Uint8Array>;
 }
 
 export function getResponseBody(context: BytesContext) {
   return {
-    default: (options?: ResponseBodyDefaultOptions) =>
+    default: (options?: DefaultOptions) =>
       responseBodyDefault(context, options),
-    octetStream: (options?: ResponseBodyOctetStreamOptions) =>
+    octetStream: (options?: OctetStreamOptions) =>
       responseBodyOctetStream(context, options),
-    customContentType: (options?: ResponseBodyCustomContentTypeOptions) =>
+    customContentType: (options?: CustomContentTypeOptions) =>
       responseBodyCustomContentType(context, options),
-    base64: (options?: ResponseBodyBase64Options) =>
-      responseBodyBase64(context, options),
-    base64url: (options?: ResponseBodyBase64urlOptions) =>
+    base64: (options?: Base64Options) => responseBodyBase64(context, options),
+    base64url: (options?: Base64urlOptions) =>
       responseBodyBase64url(context, options),
   };
 }

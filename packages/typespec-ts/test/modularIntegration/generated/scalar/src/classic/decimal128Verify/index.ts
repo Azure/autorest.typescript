@@ -6,26 +6,18 @@ import {
   decimal128VerifyPrepareVerify,
   decimal128VerifyVerify,
 } from "../../api/decimal128Verify/index.js";
-import {
-  Decimal128VerifyPrepareVerifyOptions,
-  Decimal128VerifyVerifyOptions,
-} from "../../models/options.js";
+import { PrepareVerifyOptions, VerifyOptions } from "../../models/options.js";
 
 export interface Decimal128VerifyOperations {
-  prepareVerify: (
-    options?: Decimal128VerifyPrepareVerifyOptions,
-  ) => Promise<number[]>;
-  verify: (
-    body: number,
-    options?: Decimal128VerifyVerifyOptions,
-  ) => Promise<void>;
+  prepareVerify: (options?: PrepareVerifyOptions) => Promise<number[]>;
+  verify: (body: number, options?: VerifyOptions) => Promise<void>;
 }
 
 export function getDecimal128Verify(context: ScalarContext) {
   return {
-    prepareVerify: (options?: Decimal128VerifyPrepareVerifyOptions) =>
+    prepareVerify: (options?: PrepareVerifyOptions) =>
       decimal128VerifyPrepareVerify(context, options),
-    verify: (body: number, options?: Decimal128VerifyVerifyOptions) =>
+    verify: (body: number, options?: VerifyOptions) =>
       decimal128VerifyVerify(context, body, options),
   };
 }

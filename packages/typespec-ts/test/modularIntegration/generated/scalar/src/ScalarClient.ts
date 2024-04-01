@@ -3,13 +3,13 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  getStringOperations,
-  StringOperations,
-} from "./classic/string/index.js";
+  getStringModelOperations,
+  StringModelOperations,
+} from "./classic/stringModel/index.js";
 import {
-  getBooleanOperations,
-  BooleanOperations,
-} from "./classic/boolean/index.js";
+  getBooleanModelOperations,
+  BooleanModelOperations,
+} from "./classic/booleanModel/index.js";
 import {
   getUnknownOperations,
   UnknownOperations,
@@ -46,8 +46,8 @@ export class ScalarClient {
   constructor(options: ScalarClientOptions = {}) {
     this._client = createScalar(options);
     this.pipeline = this._client.pipeline;
-    this.string = getStringOperations(this._client);
-    this.boolean = getBooleanOperations(this._client);
+    this.stringModel = getStringModelOperations(this._client);
+    this.booleanModel = getBooleanModelOperations(this._client);
     this.unknown = getUnknownOperations(this._client);
     this.decimalType = getDecimalTypeOperations(this._client);
     this.decimal128Type = getDecimal128TypeOperations(this._client);
@@ -55,10 +55,10 @@ export class ScalarClient {
     this.decimal128Verify = getDecimal128VerifyOperations(this._client);
   }
 
-  /** The operation groups for String */
-  public readonly string: StringOperations;
-  /** The operation groups for Boolean */
-  public readonly boolean: BooleanOperations;
+  /** The operation groups for StringModel */
+  public readonly stringModel: StringModelOperations;
+  /** The operation groups for BooleanModel */
+  public readonly booleanModel: BooleanModelOperations;
   /** The operation groups for Unknown */
   public readonly unknown: UnknownOperations;
   /** The operation groups for DecimalType */

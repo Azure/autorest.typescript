@@ -12,14 +12,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  StringLiteralGetOptions,
-  StringLiteralPutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export function _stringLiteralGetSend(
   context: Client,
-  options: StringLiteralGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): StreamableMethod<StringLiteralGet200Response> {
   return context
     .path("/type/property/value-types/string/literal")
@@ -41,7 +38,7 @@ export async function _stringLiteralGetDeserialize(
 /** Get call */
 export async function stringLiteralGet(
   context: Client,
-  options: StringLiteralGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): Promise<StringLiteralProperty> {
   const result = await _stringLiteralGetSend(context, options);
   return _stringLiteralGetDeserialize(result);
@@ -50,7 +47,7 @@ export async function stringLiteralGet(
 export function _stringLiteralPutSend(
   context: Client,
   body: StringLiteralProperty,
-  options: StringLiteralPutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): StreamableMethod<StringLiteralPut204Response> {
   return context
     .path("/type/property/value-types/string/literal")
@@ -74,7 +71,7 @@ export async function _stringLiteralPutDeserialize(
 export async function stringLiteralPut(
   context: Client,
   body: StringLiteralProperty,
-  options: StringLiteralPutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _stringLiteralPutSend(context, body, options);
   return _stringLiteralPutDeserialize(result);

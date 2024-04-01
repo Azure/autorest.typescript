@@ -6,21 +6,17 @@ import {
   unknownValueGet,
   unknownValuePut,
 } from "../../api/unknownValue/index.js";
-import {
-  UnknownValueGetOptions,
-  UnknownValuePutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export interface UnknownValueOperations {
-  get: (options?: UnknownValueGetOptions) => Promise<unknown[]>;
-  put: (body: unknown[], options?: UnknownValuePutOptions) => Promise<void>;
+  get: (options?: GetOptions) => Promise<unknown[]>;
+  put: (body: unknown[], options?: PutOptions) => Promise<void>;
 }
 
 export function getUnknownValue(context: ArrayContext) {
   return {
-    get: (options?: UnknownValueGetOptions) =>
-      unknownValueGet(context, options),
-    put: (body: unknown[], options?: UnknownValuePutOptions) =>
+    get: (options?: GetOptions) => unknownValueGet(context, options),
+    put: (body: unknown[], options?: PutOptions) =>
       unknownValuePut(context, body, options),
   };
 }

@@ -8,35 +8,28 @@ import {
   decimal128TypeRequestParameter,
 } from "../../api/decimal128Type/index.js";
 import {
-  Decimal128TypeResponseBodyOptions,
-  Decimal128TypeRequestBodyOptions,
-  Decimal128TypeRequestParameterOptions,
+  ResponseBodyOptions,
+  RequestBodyOptions,
+  RequestParameterOptions,
 } from "../../models/options.js";
 
 export interface Decimal128TypeOperations {
-  responseBody: (
-    options?: Decimal128TypeResponseBodyOptions,
-  ) => Promise<number>;
-  requestBody: (
-    body: number,
-    options?: Decimal128TypeRequestBodyOptions,
-  ) => Promise<void>;
+  responseBody: (options?: ResponseBodyOptions) => Promise<number>;
+  requestBody: (body: number, options?: RequestBodyOptions) => Promise<void>;
   requestParameter: (
     value: number,
-    options?: Decimal128TypeRequestParameterOptions,
+    options?: RequestParameterOptions,
   ) => Promise<void>;
 }
 
 export function getDecimal128Type(context: ScalarContext) {
   return {
-    responseBody: (options?: Decimal128TypeResponseBodyOptions) =>
+    responseBody: (options?: ResponseBodyOptions) =>
       decimal128TypeResponseBody(context, options),
-    requestBody: (body: number, options?: Decimal128TypeRequestBodyOptions) =>
+    requestBody: (body: number, options?: RequestBodyOptions) =>
       decimal128TypeRequestBody(context, body, options),
-    requestParameter: (
-      value: number,
-      options?: Decimal128TypeRequestParameterOptions,
-    ) => decimal128TypeRequestParameter(context, value, options),
+    requestParameter: (value: number, options?: RequestParameterOptions) =>
+      decimal128TypeRequestParameter(context, value, options),
   };
 }
 

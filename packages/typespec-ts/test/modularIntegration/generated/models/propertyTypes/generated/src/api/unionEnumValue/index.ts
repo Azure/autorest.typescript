@@ -12,14 +12,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  UnionEnumValueGetOptions,
-  UnionEnumValuePutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export function _unionEnumValueGetSend(
   context: Client,
-  options: UnionEnumValueGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): StreamableMethod<UnionEnumValueGet200Response> {
   return context
     .path("/type/property/value-types/union-enum-value")
@@ -41,7 +38,7 @@ export async function _unionEnumValueGetDeserialize(
 /** Get call */
 export async function unionEnumValueGet(
   context: Client,
-  options: UnionEnumValueGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): Promise<UnionEnumValueProperty> {
   const result = await _unionEnumValueGetSend(context, options);
   return _unionEnumValueGetDeserialize(result);
@@ -50,7 +47,7 @@ export async function unionEnumValueGet(
 export function _unionEnumValuePutSend(
   context: Client,
   body: UnionEnumValueProperty,
-  options: UnionEnumValuePutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): StreamableMethod<UnionEnumValuePut204Response> {
   return context
     .path("/type/property/value-types/union-enum-value")
@@ -74,7 +71,7 @@ export async function _unionEnumValuePutDeserialize(
 export async function unionEnumValuePut(
   context: Client,
   body: UnionEnumValueProperty,
-  options: UnionEnumValuePutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _unionEnumValuePutSend(context, body, options);
   return _unionEnumValuePutDeserialize(result);

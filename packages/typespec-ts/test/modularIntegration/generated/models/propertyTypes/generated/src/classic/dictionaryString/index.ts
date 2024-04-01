@@ -7,29 +7,18 @@ import {
   dictionaryStringGet,
   dictionaryStringPut,
 } from "../../api/dictionaryString/index.js";
-import {
-  DictionaryStringGetOptions,
-  DictionaryStringPutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export interface DictionaryStringOperations {
-  get: (
-    options?: DictionaryStringGetOptions,
-  ) => Promise<DictionaryStringProperty>;
-  put: (
-    body: DictionaryStringProperty,
-    options?: DictionaryStringPutOptions,
-  ) => Promise<void>;
+  get: (options?: GetOptions) => Promise<DictionaryStringProperty>;
+  put: (body: DictionaryStringProperty, options?: PutOptions) => Promise<void>;
 }
 
 export function getDictionaryString(context: ValueTypesContext) {
   return {
-    get: (options?: DictionaryStringGetOptions) =>
-      dictionaryStringGet(context, options),
-    put: (
-      body: DictionaryStringProperty,
-      options?: DictionaryStringPutOptions,
-    ) => dictionaryStringPut(context, body, options),
+    get: (options?: GetOptions) => dictionaryStringGet(context, options),
+    put: (body: DictionaryStringProperty, options?: PutOptions) =>
+      dictionaryStringPut(context, body, options),
   };
 }
 

@@ -4,17 +4,17 @@
 import { ValueTypesContext } from "../../api/ValueTypesContext.js";
 import { DecimalProperty } from "../../models/models.js";
 import { decimalGet, decimalPut } from "../../api/decimal/index.js";
-import { DecimalGetOptions, DecimalPutOptions } from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export interface DecimalOperations {
-  get: (options?: DecimalGetOptions) => Promise<DecimalProperty>;
-  put: (body: DecimalProperty, options?: DecimalPutOptions) => Promise<void>;
+  get: (options?: GetOptions) => Promise<DecimalProperty>;
+  put: (body: DecimalProperty, options?: PutOptions) => Promise<void>;
 }
 
 export function getDecimal(context: ValueTypesContext) {
   return {
-    get: (options?: DecimalGetOptions) => decimalGet(context, options),
-    put: (body: DecimalProperty, options?: DecimalPutOptions) =>
+    get: (options?: GetOptions) => decimalGet(context, options),
+    put: (body: DecimalProperty, options?: PutOptions) =>
       decimalPut(context, body, options),
   };
 }

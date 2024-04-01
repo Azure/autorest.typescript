@@ -18,8 +18,8 @@ export class SingleClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates server with a single path parameter @server */
-  constructor(endpoint: string, options: SingleClientOptions = {}) {
-    this._client = createSingle(endpoint, options);
+  constructor(endpointParam: string, options: SingleClientOptions = {}) {
+    this._client = createSingle(endpointParam, options);
     this.pipeline = this._client.pipeline;
   }
 

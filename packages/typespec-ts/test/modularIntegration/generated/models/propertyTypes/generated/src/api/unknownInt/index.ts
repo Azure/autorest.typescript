@@ -12,14 +12,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  UnknownIntGetOptions,
-  UnknownIntPutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export function _unknownIntGetSend(
   context: Client,
-  options: UnknownIntGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): StreamableMethod<UnknownIntGet200Response> {
   return context
     .path("/type/property/value-types/unknown/int")
@@ -41,7 +38,7 @@ export async function _unknownIntGetDeserialize(
 /** Get call */
 export async function unknownIntGet(
   context: Client,
-  options: UnknownIntGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): Promise<UnknownIntProperty> {
   const result = await _unknownIntGetSend(context, options);
   return _unknownIntGetDeserialize(result);
@@ -50,7 +47,7 @@ export async function unknownIntGet(
 export function _unknownIntPutSend(
   context: Client,
   body: UnknownIntProperty,
-  options: UnknownIntPutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): StreamableMethod<UnknownIntPut204Response> {
   return context
     .path("/type/property/value-types/unknown/int")
@@ -74,7 +71,7 @@ export async function _unknownIntPutDeserialize(
 export async function unknownIntPut(
   context: Client,
   body: UnknownIntProperty,
-  options: UnknownIntPutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _unknownIntPutSend(context, body, options);
   return _unknownIntPutDeserialize(result);

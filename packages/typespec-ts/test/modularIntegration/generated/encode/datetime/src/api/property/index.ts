@@ -22,17 +22,17 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  PropertyDefaultOptions,
-  PropertyRfc3339Options,
-  PropertyRfc7231Options,
-  PropertyUnixTimestampOptions,
-  PropertyUnixTimestampArrayOptions,
+  DefaultOptions,
+  Rfc3339Options,
+  Rfc7231Options,
+  UnixTimestampOptions,
+  UnixTimestampArrayOptions,
 } from "../../models/options.js";
 
 export function _propertyDefaultSend(
   context: Client,
   body: DefaultDatetimeProperty,
-  options: PropertyDefaultOptions = { requestOptions: {} },
+  options: DefaultOptions = { requestOptions: {} },
 ): StreamableMethod<PropertyDefault200Response> {
   return context
     .path("/encode/datetime/property/default")
@@ -57,7 +57,7 @@ export async function _propertyDefaultDeserialize(
 export async function propertyDefault(
   context: Client,
   body: DefaultDatetimeProperty,
-  options: PropertyDefaultOptions = { requestOptions: {} },
+  options: DefaultOptions = { requestOptions: {} },
 ): Promise<DefaultDatetimeProperty> {
   const result = await _propertyDefaultSend(context, body, options);
   return _propertyDefaultDeserialize(result);
@@ -66,7 +66,7 @@ export async function propertyDefault(
 export function _propertyRfc3339Send(
   context: Client,
   body: Rfc3339DatetimeProperty,
-  options: PropertyRfc3339Options = { requestOptions: {} },
+  options: Rfc3339Options = { requestOptions: {} },
 ): StreamableMethod<PropertyRfc3339200Response> {
   return context
     .path("/encode/datetime/property/rfc3339")
@@ -91,7 +91,7 @@ export async function _propertyRfc3339Deserialize(
 export async function propertyRfc3339(
   context: Client,
   body: Rfc3339DatetimeProperty,
-  options: PropertyRfc3339Options = { requestOptions: {} },
+  options: Rfc3339Options = { requestOptions: {} },
 ): Promise<Rfc3339DatetimeProperty> {
   const result = await _propertyRfc3339Send(context, body, options);
   return _propertyRfc3339Deserialize(result);
@@ -100,7 +100,7 @@ export async function propertyRfc3339(
 export function _propertyRfc7231Send(
   context: Client,
   body: Rfc7231DatetimeProperty,
-  options: PropertyRfc7231Options = { requestOptions: {} },
+  options: Rfc7231Options = { requestOptions: {} },
 ): StreamableMethod<PropertyRfc7231200Response> {
   return context
     .path("/encode/datetime/property/rfc7231")
@@ -125,7 +125,7 @@ export async function _propertyRfc7231Deserialize(
 export async function propertyRfc7231(
   context: Client,
   body: Rfc7231DatetimeProperty,
-  options: PropertyRfc7231Options = { requestOptions: {} },
+  options: Rfc7231Options = { requestOptions: {} },
 ): Promise<Rfc7231DatetimeProperty> {
   const result = await _propertyRfc7231Send(context, body, options);
   return _propertyRfc7231Deserialize(result);
@@ -134,7 +134,7 @@ export async function propertyRfc7231(
 export function _propertyUnixTimestampSend(
   context: Client,
   body: UnixTimestampDatetimeProperty,
-  options: PropertyUnixTimestampOptions = { requestOptions: {} },
+  options: UnixTimestampOptions = { requestOptions: {} },
 ): StreamableMethod<PropertyUnixTimestamp200Response> {
   return context
     .path("/encode/datetime/property/unix-timestamp")
@@ -159,7 +159,7 @@ export async function _propertyUnixTimestampDeserialize(
 export async function propertyUnixTimestamp(
   context: Client,
   body: UnixTimestampDatetimeProperty,
-  options: PropertyUnixTimestampOptions = { requestOptions: {} },
+  options: UnixTimestampOptions = { requestOptions: {} },
 ): Promise<UnixTimestampDatetimeProperty> {
   const result = await _propertyUnixTimestampSend(context, body, options);
   return _propertyUnixTimestampDeserialize(result);
@@ -168,7 +168,7 @@ export async function propertyUnixTimestamp(
 export function _propertyUnixTimestampArraySend(
   context: Client,
   body: UnixTimestampArrayDatetimeProperty,
-  options: PropertyUnixTimestampArrayOptions = { requestOptions: {} },
+  options: UnixTimestampArrayOptions = { requestOptions: {} },
 ): StreamableMethod<PropertyUnixTimestampArray200Response> {
   return context
     .path("/encode/datetime/property/unix-timestamp-array")
@@ -193,7 +193,7 @@ export async function _propertyUnixTimestampArrayDeserialize(
 export async function propertyUnixTimestampArray(
   context: Client,
   body: UnixTimestampArrayDatetimeProperty,
-  options: PropertyUnixTimestampArrayOptions = { requestOptions: {} },
+  options: UnixTimestampArrayOptions = { requestOptions: {} },
 ): Promise<UnixTimestampArrayDatetimeProperty> {
   const result = await _propertyUnixTimestampArraySend(context, body, options);
   return _propertyUnixTimestampArrayDeserialize(result);

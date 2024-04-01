@@ -11,14 +11,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  IntsOnlyGetOptions,
-  IntsOnlySendOptions,
-} from "../../models/options.js";
+import { GetOptions, SendOptions } from "../../models/options.js";
 
 export function _intsOnlyGetSend(
   context: Client,
-  options: IntsOnlyGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): StreamableMethod<IntsOnlyGet200Response> {
   return context
     .path("/type/union/ints-only")
@@ -39,7 +36,7 @@ export async function _intsOnlyGetDeserialize(
 
 export async function intsOnlyGet(
   context: Client,
-  options: IntsOnlyGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): Promise<{ prop: 1 | 2 | 3 }> {
   const result = await _intsOnlyGetSend(context, options);
   return _intsOnlyGetDeserialize(result);
@@ -48,7 +45,7 @@ export async function intsOnlyGet(
 export function _intsOnlySendSend(
   context: Client,
   prop: 1 | 2 | 3,
-  options: IntsOnlySendOptions = { requestOptions: {} },
+  options: SendOptions = { requestOptions: {} },
 ): StreamableMethod<IntsOnlySend204Response> {
   return context
     .path("/type/union/ints-only")
@@ -71,7 +68,7 @@ export async function _intsOnlySendDeserialize(
 export async function intsOnlySend(
   context: Client,
   prop: 1 | 2 | 3,
-  options: IntsOnlySendOptions = { requestOptions: {} },
+  options: SendOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _intsOnlySendSend(context, prop, options);
   return _intsOnlySendDeserialize(result);

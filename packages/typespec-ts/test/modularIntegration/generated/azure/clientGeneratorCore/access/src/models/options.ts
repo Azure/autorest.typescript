@@ -13,7 +13,7 @@ export interface InternalDecoratorInInternalOptions extends OperationOptions {}
 
 export interface PublicDecoratorInInternalOptions extends OperationOptions {}
 
-export interface PublicOperationOptions extends OperationOptions {}
+export interface PublicOptions extends OperationOptions {}
 
 export interface InternalOptions extends OperationOptions {}
 

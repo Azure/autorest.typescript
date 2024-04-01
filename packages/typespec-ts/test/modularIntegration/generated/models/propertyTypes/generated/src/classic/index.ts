@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { BooleanOperations } from "./boolean/index.js";
 export { BooleanLiteralOperations } from "./booleanLiteral/index.js";
+export { BooleanModelOperations } from "./booleanModel/index.js";
 export { BytesOperations } from "./bytes/index.js";
 export { CollectionsIntOperations } from "./collectionsInt/index.js";
 export { CollectionsModelOperations } from "./collectionsModel/index.js";
@@ -20,8 +20,8 @@ export { IntOperations } from "./int/index.js";
 export { IntLiteralOperations } from "./intLiteral/index.js";
 export { ModelOperations } from "./model/index.js";
 export { NeverOperations } from "./never/index.js";
-export { StringOperations } from "./string/index.js";
 export { StringLiteralOperations } from "./stringLiteral/index.js";
+export { StringModelOperations } from "./stringModel/index.js";
 export { UnionEnumValueOperations } from "./unionEnumValue/index.js";
 export { UnionFloatLiteralOperations } from "./unionFloatLiteral/index.js";
 export { UnionIntLiteralOperations } from "./unionIntLiteral/index.js";

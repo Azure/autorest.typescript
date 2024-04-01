@@ -4,23 +4,17 @@
 import { ValueTypesContext } from "../../api/ValueTypesContext.js";
 import { UnknownDictProperty } from "../../models/models.js";
 import { unknownDictGet, unknownDictPut } from "../../api/unknownDict/index.js";
-import {
-  UnknownDictGetOptions,
-  UnknownDictPutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export interface UnknownDictOperations {
-  get: (options?: UnknownDictGetOptions) => Promise<UnknownDictProperty>;
-  put: (
-    body: UnknownDictProperty,
-    options?: UnknownDictPutOptions,
-  ) => Promise<void>;
+  get: (options?: GetOptions) => Promise<UnknownDictProperty>;
+  put: (body: UnknownDictProperty, options?: PutOptions) => Promise<void>;
 }
 
 export function getUnknownDict(context: ValueTypesContext) {
   return {
-    get: (options?: UnknownDictGetOptions) => unknownDictGet(context, options),
-    put: (body: UnknownDictProperty, options?: UnknownDictPutOptions) =>
+    get: (options?: GetOptions) => unknownDictGet(context, options),
+    put: (body: UnknownDictProperty, options?: PutOptions) =>
       unknownDictPut(context, body, options),
   };
 }

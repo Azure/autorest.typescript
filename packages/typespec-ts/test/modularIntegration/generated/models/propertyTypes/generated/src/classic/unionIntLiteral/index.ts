@@ -7,26 +7,17 @@ import {
   unionIntLiteralGet,
   unionIntLiteralPut,
 } from "../../api/unionIntLiteral/index.js";
-import {
-  UnionIntLiteralGetOptions,
-  UnionIntLiteralPutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export interface UnionIntLiteralOperations {
-  get: (
-    options?: UnionIntLiteralGetOptions,
-  ) => Promise<UnionIntLiteralProperty>;
-  put: (
-    body: UnionIntLiteralProperty,
-    options?: UnionIntLiteralPutOptions,
-  ) => Promise<void>;
+  get: (options?: GetOptions) => Promise<UnionIntLiteralProperty>;
+  put: (body: UnionIntLiteralProperty, options?: PutOptions) => Promise<void>;
 }
 
 export function getUnionIntLiteral(context: ValueTypesContext) {
   return {
-    get: (options?: UnionIntLiteralGetOptions) =>
-      unionIntLiteralGet(context, options),
-    put: (body: UnionIntLiteralProperty, options?: UnionIntLiteralPutOptions) =>
+    get: (options?: GetOptions) => unionIntLiteralGet(context, options),
+    put: (body: UnionIntLiteralProperty, options?: PutOptions) =>
       unionIntLiteralPut(context, body, options),
   };
 }

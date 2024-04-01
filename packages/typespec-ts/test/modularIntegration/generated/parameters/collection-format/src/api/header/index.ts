@@ -11,12 +11,12 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { HeaderCsvOptions } from "../../models/options.js";
+import { CsvOptions } from "../../models/options.js";
 
 export function _headerCsvSend(
   context: Client,
   colors: string[],
-  options: HeaderCsvOptions = { requestOptions: {} },
+  options: CsvOptions = { requestOptions: {} },
 ): StreamableMethod<HeaderCsv204Response> {
   return context
     .path("/parameters/collection-format/header/csv")
@@ -39,7 +39,7 @@ export async function _headerCsvDeserialize(
 export async function headerCsv(
   context: Client,
   colors: string[],
-  options: HeaderCsvOptions = { requestOptions: {} },
+  options: CsvOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _headerCsvSend(context, colors, options);
   return _headerCsvDeserialize(result);

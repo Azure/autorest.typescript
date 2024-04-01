@@ -21,8 +21,8 @@ export {
   ListWithPageOptions,
   ListWithParametersOptions,
   ListWithCustomPageModelOptions,
-  DeleteOperationOptions,
-  ExportOperationOptions,
+  DeleteOptions,
+  ExportOptions,
   ListFirstItemOptions,
   ListSecondItemOptions,
 } from "./options.js";

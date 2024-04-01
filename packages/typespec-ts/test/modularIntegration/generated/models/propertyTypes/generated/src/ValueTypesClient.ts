@@ -3,13 +3,13 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  getBooleanOperations,
-  BooleanOperations,
-} from "./classic/boolean/index.js";
+  getBooleanModelOperations,
+  BooleanModelOperations,
+} from "./classic/booleanModel/index.js";
 import {
-  getStringOperations,
-  StringOperations,
-} from "./classic/string/index.js";
+  getStringModelOperations,
+  StringModelOperations,
+} from "./classic/stringModel/index.js";
 import { getBytesOperations, BytesOperations } from "./classic/bytes/index.js";
 import { getIntOperations, IntOperations } from "./classic/int/index.js";
 import { getFloatOperations, FloatOperations } from "./classic/float/index.js";
@@ -117,8 +117,8 @@ export class ValueTypesClient {
   constructor(options: ValueTypesClientOptions = {}) {
     this._client = createValueTypes(options);
     this.pipeline = this._client.pipeline;
-    this.boolean = getBooleanOperations(this._client);
-    this.string = getStringOperations(this._client);
+    this.booleanModel = getBooleanModelOperations(this._client);
+    this.stringModel = getStringModelOperations(this._client);
     this.bytes = getBytesOperations(this._client);
     this.int = getIntOperations(this._client);
     this.float = getFloatOperations(this._client);
@@ -148,10 +148,10 @@ export class ValueTypesClient {
     this.unionEnumValue = getUnionEnumValueOperations(this._client);
   }
 
-  /** The operation groups for Boolean */
-  public readonly boolean: BooleanOperations;
-  /** The operation groups for String */
-  public readonly string: StringOperations;
+  /** The operation groups for BooleanModel */
+  public readonly booleanModel: BooleanModelOperations;
+  /** The operation groups for StringModel */
+  public readonly stringModel: StringModelOperations;
   /** The operation groups for Bytes */
   public readonly bytes: BytesOperations;
   /** The operation groups for Int */

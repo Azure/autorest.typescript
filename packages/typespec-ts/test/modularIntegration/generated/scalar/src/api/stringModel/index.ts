@@ -11,18 +11,18 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { StringGetOptions, StringPutOptions } from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
-export function _stringGetSend(
+export function _stringModelGetSend(
   context: Client,
-  options: StringGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): StreamableMethod<StringModelGet200Response> {
   return context
     .path("/type/scalar/string")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _stringGetDeserialize(
+export async function _stringModelGetDeserialize(
   result: StringModelGet200Response,
 ): Promise<string> {
   if (result.status !== "200") {
@@ -33,25 +33,25 @@ export async function _stringGetDeserialize(
 }
 
 /** get string value */
-export async function stringGet(
+export async function stringModelGet(
   context: Client,
-  options: StringGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): Promise<string> {
-  const result = await _stringGetSend(context, options);
-  return _stringGetDeserialize(result);
+  const result = await _stringModelGetSend(context, options);
+  return _stringModelGetDeserialize(result);
 }
 
-export function _stringPutSend(
+export function _stringModelPutSend(
   context: Client,
   body: string,
-  options: StringPutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): StreamableMethod<StringModelPut204Response> {
   return context
     .path("/type/scalar/string")
     .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
-export async function _stringPutDeserialize(
+export async function _stringModelPutDeserialize(
   result: StringModelPut204Response,
 ): Promise<void> {
   if (result.status !== "204") {
@@ -62,11 +62,11 @@ export async function _stringPutDeserialize(
 }
 
 /** put string value */
-export async function stringPut(
+export async function stringModelPut(
   context: Client,
   body: string,
-  options: StringPutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _stringPutSend(context, body, options);
-  return _stringPutDeserialize(result);
+  const result = await _stringModelPutSend(context, body, options);
+  return _stringModelPutDeserialize(result);
 }

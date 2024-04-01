@@ -19,9 +19,9 @@ import {
   NoDecoratorInInternal200Response,
   NoDecoratorInPublic200Response,
   Operation200Response,
+  Public200Response,
   PublicDecoratorInInternal200Response,
   PublicDecoratorInPublic200Response,
-  PublicOperation200Response,
 } from "../rest/index.js";
 import {
   StreamableMethod,
@@ -35,7 +35,7 @@ import {
   NoDecoratorInInternalOptions,
   InternalDecoratorInInternalOptions,
   PublicDecoratorInInternalOptions,
-  PublicOperationOptions,
+  PublicOptions,
   InternalOptions,
   DiscriminatorOptions,
 } from "../models/options.js";
@@ -220,11 +220,11 @@ export async function publicDecoratorInInternal(
   return _publicDecoratorInInternalDeserialize(result);
 }
 
-export function _publicOperationSend(
+export function _$publicSend(
   context: Client,
   name: string,
-  options: PublicOperationOptions = { requestOptions: {} },
-): StreamableMethod<PublicOperation200Response> {
+  options: PublicOptions = { requestOptions: {} },
+): StreamableMethod<Public200Response> {
   return context
     .path("/azure/client-generator-core/access/sharedModelInOperation/public")
     .get({
@@ -233,8 +233,8 @@ export function _publicOperationSend(
     });
 }
 
-export async function _publicOperationDeserialize(
-  result: PublicOperation200Response,
+export async function _$publicDeserialize(
+  result: Public200Response,
 ): Promise<SharedModel> {
   if (result.status !== "200") {
     throw createRestError(result);
@@ -245,13 +245,13 @@ export async function _publicOperationDeserialize(
   };
 }
 
-export async function publicOperation(
+export async function $public(
   context: Client,
   name: string,
-  options: PublicOperationOptions = { requestOptions: {} },
+  options: PublicOptions = { requestOptions: {} },
 ): Promise<SharedModel> {
-  const result = await _publicOperationSend(context, name, options);
-  return _publicOperationDeserialize(result);
+  const result = await _$publicSend(context, name, options);
+  return _$publicDeserialize(result);
 }
 
 export function _internalSend(

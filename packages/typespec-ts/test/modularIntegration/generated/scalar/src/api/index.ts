@@ -6,7 +6,7 @@ export {
   ScalarClientOptions,
   ScalarContext,
 } from "./ScalarContext.js";
-export { booleanGet, booleanPut } from "./boolean/index.js";
+export { booleanModelGet, booleanModelPut } from "./booleanModel/index.js";
 export {
   decimal128TypeResponseBody,
   decimal128TypeRequestBody,
@@ -25,5 +25,5 @@ export {
   decimalVerifyPrepareVerify,
   decimalVerifyVerify,
 } from "./decimalVerify/index.js";
-export { stringGet, stringPut } from "./string/index.js";
+export { stringModelGet, stringModelPut } from "./stringModel/index.js";
 export { unknownGet, unknownPut } from "./unknown/index.js";

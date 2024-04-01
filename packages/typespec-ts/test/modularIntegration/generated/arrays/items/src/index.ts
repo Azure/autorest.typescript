@@ -2,29 +2,7 @@
 // Licensed under the MIT license.
 
 export { ArrayClient, ArrayClientOptions } from "./ArrayClient.js";
-export {
-  InnerModel,
-  Int32ValueGetOptions,
-  Int32ValuePutOptions,
-  Int64ValueGetOptions,
-  Int64ValuePutOptions,
-  BooleanValueGetOptions,
-  BooleanValuePutOptions,
-  StringValueGetOptions,
-  StringValuePutOptions,
-  Float32ValueGetOptions,
-  Float32ValuePutOptions,
-  DatetimeValueGetOptions,
-  DatetimeValuePutOptions,
-  DurationValueGetOptions,
-  DurationValuePutOptions,
-  UnknownValueGetOptions,
-  UnknownValuePutOptions,
-  ModelValueGetOptions,
-  ModelValuePutOptions,
-  NullableFloatValueGetOptions,
-  NullableFloatValuePutOptions,
-} from "./models/index.js";
+export { InnerModel, GetOptions, PutOptions } from "./models/index.js";
 export {
   BooleanValueOperations,
   DatetimeValueOperations,

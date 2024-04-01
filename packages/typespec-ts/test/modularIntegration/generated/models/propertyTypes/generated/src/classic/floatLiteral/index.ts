@@ -7,24 +7,17 @@ import {
   floatLiteralGet,
   floatLiteralPut,
 } from "../../api/floatLiteral/index.js";
-import {
-  FloatLiteralGetOptions,
-  FloatLiteralPutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export interface FloatLiteralOperations {
-  get: (options?: FloatLiteralGetOptions) => Promise<FloatLiteralProperty>;
-  put: (
-    body: FloatLiteralProperty,
-    options?: FloatLiteralPutOptions,
-  ) => Promise<void>;
+  get: (options?: GetOptions) => Promise<FloatLiteralProperty>;
+  put: (body: FloatLiteralProperty, options?: PutOptions) => Promise<void>;
 }
 
 export function getFloatLiteral(context: ValueTypesContext) {
   return {
-    get: (options?: FloatLiteralGetOptions) =>
-      floatLiteralGet(context, options),
-    put: (body: FloatLiteralProperty, options?: FloatLiteralPutOptions) =>
+    get: (options?: GetOptions) => floatLiteralGet(context, options),
+    put: (body: FloatLiteralProperty, options?: PutOptions) =>
       floatLiteralPut(context, body, options),
   };
 }

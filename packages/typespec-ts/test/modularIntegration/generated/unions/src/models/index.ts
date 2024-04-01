@@ -10,25 +10,4 @@ export {
   Dog,
   StringExtensibleNamedUnion,
 } from "./models.js";
-export {
-  StringsOnlyGetOptions,
-  StringsOnlySendOptions,
-  StringExtensibleGetOptions,
-  StringExtensibleSendOptions,
-  StringExtensibleNamedGetOptions,
-  StringExtensibleNamedSendOptions,
-  IntsOnlyGetOptions,
-  IntsOnlySendOptions,
-  FloatsOnlyGetOptions,
-  FloatsOnlySendOptions,
-  ModelsOnlyGetOptions,
-  ModelsOnlySendOptions,
-  EnumsOnlyGetOptions,
-  EnumsOnlySendOptions,
-  StringAndArrayGetOptions,
-  StringAndArraySendOptions,
-  MixedLiteralsGetOptions,
-  MixedLiteralsSendOptions,
-  MixedTypesGetOptions,
-  MixedTypesSendOptions,
-} from "./options.js";
+export { GetOptions, SendOptions } from "./options.js";

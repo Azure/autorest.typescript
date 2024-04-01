@@ -12,14 +12,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  ModelsOnlyGetOptions,
-  ModelsOnlySendOptions,
-} from "../../models/options.js";
+import { GetOptions, SendOptions } from "../../models/options.js";
 
 export function _modelsOnlyGetSend(
   context: Client,
-  options: ModelsOnlyGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsOnlyGet200Response> {
   return context
     .path("/type/union/models-only")
@@ -40,7 +37,7 @@ export async function _modelsOnlyGetDeserialize(
 
 export async function modelsOnlyGet(
   context: Client,
-  options: ModelsOnlyGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): Promise<{ prop: Cat | Dog }> {
   const result = await _modelsOnlyGetSend(context, options);
   return _modelsOnlyGetDeserialize(result);
@@ -49,7 +46,7 @@ export async function modelsOnlyGet(
 export function _modelsOnlySendSend(
   context: Client,
   prop: Cat | Dog,
-  options: ModelsOnlySendOptions = { requestOptions: {} },
+  options: SendOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsOnlySend204Response> {
   return context
     .path("/type/union/models-only")
@@ -72,7 +69,7 @@ export async function _modelsOnlySendDeserialize(
 export async function modelsOnlySend(
   context: Client,
   prop: Cat | Dog,
-  options: ModelsOnlySendOptions = { requestOptions: {} },
+  options: SendOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsOnlySendSend(context, prop, options);
   return _modelsOnlySendDeserialize(result);

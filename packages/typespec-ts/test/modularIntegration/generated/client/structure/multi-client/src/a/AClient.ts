@@ -25,11 +25,11 @@ export class AClient {
   public readonly pipeline: Pipeline;
 
   constructor(
-    endpoint: string,
-    client: ClientType,
+    endpointParam: string,
+    clientParam: ClientType,
     options: AClientOptions = {},
   ) {
-    this._client = createA(endpoint, client, options);
+    this._client = createA(endpointParam, clientParam, options);
     this.pipeline = this._client.pipeline;
   }
 

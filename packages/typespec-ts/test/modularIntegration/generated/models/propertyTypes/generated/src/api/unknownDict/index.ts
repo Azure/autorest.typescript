@@ -12,14 +12,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  UnknownDictGetOptions,
-  UnknownDictPutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export function _unknownDictGetSend(
   context: Client,
-  options: UnknownDictGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): StreamableMethod<UnknownDictGet200Response> {
   return context
     .path("/type/property/value-types/unknown/dict")
@@ -41,7 +38,7 @@ export async function _unknownDictGetDeserialize(
 /** Get call */
 export async function unknownDictGet(
   context: Client,
-  options: UnknownDictGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): Promise<UnknownDictProperty> {
   const result = await _unknownDictGetSend(context, options);
   return _unknownDictGetDeserialize(result);
@@ -50,7 +47,7 @@ export async function unknownDictGet(
 export function _unknownDictPutSend(
   context: Client,
   body: UnknownDictProperty,
-  options: UnknownDictPutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): StreamableMethod<UnknownDictPut204Response> {
   return context
     .path("/type/property/value-types/unknown/dict")
@@ -74,7 +71,7 @@ export async function _unknownDictPutDeserialize(
 export async function unknownDictPut(
   context: Client,
   body: UnknownDictProperty,
-  options: UnknownDictPutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _unknownDictPutSend(context, body, options);
   return _unknownDictPutDeserialize(result);

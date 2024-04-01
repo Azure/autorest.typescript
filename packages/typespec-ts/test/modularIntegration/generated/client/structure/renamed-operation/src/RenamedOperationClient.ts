@@ -26,11 +26,11 @@ export class RenamedOperationClient {
   public readonly pipeline: Pipeline;
 
   constructor(
-    endpoint: string,
-    client: ClientType,
+    endpointParam: string,
+    clientParam: ClientType,
     options: RenamedOperationClientOptions = {},
   ) {
-    this._client = createRenamedOperation(endpoint, client, options);
+    this._client = createRenamedOperation(endpointParam, clientParam, options);
     this.pipeline = this._client.pipeline;
     this.group = getGroupOperations(this._client);
   }

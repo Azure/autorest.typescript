@@ -12,7 +12,7 @@ export {
   noDecoratorInInternal,
   internalDecoratorInInternal,
   publicDecoratorInInternal,
-  publicOperation,
+  $public,
   internal,
   operation,
   discriminator,

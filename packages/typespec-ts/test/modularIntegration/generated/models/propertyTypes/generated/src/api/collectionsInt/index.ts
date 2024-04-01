@@ -12,14 +12,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  CollectionsIntGetOptions,
-  CollectionsIntPutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export function _collectionsIntGetSend(
   context: Client,
-  options: CollectionsIntGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): StreamableMethod<CollectionsIntGet200Response> {
   return context
     .path("/type/property/value-types/collections/int")
@@ -41,7 +38,7 @@ export async function _collectionsIntGetDeserialize(
 /** Get call */
 export async function collectionsIntGet(
   context: Client,
-  options: CollectionsIntGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): Promise<CollectionsIntProperty> {
   const result = await _collectionsIntGetSend(context, options);
   return _collectionsIntGetDeserialize(result);
@@ -50,7 +47,7 @@ export async function collectionsIntGet(
 export function _collectionsIntPutSend(
   context: Client,
   body: CollectionsIntProperty,
-  options: CollectionsIntPutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): StreamableMethod<CollectionsIntPut204Response> {
   return context
     .path("/type/property/value-types/collections/int")
@@ -74,7 +71,7 @@ export async function _collectionsIntPutDeserialize(
 export async function collectionsIntPut(
   context: Client,
   body: CollectionsIntProperty,
-  options: CollectionsIntPutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _collectionsIntPutSend(context, body, options);
   return _collectionsIntPutDeserialize(result);

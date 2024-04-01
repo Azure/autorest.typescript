@@ -24,8 +24,8 @@ export class VersionedClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates versioned server. */
-  constructor(endpoint: string, options: VersionedClientOptions = {}) {
-    this._client = createVersioned(endpoint, options);
+  constructor(endpointParam: string, options: VersionedClientOptions = {}) {
+    this._client = createVersioned(endpointParam, options);
     this.pipeline = this._client.pipeline;
   }
 

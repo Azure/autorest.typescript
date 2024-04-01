@@ -7,24 +7,17 @@ import {
   stringLiteralGet,
   stringLiteralPut,
 } from "../../api/stringLiteral/index.js";
-import {
-  StringLiteralGetOptions,
-  StringLiteralPutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export interface StringLiteralOperations {
-  get: (options?: StringLiteralGetOptions) => Promise<StringLiteralProperty>;
-  put: (
-    body: StringLiteralProperty,
-    options?: StringLiteralPutOptions,
-  ) => Promise<void>;
+  get: (options?: GetOptions) => Promise<StringLiteralProperty>;
+  put: (body: StringLiteralProperty, options?: PutOptions) => Promise<void>;
 }
 
 export function getStringLiteral(context: ValueTypesContext) {
   return {
-    get: (options?: StringLiteralGetOptions) =>
-      stringLiteralGet(context, options),
-    put: (body: StringLiteralProperty, options?: StringLiteralPutOptions) =>
+    get: (options?: GetOptions) => stringLiteralGet(context, options),
+    put: (body: StringLiteralProperty, options?: PutOptions) =>
       stringLiteralPut(context, body, options),
   };
 }

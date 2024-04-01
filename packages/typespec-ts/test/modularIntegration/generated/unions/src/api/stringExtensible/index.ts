@@ -11,14 +11,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  StringExtensibleGetOptions,
-  StringExtensibleSendOptions,
-} from "../../models/options.js";
+import { GetOptions, SendOptions } from "../../models/options.js";
 
 export function _stringExtensibleGetSend(
   context: Client,
-  options: StringExtensibleGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): StreamableMethod<StringExtensibleGet200Response> {
   return context
     .path("/type/union/string-extensible")
@@ -39,7 +36,7 @@ export async function _stringExtensibleGetDeserialize(
 
 export async function stringExtensibleGet(
   context: Client,
-  options: StringExtensibleGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): Promise<{ prop: string | "b" | "c" }> {
   const result = await _stringExtensibleGetSend(context, options);
   return _stringExtensibleGetDeserialize(result);
@@ -48,7 +45,7 @@ export async function stringExtensibleGet(
 export function _stringExtensibleSendSend(
   context: Client,
   prop: string | "b" | "c",
-  options: StringExtensibleSendOptions = { requestOptions: {} },
+  options: SendOptions = { requestOptions: {} },
 ): StreamableMethod<StringExtensibleSend204Response> {
   return context
     .path("/type/union/string-extensible")
@@ -71,7 +68,7 @@ export async function _stringExtensibleSendDeserialize(
 export async function stringExtensibleSend(
   context: Client,
   prop: string | "b" | "c",
-  options: StringExtensibleSendOptions = { requestOptions: {} },
+  options: SendOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _stringExtensibleSendSend(context, prop, options);
   return _stringExtensibleSendDeserialize(result);

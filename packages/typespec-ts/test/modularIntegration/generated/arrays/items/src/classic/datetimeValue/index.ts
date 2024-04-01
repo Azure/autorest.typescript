@@ -6,21 +6,17 @@ import {
   datetimeValueGet,
   datetimeValuePut,
 } from "../../api/datetimeValue/index.js";
-import {
-  DatetimeValueGetOptions,
-  DatetimeValuePutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export interface DatetimeValueOperations {
-  get: (options?: DatetimeValueGetOptions) => Promise<Date[]>;
-  put: (body: Date[], options?: DatetimeValuePutOptions) => Promise<void>;
+  get: (options?: GetOptions) => Promise<Date[]>;
+  put: (body: Date[], options?: PutOptions) => Promise<void>;
 }
 
 export function getDatetimeValue(context: ArrayContext) {
   return {
-    get: (options?: DatetimeValueGetOptions) =>
-      datetimeValueGet(context, options),
-    put: (body: Date[], options?: DatetimeValuePutOptions) =>
+    get: (options?: GetOptions) => datetimeValueGet(context, options),
+    put: (body: Date[], options?: PutOptions) =>
       datetimeValuePut(context, body, options),
   };
 }

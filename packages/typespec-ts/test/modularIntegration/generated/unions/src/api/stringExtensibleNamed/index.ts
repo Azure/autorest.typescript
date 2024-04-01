@@ -12,14 +12,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  StringExtensibleNamedGetOptions,
-  StringExtensibleNamedSendOptions,
-} from "../../models/options.js";
+import { GetOptions, SendOptions } from "../../models/options.js";
 
 export function _stringExtensibleNamedGetSend(
   context: Client,
-  options: StringExtensibleNamedGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): StreamableMethod<StringExtensibleNamedGet200Response> {
   return context
     .path("/type/union/string-extensible-named")
@@ -40,7 +37,7 @@ export async function _stringExtensibleNamedGetDeserialize(
 
 export async function stringExtensibleNamedGet(
   context: Client,
-  options: StringExtensibleNamedGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): Promise<{ prop: StringExtensibleNamedUnion }> {
   const result = await _stringExtensibleNamedGetSend(context, options);
   return _stringExtensibleNamedGetDeserialize(result);
@@ -49,7 +46,7 @@ export async function stringExtensibleNamedGet(
 export function _stringExtensibleNamedSendSend(
   context: Client,
   prop: StringExtensibleNamedUnion,
-  options: StringExtensibleNamedSendOptions = { requestOptions: {} },
+  options: SendOptions = { requestOptions: {} },
 ): StreamableMethod<StringExtensibleNamedSend204Response> {
   return context
     .path("/type/union/string-extensible-named")
@@ -72,7 +69,7 @@ export async function _stringExtensibleNamedSendDeserialize(
 export async function stringExtensibleNamedSend(
   context: Client,
   prop: StringExtensibleNamedUnion,
-  options: StringExtensibleNamedSendOptions = { requestOptions: {} },
+  options: SendOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _stringExtensibleNamedSendSend(context, prop, options);
   return _stringExtensibleNamedSendDeserialize(result);

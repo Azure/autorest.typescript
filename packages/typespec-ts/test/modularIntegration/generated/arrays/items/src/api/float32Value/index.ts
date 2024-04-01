@@ -11,14 +11,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import {
-  Float32ValueGetOptions,
-  Float32ValuePutOptions,
-} from "../../models/options.js";
+import { GetOptions, PutOptions } from "../../models/options.js";
 
 export function _float32ValueGetSend(
   context: Client,
-  options: Float32ValueGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): StreamableMethod<Float32ValueGet200Response> {
   return context
     .path("/type/array/float32")
@@ -37,7 +34,7 @@ export async function _float32ValueGetDeserialize(
 
 export async function float32ValueGet(
   context: Client,
-  options: Float32ValueGetOptions = { requestOptions: {} },
+  options: GetOptions = { requestOptions: {} },
 ): Promise<number[]> {
   const result = await _float32ValueGetSend(context, options);
   return _float32ValueGetDeserialize(result);
@@ -46,7 +43,7 @@ export async function float32ValueGet(
 export function _float32ValuePutSend(
   context: Client,
   body: number[],
-  options: Float32ValuePutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): StreamableMethod<Float32ValuePut204Response> {
   return context
     .path("/type/array/float32")
@@ -66,7 +63,7 @@ export async function _float32ValuePutDeserialize(
 export async function float32ValuePut(
   context: Client,
   body: number[],
-  options: Float32ValuePutOptions = { requestOptions: {} },
+  options: PutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _float32ValuePutSend(context, body, options);
   return _float32ValuePutDeserialize(result);
