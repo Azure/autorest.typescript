@@ -354,6 +354,7 @@ describe("#transformSchemas", () => {
             name: "A",
             type: "object",
             description: "",
+            fromCore: false,
             typeName: "A",
             properties: {
               '"foo"': {
@@ -370,6 +371,7 @@ describe("#transformSchemas", () => {
             name: "B",
             type: "object",
             description: "",
+            fromCore: false,
             typeName: "B",
             properties: {
               '"bar"': {
@@ -417,6 +419,7 @@ describe("#transformSchemas", () => {
           name: "A",
           type: "object",
           description: "",
+          fromCore: false,
           typeName: "A",
           properties: {},
           outputTypeName: "AOutput",
@@ -458,6 +461,7 @@ describe("#transformSchemas", () => {
           name: "A",
           type: "object",
           description: "",
+          fromCore: false,
           typeName: "A",
           properties: {},
           outputTypeName: "AOutput",
@@ -502,6 +506,7 @@ describe("#transformSchemas", () => {
               name: "A",
               type: "object",
               description: "",
+              fromCore: false,
               typeName: "A",
               properties: {
                 '"foo"': {
@@ -518,6 +523,7 @@ describe("#transformSchemas", () => {
               name: "B",
               type: "object",
               description: "",
+              fromCore: false,
               typeName: "B",
               properties: {
                 '"baz"': {
@@ -549,6 +555,7 @@ describe("#transformSchemas", () => {
         name: "",
         type: "unknown",
         description: undefined,
+        fromCore: false,
         typeName: "Record<string, unknown>",
         outputTypeName: "Record<string, any>",
         properties: {},
@@ -571,6 +578,7 @@ describe("#transformSchemas", () => {
         name: "",
         type: "object",
         description: undefined,
+        fromCore: false,
         typeName: '{"name": string;"arguments": string;}',
         outputTypeName: '{"name": string;"arguments": string;}',
         properties: {
@@ -602,6 +610,7 @@ describe("#transformSchemas", () => {
         name: "",
         type: "object",
         description: undefined,
+        fromCore: false,
         typeName: '{"name": {"foo": {"bar": string;};};}',
         outputTypeName: '{"name": {"foo": {"bar": string;};};}',
         properties: {
@@ -609,6 +618,7 @@ describe("#transformSchemas", () => {
             name: "",
             type: "object",
             description: undefined,
+            fromCore: false,
             typeName: '{"foo": {"bar": string;};}',
             outputTypeName: '{"foo": {"bar": string;};}',
             required: true,
@@ -617,6 +627,7 @@ describe("#transformSchemas", () => {
               '"foo"': {
                 name: "",
                 type: "object",
+                fromCore: false,
                 description: undefined,
                 typeName: '{"bar": string;}',
                 outputTypeName: '{"bar": string;}',
@@ -649,6 +660,7 @@ describe("#transformSchemas", () => {
         name: "",
         type: "object",
         description: undefined,
+        fromCore: false,
         typeName: '{"name": Test;}',
         outputTypeName: '{"name": TestOutput;}',
         properties: {
@@ -656,6 +668,7 @@ describe("#transformSchemas", () => {
             name: "Test",
             type: "object",
             description: undefined,
+            fromCore: false,
             typeName: "Test",
             outputTypeName: "TestOutput",
             properties: {},
@@ -686,6 +699,7 @@ describe("#transformSchemas", () => {
           name: "",
           type: "object",
           description: "",
+          fromCore: false,
           typeName: '{"name": string;}',
           outputTypeName: '{"name": string;}',
           properties: {
@@ -721,6 +735,7 @@ describe("#transformSchemas", () => {
           name: "",
           type: "object",
           description: "",
+          fromCore: false,
           typeName: '{"name": string;}',
           outputTypeName: '{"name": string;}',
           properties: {
@@ -755,6 +770,7 @@ describe("#transformSchemas", () => {
             name: "",
             type: "object",
             description: "",
+            fromCore: false,
             typeName: '{"name": string;}',
             outputTypeName: '{"name": string;}',
             properties: {
