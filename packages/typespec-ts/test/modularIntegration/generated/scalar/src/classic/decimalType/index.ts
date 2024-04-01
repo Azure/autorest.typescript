@@ -8,28 +8,33 @@ import {
   decimalTypeRequestParameter,
 } from "../../api/decimalType/index.js";
 import {
-  ResponseBodyOptions,
-  RequestBodyOptions,
-  RequestParameterOptions,
+  DecimalTypeResponseBodyOptions,
+  DecimalTypeRequestBodyOptions,
+  DecimalTypeRequestParameterOptions,
 } from "../../models/options.js";
 
 export interface DecimalTypeOperations {
-  responseBody: (options?: ResponseBodyOptions) => Promise<number>;
-  requestBody: (body: number, options?: RequestBodyOptions) => Promise<void>;
+  responseBody: (options?: DecimalTypeResponseBodyOptions) => Promise<number>;
+  requestBody: (
+    body: number,
+    options?: DecimalTypeRequestBodyOptions,
+  ) => Promise<void>;
   requestParameter: (
     value: number,
-    options?: RequestParameterOptions,
+    options?: DecimalTypeRequestParameterOptions,
   ) => Promise<void>;
 }
 
 export function getDecimalType(context: ScalarContext) {
   return {
-    responseBody: (options?: ResponseBodyOptions) =>
+    responseBody: (options?: DecimalTypeResponseBodyOptions) =>
       decimalTypeResponseBody(context, options),
-    requestBody: (body: number, options?: RequestBodyOptions) =>
+    requestBody: (body: number, options?: DecimalTypeRequestBodyOptions) =>
       decimalTypeRequestBody(context, body, options),
-    requestParameter: (value: number, options?: RequestParameterOptions) =>
-      decimalTypeRequestParameter(context, value, options),
+    requestParameter: (
+      value: number,
+      options?: DecimalTypeRequestParameterOptions,
+    ) => decimalTypeRequestParameter(context, value, options),
   };
 }
 

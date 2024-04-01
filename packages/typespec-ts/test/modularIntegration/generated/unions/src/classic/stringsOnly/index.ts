@@ -6,17 +6,23 @@ import {
   stringsOnlyGet,
   stringsOnlySend,
 } from "../../api/stringsOnly/index.js";
-import { GetOptions, SendOptions } from "../../models/options.js";
+import {
+  StringsOnlyGetOptions,
+  StringsOnlySendOptions,
+} from "../../models/options.js";
 
 export interface StringsOnlyOperations {
-  get: (options?: GetOptions) => Promise<{ prop: "a" | "b" | "c" }>;
-  send: (prop: "a" | "b" | "c", options?: SendOptions) => Promise<void>;
+  get: (options?: StringsOnlyGetOptions) => Promise<{ prop: "a" | "b" | "c" }>;
+  send: (
+    prop: "a" | "b" | "c",
+    options?: StringsOnlySendOptions,
+  ) => Promise<void>;
 }
 
 export function getStringsOnly(context: UnionContext) {
   return {
-    get: (options?: GetOptions) => stringsOnlyGet(context, options),
-    send: (prop: "a" | "b" | "c", options?: SendOptions) =>
+    get: (options?: StringsOnlyGetOptions) => stringsOnlyGet(context, options),
+    send: (prop: "a" | "b" | "c", options?: StringsOnlySendOptions) =>
       stringsOnlySend(context, prop, options),
   };
 }

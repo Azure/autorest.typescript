@@ -11,11 +11,14 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import {
+  UnknownValueGetOptions,
+  UnknownValuePutOptions,
+} from "../../models/options.js";
 
 export function _unknownValueGetSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: UnknownValueGetOptions = { requestOptions: {} },
 ): StreamableMethod<UnknownValueGet200Response> {
   return context
     .path("/type/array/unknown")
@@ -34,7 +37,7 @@ export async function _unknownValueGetDeserialize(
 
 export async function unknownValueGet(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: UnknownValueGetOptions = { requestOptions: {} },
 ): Promise<unknown[]> {
   const result = await _unknownValueGetSend(context, options);
   return _unknownValueGetDeserialize(result);
@@ -43,7 +46,7 @@ export async function unknownValueGet(
 export function _unknownValuePutSend(
   context: Client,
   body: unknown[],
-  options: PutOptions = { requestOptions: {} },
+  options: UnknownValuePutOptions = { requestOptions: {} },
 ): StreamableMethod<UnknownValuePut204Response> {
   return context
     .path("/type/array/unknown")
@@ -63,7 +66,7 @@ export async function _unknownValuePutDeserialize(
 export async function unknownValuePut(
   context: Client,
   body: unknown[],
-  options: PutOptions = { requestOptions: {} },
+  options: UnknownValuePutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _unknownValuePutSend(context, body, options);
   return _unknownValuePutDeserialize(result);

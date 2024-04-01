@@ -12,18 +12,18 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import { BooleanGetOptions, BooleanPutOptions } from "../../models/options.js";
 
-export function _booleanModelGetSend(
+export function _booleanGetSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: BooleanGetOptions = { requestOptions: {} },
 ): StreamableMethod<BooleanModelGet200Response> {
   return context
     .path("/type/property/value-types/boolean")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _booleanModelGetDeserialize(
+export async function _booleanGetDeserialize(
   result: BooleanModelGet200Response,
 ): Promise<BooleanProperty> {
   if (result.status !== "200") {
@@ -36,18 +36,18 @@ export async function _booleanModelGetDeserialize(
 }
 
 /** Get call */
-export async function booleanModelGet(
+export async function booleanGet(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: BooleanGetOptions = { requestOptions: {} },
 ): Promise<BooleanProperty> {
-  const result = await _booleanModelGetSend(context, options);
-  return _booleanModelGetDeserialize(result);
+  const result = await _booleanGetSend(context, options);
+  return _booleanGetDeserialize(result);
 }
 
-export function _booleanModelPutSend(
+export function _booleanPutSend(
   context: Client,
   body: BooleanProperty,
-  options: PutOptions = { requestOptions: {} },
+  options: BooleanPutOptions = { requestOptions: {} },
 ): StreamableMethod<BooleanModelPut204Response> {
   return context
     .path("/type/property/value-types/boolean")
@@ -57,7 +57,7 @@ export function _booleanModelPutSend(
     });
 }
 
-export async function _booleanModelPutDeserialize(
+export async function _booleanPutDeserialize(
   result: BooleanModelPut204Response,
 ): Promise<void> {
   if (result.status !== "204") {
@@ -68,11 +68,11 @@ export async function _booleanModelPutDeserialize(
 }
 
 /** Put operation */
-export async function booleanModelPut(
+export async function booleanPut(
   context: Client,
   body: BooleanProperty,
-  options: PutOptions = { requestOptions: {} },
+  options: BooleanPutOptions = { requestOptions: {} },
 ): Promise<void> {
-  const result = await _booleanModelPutSend(context, body, options);
-  return _booleanModelPutDeserialize(result);
+  const result = await _booleanPutSend(context, body, options);
+  return _booleanPutDeserialize(result);
 }

@@ -9,32 +9,37 @@ import {
   headerBase64urlArray,
 } from "../../api/header/index.js";
 import {
-  DefaultOptions,
-  Base64Options,
-  Base64urlOptions,
-  Base64urlArrayOptions,
+  HeaderDefaultOptions,
+  HeaderBase64Options,
+  HeaderBase64urlOptions,
+  HeaderBase64urlArrayOptions,
 } from "../../models/options.js";
 
 export interface HeaderOperations {
-  default: (value: Uint8Array, options?: DefaultOptions) => Promise<void>;
-  base64: (value: Uint8Array, options?: Base64Options) => Promise<void>;
-  base64url: (value: Uint8Array, options?: Base64urlOptions) => Promise<void>;
+  default: (value: Uint8Array, options?: HeaderDefaultOptions) => Promise<void>;
+  base64: (value: Uint8Array, options?: HeaderBase64Options) => Promise<void>;
+  base64url: (
+    value: Uint8Array,
+    options?: HeaderBase64urlOptions,
+  ) => Promise<void>;
   base64urlArray: (
     value: Uint8Array[],
-    options?: Base64urlArrayOptions,
+    options?: HeaderBase64urlArrayOptions,
   ) => Promise<void>;
 }
 
 export function getHeader(context: BytesContext) {
   return {
-    default: (value: Uint8Array, options?: DefaultOptions) =>
+    default: (value: Uint8Array, options?: HeaderDefaultOptions) =>
       headerDefault(context, value, options),
-    base64: (value: Uint8Array, options?: Base64Options) =>
+    base64: (value: Uint8Array, options?: HeaderBase64Options) =>
       headerBase64(context, value, options),
-    base64url: (value: Uint8Array, options?: Base64urlOptions) =>
+    base64url: (value: Uint8Array, options?: HeaderBase64urlOptions) =>
       headerBase64url(context, value, options),
-    base64urlArray: (value: Uint8Array[], options?: Base64urlArrayOptions) =>
-      headerBase64urlArray(context, value, options),
+    base64urlArray: (
+      value: Uint8Array[],
+      options?: HeaderBase64urlArrayOptions,
+    ) => headerBase64urlArray(context, value, options),
   };
 }
 

@@ -12,11 +12,14 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { GetOptions, SendOptions } from "../../models/options.js";
+import {
+  MixedTypesGetOptions,
+  MixedTypesSendOptions,
+} from "../../models/options.js";
 
 export function _mixedTypesGetSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: MixedTypesGetOptions = { requestOptions: {} },
 ): StreamableMethod<MixedTypesGet200Response> {
   return context
     .path("/type/union/mixed-types")
@@ -42,7 +45,7 @@ export async function _mixedTypesGetDeserialize(
 
 export async function mixedTypesGet(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: MixedTypesGetOptions = { requestOptions: {} },
 ): Promise<{ prop: MixedTypesCases }> {
   const result = await _mixedTypesGetSend(context, options);
   return _mixedTypesGetDeserialize(result);
@@ -51,7 +54,7 @@ export async function mixedTypesGet(
 export function _mixedTypesSendSend(
   context: Client,
   prop: MixedTypesCases,
-  options: SendOptions = { requestOptions: {} },
+  options: MixedTypesSendOptions = { requestOptions: {} },
 ): StreamableMethod<MixedTypesSend204Response> {
   return context
     .path("/type/union/mixed-types")
@@ -81,7 +84,7 @@ export async function _mixedTypesSendDeserialize(
 export async function mixedTypesSend(
   context: Client,
   prop: MixedTypesCases,
-  options: SendOptions = { requestOptions: {} },
+  options: MixedTypesSendOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _mixedTypesSendSend(context, prop, options);
   return _mixedTypesSendDeserialize(result);

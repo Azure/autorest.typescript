@@ -13,14 +13,14 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  ResponseBodyOptions,
-  RequestBodyOptions,
-  RequestParameterOptions,
+  Decimal128TypeResponseBodyOptions,
+  Decimal128TypeRequestBodyOptions,
+  Decimal128TypeRequestParameterOptions,
 } from "../../models/options.js";
 
 export function _decimal128TypeResponseBodySend(
   context: Client,
-  options: ResponseBodyOptions = { requestOptions: {} },
+  options: Decimal128TypeResponseBodyOptions = { requestOptions: {} },
 ): StreamableMethod<Decimal128TypeResponseBody200Response> {
   return context
     .path("/type/scalar/decimal128/response_body")
@@ -39,7 +39,7 @@ export async function _decimal128TypeResponseBodyDeserialize(
 
 export async function decimal128TypeResponseBody(
   context: Client,
-  options: ResponseBodyOptions = { requestOptions: {} },
+  options: Decimal128TypeResponseBodyOptions = { requestOptions: {} },
 ): Promise<number> {
   const result = await _decimal128TypeResponseBodySend(context, options);
   return _decimal128TypeResponseBodyDeserialize(result);
@@ -48,7 +48,7 @@ export async function decimal128TypeResponseBody(
 export function _decimal128TypeRequestBodySend(
   context: Client,
   body: number,
-  options: RequestBodyOptions = { requestOptions: {} },
+  options: Decimal128TypeRequestBodyOptions = { requestOptions: {} },
 ): StreamableMethod<Decimal128TypeRequestBody204Response> {
   return context
     .path("/type/scalar/decimal128/resquest_body")
@@ -68,7 +68,7 @@ export async function _decimal128TypeRequestBodyDeserialize(
 export async function decimal128TypeRequestBody(
   context: Client,
   body: number,
-  options: RequestBodyOptions = { requestOptions: {} },
+  options: Decimal128TypeRequestBodyOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _decimal128TypeRequestBodySend(context, body, options);
   return _decimal128TypeRequestBodyDeserialize(result);
@@ -77,7 +77,7 @@ export async function decimal128TypeRequestBody(
 export function _decimal128TypeRequestParameterSend(
   context: Client,
   value: number,
-  options: RequestParameterOptions = { requestOptions: {} },
+  options: Decimal128TypeRequestParameterOptions = { requestOptions: {} },
 ): StreamableMethod<Decimal128TypeRequestParameter204Response> {
   return context
     .path("/type/scalar/decimal128/request_parameter")
@@ -100,7 +100,7 @@ export async function _decimal128TypeRequestParameterDeserialize(
 export async function decimal128TypeRequestParameter(
   context: Client,
   value: number,
-  options: RequestParameterOptions = { requestOptions: {} },
+  options: Decimal128TypeRequestParameterOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _decimal128TypeRequestParameterSend(
     context,

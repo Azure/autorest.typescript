@@ -4,17 +4,20 @@
 import { UnionContext } from "../../api/UnionContext.js";
 import { Cat, Dog } from "../../models/models.js";
 import { modelsOnlyGet, modelsOnlySend } from "../../api/modelsOnly/index.js";
-import { GetOptions, SendOptions } from "../../models/options.js";
+import {
+  ModelsOnlyGetOptions,
+  ModelsOnlySendOptions,
+} from "../../models/options.js";
 
 export interface ModelsOnlyOperations {
-  get: (options?: GetOptions) => Promise<{ prop: Cat | Dog }>;
-  send: (prop: Cat | Dog, options?: SendOptions) => Promise<void>;
+  get: (options?: ModelsOnlyGetOptions) => Promise<{ prop: Cat | Dog }>;
+  send: (prop: Cat | Dog, options?: ModelsOnlySendOptions) => Promise<void>;
 }
 
 export function getModelsOnly(context: UnionContext) {
   return {
-    get: (options?: GetOptions) => modelsOnlyGet(context, options),
-    send: (prop: Cat | Dog, options?: SendOptions) =>
+    get: (options?: ModelsOnlyGetOptions) => modelsOnlyGet(context, options),
+    send: (prop: Cat | Dog, options?: ModelsOnlySendOptions) =>
       modelsOnlySend(context, prop, options),
   };
 }

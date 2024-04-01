@@ -7,17 +7,24 @@ import {
   unknownStringGet,
   unknownStringPut,
 } from "../../api/unknownString/index.js";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import {
+  UnknownStringGetOptions,
+  UnknownStringPutOptions,
+} from "../../models/options.js";
 
 export interface UnknownStringOperations {
-  get: (options?: GetOptions) => Promise<UnknownStringProperty>;
-  put: (body: UnknownStringProperty, options?: PutOptions) => Promise<void>;
+  get: (options?: UnknownStringGetOptions) => Promise<UnknownStringProperty>;
+  put: (
+    body: UnknownStringProperty,
+    options?: UnknownStringPutOptions,
+  ) => Promise<void>;
 }
 
 export function getUnknownString(context: ValueTypesContext) {
   return {
-    get: (options?: GetOptions) => unknownStringGet(context, options),
-    put: (body: UnknownStringProperty, options?: PutOptions) =>
+    get: (options?: UnknownStringGetOptions) =>
+      unknownStringGet(context, options),
+    put: (body: UnknownStringProperty, options?: UnknownStringPutOptions) =>
       unknownStringPut(context, body, options),
   };
 }

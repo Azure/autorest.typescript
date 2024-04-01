@@ -13,11 +13,11 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import { BytesGetOptions, BytesPutOptions } from "../../models/options.js";
 
 export function _bytesGetSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: BytesGetOptions = { requestOptions: {} },
 ): StreamableMethod<BytesGet200Response> {
   return context
     .path("/type/property/value-types/bytes")
@@ -42,7 +42,7 @@ export async function _bytesGetDeserialize(
 /** Get call */
 export async function bytesGet(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: BytesGetOptions = { requestOptions: {} },
 ): Promise<BytesProperty> {
   const result = await _bytesGetSend(context, options);
   return _bytesGetDeserialize(result);
@@ -51,7 +51,7 @@ export async function bytesGet(
 export function _bytesPutSend(
   context: Client,
   body: BytesProperty,
-  options: PutOptions = { requestOptions: {} },
+  options: BytesPutOptions = { requestOptions: {} },
 ): StreamableMethod<BytesPut204Response> {
   return context
     .path("/type/property/value-types/bytes")
@@ -75,7 +75,7 @@ export async function _bytesPutDeserialize(
 export async function bytesPut(
   context: Client,
   body: BytesProperty,
-  options: PutOptions = { requestOptions: {} },
+  options: BytesPutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _bytesPutSend(context, body, options);
   return _bytesPutDeserialize(result);

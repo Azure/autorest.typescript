@@ -4,17 +4,20 @@
 import { UnionContext } from "../../api/UnionContext.js";
 import { EnumsOnlyCases } from "../../models/models.js";
 import { enumsOnlyGet, enumsOnlySend } from "../../api/enumsOnly/index.js";
-import { GetOptions, SendOptions } from "../../models/options.js";
+import {
+  EnumsOnlyGetOptions,
+  EnumsOnlySendOptions,
+} from "../../models/options.js";
 
 export interface EnumsOnlyOperations {
-  get: (options?: GetOptions) => Promise<{ prop: EnumsOnlyCases }>;
-  send: (prop: EnumsOnlyCases, options?: SendOptions) => Promise<void>;
+  get: (options?: EnumsOnlyGetOptions) => Promise<{ prop: EnumsOnlyCases }>;
+  send: (prop: EnumsOnlyCases, options?: EnumsOnlySendOptions) => Promise<void>;
 }
 
 export function getEnumsOnly(context: UnionContext) {
   return {
-    get: (options?: GetOptions) => enumsOnlyGet(context, options),
-    send: (prop: EnumsOnlyCases, options?: SendOptions) =>
+    get: (options?: EnumsOnlyGetOptions) => enumsOnlyGet(context, options),
+    send: (prop: EnumsOnlyCases, options?: EnumsOnlySendOptions) =>
       enumsOnlySend(context, prop, options),
   };
 }

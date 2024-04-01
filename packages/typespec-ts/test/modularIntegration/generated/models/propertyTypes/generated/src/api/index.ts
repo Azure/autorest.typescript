@@ -6,11 +6,11 @@ export {
   ValueTypesClientOptions,
   ValueTypesContext,
 } from "./ValueTypesContext.js";
+export { booleanGet, booleanPut } from "./boolean/index.js";
 export {
   booleanLiteralGet,
   booleanLiteralPut,
 } from "./booleanLiteral/index.js";
-export { booleanModelGet, booleanModelPut } from "./booleanModel/index.js";
 export { bytesGet, bytesPut } from "./bytes/index.js";
 export {
   collectionsIntGet,
@@ -43,8 +43,8 @@ export { intGet, intPut } from "./int/index.js";
 export { intLiteralGet, intLiteralPut } from "./intLiteral/index.js";
 export { modelGet, modelPut } from "./model/index.js";
 export { neverGet, neverPut } from "./never/index.js";
+export { stringGet, stringPut } from "./string/index.js";
 export { stringLiteralGet, stringLiteralPut } from "./stringLiteral/index.js";
-export { stringModelGet, stringModelPut } from "./stringModel/index.js";
 export {
   unionEnumValueGet,
   unionEnumValuePut,

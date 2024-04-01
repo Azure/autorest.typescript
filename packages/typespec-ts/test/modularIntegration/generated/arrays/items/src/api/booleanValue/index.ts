@@ -11,11 +11,14 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import {
+  BooleanValueGetOptions,
+  BooleanValuePutOptions,
+} from "../../models/options.js";
 
 export function _booleanValueGetSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: BooleanValueGetOptions = { requestOptions: {} },
 ): StreamableMethod<BooleanValueGet200Response> {
   return context
     .path("/type/array/boolean")
@@ -34,7 +37,7 @@ export async function _booleanValueGetDeserialize(
 
 export async function booleanValueGet(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: BooleanValueGetOptions = { requestOptions: {} },
 ): Promise<boolean[]> {
   const result = await _booleanValueGetSend(context, options);
   return _booleanValueGetDeserialize(result);
@@ -43,7 +46,7 @@ export async function booleanValueGet(
 export function _booleanValuePutSend(
   context: Client,
   body: boolean[],
-  options: PutOptions = { requestOptions: {} },
+  options: BooleanValuePutOptions = { requestOptions: {} },
 ): StreamableMethod<BooleanValuePut204Response> {
   return context
     .path("/type/array/boolean")
@@ -63,7 +66,7 @@ export async function _booleanValuePutDeserialize(
 export async function booleanValuePut(
   context: Client,
   body: boolean[],
-  options: PutOptions = { requestOptions: {} },
+  options: BooleanValuePutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _booleanValuePutSend(context, body, options);
   return _booleanValuePutDeserialize(result);

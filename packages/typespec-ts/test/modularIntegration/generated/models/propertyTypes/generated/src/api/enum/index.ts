@@ -12,11 +12,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import { EnumGetOptions, EnumPutOptions } from "../../models/options.js";
 
 export function _enumGetSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: EnumGetOptions = { requestOptions: {} },
 ): StreamableMethod<EnumGet200Response> {
   return context
     .path("/type/property/value-types/enum")
@@ -38,7 +38,7 @@ export async function _enumGetDeserialize(
 /** Get call */
 export async function enumGet(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: EnumGetOptions = { requestOptions: {} },
 ): Promise<EnumProperty> {
   const result = await _enumGetSend(context, options);
   return _enumGetDeserialize(result);
@@ -47,7 +47,7 @@ export async function enumGet(
 export function _enumPutSend(
   context: Client,
   body: EnumProperty,
-  options: PutOptions = { requestOptions: {} },
+  options: EnumPutOptions = { requestOptions: {} },
 ): StreamableMethod<EnumPut204Response> {
   return context
     .path("/type/property/value-types/enum")
@@ -71,7 +71,7 @@ export async function _enumPutDeserialize(
 export async function enumPut(
   context: Client,
   body: EnumProperty,
-  options: PutOptions = { requestOptions: {} },
+  options: EnumPutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _enumPutSend(context, body, options);
   return _enumPutDeserialize(result);

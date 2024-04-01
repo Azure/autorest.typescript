@@ -15,42 +15,44 @@ import {
   propertyBase64urlArray,
 } from "../../api/property/index.js";
 import {
-  DefaultOptions,
-  Base64Options,
-  Base64urlOptions,
-  Base64urlArrayOptions,
+  PropertyDefaultOptions,
+  PropertyBase64Options,
+  PropertyBase64urlOptions,
+  PropertyBase64urlArrayOptions,
 } from "../../models/options.js";
 
 export interface PropertyOperations {
   default: (
     body: DefaultBytesProperty,
-    options?: DefaultOptions,
+    options?: PropertyDefaultOptions,
   ) => Promise<DefaultBytesProperty>;
   base64: (
     body: Base64BytesProperty,
-    options?: Base64Options,
+    options?: PropertyBase64Options,
   ) => Promise<Base64BytesProperty>;
   base64url: (
     body: Base64urlBytesProperty,
-    options?: Base64urlOptions,
+    options?: PropertyBase64urlOptions,
   ) => Promise<Base64urlBytesProperty>;
   base64urlArray: (
     body: Base64urlArrayBytesProperty,
-    options?: Base64urlArrayOptions,
+    options?: PropertyBase64urlArrayOptions,
   ) => Promise<Base64urlArrayBytesProperty>;
 }
 
 export function getProperty(context: BytesContext) {
   return {
-    default: (body: DefaultBytesProperty, options?: DefaultOptions) =>
+    default: (body: DefaultBytesProperty, options?: PropertyDefaultOptions) =>
       propertyDefault(context, body, options),
-    base64: (body: Base64BytesProperty, options?: Base64Options) =>
+    base64: (body: Base64BytesProperty, options?: PropertyBase64Options) =>
       propertyBase64(context, body, options),
-    base64url: (body: Base64urlBytesProperty, options?: Base64urlOptions) =>
-      propertyBase64url(context, body, options),
+    base64url: (
+      body: Base64urlBytesProperty,
+      options?: PropertyBase64urlOptions,
+    ) => propertyBase64url(context, body, options),
     base64urlArray: (
       body: Base64urlArrayBytesProperty,
-      options?: Base64urlArrayOptions,
+      options?: PropertyBase64urlArrayOptions,
     ) => propertyBase64urlArray(context, body, options),
   };
 }

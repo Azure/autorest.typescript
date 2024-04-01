@@ -3,17 +3,23 @@
 
 import { UnionContext } from "../../api/UnionContext.js";
 import { floatsOnlyGet, floatsOnlySend } from "../../api/floatsOnly/index.js";
-import { GetOptions, SendOptions } from "../../models/options.js";
+import {
+  FloatsOnlyGetOptions,
+  FloatsOnlySendOptions,
+} from "../../models/options.js";
 
 export interface FloatsOnlyOperations {
-  get: (options?: GetOptions) => Promise<{ prop: 1.1 | 2.2 | 3.3 }>;
-  send: (prop: 1.1 | 2.2 | 3.3, options?: SendOptions) => Promise<void>;
+  get: (options?: FloatsOnlyGetOptions) => Promise<{ prop: 1.1 | 2.2 | 3.3 }>;
+  send: (
+    prop: 1.1 | 2.2 | 3.3,
+    options?: FloatsOnlySendOptions,
+  ) => Promise<void>;
 }
 
 export function getFloatsOnly(context: UnionContext) {
   return {
-    get: (options?: GetOptions) => floatsOnlyGet(context, options),
-    send: (prop: 1.1 | 2.2 | 3.3, options?: SendOptions) =>
+    get: (options?: FloatsOnlyGetOptions) => floatsOnlyGet(context, options),
+    send: (prop: 1.1 | 2.2 | 3.3, options?: FloatsOnlySendOptions) =>
       floatsOnlySend(context, prop, options),
   };
 }

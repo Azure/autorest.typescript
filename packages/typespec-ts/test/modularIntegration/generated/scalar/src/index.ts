@@ -3,20 +3,29 @@
 
 export { ScalarClient, ScalarClientOptions } from "./ScalarClient.js";
 export {
-  GetOptions,
-  PutOptions,
-  ResponseBodyOptions,
-  RequestBodyOptions,
-  RequestParameterOptions,
-  PrepareVerifyOptions,
-  VerifyOptions,
+  StringGetOptions,
+  StringPutOptions,
+  BooleanGetOptions,
+  BooleanPutOptions,
+  UnknownGetOptions,
+  UnknownPutOptions,
+  DecimalTypeResponseBodyOptions,
+  DecimalTypeRequestBodyOptions,
+  DecimalTypeRequestParameterOptions,
+  Decimal128TypeResponseBodyOptions,
+  Decimal128TypeRequestBodyOptions,
+  Decimal128TypeRequestParameterOptions,
+  DecimalVerifyPrepareVerifyOptions,
+  DecimalVerifyVerifyOptions,
+  Decimal128VerifyPrepareVerifyOptions,
+  Decimal128VerifyVerifyOptions,
 } from "./models/index.js";
 export {
-  BooleanModelOperations,
+  BooleanOperations,
   Decimal128TypeOperations,
   Decimal128VerifyOperations,
   DecimalTypeOperations,
   DecimalVerifyOperations,
-  StringModelOperations,
+  StringOperations,
   UnknownOperations,
 } from "./classic/index.js";

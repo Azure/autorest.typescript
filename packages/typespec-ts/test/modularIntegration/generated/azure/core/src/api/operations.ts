@@ -472,6 +472,11 @@ export async function _$deleteDeserialize(
 }
 
 /** Deletes a User */
+/**
+ *  @fixme delete is a reserved word that cannot be used as an operation name.
+ *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+ *         to the operation to override the generated name.
+ */
 export async function $delete(
   context: Client,
   id: number,
@@ -518,6 +523,11 @@ export async function _$exportDeserialize(
 }
 
 /** Exports a User */
+/**
+ *  @fixme export is a reserved word that cannot be used as an operation name.
+ *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+ *         to the operation to override the generated name.
+ */
 export async function $export(
   context: Client,
   id: number,

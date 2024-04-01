@@ -8,21 +8,21 @@ import {
   aliasSpreadWithMultipleParameters,
 } from "../../api/alias/index.js";
 import {
-  SpreadAsRequestBodyOptions,
-  SpreadAsRequestParameterOptions,
-  SpreadWithMultipleParametersOptions,
+  AliasSpreadAsRequestBodyOptions,
+  AliasSpreadAsRequestParameterOptions,
+  AliasSpreadWithMultipleParametersOptions,
 } from "../../models/options.js";
 
 export interface AliasOperations {
   spreadAsRequestBody: (
     name: string,
-    options?: SpreadAsRequestBodyOptions,
+    options?: AliasSpreadAsRequestBodyOptions,
   ) => Promise<void>;
   spreadAsRequestParameter: (
     id: string,
     xMsTestHeader: string,
     name: string,
-    options?: SpreadAsRequestParameterOptions,
+    options?: AliasSpreadAsRequestParameterOptions,
   ) => Promise<void>;
   spreadWithMultipleParameters: (
     id: string,
@@ -33,19 +33,21 @@ export interface AliasOperations {
     prop4: string,
     prop5: string,
     prop6: string,
-    options?: SpreadWithMultipleParametersOptions,
+    options?: AliasSpreadWithMultipleParametersOptions,
   ) => Promise<void>;
 }
 
 export function getAlias(context: SpreadContext) {
   return {
-    spreadAsRequestBody: (name: string, options?: SpreadAsRequestBodyOptions) =>
-      aliasSpreadAsRequestBody(context, name, options),
+    spreadAsRequestBody: (
+      name: string,
+      options?: AliasSpreadAsRequestBodyOptions,
+    ) => aliasSpreadAsRequestBody(context, name, options),
     spreadAsRequestParameter: (
       id: string,
       xMsTestHeader: string,
       name: string,
-      options?: SpreadAsRequestParameterOptions,
+      options?: AliasSpreadAsRequestParameterOptions,
     ) =>
       aliasSpreadAsRequestParameter(context, id, xMsTestHeader, name, options),
     spreadWithMultipleParameters: (
@@ -57,7 +59,7 @@ export function getAlias(context: SpreadContext) {
       prop4: string,
       prop5: string,
       prop6: string,
-      options?: SpreadWithMultipleParametersOptions,
+      options?: AliasSpreadWithMultipleParametersOptions,
     ) =>
       aliasSpreadWithMultipleParameters(
         context,

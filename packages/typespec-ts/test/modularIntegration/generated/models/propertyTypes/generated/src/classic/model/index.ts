@@ -4,17 +4,17 @@
 import { ValueTypesContext } from "../../api/ValueTypesContext.js";
 import { ModelProperty } from "../../models/models.js";
 import { modelGet, modelPut } from "../../api/model/index.js";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import { ModelGetOptions, ModelPutOptions } from "../../models/options.js";
 
 export interface ModelOperations {
-  get: (options?: GetOptions) => Promise<ModelProperty>;
-  put: (body: ModelProperty, options?: PutOptions) => Promise<void>;
+  get: (options?: ModelGetOptions) => Promise<ModelProperty>;
+  put: (body: ModelProperty, options?: ModelPutOptions) => Promise<void>;
 }
 
 export function getModel(context: ValueTypesContext) {
   return {
-    get: (options?: GetOptions) => modelGet(context, options),
-    put: (body: ModelProperty, options?: PutOptions) =>
+    get: (options?: ModelGetOptions) => modelGet(context, options),
+    put: (body: ModelProperty, options?: ModelPutOptions) =>
       modelPut(context, body, options),
   };
 }

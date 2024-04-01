@@ -6,17 +6,21 @@ import {
   durationValueGet,
   durationValuePut,
 } from "../../api/durationValue/index.js";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import {
+  DurationValueGetOptions,
+  DurationValuePutOptions,
+} from "../../models/options.js";
 
 export interface DurationValueOperations {
-  get: (options?: GetOptions) => Promise<string[]>;
-  put: (body: string[], options?: PutOptions) => Promise<void>;
+  get: (options?: DurationValueGetOptions) => Promise<string[]>;
+  put: (body: string[], options?: DurationValuePutOptions) => Promise<void>;
 }
 
 export function getDurationValue(context: ArrayContext) {
   return {
-    get: (options?: GetOptions) => durationValueGet(context, options),
-    put: (body: string[], options?: PutOptions) =>
+    get: (options?: DurationValueGetOptions) =>
+      durationValueGet(context, options),
+    put: (body: string[], options?: DurationValuePutOptions) =>
       durationValuePut(context, body, options),
   };
 }

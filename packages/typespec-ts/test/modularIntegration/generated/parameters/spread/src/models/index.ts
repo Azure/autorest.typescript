@@ -3,7 +3,8 @@
 
 export { BodyParameter } from "./models.js";
 export {
-  SpreadAsRequestBodyOptions,
-  SpreadAsRequestParameterOptions,
-  SpreadWithMultipleParametersOptions,
+  ModelSpreadAsRequestBodyOptions,
+  AliasSpreadAsRequestBodyOptions,
+  AliasSpreadAsRequestParameterOptions,
+  AliasSpreadWithMultipleParametersOptions,
 } from "./options.js";

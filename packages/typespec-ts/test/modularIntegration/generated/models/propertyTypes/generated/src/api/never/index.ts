@@ -12,11 +12,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import { NeverGetOptions, NeverPutOptions } from "../../models/options.js";
 
 export function _neverGetSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: NeverGetOptions = { requestOptions: {} },
 ): StreamableMethod<NeverGet200Response> {
   return context
     .path("/type/property/value-types/never")
@@ -36,7 +36,7 @@ export async function _neverGetDeserialize(
 /** Get call */
 export async function neverGet(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: NeverGetOptions = { requestOptions: {} },
 ): Promise<NeverProperty> {
   const result = await _neverGetSend(context, options);
   return _neverGetDeserialize(result);
@@ -45,7 +45,7 @@ export async function neverGet(
 export function _neverPutSend(
   context: Client,
   body: NeverProperty,
-  options: PutOptions = { requestOptions: {} },
+  options: NeverPutOptions = { requestOptions: {} },
 ): StreamableMethod<NeverPut204Response> {
   return context
     .path("/type/property/value-types/never")
@@ -66,7 +66,7 @@ export async function _neverPutDeserialize(
 export async function neverPut(
   context: Client,
   body: NeverProperty,
-  options: PutOptions = { requestOptions: {} },
+  options: NeverPutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _neverPutSend(context, body, options);
   return _neverPutDeserialize(result);

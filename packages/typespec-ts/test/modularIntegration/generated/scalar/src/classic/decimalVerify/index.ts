@@ -6,18 +6,23 @@ import {
   decimalVerifyPrepareVerify,
   decimalVerifyVerify,
 } from "../../api/decimalVerify/index.js";
-import { PrepareVerifyOptions, VerifyOptions } from "../../models/options.js";
+import {
+  DecimalVerifyPrepareVerifyOptions,
+  DecimalVerifyVerifyOptions,
+} from "../../models/options.js";
 
 export interface DecimalVerifyOperations {
-  prepareVerify: (options?: PrepareVerifyOptions) => Promise<number[]>;
-  verify: (body: number, options?: VerifyOptions) => Promise<void>;
+  prepareVerify: (
+    options?: DecimalVerifyPrepareVerifyOptions,
+  ) => Promise<number[]>;
+  verify: (body: number, options?: DecimalVerifyVerifyOptions) => Promise<void>;
 }
 
 export function getDecimalVerify(context: ScalarContext) {
   return {
-    prepareVerify: (options?: PrepareVerifyOptions) =>
+    prepareVerify: (options?: DecimalVerifyPrepareVerifyOptions) =>
       decimalVerifyPrepareVerify(context, options),
-    verify: (body: number, options?: VerifyOptions) =>
+    verify: (body: number, options?: DecimalVerifyVerifyOptions) =>
       decimalVerifyVerify(context, body, options),
   };
 }

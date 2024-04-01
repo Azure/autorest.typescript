@@ -10,41 +10,41 @@ import {
   headerFloatSeconds,
 } from "../../api/header/index.js";
 import {
-  DefaultOptions,
-  Iso8601Options,
-  Iso8601ArrayOptions,
-  Int32SecondsOptions,
-  FloatSecondsOptions,
+  HeaderDefaultOptions,
+  HeaderIso8601Options,
+  HeaderIso8601ArrayOptions,
+  HeaderInt32SecondsOptions,
+  HeaderFloatSecondsOptions,
 } from "../../models/options.js";
 
 export interface HeaderOperations {
-  default: (duration: string, options?: DefaultOptions) => Promise<void>;
-  iso8601: (duration: string, options?: Iso8601Options) => Promise<void>;
+  default: (duration: string, options?: HeaderDefaultOptions) => Promise<void>;
+  iso8601: (duration: string, options?: HeaderIso8601Options) => Promise<void>;
   iso8601Array: (
     duration: string[],
-    options?: Iso8601ArrayOptions,
+    options?: HeaderIso8601ArrayOptions,
   ) => Promise<void>;
   int32Seconds: (
     duration: number,
-    options?: Int32SecondsOptions,
+    options?: HeaderInt32SecondsOptions,
   ) => Promise<void>;
   floatSeconds: (
     duration: number,
-    options?: FloatSecondsOptions,
+    options?: HeaderFloatSecondsOptions,
   ) => Promise<void>;
 }
 
 export function getHeader(context: DurationContext) {
   return {
-    default: (duration: string, options?: DefaultOptions) =>
+    default: (duration: string, options?: HeaderDefaultOptions) =>
       headerDefault(context, duration, options),
-    iso8601: (duration: string, options?: Iso8601Options) =>
+    iso8601: (duration: string, options?: HeaderIso8601Options) =>
       headerIso8601(context, duration, options),
-    iso8601Array: (duration: string[], options?: Iso8601ArrayOptions) =>
+    iso8601Array: (duration: string[], options?: HeaderIso8601ArrayOptions) =>
       headerIso8601Array(context, duration, options),
-    int32Seconds: (duration: number, options?: Int32SecondsOptions) =>
+    int32Seconds: (duration: number, options?: HeaderInt32SecondsOptions) =>
       headerInt32Seconds(context, duration, options),
-    floatSeconds: (duration: number, options?: FloatSecondsOptions) =>
+    floatSeconds: (duration: number, options?: HeaderFloatSecondsOptions) =>
       headerFloatSeconds(context, duration, options),
   };
 }

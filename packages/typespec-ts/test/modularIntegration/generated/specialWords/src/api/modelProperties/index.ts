@@ -11,12 +11,12 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { SameAsModelOptions } from "../../models/options.js";
+import { ModelPropertiesSameAsModelOptions } from "../../models/options.js";
 
 export function _modelPropertiesSameAsModelSend(
   context: Client,
   body: SameAsModel,
-  options: SameAsModelOptions = { requestOptions: {} },
+  options: ModelPropertiesSameAsModelOptions = { requestOptions: {} },
 ): StreamableMethod<ModelPropertiesSameAsModel204Response> {
   return context
     .path("/special-words/model-properties/same-as-model")
@@ -39,7 +39,7 @@ export async function _modelPropertiesSameAsModelDeserialize(
 export async function modelPropertiesSameAsModel(
   context: Client,
   body: SameAsModel,
-  options: SameAsModelOptions = { requestOptions: {} },
+  options: ModelPropertiesSameAsModelOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelPropertiesSameAsModelSend(context, body, options);
   return _modelPropertiesSameAsModelDeserialize(result);

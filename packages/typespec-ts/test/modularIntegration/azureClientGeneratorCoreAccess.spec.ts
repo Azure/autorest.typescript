@@ -59,7 +59,7 @@ describe("Azure ClientGeneratorCore Access Client", () => {
 
   it("should get public shared model in operation", async () => {
     try {
-      const result = await client.publicOperation("myname");
+      const result = await client.public("myname");
       assert.equal(result.name, "myname");
     } catch (err) {
       assert.fail(err as string);

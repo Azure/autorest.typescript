@@ -7,21 +7,29 @@ import {
   stringExtensibleNamedGet,
   stringExtensibleNamedSend,
 } from "../../api/stringExtensibleNamed/index.js";
-import { GetOptions, SendOptions } from "../../models/options.js";
+import {
+  StringExtensibleNamedGetOptions,
+  StringExtensibleNamedSendOptions,
+} from "../../models/options.js";
 
 export interface StringExtensibleNamedOperations {
-  get: (options?: GetOptions) => Promise<{ prop: StringExtensibleNamedUnion }>;
+  get: (
+    options?: StringExtensibleNamedGetOptions,
+  ) => Promise<{ prop: StringExtensibleNamedUnion }>;
   send: (
     prop: StringExtensibleNamedUnion,
-    options?: SendOptions,
+    options?: StringExtensibleNamedSendOptions,
   ) => Promise<void>;
 }
 
 export function getStringExtensibleNamed(context: UnionContext) {
   return {
-    get: (options?: GetOptions) => stringExtensibleNamedGet(context, options),
-    send: (prop: StringExtensibleNamedUnion, options?: SendOptions) =>
-      stringExtensibleNamedSend(context, prop, options),
+    get: (options?: StringExtensibleNamedGetOptions) =>
+      stringExtensibleNamedGet(context, options),
+    send: (
+      prop: StringExtensibleNamedUnion,
+      options?: StringExtensibleNamedSendOptions,
+    ) => stringExtensibleNamedSend(context, prop, options),
   };
 }
 

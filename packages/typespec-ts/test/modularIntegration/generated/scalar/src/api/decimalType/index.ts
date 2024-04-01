@@ -13,14 +13,14 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  ResponseBodyOptions,
-  RequestBodyOptions,
-  RequestParameterOptions,
+  DecimalTypeResponseBodyOptions,
+  DecimalTypeRequestBodyOptions,
+  DecimalTypeRequestParameterOptions,
 } from "../../models/options.js";
 
 export function _decimalTypeResponseBodySend(
   context: Client,
-  options: ResponseBodyOptions = { requestOptions: {} },
+  options: DecimalTypeResponseBodyOptions = { requestOptions: {} },
 ): StreamableMethod<DecimalTypeResponseBody200Response> {
   return context
     .path("/type/scalar/decimal/response_body")
@@ -39,7 +39,7 @@ export async function _decimalTypeResponseBodyDeserialize(
 
 export async function decimalTypeResponseBody(
   context: Client,
-  options: ResponseBodyOptions = { requestOptions: {} },
+  options: DecimalTypeResponseBodyOptions = { requestOptions: {} },
 ): Promise<number> {
   const result = await _decimalTypeResponseBodySend(context, options);
   return _decimalTypeResponseBodyDeserialize(result);
@@ -48,7 +48,7 @@ export async function decimalTypeResponseBody(
 export function _decimalTypeRequestBodySend(
   context: Client,
   body: number,
-  options: RequestBodyOptions = { requestOptions: {} },
+  options: DecimalTypeRequestBodyOptions = { requestOptions: {} },
 ): StreamableMethod<DecimalTypeRequestBody204Response> {
   return context
     .path("/type/scalar/decimal/resquest_body")
@@ -68,7 +68,7 @@ export async function _decimalTypeRequestBodyDeserialize(
 export async function decimalTypeRequestBody(
   context: Client,
   body: number,
-  options: RequestBodyOptions = { requestOptions: {} },
+  options: DecimalTypeRequestBodyOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _decimalTypeRequestBodySend(context, body, options);
   return _decimalTypeRequestBodyDeserialize(result);
@@ -77,7 +77,7 @@ export async function decimalTypeRequestBody(
 export function _decimalTypeRequestParameterSend(
   context: Client,
   value: number,
-  options: RequestParameterOptions = { requestOptions: {} },
+  options: DecimalTypeRequestParameterOptions = { requestOptions: {} },
 ): StreamableMethod<DecimalTypeRequestParameter204Response> {
   return context
     .path("/type/scalar/decimal/request_parameter")
@@ -100,7 +100,7 @@ export async function _decimalTypeRequestParameterDeserialize(
 export async function decimalTypeRequestParameter(
   context: Client,
   value: number,
-  options: RequestParameterOptions = { requestOptions: {} },
+  options: DecimalTypeRequestParameterOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _decimalTypeRequestParameterSend(
     context,

@@ -7,18 +7,29 @@ import {
   collectionsStringGet,
   collectionsStringPut,
 } from "../../api/collectionsString/index.js";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import {
+  CollectionsStringGetOptions,
+  CollectionsStringPutOptions,
+} from "../../models/options.js";
 
 export interface CollectionsStringOperations {
-  get: (options?: GetOptions) => Promise<CollectionsStringProperty>;
-  put: (body: CollectionsStringProperty, options?: PutOptions) => Promise<void>;
+  get: (
+    options?: CollectionsStringGetOptions,
+  ) => Promise<CollectionsStringProperty>;
+  put: (
+    body: CollectionsStringProperty,
+    options?: CollectionsStringPutOptions,
+  ) => Promise<void>;
 }
 
 export function getCollectionsString(context: ValueTypesContext) {
   return {
-    get: (options?: GetOptions) => collectionsStringGet(context, options),
-    put: (body: CollectionsStringProperty, options?: PutOptions) =>
-      collectionsStringPut(context, body, options),
+    get: (options?: CollectionsStringGetOptions) =>
+      collectionsStringGet(context, options),
+    put: (
+      body: CollectionsStringProperty,
+      options?: CollectionsStringPutOptions,
+    ) => collectionsStringPut(context, body, options),
   };
 }
 

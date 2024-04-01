@@ -7,17 +7,24 @@ import {
   extensibleEnumGet,
   extensibleEnumPut,
 } from "../../api/extensibleEnum/index.js";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import {
+  ExtensibleEnumGetOptions,
+  ExtensibleEnumPutOptions,
+} from "../../models/options.js";
 
 export interface ExtensibleEnumOperations {
-  get: (options?: GetOptions) => Promise<ExtensibleEnumProperty>;
-  put: (body: ExtensibleEnumProperty, options?: PutOptions) => Promise<void>;
+  get: (options?: ExtensibleEnumGetOptions) => Promise<ExtensibleEnumProperty>;
+  put: (
+    body: ExtensibleEnumProperty,
+    options?: ExtensibleEnumPutOptions,
+  ) => Promise<void>;
 }
 
 export function getExtensibleEnum(context: ValueTypesContext) {
   return {
-    get: (options?: GetOptions) => extensibleEnumGet(context, options),
-    put: (body: ExtensibleEnumProperty, options?: PutOptions) =>
+    get: (options?: ExtensibleEnumGetOptions) =>
+      extensibleEnumGet(context, options),
+    put: (body: ExtensibleEnumProperty, options?: ExtensibleEnumPutOptions) =>
       extensibleEnumPut(context, body, options),
   };
 }

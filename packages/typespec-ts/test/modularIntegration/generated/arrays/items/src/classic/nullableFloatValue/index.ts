@@ -6,17 +6,24 @@ import {
   nullableFloatValueGet,
   nullableFloatValuePut,
 } from "../../api/nullableFloatValue/index.js";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import {
+  NullableFloatValueGetOptions,
+  NullableFloatValuePutOptions,
+} from "../../models/options.js";
 
 export interface NullableFloatValueOperations {
-  get: (options?: GetOptions) => Promise<(number | null)[]>;
-  put: (body: (number | null)[], options?: PutOptions) => Promise<void>;
+  get: (options?: NullableFloatValueGetOptions) => Promise<(number | null)[]>;
+  put: (
+    body: (number | null)[],
+    options?: NullableFloatValuePutOptions,
+  ) => Promise<void>;
 }
 
 export function getNullableFloatValue(context: ArrayContext) {
   return {
-    get: (options?: GetOptions) => nullableFloatValueGet(context, options),
-    put: (body: (number | null)[], options?: PutOptions) =>
+    get: (options?: NullableFloatValueGetOptions) =>
+      nullableFloatValueGet(context, options),
+    put: (body: (number | null)[], options?: NullableFloatValuePutOptions) =>
       nullableFloatValuePut(context, body, options),
   };
 }

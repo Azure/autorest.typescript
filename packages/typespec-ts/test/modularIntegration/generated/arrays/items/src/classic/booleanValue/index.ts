@@ -6,17 +6,21 @@ import {
   booleanValueGet,
   booleanValuePut,
 } from "../../api/booleanValue/index.js";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import {
+  BooleanValueGetOptions,
+  BooleanValuePutOptions,
+} from "../../models/options.js";
 
 export interface BooleanValueOperations {
-  get: (options?: GetOptions) => Promise<boolean[]>;
-  put: (body: boolean[], options?: PutOptions) => Promise<void>;
+  get: (options?: BooleanValueGetOptions) => Promise<boolean[]>;
+  put: (body: boolean[], options?: BooleanValuePutOptions) => Promise<void>;
 }
 
 export function getBooleanValue(context: ArrayContext) {
   return {
-    get: (options?: GetOptions) => booleanValueGet(context, options),
-    put: (body: boolean[], options?: PutOptions) =>
+    get: (options?: BooleanValueGetOptions) =>
+      booleanValueGet(context, options),
+    put: (body: boolean[], options?: BooleanValuePutOptions) =>
       booleanValuePut(context, body, options),
   };
 }

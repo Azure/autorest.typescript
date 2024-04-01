@@ -19,8 +19,7 @@ import {
   NameType,
   OperationResponse,
   getResponseBaseName,
-  getResponseTypeName,
-  normalizeName
+  getResponseTypeName
 } from "@azure-tools/rlc-common";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
@@ -254,7 +253,7 @@ function getOperationSignatureParameters(
 export function getOperationFunction(
   operation: Operation,
   clientType: string
-): OptionalKind<FunctionDeclarationStructure> {
+): OptionalKind<FunctionDeclarationStructure> & { propertyName?: string } {
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(operation, clientType);
@@ -271,14 +270,15 @@ export function getOperationFunction(
     returnType = buildType(type.name, type, type.format);
   }
   const { name, fixme = [] } = getOperationName(operation);
-  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+  const functionStatement = {
     docs: [
       ...getDocsFromDescription(operation.description),
       ...getFixmeForMultilineDocs(fixme)
     ],
     isAsync: !isPaging,
     isExported: true,
-    name: normalizeName(operation.name, NameType.Operation, true),
+    name,
+    propertyName: operation.name,
     parameters,
     returnType: isPaging
       ? `PagedAsyncIterableIterator<${returnType.type}>`
@@ -339,7 +339,7 @@ export function getOperationOptionsName(
     includeGroupName && operation.name.indexOf("_") === -1
       ? getClassicalLayerPrefix(operation, NameType.Interface)
       : "";
-  const optionName = `${prefix}${toPascalCase(operation.oriName ?? operation.name)}Options`;
+  const optionName = `${prefix}${toPascalCase(operation.name)}Options`;
   if (
     operation.bodyParameter?.type.name === optionName ||
     optionName === "ClientOptions"

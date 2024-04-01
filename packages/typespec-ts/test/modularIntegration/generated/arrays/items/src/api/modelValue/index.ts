@@ -12,11 +12,14 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import {
+  ModelValueGetOptions,
+  ModelValuePutOptions,
+} from "../../models/options.js";
 
 export function _modelValueGetSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: ModelValueGetOptions = { requestOptions: {} },
 ): StreamableMethod<ModelValueGet200Response> {
   return context
     .path("/type/array/model")
@@ -40,7 +43,7 @@ export async function _modelValueGetDeserialize(
 
 export async function modelValueGet(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: ModelValueGetOptions = { requestOptions: {} },
 ): Promise<InnerModel[]> {
   const result = await _modelValueGetSend(context, options);
   return _modelValueGetDeserialize(result);
@@ -49,7 +52,7 @@ export async function modelValueGet(
 export function _modelValuePutSend(
   context: Client,
   body: InnerModel[],
-  options: PutOptions = { requestOptions: {} },
+  options: ModelValuePutOptions = { requestOptions: {} },
 ): StreamableMethod<ModelValuePut204Response> {
   return context.path("/type/array/model").put({
     ...operationOptionsToRequestParameters(options),
@@ -81,7 +84,7 @@ export async function _modelValuePutDeserialize(
 export async function modelValuePut(
   context: Client,
   body: InnerModel[],
-  options: PutOptions = { requestOptions: {} },
+  options: ModelValuePutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelValuePutSend(context, body, options);
   return _modelValuePutDeserialize(result);

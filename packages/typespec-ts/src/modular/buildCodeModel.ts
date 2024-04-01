@@ -108,7 +108,6 @@ import { buildRuntimeImports } from "@azure-tools/rlc-common";
 import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
 import { getType as getTypeName } from "./helpers/typeHelpers.js";
-import { isReservedName } from "./helpers/namingHelpers.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -828,8 +827,7 @@ function emitBasicOperation(
   if (
     namespaceHierarchies.length === 0 &&
     context.rlcOptions?.hierarchyClient === false &&
-    operationGroupName !== "" &&
-    namespaceHierarchies[0] !== operationGroupName
+    operationGroupName !== ""
   ) {
     namespaceHierarchies.push(operationGroupName);
   }
@@ -920,8 +918,7 @@ function emitBasicOperation(
       param.clientName = param.clientName + "Parameter";
     });
   return {
-    oriName: name,
-    name: isReservedName(name, NameType.Operation) ? `\$${name}` : name,
+    name,
     description: getDocStr(context.program, operation),
     summary: getSummary(context.program, operation) ?? "",
     url: httpOperation.path,
@@ -1602,11 +1599,7 @@ function emitOperationGroups(
   }
   for (const operationGroup of listOperationGroups(context, client, true)) {
     const operations: HrlcOperation[] = [];
-    const overrideName = normalizeName(
-      getLibraryName(context, operationGroup.type),
-      NameType.Interface,
-      true
-    );
+    const overrideName = getLibraryName(context, operationGroup.type);
     const name =
       context.rlcOptions?.hierarchyClient ||
       context.rlcOptions?.enableOperationGroup

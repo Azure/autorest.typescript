@@ -21,16 +21,16 @@ import {
 } from "@azure-rest/core-client";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import {
-  DefaultOptions,
-  Base64Options,
-  Base64urlOptions,
-  Base64urlArrayOptions,
+  PropertyDefaultOptions,
+  PropertyBase64Options,
+  PropertyBase64urlOptions,
+  PropertyBase64urlArrayOptions,
 } from "../../models/options.js";
 
 export function _propertyDefaultSend(
   context: Client,
   body: DefaultBytesProperty,
-  options: DefaultOptions = { requestOptions: {} },
+  options: PropertyDefaultOptions = { requestOptions: {} },
 ): StreamableMethod<PropertyDefault200Response> {
   return context
     .path("/encode/bytes/property/default")
@@ -58,7 +58,7 @@ export async function _propertyDefaultDeserialize(
 export async function propertyDefault(
   context: Client,
   body: DefaultBytesProperty,
-  options: DefaultOptions = { requestOptions: {} },
+  options: PropertyDefaultOptions = { requestOptions: {} },
 ): Promise<DefaultBytesProperty> {
   const result = await _propertyDefaultSend(context, body, options);
   return _propertyDefaultDeserialize(result);
@@ -67,7 +67,7 @@ export async function propertyDefault(
 export function _propertyBase64Send(
   context: Client,
   body: Base64BytesProperty,
-  options: Base64Options = { requestOptions: {} },
+  options: PropertyBase64Options = { requestOptions: {} },
 ): StreamableMethod<PropertyBase64200Response> {
   return context
     .path("/encode/bytes/property/base64")
@@ -95,7 +95,7 @@ export async function _propertyBase64Deserialize(
 export async function propertyBase64(
   context: Client,
   body: Base64BytesProperty,
-  options: Base64Options = { requestOptions: {} },
+  options: PropertyBase64Options = { requestOptions: {} },
 ): Promise<Base64BytesProperty> {
   const result = await _propertyBase64Send(context, body, options);
   return _propertyBase64Deserialize(result);
@@ -104,7 +104,7 @@ export async function propertyBase64(
 export function _propertyBase64urlSend(
   context: Client,
   body: Base64urlBytesProperty,
-  options: Base64urlOptions = { requestOptions: {} },
+  options: PropertyBase64urlOptions = { requestOptions: {} },
 ): StreamableMethod<PropertyBase64url200Response> {
   return context
     .path("/encode/bytes/property/base64url")
@@ -132,7 +132,7 @@ export async function _propertyBase64urlDeserialize(
 export async function propertyBase64url(
   context: Client,
   body: Base64urlBytesProperty,
-  options: Base64urlOptions = { requestOptions: {} },
+  options: PropertyBase64urlOptions = { requestOptions: {} },
 ): Promise<Base64urlBytesProperty> {
   const result = await _propertyBase64urlSend(context, body, options);
   return _propertyBase64urlDeserialize(result);
@@ -141,7 +141,7 @@ export async function propertyBase64url(
 export function _propertyBase64urlArraySend(
   context: Client,
   body: Base64urlArrayBytesProperty,
-  options: Base64urlArrayOptions = { requestOptions: {} },
+  options: PropertyBase64urlArrayOptions = { requestOptions: {} },
 ): StreamableMethod<PropertyBase64urlArray200Response> {
   return context
     .path("/encode/bytes/property/base64url-array")
@@ -170,7 +170,7 @@ export async function _propertyBase64urlArrayDeserialize(
 export async function propertyBase64urlArray(
   context: Client,
   body: Base64urlArrayBytesProperty,
-  options: Base64urlArrayOptions = { requestOptions: {} },
+  options: PropertyBase64urlArrayOptions = { requestOptions: {} },
 ): Promise<Base64urlArrayBytesProperty> {
   const result = await _propertyBase64urlArraySend(context, body, options);
   return _propertyBase64urlArrayDeserialize(result);

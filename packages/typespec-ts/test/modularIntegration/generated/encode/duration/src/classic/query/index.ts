@@ -10,36 +10,44 @@ import {
   queryInt32SecondsArray,
 } from "../../api/query/index.js";
 import {
-  DefaultOptions,
-  Iso8601Options,
-  Int32SecondsOptions,
-  FloatSecondsOptions,
-  Int32SecondsArrayOptions,
+  QueryDefaultOptions,
+  QueryIso8601Options,
+  QueryInt32SecondsOptions,
+  QueryFloatSecondsOptions,
+  QueryInt32SecondsArrayOptions,
 } from "../../models/options.js";
 
 export interface QueryOperations {
-  default: (input: string, options?: DefaultOptions) => Promise<void>;
-  iso8601: (input: string, options?: Iso8601Options) => Promise<void>;
-  int32Seconds: (input: number, options?: Int32SecondsOptions) => Promise<void>;
-  floatSeconds: (input: number, options?: FloatSecondsOptions) => Promise<void>;
+  default: (input: string, options?: QueryDefaultOptions) => Promise<void>;
+  iso8601: (input: string, options?: QueryIso8601Options) => Promise<void>;
+  int32Seconds: (
+    input: number,
+    options?: QueryInt32SecondsOptions,
+  ) => Promise<void>;
+  floatSeconds: (
+    input: number,
+    options?: QueryFloatSecondsOptions,
+  ) => Promise<void>;
   int32SecondsArray: (
     input: number[],
-    options?: Int32SecondsArrayOptions,
+    options?: QueryInt32SecondsArrayOptions,
   ) => Promise<void>;
 }
 
 export function getQuery(context: DurationContext) {
   return {
-    default: (input: string, options?: DefaultOptions) =>
+    default: (input: string, options?: QueryDefaultOptions) =>
       queryDefault(context, input, options),
-    iso8601: (input: string, options?: Iso8601Options) =>
+    iso8601: (input: string, options?: QueryIso8601Options) =>
       queryIso8601(context, input, options),
-    int32Seconds: (input: number, options?: Int32SecondsOptions) =>
+    int32Seconds: (input: number, options?: QueryInt32SecondsOptions) =>
       queryInt32Seconds(context, input, options),
-    floatSeconds: (input: number, options?: FloatSecondsOptions) =>
+    floatSeconds: (input: number, options?: QueryFloatSecondsOptions) =>
       queryFloatSeconds(context, input, options),
-    int32SecondsArray: (input: number[], options?: Int32SecondsArrayOptions) =>
-      queryInt32SecondsArray(context, input, options),
+    int32SecondsArray: (
+      input: number[],
+      options?: QueryInt32SecondsArrayOptions,
+    ) => queryInt32SecondsArray(context, input, options),
   };
 }
 

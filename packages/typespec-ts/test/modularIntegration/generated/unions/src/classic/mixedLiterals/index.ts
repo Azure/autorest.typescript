@@ -7,17 +7,26 @@ import {
   mixedLiteralsGet,
   mixedLiteralsSend,
 } from "../../api/mixedLiterals/index.js";
-import { GetOptions, SendOptions } from "../../models/options.js";
+import {
+  MixedLiteralsGetOptions,
+  MixedLiteralsSendOptions,
+} from "../../models/options.js";
 
 export interface MixedLiteralsOperations {
-  get: (options?: GetOptions) => Promise<{ prop: MixedLiteralsCases }>;
-  send: (prop: MixedLiteralsCases, options?: SendOptions) => Promise<void>;
+  get: (
+    options?: MixedLiteralsGetOptions,
+  ) => Promise<{ prop: MixedLiteralsCases }>;
+  send: (
+    prop: MixedLiteralsCases,
+    options?: MixedLiteralsSendOptions,
+  ) => Promise<void>;
 }
 
 export function getMixedLiterals(context: UnionContext) {
   return {
-    get: (options?: GetOptions) => mixedLiteralsGet(context, options),
-    send: (prop: MixedLiteralsCases, options?: SendOptions) =>
+    get: (options?: MixedLiteralsGetOptions) =>
+      mixedLiteralsGet(context, options),
+    send: (prop: MixedLiteralsCases, options?: MixedLiteralsSendOptions) =>
       mixedLiteralsSend(context, prop, options),
   };
 }

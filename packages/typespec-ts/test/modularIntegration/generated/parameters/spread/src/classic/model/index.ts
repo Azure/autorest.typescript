@@ -4,12 +4,12 @@
 import { SpreadContext } from "../../api/SpreadContext.js";
 import { BodyParameter } from "../../models/models.js";
 import { modelSpreadAsRequestBody } from "../../api/model/index.js";
-import { SpreadAsRequestBodyOptions } from "../../models/options.js";
+import { ModelSpreadAsRequestBodyOptions } from "../../models/options.js";
 
 export interface ModelOperations {
   spreadAsRequestBody: (
     body: BodyParameter,
-    options?: SpreadAsRequestBodyOptions,
+    options?: ModelSpreadAsRequestBodyOptions,
   ) => Promise<void>;
 }
 
@@ -17,7 +17,7 @@ export function getModel(context: SpreadContext) {
   return {
     spreadAsRequestBody: (
       body: BodyParameter,
-      options?: SpreadAsRequestBodyOptions,
+      options?: ModelSpreadAsRequestBodyOptions,
     ) => modelSpreadAsRequestBody(context, body, options),
   };
 }

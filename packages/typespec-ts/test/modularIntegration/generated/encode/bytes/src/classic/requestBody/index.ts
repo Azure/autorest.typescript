@@ -10,40 +10,49 @@ import {
   requestBodyBase64url,
 } from "../../api/requestBody/index.js";
 import {
-  DefaultOptions,
-  OctetStreamOptions,
-  CustomContentTypeOptions,
-  Base64Options,
-  Base64urlOptions,
+  RequestBodyDefaultOptions,
+  RequestBodyOctetStreamOptions,
+  RequestBodyCustomContentTypeOptions,
+  RequestBodyBase64Options,
+  RequestBodyBase64urlOptions,
 } from "../../models/options.js";
 
 export interface RequestBodyOperations {
-  default: (value: Uint8Array, options?: DefaultOptions) => Promise<void>;
+  default: (
+    value: Uint8Array,
+    options?: RequestBodyDefaultOptions,
+  ) => Promise<void>;
   octetStream: (
     value: Uint8Array,
-    options?: OctetStreamOptions,
+    options?: RequestBodyOctetStreamOptions,
   ) => Promise<void>;
   customContentType: (
     value: Uint8Array,
-    options?: CustomContentTypeOptions,
+    options?: RequestBodyCustomContentTypeOptions,
   ) => Promise<void>;
-  base64: (value: Uint8Array, options?: Base64Options) => Promise<void>;
-  base64url: (value: Uint8Array, options?: Base64urlOptions) => Promise<void>;
+  base64: (
+    value: Uint8Array,
+    options?: RequestBodyBase64Options,
+  ) => Promise<void>;
+  base64url: (
+    value: Uint8Array,
+    options?: RequestBodyBase64urlOptions,
+  ) => Promise<void>;
 }
 
 export function getRequestBody(context: BytesContext) {
   return {
-    default: (value: Uint8Array, options?: DefaultOptions) =>
+    default: (value: Uint8Array, options?: RequestBodyDefaultOptions) =>
       requestBodyDefault(context, value, options),
-    octetStream: (value: Uint8Array, options?: OctetStreamOptions) =>
+    octetStream: (value: Uint8Array, options?: RequestBodyOctetStreamOptions) =>
       requestBodyOctetStream(context, value, options),
     customContentType: (
       value: Uint8Array,
-      options?: CustomContentTypeOptions,
+      options?: RequestBodyCustomContentTypeOptions,
     ) => requestBodyCustomContentType(context, value, options),
-    base64: (value: Uint8Array, options?: Base64Options) =>
+    base64: (value: Uint8Array, options?: RequestBodyBase64Options) =>
       requestBodyBase64(context, value, options),
-    base64url: (value: Uint8Array, options?: Base64urlOptions) =>
+    base64url: (value: Uint8Array, options?: RequestBodyBase64urlOptions) =>
       requestBodyBase64url(context, value, options),
   };
 }

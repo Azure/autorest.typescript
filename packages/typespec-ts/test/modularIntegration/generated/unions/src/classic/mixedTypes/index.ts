@@ -4,17 +4,23 @@
 import { UnionContext } from "../../api/UnionContext.js";
 import { MixedTypesCases } from "../../models/models.js";
 import { mixedTypesGet, mixedTypesSend } from "../../api/mixedTypes/index.js";
-import { GetOptions, SendOptions } from "../../models/options.js";
+import {
+  MixedTypesGetOptions,
+  MixedTypesSendOptions,
+} from "../../models/options.js";
 
 export interface MixedTypesOperations {
-  get: (options?: GetOptions) => Promise<{ prop: MixedTypesCases }>;
-  send: (prop: MixedTypesCases, options?: SendOptions) => Promise<void>;
+  get: (options?: MixedTypesGetOptions) => Promise<{ prop: MixedTypesCases }>;
+  send: (
+    prop: MixedTypesCases,
+    options?: MixedTypesSendOptions,
+  ) => Promise<void>;
 }
 
 export function getMixedTypes(context: UnionContext) {
   return {
-    get: (options?: GetOptions) => mixedTypesGet(context, options),
-    send: (prop: MixedTypesCases, options?: SendOptions) =>
+    get: (options?: MixedTypesGetOptions) => mixedTypesGet(context, options),
+    send: (prop: MixedTypesCases, options?: MixedTypesSendOptions) =>
       mixedTypesSend(context, prop, options),
   };
 }

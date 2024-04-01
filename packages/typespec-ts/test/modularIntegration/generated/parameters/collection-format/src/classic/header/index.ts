@@ -3,15 +3,15 @@
 
 import { CollectionFormatContext } from "../../api/CollectionFormatContext.js";
 import { headerCsv } from "../../api/header/index.js";
-import { CsvOptions } from "../../models/options.js";
+import { HeaderCsvOptions } from "../../models/options.js";
 
 export interface HeaderOperations {
-  csv: (colors: string[], options?: CsvOptions) => Promise<void>;
+  csv: (colors: string[], options?: HeaderCsvOptions) => Promise<void>;
 }
 
 export function getHeader(context: CollectionFormatContext) {
   return {
-    csv: (colors: string[], options?: CsvOptions) =>
+    csv: (colors: string[], options?: HeaderCsvOptions) =>
       headerCsv(context, colors, options),
   };
 }

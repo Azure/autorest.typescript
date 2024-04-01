@@ -7,18 +7,29 @@ import {
   collectionsModelGet,
   collectionsModelPut,
 } from "../../api/collectionsModel/index.js";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import {
+  CollectionsModelGetOptions,
+  CollectionsModelPutOptions,
+} from "../../models/options.js";
 
 export interface CollectionsModelOperations {
-  get: (options?: GetOptions) => Promise<CollectionsModelProperty>;
-  put: (body: CollectionsModelProperty, options?: PutOptions) => Promise<void>;
+  get: (
+    options?: CollectionsModelGetOptions,
+  ) => Promise<CollectionsModelProperty>;
+  put: (
+    body: CollectionsModelProperty,
+    options?: CollectionsModelPutOptions,
+  ) => Promise<void>;
 }
 
 export function getCollectionsModel(context: ValueTypesContext) {
   return {
-    get: (options?: GetOptions) => collectionsModelGet(context, options),
-    put: (body: CollectionsModelProperty, options?: PutOptions) =>
-      collectionsModelPut(context, body, options),
+    get: (options?: CollectionsModelGetOptions) =>
+      collectionsModelGet(context, options),
+    put: (
+      body: CollectionsModelProperty,
+      options?: CollectionsModelPutOptions,
+    ) => collectionsModelPut(context, body, options),
   };
 }
 

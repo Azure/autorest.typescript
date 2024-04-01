@@ -4,17 +4,17 @@
 import { ValueTypesContext } from "../../api/ValueTypesContext.js";
 import { FloatProperty } from "../../models/models.js";
 import { floatGet, floatPut } from "../../api/float/index.js";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import { FloatGetOptions, FloatPutOptions } from "../../models/options.js";
 
 export interface FloatOperations {
-  get: (options?: GetOptions) => Promise<FloatProperty>;
-  put: (body: FloatProperty, options?: PutOptions) => Promise<void>;
+  get: (options?: FloatGetOptions) => Promise<FloatProperty>;
+  put: (body: FloatProperty, options?: FloatPutOptions) => Promise<void>;
 }
 
 export function getFloat(context: ValueTypesContext) {
   return {
-    get: (options?: GetOptions) => floatGet(context, options),
-    put: (body: FloatProperty, options?: PutOptions) =>
+    get: (options?: FloatGetOptions) => floatGet(context, options),
+    put: (body: FloatProperty, options?: FloatPutOptions) =>
       floatPut(context, body, options),
   };
 }

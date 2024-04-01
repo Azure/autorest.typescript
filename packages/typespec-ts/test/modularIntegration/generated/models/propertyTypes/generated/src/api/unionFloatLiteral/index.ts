@@ -12,11 +12,14 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import {
+  UnionFloatLiteralGetOptions,
+  UnionFloatLiteralPutOptions,
+} from "../../models/options.js";
 
 export function _unionFloatLiteralGetSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: UnionFloatLiteralGetOptions = { requestOptions: {} },
 ): StreamableMethod<UnionFloatLiteralGet200Response> {
   return context
     .path("/type/property/value-types/union/float/literal")
@@ -38,7 +41,7 @@ export async function _unionFloatLiteralGetDeserialize(
 /** Get call */
 export async function unionFloatLiteralGet(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: UnionFloatLiteralGetOptions = { requestOptions: {} },
 ): Promise<UnionFloatLiteralProperty> {
   const result = await _unionFloatLiteralGetSend(context, options);
   return _unionFloatLiteralGetDeserialize(result);
@@ -47,7 +50,7 @@ export async function unionFloatLiteralGet(
 export function _unionFloatLiteralPutSend(
   context: Client,
   body: UnionFloatLiteralProperty,
-  options: PutOptions = { requestOptions: {} },
+  options: UnionFloatLiteralPutOptions = { requestOptions: {} },
 ): StreamableMethod<UnionFloatLiteralPut204Response> {
   return context
     .path("/type/property/value-types/union/float/literal")
@@ -71,7 +74,7 @@ export async function _unionFloatLiteralPutDeserialize(
 export async function unionFloatLiteralPut(
   context: Client,
   body: UnionFloatLiteralProperty,
-  options: PutOptions = { requestOptions: {} },
+  options: UnionFloatLiteralPutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _unionFloatLiteralPutSend(context, body, options);
   return _unionFloatLiteralPutDeserialize(result);

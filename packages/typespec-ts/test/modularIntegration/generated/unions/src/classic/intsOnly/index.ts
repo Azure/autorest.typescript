@@ -3,17 +3,20 @@
 
 import { UnionContext } from "../../api/UnionContext.js";
 import { intsOnlyGet, intsOnlySend } from "../../api/intsOnly/index.js";
-import { GetOptions, SendOptions } from "../../models/options.js";
+import {
+  IntsOnlyGetOptions,
+  IntsOnlySendOptions,
+} from "../../models/options.js";
 
 export interface IntsOnlyOperations {
-  get: (options?: GetOptions) => Promise<{ prop: 1 | 2 | 3 }>;
-  send: (prop: 1 | 2 | 3, options?: SendOptions) => Promise<void>;
+  get: (options?: IntsOnlyGetOptions) => Promise<{ prop: 1 | 2 | 3 }>;
+  send: (prop: 1 | 2 | 3, options?: IntsOnlySendOptions) => Promise<void>;
 }
 
 export function getIntsOnly(context: UnionContext) {
   return {
-    get: (options?: GetOptions) => intsOnlyGet(context, options),
-    send: (prop: 1 | 2 | 3, options?: SendOptions) =>
+    get: (options?: IntsOnlyGetOptions) => intsOnlyGet(context, options),
+    send: (prop: 1 | 2 | 3, options?: IntsOnlySendOptions) =>
       intsOnlySend(context, prop, options),
   };
 }

@@ -12,11 +12,14 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import {
+  IntLiteralGetOptions,
+  IntLiteralPutOptions,
+} from "../../models/options.js";
 
 export function _intLiteralGetSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: IntLiteralGetOptions = { requestOptions: {} },
 ): StreamableMethod<IntLiteralGet200Response> {
   return context
     .path("/type/property/value-types/int/literal")
@@ -38,7 +41,7 @@ export async function _intLiteralGetDeserialize(
 /** Get call */
 export async function intLiteralGet(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: IntLiteralGetOptions = { requestOptions: {} },
 ): Promise<IntLiteralProperty> {
   const result = await _intLiteralGetSend(context, options);
   return _intLiteralGetDeserialize(result);
@@ -47,7 +50,7 @@ export async function intLiteralGet(
 export function _intLiteralPutSend(
   context: Client,
   body: IntLiteralProperty,
-  options: PutOptions = { requestOptions: {} },
+  options: IntLiteralPutOptions = { requestOptions: {} },
 ): StreamableMethod<IntLiteralPut204Response> {
   return context
     .path("/type/property/value-types/int/literal")
@@ -71,7 +74,7 @@ export async function _intLiteralPutDeserialize(
 export async function intLiteralPut(
   context: Client,
   body: IntLiteralProperty,
-  options: PutOptions = { requestOptions: {} },
+  options: IntLiteralPutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _intLiteralPutSend(context, body, options);
   return _intLiteralPutDeserialize(result);

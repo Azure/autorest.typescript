@@ -12,11 +12,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import { FloatGetOptions, FloatPutOptions } from "../../models/options.js";
 
 export function _floatGetSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: FloatGetOptions = { requestOptions: {} },
 ): StreamableMethod<FloatGet200Response> {
   return context
     .path("/type/property/value-types/float")
@@ -38,7 +38,7 @@ export async function _floatGetDeserialize(
 /** Get call */
 export async function floatGet(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: FloatGetOptions = { requestOptions: {} },
 ): Promise<FloatProperty> {
   const result = await _floatGetSend(context, options);
   return _floatGetDeserialize(result);
@@ -47,7 +47,7 @@ export async function floatGet(
 export function _floatPutSend(
   context: Client,
   body: FloatProperty,
-  options: PutOptions = { requestOptions: {} },
+  options: FloatPutOptions = { requestOptions: {} },
 ): StreamableMethod<FloatPut204Response> {
   return context
     .path("/type/property/value-types/float")
@@ -71,7 +71,7 @@ export async function _floatPutDeserialize(
 export async function floatPut(
   context: Client,
   body: FloatProperty,
-  options: PutOptions = { requestOptions: {} },
+  options: FloatPutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _floatPutSend(context, body, options);
   return _floatPutDeserialize(result);

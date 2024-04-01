@@ -105,7 +105,12 @@ export class BasicClient {
   }
 
   /** Deletes a User */
-  $delete(
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
+  delete(
     id: number,
     options: DeleteOptions = { requestOptions: {} },
   ): Promise<void> {
@@ -113,7 +118,12 @@ export class BasicClient {
   }
 
   /** Exports a User */
-  $export(
+  /**
+   *  @fixme export is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
+  export(
     id: number,
     format: string,
     options: ExportOptions = { requestOptions: {} },

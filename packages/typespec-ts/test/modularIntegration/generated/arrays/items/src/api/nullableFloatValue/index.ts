@@ -11,11 +11,14 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import {
+  NullableFloatValueGetOptions,
+  NullableFloatValuePutOptions,
+} from "../../models/options.js";
 
 export function _nullableFloatValueGetSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: NullableFloatValueGetOptions = { requestOptions: {} },
 ): StreamableMethod<NullableFloatValueGet200Response> {
   return context
     .path("/type/array/nullable-float")
@@ -34,7 +37,7 @@ export async function _nullableFloatValueGetDeserialize(
 
 export async function nullableFloatValueGet(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: NullableFloatValueGetOptions = { requestOptions: {} },
 ): Promise<(number | null)[]> {
   const result = await _nullableFloatValueGetSend(context, options);
   return _nullableFloatValueGetDeserialize(result);
@@ -43,7 +46,7 @@ export async function nullableFloatValueGet(
 export function _nullableFloatValuePutSend(
   context: Client,
   body: (number | null)[],
-  options: PutOptions = { requestOptions: {} },
+  options: NullableFloatValuePutOptions = { requestOptions: {} },
 ): StreamableMethod<NullableFloatValuePut204Response> {
   return context
     .path("/type/array/nullable-float")
@@ -63,7 +66,7 @@ export async function _nullableFloatValuePutDeserialize(
 export async function nullableFloatValuePut(
   context: Client,
   body: (number | null)[],
-  options: PutOptions = { requestOptions: {} },
+  options: NullableFloatValuePutOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _nullableFloatValuePutSend(context, body, options);
   return _nullableFloatValuePutDeserialize(result);

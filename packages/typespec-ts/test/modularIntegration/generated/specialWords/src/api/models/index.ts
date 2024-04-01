@@ -78,45 +78,45 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  WithAndOptions,
-  WithAsOptions,
-  WithAssertOptions,
-  WithAsyncOptions,
-  WithAwaitOptions,
-  WithBreakOptions,
-  WithClassOptions,
-  WithConstructorOptions,
-  WithContinueOptions,
-  WithDefOptions,
-  WithDelOptions,
-  WithElifOptions,
-  WithElseOptions,
-  WithExceptOptions,
-  WithExecOptions,
-  WithFinallyOptions,
-  WithForOptions,
-  WithFromOptions,
-  WithGlobalOptions,
-  WithIfOptions,
-  WithImportOptions,
-  WithInOptions,
-  WithIsOptions,
-  WithLambdaOptions,
-  WithNotOptions,
-  WithOrOptions,
-  WithPassOptions,
-  WithRaiseOptions,
-  WithReturnOptions,
-  WithTryOptions,
-  WithWhileOptions,
-  WithWithOptions,
-  WithYieldOptions,
+  ModelsWithAndOptions,
+  ModelsWithAsOptions,
+  ModelsWithAssertOptions,
+  ModelsWithAsyncOptions,
+  ModelsWithAwaitOptions,
+  ModelsWithBreakOptions,
+  ModelsWithClassOptions,
+  ModelsWithConstructorOptions,
+  ModelsWithContinueOptions,
+  ModelsWithDefOptions,
+  ModelsWithDelOptions,
+  ModelsWithElifOptions,
+  ModelsWithElseOptions,
+  ModelsWithExceptOptions,
+  ModelsWithExecOptions,
+  ModelsWithFinallyOptions,
+  ModelsWithForOptions,
+  ModelsWithFromOptions,
+  ModelsWithGlobalOptions,
+  ModelsWithIfOptions,
+  ModelsWithImportOptions,
+  ModelsWithInOptions,
+  ModelsWithIsOptions,
+  ModelsWithLambdaOptions,
+  ModelsWithNotOptions,
+  ModelsWithOrOptions,
+  ModelsWithPassOptions,
+  ModelsWithRaiseOptions,
+  ModelsWithReturnOptions,
+  ModelsWithTryOptions,
+  ModelsWithWhileOptions,
+  ModelsWithWithOptions,
+  ModelsWithYieldOptions,
 } from "../../models/options.js";
 
 export function _modelsWithAndSend(
   context: Client,
   body: And,
-  options: WithAndOptions = { requestOptions: {} },
+  options: ModelsWithAndOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithAnd204Response> {
   return context
     .path("/special-words/models/and")
@@ -139,7 +139,7 @@ export async function _modelsWithAndDeserialize(
 export async function modelsWithAnd(
   context: Client,
   body: And,
-  options: WithAndOptions = { requestOptions: {} },
+  options: ModelsWithAndOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithAndSend(context, body, options);
   return _modelsWithAndDeserialize(result);
@@ -148,7 +148,7 @@ export async function modelsWithAnd(
 export function _modelsWithAsSend(
   context: Client,
   body: As,
-  options: WithAsOptions = { requestOptions: {} },
+  options: ModelsWithAsOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithAs204Response> {
   return context
     .path("/special-words/models/as")
@@ -171,7 +171,7 @@ export async function _modelsWithAsDeserialize(
 export async function modelsWithAs(
   context: Client,
   body: As,
-  options: WithAsOptions = { requestOptions: {} },
+  options: ModelsWithAsOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithAsSend(context, body, options);
   return _modelsWithAsDeserialize(result);
@@ -180,7 +180,7 @@ export async function modelsWithAs(
 export function _modelsWithAssertSend(
   context: Client,
   body: Assert,
-  options: WithAssertOptions = { requestOptions: {} },
+  options: ModelsWithAssertOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithAssert204Response> {
   return context
     .path("/special-words/models/assert")
@@ -203,7 +203,7 @@ export async function _modelsWithAssertDeserialize(
 export async function modelsWithAssert(
   context: Client,
   body: Assert,
-  options: WithAssertOptions = { requestOptions: {} },
+  options: ModelsWithAssertOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithAssertSend(context, body, options);
   return _modelsWithAssertDeserialize(result);
@@ -212,7 +212,7 @@ export async function modelsWithAssert(
 export function _modelsWithAsyncSend(
   context: Client,
   body: Async,
-  options: WithAsyncOptions = { requestOptions: {} },
+  options: ModelsWithAsyncOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithAsync204Response> {
   return context
     .path("/special-words/models/async")
@@ -235,7 +235,7 @@ export async function _modelsWithAsyncDeserialize(
 export async function modelsWithAsync(
   context: Client,
   body: Async,
-  options: WithAsyncOptions = { requestOptions: {} },
+  options: ModelsWithAsyncOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithAsyncSend(context, body, options);
   return _modelsWithAsyncDeserialize(result);
@@ -244,7 +244,7 @@ export async function modelsWithAsync(
 export function _modelsWithAwaitSend(
   context: Client,
   body: Await,
-  options: WithAwaitOptions = { requestOptions: {} },
+  options: ModelsWithAwaitOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithAwait204Response> {
   return context
     .path("/special-words/models/await")
@@ -267,7 +267,7 @@ export async function _modelsWithAwaitDeserialize(
 export async function modelsWithAwait(
   context: Client,
   body: Await,
-  options: WithAwaitOptions = { requestOptions: {} },
+  options: ModelsWithAwaitOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithAwaitSend(context, body, options);
   return _modelsWithAwaitDeserialize(result);
@@ -276,7 +276,7 @@ export async function modelsWithAwait(
 export function _modelsWithBreakSend(
   context: Client,
   body: Break,
-  options: WithBreakOptions = { requestOptions: {} },
+  options: ModelsWithBreakOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithBreak204Response> {
   return context
     .path("/special-words/models/break")
@@ -299,7 +299,7 @@ export async function _modelsWithBreakDeserialize(
 export async function modelsWithBreak(
   context: Client,
   body: Break,
-  options: WithBreakOptions = { requestOptions: {} },
+  options: ModelsWithBreakOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithBreakSend(context, body, options);
   return _modelsWithBreakDeserialize(result);
@@ -308,7 +308,7 @@ export async function modelsWithBreak(
 export function _modelsWithClassSend(
   context: Client,
   body: Class,
-  options: WithClassOptions = { requestOptions: {} },
+  options: ModelsWithClassOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithClass204Response> {
   return context
     .path("/special-words/models/class")
@@ -331,7 +331,7 @@ export async function _modelsWithClassDeserialize(
 export async function modelsWithClass(
   context: Client,
   body: Class,
-  options: WithClassOptions = { requestOptions: {} },
+  options: ModelsWithClassOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithClassSend(context, body, options);
   return _modelsWithClassDeserialize(result);
@@ -340,7 +340,7 @@ export async function modelsWithClass(
 export function _modelsWithConstructorSend(
   context: Client,
   body: Constructor,
-  options: WithConstructorOptions = { requestOptions: {} },
+  options: ModelsWithConstructorOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithConstructor204Response> {
   return context
     .path("/special-words/models/constructor")
@@ -363,7 +363,7 @@ export async function _modelsWithConstructorDeserialize(
 export async function modelsWithConstructor(
   context: Client,
   body: Constructor,
-  options: WithConstructorOptions = { requestOptions: {} },
+  options: ModelsWithConstructorOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithConstructorSend(context, body, options);
   return _modelsWithConstructorDeserialize(result);
@@ -372,7 +372,7 @@ export async function modelsWithConstructor(
 export function _modelsWithContinueSend(
   context: Client,
   body: Continue,
-  options: WithContinueOptions = { requestOptions: {} },
+  options: ModelsWithContinueOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithContinue204Response> {
   return context
     .path("/special-words/models/continue")
@@ -395,7 +395,7 @@ export async function _modelsWithContinueDeserialize(
 export async function modelsWithContinue(
   context: Client,
   body: Continue,
-  options: WithContinueOptions = { requestOptions: {} },
+  options: ModelsWithContinueOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithContinueSend(context, body, options);
   return _modelsWithContinueDeserialize(result);
@@ -404,7 +404,7 @@ export async function modelsWithContinue(
 export function _modelsWithDefSend(
   context: Client,
   body: Def,
-  options: WithDefOptions = { requestOptions: {} },
+  options: ModelsWithDefOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithDef204Response> {
   return context
     .path("/special-words/models/def")
@@ -427,7 +427,7 @@ export async function _modelsWithDefDeserialize(
 export async function modelsWithDef(
   context: Client,
   body: Def,
-  options: WithDefOptions = { requestOptions: {} },
+  options: ModelsWithDefOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithDefSend(context, body, options);
   return _modelsWithDefDeserialize(result);
@@ -436,7 +436,7 @@ export async function modelsWithDef(
 export function _modelsWithDelSend(
   context: Client,
   body: Del,
-  options: WithDelOptions = { requestOptions: {} },
+  options: ModelsWithDelOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithDel204Response> {
   return context
     .path("/special-words/models/del")
@@ -459,7 +459,7 @@ export async function _modelsWithDelDeserialize(
 export async function modelsWithDel(
   context: Client,
   body: Del,
-  options: WithDelOptions = { requestOptions: {} },
+  options: ModelsWithDelOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithDelSend(context, body, options);
   return _modelsWithDelDeserialize(result);
@@ -468,7 +468,7 @@ export async function modelsWithDel(
 export function _modelsWithElifSend(
   context: Client,
   body: Elif,
-  options: WithElifOptions = { requestOptions: {} },
+  options: ModelsWithElifOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithElif204Response> {
   return context
     .path("/special-words/models/elif")
@@ -491,7 +491,7 @@ export async function _modelsWithElifDeserialize(
 export async function modelsWithElif(
   context: Client,
   body: Elif,
-  options: WithElifOptions = { requestOptions: {} },
+  options: ModelsWithElifOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithElifSend(context, body, options);
   return _modelsWithElifDeserialize(result);
@@ -500,7 +500,7 @@ export async function modelsWithElif(
 export function _modelsWithElseSend(
   context: Client,
   body: Else,
-  options: WithElseOptions = { requestOptions: {} },
+  options: ModelsWithElseOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithElse204Response> {
   return context
     .path("/special-words/models/else")
@@ -523,7 +523,7 @@ export async function _modelsWithElseDeserialize(
 export async function modelsWithElse(
   context: Client,
   body: Else,
-  options: WithElseOptions = { requestOptions: {} },
+  options: ModelsWithElseOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithElseSend(context, body, options);
   return _modelsWithElseDeserialize(result);
@@ -532,7 +532,7 @@ export async function modelsWithElse(
 export function _modelsWithExceptSend(
   context: Client,
   body: Except,
-  options: WithExceptOptions = { requestOptions: {} },
+  options: ModelsWithExceptOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithExcept204Response> {
   return context
     .path("/special-words/models/except")
@@ -555,7 +555,7 @@ export async function _modelsWithExceptDeserialize(
 export async function modelsWithExcept(
   context: Client,
   body: Except,
-  options: WithExceptOptions = { requestOptions: {} },
+  options: ModelsWithExceptOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithExceptSend(context, body, options);
   return _modelsWithExceptDeserialize(result);
@@ -564,7 +564,7 @@ export async function modelsWithExcept(
 export function _modelsWithExecSend(
   context: Client,
   body: Exec,
-  options: WithExecOptions = { requestOptions: {} },
+  options: ModelsWithExecOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithExec204Response> {
   return context
     .path("/special-words/models/exec")
@@ -587,7 +587,7 @@ export async function _modelsWithExecDeserialize(
 export async function modelsWithExec(
   context: Client,
   body: Exec,
-  options: WithExecOptions = { requestOptions: {} },
+  options: ModelsWithExecOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithExecSend(context, body, options);
   return _modelsWithExecDeserialize(result);
@@ -596,7 +596,7 @@ export async function modelsWithExec(
 export function _modelsWithFinallySend(
   context: Client,
   body: Finally,
-  options: WithFinallyOptions = { requestOptions: {} },
+  options: ModelsWithFinallyOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithFinally204Response> {
   return context
     .path("/special-words/models/finally")
@@ -619,7 +619,7 @@ export async function _modelsWithFinallyDeserialize(
 export async function modelsWithFinally(
   context: Client,
   body: Finally,
-  options: WithFinallyOptions = { requestOptions: {} },
+  options: ModelsWithFinallyOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithFinallySend(context, body, options);
   return _modelsWithFinallyDeserialize(result);
@@ -628,7 +628,7 @@ export async function modelsWithFinally(
 export function _modelsWithForSend(
   context: Client,
   body: For,
-  options: WithForOptions = { requestOptions: {} },
+  options: ModelsWithForOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithFor204Response> {
   return context
     .path("/special-words/models/for")
@@ -651,7 +651,7 @@ export async function _modelsWithForDeserialize(
 export async function modelsWithFor(
   context: Client,
   body: For,
-  options: WithForOptions = { requestOptions: {} },
+  options: ModelsWithForOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithForSend(context, body, options);
   return _modelsWithForDeserialize(result);
@@ -660,7 +660,7 @@ export async function modelsWithFor(
 export function _modelsWithFromSend(
   context: Client,
   body: From,
-  options: WithFromOptions = { requestOptions: {} },
+  options: ModelsWithFromOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithFrom204Response> {
   return context
     .path("/special-words/models/from")
@@ -683,7 +683,7 @@ export async function _modelsWithFromDeserialize(
 export async function modelsWithFrom(
   context: Client,
   body: From,
-  options: WithFromOptions = { requestOptions: {} },
+  options: ModelsWithFromOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithFromSend(context, body, options);
   return _modelsWithFromDeserialize(result);
@@ -692,7 +692,7 @@ export async function modelsWithFrom(
 export function _modelsWithGlobalSend(
   context: Client,
   body: Global,
-  options: WithGlobalOptions = { requestOptions: {} },
+  options: ModelsWithGlobalOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithGlobal204Response> {
   return context
     .path("/special-words/models/global")
@@ -715,7 +715,7 @@ export async function _modelsWithGlobalDeserialize(
 export async function modelsWithGlobal(
   context: Client,
   body: Global,
-  options: WithGlobalOptions = { requestOptions: {} },
+  options: ModelsWithGlobalOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithGlobalSend(context, body, options);
   return _modelsWithGlobalDeserialize(result);
@@ -724,7 +724,7 @@ export async function modelsWithGlobal(
 export function _modelsWithIfSend(
   context: Client,
   body: If,
-  options: WithIfOptions = { requestOptions: {} },
+  options: ModelsWithIfOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithIf204Response> {
   return context
     .path("/special-words/models/if")
@@ -747,7 +747,7 @@ export async function _modelsWithIfDeserialize(
 export async function modelsWithIf(
   context: Client,
   body: If,
-  options: WithIfOptions = { requestOptions: {} },
+  options: ModelsWithIfOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithIfSend(context, body, options);
   return _modelsWithIfDeserialize(result);
@@ -756,7 +756,7 @@ export async function modelsWithIf(
 export function _modelsWithImportSend(
   context: Client,
   body: Import,
-  options: WithImportOptions = { requestOptions: {} },
+  options: ModelsWithImportOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithImport204Response> {
   return context
     .path("/special-words/models/import")
@@ -779,7 +779,7 @@ export async function _modelsWithImportDeserialize(
 export async function modelsWithImport(
   context: Client,
   body: Import,
-  options: WithImportOptions = { requestOptions: {} },
+  options: ModelsWithImportOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithImportSend(context, body, options);
   return _modelsWithImportDeserialize(result);
@@ -788,7 +788,7 @@ export async function modelsWithImport(
 export function _modelsWithInSend(
   context: Client,
   body: In,
-  options: WithInOptions = { requestOptions: {} },
+  options: ModelsWithInOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithIn204Response> {
   return context
     .path("/special-words/models/in")
@@ -811,7 +811,7 @@ export async function _modelsWithInDeserialize(
 export async function modelsWithIn(
   context: Client,
   body: In,
-  options: WithInOptions = { requestOptions: {} },
+  options: ModelsWithInOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithInSend(context, body, options);
   return _modelsWithInDeserialize(result);
@@ -820,7 +820,7 @@ export async function modelsWithIn(
 export function _modelsWithIsSend(
   context: Client,
   body: Is,
-  options: WithIsOptions = { requestOptions: {} },
+  options: ModelsWithIsOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithIs204Response> {
   return context
     .path("/special-words/models/is")
@@ -843,7 +843,7 @@ export async function _modelsWithIsDeserialize(
 export async function modelsWithIs(
   context: Client,
   body: Is,
-  options: WithIsOptions = { requestOptions: {} },
+  options: ModelsWithIsOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithIsSend(context, body, options);
   return _modelsWithIsDeserialize(result);
@@ -852,7 +852,7 @@ export async function modelsWithIs(
 export function _modelsWithLambdaSend(
   context: Client,
   body: Lambda,
-  options: WithLambdaOptions = { requestOptions: {} },
+  options: ModelsWithLambdaOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithLambda204Response> {
   return context
     .path("/special-words/models/lambda")
@@ -875,7 +875,7 @@ export async function _modelsWithLambdaDeserialize(
 export async function modelsWithLambda(
   context: Client,
   body: Lambda,
-  options: WithLambdaOptions = { requestOptions: {} },
+  options: ModelsWithLambdaOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithLambdaSend(context, body, options);
   return _modelsWithLambdaDeserialize(result);
@@ -884,7 +884,7 @@ export async function modelsWithLambda(
 export function _modelsWithNotSend(
   context: Client,
   body: Not,
-  options: WithNotOptions = { requestOptions: {} },
+  options: ModelsWithNotOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithNot204Response> {
   return context
     .path("/special-words/models/not")
@@ -907,7 +907,7 @@ export async function _modelsWithNotDeserialize(
 export async function modelsWithNot(
   context: Client,
   body: Not,
-  options: WithNotOptions = { requestOptions: {} },
+  options: ModelsWithNotOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithNotSend(context, body, options);
   return _modelsWithNotDeserialize(result);
@@ -916,7 +916,7 @@ export async function modelsWithNot(
 export function _modelsWithOrSend(
   context: Client,
   body: Or,
-  options: WithOrOptions = { requestOptions: {} },
+  options: ModelsWithOrOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithOr204Response> {
   return context
     .path("/special-words/models/or")
@@ -939,7 +939,7 @@ export async function _modelsWithOrDeserialize(
 export async function modelsWithOr(
   context: Client,
   body: Or,
-  options: WithOrOptions = { requestOptions: {} },
+  options: ModelsWithOrOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithOrSend(context, body, options);
   return _modelsWithOrDeserialize(result);
@@ -948,7 +948,7 @@ export async function modelsWithOr(
 export function _modelsWithPassSend(
   context: Client,
   body: Pass,
-  options: WithPassOptions = { requestOptions: {} },
+  options: ModelsWithPassOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithPass204Response> {
   return context
     .path("/special-words/models/pass")
@@ -971,7 +971,7 @@ export async function _modelsWithPassDeserialize(
 export async function modelsWithPass(
   context: Client,
   body: Pass,
-  options: WithPassOptions = { requestOptions: {} },
+  options: ModelsWithPassOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithPassSend(context, body, options);
   return _modelsWithPassDeserialize(result);
@@ -980,7 +980,7 @@ export async function modelsWithPass(
 export function _modelsWithRaiseSend(
   context: Client,
   body: Raise,
-  options: WithRaiseOptions = { requestOptions: {} },
+  options: ModelsWithRaiseOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithRaise204Response> {
   return context
     .path("/special-words/models/raise")
@@ -1003,7 +1003,7 @@ export async function _modelsWithRaiseDeserialize(
 export async function modelsWithRaise(
   context: Client,
   body: Raise,
-  options: WithRaiseOptions = { requestOptions: {} },
+  options: ModelsWithRaiseOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithRaiseSend(context, body, options);
   return _modelsWithRaiseDeserialize(result);
@@ -1012,7 +1012,7 @@ export async function modelsWithRaise(
 export function _modelsWithReturnSend(
   context: Client,
   body: Return,
-  options: WithReturnOptions = { requestOptions: {} },
+  options: ModelsWithReturnOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithReturn204Response> {
   return context
     .path("/special-words/models/return")
@@ -1035,7 +1035,7 @@ export async function _modelsWithReturnDeserialize(
 export async function modelsWithReturn(
   context: Client,
   body: Return,
-  options: WithReturnOptions = { requestOptions: {} },
+  options: ModelsWithReturnOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithReturnSend(context, body, options);
   return _modelsWithReturnDeserialize(result);
@@ -1044,7 +1044,7 @@ export async function modelsWithReturn(
 export function _modelsWithTrySend(
   context: Client,
   body: Try,
-  options: WithTryOptions = { requestOptions: {} },
+  options: ModelsWithTryOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithTry204Response> {
   return context
     .path("/special-words/models/try")
@@ -1067,7 +1067,7 @@ export async function _modelsWithTryDeserialize(
 export async function modelsWithTry(
   context: Client,
   body: Try,
-  options: WithTryOptions = { requestOptions: {} },
+  options: ModelsWithTryOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithTrySend(context, body, options);
   return _modelsWithTryDeserialize(result);
@@ -1076,7 +1076,7 @@ export async function modelsWithTry(
 export function _modelsWithWhileSend(
   context: Client,
   body: While,
-  options: WithWhileOptions = { requestOptions: {} },
+  options: ModelsWithWhileOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithWhile204Response> {
   return context
     .path("/special-words/models/while")
@@ -1099,7 +1099,7 @@ export async function _modelsWithWhileDeserialize(
 export async function modelsWithWhile(
   context: Client,
   body: While,
-  options: WithWhileOptions = { requestOptions: {} },
+  options: ModelsWithWhileOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithWhileSend(context, body, options);
   return _modelsWithWhileDeserialize(result);
@@ -1108,7 +1108,7 @@ export async function modelsWithWhile(
 export function _modelsWithWithSend(
   context: Client,
   body: With,
-  options: WithWithOptions = { requestOptions: {} },
+  options: ModelsWithWithOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithWith204Response> {
   return context
     .path("/special-words/models/with")
@@ -1131,7 +1131,7 @@ export async function _modelsWithWithDeserialize(
 export async function modelsWithWith(
   context: Client,
   body: With,
-  options: WithWithOptions = { requestOptions: {} },
+  options: ModelsWithWithOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithWithSend(context, body, options);
   return _modelsWithWithDeserialize(result);
@@ -1140,7 +1140,7 @@ export async function modelsWithWith(
 export function _modelsWithYieldSend(
   context: Client,
   body: Yield,
-  options: WithYieldOptions = { requestOptions: {} },
+  options: ModelsWithYieldOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsWithYield204Response> {
   return context
     .path("/special-words/models/yield")
@@ -1163,7 +1163,7 @@ export async function _modelsWithYieldDeserialize(
 export async function modelsWithYield(
   context: Client,
   body: Yield,
-  options: WithYieldOptions = { requestOptions: {} },
+  options: ModelsWithYieldOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelsWithYieldSend(context, body, options);
   return _modelsWithYieldDeserialize(result);

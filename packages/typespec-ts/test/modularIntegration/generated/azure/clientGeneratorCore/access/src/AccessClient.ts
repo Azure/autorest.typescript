@@ -86,7 +86,12 @@ export class AccessClient {
     return publicDecoratorInInternal(this._client, name, options);
   }
 
-  $public(
+  /**
+   *  @fixme public is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
+  public(
     name: string,
     options: PublicOptions = { requestOptions: {} },
   ): Promise<SharedModel> {

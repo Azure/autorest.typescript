@@ -4,17 +4,23 @@
 import { ValueTypesContext } from "../../api/ValueTypesContext.js";
 import { IntLiteralProperty } from "../../models/models.js";
 import { intLiteralGet, intLiteralPut } from "../../api/intLiteral/index.js";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import {
+  IntLiteralGetOptions,
+  IntLiteralPutOptions,
+} from "../../models/options.js";
 
 export interface IntLiteralOperations {
-  get: (options?: GetOptions) => Promise<IntLiteralProperty>;
-  put: (body: IntLiteralProperty, options?: PutOptions) => Promise<void>;
+  get: (options?: IntLiteralGetOptions) => Promise<IntLiteralProperty>;
+  put: (
+    body: IntLiteralProperty,
+    options?: IntLiteralPutOptions,
+  ) => Promise<void>;
 }
 
 export function getIntLiteral(context: ValueTypesContext) {
   return {
-    get: (options?: GetOptions) => intLiteralGet(context, options),
-    put: (body: IntLiteralProperty, options?: PutOptions) =>
+    get: (options?: IntLiteralGetOptions) => intLiteralGet(context, options),
+    put: (body: IntLiteralProperty, options?: IntLiteralPutOptions) =>
       intLiteralPut(context, body, options),
   };
 }

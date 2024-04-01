@@ -4,17 +4,23 @@
 import { ValueTypesContext } from "../../api/ValueTypesContext.js";
 import { Decimal128Property } from "../../models/models.js";
 import { decimal128Get, decimal128Put } from "../../api/decimal128/index.js";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import {
+  Decimal128GetOptions,
+  Decimal128PutOptions,
+} from "../../models/options.js";
 
 export interface Decimal128Operations {
-  get: (options?: GetOptions) => Promise<Decimal128Property>;
-  put: (body: Decimal128Property, options?: PutOptions) => Promise<void>;
+  get: (options?: Decimal128GetOptions) => Promise<Decimal128Property>;
+  put: (
+    body: Decimal128Property,
+    options?: Decimal128PutOptions,
+  ) => Promise<void>;
 }
 
 export function getDecimal128(context: ValueTypesContext) {
   return {
-    get: (options?: GetOptions) => decimal128Get(context, options),
-    put: (body: Decimal128Property, options?: PutOptions) =>
+    get: (options?: Decimal128GetOptions) => decimal128Get(context, options),
+    put: (body: Decimal128Property, options?: Decimal128PutOptions) =>
       decimal128Put(context, body, options),
   };
 }

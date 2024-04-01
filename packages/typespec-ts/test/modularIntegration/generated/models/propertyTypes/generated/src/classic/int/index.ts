@@ -4,17 +4,17 @@
 import { ValueTypesContext } from "../../api/ValueTypesContext.js";
 import { IntProperty } from "../../models/models.js";
 import { intGet, intPut } from "../../api/int/index.js";
-import { GetOptions, PutOptions } from "../../models/options.js";
+import { IntGetOptions, IntPutOptions } from "../../models/options.js";
 
 export interface IntOperations {
-  get: (options?: GetOptions) => Promise<IntProperty>;
-  put: (body: IntProperty, options?: PutOptions) => Promise<void>;
+  get: (options?: IntGetOptions) => Promise<IntProperty>;
+  put: (body: IntProperty, options?: IntPutOptions) => Promise<void>;
 }
 
 export function getInt(context: ValueTypesContext) {
   return {
-    get: (options?: GetOptions) => intGet(context, options),
-    put: (body: IntProperty, options?: PutOptions) =>
+    get: (options?: IntGetOptions) => intGet(context, options),
+    put: (body: IntProperty, options?: IntPutOptions) =>
       intPut(context, body, options),
   };
 }
