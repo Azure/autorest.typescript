@@ -2640,6 +2640,56 @@ describe("Input/output model type", () => {
       );
     });
 
+    it("ErrorResponse model would not be renamed even enabling the namespace name", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(
+        `
+      import "@azure-tools/typespec-client-generator-core";
+      import "@azure-tools/typespec-azure-core";
+      import "@typespec/http";
+      import "@typespec/rest";
+      import "@typespec/versioning";
+
+      using Azure.ClientGenerator.Core;
+      using Azure.Core;
+      using TypeSpec.Rest; 
+      using TypeSpec.Http;
+      using TypeSpec.Versioning;
+      
+      @service
+      namespace MyNamespace;
+      @doc("testing")
+      model A {
+        @doc("testing")
+        errors?: Azure.Core.Foundations.ErrorResponse[];
+      }
+
+      interface MyInterface {
+        @route("/op2")
+        op1(a: A): void
+      }
+      `,
+        false,
+        true,
+        true,
+        true,
+        true
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile } = schemaOutput!;
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        import { ErrorResponse } from "@azure-rest/core-client";
+        
+        /** testing */
+        export interface A {
+          /** testing */
+          "errors"?: Array<ErrorResponse>;
+        }
+     `
+      );
+    });
+
     it("Azure.Core.Foundations.InnerError -> InnerError", async () => {
       const tspDefinition = `
       @doc("testing")
