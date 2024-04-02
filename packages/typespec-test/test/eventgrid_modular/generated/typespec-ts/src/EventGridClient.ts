@@ -42,11 +42,11 @@ export class EventGridClient {
 
   /** Azure Messaging EventGrid Client */
   constructor(
-    endpoint: string,
+    endpointParam: string,
     credential: KeyCredential,
     options: EventGridClientOptions = {},
   ) {
-    this._client = createEventGrid(endpoint, credential, options);
+    this._client = createEventGrid(endpointParam, credential, options);
     this.pipeline = this._client.pipeline;
   }
 

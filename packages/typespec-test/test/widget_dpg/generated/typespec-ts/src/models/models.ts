@@ -21,7 +21,7 @@ export interface ListWidgetsPagesResults {
   /** The current page of results. */
   results: Widget[];
   /** The URL to get the next set of results. */
-  "odata.nextLink"?: string;
+  odataNextLink?: string;
 }
 
 export interface CreateWidget {

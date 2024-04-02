@@ -11,7 +11,7 @@ import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
 export class AdministrationOperationsClient {
-    constructor(endpoint: string, credential: TokenCredential, options?: AdministrationOperationsClientOptions);
+    constructor(endpointParam: string, credential: TokenCredential, options?: AdministrationOperationsClientOptions);
     createOrUpdateAppComponents(testId: string, body: TestAppComponents, options?: CreateOrUpdateAppComponentsOptions): Promise<TestAppComponents>;
     createOrUpdateServerMetricsConfig(testId: string, body: TestServerMetricConfig, options?: CreateOrUpdateServerMetricsConfigOptions): Promise<TestServerMetricConfig>;
     createOrUpdateTest(testId: string, body: Test, options?: CreateOrUpdateTestOptions): Promise<Test>;
@@ -428,7 +428,7 @@ export interface TestRunInputArtifacts {
 
 // @public (undocumented)
 export class TestRunOperationsClient {
-    constructor(endpoint: string, credential: TokenCredential, options?: TestRunOperationsClientOptions);
+    constructor(endpointParam: string, credential: TokenCredential, options?: TestRunOperationsClientOptions);
     // Warning: (ae-forgotten-export) The symbol "TestRunAppComponents" needs to be exported by the entry point index.d.ts
     createOrUpdateAppComponents(testRunId: string, body: TestRunAppComponents, options?: TestRunOperationsClientCreateOrUpdateAppComponentsOptions): Promise<TestRunAppComponents>;
     // Warning: (ae-forgotten-export) The symbol "TestRunServerMetricConfig" needs to be exported by the entry point index.d.ts

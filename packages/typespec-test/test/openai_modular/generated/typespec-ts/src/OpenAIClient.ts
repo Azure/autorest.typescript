@@ -52,11 +52,11 @@ export class OpenAIClient {
   public readonly pipeline: Pipeline;
 
   constructor(
-    endpoint: string,
+    endpointParam: string,
     credential: KeyCredential | TokenCredential,
     options: OpenAIClientOptions = {},
   ) {
-    this._client = createOpenAI(endpoint, credential, options);
+    this._client = createOpenAI(endpointParam, credential, options);
     this.pipeline = this._client.pipeline;
   }
 

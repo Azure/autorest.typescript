@@ -6,19 +6,19 @@ import {
   Model,
   DeleteModelResponse,
 } from "../../models/models.js";
-import { list, retrieve, deleteOperation } from "../../api/models/index.js";
+import { list, retrieve, $delete } from "../../api/models/index.js";
 import {
   ModelsListOptions,
   ModelsRetrieveOptions,
-  ModelsDeleteOperationOptions,
+  ModelsDeleteOptions,
 } from "../../models/options.js";
 
 export interface ModelsOperations {
   list: (options?: ModelsListOptions) => Promise<ListModelsResponse>;
   retrieve: (model: string, options?: ModelsRetrieveOptions) => Promise<Model>;
-  deleteOperation: (
+  delete: (
     model: string,
-    options?: ModelsDeleteOperationOptions,
+    options?: ModelsDeleteOptions,
   ) => Promise<DeleteModelResponse>;
 }
 
@@ -27,8 +27,8 @@ export function getModels(context: OpenAIContext) {
     list: (options?: ModelsListOptions) => list(context, options),
     retrieve: (model: string, options?: ModelsRetrieveOptions) =>
       retrieve(context, model, options),
-    deleteOperation: (model: string, options?: ModelsDeleteOperationOptions) =>
-      deleteOperation(context, model, options),
+    delete: (model: string, options?: ModelsDeleteOptions) =>
+      $delete(context, model, options),
   };
 }
 

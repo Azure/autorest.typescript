@@ -12,10 +12,10 @@ export { ChatProtocolContext } from "../rest/index.js";
 
 /** Azure APIs for the Azure Chat protocol. */
 export function createChatProtocol(
-  endpoint: string,
+  endpointParam: string,
   credential: KeyCredential | TokenCredential,
   options: ChatProtocolClientOptions = {},
 ): ChatProtocolContext {
-  const clientContext = getClient(endpoint, credential, options);
+  const clientContext = getClient(endpointParam, credential, options);
   return clientContext;
 }

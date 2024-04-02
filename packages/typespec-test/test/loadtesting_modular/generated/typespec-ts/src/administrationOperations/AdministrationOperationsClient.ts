@@ -50,12 +50,12 @@ export class AdministrationOperationsClient {
   public readonly pipeline: Pipeline;
 
   constructor(
-    endpoint: string,
+    endpointParam: string,
     credential: TokenCredential,
     options: AdministrationOperationsClientOptions = {},
   ) {
     this._client = createAdministrationOperations(
-      endpoint,
+      endpointParam,
       credential,
       options,
     );

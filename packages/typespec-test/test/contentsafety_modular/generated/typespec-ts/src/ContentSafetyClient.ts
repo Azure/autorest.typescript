@@ -52,11 +52,11 @@ export class ContentSafetyClient {
 
   /** Analyze harmful content */
   constructor(
-    endpoint: string,
+    endpointParam: string,
     credential: KeyCredential | TokenCredential,
     options: ContentSafetyClientOptions = {},
   ) {
-    this._client = createContentSafety(endpoint, credential, options);
+    this._client = createContentSafety(endpointParam, credential, options);
     this.pipeline = this._client.pipeline;
   }
 

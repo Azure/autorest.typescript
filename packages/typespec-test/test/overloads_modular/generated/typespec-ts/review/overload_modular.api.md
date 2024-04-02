@@ -32,7 +32,7 @@ export interface FooOperationsOperations {
 
 // @public (undocumented)
 export class WidgetManagerClient {
-    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: WidgetManagerClientOptions);
+    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: WidgetManagerClientOptions);
     readonly fooOperations: FooOperationsOperations;
     readonly pipeline: Pipeline;
 }

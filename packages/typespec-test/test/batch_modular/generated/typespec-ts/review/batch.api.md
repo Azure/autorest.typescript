@@ -14,7 +14,7 @@ export type AccessScope = string;
 
 // @public
 export interface AccountListSupportedImagesResult {
-    "odata.nextLink"?: string;
+    odataNextLink?: string;
     value?: ImageInformation[];
 }
 
@@ -28,7 +28,7 @@ export type AllocationState = string;
 
 // @public
 export interface ApplicationListResult {
-    "odata.nextLink"?: string;
+    odataNextLink?: string;
     value?: BatchApplication[];
 }
 
@@ -119,7 +119,7 @@ export interface BatchCertificate {
 
 // @public (undocumented)
 export class BatchClient {
-    constructor(endpoint: string, credential: TokenCredential, options?: BatchClientOptions);
+    constructor(endpointParam: string, credential: TokenCredential, options?: BatchClientOptions);
     cancelCertificateDeletion(thumbprintAlgorithm: string, thumbprint: string, options?: CancelCertificateDeletionOptions): Promise<void>;
     createCertificate(body: BatchCertificate, options?: CreateCertificateOptions): Promise<void>;
     createJob(body: BatchJobCreateOptions, options?: CreateJobOptions): Promise<void>;
@@ -273,13 +273,13 @@ export interface BatchJobDisableOptions {
 
 // @public
 export interface BatchJobListPreparationAndReleaseTaskStatusResult {
-    "odata.nextLink"?: string;
+    odataNextLink?: string;
     value?: JobPreparationAndReleaseTaskExecutionInformation[];
 }
 
 // @public
 export interface BatchJobListResult {
-    "odata.nextLink"?: string;
+    odataNextLink?: string;
     value?: BatchJob[];
 }
 
@@ -313,7 +313,7 @@ export interface BatchJobScheduleCreateOptions {
 
 // @public
 export interface BatchJobScheduleListResult {
-    "odata.nextLink"?: string;
+    odataNextLink?: string;
     value?: BatchJobSchedule[];
 }
 
@@ -402,7 +402,7 @@ export interface BatchNodeInformation {
 
 // @public
 export interface BatchNodeListResult {
-    "odata.nextLink"?: string;
+    odataNextLink?: string;
     value?: BatchNode[];
 }
 
@@ -525,7 +525,7 @@ export interface BatchPoolIdentity {
 
 // @public
 export interface BatchPoolListResult {
-    "odata.nextLink"?: string;
+    odataNextLink?: string;
     value?: BatchPool[];
 }
 
@@ -613,7 +613,7 @@ export interface BatchTaskCreateOptions {
 
 // @public
 export interface BatchTaskListResult {
-    "odata.nextLink"?: string;
+    odataNextLink?: string;
     value?: BatchTask[];
 }
 
@@ -636,7 +636,7 @@ export type CertificateFormat = string;
 
 // @public
 export interface CertificateListResult {
-    "odata.nextLink"?: string;
+    odataNextLink?: string;
     value?: BatchCertificate[];
 }
 
@@ -1620,7 +1620,7 @@ export interface NodeFile {
 
 // @public
 export interface NodeFileListResult {
-    "odata.nextLink"?: string;
+    odataNextLink?: string;
     value?: NodeFile[];
 }
 
@@ -1658,7 +1658,7 @@ export interface NodeVMExtension {
 
 // @public
 export interface NodeVMExtensionList {
-    "odata.nextLink"?: string;
+    odataNextLink?: string;
     value?: NodeVMExtension[];
 }
 
@@ -1745,7 +1745,7 @@ export type PoolLifetimeOption = string;
 
 // @public
 export interface PoolListUsageMetricsResult {
-    "odata.nextLink"?: string;
+    odataNextLink?: string;
     value?: PoolUsageMetrics[];
 }
 
@@ -1758,7 +1758,7 @@ export interface PoolNodeCounts {
 
 // @public
 export interface PoolNodeCountsListResult {
-    "odata.nextLink"?: string;
+    odataNextLink?: string;
     value?: PoolNodeCounts[];
 }
 

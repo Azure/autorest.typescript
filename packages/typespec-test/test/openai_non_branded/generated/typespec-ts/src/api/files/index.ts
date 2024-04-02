@@ -9,8 +9,8 @@ import {
 import {
   FilesCreate200Response,
   FilesCreateDefaultResponse,
-  FilesDeleteOperation200Response,
-  FilesDeleteOperationDefaultResponse,
+  FilesDelete200Response,
+  FilesDeleteDefaultResponse,
   FilesDownload200Response,
   FilesDownloadDefaultResponse,
   FilesList200Response,
@@ -30,7 +30,7 @@ import {
   FilesListOptions,
   FilesCreateOptions,
   FilesRetrieveOptions,
-  FilesDeleteOperationOptions,
+  FilesDeleteOptions,
   FilesDownloadOptions,
 } from "../../models/options.js";
 
@@ -156,20 +156,18 @@ export async function retrieve(
   return _retrieveDeserialize(result);
 }
 
-export function _deleteOperationSend(
+export function _$deleteSend(
   context: Client,
   fileId: string,
-  options: FilesDeleteOperationOptions = { requestOptions: {} },
-): StreamableMethod<
-  FilesDeleteOperation200Response | FilesDeleteOperationDefaultResponse
-> {
+  options: FilesDeleteOptions = { requestOptions: {} },
+): StreamableMethod<FilesDelete200Response | FilesDeleteDefaultResponse> {
   return context
     .path("/files/files/{file_id}", fileId)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _deleteOperationDeserialize(
-  result: FilesDeleteOperation200Response | FilesDeleteOperationDefaultResponse,
+export async function _$deleteDeserialize(
+  result: FilesDelete200Response | FilesDeleteDefaultResponse,
 ): Promise<DeleteFileResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -182,13 +180,18 @@ export async function _deleteOperationDeserialize(
   };
 }
 
-export async function deleteOperation(
+/**
+ *  @fixme delete is a reserved word that cannot be used as an operation name.
+ *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+ *         to the operation to override the generated name.
+ */
+export async function $delete(
   context: Client,
   fileId: string,
-  options: FilesDeleteOperationOptions = { requestOptions: {} },
+  options: FilesDeleteOptions = { requestOptions: {} },
 ): Promise<DeleteFileResponse> {
-  const result = await _deleteOperationSend(context, fileId, options);
-  return _deleteOperationDeserialize(result);
+  const result = await _$deleteSend(context, fileId, options);
+  return _$deleteDeserialize(result);
 }
 
 export function _downloadSend(

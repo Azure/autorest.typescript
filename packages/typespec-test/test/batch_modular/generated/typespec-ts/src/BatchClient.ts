@@ -215,11 +215,11 @@ export class BatchClient {
 
   /** Azure Batch provides Cloud-scale job scheduling and compute management. */
   constructor(
-    endpoint: string,
+    endpointParam: string,
     credential: TokenCredential,
     options: BatchClientOptions = {},
   ) {
-    this._client = createBatch(endpoint, credential, options);
+    this._client = createBatch(endpointParam, credential, options);
     this.pipeline = this._client.pipeline;
   }
 

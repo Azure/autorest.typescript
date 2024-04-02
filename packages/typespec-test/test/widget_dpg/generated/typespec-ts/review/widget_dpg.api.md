@@ -27,7 +27,7 @@ export interface CreateWidget {
 
 // @public (undocumented)
 export interface ListWidgetsPagesResults {
-    "odata.nextLink"?: string;
+    odataNextLink?: string;
     results: Widget[];
 }
 

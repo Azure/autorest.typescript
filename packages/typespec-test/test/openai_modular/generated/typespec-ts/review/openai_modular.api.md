@@ -864,7 +864,7 @@ export type OnYourDataVectorizationSourceUnion = OnYourDataEndpointVectorization
 
 // @public (undocumented)
 export class OpenAIClient {
-    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions);
+    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions);
     getAudioSpeech(deploymentId: string, body: AudioSpeechOptions, options?: GetAudioSpeechOptions): Promise<Uint8Array>;
     getAudioTranscriptionAsPlainText(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsPlainTextOptions): Promise<string>;
     getAudioTranscriptionAsResponseObject(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsResponseObjectOptions): Promise<AudioTranscription>;

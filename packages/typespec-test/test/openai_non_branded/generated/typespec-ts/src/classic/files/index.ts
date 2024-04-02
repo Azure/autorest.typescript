@@ -11,14 +11,14 @@ import {
   list,
   create,
   retrieve,
-  deleteOperation,
+  $delete,
   download,
 } from "../../api/files/index.js";
 import {
   FilesListOptions,
   FilesCreateOptions,
   FilesRetrieveOptions,
-  FilesDeleteOperationOptions,
+  FilesDeleteOptions,
   FilesDownloadOptions,
 } from "../../models/options.js";
 
@@ -32,9 +32,9 @@ export interface FilesOperations {
     fileId: string,
     options?: FilesRetrieveOptions,
   ) => Promise<OpenAIFile>;
-  deleteOperation: (
+  delete: (
     fileId: string,
-    options?: FilesDeleteOperationOptions,
+    options?: FilesDeleteOptions,
   ) => Promise<DeleteFileResponse>;
   download: (fileId: string, options?: FilesDownloadOptions) => Promise<string>;
 }
@@ -46,8 +46,8 @@ export function getFiles(context: OpenAIContext) {
       create(context, file, options),
     retrieve: (fileId: string, options?: FilesRetrieveOptions) =>
       retrieve(context, fileId, options),
-    deleteOperation: (fileId: string, options?: FilesDeleteOperationOptions) =>
-      deleteOperation(context, fileId, options),
+    delete: (fileId: string, options?: FilesDeleteOptions) =>
+      $delete(context, fileId, options),
     download: (fileId: string, options?: FilesDownloadOptions) =>
       download(context, fileId, options),
   };

@@ -164,7 +164,7 @@ export async function _listWidgetsPagesDeserialize(
       weight: p["weight"],
       color: p["color"],
     })),
-    "odata.nextLink": result.body["odata.nextLink"],
+    odataNextLink: result.body["odata.nextLink"],
   };
 }
 
@@ -211,7 +211,7 @@ export async function _queryWidgetsPagesDeserialize(
       weight: p["weight"],
       color: p["color"],
     })),
-    "odata.nextLink": result.body["odata.nextLink"],
+    odataNextLink: result.body["odata.nextLink"],
   };
 }
 

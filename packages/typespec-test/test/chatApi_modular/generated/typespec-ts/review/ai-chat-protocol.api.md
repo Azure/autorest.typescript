@@ -53,7 +53,7 @@ export interface ChatMessageDelta {
 
 // @public (undocumented)
 export class ChatProtocolClient {
-    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ChatProtocolClientOptions);
+    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ChatProtocolClientOptions);
     create(body: ChatCompletionOptions, options?: CreateOptions): Promise<ChatCompletion>;
     createStreaming(body: StreamingChatCompletionOptions, options?: CreateStreamingOptions): Promise<ChatCompletionChunk>;
     readonly pipeline: Pipeline;

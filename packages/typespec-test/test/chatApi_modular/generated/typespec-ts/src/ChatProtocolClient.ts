@@ -27,11 +27,11 @@ export class ChatProtocolClient {
 
   /** Azure APIs for the Azure Chat protocol. */
   constructor(
-    endpoint: string,
+    endpointParam: string,
     credential: KeyCredential | TokenCredential,
     options: ChatProtocolClientOptions = {},
   ) {
-    this._client = createChatProtocol(endpoint, credential, options);
+    this._client = createChatProtocol(endpointParam, credential, options);
     this.pipeline = this._client.pipeline;
   }
 

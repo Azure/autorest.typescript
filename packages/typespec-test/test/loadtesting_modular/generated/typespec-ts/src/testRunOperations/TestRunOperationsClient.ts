@@ -59,11 +59,11 @@ export class TestRunOperationsClient {
   public readonly pipeline: Pipeline;
 
   constructor(
-    endpoint: string,
+    endpointParam: string,
     credential: TokenCredential,
     options: TestRunOperationsClientOptions = {},
   ) {
-    this._client = createTestRunOperations(endpoint, credential, options);
+    this._client = createTestRunOperations(endpointParam, credential, options);
     this.pipeline = this._client.pipeline;
   }
 

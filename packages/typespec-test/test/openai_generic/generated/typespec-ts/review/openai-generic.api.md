@@ -408,7 +408,7 @@ export interface EmbeddingsOperations {
 }
 
 // @public (undocumented)
-interface Error_2 {
+export interface ErrorModel {
     // (undocumented)
     code: string | null;
     // (undocumented)
@@ -418,7 +418,6 @@ interface Error_2 {
     // (undocumented)
     type: string;
 }
-export { Error_2 as Error }
 
 // @public (undocumented)
 export interface FilesCreateOptions extends OperationOptions {
@@ -427,7 +426,7 @@ export interface FilesCreateOptions extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface FilesDeleteOperationOptions extends OperationOptions {
+export interface FilesDeleteOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -443,7 +442,7 @@ export interface FilesOperations {
     // (undocumented)
     create: (file: CreateFileRequest, options?: FilesCreateOptions) => Promise<OpenAIFile>;
     // (undocumented)
-    deleteOperation: (fileId: string, options?: FilesDeleteOperationOptions) => Promise<DeleteFileResponse>;
+    delete: (fileId: string, options?: FilesDeleteOptions) => Promise<DeleteFileResponse>;
     // (undocumented)
     download: (fileId: string, options?: FilesDownloadOptions) => Promise<string>;
     // (undocumented)
@@ -709,7 +708,7 @@ export interface Model {
 }
 
 // @public (undocumented)
-export interface ModelsDeleteOperationOptions extends OperationOptions {
+export interface ModelsDeleteOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -719,7 +718,7 @@ export interface ModelsListOptions extends OperationOptions {
 // @public (undocumented)
 export interface ModelsOperations {
     // (undocumented)
-    deleteOperation: (model: string, options?: ModelsDeleteOperationOptions) => Promise<DeleteModelResponse>;
+    delete: (model: string, options?: ModelsDeleteOptions) => Promise<DeleteModelResponse>;
     // (undocumented)
     list: (options?: ModelsListOptions) => Promise<ListModelsResponse>;
     // (undocumented)
