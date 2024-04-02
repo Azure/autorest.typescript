@@ -7,12 +7,12 @@ import {
   CreateChatCompletionResponse,
 } from "../../../models/models.js";
 import { create } from "../../../api/chat/completions/index.js";
-import { ChatCompletionsCreateOptions } from "../../../models/options.js";
+import { ChatCompletionsCreateOptionalParams } from "../../../models/options.js";
 
-export interface ChatCompletionsOperations {
+export interface ChatCompletions {
   create: (
     body: CreateChatCompletionRequest,
-    options?: ChatCompletionsCreateOptions,
+    options?: ChatCompletionsCreateOptionalParams,
   ) => Promise<CreateChatCompletionResponse>;
 }
 
@@ -20,14 +20,14 @@ export function getChatCompletions(context: OpenAIContext) {
   return {
     create: (
       body: CreateChatCompletionRequest,
-      options?: ChatCompletionsCreateOptions,
+      options?: ChatCompletionsCreateOptionalParams,
     ) => create(context, body, options),
   };
 }
 
 export function getChatCompletionsOperations(
   context: OpenAIContext,
-): ChatCompletionsOperations {
+): ChatCompletions {
   return {
     ...getChatCompletions(context),
   };

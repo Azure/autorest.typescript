@@ -16,32 +16,32 @@ import {
   cancel,
 } from "../../../api/fineTuning/jobs/index.js";
 import {
-  FineTuningJobsCreateOptions,
-  FineTuningJobsListOptions,
-  FineTuningJobsRetrieveOptions,
-  FineTuningJobsListEventsOptions,
-  FineTuningJobsCancelOptions,
+  FineTuningJobsCreateOptionalParams,
+  FineTuningJobsListOptionalParams,
+  FineTuningJobsRetrieveOptionalParams,
+  FineTuningJobsListEventsOptionalParams,
+  FineTuningJobsCancelOptionalParams,
 } from "../../../models/options.js";
 
-export interface FineTuningJobsOperations {
+export interface FineTuningJobs {
   create: (
     job: CreateFineTuningJobRequest,
-    options?: FineTuningJobsCreateOptions,
+    options?: FineTuningJobsCreateOptionalParams,
   ) => Promise<FineTuningJob>;
   list: (
-    options?: FineTuningJobsListOptions,
+    options?: FineTuningJobsListOptionalParams,
   ) => Promise<ListPaginatedFineTuningJobsResponse>;
   retrieve: (
     fineTuningJobId: string,
-    options?: FineTuningJobsRetrieveOptions,
+    options?: FineTuningJobsRetrieveOptionalParams,
   ) => Promise<FineTuningJob>;
   listEvents: (
     fineTuningJobId: string,
-    options?: FineTuningJobsListEventsOptions,
+    options?: FineTuningJobsListEventsOptionalParams,
   ) => Promise<ListFineTuningJobEventsResponse>;
   cancel: (
     fineTuningJobId: string,
-    options?: FineTuningJobsCancelOptions,
+    options?: FineTuningJobsCancelOptionalParams,
   ) => Promise<FineTuningJob>;
 }
 
@@ -49,25 +49,28 @@ export function getFineTuningJobs(context: OpenAIContext) {
   return {
     create: (
       job: CreateFineTuningJobRequest,
-      options?: FineTuningJobsCreateOptions,
+      options?: FineTuningJobsCreateOptionalParams,
     ) => create(context, job, options),
-    list: (options?: FineTuningJobsListOptions) => list(context, options),
+    list: (options?: FineTuningJobsListOptionalParams) =>
+      list(context, options),
     retrieve: (
       fineTuningJobId: string,
-      options?: FineTuningJobsRetrieveOptions,
+      options?: FineTuningJobsRetrieveOptionalParams,
     ) => retrieve(context, fineTuningJobId, options),
     listEvents: (
       fineTuningJobId: string,
-      options?: FineTuningJobsListEventsOptions,
+      options?: FineTuningJobsListEventsOptionalParams,
     ) => listEvents(context, fineTuningJobId, options),
-    cancel: (fineTuningJobId: string, options?: FineTuningJobsCancelOptions) =>
-      cancel(context, fineTuningJobId, options),
+    cancel: (
+      fineTuningJobId: string,
+      options?: FineTuningJobsCancelOptionalParams,
+    ) => cancel(context, fineTuningJobId, options),
   };
 }
 
 export function getFineTuningJobsOperations(
   context: OpenAIContext,
-): FineTuningJobsOperations {
+): FineTuningJobs {
   return {
     ...getFineTuningJobs(context),
   };

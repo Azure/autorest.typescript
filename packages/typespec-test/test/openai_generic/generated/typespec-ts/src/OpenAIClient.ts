@@ -3,37 +3,31 @@
 
 import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { getAudioOperations, AudioOperations } from "./classic/audio/index.js";
-import { getChatOperations, ChatOperations } from "./classic/chat/index.js";
+import { getAudioOperations, Audio } from "./classic/audio/index.js";
+import { getChatOperations, Chat } from "./classic/chat/index.js";
 import {
   getFineTuningOperations,
-  FineTuningOperations,
+  FineTuning,
 } from "./classic/fineTuning/index.js";
 import {
   getCompletionsOperations,
-  CompletionsOperations,
+  Completions,
 } from "./classic/completions/index.js";
-import { getEditsOperations, EditsOperations } from "./classic/edits/index.js";
+import { getEditsOperations, Edits } from "./classic/edits/index.js";
 import {
   getEmbeddingsOperations,
-  EmbeddingsOperations,
+  Embeddings,
 } from "./classic/embeddings/index.js";
-import { getFilesOperations, FilesOperations } from "./classic/files/index.js";
+import { getFilesOperations, Files } from "./classic/files/index.js";
 import {
   getFineTunesOperations,
-  FineTunesOperations,
+  FineTunes,
 } from "./classic/fineTunes/index.js";
-import {
-  getModelsOperations,
-  ModelsOperations,
-} from "./classic/models/index.js";
-import {
-  getImagesOperations,
-  ImagesOperations,
-} from "./classic/images/index.js";
+import { getModelsOperations, Models } from "./classic/models/index.js";
+import { getImagesOperations, Images } from "./classic/images/index.js";
 import {
   getModerationsOperations,
-  ModerationsOperations,
+  Moderations,
 } from "./classic/moderations/index.js";
 import {
   createOpenAI,
@@ -66,25 +60,25 @@ export class OpenAIClient {
   }
 
   /** The operation groups for AudioTranscriptions */
-  public readonly audio: AudioOperations;
+  public readonly audio: Audio;
   /** The operation groups for ChatCompletions */
-  public readonly chat: ChatOperations;
+  public readonly chat: Chat;
   /** The operation groups for FineTuningJobs */
-  public readonly fineTuning: FineTuningOperations;
+  public readonly fineTuning: FineTuning;
   /** The operation groups for Completions */
-  public readonly completions: CompletionsOperations;
+  public readonly completions: Completions;
   /** The operation groups for Edits */
-  public readonly edits: EditsOperations;
+  public readonly edits: Edits;
   /** The operation groups for Embeddings */
-  public readonly embeddings: EmbeddingsOperations;
+  public readonly embeddings: Embeddings;
   /** The operation groups for Files */
-  public readonly files: FilesOperations;
+  public readonly files: Files;
   /** The operation groups for FineTunes */
-  public readonly fineTunes: FineTunesOperations;
+  public readonly fineTunes: FineTunes;
   /** The operation groups for Models */
-  public readonly models: ModelsOperations;
+  public readonly models: Models;
   /** The operation groups for Images */
-  public readonly images: ImagesOperations;
+  public readonly images: Images;
   /** The operation groups for Moderations */
-  public readonly moderations: ModerationsOperations;
+  public readonly moderations: Moderations;
 }

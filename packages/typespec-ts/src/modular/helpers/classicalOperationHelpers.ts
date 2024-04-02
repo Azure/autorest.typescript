@@ -48,7 +48,7 @@ export function getClassicalOperation(
     NameType.Interface,
     "",
     layer
-  )}Operations`;
+  )}`;
   const existInterface = classicFile
     .getInterfaces()
     .filter((i) => i.getName() === interfaceName)[0];
@@ -68,7 +68,7 @@ export function getClassicalOperation(
         NameType.Interface,
         "",
         layer + 1
-      )}Operations`
+      )}`
     });
   } else {
     operationDeclarations.forEach((d) => {
@@ -186,7 +186,7 @@ export function getClassicalOperation(
         NameType.Interface,
         "",
         layer
-      )}Operations`,
+      )}`,
       statements:
         layer !== operationGroup.namespaceHierarchies.length - 1
           ? `return {

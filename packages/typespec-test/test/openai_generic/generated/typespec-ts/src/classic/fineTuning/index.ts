@@ -2,18 +2,13 @@
 // Licensed under the MIT license.
 
 import { OpenAIContext } from "../../api/OpenAIContext.js";
-import {
-  FineTuningJobsOperations,
-  getFineTuningJobsOperations,
-} from "./jobs/index.js";
+import { FineTuningJobs, getFineTuningJobsOperations } from "./jobs/index.js";
 
-export interface FineTuningOperations {
-  jobs: FineTuningJobsOperations;
+export interface FineTuning {
+  jobs: FineTuningJobs;
 }
 
-export function getFineTuningOperations(
-  context: OpenAIContext,
-): FineTuningOperations {
+export function getFineTuningOperations(context: OpenAIContext): FineTuning {
   return {
     jobs: getFineTuningJobsOperations(context),
   };

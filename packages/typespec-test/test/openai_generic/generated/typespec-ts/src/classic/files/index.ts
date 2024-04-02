@@ -16,45 +16,48 @@ import {
   download,
 } from "../../api/files/index.js";
 import {
-  FilesListOptions,
-  FilesCreateOptions,
-  FilesRetrieveOptions,
-  FilesDeleteOptions,
-  FilesDownloadOptions,
+  FilesListOptionalParams,
+  FilesCreateOptionalParams,
+  FilesRetrieveOptionalParams,
+  FilesDeleteOptionalParams,
+  FilesDownloadOptionalParams,
 } from "../../models/options.js";
 
-export interface FilesOperations {
-  list: (options?: FilesListOptions) => Promise<ListFilesResponse>;
+export interface Files {
+  list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
   create: (
     file: CreateFileRequest,
-    options?: FilesCreateOptions,
+    options?: FilesCreateOptionalParams,
   ) => Promise<OpenAIFile>;
   retrieve: (
     fileId: string,
-    options?: FilesRetrieveOptions,
+    options?: FilesRetrieveOptionalParams,
   ) => Promise<OpenAIFile>;
   delete: (
     fileId: string,
-    options?: FilesDeleteOptions,
+    options?: FilesDeleteOptionalParams,
   ) => Promise<DeleteFileResponse>;
-  download: (fileId: string, options?: FilesDownloadOptions) => Promise<string>;
+  download: (
+    fileId: string,
+    options?: FilesDownloadOptionalParams,
+  ) => Promise<string>;
 }
 
 export function getFiles(context: OpenAIContext) {
   return {
-    list: (options?: FilesListOptions) => list(context, options),
-    create: (file: CreateFileRequest, options?: FilesCreateOptions) =>
+    list: (options?: FilesListOptionalParams) => list(context, options),
+    create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) =>
       create(context, file, options),
-    retrieve: (fileId: string, options?: FilesRetrieveOptions) =>
+    retrieve: (fileId: string, options?: FilesRetrieveOptionalParams) =>
       retrieve(context, fileId, options),
-    delete: (fileId: string, options?: FilesDeleteOptions) =>
+    delete: (fileId: string, options?: FilesDeleteOptionalParams) =>
       $delete(context, fileId, options),
-    download: (fileId: string, options?: FilesDownloadOptions) =>
+    download: (fileId: string, options?: FilesDownloadOptionalParams) =>
       download(context, fileId, options),
   };
 }
 
-export function getFilesOperations(context: OpenAIContext): FilesOperations {
+export function getFilesOperations(context: OpenAIContext): Files {
   return {
     ...getFiles(context),
   };

@@ -233,7 +233,7 @@ function buildClientOperationGroups(
       NameType.Interface,
       "",
       0
-    )}Operations`;
+    )}`;
     const existProperty = clientClass.getProperties().filter((p) => {
       return p.getName() === groupName;
     });

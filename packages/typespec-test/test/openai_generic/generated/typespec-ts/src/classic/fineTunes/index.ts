@@ -16,30 +16,32 @@ import {
   cancel,
 } from "../../api/fineTunes/index.js";
 import {
-  FineTunesCreateOptions,
-  FineTunesListOptions,
-  FineTunesRetrieveOptions,
-  FineTunesListEventsOptions,
-  FineTunesCancelOptions,
+  FineTunesCreateOptionalParams,
+  FineTunesListOptionalParams,
+  FineTunesRetrieveOptionalParams,
+  FineTunesListEventsOptionalParams,
+  FineTunesCancelOptionalParams,
 } from "../../models/options.js";
 
-export interface FineTunesOperations {
+export interface FineTunes {
   create: (
     fineTune: CreateFineTuneRequest,
-    options?: FineTunesCreateOptions,
+    options?: FineTunesCreateOptionalParams,
   ) => Promise<FineTune>;
-  list: (options?: FineTunesListOptions) => Promise<ListFineTunesResponse>;
+  list: (
+    options?: FineTunesListOptionalParams,
+  ) => Promise<ListFineTunesResponse>;
   retrieve: (
     fineTuneId: string,
-    options?: FineTunesRetrieveOptions,
+    options?: FineTunesRetrieveOptionalParams,
   ) => Promise<FineTune>;
   listEvents: (
     fineTuneId: string,
-    options?: FineTunesListEventsOptions,
+    options?: FineTunesListEventsOptionalParams,
   ) => Promise<ListFineTuneEventsResponse>;
   cancel: (
     fineTuneId: string,
-    options?: FineTunesCancelOptions,
+    options?: FineTunesCancelOptionalParams,
   ) => Promise<FineTune>;
 }
 
@@ -47,21 +49,21 @@ export function getFineTunes(context: OpenAIContext) {
   return {
     create: (
       fineTune: CreateFineTuneRequest,
-      options?: FineTunesCreateOptions,
+      options?: FineTunesCreateOptionalParams,
     ) => create(context, fineTune, options),
-    list: (options?: FineTunesListOptions) => list(context, options),
-    retrieve: (fineTuneId: string, options?: FineTunesRetrieveOptions) =>
+    list: (options?: FineTunesListOptionalParams) => list(context, options),
+    retrieve: (fineTuneId: string, options?: FineTunesRetrieveOptionalParams) =>
       retrieve(context, fineTuneId, options),
-    listEvents: (fineTuneId: string, options?: FineTunesListEventsOptions) =>
-      listEvents(context, fineTuneId, options),
-    cancel: (fineTuneId: string, options?: FineTunesCancelOptions) =>
+    listEvents: (
+      fineTuneId: string,
+      options?: FineTunesListEventsOptionalParams,
+    ) => listEvents(context, fineTuneId, options),
+    cancel: (fineTuneId: string, options?: FineTunesCancelOptionalParams) =>
       cancel(context, fineTuneId, options),
   };
 }
 
-export function getFineTunesOperations(
-  context: OpenAIContext,
-): FineTunesOperations {
+export function getFineTunesOperations(context: OpenAIContext): FineTunes {
   return {
     ...getFineTunes(context),
   };

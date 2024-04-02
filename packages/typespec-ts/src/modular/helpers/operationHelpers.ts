@@ -237,7 +237,7 @@ function getOperationSignatureParameters(
 
   // Add the options parameter
   const optionsParam = {
-    name: "options",
+    name: parameters.has("options")? "optionalParams": "options",
     type: optionsType,
     initializer: "{ requestOptions: {} }"
   };
@@ -339,13 +339,7 @@ export function getOperationOptionsName(
     includeGroupName && operation.name.indexOf("_") === -1
       ? getClassicalLayerPrefix(operation, NameType.Interface)
       : "";
-  const optionName = `${prefix}${toPascalCase(operation.name)}Options`;
-  if (
-    operation.bodyParameter?.type.name === optionName ||
-    optionName === "ClientOptions"
-  ) {
-    return optionName.replace(/Options$/, "RequestOptions");
-  }
+  const optionName = `${prefix}${toPascalCase(operation.name)}OptionalParams`;
   return optionName;
 }
 

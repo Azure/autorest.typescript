@@ -3,15 +3,15 @@
 
 import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
-  ChatCompletionsOperations,
+  ChatCompletions,
   getChatCompletionsOperations,
 } from "./completions/index.js";
 
-export interface ChatOperations {
-  completions: ChatCompletionsOperations;
+export interface Chat {
+  completions: ChatCompletions;
 }
 
-export function getChatOperations(context: OpenAIContext): ChatOperations {
+export function getChatOperations(context: OpenAIContext): Chat {
   return {
     completions: getChatCompletionsOperations(context),
   };

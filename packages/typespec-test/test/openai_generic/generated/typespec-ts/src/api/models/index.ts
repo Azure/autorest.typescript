@@ -22,14 +22,14 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  ModelsListOptions,
-  ModelsRetrieveOptions,
-  ModelsDeleteOptions,
+  ModelsListOptionalParams,
+  ModelsRetrieveOptionalParams,
+  ModelsDeleteOptionalParams,
 } from "../../models/options.js";
 
 export function _listSend(
   context: Client,
-  options: ModelsListOptions = { requestOptions: {} },
+  options: ModelsListOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ModelsList200Response | ModelsListDefaultResponse> {
   return context
     .path("/models")
@@ -56,7 +56,7 @@ export async function _listDeserialize(
 
 export async function list(
   context: Client,
-  options: ModelsListOptions = { requestOptions: {} },
+  options: ModelsListOptionalParams = { requestOptions: {} },
 ): Promise<ListModelsResponse> {
   const result = await _listSend(context, options);
   return _listDeserialize(result);
@@ -65,7 +65,7 @@ export async function list(
 export function _retrieveSend(
   context: Client,
   model: string,
-  options: ModelsRetrieveOptions = { requestOptions: {} },
+  options: ModelsRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ModelsRetrieve200Response | ModelsRetrieveDefaultResponse> {
   return context
     .path("/models/{model}", model)
@@ -90,7 +90,7 @@ export async function _retrieveDeserialize(
 export async function retrieve(
   context: Client,
   model: string,
-  options: ModelsRetrieveOptions = { requestOptions: {} },
+  options: ModelsRetrieveOptionalParams = { requestOptions: {} },
 ): Promise<Model> {
   const result = await _retrieveSend(context, model, options);
   return _retrieveDeserialize(result);
@@ -99,7 +99,7 @@ export async function retrieve(
 export function _$deleteSend(
   context: Client,
   model: string,
-  options: ModelsDeleteOptions = { requestOptions: {} },
+  options: ModelsDeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ModelsDelete200Response | ModelsDeleteDefaultResponse> {
   return context
     .path("/models/{model}", model)
@@ -128,7 +128,7 @@ export async function _$deleteDeserialize(
 export async function $delete(
   context: Client,
   model: string,
-  options: ModelsDeleteOptions = { requestOptions: {} },
+  options: ModelsDeleteOptionalParams = { requestOptions: {} },
 ): Promise<DeleteModelResponse> {
   const result = await _$deleteSend(context, model, options);
   return _$deleteDeserialize(result);

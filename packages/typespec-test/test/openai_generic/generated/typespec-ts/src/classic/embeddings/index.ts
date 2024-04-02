@@ -7,12 +7,12 @@ import {
   CreateEmbeddingResponse,
 } from "../../models/models.js";
 import { create } from "../../api/embeddings/index.js";
-import { EmbeddingsCreateOptions } from "../../models/options.js";
+import { EmbeddingsCreateOptionalParams } from "../../models/options.js";
 
-export interface EmbeddingsOperations {
+export interface Embeddings {
   create: (
     embedding: CreateEmbeddingRequest,
-    options?: EmbeddingsCreateOptions,
+    options?: EmbeddingsCreateOptionalParams,
   ) => Promise<CreateEmbeddingResponse>;
 }
 
@@ -20,14 +20,12 @@ export function getEmbeddings(context: OpenAIContext) {
   return {
     create: (
       embedding: CreateEmbeddingRequest,
-      options?: EmbeddingsCreateOptions,
+      options?: EmbeddingsCreateOptionalParams,
     ) => create(context, embedding, options),
   };
 }
 
-export function getEmbeddingsOperations(
-  context: OpenAIContext,
-): EmbeddingsOperations {
+export function getEmbeddingsOperations(context: OpenAIContext): Embeddings {
   return {
     ...getEmbeddings(context),
   };
