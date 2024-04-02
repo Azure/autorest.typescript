@@ -1373,7 +1373,6 @@ function emitUnion(
   type: Union,
   usage: UsageFlags
 ): Record<string, any> {
-  let isVariantExtensible = false;
   const sdkType = getSdkUnion(context, type);
   const nonNullOptions = getNonNullOptions(type);
   if (sdkType === undefined) {
@@ -1415,14 +1414,14 @@ function emitUnion(
     return {
       name: getLibraryName(context, type)
         ? getLibraryName(context, type)
-        : type.name ?? sdkType.name,
+        : type.name,
       nullable: sdkType.nullable,
       description: sdkType.description || `Type of ${sdkType.name}`,
       internal: true,
       type: sdkType.kind,
       valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
       values: sdkType.values.map((x) => emitEnumMember(context, x)),
-      isFixed: isVariantExtensible ? false : sdkType.isFixed,
+      isFixed: sdkType.isFixed,
       xmlMetadata: {},
       usage
     };
@@ -1449,7 +1448,6 @@ function emitUnion(
     };
   }
 }
-
 function isStringOrNumberKind(program: Program, kind?: string): boolean {
   if (!kind) {
     return false;
@@ -1497,7 +1495,7 @@ function emitSimpleType(
 
   return {
     nullable: sdkType.nullable,
-    type: "number", // TODO: switch to kind
+    type: sdkType.kind === "string" ? "string" : "number", // TODO: handle other types
     doc: "",
     apiVersions: [],
     sdkDefaultValue: undefined,

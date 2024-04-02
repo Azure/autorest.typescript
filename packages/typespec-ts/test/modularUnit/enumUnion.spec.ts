@@ -5,7 +5,7 @@ import {
 import { assertEqualContent } from "../util/testUtil.js";
 import { assert } from "chai";
 
-describe.only("should generate models for header parameters", () => {
+describe("should generate models for header parameters", () => {
   describe("named union", async () => {
     describe("fixed", async () => {
       it("as contentType", async () => {
@@ -153,6 +153,45 @@ describe.only("should generate models for header parameters", () => {
       });
     });
     describe("extensible", async () => {
+      it("union with string as extensible enum", async () => {
+        const tspDefinition = `
+        import "@typespec/http";
+        import "@typespec/rest";
+    
+        @service({
+          title: "Widget Service",
+        })
+        namespace DemoService;
+        
+        using TypeSpec.Http;
+        using TypeSpec.Rest;
+        
+        union SchemaContentTypeValues {
+          custom: "text/plain; charset=utf-8",
+          protobuf: "text/vnd.ms.protobuf",
+          others: string,
+        }
+        
+        op get(
+          @header("test-header") testHeader: SchemaContentTypeValues,
+          @body body: string,
+        ): NoContentResponse;
+        `;
+        const schemaOutput = await emitModularModelsFromTypeSpec(
+          tspDefinition,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        await assertEqualContent(
+          schemaOutput?.getFullText()!,
+          `
+          /** Type of SchemaContentTypeValues */
+          /** "text/plain; charset=utf-8", "text/vnd.ms.protobuf" */
+          export type SchemaContentTypeValues = string;
+          `
+        );
+      });
       it("union contains union with string element", async () => {
         const tspDefinition = `
         import "@typespec/http";
@@ -250,9 +289,9 @@ describe.only("should generate models for header parameters", () => {
     });
   });
 
-  describe.only("anonymous union with | ", async () => {
+  describe("anonymous union with `|` ", async () => {
     describe("fixed", async () => {
-      it.only("in regular headers", async () => {
+      it("in regular headers", async () => {
         const tspDefinition = `
         import "@typespec/http";
         import "@typespec/rest";
@@ -354,8 +393,6 @@ describe.only("should generate models for header parameters", () => {
           false,
           true
         );
-
-        console.log(schemaOutput?.getFullText()!);
         assert.isUndefined(schemaOutput);
 
         const paramOutput = await emitModularOperationsFromTypeSpec(
@@ -379,7 +416,7 @@ describe.only("should generate models for header parameters", () => {
           } from "@azure-rest/core-client";
           export function _getSend(
             context: Client,
-            testHeader: "A" | "B" | string,
+            testHeader: string | "A" | "B",
             body: string,
             options: GetOptions = { requestOptions: {} },
           ): StreamableMethod<Get204Response> {
@@ -399,7 +436,7 @@ describe.only("should generate models for header parameters", () => {
           }
           export async function get(
             context: Client,
-            testHeader: "A" | "B" | string,
+            testHeader: string | "A" | "B",
             body: string,
             options: GetOptions = { requestOptions: {} },
           ): Promise<void> {
@@ -502,7 +539,7 @@ describe.only("should generate models for header parameters", () => {
   });
 
   describe("number extensible enum + mixed types union", async () => {
-    it.skip("fixed enums with number literals being used in regular headers", async () => {
+    it("number extensible enum should be generated correctly", async () => {
       const tspDefinition = `
       import "@typespec/http";
       import "@typespec/rest";
@@ -517,12 +554,12 @@ describe.only("should generate models for header parameters", () => {
       using TypeSpec.Rest;
       using Azure.Core;
       
-      @fixed
-      enum EnumTest  {
+      union EnumTest  {
         one: 1,
         two: 2,
         three: 3,
         four: 4,
+        others: int32
       }
       
       op get(
@@ -536,39 +573,19 @@ describe.only("should generate models for header parameters", () => {
         true
       );
       assert.ok(schemaOutput);
-      assert.isUndefined(schemaOutput);
-      const paramOutput = await emitModularOperationsFromTypeSpec(
-        tspDefinition,
-        false,
-        false,
-        false
-      );
-      assert.ok(paramOutput);
-      assert.strictEqual(paramOutput?.length, 1);
+      // assert.isUndefined(schemaOutput);
+      console.log(schemaOutput?.getFullText()!);
       await assertEqualContent(
-        paramOutput?.[0]?.getFullText()!,
+        schemaOutput?.getFullText()!,
         `
-        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
-        import { RequestParameters } from "@azure-rest/core-client";
-        
-        export interface GetHeaders {
-          "test-header": 1 | 2 | 3 | 4;
-        }
-        
-        export interface GetBodyParam {
-          body: string;
-        }
-        
-        export interface GetHeaderParam {
-          headers: RawHttpHeadersInput & GetHeaders;
-        }
-        
-        export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
-        `
+        /** Type of EnumTest */
+        /** 1, 2, 3, 4 */
+        export type EnumTest = number;
+`
       );
     });
 
-    it.skip("fixed enums with number literals being used in regular headers", async () => {
+    it("mixed union types should be generated correctly", async () => {
       const tspDefinition = `
       import "@typespec/http";
       import "@typespec/rest";
@@ -583,16 +600,23 @@ describe.only("should generate models for header parameters", () => {
       using TypeSpec.Rest;
       using Azure.Core;
       
-      @fixed
       enum EnumTest  {
         one: 1,
         two: 2,
         three: 3,
         four: 4,
       }
+
+      model Foo {}
+
+      union MixedTypes {
+        EnumTest,
+        string,
+        Foo
+      }
       
       op get(
-        @header("test-header") testHeader: EnumTest,
+        @header("test-header") testHeader: MixedTypes,
         @body body: string,
       ): NoContentResponse;
       `;
@@ -602,35 +626,18 @@ describe.only("should generate models for header parameters", () => {
         true
       );
       assert.ok(schemaOutput);
-      assert.isUndefined(schemaOutput);
-      const paramOutput = await emitModularOperationsFromTypeSpec(
-        tspDefinition,
-        false,
-        false,
-        false
-      );
-      assert.ok(paramOutput);
-      assert.strictEqual(paramOutput?.length, 1);
       await assertEqualContent(
-        paramOutput?.[0]?.getFullText()!,
+        schemaOutput?.getFullText()!,
         `
-        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
-        import { RequestParameters } from "@azure-rest/core-client";
+        /** */
+        export type EnumTest = 1 | 2 | 3 | 4;
         
-        export interface GetHeaders {
-          "test-header": 1 | 2 | 3 | 4;
+        export interface Foo {
         }
         
-        export interface GetBodyParam {
-          body: string;
-        }
-        
-        export interface GetHeaderParam {
-          headers: RawHttpHeadersInput & GetHeaders;
-        }
-        
-        export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
-        `
+        /** Alias for MixedTypes */
+        export type MixedTypes = EnumTest | string | Foo;
+      `
       );
     });
   });
