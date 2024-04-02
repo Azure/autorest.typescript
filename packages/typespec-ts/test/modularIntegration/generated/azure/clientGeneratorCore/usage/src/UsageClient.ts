@@ -4,8 +4,8 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { InputModel, OutputModel } from "./models/models.js";
 import {
-  InputToInputOutputOptions,
-  OutputToInputOutputOptions,
+  InputToInputOutputOptionalParams,
+  OutputToInputOutputOptionalParams,
 } from "./models/options.js";
 import {
   inputToInputOutput,
@@ -38,7 +38,7 @@ export class UsageClient {
    */
   inputToInputOutput(
     body: InputModel,
-    options: InputToInputOutputOptions = { requestOptions: {} },
+    options: InputToInputOutputOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return inputToInputOutput(this._client, body, options);
   }
@@ -52,7 +52,7 @@ export class UsageClient {
    * ```
    */
   outputToInputOutput(
-    options: OutputToInputOutputOptions = { requestOptions: {} },
+    options: OutputToInputOutputOptionalParams = { requestOptions: {} },
   ): Promise<OutputModel> {
     return outputToInputOutput(this._client, options);
   }

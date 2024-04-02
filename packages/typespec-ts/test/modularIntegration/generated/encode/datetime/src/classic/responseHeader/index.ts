@@ -9,30 +9,30 @@ import {
   responseHeaderUnixTimestamp,
 } from "../../api/responseHeader/index.js";
 import {
-  ResponseHeaderDefaultOptions,
-  ResponseHeaderRfc3339Options,
-  ResponseHeaderRfc7231Options,
-  ResponseHeaderUnixTimestampOptions,
+  ResponseHeaderDefaultOptionalParams,
+  ResponseHeaderRfc3339OptionalParams,
+  ResponseHeaderRfc7231OptionalParams,
+  ResponseHeaderUnixTimestampOptionalParams,
 } from "../../models/options.js";
 
 export interface ResponseHeaderOperations {
-  default: (options?: ResponseHeaderDefaultOptions) => Promise<void>;
-  rfc3339: (options?: ResponseHeaderRfc3339Options) => Promise<void>;
-  rfc7231: (options?: ResponseHeaderRfc7231Options) => Promise<void>;
+  default: (options?: ResponseHeaderDefaultOptionalParams) => Promise<void>;
+  rfc3339: (options?: ResponseHeaderRfc3339OptionalParams) => Promise<void>;
+  rfc7231: (options?: ResponseHeaderRfc7231OptionalParams) => Promise<void>;
   unixTimestamp: (
-    options?: ResponseHeaderUnixTimestampOptions,
+    options?: ResponseHeaderUnixTimestampOptionalParams,
   ) => Promise<void>;
 }
 
 export function getResponseHeader(context: DatetimeContext) {
   return {
-    default: (options?: ResponseHeaderDefaultOptions) =>
+    default: (options?: ResponseHeaderDefaultOptionalParams) =>
       responseHeaderDefault(context, options),
-    rfc3339: (options?: ResponseHeaderRfc3339Options) =>
+    rfc3339: (options?: ResponseHeaderRfc3339OptionalParams) =>
       responseHeaderRfc3339(context, options),
-    rfc7231: (options?: ResponseHeaderRfc7231Options) =>
+    rfc7231: (options?: ResponseHeaderRfc7231OptionalParams) =>
       responseHeaderRfc7231(context, options),
-    unixTimestamp: (options?: ResponseHeaderUnixTimestampOptions) =>
+    unixTimestamp: (options?: ResponseHeaderUnixTimestampOptionalParams) =>
       responseHeaderUnixTimestamp(context, options),
   };
 }

@@ -14,7 +14,7 @@ import {
   ModelsDeleteOptionalParams,
 } from "../../models/options.js";
 
-export interface Models {
+export interface ModelsOperations {
   list: (options?: ModelsListOptionalParams) => Promise<ListModelsResponse>;
   retrieve: (
     model: string,
@@ -36,7 +36,7 @@ export function getModels(context: OpenAIContext) {
   };
 }
 
-export function getModelsOperations(context: OpenAIContext): Models {
+export function getModelsOperations(context: OpenAIContext): ModelsOperations {
   return {
     ...getModels(context),
   };

@@ -9,7 +9,7 @@ import {
 import { create } from "../../api/embeddings/index.js";
 import { EmbeddingsCreateOptionalParams } from "../../models/options.js";
 
-export interface Embeddings {
+export interface EmbeddingsOperations {
   create: (
     embedding: CreateEmbeddingRequest,
     options?: EmbeddingsCreateOptionalParams,
@@ -25,7 +25,9 @@ export function getEmbeddings(context: OpenAIContext) {
   };
 }
 
-export function getEmbeddingsOperations(context: OpenAIContext): Embeddings {
+export function getEmbeddingsOperations(
+  context: OpenAIContext,
+): EmbeddingsOperations {
   return {
     ...getEmbeddings(context),
   };

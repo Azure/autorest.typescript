@@ -9,7 +9,7 @@ import {
 import { create } from "../../../api/chat/completions/index.js";
 import { ChatCompletionsCreateOptionalParams } from "../../../models/options.js";
 
-export interface ChatCompletions {
+export interface ChatCompletionsOperations {
   create: (
     body: CreateChatCompletionRequest,
     options?: ChatCompletionsCreateOptionalParams,
@@ -27,7 +27,7 @@ export function getChatCompletions(context: OpenAIContext) {
 
 export function getChatCompletionsOperations(
   context: OpenAIContext,
-): ChatCompletions {
+): ChatCompletionsOperations {
   return {
     ...getChatCompletions(context),
   };

@@ -3,13 +3,13 @@
 
 export { ClientType } from "./models.js";
 export {
-  OneOptions,
-  TwoOptions,
-  BazFooSevenOptions,
-  QuxEightOptions,
-  QuxBarNineOptions,
-  FooThreeOptions,
-  FooFourOptions,
-  BarFiveOptions,
-  BarSixOptions,
+  OneOptionalParams,
+  TwoOptionalParams,
+  BazFooSevenOptionalParams,
+  QuxEightOptionalParams,
+  QuxBarNineOptionalParams,
+  FooThreeOptionalParams,
+  FooFourOptionalParams,
+  BarFiveOptionalParams,
+  BarSixOptionalParams,
 } from "./options.js";

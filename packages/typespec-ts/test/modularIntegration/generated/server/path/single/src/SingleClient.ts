@@ -8,7 +8,7 @@ import {
   SingleClientOptions,
   SingleContext,
 } from "./api/index.js";
-import { MyOpOptions } from "./models/options.js";
+import { MyOpOptionalParams } from "./models/options.js";
 
 export { SingleClientOptions } from "./api/SingleContext.js";
 
@@ -23,7 +23,7 @@ export class SingleClient {
     this.pipeline = this._client.pipeline;
   }
 
-  myOp(options: MyOpOptions = { requestOptions: {} }): Promise<void> {
+  myOp(options: MyOpOptionalParams = { requestOptions: {} }): Promise<void> {
     return myOp(this._client, options);
   }
 }

@@ -38,127 +38,144 @@ import {
   operationsYield,
 } from "../../api/operations/index.js";
 import {
-  OperationsAndOptions,
-  OperationsAsOptions,
-  OperationsAssertOptions,
-  OperationsAsyncOptions,
-  OperationsAwaitOptions,
-  OperationsBreakOptions,
-  OperationsClassOptions,
-  OperationsConstructorOptions,
-  OperationsContinueOptions,
-  OperationsDefOptions,
-  OperationsDelOptions,
-  OperationsElifOptions,
-  OperationsElseOptions,
-  OperationsExceptOptions,
-  OperationsExecOptions,
-  OperationsFinallyOptions,
-  OperationsForOptions,
-  OperationsFromOptions,
-  OperationsGlobalOptions,
-  OperationsIfOptions,
-  OperationsImportOptions,
-  OperationsInOptions,
-  OperationsIsOptions,
-  OperationsLambdaOptions,
-  OperationsNotOptions,
-  OperationsOrOptions,
-  OperationsPassOptions,
-  OperationsRaiseOptions,
-  OperationsReturnOptions,
-  OperationsTryOptions,
-  OperationsWhileOptions,
-  OperationsWithOptions,
-  OperationsYieldOptions,
+  OperationsAndOptionalParams,
+  OperationsAsOptionalParams,
+  OperationsAssertOptionalParams,
+  OperationsAsyncOptionalParams,
+  OperationsAwaitOptionalParams,
+  OperationsBreakOptionalParams,
+  OperationsClassOptionalParams,
+  OperationsConstructorOptionalParams,
+  OperationsContinueOptionalParams,
+  OperationsDefOptionalParams,
+  OperationsDelOptionalParams,
+  OperationsElifOptionalParams,
+  OperationsElseOptionalParams,
+  OperationsExceptOptionalParams,
+  OperationsExecOptionalParams,
+  OperationsFinallyOptionalParams,
+  OperationsForOptionalParams,
+  OperationsFromOptionalParams,
+  OperationsGlobalOptionalParams,
+  OperationsIfOptionalParams,
+  OperationsImportOptionalParams,
+  OperationsInOptionalParams,
+  OperationsIsOptionalParams,
+  OperationsLambdaOptionalParams,
+  OperationsNotOptionalParams,
+  OperationsOrOptionalParams,
+  OperationsPassOptionalParams,
+  OperationsRaiseOptionalParams,
+  OperationsReturnOptionalParams,
+  OperationsTryOptionalParams,
+  OperationsWhileOptionalParams,
+  OperationsWithOptionalParams,
+  OperationsYieldOptionalParams,
 } from "../../models/options.js";
 
 export interface OperationsOperations {
-  and: (options?: OperationsAndOptions) => Promise<void>;
-  as: (options?: OperationsAsOptions) => Promise<void>;
-  assert: (options?: OperationsAssertOptions) => Promise<void>;
-  async: (options?: OperationsAsyncOptions) => Promise<void>;
-  await: (options?: OperationsAwaitOptions) => Promise<void>;
-  break: (options?: OperationsBreakOptions) => Promise<void>;
-  class: (options?: OperationsClassOptions) => Promise<void>;
-  constructor: (options?: OperationsConstructorOptions) => Promise<void>;
-  continue: (options?: OperationsContinueOptions) => Promise<void>;
-  def: (options?: OperationsDefOptions) => Promise<void>;
-  del: (options?: OperationsDelOptions) => Promise<void>;
-  elif: (options?: OperationsElifOptions) => Promise<void>;
-  else: (options?: OperationsElseOptions) => Promise<void>;
-  except: (options?: OperationsExceptOptions) => Promise<void>;
-  exec: (options?: OperationsExecOptions) => Promise<void>;
-  finally: (options?: OperationsFinallyOptions) => Promise<void>;
-  for: (options?: OperationsForOptions) => Promise<void>;
-  from: (options?: OperationsFromOptions) => Promise<void>;
-  global: (options?: OperationsGlobalOptions) => Promise<void>;
-  if: (options?: OperationsIfOptions) => Promise<void>;
-  import: (options?: OperationsImportOptions) => Promise<void>;
-  in: (options?: OperationsInOptions) => Promise<void>;
-  is: (options?: OperationsIsOptions) => Promise<void>;
-  lambda: (options?: OperationsLambdaOptions) => Promise<void>;
-  not: (options?: OperationsNotOptions) => Promise<void>;
-  or: (options?: OperationsOrOptions) => Promise<void>;
-  pass: (options?: OperationsPassOptions) => Promise<void>;
-  raise: (options?: OperationsRaiseOptions) => Promise<void>;
-  return: (options?: OperationsReturnOptions) => Promise<void>;
-  try: (options?: OperationsTryOptions) => Promise<void>;
-  while: (options?: OperationsWhileOptions) => Promise<void>;
-  with: (options?: OperationsWithOptions) => Promise<void>;
-  yield: (options?: OperationsYieldOptions) => Promise<void>;
+  and: (options?: OperationsAndOptionalParams) => Promise<void>;
+  as: (options?: OperationsAsOptionalParams) => Promise<void>;
+  assert: (options?: OperationsAssertOptionalParams) => Promise<void>;
+  async: (options?: OperationsAsyncOptionalParams) => Promise<void>;
+  await: (options?: OperationsAwaitOptionalParams) => Promise<void>;
+  break: (options?: OperationsBreakOptionalParams) => Promise<void>;
+  class: (options?: OperationsClassOptionalParams) => Promise<void>;
+  constructor: (options?: OperationsConstructorOptionalParams) => Promise<void>;
+  continue: (options?: OperationsContinueOptionalParams) => Promise<void>;
+  def: (options?: OperationsDefOptionalParams) => Promise<void>;
+  del: (options?: OperationsDelOptionalParams) => Promise<void>;
+  elif: (options?: OperationsElifOptionalParams) => Promise<void>;
+  else: (options?: OperationsElseOptionalParams) => Promise<void>;
+  except: (options?: OperationsExceptOptionalParams) => Promise<void>;
+  exec: (options?: OperationsExecOptionalParams) => Promise<void>;
+  finally: (options?: OperationsFinallyOptionalParams) => Promise<void>;
+  for: (options?: OperationsForOptionalParams) => Promise<void>;
+  from: (options?: OperationsFromOptionalParams) => Promise<void>;
+  global: (options?: OperationsGlobalOptionalParams) => Promise<void>;
+  if: (options?: OperationsIfOptionalParams) => Promise<void>;
+  import: (options?: OperationsImportOptionalParams) => Promise<void>;
+  in: (options?: OperationsInOptionalParams) => Promise<void>;
+  is: (options?: OperationsIsOptionalParams) => Promise<void>;
+  lambda: (options?: OperationsLambdaOptionalParams) => Promise<void>;
+  not: (options?: OperationsNotOptionalParams) => Promise<void>;
+  or: (options?: OperationsOrOptionalParams) => Promise<void>;
+  pass: (options?: OperationsPassOptionalParams) => Promise<void>;
+  raise: (options?: OperationsRaiseOptionalParams) => Promise<void>;
+  return: (options?: OperationsReturnOptionalParams) => Promise<void>;
+  try: (options?: OperationsTryOptionalParams) => Promise<void>;
+  while: (options?: OperationsWhileOptionalParams) => Promise<void>;
+  with: (options?: OperationsWithOptionalParams) => Promise<void>;
+  yield: (options?: OperationsYieldOptionalParams) => Promise<void>;
 }
 
 export function getOperations(context: SpecialWordsContext) {
   return {
-    and: (options?: OperationsAndOptions) => operationsAnd(context, options),
-    as: (options?: OperationsAsOptions) => operationsAs(context, options),
-    assert: (options?: OperationsAssertOptions) =>
+    and: (options?: OperationsAndOptionalParams) =>
+      operationsAnd(context, options),
+    as: (options?: OperationsAsOptionalParams) =>
+      operationsAs(context, options),
+    assert: (options?: OperationsAssertOptionalParams) =>
       operationsAssert(context, options),
-    async: (options?: OperationsAsyncOptions) =>
+    async: (options?: OperationsAsyncOptionalParams) =>
       operationsAsync(context, options),
-    await: (options?: OperationsAwaitOptions) =>
+    await: (options?: OperationsAwaitOptionalParams) =>
       operationsAwait(context, options),
-    break: (options?: OperationsBreakOptions) =>
+    break: (options?: OperationsBreakOptionalParams) =>
       operationsBreak(context, options),
-    class: (options?: OperationsClassOptions) =>
+    class: (options?: OperationsClassOptionalParams) =>
       operationsClass(context, options),
-    constructor: (options?: OperationsConstructorOptions) =>
+    constructor: (options?: OperationsConstructorOptionalParams) =>
       operationsConstructor(context, options),
-    continue: (options?: OperationsContinueOptions) =>
+    continue: (options?: OperationsContinueOptionalParams) =>
       operationsContinue(context, options),
-    def: (options?: OperationsDefOptions) => operationsDef(context, options),
-    del: (options?: OperationsDelOptions) => operationsDel(context, options),
-    elif: (options?: OperationsElifOptions) => operationsElif(context, options),
-    else: (options?: OperationsElseOptions) => operationsElse(context, options),
-    except: (options?: OperationsExceptOptions) =>
+    def: (options?: OperationsDefOptionalParams) =>
+      operationsDef(context, options),
+    del: (options?: OperationsDelOptionalParams) =>
+      operationsDel(context, options),
+    elif: (options?: OperationsElifOptionalParams) =>
+      operationsElif(context, options),
+    else: (options?: OperationsElseOptionalParams) =>
+      operationsElse(context, options),
+    except: (options?: OperationsExceptOptionalParams) =>
       operationsExcept(context, options),
-    exec: (options?: OperationsExecOptions) => operationsExec(context, options),
-    finally: (options?: OperationsFinallyOptions) =>
+    exec: (options?: OperationsExecOptionalParams) =>
+      operationsExec(context, options),
+    finally: (options?: OperationsFinallyOptionalParams) =>
       operationsFinally(context, options),
-    for: (options?: OperationsForOptions) => operationsFor(context, options),
-    from: (options?: OperationsFromOptions) => operationsFrom(context, options),
-    global: (options?: OperationsGlobalOptions) =>
+    for: (options?: OperationsForOptionalParams) =>
+      operationsFor(context, options),
+    from: (options?: OperationsFromOptionalParams) =>
+      operationsFrom(context, options),
+    global: (options?: OperationsGlobalOptionalParams) =>
       operationsGlobal(context, options),
-    if: (options?: OperationsIfOptions) => operationsIf(context, options),
-    import: (options?: OperationsImportOptions) =>
+    if: (options?: OperationsIfOptionalParams) =>
+      operationsIf(context, options),
+    import: (options?: OperationsImportOptionalParams) =>
       operationsImport(context, options),
-    in: (options?: OperationsInOptions) => operationsIn(context, options),
-    is: (options?: OperationsIsOptions) => operationsIs(context, options),
-    lambda: (options?: OperationsLambdaOptions) =>
+    in: (options?: OperationsInOptionalParams) =>
+      operationsIn(context, options),
+    is: (options?: OperationsIsOptionalParams) =>
+      operationsIs(context, options),
+    lambda: (options?: OperationsLambdaOptionalParams) =>
       operationsLambda(context, options),
-    not: (options?: OperationsNotOptions) => operationsNot(context, options),
-    or: (options?: OperationsOrOptions) => operationsOr(context, options),
-    pass: (options?: OperationsPassOptions) => operationsPass(context, options),
-    raise: (options?: OperationsRaiseOptions) =>
+    not: (options?: OperationsNotOptionalParams) =>
+      operationsNot(context, options),
+    or: (options?: OperationsOrOptionalParams) =>
+      operationsOr(context, options),
+    pass: (options?: OperationsPassOptionalParams) =>
+      operationsPass(context, options),
+    raise: (options?: OperationsRaiseOptionalParams) =>
       operationsRaise(context, options),
-    return: (options?: OperationsReturnOptions) =>
+    return: (options?: OperationsReturnOptionalParams) =>
       operationsReturn(context, options),
-    try: (options?: OperationsTryOptions) => operationsTry(context, options),
-    while: (options?: OperationsWhileOptions) =>
+    try: (options?: OperationsTryOptionalParams) =>
+      operationsTry(context, options),
+    while: (options?: OperationsWhileOptionalParams) =>
       operationsWhile(context, options),
-    with: (options?: OperationsWithOptions) => operationsWith(context, options),
-    yield: (options?: OperationsYieldOptions) =>
+    with: (options?: OperationsWithOptionalParams) =>
+      operationsWith(context, options),
+    yield: (options?: OperationsYieldOptionalParams) =>
       operationsYield(context, options),
   };
 }

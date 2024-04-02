@@ -49,22 +49,24 @@ import {
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
-  GetAudioTranscriptionAsPlainTextOptions,
-  GetAudioTranscriptionAsResponseObjectOptions,
-  GetAudioTranslationAsPlainTextOptions,
-  GetAudioTranslationAsResponseObjectOptions,
-  GetCompletionsOptions,
-  GetChatCompletionsOptions,
-  GetImageGenerationsOptions,
-  GetAudioSpeechOptions,
-  GetEmbeddingsOptions,
+  GetAudioTranscriptionAsPlainTextOptionalParams,
+  GetAudioTranscriptionAsResponseObjectOptionalParams,
+  GetAudioTranslationAsPlainTextOptionalParams,
+  GetAudioTranslationAsResponseObjectOptionalParams,
+  GetCompletionsOptionalParams,
+  GetChatCompletionsOptionalParams,
+  GetImageGenerationsOptionalParams,
+  GetAudioSpeechOptionalParams,
+  GetEmbeddingsOptionalParams,
 } from "../models/options.js";
 
 export function _getAudioTranscriptionAsPlainTextSend(
   context: Client,
   deploymentId: string,
   body: AudioTranscriptionOptions,
-  options: GetAudioTranscriptionAsPlainTextOptions = { requestOptions: {} },
+  options: GetAudioTranscriptionAsPlainTextOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod<
   | GetAudioTranscriptionAsPlainText200Response
   | GetAudioTranscriptionAsPlainTextDefaultResponse
@@ -109,7 +111,9 @@ export async function getAudioTranscriptionAsPlainText(
   context: Client,
   deploymentId: string,
   body: AudioTranscriptionOptions,
-  options: GetAudioTranscriptionAsPlainTextOptions = { requestOptions: {} },
+  options: GetAudioTranscriptionAsPlainTextOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<string> {
   const result = await _getAudioTranscriptionAsPlainTextSend(
     context,
@@ -124,7 +128,7 @@ export function _getAudioTranscriptionAsResponseObjectSend(
   context: Client,
   deploymentId: string,
   body: AudioTranscriptionOptions,
-  options: GetAudioTranscriptionAsResponseObjectOptions = {
+  options: GetAudioTranscriptionAsResponseObjectOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod<
@@ -191,7 +195,7 @@ export async function getAudioTranscriptionAsResponseObject(
   context: Client,
   deploymentId: string,
   body: AudioTranscriptionOptions,
-  options: GetAudioTranscriptionAsResponseObjectOptions = {
+  options: GetAudioTranscriptionAsResponseObjectOptionalParams = {
     requestOptions: {},
   },
 ): Promise<AudioTranscription> {
@@ -208,7 +212,9 @@ export function _getAudioTranslationAsPlainTextSend(
   context: Client,
   deploymentId: string,
   body: AudioTranslationOptions,
-  options: GetAudioTranslationAsPlainTextOptions = { requestOptions: {} },
+  options: GetAudioTranslationAsPlainTextOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod<
   | GetAudioTranslationAsPlainText200Response
   | GetAudioTranslationAsPlainTextDefaultResponse
@@ -249,7 +255,9 @@ export async function getAudioTranslationAsPlainText(
   context: Client,
   deploymentId: string,
   body: AudioTranslationOptions,
-  options: GetAudioTranslationAsPlainTextOptions = { requestOptions: {} },
+  options: GetAudioTranslationAsPlainTextOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<string> {
   const result = await _getAudioTranslationAsPlainTextSend(
     context,
@@ -264,7 +272,9 @@ export function _getAudioTranslationAsResponseObjectSend(
   context: Client,
   deploymentId: string,
   body: AudioTranslationOptions,
-  options: GetAudioTranslationAsResponseObjectOptions = { requestOptions: {} },
+  options: GetAudioTranslationAsResponseObjectOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod<
   | GetAudioTranslationAsResponseObject200Response
   | GetAudioTranslationAsResponseObjectDefaultResponse
@@ -325,7 +335,9 @@ export async function getAudioTranslationAsResponseObject(
   context: Client,
   deploymentId: string,
   body: AudioTranslationOptions,
-  options: GetAudioTranslationAsResponseObjectOptions = { requestOptions: {} },
+  options: GetAudioTranslationAsResponseObjectOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<AudioTranslation> {
   const result = await _getAudioTranslationAsResponseObjectSend(
     context,
@@ -340,7 +352,7 @@ export function _getCompletionsSend(
   context: Client,
   deploymentId: string,
   body: CompletionsOptions,
-  options: GetCompletionsOptions = { requestOptions: {} },
+  options: GetCompletionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetCompletions200Response | GetCompletionsDefaultResponse> {
   return context
     .path("/deployments/{deploymentId}/completions", deploymentId)
@@ -538,7 +550,7 @@ export async function getCompletions(
   context: Client,
   deploymentId: string,
   body: CompletionsOptions,
-  options: GetCompletionsOptions = { requestOptions: {} },
+  options: GetCompletionsOptionalParams = { requestOptions: {} },
 ): Promise<Completions> {
   const result = await _getCompletionsSend(
     context,
@@ -553,7 +565,7 @@ export function _getChatCompletionsSend(
   context: Client,
   deploymentId: string,
   body: ChatCompletionsOptions,
-  options: GetChatCompletionsOptions = { requestOptions: {} },
+  options: GetChatCompletionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   GetChatCompletions200Response | GetChatCompletionsDefaultResponse
 > {
@@ -882,7 +894,7 @@ export async function getChatCompletions(
   context: Client,
   deploymentId: string,
   body: ChatCompletionsOptions,
-  options: GetChatCompletionsOptions = { requestOptions: {} },
+  options: GetChatCompletionsOptionalParams = { requestOptions: {} },
 ): Promise<ChatCompletions> {
   const result = await _getChatCompletionsSend(
     context,
@@ -897,7 +909,7 @@ export function _getImageGenerationsSend(
   context: Client,
   deploymentId: string,
   body: ImageGenerationOptions,
-  options: GetImageGenerationsOptions = { requestOptions: {} },
+  options: GetImageGenerationsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   GetImageGenerations200Response | GetImageGenerationsDefaultResponse
 > {
@@ -940,7 +952,7 @@ export async function getImageGenerations(
   context: Client,
   deploymentId: string,
   body: ImageGenerationOptions,
-  options: GetImageGenerationsOptions = { requestOptions: {} },
+  options: GetImageGenerationsOptionalParams = { requestOptions: {} },
 ): Promise<ImageGenerations> {
   const result = await _getImageGenerationsSend(
     context,
@@ -955,7 +967,7 @@ export function _getAudioSpeechSend(
   context: Client,
   deploymentId: string,
   body: AudioSpeechOptions,
-  options: GetAudioSpeechOptions = { requestOptions: {} },
+  options: GetAudioSpeechOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetAudioSpeech200Response | GetAudioSpeechDefaultResponse> {
   return context
     .path("/deployments/{deploymentId}/audio/speech", deploymentId)
@@ -985,7 +997,7 @@ export async function getAudioSpeech(
   context: Client,
   deploymentId: string,
   body: AudioSpeechOptions,
-  options: GetAudioSpeechOptions = { requestOptions: {} },
+  options: GetAudioSpeechOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
   const result = await _getAudioSpeechSend(
     context,
@@ -1000,7 +1012,7 @@ export function _getEmbeddingsSend(
   context: Client,
   deploymentId: string,
   body: EmbeddingsOptions,
-  options: GetEmbeddingsOptions = { requestOptions: {} },
+  options: GetEmbeddingsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetEmbeddings200Response | GetEmbeddingsDefaultResponse> {
   return context
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
@@ -1039,7 +1051,7 @@ export async function getEmbeddings(
   context: Client,
   deploymentId: string,
   body: EmbeddingsOptions,
-  options: GetEmbeddingsOptions = { requestOptions: {} },
+  options: GetEmbeddingsOptionalParams = { requestOptions: {} },
 ): Promise<Embeddings> {
   const result = await _getEmbeddingsSend(context, deploymentId, body, options);
   return _getEmbeddingsDeserialize(result);

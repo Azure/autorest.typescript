@@ -3,6 +3,6 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface ValidOptions extends OperationOptions {}
+export interface ValidOptionalParams extends OperationOptions {}
 
-export interface InvalidOptions extends OperationOptions {}
+export interface InvalidOptionalParams extends OperationOptions {}

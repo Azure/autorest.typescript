@@ -9,7 +9,7 @@ import {
 import { create } from "../../../api/audio/translations/index.js";
 import { AudioTranslationsCreateOptionalParams } from "../../../models/options.js";
 
-export interface AudioTranslations {
+export interface AudioTranslationsOperations {
   create: (
     audio: CreateTranslationRequest,
     options?: AudioTranslationsCreateOptionalParams,
@@ -27,7 +27,7 @@ export function getAudioTranslations(context: OpenAIContext) {
 
 export function getAudioTranslationsOperations(
   context: OpenAIContext,
-): AudioTranslations {
+): AudioTranslationsOperations {
   return {
     ...getAudioTranslations(context),
   };

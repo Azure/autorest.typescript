@@ -13,13 +13,13 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  CollectionsModelGetOptions,
-  CollectionsModelPutOptions,
+  CollectionsModelGetOptionalParams,
+  CollectionsModelPutOptionalParams,
 } from "../../models/options.js";
 
 export function _collectionsModelGetSend(
   context: Client,
-  options: CollectionsModelGetOptions = { requestOptions: {} },
+  options: CollectionsModelGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<CollectionsModelGet200Response> {
   return context
     .path("/type/property/value-types/collections/model")
@@ -41,7 +41,7 @@ export async function _collectionsModelGetDeserialize(
 /** Get call */
 export async function collectionsModelGet(
   context: Client,
-  options: CollectionsModelGetOptions = { requestOptions: {} },
+  options: CollectionsModelGetOptionalParams = { requestOptions: {} },
 ): Promise<CollectionsModelProperty> {
   const result = await _collectionsModelGetSend(context, options);
   return _collectionsModelGetDeserialize(result);
@@ -50,7 +50,7 @@ export async function collectionsModelGet(
 export function _collectionsModelPutSend(
   context: Client,
   body: CollectionsModelProperty,
-  options: CollectionsModelPutOptions = { requestOptions: {} },
+  options: CollectionsModelPutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<CollectionsModelPut204Response> {
   return context
     .path("/type/property/value-types/collections/model")
@@ -76,7 +76,7 @@ export async function _collectionsModelPutDeserialize(
 export async function collectionsModelPut(
   context: Client,
   body: CollectionsModelProperty,
-  options: CollectionsModelPutOptions = { requestOptions: {} },
+  options: CollectionsModelPutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _collectionsModelPutSend(context, body, options);
   return _collectionsModelPutDeserialize(result);

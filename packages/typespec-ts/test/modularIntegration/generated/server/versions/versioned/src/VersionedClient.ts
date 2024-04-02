@@ -11,9 +11,9 @@ import {
   VersionedContext,
 } from "./api/index.js";
 import {
-  WithoutApiVersionOptions,
-  WithQueryApiVersionOptions,
-  WithPathApiVersionOptions,
+  WithoutApiVersionOptionalParams,
+  WithQueryApiVersionOptionalParams,
+  WithPathApiVersionOptionalParams,
 } from "./models/options.js";
 
 export { VersionedClientOptions } from "./api/VersionedContext.js";
@@ -30,20 +30,20 @@ export class VersionedClient {
   }
 
   withoutApiVersion(
-    options: WithoutApiVersionOptions = { requestOptions: {} },
+    options: WithoutApiVersionOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return withoutApiVersion(this._client, options);
   }
 
   withQueryApiVersion(
-    options: WithQueryApiVersionOptions = { requestOptions: {} },
+    options: WithQueryApiVersionOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return withQueryApiVersion(this._client, options);
   }
 
   withPathApiVersion(
     apiVersion: string,
-    options: WithPathApiVersionOptions = { requestOptions: {} },
+    options: WithPathApiVersionOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return withPathApiVersion(this._client, apiVersion, options);
   }

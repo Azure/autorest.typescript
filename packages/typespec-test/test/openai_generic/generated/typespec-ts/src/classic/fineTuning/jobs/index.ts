@@ -23,7 +23,7 @@ import {
   FineTuningJobsCancelOptionalParams,
 } from "../../../models/options.js";
 
-export interface FineTuningJobs {
+export interface FineTuningJobsOperations {
   create: (
     job: CreateFineTuningJobRequest,
     options?: FineTuningJobsCreateOptionalParams,
@@ -70,7 +70,7 @@ export function getFineTuningJobs(context: OpenAIContext) {
 
 export function getFineTuningJobsOperations(
   context: OpenAIContext,
-): FineTuningJobs {
+): FineTuningJobsOperations {
   return {
     ...getFineTuningJobs(context),
   };

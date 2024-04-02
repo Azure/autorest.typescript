@@ -3,20 +3,20 @@
 
 import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
-  AudioTranscriptions,
+  AudioTranscriptionsOperations,
   getAudioTranscriptionsOperations,
 } from "./transcriptions/index.js";
 import {
-  AudioTranslations,
+  AudioTranslationsOperations,
   getAudioTranslationsOperations,
 } from "./translations/index.js";
 
-export interface Audio {
-  transcriptions: AudioTranscriptions;
-  translations: AudioTranslations;
+export interface AudioOperations {
+  transcriptions: AudioTranscriptionsOperations;
+  translations: AudioTranslationsOperations;
 }
 
-export function getAudioOperations(context: OpenAIContext): Audio {
+export function getAudioOperations(context: OpenAIContext): AudioOperations {
   return {
     transcriptions: getAudioTranscriptionsOperations(context),
     translations: getAudioTranslationsOperations(context),

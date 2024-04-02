@@ -46,82 +46,82 @@ import {
   BatchApplication,
 } from "./models/models.js";
 import {
-  ListApplicationsOptions,
-  GetApplicationOptions,
-  ListPoolUsageMetricsOptions,
-  CreatePoolOptions,
-  ListPoolsOptions,
-  DeletePoolOptions,
-  PoolExistsOptions,
-  GetPoolOptions,
-  UpdatePoolOptions,
-  DisablePoolAutoScaleOptions,
-  EnablePoolAutoScaleOptions,
-  EvaluatePoolAutoScaleOptions,
-  ResizePoolOptions,
-  StopPoolResizeOptions,
-  ReplacePoolPropertiesOptions,
-  RemoveNodesOptions,
-  ListSupportedImagesOptions,
-  ListPoolNodeCountsOptions,
-  DeleteJobOptions,
-  GetJobOptions,
-  UpdateJobOptions,
-  ReplaceJobOptions,
-  DisableJobOptions,
-  EnableJobOptions,
-  TerminateJobOptions,
-  CreateJobOptions,
-  ListJobsOptions,
-  ListJobsFromScheduleOptions,
-  ListJobPreparationAndReleaseTaskStatusOptions,
-  GetJobTaskCountsOptions,
-  CreateCertificateOptions,
-  ListCertificatesOptions,
-  CancelCertificateDeletionOptions,
-  DeleteCertificateOptions,
-  GetCertificateOptions,
-  JobScheduleExistsOptions,
-  DeleteJobScheduleOptions,
-  GetJobScheduleOptions,
-  UpdateJobScheduleOptions,
-  ReplaceJobScheduleOptions,
-  DisableJobScheduleOptions,
-  EnableJobScheduleOptions,
-  TerminateJobScheduleOptions,
-  CreateJobScheduleOptions,
-  ListJobSchedulesOptions,
-  CreateTaskOptions,
-  ListTasksOptions,
-  CreateTaskCollectionOptions,
-  DeleteTaskOptions,
-  GetTaskOptions,
-  ReplaceTaskOptions,
-  ListSubTasksOptions,
-  TerminateTaskOptions,
-  ReactivateTaskOptions,
-  DeleteTaskFileOptions,
-  GetTaskFileOptions,
-  GetTaskFilePropertiesOptions,
-  ListTaskFilesOptions,
-  CreateNodeUserOptions,
-  DeleteNodeUserOptions,
-  ReplaceNodeUserOptions,
-  GetNodeOptions,
-  RebootNodeOptions,
-  ReimageNodeOptions,
-  DisableNodeSchedulingOptions,
-  EnableNodeSchedulingOptions,
-  GetNodeRemoteLoginSettingsOptions,
-  GetNodeRemoteDesktopFileOptions,
-  UploadNodeLogsOptions,
-  ListNodesOptions,
-  GetNodeExtensionOptions,
-  ListNodeExtensionsOptions,
-  DeleteNodeFileOptions,
-  GetNodeFileOptions,
-  GetNodeFilePropertiesOptions,
-  ListNodeFilesOptions,
+  ListApplicationsOptionalParams,
+  GetApplicationOptionalParams,
+  ListPoolUsageMetricsOptionalParams,
+  CreatePoolOptionalParams,
+  ListPoolsOptionalParams,
+  DeletePoolOptionalParams,
+  PoolExistsOptionalParams,
+  GetPoolOptionalParams,
+  UpdatePoolOptionalParams,
+  DisablePoolAutoScaleOptionalParams,
+  EnablePoolAutoScaleOptionalParams,
+  EvaluatePoolAutoScaleOptionalParams,
+  ResizePoolOptionalParams,
+  StopPoolResizeOptionalParams,
+  ReplacePoolPropertiesOptionalParams,
+  RemoveNodesOptionalParams,
+  ListSupportedImagesOptionalParams,
+  ListPoolNodeCountsOptionalParams,
+  DeleteJobOptionalParams,
+  GetJobOptionalParams,
+  UpdateJobOptionalParams,
+  ReplaceJobOptionalParams,
+  DisableJobOptionalParams,
+  EnableJobOptionalParams,
+  TerminateJobOptionalParams,
+  CreateJobOptionalParams,
+  ListJobsOptionalParams,
+  ListJobsFromScheduleOptionalParams,
+  ListJobPreparationAndReleaseTaskStatusOptionalParams,
+  GetJobTaskCountsOptionalParams,
+  CreateCertificateOptionalParams,
+  ListCertificatesOptionalParams,
+  CancelCertificateDeletionOptionalParams,
+  DeleteCertificateOptionalParams,
+  GetCertificateOptionalParams,
+  JobScheduleExistsOptionalParams,
+  DeleteJobScheduleOptionalParams,
+  GetJobScheduleOptionalParams,
+  UpdateJobScheduleOptionalParams,
+  ReplaceJobScheduleOptionalParams,
+  DisableJobScheduleOptionalParams,
+  EnableJobScheduleOptionalParams,
+  TerminateJobScheduleOptionalParams,
+  CreateJobScheduleOptionalParams,
+  ListJobSchedulesOptionalParams,
+  CreateTaskOptionalParams,
+  ListTasksOptionalParams,
+  CreateTaskCollectionOptionalParams,
+  DeleteTaskOptionalParams,
+  GetTaskOptionalParams,
+  ReplaceTaskOptionalParams,
+  ListSubTasksOptionalParams,
+  TerminateTaskOptionalParams,
+  ReactivateTaskOptionalParams,
+  DeleteTaskFileOptionalParams,
+  GetTaskFileOptionalParams,
+  GetTaskFilePropertiesOptionalParams,
+  ListTaskFilesOptionalParams,
+  CreateNodeUserOptionalParams,
+  DeleteNodeUserOptionalParams,
+  ReplaceNodeUserOptionalParams,
+  GetNodeOptionalParams,
+  RebootNodeOptionalParams,
+  ReimageNodeOptionalParams,
+  DisableNodeSchedulingOptionalParams,
+  EnableNodeSchedulingOptionalParams,
+  GetNodeRemoteLoginSettingsOptionalParams,
+  GetNodeRemoteDesktopFileOptionalParams,
+  UploadNodeLogsOptionalParams,
+  ListNodesOptionalParams,
+  GetNodeExtensionOptionalParams,
+  ListNodeExtensionsOptionalParams,
+  DeleteNodeFileOptionalParams,
+  GetNodeFileOptionalParams,
+  GetNodeFilePropertiesOptionalParams,
+  ListNodeFilesOptionalParams,
 } from "./models/options.js";
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
@@ -231,7 +231,7 @@ export class BatchClient {
    * API.
    */
   listApplications(
-    options: ListApplicationsOptions = { requestOptions: {} },
+    options: ListApplicationsOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<BatchApplication> {
     return listApplications(this._client, options);
   }
@@ -245,7 +245,7 @@ export class BatchClient {
    */
   getApplication(
     applicationId: string,
-    options: GetApplicationOptions = { requestOptions: {} },
+    options: GetApplicationOptionalParams = { requestOptions: {} },
   ): Promise<BatchApplication> {
     return getApplication(this._client, applicationId, options);
   }
@@ -259,7 +259,7 @@ export class BatchClient {
    * last aggregation interval is returned.
    */
   listPoolUsageMetrics(
-    options: ListPoolUsageMetricsOptions = { requestOptions: {} },
+    options: ListPoolUsageMetricsOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<PoolUsageMetrics> {
     return listPoolUsageMetrics(this._client, options);
   }
@@ -271,14 +271,14 @@ export class BatchClient {
    */
   createPool(
     body: BatchPoolCreateOptions,
-    options: CreatePoolOptions = { requestOptions: {} },
+    options: CreatePoolOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return createPool(this._client, body, options);
   }
 
   /** Lists all of the Pools in the specified Account. */
   listPools(
-    options: ListPoolsOptions = { requestOptions: {} },
+    options: ListPoolsOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<BatchPool> {
     return listPools(this._client, options);
   }
@@ -299,7 +299,7 @@ export class BatchClient {
    */
   deletePool(
     poolId: string,
-    options: DeletePoolOptions = { requestOptions: {} },
+    options: DeletePoolOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return deletePool(this._client, poolId, options);
   }
@@ -307,7 +307,7 @@ export class BatchClient {
   /** Gets basic properties of a Pool. */
   poolExists(
     poolId: string,
-    options: PoolExistsOptions = { requestOptions: {} },
+    options: PoolExistsOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return poolExists(this._client, poolId, options);
   }
@@ -315,7 +315,7 @@ export class BatchClient {
   /** Gets information about the specified Pool. */
   getPool(
     poolId: string,
-    options: GetPoolOptions = { requestOptions: {} },
+    options: GetPoolOptionalParams = { requestOptions: {} },
   ): Promise<BatchPool> {
     return getPool(this._client, poolId, options);
   }
@@ -328,7 +328,7 @@ export class BatchClient {
   updatePool(
     poolId: string,
     body: BatchPoolUpdateOptions,
-    options: UpdatePoolOptions = { requestOptions: {} },
+    options: UpdatePoolOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return updatePool(this._client, poolId, body, options);
   }
@@ -336,7 +336,7 @@ export class BatchClient {
   /** Disables automatic scaling for a Pool. */
   disablePoolAutoScale(
     poolId: string,
-    options: DisablePoolAutoScaleOptions = { requestOptions: {} },
+    options: DisablePoolAutoScaleOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return disablePoolAutoScale(this._client, poolId, options);
   }
@@ -352,7 +352,7 @@ export class BatchClient {
   enablePoolAutoScale(
     poolId: string,
     body: BatchPoolEnableAutoScaleOptions,
-    options: EnablePoolAutoScaleOptions = { requestOptions: {} },
+    options: EnablePoolAutoScaleOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return enablePoolAutoScale(this._client, poolId, body, options);
   }
@@ -365,7 +365,7 @@ export class BatchClient {
   evaluatePoolAutoScale(
     poolId: string,
     body: BatchPoolEvaluateAutoScaleOptions,
-    options: EvaluatePoolAutoScaleOptions = { requestOptions: {} },
+    options: EvaluatePoolAutoScaleOptionalParams = { requestOptions: {} },
   ): Promise<AutoScaleRun> {
     return evaluatePoolAutoScale(this._client, poolId, body, options);
   }
@@ -382,7 +382,7 @@ export class BatchClient {
   resizePool(
     poolId: string,
     body: BatchPoolResizeOptions,
-    options: ResizePoolOptions = { requestOptions: {} },
+    options: ResizePoolOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return resizePool(this._client, poolId, body, options);
   }
@@ -398,7 +398,7 @@ export class BatchClient {
    */
   stopPoolResize(
     poolId: string,
-    options: StopPoolResizeOptions = { requestOptions: {} },
+    options: StopPoolResizeOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return stopPoolResize(this._client, poolId, options);
   }
@@ -411,7 +411,7 @@ export class BatchClient {
   replacePoolProperties(
     poolId: string,
     body: BatchPoolReplaceOptions,
-    options: ReplacePoolPropertiesOptions = { requestOptions: {} },
+    options: ReplacePoolPropertiesOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return replacePoolProperties(this._client, poolId, body, options);
   }
@@ -424,14 +424,14 @@ export class BatchClient {
   removeNodes(
     poolId: string,
     body: NodeRemoveOptions,
-    options: RemoveNodesOptions = { requestOptions: {} },
+    options: RemoveNodesOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return removeNodes(this._client, poolId, body, options);
   }
 
   /** Lists all Virtual Machine Images supported by the Azure Batch service. */
   listSupportedImages(
-    options: ListSupportedImagesOptions = { requestOptions: {} },
+    options: ListSupportedImagesOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<ImageInformation> {
     return listSupportedImages(this._client, options);
   }
@@ -442,7 +442,7 @@ export class BatchClient {
    * use a list query.
    */
   listPoolNodeCounts(
-    options: ListPoolNodeCountsOptions = { requestOptions: {} },
+    options: ListPoolNodeCountsOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<PoolNodeCounts> {
     return listPoolNodeCounts(this._client, options);
   }
@@ -459,7 +459,7 @@ export class BatchClient {
    */
   deleteJob(
     jobId: string,
-    options: DeleteJobOptions = { requestOptions: {} },
+    options: DeleteJobOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return deleteJob(this._client, jobId, options);
   }
@@ -467,7 +467,7 @@ export class BatchClient {
   /** Gets information about the specified Job. */
   getJob(
     jobId: string,
-    options: GetJobOptions = { requestOptions: {} },
+    options: GetJobOptionalParams = { requestOptions: {} },
   ): Promise<BatchJob> {
     return getJob(this._client, jobId, options);
   }
@@ -480,7 +480,7 @@ export class BatchClient {
   updateJob(
     jobId: string,
     body: BatchJobUpdateOptions,
-    options: UpdateJobOptions = { requestOptions: {} },
+    options: UpdateJobOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return updateJob(this._client, jobId, body, options);
   }
@@ -493,7 +493,7 @@ export class BatchClient {
   replaceJob(
     jobId: string,
     body: BatchJob,
-    options: ReplaceJobOptions = { requestOptions: {} },
+    options: ReplaceJobOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return replaceJob(this._client, jobId, body, options);
   }
@@ -511,7 +511,7 @@ export class BatchClient {
   disableJob(
     jobId: string,
     body: BatchJobDisableOptions,
-    options: DisableJobOptions = { requestOptions: {} },
+    options: DisableJobOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return disableJob(this._client, jobId, body, options);
   }
@@ -526,7 +526,7 @@ export class BatchClient {
    */
   enableJob(
     jobId: string,
-    options: EnableJobOptions = { requestOptions: {} },
+    options: EnableJobOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return enableJob(this._client, jobId, options);
   }
@@ -542,7 +542,7 @@ export class BatchClient {
   terminateJob(
     jobId: string,
     body?: BatchJobTerminateOptions,
-    options: TerminateJobOptions = { requestOptions: {} },
+    options: TerminateJobOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return terminateJob(this._client, jobId, body, options);
   }
@@ -560,14 +560,14 @@ export class BatchClient {
    */
   createJob(
     body: BatchJobCreateOptions,
-    options: CreateJobOptions = { requestOptions: {} },
+    options: CreateJobOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return createJob(this._client, body, options);
   }
 
   /** Lists all of the Jobs in the specified Account. */
   listJobs(
-    options: ListJobsOptions = { requestOptions: {} },
+    options: ListJobsOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<BatchJob> {
     return listJobs(this._client, options);
   }
@@ -575,7 +575,7 @@ export class BatchClient {
   /** Lists the Jobs that have been created under the specified Job Schedule. */
   listJobsFromSchedule(
     jobScheduleId: string,
-    options: ListJobsFromScheduleOptions = { requestOptions: {} },
+    options: ListJobsFromScheduleOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<BatchJob> {
     return listJobsFromSchedule(this._client, jobScheduleId, options);
   }
@@ -590,7 +590,7 @@ export class BatchClient {
    */
   listJobPreparationAndReleaseTaskStatus(
     jobId: string,
-    options: ListJobPreparationAndReleaseTaskStatusOptions = {
+    options: ListJobPreparationAndReleaseTaskStatusOptionalParams = {
       requestOptions: {},
     },
   ): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation> {
@@ -605,7 +605,7 @@ export class BatchClient {
    */
   getJobTaskCounts(
     jobId: string,
-    options: GetJobTaskCountsOptions = { requestOptions: {} },
+    options: GetJobTaskCountsOptionalParams = { requestOptions: {} },
   ): Promise<TaskCountsResult> {
     return getJobTaskCounts(this._client, jobId, options);
   }
@@ -613,14 +613,14 @@ export class BatchClient {
   /** Creates a Certificate to the specified Account. */
   createCertificate(
     body: BatchCertificate,
-    options: CreateCertificateOptions = { requestOptions: {} },
+    options: CreateCertificateOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return createCertificate(this._client, body, options);
   }
 
   /** Lists all of the Certificates that have been added to the specified Account. */
   listCertificates(
-    options: ListCertificatesOptions = { requestOptions: {} },
+    options: ListCertificatesOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<BatchCertificate> {
     return listCertificates(this._client, options);
   }
@@ -637,7 +637,7 @@ export class BatchClient {
   cancelCertificateDeletion(
     thumbprintAlgorithm: string,
     thumbprint: string,
-    options: CancelCertificateDeletionOptions = { requestOptions: {} },
+    options: CancelCertificateDeletionOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return cancelCertificateDeletion(
       this._client,
@@ -661,7 +661,7 @@ export class BatchClient {
   deleteCertificate(
     thumbprintAlgorithm: string,
     thumbprint: string,
-    options: DeleteCertificateOptions = { requestOptions: {} },
+    options: DeleteCertificateOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return deleteCertificate(
       this._client,
@@ -675,7 +675,7 @@ export class BatchClient {
   getCertificate(
     thumbprintAlgorithm: string,
     thumbprint: string,
-    options: GetCertificateOptions = { requestOptions: {} },
+    options: GetCertificateOptionalParams = { requestOptions: {} },
   ): Promise<BatchCertificate> {
     return getCertificate(
       this._client,
@@ -688,7 +688,7 @@ export class BatchClient {
   /** Checks the specified Job Schedule exists. */
   jobScheduleExists(
     jobScheduleId: string,
-    options: JobScheduleExistsOptions = { requestOptions: {} },
+    options: JobScheduleExistsOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return jobScheduleExists(this._client, jobScheduleId, options);
   }
@@ -702,7 +702,7 @@ export class BatchClient {
    */
   deleteJobSchedule(
     jobScheduleId: string,
-    options: DeleteJobScheduleOptions = { requestOptions: {} },
+    options: DeleteJobScheduleOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return deleteJobSchedule(this._client, jobScheduleId, options);
   }
@@ -710,7 +710,7 @@ export class BatchClient {
   /** Gets information about the specified Job Schedule. */
   getJobSchedule(
     jobScheduleId: string,
-    options: GetJobScheduleOptions = { requestOptions: {} },
+    options: GetJobScheduleOptionalParams = { requestOptions: {} },
   ): Promise<BatchJobSchedule> {
     return getJobSchedule(this._client, jobScheduleId, options);
   }
@@ -725,7 +725,7 @@ export class BatchClient {
   updateJobSchedule(
     jobScheduleId: string,
     body: BatchJobScheduleUpdateOptions,
-    options: UpdateJobScheduleOptions = { requestOptions: {} },
+    options: UpdateJobScheduleOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return updateJobSchedule(this._client, jobScheduleId, body, options);
   }
@@ -740,7 +740,7 @@ export class BatchClient {
   replaceJobSchedule(
     jobScheduleId: string,
     body: BatchJobSchedule,
-    options: ReplaceJobScheduleOptions = { requestOptions: {} },
+    options: ReplaceJobScheduleOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return replaceJobSchedule(this._client, jobScheduleId, body, options);
   }
@@ -748,7 +748,7 @@ export class BatchClient {
   /** No new Jobs will be created until the Job Schedule is enabled again. */
   disableJobSchedule(
     jobScheduleId: string,
-    options: DisableJobScheduleOptions = { requestOptions: {} },
+    options: DisableJobScheduleOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return disableJobSchedule(this._client, jobScheduleId, options);
   }
@@ -756,7 +756,7 @@ export class BatchClient {
   /** Enables a Job Schedule. */
   enableJobSchedule(
     jobScheduleId: string,
-    options: EnableJobScheduleOptions = { requestOptions: {} },
+    options: EnableJobScheduleOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return enableJobSchedule(this._client, jobScheduleId, options);
   }
@@ -764,7 +764,7 @@ export class BatchClient {
   /** Terminates a Job Schedule. */
   terminateJobSchedule(
     jobScheduleId: string,
-    options: TerminateJobScheduleOptions = { requestOptions: {} },
+    options: TerminateJobScheduleOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return terminateJobSchedule(this._client, jobScheduleId, options);
   }
@@ -772,14 +772,14 @@ export class BatchClient {
   /** Creates a Job Schedule to the specified Account. */
   createJobSchedule(
     body: BatchJobScheduleCreateOptions,
-    options: CreateJobScheduleOptions = { requestOptions: {} },
+    options: CreateJobScheduleOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return createJobSchedule(this._client, body, options);
   }
 
   /** Lists all of the Job Schedules in the specified Account. */
   listJobSchedules(
-    options: ListJobSchedulesOptions = { requestOptions: {} },
+    options: ListJobSchedulesOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<BatchJobSchedule> {
     return listJobSchedules(this._client, options);
   }
@@ -792,7 +792,7 @@ export class BatchClient {
   createTask(
     jobId: string,
     body: BatchTaskCreateOptions,
-    options: CreateTaskOptions = { requestOptions: {} },
+    options: CreateTaskOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return createTask(this._client, jobId, body, options);
   }
@@ -804,7 +804,7 @@ export class BatchClient {
    */
   listTasks(
     jobId: string,
-    options: ListTasksOptions = { requestOptions: {} },
+    options: ListTasksOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<BatchTask> {
     return listTasks(this._client, jobId, options);
   }
@@ -828,7 +828,7 @@ export class BatchClient {
   createTaskCollection(
     jobId: string,
     collection: BatchTaskCollection,
-    options: CreateTaskCollectionOptions = { requestOptions: {} },
+    options: CreateTaskCollectionOptionalParams = { requestOptions: {} },
   ): Promise<TaskAddCollectionResult> {
     return createTaskCollection(this._client, jobId, collection, options);
   }
@@ -843,7 +843,7 @@ export class BatchClient {
   deleteTask(
     jobId: string,
     taskId: string,
-    options: DeleteTaskOptions = { requestOptions: {} },
+    options: DeleteTaskOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return deleteTask(this._client, jobId, taskId, options);
   }
@@ -856,7 +856,7 @@ export class BatchClient {
   getTask(
     jobId: string,
     taskId: string,
-    options: GetTaskOptions = { requestOptions: {} },
+    options: GetTaskOptionalParams = { requestOptions: {} },
   ): Promise<BatchTask> {
     return getTask(this._client, jobId, taskId, options);
   }
@@ -866,7 +866,7 @@ export class BatchClient {
     jobId: string,
     taskId: string,
     body: BatchTask,
-    options: ReplaceTaskOptions = { requestOptions: {} },
+    options: ReplaceTaskOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return replaceTask(this._client, jobId, taskId, body, options);
   }
@@ -875,7 +875,7 @@ export class BatchClient {
   listSubTasks(
     jobId: string,
     taskId: string,
-    options: ListSubTasksOptions = { requestOptions: {} },
+    options: ListSubTasksOptionalParams = { requestOptions: {} },
   ): Promise<BatchTaskListSubtasksResult> {
     return listSubTasks(this._client, jobId, taskId, options);
   }
@@ -888,7 +888,7 @@ export class BatchClient {
   terminateTask(
     jobId: string,
     taskId: string,
-    options: TerminateTaskOptions = { requestOptions: {} },
+    options: TerminateTaskOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return terminateTask(this._client, jobId, taskId, options);
   }
@@ -905,7 +905,7 @@ export class BatchClient {
   reactivateTask(
     jobId: string,
     taskId: string,
-    options: ReactivateTaskOptions = { requestOptions: {} },
+    options: ReactivateTaskOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return reactivateTask(this._client, jobId, taskId, options);
   }
@@ -915,7 +915,7 @@ export class BatchClient {
     jobId: string,
     taskId: string,
     filePath: string,
-    options: DeleteTaskFileOptions = { requestOptions: {} },
+    options: DeleteTaskFileOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return deleteTaskFile(this._client, jobId, taskId, filePath, options);
   }
@@ -925,7 +925,7 @@ export class BatchClient {
     jobId: string,
     taskId: string,
     filePath: string,
-    options: GetTaskFileOptions = { requestOptions: {} },
+    options: GetTaskFileOptionalParams = { requestOptions: {} },
   ): Promise<Uint8Array> {
     return getTaskFile(this._client, jobId, taskId, filePath, options);
   }
@@ -935,7 +935,7 @@ export class BatchClient {
     jobId: string,
     taskId: string,
     filePath: string,
-    options: GetTaskFilePropertiesOptions = { requestOptions: {} },
+    options: GetTaskFilePropertiesOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return getTaskFileProperties(
       this._client,
@@ -950,7 +950,7 @@ export class BatchClient {
   listTaskFiles(
     jobId: string,
     taskId: string,
-    options: ListTaskFilesOptions = { requestOptions: {} },
+    options: ListTaskFilesOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<NodeFile> {
     return listTaskFiles(this._client, jobId, taskId, options);
   }
@@ -963,7 +963,7 @@ export class BatchClient {
     poolId: string,
     nodeId: string,
     body: BatchNodeUserCreateOptions,
-    options: CreateNodeUserOptions = { requestOptions: {} },
+    options: CreateNodeUserOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return createNodeUser(this._client, poolId, nodeId, body, options);
   }
@@ -976,7 +976,7 @@ export class BatchClient {
     poolId: string,
     nodeId: string,
     userName: string,
-    options: DeleteNodeUserOptions = { requestOptions: {} },
+    options: DeleteNodeUserOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return deleteNodeUser(this._client, poolId, nodeId, userName, options);
   }
@@ -992,7 +992,7 @@ export class BatchClient {
     nodeId: string,
     userName: string,
     body: BatchNodeUserUpdateOptions,
-    options: ReplaceNodeUserOptions = { requestOptions: {} },
+    options: ReplaceNodeUserOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return replaceNodeUser(
       this._client,
@@ -1008,7 +1008,7 @@ export class BatchClient {
   getNode(
     poolId: string,
     nodeId: string,
-    options: GetNodeOptions = { requestOptions: {} },
+    options: GetNodeOptionalParams = { requestOptions: {} },
   ): Promise<BatchNode> {
     return getNode(this._client, poolId, nodeId, options);
   }
@@ -1018,7 +1018,7 @@ export class BatchClient {
     poolId: string,
     nodeId: string,
     body?: NodeRebootOptions,
-    options: RebootNodeOptions = { requestOptions: {} },
+    options: RebootNodeOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return rebootNode(this._client, poolId, nodeId, body, options);
   }
@@ -1032,7 +1032,7 @@ export class BatchClient {
     poolId: string,
     nodeId: string,
     body?: NodeReimageOptions,
-    options: ReimageNodeOptions = { requestOptions: {} },
+    options: ReimageNodeOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return reimageNode(this._client, poolId, nodeId, body, options);
   }
@@ -1045,7 +1045,7 @@ export class BatchClient {
     poolId: string,
     nodeId: string,
     body?: NodeDisableSchedulingOptions,
-    options: DisableNodeSchedulingOptions = { requestOptions: {} },
+    options: DisableNodeSchedulingOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return disableNodeScheduling(this._client, poolId, nodeId, body, options);
   }
@@ -1057,7 +1057,7 @@ export class BatchClient {
   enableNodeScheduling(
     poolId: string,
     nodeId: string,
-    options: EnableNodeSchedulingOptions = { requestOptions: {} },
+    options: EnableNodeSchedulingOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return enableNodeScheduling(this._client, poolId, nodeId, options);
   }
@@ -1072,7 +1072,7 @@ export class BatchClient {
   getNodeRemoteLoginSettings(
     poolId: string,
     nodeId: string,
-    options: GetNodeRemoteLoginSettingsOptions = { requestOptions: {} },
+    options: GetNodeRemoteLoginSettingsOptionalParams = { requestOptions: {} },
   ): Promise<BatchNodeRemoteLoginSettingsResult> {
     return getNodeRemoteLoginSettings(this._client, poolId, nodeId, options);
   }
@@ -1086,7 +1086,7 @@ export class BatchClient {
   getNodeRemoteDesktopFile(
     poolId: string,
     nodeId: string,
-    options: GetNodeRemoteDesktopFileOptions = { requestOptions: {} },
+    options: GetNodeRemoteDesktopFileOptionalParams = { requestOptions: {} },
   ): Promise<Uint8Array> {
     return getNodeRemoteDesktopFile(this._client, poolId, nodeId, options);
   }
@@ -1101,7 +1101,7 @@ export class BatchClient {
     poolId: string,
     nodeId: string,
     body: UploadBatchServiceLogsOptions,
-    options: UploadNodeLogsOptions = { requestOptions: {} },
+    options: UploadNodeLogsOptionalParams = { requestOptions: {} },
   ): Promise<UploadBatchServiceLogsResult> {
     return uploadNodeLogs(this._client, poolId, nodeId, body, options);
   }
@@ -1109,7 +1109,7 @@ export class BatchClient {
   /** Lists the Compute Nodes in the specified Pool. */
   listNodes(
     poolId: string,
-    options: ListNodesOptions = { requestOptions: {} },
+    options: ListNodesOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<BatchNode> {
     return listNodes(this._client, poolId, options);
   }
@@ -1119,7 +1119,7 @@ export class BatchClient {
     poolId: string,
     nodeId: string,
     extensionName: string,
-    options: GetNodeExtensionOptions = { requestOptions: {} },
+    options: GetNodeExtensionOptionalParams = { requestOptions: {} },
   ): Promise<NodeVMExtension> {
     return getNodeExtension(
       this._client,
@@ -1134,7 +1134,7 @@ export class BatchClient {
   listNodeExtensions(
     poolId: string,
     nodeId: string,
-    options: ListNodeExtensionsOptions = { requestOptions: {} },
+    options: ListNodeExtensionsOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<NodeVMExtension> {
     return listNodeExtensions(this._client, poolId, nodeId, options);
   }
@@ -1144,7 +1144,7 @@ export class BatchClient {
     poolId: string,
     nodeId: string,
     filePath: string,
-    options: DeleteNodeFileOptions = { requestOptions: {} },
+    options: DeleteNodeFileOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return deleteNodeFile(this._client, poolId, nodeId, filePath, options);
   }
@@ -1154,7 +1154,7 @@ export class BatchClient {
     poolId: string,
     nodeId: string,
     filePath: string,
-    options: GetNodeFileOptions = { requestOptions: {} },
+    options: GetNodeFileOptionalParams = { requestOptions: {} },
   ): Promise<Uint8Array> {
     return getNodeFile(this._client, poolId, nodeId, filePath, options);
   }
@@ -1164,7 +1164,7 @@ export class BatchClient {
     poolId: string,
     nodeId: string,
     filePath: string,
-    options: GetNodeFilePropertiesOptions = { requestOptions: {} },
+    options: GetNodeFilePropertiesOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return getNodeFileProperties(
       this._client,
@@ -1179,7 +1179,7 @@ export class BatchClient {
   listNodeFiles(
     poolId: string,
     nodeId: string,
-    options: ListNodeFilesOptions = { requestOptions: {} },
+    options: ListNodeFilesOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<NodeFile> {
     return listNodeFiles(this._client, poolId, nodeId, options);
   }

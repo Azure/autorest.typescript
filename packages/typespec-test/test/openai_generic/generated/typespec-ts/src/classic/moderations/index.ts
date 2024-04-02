@@ -9,7 +9,7 @@ import {
 import { create } from "../../api/moderations/index.js";
 import { ModerationsCreateOptionalParams } from "../../models/options.js";
 
-export interface Moderations {
+export interface ModerationsOperations {
   create: (
     content: CreateModerationRequest,
     options?: ModerationsCreateOptionalParams,
@@ -25,7 +25,9 @@ export function getModerations(context: OpenAIContext) {
   };
 }
 
-export function getModerationsOperations(context: OpenAIContext): Moderations {
+export function getModerationsOperations(
+  context: OpenAIContext,
+): ModerationsOperations {
   return {
     ...getModerations(context),
   };

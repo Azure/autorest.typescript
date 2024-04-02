@@ -13,15 +13,15 @@ import {
   AbstractModelUnion,
 } from "./models/models.js";
 import {
-  NoDecoratorInPublicOptions,
-  PublicDecoratorInPublicOptions,
-  NoDecoratorInInternalOptions,
-  InternalDecoratorInInternalOptions,
-  PublicDecoratorInInternalOptions,
-  PublicOptions,
-  InternalOptions,
-  OperationOptions,
-  DiscriminatorOptions,
+  NoDecoratorInPublicOptionalParams,
+  PublicDecoratorInPublicOptionalParams,
+  NoDecoratorInInternalOptionalParams,
+  InternalDecoratorInInternalOptionalParams,
+  PublicDecoratorInInternalOptionalParams,
+  PublicOptionalParams,
+  InternalOptionalParams,
+  OperationOptionalParams,
+  DiscriminatorOptionalParams,
 } from "./models/options.js";
 import {
   createAccess,
@@ -53,35 +53,35 @@ export class AccessClient {
 
   noDecoratorInPublic(
     name: string,
-    options: NoDecoratorInPublicOptions = { requestOptions: {} },
+    options: NoDecoratorInPublicOptionalParams = { requestOptions: {} },
   ): Promise<NoDecoratorModelInPublic> {
     return noDecoratorInPublic(this._client, name, options);
   }
 
   publicDecoratorInPublic(
     name: string,
-    options: PublicDecoratorInPublicOptions = { requestOptions: {} },
+    options: PublicDecoratorInPublicOptionalParams = { requestOptions: {} },
   ): Promise<PublicDecoratorModelInPublic> {
     return publicDecoratorInPublic(this._client, name, options);
   }
 
   noDecoratorInInternal(
     name: string,
-    options: NoDecoratorInInternalOptions = { requestOptions: {} },
+    options: NoDecoratorInInternalOptionalParams = { requestOptions: {} },
   ): Promise<NoDecoratorModelInInternal> {
     return noDecoratorInInternal(this._client, name, options);
   }
 
   internalDecoratorInInternal(
     name: string,
-    options: InternalDecoratorInInternalOptions = { requestOptions: {} },
+    options: InternalDecoratorInInternalOptionalParams = { requestOptions: {} },
   ): Promise<InternalDecoratorModelInInternal> {
     return internalDecoratorInInternal(this._client, name, options);
   }
 
   publicDecoratorInInternal(
     name: string,
-    options: PublicDecoratorInInternalOptions = { requestOptions: {} },
+    options: PublicDecoratorInInternalOptionalParams = { requestOptions: {} },
   ): Promise<PublicDecoratorModelInInternal> {
     return publicDecoratorInInternal(this._client, name, options);
   }
@@ -93,14 +93,14 @@ export class AccessClient {
    */
   public(
     name: string,
-    options: PublicOptions = { requestOptions: {} },
+    options: PublicOptionalParams = { requestOptions: {} },
   ): Promise<SharedModel> {
     return $public(this._client, name, options);
   }
 
   internal(
     name: string,
-    options: InternalOptions = { requestOptions: {} },
+    options: InternalOptionalParams = { requestOptions: {} },
   ): Promise<SharedModel> {
     return internal(this._client, name, options);
   }
@@ -120,7 +120,7 @@ export class AccessClient {
    */
   operation(
     name: string,
-    options: OperationOptions = { requestOptions: {} },
+    options: OperationOptionalParams = { requestOptions: {} },
   ): Promise<OuterModel> {
     return operation(this._client, name, options);
   }
@@ -137,7 +137,7 @@ export class AccessClient {
    */
   discriminator(
     kind: string,
-    options: DiscriminatorOptions = { requestOptions: {} },
+    options: DiscriminatorOptionalParams = { requestOptions: {} },
   ): Promise<AbstractModelUnion> {
     return discriminator(this._client, kind, options);
   }

@@ -7,26 +7,28 @@ import {
   stringExtensibleSend,
 } from "../../api/stringExtensible/index.js";
 import {
-  StringExtensibleGetOptions,
-  StringExtensibleSendOptions,
+  StringExtensibleGetOptionalParams,
+  StringExtensibleSendOptionalParams,
 } from "../../models/options.js";
 
 export interface StringExtensibleOperations {
   get: (
-    options?: StringExtensibleGetOptions,
+    options?: StringExtensibleGetOptionalParams,
   ) => Promise<{ prop: string | "b" | "c" }>;
   send: (
     prop: string | "b" | "c",
-    options?: StringExtensibleSendOptions,
+    options?: StringExtensibleSendOptionalParams,
   ) => Promise<void>;
 }
 
 export function getStringExtensible(context: UnionContext) {
   return {
-    get: (options?: StringExtensibleGetOptions) =>
+    get: (options?: StringExtensibleGetOptionalParams) =>
       stringExtensibleGet(context, options),
-    send: (prop: string | "b" | "c", options?: StringExtensibleSendOptions) =>
-      stringExtensibleSend(context, prop, options),
+    send: (
+      prop: string | "b" | "c",
+      options?: StringExtensibleSendOptionalParams,
+    ) => stringExtensibleSend(context, prop, options),
   };
 }
 

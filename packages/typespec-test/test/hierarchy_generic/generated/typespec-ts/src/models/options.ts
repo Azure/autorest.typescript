@@ -3,12 +3,12 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface Op1Options extends OperationOptions {}
+export interface Op1OptionalParams extends OperationOptions {}
 
-export interface BOp1Options extends OperationOptions {}
+export interface BOp1OptionalParams extends OperationOptions {}
 
-export interface BECOp1Options extends OperationOptions {}
+export interface BECOp1OptionalParams extends OperationOptions {}
 
-export interface BCOp1Options extends OperationOptions {}
+export interface BCOp1OptionalParams extends OperationOptions {}
 
-export interface DOp1Options extends OperationOptions {}
+export interface DOp1OptionalParams extends OperationOptions {}

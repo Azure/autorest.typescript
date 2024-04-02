@@ -19,17 +19,17 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  QueryMultiOptions,
-  QuerySsvOptions,
-  QueryTsvOptions,
-  QueryPipesOptions,
-  QueryCsvOptions,
+  QueryMultiOptionalParams,
+  QuerySsvOptionalParams,
+  QueryTsvOptionalParams,
+  QueryPipesOptionalParams,
+  QueryCsvOptionalParams,
 } from "../../models/options.js";
 
 export function _queryMultiSend(
   context: Client,
   colors: string[],
-  options: QueryMultiOptions = { requestOptions: {} },
+  options: QueryMultiOptionalParams = { requestOptions: {} },
 ): StreamableMethod<QueryMulti204Response> {
   return context
     .path("/parameters/collection-format/query/multi")
@@ -52,7 +52,7 @@ export async function _queryMultiDeserialize(
 export async function queryMulti(
   context: Client,
   colors: string[],
-  options: QueryMultiOptions = { requestOptions: {} },
+  options: QueryMultiOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _queryMultiSend(context, colors, options);
   return _queryMultiDeserialize(result);
@@ -61,7 +61,7 @@ export async function queryMulti(
 export function _querySsvSend(
   context: Client,
   colors: string[],
-  options: QuerySsvOptions = { requestOptions: {} },
+  options: QuerySsvOptionalParams = { requestOptions: {} },
 ): StreamableMethod<QuerySsv204Response> {
   return context
     .path("/parameters/collection-format/query/ssv")
@@ -84,7 +84,7 @@ export async function _querySsvDeserialize(
 export async function querySsv(
   context: Client,
   colors: string[],
-  options: QuerySsvOptions = { requestOptions: {} },
+  options: QuerySsvOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _querySsvSend(context, colors, options);
   return _querySsvDeserialize(result);
@@ -93,7 +93,7 @@ export async function querySsv(
 export function _queryTsvSend(
   context: Client,
   colors: string[],
-  options: QueryTsvOptions = { requestOptions: {} },
+  options: QueryTsvOptionalParams = { requestOptions: {} },
 ): StreamableMethod<QueryTsv204Response> {
   return context
     .path("/parameters/collection-format/query/tsv")
@@ -116,7 +116,7 @@ export async function _queryTsvDeserialize(
 export async function queryTsv(
   context: Client,
   colors: string[],
-  options: QueryTsvOptions = { requestOptions: {} },
+  options: QueryTsvOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _queryTsvSend(context, colors, options);
   return _queryTsvDeserialize(result);
@@ -125,7 +125,7 @@ export async function queryTsv(
 export function _queryPipesSend(
   context: Client,
   colors: string[],
-  options: QueryPipesOptions = { requestOptions: {} },
+  options: QueryPipesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<QueryPipes204Response> {
   return context
     .path("/parameters/collection-format/query/pipes")
@@ -148,7 +148,7 @@ export async function _queryPipesDeserialize(
 export async function queryPipes(
   context: Client,
   colors: string[],
-  options: QueryPipesOptions = { requestOptions: {} },
+  options: QueryPipesOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _queryPipesSend(context, colors, options);
   return _queryPipesDeserialize(result);
@@ -157,7 +157,7 @@ export async function queryPipes(
 export function _queryCsvSend(
   context: Client,
   colors: string[],
-  options: QueryCsvOptions = { requestOptions: {} },
+  options: QueryCsvOptionalParams = { requestOptions: {} },
 ): StreamableMethod<QueryCsv204Response> {
   return context
     .path("/parameters/collection-format/query/csv")
@@ -180,7 +180,7 @@ export async function _queryCsvDeserialize(
 export async function queryCsv(
   context: Client,
   colors: string[],
-  options: QueryCsvOptions = { requestOptions: {} },
+  options: QueryCsvOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _queryCsvSend(context, colors, options);
   return _queryCsvDeserialize(result);

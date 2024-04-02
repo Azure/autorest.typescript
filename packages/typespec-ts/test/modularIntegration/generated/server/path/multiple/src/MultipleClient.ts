@@ -3,8 +3,8 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  NoOperationParamsOptions,
-  WithOperationPathParamOptions,
+  NoOperationParamsOptionalParams,
+  WithOperationPathParamOptionalParams,
 } from "./models/options.js";
 import {
   createMultiple,
@@ -27,14 +27,14 @@ export class MultipleClient {
   }
 
   noOperationParams(
-    options: NoOperationParamsOptions = { requestOptions: {} },
+    options: NoOperationParamsOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return noOperationParams(this._client, options);
   }
 
   withOperationPathParam(
     keyword: string,
-    options: WithOperationPathParamOptions = { requestOptions: {} },
+    options: WithOperationPathParamOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return withOperationPathParam(this._client, keyword, options);
   }

@@ -4,17 +4,20 @@
 import { ValueTypesContext } from "../../api/ValueTypesContext.js";
 import { BytesProperty } from "../../models/models.js";
 import { bytesGet, bytesPut } from "../../api/bytes/index.js";
-import { BytesGetOptions, BytesPutOptions } from "../../models/options.js";
+import {
+  BytesGetOptionalParams,
+  BytesPutOptionalParams,
+} from "../../models/options.js";
 
 export interface BytesOperations {
-  get: (options?: BytesGetOptions) => Promise<BytesProperty>;
-  put: (body: BytesProperty, options?: BytesPutOptions) => Promise<void>;
+  get: (options?: BytesGetOptionalParams) => Promise<BytesProperty>;
+  put: (body: BytesProperty, options?: BytesPutOptionalParams) => Promise<void>;
 }
 
 export function getBytes(context: ValueTypesContext) {
   return {
-    get: (options?: BytesGetOptions) => bytesGet(context, options),
-    put: (body: BytesProperty, options?: BytesPutOptions) =>
+    get: (options?: BytesGetOptionalParams) => bytesGet(context, options),
+    put: (body: BytesProperty, options?: BytesPutOptionalParams) =>
       bytesPut(context, body, options),
   };
 }

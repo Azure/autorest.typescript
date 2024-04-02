@@ -6,12 +6,12 @@ import {
   CreateTranslationResponse,
 } from "../../../models/models.js";
 import { create } from "../../../api/audio/translations/index.js";
-import { AudioTranslationsCreateOptions } from "../../../models/options.js";
+import { AudioTranslationsCreateOptionalParams } from "../../../models/options.js";
 
 export interface AudioTranslationsOperations {
   create: (
     audio: CreateTranslationRequest,
-    options?: AudioTranslationsCreateOptions,
+    options?: AudioTranslationsCreateOptionalParams,
   ) => Promise<CreateTranslationResponse>;
 }
 
@@ -19,7 +19,7 @@ export function getAudioTranslations(context: OpenAIContext) {
   return {
     create: (
       audio: CreateTranslationRequest,
-      options?: AudioTranslationsCreateOptions,
+      options?: AudioTranslationsCreateOptionalParams,
     ) => create(context, audio, options),
   };
 }

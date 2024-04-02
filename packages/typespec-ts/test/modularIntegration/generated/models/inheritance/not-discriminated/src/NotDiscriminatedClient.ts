@@ -4,9 +4,9 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { Siamese } from "./models/models.js";
 import {
-  PostValidOptions,
-  GetValidOptions,
-  PutValidOptions,
+  PostValidOptionalParams,
+  GetValidOptionalParams,
+  PutValidOptionalParams,
 } from "./models/options.js";
 import {
   createNotDiscriminated,
@@ -32,20 +32,20 @@ export class NotDiscriminatedClient {
 
   postValid(
     input: Siamese,
-    options: PostValidOptions = { requestOptions: {} },
+    options: PostValidOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return postValid(this._client, input, options);
   }
 
   getValid(
-    options: GetValidOptions = { requestOptions: {} },
+    options: GetValidOptionalParams = { requestOptions: {} },
   ): Promise<Siamese> {
     return getValid(this._client, options);
   }
 
   putValid(
     input: Siamese,
-    options: PutValidOptions = { requestOptions: {} },
+    options: PutValidOptionalParams = { requestOptions: {} },
   ): Promise<Siamese> {
     return putValid(this._client, input, options);
   }

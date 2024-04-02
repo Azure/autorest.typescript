@@ -9,17 +9,17 @@ import {
   SecondItem,
 } from "./models/models.js";
 import {
-  CreateOrUpdateOptions,
-  CreateOrReplaceOptions,
-  GetOptions,
-  ListOptions,
-  ListWithPageOptions,
-  ListWithParametersOptions,
-  ListWithCustomPageModelOptions,
-  DeleteOptions,
-  ExportOptions,
-  ListFirstItemOptions,
-  ListSecondItemOptions,
+  CreateOrUpdateOptionalParams,
+  CreateOrReplaceOptionalParams,
+  GetOptionalParams,
+  ListOptionalParams,
+  ListWithPageOptionalParams,
+  ListWithParametersOptionalParams,
+  ListWithCustomPageModelOptionalParams,
+  DeleteOptionalParams,
+  ExportOptionalParams,
+  ListFirstItemOptionalParams,
+  ListSecondItemOptionalParams,
 } from "./models/options.js";
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
@@ -56,7 +56,7 @@ export class BasicClient {
   createOrUpdate(
     id: number,
     resource: User,
-    options: CreateOrUpdateOptions = { requestOptions: {} },
+    options: CreateOrUpdateOptionalParams = { requestOptions: {} },
   ): Promise<User> {
     return createOrUpdate(this._client, id, resource, options);
   }
@@ -65,26 +65,29 @@ export class BasicClient {
   createOrReplace(
     id: number,
     resource: User,
-    options: CreateOrReplaceOptions = { requestOptions: {} },
+    options: CreateOrReplaceOptionalParams = { requestOptions: {} },
   ): Promise<User> {
     return createOrReplace(this._client, id, resource, options);
   }
 
   /** Gets a User */
-  get(id: number, options: GetOptions = { requestOptions: {} }): Promise<User> {
+  get(
+    id: number,
+    options: GetOptionalParams = { requestOptions: {} },
+  ): Promise<User> {
     return get(this._client, id, options);
   }
 
   /** Lists all Users */
   list(
-    options: ListOptions = { requestOptions: {} },
+    options: ListOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<User> {
     return list(this._client, options);
   }
 
   /** List with Azure.Core.Page<>. */
   listWithPage(
-    options: ListWithPageOptions = { requestOptions: {} },
+    options: ListWithPageOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<User> {
     return listWithPage(this._client, options);
   }
@@ -92,14 +95,14 @@ export class BasicClient {
   /** List with extensible enum parameter Azure.Core.Page<>. */
   listWithParameters(
     bodyInput: ListItemInputBody,
-    options: ListWithParametersOptions = { requestOptions: {} },
+    options: ListWithParametersOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<User> {
     return listWithParameters(this._client, bodyInput, options);
   }
 
   /** List with custom page model. */
   listWithCustomPageModel(
-    options: ListWithCustomPageModelOptions = { requestOptions: {} },
+    options: ListWithCustomPageModelOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<User> {
     return listWithCustomPageModel(this._client, options);
   }
@@ -112,7 +115,7 @@ export class BasicClient {
    */
   delete(
     id: number,
-    options: DeleteOptions = { requestOptions: {} },
+    options: DeleteOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return $delete(this._client, id, options);
   }
@@ -126,21 +129,21 @@ export class BasicClient {
   export(
     id: number,
     format: string,
-    options: ExportOptions = { requestOptions: {} },
+    options: ExportOptionalParams = { requestOptions: {} },
   ): Promise<User> {
     return $export(this._client, id, format, options);
   }
 
   /** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
   listFirstItem(
-    options: ListFirstItemOptions = { requestOptions: {} },
+    options: ListFirstItemOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<FirstItem> {
     return listFirstItem(this._client, options);
   }
 
   /** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
   listSecondItem(
-    options: ListSecondItemOptions = { requestOptions: {} },
+    options: ListSecondItemOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<SecondItem> {
     return listSecondItem(this._client, options);
   }

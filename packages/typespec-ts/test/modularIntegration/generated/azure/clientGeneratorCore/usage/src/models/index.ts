@@ -3,6 +3,6 @@
 
 export { InputModel, OutputModel } from "./models.js";
 export {
-  InputToInputOutputOptions,
-  OutputToInputOutputOptions,
+  InputToInputOutputOptionalParams,
+  OutputToInputOutputOptionalParams,
 } from "./options.js";

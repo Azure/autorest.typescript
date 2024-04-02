@@ -6,7 +6,7 @@ import { CreateEditRequest, CreateEditResponse } from "../../models/models.js";
 import { create } from "../../api/edits/index.js";
 import { EditsCreateOptionalParams } from "../../models/options.js";
 
-export interface Edits {
+export interface EditsOperations {
   create: (
     edit: CreateEditRequest,
     options?: EditsCreateOptionalParams,
@@ -20,7 +20,7 @@ export function getEdits(context: OpenAIContext) {
   };
 }
 
-export function getEditsOperations(context: OpenAIContext): Edits {
+export function getEditsOperations(context: OpenAIContext): EditsOperations {
   return {
     ...getEdits(context),
   };

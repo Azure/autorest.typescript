@@ -223,87 +223,87 @@ import {
 } from "@azure-rest/core-client";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import {
-  ListApplicationsOptions,
-  GetApplicationOptions,
-  ListPoolUsageMetricsOptions,
-  CreatePoolOptions,
-  ListPoolsOptions,
-  DeletePoolOptions,
-  PoolExistsOptions,
-  GetPoolOptions,
-  UpdatePoolOptions,
-  DisablePoolAutoScaleOptions,
-  EnablePoolAutoScaleOptions,
-  EvaluatePoolAutoScaleOptions,
-  ResizePoolOptions,
-  StopPoolResizeOptions,
-  ReplacePoolPropertiesOptions,
-  RemoveNodesOptions,
-  ListSupportedImagesOptions,
-  ListPoolNodeCountsOptions,
-  DeleteJobOptions,
-  GetJobOptions,
-  UpdateJobOptions,
-  ReplaceJobOptions,
-  DisableJobOptions,
-  EnableJobOptions,
-  TerminateJobOptions,
-  CreateJobOptions,
-  ListJobsOptions,
-  ListJobsFromScheduleOptions,
-  ListJobPreparationAndReleaseTaskStatusOptions,
-  GetJobTaskCountsOptions,
-  CreateCertificateOptions,
-  ListCertificatesOptions,
-  CancelCertificateDeletionOptions,
-  DeleteCertificateOptions,
-  GetCertificateOptions,
-  JobScheduleExistsOptions,
-  DeleteJobScheduleOptions,
-  GetJobScheduleOptions,
-  UpdateJobScheduleOptions,
-  ReplaceJobScheduleOptions,
-  DisableJobScheduleOptions,
-  EnableJobScheduleOptions,
-  TerminateJobScheduleOptions,
-  CreateJobScheduleOptions,
-  ListJobSchedulesOptions,
-  CreateTaskOptions,
-  ListTasksOptions,
-  CreateTaskCollectionOptions,
-  DeleteTaskOptions,
-  GetTaskOptions,
-  ReplaceTaskOptions,
-  ListSubTasksOptions,
-  TerminateTaskOptions,
-  ReactivateTaskOptions,
-  DeleteTaskFileOptions,
-  GetTaskFileOptions,
-  GetTaskFilePropertiesOptions,
-  ListTaskFilesOptions,
-  CreateNodeUserOptions,
-  DeleteNodeUserOptions,
-  ReplaceNodeUserOptions,
-  GetNodeOptions,
-  RebootNodeOptions,
-  ReimageNodeOptions,
-  DisableNodeSchedulingOptions,
-  EnableNodeSchedulingOptions,
-  GetNodeRemoteLoginSettingsOptions,
-  GetNodeRemoteDesktopFileOptions,
-  UploadNodeLogsOptions,
-  ListNodesOptions,
-  GetNodeExtensionOptions,
-  ListNodeExtensionsOptions,
-  DeleteNodeFileOptions,
-  GetNodeFileOptions,
-  GetNodeFilePropertiesOptions,
-  ListNodeFilesOptions,
+  ListApplicationsOptionalParams,
+  GetApplicationOptionalParams,
+  ListPoolUsageMetricsOptionalParams,
+  CreatePoolOptionalParams,
+  ListPoolsOptionalParams,
+  DeletePoolOptionalParams,
+  PoolExistsOptionalParams,
+  GetPoolOptionalParams,
+  UpdatePoolOptionalParams,
+  DisablePoolAutoScaleOptionalParams,
+  EnablePoolAutoScaleOptionalParams,
+  EvaluatePoolAutoScaleOptionalParams,
+  ResizePoolOptionalParams,
+  StopPoolResizeOptionalParams,
+  ReplacePoolPropertiesOptionalParams,
+  RemoveNodesOptionalParams,
+  ListSupportedImagesOptionalParams,
+  ListPoolNodeCountsOptionalParams,
+  DeleteJobOptionalParams,
+  GetJobOptionalParams,
+  UpdateJobOptionalParams,
+  ReplaceJobOptionalParams,
+  DisableJobOptionalParams,
+  EnableJobOptionalParams,
+  TerminateJobOptionalParams,
+  CreateJobOptionalParams,
+  ListJobsOptionalParams,
+  ListJobsFromScheduleOptionalParams,
+  ListJobPreparationAndReleaseTaskStatusOptionalParams,
+  GetJobTaskCountsOptionalParams,
+  CreateCertificateOptionalParams,
+  ListCertificatesOptionalParams,
+  CancelCertificateDeletionOptionalParams,
+  DeleteCertificateOptionalParams,
+  GetCertificateOptionalParams,
+  JobScheduleExistsOptionalParams,
+  DeleteJobScheduleOptionalParams,
+  GetJobScheduleOptionalParams,
+  UpdateJobScheduleOptionalParams,
+  ReplaceJobScheduleOptionalParams,
+  DisableJobScheduleOptionalParams,
+  EnableJobScheduleOptionalParams,
+  TerminateJobScheduleOptionalParams,
+  CreateJobScheduleOptionalParams,
+  ListJobSchedulesOptionalParams,
+  CreateTaskOptionalParams,
+  ListTasksOptionalParams,
+  CreateTaskCollectionOptionalParams,
+  DeleteTaskOptionalParams,
+  GetTaskOptionalParams,
+  ReplaceTaskOptionalParams,
+  ListSubTasksOptionalParams,
+  TerminateTaskOptionalParams,
+  ReactivateTaskOptionalParams,
+  DeleteTaskFileOptionalParams,
+  GetTaskFileOptionalParams,
+  GetTaskFilePropertiesOptionalParams,
+  ListTaskFilesOptionalParams,
+  CreateNodeUserOptionalParams,
+  DeleteNodeUserOptionalParams,
+  ReplaceNodeUserOptionalParams,
+  GetNodeOptionalParams,
+  RebootNodeOptionalParams,
+  ReimageNodeOptionalParams,
+  DisableNodeSchedulingOptionalParams,
+  EnableNodeSchedulingOptionalParams,
+  GetNodeRemoteLoginSettingsOptionalParams,
+  GetNodeRemoteDesktopFileOptionalParams,
+  UploadNodeLogsOptionalParams,
+  ListNodesOptionalParams,
+  GetNodeExtensionOptionalParams,
+  ListNodeExtensionsOptionalParams,
+  DeleteNodeFileOptionalParams,
+  GetNodeFileOptionalParams,
+  GetNodeFilePropertiesOptionalParams,
+  ListNodeFilesOptionalParams,
 } from "../models/options.js";
 
 export function _listApplicationsSend(
   context: Client,
-  options: ListApplicationsOptions = { requestOptions: {} },
+  options: ListApplicationsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ListApplications200Response | ListApplicationsDefaultResponse
 > {
@@ -348,7 +348,7 @@ export async function _listApplicationsDeserialize(
  */
 export function listApplications(
   context: Client,
-  options: ListApplicationsOptions = { requestOptions: {} },
+  options: ListApplicationsOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchApplication> {
   return buildPagedAsyncIterator(
     context,
@@ -361,7 +361,7 @@ export function listApplications(
 export function _getApplicationSend(
   context: Client,
   applicationId: string,
-  options: GetApplicationOptions = { requestOptions: {} },
+  options: GetApplicationOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetApplication200Response | GetApplicationDefaultResponse> {
   return context
     .path("/applications/{applicationId}", applicationId)
@@ -398,7 +398,7 @@ export async function _getApplicationDeserialize(
 export async function getApplication(
   context: Client,
   applicationId: string,
-  options: GetApplicationOptions = { requestOptions: {} },
+  options: GetApplicationOptionalParams = { requestOptions: {} },
 ): Promise<BatchApplication> {
   const result = await _getApplicationSend(context, applicationId, options);
   return _getApplicationDeserialize(result);
@@ -406,7 +406,7 @@ export async function getApplication(
 
 export function _listPoolUsageMetricsSend(
   context: Client,
-  options: ListPoolUsageMetricsOptions = { requestOptions: {} },
+  options: ListPoolUsageMetricsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ListPoolUsageMetrics200Response | ListPoolUsageMetricsDefaultResponse
 > {
@@ -457,7 +457,7 @@ export async function _listPoolUsageMetricsDeserialize(
  */
 export function listPoolUsageMetrics(
   context: Client,
-  options: ListPoolUsageMetricsOptions = { requestOptions: {} },
+  options: ListPoolUsageMetricsOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<PoolUsageMetrics> {
   return buildPagedAsyncIterator(
     context,
@@ -470,7 +470,7 @@ export function listPoolUsageMetrics(
 export function _createPoolSend(
   context: Client,
   body: BatchPoolCreateOptions,
-  options: CreatePoolOptions = { requestOptions: {} },
+  options: CreatePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod<CreatePool201Response | CreatePoolDefaultResponse> {
   return context
     .path("/pools")
@@ -872,7 +872,7 @@ export async function _createPoolDeserialize(
 export async function createPool(
   context: Client,
   body: BatchPoolCreateOptions,
-  options: CreatePoolOptions = { requestOptions: {} },
+  options: CreatePoolOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _createPoolSend(context, body, options);
   return _createPoolDeserialize(result);
@@ -880,7 +880,7 @@ export async function createPool(
 
 export function _listPoolsSend(
   context: Client,
-  options: ListPoolsOptions = { requestOptions: {} },
+  options: ListPoolsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ListPools200Response | ListPoolsDefaultResponse> {
   return context
     .path("/pools")
@@ -1424,7 +1424,7 @@ export async function _listPoolsDeserialize(
 /** Lists all of the Pools in the specified Account. */
 export function listPools(
   context: Client,
-  options: ListPoolsOptions = { requestOptions: {} },
+  options: ListPoolsOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchPool> {
   return buildPagedAsyncIterator(
     context,
@@ -1437,7 +1437,7 @@ export function listPools(
 export function _deletePoolSend(
   context: Client,
   poolId: string,
-  options: DeletePoolOptions = { requestOptions: {} },
+  options: DeletePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod<DeletePool202Response | DeletePoolDefaultResponse> {
   return context
     .path("/pools/{poolId}", poolId)
@@ -1491,7 +1491,7 @@ export async function _deletePoolDeserialize(
 export async function deletePool(
   context: Client,
   poolId: string,
-  options: DeletePoolOptions = { requestOptions: {} },
+  options: DeletePoolOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deletePoolSend(context, poolId, options);
   return _deletePoolDeserialize(result);
@@ -1500,7 +1500,7 @@ export async function deletePool(
 export function _poolExistsSend(
   context: Client,
   poolId: string,
-  options: PoolExistsOptions = { requestOptions: {} },
+  options: PoolExistsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   PoolExists200Response | PoolExists404Response | PoolExistsDefaultResponse
 > {
@@ -1546,7 +1546,7 @@ export async function _poolExistsDeserialize(
 export async function poolExists(
   context: Client,
   poolId: string,
-  options: PoolExistsOptions = { requestOptions: {} },
+  options: PoolExistsOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _poolExistsSend(context, poolId, options);
   return _poolExistsDeserialize(result);
@@ -1555,7 +1555,7 @@ export async function poolExists(
 export function _getPoolSend(
   context: Client,
   poolId: string,
-  options: GetPoolOptions = { requestOptions: {} },
+  options: GetPoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetPool200Response | GetPoolDefaultResponse> {
   return context
     .path("/pools/{poolId}", poolId)
@@ -2082,7 +2082,7 @@ export async function _getPoolDeserialize(
 export async function getPool(
   context: Client,
   poolId: string,
-  options: GetPoolOptions = { requestOptions: {} },
+  options: GetPoolOptionalParams = { requestOptions: {} },
 ): Promise<BatchPool> {
   const result = await _getPoolSend(context, poolId, options);
   return _getPoolDeserialize(result);
@@ -2092,7 +2092,7 @@ export function _updatePoolSend(
   context: Client,
   poolId: string,
   body: BatchPoolUpdateOptions,
-  options: UpdatePoolOptions = { requestOptions: {} },
+  options: UpdatePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod<UpdatePool200Response | UpdatePoolDefaultResponse> {
   return context
     .path("/pools/{poolId}", poolId)
@@ -2246,7 +2246,7 @@ export async function updatePool(
   context: Client,
   poolId: string,
   body: BatchPoolUpdateOptions,
-  options: UpdatePoolOptions = { requestOptions: {} },
+  options: UpdatePoolOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _updatePoolSend(context, poolId, body, options);
   return _updatePoolDeserialize(result);
@@ -2255,7 +2255,7 @@ export async function updatePool(
 export function _disablePoolAutoScaleSend(
   context: Client,
   poolId: string,
-  options: DisablePoolAutoScaleOptions = { requestOptions: {} },
+  options: DisablePoolAutoScaleOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   DisablePoolAutoScale200Response | DisablePoolAutoScaleDefaultResponse
 > {
@@ -2284,7 +2284,7 @@ export async function _disablePoolAutoScaleDeserialize(
 export async function disablePoolAutoScale(
   context: Client,
   poolId: string,
-  options: DisablePoolAutoScaleOptions = { requestOptions: {} },
+  options: DisablePoolAutoScaleOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _disablePoolAutoScaleSend(context, poolId, options);
   return _disablePoolAutoScaleDeserialize(result);
@@ -2294,7 +2294,7 @@ export function _enablePoolAutoScaleSend(
   context: Client,
   poolId: string,
   body: BatchPoolEnableAutoScaleOptions,
-  options: EnablePoolAutoScaleOptions = { requestOptions: {} },
+  options: EnablePoolAutoScaleOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   EnablePoolAutoScale200Response | EnablePoolAutoScaleDefaultResponse
 > {
@@ -2352,7 +2352,7 @@ export async function enablePoolAutoScale(
   context: Client,
   poolId: string,
   body: BatchPoolEnableAutoScaleOptions,
-  options: EnablePoolAutoScaleOptions = { requestOptions: {} },
+  options: EnablePoolAutoScaleOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _enablePoolAutoScaleSend(context, poolId, body, options);
   return _enablePoolAutoScaleDeserialize(result);
@@ -2362,7 +2362,7 @@ export function _evaluatePoolAutoScaleSend(
   context: Client,
   poolId: string,
   body: BatchPoolEvaluateAutoScaleOptions,
-  options: EvaluatePoolAutoScaleOptions = { requestOptions: {} },
+  options: EvaluatePoolAutoScaleOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   EvaluatePoolAutoScale200Response | EvaluatePoolAutoScaleDefaultResponse
 > {
@@ -2418,7 +2418,7 @@ export async function evaluatePoolAutoScale(
   context: Client,
   poolId: string,
   body: BatchPoolEvaluateAutoScaleOptions,
-  options: EvaluatePoolAutoScaleOptions = { requestOptions: {} },
+  options: EvaluatePoolAutoScaleOptionalParams = { requestOptions: {} },
 ): Promise<AutoScaleRun> {
   const result = await _evaluatePoolAutoScaleSend(
     context,
@@ -2433,7 +2433,7 @@ export function _resizePoolSend(
   context: Client,
   poolId: string,
   body: BatchPoolResizeOptions,
-  options: ResizePoolOptions = { requestOptions: {} },
+  options: ResizePoolOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ResizePool202Response | ResizePoolDefaultResponse> {
   return context
     .path("/pools/{poolId}/resize", poolId)
@@ -2492,7 +2492,7 @@ export async function resizePool(
   context: Client,
   poolId: string,
   body: BatchPoolResizeOptions,
-  options: ResizePoolOptions = { requestOptions: {} },
+  options: ResizePoolOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _resizePoolSend(context, poolId, body, options);
   return _resizePoolDeserialize(result);
@@ -2501,7 +2501,7 @@ export async function resizePool(
 export function _stopPoolResizeSend(
   context: Client,
   poolId: string,
-  options: StopPoolResizeOptions = { requestOptions: {} },
+  options: StopPoolResizeOptionalParams = { requestOptions: {} },
 ): StreamableMethod<StopPoolResize202Response | StopPoolResizeDefaultResponse> {
   return context
     .path("/pools/{poolId}/stopresize", poolId)
@@ -2550,7 +2550,7 @@ export async function _stopPoolResizeDeserialize(
 export async function stopPoolResize(
   context: Client,
   poolId: string,
-  options: StopPoolResizeOptions = { requestOptions: {} },
+  options: StopPoolResizeOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _stopPoolResizeSend(context, poolId, options);
   return _stopPoolResizeDeserialize(result);
@@ -2560,7 +2560,7 @@ export function _replacePoolPropertiesSend(
   context: Client,
   poolId: string,
   body: BatchPoolReplaceOptions,
-  options: ReplacePoolPropertiesOptions = { requestOptions: {} },
+  options: ReplacePoolPropertiesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ReplacePoolProperties204Response | ReplacePoolPropertiesDefaultResponse
 > {
@@ -2694,7 +2694,7 @@ export async function replacePoolProperties(
   context: Client,
   poolId: string,
   body: BatchPoolReplaceOptions,
-  options: ReplacePoolPropertiesOptions = { requestOptions: {} },
+  options: ReplacePoolPropertiesOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _replacePoolPropertiesSend(
     context,
@@ -2709,7 +2709,7 @@ export function _removeNodesSend(
   context: Client,
   poolId: string,
   body: NodeRemoveOptions,
-  options: RemoveNodesOptions = { requestOptions: {} },
+  options: RemoveNodesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<RemoveNodes202Response | RemoveNodesDefaultResponse> {
   return context
     .path("/pools/{poolId}/removenodes", poolId)
@@ -2763,7 +2763,7 @@ export async function removeNodes(
   context: Client,
   poolId: string,
   body: NodeRemoveOptions,
-  options: RemoveNodesOptions = { requestOptions: {} },
+  options: RemoveNodesOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _removeNodesSend(context, poolId, body, options);
   return _removeNodesDeserialize(result);
@@ -2771,7 +2771,7 @@ export async function removeNodes(
 
 export function _listSupportedImagesSend(
   context: Client,
-  options: ListSupportedImagesOptions = { requestOptions: {} },
+  options: ListSupportedImagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ListSupportedImages200Response | ListSupportedImagesDefaultResponse
 > {
@@ -2823,7 +2823,7 @@ export async function _listSupportedImagesDeserialize(
 /** Lists all Virtual Machine Images supported by the Azure Batch service. */
 export function listSupportedImages(
   context: Client,
-  options: ListSupportedImagesOptions = { requestOptions: {} },
+  options: ListSupportedImagesOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<ImageInformation> {
   return buildPagedAsyncIterator(
     context,
@@ -2835,7 +2835,7 @@ export function listSupportedImages(
 
 export function _listPoolNodeCountsSend(
   context: Client,
-  options: ListPoolNodeCountsOptions = { requestOptions: {} },
+  options: ListPoolNodeCountsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ListPoolNodeCounts200Response | ListPoolNodeCountsDefaultResponse
 > {
@@ -2913,7 +2913,7 @@ export async function _listPoolNodeCountsDeserialize(
  */
 export function listPoolNodeCounts(
   context: Client,
-  options: ListPoolNodeCountsOptions = { requestOptions: {} },
+  options: ListPoolNodeCountsOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<PoolNodeCounts> {
   return buildPagedAsyncIterator(
     context,
@@ -2926,7 +2926,7 @@ export function listPoolNodeCounts(
 export function _deleteJobSend(
   context: Client,
   jobId: string,
-  options: DeleteJobOptions = { requestOptions: {} },
+  options: DeleteJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod<DeleteJob202Response | DeleteJobDefaultResponse> {
   return context
     .path("/jobs/{jobId}", jobId)
@@ -2976,7 +2976,7 @@ export async function _deleteJobDeserialize(
 export async function deleteJob(
   context: Client,
   jobId: string,
-  options: DeleteJobOptions = { requestOptions: {} },
+  options: DeleteJobOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteJobSend(context, jobId, options);
   return _deleteJobDeserialize(result);
@@ -2985,7 +2985,7 @@ export async function deleteJob(
 export function _getJobSend(
   context: Client,
   jobId: string,
-  options: GetJobOptions = { requestOptions: {} },
+  options: GetJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetJob200Response | GetJobDefaultResponse> {
   return context
     .path("/jobs/{jobId}", jobId)
@@ -4072,7 +4072,7 @@ export async function _getJobDeserialize(
 export async function getJob(
   context: Client,
   jobId: string,
-  options: GetJobOptions = { requestOptions: {} },
+  options: GetJobOptionalParams = { requestOptions: {} },
 ): Promise<BatchJob> {
   const result = await _getJobSend(context, jobId, options);
   return _getJobDeserialize(result);
@@ -4082,7 +4082,7 @@ export function _updateJobSend(
   context: Client,
   jobId: string,
   body: BatchJobUpdateOptions,
-  options: UpdateJobOptions = { requestOptions: {} },
+  options: UpdateJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod<UpdateJob200Response | UpdateJobDefaultResponse> {
   return context
     .path("/jobs/{jobId}", jobId)
@@ -4836,7 +4836,7 @@ export async function updateJob(
   context: Client,
   jobId: string,
   body: BatchJobUpdateOptions,
-  options: UpdateJobOptions = { requestOptions: {} },
+  options: UpdateJobOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _updateJobSend(context, jobId, body, options);
   return _updateJobDeserialize(result);
@@ -4846,7 +4846,7 @@ export function _replaceJobSend(
   context: Client,
   jobId: string,
   body: BatchJob,
-  options: ReplaceJobOptions = { requestOptions: {} },
+  options: ReplaceJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ReplaceJob200Response | ReplaceJobDefaultResponse> {
   return context
     .path("/jobs/{jobId}", jobId)
@@ -5544,7 +5544,7 @@ export async function replaceJob(
   context: Client,
   jobId: string,
   body: BatchJob,
-  options: ReplaceJobOptions = { requestOptions: {} },
+  options: ReplaceJobOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _replaceJobSend(context, jobId, body, options);
   return _replaceJobDeserialize(result);
@@ -5554,7 +5554,7 @@ export function _disableJobSend(
   context: Client,
   jobId: string,
   body: BatchJobDisableOptions,
-  options: DisableJobOptions = { requestOptions: {} },
+  options: DisableJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod<DisableJob202Response | DisableJobDefaultResponse> {
   return context
     .path("/jobs/{jobId}/disable", jobId)
@@ -5609,7 +5609,7 @@ export async function disableJob(
   context: Client,
   jobId: string,
   body: BatchJobDisableOptions,
-  options: DisableJobOptions = { requestOptions: {} },
+  options: DisableJobOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _disableJobSend(context, jobId, body, options);
   return _disableJobDeserialize(result);
@@ -5618,7 +5618,7 @@ export async function disableJob(
 export function _enableJobSend(
   context: Client,
   jobId: string,
-  options: EnableJobOptions = { requestOptions: {} },
+  options: EnableJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod<EnableJob202Response | EnableJobDefaultResponse> {
   return context
     .path("/jobs/{jobId}/enable", jobId)
@@ -5666,7 +5666,7 @@ export async function _enableJobDeserialize(
 export async function enableJob(
   context: Client,
   jobId: string,
-  options: EnableJobOptions = { requestOptions: {} },
+  options: EnableJobOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _enableJobSend(context, jobId, options);
   return _enableJobDeserialize(result);
@@ -5676,7 +5676,7 @@ export function _terminateJobSend(
   context: Client,
   jobId: string,
   body?: BatchJobTerminateOptions,
-  options: TerminateJobOptions = { requestOptions: {} },
+  options: TerminateJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod<TerminateJob202Response | TerminateJobDefaultResponse> {
   return context
     .path("/jobs/{jobId}/terminate", jobId)
@@ -5732,7 +5732,7 @@ export async function terminateJob(
   context: Client,
   jobId: string,
   body?: BatchJobTerminateOptions,
-  options: TerminateJobOptions = { requestOptions: {} },
+  options: TerminateJobOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _terminateJobSend(context, jobId, body, options);
   return _terminateJobDeserialize(result);
@@ -5741,7 +5741,7 @@ export async function terminateJob(
 export function _createJobSend(
   context: Client,
   body: BatchJobCreateOptions,
-  options: CreateJobOptions = { requestOptions: {} },
+  options: CreateJobOptionalParams = { requestOptions: {} },
 ): StreamableMethod<CreateJob201Response | CreateJobDefaultResponse> {
   return context
     .path("/jobs")
@@ -6784,7 +6784,7 @@ export async function _createJobDeserialize(
 export async function createJob(
   context: Client,
   body: BatchJobCreateOptions,
-  options: CreateJobOptions = { requestOptions: {} },
+  options: CreateJobOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _createJobSend(context, body, options);
   return _createJobDeserialize(result);
@@ -6792,7 +6792,7 @@ export async function createJob(
 
 export function _listJobsSend(
   context: Client,
-  options: ListJobsOptions = { requestOptions: {} },
+  options: ListJobsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ListJobs200Response | ListJobsDefaultResponse> {
   return context
     .path("/jobs")
@@ -7959,7 +7959,7 @@ export async function _listJobsDeserialize(
 /** Lists all of the Jobs in the specified Account. */
 export function listJobs(
   context: Client,
-  options: ListJobsOptions = { requestOptions: {} },
+  options: ListJobsOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchJob> {
   return buildPagedAsyncIterator(
     context,
@@ -7972,7 +7972,7 @@ export function listJobs(
 export function _listJobsFromScheduleSend(
   context: Client,
   jobScheduleId: string,
-  options: ListJobsFromScheduleOptions = { requestOptions: {} },
+  options: ListJobsFromScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ListJobsFromSchedule200Response | ListJobsFromScheduleDefaultResponse
 > {
@@ -9142,7 +9142,7 @@ export async function _listJobsFromScheduleDeserialize(
 export function listJobsFromSchedule(
   context: Client,
   jobScheduleId: string,
-  options: ListJobsFromScheduleOptions = { requestOptions: {} },
+  options: ListJobsFromScheduleOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchJob> {
   return buildPagedAsyncIterator(
     context,
@@ -9155,7 +9155,7 @@ export function listJobsFromSchedule(
 export function _listJobPreparationAndReleaseTaskStatusSend(
   context: Client,
   jobId: string,
-  options: ListJobPreparationAndReleaseTaskStatusOptions = {
+  options: ListJobPreparationAndReleaseTaskStatusOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod<
@@ -9341,7 +9341,7 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
 export function listJobPreparationAndReleaseTaskStatus(
   context: Client,
   jobId: string,
-  options: ListJobPreparationAndReleaseTaskStatusOptions = {
+  options: ListJobPreparationAndReleaseTaskStatusOptionalParams = {
     requestOptions: {},
   },
 ): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation> {
@@ -9356,7 +9356,7 @@ export function listJobPreparationAndReleaseTaskStatus(
 export function _getJobTaskCountsSend(
   context: Client,
   jobId: string,
-  options: GetJobTaskCountsOptions = { requestOptions: {} },
+  options: GetJobTaskCountsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   GetJobTaskCounts200Response | GetJobTaskCountsDefaultResponse
 > {
@@ -9405,7 +9405,7 @@ export async function _getJobTaskCountsDeserialize(
 export async function getJobTaskCounts(
   context: Client,
   jobId: string,
-  options: GetJobTaskCountsOptions = { requestOptions: {} },
+  options: GetJobTaskCountsOptionalParams = { requestOptions: {} },
 ): Promise<TaskCountsResult> {
   const result = await _getJobTaskCountsSend(context, jobId, options);
   return _getJobTaskCountsDeserialize(result);
@@ -9414,7 +9414,7 @@ export async function getJobTaskCounts(
 export function _createCertificateSend(
   context: Client,
   body: BatchCertificate,
-  options: CreateCertificateOptions = { requestOptions: {} },
+  options: CreateCertificateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   CreateCertificate201Response | CreateCertificateDefaultResponse
 > {
@@ -9453,7 +9453,7 @@ export async function _createCertificateDeserialize(
 export async function createCertificate(
   context: Client,
   body: BatchCertificate,
-  options: CreateCertificateOptions = { requestOptions: {} },
+  options: CreateCertificateOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _createCertificateSend(context, body, options);
   return _createCertificateDeserialize(result);
@@ -9461,7 +9461,7 @@ export async function createCertificate(
 
 export function _listCertificatesSend(
   context: Client,
-  options: ListCertificatesOptions = { requestOptions: {} },
+  options: ListCertificatesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ListCertificates200Response | ListCertificatesDefaultResponse
 > {
@@ -9535,7 +9535,7 @@ export async function _listCertificatesDeserialize(
 /** Lists all of the Certificates that have been added to the specified Account. */
 export function listCertificates(
   context: Client,
-  options: ListCertificatesOptions = { requestOptions: {} },
+  options: ListCertificatesOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchCertificate> {
   return buildPagedAsyncIterator(
     context,
@@ -9549,7 +9549,7 @@ export function _cancelCertificateDeletionSend(
   context: Client,
   thumbprintAlgorithm: string,
   thumbprint: string,
-  options: CancelCertificateDeletionOptions = { requestOptions: {} },
+  options: CancelCertificateDeletionOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | CancelCertificateDeletion204Response
   | CancelCertificateDeletionDefaultResponse
@@ -9594,7 +9594,7 @@ export async function cancelCertificateDeletion(
   context: Client,
   thumbprintAlgorithm: string,
   thumbprint: string,
-  options: CancelCertificateDeletionOptions = { requestOptions: {} },
+  options: CancelCertificateDeletionOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _cancelCertificateDeletionSend(
     context,
@@ -9609,7 +9609,7 @@ export function _deleteCertificateSend(
   context: Client,
   thumbprintAlgorithm: string,
   thumbprint: string,
-  options: DeleteCertificateOptions = { requestOptions: {} },
+  options: DeleteCertificateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   DeleteCertificate202Response | DeleteCertificateDefaultResponse
 > {
@@ -9653,7 +9653,7 @@ export async function deleteCertificate(
   context: Client,
   thumbprintAlgorithm: string,
   thumbprint: string,
-  options: DeleteCertificateOptions = { requestOptions: {} },
+  options: DeleteCertificateOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteCertificateSend(
     context,
@@ -9668,7 +9668,7 @@ export function _getCertificateSend(
   context: Client,
   thumbprintAlgorithm: string,
   thumbprint: string,
-  options: GetCertificateOptions = { requestOptions: {} },
+  options: GetCertificateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetCertificate200Response | GetCertificateDefaultResponse> {
   return context
     .path(
@@ -9738,7 +9738,7 @@ export async function getCertificate(
   context: Client,
   thumbprintAlgorithm: string,
   thumbprint: string,
-  options: GetCertificateOptions = { requestOptions: {} },
+  options: GetCertificateOptionalParams = { requestOptions: {} },
 ): Promise<BatchCertificate> {
   const result = await _getCertificateSend(
     context,
@@ -9752,7 +9752,7 @@ export async function getCertificate(
 export function _jobScheduleExistsSend(
   context: Client,
   jobScheduleId: string,
-  options: JobScheduleExistsOptions = { requestOptions: {} },
+  options: JobScheduleExistsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | JobScheduleExists200Response
   | JobScheduleExists404Response
@@ -9800,7 +9800,7 @@ export async function _jobScheduleExistsDeserialize(
 export async function jobScheduleExists(
   context: Client,
   jobScheduleId: string,
-  options: JobScheduleExistsOptions = { requestOptions: {} },
+  options: JobScheduleExistsOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _jobScheduleExistsSend(context, jobScheduleId, options);
   return _jobScheduleExistsDeserialize(result);
@@ -9809,7 +9809,7 @@ export async function jobScheduleExists(
 export function _deleteJobScheduleSend(
   context: Client,
   jobScheduleId: string,
-  options: DeleteJobScheduleOptions = { requestOptions: {} },
+  options: DeleteJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   DeleteJobSchedule202Response | DeleteJobScheduleDefaultResponse
 > {
@@ -9858,7 +9858,7 @@ export async function _deleteJobScheduleDeserialize(
 export async function deleteJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: DeleteJobScheduleOptions = { requestOptions: {} },
+  options: DeleteJobScheduleOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteJobScheduleSend(context, jobScheduleId, options);
   return _deleteJobScheduleDeserialize(result);
@@ -9867,7 +9867,7 @@ export async function deleteJobSchedule(
 export function _getJobScheduleSend(
   context: Client,
   jobScheduleId: string,
-  options: GetJobScheduleOptions = { requestOptions: {} },
+  options: GetJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetJobSchedule200Response | GetJobScheduleDefaultResponse> {
   return context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
@@ -11100,7 +11100,7 @@ export async function _getJobScheduleDeserialize(
 export async function getJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: GetJobScheduleOptions = { requestOptions: {} },
+  options: GetJobScheduleOptionalParams = { requestOptions: {} },
 ): Promise<BatchJobSchedule> {
   const result = await _getJobScheduleSend(context, jobScheduleId, options);
   return _getJobScheduleDeserialize(result);
@@ -11110,7 +11110,7 @@ export function _updateJobScheduleSend(
   context: Client,
   jobScheduleId: string,
   body: BatchJobScheduleUpdateOptions,
-  options: UpdateJobScheduleOptions = { requestOptions: {} },
+  options: UpdateJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   UpdateJobSchedule200Response | UpdateJobScheduleDefaultResponse
 > {
@@ -12424,7 +12424,7 @@ export async function updateJobSchedule(
   context: Client,
   jobScheduleId: string,
   body: BatchJobScheduleUpdateOptions,
-  options: UpdateJobScheduleOptions = { requestOptions: {} },
+  options: UpdateJobScheduleOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _updateJobScheduleSend(
     context,
@@ -12439,7 +12439,7 @@ export function _replaceJobScheduleSend(
   context: Client,
   jobScheduleId: string,
   body: BatchJobSchedule,
-  options: ReplaceJobScheduleOptions = { requestOptions: {} },
+  options: ReplaceJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ReplaceJobSchedule200Response | ReplaceJobScheduleDefaultResponse
 > {
@@ -13645,7 +13645,7 @@ export async function replaceJobSchedule(
   context: Client,
   jobScheduleId: string,
   body: BatchJobSchedule,
-  options: ReplaceJobScheduleOptions = { requestOptions: {} },
+  options: ReplaceJobScheduleOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _replaceJobScheduleSend(
     context,
@@ -13659,7 +13659,7 @@ export async function replaceJobSchedule(
 export function _disableJobScheduleSend(
   context: Client,
   jobScheduleId: string,
-  options: DisableJobScheduleOptions = { requestOptions: {} },
+  options: DisableJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   DisableJobSchedule204Response | DisableJobScheduleDefaultResponse
 > {
@@ -13702,7 +13702,7 @@ export async function _disableJobScheduleDeserialize(
 export async function disableJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: DisableJobScheduleOptions = { requestOptions: {} },
+  options: DisableJobScheduleOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _disableJobScheduleSend(context, jobScheduleId, options);
   return _disableJobScheduleDeserialize(result);
@@ -13711,7 +13711,7 @@ export async function disableJobSchedule(
 export function _enableJobScheduleSend(
   context: Client,
   jobScheduleId: string,
-  options: EnableJobScheduleOptions = { requestOptions: {} },
+  options: EnableJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   EnableJobSchedule204Response | EnableJobScheduleDefaultResponse
 > {
@@ -13754,7 +13754,7 @@ export async function _enableJobScheduleDeserialize(
 export async function enableJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: EnableJobScheduleOptions = { requestOptions: {} },
+  options: EnableJobScheduleOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _enableJobScheduleSend(context, jobScheduleId, options);
   return _enableJobScheduleDeserialize(result);
@@ -13763,7 +13763,7 @@ export async function enableJobSchedule(
 export function _terminateJobScheduleSend(
   context: Client,
   jobScheduleId: string,
-  options: TerminateJobScheduleOptions = { requestOptions: {} },
+  options: TerminateJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   TerminateJobSchedule202Response | TerminateJobScheduleDefaultResponse
 > {
@@ -13806,7 +13806,7 @@ export async function _terminateJobScheduleDeserialize(
 export async function terminateJobSchedule(
   context: Client,
   jobScheduleId: string,
-  options: TerminateJobScheduleOptions = { requestOptions: {} },
+  options: TerminateJobScheduleOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _terminateJobScheduleSend(
     context,
@@ -13819,7 +13819,7 @@ export async function terminateJobSchedule(
 export function _createJobScheduleSend(
   context: Client,
   body: BatchJobScheduleCreateOptions,
-  options: CreateJobScheduleOptions = { requestOptions: {} },
+  options: CreateJobScheduleOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   CreateJobSchedule201Response | CreateJobScheduleDefaultResponse
 > {
@@ -15006,7 +15006,7 @@ export async function _createJobScheduleDeserialize(
 export async function createJobSchedule(
   context: Client,
   body: BatchJobScheduleCreateOptions,
-  options: CreateJobScheduleOptions = { requestOptions: {} },
+  options: CreateJobScheduleOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _createJobScheduleSend(context, body, options);
   return _createJobScheduleDeserialize(result);
@@ -15014,7 +15014,7 @@ export async function createJobSchedule(
 
 export function _listJobSchedulesSend(
   context: Client,
-  options: ListJobSchedulesOptions = { requestOptions: {} },
+  options: ListJobSchedulesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ListJobSchedules200Response | ListJobSchedulesDefaultResponse
 > {
@@ -16337,7 +16337,7 @@ export async function _listJobSchedulesDeserialize(
 /** Lists all of the Job Schedules in the specified Account. */
 export function listJobSchedules(
   context: Client,
-  options: ListJobSchedulesOptions = { requestOptions: {} },
+  options: ListJobSchedulesOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchJobSchedule> {
   return buildPagedAsyncIterator(
     context,
@@ -16351,7 +16351,7 @@ export function _createTaskSend(
   context: Client,
   jobId: string,
   body: BatchTaskCreateOptions,
-  options: CreateTaskOptions = { requestOptions: {} },
+  options: CreateTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod<CreateTask201Response | CreateTaskDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks", jobId)
@@ -16591,7 +16591,7 @@ export async function createTask(
   context: Client,
   jobId: string,
   body: BatchTaskCreateOptions,
-  options: CreateTaskOptions = { requestOptions: {} },
+  options: CreateTaskOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _createTaskSend(context, jobId, body, options);
   return _createTaskDeserialize(result);
@@ -16600,7 +16600,7 @@ export async function createTask(
 export function _listTasksSend(
   context: Client,
   jobId: string,
-  options: ListTasksOptions = { requestOptions: {} },
+  options: ListTasksOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ListTasks200Response | ListTasksDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks", jobId)
@@ -16943,7 +16943,7 @@ export async function _listTasksDeserialize(
 export function listTasks(
   context: Client,
   jobId: string,
-  options: ListTasksOptions = { requestOptions: {} },
+  options: ListTasksOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchTask> {
   return buildPagedAsyncIterator(
     context,
@@ -16957,7 +16957,7 @@ export function _createTaskCollectionSend(
   context: Client,
   jobId: string,
   collection: BatchTaskCollection,
-  options: CreateTaskCollectionOptions = { requestOptions: {} },
+  options: CreateTaskCollectionOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   CreateTaskCollection200Response | CreateTaskCollectionDefaultResponse
 > {
@@ -17248,7 +17248,7 @@ export async function createTaskCollection(
   context: Client,
   jobId: string,
   collection: BatchTaskCollection,
-  options: CreateTaskCollectionOptions = { requestOptions: {} },
+  options: CreateTaskCollectionOptionalParams = { requestOptions: {} },
 ): Promise<TaskAddCollectionResult> {
   const result = await _createTaskCollectionSend(
     context,
@@ -17263,7 +17263,7 @@ export function _deleteTaskSend(
   context: Client,
   jobId: string,
   taskId: string,
-  options: DeleteTaskOptions = { requestOptions: {} },
+  options: DeleteTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod<DeleteTask200Response | DeleteTaskDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
@@ -17311,7 +17311,7 @@ export async function deleteTask(
   context: Client,
   jobId: string,
   taskId: string,
-  options: DeleteTaskOptions = { requestOptions: {} },
+  options: DeleteTaskOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteTaskSend(context, jobId, taskId, options);
   return _deleteTaskDeserialize(result);
@@ -17321,7 +17321,7 @@ export function _getTaskSend(
   context: Client,
   jobId: string,
   taskId: string,
-  options: GetTaskOptions = { requestOptions: {} },
+  options: GetTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetTask200Response | GetTaskDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
@@ -17663,7 +17663,7 @@ export async function getTask(
   context: Client,
   jobId: string,
   taskId: string,
-  options: GetTaskOptions = { requestOptions: {} },
+  options: GetTaskOptionalParams = { requestOptions: {} },
 ): Promise<BatchTask> {
   const result = await _getTaskSend(context, jobId, taskId, options);
   return _getTaskDeserialize(result);
@@ -17674,7 +17674,7 @@ export function _replaceTaskSend(
   jobId: string,
   taskId: string,
   body: BatchTask,
-  options: ReplaceTaskOptions = { requestOptions: {} },
+  options: ReplaceTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ReplaceTask200Response | ReplaceTaskDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
@@ -17729,7 +17729,7 @@ export async function replaceTask(
   jobId: string,
   taskId: string,
   body: BatchTask,
-  options: ReplaceTaskOptions = { requestOptions: {} },
+  options: ReplaceTaskOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _replaceTaskSend(context, jobId, taskId, body, options);
   return _replaceTaskDeserialize(result);
@@ -17739,7 +17739,7 @@ export function _listSubTasksSend(
   context: Client,
   jobId: string,
   taskId: string,
-  options: ListSubTasksOptions = { requestOptions: {} },
+  options: ListSubTasksOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ListSubTasks200Response | ListSubTasksDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}/subtasksinfo", jobId, taskId)
@@ -17824,7 +17824,7 @@ export async function listSubTasks(
   context: Client,
   jobId: string,
   taskId: string,
-  options: ListSubTasksOptions = { requestOptions: {} },
+  options: ListSubTasksOptionalParams = { requestOptions: {} },
 ): Promise<BatchTaskListSubtasksResult> {
   const result = await _listSubTasksSend(context, jobId, taskId, options);
   return _listSubTasksDeserialize(result);
@@ -17834,7 +17834,7 @@ export function _terminateTaskSend(
   context: Client,
   jobId: string,
   taskId: string,
-  options: TerminateTaskOptions = { requestOptions: {} },
+  options: TerminateTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod<TerminateTask204Response | TerminateTaskDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}/terminate", jobId, taskId)
@@ -17880,7 +17880,7 @@ export async function terminateTask(
   context: Client,
   jobId: string,
   taskId: string,
-  options: TerminateTaskOptions = { requestOptions: {} },
+  options: TerminateTaskOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _terminateTaskSend(context, jobId, taskId, options);
   return _terminateTaskDeserialize(result);
@@ -17890,7 +17890,7 @@ export function _reactivateTaskSend(
   context: Client,
   jobId: string,
   taskId: string,
-  options: ReactivateTaskOptions = { requestOptions: {} },
+  options: ReactivateTaskOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ReactivateTask204Response | ReactivateTaskDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}/reactivate", jobId, taskId)
@@ -17940,7 +17940,7 @@ export async function reactivateTask(
   context: Client,
   jobId: string,
   taskId: string,
-  options: ReactivateTaskOptions = { requestOptions: {} },
+  options: ReactivateTaskOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _reactivateTaskSend(context, jobId, taskId, options);
   return _reactivateTaskDeserialize(result);
@@ -17951,7 +17951,7 @@ export function _deleteTaskFileSend(
   jobId: string,
   taskId: string,
   filePath: string,
-  options: DeleteTaskFileOptions = { requestOptions: {} },
+  options: DeleteTaskFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod<DeleteTaskFile200Response | DeleteTaskFileDefaultResponse> {
   return context
     .path(
@@ -17986,7 +17986,7 @@ export async function deleteTaskFile(
   jobId: string,
   taskId: string,
   filePath: string,
-  options: DeleteTaskFileOptions = { requestOptions: {} },
+  options: DeleteTaskFileOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteTaskFileSend(
     context,
@@ -18003,7 +18003,7 @@ export function _getTaskFileSend(
   jobId: string,
   taskId: string,
   filePath: string,
-  options: GetTaskFileOptions = { requestOptions: {} },
+  options: GetTaskFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetTaskFile200Response | GetTaskFileDefaultResponse> {
   return context
     .path(
@@ -18048,7 +18048,7 @@ export async function getTaskFile(
   jobId: string,
   taskId: string,
   filePath: string,
-  options: GetTaskFileOptions = { requestOptions: {} },
+  options: GetTaskFileOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
   const result = await _getTaskFileSend(
     context,
@@ -18065,7 +18065,7 @@ export function _getTaskFilePropertiesSend(
   jobId: string,
   taskId: string,
   filePath: string,
-  options: GetTaskFilePropertiesOptions = { requestOptions: {} },
+  options: GetTaskFilePropertiesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   GetTaskFileProperties200Response | GetTaskFilePropertiesDefaultResponse
 > {
@@ -18111,7 +18111,7 @@ export async function getTaskFileProperties(
   jobId: string,
   taskId: string,
   filePath: string,
-  options: GetTaskFilePropertiesOptions = { requestOptions: {} },
+  options: GetTaskFilePropertiesOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getTaskFilePropertiesSend(
     context,
@@ -18127,7 +18127,7 @@ export function _listTaskFilesSend(
   context: Client,
   jobId: string,
   taskId: string,
-  options: ListTaskFilesOptions = { requestOptions: {} },
+  options: ListTaskFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ListTaskFiles200Response | ListTaskFilesDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}/files", jobId, taskId)
@@ -18180,7 +18180,7 @@ export function listTaskFiles(
   context: Client,
   jobId: string,
   taskId: string,
-  options: ListTaskFilesOptions = { requestOptions: {} },
+  options: ListTaskFilesOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<NodeFile> {
   return buildPagedAsyncIterator(
     context,
@@ -18195,7 +18195,7 @@ export function _createNodeUserSend(
   poolId: string,
   nodeId: string,
   body: BatchNodeUserCreateOptions,
-  options: CreateNodeUserOptions = { requestOptions: {} },
+  options: CreateNodeUserOptionalParams = { requestOptions: {} },
 ): StreamableMethod<CreateNodeUser201Response | CreateNodeUserDefaultResponse> {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/users", poolId, nodeId)
@@ -18237,7 +18237,7 @@ export async function createNodeUser(
   poolId: string,
   nodeId: string,
   body: BatchNodeUserCreateOptions,
-  options: CreateNodeUserOptions = { requestOptions: {} },
+  options: CreateNodeUserOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _createNodeUserSend(
     context,
@@ -18254,7 +18254,7 @@ export function _deleteNodeUserSend(
   poolId: string,
   nodeId: string,
   userName: string,
-  options: DeleteNodeUserOptions = { requestOptions: {} },
+  options: DeleteNodeUserOptionalParams = { requestOptions: {} },
 ): StreamableMethod<DeleteNodeUser200Response | DeleteNodeUserDefaultResponse> {
   return context
     .path(
@@ -18291,7 +18291,7 @@ export async function deleteNodeUser(
   poolId: string,
   nodeId: string,
   userName: string,
-  options: DeleteNodeUserOptions = { requestOptions: {} },
+  options: DeleteNodeUserOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteNodeUserSend(
     context,
@@ -18309,7 +18309,7 @@ export function _replaceNodeUserSend(
   nodeId: string,
   userName: string,
   body: BatchNodeUserUpdateOptions,
-  options: ReplaceNodeUserOptions = { requestOptions: {} },
+  options: ReplaceNodeUserOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ReplaceNodeUser200Response | ReplaceNodeUserDefaultResponse
 > {
@@ -18359,7 +18359,7 @@ export async function replaceNodeUser(
   nodeId: string,
   userName: string,
   body: BatchNodeUserUpdateOptions,
-  options: ReplaceNodeUserOptions = { requestOptions: {} },
+  options: ReplaceNodeUserOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _replaceNodeUserSend(
     context,
@@ -18376,7 +18376,7 @@ export function _getNodeSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: GetNodeOptions = { requestOptions: {} },
+  options: GetNodeOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetNode200Response | GetNodeDefaultResponse> {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}", poolId, nodeId)
@@ -18677,7 +18677,7 @@ export async function getNode(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: GetNodeOptions = { requestOptions: {} },
+  options: GetNodeOptionalParams = { requestOptions: {} },
 ): Promise<BatchNode> {
   const result = await _getNodeSend(context, poolId, nodeId, options);
   return _getNodeDeserialize(result);
@@ -18688,7 +18688,7 @@ export function _rebootNodeSend(
   poolId: string,
   nodeId: string,
   body?: NodeRebootOptions,
-  options: RebootNodeOptions = { requestOptions: {} },
+  options: RebootNodeOptionalParams = { requestOptions: {} },
 ): StreamableMethod<RebootNode202Response | RebootNodeDefaultResponse> {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/reboot", poolId, nodeId)
@@ -18724,7 +18724,7 @@ export async function rebootNode(
   poolId: string,
   nodeId: string,
   body?: NodeRebootOptions,
-  options: RebootNodeOptions = { requestOptions: {} },
+  options: RebootNodeOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _rebootNodeSend(context, poolId, nodeId, body, options);
   return _rebootNodeDeserialize(result);
@@ -18735,7 +18735,7 @@ export function _reimageNodeSend(
   poolId: string,
   nodeId: string,
   body?: NodeReimageOptions,
-  options: ReimageNodeOptions = { requestOptions: {} },
+  options: ReimageNodeOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ReimageNode202Response | ReimageNodeDefaultResponse> {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/reimage", poolId, nodeId)
@@ -18775,7 +18775,7 @@ export async function reimageNode(
   poolId: string,
   nodeId: string,
   body?: NodeReimageOptions,
-  options: ReimageNodeOptions = { requestOptions: {} },
+  options: ReimageNodeOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _reimageNodeSend(context, poolId, nodeId, body, options);
   return _reimageNodeDeserialize(result);
@@ -18786,7 +18786,7 @@ export function _disableNodeSchedulingSend(
   poolId: string,
   nodeId: string,
   body?: NodeDisableSchedulingOptions,
-  options: DisableNodeSchedulingOptions = { requestOptions: {} },
+  options: DisableNodeSchedulingOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   DisableNodeScheduling200Response | DisableNodeSchedulingDefaultResponse
 > {
@@ -18831,7 +18831,7 @@ export async function disableNodeScheduling(
   poolId: string,
   nodeId: string,
   body?: NodeDisableSchedulingOptions,
-  options: DisableNodeSchedulingOptions = { requestOptions: {} },
+  options: DisableNodeSchedulingOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _disableNodeSchedulingSend(
     context,
@@ -18847,7 +18847,7 @@ export function _enableNodeSchedulingSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: EnableNodeSchedulingOptions = { requestOptions: {} },
+  options: EnableNodeSchedulingOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   EnableNodeScheduling200Response | EnableNodeSchedulingDefaultResponse
 > {
@@ -18880,7 +18880,7 @@ export async function enableNodeScheduling(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: EnableNodeSchedulingOptions = { requestOptions: {} },
+  options: EnableNodeSchedulingOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _enableNodeSchedulingSend(
     context,
@@ -18895,7 +18895,7 @@ export function _getNodeRemoteLoginSettingsSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: GetNodeRemoteLoginSettingsOptions = { requestOptions: {} },
+  options: GetNodeRemoteLoginSettingsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | GetNodeRemoteLoginSettings200Response
   | GetNodeRemoteLoginSettingsDefaultResponse
@@ -18937,7 +18937,7 @@ export async function getNodeRemoteLoginSettings(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: GetNodeRemoteLoginSettingsOptions = { requestOptions: {} },
+  options: GetNodeRemoteLoginSettingsOptionalParams = { requestOptions: {} },
 ): Promise<BatchNodeRemoteLoginSettingsResult> {
   const result = await _getNodeRemoteLoginSettingsSend(
     context,
@@ -18952,7 +18952,7 @@ export function _getNodeRemoteDesktopFileSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: GetNodeRemoteDesktopFileOptions = { requestOptions: {} },
+  options: GetNodeRemoteDesktopFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   GetNodeRemoteDesktopFile200Response | GetNodeRemoteDesktopFileDefaultResponse
 > {
@@ -18991,7 +18991,7 @@ export async function getNodeRemoteDesktopFile(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: GetNodeRemoteDesktopFileOptions = { requestOptions: {} },
+  options: GetNodeRemoteDesktopFileOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
   const result = await _getNodeRemoteDesktopFileSend(
     context,
@@ -19007,7 +19007,7 @@ export function _uploadNodeLogsSend(
   poolId: string,
   nodeId: string,
   body: UploadBatchServiceLogsOptions,
-  options: UploadNodeLogsOptions = { requestOptions: {} },
+  options: UploadNodeLogsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<UploadNodeLogs200Response | UploadNodeLogsDefaultResponse> {
   return context
     .path(
@@ -19059,7 +19059,7 @@ export async function uploadNodeLogs(
   poolId: string,
   nodeId: string,
   body: UploadBatchServiceLogsOptions,
-  options: UploadNodeLogsOptions = { requestOptions: {} },
+  options: UploadNodeLogsOptionalParams = { requestOptions: {} },
 ): Promise<UploadBatchServiceLogsResult> {
   const result = await _uploadNodeLogsSend(
     context,
@@ -19074,7 +19074,7 @@ export async function uploadNodeLogs(
 export function _listNodesSend(
   context: Client,
   poolId: string,
-  options: ListNodesOptions = { requestOptions: {} },
+  options: ListNodesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ListNodes200Response | ListNodesDefaultResponse> {
   return context
     .path("/pools/{poolId}/nodes", poolId)
@@ -19387,7 +19387,7 @@ export async function _listNodesDeserialize(
 export function listNodes(
   context: Client,
   poolId: string,
-  options: ListNodesOptions = { requestOptions: {} },
+  options: ListNodesOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<BatchNode> {
   return buildPagedAsyncIterator(
     context,
@@ -19402,7 +19402,7 @@ export function _getNodeExtensionSend(
   poolId: string,
   nodeId: string,
   extensionName: string,
-  options: GetNodeExtensionOptions = { requestOptions: {} },
+  options: GetNodeExtensionOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   GetNodeExtension200Response | GetNodeExtensionDefaultResponse
 > {
@@ -19482,7 +19482,7 @@ export async function getNodeExtension(
   poolId: string,
   nodeId: string,
   extensionName: string,
-  options: GetNodeExtensionOptions = { requestOptions: {} },
+  options: GetNodeExtensionOptionalParams = { requestOptions: {} },
 ): Promise<NodeVMExtension> {
   const result = await _getNodeExtensionSend(
     context,
@@ -19498,7 +19498,7 @@ export function _listNodeExtensionsSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: ListNodeExtensionsOptions = { requestOptions: {} },
+  options: ListNodeExtensionsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ListNodeExtensions200Response | ListNodeExtensionsDefaultResponse
 > {
@@ -19578,7 +19578,7 @@ export function listNodeExtensions(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: ListNodeExtensionsOptions = { requestOptions: {} },
+  options: ListNodeExtensionsOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<NodeVMExtension> {
   return buildPagedAsyncIterator(
     context,
@@ -19593,7 +19593,7 @@ export function _deleteNodeFileSend(
   poolId: string,
   nodeId: string,
   filePath: string,
-  options: DeleteNodeFileOptions = { requestOptions: {} },
+  options: DeleteNodeFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod<DeleteNodeFile200Response | DeleteNodeFileDefaultResponse> {
   return context
     .path(
@@ -19628,7 +19628,7 @@ export async function deleteNodeFile(
   poolId: string,
   nodeId: string,
   filePath: string,
-  options: DeleteNodeFileOptions = { requestOptions: {} },
+  options: DeleteNodeFileOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteNodeFileSend(
     context,
@@ -19645,7 +19645,7 @@ export function _getNodeFileSend(
   poolId: string,
   nodeId: string,
   filePath: string,
-  options: GetNodeFileOptions = { requestOptions: {} },
+  options: GetNodeFileOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetNodeFile200Response | GetNodeFileDefaultResponse> {
   return context
     .path(
@@ -19692,7 +19692,7 @@ export async function getNodeFile(
   poolId: string,
   nodeId: string,
   filePath: string,
-  options: GetNodeFileOptions = { requestOptions: {} },
+  options: GetNodeFileOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
   const result = await _getNodeFileSend(
     context,
@@ -19709,7 +19709,7 @@ export function _getNodeFilePropertiesSend(
   poolId: string,
   nodeId: string,
   filePath: string,
-  options: GetNodeFilePropertiesOptions = { requestOptions: {} },
+  options: GetNodeFilePropertiesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   GetNodeFileProperties200Response | GetNodeFilePropertiesDefaultResponse
 > {
@@ -19755,7 +19755,7 @@ export async function getNodeFileProperties(
   poolId: string,
   nodeId: string,
   filePath: string,
-  options: GetNodeFilePropertiesOptions = { requestOptions: {} },
+  options: GetNodeFilePropertiesOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getNodeFilePropertiesSend(
     context,
@@ -19771,7 +19771,7 @@ export function _listNodeFilesSend(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: ListNodeFilesOptions = { requestOptions: {} },
+  options: ListNodeFilesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ListNodeFiles200Response | ListNodeFilesDefaultResponse> {
   return context
     .path("/pools/{poolId}/nodes/{nodeId}/files", poolId, nodeId)
@@ -19824,7 +19824,7 @@ export function listNodeFiles(
   context: Client,
   poolId: string,
   nodeId: string,
-  options: ListNodeFilesOptions = { requestOptions: {} },
+  options: ListNodeFilesOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<NodeFile> {
   return buildPagedAsyncIterator(
     context,

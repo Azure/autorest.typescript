@@ -9,7 +9,7 @@ import {
 import { create } from "../../api/completions/index.js";
 import { CompletionsCreateOptionalParams } from "../../models/options.js";
 
-export interface Completions {
+export interface CompletionsOperations {
   create: (
     body: CreateCompletionRequest,
     options?: CompletionsCreateOptionalParams,
@@ -25,7 +25,9 @@ export function getCompletions(context: OpenAIContext) {
   };
 }
 
-export function getCompletionsOperations(context: OpenAIContext): Completions {
+export function getCompletionsOperations(
+  context: OpenAIContext,
+): CompletionsOperations {
   return {
     ...getCompletions(context),
   };

@@ -11,13 +11,13 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
-export interface FooOperationsGetAvatarAsJpegOptions extends OperationOptions {
+export interface FooOperationsGetAvatarAsJpegOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
 // @public (undocumented)
-export interface FooOperationsGetAvatarAsPngOptions extends OperationOptions {
+export interface FooOperationsGetAvatarAsPngOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
@@ -25,9 +25,9 @@ export interface FooOperationsGetAvatarAsPngOptions extends OperationOptions {
 // @public (undocumented)
 export interface FooOperationsOperations {
     // (undocumented)
-    getAvatarAsJpeg: (image: Uint8Array, options?: FooOperationsGetAvatarAsJpegOptions) => Promise<void>;
+    getAvatarAsJpeg: (image: Uint8Array, options?: FooOperationsGetAvatarAsJpegOptionalParams) => Promise<void>;
     // (undocumented)
-    getAvatarAsPng: (image: Uint8Array, options?: FooOperationsGetAvatarAsPngOptions) => Promise<void>;
+    getAvatarAsPng: (image: Uint8Array, options?: FooOperationsGetAvatarAsPngOptionalParams) => Promise<void>;
 }
 
 // @public (undocumented)

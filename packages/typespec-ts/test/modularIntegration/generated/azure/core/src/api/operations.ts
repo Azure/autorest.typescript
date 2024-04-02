@@ -48,24 +48,24 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  CreateOrUpdateOptions,
-  CreateOrReplaceOptions,
-  GetOptions,
-  ListOptions,
-  ListWithPageOptions,
-  ListWithParametersOptions,
-  ListWithCustomPageModelOptions,
-  DeleteOptions,
-  ExportOptions,
-  ListFirstItemOptions,
-  ListSecondItemOptions,
+  CreateOrUpdateOptionalParams,
+  CreateOrReplaceOptionalParams,
+  GetOptionalParams,
+  ListOptionalParams,
+  ListWithPageOptionalParams,
+  ListWithParametersOptionalParams,
+  ListWithCustomPageModelOptionalParams,
+  DeleteOptionalParams,
+  ExportOptionalParams,
+  ListFirstItemOptionalParams,
+  ListSecondItemOptionalParams,
 } from "../models/options.js";
 
 export function _createOrUpdateSend(
   context: Client,
   id: number,
   resource: User,
-  options: CreateOrUpdateOptions = { requestOptions: {} },
+  options: CreateOrUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | CreateOrUpdate200Response
   | CreateOrUpdate201Response
@@ -120,7 +120,7 @@ export async function createOrUpdate(
   context: Client,
   id: number,
   resource: User,
-  options: CreateOrUpdateOptions = { requestOptions: {} },
+  options: CreateOrUpdateOptionalParams = { requestOptions: {} },
 ): Promise<User> {
   const result = await _createOrUpdateSend(context, id, resource, options);
   return _createOrUpdateDeserialize(result);
@@ -130,7 +130,7 @@ export function _createOrReplaceSend(
   context: Client,
   id: number,
   resource: User,
-  options: CreateOrReplaceOptions = { requestOptions: {} },
+  options: CreateOrReplaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | CreateOrReplace200Response
   | CreateOrReplace201Response
@@ -183,7 +183,7 @@ export async function createOrReplace(
   context: Client,
   id: number,
   resource: User,
-  options: CreateOrReplaceOptions = { requestOptions: {} },
+  options: CreateOrReplaceOptionalParams = { requestOptions: {} },
 ): Promise<User> {
   const result = await _createOrReplaceSend(context, id, resource, options);
   return _createOrReplaceDeserialize(result);
@@ -192,7 +192,7 @@ export async function createOrReplace(
 export function _getSend(
   context: Client,
   id: number,
-  options: GetOptions = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Get200Response | GetDefaultResponse> {
   return context
     .path("/azure/core/basic/users/{id}", id)
@@ -225,7 +225,7 @@ export async function _getDeserialize(
 export async function get(
   context: Client,
   id: number,
-  options: GetOptions = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} },
 ): Promise<User> {
   const result = await _getSend(context, id, options);
   return _getDeserialize(result);
@@ -233,7 +233,7 @@ export async function get(
 
 export function _listSend(
   context: Client,
-  options: ListOptions = { requestOptions: {} },
+  options: ListOptionalParams = { requestOptions: {} },
 ): StreamableMethod<List200Response | ListDefaultResponse> {
   return context
     .path("/azure/core/basic/users")
@@ -288,7 +288,7 @@ export async function _listDeserialize(
 /** Lists all Users */
 export function list(
   context: Client,
-  options: ListOptions = { requestOptions: {} },
+  options: ListOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<User> {
   return buildPagedAsyncIterator(
     context,
@@ -300,7 +300,7 @@ export function list(
 
 export function _listWithPageSend(
   context: Client,
-  options: ListWithPageOptions = { requestOptions: {} },
+  options: ListWithPageOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ListWithPage200Response | ListWithPageDefaultResponse> {
   return context
     .path("/azure/core/basic/page")
@@ -335,7 +335,7 @@ export async function _listWithPageDeserialize(
 /** List with Azure.Core.Page<>. */
 export function listWithPage(
   context: Client,
-  options: ListWithPageOptions = { requestOptions: {} },
+  options: ListWithPageOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<User> {
   return buildPagedAsyncIterator(
     context,
@@ -348,7 +348,7 @@ export function listWithPage(
 export function _listWithParametersSend(
   context: Client,
   bodyInput: ListItemInputBody,
-  options: ListWithParametersOptions = { requestOptions: {} },
+  options: ListWithParametersOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ListWithParameters200Response | ListWithParametersDefaultResponse
 > {
@@ -390,7 +390,7 @@ export async function _listWithParametersDeserialize(
 export function listWithParameters(
   context: Client,
   bodyInput: ListItemInputBody,
-  options: ListWithParametersOptions = { requestOptions: {} },
+  options: ListWithParametersOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<User> {
   return buildPagedAsyncIterator(
     context,
@@ -402,7 +402,7 @@ export function listWithParameters(
 
 export function _listWithCustomPageModelSend(
   context: Client,
-  options: ListWithCustomPageModelOptions = { requestOptions: {} },
+  options: ListWithCustomPageModelOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ListWithCustomPageModel200Response | ListWithCustomPageModelDefaultResponse
 > {
@@ -441,7 +441,7 @@ export async function _listWithCustomPageModelDeserialize(
 /** List with custom page model. */
 export function listWithCustomPageModel(
   context: Client,
-  options: ListWithCustomPageModelOptions = { requestOptions: {} },
+  options: ListWithCustomPageModelOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<User> {
   return buildPagedAsyncIterator(
     context,
@@ -454,7 +454,7 @@ export function listWithCustomPageModel(
 export function _$deleteSend(
   context: Client,
   id: number,
-  options: DeleteOptions = { requestOptions: {} },
+  options: DeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Delete204Response | DeleteDefaultResponse> {
   return context
     .path("/azure/core/basic/users/{id}", id)
@@ -480,7 +480,7 @@ export async function _$deleteDeserialize(
 export async function $delete(
   context: Client,
   id: number,
-  options: DeleteOptions = { requestOptions: {} },
+  options: DeleteOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _$deleteSend(context, id, options);
   return _$deleteDeserialize(result);
@@ -490,7 +490,7 @@ export function _$exportSend(
   context: Client,
   id: number,
   format: string,
-  options: ExportOptions = { requestOptions: {} },
+  options: ExportOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Export200Response | ExportDefaultResponse> {
   return context
     .path("/azure/core/basic/users/{id}:export", id)
@@ -532,7 +532,7 @@ export async function $export(
   context: Client,
   id: number,
   format: string,
-  options: ExportOptions = { requestOptions: {} },
+  options: ExportOptionalParams = { requestOptions: {} },
 ): Promise<User> {
   const result = await _$exportSend(context, id, format, options);
   return _$exportDeserialize(result);
@@ -540,7 +540,7 @@ export async function $export(
 
 export function _listFirstItemSend(
   context: Client,
-  options: ListFirstItemOptions = { requestOptions: {} },
+  options: ListFirstItemOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ListFirstItem200Response | ListFirstItemDefaultResponse> {
   return context
     .path("/azure/core/basic/first-item")
@@ -563,7 +563,7 @@ export async function _listFirstItemDeserialize(
 /** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
 export function listFirstItem(
   context: Client,
-  options: ListFirstItemOptions = { requestOptions: {} },
+  options: ListFirstItemOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<FirstItem> {
   return buildPagedAsyncIterator(
     context,
@@ -575,7 +575,7 @@ export function listFirstItem(
 
 export function _listSecondItemSend(
   context: Client,
-  options: ListSecondItemOptions = { requestOptions: {} },
+  options: ListSecondItemOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ListSecondItem200Response | ListSecondItemDefaultResponse> {
   return context
     .path("/azure/core/basic/second-item")
@@ -598,7 +598,7 @@ export async function _listSecondItemDeserialize(
 /** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
 export function listSecondItem(
   context: Client,
-  options: ListSecondItemOptions = { requestOptions: {} },
+  options: ListSecondItemOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<SecondItem> {
   return buildPagedAsyncIterator(
     context,

@@ -13,14 +13,14 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  WithoutApiVersionOptions,
-  WithQueryApiVersionOptions,
-  WithPathApiVersionOptions,
+  WithoutApiVersionOptionalParams,
+  WithQueryApiVersionOptionalParams,
+  WithPathApiVersionOptionalParams,
 } from "../models/options.js";
 
 export function _withoutApiVersionSend(
   context: Client,
-  options: WithoutApiVersionOptions = { requestOptions: {} },
+  options: WithoutApiVersionOptionalParams = { requestOptions: {} },
 ): StreamableMethod<WithoutApiVersion200Response> {
   return context
     .path("/server/versions/not-versioned/without-api-version")
@@ -39,7 +39,7 @@ export async function _withoutApiVersionDeserialize(
 
 export async function withoutApiVersion(
   context: Client,
-  options: WithoutApiVersionOptions = { requestOptions: {} },
+  options: WithoutApiVersionOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _withoutApiVersionSend(context, options);
   return _withoutApiVersionDeserialize(result);
@@ -48,7 +48,7 @@ export async function withoutApiVersion(
 export function _withQueryApiVersionSend(
   context: Client,
   apiVersion: string,
-  options: WithQueryApiVersionOptions = { requestOptions: {} },
+  options: WithQueryApiVersionOptionalParams = { requestOptions: {} },
 ): StreamableMethod<WithQueryApiVersion200Response> {
   return context
     .path("/server/versions/not-versioned/with-query-api-version")
@@ -71,7 +71,7 @@ export async function _withQueryApiVersionDeserialize(
 export async function withQueryApiVersion(
   context: Client,
   apiVersion: string,
-  options: WithQueryApiVersionOptions = { requestOptions: {} },
+  options: WithQueryApiVersionOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _withQueryApiVersionSend(context, apiVersion, options);
   return _withQueryApiVersionDeserialize(result);
@@ -80,7 +80,7 @@ export async function withQueryApiVersion(
 export function _withPathApiVersionSend(
   context: Client,
   apiVersion: string,
-  options: WithPathApiVersionOptions = { requestOptions: {} },
+  options: WithPathApiVersionOptionalParams = { requestOptions: {} },
 ): StreamableMethod<WithPathApiVersion200Response> {
   return context
     .path(
@@ -103,7 +103,7 @@ export async function _withPathApiVersionDeserialize(
 export async function withPathApiVersion(
   context: Client,
   apiVersion: string,
-  options: WithPathApiVersionOptions = { requestOptions: {} },
+  options: WithPathApiVersionOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _withPathApiVersionSend(context, apiVersion, options);
   return _withPathApiVersionDeserialize(result);

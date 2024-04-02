@@ -11,11 +11,14 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { ValidKeyOptions, ValidTokenOptions } from "../models/options.js";
+import {
+  ValidKeyOptionalParams,
+  ValidTokenOptionalParams,
+} from "../models/options.js";
 
 export function _validKeySend(
   context: Client,
-  options: ValidKeyOptions = { requestOptions: {} },
+  options: ValidKeyOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ValidKey204Response> {
   return context
     .path("/authentication/union/validkey")
@@ -35,7 +38,7 @@ export async function _validKeyDeserialize(
 /** Check whether client is authenticated */
 export async function validKey(
   context: Client,
-  options: ValidKeyOptions = { requestOptions: {} },
+  options: ValidKeyOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _validKeySend(context, options);
   return _validKeyDeserialize(result);
@@ -43,7 +46,7 @@ export async function validKey(
 
 export function _validTokenSend(
   context: Client,
-  options: ValidTokenOptions = { requestOptions: {} },
+  options: ValidTokenOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ValidToken204Response> {
   return context
     .path("/authentication/union/validtoken")
@@ -63,7 +66,7 @@ export async function _validTokenDeserialize(
 /** Check whether client is authenticated */
 export async function validToken(
   context: Client,
-  options: ValidTokenOptions = { requestOptions: {} },
+  options: ValidTokenOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _validTokenSend(context, options);
   return _validTokenDeserialize(result);

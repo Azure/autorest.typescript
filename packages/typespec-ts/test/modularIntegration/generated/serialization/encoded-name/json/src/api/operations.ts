@@ -12,12 +12,12 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { SendOptions, GetOptions } from "../models/options.js";
+import { SendOptionalParams, GetOptionalParams } from "../models/options.js";
 
 export function _sendSend(
   context: Client,
   body: JsonEncodedNameModel,
-  options: SendOptions = { requestOptions: {} },
+  options: SendOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Send204Response> {
   return context
     .path("/serialization/encoded-name/json/property")
@@ -38,7 +38,7 @@ export async function _sendDeserialize(result: Send204Response): Promise<void> {
 export async function send(
   context: Client,
   body: JsonEncodedNameModel,
-  options: SendOptions = { requestOptions: {} },
+  options: SendOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _sendSend(context, body, options);
   return _sendDeserialize(result);
@@ -46,7 +46,7 @@ export async function send(
 
 export function _getSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Get200Response> {
   return context
     .path("/serialization/encoded-name/json/property")
@@ -67,7 +67,7 @@ export async function _getDeserialize(
 
 export async function get(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} },
 ): Promise<JsonEncodedNameModel> {
   const result = await _getSend(context, options);
   return _getDeserialize(result);

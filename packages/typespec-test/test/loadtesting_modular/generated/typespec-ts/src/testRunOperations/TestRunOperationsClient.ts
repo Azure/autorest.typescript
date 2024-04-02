@@ -15,20 +15,20 @@ import {
   DimensionValueList,
 } from "./models/models.js";
 import {
-  TestRunOptions,
-  CreateOrUpdateAppComponentsOptions,
-  CreateOrUpdateServerMetricsConfigOptions,
-  DeleteTestRunOptions,
-  GetAppComponentsOptions,
-  GetServerMetricsConfigOptions,
-  GetTestRunOptions,
-  GetTestRunFileOptions,
-  ListMetricDimensionValuesOptions,
-  ListMetricDefinitionsOptions,
-  ListMetricNamespacesOptions,
-  ListMetricsOptions,
-  ListTestRunsOptions,
-  StopTestRunOptions,
+  TestRunOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  DeleteTestRunOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestRunOptionalParams,
+  GetTestRunFileOptionalParams,
+  ListMetricDimensionValuesOptionalParams,
+  ListMetricDefinitionsOptionalParams,
+  ListMetricNamespacesOptionalParams,
+  ListMetricsOptionalParams,
+  ListTestRunsOptionalParams,
+  StopTestRunOptionalParams,
 } from "./models/options.js";
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
@@ -71,7 +71,7 @@ export class TestRunOperationsClient {
   testRun(
     testRunId: string,
     resource: TestRun,
-    options: TestRunOptions = { requestOptions: {} },
+    options: TestRunOptionalParams = { requestOptions: {} },
   ): Promise<TestRun> {
     return testRun(this._client, testRunId, resource, options);
   }
@@ -80,7 +80,7 @@ export class TestRunOperationsClient {
   createOrUpdateAppComponents(
     testRunId: string,
     body: TestRunAppComponents,
-    options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} },
+    options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} },
   ): Promise<TestRunAppComponents> {
     return createOrUpdateAppComponents(this._client, testRunId, body, options);
   }
@@ -89,7 +89,9 @@ export class TestRunOperationsClient {
   createOrUpdateServerMetricsConfig(
     testRunId: string,
     body: TestRunServerMetricConfig,
-    options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} },
+    options: CreateOrUpdateServerMetricsConfigOptionalParams = {
+      requestOptions: {},
+    },
   ): Promise<TestRunServerMetricConfig> {
     return createOrUpdateServerMetricsConfig(
       this._client,
@@ -102,7 +104,7 @@ export class TestRunOperationsClient {
   /** Delete a test run by its name. */
   deleteTestRun(
     testRunId: string,
-    options: DeleteTestRunOptions = { requestOptions: {} },
+    options: DeleteTestRunOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return deleteTestRun(this._client, testRunId, options);
   }
@@ -113,7 +115,7 @@ export class TestRunOperationsClient {
    */
   getAppComponents(
     testRunId: string,
-    options: GetAppComponentsOptions = { requestOptions: {} },
+    options: GetAppComponentsOptionalParams = { requestOptions: {} },
   ): Promise<TestRunAppComponents> {
     return getAppComponents(this._client, testRunId, options);
   }
@@ -121,7 +123,7 @@ export class TestRunOperationsClient {
   /** List server metrics configuration for the given test run. */
   getServerMetricsConfig(
     testRunId: string,
-    options: GetServerMetricsConfigOptions = { requestOptions: {} },
+    options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
   ): Promise<TestRunServerMetricConfig> {
     return getServerMetricsConfig(this._client, testRunId, options);
   }
@@ -129,7 +131,7 @@ export class TestRunOperationsClient {
   /** Get test run details by name. */
   getTestRun(
     testRunId: string,
-    options: GetTestRunOptions = { requestOptions: {} },
+    options: GetTestRunOptionalParams = { requestOptions: {} },
   ): Promise<TestRun> {
     return getTestRun(this._client, testRunId, options);
   }
@@ -138,7 +140,7 @@ export class TestRunOperationsClient {
   getTestRunFile(
     testRunId: string,
     fileName: string,
-    options: GetTestRunFileOptions = { requestOptions: {} },
+    options: GetTestRunFileOptionalParams = { requestOptions: {} },
   ): Promise<FileInfo> {
     return getTestRunFile(this._client, testRunId, fileName, options);
   }
@@ -148,7 +150,7 @@ export class TestRunOperationsClient {
     testRunId: string,
     name: string,
     metricNamespace: string,
-    options: ListMetricDimensionValuesOptions = { requestOptions: {} },
+    options: ListMetricDimensionValuesOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<DimensionValueList> {
     return listMetricDimensionValues(
       this._client,
@@ -162,7 +164,7 @@ export class TestRunOperationsClient {
   /** List the metric definitions for a load test run. */
   listMetricDefinitions(
     testRunId: string,
-    options: ListMetricDefinitionsOptions = { requestOptions: {} },
+    options: ListMetricDefinitionsOptionalParams = { requestOptions: {} },
   ): Promise<MetricDefinitionCollection> {
     return listMetricDefinitions(this._client, testRunId, options);
   }
@@ -170,7 +172,7 @@ export class TestRunOperationsClient {
   /** List the metric namespaces for a load test run. */
   listMetricNamespaces(
     testRunId: string,
-    options: ListMetricNamespacesOptions = { requestOptions: {} },
+    options: ListMetricNamespacesOptionalParams = { requestOptions: {} },
   ): Promise<MetricNamespaceCollection> {
     return listMetricNamespaces(this._client, testRunId, options);
   }
@@ -179,14 +181,14 @@ export class TestRunOperationsClient {
   listMetrics(
     testRunId: string,
     body: MetricRequestPayload,
-    options: ListMetricsOptions = { requestOptions: {} },
+    options: ListMetricsOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<TimeSeriesElement> {
     return listMetrics(this._client, testRunId, body, options);
   }
 
   /** Get all test runs with given filters */
   listTestRuns(
-    options: ListTestRunsOptions = { requestOptions: {} },
+    options: ListTestRunsOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<TestRun> {
     return listTestRuns(this._client, options);
   }
@@ -194,7 +196,7 @@ export class TestRunOperationsClient {
   /** Stop test run by name. */
   stopTestRun(
     testRunId: string,
-    options: StopTestRunOptions = { requestOptions: {} },
+    options: StopTestRunOptionalParams = { requestOptions: {} },
   ): Promise<TestRun> {
     return stopTestRun(this._client, testRunId, options);
   }

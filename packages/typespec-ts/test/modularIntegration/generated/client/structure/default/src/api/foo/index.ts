@@ -11,11 +11,14 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { FooThreeOptions, FooFourOptions } from "../../models/options.js";
+import {
+  FooThreeOptionalParams,
+  FooFourOptionalParams,
+} from "../../models/options.js";
 
 export function _threeSend(
   context: Client,
-  options: FooThreeOptions = { requestOptions: {} },
+  options: FooThreeOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Three204Response> {
   return context
     .path("/three")
@@ -34,7 +37,7 @@ export async function _threeDeserialize(
 
 export async function three(
   context: Client,
-  options: FooThreeOptions = { requestOptions: {} },
+  options: FooThreeOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _threeSend(context, options);
   return _threeDeserialize(result);
@@ -42,7 +45,7 @@ export async function three(
 
 export function _fourSend(
   context: Client,
-  options: FooFourOptions = { requestOptions: {} },
+  options: FooFourOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Four204Response> {
   return context
     .path("/four")
@@ -59,7 +62,7 @@ export async function _fourDeserialize(result: Four204Response): Promise<void> {
 
 export async function four(
   context: Client,
-  options: FooFourOptions = { requestOptions: {} },
+  options: FooFourOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _fourSend(context, options);
   return _fourDeserialize(result);

@@ -8,24 +8,28 @@ import {
   unionEnumValuePut,
 } from "../../api/unionEnumValue/index.js";
 import {
-  UnionEnumValueGetOptions,
-  UnionEnumValuePutOptions,
+  UnionEnumValueGetOptionalParams,
+  UnionEnumValuePutOptionalParams,
 } from "../../models/options.js";
 
 export interface UnionEnumValueOperations {
-  get: (options?: UnionEnumValueGetOptions) => Promise<UnionEnumValueProperty>;
+  get: (
+    options?: UnionEnumValueGetOptionalParams,
+  ) => Promise<UnionEnumValueProperty>;
   put: (
     body: UnionEnumValueProperty,
-    options?: UnionEnumValuePutOptions,
+    options?: UnionEnumValuePutOptionalParams,
   ) => Promise<void>;
 }
 
 export function getUnionEnumValue(context: ValueTypesContext) {
   return {
-    get: (options?: UnionEnumValueGetOptions) =>
+    get: (options?: UnionEnumValueGetOptionalParams) =>
       unionEnumValueGet(context, options),
-    put: (body: UnionEnumValueProperty, options?: UnionEnumValuePutOptions) =>
-      unionEnumValuePut(context, body, options),
+    put: (
+      body: UnionEnumValueProperty,
+      options?: UnionEnumValuePutOptionalParams,
+    ) => unionEnumValuePut(context, body, options),
   };
 }
 

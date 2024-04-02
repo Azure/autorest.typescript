@@ -10,18 +10,18 @@ import {
   TestServerMetricConfig,
 } from "./models/models.js";
 import {
-  CreateOrUpdateTestOptions,
-  CreateOrUpdateAppComponentsOptions,
-  CreateOrUpdateServerMetricsConfigOptions,
-  GetAppComponentsOptions,
-  GetServerMetricsConfigOptions,
-  GetTestOptions,
-  GetTestFileOptions,
-  ListTestFilesOptions,
-  ListTestsOptions,
-  UploadTestFileOptions,
-  DeleteTestFileOptions,
-  DeleteTestOptions,
+  CreateOrUpdateTestOptionalParams,
+  CreateOrUpdateAppComponentsOptionalParams,
+  CreateOrUpdateServerMetricsConfigOptionalParams,
+  GetAppComponentsOptionalParams,
+  GetServerMetricsConfigOptionalParams,
+  GetTestOptionalParams,
+  GetTestFileOptionalParams,
+  ListTestFilesOptionalParams,
+  ListTestsOptionalParams,
+  UploadTestFileOptionalParams,
+  DeleteTestFileOptionalParams,
+  DeleteTestOptionalParams,
 } from "./models/options.js";
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
@@ -66,7 +66,7 @@ export class AdministrationOperationsClient {
   createOrUpdateTest(
     testId: string,
     body: Test,
-    options: CreateOrUpdateTestOptions = { requestOptions: {} },
+    options: CreateOrUpdateTestOptionalParams = { requestOptions: {} },
   ): Promise<Test> {
     return createOrUpdateTest(this._client, testId, body, options);
   }
@@ -75,7 +75,7 @@ export class AdministrationOperationsClient {
   createOrUpdateAppComponents(
     testId: string,
     body: TestAppComponents,
-    options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} },
+    options: CreateOrUpdateAppComponentsOptionalParams = { requestOptions: {} },
   ): Promise<TestAppComponents> {
     return createOrUpdateAppComponents(this._client, testId, body, options);
   }
@@ -84,7 +84,9 @@ export class AdministrationOperationsClient {
   createOrUpdateServerMetricsConfig(
     testId: string,
     body: TestServerMetricConfig,
-    options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} },
+    options: CreateOrUpdateServerMetricsConfigOptionalParams = {
+      requestOptions: {},
+    },
   ): Promise<TestServerMetricConfig> {
     return createOrUpdateServerMetricsConfig(
       this._client,
@@ -97,7 +99,7 @@ export class AdministrationOperationsClient {
   /** Get associated app component (collection of azure resources) for the given test. */
   getAppComponents(
     testId: string,
-    options: GetAppComponentsOptions = { requestOptions: {} },
+    options: GetAppComponentsOptionalParams = { requestOptions: {} },
   ): Promise<TestAppComponents> {
     return getAppComponents(this._client, testId, options);
   }
@@ -105,7 +107,7 @@ export class AdministrationOperationsClient {
   /** List server metrics configuration for the given test. */
   getServerMetricsConfig(
     testId: string,
-    options: GetServerMetricsConfigOptions = { requestOptions: {} },
+    options: GetServerMetricsConfigOptionalParams = { requestOptions: {} },
   ): Promise<TestServerMetricConfig> {
     return getServerMetricsConfig(this._client, testId, options);
   }
@@ -113,7 +115,7 @@ export class AdministrationOperationsClient {
   /** Get load test details by test name */
   getTest(
     testId: string,
-    options: GetTestOptions = { requestOptions: {} },
+    options: GetTestOptionalParams = { requestOptions: {} },
   ): Promise<Test> {
     return getTest(this._client, testId, options);
   }
@@ -122,7 +124,7 @@ export class AdministrationOperationsClient {
   getTestFile(
     testId: string,
     fileName: string,
-    options: GetTestFileOptions = { requestOptions: {} },
+    options: GetTestFileOptionalParams = { requestOptions: {} },
   ): Promise<FileInfo> {
     return getTestFile(this._client, testId, fileName, options);
   }
@@ -130,7 +132,7 @@ export class AdministrationOperationsClient {
   /** Get all test files. */
   listTestFiles(
     testId: string,
-    options: ListTestFilesOptions = { requestOptions: {} },
+    options: ListTestFilesOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<FileInfo> {
     return listTestFiles(this._client, testId, options);
   }
@@ -140,7 +142,7 @@ export class AdministrationOperationsClient {
    * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.
    */
   listTests(
-    options: ListTestsOptions = { requestOptions: {} },
+    options: ListTestsOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<Test> {
     return listTests(this._client, options);
   }
@@ -154,7 +156,7 @@ export class AdministrationOperationsClient {
     testId: string,
     fileName: string,
     body: Uint8Array,
-    options: UploadTestFileOptions = { requestOptions: {} },
+    options: UploadTestFileOptionalParams = { requestOptions: {} },
   ): Promise<FileInfo> {
     return uploadTestFile(this._client, testId, fileName, body, options);
   }
@@ -163,7 +165,7 @@ export class AdministrationOperationsClient {
   deleteTestFile(
     testId: string,
     fileName: string,
-    options: DeleteTestFileOptions = { requestOptions: {} },
+    options: DeleteTestFileOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return deleteTestFile(this._client, testId, fileName, options);
   }
@@ -171,7 +173,7 @@ export class AdministrationOperationsClient {
   /** Delete a test by its name. */
   deleteTest(
     testId: string,
-    options: DeleteTestOptions = { requestOptions: {} },
+    options: DeleteTestOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return deleteTest(this._client, testId, options);
   }

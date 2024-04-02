@@ -3,205 +3,208 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface ModelsWithAndOptions extends OperationOptions {}
+export interface ModelsWithAndOptionalParams extends OperationOptions {}
 
-export interface ModelsWithAsOptions extends OperationOptions {}
+export interface ModelsWithAsOptionalParams extends OperationOptions {}
 
-export interface ModelsWithAssertOptions extends OperationOptions {}
+export interface ModelsWithAssertOptionalParams extends OperationOptions {}
 
-export interface ModelsWithAsyncOptions extends OperationOptions {}
+export interface ModelsWithAsyncOptionalParams extends OperationOptions {}
 
-export interface ModelsWithAwaitOptions extends OperationOptions {}
+export interface ModelsWithAwaitOptionalParams extends OperationOptions {}
 
-export interface ModelsWithBreakOptions extends OperationOptions {}
+export interface ModelsWithBreakOptionalParams extends OperationOptions {}
 
-export interface ModelsWithClassOptions extends OperationOptions {}
+export interface ModelsWithClassOptionalParams extends OperationOptions {}
 
-export interface ModelsWithConstructorOptions extends OperationOptions {}
+export interface ModelsWithConstructorOptionalParams extends OperationOptions {}
 
-export interface ModelsWithContinueOptions extends OperationOptions {}
+export interface ModelsWithContinueOptionalParams extends OperationOptions {}
 
-export interface ModelsWithDefOptions extends OperationOptions {}
+export interface ModelsWithDefOptionalParams extends OperationOptions {}
 
-export interface ModelsWithDelOptions extends OperationOptions {}
+export interface ModelsWithDelOptionalParams extends OperationOptions {}
 
-export interface ModelsWithElifOptions extends OperationOptions {}
+export interface ModelsWithElifOptionalParams extends OperationOptions {}
 
-export interface ModelsWithElseOptions extends OperationOptions {}
+export interface ModelsWithElseOptionalParams extends OperationOptions {}
 
-export interface ModelsWithExceptOptions extends OperationOptions {}
+export interface ModelsWithExceptOptionalParams extends OperationOptions {}
 
-export interface ModelsWithExecOptions extends OperationOptions {}
+export interface ModelsWithExecOptionalParams extends OperationOptions {}
 
-export interface ModelsWithFinallyOptions extends OperationOptions {}
+export interface ModelsWithFinallyOptionalParams extends OperationOptions {}
 
-export interface ModelsWithForOptions extends OperationOptions {}
+export interface ModelsWithForOptionalParams extends OperationOptions {}
 
-export interface ModelsWithFromOptions extends OperationOptions {}
+export interface ModelsWithFromOptionalParams extends OperationOptions {}
 
-export interface ModelsWithGlobalOptions extends OperationOptions {}
+export interface ModelsWithGlobalOptionalParams extends OperationOptions {}
 
-export interface ModelsWithIfOptions extends OperationOptions {}
+export interface ModelsWithIfOptionalParams extends OperationOptions {}
 
-export interface ModelsWithImportOptions extends OperationOptions {}
+export interface ModelsWithImportOptionalParams extends OperationOptions {}
 
-export interface ModelsWithInOptions extends OperationOptions {}
+export interface ModelsWithInOptionalParams extends OperationOptions {}
 
-export interface ModelsWithIsOptions extends OperationOptions {}
+export interface ModelsWithIsOptionalParams extends OperationOptions {}
 
-export interface ModelsWithLambdaOptions extends OperationOptions {}
+export interface ModelsWithLambdaOptionalParams extends OperationOptions {}
 
-export interface ModelsWithNotOptions extends OperationOptions {}
+export interface ModelsWithNotOptionalParams extends OperationOptions {}
 
-export interface ModelsWithOrOptions extends OperationOptions {}
+export interface ModelsWithOrOptionalParams extends OperationOptions {}
 
-export interface ModelsWithPassOptions extends OperationOptions {}
+export interface ModelsWithPassOptionalParams extends OperationOptions {}
 
-export interface ModelsWithRaiseOptions extends OperationOptions {}
+export interface ModelsWithRaiseOptionalParams extends OperationOptions {}
 
-export interface ModelsWithReturnOptions extends OperationOptions {}
+export interface ModelsWithReturnOptionalParams extends OperationOptions {}
 
-export interface ModelsWithTryOptions extends OperationOptions {}
+export interface ModelsWithTryOptionalParams extends OperationOptions {}
 
-export interface ModelsWithWhileOptions extends OperationOptions {}
+export interface ModelsWithWhileOptionalParams extends OperationOptions {}
 
-export interface ModelsWithWithOptions extends OperationOptions {}
+export interface ModelsWithWithOptionalParams extends OperationOptions {}
 
-export interface ModelsWithYieldOptions extends OperationOptions {}
+export interface ModelsWithYieldOptionalParams extends OperationOptions {}
 
-export interface ModelPropertiesSameAsModelOptions extends OperationOptions {}
+export interface ModelPropertiesSameAsModelOptionalParams
+  extends OperationOptions {}
 
-export interface OperationsAndOptions extends OperationOptions {}
+export interface OperationsAndOptionalParams extends OperationOptions {}
 
-export interface OperationsAsOptions extends OperationOptions {}
+export interface OperationsAsOptionalParams extends OperationOptions {}
 
-export interface OperationsAssertOptions extends OperationOptions {}
+export interface OperationsAssertOptionalParams extends OperationOptions {}
 
-export interface OperationsAsyncOptions extends OperationOptions {}
+export interface OperationsAsyncOptionalParams extends OperationOptions {}
 
-export interface OperationsAwaitOptions extends OperationOptions {}
+export interface OperationsAwaitOptionalParams extends OperationOptions {}
 
-export interface OperationsBreakOptions extends OperationOptions {}
+export interface OperationsBreakOptionalParams extends OperationOptions {}
 
-export interface OperationsClassOptions extends OperationOptions {}
+export interface OperationsClassOptionalParams extends OperationOptions {}
 
-export interface OperationsConstructorOptions extends OperationOptions {}
+export interface OperationsConstructorOptionalParams extends OperationOptions {}
 
-export interface OperationsContinueOptions extends OperationOptions {}
+export interface OperationsContinueOptionalParams extends OperationOptions {}
 
-export interface OperationsDefOptions extends OperationOptions {}
+export interface OperationsDefOptionalParams extends OperationOptions {}
 
-export interface OperationsDelOptions extends OperationOptions {}
+export interface OperationsDelOptionalParams extends OperationOptions {}
 
-export interface OperationsElifOptions extends OperationOptions {}
+export interface OperationsElifOptionalParams extends OperationOptions {}
 
-export interface OperationsElseOptions extends OperationOptions {}
+export interface OperationsElseOptionalParams extends OperationOptions {}
 
-export interface OperationsExceptOptions extends OperationOptions {}
+export interface OperationsExceptOptionalParams extends OperationOptions {}
 
-export interface OperationsExecOptions extends OperationOptions {}
+export interface OperationsExecOptionalParams extends OperationOptions {}
 
-export interface OperationsFinallyOptions extends OperationOptions {}
+export interface OperationsFinallyOptionalParams extends OperationOptions {}
 
-export interface OperationsForOptions extends OperationOptions {}
+export interface OperationsForOptionalParams extends OperationOptions {}
 
-export interface OperationsFromOptions extends OperationOptions {}
+export interface OperationsFromOptionalParams extends OperationOptions {}
 
-export interface OperationsGlobalOptions extends OperationOptions {}
+export interface OperationsGlobalOptionalParams extends OperationOptions {}
 
-export interface OperationsIfOptions extends OperationOptions {}
+export interface OperationsIfOptionalParams extends OperationOptions {}
 
-export interface OperationsImportOptions extends OperationOptions {}
+export interface OperationsImportOptionalParams extends OperationOptions {}
 
-export interface OperationsInOptions extends OperationOptions {}
+export interface OperationsInOptionalParams extends OperationOptions {}
 
-export interface OperationsIsOptions extends OperationOptions {}
+export interface OperationsIsOptionalParams extends OperationOptions {}
 
-export interface OperationsLambdaOptions extends OperationOptions {}
+export interface OperationsLambdaOptionalParams extends OperationOptions {}
 
-export interface OperationsNotOptions extends OperationOptions {}
+export interface OperationsNotOptionalParams extends OperationOptions {}
 
-export interface OperationsOrOptions extends OperationOptions {}
+export interface OperationsOrOptionalParams extends OperationOptions {}
 
-export interface OperationsPassOptions extends OperationOptions {}
+export interface OperationsPassOptionalParams extends OperationOptions {}
 
-export interface OperationsRaiseOptions extends OperationOptions {}
+export interface OperationsRaiseOptionalParams extends OperationOptions {}
 
-export interface OperationsReturnOptions extends OperationOptions {}
+export interface OperationsReturnOptionalParams extends OperationOptions {}
 
-export interface OperationsTryOptions extends OperationOptions {}
+export interface OperationsTryOptionalParams extends OperationOptions {}
 
-export interface OperationsWhileOptions extends OperationOptions {}
+export interface OperationsWhileOptionalParams extends OperationOptions {}
 
-export interface OperationsWithOptions extends OperationOptions {}
+export interface OperationsWithOptionalParams extends OperationOptions {}
 
-export interface OperationsYieldOptions extends OperationOptions {}
+export interface OperationsYieldOptionalParams extends OperationOptions {}
 
-export interface ParametersWithAndOptions extends OperationOptions {}
+export interface ParametersWithAndOptionalParams extends OperationOptions {}
 
-export interface ParametersWithAsOptions extends OperationOptions {}
+export interface ParametersWithAsOptionalParams extends OperationOptions {}
 
-export interface ParametersWithAssertOptions extends OperationOptions {}
+export interface ParametersWithAssertOptionalParams extends OperationOptions {}
 
-export interface ParametersWithAsyncOptions extends OperationOptions {}
+export interface ParametersWithAsyncOptionalParams extends OperationOptions {}
 
-export interface ParametersWithAwaitOptions extends OperationOptions {}
+export interface ParametersWithAwaitOptionalParams extends OperationOptions {}
 
-export interface ParametersWithBreakOptions extends OperationOptions {}
+export interface ParametersWithBreakOptionalParams extends OperationOptions {}
 
-export interface ParametersWithClassOptions extends OperationOptions {}
+export interface ParametersWithClassOptionalParams extends OperationOptions {}
 
-export interface ParametersWithConstructorOptions extends OperationOptions {}
+export interface ParametersWithConstructorOptionalParams
+  extends OperationOptions {}
 
-export interface ParametersWithContinueOptions extends OperationOptions {}
+export interface ParametersWithContinueOptionalParams
+  extends OperationOptions {}
 
-export interface ParametersWithDefOptions extends OperationOptions {}
+export interface ParametersWithDefOptionalParams extends OperationOptions {}
 
-export interface ParametersWithDelOptions extends OperationOptions {}
+export interface ParametersWithDelOptionalParams extends OperationOptions {}
 
-export interface ParametersWithElifOptions extends OperationOptions {}
+export interface ParametersWithElifOptionalParams extends OperationOptions {}
 
-export interface ParametersWithElseOptions extends OperationOptions {}
+export interface ParametersWithElseOptionalParams extends OperationOptions {}
 
-export interface ParametersWithExceptOptions extends OperationOptions {}
+export interface ParametersWithExceptOptionalParams extends OperationOptions {}
 
-export interface ParametersWithExecOptions extends OperationOptions {}
+export interface ParametersWithExecOptionalParams extends OperationOptions {}
 
-export interface ParametersWithFinallyOptions extends OperationOptions {}
+export interface ParametersWithFinallyOptionalParams extends OperationOptions {}
 
-export interface ParametersWithForOptions extends OperationOptions {}
+export interface ParametersWithForOptionalParams extends OperationOptions {}
 
-export interface ParametersWithFromOptions extends OperationOptions {}
+export interface ParametersWithFromOptionalParams extends OperationOptions {}
 
-export interface ParametersWithGlobalOptions extends OperationOptions {}
+export interface ParametersWithGlobalOptionalParams extends OperationOptions {}
 
-export interface ParametersWithIfOptions extends OperationOptions {}
+export interface ParametersWithIfOptionalParams extends OperationOptions {}
 
-export interface ParametersWithImportOptions extends OperationOptions {}
+export interface ParametersWithImportOptionalParams extends OperationOptions {}
 
-export interface ParametersWithInOptions extends OperationOptions {}
+export interface ParametersWithInOptionalParams extends OperationOptions {}
 
-export interface ParametersWithIsOptions extends OperationOptions {}
+export interface ParametersWithIsOptionalParams extends OperationOptions {}
 
-export interface ParametersWithLambdaOptions extends OperationOptions {}
+export interface ParametersWithLambdaOptionalParams extends OperationOptions {}
 
-export interface ParametersWithNotOptions extends OperationOptions {}
+export interface ParametersWithNotOptionalParams extends OperationOptions {}
 
-export interface ParametersWithOrOptions extends OperationOptions {}
+export interface ParametersWithOrOptionalParams extends OperationOptions {}
 
-export interface ParametersWithPassOptions extends OperationOptions {}
+export interface ParametersWithPassOptionalParams extends OperationOptions {}
 
-export interface ParametersWithRaiseOptions extends OperationOptions {}
+export interface ParametersWithRaiseOptionalParams extends OperationOptions {}
 
-export interface ParametersWithReturnOptions extends OperationOptions {}
+export interface ParametersWithReturnOptionalParams extends OperationOptions {}
 
-export interface ParametersWithTryOptions extends OperationOptions {}
+export interface ParametersWithTryOptionalParams extends OperationOptions {}
 
-export interface ParametersWithWhileOptions extends OperationOptions {}
+export interface ParametersWithWhileOptionalParams extends OperationOptions {}
 
-export interface ParametersWithWithOptions extends OperationOptions {}
+export interface ParametersWithWithOptionalParams extends OperationOptions {}
 
-export interface ParametersWithYieldOptions extends OperationOptions {}
+export interface ParametersWithYieldOptionalParams extends OperationOptions {}
 
-export interface ParametersWithCancellationTokenOptions
+export interface ParametersWithCancellationTokenOptionalParams
   extends OperationOptions {}

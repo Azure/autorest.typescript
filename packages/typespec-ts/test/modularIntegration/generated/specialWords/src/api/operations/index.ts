@@ -43,44 +43,44 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  OperationsAndOptions,
-  OperationsAsOptions,
-  OperationsAssertOptions,
-  OperationsAsyncOptions,
-  OperationsAwaitOptions,
-  OperationsBreakOptions,
-  OperationsClassOptions,
-  OperationsConstructorOptions,
-  OperationsContinueOptions,
-  OperationsDefOptions,
-  OperationsDelOptions,
-  OperationsElifOptions,
-  OperationsElseOptions,
-  OperationsExceptOptions,
-  OperationsExecOptions,
-  OperationsFinallyOptions,
-  OperationsForOptions,
-  OperationsFromOptions,
-  OperationsGlobalOptions,
-  OperationsIfOptions,
-  OperationsImportOptions,
-  OperationsInOptions,
-  OperationsIsOptions,
-  OperationsLambdaOptions,
-  OperationsNotOptions,
-  OperationsOrOptions,
-  OperationsPassOptions,
-  OperationsRaiseOptions,
-  OperationsReturnOptions,
-  OperationsTryOptions,
-  OperationsWhileOptions,
-  OperationsWithOptions,
-  OperationsYieldOptions,
+  OperationsAndOptionalParams,
+  OperationsAsOptionalParams,
+  OperationsAssertOptionalParams,
+  OperationsAsyncOptionalParams,
+  OperationsAwaitOptionalParams,
+  OperationsBreakOptionalParams,
+  OperationsClassOptionalParams,
+  OperationsConstructorOptionalParams,
+  OperationsContinueOptionalParams,
+  OperationsDefOptionalParams,
+  OperationsDelOptionalParams,
+  OperationsElifOptionalParams,
+  OperationsElseOptionalParams,
+  OperationsExceptOptionalParams,
+  OperationsExecOptionalParams,
+  OperationsFinallyOptionalParams,
+  OperationsForOptionalParams,
+  OperationsFromOptionalParams,
+  OperationsGlobalOptionalParams,
+  OperationsIfOptionalParams,
+  OperationsImportOptionalParams,
+  OperationsInOptionalParams,
+  OperationsIsOptionalParams,
+  OperationsLambdaOptionalParams,
+  OperationsNotOptionalParams,
+  OperationsOrOptionalParams,
+  OperationsPassOptionalParams,
+  OperationsRaiseOptionalParams,
+  OperationsReturnOptionalParams,
+  OperationsTryOptionalParams,
+  OperationsWhileOptionalParams,
+  OperationsWithOptionalParams,
+  OperationsYieldOptionalParams,
 } from "../../models/options.js";
 
 export function _operationsAndSend(
   context: Client,
-  options: OperationsAndOptions = { requestOptions: {} },
+  options: OperationsAndOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsAnd204Response> {
   return context
     .path("/special-words/operations/and")
@@ -99,7 +99,7 @@ export async function _operationsAndDeserialize(
 
 export async function operationsAnd(
   context: Client,
-  options: OperationsAndOptions = { requestOptions: {} },
+  options: OperationsAndOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsAndSend(context, options);
   return _operationsAndDeserialize(result);
@@ -107,7 +107,7 @@ export async function operationsAnd(
 
 export function _operationsAsSend(
   context: Client,
-  options: OperationsAsOptions = { requestOptions: {} },
+  options: OperationsAsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsAs204Response> {
   return context
     .path("/special-words/operations/as")
@@ -126,7 +126,7 @@ export async function _operationsAsDeserialize(
 
 export async function operationsAs(
   context: Client,
-  options: OperationsAsOptions = { requestOptions: {} },
+  options: OperationsAsOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsAsSend(context, options);
   return _operationsAsDeserialize(result);
@@ -134,7 +134,7 @@ export async function operationsAs(
 
 export function _operationsAssertSend(
   context: Client,
-  options: OperationsAssertOptions = { requestOptions: {} },
+  options: OperationsAssertOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsAssert204Response> {
   return context
     .path("/special-words/operations/assert")
@@ -153,7 +153,7 @@ export async function _operationsAssertDeserialize(
 
 export async function operationsAssert(
   context: Client,
-  options: OperationsAssertOptions = { requestOptions: {} },
+  options: OperationsAssertOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsAssertSend(context, options);
   return _operationsAssertDeserialize(result);
@@ -161,7 +161,7 @@ export async function operationsAssert(
 
 export function _operationsAsyncSend(
   context: Client,
-  options: OperationsAsyncOptions = { requestOptions: {} },
+  options: OperationsAsyncOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsAsync204Response> {
   return context
     .path("/special-words/operations/async")
@@ -180,7 +180,7 @@ export async function _operationsAsyncDeserialize(
 
 export async function operationsAsync(
   context: Client,
-  options: OperationsAsyncOptions = { requestOptions: {} },
+  options: OperationsAsyncOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsAsyncSend(context, options);
   return _operationsAsyncDeserialize(result);
@@ -188,7 +188,7 @@ export async function operationsAsync(
 
 export function _operationsAwaitSend(
   context: Client,
-  options: OperationsAwaitOptions = { requestOptions: {} },
+  options: OperationsAwaitOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsAwait204Response> {
   return context
     .path("/special-words/operations/await")
@@ -207,7 +207,7 @@ export async function _operationsAwaitDeserialize(
 
 export async function operationsAwait(
   context: Client,
-  options: OperationsAwaitOptions = { requestOptions: {} },
+  options: OperationsAwaitOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsAwaitSend(context, options);
   return _operationsAwaitDeserialize(result);
@@ -215,7 +215,7 @@ export async function operationsAwait(
 
 export function _operationsBreakSend(
   context: Client,
-  options: OperationsBreakOptions = { requestOptions: {} },
+  options: OperationsBreakOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsBreak204Response> {
   return context
     .path("/special-words/operations/break")
@@ -234,7 +234,7 @@ export async function _operationsBreakDeserialize(
 
 export async function operationsBreak(
   context: Client,
-  options: OperationsBreakOptions = { requestOptions: {} },
+  options: OperationsBreakOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsBreakSend(context, options);
   return _operationsBreakDeserialize(result);
@@ -242,7 +242,7 @@ export async function operationsBreak(
 
 export function _operationsClassSend(
   context: Client,
-  options: OperationsClassOptions = { requestOptions: {} },
+  options: OperationsClassOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsClass204Response> {
   return context
     .path("/special-words/operations/class")
@@ -261,7 +261,7 @@ export async function _operationsClassDeserialize(
 
 export async function operationsClass(
   context: Client,
-  options: OperationsClassOptions = { requestOptions: {} },
+  options: OperationsClassOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsClassSend(context, options);
   return _operationsClassDeserialize(result);
@@ -269,7 +269,7 @@ export async function operationsClass(
 
 export function _operationsConstructorSend(
   context: Client,
-  options: OperationsConstructorOptions = { requestOptions: {} },
+  options: OperationsConstructorOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsConstructor204Response> {
   return context
     .path("/special-words/operations/constructor")
@@ -288,7 +288,7 @@ export async function _operationsConstructorDeserialize(
 
 export async function operationsConstructor(
   context: Client,
-  options: OperationsConstructorOptions = { requestOptions: {} },
+  options: OperationsConstructorOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsConstructorSend(context, options);
   return _operationsConstructorDeserialize(result);
@@ -296,7 +296,7 @@ export async function operationsConstructor(
 
 export function _operationsContinueSend(
   context: Client,
-  options: OperationsContinueOptions = { requestOptions: {} },
+  options: OperationsContinueOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsContinue204Response> {
   return context
     .path("/special-words/operations/continue")
@@ -315,7 +315,7 @@ export async function _operationsContinueDeserialize(
 
 export async function operationsContinue(
   context: Client,
-  options: OperationsContinueOptions = { requestOptions: {} },
+  options: OperationsContinueOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsContinueSend(context, options);
   return _operationsContinueDeserialize(result);
@@ -323,7 +323,7 @@ export async function operationsContinue(
 
 export function _operationsDefSend(
   context: Client,
-  options: OperationsDefOptions = { requestOptions: {} },
+  options: OperationsDefOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsDef204Response> {
   return context
     .path("/special-words/operations/def")
@@ -342,7 +342,7 @@ export async function _operationsDefDeserialize(
 
 export async function operationsDef(
   context: Client,
-  options: OperationsDefOptions = { requestOptions: {} },
+  options: OperationsDefOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsDefSend(context, options);
   return _operationsDefDeserialize(result);
@@ -350,7 +350,7 @@ export async function operationsDef(
 
 export function _operationsDelSend(
   context: Client,
-  options: OperationsDelOptions = { requestOptions: {} },
+  options: OperationsDelOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsDel204Response> {
   return context
     .path("/special-words/operations/del")
@@ -369,7 +369,7 @@ export async function _operationsDelDeserialize(
 
 export async function operationsDel(
   context: Client,
-  options: OperationsDelOptions = { requestOptions: {} },
+  options: OperationsDelOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsDelSend(context, options);
   return _operationsDelDeserialize(result);
@@ -377,7 +377,7 @@ export async function operationsDel(
 
 export function _operationsElifSend(
   context: Client,
-  options: OperationsElifOptions = { requestOptions: {} },
+  options: OperationsElifOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsElif204Response> {
   return context
     .path("/special-words/operations/elif")
@@ -396,7 +396,7 @@ export async function _operationsElifDeserialize(
 
 export async function operationsElif(
   context: Client,
-  options: OperationsElifOptions = { requestOptions: {} },
+  options: OperationsElifOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsElifSend(context, options);
   return _operationsElifDeserialize(result);
@@ -404,7 +404,7 @@ export async function operationsElif(
 
 export function _operationsElseSend(
   context: Client,
-  options: OperationsElseOptions = { requestOptions: {} },
+  options: OperationsElseOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsElse204Response> {
   return context
     .path("/special-words/operations/else")
@@ -423,7 +423,7 @@ export async function _operationsElseDeserialize(
 
 export async function operationsElse(
   context: Client,
-  options: OperationsElseOptions = { requestOptions: {} },
+  options: OperationsElseOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsElseSend(context, options);
   return _operationsElseDeserialize(result);
@@ -431,7 +431,7 @@ export async function operationsElse(
 
 export function _operationsExceptSend(
   context: Client,
-  options: OperationsExceptOptions = { requestOptions: {} },
+  options: OperationsExceptOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsExcept204Response> {
   return context
     .path("/special-words/operations/except")
@@ -450,7 +450,7 @@ export async function _operationsExceptDeserialize(
 
 export async function operationsExcept(
   context: Client,
-  options: OperationsExceptOptions = { requestOptions: {} },
+  options: OperationsExceptOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsExceptSend(context, options);
   return _operationsExceptDeserialize(result);
@@ -458,7 +458,7 @@ export async function operationsExcept(
 
 export function _operationsExecSend(
   context: Client,
-  options: OperationsExecOptions = { requestOptions: {} },
+  options: OperationsExecOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsExec204Response> {
   return context
     .path("/special-words/operations/exec")
@@ -477,7 +477,7 @@ export async function _operationsExecDeserialize(
 
 export async function operationsExec(
   context: Client,
-  options: OperationsExecOptions = { requestOptions: {} },
+  options: OperationsExecOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsExecSend(context, options);
   return _operationsExecDeserialize(result);
@@ -485,7 +485,7 @@ export async function operationsExec(
 
 export function _operationsFinallySend(
   context: Client,
-  options: OperationsFinallyOptions = { requestOptions: {} },
+  options: OperationsFinallyOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsFinally204Response> {
   return context
     .path("/special-words/operations/finally")
@@ -504,7 +504,7 @@ export async function _operationsFinallyDeserialize(
 
 export async function operationsFinally(
   context: Client,
-  options: OperationsFinallyOptions = { requestOptions: {} },
+  options: OperationsFinallyOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsFinallySend(context, options);
   return _operationsFinallyDeserialize(result);
@@ -512,7 +512,7 @@ export async function operationsFinally(
 
 export function _operationsForSend(
   context: Client,
-  options: OperationsForOptions = { requestOptions: {} },
+  options: OperationsForOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsFor204Response> {
   return context
     .path("/special-words/operations/for")
@@ -531,7 +531,7 @@ export async function _operationsForDeserialize(
 
 export async function operationsFor(
   context: Client,
-  options: OperationsForOptions = { requestOptions: {} },
+  options: OperationsForOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsForSend(context, options);
   return _operationsForDeserialize(result);
@@ -539,7 +539,7 @@ export async function operationsFor(
 
 export function _operationsFromSend(
   context: Client,
-  options: OperationsFromOptions = { requestOptions: {} },
+  options: OperationsFromOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsFrom204Response> {
   return context
     .path("/special-words/operations/from")
@@ -558,7 +558,7 @@ export async function _operationsFromDeserialize(
 
 export async function operationsFrom(
   context: Client,
-  options: OperationsFromOptions = { requestOptions: {} },
+  options: OperationsFromOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsFromSend(context, options);
   return _operationsFromDeserialize(result);
@@ -566,7 +566,7 @@ export async function operationsFrom(
 
 export function _operationsGlobalSend(
   context: Client,
-  options: OperationsGlobalOptions = { requestOptions: {} },
+  options: OperationsGlobalOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsGlobal204Response> {
   return context
     .path("/special-words/operations/global")
@@ -585,7 +585,7 @@ export async function _operationsGlobalDeserialize(
 
 export async function operationsGlobal(
   context: Client,
-  options: OperationsGlobalOptions = { requestOptions: {} },
+  options: OperationsGlobalOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsGlobalSend(context, options);
   return _operationsGlobalDeserialize(result);
@@ -593,7 +593,7 @@ export async function operationsGlobal(
 
 export function _operationsIfSend(
   context: Client,
-  options: OperationsIfOptions = { requestOptions: {} },
+  options: OperationsIfOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsIf204Response> {
   return context
     .path("/special-words/operations/if")
@@ -612,7 +612,7 @@ export async function _operationsIfDeserialize(
 
 export async function operationsIf(
   context: Client,
-  options: OperationsIfOptions = { requestOptions: {} },
+  options: OperationsIfOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsIfSend(context, options);
   return _operationsIfDeserialize(result);
@@ -620,7 +620,7 @@ export async function operationsIf(
 
 export function _operationsImportSend(
   context: Client,
-  options: OperationsImportOptions = { requestOptions: {} },
+  options: OperationsImportOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsImport204Response> {
   return context
     .path("/special-words/operations/import")
@@ -639,7 +639,7 @@ export async function _operationsImportDeserialize(
 
 export async function operationsImport(
   context: Client,
-  options: OperationsImportOptions = { requestOptions: {} },
+  options: OperationsImportOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsImportSend(context, options);
   return _operationsImportDeserialize(result);
@@ -647,7 +647,7 @@ export async function operationsImport(
 
 export function _operationsInSend(
   context: Client,
-  options: OperationsInOptions = { requestOptions: {} },
+  options: OperationsInOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsIn204Response> {
   return context
     .path("/special-words/operations/in")
@@ -666,7 +666,7 @@ export async function _operationsInDeserialize(
 
 export async function operationsIn(
   context: Client,
-  options: OperationsInOptions = { requestOptions: {} },
+  options: OperationsInOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsInSend(context, options);
   return _operationsInDeserialize(result);
@@ -674,7 +674,7 @@ export async function operationsIn(
 
 export function _operationsIsSend(
   context: Client,
-  options: OperationsIsOptions = { requestOptions: {} },
+  options: OperationsIsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsIs204Response> {
   return context
     .path("/special-words/operations/is")
@@ -693,7 +693,7 @@ export async function _operationsIsDeserialize(
 
 export async function operationsIs(
   context: Client,
-  options: OperationsIsOptions = { requestOptions: {} },
+  options: OperationsIsOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsIsSend(context, options);
   return _operationsIsDeserialize(result);
@@ -701,7 +701,7 @@ export async function operationsIs(
 
 export function _operationsLambdaSend(
   context: Client,
-  options: OperationsLambdaOptions = { requestOptions: {} },
+  options: OperationsLambdaOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsLambda204Response> {
   return context
     .path("/special-words/operations/lambda")
@@ -720,7 +720,7 @@ export async function _operationsLambdaDeserialize(
 
 export async function operationsLambda(
   context: Client,
-  options: OperationsLambdaOptions = { requestOptions: {} },
+  options: OperationsLambdaOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsLambdaSend(context, options);
   return _operationsLambdaDeserialize(result);
@@ -728,7 +728,7 @@ export async function operationsLambda(
 
 export function _operationsNotSend(
   context: Client,
-  options: OperationsNotOptions = { requestOptions: {} },
+  options: OperationsNotOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsNot204Response> {
   return context
     .path("/special-words/operations/not")
@@ -747,7 +747,7 @@ export async function _operationsNotDeserialize(
 
 export async function operationsNot(
   context: Client,
-  options: OperationsNotOptions = { requestOptions: {} },
+  options: OperationsNotOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsNotSend(context, options);
   return _operationsNotDeserialize(result);
@@ -755,7 +755,7 @@ export async function operationsNot(
 
 export function _operationsOrSend(
   context: Client,
-  options: OperationsOrOptions = { requestOptions: {} },
+  options: OperationsOrOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsOr204Response> {
   return context
     .path("/special-words/operations/or")
@@ -774,7 +774,7 @@ export async function _operationsOrDeserialize(
 
 export async function operationsOr(
   context: Client,
-  options: OperationsOrOptions = { requestOptions: {} },
+  options: OperationsOrOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsOrSend(context, options);
   return _operationsOrDeserialize(result);
@@ -782,7 +782,7 @@ export async function operationsOr(
 
 export function _operationsPassSend(
   context: Client,
-  options: OperationsPassOptions = { requestOptions: {} },
+  options: OperationsPassOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsPass204Response> {
   return context
     .path("/special-words/operations/pass")
@@ -801,7 +801,7 @@ export async function _operationsPassDeserialize(
 
 export async function operationsPass(
   context: Client,
-  options: OperationsPassOptions = { requestOptions: {} },
+  options: OperationsPassOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsPassSend(context, options);
   return _operationsPassDeserialize(result);
@@ -809,7 +809,7 @@ export async function operationsPass(
 
 export function _operationsRaiseSend(
   context: Client,
-  options: OperationsRaiseOptions = { requestOptions: {} },
+  options: OperationsRaiseOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsRaise204Response> {
   return context
     .path("/special-words/operations/raise")
@@ -828,7 +828,7 @@ export async function _operationsRaiseDeserialize(
 
 export async function operationsRaise(
   context: Client,
-  options: OperationsRaiseOptions = { requestOptions: {} },
+  options: OperationsRaiseOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsRaiseSend(context, options);
   return _operationsRaiseDeserialize(result);
@@ -836,7 +836,7 @@ export async function operationsRaise(
 
 export function _operationsReturnSend(
   context: Client,
-  options: OperationsReturnOptions = { requestOptions: {} },
+  options: OperationsReturnOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsReturn204Response> {
   return context
     .path("/special-words/operations/return")
@@ -855,7 +855,7 @@ export async function _operationsReturnDeserialize(
 
 export async function operationsReturn(
   context: Client,
-  options: OperationsReturnOptions = { requestOptions: {} },
+  options: OperationsReturnOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsReturnSend(context, options);
   return _operationsReturnDeserialize(result);
@@ -863,7 +863,7 @@ export async function operationsReturn(
 
 export function _operationsTrySend(
   context: Client,
-  options: OperationsTryOptions = { requestOptions: {} },
+  options: OperationsTryOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsTry204Response> {
   return context
     .path("/special-words/operations/try")
@@ -882,7 +882,7 @@ export async function _operationsTryDeserialize(
 
 export async function operationsTry(
   context: Client,
-  options: OperationsTryOptions = { requestOptions: {} },
+  options: OperationsTryOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsTrySend(context, options);
   return _operationsTryDeserialize(result);
@@ -890,7 +890,7 @@ export async function operationsTry(
 
 export function _operationsWhileSend(
   context: Client,
-  options: OperationsWhileOptions = { requestOptions: {} },
+  options: OperationsWhileOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsWhile204Response> {
   return context
     .path("/special-words/operations/while")
@@ -909,7 +909,7 @@ export async function _operationsWhileDeserialize(
 
 export async function operationsWhile(
   context: Client,
-  options: OperationsWhileOptions = { requestOptions: {} },
+  options: OperationsWhileOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsWhileSend(context, options);
   return _operationsWhileDeserialize(result);
@@ -917,7 +917,7 @@ export async function operationsWhile(
 
 export function _operationsWithSend(
   context: Client,
-  options: OperationsWithOptions = { requestOptions: {} },
+  options: OperationsWithOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsWith204Response> {
   return context
     .path("/special-words/operations/with")
@@ -936,7 +936,7 @@ export async function _operationsWithDeserialize(
 
 export async function operationsWith(
   context: Client,
-  options: OperationsWithOptions = { requestOptions: {} },
+  options: OperationsWithOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsWithSend(context, options);
   return _operationsWithDeserialize(result);
@@ -944,7 +944,7 @@ export async function operationsWith(
 
 export function _operationsYieldSend(
   context: Client,
-  options: OperationsYieldOptions = { requestOptions: {} },
+  options: OperationsYieldOptionalParams = { requestOptions: {} },
 ): StreamableMethod<OperationsYield204Response> {
   return context
     .path("/special-words/operations/yield")
@@ -963,7 +963,7 @@ export async function _operationsYieldDeserialize(
 
 export async function operationsYield(
   context: Client,
-  options: OperationsYieldOptions = { requestOptions: {} },
+  options: OperationsYieldOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _operationsYieldSend(context, options);
   return _operationsYieldDeserialize(result);

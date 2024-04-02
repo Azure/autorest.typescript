@@ -10,17 +10,11 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public (undocumented)
-export interface Audio {
+export interface AudioOperations {
     // (undocumented)
-    transcriptions: AudioTranscriptions;
+    transcriptions: AudioTranscriptionsOperations;
     // (undocumented)
-    translations: AudioTranslations;
-}
-
-// @public (undocumented)
-export interface AudioTranscriptions {
-    // (undocumented)
-    create: (audio: CreateTranscriptionRequest, options?: AudioTranscriptionsCreateOptionalParams) => Promise<CreateTranscriptionResponse>;
+    translations: AudioTranslationsOperations;
 }
 
 // @public (undocumented)
@@ -30,9 +24,9 @@ export interface AudioTranscriptionsCreateOptionalParams extends OperationOption
 }
 
 // @public (undocumented)
-export interface AudioTranslations {
+export interface AudioTranscriptionsOperations {
     // (undocumented)
-    create: (audio: CreateTranslationRequest, options?: AudioTranslationsCreateOptionalParams) => Promise<CreateTranslationResponse>;
+    create: (audio: CreateTranscriptionRequest, options?: AudioTranscriptionsCreateOptionalParams) => Promise<CreateTranscriptionResponse>;
 }
 
 // @public (undocumented)
@@ -42,9 +36,9 @@ export interface AudioTranslationsCreateOptionalParams extends OperationOptions 
 }
 
 // @public (undocumented)
-export interface Chat {
+export interface AudioTranslationsOperations {
     // (undocumented)
-    completions: ChatCompletions;
+    create: (audio: CreateTranslationRequest, options?: AudioTranslationsCreateOptionalParams) => Promise<CreateTranslationResponse>;
 }
 
 // @public (undocumented)
@@ -81,23 +75,29 @@ export interface ChatCompletionResponseMessage {
 }
 
 // @public (undocumented)
-export interface ChatCompletions {
+export interface ChatCompletionsCreateOptionalParams extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface ChatCompletionsOperations {
     // (undocumented)
     create: (body: CreateChatCompletionRequest, options?: ChatCompletionsCreateOptionalParams) => Promise<CreateChatCompletionResponse>;
 }
 
 // @public (undocumented)
-export interface ChatCompletionsCreateOptionalParams extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface Completions {
+export interface ChatOperations {
     // (undocumented)
-    create: (body: CreateCompletionRequest, options?: CompletionsCreateOptionalParams) => Promise<CreateCompletionResponse>;
+    completions: ChatCompletionsOperations;
 }
 
 // @public (undocumented)
 export interface CompletionsCreateOptionalParams extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface CompletionsOperations {
+    // (undocumented)
+    create: (body: CreateCompletionRequest, options?: CompletionsCreateOptionalParams) => Promise<CreateCompletionResponse>;
 }
 
 // @public
@@ -381,13 +381,13 @@ export interface DeleteModelResponse {
 }
 
 // @public (undocumented)
-export interface Edits {
-    // (undocumented)
-    create: (edit: CreateEditRequest, options?: EditsCreateOptionalParams) => Promise<CreateEditResponse>;
+export interface EditsCreateOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface EditsCreateOptionalParams extends OperationOptions {
+export interface EditsOperations {
+    // (undocumented)
+    create: (edit: CreateEditRequest, options?: EditsCreateOptionalParams) => Promise<CreateEditResponse>;
 }
 
 // @public
@@ -398,13 +398,13 @@ export interface Embedding {
 }
 
 // @public (undocumented)
-export interface Embeddings {
-    // (undocumented)
-    create: (embedding: CreateEmbeddingRequest, options?: EmbeddingsCreateOptionalParams) => Promise<CreateEmbeddingResponse>;
+export interface EmbeddingsCreateOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface EmbeddingsCreateOptionalParams extends OperationOptions {
+export interface EmbeddingsOperations {
+    // (undocumented)
+    create: (embedding: CreateEmbeddingRequest, options?: EmbeddingsCreateOptionalParams) => Promise<CreateEmbeddingResponse>;
 }
 
 // @public (undocumented)
@@ -417,20 +417,6 @@ export interface ErrorModel {
     param: string | null;
     // (undocumented)
     type: string;
-}
-
-// @public (undocumented)
-export interface Files {
-    // (undocumented)
-    create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) => Promise<OpenAIFile>;
-    // (undocumented)
-    delete: (fileId: string, options?: FilesDeleteOptionalParams) => Promise<DeleteFileResponse>;
-    // (undocumented)
-    download: (fileId: string, options?: FilesDownloadOptionalParams) => Promise<string>;
-    // (undocumented)
-    list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
-    // (undocumented)
-    retrieve: (fileId: string, options?: FilesRetrieveOptionalParams) => Promise<OpenAIFile>;
 }
 
 // @public (undocumented)
@@ -449,6 +435,20 @@ export interface FilesDownloadOptionalParams extends OperationOptions {
 
 // @public (undocumented)
 export interface FilesListOptionalParams extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FilesOperations {
+    // (undocumented)
+    create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) => Promise<OpenAIFile>;
+    // (undocumented)
+    delete: (fileId: string, options?: FilesDeleteOptionalParams) => Promise<DeleteFileResponse>;
+    // (undocumented)
+    download: (fileId: string, options?: FilesDownloadOptionalParams) => Promise<string>;
+    // (undocumented)
+    list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
+    // (undocumented)
+    retrieve: (fileId: string, options?: FilesRetrieveOptionalParams) => Promise<OpenAIFile>;
 }
 
 // @public (undocumented)
@@ -493,20 +493,6 @@ export interface FineTuneEvent {
 }
 
 // @public (undocumented)
-export interface FineTunes {
-    // (undocumented)
-    cancel: (fineTuneId: string, options?: FineTunesCancelOptionalParams) => Promise<FineTune>;
-    // (undocumented)
-    create: (fineTune: CreateFineTuneRequest, options?: FineTunesCreateOptionalParams) => Promise<FineTune>;
-    // (undocumented)
-    list: (options?: FineTunesListOptionalParams) => Promise<ListFineTunesResponse>;
-    // (undocumented)
-    listEvents: (fineTuneId: string, options?: FineTunesListEventsOptionalParams) => Promise<ListFineTuneEventsResponse>;
-    // (undocumented)
-    retrieve: (fineTuneId: string, options?: FineTunesRetrieveOptionalParams) => Promise<FineTune>;
-}
-
-// @public (undocumented)
 export interface FineTunesCancelOptionalParams extends OperationOptions {
 }
 
@@ -524,13 +510,21 @@ export interface FineTunesListOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface FineTunesRetrieveOptionalParams extends OperationOptions {
+export interface FineTunesOperations {
+    // (undocumented)
+    cancel: (fineTuneId: string, options?: FineTunesCancelOptionalParams) => Promise<FineTune>;
+    // (undocumented)
+    create: (fineTune: CreateFineTuneRequest, options?: FineTunesCreateOptionalParams) => Promise<FineTune>;
+    // (undocumented)
+    list: (options?: FineTunesListOptionalParams) => Promise<ListFineTunesResponse>;
+    // (undocumented)
+    listEvents: (fineTuneId: string, options?: FineTunesListEventsOptionalParams) => Promise<ListFineTuneEventsResponse>;
+    // (undocumented)
+    retrieve: (fineTuneId: string, options?: FineTunesRetrieveOptionalParams) => Promise<FineTune>;
 }
 
 // @public (undocumented)
-export interface FineTuning {
-    // (undocumented)
-    jobs: FineTuningJobs;
+export interface FineTunesRetrieveOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -572,20 +566,6 @@ export interface FineTuningJobEvent {
 }
 
 // @public (undocumented)
-export interface FineTuningJobs {
-    // (undocumented)
-    cancel: (fineTuningJobId: string, options?: FineTuningJobsCancelOptionalParams) => Promise<FineTuningJob>;
-    // (undocumented)
-    create: (job: CreateFineTuningJobRequest, options?: FineTuningJobsCreateOptionalParams) => Promise<FineTuningJob>;
-    // (undocumented)
-    list: (options?: FineTuningJobsListOptionalParams) => Promise<ListPaginatedFineTuningJobsResponse>;
-    // (undocumented)
-    listEvents: (fineTuningJobId: string, options?: FineTuningJobsListEventsOptionalParams) => Promise<ListFineTuningJobEventsResponse>;
-    // (undocumented)
-    retrieve: (fineTuningJobId: string, options?: FineTuningJobsRetrieveOptionalParams) => Promise<FineTuningJob>;
-}
-
-// @public (undocumented)
 export interface FineTuningJobsCancelOptionalParams extends OperationOptions {
 }
 
@@ -606,23 +586,33 @@ export interface FineTuningJobsListOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
+export interface FineTuningJobsOperations {
+    // (undocumented)
+    cancel: (fineTuningJobId: string, options?: FineTuningJobsCancelOptionalParams) => Promise<FineTuningJob>;
+    // (undocumented)
+    create: (job: CreateFineTuningJobRequest, options?: FineTuningJobsCreateOptionalParams) => Promise<FineTuningJob>;
+    // (undocumented)
+    list: (options?: FineTuningJobsListOptionalParams) => Promise<ListPaginatedFineTuningJobsResponse>;
+    // (undocumented)
+    listEvents: (fineTuningJobId: string, options?: FineTuningJobsListEventsOptionalParams) => Promise<ListFineTuningJobEventsResponse>;
+    // (undocumented)
+    retrieve: (fineTuningJobId: string, options?: FineTuningJobsRetrieveOptionalParams) => Promise<FineTuningJob>;
+}
+
+// @public (undocumented)
 export interface FineTuningJobsRetrieveOptionalParams extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FineTuningOperations {
+    // (undocumented)
+    jobs: FineTuningJobsOperations;
 }
 
 // @public
 export interface Image {
     b64Json?: Uint8Array;
     url?: string;
-}
-
-// @public (undocumented)
-export interface Images {
-    // (undocumented)
-    create: (image: CreateImageRequest, options?: ImagesCreateOptionalParams) => Promise<ImagesResponse>;
-    // (undocumented)
-    createEdit: (image: CreateImageEditRequest, options?: ImagesCreateEditOptionalParams) => Promise<ImagesResponse>;
-    // (undocumented)
-    createVariation: (image: CreateImageVariationRequest, options?: ImagesCreateVariationOptionalParams) => Promise<ImagesResponse>;
 }
 
 // @public (undocumented)
@@ -639,6 +629,16 @@ export interface ImagesCreateOptionalParams extends OperationOptions {
 export interface ImagesCreateVariationOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
+}
+
+// @public (undocumented)
+export interface ImagesOperations {
+    // (undocumented)
+    create: (image: CreateImageRequest, options?: ImagesCreateOptionalParams) => Promise<ImagesResponse>;
+    // (undocumented)
+    createEdit: (image: CreateImageEditRequest, options?: ImagesCreateEditOptionalParams) => Promise<ImagesResponse>;
+    // (undocumented)
+    createVariation: (image: CreateImageVariationRequest, options?: ImagesCreateVariationOptionalParams) => Promise<ImagesResponse>;
 }
 
 // @public (undocumented)
@@ -708,7 +708,15 @@ export interface Model {
 }
 
 // @public (undocumented)
-export interface Models {
+export interface ModelsDeleteOptionalParams extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface ModelsListOptionalParams extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface ModelsOperations {
     // (undocumented)
     delete: (model: string, options?: ModelsDeleteOptionalParams) => Promise<DeleteModelResponse>;
     // (undocumented)
@@ -718,21 +726,7 @@ export interface Models {
 }
 
 // @public (undocumented)
-export interface ModelsDeleteOptionalParams extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface ModelsListOptionalParams extends OperationOptions {
-}
-
-// @public (undocumented)
 export interface ModelsRetrieveOptionalParams extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface Moderations {
-    // (undocumented)
-    create: (content: CreateModerationRequest, options?: ModerationsCreateOptionalParams) => Promise<CreateModerationResponse>;
 }
 
 // @public (undocumented)
@@ -740,19 +734,25 @@ export interface ModerationsCreateOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
+export interface ModerationsOperations {
+    // (undocumented)
+    create: (content: CreateModerationRequest, options?: ModerationsCreateOptionalParams) => Promise<CreateModerationResponse>;
+}
+
+// @public (undocumented)
 export class OpenAIClient {
     constructor(credential: KeyCredential, options?: OpenAIClientOptions);
-    readonly audio: Audio;
-    readonly chat: Chat;
-    readonly completions: Completions;
-    readonly edits: Edits;
-    readonly embeddings: Embeddings;
-    readonly files: Files;
-    readonly fineTunes: FineTunes;
-    readonly fineTuning: FineTuning;
-    readonly images: Images;
-    readonly models: Models;
-    readonly moderations: Moderations;
+    readonly audio: AudioOperations;
+    readonly chat: ChatOperations;
+    readonly completions: CompletionsOperations;
+    readonly edits: EditsOperations;
+    readonly embeddings: EmbeddingsOperations;
+    readonly files: FilesOperations;
+    readonly fineTunes: FineTunesOperations;
+    readonly fineTuning: FineTuningOperations;
+    readonly images: ImagesOperations;
+    readonly models: ModelsOperations;
+    readonly moderations: ModerationsOperations;
     readonly pipeline: Pipeline;
 }
 

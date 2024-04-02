@@ -23,7 +23,7 @@ import {
   FilesDownloadOptionalParams,
 } from "../../models/options.js";
 
-export interface Files {
+export interface FilesOperations {
   list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
   create: (
     file: CreateFileRequest,
@@ -57,7 +57,7 @@ export function getFiles(context: OpenAIContext) {
   };
 }
 
-export function getFilesOperations(context: OpenAIContext): Files {
+export function getFilesOperations(context: OpenAIContext): FilesOperations {
   return {
     ...getFiles(context),
   };

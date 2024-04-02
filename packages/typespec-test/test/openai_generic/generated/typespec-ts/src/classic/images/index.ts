@@ -15,7 +15,7 @@ import {
   ImagesCreateVariationOptionalParams,
 } from "../../models/options.js";
 
-export interface Images {
+export interface ImagesOperations {
   create: (
     image: CreateImageRequest,
     options?: ImagesCreateOptionalParams,
@@ -45,7 +45,7 @@ export function getImages(context: OpenAIContext) {
   };
 }
 
-export function getImagesOperations(context: OpenAIContext): Images {
+export function getImagesOperations(context: OpenAIContext): ImagesOperations {
   return {
     ...getImages(context),
   };

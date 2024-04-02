@@ -69,15 +69,15 @@ export interface WidgetError {
 }
 
 // @public (undocumented)
-export interface WidgetsAnalyzeWidgetOptions extends OperationOptions {
+export interface WidgetsAnalyzeWidgetOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface WidgetsCreateWidgetOptions extends OperationOptions {
+export interface WidgetsCreateWidgetOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface WidgetsDeleteWidgetOptions extends OperationOptions {
+export interface WidgetsDeleteWidgetOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -92,11 +92,11 @@ export interface WidgetServiceClientOptions extends ClientOptions {
 }
 
 // @public (undocumented)
-export interface WidgetsGetWidgetOptions extends OperationOptions {
+export interface WidgetsGetWidgetOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface WidgetsListWidgetsOptions extends OperationOptions {
+export interface WidgetsListWidgetsOptionalParams extends OperationOptions {
     // (undocumented)
     nullableDateHeader?: Date | null;
     // (undocumented)
@@ -108,35 +108,35 @@ export interface WidgetsListWidgetsOptions extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface WidgetsListWidgetsPagesOptions extends OperationOptions {
+export interface WidgetsListWidgetsPagesOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
 export interface WidgetsOperations {
     // (undocumented)
-    analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptions) => Promise<AnalyzeResult>;
+    analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptionalParams) => Promise<AnalyzeResult>;
     // (undocumented)
-    createWidget: (body: CreateWidget, options?: WidgetsCreateWidgetOptions) => Promise<Widget>;
+    createWidget: (body: CreateWidget, options?: WidgetsCreateWidgetOptionalParams) => Promise<Widget>;
     // (undocumented)
-    deleteWidget: (id: string, options?: WidgetsDeleteWidgetOptions) => Promise<void>;
+    deleteWidget: (id: string, options?: WidgetsDeleteWidgetOptionalParams) => Promise<void>;
     // (undocumented)
-    getWidget: (id: string, options?: WidgetsGetWidgetOptions) => Promise<Widget>;
+    getWidget: (id: string, options?: WidgetsGetWidgetOptionalParams) => Promise<Widget>;
     // (undocumented)
-    listWidgets: (requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: WidgetsListWidgetsOptions) => Promise<Widget[]>;
+    listWidgets: (requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: WidgetsListWidgetsOptionalParams) => Promise<Widget[]>;
     // (undocumented)
-    listWidgetsPages: (page: number, pageSize: number, options?: WidgetsListWidgetsPagesOptions) => PagedAsyncIterableIterator<Widget>;
+    listWidgetsPages: (page: number, pageSize: number, options?: WidgetsListWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
     // (undocumented)
-    queryWidgetsPages: (page: number, pageSize: number, options?: WidgetsQueryWidgetsPagesOptions) => PagedAsyncIterableIterator<Widget>;
+    queryWidgetsPages: (page: number, pageSize: number, options?: WidgetsQueryWidgetsPagesOptionalParams) => PagedAsyncIterableIterator<Widget>;
     // (undocumented)
-    updateWidget: (id: string, body: UpdateWidget, options?: WidgetsUpdateWidgetOptions) => Promise<Widget>;
+    updateWidget: (id: string, body: UpdateWidget, options?: WidgetsUpdateWidgetOptionalParams) => Promise<Widget>;
 }
 
 // @public (undocumented)
-export interface WidgetsQueryWidgetsPagesOptions extends OperationOptions {
+export interface WidgetsQueryWidgetsPagesOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface WidgetsUpdateWidgetOptions extends OperationOptions {
+export interface WidgetsUpdateWidgetOptionalParams extends OperationOptions {
 }
 
 // (No @packageDocumentation comment for this package)

@@ -18,15 +18,15 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  InputOptions,
-  OutputOptions,
-  InputAndOutputOptions,
+  InputOptionalParams,
+  OutputOptionalParams,
+  InputAndOutputOptionalParams,
 } from "../models/options.js";
 
 export function _inputSend(
   context: Client,
   inputParameter: InputRecord,
-  options: InputOptions = { requestOptions: {} },
+  options: InputOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Input204Response> {
   return context
     .path("/type/model/usage/input")
@@ -49,7 +49,7 @@ export async function _inputDeserialize(
 export async function input(
   context: Client,
   inputParameter: InputRecord,
-  options: InputOptions = { requestOptions: {} },
+  options: InputOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _inputSend(context, inputParameter, options);
   return _inputDeserialize(result);
@@ -57,7 +57,7 @@ export async function input(
 
 export function _outputSend(
   context: Client,
-  options: OutputOptions = { requestOptions: {} },
+  options: OutputOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Output200Response> {
   return context
     .path("/type/model/usage/output")
@@ -78,7 +78,7 @@ export async function _outputDeserialize(
 
 export async function output(
   context: Client,
-  options: OutputOptions = { requestOptions: {} },
+  options: OutputOptionalParams = { requestOptions: {} },
 ): Promise<OutputRecord> {
   const result = await _outputSend(context, options);
   return _outputDeserialize(result);
@@ -87,7 +87,7 @@ export async function output(
 export function _inputAndOutputSend(
   context: Client,
   body: InputOutputRecord,
-  options: InputAndOutputOptions = { requestOptions: {} },
+  options: InputAndOutputOptionalParams = { requestOptions: {} },
 ): StreamableMethod<InputAndOutput200Response> {
   return context
     .path("/type/model/usage/input-output")
@@ -112,7 +112,7 @@ export async function _inputAndOutputDeserialize(
 export async function inputAndOutput(
   context: Client,
   body: InputOutputRecord,
-  options: InputAndOutputOptions = { requestOptions: {} },
+  options: InputAndOutputOptionalParams = { requestOptions: {} },
 ): Promise<InputOutputRecord> {
   const result = await _inputAndOutputSend(context, body, options);
   return _inputAndOutputDeserialize(result);

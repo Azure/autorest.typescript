@@ -9,7 +9,10 @@ import {
   ChatCompletionOptions,
   ChatCompletion,
 } from "./models/models.js";
-import { CreateStreamingOptions, CreateOptions } from "./models/options.js";
+import {
+  CreateStreamingOptionalParams,
+  CreateOptionalParams,
+} from "./models/options.js";
 import {
   createChatProtocol,
   ChatProtocolClientOptions,
@@ -38,7 +41,7 @@ export class ChatProtocolClient {
   /** Creates a new streaming chat completion. */
   createStreaming(
     body: StreamingChatCompletionOptions,
-    options: CreateStreamingOptions = { requestOptions: {} },
+    options: CreateStreamingOptionalParams = { requestOptions: {} },
   ): Promise<ChatCompletionChunk> {
     return createStreaming(this._client, body, options);
   }
@@ -46,7 +49,7 @@ export class ChatProtocolClient {
   /** Creates a new chat completion. */
   create(
     body: ChatCompletionOptions,
-    options: CreateOptions = { requestOptions: {} },
+    options: CreateOptionalParams = { requestOptions: {} },
   ): Promise<ChatCompletion> {
     return create(this._client, body, options);
   }

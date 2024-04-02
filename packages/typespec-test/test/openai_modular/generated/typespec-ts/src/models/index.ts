@@ -130,13 +130,13 @@ export {
   ChatFinishDetailsUnion,
 } from "./models.js";
 export {
-  GetAudioTranscriptionAsPlainTextOptions,
-  GetAudioTranscriptionAsResponseObjectOptions,
-  GetAudioTranslationAsPlainTextOptions,
-  GetAudioTranslationAsResponseObjectOptions,
-  GetCompletionsOptions,
-  GetChatCompletionsOptions,
-  GetImageGenerationsOptions,
-  GetAudioSpeechOptions,
-  GetEmbeddingsOptions,
+  GetAudioTranscriptionAsPlainTextOptionalParams,
+  GetAudioTranscriptionAsResponseObjectOptionalParams,
+  GetAudioTranslationAsPlainTextOptionalParams,
+  GetAudioTranslationAsResponseObjectOptionalParams,
+  GetCompletionsOptionalParams,
+  GetChatCompletionsOptionalParams,
+  GetImageGenerationsOptionalParams,
+  GetAudioSpeechOptionalParams,
+  GetEmbeddingsOptionalParams,
 } from "./options.js";

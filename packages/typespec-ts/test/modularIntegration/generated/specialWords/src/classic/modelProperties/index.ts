@@ -4,12 +4,12 @@
 import { SpecialWordsContext } from "../../api/SpecialWordsContext.js";
 import { SameAsModel } from "../../models/models.js";
 import { modelPropertiesSameAsModel } from "../../api/modelProperties/index.js";
-import { ModelPropertiesSameAsModelOptions } from "../../models/options.js";
+import { ModelPropertiesSameAsModelOptionalParams } from "../../models/options.js";
 
 export interface ModelPropertiesOperations {
   sameAsModel: (
     body: SameAsModel,
-    options?: ModelPropertiesSameAsModelOptions,
+    options?: ModelPropertiesSameAsModelOptionalParams,
   ) => Promise<void>;
 }
 
@@ -17,7 +17,7 @@ export function getModelProperties(context: SpecialWordsContext) {
   return {
     sameAsModel: (
       body: SameAsModel,
-      options?: ModelPropertiesSameAsModelOptions,
+      options?: ModelPropertiesSameAsModelOptionalParams,
     ) => modelPropertiesSameAsModel(context, body, options),
   };
 }

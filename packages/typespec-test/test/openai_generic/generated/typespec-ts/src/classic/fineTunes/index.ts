@@ -23,7 +23,7 @@ import {
   FineTunesCancelOptionalParams,
 } from "../../models/options.js";
 
-export interface FineTunes {
+export interface FineTunesOperations {
   create: (
     fineTune: CreateFineTuneRequest,
     options?: FineTunesCreateOptionalParams,
@@ -63,7 +63,9 @@ export function getFineTunes(context: OpenAIContext) {
   };
 }
 
-export function getFineTunesOperations(context: OpenAIContext): FineTunes {
+export function getFineTunesOperations(
+  context: OpenAIContext,
+): FineTunesOperations {
   return {
     ...getFineTunes(context),
   };

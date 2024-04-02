@@ -136,7 +136,7 @@ describe("modular encode test for property type datetime", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -167,7 +167,7 @@ describe("modular encode test for property type datetime", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -196,7 +196,7 @@ describe("modular encode test for property type datetime", () => {
       export function _readSend(
         context: Client,
         prop: Date,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -219,7 +219,7 @@ describe("modular encode test for property type datetime", () => {
       export async function read(
         context: Client,
         prop: Date,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<void> {
         const result = await _readSend(context, prop, options);
         return _readDeserialize(result);
@@ -264,7 +264,7 @@ describe("modular encode test for property type datetime", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -291,7 +291,7 @@ describe("modular encode test for property type datetime", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -336,7 +336,7 @@ describe("modular encode test for property type datetime", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -363,7 +363,7 @@ describe("modular encode test for property type datetime", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -405,7 +405,7 @@ describe("modular encode test for property type datetime", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -430,7 +430,7 @@ describe("modular encode test for property type datetime", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -473,7 +473,7 @@ describe("modular encode test for property type duration", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -498,7 +498,7 @@ describe("modular encode test for property type duration", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -540,7 +540,7 @@ describe("modular encode test for property type duration", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -565,7 +565,7 @@ describe("modular encode test for property type duration", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -610,7 +610,7 @@ describe("modular encode test for property type duration", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -637,7 +637,7 @@ describe("modular encode test for property type duration", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -681,7 +681,7 @@ describe("modular encode test for property type bytes", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -709,7 +709,7 @@ describe("modular encode test for property type bytes", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -752,7 +752,7 @@ describe("modular encode test for property type bytes", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -780,7 +780,7 @@ describe("modular encode test for property type bytes", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -823,7 +823,7 @@ describe("modular encode test for property type bytes", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -851,7 +851,7 @@ describe("modular encode test for property type bytes", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -945,7 +945,7 @@ describe("inheritance & polymorphism", () => {
       
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -967,7 +967,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Cat> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1024,7 +1024,7 @@ describe("inheritance & polymorphism", () => {
 
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -1046,7 +1046,7 @@ describe("inheritance & polymorphism", () => {
 
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Cat> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1113,7 +1113,7 @@ describe("inheritance & polymorphism", () => {
       
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -1135,7 +1135,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Cat> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1202,7 +1202,7 @@ describe("inheritance & polymorphism", () => {
       
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -1219,7 +1219,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<PetUnion> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1302,7 +1302,7 @@ describe("inheritance & polymorphism", () => {
       
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -1319,7 +1319,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<PetUnion> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1371,7 +1371,7 @@ describe("inheritance & polymorphism", () => {
       
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -1392,7 +1392,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1458,7 +1458,7 @@ describe("inheritance & polymorphism", () => {
 
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -1481,7 +1481,7 @@ describe("inheritance & polymorphism", () => {
 
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Cat> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1557,7 +1557,7 @@ describe("inheritance & polymorphism", () => {
           context: Client,
           contentType: SchemaContentTypeValues,
           body: string,
-          options: GetOptions = { requestOptions: {} }
+          options: GetOptionalParams = { requestOptions: {} }
         ): StreamableMethod<Get204Response> {
             return context
               .path("/")
@@ -1580,7 +1580,7 @@ describe("inheritance & polymorphism", () => {
           context: Client,
           contentType: SchemaContentTypeValues,
           body: string,
-          options: GetOptions = { requestOptions: {} }
+          options: GetOptionalParams = { requestOptions: {} }
         ): Promise<void> {
           const result = await _getSend(context, contentType, body, options);
           return _getDeserialize(result);
@@ -1683,7 +1683,7 @@ describe("inheritance & polymorphism", () => {
           context: Client,
           testHeader: "A" | "B",
           body: string,
-          options: GetOptions = { requestOptions: {} },
+          options: GetOptionalParams = { requestOptions: {} },
         ): StreamableMethod<Get204Response> {
           return context
             .path("/")
@@ -1703,7 +1703,7 @@ describe("inheritance & polymorphism", () => {
           context: Client,
           testHeader: "A" | "B",
           body: string,
-          options: GetOptions = { requestOptions: {} },
+          options: GetOptionalParams = { requestOptions: {} },
         ): Promise<void> {
           const result = await _getSend(context, testHeader, body, options);
           return _getDeserialize(result);

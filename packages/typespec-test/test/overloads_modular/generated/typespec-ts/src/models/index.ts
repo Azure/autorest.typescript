@@ -2,6 +2,6 @@
 // Licensed under the MIT license.
 
 export {
-  FooOperationsGetAvatarAsPngOptions,
-  FooOperationsGetAvatarAsJpegOptions,
+  FooOperationsGetAvatarAsPngOptionalParams,
+  FooOperationsGetAvatarAsJpegOptionalParams,
 } from "./options.js";
