@@ -67,11 +67,11 @@ describe("modular client context type", () => {
         export { ServiceContext } from "../rest/index.js";
         
         export function createService(
-          endpoint: string,
-          client: ClientType,
+          endpointParam: string,
+          clientParam: ClientType,
           options: ServiceClientOptions = {}
         ): ServiceContext {
-          const clientContext = getClient(endpoint, client, options);
+          const clientContext = getClient(endpointParam, clientParam, options);
           return clientContext;
         }`
     );
@@ -140,11 +140,11 @@ describe("modular client context type", () => {
         export { ServiceContext } from "../rest/index.js";
         
         export function createService(
-          endpoint: string,
-          client: ClientType,
+          endpointParam: string,
+          clientParam: ClientType,
           options: ServiceClientOptions = {}
         ): ServiceContext {
-          const clientContext = getClient(endpoint, client, options);
+          const clientContext = getClient(endpointParam, clientParam, options);
           return clientContext;
         }`
     );
