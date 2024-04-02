@@ -1,4 +1,4 @@
-import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
+import { getPagedResult } from "@azure-tools/typespec-azure-core";
 import {
   Enum,
   getDoc,
@@ -1108,7 +1108,7 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
     description: getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
-    isFixed: isFixed(program, type)
+    isFixed: true
   };
 }
 
@@ -1368,36 +1368,12 @@ function mapTypeSpecType(
   }
 }
 
-function isExtensibleEnum(context: SdkContext, type: Enum): boolean {
-  if (isFixed(context.program, type)) {
-    return false;
-  }
-
-  if (context.rlcOptions?.flavor === "azure") {
-    return true;
-  }
-
-  return false;
-}
-
 function emitUnion(
   context: SdkContext,
   type: Union,
   usage: UsageFlags
 ): Record<string, any> {
   let isVariantExtensible = false;
-
-  /**
-   * This is a temporary workaround to handle TCGC reporting incorrect isFixed for Unions with Enum variants
-   */
-  for (const [_, variant] of type.variants) {
-    if (variant.type.kind === "Enum") {
-      if (isExtensibleEnum(context, variant.type)) {
-        isVariantExtensible = true;
-        break;
-      }
-    }
-  }
   const sdkType = getSdkUnion(context, type);
   const nonNullOptions = getNonNullOptions(type);
   if (sdkType === undefined) {

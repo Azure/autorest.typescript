@@ -232,7 +232,7 @@ importers:
       '@azure-tools/cadl-ranch-specs': ^0.31.5
       '@azure-tools/rlc-common': workspace:^0.25.0
       '@azure-tools/typespec-azure-core': '>=0.40.0 <1.0.0'
-      '@azure-tools/typespec-client-generator-core': 0.41.0-dev.24
+      '@azure-tools/typespec-client-generator-core': 0.41.0-dev.41
       '@azure/core-auth': ^1.6.0
       '@azure/core-lro': ^2.5.4
       '@azure/core-paging': ^1.5.0
@@ -276,7 +276,7 @@ importers:
       '@azure-tools/cadl-ranch-expect': 0.13.2_7d65p6cqvelxcgmavq4zy7blpy
       '@azure-tools/cadl-ranch-specs': 0.31.5_tl5l4xe44yzem5nticz333o2oa
       '@azure-tools/typespec-azure-core': 0.40.0_r7faphy27mfblbs27ccm7re44u
-      '@azure-tools/typespec-client-generator-core': 0.41.0-dev.24_7d65p6cqvelxcgmavq4zy7blpy
+      '@azure-tools/typespec-client-generator-core': 0.41.0-dev.41_7d65p6cqvelxcgmavq4zy7blpy
       '@azure/core-auth': 1.6.0
       '@azure/core-lro': 2.5.4
       '@azure/core-paging': 1.5.0
@@ -551,8 +551,8 @@ packages:
       pluralize: 8.0.0
     dev: false
 
-  /@azure-tools/typespec-client-generator-core/0.41.0-dev.24_7d65p6cqvelxcgmavq4zy7blpy:
-    resolution: {integrity: sha512-khmOopKU9EnnECdEBIb58PEqcSGC1uuSvSqiGuYowXVoKTA2tbjlCNKZ71gN4LJKChA8iMBM/w07LfZ7EMNDtA==}
+  /@azure-tools/typespec-client-generator-core/0.41.0-dev.41_7d65p6cqvelxcgmavq4zy7blpy:
+    resolution: {integrity: sha512-SSCj+A5g5X2Q5uZfHpArUyu4DTJ974wzkwtHY/+pcEHaGiLZWgj6TdmuklJq/djVxnCVv8HS2ftwD6j9meqrzw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@typespec/compiler': ~0.54.0 || >=0.55.0-dev <0.55.0
