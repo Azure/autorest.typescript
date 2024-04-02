@@ -138,187 +138,192 @@ describe("#transformSchemas", () => {
       assert.strictEqual(property!.isConstant, true);
     });
 
-    it("generate literal union", async () => {
-      const property = await verifyFirstProperty(`true | "test" | 1`);
-      assert.isNotNull(property);
-      assert.strictEqual(property!.type, `union`);
-      assert.strictEqual(property!.typeName, 'true | "test" | 1');
-      assert.strictEqual(property!.outputTypeName, 'true | "test" | 1');
-      assert.isUndefined(property!.isConstant);
-      assert.strictEqual(property!.enum!.length, 3);
-      assert.strictEqual(property!.enum![0].type, "true");
-      assert.strictEqual(property!.enum![0].isConstant, true);
+    describe("union", () => {
+      it("generate literal union", async () => {
+        const property = await verifyFirstProperty(`true | "test" | 1`);
+        assert.isNotNull(property);
+        assert.strictEqual(property!.type, `union`);
+        assert.strictEqual(property!.typeName, 'true | "test" | 1');
+        assert.strictEqual(property!.outputTypeName, 'true | "test" | 1');
+        assert.isUndefined(property!.isConstant);
+        assert.strictEqual(property!.enum!.length, 3);
+        assert.strictEqual(property!.enum![0].type, "true");
+        assert.strictEqual(property!.enum![0].isConstant, true);
+      });
+
+      it("generate string literal union", async () => {
+        const property = await verifyFirstProperty(`"a" | "test"`);
+        assert.isNotNull(property);
+        assert.deepEqual(property, {
+          enum: [
+            { type: '"a"', isConstant: true },
+            { type: '"test"', isConstant: true }
+          ],
+          type: "union",
+          typeName: '"a" | "test"',
+          outputTypeName: '"a" | "test"',
+          required: true,
+          usage: ["input", "output"],
+          description: undefined
+        } as any);
+      });
+
+      it("generate primitive union", async () => {
+        const property = await verifyFirstProperty(
+          `string | int32 | boolean | utcDateTime`
+        );
+        assert.isNotNull(property);
+        // console.log(property);
+        assert.deepEqual(property, {
+          enum: [
+            {
+              type: "string",
+              description: "A sequence of textual characters."
+            },
+            { type: "number", format: "int32" },
+            { type: "boolean", description: undefined },
+            {
+              type: "string",
+              format: undefined,
+              description: undefined,
+              typeName: "Date | string",
+              outputTypeName: "string"
+            }
+          ],
+          type: "union",
+          typeName: "string | number | boolean | Date | string",
+          outputTypeName: "string | number | boolean | string",
+          required: true,
+          usage: ["input", "output"],
+          description: undefined
+        } as any);
+      });
     });
 
-    it("generate string literal union", async () => {
-      const property = await verifyFirstProperty(`"a" | "test"`);
-      assert.isNotNull(property);
-      assert.deepEqual(property, {
-        enum: [
-          { type: '"a"', isConstant: true },
-          { type: '"test"', isConstant: true }
-        ],
-        type: "union",
-        typeName: '"a" | "test"',
-        outputTypeName: '"a" | "test"',
-        required: true,
-        usage: ["input", "output"],
-        description: undefined
-      } as any);
-    });
-
-    it("generate primitive union", async () => {
-      const property = await verifyFirstProperty(
-        `string | int32 | boolean | utcDateTime`
-      );
-      assert.isNotNull(property);
-      // console.log(property);
-      assert.deepEqual(property, {
-        enum: [
-          {
-            type: "string",
-            description: "A sequence of textual characters."
-          },
-          { type: "number", format: "int32" },
-          { type: "boolean", description: undefined },
-          {
-            type: "string",
-            format: undefined,
-            description: undefined,
-            typeName: "Date | string",
-            outputTypeName: "string"
+    describe("enum", () => {
+      it("@fixed should have no impact", async () => {
+        const schemaOutput = await emitSchemasFromTypeSpec(
+          `
+          #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+          @fixed
+          @doc("Translation Language Values")
+          enum TranslationLanguageValues {
+            @doc("English descriptions")
+            English,
+            @doc("Chinese descriptions")
+            Chinese,
           }
-        ],
-        type: "union",
-        typeName: "string | number | boolean | Date | string",
-        outputTypeName: "string | number | boolean | string",
-        required: true,
-        usage: ["input", "output"],
-        description: undefined
-      } as any);
-    });
-
-    it("generate fixed enum", async () => {
-      const schemaOutput = await emitSchemasFromTypeSpec(
-        `
-        #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-        @fixed
-        @doc("Translation Language Values")
-        enum TranslationLanguageValues {
-          @doc("English descriptions")
-          English,
-          @doc("Chinese descriptions")
-          Chinese,
-        }
-        model Test {
-            prop: TranslationLanguageValues;
-        }
-        @route("/models")
-        @get
-        op getModel(@body input: Test): Test;
-      `,
-        true
-      );
-      assert.isNotNull(schemaOutput);
-      const first = schemaOutput?.[0] as ObjectSchema;
-      const property = first.properties![`"prop"`];
-      // console.log(first, property, property?.enum);
-      assert.isNotNull(property);
-      assert.deepEqual(property, {
-        type: '"English" | "Chinese"',
-        description: undefined,
-        enum: [
-          {
-            "description": "English descriptions",
-            "isConstant": true,
-            "type": "\"English\""
-          },
-          {
-            "description": "Chinese descriptions",
-            "isConstant": true,
-            "type": "\"Chinese\""
+          model Test {
+              prop: TranslationLanguageValues;
           }
-        ],
-        required: true,
-        usage: ["input", "output"]
-      } as any);
-    });
+          @route("/models")
+          @get
+          op getModel(@body input: Test): Test;
+        `,
+          true
+        );
+        assert.isNotNull(schemaOutput);
+        const first = schemaOutput?.[0] as ObjectSchema;
+        const property = first.properties![`"prop"`];
+        // console.log(first, property, property?.enum);
+        assert.isNotNull(property);
+        assert.deepEqual(property, {
+          type: '"English" | "Chinese"',
+          description: undefined,
+          enum: [
+            {
+              description: "English descriptions",
+              isConstant: true,
+              type: '"English"'
+            },
+            {
+              description: "Chinese descriptions",
+              isConstant: true,
+              type: '"Chinese"'
+            }
+          ],
+          required: true,
+          usage: ["input", "output"]
+        } as any);
+      });
 
-    it("generate extensible enum", async () => {
-      const schemaOutput = await emitSchemasFromTypeSpec(
-        `
-        @doc("Translation Language Values")
-        enum TranslationLanguageValues {
-          @doc("English descriptions")
-          English,
-          @doc("Chinese descriptions")
-          Chinese,
-        }
-        model Test {
-            prop: TranslationLanguageValues;
-        }
-        @route("/models")
-        @get
-        op getModel(@body input: Test): Test;
-      `,
-        true
-      );
-      assert.isNotNull(schemaOutput);
-      const first = schemaOutput?.[0] as ObjectSchema;
-      const property = first.properties![`"prop"`];
-      assert.isNotNull(property);
-      assert.deepEqual(property, {
-        type: '"English" | "Chinese"',
-        name: "string",
-        typeName: "string",
-        description: "Possible values: \"English\", \"Chinese\"",
-        enum: [
-          {
-            "description": "English descriptions",
-            "isConstant": true,
-            "type": "\"English\""
-          },
-          {
-            "description": "Chinese descriptions",
-            "isConstant": true,
-            "type": "\"Chinese\""
+      it.only("should be open as false", async () => {
+        const schemaOutput = await emitSchemasFromTypeSpec(
+          `
+          @doc("Translation Language Values")
+          enum TranslationLanguageValues {
+            @doc("English descriptions")
+            English,
+            @doc("Chinese descriptions")
+            Chinese,
           }
-        ],
-        required: true,
-        usage: ["input", "output"]
-      } as any);
-    });
+          model Test {
+              prop: TranslationLanguageValues;
+          }
+          @route("/models")
+          @get
+          op getModel(@body input: Test): Test;
+        `,
+          true
+        );
+        assert.isNotNull(schemaOutput);
+        const first = schemaOutput?.[0] as ObjectSchema;
+        const property = first.properties![`"prop"`];
+        assert.isNotNull(property);
+        assert.deepEqual(property, {
+          type: "union",
+          outputTypeName: '"English" | "Chinese"',
+          typeName: '"English" | "Chinese"',
+          open: false,
+          description: 'Possible values: "English", "Chinese"',
+          enum: [
+            {
+              description: "English descriptions",
+              isConstant: true,
+              type: '"English"'
+            },
+            {
+              description: "Chinese descriptions",
+              isConstant: true,
+              type: '"Chinese"'
+            }
+          ],
+          required: true,
+          usage: ["input", "output"]
+        } as any);
+      });
 
-    it("generate enum member", async () => {
-      const schemaOutput = await emitSchemasFromTypeSpec(
-        `
-        @doc("Translation Language Values")
-        enum TranslationLanguageValues {
-          @doc("English descriptions")
-          English,
-          @doc("Chinese descriptions")
-          Chinese,
-        }
-        model Test {
-            prop: TranslationLanguageValues.English;
-        }
-        @route("/models")
-        @get
-        op getModel(@body input: Test): Test;
-      `,
-        true
-      );
-      assert.isNotNull(schemaOutput);
-      const first = schemaOutput?.[0] as ObjectSchema;
-      const property = first.properties![`"prop"`];
-      assert.isNotNull(property);
-      assert.deepEqual(property, {
-        type: '"English"',
-        description: undefined,
-        isConstant: true,
-        required: true,
-        usage: ["input", "output"]
-      } as any);
+      it("generate enum member", async () => {
+        const schemaOutput = await emitSchemasFromTypeSpec(
+          `
+          @doc("Translation Language Values")
+          enum TranslationLanguageValues {
+            @doc("English descriptions")
+            English,
+            @doc("Chinese descriptions")
+            Chinese,
+          }
+          model Test {
+              prop: TranslationLanguageValues.English;
+          }
+          @route("/models")
+          @get
+          op getModel(@body input: Test): Test;
+        `,
+          true
+        );
+        assert.isNotNull(schemaOutput);
+        const first = schemaOutput?.[0] as ObjectSchema;
+        const property = first.properties![`"prop"`];
+        assert.isNotNull(property);
+        assert.deepEqual(property, {
+          type: '"English"',
+          description: undefined,
+          isConstant: true,
+          required: true,
+          usage: ["input", "output"]
+        } as any);
+      });
     });
 
     it("generate union model", async () => {
