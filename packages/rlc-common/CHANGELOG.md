@@ -1,5 +1,6 @@
 ## 0.26.0 (2024-04-03)
 
+- [Feature] Enable esm for RLC generation from TypeSpec. Please refer to [2338](https://github.com/Azure/autorest.typescript/pull/2338).
 - [Feature] Support usage and access. Please refer to [#2356](https://github.com/Azure/autorest.typescript/pull/2356).
 - [Feature] Support server versions in modular. Please refer to [#2261](https://github.com/Azure/autorest.typescript/pull/2261).
 - [Bugfix] Fix error model rename issue. Please refer to [#2379](https://github.com/Azure/autorest.typescript/pull/2379).
