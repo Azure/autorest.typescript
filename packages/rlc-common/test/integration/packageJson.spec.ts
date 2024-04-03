@@ -344,7 +344,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "build",
-        "npm run clean && tshy && api-extractor run --local"
+        "npm run clean && tshy && mkdirp ./review && api-extractor run --local"
       );
       expect(packageFile.scripts).to.have.property(
         "test:node",
@@ -361,6 +361,10 @@ describe("Package file generation", () => {
       expect(packageFile.scripts).to.have.property(
         "unit-test:node",
         "dev-tool run test:vitest --no-test-proxy"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "clean",
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
       );
     });
 
@@ -447,6 +451,10 @@ describe("Package file generation", () => {
       expect(packageFile.scripts).to.have.property(
         "unit-test:browser",
         "dev-tool run test:browser"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "clean",
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
       );
     });
   });
