@@ -1,6 +1,6 @@
 ## 0.26.1 (2024-04-04)
 
-- [Bugfix] Fix missing scripts in package.json file. Please refer to [2402](https://github.com/Azure/autorest.typescript/pull/2402).
+- [Bugfix] Fix missing scripts in package.json file. Please refer to [#2402](https://github.com/Azure/autorest.typescript/pull/2402).
 
 ## 0.26.0 (2024-04-03)
 
