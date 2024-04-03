@@ -335,7 +335,7 @@ export async function _listApplicationsDeserialize(
             displayName: p["displayName"],
             versions: p["versions"],
           })),
-    odataNextLink: result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -443,7 +443,7 @@ export async function _listPoolUsageMetricsDeserialize(
             vmSize: p["vmSize"],
             totalCoreHours: p["totalCoreHours"],
           })),
-    odataNextLink: result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -1417,7 +1417,7 @@ export async function _listPoolsDeserialize(
             targetNodeCommunicationMode: p["targetNodeCommunicationMode"],
             currentNodeCommunicationMode: p["currentNodeCommunicationMode"],
           })),
-    odataNextLink: result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -2816,7 +2816,7 @@ export async function _listSupportedImagesDeserialize(
                 : undefined,
             verificationType: p["verificationType"],
           })),
-    odataNextLink: result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -2902,7 +2902,7 @@ export async function _listPoolNodeCountsDeserialize(
                   total: p.lowPriority?.["total"],
                 },
           })),
-    odataNextLink: result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -7952,7 +7952,7 @@ export async function _listJobsDeserialize(
                   waitTime: p.stats?.["waitTime"],
                 },
           })),
-    odataNextLink: result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -9134,7 +9134,7 @@ export async function _listJobsFromScheduleDeserialize(
                   waitTime: p.stats?.["waitTime"],
                 },
           })),
-    odataNextLink: result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -9326,7 +9326,7 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
                   result: p.jobReleaseTaskExecutionInfo?.["result"],
                 },
           })),
-    odataNextLink: result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -9528,7 +9528,7 @@ export async function _listCertificatesDeserialize(
             certificateFormat: p["certificateFormat"],
             password: p["password"],
           })),
-    odataNextLink: result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -16330,7 +16330,7 @@ export async function _listJobSchedulesDeserialize(
                   waitTime: p.stats?.["waitTime"],
                 },
           })),
-    odataNextLink: result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -16931,7 +16931,7 @@ export async function _listTasksDeserialize(
               ? undefined
               : { access: p.authenticationTokenSettings?.["access"] },
           })),
-    odataNextLink: result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -18171,7 +18171,7 @@ export async function _listTaskFilesDeserialize(
                   fileMode: p.properties?.["fileMode"],
                 },
           })),
-    odataNextLink: result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -19379,7 +19379,7 @@ export async function _listNodesDeserialize(
                       },
                 },
           })),
-    odataNextLink: result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -19569,7 +19569,7 @@ export async function _listNodeExtensionsDeserialize(
                         })),
                 },
           })),
-    odataNextLink: result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 
@@ -19815,7 +19815,7 @@ export async function _listNodeFilesDeserialize(
                   fileMode: p.properties?.["fileMode"],
                 },
           })),
-    odataNextLink: result.body["odata.nextLink"],
+    "odata.nextLink": result.body["odata.nextLink"],
   };
 }
 

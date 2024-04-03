@@ -971,11 +971,7 @@ function emitProperty(
   }
 
   // const [clientName, jsonName] = getPropertyNames(context, property);
-  const clientName = normalizeName(
-    getLibraryName(context, property),
-    NameType.Property,
-    true
-  );
+  const clientName = getLibraryName(context, property);
   const jsonName = getWireName(context, property);
 
   if (property.model) {

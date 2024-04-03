@@ -14,7 +14,7 @@ export type AccessScope = string;
 
 // @public
 export interface AccountListSupportedImagesResult {
-    odataNextLink?: string;
+    "odata.nextLink"?: string;
     value?: ImageInformation[];
 }
 
@@ -28,7 +28,7 @@ export type AllocationState = string;
 
 // @public
 export interface ApplicationListResult {
-    odataNextLink?: string;
+    "odata.nextLink"?: string;
     value?: BatchApplication[];
 }
 
@@ -273,13 +273,13 @@ export interface BatchJobDisableOptions {
 
 // @public
 export interface BatchJobListPreparationAndReleaseTaskStatusResult {
-    odataNextLink?: string;
+    "odata.nextLink"?: string;
     value?: JobPreparationAndReleaseTaskExecutionInformation[];
 }
 
 // @public
 export interface BatchJobListResult {
-    odataNextLink?: string;
+    "odata.nextLink"?: string;
     value?: BatchJob[];
 }
 
@@ -313,7 +313,7 @@ export interface BatchJobScheduleCreateOptions {
 
 // @public
 export interface BatchJobScheduleListResult {
-    odataNextLink?: string;
+    "odata.nextLink"?: string;
     value?: BatchJobSchedule[];
 }
 
@@ -402,7 +402,7 @@ export interface BatchNodeInformation {
 
 // @public
 export interface BatchNodeListResult {
-    odataNextLink?: string;
+    "odata.nextLink"?: string;
     value?: BatchNode[];
 }
 
@@ -525,7 +525,7 @@ export interface BatchPoolIdentity {
 
 // @public
 export interface BatchPoolListResult {
-    odataNextLink?: string;
+    "odata.nextLink"?: string;
     value?: BatchPool[];
 }
 
@@ -613,7 +613,7 @@ export interface BatchTaskCreateOptions {
 
 // @public
 export interface BatchTaskListResult {
-    odataNextLink?: string;
+    "odata.nextLink"?: string;
     value?: BatchTask[];
 }
 
@@ -636,7 +636,7 @@ export type CertificateFormat = string;
 
 // @public
 export interface CertificateListResult {
-    odataNextLink?: string;
+    "odata.nextLink"?: string;
     value?: BatchCertificate[];
 }
 
@@ -1620,7 +1620,7 @@ export interface NodeFile {
 
 // @public
 export interface NodeFileListResult {
-    odataNextLink?: string;
+    "odata.nextLink"?: string;
     value?: NodeFile[];
 }
 
@@ -1658,7 +1658,7 @@ export interface NodeVMExtension {
 
 // @public
 export interface NodeVMExtensionList {
-    odataNextLink?: string;
+    "odata.nextLink"?: string;
     value?: NodeVMExtension[];
 }
 
@@ -1745,7 +1745,7 @@ export type PoolLifetimeOption = string;
 
 // @public
 export interface PoolListUsageMetricsResult {
-    odataNextLink?: string;
+    "odata.nextLink"?: string;
     value?: PoolUsageMetrics[];
 }
 
@@ -1758,7 +1758,7 @@ export interface PoolNodeCounts {
 
 // @public
 export interface PoolNodeCountsListResult {
-    odataNextLink?: string;
+    "odata.nextLink"?: string;
     value?: PoolNodeCounts[];
 }
 
