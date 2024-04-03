@@ -4,7 +4,7 @@
 
 ## 6.0.19 (2024-04-03)
 
-- [Feature] Enable esm for RLC generation from TypeSpec. Please refer to [2338](https://github.com/Azure/autorest.typescript/pull/2338).
+- [Feature] Enable esm for RLC generation from TypeSpec. Please refer to [#2338](https://github.com/Azure/autorest.typescript/pull/2338).
 - [Feature] Support usage and access. Please refer to [#2356](https://github.com/Azure/autorest.typescript/pull/2356).
 - [Feature] Support server versions in modular. Please refer to [#2261](https://github.com/Azure/autorest.typescript/pull/2261).
 - [Feature] Deprecate baseurl in favor of endpoint in RLC. Please refer to [#2246](https://github.com/Azure/autorest.typescript/pull/2246).
