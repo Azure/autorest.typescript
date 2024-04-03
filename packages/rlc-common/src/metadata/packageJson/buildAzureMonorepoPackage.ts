@@ -193,6 +193,7 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
     "build:samples": "dev-tool samples publish --force",
     "check-format":
       'dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"',
+    "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "execute:samples": "dev-tool samples run samples-dev",
     format:
       'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"',
@@ -218,7 +219,7 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
 
   return {
     "build:test": "npm run clean && tshy && dev-tool run build-test",
-    build: "npm run clean && tshy && api-extractor run --local",
+    build: "npm run clean && tshy && mkdirp ./review && api-extractor run --local",
     "test:node":
       "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node",
     test: "npm run clean && tshy && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test",
