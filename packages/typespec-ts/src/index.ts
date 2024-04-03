@@ -68,10 +68,7 @@ export async function $onEmit(context: EmitContext) {
   /** Shared status */
   const program: Program = context.program;
   const emitterOptions: EmitterOptions = context.options;
-  const dpgContext = createSdkContext(
-    context,
-    "@azure-tools/typespec-ts"
-  ) as SdkContext;
+  const dpgContext = createContextWithDefaultOptions(context);
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
@@ -124,6 +121,28 @@ export async function $onEmit(context: EmitContext) {
         ? sourcesRoot
         : undefined
     };
+  }
+
+  function createContextWithDefaultOptions(
+    context: EmitContext<Record<string, any>>
+  ): SdkContext {
+    const tsFixedSettings = {
+      generateProtocolMethods: true,
+      generateConvenienceMethods: true,
+      flattenUnionAsEnum: false,
+      emitters: [
+        {
+          main: "@azure-tools/typespec-ts",
+          metadata: { name: "@azure-tools/typespec-ts" }
+        }
+      ]
+    };
+    context.options = {
+      ...context.options,
+      ...tsFixedSettings
+    };
+
+    return createSdkContext(context) as SdkContext;
   }
 
   async function clearSrcFolder() {
