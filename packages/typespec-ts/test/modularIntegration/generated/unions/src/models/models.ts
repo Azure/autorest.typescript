@@ -36,9 +36,9 @@ export interface StringAndArrayCases {
 
 export interface EnumsOnlyCases {
   /** This should be receive/send the left variant */
-  lr: string | "left" | "right" | "up" | "down";
+  lr: "left" | "right" | "up" | "down";
   /** This should be receive/send the up variant */
-  ud: string | "up" | "down";
+  ud: "up" | "down";
 }
 
 export interface Dog {
