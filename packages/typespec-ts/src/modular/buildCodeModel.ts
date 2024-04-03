@@ -65,7 +65,6 @@ import {
   getAllModels,
   SdkBuiltInType,
   getSdkBuiltInType,
-  getClientType,
   SdkEnumValueType,
   getLibraryName,
   getWireName
@@ -1411,12 +1410,15 @@ function emitUnion(
           : variantTypes.map((x) => getTypeName(x).name).join(" | ")
     };
   } else if (sdkType.kind === "enum") {
+    const typeName = getLibraryName(context, type)
+      ? getLibraryName(context, type)
+      : sdkType.isGeneratedName
+        ? type.name
+        : sdkType.name;
     return {
-      name: getLibraryName(context, type)
-        ? getLibraryName(context, type)
-        : type.name,
+      name: typeName,
       nullable: sdkType.nullable,
-      description: sdkType.description || `Type of ${sdkType.name}`,
+      description: sdkType.description || `Type of ${typeName}`,
       internal: true,
       type: sdkType.kind,
       valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
@@ -1425,21 +1427,10 @@ function emitUnion(
       xmlMetadata: {},
       usage
     };
-  } else if (
-    isStringOrNumberKind(context.program, sdkType.kind) &&
-    isStringOrNumberKind(context.program, nonNullOptions[0]?.kind)
-  ) {
+  } else if (nonNullOptions.length === 1 && nonNullOptions[0]) {
     return {
-      name: undefined, // string/number union will be mapped as fixed enum without name
-      nullable: sdkType.nullable,
-      internal: true,
-      type: "enum",
-      valueType: emitSimpleType(context, sdkType as SdkBuiltInType),
-      values: nonNullOptions
-        .map((x) => getClientType(context, x))
-        .map((x) => emitEnumMember(context, x)),
-      isFixed: true,
-      xmlMetadata: {}
+      ...emitType(context, nonNullOptions[0], usage),
+      nullable: sdkType.nullable
     };
   } else {
     return {
@@ -1447,19 +1438,6 @@ function emitUnion(
       nullable: sdkType.nullable
     };
   }
-}
-function isStringOrNumberKind(program: Program, kind?: string): boolean {
-  if (!kind) {
-    return false;
-  }
-  kind = kind.toLowerCase();
-  try {
-    const type = emitStdScalar(program, { name: kind } as any);
-    kind = type["type"] ?? kind;
-  } catch (e: any) {
-    // ignore
-  }
-  return ["string", "number", "integer", "float"].includes(kind!);
 }
 
 function getNonNullOptions(type: Union) {

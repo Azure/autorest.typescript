@@ -33,9 +33,8 @@ describe("anonymous model", () => {
             prop2: number;
           }`
         );
-        const operationFiles = await emitModularOperationsFromTypeSpec(
-          tspContent
-        );
+        const operationFiles =
+          await emitModularOperationsFromTypeSpec(tspContent);
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
         await assertEqualContent(
@@ -147,9 +146,8 @@ describe("anonymous model", () => {
           prop5?: Bar;
         }`
         );
-        const operationFiles = await emitModularOperationsFromTypeSpec(
-          tspContent
-        );
+        const operationFiles =
+          await emitModularOperationsFromTypeSpec(tspContent);
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
         await assertEqualContent(
@@ -259,9 +257,8 @@ describe("anonymous model", () => {
           prop5?: Bar;
         }`
         );
-        const operationFiles = await emitModularOperationsFromTypeSpec(
-          tspContent
-        );
+        const operationFiles =
+          await emitModularOperationsFromTypeSpec(tspContent);
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
         await assertEqualContent(
@@ -348,22 +345,21 @@ describe("anonymous model", () => {
         await assertEqualContent(
           modelFile?.getFullText()!,
           `
+        export interface Bar {
+          prop1: string;
+          prop2: number;
+        }
+
         export interface Foo {
           prop1: string;
           prop2: number;
           prop3: Date;
           prop4: string;
           prop5: Bar;
-        }
-  
-        export interface Bar {
-          prop1: string;
-          prop2: number;
         }`
         );
-        const operationFiles = await emitModularOperationsFromTypeSpec(
-          tspContent
-        );
+        const operationFiles =
+          await emitModularOperationsFromTypeSpec(tspContent);
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
         await assertEqualContent(
@@ -428,9 +424,8 @@ describe("anonymous model", () => {
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.isUndefined(modelFile);
-        const operationFiles = await emitModularOperationsFromTypeSpec(
-          tspContent
-        );
+        const operationFiles =
+          await emitModularOperationsFromTypeSpec(tspContent);
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
         await assertEqualContent(
@@ -498,9 +493,8 @@ describe("anonymous model", () => {
             prop2: number;
           }`
         );
-        const operationFiles = await emitModularOperationsFromTypeSpec(
-          tspContent
-        );
+        const operationFiles =
+          await emitModularOperationsFromTypeSpec(tspContent);
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
         await assertEqualContent(
@@ -578,9 +572,8 @@ describe("anonymous model", () => {
         }`
         );
 
-        const operationFiles = await emitModularOperationsFromTypeSpec(
-          tspContent
-        );
+        const operationFiles =
+          await emitModularOperationsFromTypeSpec(tspContent);
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
         await assertEqualContent(
@@ -641,9 +634,8 @@ describe("anonymous model", () => {
         }`
         );
 
-        const operationFiles = await emitModularOperationsFromTypeSpec(
-          tspContent
-        );
+        const operationFiles =
+          await emitModularOperationsFromTypeSpec(tspContent);
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
         await assertEqualContent(
@@ -735,9 +727,8 @@ describe("anonymous model", () => {
         `;
         // No models.ts file generated
         assert.isUndefined(await emitModularModelsFromTypeSpec(tspContent));
-        const operationFiles = await emitModularOperationsFromTypeSpec(
-          tspContent
-        );
+        const operationFiles =
+          await emitModularOperationsFromTypeSpec(tspContent);
         assert.equal(operationFiles?.length, 1);
         // Generate the operations.ts file with empty model
         await verifyReturnTypeAsEmpty(
@@ -759,9 +750,8 @@ describe("anonymous model", () => {
           export interface PublishResult {}
         `
         );
-        const operationFiles = await emitModularOperationsFromTypeSpec(
-          tspContent
-        );
+        const operationFiles =
+          await emitModularOperationsFromTypeSpec(tspContent);
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
         // Model name referred in operations.ts
@@ -777,9 +767,8 @@ describe("anonymous model", () => {
         `;
         // No models.ts file generated
         assert.isUndefined(await emitModularModelsFromTypeSpec(tspContent));
-        const operationFiles = await emitModularOperationsFromTypeSpec(
-          tspContent
-        );
+        const operationFiles =
+          await emitModularOperationsFromTypeSpec(tspContent);
         assert.equal(operationFiles?.length, 1);
         // Generate the operations.ts file with empty model
         await assertEqualContent(
@@ -854,9 +843,8 @@ describe("anonymous model", () => {
         export interface EmptyModel {}
         `
         );
-        const operationFiles = await emitModularOperationsFromTypeSpec(
-          tspContent
-        );
+        const operationFiles =
+          await emitModularOperationsFromTypeSpec(tspContent);
         assert.equal(operationFiles?.length, 1);
         await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
@@ -943,9 +931,8 @@ describe("anonymous model", () => {
         `
         );
 
-        const operationFiles = await emitModularOperationsFromTypeSpec(
-          tspContent
-        );
+        const operationFiles =
+          await emitModularOperationsFromTypeSpec(tspContent);
         assert.equal(operationFiles?.length, 1);
         await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,

@@ -92,7 +92,12 @@ describe("model property type", () => {
     const tspType = "TranslationLanguageValues.English";
     const typeScriptType = `"English"`;
     await verifyModularPropertyType(tspType, typeScriptType, {
-      additionalTypeSpecDefinition: tspTypeDefinition
+      additionalTypeSpecDefinition: tspTypeDefinition,
+      additionalInputContent: `
+      /** Translation Language Values */
+      /** */
+      export type TranslationLanguageValues = "English" | "Chinese";
+      `
     });
   });
 });
