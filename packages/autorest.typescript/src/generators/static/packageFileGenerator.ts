@@ -13,11 +13,8 @@ export function generatePackageJson(
   project: Project,
   clientDetails?: ClientDetails
 ) {
-  const {
-    restLevelClient,
-    generateMetadata,
-    packageDetails
-  } = getAutorestOptions();
+  const { restLevelClient, generateMetadata, packageDetails } =
+    getAutorestOptions();
   let packageJsonContents;
 
   if (!generateMetadata) {
@@ -109,7 +106,7 @@ function regularAutorestPackage(
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",
-      mkdirp: "^2.1.2",
+      mkdirp: "^3.0.1",
       typescript: "~5.3.3",
       "uglify-js": "^3.4.9",
       rimraf: "^5.0.0",
@@ -220,7 +217,8 @@ function regularAutorestPackage(
       packageInfo.scripts["integration-test:node"] =
         "dev-tool run test:node-ts-input -- --timeout 1200000 'test/*.ts'";
     } else {
-      packageInfo.scripts["integration-test:node"] = `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts`;
+      packageInfo.scripts["integration-test:node"] =
+        `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts`;
     }
   }
   if (
