@@ -4,14 +4,23 @@
   "author": "Microsoft Corporation",
   "version": "1.0.0-beta.1",
   "description": "",
-  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
+  "keywords": [
+    "node",
+    "azure",
+    "cloud",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
   "license": "MIT",
   "main": "dist/index.js",
   "module": "./dist-esm/index.js",
   "types": "./types/rlcClient.d.ts",
   "homepage": "https://github.com/Azure/azure-sdk-for-js/tree/main/undefined/README.md",
   "repository": "github:Azure/azure-sdk-for-js",
-  "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
+  "bugs": {
+    "url": "https://github.com/Azure/azure-sdk-for-js/issues"
+  },
   "files": [
     "dist/",
     "dist-esm/",
@@ -22,10 +31,15 @@
   ],
   "//metadata": {
     "constantPaths": [
-      { "path": "swagger/README.md", "prefix": "package-version" }
+      {
+        "path": "swagger/README.md",
+        "prefix": "package-version"
+      }
     ]
   },
-  "engines": { "node": ">=18.0.0" },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "build:browser": "echo skipped.",
     "build:node": "echo skipped.",
@@ -69,7 +83,7 @@
     "@types/node": "^18.0.0",
     "dotenv": "^16.0.0",
     "eslint": "^7.15.0",
-    "mkdirp": "^3.0.1",,
+    "mkdirp": "^3.0.1",
     "prettier": "^2.5.1",
     "rimraf": "^5.0.0",
     "source-map-support": "^0.5.9",

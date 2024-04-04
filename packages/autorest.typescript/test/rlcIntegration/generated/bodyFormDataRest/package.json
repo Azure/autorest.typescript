@@ -10,7 +10,14 @@
   "main": "dist/index.js",
   "module": "./dist-esm/index.js",
   "types": "./types/body-formdata-rest.d.ts",
-  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
+  "keywords": [
+    "node",
+    "azure",
+    "cloud",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
   "author": "Microsoft Corporation",
   "license": "MIT",
   "files": [
@@ -35,7 +42,7 @@
     "eslint": "^8.55.0",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
-    "mkdirp": "^3.0.1",,
+    "mkdirp": "^3.0.1",
     "typescript": "~5.3.3",
     "autorest": "latest",
     "source-map-support": "^0.5.9",

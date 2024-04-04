@@ -4,13 +4,22 @@
   "author": "Microsoft Corporation",
   "version": "1.0.0",
   "description": "Hello World Test Service",
-  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
+  "keywords": [
+    "node",
+    "azure",
+    "cloud",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
   "license": "MIT",
   "main": "dist/index.js",
   "module": "./dist-esm/index.js",
   "types": "./types/hello-world.d.ts",
   "repository": "github:Azure/azure-sdk-for-js",
-  "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
+  "bugs": {
+    "url": "https://github.com/Azure/azure-sdk-for-js/issues"
+  },
   "files": [
     "dist/",
     "dist-esm/",
@@ -19,7 +28,9 @@
     "LICENSE",
     "review/*"
   ],
-  "engines": { "node": ">=18.0.0" },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "build:browser": "echo skipped.",
     "build:node": "echo skipped.",
@@ -62,7 +73,7 @@
     "@types/node": "^18.0.0",
     "dotenv": "^16.0.0",
     "eslint": "^8.0.0",
-    "mkdirp": "^3.0.1",,
+    "mkdirp": "^3.0.1",
     "prettier": "^2.5.1",
     "rimraf": "^5.0.0",
     "source-map-support": "^0.5.9",

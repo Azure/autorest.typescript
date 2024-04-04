@@ -4,16 +4,27 @@
   "author": "Microsoft Corporation",
   "description": "A generated SDK for UserAgentCoreV1Client.",
   "version": "1.0.0-preview1",
-  "engines": { "node": ">=18.0.0" },
-  "dependencies": { "@azure/core-http": "^3.0.0", "tslib": "^2.2.0" },
-  "keywords": ["node", "azure", "typescript", "browser", "isomorphic"],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@azure/core-http": "^3.0.0",
+    "tslib": "^2.2.0"
+  },
+  "keywords": [
+    "node",
+    "azure",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
   "license": "MIT",
   "main": "./dist/index.js",
   "module": "./dist-esm/index.js",
   "types": "./types/useragent-corev1.d.ts",
   "devDependencies": {
     "@microsoft/api-extractor": "^7.31.1",
-    "mkdirp": "^3.0.1",,
+    "mkdirp": "^3.0.1",
     "typescript": "~5.3.3",
     "uglify-js": "^3.4.9",
     "rimraf": "^5.0.0",
@@ -24,7 +35,9 @@
     "type": "git",
     "url": "https://github.com/Azure/azure-sdk-for-js.git"
   },
-  "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
+  "bugs": {
+    "url": "https://github.com/Azure/azure-sdk-for-js/issues"
+  },
   "files": [
     "dist/**/*.js",
     "dist/**/*.js.map",
@@ -70,7 +83,10 @@
   "sideEffects": false,
   "//metadata": {
     "constantPaths": [
-      { "path": "src/userAgentCoreV1Client.ts", "prefix": "packageDetails" }
+      {
+        "path": "src/userAgentCoreV1Client.ts",
+        "prefix": "packageDetails"
+      }
     ]
   },
   "autoPublish": true
