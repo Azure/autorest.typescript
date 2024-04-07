@@ -65,7 +65,9 @@ export function transformSchemas(
     const bodyModel = getBodyType(program, route);
     if (
       bodyModel &&
-      (bodyModel.kind === "Model" || bodyModel.kind === "Union")
+      (bodyModel.kind === "Model" ||
+        bodyModel.kind === "Union" ||
+        bodyModel.kind === "Enum")
     ) {
       requestBodySet.add(bodyModel);
       const contentTypes: KnownMediaType[] = extractMediaTypes(
@@ -161,26 +163,21 @@ export function transformSchemas(
       }
       for (const prop of model.properties) {
         const [, propType] = prop;
-        if (
-          propType.type.kind === "Model" &&
-          (!program.stateMap(modelKey).get(propType.type) ||
-            !program.stateMap(modelKey).get(propType.type)?.includes(context))
-        ) {
+        if (program.stateMap(modelKey).get(propType.type)?.includes(context)) {
+          continue;
+        }
+        if (propType.type.kind === "Model") {
           if (isAzureCoreErrorType(propType.type)) {
             continue;
           }
           getGeneratedModels(propType.type, context);
-        }
-        if (
-          propType.type.kind === "Union" &&
-          (!program.stateMap(modelKey).get(propType.type) ||
-            !program.stateMap(modelKey).get(propType.type)?.includes(context))
-        ) {
+        } else if (propType.type.kind === "Union") {
           const variants = Array.from(propType.type.variants.values());
           for (const variant of variants) {
             if (
               (variant.type.kind === "Model" ||
-                variant.type.kind === "Union") &&
+                variant.type.kind === "Union" ||
+                variant.type.kind === "Enum") &&
               (!program.stateMap(modelKey).get(variant.type) ||
                 !program
                   .stateMap(modelKey)
@@ -194,6 +191,8 @@ export function transformSchemas(
           if (!propType.type.expression) {
             setModelMap(propType.type, context);
           }
+        } else if (propType.type.kind === "Enum") {
+          getGeneratedModels(propType.type, context);
         }
       }
       const baseModel = model.baseModel;
@@ -236,6 +235,8 @@ export function transformSchemas(
       }
     } else if (model.kind === "ModelProperty") {
       getGeneratedModels(model.type, context);
+    } else if (model.kind === "Enum") {
+      setModelMap(model, context);
     }
   }
   const allSchemas = Array.from(schemas, function (item) {
