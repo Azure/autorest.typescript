@@ -403,6 +403,14 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "server/endpoint/not-defined",
     inputPath: "server/endpoint/not-defined"
+  },
+  {
+    outputPath: "enums/extensible",
+    inputPath: "type/enum/extensible"
+  },
+  {
+    outputPath: "enums/fixed",
+    inputPath: "type/enum/fixed"
   }
 ];
 
