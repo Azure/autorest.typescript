@@ -126,10 +126,10 @@ export async function $onEmit(context: EmitContext) {
   function createContextWithDefaultOptions(
     context: EmitContext<Record<string, any>>
   ): SdkContext {
-    const tsFixedSettings = {
-      generateProtocolMethods: true,
-      generateConvenienceMethods: true,
-      flattenUnionAsEnum: false,
+    const tcgcSettings = {
+      "generate-protocol-methods": true,
+      "generate-convenience-methods": true,
+      "flatten-union-as-enum": false,
       emitters: [
         {
           main: "@azure-tools/typespec-ts",
@@ -139,7 +139,7 @@ export async function $onEmit(context: EmitContext) {
     };
     context.options = {
       ...context.options,
-      ...tsFixedSettings
+      ...tcgcSettings
     };
 
     return createSdkContext(context) as SdkContext;
