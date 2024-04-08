@@ -25,6 +25,7 @@ export {
   ResourceMetric,
   PagedFileInfo,
   PagedTest,
+  APIVersions,
   TestRun,
   ErrorDetails,
   TestRunStatistics,
@@ -33,6 +34,8 @@ export {
   TestRunOutputArtifacts,
   PFTestResult,
   Status,
+  Interval,
+  DimensionValueList,
   MetricDefinition,
   NameAndDesc,
   AggregationType,
@@ -44,8 +47,6 @@ export {
   TimeSeriesElement,
   MetricValue,
   DimensionValue,
-  Interval,
-  DimensionValueList,
 } from "./models.js";
 export {
   CreateOrUpdateTestOptions,

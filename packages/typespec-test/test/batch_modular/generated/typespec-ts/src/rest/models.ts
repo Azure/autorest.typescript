@@ -52,12 +52,8 @@ export interface BatchPoolCreateOptions {
   metadata?: Array<MetadataItem>;
   /** Mount storage using specified file system for the entire lifetime of the pool. Mount the storage using Azure fileshare, NFS, CIFS or Blobfuse based file system. */
   mountConfiguration?: Array<MountConfiguration>;
-  /**
-   * The desired node communication mode for the pool. If omitted, the default value is Default.
-   *
-   * Possible values: "default", "classic", "simplified"
-   */
-  targetNodeCommunicationMode?: string;
+  /** The desired node communication mode for the pool. If omitted, the default value is Default. */
+  targetNodeCommunicationMode?: NodeCommunicationMode;
 }
 
 /**
@@ -152,30 +148,18 @@ export interface WindowsConfiguration {
 export interface DataDisk {
   /** The logical unit number. The lun is used to uniquely identify each data disk. If attaching multiple disks, each should have a distinct lun. The value must be between 0 and 63, inclusive. */
   lun: number;
-  /**
-   * The type of caching to be enabled for the data disks. The default value for caching is readwrite. For information about the caching options see: https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/27/exploring-windows-azure-drives-disks-and-images/.
-   *
-   * Possible values: "none", "readonly", "readwrite"
-   */
-  caching?: string;
+  /** The type of caching to be enabled for the data disks. The default value for caching is readwrite. For information about the caching options see: https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/27/exploring-windows-azure-drives-disks-and-images/. */
+  caching?: CachingType;
   /** The initial disk size in gigabytes. */
   diskSizeGB: number;
-  /**
-   * The storage Account type to be used for the data disk. If omitted, the default is "standard_lrs".
-   *
-   * Possible values: "standard_lrs", "premium_lrs"
-   */
-  storageAccountType?: string;
+  /** The storage Account type to be used for the data disk. If omitted, the default is "standard_lrs". */
+  storageAccountType?: StorageAccountType;
 }
 
 /** The configuration for container-enabled Pools. */
 export interface ContainerConfiguration {
-  /**
-   * The container technology to be used.
-   *
-   * Possible values: "dockerCompatible", "criCompatible"
-   */
-  type: string;
+  /** The container technology to be used. */
+  type: ContainerType;
   /** The collection of container Image names. This is the full Image reference, as would be specified to "docker pull". An Image will be sourced from the default Docker registry unless the Image is fully qualified with an alternative registry. */
   containerImageNames?: string[];
   /** Additional private registries from which containers can be pulled. If any Images must be downloaded from a private registry which requires credentials, then those credentials must be provided here. */
@@ -210,7 +194,7 @@ export interface BatchNodeIdentityReference {
  */
 export interface DiskEncryptionConfiguration {
   /** The list of disk targets Batch Service will encrypt on the compute node. If omitted, no disks on the compute nodes in the pool will be encrypted. On Linux pool, only "TemporaryDisk" is supported; on Windows pool, "OsDisk" and "TemporaryDisk" must be specified. */
-  targets?: string[];
+  targets?: DiskEncryptionTarget[];
 }
 
 /**
@@ -219,12 +203,8 @@ export interface DiskEncryptionConfiguration {
  * with best effort balancing.
  */
 export interface NodePlacementConfiguration {
-  /**
-   * Node placement Policy type on Batch Pools. Allocation policy used by Batch Service to provision the nodes. If not specified, Batch will use the regional policy.
-   *
-   * Possible values: "regional", "zonal"
-   */
-  policy?: string;
+  /** Node placement Policy type on Batch Pools. Allocation policy used by Batch Service to provision the nodes. If not specified, Batch will use the regional policy. */
+  policy?: NodePlacementPolicyType;
 }
 
 /** The configuration for virtual machine extensions. */
@@ -260,24 +240,16 @@ export interface OSDisk {
  * compute node (VM).
  */
 export interface DiffDiskSettings {
-  /**
-   * Specifies the ephemeral disk placement for operating system disk for all VMs in the pool. This property can be used by user in the request to choose the location e.g., cache disk space for Ephemeral OS disk provisioning. For more information on Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size requirements for Windows VMs at https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements and Linux VMs at https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements.
-   *
-   * Possible values: "cachedisk"
-   */
-  placement?: string;
+  /** Specifies the ephemeral disk placement for operating system disk for all VMs in the pool. This property can be used by user in the request to choose the location e.g., cache disk space for Ephemeral OS disk provisioning. For more information on Ephemeral OS disk size requirements, please refer to Ephemeral OS disk size requirements for Windows VMs at https://docs.microsoft.com/en-us/azure/virtual-machines/windows/ephemeral-os-disks#size-requirements and Linux VMs at https://docs.microsoft.com/en-us/azure/virtual-machines/linux/ephemeral-os-disks#size-requirements. */
+  placement?: DiffDiskPlacement;
 }
 
 /** The network configuration for a Pool. */
 export interface NetworkConfiguration {
   /** The ARM resource identifier of the virtual network subnet which the Compute Nodes of the Pool will join. This is of the form /subscriptions/{subscription}/resourceGroups/{group}/providers/{provider}/virtualNetworks/{network}/subnets/{subnet}. The virtual network must be in the same region and subscription as the Azure Batch Account. The specified subnet should have enough free IP addresses to accommodate the number of Compute Nodes in the Pool. If the subnet doesn't have enough free IP addresses, the Pool will partially allocate Nodes and a resize error will occur. The 'MicrosoftAzureBatch' service principal must have the 'Classic Virtual Machine Contributor' Role-Based Access Control (RBAC) role for the specified VNet. The specified subnet must allow communication from the Azure Batch service to be able to schedule Tasks on the Nodes. This can be verified by checking if the specified VNet has any associated Network Security Groups (NSG). If communication to the Nodes in the specified subnet is denied by an NSG, then the Batch service will set the state of the Compute Nodes to unusable. For Pools created with virtualMachineConfiguration only ARM virtual networks ('Microsoft.Network/virtualNetworks') are supported, but for Pools created with cloudServiceConfiguration both ARM and classic virtual networks are supported. If the specified VNet has any associated Network Security Groups (NSG), then a few reserved system ports must be enabled for inbound communication. For Pools created with a virtual machine configuration, enable ports 29876 and 29877, as well as port 22 for Linux and port 3389 for Windows. For Pools created with a cloud service configuration, enable ports 10100, 20100, and 30100. Also enable outbound connections to Azure Storage on port 443. For more details see: https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration. */
   subnetId?: string;
-  /**
-   * The scope of dynamic vnet assignment.
-   *
-   * Possible values: "none", "job"
-   */
-  dynamicVNetAssignmentScope?: string;
+  /** The scope of dynamic vnet assignment. */
+  dynamicVNetAssignmentScope?: DynamicVNetAssignmentScope;
   /** The configuration for endpoints on Compute Nodes in the Batch Pool. Pool endpoint configuration is only supported on Pools with the virtualMachineConfiguration property. */
   endpointConfiguration?: PoolEndpointConfiguration;
   /** The Public IPAddress configuration for Compute Nodes in the Batch Pool. Public IP configuration property is only supported on Pools with the virtualMachineConfiguration property. */
@@ -299,12 +271,8 @@ export interface PoolEndpointConfiguration {
 export interface InboundNATPool {
   /** The name of the endpoint. The name must be unique within a Batch Pool, can contain letters, numbers, underscores, periods, and hyphens. Names must start with a letter or number, must end with a letter, number, or underscore, and cannot exceed 77 characters.  If any invalid values are provided the request fails with HTTP status code 400. */
   name: string;
-  /**
-   * The protocol of the endpoint.
-   *
-   * Possible values: "tcp", "udp"
-   */
-  protocol: string;
+  /** The protocol of the endpoint. */
+  protocol: InboundEndpointProtocol;
   /** The port number on the Compute Node. This must be unique within a Batch Pool. Acceptable values are between 1 and 65535 except for 22, 3389, 29876 and 29877 as these are reserved. If any reserved values are provided the request fails with HTTP status code 400. */
   backendPort: number;
   /** The first port number in the range of external ports that will be used to provide inbound access to the backendPort on individual Compute Nodes. Acceptable values range between 1 and 65534 except ports from 50000 to 55000 which are reserved. All ranges within a Pool must be distinct and cannot overlap. Each range must contain at least 40 ports. If any reserved or overlapping values are provided the request fails with HTTP status code 400. */
@@ -319,12 +287,8 @@ export interface InboundNATPool {
 export interface NetworkSecurityGroupRule {
   /** The priority for this rule. Priorities within a Pool must be unique and are evaluated in order of priority. The lower the number the higher the priority. For example, rules could be specified with order numbers of 150, 250, and 350. The rule with the order number of 150 takes precedence over the rule that has an order of 250. Allowed priorities are 150 to 4096. If any reserved or duplicate values are provided the request fails with HTTP status code 400. */
   priority: number;
-  /**
-   * The action that should be taken for a specified IP address, subnet range or tag.
-   *
-   * Possible values: "allow", "deny"
-   */
-  access: string;
+  /** The action that should be taken for a specified IP address, subnet range or tag. */
+  access: NetworkSecurityGroupRuleAccess;
   /** The source address prefix or tag to match for the rule. Valid values are a single IP address (i.e. 10.10.10.10), IP subnet (i.e. 192.168.1.0/24), default tag, or * (for all addresses).  If any other values are provided the request fails with HTTP status code 400. */
   sourceAddressPrefix: string;
   /** The source port ranges to match for the rule. Valid values are '*' (for all ports 0 - 65535), a specific port (i.e. 22), or a port range (i.e. 100-200). The ports must be in the range of 0 to 65535. Each entry in this collection must not overlap any other entry (either a range or an individual port). If any other values are provided the request fails with HTTP status code 400. The default value is '*'. */
@@ -333,12 +297,8 @@ export interface NetworkSecurityGroupRule {
 
 /** The public IP Address configuration of the networking configuration of a Pool. */
 export interface PublicIPAddressConfiguration {
-  /**
-   * The provisioning type for Public IP Addresses for the Pool. The default value is BatchManaged.
-   *
-   * Possible values: "batchmanaged", "usermanaged", "nopublicipaddresses"
-   */
-  provision?: string;
+  /** The provisioning type for Public IP Addresses for the Pool. The default value is BatchManaged. */
+  provision?: IPAddressProvisioningType;
   /** The list of public IPs which the Batch service will use when provisioning Compute Nodes. The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100 Spot/Low-priority nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would need at least 3 public IPs specified. Each element of this collection is of the form: /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}. */
   ipAddressIds?: string[];
 }
@@ -383,12 +343,8 @@ export interface TaskContainerSettings {
   imageName: string;
   /** The private registry which contains the container Image. This setting can be omitted if was already provided at Pool creation. */
   registry?: ContainerRegistry;
-  /**
-   * The location of the container Task working directory. The default is 'taskWorkingDirectory'.
-   *
-   * Possible values: "taskWorkingDirectory", "containerImageDefault"
-   */
-  workingDirectory?: string;
+  /** The location of the container Task working directory. The default is 'taskWorkingDirectory'. */
+  workingDirectory?: ContainerWorkingDirectory;
 }
 
 /** A single file or multiple files to be downloaded to a Compute Node. */
@@ -427,18 +383,10 @@ export interface UserIdentity {
 
 /** Specifies the options for the auto user that runs an Azure Batch Task. */
 export interface AutoUserSpecification {
-  /**
-   * The scope for the auto user. The default value is pool. If the pool is running Windows a value of Task should be specified if stricter isolation between tasks is required. For example, if the task mutates the registry in a way which could impact other tasks, or if certificates have been specified on the pool which should not be accessible by normal tasks but should be accessible by StartTasks.
-   *
-   * Possible values: "task", "pool"
-   */
-  scope?: string;
-  /**
-   * The elevation level of the auto user. The default value is nonAdmin.
-   *
-   * Possible values: "nonadmin", "admin"
-   */
-  elevationLevel?: string;
+  /** The scope for the auto user. The default value is pool. If the pool is running Windows a value of Task should be specified if stricter isolation between tasks is required. For example, if the task mutates the registry in a way which could impact other tasks, or if certificates have been specified on the pool which should not be accessible by normal tasks but should be accessible by StartTasks. */
+  scope?: AutoUserScope;
+  /** The elevation level of the auto user. The default value is nonAdmin. */
+  elevationLevel?: ElevationLevel;
 }
 
 /** A reference to a Certificate to be installed on Compute Nodes in a Pool. Warning: This object is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead. */
@@ -447,16 +395,12 @@ export interface CertificateReference {
   thumbprint: string;
   /** The algorithm with which the thumbprint is associated. This must be sha1. */
   thumbprintAlgorithm: string;
-  /**
-   * The location of the Certificate store on the Compute Node into which to install the Certificate. The default value is currentuser. This property is applicable only for Pools configured with Windows Compute Nodes (that is, created with cloudServiceConfiguration, or with virtualMachineConfiguration using a Windows Image reference). For Linux Compute Nodes, the Certificates are stored in a directory inside the Task working directory and an environment variable AZ_BATCH_CERTIFICATES_DIR is supplied to the Task to query for this location. For Certificates with visibility of 'remoteUser', a 'certs' directory is created in the user's home directory (e.g., /home/{user-name}/certs) and Certificates are placed in that directory.
-   *
-   * Possible values: "currentuser", "localmachine"
-   */
-  storeLocation?: string;
+  /** The location of the Certificate store on the Compute Node into which to install the Certificate. The default value is currentuser. This property is applicable only for Pools configured with Windows Compute Nodes (that is, created with cloudServiceConfiguration, or with virtualMachineConfiguration using a Windows Image reference). For Linux Compute Nodes, the Certificates are stored in a directory inside the Task working directory and an environment variable AZ_BATCH_CERTIFICATES_DIR is supplied to the Task to query for this location. For Certificates with visibility of 'remoteUser', a 'certs' directory is created in the user's home directory (e.g., /home/{user-name}/certs) and Certificates are placed in that directory. */
+  storeLocation?: CertificateStoreLocation;
   /** The name of the Certificate store on the Compute Node into which to install the Certificate. This property is applicable only for Pools configured with Windows Compute Nodes (that is, created with cloudServiceConfiguration, or with virtualMachineConfiguration using a Windows Image reference). Common store names include: My, Root, CA, Trust, Disallowed, TrustedPeople, TrustedPublisher, AuthRoot, AddressBook, but any custom store name can also be used. The default value is My. */
   storeName?: string;
   /** Which user Accounts on the Compute Node should have access to the private data of the Certificate. You can specify more than one visibility in this collection. The default is all Accounts. */
-  visibility?: string[];
+  visibility?: CertificateVisibility[];
 }
 
 /** A reference to an Package to be deployed to Compute Nodes. */
@@ -469,12 +413,8 @@ export interface ApplicationPackageReference {
 
 /** Specifies how Tasks should be distributed across Compute Nodes. */
 export interface TaskSchedulingPolicy {
-  /**
-   * How Tasks are distributed across Compute Nodes in a Pool. If not specified, the default is spread.
-   *
-   * Possible values: "spread", "pack"
-   */
-  nodeFillType: string;
+  /** How Tasks are distributed across Compute Nodes in a Pool. If not specified, the default is spread. */
+  nodeFillType: BatchNodeFillType;
 }
 
 /**
@@ -486,12 +426,8 @@ export interface UserAccount {
   name: string;
   /** The password for the user Account. */
   password: string;
-  /**
-   * The elevation level of the user Account. The default value is nonAdmin.
-   *
-   * Possible values: "nonadmin", "admin"
-   */
-  elevationLevel?: string;
+  /** The elevation level of the user Account. The default value is nonAdmin. */
+  elevationLevel?: ElevationLevel;
   /** The Linux-specific user configuration for the user Account. This property is ignored if specified on a Windows Pool. If not specified, the user is created with the default options. */
   linuxUserConfiguration?: LinuxUserConfiguration;
   /** The Windows-specific user configuration for the user Account. This property can only be specified if the user is on a Windows Pool. If not specified and on a Windows Pool, the user is created with the default options. */
@@ -510,12 +446,8 @@ export interface LinuxUserConfiguration {
 
 /** Properties used to create a user Account on a Windows Compute Node. */
 export interface WindowsUserConfiguration {
-  /**
-   * The login mode for the user. The default value for VirtualMachineConfiguration Pools is 'batch' and for CloudServiceConfiguration Pools is 'interactive'.
-   *
-   * Possible values: "batch", "interactive"
-   */
-  loginMode?: string;
+  /** The login mode for the user. The default value for VirtualMachineConfiguration Pools is 'batch' and for CloudServiceConfiguration Pools is 'interactive'. */
+  loginMode?: LoginMode;
 }
 
 /**
@@ -622,12 +554,8 @@ export interface BatchPoolUpdateOptions {
   applicationPackageReferences?: Array<ApplicationPackageReference>;
   /** A list of name-value pairs associated with the Pool as metadata. If this element is present, it replaces any existing metadata configured on the Pool. If you specify an empty collection, any metadata is removed from the Pool. If omitted, any existing metadata is left unchanged. */
   metadata?: Array<MetadataItem>;
-  /**
-   * The desired node communication mode for the pool. If this element is present, it replaces the existing targetNodeCommunicationMode configured on the Pool. If omitted, any existing metadata is left unchanged.
-   *
-   * Possible values: "default", "classic", "simplified"
-   */
-  targetNodeCommunicationMode?: string;
+  /** The desired node communication mode for the pool. If this element is present, it replaces the existing targetNodeCommunicationMode configured on the Pool. If omitted, any existing metadata is left unchanged. */
+  targetNodeCommunicationMode?: NodeCommunicationMode;
 }
 
 /** Options for enabling automatic scaling on an Azure Batch Pool. */
@@ -652,12 +580,8 @@ export interface BatchPoolResizeOptions {
   targetLowPriorityNodes?: number;
   /** The timeout for allocation of Nodes to the Pool or removal of Compute Nodes from the Pool. The default value is 15 minutes. The minimum value is 5 minutes. If you specify a value less than 5 minutes, the Batch service returns an error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). */
   resizeTimeout?: string;
-  /**
-   * Determines what to do with a Compute Node and its running task(s) if the Pool size is decreasing. The default value is requeue.
-   *
-   * Possible values: "requeue", "terminate", "taskcompletion", "retaineddata"
-   */
-  nodeDeallocationOption?: string;
+  /** Determines what to do with a Compute Node and its running task(s) if the Pool size is decreasing. The default value is requeue. */
+  nodeDeallocationOption?: BatchNodeDeallocationOption;
 }
 
 /** Options for replacing properties on an Azure Batch Pool. */
@@ -677,12 +601,8 @@ export interface BatchPoolReplaceOptions {
   applicationPackageReferences: Array<ApplicationPackageReference>;
   /** A list of name-value pairs associated with the Pool as metadata. This list replaces any existing metadata configured on the Pool. If omitted, or if you specify an empty collection, any existing metadata is removed from the Pool. */
   metadata: Array<MetadataItem>;
-  /**
-   * The desired node communication mode for the pool. This setting replaces any existing targetNodeCommunication setting on the Pool. If omitted, the existing setting is default.
-   *
-   * Possible values: "default", "classic", "simplified"
-   */
-  targetNodeCommunicationMode?: string;
+  /** The desired node communication mode for the pool. This setting replaces any existing targetNodeCommunication setting on the Pool. If omitted, the existing setting is default. */
+  targetNodeCommunicationMode?: NodeCommunicationMode;
 }
 
 /** Options for removing nodes from an Azure Batch Pool. */
@@ -691,12 +611,8 @@ export interface NodeRemoveOptions {
   nodeList: string[];
   /** The timeout for removal of Compute Nodes to the Pool. The default value is 15 minutes. The minimum value is 5 minutes. If you specify a value less than 5 minutes, the Batch service returns an error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). */
   resizeTimeout?: string;
-  /**
-   * Determines what to do with a Compute Node and its running task(s) after it has been selected for deallocation. The default value is requeue.
-   *
-   * Possible values: "requeue", "terminate", "taskcompletion", "retaineddata"
-   */
-  nodeDeallocationOption?: string;
+  /** Determines what to do with a Compute Node and its running task(s) after it has been selected for deallocation. The default value is requeue. */
+  nodeDeallocationOption?: BatchNodeDeallocationOption;
 }
 
 /** An Azure Batch Job. */
@@ -711,12 +627,8 @@ export interface BatchJob {
   constraints?: JobConstraints;
   /** The Pool settings associated with the Job. */
   poolInfo: PoolInformation;
-  /**
-   * The action the Batch service should take when all Tasks in the Job are in the completed state. The default is noaction.
-   *
-   * Possible values: "noaction", "terminatejob"
-   */
-  onAllTasksComplete?: string;
+  /** The action the Batch service should take when all Tasks in the Job are in the completed state. The default is noaction. */
+  onAllTasksComplete?: OnAllTasksComplete;
   /** A list of name-value pairs associated with the Job as metadata. The Batch service does not assign any meaning to metadata; it is solely for the use of user code. */
   metadata?: Array<MetadataItem>;
 }
@@ -837,12 +749,8 @@ export interface HttpHeader {
  * to perform the upload.
  */
 export interface OutputFileUploadOptions {
-  /**
-   * The conditions under which the Task output file or set of files should be uploaded. The default is taskcompletion.
-   *
-   * Possible values: "tasksuccess", "taskfailure", "taskcompletion"
-   */
-  uploadCondition: string;
+  /** The conditions under which the Task output file or set of files should be uploaded. The default is taskcompletion. */
+  uploadCondition: OutputFileUploadCondition;
 }
 
 /** Execution constraints to apply to a Task. */
@@ -861,7 +769,7 @@ export interface TaskConstraints {
  */
 export interface AuthenticationTokenSettings {
   /** The Batch resources to which the token grants access. The authentication token grants access to a limited set of Batch service operations. Currently the only supported value for the access property is 'job', which grants access to all operations related to the Job which contains the Task. */
-  access?: string[];
+  access?: AccessScope[];
 }
 
 /**
@@ -965,12 +873,8 @@ export interface PoolInformation {
 export interface AutoPoolSpecification {
   /** A prefix to be added to the unique identifier when a Pool is automatically created. The Batch service assigns each auto Pool a unique identifier on creation. To distinguish between Pools created for different purposes, you can specify this element to add a prefix to the ID that is assigned. The prefix can be up to 20 characters long. */
   autoPoolIdPrefix?: string;
-  /**
-   * The minimum lifetime of created auto Pools, and how multiple Jobs on a schedule are assigned to Pools.
-   *
-   * Possible values: "jobschedule", "job"
-   */
-  poolLifetimeOption: string;
+  /** The minimum lifetime of created auto Pools, and how multiple Jobs on a schedule are assigned to Pools. */
+  poolLifetimeOption: PoolLifetimeOption;
   /** Whether to keep an auto Pool alive after its lifetime expires. If false, the Batch service deletes the Pool once its lifetime (as determined by the poolLifetimeOption setting) expires; that is, when the Job or Job Schedule completes. If true, the Batch service does not delete the Pool automatically. It is up to the user to delete auto Pools created with this option. */
   keepAlive?: boolean;
   /** The Pool specification for the auto Pool. */
@@ -1025,12 +929,8 @@ export interface PoolSpecification {
   metadata?: Array<MetadataItem>;
   /** A list of file systems to mount on each node in the pool. This supports Azure Files, NFS, CIFS/SMB, and Blobfuse. */
   mountConfiguration?: Array<MountConfiguration>;
-  /**
-   * The desired node communication mode for the pool. If omitted, the default value is Default.
-   *
-   * Possible values: "default", "classic", "simplified"
-   */
-  targetNodeCommunicationMode?: string;
+  /** The desired node communication mode for the pool. If omitted, the default value is Default. */
+  targetNodeCommunicationMode?: NodeCommunicationMode;
 }
 
 /** The network configuration for the Job. */
@@ -1055,12 +955,8 @@ export interface JobExecutionInformation {
 
 /** An error encountered by the Batch service when scheduling a Job. */
 export interface JobSchedulingError {
-  /**
-   * The category of the Job scheduling error.
-   *
-   * Possible values: "usererror", "servererror"
-   */
-  category: string;
+  /** The category of the Job scheduling error. */
+  category: ErrorCategory;
   /** An identifier for the Job scheduling error. Codes are invariant and are intended to be consumed programmatically. */
   code?: string;
   /** A message describing the Job scheduling error, intended to be suitable for display in a user interface. */
@@ -1113,24 +1009,16 @@ export interface BatchJobUpdateOptions {
   constraints?: JobConstraints;
   /** The Pool on which the Batch service runs the Job's Tasks. You may change the Pool for a Job only when the Job is disabled. The Patch Job call will fail if you include the poolInfo element and the Job is not disabled. If you specify an autoPoolSpecification in the poolInfo, only the keepAlive property of the autoPoolSpecification can be updated, and then only if the autoPoolSpecification has a poolLifetimeOption of Job (other job properties can be updated as normal). If omitted, the Job continues to run on its current Pool. */
   poolInfo?: PoolInformation;
-  /**
-   * The action the Batch service should take when all Tasks in the Job are in the completed state. If omitted, the completion behavior is left unchanged. You may not change the value from terminatejob to noaction - that is, once you have engaged automatic Job termination, you cannot turn it off again. If you try to do this, the request fails with an 'invalid property value' error response; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request).
-   *
-   * Possible values: "noaction", "terminatejob"
-   */
-  onAllTasksComplete?: string;
+  /** The action the Batch service should take when all Tasks in the Job are in the completed state. If omitted, the completion behavior is left unchanged. You may not change the value from terminatejob to noaction - that is, once you have engaged automatic Job termination, you cannot turn it off again. If you try to do this, the request fails with an 'invalid property value' error response; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). */
+  onAllTasksComplete?: OnAllTasksComplete;
   /** A list of name-value pairs associated with the Job as metadata. If omitted, the existing Job metadata is left unchanged. */
   metadata?: Array<MetadataItem>;
 }
 
 /** Options for disabling an Azure Batch Job. */
 export interface BatchJobDisableOptions {
-  /**
-   * What to do with active Tasks associated with the Job.
-   *
-   * Possible values: "requeue", "terminate", "wait"
-   */
-  disableTasks: string;
+  /** What to do with active Tasks associated with the Job. */
+  disableTasks: DisableJobOption;
 }
 
 /** Options for terminating an Azure Batch Job. */
@@ -1165,18 +1053,10 @@ export interface BatchJobCreateOptions {
   commonEnvironmentSettings?: Array<EnvironmentSetting>;
   /** The Pool on which the Batch service runs the Job's Tasks. */
   poolInfo: PoolInformation;
-  /**
-   * The action the Batch service should take when all Tasks in the Job are in the completed state. Note that if a Job contains no Tasks, then all Tasks are considered complete. This option is therefore most commonly used with a Job Manager task; if you want to use automatic Job termination without a Job Manager, you should initially set onAllTasksComplete to noaction and update the Job properties to set onAllTasksComplete to terminatejob once you have finished adding Tasks. The default is noaction.
-   *
-   * Possible values: "noaction", "terminatejob"
-   */
-  onAllTasksComplete?: string;
-  /**
-   * The action the Batch service should take when any Task in the Job fails. A Task is considered to have failed if has a failureInfo. A failureInfo is set if the Task completes with a non-zero exit code after exhausting its retry count, or if there was an error starting the Task, for example due to a resource file download error. The default is noaction.
-   *
-   * Possible values: "noaction", "performexitoptionsjobaction"
-   */
-  onTaskFailure?: string;
+  /** The action the Batch service should take when all Tasks in the Job are in the completed state. Note that if a Job contains no Tasks, then all Tasks are considered complete. This option is therefore most commonly used with a Job Manager task; if you want to use automatic Job termination without a Job Manager, you should initially set onAllTasksComplete to noaction and update the Job properties to set onAllTasksComplete to terminatejob once you have finished adding Tasks. The default is noaction. */
+  onAllTasksComplete?: OnAllTasksComplete;
+  /** The action the Batch service should take when any Task in the Job fails. A Task is considered to have failed if has a failureInfo. A failureInfo is set if the Task completes with a non-zero exit code after exhausting its retry count, or if there was an error starting the Task, for example due to a resource file download error. The default is noaction. */
+  onTaskFailure?: OnTaskFailure;
   /** The network configuration for the Job. */
   networkConfiguration?: JobNetworkConfiguration;
   /** A list of name-value pairs associated with the Job as metadata. The Batch service does not assign any meaning to metadata; it is solely for the use of user code. */
@@ -1195,12 +1075,8 @@ export interface TaskContainerExecutionInformation {
 
 /** Information about a Task failure. */
 export interface TaskFailureInformation {
-  /**
-   * The category of the Task error.
-   *
-   * Possible values: "usererror", "servererror"
-   */
-  category: string;
+  /** The category of the Task error. */
+  category: ErrorCategory;
   /** An identifier for the Task error. Codes are invariant and are intended to be consumed programmatically. */
   code?: string;
   /** A message describing the Task error, intended to be suitable for display in a user interface. */
@@ -1220,12 +1096,8 @@ export interface BatchCertificate {
   thumbprintAlgorithm: string;
   /** The base64-encoded contents of the Certificate. The maximum size is 10KB. */
   data: string;
-  /**
-   * The format of the Certificate data.
-   *
-   * Possible values: "pfx", "cer"
-   */
-  certificateFormat?: string;
+  /** The format of the Certificate data. */
+  certificateFormat?: CertificateFormat;
   /** The password to access the Certificate's private key. This must be omitted if the Certificate format is cer. */
   password?: string;
 }
@@ -1280,18 +1152,10 @@ export interface JobSpecification {
   displayName?: string;
   /** Whether Tasks in the Job can define dependencies on each other. The default is false. */
   usesTaskDependencies?: boolean;
-  /**
-   * The action the Batch service should take when all Tasks in a Job created under this schedule are in the completed state. Note that if a Job contains no Tasks, then all Tasks are considered complete. This option is therefore most commonly used with a Job Manager task; if you want to use automatic Job termination without a Job Manager, you should initially set onAllTasksComplete to noaction and update the Job properties to set onAllTasksComplete to terminatejob once you have finished adding Tasks. The default is noaction.
-   *
-   * Possible values: "noaction", "terminatejob"
-   */
-  onAllTasksComplete?: string;
-  /**
-   * The action the Batch service should take when any Task fails in a Job created under this schedule. A Task is considered to have failed if it have failed if has a failureInfo. A failureInfo is set if the Task completes with a non-zero exit code after exhausting its retry count, or if there was an error starting the Task, for example due to a resource file download error. The default is noaction.
-   *
-   * Possible values: "noaction", "performexitoptionsjobaction"
-   */
-  onTaskFailure?: string;
+  /** The action the Batch service should take when all Tasks in a Job created under this schedule are in the completed state. Note that if a Job contains no Tasks, then all Tasks are considered complete. This option is therefore most commonly used with a Job Manager task; if you want to use automatic Job termination without a Job Manager, you should initially set onAllTasksComplete to noaction and update the Job properties to set onAllTasksComplete to terminatejob once you have finished adding Tasks. The default is noaction. */
+  onAllTasksComplete?: OnAllTasksComplete;
+  /** The action the Batch service should take when any Task fails in a Job created under this schedule. A Task is considered to have failed if it have failed if has a failureInfo. A failureInfo is set if the Task completes with a non-zero exit code after exhausting its retry count, or if there was an error starting the Task, for example due to a resource file download error. The default is noaction. */
+  onTaskFailure?: OnTaskFailure;
   /** The network configuration for the Job. */
   networkConfiguration?: JobNetworkConfiguration;
   /** The execution constraints for Jobs created under this schedule. */
@@ -1450,18 +1314,10 @@ export interface ExitCodeMapping {
 
 /** Specifies how the Batch service responds to a particular exit condition. */
 export interface ExitOptions {
-  /**
-   * An action to take on the Job containing the Task, if the Task completes with the given exit condition and the Job's onTaskFailed property is 'performExitOptionsJobAction'. The default is none for exit code 0 and terminate for all other exit conditions. If the Job's onTaskFailed property is noaction, then specifying this property returns an error and the add Task request fails with an invalid property value error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request).
-   *
-   * Possible values: "none", "disable", "terminate"
-   */
-  jobAction?: string;
-  /**
-   * An action that the Batch service performs on Tasks that depend on this Task. Possible values are 'satisfy' (allowing dependent tasks to progress) and 'block' (dependent tasks continue to wait). Batch does not yet support cancellation of dependent tasks.
-   *
-   * Possible values: "satisfy", "block"
-   */
-  dependencyAction?: string;
+  /** An action to take on the Job containing the Task, if the Task completes with the given exit condition and the Job's onTaskFailed property is 'performExitOptionsJobAction'. The default is none for exit code 0 and terminate for all other exit conditions. If the Job's onTaskFailed property is noaction, then specifying this property returns an error and the add Task request fails with an invalid property value error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request). */
+  jobAction?: JobAction;
+  /** An action that the Batch service performs on Tasks that depend on this Task. Possible values are 'satisfy' (allowing dependent tasks to progress) and 'block' (dependent tasks continue to wait). Batch does not yet support cancellation of dependent tasks. */
+  dependencyAction?: DependencyAction;
 }
 
 /**
@@ -1560,12 +1416,8 @@ export interface TaskExecutionInformation {
   requeueCount: number;
   /** The most recent time at which the Task has been requeued by the Batch service as the result of a user request. This property is set only if the requeueCount is nonzero. */
   lastRequeueTime?: Date | string;
-  /**
-   * The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property.
-   *
-   * Possible values: "success", "failure"
-   */
-  result?: string;
+  /** The result of the Task execution. If the value is 'failed', then the details of the failure can be found in the failureInfo property. */
+  result?: TaskExecutionResult;
 }
 
 /** Information about the Compute Node on which a Task ran. */
@@ -1642,32 +1494,20 @@ export interface BatchNodeUserUpdateOptions {
 
 /** Options for rebooting an Azure Batch Compute Node. */
 export interface NodeRebootOptions {
-  /**
-   * When to reboot the Compute Node and what to do with currently running Tasks. The default value is requeue.
-   *
-   * Possible values: "requeue", "terminate", "taskcompletion", "retaineddata"
-   */
-  nodeRebootOption?: string;
+  /** When to reboot the Compute Node and what to do with currently running Tasks. The default value is requeue. */
+  nodeRebootOption?: BatchNodeRebootOption;
 }
 
 /** Options for reimaging an Azure Batch Compute Node. */
 export interface NodeReimageOptions {
-  /**
-   * When to reimage the Compute Node and what to do with currently running Tasks. The default value is requeue.
-   *
-   * Possible values: "requeue", "terminate", "taskcompletion", "retaineddata"
-   */
-  nodeReimageOption?: string;
+  /** When to reimage the Compute Node and what to do with currently running Tasks. The default value is requeue. */
+  nodeReimageOption?: BatchNodeReimageOption;
 }
 
 /** Options for disabling scheduling on an Azure Batch Compute Node. */
 export interface NodeDisableSchedulingOptions {
-  /**
-   * What to do with currently running Tasks when disabling Task scheduling on the Compute Node. The default value is requeue.
-   *
-   * Possible values: "requeue", "terminate", "taskcompletion"
-   */
-  nodeDisableSchedulingOption?: string;
+  /** What to do with currently running Tasks when disabling Task scheduling on the Compute Node. The default value is requeue. */
+  nodeDisableSchedulingOption?: DisableBatchNodeSchedulingOption;
 }
 
 /** The Azure Batch service log files upload options for a Compute Node. */
@@ -1681,3 +1521,113 @@ export interface UploadBatchServiceLogsOptions {
   /** The reference to the user assigned identity to use to access Azure Blob Storage specified by containerUrl. The identity must have write access to the Azure Blob Storage container. */
   identityReference?: BatchNodeIdentityReference;
 }
+
+/** CachingType enums */
+export type CachingType = "none" | "readonly" | "readwrite";
+/** StorageAccountType enums */
+export type StorageAccountType = "standard_lrs" | "premium_lrs";
+/** ContainerType enums */
+export type ContainerType = "dockerCompatible" | "criCompatible";
+/** DiskEncryptionTarget enums */
+export type DiskEncryptionTarget = "osdisk" | "temporarydisk";
+/** NodePlacementPolicyType enums */
+export type NodePlacementPolicyType = "regional" | "zonal";
+/** AccessDiffDiskPlacementScope enums */
+export type DiffDiskPlacement = "cachedisk";
+/** DynamicVNetAssignmentScope enums */
+export type DynamicVNetAssignmentScope = "none" | "job";
+/** InboundEndpointProtocol enums */
+export type InboundEndpointProtocol = "tcp" | "udp";
+/** NetworkSecurityGroupRuleAccess enums */
+export type NetworkSecurityGroupRuleAccess = "allow" | "deny";
+/** IPAddressProvisioningType enums */
+export type IPAddressProvisioningType =
+  | "batchmanaged"
+  | "usermanaged"
+  | "nopublicipaddresses";
+/** ContainerWorkingDirectory enums */
+export type ContainerWorkingDirectory =
+  | "taskWorkingDirectory"
+  | "containerImageDefault";
+/** AutoUserScope enums */
+export type AutoUserScope = "task" | "pool";
+/** ElevationLevel enums */
+export type ElevationLevel = "nonadmin" | "admin";
+/** CertificateStoreLocation enums */
+export type CertificateStoreLocation = "currentuser" | "localmachine";
+/** CertificateVisibility enums */
+export type CertificateVisibility = "starttask" | "task" | "remoteuser";
+/** BatchNodeFillType enums */
+export type BatchNodeFillType = "spread" | "pack";
+/** LoginMode enums */
+export type LoginMode = "batch" | "interactive";
+/** NodeCommunicationMode enums */
+export type NodeCommunicationMode = "default" | "classic" | "simplified";
+/** BatchNodeDeallocationOption enums */
+export type BatchNodeDeallocationOption =
+  | "requeue"
+  | "terminate"
+  | "taskcompletion"
+  | "retaineddata";
+/** JobState enums */
+export type JobState =
+  | "active"
+  | "disabling"
+  | "disabled"
+  | "enabling"
+  | "terminating"
+  | "completed"
+  | "deleting";
+/** OutputFileUploadCondition enums */
+export type OutputFileUploadCondition =
+  | "tasksuccess"
+  | "taskfailure"
+  | "taskcompletion";
+/** AccessScope enums */
+export type AccessScope = "job";
+/** PoolLifetimeOption enums */
+export type PoolLifetimeOption = "jobschedule" | "job";
+/** The action the Batch service should take when all Tasks in the Job are in the completed state. */
+export type OnAllTasksComplete = "noaction" | "terminatejob";
+/** OnTaskFailure enums */
+export type OnTaskFailure = "noaction" | "performexitoptionsjobaction";
+/** ErrorCategory enums */
+export type ErrorCategory = "usererror" | "servererror";
+/** DisableJobOption enums */
+export type DisableJobOption = "requeue" | "terminate" | "wait";
+/** TaskExecutionResult enums */
+export type TaskExecutionResult = "success" | "failure";
+/** CertificateState enums */
+export type CertificateState = "active" | "deleting" | "deletefailed";
+/** CertificateFormat enums */
+export type CertificateFormat = "pfx" | "cer";
+/** JobScheduleState enums */
+export type JobScheduleState =
+  | "active"
+  | "completed"
+  | "disabled"
+  | "terminating"
+  | "deleting";
+/** JobAction enums */
+export type JobAction = "none" | "disable" | "terminate";
+/** DependencyAction enums */
+export type DependencyAction = "satisfy" | "block";
+/** TaskState enums */
+export type TaskState = "active" | "preparing" | "running" | "completed";
+/** BatchNodeRebootOption enums */
+export type BatchNodeRebootOption =
+  | "requeue"
+  | "terminate"
+  | "taskcompletion"
+  | "retaineddata";
+/** BatchNodeReimageOption enums */
+export type BatchNodeReimageOption =
+  | "requeue"
+  | "terminate"
+  | "taskcompletion"
+  | "retaineddata";
+/** DisableBatchNodeSchedulingOption enums */
+export type DisableBatchNodeSchedulingOption =
+  | "requeue"
+  | "terminate"
+  | "taskcompletion";

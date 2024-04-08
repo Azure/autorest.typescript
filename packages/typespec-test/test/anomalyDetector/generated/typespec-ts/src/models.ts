@@ -16,16 +16,7 @@ export interface UnivariateUnivariateDetectionOptions {
    * be none by default. If granularity is none, the timestamp property in time
    * series point can be absent.
    */
-  granularity?:
-    | "yearly"
-    | "monthly"
-    | "weekly"
-    | "daily"
-    | "hourly"
-    | "minutely"
-    | "secondly"
-    | "microsecond"
-    | "none";
+  granularity?: TimeGranularity;
   /**
    * Custom Interval is used to set non-standard time interval, for example, if the
    * series is 5 minutes, request can be set as {"granularity":"minutely",
@@ -48,10 +39,8 @@ export interface UnivariateUnivariateDetectionOptions {
   /**
    * Used to specify how to deal with missing values in the input series, it's used
    * when granularity is not "none".
-   *
-   * Possible values: "auto", "previous", "linear", "fixed", "zero", "notFill"
    */
-  imputeMode?: string;
+  imputeMode?: ImputeMode;
   /**
    * Used to specify the value to fill, it's used when granularity is not "none"
    * and imputeMode is "fixed".
@@ -78,16 +67,7 @@ export interface UnivariateUnivariateChangePointDetectionOptions {
    * Can only be one of yearly, monthly, weekly, daily, hourly, minutely or
    * secondly. Granularity is used for verify whether input series is valid.
    */
-  granularity:
-    | "yearly"
-    | "monthly"
-    | "weekly"
-    | "daily"
-    | "hourly"
-    | "minutely"
-    | "secondly"
-    | "microsecond"
-    | "none";
+  granularity: TimeGranularity;
   /**
    * Custom Interval is used to set non-standard time interval, for example, if the
    * series is 5 minutes, request can be set as {"granularity":"minutely",
@@ -178,10 +158,8 @@ export interface MultivariateModelInfo {
   /**
    * Data schema of input data source: OneTable or MultiTable. The default
    * DataSchema is OneTable.
-   *
-   * Possible values: "OneTable", "MultiTable"
    */
-  dataSchema?: string;
+  dataSchema?: DataSchema;
   /**
    * A required field, indicating the start time of training data, which should be
    * date-time of ISO 8601 format.
@@ -205,7 +183,7 @@ export interface MultivariateModelInfo {
   /** An optional field, indicating the manner to align multiple variables. */
   alignPolicy?: MultivariateAlignPolicy;
   /** Model status. One of CREATED, RUNNING, READY, and FAILED. */
-  status?: "CREATED" | "RUNNING" | "READY" | "FAILED";
+  status?: ModelStatus;
   /** Diagnostics information to help inspect the states of model or variable. */
   diagnosticsInfo?: MultivariateDiagnosticsInfo;
 }
@@ -216,14 +194,12 @@ export interface MultivariateAlignPolicy {
    * An optional field, indicating how to align different variables to the same
    * time-range. Either Inner or Outer.
    */
-  alignMode?: "Inner" | "Outer";
+  alignMode?: AlignMode;
   /**
    * An optional field, indicating how missing values will be filled. One of
    * Previous, Subsequent, Linear, Zero, Fixed.
-   *
-   * Possible values: "Previous", "Subsequent", "Linear", "Zero", "Fixed"
    */
-  fillNAMethod?: string;
+  fillNAMethod?: FillNAMethod;
   /** An optional field. Required when fillNAMethod is Fixed. */
   paddingValue?: number;
 }
@@ -281,3 +257,36 @@ export interface MultivariateVariableValues {
   /** Values of variables. */
   values: number[];
 }
+
+/** Alias for TimeGranularity */
+export type TimeGranularity =
+  | "yearly"
+  | "monthly"
+  | "weekly"
+  | "daily"
+  | "hourly"
+  | "minutely"
+  | "secondly"
+  | "microsecond"
+  | "none";
+/** Alias for ImputeMode */
+export type ImputeMode =
+  | "auto"
+  | "previous"
+  | "linear"
+  | "fixed"
+  | "zero"
+  | "notFill";
+/** Data schema of input data source: OneTable or MultiTable. The default DataSchema is OneTable. */
+export type DataSchema = "OneTable" | "MultiTable";
+/** Alias for AlignMode */
+export type AlignMode = "Inner" | "Outer";
+/** An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed. */
+export type FillNAMethod =
+  | "Previous"
+  | "Subsequent"
+  | "Linear"
+  | "Zero"
+  | "Fixed";
+/** Alias for ModelStatus */
+export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";

@@ -22,7 +22,7 @@ async function loadTestAdministrationUploadTestFileSample() {
     .path("/tests/{testId}/files/{fileName}", testId, fileName)
     .put({
       body: "{Your body}",
-      queryParameters: { fileType: "{Your fileType}" },
+      queryParameters: { fileType: "JMX_FILE" },
       contentType: "application/octet-stream",
     });
   console.log(result);

@@ -25,7 +25,7 @@ async function loadTestRunListMetricsSample() {
       body: { filters: [{ name: "{Your name}", values: ["{Your values}"] }] },
       queryParameters: {
         aggregation: "{Your aggregation}",
-        interval: "{Your interval}",
+        interval: "PT5S",
         metricName: "{Your metricName}",
         metricNamespace: "{Your metricNamespace}",
         timespan: "{Your timespan}",

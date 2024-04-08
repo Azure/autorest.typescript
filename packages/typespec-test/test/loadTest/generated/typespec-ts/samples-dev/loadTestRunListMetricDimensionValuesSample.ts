@@ -28,7 +28,7 @@ async function loadTestRunListMetricDimensionValuesSample() {
     )
     .get({
       queryParameters: {
-        interval: "{Your interval}",
+        interval: "PT5S",
         metricName: "{Your metricName}",
         metricNamespace: "{Your metricNamespace}",
         timespan: "{Your timespan}",

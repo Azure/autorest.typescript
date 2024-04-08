@@ -5,12 +5,8 @@
 export interface ChatMessageOutput {
   /** The text associated with the message. */
   content: string;
-  /**
-   * The role associated with the message.
-   *
-   * Possible values: "user", "system", "assistant"
-   */
-  role: string;
+  /** The role associated with the message. */
+  role: ChatRoleOutput;
   /**
    * Field that allows the chat app to store and retrieve data, the structure of such data is dependant on the backend
    * being used. The client must send back the data in this field unchanged in subsequent requests, until the chat app
@@ -44,24 +40,16 @@ export interface ChoiceDeltaOutput {
    * customer_info. These parameters are specific to the chat app and not understood by the generic clients.
    */
   context?: Record<string, any>;
-  /**
-   * The reason this chat completion completed its generation.
-   *
-   * Possible values: "stop", "length"
-   */
-  finish_reason?: string;
+  /** The reason this chat completion completed its generation. */
+  finish_reason?: FinishReasonOutput;
 }
 
 /** The representation of a delta message received in a streaming completion. */
 export interface ChatMessageDeltaOutput {
   /** An incremental part of the text associated with the message. */
   content?: string;
-  /**
-   * The role associated with the message.
-   *
-   * Possible values: "user", "system", "assistant"
-   */
-  role?: string;
+  /** The role associated with the message. */
+  role?: ChatRoleOutput;
   /**
    * Field that allows the chat app to store and retrieve data, the structure of such data is dependant on the backend
    * being used. The client must send back the data in this field unchanged in subsequent requests, until the chat app
@@ -95,10 +83,11 @@ export interface ChatChoiceOutput {
    * customer_info. These parameters are specific to the chat app and not understood by the generic clients.
    */
   context?: Record<string, any>;
-  /**
-   * The reason this chat completion completed its generation.
-   *
-   * Possible values: "stop", "length"
-   */
-  finish_reason: string;
+  /** The reason this chat completion completed its generation. */
+  finish_reason: FinishReasonOutput;
 }
+
+/** A representation of the intended purpose of a message. */
+export type ChatRoleOutput = "user" | "system" | "assistant";
+/** Representation of the reason why a chat session has finished processing. */
+export type FinishReasonOutput = "stop" | "length";

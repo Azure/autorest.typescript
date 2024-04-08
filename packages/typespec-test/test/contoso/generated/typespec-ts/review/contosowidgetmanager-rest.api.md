@@ -268,10 +268,13 @@ export interface ListWidgetsDefaultResponse extends HttpResponse {
 export type ListWidgetsParameters = RequestParameters;
 
 // @public
+export type OperationStateOutput = "NotStarted" | "Running" | "Succeeded" | "Failed" | "Canceled";
+
+// @public
 export interface OperationStatusOutput {
     error?: ErrorModel;
     id: string;
-    status: string;
+    status: OperationStateOutput;
 }
 
 // @public
@@ -297,7 +300,7 @@ export interface ResourceOperationStatusOutput {
     error?: ErrorModel;
     id: string;
     result?: WidgetOutput;
-    status: string;
+    status: OperationStateOutput;
 }
 
 // @public (undocumented)

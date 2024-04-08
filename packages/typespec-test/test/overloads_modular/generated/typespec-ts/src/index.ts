@@ -6,6 +6,7 @@ export {
   WidgetManagerClientOptions,
 } from "./WidgetManagerClient.js";
 export {
+  Versions,
   FooOperationsGetAvatarAsPngOptions,
   FooOperationsGetAvatarAsJpegOptions,
 } from "./models/index.js";

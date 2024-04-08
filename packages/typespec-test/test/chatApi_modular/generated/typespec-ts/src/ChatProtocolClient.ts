@@ -4,10 +4,10 @@
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  StreamingChatCompletionOptions,
-  ChatCompletionChunk,
-  ChatCompletionOptions,
-  ChatCompletion,
+  StreamingChatCompletionOptionsRecord,
+  ChatCompletionChunkRecord,
+  ChatCompletionOptionsRecord,
+  ChatCompletionRecord,
 } from "./models/models.js";
 import { CreateStreamingOptions, CreateOptions } from "./models/options.js";
 import {
@@ -37,17 +37,17 @@ export class ChatProtocolClient {
 
   /** Creates a new streaming chat completion. */
   createStreaming(
-    body: StreamingChatCompletionOptions,
+    body: StreamingChatCompletionOptionsRecord,
     options: CreateStreamingOptions = { requestOptions: {} },
-  ): Promise<ChatCompletionChunk> {
+  ): Promise<ChatCompletionChunkRecord> {
     return createStreaming(this._client, body, options);
   }
 
   /** Creates a new chat completion. */
   create(
-    body: ChatCompletionOptions,
+    body: ChatCompletionOptionsRecord,
     options: CreateOptions = { requestOptions: {} },
-  ): Promise<ChatCompletion> {
+  ): Promise<ChatCompletionRecord> {
     return create(this._client, body, options);
   }
 }

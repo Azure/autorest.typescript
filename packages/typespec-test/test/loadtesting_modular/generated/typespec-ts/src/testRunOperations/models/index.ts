@@ -21,6 +21,7 @@ export {
   FileStatus,
   AppComponent,
   ResourceMetric,
+  APIVersions,
   TestRun,
   ErrorDetails,
   TestRunStatistics,
@@ -31,6 +32,8 @@ export {
   Status,
   TestRunAppComponents,
   TestRunServerMetricConfig,
+  Interval,
+  DimensionValueList,
   MetricDefinitionCollection,
   MetricDefinition,
   NameAndDesc,
@@ -47,9 +50,7 @@ export {
   MetricValue,
   DimensionValue,
   PagedTestRun,
-  Interval,
   PagedDimensionValueList,
-  DimensionValueList,
 } from "./models.js";
 export {
   TestRunOptions,

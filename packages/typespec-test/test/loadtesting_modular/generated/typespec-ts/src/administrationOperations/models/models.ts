@@ -77,14 +77,28 @@ export interface PassFailMetric {
   readonly result?: PFResult;
 }
 
-/** "response_time_ms", "latency", "error", "requests", "requests_per_sec" */
-export type PFMetrics = string;
-/** "count", "percentage", "avg", "p50", "p90", "p95", "p99", "min", "max" */
-export type PFAgFunc = string;
-/** "continue", "stop" */
-export type PFAction = string;
-/** "passed", "undetermined", "failed" */
-export type PFResult = string;
+/** */
+export type PFMetrics =
+  | "response_time_ms"
+  | "latency"
+  | "error"
+  | "requests"
+  | "requests_per_sec";
+/** */
+export type PFAgFunc =
+  | "count"
+  | "percentage"
+  | "avg"
+  | "p50"
+  | "p90"
+  | "p95"
+  | "p99"
+  | "min"
+  | "max";
+/** */
+export type PFAction = "continue" | "stop";
+/** */
+export type PFResult = "passed" | "undetermined" | "failed";
 
 /** Secret */
 export interface Secret {
@@ -94,8 +108,8 @@ export interface Secret {
   type?: SecretType;
 }
 
-/** "AKV_SECRET_URI", "SECRET_VALUE" */
-export type SecretType = string;
+/** */
+export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
 /** Certificates metadata */
 export interface CertificateMetadata {
@@ -107,8 +121,8 @@ export interface CertificateMetadata {
   name?: string;
 }
 
-/** "AKV_CERT_URI" */
-export type CertificateType = string;
+/** */
+export type CertificateType = "AKV_CERT_URI";
 
 /** The load test configuration. */
 export interface LoadTestConfiguration {
@@ -178,10 +192,15 @@ export interface FileInfo {
   validationFailureDetails?: string;
 }
 
-/** "JMX_FILE", "USER_PROPERTIES", "ADDITIONAL_ARTIFACTS" */
-export type FileType = string;
-/** "NOT_VALIDATED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE", "VALIDATION_INITIATED", "VALIDATION_NOT_REQUIRED" */
-export type FileStatus = string;
+/** */
+export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
+/** */
+export type FileStatus =
+  | "NOT_VALIDATED"
+  | "VALIDATION_SUCCESS"
+  | "VALIDATION_FAILURE"
+  | "VALIDATION_INITIATED"
+  | "VALIDATION_NOT_REQUIRED";
 
 /** Test app component */
 export interface TestAppComponents {
@@ -286,6 +305,9 @@ export interface PagedTest {
   /** The link to the next page of items */
   readonly nextLink?: string;
 }
+
+/** */
+export type APIVersions = "2022-11-01";
 
 /** Load test run model */
 export interface TestRun {
@@ -415,10 +437,32 @@ export interface TestRunOutputArtifacts {
   logsFileInfo?: FileInfo;
 }
 
-/** "PASSED", "NOT_APPLICABLE", "FAILED" */
-export type PFTestResult = string;
-/** "ACCEPTED", "NOTSTARTED", "PROVISIONING", "PROVISIONED", "CONFIGURING", "CONFIGURED", "EXECUTING", "EXECUTED", "DEPROVISIONING", "DEPROVISIONED", "DONE", "CANCELLING", "CANCELLED", "FAILED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE" */
-export type Status = string;
+/** */
+export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
+/** */
+export type Status =
+  | "ACCEPTED"
+  | "NOTSTARTED"
+  | "PROVISIONING"
+  | "PROVISIONED"
+  | "CONFIGURING"
+  | "CONFIGURED"
+  | "EXECUTING"
+  | "EXECUTED"
+  | "DEPROVISIONING"
+  | "DEPROVISIONED"
+  | "DONE"
+  | "CANCELLING"
+  | "CANCELLED"
+  | "FAILED"
+  | "VALIDATION_SUCCESS"
+  | "VALIDATION_FAILURE";
+/** */
+export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
+
+export interface DimensionValueList {
+  value: string[];
+}
 
 /** Metric definition */
 export interface MetricDefinition {
@@ -451,10 +495,25 @@ export interface NameAndDesc {
   name?: string;
 }
 
-/** "Average", "Count", "None", "Total", "Percentile90", "Percentile95", "Percentile99" */
-export type AggregationType = string;
-/** "NotSpecified", "Percent", "Count", "Seconds", "Milliseconds", "Bytes", "BytesPerSecond", "CountPerSecond" */
-export type MetricUnit = string;
+/** */
+export type AggregationType =
+  | "Average"
+  | "Count"
+  | "None"
+  | "Total"
+  | "Percentile90"
+  | "Percentile95"
+  | "Percentile99";
+/** */
+export type MetricUnit =
+  | "NotSpecified"
+  | "Percent"
+  | "Count"
+  | "Seconds"
+  | "Milliseconds"
+  | "Bytes"
+  | "BytesPerSecond"
+  | "CountPerSecond";
 
 /** Metric availability specifies the time grain (aggregation interval or frequency) */
 export interface MetricAvailability {
@@ -465,8 +524,8 @@ export interface MetricAvailability {
   timeGrain?: TimeGrain;
 }
 
-/** "PT5S", "PT10S", "PT1M", "PT5M", "PT1H" */
-export type TimeGrain = string;
+/** */
+export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 /** Metric namespace class specifies the metadata for a metric namespace. */
 export interface MetricNamespace {
@@ -506,11 +565,4 @@ export interface DimensionValue {
   name?: string;
   /** The value of the dimension. */
   value?: string;
-}
-
-/** "PT5S", "PT10S", "PT1M", "PT5M", "PT1H" */
-export type Interval = string;
-
-export interface DimensionValueList {
-  value: string[];
 }
