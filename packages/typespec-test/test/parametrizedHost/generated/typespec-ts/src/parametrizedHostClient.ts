@@ -24,10 +24,7 @@ export class ParametrizedHostClient {
     credential: TokenCredential,
     options: ParametrizedHostClientOptions = {},
   ) {
-    this._client = createParametrizedHost(
-      credential,
-      options,
-    );
+    this._client = createParametrizedHost(credential, options);
     this.pipeline = this._client.pipeline;
     this.confidentialLedger = getConfidentialLedgerOperations(this._client);
   }
