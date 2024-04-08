@@ -22,6 +22,6 @@ export interface Routes {
   (path: "/app/collections"): ListCollections;
 }
 
-export type ParametrizedHostClient = Client & {
+export type ParametrizedHostContext = Client & {
   path: Routes;
 };

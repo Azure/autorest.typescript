@@ -6,6 +6,7 @@ options:
     generateMetadata: true
     generateTest: false
     azureSdkForJs: false
+    isModularLibrary: true
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:
       name: "@msinternal/parametrized-host"
