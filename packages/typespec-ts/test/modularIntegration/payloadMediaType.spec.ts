@@ -10,10 +10,10 @@ describe("MediaType Client", () => {
     });
   });
 
-  it.skip("should getAsText", async () => {
+  it("should getAsText", async () => {
     try {
       const result = await client.stringBody.getAsText({
-        requestOptions: { headers: { accept: "text/plain" } }
+        requestOptions: { accept: "text/plain" } as any
       });
       // const result = await client.stringBody.getAsText({
       //   onResponse: (res) => {
