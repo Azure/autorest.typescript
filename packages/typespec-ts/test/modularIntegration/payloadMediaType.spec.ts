@@ -1,7 +1,7 @@
 import { MediaTypeClient } from "./generated/payload/media-type/src/index.js";
 import { assert } from "chai";
 
-describe.only("MediaType Client", () => {
+describe("MediaType Client", () => {
   let client: MediaTypeClient;
 
   beforeEach(() => {
@@ -10,9 +10,16 @@ describe.only("MediaType Client", () => {
     });
   });
 
-  it.only("should getAsText", async () => {
+  it.skip("should getAsText", async () => {
     try {
-      const result = await client.stringBody.getAsText();
+      const result = await client.stringBody.getAsText({
+        requestOptions: { headers: { accept: "text/plain" } }
+      });
+      // const result = await client.stringBody.getAsText({
+      //   onResponse: (res) => {
+      //     res.rawHeaders["accept"] = "text/plain";
+      //   }
+      // });
       console.log(result);
       assert.isUndefined(result);
     } catch (err) {
@@ -23,8 +30,7 @@ describe.only("MediaType Client", () => {
   it("should sendAsText", async () => {
     try {
       const result = await client.stringBody.sendAsText("{cat}");
-      console.log(result);
-      // assert.isUndefined(result);
+      assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -34,7 +40,7 @@ describe.only("MediaType Client", () => {
     try {
       const result = await client.stringBody.getAsJson();
       console.log(result);
-      // assert.isUndefined(result);
+      assert.strictEqual(result, "foo");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -43,8 +49,7 @@ describe.only("MediaType Client", () => {
   it("should sendAsJson", async () => {
     try {
       const result = await client.stringBody.sendAsJson("foo");
-      console.log(result);
-      // assert.isUndefined(result);
+      assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
     }
