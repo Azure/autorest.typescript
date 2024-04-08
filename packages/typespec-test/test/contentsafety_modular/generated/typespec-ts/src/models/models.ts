@@ -9,18 +9,18 @@ export interface TextBlocklist {
   description?: string;
 }
 
-/** The request of adding blockItems to text blocklist. */
-export interface AddOrUpdateBlockItemsOptions {
-  /** Array of blockItemInfo to add. */
-  blockItems: TextBlockItemInfo[];
-}
-
 /** Block item info in text blocklist. */
 export interface TextBlockItemInfo {
   /** Block item description. */
   description?: string;
   /** Block item content. */
   text: string;
+}
+
+/** The request of adding blockItems to text blocklist. */
+export interface AddOrUpdateBlockItemsOptions {
+  /** Array of blockItemInfo to add. */
+  blockItems: TextBlockItemInfo[];
 }
 
 /** The response of adding blockItems to text blocklist. */
@@ -64,11 +64,11 @@ export interface ImageData {
 }
 
 /** Image analyze category */
-/** "Hate", "SelfHarm", "Sexual", "Violence" */
-export type ImageCategory = string;
+/** */
+export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 /** The type of image analysis output. */
-/** "FourLevels" */
-export type AnalyzeImageOutputType = string;
+/** */
+export type AnalyzeImageOutputType = "FourLevels";
 
 /** The analysis response of the image. */
 export interface AnalyzeImageResult {
@@ -99,11 +99,11 @@ export interface AnalyzeTextOptions {
 }
 
 /** Text analyze category */
-/** "Hate", "SelfHarm", "Sexual", "Violence" */
-export type TextCategory = string;
+/** */
+export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 /** The type of text analysis output. */
-/** "FourLevels", "EightLevels" */
-export type AnalyzeTextOutputType = string;
+/** */
+export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
 
 /** The analysis response of the text */
 export interface AnalyzeTextResult {
@@ -130,6 +130,9 @@ export interface TextAnalyzeSeverityResult {
   /** This field is decided by outputType in request, if choose "FourLevels", the value could be 0,2,4,6. The higher the severity of input content, the larger this value is. */
   severity?: number;
 }
+
+/** */
+export type Versions = "2023-10-01";
 
 /** Paged collection of TextBlocklist items */
 export interface PagedTextBlocklist {

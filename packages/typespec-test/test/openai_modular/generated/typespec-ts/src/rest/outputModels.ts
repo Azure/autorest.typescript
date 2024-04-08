@@ -13,12 +13,8 @@ export interface DeploymentOutput {
 export interface AudioTranscriptionOutput {
   /** The transcribed text for the provided audio data. */
   text: string;
-  /**
-   * The label that describes which operation type generated the accompanying response data.
-   *
-   * Possible values: "transcribe", "translate"
-   */
-  task?: string;
+  /** The label that describes which operation type generated the accompanying response data. */
+  task?: AudioTaskLabelOutput;
   /**
    * The spoken language that was detected in the transcribed audio data.
    * This is expressed as a two-letter ISO-639-1 language code like 'en' or 'fr'.
@@ -68,12 +64,8 @@ export interface AudioTranscriptionSegmentOutput {
 export interface AudioTranslationOutput {
   /** The translated text for the provided audio data. */
   text: string;
-  /**
-   * The label that describes which operation type generated the accompanying response data.
-   *
-   * Possible values: "transcribe", "translate"
-   */
-  task?: string;
+  /** The label that describes which operation type generated the accompanying response data. */
+  task?: AudioTaskLabelOutput;
   /**
    * The spoken language that was detected in the translated audio data.
    * This is expressed as a two-letter ISO-639-1 language code like 'en' or 'fr'.
@@ -197,12 +189,8 @@ export interface ContentFilterResultDetailsForPromptOutput {
 
 /** Information about filtered content severity level and if it has been filtered or not. */
 export interface ContentFilterResultOutput {
-  /**
-   * Ratings for the intensity and risk level of filtered content.
-   *
-   * Possible values: "safe", "low", "medium", "high"
-   */
-  severity: string;
+  /** Ratings for the intensity and risk level of filtered content. */
+  severity: ContentFilterSeverityOutput;
   /** A value indicating whether or not the content has been filtered. */
   filtered: boolean;
 }
@@ -242,7 +230,7 @@ export interface ChoiceOutput {
   /** The log probabilities model for tokens associated with this completions choice. */
   logprobs: CompletionsLogProbabilityModelOutput | null;
   /** Reason for finishing */
-  finish_reason: string | null;
+  finish_reason: CompletionsFinishReasonOutput | null;
 }
 
 /** Information about content filtering evaluated against generated model output. */
@@ -406,7 +394,7 @@ export interface ChatChoiceOutput {
   /** The ordered index associated with this chat completions choice. */
   index: number;
   /** The reason that this chat completions choice completed its generated. */
-  finish_reason: string | null;
+  finish_reason: CompletionsFinishReasonOutput | null;
   /**
    * The reason the model stopped generating tokens, together with any applicable details.
    * This structured representation replaces 'finish_reason' for some models.
@@ -430,12 +418,8 @@ export interface ChatChoiceOutput {
 
 /** A representation of a chat message as received in a response. */
 export interface ChatResponseMessageOutput {
-  /**
-   * The chat role associated with the message.
-   *
-   * Possible values: "system", "assistant", "user", "function", "tool"
-   */
-  role: string;
+  /** The chat role associated with the message. */
+  role: ChatRoleOutput;
   /** The content of the message. */
   content: string | null;
   /**
@@ -606,30 +590,20 @@ export interface ImageGenerationOptionsOutput {
    * The desired dimensions for generated images.
    * Dall-e-2 models support 256x256, 512x512, or 1024x1024.
    * Dall-e-3 models support 1024x1024, 1792x1024, or 1024x1792.
-   *
-   * Possible values: "256x256", "512x512", "1024x1024", "1792x1024", "1024x1792"
    */
-  size?: string;
-  /**
-   * The format in which image generation response items should be presented.
-   *
-   * Possible values: "url", "b64_json"
-   */
-  response_format?: string;
+  size?: ImageSizeOutput;
+  /** The format in which image generation response items should be presented. */
+  response_format?: ImageGenerationResponseFormatOutput;
   /**
    * The desired image generation quality level to use.
    * Only configurable with dall-e-3 models.
-   *
-   * Possible values: "standard", "hd"
    */
-  quality?: string;
+  quality?: ImageGenerationQualityOutput;
   /**
    * The desired image generation style to use.
    * Only configurable with dall-e-3 models.
-   *
-   * Possible values: "natural", "vivid"
    */
-  style?: string;
+  style?: ImageGenerationStyleOutput;
   /** A unique identifier representing your end-user, which can help to monitor and detect abuse. */
   user?: string;
 }
@@ -702,12 +676,8 @@ export interface BatchImageGenerationOperationResponseOutput {
   expires?: number;
   /** The result of the operation if the operation succeeded. */
   result?: ImageGenerationsOutput;
-  /**
-   * The status of the operation
-   *
-   * Possible values: "notRunning", "running", "succeeded", "canceled", "failed"
-   */
-  status: string;
+  /** The status of the operation */
+  status: AzureOpenAIOperationStateOutput;
   /** The error if the operation failed. */
   error?: ErrorModel;
 }
@@ -724,3 +694,47 @@ export type ChatFinishDetailsOutput =
   | ChatFinishDetailsOutputParent
   | StopFinishDetailsOutput
   | MaxTokensFinishDetailsOutput;
+/** Defines the possible descriptors for available audio operation responses. */
+export type AudioTaskLabelOutput = "transcribe" | "translate";
+/** Ratings for the intensity and risk level of harmful content. */
+export type ContentFilterSeverityOutput = "safe" | "low" | "medium" | "high";
+/** Representation of the manner in which a completions response concluded. */
+export type CompletionsFinishReasonOutput =
+  | "stop"
+  | "length"
+  | "content_filter"
+  | "function_call"
+  | "tool_calls";
+/** A description of the intended purpose of a message within a chat completions interaction. */
+export type ChatRoleOutput =
+  | "system"
+  | "assistant"
+  | "user"
+  | "function"
+  | "tool";
+/** The desired size of generated images. */
+export type ImageSizeOutput =
+  | "256x256"
+  | "512x512"
+  | "1024x1024"
+  | "1792x1024"
+  | "1024x1792";
+/** The format in which the generated images are returned. */
+export type ImageGenerationResponseFormatOutput = "url" | "b64_json";
+/**
+ * An image generation configuration that specifies how the model should prioritize quality, cost, and speed.
+ * Only configurable with dall-e-3 models.
+ */
+export type ImageGenerationQualityOutput = "standard" | "hd";
+/**
+ * An image generation configuration that specifies how the model should incorporate realism and other visual characteristics.
+ * Only configurable with dall-e-3 models.
+ */
+export type ImageGenerationStyleOutput = "natural" | "vivid";
+/** The state of a job or item. */
+export type AzureOpenAIOperationStateOutput =
+  | "notRunning"
+  | "running"
+  | "succeeded"
+  | "canceled"
+  | "failed";

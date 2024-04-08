@@ -31,8 +31,8 @@ export interface AnalyzeImageOptions {
     outputType?: AnalyzeImageOutputType;
 }
 
-// @public
-export type AnalyzeImageOutputType = string;
+// @public (undocumented)
+export type AnalyzeImageOutputType = "FourLevels";
 
 // @public (undocumented)
 export interface AnalyzeImageRequestOptions extends OperationOptions {
@@ -52,8 +52,8 @@ export interface AnalyzeTextOptions {
     text: string;
 }
 
-// @public
-export type AnalyzeTextOutputType = string;
+// @public (undocumented)
+export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
 
 // @public (undocumented)
 export interface AnalyzeTextRequestOptions extends OperationOptions {
@@ -113,8 +113,8 @@ export interface ImageAnalyzeSeverityResult {
     severity?: number;
 }
 
-// @public
-export type ImageCategory = string;
+// @public (undocumented)
+export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 
 // @public
 export interface ImageData {
@@ -198,8 +198,11 @@ export interface TextBlocklistMatchResult {
     blocklistName: string;
 }
 
-// @public
-export type TextCategory = string;
+// @public (undocumented)
+export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
+
+// @public (undocumented)
+export type Versions = "2023-10-01";
 
 // (No @packageDocumentation comment for this package)
 

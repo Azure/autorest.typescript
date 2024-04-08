@@ -8,17 +8,13 @@ export interface AnalyzeTextOptionsOutput {
   /** The text needs to be scanned. We support at most 10k Unicode characters (unicode code points) in text of one request. */
   text: string;
   /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
-  categories?: string[];
+  categories?: TextCategoryOutput[];
   /** The names of blocklists. */
   blocklistNames?: string[];
   /** When set to true, further analyses of harmful content will not be performed in cases where blocklists are hit. When set to false, all analyses of harmful content will be performed, whether or not blocklists are hit. */
   breakByBlocklists?: boolean;
-  /**
-   * The type of text analysis output. If not assigned, the default value is "FourLevels".
-   *
-   * Possible values: "FourLevels", "EightLevels"
-   */
-  outputType?: string;
+  /** The type of text analysis output. If not assigned, the default value is "FourLevels". */
+  outputType?: AnalyzeTextOutputTypeOutput;
 }
 
 /** The analysis response of the text */
@@ -41,12 +37,8 @@ export interface TextBlocklistMatchResultOutput {
 
 /** Text analysis result. */
 export interface TextAnalyzeSeverityResultOutput {
-  /**
-   * The text category.
-   *
-   * Possible values: "Hate", "SelfHarm", "Sexual", "Violence"
-   */
-  category: string;
+  /** The text category. */
+  category: TextCategoryOutput;
   /** This field is decided by outputType in request, if choose "FourLevels", the value could be 0,2,4,6. The higher the severity of input content, the larger this value is. */
   severity?: number;
 }
@@ -56,13 +48,9 @@ export interface AnalyzeImageOptionsOutput {
   /** The image needs to be analyzed. */
   image: ImageDataOutput;
   /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
-  categories?: string[];
-  /**
-   * The type of image analysis output. If not assigned, the default value is "FourLevels".
-   *
-   * Possible values: "FourLevels"
-   */
-  outputType?: string;
+  categories?: ImageCategoryOutput[];
+  /** The type of image analysis output. If not assigned, the default value is "FourLevels". */
+  outputType?: AnalyzeImageOutputTypeOutput;
 }
 
 /** The content or blob url of image, could be base64 encoding bytes or blob url. You can choose only one of them. If both are given, the request will be refused. The maximum size of image is 2048 pixels * 2048 pixels, no larger than 4MB at the same time. The minimum size of image is 50 pixels * 50 pixels. */
@@ -81,12 +69,8 @@ export interface AnalyzeImageResultOutput {
 
 /** Image analysis result. */
 export interface ImageAnalyzeSeverityResultOutput {
-  /**
-   * The image category.
-   *
-   * Possible values: "Hate", "SelfHarm", "Sexual", "Violence"
-   */
-  category: string;
+  /** The image category. */
+  category: ImageCategoryOutput;
   /** This field is decided by outputType in request, if choose "FourLevels", the value could be 0,2,4,6. The higher the severity of input content, the larger this value is. */
   severity?: number;
 }
@@ -115,6 +99,14 @@ export interface TextBlockItemOutput {
   text: string;
 }
 
+/** Text analyze category */
+export type TextCategoryOutput = "Hate" | "SelfHarm" | "Sexual" | "Violence";
+/** The type of text analysis output. */
+export type AnalyzeTextOutputTypeOutput = "FourLevels" | "EightLevels";
+/** Image analyze category */
+export type ImageCategoryOutput = "Hate" | "SelfHarm" | "Sexual" | "Violence";
+/** The type of image analysis output. */
+export type AnalyzeImageOutputTypeOutput = "FourLevels";
 /** Paged collection of TextBlocklist items */
 export type PagedTextBlocklistOutput = Paged<TextBlocklistOutput>;
 /** Paged collection of TextBlockItem items */

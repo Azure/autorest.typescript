@@ -19,19 +19,11 @@ export interface ClinicalTrialMetadata {
    * Phases which are relevant for the clinical trial.
    * Each clinical trial can be in a certain phase or in multiple phases.
    */
-  phases?: string[];
-  /**
-   * Possible study types of a clinical trial.
-   *
-   * Possible values: "interventional", "observational", "expandedAccess", "patientRegistries"
-   */
-  studyType?: string;
-  /**
-   * Possible recruitment status of a clinical trial.
-   *
-   * Possible values: "unknownStatus", "notYetRecruiting", "recruiting", "enrollingByInvitation"
-   */
-  recruitmentStatus?: string;
+  phases?: ClinicalTrialPhase[];
+  /** Possible study types of a clinical trial. */
+  studyType?: ClinicalTrialStudyType;
+  /** Possible recruitment status of a clinical trial. */
+  recruitmentStatus?: ClinicalTrialRecruitmentStatus;
   /** Medical conditions and their synonyms which are relevant for the clinical trial, given as strings. */
   conditions: string[];
   /** Sponsors/collaborators involved with the trial. */
@@ -84,12 +76,8 @@ export interface PatientRecord {
 
 /** Patient structured information, including demographics and known structured clinical information. */
 export interface PatientInfo {
-  /**
-   * The patient's sex.
-   *
-   * Possible values: "female", "male", "unspecified"
-   */
-  sex?: string;
+  /** The patient's sex. */
+  sex?: PatientInfoSex;
   /** The patient's date of birth. */
   birthDate?: Date | string;
   /** Known clinical information for the patient, structured. */
@@ -98,18 +86,10 @@ export interface PatientInfo {
 
 /** A clinical document related to a patient. Document here is in the wide sense - not just a text document (note). */
 export interface PatientDocument {
-  /**
-   * The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document).
-   *
-   * Possible values: "note", "fhirBundle", "dicom", "genomicSequencing"
-   */
-  type: string;
-  /**
-   * The type of the clinical document.
-   *
-   * Possible values: "consultation", "dischargeSummary", "historyAndPhysical", "procedure", "progress", "imaging", "laboratory", "pathology"
-   */
-  clinicalType?: string;
+  /** The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). */
+  type: DocumentType;
+  /** The type of the clinical document. */
+  clinicalType?: ClinicalDocumentType;
   /** A given identifier for the document. Has to be unique across all documents for a single patient. */
   id: string;
   /** A 2 letter ISO 639-1 representation of the language of the document. */
@@ -126,10 +106,8 @@ export interface DocumentContent {
    * The type of the content's source.
    * In case the source type is 'inline', the content is given as a string (for instance, text).
    * In case the source type is 'reference', the content is given as a URI.
-   *
-   * Possible values: "inline", "reference"
    */
-  sourceType: string;
+  sourceType: DocumentContentSourceType;
   /** The content of the document, given either inline (as a string) or as a reference (URI). */
   value: string;
 }
@@ -178,12 +156,8 @@ export interface ClinicalTrialDetails {
 
 /** Demographic criteria for a clinical trial. */
 export interface ClinicalTrialDemographics {
-  /**
-   * Indication of the sex of people who may participate in the clinical trial.
-   *
-   * Possible values: "all", "female", "male"
-   */
-  acceptedSex?: string;
+  /** Indication of the sex of people who may participate in the clinical trial. */
+  acceptedSex?: ClinicalTrialAcceptedSex;
   /** A definition of the range of ages accepted by a clinical trial. Contains a minimum age and/or a maximum age. */
   acceptedAgeRange?: AcceptedAgeRange;
 }
@@ -198,12 +172,8 @@ export interface AcceptedAgeRange {
 
 /** A person's age, given as a number (value) and a unit (e.g. years, months) */
 export interface AcceptedAge {
-  /**
-   * Possible units for a person's age.
-   *
-   * Possible values: "years", "months", "days"
-   */
-  unit: string;
+  /** Possible units for a person's age. */
+  unit: AgeUnit;
   /** The number of years/months/days that represents the person's age. */
   value: number;
 }
@@ -219,12 +189,12 @@ export interface ClinicalTrialRegistryFilter {
    * Trials with any of the given study types will be included in the selection (provided that other limitations are satisfied).
    * Leaving this list empty will not limit the study types.
    */
-  studyTypes?: string[];
+  studyTypes?: ClinicalTrialStudyType[];
   /**
    * Trials with any of the given recruitment statuses will be included in the selection (provided that other limitations are satisfied).
    * Leaving this list empty will not limit the recruitment statuses.
    */
-  recruitmentStatuses?: string[];
+  recruitmentStatuses?: ClinicalTrialRecruitmentStatus[];
   /**
    * Trials with any of the given sponsors will be included in the selection (provided that other limitations are satisfied).
    * Leaving this list empty will not limit the sponsors.
@@ -234,12 +204,12 @@ export interface ClinicalTrialRegistryFilter {
    * Trials with any of the given phases will be included in the selection (provided that other limitations are satisfied).
    * Leaving this list empty will not limit the phases.
    */
-  phases?: string[];
+  phases?: ClinicalTrialPhase[];
   /**
    * Trials with any of the given purposes will be included in the selection (provided that other limitations are satisfied).
    * Leaving this list empty will not limit the purposes.
    */
-  purposes?: string[];
+  purposes?: ClinicalTrialPurpose[];
   /**
    * Trials with any of the given identifiers will be included in the selection (provided that other limitations are satisfied).
    * Leaving this list empty will not limit the trial identifiers.
@@ -249,7 +219,7 @@ export interface ClinicalTrialRegistryFilter {
    * Trials with any of the given sources will be included in the selection (provided that other limitations are satisfied).
    * Leaving this list empty will not limit the sources.
    */
-  sources?: string[];
+  sources?: ClinicalTrialSource[];
   /**
    * Trials with any of the given facility names will be included in the selection (provided that other limitations are satisfied).
    * Leaving this list empty will not limit the trial facility names.
@@ -283,12 +253,8 @@ export interface GeographicLocation {
 
 /** A geographic area, expressed as a `Circle` geometry represented using a `GeoJSON Feature` (see [GeoJSON spec](https://tools.ietf.org/html/rfc7946)). */
 export interface GeographicArea {
-  /**
-   * `GeoJSON` type.
-   *
-   * Possible values: "Feature"
-   */
-  type: string;
+  /** `GeoJSON` type. */
+  type: GeoJsonType;
   /** `GeoJSON` geometry, representing the area circle's center. */
   geometry: AreaGeometry;
   /** `GeoJSON` object properties. */
@@ -297,12 +263,8 @@ export interface GeographicArea {
 
 /** `GeoJSON` geometry, representing the area circle's center. */
 export interface AreaGeometry {
-  /**
-   * `GeoJSON` geometry type.
-   *
-   * Possible values: "Point"
-   */
-  type: string;
+  /** `GeoJSON` geometry type. */
+  type: GeoJsonGeometryType;
   /**
    * Coordinates of the area circle's center, represented according to the `GeoJSON` standard.
    * This is an array of 2 decimal numbers, longitude and latitude (precisely in this order).
@@ -312,12 +274,77 @@ export interface AreaGeometry {
 
 /** `GeoJSON` object properties. */
 export interface AreaProperties {
-  /**
-   * `GeoJSON` object sub-type.
-   *
-   * Possible values: "Circle"
-   */
-  subType: string;
+  /** `GeoJSON` object sub-type. */
+  subType: GeoJsonPropertiesSubType;
   /** The radius of the area's circle, in meters. */
   radius: number;
 }
+
+/** Possible sources of a clinical trial. */
+export type ClinicalTrialSource = "custom" | "clinicaltrials.gov";
+/** Possible phases of a clinical trial. */
+export type ClinicalTrialPhase =
+  | "notApplicable"
+  | "earlyPhase1"
+  | "phase1"
+  | "phase2"
+  | "phase3"
+  | "phase4";
+/** Possible study types of a clinical trial. */
+export type ClinicalTrialStudyType =
+  | "interventional"
+  | "observational"
+  | "expandedAccess"
+  | "patientRegistries";
+/** Possible recruitment status of a clinical trial. */
+export type ClinicalTrialRecruitmentStatus =
+  | "unknownStatus"
+  | "notYetRecruiting"
+  | "recruiting"
+  | "enrollingByInvitation";
+/** The patient's sex. */
+export type PatientInfoSex = "female" | "male" | "unspecified";
+/** The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). */
+export type DocumentType =
+  | "note"
+  | "fhirBundle"
+  | "dicom"
+  | "genomicSequencing";
+/** The type of the clinical document. */
+export type ClinicalDocumentType =
+  | "consultation"
+  | "dischargeSummary"
+  | "historyAndPhysical"
+  | "procedure"
+  | "progress"
+  | "imaging"
+  | "laboratory"
+  | "pathology";
+/**
+ * The type of the content's source.
+ * In case the source type is 'inline', the content is given as a string (for instance, text).
+ * In case the source type is 'reference', the content is given as a URI.
+ */
+export type DocumentContentSourceType = "inline" | "reference";
+/** Possible values for the Sex eligibility criterion as accepted by clinical trials, which indicates the sex of people who may participate in a clinical study. */
+export type ClinicalTrialAcceptedSex = "all" | "female" | "male";
+/** Possible units for a person's age. */
+export type AgeUnit = "years" | "months" | "days";
+/** Possible purposes of a clinical trial. */
+export type ClinicalTrialPurpose =
+  | "notApplicable"
+  | "screening"
+  | "diagnostic"
+  | "prevention"
+  | "healthServicesResearch"
+  | "treatment"
+  | "deviceFeasibility"
+  | "supportiveCare"
+  | "basicScience"
+  | "other";
+/** `GeoJSON` type. */
+export type GeoJsonType = "Feature";
+/** `GeoJSON` geometry type. */
+export type GeoJsonGeometryType = "Point";
+/** `GeoJSON` object sub-type. */
+export type GeoJsonPropertiesSubType = "Circle";

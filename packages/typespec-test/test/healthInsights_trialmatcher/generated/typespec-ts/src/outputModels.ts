@@ -13,12 +13,8 @@ export interface TrialMatcherResultOutput {
   readonly expirationDateTime: string;
   /** The date and time when the processing job was last updated. */
   readonly lastUpdateDateTime: string;
-  /**
-   * The status of the processing job.
-   *
-   * Possible values: "notStarted", "running", "succeeded", "failed", "partiallyCompleted"
-   */
-  readonly status: string;
+  /** The status of the processing job. */
+  readonly status: JobStatusOutput;
   /** An array of errors, if any errors occurred during the processing job. */
   readonly errors?: Array<ErrorModel>;
   /** The inference results for the Trial Matcher request. */
@@ -47,12 +43,8 @@ export interface TrialMatcherPatientResultOutput {
 
 /** An inference made by the Trial Matcher model regarding a patient. */
 export interface TrialMatcherInferenceOutput {
-  /**
-   * The type of the Trial Matcher inference.
-   *
-   * Possible values: "trialEligibility"
-   */
-  type: string;
+  /** The type of the Trial Matcher inference. */
+  type: TrialMatcherInferenceTypeOutput;
   /** The value of the inference, as relevant for the given inference type. */
   value: string;
   /** The description corresponding to the inference value. */
@@ -63,12 +55,8 @@ export interface TrialMatcherInferenceOutput {
   evidence?: Array<TrialMatcherInferenceEvidenceOutput>;
   /** The identifier of the clinical trial. */
   id?: string;
-  /**
-   * Possible sources of a clinical trial.
-   *
-   * Possible values: "custom", "clinicaltrials.gov"
-   */
-  source?: string;
+  /** Possible sources of a clinical trial. */
+  source?: ClinicalTrialSourceOutput;
   /** Trial data which is of interest to the potential participant. */
   metadata?: ClinicalTrialMetadataOutput;
 }
@@ -118,19 +106,11 @@ export interface ClinicalTrialMetadataOutput {
    * Phases which are relevant for the clinical trial.
    * Each clinical trial can be in a certain phase or in multiple phases.
    */
-  phases?: string[];
-  /**
-   * Possible study types of a clinical trial.
-   *
-   * Possible values: "interventional", "observational", "expandedAccess", "patientRegistries"
-   */
-  studyType?: string;
-  /**
-   * Possible recruitment status of a clinical trial.
-   *
-   * Possible values: "unknownStatus", "notYetRecruiting", "recruiting", "enrollingByInvitation"
-   */
-  recruitmentStatus?: string;
+  phases?: ClinicalTrialPhaseOutput[];
+  /** Possible study types of a clinical trial. */
+  studyType?: ClinicalTrialStudyTypeOutput;
+  /** Possible recruitment status of a clinical trial. */
+  recruitmentStatus?: ClinicalTrialRecruitmentStatusOutput;
   /** Medical conditions and their synonyms which are relevant for the clinical trial, given as strings. */
   conditions: string[];
   /** Sponsors/collaborators involved with the trial. */
@@ -179,5 +159,36 @@ export interface ExtendedClinicalCodedElementOutput {
   category?: string;
 }
 
+/** The status of the processing job. */
+export type JobStatusOutput =
+  | "notStarted"
+  | "running"
+  | "succeeded"
+  | "failed"
+  | "partiallyCompleted";
+/** The type of the Trial Matcher inference. */
+export type TrialMatcherInferenceTypeOutput = "trialEligibility";
+/** Possible sources of a clinical trial. */
+export type ClinicalTrialSourceOutput = "custom" | "clinicaltrials.gov";
+/** Possible phases of a clinical trial. */
+export type ClinicalTrialPhaseOutput =
+  | "notApplicable"
+  | "earlyPhase1"
+  | "phase1"
+  | "phase2"
+  | "phase3"
+  | "phase4";
+/** Possible study types of a clinical trial. */
+export type ClinicalTrialStudyTypeOutput =
+  | "interventional"
+  | "observational"
+  | "expandedAccess"
+  | "patientRegistries";
+/** Possible recruitment status of a clinical trial. */
+export type ClinicalTrialRecruitmentStatusOutput =
+  | "unknownStatus"
+  | "notYetRecruiting"
+  | "recruiting"
+  | "enrollingByInvitation";
 /** Alias for RepeatabilityResultOutput */
 export type RepeatabilityResultOutput = "accepted" | "rejected";

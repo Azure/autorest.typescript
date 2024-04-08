@@ -59,12 +59,8 @@ export interface UnivariateUnivariateEntireDetectionResultOutput {
 
 /** Error information returned by the API. */
 export interface UnivariateAnomalyDetectorErrorOutput {
-  /**
-   * The error code.
-   *
-   * Possible values: "InvalidCustomInterval", "BadArgument", "InvalidGranularity", "InvalidPeriod", "InvalidModelArgument", "InvalidSeries", "InvalidJsonFormat", "RequiredGranularity", "RequiredSeries", "InvalidImputeMode", "InvalidImputeFixedValue"
-   */
-  code?: string;
+  /** The error code. */
+  code?: AnomalyDetectorErrorCodesOutput;
   /** A message explaining the error reported by the service. */
   message?: string;
 }
@@ -146,7 +142,7 @@ export interface MultivariateMultivariateDetectionResultOutput {
 /** Multivariate anomaly detection status. */
 export interface MultivariateMultivariateBatchDetectionResultSummaryOutput {
   /** Status of detection results. One of CREATED, RUNNING, READY, and FAILED. */
-  status: "CREATED" | "RUNNING" | "READY" | "FAILED";
+  status: MultivariateBatchDetectionStatusOutput;
   /** Error message when detection is failed. */
   errors?: Array<MultivariateErrorResponseOutput>;
   /** Variable Status. */
@@ -279,10 +275,8 @@ export interface MultivariateModelInfoOutput {
   /**
    * Data schema of input data source: OneTable or MultiTable. The default
    * DataSchema is OneTable.
-   *
-   * Possible values: "OneTable", "MultiTable"
    */
-  dataSchema?: string;
+  dataSchema?: DataSchemaOutput;
   /**
    * A required field, indicating the start time of training data, which should be
    * date-time of ISO 8601 format.
@@ -306,7 +300,7 @@ export interface MultivariateModelInfoOutput {
   /** An optional field, indicating the manner to align multiple variables. */
   alignPolicy?: MultivariateAlignPolicyOutput;
   /** Model status. One of CREATED, RUNNING, READY, and FAILED. */
-  status?: "CREATED" | "RUNNING" | "READY" | "FAILED";
+  status?: ModelStatusOutput;
   /** Error messages when failed to create a model. */
   readonly errors?: Array<MultivariateErrorResponseOutput>;
   /** Diagnostics information to help inspect the states of model or variable. */
@@ -319,14 +313,12 @@ export interface MultivariateAlignPolicyOutput {
    * An optional field, indicating how to align different variables to the same
    * time-range. Either Inner or Outer.
    */
-  alignMode?: "Inner" | "Outer";
+  alignMode?: AlignModeOutput;
   /**
    * An optional field, indicating how missing values will be filled. One of
    * Previous, Subsequent, Linear, Zero, Fixed.
-   *
-   * Possible values: "Previous", "Subsequent", "Linear", "Zero", "Fixed"
    */
-  fillNAMethod?: string;
+  fillNAMethod?: FillNAMethodOutput;
   /** An optional field. Required when fillNAMethod is Fixed. */
   paddingValue?: number;
 }
@@ -394,3 +386,36 @@ export interface MultivariateMultivariateLastDetectionResultOutput {
   /** Anomaly status and information. */
   results?: Array<MultivariateAnomalyStateOutput>;
 }
+
+/** Alias for AnomalyDetectorErrorCodesOutput */
+export type AnomalyDetectorErrorCodesOutput =
+  | "InvalidCustomInterval"
+  | "BadArgument"
+  | "InvalidGranularity"
+  | "InvalidPeriod"
+  | "InvalidModelArgument"
+  | "InvalidSeries"
+  | "InvalidJsonFormat"
+  | "RequiredGranularity"
+  | "RequiredSeries"
+  | "InvalidImputeMode"
+  | "InvalidImputeFixedValue";
+/** Alias for MultivariateBatchDetectionStatusOutput */
+export type MultivariateBatchDetectionStatusOutput =
+  | "CREATED"
+  | "RUNNING"
+  | "READY"
+  | "FAILED";
+/** Data schema of input data source: OneTable or MultiTable. The default DataSchema is OneTable. */
+export type DataSchemaOutput = "OneTable" | "MultiTable";
+/** Alias for AlignModeOutput */
+export type AlignModeOutput = "Inner" | "Outer";
+/** An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed. */
+export type FillNAMethodOutput =
+  | "Previous"
+  | "Subsequent"
+  | "Linear"
+  | "Zero"
+  | "Fixed";
+/** Alias for ModelStatusOutput */
+export type ModelStatusOutput = "CREATED" | "RUNNING" | "READY" | "FAILED";

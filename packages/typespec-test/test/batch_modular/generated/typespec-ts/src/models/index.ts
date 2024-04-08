@@ -206,6 +206,7 @@ export {
   NodeRemoveOptions,
   ApplicationListResult,
   BatchApplication,
+  Versions,
 } from "./models.js";
 export {
   ListApplicationsOptions,

@@ -1,6 +1,26 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** Schema Group resource. */
+export interface SchemaGroup {
+  /** Name of schema group. */
+  readonly groupName: string;
+}
+
+/** Schema versions resource. */
+export interface SchemaVersion {
+  /** Version number of specific schema. */
+  readonly schemaVersion: number;
+}
+
+/** Type of SchemaContentTypeValues */
+/** */
+export type SchemaContentTypeValues =
+  | "application/json; serialization=Avro"
+  | "application/json; serialization=json"
+  | "text/plain; charset=utf-8"
+  | "text/vnd.ms.protobuf";
+
 /** Meta properties of a schema. */
 export interface SchemaProperties {
   /** References a specific schema in the registry namespace. */
@@ -16,11 +36,18 @@ export interface SchemaProperties {
 }
 
 /** Represents the format of the schema to be stored by the Schema Registry service. */
-/** "Avro", "Json", "Custom", "Protobuf" */
-export type SchemaFormat = string;
+/** */
+export type SchemaFormat = "Avro" | "Json" | "Custom" | "Protobuf";
 /** The content type for the schema. */
-/** "application/octet-stream", "application/json; serialization=Avro", "application/json; serialization=json", "text/vnd.ms.protobuf" */
-export type ContentTypeEnum = string;
+/** */
+export type ContentTypeEnum =
+  | "application/octet-stream"
+  | "application/json; serialization=Avro"
+  | "application/json; serialization=json"
+  | "text/vnd.ms.protobuf";
+/** Represents the Schema Registry API version to use for requests. */
+/** */
+export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
 
 /** Paged collection of SchemaGroup items */
 export interface PagedSchemaGroup {
@@ -30,30 +57,10 @@ export interface PagedSchemaGroup {
   readonly nextLink?: string;
 }
 
-/** Schema Group resource. */
-export interface SchemaGroup {
-  /** Name of schema group. */
-  readonly groupName: string;
-}
-
-/** Type of SchemaContentTypeValues */
-/** */
-export type SchemaContentTypeValues =
-  | "application/json; serialization=Avro"
-  | "application/json; serialization=json"
-  | "text/plain; charset=utf-8"
-  | "text/vnd.ms.protobuf";
-
 /** Paged collection of Version items */
 export interface PagedVersion {
   /** The Version items on this page */
   value: SchemaVersion[];
   /** The link to the next page of items */
   readonly nextLink?: string;
-}
-
-/** Schema versions resource. */
-export interface SchemaVersion {
-  /** Version number of specific schema. */
-  readonly schemaVersion: number;
 }
