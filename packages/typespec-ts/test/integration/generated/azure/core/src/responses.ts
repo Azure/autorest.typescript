@@ -9,7 +9,7 @@ import {
   UserListResultsOutput,
   PagedFirstItemOutput,
   PagedSecondItemOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface CreateOrUpdate200Response extends HttpResponse {

@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
+import { logger } from "./logger.js";
 import { KeyCredential } from "@azure/core-auth";
-import { AuthHttpCustomClient } from "./clientDefinitions";
+import { AuthHttpCustomClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `AuthHttpCustomClient`
@@ -15,7 +15,8 @@ export default function createClient(
   credentials: KeyCredential,
   options: ClientOptions = {},
 ): AuthHttpCustomClient {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-auth-httpcustom-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -31,7 +32,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as AuthHttpCustomClient;
+  const client = getClient(endpointUrl, options) as AuthHttpCustomClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 

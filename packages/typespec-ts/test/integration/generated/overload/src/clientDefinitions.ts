@@ -5,12 +5,12 @@ import {
   GetThingParameters,
   UploadParameters,
   ProcessParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   GetThing200Response,
   Upload204Response,
   Process204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetThing {

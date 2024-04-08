@@ -17,7 +17,7 @@ import {
   IsModelAdditionalProperties,
   ExtendsModelArrayAdditionalProperties,
   IsModelArrayAdditionalProperties,
-} from "./models";
+} from "./models.js";
 
 export type ExtendsUnknownGetParameters = RequestParameters;
 

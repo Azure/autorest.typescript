@@ -29,7 +29,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "float32",
-    defaultValue: { k1: 42.42 }
+    defaultValue: { k1: 43.125 }
   },
   {
     type: "datetime",
@@ -59,7 +59,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "nullable-float",
-    defaultValue: { k1: 1.2, k2: 0.5, k3: null }
+    defaultValue: { k1: 1.25, k2: 0.5, k3: null }
   }
 ];
 describe("Dictionary Client", () => {

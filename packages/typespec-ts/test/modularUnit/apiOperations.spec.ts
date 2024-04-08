@@ -1,5 +1,9 @@
 import { assert } from "chai";
-import { emitModularOperationsFromTypeSpec } from "../util/emitUtil.js";
+import {
+  emitModularClientContextFromTypeSpec,
+  emitModularClientFromTypeSpec,
+  emitModularOperationsFromTypeSpec
+} from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("api operations in Modular", () => {
@@ -12,9 +16,8 @@ describe("api operations in Modular", () => {
         @body body: bytes
       ): void;
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -58,7 +61,7 @@ describe("api operations in Modular", () => {
       );
     });
 
-    it("should handle contentTypes has binary data if self defined scalar", async () => {
+    it("should handle contentTypes has binary data if self defined scalar for upload", async () => {
       const tspContent = `
       @encode("binary")
       scalar BinaryBytes extends bytes;
@@ -69,9 +72,8 @@ describe("api operations in Modular", () => {
         @body body: BinaryBytes
       ): void;
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -122,14 +124,12 @@ describe("api operations in Modular", () => {
         @header contentType: "multipart/form-data",
         @body body: {
           name: string;
-          @encode("binary")
           file: bytes;
         }
       ): void;
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -140,6 +140,7 @@ describe("api operations in Modular", () => {
            operationOptionsToRequestParameters,
            createRestError
          } from "@azure-rest/core-client";
+         import { uint8ArrayToString } from "@azure/core-util";
          export function _uploadFileSend(
            context: Client,
            name: string,
@@ -151,7 +152,7 @@ describe("api operations in Modular", () => {
              .post({
                ...operationOptionsToRequestParameters(options),
                contentType: (options.contentType as any) ?? "multipart/form-data",
-               body: { name: name, file: file },
+               body: { name: name, file: uint8ArrayToString(file, "base64") },
              });
          }
          export async function _uploadFileDeserialize(
@@ -177,7 +178,6 @@ describe("api operations in Modular", () => {
 
     it("should handle contentTypes has multiple form data array", async () => {
       const tspContent = `
-      @encode("binary")
       scalar BinaryBytes extends bytes;
   
       @route("/uploadFiles")
@@ -188,9 +188,8 @@ describe("api operations in Modular", () => {
         }
       ): void;
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -201,6 +200,7 @@ describe("api operations in Modular", () => {
            operationOptionsToRequestParameters,
            createRestError
          } from "@azure-rest/core-client";
+         import { uint8ArrayToString } from "@azure/core-util";
          export function _uploadFilesSend(
            context: Client,
            files: Uint8Array[],
@@ -211,7 +211,7 @@ describe("api operations in Modular", () => {
              .post({
                ...operationOptionsToRequestParameters(options),
                contentType: (options.contentType as any) ?? "multipart/form-data",
-               body: { files: files.map((p) => p) },
+               body: { files: files.map((p) => uint8ArrayToString(p, "base64")) },
              });
          }
          export async function _uploadFilesDeserialize(
@@ -245,9 +245,8 @@ describe("api operations in Modular", () => {
         @body body: bytes;
       };
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -285,7 +284,7 @@ describe("api operations in Modular", () => {
       );
     });
 
-    it("should handle contentTypes has binary data if self defined scalar", async () => {
+    it("should handle contentTypes has binary data if self defined scalar for download", async () => {
       const tspContent = `
       @encode("binary")
       scalar BinaryBytes extends bytes;
@@ -297,9 +296,8 @@ describe("api operations in Modular", () => {
         @body body: BinaryBytes;
       };
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -345,15 +343,12 @@ describe("api operations in Modular", () => {
         @header contentType: "multipart/form-data";
         @body body: {
           name: string;
-      
-          @encode("binary")
           file: bytes;
         };
       };
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -364,6 +359,7 @@ describe("api operations in Modular", () => {
            operationOptionsToRequestParameters,
            createRestError
          } from "@azure-rest/core-client";
+         import { stringToUint8Array } from "@azure/core-util";
          export function _downloadFileSend(
            context: Client,
            options: DownloadFileOptions = { requestOptions: {} }
@@ -378,7 +374,13 @@ describe("api operations in Modular", () => {
            if (result.status !== "200") {
              throw createRestError(result);
            }
-           return { name: result.body["name"], file: result.body["file"] };
+            return {
+              name: result.body["name"],
+              file:
+                typeof result.body["file"] === "string"
+                  ? stringToUint8Array(result.body["file"], "base64")
+                  : result.body["file"],
+            };
          }
          export async function downloadFile(
            context: Client,
@@ -393,7 +395,6 @@ describe("api operations in Modular", () => {
 
     it("should handle contentTypes has multiple form data array", async () => {
       const tspContent = `
-      @encode("binary")
       scalar BinaryBytes extends bytes;
   
       @route("/downloadFile")
@@ -406,9 +407,8 @@ describe("api operations in Modular", () => {
         };
       };
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -419,6 +419,7 @@ describe("api operations in Modular", () => {
            operationOptionsToRequestParameters,
            createRestError
          } from "@azure-rest/core-client";
+         import { stringToUint8Array } from "@azure/core-util";
          export function _downloadFileSend(
            context: Client,
            options: DownloadFileOptions = { requestOptions: {} }
@@ -433,10 +434,12 @@ describe("api operations in Modular", () => {
            if (result.status !== "200") {
               throw createRestError(result);
            }
-           return {
-             name: result.body["name"],
-             file: result.body["file"].map((p) => p),
-           };
+            return {
+              name: result.body["name"],
+              file: result.body["file"].map((p) =>
+                typeof p === "string" ? stringToUint8Array(p, "base64") : p,
+              ),
+            };
          }
          export async function downloadFile(
            context: Client,
@@ -446,6 +449,378 @@ describe("api operations in Modular", () => {
            return _downloadFileDeserialize(result);
          }`,
         true
+      );
+    });
+  });
+
+  describe("apiVersion in query", () => {
+    it("should generate apiVersion if there's a client level apiVersion but without default value", async () => {
+      const tspContent = `
+      model ApiVersionParameter {
+        @query
+        "api-version": string;
+      }
+      op test(...ApiVersionParameter): string;
+      `;
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
+      assert.ok(operationFiles);
+      assert.equal(operationFiles?.length, 1);
+      await assertEqualContent(
+        operationFiles?.[0]?.getFullText()!,
+        `
+        import { TestingContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+          createRestError,
+        } from "@azure-rest/core-client";
+        
+        export function _testSend(
+          context: Client,
+          options: TestOptions = { requestOptions: {} },
+        ): StreamableMethod<Test200Response> {
+          return context
+            .path("/")
+            .get({ ...operationOptionsToRequestParameters(options) });
+        }
+        
+        export async function _testDeserialize(
+          result: Test200Response,
+        ): Promise<string> {
+          if (result.status !== "200") {
+            throw createRestError(result);
+          }
+        
+          return result.body;
+        }
+        
+        export async function test(
+          context: Client,
+          options: TestOptions = { requestOptions: {} },
+        ): Promise<string> {
+          const result = await _testSend(context, options);
+          return _testDeserialize(result);
+        }
+        `
+      );
+      const clientContext =
+        await emitModularClientContextFromTypeSpec(tspContent);
+      assert.ok(clientContext);
+      await assertEqualContent(
+        clientContext?.getFullText()!,
+        `
+        import { ClientOptions } from "@azure-rest/core-client";
+        import { TestingContext } from "../rest/index.js";
+        import getClient from "../rest/index.js";
+        
+        export interface TestingClientOptions extends ClientOptions {}
+        
+        export { TestingContext } from "../rest/index.js";
+        
+        export function createTesting(
+          endpoint: string,
+          apiVersion: string,
+          options: TestingClientOptions = {},
+        ): TestingContext {
+          const clientContext = getClient(endpoint, apiVersion, options);
+          return clientContext;
+        }
+        `
+      );
+      const classicClient = await emitModularClientFromTypeSpec(tspContent);
+      assert.ok(classicClient);
+      await assertEqualContent(
+        classicClient?.getFullText()!,
+        `
+        import { Pipeline } from "@azure/core-rest-pipeline";
+        
+        export { TestingClientOptions } from "./api/TestingContext.js";
+        
+        export class TestingClient {
+          private _client: TestingContext;
+          /** The pipeline used by this client to make requests */
+          public readonly pipeline: Pipeline;
+        
+          constructor(
+            endpoint: string,
+            apiVersion: string,
+            options: TestingClientOptions = {},
+          ) {
+            this._client = createTesting(endpoint, apiVersion, options);
+            this.pipeline = this._client.pipeline;
+          }
+        
+          test(options: TestOptions = { requestOptions: {} }): Promise<string> {
+            return test(this._client, options);
+          }
+        }
+        `
+      );
+    });
+
+    it("shouldn't generate apiVersion if there's a client level apiVersion and with default value", async () => {
+      const tspContent = `
+      model ApiVersionParameter {
+        @query
+        "api-version": string;
+      }
+      op test(...ApiVersionParameter): string;
+      `;
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent,
+        false,
+        true,
+        false,
+        false,
+        true
+      );
+      assert.ok(operationFiles);
+      assert.equal(operationFiles?.length, 1);
+      await assertEqualContent(
+        operationFiles?.[0]?.getFullText()!,
+        `
+        import { TestingContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+          createRestError,
+        } from "@azure-rest/core-client";
+        
+        export function _testSend(
+          context: Client,
+          options: TestOptions = { requestOptions: {} },
+        ): StreamableMethod<Test200Response> {
+          return context
+            .path("/")
+            .get({ ...operationOptionsToRequestParameters(options) });
+        }
+        
+        export async function _testDeserialize(
+          result: Test200Response,
+        ): Promise<string> {
+          if (result.status !== "200") {
+            throw createRestError(result);
+          }
+        
+          return result.body;
+        }
+        
+        export async function test(
+          context: Client,
+          options: TestOptions = { requestOptions: {} },
+        ): Promise<string> {
+          const result = await _testSend(context, options);
+          return _testDeserialize(result);
+        }
+        `
+      );
+      const clientContext = await emitModularClientContextFromTypeSpec(
+        tspContent,
+        false,
+        true
+      );
+      assert.ok(clientContext);
+      await assertEqualContent(
+        clientContext?.getFullText()!,
+        `
+        import { ClientOptions } from "@azure-rest/core-client";
+        import { TestingContext } from "../rest/index.js";
+        import getClient from "../rest/index.js";
+        
+        export interface TestingClientOptions extends ClientOptions {}
+        
+        export { TestingContext } from "../rest/index.js";
+        
+        export function createTesting(
+          endpoint: string,
+          options: TestingClientOptions = {},
+        ): TestingContext {
+          const clientContext = getClient(endpoint, options);
+          return clientContext;
+        }
+        `
+      );
+      const classicClient = await emitModularClientFromTypeSpec(
+        tspContent,
+        false,
+        true
+      );
+      assert.ok(classicClient);
+      await assertEqualContent(
+        classicClient?.getFullText()!,
+        `
+        import { Pipeline } from "@azure/core-rest-pipeline";
+        
+        export { TestingClientOptions } from "./api/TestingContext.js";
+        
+        export class TestingClient {
+          private _client: TestingContext;
+          /** The pipeline used by this client to make requests */
+          public readonly pipeline: Pipeline;
+        
+          constructor(
+            endpoint: string,
+            options: TestingClientOptions = {},
+          ) {
+            this._client = createTesting(endpoint, options);
+            this.pipeline = this._client.pipeline;
+          }
+        
+          test(options: TestOptions = { requestOptions: {} }): Promise<string> {
+            return test(this._client, options);
+          }
+        }
+        `
+      );
+    });
+
+    it("should generate apiVersion if there's no client level apiVersion", async () => {
+      const tspContent = `
+      model ApiVersionParameter {
+        @query
+        "api-version": string;
+      }
+      @route("/test")
+      op test(...ApiVersionParameter): string;
+      @route("/test1")
+      op test1(): string;
+      `;
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent,
+        false,
+        true
+      );
+      assert.ok(operationFiles);
+      assert.equal(operationFiles?.length, 1);
+      await assertEqualContent(
+        operationFiles?.[0]?.getFullText()!,
+        `
+        import { TestingContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+          createRestError,
+        } from "@azure-rest/core-client";
+        
+        export function _testSend(
+          context: Client,
+          apiVersion: string,
+          options: TestOptions = { requestOptions: {} },
+        ): StreamableMethod<Test200Response> {
+          return context
+            .path("/test")
+            .get({
+              ...operationOptionsToRequestParameters(options),
+              queryParameters: { "api-version": apiVersion },
+            });
+        }
+        
+        export async function _testDeserialize(
+          result: Test200Response,
+        ): Promise<string> {
+          if (result.status !== "200") {
+            throw createRestError(result);
+          }
+        
+          return result.body;
+        }
+        
+        export async function test(
+          context: Client,
+          apiVersion: string,
+          options: TestOptions = { requestOptions: {} },
+        ): Promise<string> {
+          const result = await _testSend(context, apiVersion, options);
+          return _testDeserialize(result);
+        }
+        
+        export function _test1Send(
+          context: Client,
+          options: Test1Options = { requestOptions: {} },
+        ): StreamableMethod<Test1200Response> {
+          return context
+            .path("/test1")
+            .get({ ...operationOptionsToRequestParameters(options) });
+        }
+        
+        export async function _test1Deserialize(
+          result: Test1200Response,
+        ): Promise<string> {
+          if (result.status !== "200") {
+            throw createRestError(result);
+          }
+        
+          return result.body;
+        }
+        
+        export async function test1(
+          context: Client,
+          options: Test1Options = { requestOptions: {} },
+        ): Promise<string> {
+          const result = await _test1Send(context, options);
+          return _test1Deserialize(result);
+        }
+        `,
+        true
+      );
+      const clientContext =
+        await emitModularClientContextFromTypeSpec(tspContent);
+      assert.ok(clientContext);
+      await assertEqualContent(
+        clientContext?.getFullText()!,
+        `
+        import { ClientOptions } from "@azure-rest/core-client";
+        import { TestingContext } from "../rest/index.js";
+        import getClient from "../rest/index.js";
+        
+        export interface TestingClientOptions extends ClientOptions {}
+        
+        export { TestingContext } from "../rest/index.js";
+        
+        export function createTesting(
+          endpoint: string,
+          options: TestingClientOptions = {},
+        ): TestingContext {
+          const clientContext = getClient(endpoint, options);
+          return clientContext;
+        }
+        `
+      );
+      const classicClient = await emitModularClientFromTypeSpec(tspContent);
+      assert.ok(classicClient);
+      await assertEqualContent(
+        classicClient?.getFullText()!,
+        `
+        import { Pipeline } from "@azure/core-rest-pipeline";
+        
+        export { TestingClientOptions } from "./api/TestingContext.js";
+        
+        export class TestingClient {
+          private _client: TestingContext;
+          /** The pipeline used by this client to make requests */
+          public readonly pipeline: Pipeline;
+        
+          constructor(
+            endpoint: string,
+            options: TestingClientOptions = {},
+          ) {
+            this._client = createTesting(endpoint, options);
+            this.pipeline = this._client.pipeline;
+          }
+        
+          test(
+            apiVersion: string,
+            options: TestOptions = { requestOptions: {} },
+          ): Promise<string> {
+            return test(this._client, apiVersion, options);
+          }
+
+          test1(options: Test1Options = { requestOptions: {} }): Promise<string> {
+            return test1(this._client, options);
+          }
+        }
+        `
       );
     });
   });

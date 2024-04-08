@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { AzureCoreClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { AzureCoreClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `AzureCoreClient`
@@ -12,7 +12,8 @@ import { AzureCoreClient } from "./clientDefinitions";
 export default function createClient(
   options: ClientOptions = {},
 ): AzureCoreClient {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "2022-12-01-preview";
   const userAgentInfo = `azsdk-js-azurecore-rest/1.0.0`;
   const userAgentPrefix =
@@ -29,7 +30,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as AzureCoreClient;
+  const client = getClient(endpointUrl, options) as AzureCoreClient;
 
   return client;
 }

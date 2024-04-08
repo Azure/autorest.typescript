@@ -12,8 +12,8 @@ dotenv.config();
  * @summary call operation ResponseUnionBody
  */
 async function responseUnionBodySample() {
-  const endpoint = "{Your endpoint}";
-  const client = createUnionBodyClient(endpoint);
+  const endpointParam = "{Your endpointParam}";
+  const client = createUnionBodyClient(endpointParam);
   const result = await client.path("/response-union-body").get();
   console.log(result);
 }

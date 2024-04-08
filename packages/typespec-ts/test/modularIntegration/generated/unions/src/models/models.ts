@@ -1,31 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export interface MixedTypesCases {
+  /** This should be receive/send the Cat variant */
+  model: Cat | "a" | number | boolean;
+  /** This should be receive/send the "a" variant */
+  literal: Cat | "a" | number | boolean;
+  /** This should be receive/send the int variant */
+  int: Cat | "a" | number | boolean;
+  /** This should be receive/send the boolean variant */
+  boolean: Cat | "a" | number | boolean;
+}
+
 export interface Cat {
   name: string;
-}
-
-export interface Dog {
-  bark: string;
-}
-
-export interface EnumsOnlyCases {
-  /** This should be receive/send the left variant */
-  lr: LR | UD;
-  /** This should be receive/send the up variant */
-  ud: UD | UD;
-}
-
-/** "left", "right" */
-export type LR = string;
-/** "up", "down" */
-export type UD = string;
-
-export interface StringAndArrayCases {
-  /** This should be receive/send the string variant */
-  string: string | string[];
-  /** This should be receive/send the array variant */
-  array: string | string[];
 }
 
 export interface MixedLiteralsCases {
@@ -39,16 +27,24 @@ export interface MixedLiteralsCases {
   booleanLiteral: "a" | 2 | 3.3 | true;
 }
 
-export interface MixedTypesCases {
-  /** This should be receive/send the Cat variant */
-  model: Cat | "a" | number | boolean;
-  /** This should be receive/send the "a" variant */
-  literal: Cat | "a" | number | boolean;
-  /** This should be receive/send the int variant */
-  int: Cat | "a" | number | boolean;
-  /** This should be receive/send the boolean variant */
-  boolean: Cat | "a" | number | boolean;
+export interface StringAndArrayCases {
+  /** This should be receive/send the string variant */
+  string: string | string[];
+  /** This should be receive/send the array variant */
+  array: string | string[];
 }
 
-/** Alias for StringExtensibleNamedUnion */
-export type StringExtensibleNamedUnion = string | "b" | "c";
+export interface EnumsOnlyCases {
+  /** This should be receive/send the left variant */
+  lr: string | "left" | "right" | "up" | "down";
+  /** This should be receive/send the up variant */
+  ud: string | "up" | "down";
+}
+
+export interface Dog {
+  bark: string;
+}
+
+/** Type of StringExtensibleNamedUnion */
+/** "b", "c" */
+export type StringExtensibleNamedUnion = string;

@@ -33,11 +33,11 @@ export async function _modelValueGetDeserialize(
     throw createRestError(result);
   }
 
-  return !result.body
+  return result.body === undefined
     ? result.body
     : result.body.map((p) => ({
         property: p["property"],
-        children: !p.children ? undefined : (p.children as any),
+        children: !p.children ? undefined : p.children,
       }));
 }
 
@@ -59,12 +59,13 @@ export function _modelValuePutSend(
     body: (body ?? []).map((p) => {
       return {
         property: p["property"],
-        children: !p["children"]
-          ? p["children"]
-          : p["children"].map((p) => ({
-              property: p["property"],
-              children: !p.children ? undefined : (p.children as any),
-            })),
+        children:
+          p["children"] === undefined
+            ? p["children"]
+            : p["children"].map((p) => ({
+                property: p["property"],
+                children: !p.children ? undefined : p.children,
+              })),
       };
     }),
   });

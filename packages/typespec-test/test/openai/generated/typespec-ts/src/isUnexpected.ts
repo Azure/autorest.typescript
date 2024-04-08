@@ -15,7 +15,7 @@ import {
   BeginAzureBatchImageGeneration202Response,
   BeginAzureBatchImageGenerationLogicalResponse,
   BeginAzureBatchImageGenerationDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "POST /deployments/{deploymentId}/embeddings": ["200"],

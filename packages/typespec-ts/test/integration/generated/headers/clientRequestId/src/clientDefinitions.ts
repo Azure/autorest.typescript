@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { GetParameters } from "./parameters";
-import { Get204Response } from "./responses";
+import { GetParameters } from "./parameters.js";
+import { Get204Response } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Get {

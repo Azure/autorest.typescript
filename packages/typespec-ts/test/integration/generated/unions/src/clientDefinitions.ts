@@ -22,7 +22,7 @@ import {
   MixedLiteralsSendParameters,
   MixedTypesGetParameters,
   MixedTypesSendParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   StringsOnlyGet200Response,
   StringsOnlySend204Response,
@@ -44,7 +44,7 @@ import {
   MixedLiteralsSend204Response,
   MixedTypesGet200Response,
   MixedTypesSend204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface StringsOnlyGet {

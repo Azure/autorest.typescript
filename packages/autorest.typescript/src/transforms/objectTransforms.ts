@@ -34,7 +34,7 @@ export function transformObjects(
   const clientName = getLanguageMetadata(codeModel.language).name;
   const objectSchemas = codeModel.schemas.objects || [];
   const headersSchemas = extractHeaders(codeModel.operationGroups, clientName);
-  const objectDetails = [...objectSchemas, ...headersSchemas].map(object =>
+  const objectDetails = [...objectSchemas, ...headersSchemas].map((object) =>
     transformObject(object, uberParents)
   );
 
@@ -63,7 +63,9 @@ export function transformObject(
     description: metadata.description || undefined,
     schema,
     properties: schema.properties
-      ? schema.properties.map(prop => transformProperty(prop))
+      ? schema.properties.map((prop) =>
+          transformProperty(prop)
+        )
       : []
   };
 
@@ -74,8 +76,8 @@ function getObjectSerializedName(metadata: Language, kind: ObjectKind) {
   return metadata.serializedName
     ? metadata.serializedName
     : kind === ObjectKind.Polymorphic
-    ? metadata.name
-    : undefined;
+      ? metadata.name
+      : undefined;
 }
 
 export function transformProperty({
@@ -135,7 +137,7 @@ function getObjectKind(schema: ObjectSchema): ObjectKind {
 function getObjectDetailsWithHierarchy(
   objectsDetails: ObjectDetails[]
 ): ObjectDetails[] {
-  return objectsDetails.map(current => {
+  return objectsDetails.map((current) => {
     const parentsSchema = getSchemaParents(
       current.schema,
       true /** immediateOnly */
@@ -174,13 +176,13 @@ function extractHierarchy(
     return [];
   }
 
-  return schemas.map(r => {
+  return schemas.map((r) => {
     const relativeName = normalizeName(
       getLanguageMetadata(r.language).name,
       NameType.Interface,
       true /** shouldGuard */
     );
-    const relative = objectsDetails.find(o => o.name === relativeName);
+    const relative = objectsDetails.find((o) => o.name === relativeName);
 
     if (!relative) {
       throw new Error(
@@ -221,7 +223,7 @@ function transformComposedObject(
     throw new Error(`Expected object ${objectDetails.name} to have parents`);
   }
 
-  const parentNames = immediateParents.map(parent => {
+  const parentNames = immediateParents.map((parent) => {
     const name = getLanguageMetadata(parent.language).name;
     return `${normalizeName(
       name,
@@ -244,18 +246,18 @@ function transformPolymorphicObject(
   let uberParent: ObjectSchema | undefined = objectDetails.schema;
   const allParents = getSchemaParents(schema);
   if (allParents && allParents.length) {
-    const uberParentSchema = allParents.find(p => {
+    const uberParentSchema = allParents.find((p) => {
       // TODO: Reconsider names to reduce issues with normalization, can we switch to serialized?
       const name = normalizeName(
         getLanguageMetadata(p.language).name,
         NameType.Interface,
         true /** shouldGuard */
       );
-      return uberParents.some(up => up.name === name);
+      return uberParents.some((up) => up.name === name);
     });
 
     if (!uberParentSchema) {
-      const upn = uberParents.map(u => u.name);
+      const upn = uberParents.map((u) => u.name);
       throw new Error(
         `Could not determine uberParent for Object ${
           objectDetails.name
@@ -269,7 +271,7 @@ function transformPolymorphicObject(
   }
 
   if (schema !== uberParent && objectDetails.schema.parents?.immediate[0]) {
-    uberParent = objectDetails.schema.parents?.immediate[0] as ObjectSchema; 
+    uberParent = objectDetails.schema.parents?.immediate[0] as ObjectSchema;
   }
   const uberParentName = getLanguageMetadata(uberParent.language).name;
   const unionName = `${normalizeName(uberParentName, NameType.Interface)}Union`;
@@ -290,7 +292,7 @@ function transformPolymorphicObject(
     const childDiscriminators = getChildrenDiscriminators(schema);
 
     const propertyToMark = objectDetails.properties.find(
-      p => p.name === discriminatorProperty
+      (p) => p.name === discriminatorProperty
     );
 
     if (propertyToMark) {
@@ -309,13 +311,13 @@ function transformPolymorphicObject(
     if (uberParent.discriminator) {
       const childDiscriminators = getChildrenDiscriminators(schema);
       discriminatorValues = {
-        [getLanguageMetadata(uberParent.discriminator.property.language)
-          .name]: [
-          schema.discriminatorValue
-            ? schema.discriminatorValue
-            : schema.language.default.name,
-          ...childDiscriminators
-        ]
+        [getLanguageMetadata(uberParent.discriminator.property.language).name]:
+          [
+            schema.discriminatorValue
+              ? schema.discriminatorValue
+              : schema.language.default.name,
+            ...childDiscriminators
+          ]
       };
     }
   }
@@ -331,6 +333,6 @@ function transformPolymorphicObject(
 function getChildrenDiscriminators(objectSchema: ObjectSchema) {
   const children = objectSchema.children?.all ?? [];
   return children
-    .map(c => (c as ObjectSchema).discriminatorValue)
-    .filter(c => !!c) as string[];
+    .map((c) => (c as ObjectSchema).discriminatorValue)
+    .filter((c) => !!c) as string[];
 }

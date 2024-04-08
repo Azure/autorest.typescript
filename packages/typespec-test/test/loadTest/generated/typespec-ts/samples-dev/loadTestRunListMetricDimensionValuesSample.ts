@@ -15,9 +15,9 @@ dotenv.config();
  * @summary call operation ListMetricDimensionValues
  */
 async function loadTestRunListMetricDimensionValuesSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new DefaultAzureCredential();
-  const client = createAzureLoadTestingClient(endpoint, credential);
+  const client = createAzureLoadTestingClient(endpointParam, credential);
   const testRunId = "{Your testRunId}";
   const name = "{Your name}";
   const initialResponse = await client

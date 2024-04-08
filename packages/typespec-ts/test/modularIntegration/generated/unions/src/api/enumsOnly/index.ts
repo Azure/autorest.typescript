@@ -34,10 +34,7 @@ export async function _enumsOnlyGetDeserialize(
   }
 
   return {
-    prop: {
-      lr: result.body.prop["lr"] as any,
-      ud: result.body.prop["ud"] as any,
-    },
+    prop: { lr: result.body.prop["lr"], ud: result.body.prop["ud"] },
   };
 }
 

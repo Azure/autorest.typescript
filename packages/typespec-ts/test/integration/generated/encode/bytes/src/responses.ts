@@ -7,7 +7,7 @@ import {
   Base64BytesPropertyOutput,
   Base64urlBytesPropertyOutput,
   Base64urlArrayBytesPropertyOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface QueryDefault204Response extends HttpResponse {

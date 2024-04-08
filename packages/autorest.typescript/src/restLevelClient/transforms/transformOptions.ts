@@ -17,9 +17,9 @@ export function transformOptions(model: CodeModel): RLCOptions {
     dependencyInfo,
     productDocLink,
     azureArm,
-    branded
+    flavor
   } = getAutorestOptions();
-  const options: RLCOptions = {};
+  const options: RLCOptions = { moduleKind: "cjs" };
   options.includeShortcuts = rlcShortcut;
   options.multiClient = multiClient;
   options.batch = batch;
@@ -32,16 +32,13 @@ export function transformOptions(model: CodeModel): RLCOptions {
   options.dependencyInfo = dependencyInfo;
   options.productDocLink = productDocLink;
   options.azureArm = azureArm;
-  options.branded = branded;
+  options.flavor = flavor;
   options.serviceInfo = {
     title: model.info.title ?? model.language.default.name,
     description: model.info.description
   };
-  const {
-    addCredentials,
-    credentialScopes,
-    credentialKeyHeaderName
-  } = getSecurityInfoFromModel(model.security);
+  const { addCredentials, credentialScopes, credentialKeyHeaderName } =
+    getSecurityInfoFromModel(model.security);
   options.addCredentials = addCredentials;
   options.credentialScopes = credentialScopes;
   options.credentialKeyHeaderName = credentialKeyHeaderName;

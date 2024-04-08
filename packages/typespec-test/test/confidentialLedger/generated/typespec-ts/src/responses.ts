@@ -10,7 +10,7 @@ import {
   TransactionReceiptOutput,
   TransactionStatusOutput,
   LedgerUserOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface ListCollections200Response extends HttpResponse {

@@ -71,20 +71,6 @@ describe("Access Client", () => {
     }
   });
 
-  it("should get internal decorator in internal operation", async () => {
-    try {
-      const result = await client
-        .path(
-          "/azure/client-generator-core/access/internalOperation/internalDecoratorInInternal"
-        )
-        .get({ queryParameters: { name: "myname" } });
-      assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body.name, "myname");
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
-
   it("should get public decorator in internal operation", async () => {
     try {
       const result = await client

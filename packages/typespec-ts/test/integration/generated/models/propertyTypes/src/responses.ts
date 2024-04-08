@@ -31,7 +31,8 @@ import {
   UnionStringLiteralPropertyOutput,
   UnionIntLiteralPropertyOutput,
   UnionFloatLiteralPropertyOutput,
-} from "./outputModels";
+  UnionEnumValuePropertyOutput,
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface BooleanModelGet200Response extends HttpResponse {
@@ -338,5 +339,16 @@ export interface UnionFloatLiteralGet200Response extends HttpResponse {
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface UnionFloatLiteralPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface UnionEnumValueGet200Response extends HttpResponse {
+  status: "200";
+  body: UnionEnumValuePropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface UnionEnumValuePut204Response extends HttpResponse {
   status: "204";
 }

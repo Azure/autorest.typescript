@@ -3,14 +3,12 @@
 
 export { UnionClient, UnionClientOptions } from "./UnionClient.js";
 export {
-  Cat,
-  Dog,
-  EnumsOnlyCases,
-  LR,
-  UD,
-  StringAndArrayCases,
-  MixedLiteralsCases,
   MixedTypesCases,
+  Cat,
+  MixedLiteralsCases,
+  StringAndArrayCases,
+  EnumsOnlyCases,
+  Dog,
   StringExtensibleNamedUnion,
   StringsOnlyGetOptions,
   StringsOnlySendOptions,

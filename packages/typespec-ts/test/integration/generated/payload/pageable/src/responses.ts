@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { HttpResponse } from "@azure-rest/core-client";
-import { PagedUserOutput } from "./outputModels";
+import { PagedUserOutput } from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface List200Response extends HttpResponse {

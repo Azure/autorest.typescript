@@ -4,7 +4,7 @@ import {
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
-import { ignoreDiagnostics, Program } from "@typespec/compiler";
+import { ignoreDiagnostics } from "@typespec/compiler";
 import {
   ApiVersionInfo,
   UrlInfo,
@@ -15,7 +15,7 @@ import {
 } from "@azure-tools/rlc-common";
 import { getHttpOperation } from "@typespec/http";
 import {
-  getEnrichedDefaultApiVersion,
+  getDefaultApiVersionString,
   getSchemaForType,
   trimUsage
 } from "../utils/modelUtils.js";
@@ -27,21 +27,20 @@ export function transformApiVersionInfo(
   urlInfo?: UrlInfo
 ): ApiVersionInfo | undefined {
   const program = dpgContext.program;
-  const queryVersionDetail = getOperationApiVersion(
-    client,
-    program,
-    dpgContext
-  );
+  const queryVersionDetail = getOperationApiVersion(client, dpgContext);
   const pathVersionDetail = extractPathApiVersion(urlInfo);
   const isCrossedVersion =
     pathVersionDetail?.isCrossedVersion || queryVersionDetail?.isCrossedVersion;
   const defaultValue =
     (pathVersionDetail || queryVersionDetail) && !isCrossedVersion
-      ? getEnrichedDefaultApiVersion(program, dpgContext) ??
+      ? getDefaultApiVersionString(program, dpgContext) ??
         pathVersionDetail?.defaultValue ??
         queryVersionDetail?.defaultValue
       : undefined;
 
+  if (pathVersionDetail && queryVersionDetail) {
+    return pathVersionDetail;
+  }
   return {
     definedPosition: extractDefinedPosition(
       queryVersionDetail,
@@ -52,16 +51,20 @@ export function transformApiVersionInfo(
   };
 }
 
-function getOperationApiVersion(
+export function getOperationApiVersion(
   client: SdkClient,
-  program: Program,
   dpgContext: SdkContext
 ): ApiVersionInfo | undefined {
   const apiVersionTypes = new Set<string>();
   const locations = new Set<ApiVersionPosition>();
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  dpgContext.hasApiVersionInClient = true;
+  let hasApiVersionInOperation = true;
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    hasApiVersionInOperation = false;
+    const route = ignoreDiagnostics(
+      getHttpOperation(dpgContext.program, clientOp)
+    );
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -71,21 +74,25 @@ function getOperationApiVersion(
         (p.type === "query" || p.type === "path") && isApiVersion(dpgContext, p)
     );
     params.map((p) => {
-      const type = getSchemaForType(
-        dpgContext,
-        p.param.type,
-        [SchemaContext.Exception, SchemaContext.Input],
-        false,
-        p.param
-      );
+      const type = getSchemaForType(dpgContext, p.param.type, {
+        usage: [SchemaContext.Exception, SchemaContext.Input],
+        needRef: false,
+        relevantProperty: p.param
+      });
       if (p.type !== "header") {
         locations.add(p.type);
       }
       const typeString = JSON.stringify(trimUsage(type));
       apiVersionTypes.add(typeString);
     });
-    if (apiVersionTypes.size > 1) {
+    if (apiVersionTypes.size > 1 || !dpgContext.hasApiVersionInClient) {
       break;
+    }
+    if (params.length === 1) {
+      hasApiVersionInOperation = true;
+    }
+    if (!hasApiVersionInOperation) {
+      dpgContext.hasApiVersionInClient = false;
     }
   }
   const operationGroups = listOperationGroups(dpgContext, client, true);
@@ -95,7 +102,8 @@ function getOperationApiVersion(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      hasApiVersionInOperation = false;
+      const route = ignoreDiagnostics(getHttpOperation(dpgContext.program, op));
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -106,13 +114,11 @@ function getOperationApiVersion(
           isApiVersion(dpgContext, p)
       );
       params.map((p) => {
-        const type = getSchemaForType(
-          dpgContext,
-          p.param.type,
-          [SchemaContext.Exception, SchemaContext.Input],
-          false,
-          p.param
-        );
+        const type = getSchemaForType(dpgContext, p.param.type, {
+          usage: [SchemaContext.Exception, SchemaContext.Input],
+          needRef: false,
+          relevantProperty: p.param
+        });
         if (p.type !== "header") {
           locations.add(p.type);
         }
@@ -120,13 +126,19 @@ function getOperationApiVersion(
         const typeString = JSON.stringify(trimUsage(type));
         apiVersionTypes.add(typeString);
       });
-      if (apiVersionTypes.size > 1) {
+      if (apiVersionTypes.size > 1 || !dpgContext.hasApiVersionInClient) {
         break;
+      }
+      if (params.length === 1) {
+        hasApiVersionInOperation = true;
+      }
+      if (!hasApiVersionInOperation) {
+        dpgContext.hasApiVersionInClient = false;
       }
     }
   }
   // If no api-version parameter defined return directly
-  if (apiVersionTypes.size === 0) {
+  if (apiVersionTypes.size === 0 || !dpgContext.hasApiVersionInClient) {
     return;
   }
   const detail: ApiVersionInfo = {

@@ -46,6 +46,10 @@ export { neverGet, neverPut } from "./never/index.js";
 export { stringGet, stringPut } from "./string/index.js";
 export { stringLiteralGet, stringLiteralPut } from "./stringLiteral/index.js";
 export {
+  unionEnumValueGet,
+  unionEnumValuePut,
+} from "./unionEnumValue/index.js";
+export {
   unionFloatLiteralGet,
   unionFloatLiteralPut,
 } from "./unionFloatLiteral/index.js";

@@ -19,7 +19,7 @@ export type AuthoringClient = Client & {
 };
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): AuthoringClient;
+function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): AuthoringClient;
 export default createClient;
 
 // @public

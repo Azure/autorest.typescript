@@ -22,3 +22,6 @@ export interface ListItemInputBody {
   /** The name of the input. */
   inputName: string;
 }
+
+/** Alias for ListItemInputExtensibleEnum */
+export type ListItemInputExtensibleEnum = string | "First" | "Second";

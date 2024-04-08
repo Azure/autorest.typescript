@@ -3,15 +3,11 @@ import { emitClientFactoryFromTypeSpec } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 interface DefinitionOptions {
-  "@service"?: boolean;
   "@versioned"?: boolean;
   crossVersion?: boolean;
 }
 
 const buildDefaultDefinition = (options: DefinitionOptions) => {
-  const serviceDefault = !options["@service"]
-    ? ``
-    : `version: "2022-05-15-preview"`;
   const versionDef = !options["@versioned"]
     ? ``
     : `
@@ -27,7 +23,6 @@ const buildDefaultDefinition = (options: DefinitionOptions) => {
   )
   @service({
     title: "PetStoreClient",
-    ${serviceDefault}
   })
   namespace PetStore;
   @doc("The endpoint to use.")
@@ -72,9 +67,6 @@ const buildQueryDefinition = (options: DefinitionOptions) => {
 };
 
 const buildPathDefinition = (options: DefinitionOptions) => {
-  const serviceDefault = !options["@service"]
-    ? ``
-    : `version: "2022-05-15-preview"`;
   const versionDef = !options["@versioned"]
     ? ``
     : `
@@ -92,8 +84,7 @@ const buildPathDefinition = (options: DefinitionOptions) => {
     }
   )
   @service({
-    title: "PetStoreClient",
-    ${serviceDefault}
+    title: "PetStoreClient"
   })
   namespace PetStore;
   @doc("The endpoint to use.")
@@ -124,26 +115,32 @@ const buildMixedDefinition = (options: DefinitionOptions) => {
   `;
 };
 
-const buildDefaultReturn = (hasDefault: boolean, hasQueryDefinition: boolean) => {
+const buildDefaultReturn = (
+  hasDefault: boolean,
+  hasQueryDefinition: boolean,
+  hasApiVersionInClient: boolean = false
+) => {
   const defaultDef = !hasDefault
-    ? ``
+    ? (hasApiVersionInClient? `options.apiVersion = options.apiVersion ?? apiVersion;`: "")
     : `options.apiVersion = options.apiVersion ?? "2022-05-15-preview";`;
-  const apiVersionDef = !hasQueryDefinition ? `\n    client.pipeline.removePolicy({ name: "ApiVersionPolicy" });\n    \n`: ``;
+  const apiVersionDef = !hasQueryDefinition
+    ? `\n    client.pipeline.removePolicy({ name: "ApiVersionPolicy" });\n    \n`
+    : ``;
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
-  import { logger } from "./logger";
-  import { testClient } from "./clientDefinitions";
+  import { logger } from "./logger.js";
+  import { testClient } from "./clientDefinitions.js";
   
   /**
    * Initialize a new instance of \`testClient\`
-   * @param endpoint - The endpoint to use.
+   * @param endpointParam - The endpoint to use.${hasApiVersionInClient && !hasDefault? "\n   * @param apiVersion - The parameter apiVersion": ""}
    * @param options - the parameter for all optional parameters
    */
   export default function createClient(
-    endpoint: string,
+    endpointParam: string,${hasApiVersionInClient && !hasDefault? "\napiVersion: string,": ""}
     options: ClientOptions = {}
   ): testClient {
-    const baseUrl = options.baseUrl ?? \`\${endpoint}/language\`;
+    const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language\`;
     ${defaultDef}
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
@@ -160,7 +157,7 @@ const buildDefaultReturn = (hasDefault: boolean, hasQueryDefinition: boolean) =>
       },
     };
   
-    const client = getClient(baseUrl, options) as testClient;
+    const client = getClient(endpointUrl, options) as testClient;
     ${apiVersionDef}
     return client;
   }`;
@@ -169,8 +166,8 @@ const buildDefaultReturn = (hasDefault: boolean, hasQueryDefinition: boolean) =>
 const buildPathReturn_WithDefault = () => {
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
-  import { logger } from "./logger";
-  import { testClient } from "./clientDefinitions";
+  import { logger } from "./logger.js";
+  import { testClient } from "./clientDefinitions.js";
 
   export interface testClientOptions extends ClientOptions {
     apiVersion?: string;
@@ -178,15 +175,15 @@ const buildPathReturn_WithDefault = () => {
   
   /**
    * Initialize a new instance of \`testClient\`
-   * @param endpoint - The endpoint to use.
+   * @param endpointParam - The endpoint to use.
    * @param options - the parameter for all optional parameters
    */
   export default function createClient(
-    endpoint: string,
+    endpointParam: string,
     options: testClientOptions = {}
   ): testClient {
     const apiVersion = options.apiVersion ?? "2022-05-15-preview";
-    const baseUrl = options.baseUrl ?? \`\${endpoint}/anomalydetector/\${apiVersion}\`;
+    const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/anomalydetector/\${apiVersion}\`;
 
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
@@ -203,7 +200,7 @@ const buildPathReturn_WithDefault = () => {
       },
     };
   
-    const client = getClient(baseUrl, options) as testClient;
+    const client = getClient(endpointUrl, options) as testClient;
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   
@@ -214,21 +211,21 @@ const buildPathReturn_WithDefault = () => {
 const buildPathReturn_WithoutDefault = () => {
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
-  import { logger } from "./logger";
-  import { testClient } from "./clientDefinitions";
+  import { logger } from "./logger.js";
+  import { testClient } from "./clientDefinitions.js";
   
   /**
    * Initialize a new instance of \`testClient\`
-   * @param endpoint - The endpoint to use.
+   * @param endpointParam - The endpoint to use.
    * @param apiVersion - Api Version Possible values: "2022-05-15-preview"
    * @param options - the parameter for all optional parameters
    */
   export default function createClient(
-    endpoint: string,
+    endpointParam: string,
     apiVersion: string,
     options: ClientOptions = {}
   ): testClient {
-    const baseUrl = options.baseUrl ?? \`\${endpoint}/anomalydetector/\${apiVersion}\`;
+    const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/anomalydetector/\${apiVersion}\`;
 
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
@@ -245,7 +242,7 @@ const buildPathReturn_WithoutDefault = () => {
       },
     };
   
-    const client = getClient(baseUrl, options) as testClient;
+    const client = getClient(endpointUrl, options) as testClient;
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   
@@ -256,15 +253,6 @@ const buildPathReturn_WithoutDefault = () => {
 describe("api-version", () => {
   describe("defined in query position", () => {
     describe("with default value", () => {
-      it("in @serivce", async () => {
-        const def = buildQueryDefinition({
-          "@service": true
-        });
-        const expectedRes = buildDefaultReturn(true, true);
-        const models = await emitClientFactoryFromTypeSpec(def);
-        assert.ok(models);
-        await assertEqualContent(models!.content, expectedRes);
-      });
       it("in @versioned", async () => {
         const def = buildQueryDefinition({
           "@versioned": true
@@ -276,23 +264,11 @@ describe("api-version", () => {
       });
     });
     describe("without default value", () => {
-      it("due to cross version", async () => {
+      it("no @versioned", async () => {
         const def = buildQueryDefinition({
-          "@service": true,
-          "@versioned": false,
-          crossVersion: true
-        });
-        const expectedRes = buildDefaultReturn(false, true);
-        const models = await emitClientFactoryFromTypeSpec(def);
-        assert.ok(models);
-        await assertEqualContent(models!.content, expectedRes);
-      });
-      it("no @service or @versioned", async () => {
-        const def = buildQueryDefinition({
-          "@service": false,
           "@versioned": false
         });
-        const expectedRes = buildDefaultReturn(false, true);
+        const expectedRes = buildDefaultReturn(false, true, true);
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
         await assertEqualContent(models!.content, expectedRes);
@@ -301,15 +277,6 @@ describe("api-version", () => {
   });
   describe("defined in url path", () => {
     describe("with default value", () => {
-      it("in @serivce", async () => {
-        const def = buildPathDefinition({
-          "@service": true
-        });
-        const expectedRes = buildPathReturn_WithDefault();
-        const models = await emitClientFactoryFromTypeSpec(def);
-        assert.ok(models);
-        await assertEqualContent(models!.content, expectedRes);
-      });
       it("in @versioned", async () => {
         const def = buildPathDefinition({
           "@versioned": true
@@ -321,9 +288,8 @@ describe("api-version", () => {
       });
     });
     describe("without default value", () => {
-      it("no @service or @versioned", async () => {
+      it("no @versioned", async () => {
         const def = buildPathDefinition({
-          "@service": false,
           "@versioned": false
         });
         const expectedRes = buildPathReturn_WithoutDefault();
@@ -335,15 +301,6 @@ describe("api-version", () => {
   });
   describe("defined in both positions[path preferred]", () => {
     describe("with default value", () => {
-      it("in @serivce", async () => {
-        const def = buildMixedDefinition({
-          "@service": true
-        });
-        const expectedRes = buildPathReturn_WithDefault();
-        const models = await emitClientFactoryFromTypeSpec(def);
-        assert.ok(models);
-        await assertEqualContent(models!.content, expectedRes);
-      });
       it("in @versioned", async () => {
         const def = buildMixedDefinition({
           "@versioned": true
@@ -355,9 +312,8 @@ describe("api-version", () => {
       });
     });
     describe("without default value", () => {
-      it("no @service or @versioned", async () => {
+      it("no @versioned", async () => {
         const def = buildMixedDefinition({
-          "@service": false,
           "@versioned": false
         });
         const expectedRes = buildPathReturn_WithoutDefault();
@@ -370,15 +326,6 @@ describe("api-version", () => {
   describe("without definition", () => {
     // if there's no definition, it's pointless to add default version and have the api version policy
     describe("with default value", () => {
-      it("in @serivce", async () => {
-        const def = buildDefaultDefinition({
-          "@service": true
-        });
-        const expectedRes = buildDefaultReturn(false, false);
-        const models = await emitClientFactoryFromTypeSpec(def);
-        assert.ok(models);
-        await assertEqualContent(models!.content, expectedRes);
-      });
       it("in @versioned", async () => {
         const def = buildDefaultDefinition({
           "@versioned": true
@@ -390,9 +337,8 @@ describe("api-version", () => {
       });
     });
     describe("without default value", () => {
-      it("no @service or @versioned", async () => {
+      it("no @versioned", async () => {
         const def = buildDefaultDefinition({
-          "@service": false,
           "@versioned": false
         });
         const expectedRes = buildDefaultReturn(false, false);

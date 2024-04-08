@@ -11,18 +11,18 @@ import {
   InternalParameters,
   OperationParameters,
   DiscriminatorParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   NoDecoratorInPublic200Response,
   PublicDecoratorInPublic200Response,
   NoDecoratorInInternal200Response,
   InternalDecoratorInInternal200Response,
   PublicDecoratorInInternal200Response,
-  Public200Response,
+  PublicOperation200Response,
   Internal200Response,
   Operation200Response,
   Discriminator200Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface NoDecoratorInPublic {
@@ -56,7 +56,7 @@ export interface PublicDecoratorInInternal {
 }
 
 export interface Public {
-  get(options: PublicParameters): StreamableMethod<Public200Response>;
+  get(options: PublicParameters): StreamableMethod<PublicOperation200Response>;
 }
 
 export interface Internal {

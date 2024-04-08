@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
+import { logger } from "./logger.js";
 import { TokenCredential } from "@azure/core-auth";
-import { ConfidentialLedgerClient } from "./clientDefinitions";
+import { ConfidentialLedgerClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `ConfidentialLedgerClient`
@@ -17,7 +17,7 @@ export default function createClient(
   credentials: TokenCredential,
   options: ClientOptions = {},
 ): ConfidentialLedgerClient {
-  const baseUrl = options.baseUrl ?? `${ledgerUri}`;
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${ledgerUri}`;
   options.apiVersion = options.apiVersion ?? "2022-05-13";
   const userAgentInfo = `azsdk-js-confidential-ledger-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -40,7 +40,7 @@ export default function createClient(
   };
 
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
     options,
   ) as ConfidentialLedgerClient;

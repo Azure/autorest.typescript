@@ -8,7 +8,7 @@ import {
   PatchModelParameters,
   PostModelParameters,
   DeleteModelParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   GetModel200Response,
   HeadModel200Response,
@@ -16,7 +16,7 @@ import {
   PatchModel204Response,
   PostModel204Response,
   DeleteModel204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetModel {

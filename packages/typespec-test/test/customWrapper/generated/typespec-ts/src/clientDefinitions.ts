@@ -1,14 +1,17 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { GetDeploymentParameters, DeployProjectParameters } from "./parameters";
+import {
+  GetDeploymentParameters,
+  DeployProjectParameters,
+} from "./parameters.js";
 import {
   GetDeployment200Response,
   GetDeploymentDefaultResponse,
   DeployProject200Response,
   DeployProject201Response,
   DeployProjectDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetDeployment {

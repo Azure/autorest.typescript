@@ -1,3 +1,47 @@
+## 6.0.20 (2024-04-04)
+
+- [Bugfix] Fix missing scripts in package.json file. Please refer to [#2402](https://github.com/Azure/autorest.typescript/pull/2402).
+
+## 6.0.19 (2024-04-03)
+
+- [Feature] Enable esm for RLC generation from TypeSpec. Please refer to [#2338](https://github.com/Azure/autorest.typescript/pull/2338).
+- [Feature] Support usage and access. Please refer to [#2356](https://github.com/Azure/autorest.typescript/pull/2356).
+- [Feature] Support server versions in modular. Please refer to [#2261](https://github.com/Azure/autorest.typescript/pull/2261).
+- [Feature] Deprecate baseurl in favor of endpoint in RLC. Please refer to [#2246](https://github.com/Azure/autorest.typescript/pull/2246).
+- [Bugfix] Fix error model rename issue. Please refer to [#2379](https://github.com/Azure/autorest.typescript/pull/2379).
+- [Bugfix] Fix issues: anonymous array model import and sample mock value for credential. Please refer to [#2342](https://github.com/Azure/autorest.typescript/pull/2342).
+
+## 6.0.18 (2024-03-07)
+
+- [Feature] Upgrade TypeSpec compiler to 0.54.0. Please refer to [#2334](https://github.com/Azure/autorest.typescript/pull/2334).
+- [Feature] Support clientName and encodedName. Please refer to [#2297](https://github.com/Azure/autorest.typescript/pull/2297).
+- [Feature] Change branded to flavor. Please refer to [#2332](https://github.com/Azure/autorest.typescript/pull/2332).
+- [Feature] Upgrade non-branded core version. Please refer to [#2306](https://github.com/Azure/autorest.typescript/pull/2306).
+- [Feature] Support body optionality in Modular. Please refer to [#2238](https://github.com/Azure/autorest.typescript/pull/2238).
+- [Feature] Enable readonly when the visibility is only read in modular. Please refer to [#2333](https://github.com/Azure/autorest.typescript/pull/2333).
+- [BugFix] Only adopt getEffectiveModelType for anonymous model for modular and RLC. Please refer to [#2333](https://github.com/Azure/autorest.typescript/pull/2333).
+
+## 6.0.17 (2024-02-27)
+
+- [Feature] Upgrade TypeSpec compiler to 0.53.0. Please refer to [#2286](https://github.com/Azure/autorest.typescript/pull/2286).
+- [Feature] Support File in multipart form data in RLC. Please refer to [#2258](https://github.com/Azure/autorest.typescript/pull/2258).
+- [Feature] Upgrade unbranded core dependency version. Please refer to [#2306](https://github.com/Azure/autorest.typescript/pull/2306).
+- [BugFix] Fix ModelProperty being used in body in RLC. Please refer to [#2288](https://github.com/Azure/autorest.typescript/issues/2288).
+- [BugFix] Fix unbranded core dependency update for RLC. Please refer to [#2288](https://github.com/Azure/autorest.typescript/issues/2288).
+- [BugFix] Fix maxium call stack size in error handling. Please refer to [#2288](https://github.com/Azure/autorest.typescript/issues/2288).
+- [BugFix] Fix json merge patch model name in anonymous models. Please refer to [#2288](https://github.com/Azure/autorest.typescript/issues/2288).
+- [BugFix] Lint error fix for return type missing in generated code. Please refer to [#2302](https://github.com/Azure/autorest.typescript/issues/2302).
+
+## 6.0.16 (2024-02-06)
+
+- [Feature] Upgrade TypeSpec compiler to 0.52.0. Please refer to [#2262](https://github.com/Azure/autorest.typescript/pull/2262).
+- [Feature] Add serialize util for polymorphic base and named union. Please refer to [#2169](https://github.com/Azure/autorest.typescript/pull/2169).
+- [Feature] Support scalar type being used in body type. Please refer to [#2275](https://github.com/Azure/autorest.typescript/pull/2275).
+- [Feature] Dependencies update. Please refer to [#2282](https://github.com/Azure/autorest.typescript/pull/2282) and [#2174](https://github.com/Azure/autorest.typescript/pull/2174) and [#2248](https://github.com/Azure/autorest.typescript/pull/2248).
+- [BugFix] Fix reserved parameter name being used as mapper identifier in Autorest codegen. Please refer to [#2205](https://github.com/Azure/autorest.typescript/pull/2205).
+- [BugFix] Fix union of KeyCredential and TokenCredential in RLC client. Please refer to [#2195](https://github.com/Azure/autorest.typescript/pull/2195).
+- [BugFix] Fix optional or nullable property being used in serialize utils. Please refer to [#2283](https://github.com/Azure/autorest.typescript/pull/2283).
+
 ## 6.0.15 (2024-01-26)
 
 - [Feature] Upgrade TypeSpec compiler to 0.51.0。 Please refer to pr [#2203](https://github.com/Azure/autorest.typescript/pull/2203).

@@ -27,7 +27,7 @@ export interface AddOrUpdateBlockItemsResult {
 // @public
 export interface AnalyzeImageOptions {
     categories?: ImageCategory[];
-    image: ImageData_2;
+    image: ImageData;
     outputType?: AnalyzeImageOutputType;
 }
 
@@ -117,11 +117,10 @@ export interface ImageAnalyzeSeverityResult {
 export type ImageCategory = string;
 
 // @public
-interface ImageData_2 {
+export interface ImageData {
     blobUrl?: string;
     content?: Uint8Array;
 }
-export { ImageData_2 as ImageData }
 
 // @public (undocumented)
 export interface ListTextBlocklistItemsOptions extends OperationOptions {
@@ -143,13 +142,13 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 
 // @public
 export interface PagedTextBlockItem {
-    nextLink?: string;
+    readonly nextLink?: string;
     value: TextBlockItem[];
 }
 
 // @public
 export interface PagedTextBlocklist {
-    nextLink?: string;
+    readonly nextLink?: string;
     value: TextBlocklist[];
 }
 
@@ -175,7 +174,7 @@ export interface TextAnalyzeSeverityResult {
 
 // @public
 export interface TextBlockItem {
-    readonly blockItemId: string;
+    blockItemId: string;
     description?: string;
     text: string;
 }
@@ -188,7 +187,7 @@ export interface TextBlockItemInfo {
 
 // @public
 export interface TextBlocklist {
-    readonly blocklistName: string;
+    blocklistName: string;
     description?: string;
 }
 

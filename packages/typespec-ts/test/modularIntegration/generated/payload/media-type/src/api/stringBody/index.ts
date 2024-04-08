@@ -30,6 +30,7 @@ export function _sendAsTextSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "text/plain",
+      body: text,
     });
 }
 
@@ -89,6 +90,7 @@ export function _sendAsJsonSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/json",
+      body: text,
     });
 }
 

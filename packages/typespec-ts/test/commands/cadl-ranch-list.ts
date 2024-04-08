@@ -6,6 +6,10 @@ export interface TypeSpecRanchConfig {
 
 export const rlcTsps: TypeSpecRanchConfig[] = [
   {
+    outputPath: "payload/multipart",
+    inputPath: "payload/multipart"
+  },
+  {
     outputPath: "union-body",
     inputPath: "union-body"
   },
@@ -208,6 +212,30 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "payload/pageable",
     inputPath: "payload/pageable"
+  },
+  {
+    outputPath: "client/naming",
+    inputPath: "client/naming"
+  },
+  {
+    outputPath: "serialization/encoded-name/json",
+    inputPath: "serialization/encoded-name/json"
+  },
+  {
+    outputPath: "azure/core-scalar",
+    inputPath: "azure/core/scalar"
+  },
+  {
+    outputPath: "server/endpoint/not-defined",
+    inputPath: "server/endpoint/not-defined"
+  },
+  {
+    outputPath: "server/versions/versioned",
+    inputPath: "server/versions/versioned"
+  },
+  {
+    outputPath: "server/versions/not-versioned",
+    inputPath: "server/versions/not-versioned"
   }
 ];
 
@@ -219,6 +247,18 @@ export const nonBrandedRlcTsps: TypeSpecRanchConfig[] = [
 ];
 
 export const modularTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "azure/clientGeneratorCore/access",
+    inputPath: "azure/client-generator-core/access"
+  },
+  {
+    outputPath: "azure/clientGeneratorCore/usage",
+    inputPath: "azure/client-generator-core/usage"
+  },
+  {
+    outputPath: "parameters/body-optionality",
+    inputPath: "parameters/body-optionality"
+  },
   {
     outputPath: "models/usage",
     inputPath: "type/model/usage"
@@ -327,9 +367,7 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     outputPath: "models/propertyTypes",
     inputPath: "type/property/value-types"
   },
-  {  outputPath: "arrays/items",
-    inputPath: "type/array"
-  },
+  { outputPath: "arrays/items", inputPath: "type/array" },
   {
     outputPath: "models/inheritance/recursive",
     inputPath: "type/model/inheritance/recursive"
@@ -341,6 +379,34 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "payload/media-type",
     inputPath: "payload/media-type"
+  },
+  {
+    outputPath: "server/versions/versioned",
+    inputPath: "server/versions/versioned"
+  },
+  {
+    outputPath: "server/versions/not-versioned",
+    inputPath: "server/versions/not-versioned"
+  },
+  {
+    outputPath: "scalar",
+    inputPath: "type/scalar"
+  },
+  {
+    outputPath: "client/naming",
+    inputPath: "client/naming"
+  },
+  {
+    outputPath: "serialization/encoded-name/json",
+    inputPath: "serialization/encoded-name/json"
+  },
+  {
+    outputPath: "azure/core-scalar",
+    inputPath: "azure/core/scalar"
+  },
+  {
+    outputPath: "server/endpoint/not-defined",
+    inputPath: "server/endpoint/not-defined"
   }
 ];
 

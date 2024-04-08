@@ -4,36 +4,6 @@
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  BatchApplication,
-  PoolUsageMetrics,
-  BatchPoolCreateOptions,
-  BatchPool,
-  AutoScaleRun,
-  BatchPoolUpdateOptions,
-  BatchPoolEnableAutoScaleOptions,
-  BatchPoolEvaluateAutoScaleOptions,
-  BatchPoolResizeOptions,
-  BatchPoolReplaceOptions,
-  NodeRemoveOptions,
-  ImageInformation,
-  PoolNodeCounts,
-  BatchJob,
-  BatchJobUpdateOptions,
-  BatchJobDisableOptions,
-  BatchJobTerminateOptions,
-  BatchJobCreateOptions,
-  JobPreparationAndReleaseTaskExecutionInformation,
-  TaskCountsResult,
-  BatchCertificate,
-  BatchJobSchedule,
-  BatchJobScheduleUpdateOptions,
-  BatchJobScheduleCreateOptions,
-  BatchTaskCreateOptions,
-  BatchTask,
-  BatchTaskCollection,
-  TaskAddCollectionResult,
-  BatchTaskListSubtasksResult,
-  NodeFile,
   BatchNodeUserCreateOptions,
   BatchNodeUserUpdateOptions,
   BatchNode,
@@ -44,6 +14,36 @@ import {
   UploadBatchServiceLogsOptions,
   UploadBatchServiceLogsResult,
   NodeVMExtension,
+  NodeFile,
+  BatchTaskCreateOptions,
+  BatchTask,
+  BatchTaskCollection,
+  TaskAddCollectionResult,
+  BatchTaskListSubtasksResult,
+  BatchJobSchedule,
+  BatchJobScheduleUpdateOptions,
+  BatchJobScheduleCreateOptions,
+  BatchCertificate,
+  BatchJob,
+  BatchJobUpdateOptions,
+  BatchJobDisableOptions,
+  BatchJobTerminateOptions,
+  BatchJobCreateOptions,
+  JobPreparationAndReleaseTaskExecutionInformation,
+  TaskCountsResult,
+  ImageInformation,
+  PoolNodeCounts,
+  PoolUsageMetrics,
+  BatchPoolCreateOptions,
+  BatchPool,
+  AutoScaleRun,
+  BatchPoolUpdateOptions,
+  BatchPoolEnableAutoScaleOptions,
+  BatchPoolEvaluateAutoScaleOptions,
+  BatchPoolResizeOptions,
+  BatchPoolReplaceOptions,
+  NodeRemoveOptions,
+  BatchApplication,
 } from "./models/models.js";
 import {
   ListApplicationsOptions,
@@ -541,7 +541,7 @@ export class BatchClient {
    */
   terminateJob(
     jobId: string,
-    body: BatchJobTerminateOptions,
+    body?: BatchJobTerminateOptions,
     options: TerminateJobOptions = { requestOptions: {} },
   ): Promise<void> {
     return terminateJob(this._client, jobId, body, options);
@@ -1017,7 +1017,7 @@ export class BatchClient {
   rebootNode(
     poolId: string,
     nodeId: string,
-    body: NodeRebootOptions,
+    body?: NodeRebootOptions,
     options: RebootNodeOptions = { requestOptions: {} },
   ): Promise<void> {
     return rebootNode(this._client, poolId, nodeId, body, options);
@@ -1031,7 +1031,7 @@ export class BatchClient {
   reimageNode(
     poolId: string,
     nodeId: string,
-    body: NodeReimageOptions,
+    body?: NodeReimageOptions,
     options: ReimageNodeOptions = { requestOptions: {} },
   ): Promise<void> {
     return reimageNode(this._client, poolId, nodeId, body, options);
@@ -1044,7 +1044,7 @@ export class BatchClient {
   disableNodeScheduling(
     poolId: string,
     nodeId: string,
-    body: NodeDisableSchedulingOptions,
+    body?: NodeDisableSchedulingOptions,
     options: DisableNodeSchedulingOptions = { requestOptions: {} },
   ): Promise<void> {
     return disableNodeScheduling(this._client, poolId, nodeId, body, options);

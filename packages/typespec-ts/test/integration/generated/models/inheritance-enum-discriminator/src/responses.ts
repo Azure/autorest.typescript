@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { HttpResponse } from "@azure-rest/core-client";
-import { DogOutput, SnakeOutput } from "./outputModels";
+import { DogOutput, SnakeOutput } from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface GetExtensibleModel200Response extends HttpResponse {

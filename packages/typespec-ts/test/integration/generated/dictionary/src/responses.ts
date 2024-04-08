@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { HttpResponse } from "@azure-rest/core-client";
-import { InnerModelOutput } from "./outputModels";
+import { InnerModelOutput } from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface Int32ValueGet200Response extends HttpResponse {

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ListCollectionsParameters } from "./parameters";
+import { ListCollectionsParameters } from "./parameters.js";
 import {
   ListCollections200Response,
   ListCollectionsDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ListCollections {

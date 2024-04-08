@@ -5,12 +5,12 @@ import {
   PutEmptyParameters,
   GetEmptyParameters,
   PostRoundTripEmptyParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   PutEmpty204Response,
   GetEmpty200Response,
   PostRoundTripEmpty200Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface PutEmpty {

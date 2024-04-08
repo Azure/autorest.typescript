@@ -29,9 +29,8 @@ describe("operations", () => {
           ...Bar): OkResponse;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -163,7 +162,7 @@ describe("operations", () => {
   });
 
   // TODO: need to fix the tests
-  describe.skip("array as body", () => {
+  describe("array as body", () => {
     it("should generate required model array as request body", async () => {
       const tspContent = `
         model Bar {
@@ -173,9 +172,8 @@ describe("operations", () => {
         op read(@body bars?: Bar[]): OkResponse;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -184,10 +182,10 @@ describe("operations", () => {
         import { TestingContext as Client } from "../rest/index.js";
         import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
-        export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
+        export function _readSend(context: Client, bars?: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
               ...operationOptionsToRequestParameters(options),
-              body: bars.map((p) => {
+              body: (bars ?? []).map((p) => {
                     return {
                       prop1: p["prop1"],
                       prop2: p["prop2"],
@@ -204,13 +202,13 @@ describe("operations", () => {
           return;
         }
         
-        export async function read(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): Promise<void> {
+        export async function read(context: Client, bars?: Bar[], options: ReadOptions = { requestOptions: {} }): Promise<void> {
             const result = await _readSend(context, bars, options);
             return _readDeserialize(result);
         }`
       );
     });
-    it("should handle `undefined` for named model array as request body", async () => {
+    it.skip("should handle `undefined` for named model array as request body", async () => {
       const tspContent = `
         model Bar {
           prop1: string;
@@ -219,9 +217,8 @@ describe("operations", () => {
         op read(@body bars: Bar[]): OkResponse;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -256,7 +253,7 @@ describe("operations", () => {
         }`
       );
     });
-    it("should handle `null` for anonymous model array as request body", async () => {
+    it.skip("should handle `null` for anonymous model array as request body", async () => {
       const tspContent = `
         model Bar {
           prop1: string;
@@ -265,9 +262,8 @@ describe("operations", () => {
         op read(): { a: Bar}[] | null;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -302,7 +298,7 @@ describe("operations", () => {
         }`
       );
     });
-    it("should handle `null` for named array as response body", async () => {
+    it.skip("should handle `null` for named array as response body", async () => {
       const tspContent = `
         model Bar {
           prop1: string;
@@ -311,9 +307,8 @@ describe("operations", () => {
         op read(@body bars?: Bar[]): Bar[] | null;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -366,9 +361,8 @@ describe("operations", () => {
         op read(...Foo): OkResponse;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -391,28 +385,31 @@ describe("operations", () => {
             .post({
               ...operationOptionsToRequestParameters(options),
               body: {
-                optionalBars: !body["optionalBars"]
-                  ? body["optionalBars"]
-                  : body["optionalBars"].map((p) => ({
-                      prop1: p["prop1"],
-                      prop2: p["prop2"],
-                    })),
+                optionalBars:
+                  body["optionalBars"] === undefined
+                    ? body["optionalBars"]
+                    : body["optionalBars"].map((p) => ({
+                        prop1: p["prop1"],
+                        prop2: p["prop2"],
+                      })),
                 requiredBars: body["requiredBars"].map((p) => ({
                   prop1: p["prop1"],
                   prop2: p["prop2"],
                 })),
-                nullableBars: !body["nullableBars"]
-                  ? body["nullableBars"]
-                  : body["nullableBars"].map((p) => ({
-                      prop1: p["prop1"],
-                      prop2: p["prop2"],
-                    })),
-                nullableRequiredBars: !body["nullableRequiredBars"]
-                  ? body["nullableRequiredBars"]
-                  : body["nullableRequiredBars"].map((p) => ({
-                      prop1: p["prop1"],
-                      prop2: p["prop2"],
-                    })),
+                nullableBars:
+                  body["nullableBars"] === undefined || body["nullableBars"] === null
+                    ? body["nullableBars"]
+                    : body["nullableBars"].map((p) => ({
+                        prop1: p["prop1"],
+                        prop2: p["prop2"],
+                      })),
+                nullableRequiredBars:
+                  body["nullableRequiredBars"] === null
+                    ? body["nullableRequiredBars"]
+                    : body["nullableRequiredBars"].map((p) => ({
+                        prop1: p["prop1"],
+                        prop2: p["prop2"],
+                      })),
               },
             });
         }
@@ -451,9 +448,8 @@ describe("operations", () => {
         op read(): Foo;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -480,28 +476,32 @@ describe("operations", () => {
             throw createRestError(result);
           }
           return {
-            optionalBars: !result.body["optionalBars"]
-              ? result.body["optionalBars"]
-              : result.body["optionalBars"].map((p) => ({
-                  prop1: p["prop1"],
-                  prop2: p["prop2"],
-                })),
+            optionalBars:
+              result.body["optionalBars"] === undefined
+                ? result.body["optionalBars"]
+                : result.body["optionalBars"].map((p) => ({
+                    prop1: p["prop1"],
+                    prop2: p["prop2"],
+                  })),
             requiredBars: result.body["requiredBars"].map((p) => ({
               prop1: p["prop1"],
               prop2: p["prop2"],
             })),
-            nullableBars: !result.body["nullableBars"]
-              ? result.body["nullableBars"]
-              : result.body["nullableBars"].map((p) => ({
-                  prop1: p["prop1"],
-                  prop2: p["prop2"],
-                })),
-            nullableRequiredBars: !result.body["nullableRequiredBars"]
-              ? result.body["nullableRequiredBars"]
-              : result.body["nullableRequiredBars"].map((p) => ({
-                  prop1: p["prop1"],
-                  prop2: p["prop2"],
-                })),
+            nullableBars:
+              result.body["nullableBars"] === undefined ||
+              result.body["nullableBars"] === null
+                ? result.body["nullableBars"]
+                : result.body["nullableBars"].map((p) => ({
+                    prop1: p["prop1"],
+                    prop2: p["prop2"],
+                  })),
+            nullableRequiredBars:
+              result.body["nullableRequiredBars"] === null
+                ? result.body["nullableRequiredBars"]
+                : result.body["nullableRequiredBars"].map((p) => ({
+                    prop1: p["prop1"],
+                    prop2: p["prop2"],
+                  })),
           };
         }
         

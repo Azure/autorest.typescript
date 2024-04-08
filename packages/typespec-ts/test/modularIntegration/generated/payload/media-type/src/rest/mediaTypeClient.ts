@@ -12,7 +12,8 @@ import { MediaTypeContext } from "./clientDefinitions.js";
 export default function createClient(
   options: ClientOptions = {},
 ): MediaTypeContext {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-payload-mediaType-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -28,7 +29,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as MediaTypeContext;
+  const client = getClient(endpointUrl, options) as MediaTypeContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return client;
