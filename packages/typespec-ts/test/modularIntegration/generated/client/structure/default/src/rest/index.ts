@@ -7,5 +7,6 @@ export * from "./serviceClient.js";
 export * from "./parameters.js";
 export * from "./responses.js";
 export * from "./clientDefinitions.js";
+export * from "./models.js";
 
 export default ServiceClient;
