@@ -74,7 +74,7 @@ describe("header parameters", () => {
             context: Client,
             contentType: SchemaContentTypeValues,
             body: string,
-            options: GetOptions = { requestOptions: {} }
+            options: GetOptionalParams = { requestOptions: {} },
           ): StreamableMethod<Get204Response> {
               return context
                 .path("/")
@@ -97,7 +97,7 @@ describe("header parameters", () => {
             context: Client,
             contentType: SchemaContentTypeValues,
             body: string,
-            options: GetOptions = { requestOptions: {} }
+            options: GetOptionalParams = { requestOptions: {} },
           ): Promise<void> {
             const result = await _getSend(context, contentType, body, options);
             return _getDeserialize(result);
@@ -339,7 +339,7 @@ describe("header parameters", () => {
             context: Client,
             testHeader: "A" | "B",
             body: string,
-            options: GetOptions = { requestOptions: {} },
+            options: GetOptionalParams = { requestOptions: {} },
           ): StreamableMethod<Get204Response> {
             return context
               .path("/")
@@ -359,7 +359,7 @@ describe("header parameters", () => {
             context: Client,
             testHeader: "A" | "B",
             body: string,
-            options: GetOptions = { requestOptions: {} },
+            options: GetOptionalParams = { requestOptions: {} },
           ): Promise<void> {
             const result = await _getSend(context, testHeader, body, options);
             return _getDeserialize(result);
@@ -418,7 +418,7 @@ describe("header parameters", () => {
             context: Client,
             testHeader: string | "A" | "B",
             body: string,
-            options: GetOptions = { requestOptions: {} },
+            options: GetOptionalParams = { requestOptions: {} },
           ): StreamableMethod<Get204Response> {
             return context
               .path("/")
@@ -438,7 +438,7 @@ describe("header parameters", () => {
             context: Client,
             testHeader: string | "A" | "B",
             body: string,
-            options: GetOptions = { requestOptions: {} },
+            options: GetOptionalParams = { requestOptions: {} },
           ): Promise<void> {
             const result = await _getSend(context, testHeader, body, options);
             return _getDeserialize(result);
