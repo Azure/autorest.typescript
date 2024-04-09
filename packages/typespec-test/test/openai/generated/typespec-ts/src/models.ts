@@ -62,7 +62,7 @@ export interface CompletionsOptions {
    * a full ban or exclusive selection of a token, respectively. The exact behavior of a given bias
    * score varies by model.
    */
-  logit_bias?: Record<string, number>;
+  logit_bias?: TypeSpecRecord;
   /**
    * An identifier for the caller or end user of the operation. This may be used for tracking
    * or rate-limiting purposes.
@@ -120,6 +120,8 @@ export interface CompletionsOptions {
   model?: string;
 }
 
+export interface TypeSpecRecord extends Record<string, number> {}
+
 /**
  * The configuration information for a chat completions request.
  * Completions support a wide variety of tasks and generate text that continues from or "completes"
@@ -141,7 +143,7 @@ export interface ChatCompletionsOptions {
    *  Specifying a particular function via `{"name": "my_function"}` forces the model to call that function.
    *  "none" is the default when no functions are present. "auto" is the default if functions are present.
    */
-  function_call?: string | FunctionName;
+  function_call?: FunctionCallPreset | FunctionName;
   /** The maximum number of tokens to generate. */
   max_tokens?: number;
   /**
@@ -168,7 +170,7 @@ export interface ChatCompletionsOptions {
    * a full ban or exclusive selection of a token, respectively. The exact behavior of a given bias
    * score varies by model.
    */
-  logit_bias?: Record<string, number>;
+  logit_bias?: TypeSpecRecord;
   /**
    * An identifier for the caller or end user of the operation. This may be used for tracking
    * or rate-limiting purposes.
@@ -214,12 +216,8 @@ export interface ChatCompletionsOptions {
 
 /** A single, role-attributed message within a chat completion interaction. */
 export interface ChatMessage {
-  /**
-   * The role associated with this message payload.
-   *
-   * Possible values: "system", "assistant", "user", "function", "tool"
-   */
-  role: string;
+  /** The role associated with this message payload. */
+  role: ChatRole;
   /** The text associated with this message payload. */
   content: string | null;
   /**
@@ -298,10 +296,8 @@ export interface AzureChatExtensionConfiguration {
   /**
    *   The label for the type of an Azure chat extension. This typically corresponds to a matching Azure resource.
    *   Azure chat extensions are only compatible with Azure OpenAI.
-   *
-   * Possible values: "AzureCognitiveSearch"
    */
-  type: string;
+  type: AzureChatExtensionType;
   /**
    *   The configuration payload used for the Azure chat extension. The structure payload details are specific to the
    *   extension being configured.
@@ -316,19 +312,31 @@ export interface ImageGenerationOptions {
   prompt: string;
   /** The number of images to generate (defaults to 1). */
   n?: number;
-  /**
-   * The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024 (defaults to 1024x1024).
-   *
-   * Possible values: "256x256", "512x512", "1024x1024"
-   */
-  size?: string;
+  /** The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024 (defaults to 1024x1024). */
+  size?: ImageSize;
   /**
    *   The format in which image generation response items should be presented.
    *   Azure OpenAI only supports URL response items.
-   *
-   * Possible values: "url", "b64_json"
    */
-  response_format?: string;
+  response_format?: ImageGenerationResponseFormat;
   /** A unique identifier representing your end-user, which can help to monitor and detect abuse. */
   user?: string;
 }
+
+/** A description of the intended purpose of a message within a chat completions interaction. */
+export type ChatRole = "system" | "assistant" | "user" | "function" | "tool";
+/**
+ * The collection of predefined behaviors for handling request-provided function information in a chat completions
+ * operation.
+ */
+export type FunctionCallPreset = "auto" | "none";
+/**
+ *   A representation of configuration data for a single Azure OpenAI chat extension. This will be used by a chat
+ *   completions request that should use Azure OpenAI chat extensions to augment the response behavior.
+ *   The use of this configuration is compatible only with Azure OpenAI.
+ */
+export type AzureChatExtensionType = "AzureCognitiveSearch";
+/** The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024. */
+export type ImageSize = "256x256" | "512x512" | "1024x1024";
+/** The format in which the generated images are returned. */
+export type ImageGenerationResponseFormat = "url" | "b64_json";

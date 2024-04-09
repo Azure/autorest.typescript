@@ -6,17 +6,13 @@ export interface AnalyzeTextOptions {
   /** The text needs to be scanned. We support at most 10k Unicode characters (unicode code points) in text of one request. */
   text: string;
   /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
-  categories?: string[];
+  categories?: TextCategory[];
   /** The names of blocklists. */
   blocklistNames?: string[];
   /** When set to true, further analyses of harmful content will not be performed in cases where blocklists are hit. When set to false, all analyses of harmful content will be performed, whether or not blocklists are hit. */
   breakByBlocklists?: boolean;
-  /**
-   * The type of text analysis output. If not assigned, the default value is "FourLevels".
-   *
-   * Possible values: "FourLevels", "EightLevels"
-   */
-  outputType?: string;
+  /** The type of text analysis output. If not assigned, the default value is "FourLevels". */
+  outputType?: AnalyzeTextOutputType;
 }
 
 /** The analysis request of the image. */
@@ -24,13 +20,9 @@ export interface AnalyzeImageOptions {
   /** The image needs to be analyzed. */
   image: ImageData;
   /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
-  categories?: string[];
-  /**
-   * The type of image analysis output. If not assigned, the default value is "FourLevels".
-   *
-   * Possible values: "FourLevels"
-   */
-  outputType?: string;
+  categories?: ImageCategory[];
+  /** The type of image analysis output. If not assigned, the default value is "FourLevels". */
+  outputType?: AnalyzeImageOutputType;
 }
 
 /** The content or blob url of image, could be base64 encoding bytes or blob url. You can choose only one of them. If both are given, the request will be refused. The maximum size of image is 2048 pixels * 2048 pixels, no larger than 4MB at the same time. The minimum size of image is 50 pixels * 50 pixels. */
@@ -68,3 +60,12 @@ export interface RemoveBlockItemsOptions {
   /** Array of blockItemIds to remove. */
   blockItemIds: string[];
 }
+
+/** Text analyze category */
+export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
+/** The type of text analysis output. */
+export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
+/** Image analyze category */
+export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
+/** The type of image analysis output. */
+export type AnalyzeImageOutputType = "FourLevels";

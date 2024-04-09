@@ -14,6 +14,12 @@ import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
+// @public
+export type AlignMode = "Inner" | "Outer";
+
+// @public
+export type AlignModeOutput = "Inner" | "Outer";
+
 // @public (undocumented)
 export type AnomalyDetectorClient = Client & {
     path: Routes;
@@ -26,8 +32,17 @@ export interface AnomalyDetectorClientOptions extends ClientOptions {
 }
 
 // @public
+export type AnomalyDetectorErrorCodesOutput = "InvalidCustomInterval" | "BadArgument" | "InvalidGranularity" | "InvalidPeriod" | "InvalidModelArgument" | "InvalidSeries" | "InvalidJsonFormat" | "RequiredGranularity" | "RequiredSeries" | "InvalidImputeMode" | "InvalidImputeFixedValue";
+
+// @public
 function createClient(endpointParam: string, credentials: KeyCredential, options?: AnomalyDetectorClientOptions): AnomalyDetectorClient;
 export default createClient;
+
+// @public
+export type DataSchema = "OneTable" | "MultiTable";
+
+// @public
+export type DataSchemaOutput = "OneTable" | "MultiTable";
 
 // @public (undocumented)
 export interface DeleteMultivariateModel {
@@ -248,6 +263,12 @@ export interface DetectUnivariateLastPointDefaultResponse extends HttpResponse {
 export type DetectUnivariateLastPointParameters = DetectUnivariateLastPointBodyParam & RequestParameters;
 
 // @public
+export type FillNAMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
+
+// @public
+export type FillNAMethodOutput = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
+
+// @public
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
 // @public (undocumented)
@@ -312,6 +333,9 @@ export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise
     page: TPage;
     nextPageLink?: string;
 }>;
+
+// @public
+export type ImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
 
 // @public (undocumented)
 export function isUnexpected(response: DetectUnivariateEntireSeries200Response | DetectUnivariateEntireSeriesDefaultResponse): response is DetectUnivariateEntireSeriesDefaultResponse;
@@ -382,16 +406,22 @@ export interface ListMultivariateModelsQueryParamProperties {
 }
 
 // @public
+export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
+
+// @public
+export type ModelStatusOutput = "CREATED" | "RUNNING" | "READY" | "FAILED";
+
+// @public
 export interface MultivariateAlignPolicy {
-    alignMode?: "Inner" | "Outer";
-    fillNAMethod?: string;
+    alignMode?: AlignMode;
+    fillNAMethod?: FillNAMethod;
     paddingValue?: number;
 }
 
 // @public
 export interface MultivariateAlignPolicyOutput {
-    alignMode?: "Inner" | "Outer";
-    fillNAMethod?: string;
+    alignMode?: AlignModeOutput;
+    fillNAMethod?: FillNAMethodOutput;
     paddingValue?: number;
 }
 
@@ -426,6 +456,9 @@ export interface MultivariateAnomalyValueOutput {
 }
 
 // @public
+export type MultivariateBatchDetectionStatusOutput = "CREATED" | "RUNNING" | "READY" | "FAILED";
+
+// @public
 export interface MultivariateCorrelationChangesOutput {
     changedVariables?: string[];
 }
@@ -457,20 +490,20 @@ export interface MultivariateErrorResponseOutput {
 // @public
 export interface MultivariateModelInfo {
     alignPolicy?: MultivariateAlignPolicy;
-    dataSchema?: string;
+    dataSchema?: DataSchema;
     dataSource: string;
     diagnosticsInfo?: MultivariateDiagnosticsInfo;
     displayName?: string;
     endTime: Date | string;
     slidingWindow?: number;
     startTime: Date | string;
-    status?: "CREATED" | "RUNNING" | "READY" | "FAILED";
+    status?: ModelStatus;
 }
 
 // @public
 export interface MultivariateModelInfoOutput {
     alignPolicy?: MultivariateAlignPolicyOutput;
-    dataSchema?: string;
+    dataSchema?: DataSchemaOutput;
     dataSource: string;
     diagnosticsInfo?: MultivariateDiagnosticsInfoOutput;
     displayName?: string;
@@ -478,7 +511,7 @@ export interface MultivariateModelInfoOutput {
     readonly errors?: Array<MultivariateErrorResponseOutput>;
     slidingWindow?: number;
     startTime: string;
-    status?: "CREATED" | "RUNNING" | "READY" | "FAILED";
+    status?: ModelStatusOutput;
 }
 
 // @public
@@ -525,7 +558,7 @@ export interface MultivariateMultivariateBatchDetectionOptionsOutput {
 export interface MultivariateMultivariateBatchDetectionResultSummaryOutput {
     errors?: Array<MultivariateErrorResponseOutput>;
     setupInfo: MultivariateMultivariateBatchDetectionOptionsOutput;
-    status: "CREATED" | "RUNNING" | "READY" | "FAILED";
+    status: MultivariateBatchDetectionStatusOutput;
     variableStates?: Array<MultivariateVariableStateOutput>;
 }
 
@@ -610,6 +643,9 @@ export interface Routes {
     (path: "/multivariate/models/{modelId}:detect-last", modelId: string): DetectMultivariateLastAnomaly;
 }
 
+// @public
+export type TimeGranularity = "yearly" | "monthly" | "weekly" | "daily" | "hourly" | "minutely" | "secondly" | "microsecond" | "none";
+
 // @public (undocumented)
 export interface TrainMultivariateModel {
     get(options?: ListMultivariateModelsParameters): StreamableMethod<ListMultivariateModels200Response | ListMultivariateModelsDefaultResponse>;
@@ -656,7 +692,7 @@ export type TrainMultivariateModelParameters = TrainMultivariateModelBodyParam &
 
 // @public
 export interface UnivariateAnomalyDetectorErrorOutput {
-    code?: string;
+    code?: AnomalyDetectorErrorCodesOutput;
     message?: string;
 }
 
@@ -669,7 +705,7 @@ export interface UnivariateTimeSeriesPoint {
 // @public
 export interface UnivariateUnivariateChangePointDetectionOptions {
     customInterval?: number;
-    granularity: "yearly" | "monthly" | "weekly" | "daily" | "hourly" | "minutely" | "secondly" | "microsecond" | "none";
+    granularity: TimeGranularity;
     period?: number;
     series: Array<UnivariateTimeSeriesPoint>;
     stableTrendWindow?: number;
@@ -686,9 +722,9 @@ export interface UnivariateUnivariateChangePointDetectionResultOutput {
 // @public
 export interface UnivariateUnivariateDetectionOptions {
     customInterval?: number;
-    granularity?: "yearly" | "monthly" | "weekly" | "daily" | "hourly" | "minutely" | "secondly" | "microsecond" | "none";
+    granularity?: TimeGranularity;
     imputeFixedValue?: number;
-    imputeMode?: string;
+    imputeMode?: ImputeMode;
     maxAnomalyRatio?: number;
     period?: number;
     sensitivity?: number;

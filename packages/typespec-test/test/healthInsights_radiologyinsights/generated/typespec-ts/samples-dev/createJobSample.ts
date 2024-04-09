@@ -719,7 +719,7 @@ async function createJobSample() {
         configuration: {
           verbose: true,
           includeEvidence: true,
-          inferenceTypes: ["{Your inferenceTypes}"],
+          inferenceTypes: ["ageMismatch"],
           inferenceOptions: {
             followupRecommendation: {
               includeRecommendationsWithNoSpecifiedModality: true,

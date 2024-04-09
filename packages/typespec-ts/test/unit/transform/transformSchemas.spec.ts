@@ -140,7 +140,7 @@ describe("#transformSchemas", () => {
 
     describe("union", () => {
       describe("named union", () => {
-        it.only("as fixed enum", async () => {
+        it("should generate a name for union", async () => {
           const schemaOutput = await emitSchemasFromTypeSpec(
             `
             @doc("Translation Language Values")
@@ -163,25 +163,96 @@ describe("#transformSchemas", () => {
           assert.isNotNull(schemaOutput);
           const first = schemaOutput?.[0] as ObjectSchema;
           const property = first.properties![`"prop"`];
-          console.log(first, property, property?.enum);
+          // console.log(first, property, property?.enum);
           assert.isNotNull(property);
           assert.deepEqual(property, {
-            type: '"English" | "Chinese"',
+            name: "TranslationLanguageValues",
+            type: "object",
+            typeName: "TranslationLanguageValues",
+            outputTypeName: "TranslationLanguageValuesOutput",
+            alias: '"English" | "Chinese"',
+            outputAlias: '"English" | "Chinese"',
+            required: true,
+            usage: ["input", "output"],
             description: undefined,
             enum: [
               {
-                description: "English descriptions",
                 isConstant: true,
                 type: '"English"'
               },
               {
-                description: "Chinese descriptions",
                 isConstant: true,
                 type: '"Chinese"'
               }
-            ],
+            ]
+          } as any);
+        });
+
+        it("union of union should be generated correctly", async () => {
+          const schemaOutput = await emitSchemasFromTypeSpec(
+            `
+            @doc("Translation Language Values")
+            union TranslationLanguageValues {
+              @doc("English descriptions")
+              English: "English",
+
+              @doc("Chinese descriptions")
+              Chinese: "Chinese",
+
+              Others: OtherValues
+            }
+
+            union OtherValues {
+              "Japanese"
+            }
+            model Test {
+              prop: TranslationLanguageValues;
+            }
+            @route("/models")
+            @get
+            op getModel(@body input: Test): Test;
+          `,
+            true
+          );
+          assert.isNotNull(schemaOutput);
+          const first = schemaOutput?.[0] as ObjectSchema;
+          const property = first.properties![`"prop"`];
+          // console.log(first, property, property?.enum);
+          assert.isNotNull(property);
+          assert.deepEqual(property, {
+            name: "TranslationLanguageValues",
+            type: "object",
+            typeName: "TranslationLanguageValues",
+            outputTypeName: "TranslationLanguageValuesOutput",
+            alias: '"English" | "Chinese" | OtherValues',
+            outputAlias: '"English" | "Chinese" | OtherValuesOutput',
             required: true,
-            usage: ["input", "output"]
+            usage: ["input", "output"],
+            description: undefined,
+            enum: [
+              {
+                isConstant: true,
+                type: '"English"'
+              },
+              {
+                isConstant: true,
+                type: '"Chinese"'
+              },
+              {
+                enum: [
+                  {
+                    isConstant: true,
+                    type: '"Japanese"'
+                  }
+                ],
+                name: "OtherValues",
+                type: "object",
+                typeName: "OtherValues",
+                outputTypeName: "OtherValuesOutput",
+                alias: '"Japanese"',
+                outputAlias: '"Japanese"'
+              }
+            ]
           } as any);
         });
       });
@@ -249,7 +320,7 @@ describe("#transformSchemas", () => {
     });
 
     describe("enum", () => {
-      it("@fixed should have no impact", async () => {
+      it("should generate enum name", async () => {
         const schemaOutput = await emitSchemasFromTypeSpec(
           `
           #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
@@ -276,8 +347,12 @@ describe("#transformSchemas", () => {
         // console.log(first, property, property?.enum);
         assert.isNotNull(property);
         assert.deepEqual(property, {
-          type: '"English" | "Chinese"',
+          type: "object",
+          name: "TranslationLanguageValues",
+          typeName: "TranslationLanguageValues",
+          outputTypeName: "TranslationLanguageValuesOutput",
           description: undefined,
+          memberType: "string",
           enum: [
             {
               description: "English descriptions",
@@ -290,52 +365,8 @@ describe("#transformSchemas", () => {
               type: '"Chinese"'
             }
           ],
-          required: true,
-          usage: ["input", "output"]
-        } as any);
-      });
-
-      it("should be open as false", async () => {
-        const schemaOutput = await emitSchemasFromTypeSpec(
-          `
-          @doc("Translation Language Values")
-          enum TranslationLanguageValues {
-            @doc("English descriptions")
-            English,
-            @doc("Chinese descriptions")
-            Chinese,
-          }
-          model Test {
-              prop: TranslationLanguageValues;
-          }
-          @route("/models")
-          @get
-          op getModel(@body input: Test): Test;
-        `,
-          true
-        );
-        assert.isNotNull(schemaOutput);
-        const first = schemaOutput?.[0] as ObjectSchema;
-        const property = first.properties![`"prop"`];
-        assert.isNotNull(property);
-        assert.deepEqual(property, {
-          type: "union",
-          outputTypeName: '"English" | "Chinese"',
-          typeName: '"English" | "Chinese"',
-          open: false,
-          description: 'Possible values: "English", "Chinese"',
-          enum: [
-            {
-              description: "English descriptions",
-              isConstant: true,
-              type: '"English"'
-            },
-            {
-              description: "Chinese descriptions",
-              isConstant: true,
-              type: '"Chinese"'
-            }
-          ],
+          alias: '"English" | "Chinese"',
+          outputAlias: '"English" | "Chinese"',
           required: true,
           usage: ["input", "output"]
         } as any);

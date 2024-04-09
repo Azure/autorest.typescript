@@ -2,10 +2,10 @@
 // Licensed under the MIT license.
 
 import {
-  StreamingChatCompletionOptions,
-  ChatCompletionChunk,
-  ChatCompletionOptions,
-  ChatCompletion,
+  StreamingChatCompletionOptionsRecord,
+  ChatCompletionChunkRecord,
+  ChatCompletionOptionsRecord,
+  ChatCompletionRecord,
 } from "../models/models.js";
 import {
   ChatProtocolContext as Client,
@@ -21,7 +21,7 @@ import { CreateStreamingOptions, CreateOptions } from "../models/options.js";
 
 export function _createStreamingSend(
   context: Client,
-  body: StreamingChatCompletionOptions,
+  body: StreamingChatCompletionOptionsRecord,
   options: CreateStreamingOptions = { requestOptions: {} },
 ): StreamableMethod<CreateStreaming200Response> {
   return context
@@ -43,7 +43,7 @@ export function _createStreamingSend(
 
 export async function _createStreamingDeserialize(
   result: CreateStreaming200Response,
-): Promise<ChatCompletionChunk> {
+): Promise<ChatCompletionChunkRecord> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -66,16 +66,16 @@ export async function _createStreamingDeserialize(
 /** Creates a new streaming chat completion. */
 export async function createStreaming(
   context: Client,
-  body: StreamingChatCompletionOptions,
+  body: StreamingChatCompletionOptionsRecord,
   options: CreateStreamingOptions = { requestOptions: {} },
-): Promise<ChatCompletionChunk> {
+): Promise<ChatCompletionChunkRecord> {
   const result = await _createStreamingSend(context, body, options);
   return _createStreamingDeserialize(result);
 }
 
 export function _createSend(
   context: Client,
-  body: ChatCompletionOptions,
+  body: ChatCompletionOptionsRecord,
   options: CreateOptions = { requestOptions: {} },
 ): StreamableMethod<Create200Response> {
   return context
@@ -97,7 +97,7 @@ export function _createSend(
 
 export async function _createDeserialize(
   result: Create200Response,
-): Promise<ChatCompletion> {
+): Promise<ChatCompletionRecord> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -120,9 +120,9 @@ export async function _createDeserialize(
 /** Creates a new chat completion. */
 export async function create(
   context: Client,
-  body: ChatCompletionOptions,
+  body: ChatCompletionOptionsRecord,
   options: CreateOptions = { requestOptions: {} },
-): Promise<ChatCompletion> {
+): Promise<ChatCompletionRecord> {
   const result = await _createSend(context, body, options);
   return _createDeserialize(result);
 }
