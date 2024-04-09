@@ -4,6 +4,7 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { ServiceContext } from "./clientDefinitions.js";
+import { ClientType } from "./models.js";
 
 /**
  * Initialize a new instance of `ServiceContext`
@@ -13,8 +14,8 @@ import { ServiceContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   endpointParam: string,
-  clientParam: ClientTypeOutput,
-  options: ClientOptions = {}
+  clientParam: ClientType,
+  options: ClientOptions = {},
 ): ServiceContext {
   const endpointUrl =
     options.endpoint ??
@@ -29,11 +30,11 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
-    }
+      logger: options.loggingOptions?.logger ?? logger.info,
+    },
   };
 
   const client = getClient(endpointUrl, options) as ServiceContext;
