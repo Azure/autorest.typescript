@@ -329,7 +329,7 @@ describe("Package file generation", () => {
       expect(packageFile.devDependencies).to.have.property("vitest");
     });
 
-    it.only("[esm] should include correct scripts with tests", () => {
+    it("[esm] should include correct scripts with tests", () => {
       const model = createMockModel({
         ...baseConfig,
         moduleKind: "esm",
@@ -432,7 +432,7 @@ describe("Package file generation", () => {
       expect(packageFile.devDependencies).to.have.property("esm");
     });
 
-    it.only("[cjs] should include correct scripts with tests", () => {
+    it("[cjs] should include correct scripts with tests", () => {
       const model = createMockModel({
         ...baseConfig,
         moduleKind: "cjs",
