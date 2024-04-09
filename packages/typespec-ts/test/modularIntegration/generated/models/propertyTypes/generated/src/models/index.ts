@@ -3,6 +3,7 @@
 
 export {
   UnionEnumValueProperty,
+  ExtendedEnum,
   UnionFloatLiteralProperty,
   UnionIntLiteralProperty,
   UnionStringLiteralProperty,

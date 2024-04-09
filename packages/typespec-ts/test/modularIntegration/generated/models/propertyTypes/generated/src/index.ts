@@ -7,6 +7,7 @@ export {
 } from "./ValueTypesClient.js";
 export {
   UnionEnumValueProperty,
+  ExtendedEnum,
   UnionFloatLiteralProperty,
   UnionIntLiteralProperty,
   UnionStringLiteralProperty,

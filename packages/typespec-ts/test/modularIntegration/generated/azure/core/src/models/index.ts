@@ -5,13 +5,14 @@ export {
   User,
   UserOrder,
   ListItemInputBody,
-  UserListResults,
-  PagedUser,
   ListItemInputExtensibleEnum,
-  PagedFirstItem,
+  UserListResults,
   FirstItem,
-  PagedSecondItem,
   SecondItem,
+  Versions,
+  PagedUser,
+  PagedFirstItem,
+  PagedSecondItem,
 } from "./models.js";
 export {
   CreateOrUpdateOptions,

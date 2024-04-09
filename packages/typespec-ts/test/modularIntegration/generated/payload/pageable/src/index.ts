@@ -3,8 +3,8 @@
 
 export { PageableClient, PageableClientOptions } from "./PageableClient.js";
 export {
-  PagedUser,
   User,
+  PagedUser,
   ListOptions,
   PageSettings,
   ContinuablePage,

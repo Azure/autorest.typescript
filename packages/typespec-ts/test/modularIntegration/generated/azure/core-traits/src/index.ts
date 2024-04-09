@@ -6,6 +6,7 @@ export {
   User,
   UserActionParam,
   UserActionResponse,
+  Versions,
   RepeatabilityResult,
   SmokeTestOptions,
   RepeatableActionOptions,

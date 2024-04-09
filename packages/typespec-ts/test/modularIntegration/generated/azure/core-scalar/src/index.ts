@@ -4,6 +4,7 @@
 export { ScalarClient, ScalarClientOptions } from "./ScalarClient.js";
 export {
   AzureLocationModel,
+  Versions,
   GetOptions,
   PutOptions,
   PostOptions,

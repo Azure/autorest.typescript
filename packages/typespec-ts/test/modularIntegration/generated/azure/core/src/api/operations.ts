@@ -5,11 +5,11 @@ import {
   User,
   ListItemInputBody,
   UserListResults,
+  FirstItem,
+  SecondItem,
   PagedUser,
   PagedFirstItem,
-  FirstItem,
   PagedSecondItem,
-  SecondItem,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
