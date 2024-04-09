@@ -366,6 +366,23 @@ describe("Package file generation", () => {
         "clean",
         "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
       );
+      expect(packageFile.scripts).to.have.property(
+        "extract-api",
+        "rimraf review && mkdirp ./review && api-extractor run --local"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "integration-test",
+        "npm run integration-test:node && npm run integration-test:browser"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "pack",
+        "npm pack 2>&1"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "unit-test",
+        "npm run unit-test:node && npm run unit-test:browser"
+      );
+
     });
 
     it("[cjs] should include correct test devCependencies with tests", () => {
