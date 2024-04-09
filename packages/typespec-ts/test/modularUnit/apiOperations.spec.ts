@@ -628,7 +628,9 @@ describe("api operations in Modular", () => {
         import { TestingContext } from "../rest/index.js";
         import getClient from "../rest/index.js";
         
-        export interface TestingClientOptions  extends ClientOptions  {}
+        export interface TestingClientOptions extends ClientOptions  {
+          apiVersion?: string;
+        }
         
         export { TestingContext } from "../rest/index.js";
         
