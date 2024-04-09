@@ -142,11 +142,14 @@ export function transformUrlInfo(
         urlParameters.push({
           oriName: key,
           name: normalizeName(key, NameType.Parameter, true),
-          type: getTypeName(schema),
+          type: getTypeName(schema, [
+            SchemaContext.Exception,
+            SchemaContext.Input
+          ]),
           description:
             (getDoc(program, property) &&
               getFormattedPropertyDoc(program, property, schema, " ")) ??
-            getFormattedPropertyDoc(program, type, schema, " " /* sperator*/),
+            getFormattedPropertyDoc(program, type, schema, " " /* separator*/),
           value: predictDefaultValue(dpgContext, host?.[0]?.parameters.get(key))
         });
       }
