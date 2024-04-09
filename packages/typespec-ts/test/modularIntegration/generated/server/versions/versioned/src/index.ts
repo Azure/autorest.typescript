@@ -3,6 +3,7 @@
 
 export { VersionedClient, VersionedClientOptions } from "./VersionedClient.js";
 export {
+  Versions,
   WithoutApiVersionOptions,
   WithQueryApiVersionOptions,
   WithPathApiVersionOptions,

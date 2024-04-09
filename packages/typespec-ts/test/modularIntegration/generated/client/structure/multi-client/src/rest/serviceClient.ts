@@ -8,13 +8,13 @@ import { ServiceContext } from "./clientDefinitions.js";
 /**
  * Initialize a new instance of `ServiceContext`
  * @param endpointParam - Need to be set as 'http://localhost:3000' in client.
- * @param clientParam - Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. Possible values: "default", "multi-client", "renamed-operation", "two-operation-group"
+ * @param clientParam - Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client.
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,
-  clientParam: string,
-  options: ClientOptions = {},
+  clientParam: ClientTypeOutput,
+  options: ClientOptions = {}
 ): ServiceContext {
   const endpointUrl =
     options.endpoint ??
@@ -29,11 +29,11 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix,
+      userAgentPrefix
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info,
-    },
+      logger: options.loggingOptions?.logger ?? logger.info
+    }
   };
 
   const client = getClient(endpointUrl, options) as ServiceContext;

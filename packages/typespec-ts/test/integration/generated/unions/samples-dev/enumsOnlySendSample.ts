@@ -15,7 +15,7 @@ async function enumsOnlySendSample() {
   const client = createUnionsClient();
   const result = await client
     .path("/type/union/enums-only")
-    .post({ body: { prop: { lr: "left", ud: "left" } } });
+    .post({ body: { prop: { lr: "left", ud: "up" } } });
   console.log(result);
 }
 
