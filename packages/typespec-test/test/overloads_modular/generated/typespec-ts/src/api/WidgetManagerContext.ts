@@ -6,7 +6,10 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { WidgetManagerContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
-export interface WidgetManagerClientOptions extends ClientOptions {}
+export interface WidgetManagerClientOptions extends ClientOptions {
+  /** The API version to use for this operation. */
+  apiVersion?: string;
+}
 
 export { WidgetManagerContext } from "../rest/index.js";
 

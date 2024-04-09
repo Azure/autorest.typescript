@@ -2,4 +2,4 @@
 // Licensed under the MIT license.
 
 export { Collection } from "./models.js";
-export { ConfidentialLedgerListCollectionsOptions } from "./options.js";
+export { ConfidentialLedgerListCollectionsOptionalParams } from "./options.js";

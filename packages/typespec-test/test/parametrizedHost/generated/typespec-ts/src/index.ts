@@ -7,6 +7,6 @@ export {
 } from "./ParametrizedHostClient.js";
 export {
   Collection,
-  ConfidentialLedgerListCollectionsOptions,
+  ConfidentialLedgerListCollectionsOptionalParams,
 } from "./models/index.js";
 export { ConfidentialLedgerOperations } from "./classic/index.js";

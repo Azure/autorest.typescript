@@ -16,13 +16,13 @@ export interface Collection {
 }
 
 // @public (undocumented)
-export interface ConfidentialLedgerListCollectionsOptions extends OperationOptions {
+export interface ConfidentialLedgerListCollectionsOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
 export interface ConfidentialLedgerOperations {
     // (undocumented)
-    listCollections: (apiVersion: string, options?: ConfidentialLedgerListCollectionsOptions) => Promise<Collection[]>;
+    listCollections: (apiVersion: string, options?: ConfidentialLedgerListCollectionsOptionalParams) => Promise<Collection[]>;
 }
 
 // @public (undocumented)

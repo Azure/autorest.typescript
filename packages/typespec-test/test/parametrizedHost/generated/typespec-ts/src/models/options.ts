@@ -3,5 +3,5 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface ConfidentialLedgerListCollectionsOptions
+export interface ConfidentialLedgerListCollectionsOptionalParams
   extends OperationOptions {}

@@ -4,12 +4,12 @@
 import { ParametrizedHostContext } from "../../api/ParametrizedHostContext.js";
 import { Collection } from "../../models/models.js";
 import { listCollections } from "../../api/confidentialLedger/index.js";
-import { ConfidentialLedgerListCollectionsOptions } from "../../models/options.js";
+import { ConfidentialLedgerListCollectionsOptionalParams } from "../../models/options.js";
 
 export interface ConfidentialLedgerOperations {
   listCollections: (
     apiVersion: string,
-    options?: ConfidentialLedgerListCollectionsOptions,
+    options?: ConfidentialLedgerListCollectionsOptionalParams,
   ) => Promise<Collection[]>;
 }
 
@@ -17,7 +17,7 @@ export function getConfidentialLedger(context: ParametrizedHostContext) {
   return {
     listCollections: (
       apiVersion: string,
-      options?: ConfidentialLedgerListCollectionsOptions,
+      options?: ConfidentialLedgerListCollectionsOptionalParams,
     ) => listCollections(context, apiVersion, options),
   };
 }

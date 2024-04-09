@@ -13,12 +13,14 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { ConfidentialLedgerListCollectionsOptions } from "../../models/options.js";
+import { ConfidentialLedgerListCollectionsOptionalParams } from "../../models/options.js";
 
 export function _listCollectionsSend(
   context: Client,
   apiVersion: string,
-  options: ConfidentialLedgerListCollectionsOptions = { requestOptions: {} },
+  options: ConfidentialLedgerListCollectionsOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod<
   ListCollections200Response | ListCollectionsDefaultResponse
 > {
@@ -46,7 +48,9 @@ export async function _listCollectionsDeserialize(
 export async function listCollections(
   context: Client,
   apiVersion: string,
-  options: ConfidentialLedgerListCollectionsOptions = { requestOptions: {} },
+  options: ConfidentialLedgerListCollectionsOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<Collection[]> {
   const result = await _listCollectionsSend(context, apiVersion, options);
   return _listCollectionsDeserialize(result);
