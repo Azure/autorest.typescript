@@ -6,7 +6,10 @@ import { ClientOptions } from "@azure-rest/core-client";
 import { AnomalyDetectorContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
-export interface AnomalyDetectorClientOptions extends ClientOptions {}
+export interface AnomalyDetectorClientOptions extends ClientOptions {
+  /** Api Version */
+  apiVersion?: string;
+}
 
 export { AnomalyDetectorContext } from "../rest/index.js";
 

@@ -517,7 +517,7 @@ function emitParameter(
 
   if (
     isApiVersion(context, parameter as HttpOperationParameter) &&
-    paramMap.location === "query"
+    (paramMap.location === "query" || paramMap.location === "path" || paramMap.location === "endpointPath")
   ) {
     const defaultApiVersion = getDefaultApiVersion(
       context,
