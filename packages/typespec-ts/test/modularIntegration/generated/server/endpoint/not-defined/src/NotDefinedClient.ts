@@ -8,7 +8,7 @@ import {
   NotDefinedContext,
   valid,
 } from "./api/index.js";
-import { ValidOptions } from "./models/options.js";
+import { ValidOptionalParams } from "./models/options.js";
 
 export { NotDefinedClientOptions } from "./api/NotDefinedContext.js";
 
@@ -23,7 +23,7 @@ export class NotDefinedClient {
     this.pipeline = this._client.pipeline;
   }
 
-  valid(options: ValidOptions = { requestOptions: {} }): Promise<void> {
+  valid(options: ValidOptionalParams = { requestOptions: {} }): Promise<void> {
     return valid(this._client, options);
   }
 }

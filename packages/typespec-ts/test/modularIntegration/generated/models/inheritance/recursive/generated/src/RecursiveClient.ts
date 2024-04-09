@@ -3,7 +3,7 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { Extension } from "./models/models.js";
-import { PutOptions, GetOptions } from "./models/options.js";
+import { PutOptionalParams, GetOptionalParams } from "./models/options.js";
 import {
   put,
   get,
@@ -27,12 +27,12 @@ export class RecursiveClient {
 
   put(
     input: Extension,
-    options: PutOptions = { requestOptions: {} },
+    options: PutOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return put(this._client, input, options);
   }
 
-  get(options: GetOptions = { requestOptions: {} }): Promise<Extension> {
+  get(options: GetOptionalParams = { requestOptions: {} }): Promise<Extension> {
     return get(this._client, options);
   }
 }

@@ -6,7 +6,7 @@ export {
   EmptyInput,
   EmptyOutput,
   EmptyInputOutput,
-  PutEmptyOptions,
-  GetEmptyOptions,
-  PostRoundTripEmptyOptions,
+  PutEmptyOptionalParams,
+  GetEmptyOptionalParams,
+  PostRoundTripEmptyOptionalParams,
 } from "./models/index.js";

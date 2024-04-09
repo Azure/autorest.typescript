@@ -10,11 +10,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { QuxBarNineOptions } from "../../../models/options.js";
+import { QuxBarNineOptionalParams } from "../../../models/options.js";
 
 export function _nineSend(
   context: Client,
-  options: QuxBarNineOptions = { requestOptions: {} },
+  options: QuxBarNineOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Nine204Response> {
   return context
     .path("/nine")
@@ -31,7 +31,7 @@ export async function _nineDeserialize(result: Nine204Response): Promise<void> {
 
 export async function nine(
   context: Client,
-  options: QuxBarNineOptions = { requestOptions: {} },
+  options: QuxBarNineOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _nineSend(context, options);
   return _nineDeserialize(result);

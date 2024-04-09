@@ -8,7 +8,7 @@ import {
   RequestIdClientOptions,
   RequestIdClientContext,
 } from "./api/index.js";
-import { GetOptions } from "./models/options.js";
+import { GetOptionalParams } from "./models/options.js";
 
 export { RequestIdClientOptions } from "./api/RequestIdContext.js";
 
@@ -24,7 +24,7 @@ export class RequestIdClient {
   }
 
   /** Get operation with azure client request id header. */
-  get(options: GetOptions = { requestOptions: {} }): Promise<void> {
+  get(options: GetOptionalParams = { requestOptions: {} }): Promise<void> {
     return get(this._client, options);
   }
 }

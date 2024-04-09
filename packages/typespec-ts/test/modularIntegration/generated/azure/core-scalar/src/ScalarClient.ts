@@ -4,11 +4,11 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { AzureLocationModel } from "./models/models.js";
 import {
-  GetOptions,
-  PutOptions,
-  PostOptions,
-  HeaderOptions,
-  QueryOptions,
+  GetOptionalParams,
+  PutOptionalParams,
+  PostOptionalParams,
+  HeaderOptionalParams,
+  QueryOptionalParams,
 } from "./models/options.js";
 import {
   get,
@@ -34,14 +34,14 @@ export class ScalarClient {
   }
 
   /** get azureLocation value */
-  get(options: GetOptions = { requestOptions: {} }): Promise<string> {
+  get(options: GetOptionalParams = { requestOptions: {} }): Promise<string> {
     return get(this._client, options);
   }
 
   /** put azureLocation value */
   put(
     body: string,
-    options: PutOptions = { requestOptions: {} },
+    options: PutOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return put(this._client, body, options);
   }
@@ -49,7 +49,7 @@ export class ScalarClient {
   /** post a model which has azureLocation property */
   post(
     body: AzureLocationModel,
-    options: PostOptions = { requestOptions: {} },
+    options: PostOptionalParams = { requestOptions: {} },
   ): Promise<AzureLocationModel> {
     return post(this._client, body, options);
   }
@@ -57,7 +57,7 @@ export class ScalarClient {
   /** azureLocation value header */
   header(
     region: string,
-    options: HeaderOptions = { requestOptions: {} },
+    options: HeaderOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return header(this._client, region, options);
   }
@@ -65,7 +65,7 @@ export class ScalarClient {
   /** azureLocation value query */
   query(
     region: string,
-    options: QueryOptions = { requestOptions: {} },
+    options: QueryOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return query(this._client, region, options);
   }

@@ -11,11 +11,14 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { BarFiveOptions, BarSixOptions } from "../../models/options.js";
+import {
+  BarFiveOptionalParams,
+  BarSixOptionalParams,
+} from "../../models/options.js";
 
 export function _fiveSend(
   context: Client,
-  options: BarFiveOptions = { requestOptions: {} },
+  options: BarFiveOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Five204Response> {
   return context
     .path("/five")
@@ -32,7 +35,7 @@ export async function _fiveDeserialize(result: Five204Response): Promise<void> {
 
 export async function five(
   context: Client,
-  options: BarFiveOptions = { requestOptions: {} },
+  options: BarFiveOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _fiveSend(context, options);
   return _fiveDeserialize(result);
@@ -40,7 +43,7 @@ export async function five(
 
 export function _sixSend(
   context: Client,
-  options: BarSixOptions = { requestOptions: {} },
+  options: BarSixOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Six204Response> {
   return context
     .path("/six")
@@ -57,7 +60,7 @@ export async function _sixDeserialize(result: Six204Response): Promise<void> {
 
 export async function six(
   context: Client,
-  options: BarSixOptions = { requestOptions: {} },
+  options: BarSixOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _sixSend(context, options);
   return _sixDeserialize(result);

@@ -8,24 +8,28 @@ import {
   booleanLiteralPut,
 } from "../../api/booleanLiteral/index.js";
 import {
-  BooleanLiteralGetOptions,
-  BooleanLiteralPutOptions,
+  BooleanLiteralGetOptionalParams,
+  BooleanLiteralPutOptionalParams,
 } from "../../models/options.js";
 
 export interface BooleanLiteralOperations {
-  get: (options?: BooleanLiteralGetOptions) => Promise<BooleanLiteralProperty>;
+  get: (
+    options?: BooleanLiteralGetOptionalParams,
+  ) => Promise<BooleanLiteralProperty>;
   put: (
     body: BooleanLiteralProperty,
-    options?: BooleanLiteralPutOptions,
+    options?: BooleanLiteralPutOptionalParams,
   ) => Promise<void>;
 }
 
 export function getBooleanLiteral(context: ValueTypesContext) {
   return {
-    get: (options?: BooleanLiteralGetOptions) =>
+    get: (options?: BooleanLiteralGetOptionalParams) =>
       booleanLiteralGet(context, options),
-    put: (body: BooleanLiteralProperty, options?: BooleanLiteralPutOptions) =>
-      booleanLiteralPut(context, body, options),
+    put: (
+      body: BooleanLiteralProperty,
+      options?: BooleanLiteralPutOptionalParams,
+    ) => booleanLiteralPut(context, body, options),
   };
 }
 

@@ -12,12 +12,12 @@ export {
   SnakeUnion,
 } from "./models.js";
 export {
-  GetExtensibleModelOptions,
-  PutExtensibleModelOptions,
-  GetExtensibleModelMissingDiscriminatorOptions,
-  GetExtensibleModelWrongDiscriminatorOptions,
-  GetFixedModelOptions,
-  PutFixedModelOptions,
-  GetFixedModelMissingDiscriminatorOptions,
-  GetFixedModelWrongDiscriminatorOptions,
+  GetExtensibleModelOptionalParams,
+  PutExtensibleModelOptionalParams,
+  GetExtensibleModelMissingDiscriminatorOptionalParams,
+  GetExtensibleModelWrongDiscriminatorOptionalParams,
+  GetFixedModelOptionalParams,
+  PutFixedModelOptionalParams,
+  GetFixedModelMissingDiscriminatorOptionalParams,
+  GetFixedModelWrongDiscriminatorOptionalParams,
 } from "./options.js";

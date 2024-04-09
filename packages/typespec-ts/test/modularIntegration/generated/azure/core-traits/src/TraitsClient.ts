@@ -3,7 +3,10 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { User, UserActionParam, UserActionResponse } from "./models/models.js";
-import { SmokeTestOptions, RepeatableActionOptions } from "./models/options.js";
+import {
+  SmokeTestOptionalParams,
+  RepeatableActionOptionalParams,
+} from "./models/options.js";
 import {
   smokeTest,
   repeatableAction,
@@ -29,7 +32,7 @@ export class TraitsClient {
   smokeTest(
     id: number,
     foo: string,
-    options: SmokeTestOptions = { requestOptions: {} },
+    options: SmokeTestOptionalParams = { requestOptions: {} },
   ): Promise<User> {
     return smokeTest(this._client, id, foo, options);
   }
@@ -38,7 +41,7 @@ export class TraitsClient {
   repeatableAction(
     id: number,
     body: UserActionParam,
-    options: RepeatableActionOptions = { requestOptions: {} },
+    options: RepeatableActionOptionalParams = { requestOptions: {} },
   ): Promise<UserActionResponse> {
     return repeatableAction(this._client, id, body, options);
   }

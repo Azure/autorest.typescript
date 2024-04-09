@@ -4,6 +4,6 @@
 export { JsonClient, JsonClientOptions } from "./JsonClient.js";
 export {
   JsonEncodedNameModel,
-  SendOptions,
-  GetOptions,
+  SendOptionalParams,
+  GetOptionalParams,
 } from "./models/index.js";

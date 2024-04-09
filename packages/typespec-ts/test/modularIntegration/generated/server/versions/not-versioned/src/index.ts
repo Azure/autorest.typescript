@@ -6,7 +6,7 @@ export {
   NotVersionedClientOptions,
 } from "./NotVersionedClient.js";
 export {
-  WithoutApiVersionOptions,
-  WithQueryApiVersionOptions,
-  WithPathApiVersionOptions,
+  WithoutApiVersionOptionalParams,
+  WithQueryApiVersionOptionalParams,
+  WithPathApiVersionOptionalParams,
 } from "./models/index.js";

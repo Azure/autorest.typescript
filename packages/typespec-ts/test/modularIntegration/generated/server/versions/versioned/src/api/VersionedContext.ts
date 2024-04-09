@@ -11,9 +11,9 @@ export { VersionedContext } from "../rest/index.js";
 
 /** Illustrates versioned server. */
 export function createVersioned(
-  endpoint: string,
+  endpointParam: string,
   options: VersionedClientOptions = {},
 ): VersionedContext {
-  const clientContext = getClient(endpoint, options);
+  const clientContext = getClient(endpointParam, options);
   return clientContext;
 }

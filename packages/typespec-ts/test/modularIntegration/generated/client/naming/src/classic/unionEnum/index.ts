@@ -8,18 +8,18 @@ import {
   unionEnumMemberName,
 } from "../../api/unionEnum/index.js";
 import {
-  UnionEnumUnionEnumNameOptions,
-  UnionEnumUnionEnumMemberNameOptions,
+  UnionEnumUnionEnumNameOptionalParams,
+  UnionEnumUnionEnumMemberNameOptionalParams,
 } from "../../models/options.js";
 
 export interface UnionEnumOperations {
   unionEnumName: (
     body: ClientExtensibleEnum,
-    options?: UnionEnumUnionEnumNameOptions,
+    options?: UnionEnumUnionEnumNameOptionalParams,
   ) => Promise<void>;
   unionEnumMemberName: (
     body: ExtensibleEnum,
-    options?: UnionEnumUnionEnumMemberNameOptions,
+    options?: UnionEnumUnionEnumMemberNameOptionalParams,
   ) => Promise<void>;
 }
 
@@ -27,11 +27,11 @@ export function getUnionEnum(context: NamingContext) {
   return {
     unionEnumName: (
       body: ClientExtensibleEnum,
-      options?: UnionEnumUnionEnumNameOptions,
+      options?: UnionEnumUnionEnumNameOptionalParams,
     ) => unionEnumName(context, body, options),
     unionEnumMemberName: (
       body: ExtensibleEnum,
-      options?: UnionEnumUnionEnumMemberNameOptions,
+      options?: UnionEnumUnionEnumMemberNameOptionalParams,
     ) => unionEnumMemberName(context, body, options),
   };
 }

@@ -11,10 +11,10 @@ export interface OpenAIClientOptions extends ClientOptions {}
 export { OpenAIContext } from "../rest/index.js";
 
 export function createOpenAI(
-  endpoint: string,
+  endpointParam: string,
   credential: KeyCredential | TokenCredential,
   options: OpenAIClientOptions = {},
 ): OpenAIContext {
-  const clientContext = getClient(endpoint, credential, options);
+  const clientContext = getClient(endpointParam, credential, options);
   return clientContext;
 }

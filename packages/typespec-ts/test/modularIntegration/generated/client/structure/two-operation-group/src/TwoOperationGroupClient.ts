@@ -25,11 +25,11 @@ export class TwoOperationGroupClient {
   public readonly pipeline: Pipeline;
 
   constructor(
-    endpoint: string,
-    client: ClientType,
+    endpointParam: string,
+    clientParam: ClientType,
     options: TwoOperationGroupClientOptions = {},
   ) {
-    this._client = createTwoOperationGroup(endpoint, client, options);
+    this._client = createTwoOperationGroup(endpointParam, clientParam, options);
     this.pipeline = this._client.pipeline;
     this.group1 = getGroup1Operations(this._client);
     this.group2 = getGroup2Operations(this._client);

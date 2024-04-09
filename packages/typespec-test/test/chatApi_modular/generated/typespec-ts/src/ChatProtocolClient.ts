@@ -9,7 +9,10 @@ import {
   ChatCompletionOptions,
   ChatCompletion,
 } from "./models/models.js";
-import { CreateStreamingOptions, CreateOptions } from "./models/options.js";
+import {
+  CreateStreamingOptionalParams,
+  CreateOptionalParams,
+} from "./models/options.js";
 import {
   createChatProtocol,
   ChatProtocolClientOptions,
@@ -27,18 +30,18 @@ export class ChatProtocolClient {
 
   /** Azure APIs for the Azure Chat protocol. */
   constructor(
-    endpoint: string,
+    endpointParam: string,
     credential: KeyCredential | TokenCredential,
     options: ChatProtocolClientOptions = {},
   ) {
-    this._client = createChatProtocol(endpoint, credential, options);
+    this._client = createChatProtocol(endpointParam, credential, options);
     this.pipeline = this._client.pipeline;
   }
 
   /** Creates a new streaming chat completion. */
   createStreaming(
     body: StreamingChatCompletionOptions,
-    options: CreateStreamingOptions = { requestOptions: {} },
+    options: CreateStreamingOptionalParams = { requestOptions: {} },
   ): Promise<ChatCompletionChunk> {
     return createStreaming(this._client, body, options);
   }
@@ -46,7 +49,7 @@ export class ChatProtocolClient {
   /** Creates a new chat completion. */
   create(
     body: ChatCompletionOptions,
-    options: CreateOptions = { requestOptions: {} },
+    options: CreateOptionalParams = { requestOptions: {} },
   ): Promise<ChatCompletion> {
     return create(this._client, body, options);
   }

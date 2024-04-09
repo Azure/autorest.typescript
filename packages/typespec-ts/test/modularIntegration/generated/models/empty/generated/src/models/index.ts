@@ -3,7 +3,7 @@
 
 export { EmptyInput, EmptyOutput, EmptyInputOutput } from "./models.js";
 export {
-  PutEmptyOptions,
-  GetEmptyOptions,
-  PostRoundTripEmptyOptions,
+  PutEmptyOptionalParams,
+  GetEmptyOptionalParams,
+  PostRoundTripEmptyOptionalParams,
 } from "./options.js";

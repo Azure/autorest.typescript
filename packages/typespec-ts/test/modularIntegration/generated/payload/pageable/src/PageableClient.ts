@@ -3,7 +3,7 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { User } from "./models/models.js";
-import { ListOptions } from "./models/options.js";
+import { ListOptionalParams } from "./models/options.js";
 import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   list,
@@ -27,7 +27,7 @@ export class PageableClient {
 
   /** List users */
   list(
-    options: ListOptions = { requestOptions: {} },
+    options: ListOptionalParams = { requestOptions: {} },
   ): PagedAsyncIterableIterator<User> {
     return list(this._client, options);
   }

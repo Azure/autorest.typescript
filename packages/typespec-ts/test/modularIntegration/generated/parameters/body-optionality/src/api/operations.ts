@@ -13,14 +13,14 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  RequiredExplicitOptions,
-  RequiredImplicitOptions,
+  RequiredExplicitOptionalParams,
+  RequiredImplicitOptionalParams,
 } from "../models/options.js";
 
 export function _requiredExplicitSend(
   context: Client,
   body: BodyModel,
-  options: RequiredExplicitOptions = { requestOptions: {} },
+  options: RequiredExplicitOptionalParams = { requestOptions: {} },
 ): StreamableMethod<RequiredExplicit204Response> {
   return context
     .path("/parameters/body-optionality/required-explicit")
@@ -43,7 +43,7 @@ export async function _requiredExplicitDeserialize(
 export async function requiredExplicit(
   context: Client,
   body: BodyModel,
-  options: RequiredExplicitOptions = { requestOptions: {} },
+  options: RequiredExplicitOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _requiredExplicitSend(context, body, options);
   return _requiredExplicitDeserialize(result);
@@ -52,7 +52,7 @@ export async function requiredExplicit(
 export function _requiredImplicitSend(
   context: Client,
   body: BodyModel,
-  options: RequiredImplicitOptions = { requestOptions: {} },
+  options: RequiredImplicitOptionalParams = { requestOptions: {} },
 ): StreamableMethod<RequiredImplicit204Response> {
   return context
     .path("/parameters/body-optionality/required-implicit")
@@ -75,7 +75,7 @@ export async function _requiredImplicitDeserialize(
 export async function requiredImplicit(
   context: Client,
   body: BodyModel,
-  options: RequiredImplicitOptions = { requestOptions: {} },
+  options: RequiredImplicitOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _requiredImplicitSend(context, body, options);
   return _requiredImplicitDeserialize(result);

@@ -2,4 +2,4 @@
 // Licensed under the MIT license.
 
 export { RequestIdClient, RequestIdClientOptions } from "./RequestIdClient.js";
-export { GetOptions } from "./models/index.js";
+export { GetOptionalParams } from "./models/index.js";

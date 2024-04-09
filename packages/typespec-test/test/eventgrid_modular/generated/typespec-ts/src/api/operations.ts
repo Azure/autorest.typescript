@@ -34,19 +34,19 @@ import {
 } from "@azure-rest/core-client";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import {
-  PublishCloudEventOptions,
-  PublishCloudEventsOptions,
-  ReceiveCloudEventsOptions,
-  AcknowledgeCloudEventsOptions,
-  ReleaseCloudEventsOptions,
-  RejectCloudEventsOptions,
+  PublishCloudEventOptionalParams,
+  PublishCloudEventsOptionalParams,
+  ReceiveCloudEventsOptionalParams,
+  AcknowledgeCloudEventsOptionalParams,
+  ReleaseCloudEventsOptionalParams,
+  RejectCloudEventsOptionalParams,
 } from "../models/options.js";
 
 export function _publishCloudEventSend(
   context: Client,
   topicName: string,
   event: CloudEvent,
-  options: PublishCloudEventOptions = { requestOptions: {} },
+  options: PublishCloudEventOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   PublishCloudEvent200Response | PublishCloudEventDefaultResponse
 > {
@@ -94,7 +94,7 @@ export async function publishCloudEvent(
   context: Client,
   topicName: string,
   event: CloudEvent,
-  options: PublishCloudEventOptions = { requestOptions: {} },
+  options: PublishCloudEventOptionalParams = { requestOptions: {} },
 ): Promise<Record<string, any>> {
   const result = await _publishCloudEventSend(
     context,
@@ -109,7 +109,7 @@ export function _publishCloudEventsSend(
   context: Client,
   topicName: string,
   events: CloudEvent[],
-  options: PublishCloudEventsOptions = { requestOptions: {} },
+  options: PublishCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   PublishCloudEvents200Response | PublishCloudEventsDefaultResponse
 > {
@@ -155,7 +155,7 @@ export async function publishCloudEvents(
   context: Client,
   topicName: string,
   events: CloudEvent[],
-  options: PublishCloudEventsOptions = { requestOptions: {} },
+  options: PublishCloudEventsOptionalParams = { requestOptions: {} },
 ): Promise<Record<string, any>> {
   const result = await _publishCloudEventsSend(
     context,
@@ -170,7 +170,7 @@ export function _receiveCloudEventsSend(
   context: Client,
   topicName: string,
   eventSubscriptionName: string,
-  options: ReceiveCloudEventsOptions = { requestOptions: {} },
+  options: ReceiveCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ReceiveCloudEvents200Response | ReceiveCloudEventsDefaultResponse
 > {
@@ -227,7 +227,7 @@ export async function receiveCloudEvents(
   context: Client,
   topicName: string,
   eventSubscriptionName: string,
-  options: ReceiveCloudEventsOptions = { requestOptions: {} },
+  options: ReceiveCloudEventsOptionalParams = { requestOptions: {} },
 ): Promise<ReceiveResult> {
   const result = await _receiveCloudEventsSend(
     context,
@@ -243,7 +243,7 @@ export function _acknowledgeCloudEventsSend(
   topicName: string,
   eventSubscriptionName: string,
   lockTokens: AcknowledgeOptions,
-  options: AcknowledgeCloudEventsOptions = { requestOptions: {} },
+  options: AcknowledgeCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   AcknowledgeCloudEvents200Response | AcknowledgeCloudEventsDefaultResponse
 > {
@@ -286,7 +286,7 @@ export async function acknowledgeCloudEvents(
   topicName: string,
   eventSubscriptionName: string,
   lockTokens: AcknowledgeOptions,
-  options: AcknowledgeCloudEventsOptions = { requestOptions: {} },
+  options: AcknowledgeCloudEventsOptionalParams = { requestOptions: {} },
 ): Promise<AcknowledgeResult> {
   const result = await _acknowledgeCloudEventsSend(
     context,
@@ -303,7 +303,7 @@ export function _releaseCloudEventsSend(
   topicName: string,
   eventSubscriptionName: string,
   lockTokens: ReleaseOptions,
-  options: ReleaseCloudEventsOptions = { requestOptions: {} },
+  options: ReleaseCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ReleaseCloudEvents200Response | ReleaseCloudEventsDefaultResponse
 > {
@@ -344,7 +344,7 @@ export async function releaseCloudEvents(
   topicName: string,
   eventSubscriptionName: string,
   lockTokens: ReleaseOptions,
-  options: ReleaseCloudEventsOptions = { requestOptions: {} },
+  options: ReleaseCloudEventsOptionalParams = { requestOptions: {} },
 ): Promise<ReleaseResult> {
   const result = await _releaseCloudEventsSend(
     context,
@@ -361,7 +361,7 @@ export function _rejectCloudEventsSend(
   topicName: string,
   eventSubscriptionName: string,
   lockTokens: RejectOptions,
-  options: RejectCloudEventsOptions = { requestOptions: {} },
+  options: RejectCloudEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   RejectCloudEvents200Response | RejectCloudEventsDefaultResponse
 > {
@@ -402,7 +402,7 @@ export async function rejectCloudEvents(
   topicName: string,
   eventSubscriptionName: string,
   lockTokens: RejectOptions,
-  options: RejectCloudEventsOptions = { requestOptions: {} },
+  options: RejectCloudEventsOptionalParams = { requestOptions: {} },
 ): Promise<RejectResult> {
   const result = await _rejectCloudEventsSend(
     context,

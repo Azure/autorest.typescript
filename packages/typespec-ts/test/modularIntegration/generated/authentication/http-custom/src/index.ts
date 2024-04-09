@@ -2,4 +2,4 @@
 // Licensed under the MIT license.
 
 export { CustomClient, CustomClientOptions } from "./CustomClient.js";
-export { ValidOptions, InvalidOptions } from "./models/index.js";
+export { ValidOptionalParams, InvalidOptionalParams } from "./models/index.js";

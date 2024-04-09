@@ -423,7 +423,11 @@ function emitParamBase(
 
   if (parameter.kind === "ModelProperty") {
     optional = parameter.optional;
-    name = getLibraryName(context, parameter);
+    name = normalizeName(
+      getLibraryName(context, parameter),
+      NameType.Parameter,
+      true
+    );
     restApiName = getWireName(context, parameter);
     description = getDocStr(program, parameter);
     addedOn = getAddedOnVersion(program, parameter);
@@ -823,8 +827,7 @@ function emitBasicOperation(
   if (
     namespaceHierarchies.length === 0 &&
     context.rlcOptions?.hierarchyClient === false &&
-    operationGroupName !== "" &&
-    namespaceHierarchies[0] !== operationGroupName
+    operationGroupName !== ""
   ) {
     namespaceHierarchies.push(operationGroupName);
   }
@@ -915,7 +918,7 @@ function emitBasicOperation(
       param.clientName = param.clientName + "Parameter";
     });
   return {
-    name: normalizeName(name, NameType.Operation, true),
+    name,
     description: getDocStr(context.program, operation),
     summary: getSummary(context.program, operation) ?? "",
     url: httpOperation.path,
@@ -1022,8 +1025,11 @@ function emitModel(
     baseModel = getType(context, type.baseModel, { usage });
   }
   const effectiveName = getEffectiveSchemaType(context.program, type).name;
-  const overridedModelName =
-    getLibraryName(context, type) ?? getFriendlyName(context.program, type);
+  const overridedModelName = normalizeName(
+    getLibraryName(context, type) ?? getFriendlyName(context.program, type),
+    NameType.Interface,
+    true
+  );
   const fullNamespaceName =
     getModelNamespaceName(context, type.namespace!)
       .map((nsName) => {

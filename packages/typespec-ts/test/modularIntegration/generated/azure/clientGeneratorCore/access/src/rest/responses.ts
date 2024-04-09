@@ -44,7 +44,7 @@ export interface PublicDecoratorInInternal200Response extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface PublicOperation200Response extends HttpResponse {
+export interface Public200Response extends HttpResponse {
   status: "200";
   body: SharedModelOutput;
 }

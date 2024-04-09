@@ -58,20 +58,20 @@ describe("modular client context type", () => {
     await assertEqualContent(
       clientContext?.getFullText()!,
       `
-        import { ClientOptions } from "@azure-rest/core-client";
+        import { ClientOptions  } from "@azure-rest/core-client";
         import { ServiceContext } from "../rest/index.js";
         import getClient from "../rest/index.js";
         
-        export interface ServiceClientOptions extends ClientOptions {}
+        export interface ServiceClientOptions  extends ClientOptions  {}
         
         export { ServiceContext } from "../rest/index.js";
         
         export function createService(
-          endpoint: string,
-          client: ClientType,
-          options: ServiceClientOptions = {}
+          endpointParam: string,
+          clientParam: ClientType,
+          options: ServiceClientOptions  = {}
         ): ServiceContext {
-          const clientContext = getClient(endpoint, client, options);
+          const clientContext = getClient(endpointParam, clientParam, options);
           return clientContext;
         }`
     );
@@ -131,20 +131,20 @@ describe("modular client context type", () => {
     await assertEqualContent(
       clientContext?.getFullText()!,
       `
-        import { ClientOptions } from "@azure-rest/core-client";
+        import { ClientOptions  } from "@azure-rest/core-client";
         import { ServiceContext } from "../rest/index.js";
         import getClient from "../rest/index.js";
         
-        export interface ServiceClientOptions extends ClientOptions {}
+        export interface ServiceClientOptions  extends ClientOptions  {}
         
         export { ServiceContext } from "../rest/index.js";
         
         export function createService(
-          endpoint: string,
-          client: ClientType,
-          options: ServiceClientOptions = {}
+          endpointParam: string,
+          clientParam: ClientType,
+          options: ServiceClientOptions  = {}
         ): ServiceContext {
-          const clientContext = getClient(endpoint, client, options);
+          const clientContext = getClient(endpointParam, clientParam, options);
           return clientContext;
         }`
     );

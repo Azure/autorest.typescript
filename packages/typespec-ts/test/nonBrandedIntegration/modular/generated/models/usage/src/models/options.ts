@@ -2,8 +2,8 @@
 
 import { OperationOptions } from "@typespec/ts-http-runtime";
 
-export interface InputOptions extends OperationOptions {}
+export interface InputOptionalParams extends OperationOptions {}
 
-export interface OutputOptions extends OperationOptions {}
+export interface OutputOptionalParams extends OperationOptions {}
 
-export interface InputAndOutputOptions extends OperationOptions {}
+export interface InputAndOutputOptionalParams extends OperationOptions {}

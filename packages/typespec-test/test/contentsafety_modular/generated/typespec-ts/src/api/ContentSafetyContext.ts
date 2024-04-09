@@ -12,10 +12,10 @@ export { ContentSafetyContext } from "../rest/index.js";
 
 /** Analyze harmful content */
 export function createContentSafety(
-  endpoint: string,
+  endpointParam: string,
   credential: KeyCredential | TokenCredential,
   options: ContentSafetyClientOptions = {},
 ): ContentSafetyContext {
-  const clientContext = getClient(endpoint, credential, options);
+  const clientContext = getClient(endpointParam, credential, options);
   return clientContext;
 }

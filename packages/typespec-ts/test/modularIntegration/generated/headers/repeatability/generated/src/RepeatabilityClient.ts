@@ -8,7 +8,7 @@ import {
   RepeatabilityClientOptions,
   RepeatabilityContext,
 } from "./api/index.js";
-import { ImmediateSuccessOptions } from "./models/options.js";
+import { ImmediateSuccessOptionalParams } from "./models/options.js";
 
 export { RepeatabilityClientOptions } from "./api/RepeatabilityContext.js";
 
@@ -27,7 +27,7 @@ export class RepeatabilityClient {
   immediateSuccess(
     repeatabilityRequestID: string,
     repeatabilityFirstSent: Date,
-    options: ImmediateSuccessOptions = { requestOptions: {} },
+    options: ImmediateSuccessOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return immediateSuccess(
       this._client,

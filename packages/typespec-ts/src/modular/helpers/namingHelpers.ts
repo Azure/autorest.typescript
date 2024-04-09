@@ -22,16 +22,17 @@ export function getOperationName(
   const casingFn = options.casing === "camel" ? toCamelCase : toPascalCase;
   if (isReservedName(operation.name, NameType.Operation)) {
     return {
-      name: normalizeName(operation.name, NameType.Operation, true),
+      name: `$${operation.name}`,
       fixme: [
-        `${operation.name} is a reserved word that cannot be used as an operation name. Please add @projectedName(
-      "javascript", "<JS-Specific-Name>") to the operation to override the generated name.`
+        `${operation.name} is a reserved word that cannot be used as an operation name. 
+        Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript") 
+        to the operation to override the generated name.`
       ]
     };
   }
 
   return {
-    name: casingFn(operation.name)
+    name: normalizeName(casingFn(operation.name), NameType.Operation, true)
   };
 }
 

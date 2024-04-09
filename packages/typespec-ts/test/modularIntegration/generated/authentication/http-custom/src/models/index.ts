@@ -2,4 +2,4 @@
 // Licensed under the MIT license.
 
 export * from "./models.js";
-export { ValidOptions, InvalidOptions } from "./options.js";
+export { ValidOptionalParams, InvalidOptionalParams } from "./options.js";

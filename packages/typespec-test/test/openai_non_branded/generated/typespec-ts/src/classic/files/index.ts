@@ -11,44 +11,47 @@ import {
   list,
   create,
   retrieve,
-  deleteOperation,
+  $delete,
   download,
 } from "../../api/files/index.js";
 import {
-  FilesListOptions,
-  FilesCreateOptions,
-  FilesRetrieveOptions,
-  FilesDeleteOperationOptions,
-  FilesDownloadOptions,
+  FilesListOptionalParams,
+  FilesCreateOptionalParams,
+  FilesRetrieveOptionalParams,
+  FilesDeleteOptionalParams,
+  FilesDownloadOptionalParams,
 } from "../../models/options.js";
 
 export interface FilesOperations {
-  list: (options?: FilesListOptions) => Promise<ListFilesResponse>;
+  list: (options?: FilesListOptionalParams) => Promise<ListFilesResponse>;
   create: (
     file: CreateFileRequest,
-    options?: FilesCreateOptions,
+    options?: FilesCreateOptionalParams,
   ) => Promise<OpenAIFile>;
   retrieve: (
     fileId: string,
-    options?: FilesRetrieveOptions,
+    options?: FilesRetrieveOptionalParams,
   ) => Promise<OpenAIFile>;
-  deleteOperation: (
+  delete: (
     fileId: string,
-    options?: FilesDeleteOperationOptions,
+    options?: FilesDeleteOptionalParams,
   ) => Promise<DeleteFileResponse>;
-  download: (fileId: string, options?: FilesDownloadOptions) => Promise<string>;
+  download: (
+    fileId: string,
+    options?: FilesDownloadOptionalParams,
+  ) => Promise<string>;
 }
 
 export function getFiles(context: OpenAIContext) {
   return {
-    list: (options?: FilesListOptions) => list(context, options),
-    create: (file: CreateFileRequest, options?: FilesCreateOptions) =>
+    list: (options?: FilesListOptionalParams) => list(context, options),
+    create: (file: CreateFileRequest, options?: FilesCreateOptionalParams) =>
       create(context, file, options),
-    retrieve: (fileId: string, options?: FilesRetrieveOptions) =>
+    retrieve: (fileId: string, options?: FilesRetrieveOptionalParams) =>
       retrieve(context, fileId, options),
-    deleteOperation: (fileId: string, options?: FilesDeleteOperationOptions) =>
-      deleteOperation(context, fileId, options),
-    download: (fileId: string, options?: FilesDownloadOptions) =>
+    delete: (fileId: string, options?: FilesDeleteOptionalParams) =>
+      $delete(context, fileId, options),
+    download: (fileId: string, options?: FilesDownloadOptionalParams) =>
       download(context, fileId, options),
   };
 }

@@ -4,8 +4,8 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { BodyModel } from "./models/models.js";
 import {
-  RequiredExplicitOptions,
-  RequiredImplicitOptions,
+  RequiredExplicitOptionalParams,
+  RequiredImplicitOptionalParams,
 } from "./models/options.js";
 import {
   getOptionalExplicitOperations,
@@ -35,14 +35,14 @@ export class BodyOptionalityClient {
 
   requiredExplicit(
     body: BodyModel,
-    options: RequiredExplicitOptions = { requestOptions: {} },
+    options: RequiredExplicitOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return requiredExplicit(this._client, body, options);
   }
 
   requiredImplicit(
     body: BodyModel,
-    options: RequiredImplicitOptions = { requestOptions: {} },
+    options: RequiredImplicitOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return requiredImplicit(this._client, body, options);
   }
