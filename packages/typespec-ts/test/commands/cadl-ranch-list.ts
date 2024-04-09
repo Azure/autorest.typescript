@@ -45,10 +45,11 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     outputPath: "mediaTypes",
     inputPath: "media-types"
   },
-  {
-    outputPath: "overload",
-    inputPath: "overload"
-  },
+  // Disable the overload case due to TCGC issue
+  // {
+  //   outputPath: "overload",
+  //   inputPath: "overload"
+  // },
   {
     outputPath: "arrays/itemTypes",
     inputPath: "type/array"
