@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 export {
-  WithoutApiVersionOptions,
-  WithQueryApiVersionOptions,
-  WithPathApiVersionOptions,
+  WithoutApiVersionOptionalParams,
+  WithQueryApiVersionOptionalParams,
+  WithPathApiVersionOptionalParams,
 } from "./options.js";

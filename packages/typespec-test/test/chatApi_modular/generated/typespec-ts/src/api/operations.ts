@@ -17,12 +17,15 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { CreateStreamingOptions, CreateOptions } from "../models/options.js";
+import {
+  CreateStreamingOptionalParams,
+  CreateOptionalParams,
+} from "../models/options.js";
 
 export function _createStreamingSend(
   context: Client,
   body: StreamingChatCompletionOptionsRecord,
-  options: CreateStreamingOptions = { requestOptions: {} },
+  options: CreateStreamingOptionalParams = { requestOptions: {} },
 ): StreamableMethod<CreateStreaming200Response> {
   return context
     .path("/chat")
@@ -67,7 +70,7 @@ export async function _createStreamingDeserialize(
 export async function createStreaming(
   context: Client,
   body: StreamingChatCompletionOptionsRecord,
-  options: CreateStreamingOptions = { requestOptions: {} },
+  options: CreateStreamingOptionalParams = { requestOptions: {} },
 ): Promise<ChatCompletionChunkRecord> {
   const result = await _createStreamingSend(context, body, options);
   return _createStreamingDeserialize(result);
@@ -76,7 +79,7 @@ export async function createStreaming(
 export function _createSend(
   context: Client,
   body: ChatCompletionOptionsRecord,
-  options: CreateOptions = { requestOptions: {} },
+  options: CreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Create200Response> {
   return context
     .path("/chat")
@@ -121,7 +124,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   body: ChatCompletionOptionsRecord,
-  options: CreateOptions = { requestOptions: {} },
+  options: CreateOptionalParams = { requestOptions: {} },
 ): Promise<ChatCompletionRecord> {
   const result = await _createSend(context, body, options);
   return _createDeserialize(result);

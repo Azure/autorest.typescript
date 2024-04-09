@@ -3,8 +3,8 @@
 
 export { BodyModel } from "./models.js";
 export {
-  RequiredExplicitOptions,
-  RequiredImplicitOptions,
-  OptionalExplicitSetOptions,
-  OptionalExplicitOmitOptions,
+  RequiredExplicitOptionalParams,
+  RequiredImplicitOptionalParams,
+  OptionalExplicitSetOptionalParams,
+  OptionalExplicitOmitOptionalParams,
 } from "./options.js";

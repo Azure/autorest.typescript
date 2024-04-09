@@ -4,15 +4,15 @@
 export { ServiceClient, ServiceClientOptions } from "./ServiceClient.js";
 export {
   ClientType,
-  OneOptions,
-  TwoOptions,
-  BazFooSevenOptions,
-  QuxEightOptions,
-  QuxBarNineOptions,
-  FooThreeOptions,
-  FooFourOptions,
-  BarFiveOptions,
-  BarSixOptions,
+  OneOptionalParams,
+  TwoOptionalParams,
+  BazFooSevenOptionalParams,
+  QuxEightOptionalParams,
+  QuxBarNineOptionalParams,
+  FooThreeOptionalParams,
+  FooFourOptionalParams,
+  BarFiveOptionalParams,
+  BarSixOptionalParams,
 } from "./models/index.js";
 export {
   BarOperations,

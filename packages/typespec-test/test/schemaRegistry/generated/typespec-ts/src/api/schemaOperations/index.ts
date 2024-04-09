@@ -33,17 +33,19 @@ import {
 } from "@azure-rest/core-client";
 import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
 import {
-  SchemaOperationsListSchemaGroupsOptions,
-  SchemaOperationsGetSchemaByIdOptions,
-  SchemaOperationsListSchemaVersionsOptions,
-  SchemaOperationsGetSchemaByVersionOptions,
-  SchemaOperationsGetSchemaIdByContentOptions,
-  SchemaOperationsRegisterSchemaOptions,
+  SchemaOperationsListSchemaGroupsOptionalParams,
+  SchemaOperationsGetSchemaByIdOptionalParams,
+  SchemaOperationsListSchemaVersionsOptionalParams,
+  SchemaOperationsGetSchemaByVersionOptionalParams,
+  SchemaOperationsGetSchemaIdByContentOptionalParams,
+  SchemaOperationsRegisterSchemaOptionalParams,
 } from "../../models/options.js";
 
 export function _listSchemaGroupsSend(
   context: Client,
-  options: SchemaOperationsListSchemaGroupsOptions = { requestOptions: {} },
+  options: SchemaOperationsListSchemaGroupsOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod<
   ListSchemaGroups200Response | ListSchemaGroupsDefaultResponse
 > {
@@ -72,7 +74,9 @@ export async function _listSchemaGroupsDeserialize(
 /** Gets the list of schema groups user is authorized to access. */
 export function listSchemaGroups(
   context: Client,
-  options: SchemaOperationsListSchemaGroupsOptions = { requestOptions: {} },
+  options: SchemaOperationsListSchemaGroupsOptionalParams = {
+    requestOptions: {},
+  },
 ): PagedAsyncIterableIterator<SchemaGroup> {
   return buildPagedAsyncIterator(
     context,
@@ -85,7 +89,7 @@ export function listSchemaGroups(
 export function _getSchemaByIdSend(
   context: Client,
   id: string,
-  options: SchemaOperationsGetSchemaByIdOptions = { requestOptions: {} },
+  options: SchemaOperationsGetSchemaByIdOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetSchemaById200Response | GetSchemaByIdDefaultResponse> {
   return context
     .path("/$schemaGroups/$schemas/{id}", id)
@@ -108,7 +112,7 @@ export async function _getSchemaByIdDeserialize(
 export async function getSchemaById(
   context: Client,
   id: string,
-  options: SchemaOperationsGetSchemaByIdOptions = { requestOptions: {} },
+  options: SchemaOperationsGetSchemaByIdOptionalParams = { requestOptions: {} },
 ): Promise<Uint8Array> {
   const result = await _getSchemaByIdSend(context, id, options);
   return _getSchemaByIdDeserialize(result);
@@ -118,7 +122,9 @@ export function _listSchemaVersionsSend(
   context: Client,
   groupName: string,
   name: string,
-  options: SchemaOperationsListSchemaVersionsOptions = { requestOptions: {} },
+  options: SchemaOperationsListSchemaVersionsOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod<
   ListSchemaVersions200Response | ListSchemaVersionsDefaultResponse
 > {
@@ -147,7 +153,9 @@ export function listSchemaVersions(
   context: Client,
   groupName: string,
   name: string,
-  options: SchemaOperationsListSchemaVersionsOptions = { requestOptions: {} },
+  options: SchemaOperationsListSchemaVersionsOptionalParams = {
+    requestOptions: {},
+  },
 ): PagedAsyncIterableIterator<SchemaVersion> {
   return buildPagedAsyncIterator(
     context,
@@ -162,7 +170,9 @@ export function _getSchemaByVersionSend(
   groupName: string,
   name: string,
   schemaVersion: number,
-  options: SchemaOperationsGetSchemaByVersionOptions = { requestOptions: {} },
+  options: SchemaOperationsGetSchemaByVersionOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod<
   GetSchemaByVersion200Response | GetSchemaByVersionDefaultResponse
 > {
@@ -194,7 +204,9 @@ export async function getSchemaByVersion(
   groupName: string,
   name: string,
   schemaVersion: number,
-  options: SchemaOperationsGetSchemaByVersionOptions = { requestOptions: {} },
+  options: SchemaOperationsGetSchemaByVersionOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<Uint8Array> {
   const result = await _getSchemaByVersionSend(
     context,
@@ -212,7 +224,9 @@ export function _getSchemaIdByContentSend(
   name: string,
   contentType: SchemaContentTypeValues,
   schemaContent: Uint8Array,
-  options: SchemaOperationsGetSchemaIdByContentOptions = { requestOptions: {} },
+  options: SchemaOperationsGetSchemaIdByContentOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod<
   GetSchemaIdByContent204Response | GetSchemaIdByContentDefaultResponse
 > {
@@ -242,7 +256,9 @@ export async function getSchemaIdByContent(
   name: string,
   contentType: SchemaContentTypeValues,
   schemaContent: Uint8Array,
-  options: SchemaOperationsGetSchemaIdByContentOptions = { requestOptions: {} },
+  options: SchemaOperationsGetSchemaIdByContentOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<void> {
   const result = await _getSchemaIdByContentSend(
     context,
@@ -261,7 +277,9 @@ export function _registerSchemaSend(
   name: string,
   contentType: SchemaContentTypeValues,
   content: Uint8Array,
-  options: SchemaOperationsRegisterSchemaOptions = { requestOptions: {} },
+  options: SchemaOperationsRegisterSchemaOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod<RegisterSchema204Response | RegisterSchemaDefaultResponse> {
   return context
     .path("/$schemaGroups/{groupName}/schemas/{name}", groupName, name)
@@ -289,7 +307,9 @@ export async function registerSchema(
   name: string,
   contentType: SchemaContentTypeValues,
   content: Uint8Array,
-  options: SchemaOperationsRegisterSchemaOptions = { requestOptions: {} },
+  options: SchemaOperationsRegisterSchemaOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<void> {
   const result = await _registerSchemaSend(
     context,

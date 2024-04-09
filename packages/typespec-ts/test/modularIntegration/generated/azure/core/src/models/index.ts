@@ -15,17 +15,17 @@ export {
   PagedSecondItem,
 } from "./models.js";
 export {
-  CreateOrUpdateOptions,
-  CreateOrReplaceOptions,
-  GetOptions,
-  ListOptions,
-  ListWithPageOptions,
-  ListWithParametersOptions,
-  ListWithCustomPageModelOptions,
-  DeleteOperationOptions,
-  ExportOperationOptions,
-  ListFirstItemOptions,
-  ListSecondItemOptions,
+  CreateOrUpdateOptionalParams,
+  CreateOrReplaceOptionalParams,
+  GetOptionalParams,
+  ListOptionalParams,
+  ListWithPageOptionalParams,
+  ListWithParametersOptionalParams,
+  ListWithCustomPageModelOptionalParams,
+  DeleteOptionalParams,
+  ExportOptionalParams,
+  ListFirstItemOptionalParams,
+  ListSecondItemOptionalParams,
 } from "./options.js";
 export {
   PageSettings,

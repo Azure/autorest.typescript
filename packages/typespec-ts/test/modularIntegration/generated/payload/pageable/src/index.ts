@@ -5,7 +5,6 @@ export { PageableClient, PageableClientOptions } from "./PageableClient.js";
 export {
   User,
   PagedUser,
-  ListOptions,
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,

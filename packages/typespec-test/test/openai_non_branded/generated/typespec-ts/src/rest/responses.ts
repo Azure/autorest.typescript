@@ -180,12 +180,12 @@ export interface FilesRetrieveDefaultResponse extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface FilesDeleteOperation200Response extends HttpResponse {
+export interface FilesDelete200Response extends HttpResponse {
   status: "200";
   body: DeleteFileResponseOutput;
 }
 
-export interface FilesDeleteOperationDefaultResponse extends HttpResponse {
+export interface FilesDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
@@ -279,12 +279,12 @@ export interface ModelsRetrieveDefaultResponse extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface ModelsDeleteOperation200Response extends HttpResponse {
+export interface ModelsDelete200Response extends HttpResponse {
   status: "200";
   body: DeleteModelResponseOutput;
 }
 
-export interface ModelsDeleteOperationDefaultResponse extends HttpResponse {
+export interface ModelsDeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }

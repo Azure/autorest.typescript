@@ -13,14 +13,14 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  GroupRenamedTwoOptions,
-  GroupRenamedFourOptions,
-  GroupRenamedSixOptions,
+  GroupRenamedTwoOptionalParams,
+  GroupRenamedFourOptionalParams,
+  GroupRenamedSixOptionalParams,
 } from "../../models/options.js";
 
 export function _renamedTwoSend(
   context: Client,
-  options: GroupRenamedTwoOptions = { requestOptions: {} },
+  options: GroupRenamedTwoOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Two204Response> {
   return context
     .path("/two")
@@ -39,7 +39,7 @@ export async function _renamedTwoDeserialize(
 
 export async function renamedTwo(
   context: Client,
-  options: GroupRenamedTwoOptions = { requestOptions: {} },
+  options: GroupRenamedTwoOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _renamedTwoSend(context, options);
   return _renamedTwoDeserialize(result);
@@ -47,7 +47,7 @@ export async function renamedTwo(
 
 export function _renamedFourSend(
   context: Client,
-  options: GroupRenamedFourOptions = { requestOptions: {} },
+  options: GroupRenamedFourOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Four204Response> {
   return context
     .path("/four")
@@ -66,7 +66,7 @@ export async function _renamedFourDeserialize(
 
 export async function renamedFour(
   context: Client,
-  options: GroupRenamedFourOptions = { requestOptions: {} },
+  options: GroupRenamedFourOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _renamedFourSend(context, options);
   return _renamedFourDeserialize(result);
@@ -74,7 +74,7 @@ export async function renamedFour(
 
 export function _renamedSixSend(
   context: Client,
-  options: GroupRenamedSixOptions = { requestOptions: {} },
+  options: GroupRenamedSixOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Six204Response> {
   return context
     .path("/six")
@@ -93,7 +93,7 @@ export async function _renamedSixDeserialize(
 
 export async function renamedSix(
   context: Client,
-  options: GroupRenamedSixOptions = { requestOptions: {} },
+  options: GroupRenamedSixOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _renamedSixSend(context, options);
   return _renamedSixDeserialize(result);

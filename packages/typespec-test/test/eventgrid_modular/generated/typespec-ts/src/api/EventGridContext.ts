@@ -12,10 +12,10 @@ export { EventGridContext } from "../rest/index.js";
 
 /** Azure Messaging EventGrid Client */
 export function createEventGrid(
-  endpoint: string,
+  endpointParam: string,
   credential: KeyCredential,
   options: EventGridClientOptions = {},
 ): EventGridContext {
-  const clientContext = getClient(endpoint, credential, options);
+  const clientContext = getClient(endpointParam, credential, options);
   return clientContext;
 }

@@ -56,7 +56,7 @@ export interface ChatMessageDelta {
 
 // @public (undocumented)
 export class ChatProtocolClient {
-    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ChatProtocolClientOptions);
+    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ChatProtocolClientOptions);
     create(body: ChatCompletionOptionsRecord, options?: CreateOptions): Promise<ChatCompletionRecord>;
     createStreaming(body: StreamingChatCompletionOptionsRecord, options?: CreateStreamingOptions): Promise<ChatCompletionChunkRecord>;
     readonly pipeline: Pipeline;
@@ -79,11 +79,11 @@ export interface ChoiceDeltaRecord {
 }
 
 // @public (undocumented)
-export interface CreateOptions extends OperationOptions {
+export interface CreateOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface CreateStreamingOptions extends OperationOptions {
+export interface CreateStreamingOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)

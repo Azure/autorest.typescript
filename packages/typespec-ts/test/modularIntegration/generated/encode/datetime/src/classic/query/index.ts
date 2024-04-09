@@ -10,40 +10,40 @@ import {
   queryUnixTimestampArray,
 } from "../../api/query/index.js";
 import {
-  QueryDefaultOptions,
-  QueryRfc3339Options,
-  QueryRfc7231Options,
-  QueryUnixTimestampOptions,
-  QueryUnixTimestampArrayOptions,
+  QueryDefaultOptionalParams,
+  QueryRfc3339OptionalParams,
+  QueryRfc7231OptionalParams,
+  QueryUnixTimestampOptionalParams,
+  QueryUnixTimestampArrayOptionalParams,
 } from "../../models/options.js";
 
 export interface QueryOperations {
-  default: (value: Date, options?: QueryDefaultOptions) => Promise<void>;
-  rfc3339: (value: Date, options?: QueryRfc3339Options) => Promise<void>;
-  rfc7231: (value: Date, options?: QueryRfc7231Options) => Promise<void>;
+  default: (value: Date, options?: QueryDefaultOptionalParams) => Promise<void>;
+  rfc3339: (value: Date, options?: QueryRfc3339OptionalParams) => Promise<void>;
+  rfc7231: (value: Date, options?: QueryRfc7231OptionalParams) => Promise<void>;
   unixTimestamp: (
     value: Date,
-    options?: QueryUnixTimestampOptions,
+    options?: QueryUnixTimestampOptionalParams,
   ) => Promise<void>;
   unixTimestampArray: (
     value: Date[],
-    options?: QueryUnixTimestampArrayOptions,
+    options?: QueryUnixTimestampArrayOptionalParams,
   ) => Promise<void>;
 }
 
 export function getQuery(context: DatetimeContext) {
   return {
-    default: (value: Date, options?: QueryDefaultOptions) =>
+    default: (value: Date, options?: QueryDefaultOptionalParams) =>
       queryDefault(context, value, options),
-    rfc3339: (value: Date, options?: QueryRfc3339Options) =>
+    rfc3339: (value: Date, options?: QueryRfc3339OptionalParams) =>
       queryRfc3339(context, value, options),
-    rfc7231: (value: Date, options?: QueryRfc7231Options) =>
+    rfc7231: (value: Date, options?: QueryRfc7231OptionalParams) =>
       queryRfc7231(context, value, options),
-    unixTimestamp: (value: Date, options?: QueryUnixTimestampOptions) =>
+    unixTimestamp: (value: Date, options?: QueryUnixTimestampOptionalParams) =>
       queryUnixTimestamp(context, value, options),
     unixTimestampArray: (
       value: Date[],
-      options?: QueryUnixTimestampArrayOptions,
+      options?: QueryUnixTimestampArrayOptionalParams,
     ) => queryUnixTimestampArray(context, value, options),
   };
 }

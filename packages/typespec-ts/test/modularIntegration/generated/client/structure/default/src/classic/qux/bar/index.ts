@@ -3,15 +3,15 @@
 
 import { ServiceContext } from "../../../api/ServiceContext.js";
 import { nine } from "../../../api/qux/bar/index.js";
-import { QuxBarNineOptions } from "../../../models/options.js";
+import { QuxBarNineOptionalParams } from "../../../models/options.js";
 
 export interface QuxBarOperations {
-  nine: (options?: QuxBarNineOptions) => Promise<void>;
+  nine: (options?: QuxBarNineOptionalParams) => Promise<void>;
 }
 
 export function getQuxBar(context: ServiceContext) {
   return {
-    nine: (options?: QuxBarNineOptions) => nine(context, options),
+    nine: (options?: QuxBarNineOptionalParams) => nine(context, options),
   };
 }
 

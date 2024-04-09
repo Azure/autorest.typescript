@@ -4,12 +4,12 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { FishUnion } from "./models/models.js";
 import {
-  GetModelOptions,
-  PutModelOptions,
-  GetRecursiveModelOptions,
-  PutRecursiveModelOptions,
-  GetMissingDiscriminatorOptions,
-  GetWrongDiscriminatorOptions,
+  GetModelOptionalParams,
+  PutModelOptionalParams,
+  GetRecursiveModelOptionalParams,
+  PutRecursiveModelOptionalParams,
+  GetMissingDiscriminatorOptionalParams,
+  GetWrongDiscriminatorOptionalParams,
 } from "./models/options.js";
 import {
   createNestedDiscriminator,
@@ -37,39 +37,39 @@ export class NestedDiscriminatorClient {
   }
 
   getModel(
-    options: GetModelOptions = { requestOptions: {} },
+    options: GetModelOptionalParams = { requestOptions: {} },
   ): Promise<FishUnion> {
     return getModel(this._client, options);
   }
 
   putModel(
     input: FishUnion,
-    options: PutModelOptions = { requestOptions: {} },
+    options: PutModelOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return putModel(this._client, input, options);
   }
 
   getRecursiveModel(
-    options: GetRecursiveModelOptions = { requestOptions: {} },
+    options: GetRecursiveModelOptionalParams = { requestOptions: {} },
   ): Promise<FishUnion> {
     return getRecursiveModel(this._client, options);
   }
 
   putRecursiveModel(
     input: FishUnion,
-    options: PutRecursiveModelOptions = { requestOptions: {} },
+    options: PutRecursiveModelOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return putRecursiveModel(this._client, input, options);
   }
 
   getMissingDiscriminator(
-    options: GetMissingDiscriminatorOptions = { requestOptions: {} },
+    options: GetMissingDiscriminatorOptionalParams = { requestOptions: {} },
   ): Promise<FishUnion> {
     return getMissingDiscriminator(this._client, options);
   }
 
   getWrongDiscriminator(
-    options: GetWrongDiscriminatorOptions = { requestOptions: {} },
+    options: GetWrongDiscriminatorOptionalParams = { requestOptions: {} },
   ): Promise<FishUnion> {
     return getWrongDiscriminator(this._client, options);
   }

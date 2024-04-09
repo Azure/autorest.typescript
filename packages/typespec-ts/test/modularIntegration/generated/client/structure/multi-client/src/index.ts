@@ -4,14 +4,14 @@
 export { AClient, AClientOptions } from "./a/AClient.js";
 export {
   ClientType,
-  RenamedOneOptions,
-  RenamedThreeOptions,
-  RenamedFiveOptions,
+  RenamedOneOptionalParams,
+  RenamedThreeOptionalParams,
+  RenamedFiveOptionalParams,
 } from "./a/models/index.js";
 export { BClient, BClientOptions } from "./b/BClient.js";
 export {
   ClientType as BClientClientType,
-  RenamedTwoOptions,
-  RenamedFourOptions,
-  RenamedSixOptions,
+  RenamedTwoOptionalParams,
+  RenamedFourOptionalParams,
+  RenamedSixOptionalParams,
 } from "./b/models/index.js";

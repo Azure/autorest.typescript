@@ -10,11 +10,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { GetOptions } from "../models/options.js";
+import { GetOptionalParams } from "../models/options.js";
 
 export function _getSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Get204Response> {
   return context
     .path("/special-headers/client-request-id")
@@ -32,7 +32,7 @@ export async function _getDeserialize(result: Get204Response): Promise<void> {
 /** Get operation with azure client request id header. */
 export async function get(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getSend(context, options);
   return _getDeserialize(result);

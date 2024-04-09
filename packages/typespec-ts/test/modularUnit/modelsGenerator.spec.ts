@@ -141,7 +141,7 @@ describe("modular encode test for property type datetime", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -172,7 +172,7 @@ describe("modular encode test for property type datetime", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -201,7 +201,7 @@ describe("modular encode test for property type datetime", () => {
       export function _readSend(
         context: Client,
         prop: Date,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -224,7 +224,7 @@ describe("modular encode test for property type datetime", () => {
       export async function read(
         context: Client,
         prop: Date,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<void> {
         const result = await _readSend(context, prop, options);
         return _readDeserialize(result);
@@ -269,7 +269,7 @@ describe("modular encode test for property type datetime", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -296,7 +296,7 @@ describe("modular encode test for property type datetime", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -341,7 +341,7 @@ describe("modular encode test for property type datetime", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -368,7 +368,7 @@ describe("modular encode test for property type datetime", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -410,7 +410,7 @@ describe("modular encode test for property type datetime", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -435,7 +435,7 @@ describe("modular encode test for property type datetime", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -478,7 +478,7 @@ describe("modular encode test for property type duration", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -503,7 +503,7 @@ describe("modular encode test for property type duration", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -545,7 +545,7 @@ describe("modular encode test for property type duration", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -570,7 +570,7 @@ describe("modular encode test for property type duration", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -615,7 +615,7 @@ describe("modular encode test for property type duration", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -642,7 +642,7 @@ describe("modular encode test for property type duration", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -686,7 +686,7 @@ describe("modular encode test for property type bytes", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -714,7 +714,7 @@ describe("modular encode test for property type bytes", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -757,7 +757,7 @@ describe("modular encode test for property type bytes", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -785,7 +785,7 @@ describe("modular encode test for property type bytes", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -828,7 +828,7 @@ describe("modular encode test for property type bytes", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -856,7 +856,7 @@ describe("modular encode test for property type bytes", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -950,7 +950,7 @@ describe("inheritance & polymorphism", () => {
       
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -972,7 +972,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Cat> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1029,7 +1029,7 @@ describe("inheritance & polymorphism", () => {
 
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -1051,7 +1051,7 @@ describe("inheritance & polymorphism", () => {
 
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Cat> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1118,7 +1118,7 @@ describe("inheritance & polymorphism", () => {
       
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -1140,7 +1140,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Cat> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1207,7 +1207,7 @@ describe("inheritance & polymorphism", () => {
       
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -1224,7 +1224,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<PetUnion> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1307,7 +1307,7 @@ describe("inheritance & polymorphism", () => {
       
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -1324,7 +1324,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<PetUnion> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1376,7 +1376,7 @@ describe("inheritance & polymorphism", () => {
       
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -1397,7 +1397,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1463,7 +1463,7 @@ describe("inheritance & polymorphism", () => {
 
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -1486,13 +1486,477 @@ describe("inheritance & polymorphism", () => {
 
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Cat> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
       }
       `
     );
+  });
+
+  describe("should generate models for header parameters", () => {
+    it("union variants with string literals being used in contentType headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      
+      union SchemaContentTypeValues {
+        avro: "application/json; serialization=Avro",
+        json: "application/json; serialization=json",
+        custom: "text/plain; charset=utf-8",
+        protobuf: "text/vnd.ms.protobuf",
+      }
+      
+      op get(
+        @header("Content-Type") contentType: SchemaContentTypeValues,
+        @body body: string,
+      ): NoContentResponse;
+      `;
+      const schemaOutput = await emitModularModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      await assertEqualContent(
+        schemaOutput?.getFullText()!,
+        `
+        /** Type of SchemaContentTypeValues */
+        /** */
+        export type SchemaContentTypeValues =
+          | "application/json; serialization=Avro"
+          | "application/json; serialization=json"
+          | "text/plain; charset=utf-8"
+          | "text/vnd.ms.protobuf";
+        `
+      );
+      const paramOutput = await emitModularOperationsFromTypeSpec(
+        tspDefinition,
+        false,
+        false,
+        false,
+        true
+      );
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.length, 1);
+      await assertEqualContent(
+        paramOutput?.[0]?.getFullText()!,
+        `
+        import { DemoServiceContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+          createRestError,
+        } from "@azure-rest/core-client";
+        
+        export function _getSend(
+          context: Client,
+          contentType: SchemaContentTypeValues,
+          body: string,
+          options: GetOptionalParams = { requestOptions: {} }
+        ): StreamableMethod<Get204Response> {
+            return context
+              .path("/")
+              .post({
+                ...operationOptionsToRequestParameters(options),
+                contentType: contentType,
+                body: body
+              });
+        }
+        
+        export async function _getDeserialize(result: Get204Response): Promise<void> {
+          if (result.status !== "204") {
+            throw createRestError(result);
+          }
+        
+          return;
+        }
+        
+        export async function get(
+          context: Client,
+          contentType: SchemaContentTypeValues,
+          body: string,
+          options: GetOptionalParams = { requestOptions: {} }
+        ): Promise<void> {
+          const result = await _getSend(context, contentType, body, options);
+          return _getDeserialize(result);
+        }
+        `,
+        true
+      );
+    });
+
+    it("named union with string literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      
+      union SchemaContentTypeValues {
+        avro: "application/json; serialization=Avro",
+        json: "application/json; serialization=json",
+        custom: "text/plain; charset=utf-8",
+        protobuf: "text/vnd.ms.protobuf",
+      }
+      
+      op get(
+        @header("test-header") testHeader: SchemaContentTypeValues,
+        @body body: string,
+      ): { @header("test-header") testHeader: SchemaContentTypeValues };
+      `;
+      const schemaOutput = await emitModularModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      await assertEqualContent(
+        schemaOutput?.getFullText()!,
+        `
+        /** Type of SchemaContentTypeValues */
+        /** */
+        export type SchemaContentTypeValues =
+          | "application/json; serialization=Avro"
+          | "application/json; serialization=json"
+          | "text/plain; charset=utf-8"
+          | "text/vnd.ms.protobuf";
+        `
+      );
+    });
+
+    it("anonymous union with string literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      
+      op get(
+        @header("test-header") testHeader: "A" | "B",
+        @body body: string,
+      ): { @header("test-header") testHeader: "A" | "B" };
+      `;
+      const schemaOutput = await emitModularModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.isUndefined(schemaOutput);
+
+      const paramOutput = await emitModularOperationsFromTypeSpec(
+        tspDefinition,
+        true,
+        false,
+        false,
+        true
+      );
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.length, 1);
+      const operationContent = paramOutput?.[0]?.getFullText()!;
+      await assertEqualContent(
+        operationContent,
+        `
+        import { DemoServiceContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+          createRestError,
+        } from "@azure-rest/core-client";
+        export function _getSend(
+          context: Client,
+          testHeader: "A" | "B",
+          body: string,
+          options: GetOptionalParams = { requestOptions: {} },
+        ): StreamableMethod<Get204Response> {
+          return context
+            .path("/")
+            .post({
+              ...operationOptionsToRequestParameters(options),
+              headers: { "test-header": testHeader },
+              body: body
+            });
+        }
+        export async function _getDeserialize(result: Get204Response): Promise<void> {
+          if (result.status !== "204") {
+            throw createRestError(result);
+          }
+          return;
+        }
+        export async function get(
+          context: Client,
+          testHeader: "A" | "B",
+          body: string,
+          options: GetOptionalParams = { requestOptions: {} },
+        ): Promise<void> {
+          const result = await _getSend(context, testHeader, body, options);
+          return _getDeserialize(result);
+        }
+        `,
+        true
+      );
+    });
+
+    it.skip("extensible enums with string literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      
+      enum SchemaContentTypeValues {
+        avro: "application/json; serialization=Avro",
+        json: "application/json; serialization=json",
+        custom: "text/plain; charset=utf-8",
+        protobuf: "text/vnd.ms.protobuf",
+      }
+      
+      op get(
+        @header("test-header") testHeader: SchemaContentTypeValues,
+        @body body: string,
+      ): NoContentResponse;
+      `;
+      const schemaOutput = await emitModularModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.isUndefined(schemaOutput);
+    });
+
+    it.skip("fixed enums with string literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+      import "@azure-tools/typespec-azure-core";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      using Azure.Core;
+      
+      @fixed
+      enum SchemaContentTypeValues {
+        avro: "application/json; serialization=Avro",
+        json: "application/json; serialization=json",
+        custom: "text/plain; charset=utf-8",
+        protobuf: "text/vnd.ms.protobuf",
+      }
+      
+      op get(
+        @header("test-header") testHeader: SchemaContentTypeValues,
+        @body body: string,
+      ): NoContentResponse;
+      `;
+      const schemaOutput = await emitModularModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.isUndefined(schemaOutput);
+      const paramOutput =
+        await emitModularOperationsFromTypeSpec(tspDefinition);
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.length, 1);
+      await assertEqualContent(
+        paramOutput?.[0]?.getFullText()!,
+        `
+        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import { RequestParameters } from "@azure-rest/core-client";
+        
+        export interface GetHeaders {
+          "test-header":
+            | "application/json; serialization=Avro"
+            | "application/json; serialization=json"
+            | "text/plain; charset=utf-8"
+            | "text/vnd.ms.protobuf";
+        }
+        
+        export interface GetBodyParam {
+          body: string;
+        }
+        
+        export interface GetHeaderParam {
+          headers: RawHttpHeadersInput & GetHeaders;
+        }
+        
+        export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
+        `
+      );
+    });
+
+    it.skip("fixed enums with string literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+      import "@azure-tools/typespec-azure-core";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      using Azure.Core;
+      
+      @fixed
+      enum SchemaContentTypeValues {
+        avro: "application/json; serialization=Avro",
+        json: "application/json; serialization=json",
+        custom: "text/plain; charset=utf-8",
+        protobuf: "text/vnd.ms.protobuf",
+      }
+      
+      op get(
+        @header("test-header") testHeader: SchemaContentTypeValues,
+        @body body: string,
+      ): NoContentResponse;
+      `;
+      const schemaOutput = await emitModularModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      await assertEqualContent(
+        schemaOutput?.getFullText()!,
+        `
+      /** */
+      export type SchemaContentTypeValues =
+        | "application/json; serialization=Avro"
+        | "application/json; serialization=json"
+        | "text/plain; charset=utf-8"
+        | "text/vnd.ms.protobuf";
+        `
+      );
+      const paramOutput =
+        await emitModularOperationsFromTypeSpec(tspDefinition);
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.length, 1);
+      await assertEqualContent(
+        paramOutput?.[0]?.getFullText()!,
+        `
+        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import { RequestParameters } from "@azure-rest/core-client";
+        
+        export interface GetHeaders {
+          "test-header":
+            | "application/json; serialization=Avro"
+            | "application/json; serialization=json"
+            | "text/plain; charset=utf-8"
+            | "text/vnd.ms.protobuf";
+        }
+        
+        export interface GetBodyParam {
+          body: string;
+        }
+        
+        export interface GetHeaderParam {
+          headers: RawHttpHeadersInput & GetHeaders;
+        }
+        
+        export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
+        `
+      );
+    });
+
+    it.skip("fixed enums with number literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+      import "@azure-tools/typespec-azure-core";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      using Azure.Core;
+      
+      @fixed
+      enum EnumTest  {
+        one: 1,
+        two: 2,
+        three: 3,
+        four: 4,
+      }
+      
+      op get(
+        @header("test-header") testHeader: EnumTest,
+        @body body: string,
+      ): NoContentResponse;
+      `;
+      const schemaOutput = await emitModularModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      assert.isUndefined(schemaOutput);
+      const paramOutput = await emitModularOperationsFromTypeSpec(
+        tspDefinition,
+        false,
+        false,
+        false
+      );
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.length, 1);
+      await assertEqualContent(
+        paramOutput?.[0]?.getFullText()!,
+        `
+        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import { RequestParameters } from "@azure-rest/core-client";
+        
+        export interface GetHeaders {
+          "test-header": 1 | 2 | 3 | 4;
+        }
+        
+        export interface GetBodyParam {
+          body: string;
+        }
+        
+        export interface GetHeaderParam {
+          headers: RawHttpHeadersInput & GetHeaders;
+        }
+        
+        export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
+        `
+      );
+    });
   });
 });
 

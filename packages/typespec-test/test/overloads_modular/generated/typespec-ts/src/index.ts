@@ -7,7 +7,6 @@ export {
 } from "./WidgetManagerClient.js";
 export {
   Versions,
-  FooOperationsGetAvatarAsPngOptions,
-  FooOperationsGetAvatarAsJpegOptions,
+  FooOperationsGetAvatarAsJpegOptionalParams,
 } from "./models/index.js";
 export { FooOperationsOperations } from "./classic/index.js";

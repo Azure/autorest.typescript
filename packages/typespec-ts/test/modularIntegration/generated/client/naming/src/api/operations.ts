@@ -22,18 +22,18 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  ClientNameOptions,
-  ParameterOptions,
-  ClientRequestOptions,
-  LanguageOptions,
-  CompatibleWithEncodedNameOptions,
-  RequestOptions,
-  ResponseOptions,
+  ClientNameOptionalParams,
+  ParameterOptionalParams,
+  ClientOptionalParams,
+  LanguageOptionalParams,
+  CompatibleWithEncodedNameOptionalParams,
+  RequestOptionalParams,
+  ResponseOptionalParams,
 } from "../models/options.js";
 
 export function _clientNameSend(
   context: Client,
-  options: ClientNameOptions = { requestOptions: {} },
+  options: ClientNameOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Operation204Response> {
   return context
     .path("/client/naming/operation")
@@ -52,7 +52,7 @@ export async function _clientNameDeserialize(
 
 export async function clientName(
   context: Client,
-  options: ClientNameOptions = { requestOptions: {} },
+  options: ClientNameOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _clientNameSend(context, options);
   return _clientNameDeserialize(result);
@@ -61,7 +61,7 @@ export async function clientName(
 export function _parameterSend(
   context: Client,
   clientName: string,
-  options: ParameterOptions = { requestOptions: {} },
+  options: ParameterOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Parameter204Response> {
   return context
     .path("/client/naming/parameter")
@@ -84,7 +84,7 @@ export async function _parameterDeserialize(
 export async function parameter(
   context: Client,
   clientName: string,
-  options: ParameterOptions = { requestOptions: {} },
+  options: ParameterOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _parameterSend(context, clientName, options);
   return _parameterDeserialize(result);
@@ -93,7 +93,7 @@ export async function parameter(
 export function _clientSend(
   context: Client,
   body: ClientNameModel,
-  options: ClientRequestOptions = { requestOptions: {} },
+  options: ClientOptionalParams = { requestOptions: {} },
 ): StreamableMethod<PropertyClient204Response> {
   return context
     .path("/client/naming/property/client")
@@ -116,7 +116,7 @@ export async function _clientDeserialize(
 export async function client(
   context: Client,
   body: ClientNameModel,
-  options: ClientRequestOptions = { requestOptions: {} },
+  options: ClientOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _clientSend(context, body, options);
   return _clientDeserialize(result);
@@ -125,7 +125,7 @@ export async function client(
 export function _languageSend(
   context: Client,
   body: LanguageClientNameModel,
-  options: LanguageOptions = { requestOptions: {} },
+  options: LanguageOptionalParams = { requestOptions: {} },
 ): StreamableMethod<PropertyLanguage204Response> {
   return context
     .path("/client/naming/property/language")
@@ -148,7 +148,7 @@ export async function _languageDeserialize(
 export async function language(
   context: Client,
   body: LanguageClientNameModel,
-  options: LanguageOptions = { requestOptions: {} },
+  options: LanguageOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _languageSend(context, body, options);
   return _languageDeserialize(result);
@@ -157,7 +157,7 @@ export async function language(
 export function _compatibleWithEncodedNameSend(
   context: Client,
   body: ClientNameAndJsonEncodedNameModel,
-  options: CompatibleWithEncodedNameOptions = { requestOptions: {} },
+  options: CompatibleWithEncodedNameOptionalParams = { requestOptions: {} },
 ): StreamableMethod<PropertyCompatibleWithEncodedName204Response> {
   return context
     .path("/client/naming/property/compatible-with-encoded-name")
@@ -180,7 +180,7 @@ export async function _compatibleWithEncodedNameDeserialize(
 export async function compatibleWithEncodedName(
   context: Client,
   body: ClientNameAndJsonEncodedNameModel,
-  options: CompatibleWithEncodedNameOptions = { requestOptions: {} },
+  options: CompatibleWithEncodedNameOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _compatibleWithEncodedNameSend(context, body, options);
   return _compatibleWithEncodedNameDeserialize(result);
@@ -189,7 +189,7 @@ export async function compatibleWithEncodedName(
 export function _requestSend(
   context: Client,
   clientName: string,
-  options: RequestOptions = { requestOptions: {} },
+  options: RequestOptionalParams = { requestOptions: {} },
 ): StreamableMethod<HeaderRequest204Response> {
   return context
     .path("/client/naming/header")
@@ -212,7 +212,7 @@ export async function _requestDeserialize(
 export async function request(
   context: Client,
   clientName: string,
-  options: RequestOptions = { requestOptions: {} },
+  options: RequestOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _requestSend(context, clientName, options);
   return _requestDeserialize(result);
@@ -220,7 +220,7 @@ export async function request(
 
 export function _responseSend(
   context: Client,
-  options: ResponseOptions = { requestOptions: {} },
+  options: ResponseOptionalParams = { requestOptions: {} },
 ): StreamableMethod<HeaderResponse204Response> {
   return context
     .path("/client/naming/header")
@@ -239,7 +239,7 @@ export async function _responseDeserialize(
 
 export async function response(
   context: Client,
-  options: ResponseOptions = { requestOptions: {} },
+  options: ResponseOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _responseSend(context, options);
   return _responseDeserialize(result);

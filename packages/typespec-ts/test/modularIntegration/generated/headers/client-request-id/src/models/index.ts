@@ -1,4 +1,4 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { GetOptions } from "./options.js";
+export { GetOptionalParams } from "./options.js";

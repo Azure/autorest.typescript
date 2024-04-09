@@ -17,33 +17,33 @@ import {
   propertyFloatSecondsArray,
 } from "../../api/property/index.js";
 import {
-  PropertyDefaultOptions,
-  PropertyIso8601Options,
-  PropertyInt32SecondsOptions,
-  PropertyFloatSecondsOptions,
-  PropertyFloatSecondsArrayOptions,
+  PropertyDefaultOptionalParams,
+  PropertyIso8601OptionalParams,
+  PropertyInt32SecondsOptionalParams,
+  PropertyFloatSecondsOptionalParams,
+  PropertyFloatSecondsArrayOptionalParams,
 } from "../../models/options.js";
 
 export interface PropertyOperations {
   default: (
     body: DefaultDurationProperty,
-    options?: PropertyDefaultOptions,
+    options?: PropertyDefaultOptionalParams,
   ) => Promise<DefaultDurationProperty>;
   iso8601: (
     body: ISO8601DurationProperty,
-    options?: PropertyIso8601Options,
+    options?: PropertyIso8601OptionalParams,
   ) => Promise<ISO8601DurationProperty>;
   int32Seconds: (
     body: Int32SecondsDurationProperty,
-    options?: PropertyInt32SecondsOptions,
+    options?: PropertyInt32SecondsOptionalParams,
   ) => Promise<Int32SecondsDurationProperty>;
   floatSeconds: (
     body: FloatSecondsDurationProperty,
-    options?: PropertyFloatSecondsOptions,
+    options?: PropertyFloatSecondsOptionalParams,
   ) => Promise<FloatSecondsDurationProperty>;
   floatSecondsArray: (
     body: FloatSecondsDurationArrayProperty,
-    options?: PropertyFloatSecondsArrayOptions,
+    options?: PropertyFloatSecondsArrayOptionalParams,
   ) => Promise<FloatSecondsDurationArrayProperty>;
 }
 
@@ -51,23 +51,23 @@ export function getProperty(context: DurationContext) {
   return {
     default: (
       body: DefaultDurationProperty,
-      options?: PropertyDefaultOptions,
+      options?: PropertyDefaultOptionalParams,
     ) => propertyDefault(context, body, options),
     iso8601: (
       body: ISO8601DurationProperty,
-      options?: PropertyIso8601Options,
+      options?: PropertyIso8601OptionalParams,
     ) => propertyIso8601(context, body, options),
     int32Seconds: (
       body: Int32SecondsDurationProperty,
-      options?: PropertyInt32SecondsOptions,
+      options?: PropertyInt32SecondsOptionalParams,
     ) => propertyInt32Seconds(context, body, options),
     floatSeconds: (
       body: FloatSecondsDurationProperty,
-      options?: PropertyFloatSecondsOptions,
+      options?: PropertyFloatSecondsOptionalParams,
     ) => propertyFloatSeconds(context, body, options),
     floatSecondsArray: (
       body: FloatSecondsDurationArrayProperty,
-      options?: PropertyFloatSecondsArrayOptions,
+      options?: PropertyFloatSecondsArrayOptionalParams,
     ) => propertyFloatSecondsArray(context, body, options),
   };
 }

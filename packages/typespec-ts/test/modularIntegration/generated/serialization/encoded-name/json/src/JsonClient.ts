@@ -3,7 +3,7 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { JsonEncodedNameModel } from "./models/models.js";
-import { SendOptions, GetOptions } from "./models/options.js";
+import { SendOptionalParams, GetOptionalParams } from "./models/options.js";
 import {
   createJson,
   JsonClientOptions,
@@ -27,13 +27,13 @@ export class JsonClient {
 
   send(
     body: JsonEncodedNameModel,
-    options: SendOptions = { requestOptions: {} },
+    options: SendOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return send(this._client, body, options);
   }
 
   get(
-    options: GetOptions = { requestOptions: {} },
+    options: GetOptionalParams = { requestOptions: {} },
   ): Promise<JsonEncodedNameModel> {
     return get(this._client, options);
   }

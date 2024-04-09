@@ -56,7 +56,7 @@ describe("anonymous model", () => {
           prop3: Date,
           prop4: string,
           prop5: Bar,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod<Read200Response> {
           return context
             .path("/{pathParam}", pathParam)
@@ -87,7 +87,7 @@ describe("anonymous model", () => {
           prop3: Date,
           prop4: string,
           prop5: Bar,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): Promise<void> {
           const result = await _readSend(
             context,
@@ -139,9 +139,9 @@ describe("anonymous model", () => {
         await assertEqualContent(
           optionFile?.getFullText()!,
           `
-        import { OperationOptions } from "@azure-rest/core-client";
+        import { OperationOptions  } from "@azure-rest/core-client";
         
-        export interface ReadOptions extends OperationOptions {
+        export interface ReadOptionalParams extends OperationOptions  {
           prop3?: Date;
           prop5?: Bar;
         }`
@@ -166,7 +166,7 @@ describe("anonymous model", () => {
           prop1: string,
           prop2: number,
           prop4: string,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod<Read200Response> {
           return context
             .path("/{pathParam}", pathParam)
@@ -198,7 +198,7 @@ describe("anonymous model", () => {
           prop1: string,
           prop2: number,
           prop4: string,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): Promise<void> {
           const result = await _readSend(
             context,
@@ -250,9 +250,9 @@ describe("anonymous model", () => {
         await assertEqualContent(
           optionFile?.getFullText()!,
           `
-        import { OperationOptions } from "@azure-rest/core-client";
+        import { OperationOptions  } from "@azure-rest/core-client";
         
-        export interface ReadOptions extends OperationOptions {
+        export interface ReadOptionalParams extends OperationOptions  {
           prop3?: Date;
           prop5?: Bar;
         }`
@@ -278,7 +278,7 @@ describe("anonymous model", () => {
           prop4: string,
           queryParam: string,
           prop2: number,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod<Read200Response> {
           return context
             .path("/{pathParam}/{prop1}", pathParam, prop1)
@@ -308,7 +308,7 @@ describe("anonymous model", () => {
           prop4: string,
           queryParam: string,
           prop2: number,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): Promise<void> {
           const result = await _readSend(
             context,
@@ -376,7 +376,7 @@ describe("anonymous model", () => {
           pathParam: string,
           queryParam: string,
           body: Foo,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod<Read200Response> {
           return context
             .path("/{pathParam}", pathParam)
@@ -403,7 +403,7 @@ describe("anonymous model", () => {
           pathParam: string,
           queryParam: string,
           body: Foo,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): Promise<void> {
           const result = await _readSend(
             context,
@@ -442,7 +442,7 @@ describe("anonymous model", () => {
           pathParam: string,
           queryParam: string,
           body: Record<string, any>,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod<Read200Response> {
           return context
             .path("/{pathParam}", pathParam)
@@ -463,7 +463,7 @@ describe("anonymous model", () => {
           pathParam: string,
           queryParam: string,
           body: Record<string, any>,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): Promise<void> {
           const result = await _readSend(context, pathParam, queryParam, body, options);
           return _readDeserialize(result);
@@ -512,7 +512,7 @@ describe("anonymous model", () => {
           queryParam: string,
           prop1: string,
           prop2: Bar,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod<Read200Response> {
           return context
             .path("/{pathParam}", pathParam)
@@ -537,7 +537,7 @@ describe("anonymous model", () => {
           queryParam: string,
           prop1: string,
           prop2: Bar,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): Promise<void> {
           const result = await _readSend(
             context,
@@ -588,7 +588,7 @@ describe("anonymous model", () => {
         export function _readSend(
           context: Client,
           body: Test,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod<Read204Response> {
           return context
             .path("/")
@@ -606,7 +606,7 @@ describe("anonymous model", () => {
         export async function read(
           context: Client,
           body: Test,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): Promise<void> {
           const result = await _readSend(context, body, options);
           return _readDeserialize(result);
@@ -650,7 +650,7 @@ describe("anonymous model", () => {
         export function _readSend(
           context: Client,
           body: Test,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod<Read204Response> {
           return context
             .path("/")
@@ -668,7 +668,7 @@ describe("anonymous model", () => {
         export async function read(
           context: Client,
           body: Test,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): Promise<void> {
           const result = await _readSend(context, body, options);
           return _readDeserialize(result);
@@ -696,7 +696,7 @@ describe("anonymous model", () => {
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod<Read200Response> {
           return context
             .path("/")
@@ -710,7 +710,7 @@ describe("anonymous model", () => {
         }
         export async function read(
           context: Client,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): Promise<${returnType}> {
           const result = await _readSend(
             context,
@@ -782,7 +782,7 @@ describe("anonymous model", () => {
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod<Read200Response> {
           return context
             .path("/")
@@ -800,7 +800,7 @@ describe("anonymous model", () => {
         }
         export async function read(
           context: Client,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): Promise<{ foo?: { bar: string | null } }> {
           const result = await _readSend(
             context,
@@ -858,7 +858,7 @@ describe("anonymous model", () => {
         
         export function _readSend(
           context: Client,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod<Read200Response> {
           return context
             .path("/")
@@ -884,7 +884,7 @@ describe("anonymous model", () => {
 
         export async function read(
           context: Client,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): Promise<ReturnBody> {
           const result = await _readSend(context, options);
           return _readDeserialize(result);
@@ -946,7 +946,7 @@ describe("anonymous model", () => {
           
           export function _readSend(
             context: Client,
-            options: ReadOptions = { requestOptions: {} }
+            options: ReadOptionalParams = { requestOptions: {} }
           ): StreamableMethod<Read200Response> {
             return context
               .path("/")
@@ -975,7 +975,7 @@ describe("anonymous model", () => {
           
           export async function read(
             context: Client,
-            options: ReadOptions = { requestOptions: {} }
+            options: ReadOptionalParams = { requestOptions: {} }
           ): Promise<Foz> {
             const result = await _readSend(context, options);
             return _readDeserialize(result);

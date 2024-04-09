@@ -21,11 +21,11 @@ export class WidgetManagerClient {
   public readonly pipeline: Pipeline;
 
   constructor(
-    endpoint: string,
+    endpointParam: string,
     credential: KeyCredential | TokenCredential,
     options: WidgetManagerClientOptions = {},
   ) {
-    this._client = createWidgetManager(endpoint, credential, options);
+    this._client = createWidgetManager(endpointParam, credential, options);
     this.pipeline = this._client.pipeline;
     this.fooOperations = getFooOperationsOperations(this._client);
   }

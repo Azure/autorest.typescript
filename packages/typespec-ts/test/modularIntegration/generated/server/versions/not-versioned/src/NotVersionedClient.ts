@@ -11,9 +11,9 @@ import {
   withPathApiVersion,
 } from "./api/index.js";
 import {
-  WithoutApiVersionOptions,
-  WithQueryApiVersionOptions,
-  WithPathApiVersionOptions,
+  WithoutApiVersionOptionalParams,
+  WithQueryApiVersionOptionalParams,
+  WithPathApiVersionOptionalParams,
 } from "./models/options.js";
 
 export { NotVersionedClientOptions } from "./api/NotVersionedContext.js";
@@ -24,27 +24,27 @@ export class NotVersionedClient {
   public readonly pipeline: Pipeline;
 
   /** Illustrates not-versioned server. */
-  constructor(endpoint: string, options: NotVersionedClientOptions = {}) {
-    this._client = createNotVersioned(endpoint, options);
+  constructor(endpointParam: string, options: NotVersionedClientOptions = {}) {
+    this._client = createNotVersioned(endpointParam, options);
     this.pipeline = this._client.pipeline;
   }
 
   withoutApiVersion(
-    options: WithoutApiVersionOptions = { requestOptions: {} },
+    options: WithoutApiVersionOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return withoutApiVersion(this._client, options);
   }
 
   withQueryApiVersion(
     apiVersion: string,
-    options: WithQueryApiVersionOptions = { requestOptions: {} },
+    options: WithQueryApiVersionOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return withQueryApiVersion(this._client, apiVersion, options);
   }
 
   withPathApiVersion(
     apiVersion: string,
-    options: WithPathApiVersionOptions = { requestOptions: {} },
+    options: WithPathApiVersionOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return withPathApiVersion(this._client, apiVersion, options);
   }

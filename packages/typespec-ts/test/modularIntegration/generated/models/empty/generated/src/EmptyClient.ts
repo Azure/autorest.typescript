@@ -4,9 +4,9 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { EmptyInput, EmptyOutput, EmptyInputOutput } from "./models/models.js";
 import {
-  PutEmptyOptions,
-  GetEmptyOptions,
-  PostRoundTripEmptyOptions,
+  PutEmptyOptionalParams,
+  GetEmptyOptionalParams,
+  PostRoundTripEmptyOptionalParams,
 } from "./models/options.js";
 import {
   createEmpty,
@@ -32,20 +32,20 @@ export class EmptyClient {
 
   putEmpty(
     input: EmptyInput,
-    options: PutEmptyOptions = { requestOptions: {} },
+    options: PutEmptyOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return putEmpty(this._client, input, options);
   }
 
   getEmpty(
-    options: GetEmptyOptions = { requestOptions: {} },
+    options: GetEmptyOptionalParams = { requestOptions: {} },
   ): Promise<EmptyOutput> {
     return getEmpty(this._client, options);
   }
 
   postRoundTripEmpty(
     body: EmptyInputOutput,
-    options: PostRoundTripEmptyOptions = { requestOptions: {} },
+    options: PostRoundTripEmptyOptionalParams = { requestOptions: {} },
   ): Promise<EmptyInputOutput> {
     return postRoundTripEmpty(this._client, body, options);
   }

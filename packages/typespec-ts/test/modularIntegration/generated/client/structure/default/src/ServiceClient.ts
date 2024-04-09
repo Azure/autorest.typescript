@@ -3,7 +3,7 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
-import { OneOptions, TwoOptions } from "./models/options.js";
+import { OneOptionalParams, TwoOptionalParams } from "./models/options.js";
 import { getBazOperations, BazOperations } from "./classic/baz/index.js";
 import { getQuxOperations, QuxOperations } from "./classic/qux/index.js";
 import { getFooOperations, FooOperations } from "./classic/foo/index.js";
@@ -33,11 +33,11 @@ export class ServiceClient {
    * 6. have two clients with a hierarchy relation.
    */
   constructor(
-    endpoint: string,
-    client: ClientType,
+    endpointParam: string,
+    clientParam: ClientType,
     options: ServiceClientOptions = {},
   ) {
-    this._client = createService(endpoint, client, options);
+    this._client = createService(endpointParam, clientParam, options);
     this.pipeline = this._client.pipeline;
     this.baz = getBazOperations(this._client);
     this.qux = getQuxOperations(this._client);
@@ -45,11 +45,11 @@ export class ServiceClient {
     this.bar = getBarOperations(this._client);
   }
 
-  one(options: OneOptions = { requestOptions: {} }): Promise<void> {
+  one(options: OneOptionalParams = { requestOptions: {} }): Promise<void> {
     return one(this._client, options);
   }
 
-  two(options: TwoOptions = { requestOptions: {} }): Promise<void> {
+  two(options: TwoOptionalParams = { requestOptions: {} }): Promise<void> {
     return two(this._client, options);
   }
 

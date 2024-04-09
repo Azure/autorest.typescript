@@ -13,14 +13,14 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  RenamedOneOptions,
-  RenamedThreeOptions,
-  RenamedFiveOptions,
+  RenamedOneOptionalParams,
+  RenamedThreeOptionalParams,
+  RenamedFiveOptionalParams,
 } from "../models/options.js";
 
 export function _renamedOneSend(
   context: Client,
-  options: RenamedOneOptions = { requestOptions: {} },
+  options: RenamedOneOptionalParams = { requestOptions: {} },
 ): StreamableMethod<One204Response> {
   return context
     .path("/one")
@@ -39,7 +39,7 @@ export async function _renamedOneDeserialize(
 
 export async function renamedOne(
   context: Client,
-  options: RenamedOneOptions = { requestOptions: {} },
+  options: RenamedOneOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _renamedOneSend(context, options);
   return _renamedOneDeserialize(result);
@@ -47,7 +47,7 @@ export async function renamedOne(
 
 export function _renamedThreeSend(
   context: Client,
-  options: RenamedThreeOptions = { requestOptions: {} },
+  options: RenamedThreeOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Three204Response> {
   return context
     .path("/three")
@@ -66,7 +66,7 @@ export async function _renamedThreeDeserialize(
 
 export async function renamedThree(
   context: Client,
-  options: RenamedThreeOptions = { requestOptions: {} },
+  options: RenamedThreeOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _renamedThreeSend(context, options);
   return _renamedThreeDeserialize(result);
@@ -74,7 +74,7 @@ export async function renamedThree(
 
 export function _renamedFiveSend(
   context: Client,
-  options: RenamedFiveOptions = { requestOptions: {} },
+  options: RenamedFiveOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Five204Response> {
   return context
     .path("/five")
@@ -93,7 +93,7 @@ export async function _renamedFiveDeserialize(
 
 export async function renamedFive(
   context: Client,
-  options: RenamedFiveOptions = { requestOptions: {} },
+  options: RenamedFiveOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _renamedFiveSend(context, options);
   return _renamedFiveDeserialize(result);

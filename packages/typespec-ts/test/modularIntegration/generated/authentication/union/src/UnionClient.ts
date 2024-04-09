@@ -10,7 +10,10 @@ import {
   UnionClientOptions,
   UnionContext,
 } from "./api/index.js";
-import { ValidKeyOptions, ValidTokenOptions } from "./models/options.js";
+import {
+  ValidKeyOptionalParams,
+  ValidTokenOptionalParams,
+} from "./models/options.js";
 
 export { UnionClientOptions } from "./api/UnionContext.js";
 
@@ -29,13 +32,15 @@ export class UnionClient {
   }
 
   /** Check whether client is authenticated */
-  validKey(options: ValidKeyOptions = { requestOptions: {} }): Promise<void> {
+  validKey(
+    options: ValidKeyOptionalParams = { requestOptions: {} },
+  ): Promise<void> {
     return validKey(this._client, options);
   }
 
   /** Check whether client is authenticated */
   validToken(
-    options: ValidTokenOptions = { requestOptions: {} },
+    options: ValidTokenOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return validToken(this._client, options);
   }

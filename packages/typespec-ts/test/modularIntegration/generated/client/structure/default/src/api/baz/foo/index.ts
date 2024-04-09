@@ -10,11 +10,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { BazFooSevenOptions } from "../../../models/options.js";
+import { BazFooSevenOptionalParams } from "../../../models/options.js";
 
 export function _sevenSend(
   context: Client,
-  options: BazFooSevenOptions = { requestOptions: {} },
+  options: BazFooSevenOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Seven204Response> {
   return context
     .path("/seven")
@@ -33,7 +33,7 @@ export async function _sevenDeserialize(
 
 export async function seven(
   context: Client,
-  options: BazFooSevenOptions = { requestOptions: {} },
+  options: BazFooSevenOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _sevenSend(context, options);
   return _sevenDeserialize(result);

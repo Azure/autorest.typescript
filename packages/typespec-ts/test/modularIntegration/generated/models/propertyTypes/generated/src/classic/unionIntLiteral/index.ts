@@ -8,26 +8,28 @@ import {
   unionIntLiteralPut,
 } from "../../api/unionIntLiteral/index.js";
 import {
-  UnionIntLiteralGetOptions,
-  UnionIntLiteralPutOptions,
+  UnionIntLiteralGetOptionalParams,
+  UnionIntLiteralPutOptionalParams,
 } from "../../models/options.js";
 
 export interface UnionIntLiteralOperations {
   get: (
-    options?: UnionIntLiteralGetOptions,
+    options?: UnionIntLiteralGetOptionalParams,
   ) => Promise<UnionIntLiteralProperty>;
   put: (
     body: UnionIntLiteralProperty,
-    options?: UnionIntLiteralPutOptions,
+    options?: UnionIntLiteralPutOptionalParams,
   ) => Promise<void>;
 }
 
 export function getUnionIntLiteral(context: ValueTypesContext) {
   return {
-    get: (options?: UnionIntLiteralGetOptions) =>
+    get: (options?: UnionIntLiteralGetOptionalParams) =>
       unionIntLiteralGet(context, options),
-    put: (body: UnionIntLiteralProperty, options?: UnionIntLiteralPutOptions) =>
-      unionIntLiteralPut(context, body, options),
+    put: (
+      body: UnionIntLiteralProperty,
+      options?: UnionIntLiteralPutOptionalParams,
+    ) => unionIntLiteralPut(context, body, options),
   };
 }
 

@@ -50,7 +50,7 @@ export interface CreateModerationResponse {
   }[];
 }
 
-export interface Error {
+export interface ErrorModel {
   type: string;
   message: string;
   param: string | null;

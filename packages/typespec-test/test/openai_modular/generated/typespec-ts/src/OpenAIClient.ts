@@ -19,15 +19,15 @@ import {
   Embeddings,
 } from "./models/models.js";
 import {
-  GetAudioTranscriptionAsPlainTextOptions,
-  GetAudioTranscriptionAsResponseObjectOptions,
-  GetAudioTranslationAsPlainTextOptions,
-  GetAudioTranslationAsResponseObjectOptions,
-  GetCompletionsOptions,
-  GetChatCompletionsOptions,
-  GetImageGenerationsOptions,
-  GetAudioSpeechOptions,
-  GetEmbeddingsOptions,
+  GetAudioTranscriptionAsPlainTextOptionalParams,
+  GetAudioTranscriptionAsResponseObjectOptionalParams,
+  GetAudioTranslationAsPlainTextOptionalParams,
+  GetAudioTranslationAsResponseObjectOptionalParams,
+  GetCompletionsOptionalParams,
+  GetChatCompletionsOptionalParams,
+  GetImageGenerationsOptionalParams,
+  GetAudioSpeechOptionalParams,
+  GetEmbeddingsOptionalParams,
 } from "./models/options.js";
 import {
   createOpenAI,
@@ -52,11 +52,11 @@ export class OpenAIClient {
   public readonly pipeline: Pipeline;
 
   constructor(
-    endpoint: string,
+    endpointParam: string,
     credential: KeyCredential | TokenCredential,
     options: OpenAIClientOptions = {},
   ) {
-    this._client = createOpenAI(endpoint, credential, options);
+    this._client = createOpenAI(endpointParam, credential, options);
     this.pipeline = this._client.pipeline;
   }
 
@@ -67,7 +67,9 @@ export class OpenAIClient {
   getAudioTranscriptionAsPlainText(
     deploymentId: string,
     body: AudioTranscriptionOptions,
-    options: GetAudioTranscriptionAsPlainTextOptions = { requestOptions: {} },
+    options: GetAudioTranscriptionAsPlainTextOptionalParams = {
+      requestOptions: {},
+    },
   ): Promise<string> {
     return getAudioTranscriptionAsPlainText(
       this._client,
@@ -84,7 +86,7 @@ export class OpenAIClient {
   getAudioTranscriptionAsResponseObject(
     deploymentId: string,
     body: AudioTranscriptionOptions,
-    options: GetAudioTranscriptionAsResponseObjectOptions = {
+    options: GetAudioTranscriptionAsResponseObjectOptionalParams = {
       requestOptions: {},
     },
   ): Promise<AudioTranscription> {
@@ -100,7 +102,9 @@ export class OpenAIClient {
   getAudioTranslationAsPlainText(
     deploymentId: string,
     body: AudioTranslationOptions,
-    options: GetAudioTranslationAsPlainTextOptions = { requestOptions: {} },
+    options: GetAudioTranslationAsPlainTextOptionalParams = {
+      requestOptions: {},
+    },
   ): Promise<string> {
     return getAudioTranslationAsPlainText(
       this._client,
@@ -114,7 +118,7 @@ export class OpenAIClient {
   getAudioTranslationAsResponseObject(
     deploymentId: string,
     body: AudioTranslationOptions,
-    options: GetAudioTranslationAsResponseObjectOptions = {
+    options: GetAudioTranslationAsResponseObjectOptionalParams = {
       requestOptions: {},
     },
   ): Promise<AudioTranslation> {
@@ -134,7 +138,7 @@ export class OpenAIClient {
   getCompletions(
     deploymentId: string,
     body: CompletionsOptions,
-    options: GetCompletionsOptions = { requestOptions: {} },
+    options: GetCompletionsOptionalParams = { requestOptions: {} },
   ): Promise<Completions> {
     return getCompletions(this._client, deploymentId, body, options);
   }
@@ -147,7 +151,7 @@ export class OpenAIClient {
   getChatCompletions(
     deploymentId: string,
     body: ChatCompletionsOptions,
-    options: GetChatCompletionsOptions = { requestOptions: {} },
+    options: GetChatCompletionsOptionalParams = { requestOptions: {} },
   ): Promise<ChatCompletions> {
     return getChatCompletions(this._client, deploymentId, body, options);
   }
@@ -156,7 +160,7 @@ export class OpenAIClient {
   getImageGenerations(
     deploymentId: string,
     body: ImageGenerationOptions,
-    options: GetImageGenerationsOptions = { requestOptions: {} },
+    options: GetImageGenerationsOptionalParams = { requestOptions: {} },
   ): Promise<ImageGenerations> {
     return getImageGenerations(this._client, deploymentId, body, options);
   }
@@ -165,7 +169,7 @@ export class OpenAIClient {
   getAudioSpeech(
     deploymentId: string,
     body: AudioSpeechOptions,
-    options: GetAudioSpeechOptions = { requestOptions: {} },
+    options: GetAudioSpeechOptionalParams = { requestOptions: {} },
   ): Promise<Uint8Array> {
     return getAudioSpeech(this._client, deploymentId, body, options);
   }
@@ -174,7 +178,7 @@ export class OpenAIClient {
   getEmbeddings(
     deploymentId: string,
     body: EmbeddingsOptions,
-    options: GetEmbeddingsOptions = { requestOptions: {} },
+    options: GetEmbeddingsOptionalParams = { requestOptions: {} },
   ): Promise<Embeddings> {
     return getEmbeddings(this._client, deploymentId, body, options);
   }

@@ -21,13 +21,13 @@ export interface BA {
 }
 
 // @public (undocumented)
-export interface BCOp1Options extends OperationOptions {
+export interface BCOp1OptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
 export interface BCOperations {
     // (undocumented)
-    op1: (body: BA, options?: BCOp1Options) => Promise<void>;
+    op1: (body: BA, options?: BCOp1OptionalParams) => Promise<void>;
 }
 
 // @public (undocumented)
@@ -37,13 +37,13 @@ export interface BEA {
 }
 
 // @public (undocumented)
-export interface BECOp1Options extends OperationOptions {
+export interface BECOp1OptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
 export interface BECOperations {
     // (undocumented)
-    op1: (body: BEA, options?: BECOp1Options) => Promise<void>;
+    op1: (body: BEA, options?: BECOp1OptionalParams) => Promise<void>;
 }
 
 // @public (undocumented)
@@ -53,7 +53,7 @@ export interface BEOperations {
 }
 
 // @public (undocumented)
-export interface BOp1Options extends OperationOptions {
+export interface BOp1OptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -63,17 +63,17 @@ export interface BOperations {
     // (undocumented)
     e: BEOperations;
     // (undocumented)
-    op1: (body: BA, options?: BOp1Options) => Promise<void>;
+    op1: (body: BA, options?: BOp1OptionalParams) => Promise<void>;
 }
 
 // @public (undocumented)
-export interface DOp1Options extends OperationOptions {
+export interface DOp1OptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
 export interface DOperations {
     // (undocumented)
-    op1: (body: A, options?: DOp1Options) => Promise<void>;
+    op1: (body: A, options?: DOp1OptionalParams) => Promise<void>;
 }
 
 // @public (undocumented)
@@ -82,7 +82,7 @@ export class FooClient {
     readonly b: BOperations;
     readonly d: DOperations;
     // (undocumented)
-    op1(body: A, options?: Op1Options): Promise<void>;
+    op1(body: A, options?: Op1OptionalParams): Promise<void>;
     readonly pipeline: Pipeline;
 }
 
@@ -91,7 +91,7 @@ export interface FooClientOptions extends ClientOptions {
 }
 
 // @public (undocumented)
-export interface Op1Options extends OperationOptions {
+export interface Op1OptionalParams extends OperationOptions {
 }
 
 // (No @packageDocumentation comment for this package)

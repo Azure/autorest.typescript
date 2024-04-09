@@ -12,11 +12,14 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { DecimalGetOptions, DecimalPutOptions } from "../../models/options.js";
+import {
+  DecimalGetOptionalParams,
+  DecimalPutOptionalParams,
+} from "../../models/options.js";
 
 export function _decimalGetSend(
   context: Client,
-  options: DecimalGetOptions = { requestOptions: {} },
+  options: DecimalGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<DecimalGet200Response> {
   return context
     .path("/type/property/value-types/decimal")
@@ -38,7 +41,7 @@ export async function _decimalGetDeserialize(
 /** Get call */
 export async function decimalGet(
   context: Client,
-  options: DecimalGetOptions = { requestOptions: {} },
+  options: DecimalGetOptionalParams = { requestOptions: {} },
 ): Promise<DecimalProperty> {
   const result = await _decimalGetSend(context, options);
   return _decimalGetDeserialize(result);
@@ -47,7 +50,7 @@ export async function decimalGet(
 export function _decimalPutSend(
   context: Client,
   body: DecimalProperty,
-  options: DecimalPutOptions = { requestOptions: {} },
+  options: DecimalPutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<DecimalPut204Response> {
   return context
     .path("/type/property/value-types/decimal")
@@ -71,7 +74,7 @@ export async function _decimalPutDeserialize(
 export async function decimalPut(
   context: Client,
   body: DecimalProperty,
-  options: DecimalPutOptions = { requestOptions: {} },
+  options: DecimalPutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _decimalPutSend(context, body, options);
   return _decimalPutDeserialize(result);

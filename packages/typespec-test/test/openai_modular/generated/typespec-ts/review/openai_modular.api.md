@@ -698,43 +698,43 @@ export interface FunctionName {
 }
 
 // @public (undocumented)
-export interface GetAudioSpeechOptions extends OperationOptions {
+export interface GetAudioSpeechOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface GetAudioTranscriptionAsPlainTextOptions extends OperationOptions {
+export interface GetAudioTranscriptionAsPlainTextOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
 // @public (undocumented)
-export interface GetAudioTranscriptionAsResponseObjectOptions extends OperationOptions {
+export interface GetAudioTranscriptionAsResponseObjectOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
 // @public (undocumented)
-export interface GetAudioTranslationAsPlainTextOptions extends OperationOptions {
+export interface GetAudioTranslationAsPlainTextOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
 // @public (undocumented)
-export interface GetAudioTranslationAsResponseObjectOptions extends OperationOptions {
+export interface GetAudioTranslationAsResponseObjectOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
 // @public (undocumented)
-export interface GetChatCompletionsOptions extends OperationOptions {
+export interface GetChatCompletionsOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface GetCompletionsOptions extends OperationOptions {
+export interface GetCompletionsOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface GetEmbeddingsOptions extends OperationOptions {
+export interface GetEmbeddingsOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface GetImageGenerationsOptions extends OperationOptions {
+export interface GetImageGenerationsOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -864,16 +864,16 @@ export type OnYourDataVectorizationSourceUnion = OnYourDataEndpointVectorization
 
 // @public (undocumented)
 export class OpenAIClient {
-    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions);
-    getAudioSpeech(deploymentId: string, body: AudioSpeechOptions, options?: GetAudioSpeechOptions): Promise<Uint8Array>;
-    getAudioTranscriptionAsPlainText(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsPlainTextOptions): Promise<string>;
-    getAudioTranscriptionAsResponseObject(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsResponseObjectOptions): Promise<AudioTranscription>;
-    getAudioTranslationAsPlainText(deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsPlainTextOptions): Promise<string>;
-    getAudioTranslationAsResponseObject(deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsResponseObjectOptions): Promise<AudioTranslation>;
-    getChatCompletions(deploymentId: string, body: ChatCompletionsOptions, options?: GetChatCompletionsOptions): Promise<ChatCompletions>;
-    getCompletions(deploymentId: string, body: CompletionsOptions, options?: GetCompletionsOptions): Promise<Completions>;
-    getEmbeddings(deploymentId: string, body: EmbeddingsOptions, options?: GetEmbeddingsOptions): Promise<Embeddings>;
-    getImageGenerations(deploymentId: string, body: ImageGenerationOptions, options?: GetImageGenerationsOptions): Promise<ImageGenerations>;
+    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions);
+    getAudioSpeech(deploymentId: string, body: AudioSpeechOptions, options?: GetAudioSpeechOptionalParams): Promise<Uint8Array>;
+    getAudioTranscriptionAsPlainText(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsPlainTextOptionalParams): Promise<string>;
+    getAudioTranscriptionAsResponseObject(deploymentId: string, body: AudioTranscriptionOptions, options?: GetAudioTranscriptionAsResponseObjectOptionalParams): Promise<AudioTranscription>;
+    getAudioTranslationAsPlainText(deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsPlainTextOptionalParams): Promise<string>;
+    getAudioTranslationAsResponseObject(deploymentId: string, body: AudioTranslationOptions, options?: GetAudioTranslationAsResponseObjectOptionalParams): Promise<AudioTranslation>;
+    getChatCompletions(deploymentId: string, body: ChatCompletionsOptions, options?: GetChatCompletionsOptionalParams): Promise<ChatCompletions>;
+    getCompletions(deploymentId: string, body: CompletionsOptions, options?: GetCompletionsOptionalParams): Promise<Completions>;
+    getEmbeddings(deploymentId: string, body: EmbeddingsOptions, options?: GetEmbeddingsOptionalParams): Promise<Embeddings>;
+    getImageGenerations(deploymentId: string, body: ImageGenerationOptions, options?: GetImageGenerationsOptionalParams): Promise<ImageGenerations>;
     readonly pipeline: Pipeline;
 }
 

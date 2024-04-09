@@ -3,7 +3,7 @@
 
 export { Versions } from "./models.js";
 export {
-  WithoutApiVersionOptions,
-  WithQueryApiVersionOptions,
-  WithPathApiVersionOptions,
+  WithoutApiVersionOptionalParams,
+  WithQueryApiVersionOptionalParams,
+  WithPathApiVersionOptionalParams,
 } from "./options.js";

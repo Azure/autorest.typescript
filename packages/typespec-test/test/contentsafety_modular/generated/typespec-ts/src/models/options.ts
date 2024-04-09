@@ -3,28 +3,29 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface AnalyzeTextRequestOptions extends OperationOptions {}
+export interface AnalyzeTextOptionalParams extends OperationOptions {}
 
-export interface AnalyzeImageRequestOptions extends OperationOptions {}
+export interface AnalyzeImageOptionalParams extends OperationOptions {}
 
-export interface GetTextBlocklistOptions extends OperationOptions {}
+export interface GetTextBlocklistOptionalParams extends OperationOptions {}
 
-export interface CreateOrUpdateTextBlocklistOptions extends OperationOptions {
+export interface CreateOrUpdateTextBlocklistOptionalParams
+  extends OperationOptions {
   /** This request has a JSON Merge Patch body. */
   contentType?: string;
 }
 
-export interface DeleteTextBlocklistOptions extends OperationOptions {}
+export interface DeleteTextBlocklistOptionalParams extends OperationOptions {}
 
-export interface ListTextBlocklistsOptions extends OperationOptions {}
+export interface ListTextBlocklistsOptionalParams extends OperationOptions {}
 
-export interface AddOrUpdateBlockItemsRequestOptions extends OperationOptions {}
+export interface AddOrUpdateBlockItemsOptionalParams extends OperationOptions {}
 
-export interface RemoveBlockItemsRequestOptions extends OperationOptions {}
+export interface RemoveBlockItemsOptionalParams extends OperationOptions {}
 
-export interface GetTextBlocklistItemOptions extends OperationOptions {}
+export interface GetTextBlocklistItemOptionalParams extends OperationOptions {}
 
-export interface ListTextBlocklistItemsOptions extends OperationOptions {
+export interface ListTextBlocklistItemsOptionalParams extends OperationOptions {
   /** The number of result items to return. */
   top?: number;
   /** The number of result items to skip. */

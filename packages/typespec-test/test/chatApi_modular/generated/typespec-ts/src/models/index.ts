@@ -14,4 +14,7 @@ export {
   ChatChoiceRecord,
   APIVersion,
 } from "./models.js";
-export { CreateStreamingOptions, CreateOptions } from "./options.js";
+export {
+  CreateStreamingOptionalParams,
+  CreateOptionalParams,
+} from "./options.js";
