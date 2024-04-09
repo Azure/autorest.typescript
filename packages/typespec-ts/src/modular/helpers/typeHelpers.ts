@@ -103,7 +103,6 @@ export function getType(type: Type, format?: string): TypeMetadata {
 
     case "never":
       return { name: "never", nullable: type.nullable };
-
     default:
       throw new Error(`Unsupported type ${type.type}`);
   }

@@ -5,26 +5,26 @@ import { BodyOptionalityContext } from "../../api/BodyOptionalityContext.js";
 import { BodyModel } from "../../models/models.js";
 import { set, omit } from "../../api/optionalExplicit/index.js";
 import {
-  OptionalExplicitSetOptions,
-  OptionalExplicitOmitOptions,
+  OptionalExplicitSetOptionalParams,
+  OptionalExplicitOmitOptionalParams,
 } from "../../models/options.js";
 
 export interface OptionalExplicitOperations {
   set: (
     body?: BodyModel,
-    options?: OptionalExplicitSetOptions,
+    options?: OptionalExplicitSetOptionalParams,
   ) => Promise<void>;
   omit: (
     body?: BodyModel,
-    options?: OptionalExplicitOmitOptions,
+    options?: OptionalExplicitOmitOptionalParams,
   ) => Promise<void>;
 }
 
 export function getOptionalExplicit(context: BodyOptionalityContext) {
   return {
-    set: (body?: BodyModel, options?: OptionalExplicitSetOptions) =>
+    set: (body?: BodyModel, options?: OptionalExplicitSetOptionalParams) =>
       set(context, body, options),
-    omit: (body?: BodyModel, options?: OptionalExplicitOmitOptions) =>
+    omit: (body?: BodyModel, options?: OptionalExplicitOmitOptionalParams) =>
       omit(context, body, options),
   };
 }

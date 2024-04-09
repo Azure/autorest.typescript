@@ -12,13 +12,13 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  FloatsOnlyGetOptions,
-  FloatsOnlySendOptions,
+  FloatsOnlyGetOptionalParams,
+  FloatsOnlySendOptionalParams,
 } from "../../models/options.js";
 
 export function _floatsOnlyGetSend(
   context: Client,
-  options: FloatsOnlyGetOptions = { requestOptions: {} },
+  options: FloatsOnlyGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<FloatsOnlyGet200Response> {
   return context
     .path("/type/union/floats-only")
@@ -39,7 +39,7 @@ export async function _floatsOnlyGetDeserialize(
 
 export async function floatsOnlyGet(
   context: Client,
-  options: FloatsOnlyGetOptions = { requestOptions: {} },
+  options: FloatsOnlyGetOptionalParams = { requestOptions: {} },
 ): Promise<{ prop: 1.1 | 2.2 | 3.3 }> {
   const result = await _floatsOnlyGetSend(context, options);
   return _floatsOnlyGetDeserialize(result);
@@ -48,7 +48,7 @@ export async function floatsOnlyGet(
 export function _floatsOnlySendSend(
   context: Client,
   prop: 1.1 | 2.2 | 3.3,
-  options: FloatsOnlySendOptions = { requestOptions: {} },
+  options: FloatsOnlySendOptionalParams = { requestOptions: {} },
 ): StreamableMethod<FloatsOnlySend204Response> {
   return context
     .path("/type/union/floats-only")
@@ -71,7 +71,7 @@ export async function _floatsOnlySendDeserialize(
 export async function floatsOnlySend(
   context: Client,
   prop: 1.1 | 2.2 | 3.3,
-  options: FloatsOnlySendOptions = { requestOptions: {} },
+  options: FloatsOnlySendOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _floatsOnlySendSend(context, prop, options);
   return _floatsOnlySendDeserialize(result);

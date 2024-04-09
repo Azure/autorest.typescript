@@ -3,8 +3,8 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface WithoutApiVersionOptions extends OperationOptions {}
+export interface WithoutApiVersionOptionalParams extends OperationOptions {}
 
-export interface WithQueryApiVersionOptions extends OperationOptions {}
+export interface WithQueryApiVersionOptionalParams extends OperationOptions {}
 
-export interface WithPathApiVersionOptions extends OperationOptions {}
+export interface WithPathApiVersionOptionalParams extends OperationOptions {}

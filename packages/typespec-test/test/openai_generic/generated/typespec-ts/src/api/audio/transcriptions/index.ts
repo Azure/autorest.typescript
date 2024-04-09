@@ -17,12 +17,12 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
-import { AudioTranscriptionsCreateOptions } from "../../../models/options.js";
+import { AudioTranscriptionsCreateOptionalParams } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,
   audio: CreateTranscriptionRequest,
-  options: AudioTranscriptionsCreateOptions = { requestOptions: {} },
+  options: AudioTranscriptionsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | AudioTranscriptionsCreate200Response
   | AudioTranscriptionsCreateDefaultResponse
@@ -60,7 +60,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   audio: CreateTranscriptionRequest,
-  options: AudioTranscriptionsCreateOptions = { requestOptions: {} },
+  options: AudioTranscriptionsCreateOptionalParams = { requestOptions: {} },
 ): Promise<CreateTranscriptionResponse> {
   const result = await _createSend(context, audio, options);
   return _createDeserialize(result);

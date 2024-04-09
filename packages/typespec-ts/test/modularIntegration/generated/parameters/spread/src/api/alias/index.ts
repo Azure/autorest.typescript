@@ -13,15 +13,15 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  AliasSpreadAsRequestBodyOptions,
-  AliasSpreadAsRequestParameterOptions,
-  AliasSpreadWithMultipleParametersOptions,
+  AliasSpreadAsRequestBodyOptionalParams,
+  AliasSpreadAsRequestParameterOptionalParams,
+  AliasSpreadWithMultipleParametersOptionalParams,
 } from "../../models/options.js";
 
 export function _aliasSpreadAsRequestBodySend(
   context: Client,
   name: string,
-  options: AliasSpreadAsRequestBodyOptions = { requestOptions: {} },
+  options: AliasSpreadAsRequestBodyOptionalParams = { requestOptions: {} },
 ): StreamableMethod<AliasSpreadAsRequestBody204Response> {
   return context
     .path("/parameters/spread/alias/request-body")
@@ -44,7 +44,7 @@ export async function _aliasSpreadAsRequestBodyDeserialize(
 export async function aliasSpreadAsRequestBody(
   context: Client,
   name: string,
-  options: AliasSpreadAsRequestBodyOptions = { requestOptions: {} },
+  options: AliasSpreadAsRequestBodyOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _aliasSpreadAsRequestBodySend(context, name, options);
   return _aliasSpreadAsRequestBodyDeserialize(result);
@@ -55,7 +55,7 @@ export function _aliasSpreadAsRequestParameterSend(
   id: string,
   xMsTestHeader: string,
   name: string,
-  options: AliasSpreadAsRequestParameterOptions = { requestOptions: {} },
+  options: AliasSpreadAsRequestParameterOptionalParams = { requestOptions: {} },
 ): StreamableMethod<AliasSpreadAsRequestParameter204Response> {
   return context
     .path("/parameters/spread/alias/request-parameter/{id}", id)
@@ -81,7 +81,7 @@ export async function aliasSpreadAsRequestParameter(
   id: string,
   xMsTestHeader: string,
   name: string,
-  options: AliasSpreadAsRequestParameterOptions = { requestOptions: {} },
+  options: AliasSpreadAsRequestParameterOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _aliasSpreadAsRequestParameterSend(
     context,
@@ -103,7 +103,9 @@ export function _aliasSpreadWithMultipleParametersSend(
   prop4: string,
   prop5: string,
   prop6: string,
-  options: AliasSpreadWithMultipleParametersOptions = { requestOptions: {} },
+  options: AliasSpreadWithMultipleParametersOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod<AliasSpreadWithMultipleParameters204Response> {
   return context
     .path("/parameters/spread/alias/multiple-parameters/{id}", id)
@@ -141,7 +143,9 @@ export async function aliasSpreadWithMultipleParameters(
   prop4: string,
   prop5: string,
   prop6: string,
-  options: AliasSpreadWithMultipleParametersOptions = { requestOptions: {} },
+  options: AliasSpreadWithMultipleParametersOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<void> {
   const result = await _aliasSpreadWithMultipleParametersSend(
     context,

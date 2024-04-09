@@ -8,27 +8,27 @@ import {
   dictionaryStringPut,
 } from "../../api/dictionaryString/index.js";
 import {
-  DictionaryStringGetOptions,
-  DictionaryStringPutOptions,
+  DictionaryStringGetOptionalParams,
+  DictionaryStringPutOptionalParams,
 } from "../../models/options.js";
 
 export interface DictionaryStringOperations {
   get: (
-    options?: DictionaryStringGetOptions,
+    options?: DictionaryStringGetOptionalParams,
   ) => Promise<DictionaryStringProperty>;
   put: (
     body: DictionaryStringProperty,
-    options?: DictionaryStringPutOptions,
+    options?: DictionaryStringPutOptionalParams,
   ) => Promise<void>;
 }
 
 export function getDictionaryString(context: ValueTypesContext) {
   return {
-    get: (options?: DictionaryStringGetOptions) =>
+    get: (options?: DictionaryStringGetOptionalParams) =>
       dictionaryStringGet(context, options),
     put: (
       body: DictionaryStringProperty,
-      options?: DictionaryStringPutOptions,
+      options?: DictionaryStringPutOptionalParams,
     ) => dictionaryStringPut(context, body, options),
   };
 }

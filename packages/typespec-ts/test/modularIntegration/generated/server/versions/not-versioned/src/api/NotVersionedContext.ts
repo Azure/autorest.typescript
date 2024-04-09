@@ -11,9 +11,9 @@ export { NotVersionedContext } from "../rest/index.js";
 
 /** Illustrates not-versioned server. */
 export function createNotVersioned(
-  endpoint: string,
+  endpointParam: string,
   options: NotVersionedClientOptions = {},
 ): NotVersionedContext {
-  const clientContext = getClient(endpoint, options);
+  const clientContext = getClient(endpointParam, options);
   return clientContext;
 }

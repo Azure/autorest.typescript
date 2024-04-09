@@ -10,10 +10,10 @@ import {
   CreateOrReplace200Response,
   CreateOrReplace201Response,
   CreateOrReplaceDefaultResponse,
-  DeleteOperation202Response,
-  DeleteOperationDefaultResponse,
-  ExportOperation202Response,
-  ExportOperationDefaultResponse,
+  Delete202Response,
+  DeleteDefaultResponse,
+  Export202Response,
+  ExportDefaultResponse,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -29,18 +29,14 @@ export interface CreateOrReplace {
   /** Deletes a User */
   delete(
     options?: DeleteParameters,
-  ): StreamableMethod<
-    DeleteOperation202Response | DeleteOperationDefaultResponse
-  >;
+  ): StreamableMethod<Delete202Response | DeleteDefaultResponse>;
 }
 
 export interface Export {
   /** Exports a User */
   post(
     options: ExportParameters,
-  ): StreamableMethod<
-    ExportOperation202Response | ExportOperationDefaultResponse
-  >;
+  ): StreamableMethod<Export202Response | ExportDefaultResponse>;
 }
 
 export interface Routes {

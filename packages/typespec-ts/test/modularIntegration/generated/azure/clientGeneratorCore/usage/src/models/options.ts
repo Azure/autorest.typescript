@@ -3,6 +3,6 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface InputToInputOutputOptions extends OperationOptions {}
+export interface InputToInputOutputOptionalParams extends OperationOptions {}
 
-export interface OutputToInputOutputOptions extends OperationOptions {}
+export interface OutputToInputOutputOptionalParams extends OperationOptions {}

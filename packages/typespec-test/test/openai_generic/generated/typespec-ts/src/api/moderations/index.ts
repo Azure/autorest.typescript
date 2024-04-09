@@ -16,12 +16,12 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { ModerationsCreateOptions } from "../../models/options.js";
+import { ModerationsCreateOptionalParams } from "../../models/options.js";
 
 export function _createSend(
   context: Client,
   content: CreateModerationRequest,
-  options: ModerationsCreateOptions = { requestOptions: {} },
+  options: ModerationsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ModerationsCreate200Response | ModerationsCreateDefaultResponse
 > {
@@ -78,7 +78,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   content: CreateModerationRequest,
-  options: ModerationsCreateOptions = { requestOptions: {} },
+  options: ModerationsCreateOptionalParams = { requestOptions: {} },
 ): Promise<CreateModerationResponse> {
   const result = await _createSend(context, content, options);
   return _createDeserialize(result);

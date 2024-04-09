@@ -19,31 +19,31 @@ import {
   NoDecoratorInInternal200Response,
   NoDecoratorInPublic200Response,
   Operation200Response,
+  Public200Response,
   PublicDecoratorInInternal200Response,
   PublicDecoratorInPublic200Response,
-  PublicOperation200Response,
 } from "../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
   createRestError,
-  OperationOptions,
 } from "@azure-rest/core-client";
 import {
-  NoDecoratorInPublicOptions,
-  PublicDecoratorInPublicOptions,
-  NoDecoratorInInternalOptions,
-  InternalDecoratorInInternalOptions,
-  PublicDecoratorInInternalOptions,
-  PublicOperationOptions,
-  InternalOptions,
-  DiscriminatorOptions,
+  NoDecoratorInPublicOptionalParams,
+  PublicDecoratorInPublicOptionalParams,
+  NoDecoratorInInternalOptionalParams,
+  InternalDecoratorInInternalOptionalParams,
+  PublicDecoratorInInternalOptionalParams,
+  PublicOptionalParams,
+  InternalOptionalParams,
+  OperationOptionalParams,
+  DiscriminatorOptionalParams,
 } from "../models/options.js";
 
 export function _noDecoratorInPublicSend(
   context: Client,
   name: string,
-  options: NoDecoratorInPublicOptions = { requestOptions: {} },
+  options: NoDecoratorInPublicOptionalParams = { requestOptions: {} },
 ): StreamableMethod<NoDecoratorInPublic200Response> {
   return context
     .path(
@@ -70,7 +70,7 @@ export async function _noDecoratorInPublicDeserialize(
 export async function noDecoratorInPublic(
   context: Client,
   name: string,
-  options: NoDecoratorInPublicOptions = { requestOptions: {} },
+  options: NoDecoratorInPublicOptionalParams = { requestOptions: {} },
 ): Promise<NoDecoratorModelInPublic> {
   const result = await _noDecoratorInPublicSend(context, name, options);
   return _noDecoratorInPublicDeserialize(result);
@@ -79,7 +79,7 @@ export async function noDecoratorInPublic(
 export function _publicDecoratorInPublicSend(
   context: Client,
   name: string,
-  options: PublicDecoratorInPublicOptions = { requestOptions: {} },
+  options: PublicDecoratorInPublicOptionalParams = { requestOptions: {} },
 ): StreamableMethod<PublicDecoratorInPublic200Response> {
   return context
     .path(
@@ -106,7 +106,7 @@ export async function _publicDecoratorInPublicDeserialize(
 export async function publicDecoratorInPublic(
   context: Client,
   name: string,
-  options: PublicDecoratorInPublicOptions = { requestOptions: {} },
+  options: PublicDecoratorInPublicOptionalParams = { requestOptions: {} },
 ): Promise<PublicDecoratorModelInPublic> {
   const result = await _publicDecoratorInPublicSend(context, name, options);
   return _publicDecoratorInPublicDeserialize(result);
@@ -115,7 +115,7 @@ export async function publicDecoratorInPublic(
 export function _noDecoratorInInternalSend(
   context: Client,
   name: string,
-  options: NoDecoratorInInternalOptions = { requestOptions: {} },
+  options: NoDecoratorInInternalOptionalParams = { requestOptions: {} },
 ): StreamableMethod<NoDecoratorInInternal200Response> {
   return context
     .path(
@@ -142,7 +142,7 @@ export async function _noDecoratorInInternalDeserialize(
 export async function noDecoratorInInternal(
   context: Client,
   name: string,
-  options: NoDecoratorInInternalOptions = { requestOptions: {} },
+  options: NoDecoratorInInternalOptionalParams = { requestOptions: {} },
 ): Promise<NoDecoratorModelInInternal> {
   const result = await _noDecoratorInInternalSend(context, name, options);
   return _noDecoratorInInternalDeserialize(result);
@@ -151,7 +151,7 @@ export async function noDecoratorInInternal(
 export function _internalDecoratorInInternalSend(
   context: Client,
   name: string,
-  options: InternalDecoratorInInternalOptions = { requestOptions: {} },
+  options: InternalDecoratorInInternalOptionalParams = { requestOptions: {} },
 ): StreamableMethod<InternalDecoratorInInternal200Response> {
   return context
     .path(
@@ -178,7 +178,7 @@ export async function _internalDecoratorInInternalDeserialize(
 export async function internalDecoratorInInternal(
   context: Client,
   name: string,
-  options: InternalDecoratorInInternalOptions = { requestOptions: {} },
+  options: InternalDecoratorInInternalOptionalParams = { requestOptions: {} },
 ): Promise<InternalDecoratorModelInInternal> {
   const result = await _internalDecoratorInInternalSend(context, name, options);
   return _internalDecoratorInInternalDeserialize(result);
@@ -187,7 +187,7 @@ export async function internalDecoratorInInternal(
 export function _publicDecoratorInInternalSend(
   context: Client,
   name: string,
-  options: PublicDecoratorInInternalOptions = { requestOptions: {} },
+  options: PublicDecoratorInInternalOptionalParams = { requestOptions: {} },
 ): StreamableMethod<PublicDecoratorInInternal200Response> {
   return context
     .path(
@@ -214,17 +214,17 @@ export async function _publicDecoratorInInternalDeserialize(
 export async function publicDecoratorInInternal(
   context: Client,
   name: string,
-  options: PublicDecoratorInInternalOptions = { requestOptions: {} },
+  options: PublicDecoratorInInternalOptionalParams = { requestOptions: {} },
 ): Promise<PublicDecoratorModelInInternal> {
   const result = await _publicDecoratorInInternalSend(context, name, options);
   return _publicDecoratorInInternalDeserialize(result);
 }
 
-export function _publicOperationSend(
+export function _$publicSend(
   context: Client,
   name: string,
-  options: PublicOperationOptions = { requestOptions: {} },
-): StreamableMethod<PublicOperation200Response> {
+  options: PublicOptionalParams = { requestOptions: {} },
+): StreamableMethod<Public200Response> {
   return context
     .path("/azure/client-generator-core/access/sharedModelInOperation/public")
     .get({
@@ -233,8 +233,8 @@ export function _publicOperationSend(
     });
 }
 
-export async function _publicOperationDeserialize(
-  result: PublicOperation200Response,
+export async function _$publicDeserialize(
+  result: Public200Response,
 ): Promise<SharedModel> {
   if (result.status !== "200") {
     throw createRestError(result);
@@ -245,19 +245,24 @@ export async function _publicOperationDeserialize(
   };
 }
 
-export async function publicOperation(
+/**
+ *  @fixme public is a reserved word that cannot be used as an operation name.
+ *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+ *         to the operation to override the generated name.
+ */
+export async function $public(
   context: Client,
   name: string,
-  options: PublicOperationOptions = { requestOptions: {} },
+  options: PublicOptionalParams = { requestOptions: {} },
 ): Promise<SharedModel> {
-  const result = await _publicOperationSend(context, name, options);
-  return _publicOperationDeserialize(result);
+  const result = await _$publicSend(context, name, options);
+  return _$publicDeserialize(result);
 }
 
 export function _internalSend(
   context: Client,
   name: string,
-  options: InternalOptions = { requestOptions: {} },
+  options: InternalOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Internal200Response> {
   return context
     .path("/azure/client-generator-core/access/sharedModelInOperation/internal")
@@ -282,7 +287,7 @@ export async function _internalDeserialize(
 export async function internal(
   context: Client,
   name: string,
-  options: InternalOptions = { requestOptions: {} },
+  options: InternalOptionalParams = { requestOptions: {} },
 ): Promise<SharedModel> {
   const result = await _internalSend(context, name, options);
   return _internalDeserialize(result);
@@ -291,7 +296,7 @@ export async function internal(
 export function _operationSend(
   context: Client,
   name: string,
-  options: OperationOptions = { requestOptions: {} },
+  options: OperationOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Operation200Response> {
   return context
     .path(
@@ -332,7 +337,7 @@ export async function _operationDeserialize(
 export async function operation(
   context: Client,
   name: string,
-  options: OperationOptions = { requestOptions: {} },
+  options: OperationOptionalParams = { requestOptions: {} },
 ): Promise<OuterModel> {
   const result = await _operationSend(context, name, options);
   return _operationDeserialize(result);
@@ -341,7 +346,7 @@ export async function operation(
 export function _discriminatorSend(
   context: Client,
   kind: string,
-  options: DiscriminatorOptions = { requestOptions: {} },
+  options: DiscriminatorOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Discriminator200Response> {
   return context
     .path(
@@ -376,7 +381,7 @@ export async function _discriminatorDeserialize(
 export async function discriminator(
   context: Client,
   kind: string,
-  options: DiscriminatorOptions = { requestOptions: {} },
+  options: DiscriminatorOptionalParams = { requestOptions: {} },
 ): Promise<AbstractModelUnion> {
   const result = await _discriminatorSend(context, kind, options);
   return _discriminatorDeserialize(result);

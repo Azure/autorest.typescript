@@ -8,13 +8,13 @@ import {
   ClientNameAndJsonEncodedNameModel,
 } from "./models/models.js";
 import {
-  ClientNameOptions,
-  ParameterOptions,
-  ClientRequestOptions,
-  LanguageOptions,
-  CompatibleWithEncodedNameOptions,
-  RequestOptions,
-  ResponseOptions,
+  ClientNameOptionalParams,
+  ParameterOptionalParams,
+  ClientOptionalParams,
+  LanguageOptionalParams,
+  CompatibleWithEncodedNameOptionalParams,
+  RequestOptionalParams,
+  ResponseOptionalParams,
 } from "./models/options.js";
 import {
   getClientModelOperations,
@@ -53,47 +53,49 @@ export class NamingClient {
   }
 
   clientName(
-    options: ClientNameOptions = { requestOptions: {} },
+    options: ClientNameOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return clientName(this._client, options);
   }
 
   parameter(
     clientName: string,
-    options: ParameterOptions = { requestOptions: {} },
+    options: ParameterOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return parameter(this._client, clientName, options);
   }
 
   client(
     body: ClientNameModel,
-    options: ClientRequestOptions = { requestOptions: {} },
+    options: ClientOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return client(this._client, body, options);
   }
 
   language(
     body: LanguageClientNameModel,
-    options: LanguageOptions = { requestOptions: {} },
+    options: LanguageOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return language(this._client, body, options);
   }
 
   compatibleWithEncodedName(
     body: ClientNameAndJsonEncodedNameModel,
-    options: CompatibleWithEncodedNameOptions = { requestOptions: {} },
+    options: CompatibleWithEncodedNameOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return compatibleWithEncodedName(this._client, body, options);
   }
 
   request(
     clientName: string,
-    options: RequestOptions = { requestOptions: {} },
+    options: RequestOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return request(this._client, clientName, options);
   }
 
-  response(options: ResponseOptions = { requestOptions: {} }): Promise<void> {
+  response(
+    options: ResponseOptionalParams = { requestOptions: {} },
+  ): Promise<void> {
     return response(this._client, options);
   }
 

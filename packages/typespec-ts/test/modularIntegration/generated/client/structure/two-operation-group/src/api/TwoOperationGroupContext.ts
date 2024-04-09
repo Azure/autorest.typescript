@@ -11,10 +11,10 @@ export interface TwoOperationGroupClientOptions extends ClientOptions {}
 export { ServiceContext } from "../rest/index.js";
 
 export function createTwoOperationGroup(
-  endpoint: string,
-  client: ClientType,
+  endpointParam: string,
+  clientParam: ClientType,
   options: TwoOperationGroupClientOptions = {},
 ): ServiceContext {
-  const clientContext = getClient(endpoint, client, options);
+  const clientContext = getClient(endpointParam, clientParam, options);
   return clientContext;
 }

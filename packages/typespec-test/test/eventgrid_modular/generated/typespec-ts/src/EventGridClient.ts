@@ -14,12 +14,12 @@ import {
   RejectResult,
 } from "./models/models.js";
 import {
-  PublishCloudEventOptions,
-  PublishCloudEventsOptions,
-  ReceiveCloudEventsOptions,
-  AcknowledgeCloudEventsOptions,
-  ReleaseCloudEventsOptions,
-  RejectCloudEventsOptions,
+  PublishCloudEventOptionalParams,
+  PublishCloudEventsOptionalParams,
+  ReceiveCloudEventsOptionalParams,
+  AcknowledgeCloudEventsOptionalParams,
+  ReleaseCloudEventsOptionalParams,
+  RejectCloudEventsOptionalParams,
 } from "./models/options.js";
 import {
   createEventGrid,
@@ -42,11 +42,11 @@ export class EventGridClient {
 
   /** Azure Messaging EventGrid Client */
   constructor(
-    endpoint: string,
+    endpointParam: string,
     credential: KeyCredential,
     options: EventGridClientOptions = {},
   ) {
-    this._client = createEventGrid(endpoint, credential, options);
+    this._client = createEventGrid(endpointParam, credential, options);
     this.pipeline = this._client.pipeline;
   }
 
@@ -54,7 +54,7 @@ export class EventGridClient {
   publishCloudEvent(
     topicName: string,
     event: CloudEvent,
-    options: PublishCloudEventOptions = { requestOptions: {} },
+    options: PublishCloudEventOptionalParams = { requestOptions: {} },
   ): Promise<Record<string, any>> {
     return publishCloudEvent(this._client, topicName, event, options);
   }
@@ -63,7 +63,7 @@ export class EventGridClient {
   publishCloudEvents(
     topicName: string,
     events: CloudEvent[],
-    options: PublishCloudEventsOptions = { requestOptions: {} },
+    options: PublishCloudEventsOptionalParams = { requestOptions: {} },
   ): Promise<Record<string, any>> {
     return publishCloudEvents(this._client, topicName, events, options);
   }
@@ -72,7 +72,7 @@ export class EventGridClient {
   receiveCloudEvents(
     topicName: string,
     eventSubscriptionName: string,
-    options: ReceiveCloudEventsOptions = { requestOptions: {} },
+    options: ReceiveCloudEventsOptionalParams = { requestOptions: {} },
   ): Promise<ReceiveResult> {
     return receiveCloudEvents(
       this._client,
@@ -87,7 +87,7 @@ export class EventGridClient {
     topicName: string,
     eventSubscriptionName: string,
     lockTokens: AcknowledgeOptions,
-    options: AcknowledgeCloudEventsOptions = { requestOptions: {} },
+    options: AcknowledgeCloudEventsOptionalParams = { requestOptions: {} },
   ): Promise<AcknowledgeResult> {
     return acknowledgeCloudEvents(
       this._client,
@@ -103,7 +103,7 @@ export class EventGridClient {
     topicName: string,
     eventSubscriptionName: string,
     lockTokens: ReleaseOptions,
-    options: ReleaseCloudEventsOptions = { requestOptions: {} },
+    options: ReleaseCloudEventsOptionalParams = { requestOptions: {} },
   ): Promise<ReleaseResult> {
     return releaseCloudEvents(
       this._client,
@@ -119,7 +119,7 @@ export class EventGridClient {
     topicName: string,
     eventSubscriptionName: string,
     lockTokens: RejectOptions,
-    options: RejectCloudEventsOptions = { requestOptions: {} },
+    options: RejectCloudEventsOptionalParams = { requestOptions: {} },
   ): Promise<RejectResult> {
     return rejectCloudEvents(
       this._client,

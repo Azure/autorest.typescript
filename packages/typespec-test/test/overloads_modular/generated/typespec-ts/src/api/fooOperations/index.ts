@@ -15,14 +15,14 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  FooOperationsGetAvatarAsPngOptions,
-  FooOperationsGetAvatarAsJpegOptions,
+  FooOperationsGetAvatarAsPngOptionalParams,
+  FooOperationsGetAvatarAsJpegOptionalParams,
 } from "../../models/options.js";
 
 export function _getAvatarAsPngSend(
   context: Client,
   image: Uint8Array,
-  options: FooOperationsGetAvatarAsPngOptions = { requestOptions: {} },
+  options: FooOperationsGetAvatarAsPngOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse> {
   return context
     .path("/avatar")
@@ -49,7 +49,7 @@ export async function _getAvatarAsPngDeserialize(
 export async function getAvatarAsPng(
   context: Client,
   image: Uint8Array,
-  options: FooOperationsGetAvatarAsPngOptions = { requestOptions: {} },
+  options: FooOperationsGetAvatarAsPngOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getAvatarAsPngSend(context, image, options);
   return _getAvatarAsPngDeserialize(result);
@@ -58,7 +58,7 @@ export async function getAvatarAsPng(
 export function _getAvatarAsJpegSend(
   context: Client,
   image: Uint8Array,
-  options: FooOperationsGetAvatarAsJpegOptions = { requestOptions: {} },
+  options: FooOperationsGetAvatarAsJpegOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse
 > {
@@ -87,7 +87,7 @@ export async function _getAvatarAsJpegDeserialize(
 export async function getAvatarAsJpeg(
   context: Client,
   image: Uint8Array,
-  options: FooOperationsGetAvatarAsJpegOptions = { requestOptions: {} },
+  options: FooOperationsGetAvatarAsJpegOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _getAvatarAsJpegSend(context, image, options);
   return _getAvatarAsJpegDeserialize(result);

@@ -4,7 +4,7 @@
 export { AClient, AClientOptions } from "./AClient.js";
 export {
   ClientType,
-  RenamedOneOptions,
-  RenamedThreeOptions,
-  RenamedFiveOptions,
+  RenamedOneOptionalParams,
+  RenamedThreeOptionalParams,
+  RenamedFiveOptionalParams,
 } from "./models/index.js";

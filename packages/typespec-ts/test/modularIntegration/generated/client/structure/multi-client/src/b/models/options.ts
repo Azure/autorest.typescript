@@ -3,8 +3,8 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface RenamedTwoOptions extends OperationOptions {}
+export interface RenamedTwoOptionalParams extends OperationOptions {}
 
-export interface RenamedFourOptions extends OperationOptions {}
+export interface RenamedFourOptionalParams extends OperationOptions {}
 
-export interface RenamedSixOptions extends OperationOptions {}
+export interface RenamedSixOptionalParams extends OperationOptions {}

@@ -211,9 +211,12 @@ export function getClassicalOperation(
     });
   }
 
-  function getClassicalMethodName(
-    declaration: OptionalKind<FunctionDeclarationStructure>
-  ) {
-    return operationMap.get(declaration) ?? declaration.name ?? "FIXME";
+  function getClassicalMethodName(declaration: OptionalKind<FunctionDeclarationStructure> & { propertyName?: string }) {
+    return (
+      operationMap.get(declaration) ?? 
+      declaration.propertyName ??
+      declaration.name ??
+      "FIXME"
+    );
   }
 }

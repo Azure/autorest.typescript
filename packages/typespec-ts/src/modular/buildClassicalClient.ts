@@ -203,7 +203,7 @@ function buildClientOperationGroups(
         const declarations = getOperationFunction(op, clientType);
         const method: MethodDeclarationStructure = {
           docs: declarations.docs,
-          name: declarations.name ?? "FIXME",
+          name: declarations.propertyName ?? declarations.name ?? "FIXME",
           kind: StructureKind.Method,
           returnType: declarations.returnType,
           parameters: declarations.parameters?.filter(

@@ -3,6 +3,6 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface CreateStreamingOptions extends OperationOptions {}
+export interface CreateStreamingOptionalParams extends OperationOptions {}
 
-export interface CreateOptions extends OperationOptions {}
+export interface CreateOptionalParams extends OperationOptions {}

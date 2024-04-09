@@ -12,13 +12,13 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  DatetimeValueGetOptions,
-  DatetimeValuePutOptions,
+  DatetimeValueGetOptionalParams,
+  DatetimeValuePutOptionalParams,
 } from "../../models/options.js";
 
 export function _datetimeValueGetSend(
   context: Client,
-  options: DatetimeValueGetOptions = { requestOptions: {} },
+  options: DatetimeValueGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<DatetimeValueGet200Response> {
   return context
     .path("/type/array/datetime")
@@ -39,7 +39,7 @@ export async function _datetimeValueGetDeserialize(
 
 export async function datetimeValueGet(
   context: Client,
-  options: DatetimeValueGetOptions = { requestOptions: {} },
+  options: DatetimeValueGetOptionalParams = { requestOptions: {} },
 ): Promise<Date[]> {
   const result = await _datetimeValueGetSend(context, options);
   return _datetimeValueGetDeserialize(result);
@@ -48,7 +48,7 @@ export async function datetimeValueGet(
 export function _datetimeValuePutSend(
   context: Client,
   body: Date[],
-  options: DatetimeValuePutOptions = { requestOptions: {} },
+  options: DatetimeValuePutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<DatetimeValuePut204Response> {
   return context
     .path("/type/array/datetime")
@@ -68,7 +68,7 @@ export async function _datetimeValuePutDeserialize(
 export async function datetimeValuePut(
   context: Client,
   body: Date[],
-  options: DatetimeValuePutOptions = { requestOptions: {} },
+  options: DatetimeValuePutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _datetimeValuePutSend(context, body, options);
   return _datetimeValuePutDeserialize(result);

@@ -7,24 +7,28 @@ import {
   nullableFloatValuePut,
 } from "../../api/nullableFloatValue/index.js";
 import {
-  NullableFloatValueGetOptions,
-  NullableFloatValuePutOptions,
+  NullableFloatValueGetOptionalParams,
+  NullableFloatValuePutOptionalParams,
 } from "../../models/options.js";
 
 export interface NullableFloatValueOperations {
-  get: (options?: NullableFloatValueGetOptions) => Promise<(number | null)[]>;
+  get: (
+    options?: NullableFloatValueGetOptionalParams,
+  ) => Promise<(number | null)[]>;
   put: (
     body: (number | null)[],
-    options?: NullableFloatValuePutOptions,
+    options?: NullableFloatValuePutOptionalParams,
   ) => Promise<void>;
 }
 
 export function getNullableFloatValue(context: ArrayContext) {
   return {
-    get: (options?: NullableFloatValueGetOptions) =>
+    get: (options?: NullableFloatValueGetOptionalParams) =>
       nullableFloatValueGet(context, options),
-    put: (body: (number | null)[], options?: NullableFloatValuePutOptions) =>
-      nullableFloatValuePut(context, body, options),
+    put: (
+      body: (number | null)[],
+      options?: NullableFloatValuePutOptionalParams,
+    ) => nullableFloatValuePut(context, body, options),
   };
 }
 

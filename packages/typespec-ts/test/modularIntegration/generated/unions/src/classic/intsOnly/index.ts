@@ -4,19 +4,22 @@
 import { UnionContext } from "../../api/UnionContext.js";
 import { intsOnlyGet, intsOnlySend } from "../../api/intsOnly/index.js";
 import {
-  IntsOnlyGetOptions,
-  IntsOnlySendOptions,
+  IntsOnlyGetOptionalParams,
+  IntsOnlySendOptionalParams,
 } from "../../models/options.js";
 
 export interface IntsOnlyOperations {
-  get: (options?: IntsOnlyGetOptions) => Promise<{ prop: 1 | 2 | 3 }>;
-  send: (prop: 1 | 2 | 3, options?: IntsOnlySendOptions) => Promise<void>;
+  get: (options?: IntsOnlyGetOptionalParams) => Promise<{ prop: 1 | 2 | 3 }>;
+  send: (
+    prop: 1 | 2 | 3,
+    options?: IntsOnlySendOptionalParams,
+  ) => Promise<void>;
 }
 
 export function getIntsOnly(context: UnionContext) {
   return {
-    get: (options?: IntsOnlyGetOptions) => intsOnlyGet(context, options),
-    send: (prop: 1 | 2 | 3, options?: IntsOnlySendOptions) =>
+    get: (options?: IntsOnlyGetOptionalParams) => intsOnlyGet(context, options),
+    send: (prop: 1 | 2 | 3, options?: IntsOnlySendOptionalParams) =>
       intsOnlySend(context, prop, options),
   };
 }

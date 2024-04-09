@@ -3,7 +3,7 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface SmokeTestOptions extends OperationOptions {
+export interface SmokeTestOptionalParams extends OperationOptions {
   /** The request should only proceed if an entity matches this string. */
   ifMatch?: string;
   /** The request should only proceed if no entity matches this string. */
@@ -16,7 +16,7 @@ export interface SmokeTestOptions extends OperationOptions {
   clientRequestId?: string;
 }
 
-export interface RepeatableActionOptions extends OperationOptions {
+export interface RepeatableActionOptionalParams extends OperationOptions {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
   repeatabilityRequestId?: string;
   /** Specifies the date and time at which the request was first created. */

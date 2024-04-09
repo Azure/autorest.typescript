@@ -3,14 +3,15 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface GetModelOptions extends OperationOptions {}
+export interface GetModelOptionalParams extends OperationOptions {}
 
-export interface PutModelOptions extends OperationOptions {}
+export interface PutModelOptionalParams extends OperationOptions {}
 
-export interface GetRecursiveModelOptions extends OperationOptions {}
+export interface GetRecursiveModelOptionalParams extends OperationOptions {}
 
-export interface PutRecursiveModelOptions extends OperationOptions {}
+export interface PutRecursiveModelOptionalParams extends OperationOptions {}
 
-export interface GetMissingDiscriminatorOptions extends OperationOptions {}
+export interface GetMissingDiscriminatorOptionalParams
+  extends OperationOptions {}
 
-export interface GetWrongDiscriminatorOptions extends OperationOptions {}
+export interface GetWrongDiscriminatorOptionalParams extends OperationOptions {}

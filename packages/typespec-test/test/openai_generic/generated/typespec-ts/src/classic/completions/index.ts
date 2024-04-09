@@ -7,12 +7,12 @@ import {
   CreateCompletionResponse,
 } from "../../models/models.js";
 import { create } from "../../api/completions/index.js";
-import { CompletionsCreateOptions } from "../../models/options.js";
+import { CompletionsCreateOptionalParams } from "../../models/options.js";
 
 export interface CompletionsOperations {
   create: (
     body: CreateCompletionRequest,
-    options?: CompletionsCreateOptions,
+    options?: CompletionsCreateOptionalParams,
   ) => Promise<CreateCompletionResponse>;
 }
 
@@ -20,7 +20,7 @@ export function getCompletions(context: OpenAIContext) {
   return {
     create: (
       body: CreateCompletionRequest,
-      options?: CompletionsCreateOptions,
+      options?: CompletionsCreateOptionalParams,
     ) => create(context, body, options),
   };
 }

@@ -3,10 +3,12 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface FooOperationsGetAvatarAsPngOptions extends OperationOptions {
+export interface FooOperationsGetAvatarAsPngOptionalParams
+  extends OperationOptions {
   contentType?: string;
 }
 
-export interface FooOperationsGetAvatarAsJpegOptions extends OperationOptions {
+export interface FooOperationsGetAvatarAsJpegOptionalParams
+  extends OperationOptions {
   contentType?: string;
 }

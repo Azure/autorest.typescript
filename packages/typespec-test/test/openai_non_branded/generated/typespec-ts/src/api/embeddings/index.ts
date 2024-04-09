@@ -15,12 +15,12 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@typespec/ts-http-runtime";
-import { EmbeddingsCreateOptions } from "../../models/options.js";
+import { EmbeddingsCreateOptionalParams } from "../../models/options.js";
 
 export function _createSend(
   context: Client,
   embedding: CreateEmbeddingRequest,
-  options: EmbeddingsCreateOptions = { requestOptions: {} },
+  options: EmbeddingsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse
 > {
@@ -61,7 +61,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   embedding: CreateEmbeddingRequest,
-  options: EmbeddingsCreateOptions = { requestOptions: {} },
+  options: EmbeddingsCreateOptionalParams = { requestOptions: {} },
 ): Promise<CreateEmbeddingResponse> {
   const result = await _createSend(context, embedding, options);
   return _createDeserialize(result);

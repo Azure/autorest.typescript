@@ -3,7 +3,10 @@
 
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { ValidOptions, InvalidOptions } from "./models/options.js";
+import {
+  ValidOptionalParams,
+  InvalidOptionalParams,
+} from "./models/options.js";
 import {
   createOAuth2,
   OAuth2ClientOptions,
@@ -26,12 +29,14 @@ export class OAuth2Client {
   }
 
   /** Check whether client is authenticated */
-  valid(options: ValidOptions = { requestOptions: {} }): Promise<void> {
+  valid(options: ValidOptionalParams = { requestOptions: {} }): Promise<void> {
     return valid(this._client, options);
   }
 
   /** Check whether client is authenticated. Will return an invalid bearer error. */
-  invalid(options: InvalidOptions = { requestOptions: {} }): Promise<void> {
+  invalid(
+    options: InvalidOptionalParams = { requestOptions: {} },
+  ): Promise<void> {
     return invalid(this._client, options);
   }
 }

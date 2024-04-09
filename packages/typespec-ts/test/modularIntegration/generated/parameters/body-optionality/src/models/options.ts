@@ -3,10 +3,10 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface RequiredExplicitOptions extends OperationOptions {}
+export interface RequiredExplicitOptionalParams extends OperationOptions {}
 
-export interface RequiredImplicitOptions extends OperationOptions {}
+export interface RequiredImplicitOptionalParams extends OperationOptions {}
 
-export interface OptionalExplicitSetOptions extends OperationOptions {}
+export interface OptionalExplicitSetOptionalParams extends OperationOptions {}
 
-export interface OptionalExplicitOmitOptions extends OperationOptions {}
+export interface OptionalExplicitOmitOptionalParams extends OperationOptions {}

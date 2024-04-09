@@ -12,10 +12,10 @@ export { BatchContext } from "../rest/index.js";
 
 /** Azure Batch provides Cloud-scale job scheduling and compute management. */
 export function createBatch(
-  endpoint: string,
+  endpointParam: string,
   credential: TokenCredential,
   options: BatchClientOptions = {},
 ): BatchContext {
-  const clientContext = getClient(endpoint, credential, options);
+  const clientContext = getClient(endpointParam, credential, options);
   return clientContext;
 }
