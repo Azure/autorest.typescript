@@ -80,7 +80,7 @@ export function getClassicalOperation(
           .map(
             (p) =>
               p.name +
-              (p.name === "options" || p.hasQuestionToken ? "?" : "") +
+              (p.type?.toString().endsWith("OptionalParams") ? "?" : "") +
               ": " +
               p.type
           )
@@ -121,7 +121,7 @@ export function getClassicalOperation(
               .map(
                 (p) =>
                   p.name +
-                  (p.name === "options" || p.hasQuestionToken ? "?" : "") +
+                  (p.type?.toString().endsWith("OptionalParams") ? "?" : "") +
                   ": " +
                   p.type
               )
@@ -211,9 +211,13 @@ export function getClassicalOperation(
     });
   }
 
-  function getClassicalMethodName(declaration: OptionalKind<FunctionDeclarationStructure> & { propertyName?: string }) {
+  function getClassicalMethodName(
+    declaration: OptionalKind<FunctionDeclarationStructure> & {
+      propertyName?: string;
+    }
+  ) {
     return (
-      operationMap.get(declaration) ?? 
+      operationMap.get(declaration) ??
       declaration.propertyName ??
       declaration.name ??
       "FIXME"

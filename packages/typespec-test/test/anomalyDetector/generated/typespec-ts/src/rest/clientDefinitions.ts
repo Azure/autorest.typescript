@@ -192,6 +192,6 @@ export interface Routes {
   ): DetectMultivariateLastAnomaly;
 }
 
-export type AnomalyDetectorClient = Client & {
+export type AnomalyDetectorContext = Client & {
   path: Routes;
 };

@@ -2,10 +2,6 @@
 // Licensed under the MIT license.
 
 export {
-  AnomalyDetectorClient,
-  AnomalyDetectorClientOptions,
-} from "./AnomalyDetectorClient.js";
-export {
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionResultSummary,
   MultivariateBatchDetectionStatus,
@@ -38,6 +34,8 @@ export {
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
+} from "./models.js";
+export {
   UnivariateDetectUnivariateEntireSeriesOptionalParams,
   UnivariateDetectUnivariateLastPointOptionalParams,
   UnivariateDetectUnivariateChangePointOptionalParams,
@@ -48,11 +46,9 @@ export {
   MultivariateGetMultivariateModelOptionalParams,
   MultivariateDetectMultivariateBatchAnomalyOptionalParams,
   MultivariateDetectMultivariateLastAnomalyOptionalParams,
+} from "./options.js";
+export {
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
-} from "./models/index.js";
-export {
-  MultivariateOperations,
-  UnivariateOperations,
-} from "./classic/index.js";
+} from "./pagingTypes.js";
