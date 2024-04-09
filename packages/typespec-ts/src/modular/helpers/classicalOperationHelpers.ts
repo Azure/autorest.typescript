@@ -80,7 +80,10 @@ export function getClassicalOperation(
           .map(
             (p) =>
               p.name +
-              (p.type?.toString().endsWith("OptionalParams") ? "?" : "") +
+              (p.type?.toString().endsWith("OptionalParams") ||
+              p.hasQuestionToken
+                ? "?"
+                : "") +
               ": " +
               p.type
           )
@@ -121,7 +124,10 @@ export function getClassicalOperation(
               .map(
                 (p) =>
                   p.name +
-                  (p.type?.toString().endsWith("OptionalParams") ? "?" : "") +
+                  (p.type?.toString().endsWith("OptionalParams") ||
+                  p.hasQuestionToken
+                    ? "?"
+                    : "") +
                   ": " +
                   p.type
               )
