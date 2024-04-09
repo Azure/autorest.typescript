@@ -8,13 +8,14 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { SchemaContext } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
-import { getHttpOperation, HttpOperation } from "@typespec/http";
+import { getHttpOperation, getServers, HttpOperation } from "@typespec/http";
 import {
   getSchemaForType,
   includeDerivedModel,
   getBodyType,
   trimUsage,
-  isAzureCoreErrorType
+  isAzureCoreErrorType,
+  getDefaultService
 } from "../utils/modelUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { KnownMediaType, extractMediaTypes } from "../utils/mediaTypes.js";
@@ -98,6 +99,22 @@ export function transformSchemas(
       }
     }
   }
+  function transformHostParameters() {
+    const serviceNs = getDefaultService(program)?.type;
+    if (serviceNs) {
+      const host = getServers(program, serviceNs);
+      if (host && host?.[0] && host?.[0]?.parameters) {
+        for (const key of host[0].parameters.keys()) {
+          const type = host?.[0]?.parameters.get(key)?.type;
+          if (!type) {
+            continue;
+          }
+          getGeneratedModels(type, SchemaContext.Input);
+        }
+      }
+    }
+  }
+  transformHostParameters();
   program.stateMap(modelKey).forEach((context, tspModel) => {
     const model = getSchemaForType(dpgContext, tspModel, {
       usage: context,

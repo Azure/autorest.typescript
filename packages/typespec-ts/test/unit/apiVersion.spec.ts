@@ -176,9 +176,10 @@ const buildPathReturn_WithDefault = () => {
   import { getClient, ClientOptions } from "@azure-rest/core-client";
   import { logger } from "./logger.js";
   import { testClient } from "./clientDefinitions.js";
+  import { Versions } from "./models.js";
 
   export interface testClientOptions extends ClientOptions {
-    apiVersion?: string;
+    apiVersion?: Versions;
   }
   
   /**
@@ -221,16 +222,17 @@ const buildPathReturn_WithoutDefault = () => {
   import { getClient, ClientOptions } from "@azure-rest/core-client";
   import { logger } from "./logger.js";
   import { testClient } from "./clientDefinitions.js";
+  import { Versions } from "./models.js";
   
   /**
    * Initialize a new instance of \`testClient\`
    * @param endpointParam - The endpoint to use.
-   * @param apiVersion - Api Version Possible values: "2022-05-15-preview"
+   * @param apiVersion - Api Version
    * @param options - the parameter for all optional parameters
    */
   export default function createClient(
     endpointParam: string,
-    apiVersion: string,
+    apiVersion: Versions,
     options: ClientOptions = {}
   ): testClient {
     const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/anomalydetector/\${apiVersion}\`;
@@ -258,7 +260,7 @@ const buildPathReturn_WithoutDefault = () => {
   }`;
 };
 
-describe.skip("api-version", () => {
+describe("api-version", () => {
   describe("defined in query position", () => {
     describe("with default value", () => {
       it("in @versioned", async () => {
@@ -292,7 +294,6 @@ describe.skip("api-version", () => {
         const expectedRes = buildPathReturn_WithDefault();
         const models = await emitClientFactoryFromTypeSpec(def);
         assert.ok(models);
-        console.log(models!.content);
         await assertEqualContent(models!.content, expectedRes);
       });
     });

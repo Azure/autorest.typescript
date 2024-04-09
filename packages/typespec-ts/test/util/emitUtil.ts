@@ -153,7 +153,7 @@ export async function emitParameterFromTypeSpec(
   const importSet = initInternalImports();
   let parameters;
   if (clients && clients[0]) {
-    const urlInfo = transformUrlInfo(clients[0], dpgContext);
+    const urlInfo = transformUrlInfo(clients[0], dpgContext, importSet);
     parameters = transformToParameterTypes(
       importSet,
       clients[0],
@@ -219,12 +219,13 @@ export async function emitClientFactoryFromTypeSpec(
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
+  const importSet = initInternalImports();
 
-  const creadentialInfo = getCredentialInfo(program, {});
+  const credentialInfo = getCredentialInfo(program, {});
 
   let urlInfo;
   if (clients && clients[0]) {
-    urlInfo = transformUrlInfo(clients[0], dpgContext);
+    urlInfo = transformUrlInfo(clients[0], dpgContext, importSet);
   }
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
@@ -243,10 +244,10 @@ export async function emitClientFactoryFromTypeSpec(
         version: "1.0.0-beta.1"
       },
       flavor: "azure",
-      ...creadentialInfo
+      ...credentialInfo
     },
     importInfo: {
-      internalImports: initInternalImports(),
+      internalImports: importSet,
       runtimeImports: buildRuntimeImports("azure")
     }
   });

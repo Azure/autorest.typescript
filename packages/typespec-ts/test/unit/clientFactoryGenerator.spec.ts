@@ -3,7 +3,7 @@ import { emitClientFactoryFromTypeSpec } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 import { Diagnostic } from "@typespec/compiler";
 
-describe.skip("Client Factory generation", () => {
+describe("Client Factory generation", () => {
   describe("should handle url parameters", () => {
     it("should handle zero parameter", async () => {
       const models = await emitClientFactoryFromTypeSpec(`
@@ -112,39 +112,38 @@ describe.skip("Client Factory generation", () => {
     });
 
     it("should handle two parameters", async () => {
-      const models = await emitClientFactoryFromTypeSpec(
-        `
-            @server(
-              "{Endpoint}/language/{Version}",
-              "Language Service",
-              {
-                Endpoint: Endpoint,
-                Version: Version
-              }
-            )
-            @service( {title: "PetStoreClient"})
-            namespace PetStore;
-            @doc("The endpoint to use.")
-            scalar Endpoint extends string;
+      const tsp = `
+      @server(
+        "{Endpoint}/language/{Version}",
+        "Language Service",
+        {
+          Endpoint: Endpoint,
+          Version: Version
+        }
+      )
+      @service( {title: "PetStoreClient"})
+      namespace PetStore;
+      @doc("The endpoint to use.")
+      scalar Endpoint extends string;
 
-            #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-            #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
-            @doc("The version to use")
-            @fixed
-            enum Version {
-              V1,
-              V2
-            }
-            `,
-        true
-      );
-      assert.ok(models);
+      #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+      @doc("The version to use")
+      @fixed
+      enum Version {
+        V1,
+        V2
+      }
+      `;
+      const clientFactory = await emitClientFactoryFromTypeSpec(tsp, true);
+      assert.ok(clientFactory);
       await assertEqualContent(
-        models!.content,
+        clientFactory!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
             import { logger } from "./logger.js";
             import { testClient } from "./clientDefinitions.js";
+            import { Version } from "./models.js";
             
             /**
              * Initialize a new instance of \`testClient\`
@@ -154,7 +153,7 @@ describe.skip("Client Factory generation", () => {
              */
             export default function createClient(
               endpointParam: string,
-              version: "V1" | "V2",
+              version: Version,
               options: ClientOptions = {}
             ): testClient {
               const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language/\${version}\`;
@@ -214,16 +213,17 @@ describe.skip("Client Factory generation", () => {
             import { getClient, ClientOptions } from "@azure-rest/core-client";
             import { logger } from "./logger.js";
             import { testClient } from "./clientDefinitions.js";
+            import { Versions } from "./models.js";
             
             /**
              * Initialize a new instance of \`testClient\`
              * @param endpointParam - The endpoint to use.
-             * @param version - The version to use. Possible values: "v1.1"
+             * @param version - The version to use.
              * @param options - the parameter for all optional parameters
              */
             export default function createClient(
               endpointParam: string,
-              version: string,
+              version: Versions,
               options: ClientOptions = {}
             ): testClient {
               const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language/\${version}\`;
@@ -284,6 +284,7 @@ describe.skip("Client Factory generation", () => {
             import { getClient, ClientOptions } from "@azure-rest/core-client";
             import { logger } from "./logger.js";
             import { testClient } from "./clientDefinitions.js";
+            import { Versions } from "./models.js";
 
             export interface testClientOptions extends ClientOptions {
               endpointParam?: string;
@@ -291,11 +292,11 @@ describe.skip("Client Factory generation", () => {
 
             /**
              * Initialize a new instance of \`testClient\`
-             * @param version - The version to use. Possible values: "v1.1"
+             * @param version - The version to use.
              * @param options - the parameter for all optional parameters
              */
             export default function createClient(
-              version: string,
+              version: Versions,
               options: testClientOptions = {}
             ): testClient {
               const endpointParam = options.endpointParam ?? "http://localhost:3000";

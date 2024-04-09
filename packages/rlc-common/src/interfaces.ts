@@ -29,6 +29,7 @@ export type ImportType =
   | "response"
   | "rlcIndex"
   | "modularModel"
+  | "rlcClientFactory"
   /**common third party imports */
   | "restClient"
   | "coreAuth"

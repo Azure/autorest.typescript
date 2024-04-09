@@ -78,6 +78,10 @@ export function initInternalImports(): Imports {
     modularModel: {
       type: "modularModel",
       importsSet: new Set<string>()
+    },
+    rlcClientFactory: {
+      type: "rlcClientFactory",
+      importsSet: new Set<string>()
     }
   } as Imports;
 }
