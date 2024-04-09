@@ -45,14 +45,14 @@ export function buildClientContext(
     properties: client.parameters
       .filter((p) => {
         return (
-          p.optional || (p.type.type !== "constant" && p.clientDefaultValue)
+           !(p.type.type === "constant" && p.clientDefaultValue)
         );
       })
       .map((p) => {
         return {
           name: p.clientName,
           type: getType(p.type).name,
-          hasQuestionToken: true,
+          hasQuestionToken: p.optional === false? (p.clientDefaultValue ? true: false): true,
           docs: getDocsFromDescription(p.description)
         };
       })
