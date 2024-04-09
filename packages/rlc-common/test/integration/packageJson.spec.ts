@@ -329,7 +329,7 @@ describe("Package file generation", () => {
       expect(packageFile.devDependencies).to.have.property("vitest");
     });
 
-    it("[esm] should include correct scripts with tests", () => {
+    it.only("[esm] should include correct scripts with tests", () => {
       const model = createMockModel({
         ...baseConfig,
         moduleKind: "esm",
@@ -382,6 +382,10 @@ describe("Package file generation", () => {
         "unit-test",
         "npm run unit-test:node && npm run unit-test:browser"
       );
+      expect(packageFile.scripts).to.have.property(
+        "format",
+        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"'
+      );
 
     });
 
@@ -428,7 +432,7 @@ describe("Package file generation", () => {
       expect(packageFile.devDependencies).to.have.property("esm");
     });
 
-    it("[cjs] should include correct scripts with tests", () => {
+    it.only("[cjs] should include correct scripts with tests", () => {
       const model = createMockModel({
         ...baseConfig,
         moduleKind: "cjs",
@@ -472,6 +476,26 @@ describe("Package file generation", () => {
       expect(packageFile.scripts).to.have.property(
         "clean",
         "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "extract-api",
+        "rimraf review && mkdirp ./review && api-extractor run --local"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "integration-test",
+        "npm run integration-test:node && npm run integration-test:browser"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "pack",
+        "npm pack 2>&1"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "unit-test",
+        "npm run unit-test:node && npm run unit-test:browser"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "format",
+        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"'
       );
     });
   });
