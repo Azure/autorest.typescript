@@ -13,7 +13,7 @@ describe("MediaType Client", () => {
   it("should getAsText", async () => {
     try {
       const result = await client.stringBody.getAsText({
-        requestOptions: { accept: "text/plain" } as any
+        requestOptions: { headers: { accept: "text/plain" } }
       });
       // const result = await client.stringBody.getAsText({
       //   onResponse: (res) => {
