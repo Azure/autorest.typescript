@@ -13,11 +13,19 @@ export function buildRootIndex(
   const subfolder = client.subfolder ?? "";
   const clientName = `${getClientName(client)}Client`;
   const clientFile = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${clientName}.ts`
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
+      clientName,
+      NameType.File
+    )}.ts`
   );
 
   if (!clientFile) {
-    throw new Error(`Couldn't find client file: ${srcPath}/${clientName}.ts`);
+    throw new Error(
+      `Couldn't find client file: ${srcPath}/${normalizeName(
+        clientName,
+        NameType.File
+      )}.ts`
+    );
   }
 
   exportClassicalClient(client, rootIndexFile, subfolder);
