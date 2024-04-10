@@ -29,7 +29,7 @@ import {
   CreateOrUpdateUser200Response,
   CreateOrUpdateUser201Response,
   CreateOrUpdateUserDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /app/collections": ["200"],

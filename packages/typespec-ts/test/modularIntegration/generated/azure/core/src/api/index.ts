@@ -14,8 +14,8 @@ export {
   listWithPage,
   listWithParameters,
   listWithCustomPageModel,
-  deleteOperation,
-  exportOperation,
+  $delete,
+  $export,
   listFirstItem,
   listSecondItem,
 } from "./operations.js";

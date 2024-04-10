@@ -9,11 +9,11 @@ import {
   UnivariateUnivariateLastDetectionResultOutput,
   UnivariateUnivariateChangePointDetectionResultOutput,
   MultivariateMultivariateDetectionResultOutput,
-  MultivariateErrorResponseOutput,
+  MultivariateResponseErrorOutput,
   MultivariateAnomalyDetectionModelOutput,
   MultivariateModelListOutput,
   MultivariateMultivariateLastDetectionResultOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface DetectUnivariateEntireSeries200Response extends HttpResponse {
@@ -83,7 +83,7 @@ export interface GetMultivariateBatchDetectionResultDefaultHeaders {
 export interface GetMultivariateBatchDetectionResultDefaultResponse
   extends HttpResponse {
   status: string;
-  body: MultivariateErrorResponseOutput;
+  body: MultivariateResponseErrorOutput;
   headers: RawHttpHeaders & GetMultivariateBatchDetectionResultDefaultHeaders;
 }
 
@@ -106,7 +106,7 @@ export interface TrainMultivariateModelDefaultHeaders {
 
 export interface TrainMultivariateModelDefaultResponse extends HttpResponse {
   status: string;
-  body: MultivariateErrorResponseOutput;
+  body: MultivariateResponseErrorOutput;
   headers: RawHttpHeaders & TrainMultivariateModelDefaultHeaders;
 }
 
@@ -123,7 +123,7 @@ export interface ListMultivariateModelsDefaultHeaders {
 
 export interface ListMultivariateModelsDefaultResponse extends HttpResponse {
   status: string;
-  body: MultivariateErrorResponseOutput;
+  body: MultivariateResponseErrorOutput;
   headers: RawHttpHeaders & ListMultivariateModelsDefaultHeaders;
 }
 
@@ -139,7 +139,7 @@ export interface DeleteMultivariateModelDefaultHeaders {
 
 export interface DeleteMultivariateModelDefaultResponse extends HttpResponse {
   status: string;
-  body: MultivariateErrorResponseOutput;
+  body: MultivariateResponseErrorOutput;
   headers: RawHttpHeaders & DeleteMultivariateModelDefaultHeaders;
 }
 
@@ -156,7 +156,7 @@ export interface GetMultivariateModelDefaultHeaders {
 
 export interface GetMultivariateModelDefaultResponse extends HttpResponse {
   status: string;
-  body: MultivariateErrorResponseOutput;
+  body: MultivariateResponseErrorOutput;
   headers: RawHttpHeaders & GetMultivariateModelDefaultHeaders;
 }
 
@@ -183,7 +183,7 @@ export interface DetectMultivariateBatchAnomalyDefaultHeaders {
 export interface DetectMultivariateBatchAnomalyDefaultResponse
   extends HttpResponse {
   status: string;
-  body: MultivariateErrorResponseOutput;
+  body: MultivariateResponseErrorOutput;
   headers: RawHttpHeaders & DetectMultivariateBatchAnomalyDefaultHeaders;
 }
 
@@ -201,6 +201,6 @@ export interface DetectMultivariateLastAnomalyDefaultHeaders {
 export interface DetectMultivariateLastAnomalyDefaultResponse
   extends HttpResponse {
   status: string;
-  body: MultivariateErrorResponseOutput;
+  body: MultivariateResponseErrorOutput;
   headers: RawHttpHeaders & DetectMultivariateLastAnomalyDefaultHeaders;
 }

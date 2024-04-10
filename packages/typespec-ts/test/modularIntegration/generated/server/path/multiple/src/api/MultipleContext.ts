@@ -10,9 +10,9 @@ export interface MultipleClientOptions extends ClientOptions {}
 export { MultipleContext } from "../rest/index.js";
 
 export function createMultiple(
-  endpoint: string,
+  endpointParam: string,
   options: MultipleClientOptions = {},
 ): MultipleContext {
-  const clientContext = getClient(endpoint, options);
+  const clientContext = getClient(endpointParam, options);
   return clientContext;
 }

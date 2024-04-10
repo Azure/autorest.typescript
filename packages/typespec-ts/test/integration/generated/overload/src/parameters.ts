@@ -13,6 +13,7 @@ export interface UploadBodyParam {
   /** Value may contain any sequence of octets */
   body:
     | string
+    | string
     | Uint8Array
     | ReadableStream<Uint8Array>
     | NodeJS.ReadableStream;

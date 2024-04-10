@@ -10,7 +10,7 @@ import {
   LivenessSessionAuditEntryOutput,
   LivenessWithVerifySessionOutput,
   LivenessWithVerifySessionAuditEntryOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface CreateLivenessSession200Response extends HttpResponse {

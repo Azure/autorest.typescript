@@ -26,13 +26,13 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 
 // @public
 export interface PagedSchemaGroup {
-    nextLink?: string;
+    readonly nextLink?: string;
     value: SchemaGroup[];
 }
 
 // @public
 export interface PagedVersion {
-    nextLink?: string;
+    readonly nextLink?: string;
     value: SchemaVersion[];
 }
 
@@ -41,7 +41,7 @@ export interface PageSettings {
     continuationToken?: string;
 }
 
-// @public
+// @public (undocumented)
 export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";
 
 // @public
@@ -53,43 +53,43 @@ export interface SchemaGroup {
 }
 
 // @public (undocumented)
-export interface SchemaOperationsGetSchemaByIdOptions extends OperationOptions {
+export interface SchemaOperationsGetSchemaByIdOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface SchemaOperationsGetSchemaByVersionOptions extends OperationOptions {
+export interface SchemaOperationsGetSchemaByVersionOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface SchemaOperationsGetSchemaIdByContentOptions extends OperationOptions {
+export interface SchemaOperationsGetSchemaIdByContentOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface SchemaOperationsListSchemaGroupsOptions extends OperationOptions {
+export interface SchemaOperationsListSchemaGroupsOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface SchemaOperationsListSchemaVersionsOptions extends OperationOptions {
+export interface SchemaOperationsListSchemaVersionsOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
 export interface SchemaOperationsOperations {
     // (undocumented)
-    getSchemaById: (id: string, options?: SchemaOperationsGetSchemaByIdOptions) => Promise<Uint8Array>;
+    getSchemaById: (id: string, options?: SchemaOperationsGetSchemaByIdOptionalParams) => Promise<Uint8Array>;
     // (undocumented)
-    getSchemaByVersion: (groupName: string, name: string, schemaVersion: number, options?: SchemaOperationsGetSchemaByVersionOptions) => Promise<Uint8Array>;
+    getSchemaByVersion: (groupName: string, name: string, schemaVersion: number, options?: SchemaOperationsGetSchemaByVersionOptionalParams) => Promise<Uint8Array>;
     // (undocumented)
-    getSchemaIdByContent: (groupName: string, name: string, contentType: SchemaContentTypeValues, schemaContent: Uint8Array, options?: SchemaOperationsGetSchemaIdByContentOptions) => Promise<void>;
+    getSchemaIdByContent: (groupName: string, name: string, contentType: SchemaContentTypeValues, schemaContent: Uint8Array, options?: SchemaOperationsGetSchemaIdByContentOptionalParams) => Promise<void>;
     // (undocumented)
-    listSchemaGroups: (options?: SchemaOperationsListSchemaGroupsOptions) => PagedAsyncIterableIterator<SchemaGroup>;
+    listSchemaGroups: (options?: SchemaOperationsListSchemaGroupsOptionalParams) => PagedAsyncIterableIterator<SchemaGroup>;
     // (undocumented)
-    listSchemaVersions: (groupName: string, name: string, options?: SchemaOperationsListSchemaVersionsOptions) => PagedAsyncIterableIterator<SchemaVersion>;
+    listSchemaVersions: (groupName: string, name: string, options?: SchemaOperationsListSchemaVersionsOptionalParams) => PagedAsyncIterableIterator<SchemaVersion>;
     // (undocumented)
-    registerSchema: (groupName: string, name: string, contentType: SchemaContentTypeValues, content: Uint8Array, options?: SchemaOperationsRegisterSchemaOptions) => Promise<void>;
+    registerSchema: (groupName: string, name: string, contentType: SchemaContentTypeValues, content: Uint8Array, options?: SchemaOperationsRegisterSchemaOptionalParams) => Promise<void>;
 }
 
 // @public (undocumented)
-export interface SchemaOperationsRegisterSchemaOptions extends OperationOptions {
+export interface SchemaOperationsRegisterSchemaOptionalParams extends OperationOptions {
 }
 
 // @public

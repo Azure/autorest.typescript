@@ -15,7 +15,7 @@ import {
   DeleteUserParameters,
   GetUserParameters,
   CreateOrUpdateUserParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   ListCollections200Response,
   ListCollectionsDefaultResponse,
@@ -44,7 +44,7 @@ import {
   CreateOrUpdateUser200Response,
   CreateOrUpdateUser201Response,
   CreateOrUpdateUserDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ListCollections {

@@ -30,7 +30,8 @@ import {
   RLCOptions,
   hasUnexpectedHelper,
   RLCModel,
-  buildSamples
+  buildSamples,
+  buildVitestConfig
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
@@ -47,8 +48,8 @@ import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
-import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
+import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
 import { join } from "path";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
@@ -58,13 +59,15 @@ import {
   buildPagingTypes,
   buildPagingHelpers as buildModularPagingHelpers
 } from "./modular/buildPagingFiles.js";
+import { EmitterOptions } from "./lib.js";
+import { getModuleExports } from "./modular/buildProjectFiles.js";
 
 export * from "./lib.js";
 
 export async function $onEmit(context: EmitContext) {
   /** Shared status */
   const program: Program = context.program;
-  const emitterOptions: RLCOptions = context.options;
+  const emitterOptions: EmitterOptions = context.options;
   const dpgContext = createSdkContext(
     context,
     "@azure-tools/typespec-ts"
@@ -92,6 +95,14 @@ export async function $onEmit(context: EmitContext) {
       await calculateGenerationDir();
     dpgContext.generationPathDetail = generationPathDetail;
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
+    const hasTestFolder = await fsextra.pathExists(
+      join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
+    );
+    options.generateTest =
+      options.generateTest === true ||
+      (options.generateTest === undefined &&
+        !hasTestFolder &&
+        options.flavor === "azure");
     dpgContext.rlcOptions = options;
   }
 
@@ -184,6 +195,7 @@ export async function $onEmit(context: EmitContext) {
         buildModelsOptions(modularCodeModel, subClient);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
+        buildSerializeUtils(modularCodeModel);
         buildPagingTypes(modularCodeModel, subClient);
         buildModularPagingHelpers(
           modularCodeModel,
@@ -219,7 +231,9 @@ export async function $onEmit(context: EmitContext) {
         buildRootIndex(modularCodeModel, subClient, rootIndexFile);
       }
 
-      removeUnusedInterfaces(project);
+      if (!emitterOptions.generateOrphanModels) {
+        removeUnusedInterfaces(project);
+      }
 
       for (const file of project.getSourceFiles()) {
         await emitContentByBuilder(
@@ -238,7 +252,7 @@ export async function $onEmit(context: EmitContext) {
     }
     const rlcClient: RLCModel = rlcCodeModels[0];
     const option = dpgContext.rlcOptions!;
-    const isBranded = option.branded ?? true;
+    const isAzureFlavor = option.flavor === "azure";
     // Generate metadata
     const hasPackageFile = await existsSync(
       join(dpgContext.generationPathDetail?.metadataDir ?? "", "package.json")
@@ -246,20 +260,25 @@ export async function $onEmit(context: EmitContext) {
     const shouldGenerateMetadata =
       option.generateMetadata === true ||
       (option.generateMetadata === undefined && !hasPackageFile);
-
     if (shouldGenerateMetadata) {
       const commonBuilders = [
         buildRollupConfig,
         buildApiExtractorConfig,
         buildReadmeFile
       ];
-      if (isBranded) {
+      if (option.moduleKind === "esm") {
+        commonBuilders.push((model) => buildVitestConfig(model, "node"));
+        commonBuilders.push((model) => buildVitestConfig(model, "browser"));
+      }
+      if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
       }
-      if (!option.isModularLibrary) {
-        commonBuilders.push(buildPackageFile);
-        commonBuilders.push(buildTsConfig);
+      let moduleExports = {};
+      if (option.isModularLibrary) {
+        moduleExports = getModuleExports(modularCodeModel);
       }
+      commonBuilders.push((model) => buildPackageFile(model, moduleExports));
+      commonBuilders.push(buildTsConfig);
       // build metadata relevant files
       await emitContentByBuilder(
         program,
@@ -270,16 +289,6 @@ export async function $onEmit(context: EmitContext) {
 
       if (option.isModularLibrary) {
         const project = new Project();
-        emitPackage(
-          project,
-          dpgContext.generationPathDetail?.metadataDir ?? "",
-          modularCodeModel
-        );
-        emitTsConfig(
-          project,
-          dpgContext.generationPathDetail?.metadataDir ?? "",
-          modularCodeModel
-        );
         for (const file of project.getSourceFiles()) {
           await emitContentByBuilder(
             program,
@@ -291,13 +300,7 @@ export async function $onEmit(context: EmitContext) {
     }
 
     // Generate test relevant files
-    const hasTestFolder = await fsextra.pathExists(
-      join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
-    );
-    const shouldGenerateTest =
-      option.generateTest === true ||
-      (option.generateTest === undefined && !hasTestFolder);
-    if (shouldGenerateTest && isBranded) {
+    if (option.generateTest && isAzureFlavor) {
       await emitContentByBuilder(
         program,
         [

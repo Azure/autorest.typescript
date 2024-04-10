@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { MediaTypesClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { MediaTypesClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `MediaTypesClient`
@@ -14,7 +14,7 @@ export default function createClient(
   $host: string,
   options: ClientOptions = {},
 ): MediaTypesClient {
-  const baseUrl = options.baseUrl ?? `${$host}`;
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${$host}`;
 
   const userAgentInfo = `azsdk-js-media-types-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -31,7 +31,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as MediaTypesClient;
+  const client = getClient(endpointUrl, options) as MediaTypesClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 

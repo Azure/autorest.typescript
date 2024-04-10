@@ -1,8 +1,8 @@
 // Licensed under the MIT license.
 
 import {
-  CreateTranslationResponse,
   CreateTranslationRequest,
+  CreateTranslationResponse,
 } from "../../../models/models.js";
 import {
   AudioTranslationsCreate200Response,
@@ -13,14 +13,15 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  uint8ArrayToString,
   createRestError,
 } from "@typespec/ts-http-runtime";
-import { AudioTranslationsCreateOptions } from "../../../models/options.js";
+import { AudioTranslationsCreateOptionalParams } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,
   audio: CreateTranslationRequest,
-  options: AudioTranslationsCreateOptions = { requestOptions: {} },
+  options: AudioTranslationsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   AudioTranslationsCreate200Response | AudioTranslationsCreateDefaultResponse
 > {
@@ -30,7 +31,7 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        file: audio["file"],
+        file: uint8ArrayToString(audio["file"], "base64"),
         model: audio["model"],
         prompt: audio["prompt"],
         response_format: audio["responseFormat"],
@@ -56,7 +57,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   audio: CreateTranslationRequest,
-  options: AudioTranslationsCreateOptions = { requestOptions: {} },
+  options: AudioTranslationsCreateOptionalParams = { requestOptions: {} },
 ): Promise<CreateTranslationResponse> {
   const result = await _createSend(context, audio, options);
   return _createDeserialize(result);

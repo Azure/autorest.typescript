@@ -38,14 +38,14 @@ import {
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
-  WidgetsListWidgetsOptions,
-  WidgetsListWidgetsPagesOptions,
-  WidgetsQueryWidgetsPagesOptions,
-  WidgetsGetWidgetOptions,
-  WidgetsCreateWidgetOptions,
-  WidgetsUpdateWidgetOptions,
-  WidgetsDeleteWidgetOptions,
-  WidgetsAnalyzeWidgetOptions,
+  WidgetsListWidgetsOptionalParams,
+  WidgetsListWidgetsPagesOptionalParams,
+  WidgetsQueryWidgetsPagesOptionalParams,
+  WidgetsGetWidgetOptionalParams,
+  WidgetsCreateWidgetOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsAnalyzeWidgetOptionalParams,
 } from "../../models/options.js";
 
 export function _listWidgetsSend(
@@ -55,7 +55,7 @@ export function _listWidgetsSend(
   value: Uint8Array,
   csvArrayHeader: Uint8Array[],
   utcDateHeader: Date,
-  options: WidgetsListWidgetsOptions = { requestOptions: {} },
+  options: WidgetsListWidgetsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ListWidgets200Response | ListWidgetsDefaultResponse> {
   return context
     .path("/widgets")
@@ -100,12 +100,12 @@ export async function _listWidgetsDeserialize(
     throw createRestError(result);
   }
 
-  return !result.body
+  return result.body === undefined
     ? result.body
     : result.body.map((p) => ({
         id: p["id"],
         weight: p["weight"],
-        color: p["color"] as any,
+        color: p["color"],
       }));
 }
 
@@ -121,7 +121,7 @@ export async function listWidgets(
   value: Uint8Array,
   csvArrayHeader: Uint8Array[],
   utcDateHeader: Date,
-  options: WidgetsListWidgetsOptions = { requestOptions: {} },
+  options: WidgetsListWidgetsOptionalParams = { requestOptions: {} },
 ): Promise<Widget[]> {
   const result = await _listWidgetsSend(
     context,
@@ -139,7 +139,7 @@ export function _listWidgetsPagesSend(
   context: Client,
   page: number,
   pageSize: number,
-  options: WidgetsListWidgetsPagesOptions = { requestOptions: {} },
+  options: WidgetsListWidgetsPagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ListWidgetsPages200Response | ListWidgetsPagesDefaultResponse
 > {
@@ -162,7 +162,7 @@ export async function _listWidgetsPagesDeserialize(
     results: result.body["results"].map((p) => ({
       id: p["id"],
       weight: p["weight"],
-      color: p["color"] as any,
+      color: p["color"],
     })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
@@ -172,7 +172,7 @@ export function listWidgetsPages(
   context: Client,
   page: number,
   pageSize: number,
-  options: WidgetsListWidgetsPagesOptions = { requestOptions: {} },
+  options: WidgetsListWidgetsPagesOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<Widget> {
   return buildPagedAsyncIterator(
     context,
@@ -186,7 +186,7 @@ export function _queryWidgetsPagesSend(
   context: Client,
   page: number,
   pageSize: number,
-  options: WidgetsQueryWidgetsPagesOptions = { requestOptions: {} },
+  options: WidgetsQueryWidgetsPagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   QueryWidgetsPages200Response | QueryWidgetsPagesDefaultResponse
 > {
@@ -209,7 +209,7 @@ export async function _queryWidgetsPagesDeserialize(
     results: result.body["results"].map((p) => ({
       id: p["id"],
       weight: p["weight"],
-      color: p["color"] as any,
+      color: p["color"],
     })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
@@ -219,7 +219,7 @@ export function queryWidgetsPages(
   context: Client,
   page: number,
   pageSize: number,
-  options: WidgetsQueryWidgetsPagesOptions = { requestOptions: {} },
+  options: WidgetsQueryWidgetsPagesOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<Widget> {
   return buildPagedAsyncIterator(
     context,
@@ -232,7 +232,7 @@ export function queryWidgetsPages(
 export function _getWidgetSend(
   context: Client,
   id: string,
-  options: WidgetsGetWidgetOptions = { requestOptions: {} },
+  options: WidgetsGetWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetWidget200Response | GetWidgetDefaultResponse> {
   return context
     .path("/widgets/{id}", id)
@@ -249,7 +249,7 @@ export async function _getWidgetDeserialize(
   return {
     id: result.body["id"],
     weight: result.body["weight"],
-    color: result.body["color"] as any,
+    color: result.body["color"],
   };
 }
 
@@ -257,7 +257,7 @@ export async function _getWidgetDeserialize(
 export async function getWidget(
   context: Client,
   id: string,
-  options: WidgetsGetWidgetOptions = { requestOptions: {} },
+  options: WidgetsGetWidgetOptionalParams = { requestOptions: {} },
 ): Promise<Widget> {
   const result = await _getWidgetSend(context, id, options);
   return _getWidgetDeserialize(result);
@@ -266,7 +266,7 @@ export async function getWidget(
 export function _createWidgetSend(
   context: Client,
   body: CreateWidget,
-  options: WidgetsCreateWidgetOptions = { requestOptions: {} },
+  options: WidgetsCreateWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<CreateWidget201Response | CreateWidgetDefaultResponse> {
   return context
     .path("/widgets")
@@ -286,7 +286,7 @@ export async function _createWidgetDeserialize(
   return {
     id: result.body["id"],
     weight: result.body["weight"],
-    color: result.body["color"] as any,
+    color: result.body["color"],
   };
 }
 
@@ -299,7 +299,7 @@ export async function _createWidgetDeserialize(
 export async function createWidget(
   context: Client,
   body: CreateWidget,
-  options: WidgetsCreateWidgetOptions = { requestOptions: {} },
+  options: WidgetsCreateWidgetOptionalParams = { requestOptions: {} },
 ): Promise<Widget> {
   const result = await _createWidgetSend(context, body, options);
   return _createWidgetDeserialize(result);
@@ -309,7 +309,7 @@ export function _updateWidgetSend(
   context: Client,
   id: string,
   body: UpdateWidget,
-  options: WidgetsUpdateWidgetOptions = { requestOptions: {} },
+  options: WidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<UpdateWidget200Response | UpdateWidgetDefaultResponse> {
   return context
     .path("/widgets/{id}", id)
@@ -329,7 +329,7 @@ export async function _updateWidgetDeserialize(
   return {
     id: result.body["id"],
     weight: result.body["weight"],
-    color: result.body["color"] as any,
+    color: result.body["color"],
   };
 }
 
@@ -341,7 +341,7 @@ export async function updateWidget(
   context: Client,
   id: string,
   body: UpdateWidget,
-  options: WidgetsUpdateWidgetOptions = { requestOptions: {} },
+  options: WidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
 ): Promise<Widget> {
   const result = await _updateWidgetSend(context, id, body, options);
   return _updateWidgetDeserialize(result);
@@ -350,7 +350,7 @@ export async function updateWidget(
 export function _deleteWidgetSend(
   context: Client,
   id: string,
-  options: WidgetsDeleteWidgetOptions = { requestOptions: {} },
+  options: WidgetsDeleteWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<DeleteWidget204Response | DeleteWidgetDefaultResponse> {
   return context
     .path("/widgets/{id}", id)
@@ -371,7 +371,7 @@ export async function _deleteWidgetDeserialize(
 export async function deleteWidget(
   context: Client,
   id: string,
-  options: WidgetsDeleteWidgetOptions = { requestOptions: {} },
+  options: WidgetsDeleteWidgetOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteWidgetSend(context, id, options);
   return _deleteWidgetDeserialize(result);
@@ -380,7 +380,7 @@ export async function deleteWidget(
 export function _analyzeWidgetSend(
   context: Client,
   id: string,
-  options: WidgetsAnalyzeWidgetOptions = { requestOptions: {} },
+  options: WidgetsAnalyzeWidgetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<AnalyzeWidget200Response | AnalyzeWidgetDefaultResponse> {
   return context
     .path("/widgets/{id}/analyze", id)
@@ -403,7 +403,7 @@ export async function _analyzeWidgetDeserialize(
 export async function analyzeWidget(
   context: Client,
   id: string,
-  options: WidgetsAnalyzeWidgetOptions = { requestOptions: {} },
+  options: WidgetsAnalyzeWidgetOptionalParams = { requestOptions: {} },
 ): Promise<AnalyzeResult> {
   const result = await _analyzeWidgetSend(context, id, options);
   return _analyzeWidgetDeserialize(result);

@@ -78,7 +78,11 @@ export function getClassicalOperation(
         type: `(${d.parameters
           ?.filter((p) => p.name !== "context")
           .map(
-            (p) => p.name + (p.name === "options" ? "?" : "") + ": " + p.type
+            (p) =>
+              p.name +
+              (p.name === "options" || p.hasQuestionToken ? "?" : "") +
+              ": " +
+              p.type
           )
           .join(",")}) => ${d.returnType}`
       });
@@ -116,7 +120,10 @@ export function getClassicalOperation(
               ?.filter((p) => p.name !== "context")
               .map(
                 (p) =>
-                  p.name + (p.name === "options" ? "?" : "") + ": " + p.type
+                  p.name +
+                  (p.name === "options" || p.hasQuestionToken ? "?" : "") +
+                  ": " +
+                  p.type
               )
               .join(",")}) => ${d.name}(${[
               "context",
@@ -204,9 +211,12 @@ export function getClassicalOperation(
     });
   }
 
-  function getClassicalMethodName(
-    declaration: OptionalKind<FunctionDeclarationStructure>
-  ) {
-    return operationMap.get(declaration) ?? declaration.name ?? "FIXME";
+  function getClassicalMethodName(declaration: OptionalKind<FunctionDeclarationStructure> & { propertyName?: string }) {
+    return (
+      operationMap.get(declaration) ?? 
+      declaration.propertyName ??
+      declaration.name ??
+      "FIXME"
+    );
   }
 }

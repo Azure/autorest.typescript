@@ -6,7 +6,7 @@ export interface PagedUser {
   /** The User items on this page */
   value: User[];
   /** The link to the next page of items */
-  nextLink?: string;
+  readonly nextLink?: string;
 }
 
 /** User model */

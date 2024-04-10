@@ -38,7 +38,6 @@ model Image {
   url?: url;
 
   /** The base64-encoded JSON of the generated image, if `response_format` is `b64_json`. */
-  @encode("base64", string)
   b64_json?: bytes;
 }
 
@@ -50,7 +49,6 @@ model CreateImageEditRequest {
    * The image to edit. Must be a valid PNG file, less than 4MB, and square. If mask is not
    * provided, image must have transparency, which will be used as the mask.
    */
-  @encode("binary")
   image: bytes;
 
   /**
@@ -58,7 +56,6 @@ model CreateImageEditRequest {
    * `image` should be edited. Must be a valid PNG file, less than 4MB, and have the same dimensions
    * as `image`.
    */
-  @encode("binary")
   mask?: bytes;
 
   ...SharedImageProperties;
@@ -69,7 +66,6 @@ model CreateImageVariationRequest {
    * The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB,
    * and square.
    */
-  @encode("binary")
   image: bytes;
 
   ...SharedImageProperties;

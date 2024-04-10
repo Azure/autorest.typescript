@@ -4,9 +4,9 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
 import {
-  RenamedOneOptions,
-  RenamedThreeOptions,
-  RenamedFiveOptions,
+  RenamedOneOptionalParams,
+  RenamedThreeOptionalParams,
+  RenamedFiveOptionalParams,
 } from "./models/options.js";
 import {
   createA,
@@ -25,28 +25,28 @@ export class AClient {
   public readonly pipeline: Pipeline;
 
   constructor(
-    endpoint: string,
-    client: ClientType,
+    endpointParam: string,
+    clientParam: ClientType,
     options: AClientOptions = {},
   ) {
-    this._client = createA(endpoint, client, options);
+    this._client = createA(endpointParam, clientParam, options);
     this.pipeline = this._client.pipeline;
   }
 
   renamedOne(
-    options: RenamedOneOptions = { requestOptions: {} },
+    options: RenamedOneOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return renamedOne(this._client, options);
   }
 
   renamedThree(
-    options: RenamedThreeOptions = { requestOptions: {} },
+    options: RenamedThreeOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return renamedThree(this._client, options);
   }
 
   renamedFive(
-    options: RenamedFiveOptions = { requestOptions: {} },
+    options: RenamedFiveOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return renamedFive(this._client, options);
   }

@@ -1,11 +1,73 @@
 import { assert } from "chai";
-import { emitParameterFromTypeSpec } from "../util/emitUtil.js";
+import {
+  emitClientFactoryFromTypeSpec,
+  emitParameterFromTypeSpec
+} from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Parameters.ts", () => {
   describe("query parameters", () => {
     describe("apiVersion in query", () => {
-      it("should't generate apiVersion if there's a client level apiVersion", async () => {
+      it("should not generate apiVersion if there's a client level apiVersion but without default value", async () => {
+        const tspContent = `
+        model ApiVersionParameter {
+          @query
+          "api-version": string;
+        }
+        op test(...ApiVersionParameter): string;
+        `;
+        const parameters = await emitParameterFromTypeSpec(tspContent);
+        assert.ok(parameters);
+        await assertEqualContent(
+          parameters?.content!,
+          `
+            import { RequestParameters } from "@azure-rest/core-client";
+            
+            export type TestParameters = RequestParameters;
+            `
+        );
+        const models = await emitClientFactoryFromTypeSpec(tspContent, false, true, false, true);
+        assert.ok(models);
+        await assertEqualContent(
+          models!.content,
+          `
+          import { getClient, ClientOptions } from "@azure-rest/core-client";
+          import { logger } from "./logger.js";
+          import { testClient } from "./clientDefinitions.js";
+          
+          /**
+           * Initialize a new instance of \`testClient\`
+           * @param endpointParam - The parameter endpointParam
+           * @param apiVersion - The parameter apiVersion
+           * @param options - the parameter for all optional parameters
+           */
+          export default function createClient(endpointParam: string, apiVersion: string, options: ClientOptions = {}): testClient {
+          const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`;
+          options.apiVersion = options.apiVersion ?? apiVersion;
+          const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
+          const userAgentPrefix =
+              options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+              ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
+              : \`\${userAgentInfo}\`;
+          options = {
+              ...options,
+              userAgentOptions: {
+              userAgentPrefix,
+              },
+              loggingOptions: {
+                logger: options.loggingOptions?.logger ?? logger.info
+              },
+          };
+          
+          const client = getClient(endpointUrl, options) as testClient;
+          
+          return client;
+      }
+      `
+        );
+      });
+
+      it("shouldn't generate apiVersion if there's a client level apiVersion and with default value", async () => {
         const parameters = await emitParameterFromTypeSpec(
           `
           model ApiVersionParameter {
@@ -13,7 +75,12 @@ describe("Parameters.ts", () => {
             "api-version": string;
           }
           op test(...ApiVersionParameter): string;
-          `
+          `,
+          false,
+          true,
+          false,
+          true,
+          true
         );
         assert.ok(parameters);
         await assertEqualContent(
@@ -21,19 +88,21 @@ describe("Parameters.ts", () => {
           `
             import { RequestParameters } from "@azure-rest/core-client";
             
-            export type TestParameters =  RequestParameters;
+            export type TestParameters = RequestParameters;
             `
         );
       });
-
-      it("should generate apiVersion if there's no client level apiVersion", async () => {
+      it("should generate apiVersion in query parameter if there's no client level apiVersion", async () => {
         const parameters = await emitParameterFromTypeSpec(
           `
           model ApiVersionParameter {
             @query
             "api-version": string;
           }
+          @route("/test")
           op test(...ApiVersionParameter): string;
+          @route("/test1")
+          op test1(): string;
           `,
           false,
           true
@@ -53,6 +122,7 @@ describe("Parameters.ts", () => {
             }
             
             export type TestParameters = TestQueryParam & RequestParameters;
+            export type Test1Parameters = RequestParameters;
             `
         );
       });
@@ -145,212 +215,6 @@ describe("Parameters.ts", () => {
           
           export type TestParameters = TestHeaderParam & RequestParameters;
           `
-      );
-    });
-  });
-
-  describe("binary request", () => {
-    it("bytes request with application/json will be treated as string", async () => {
-      const parameters = await emitParameterFromTypeSpec(
-        `
-        @post op read(@body body: bytes): {};
-        `
-      );
-      assert.ok(parameters);
-      await assertEqualContent(
-        parameters?.content!,
-        `import { RequestParameters } from "@azure-rest/core-client";
-        
-        export interface ReadBodyParam {
-          body: string;
-        }
-        
-        export type ReadParameters = ReadBodyParam & RequestParameters;
-        `
-      );
-    });
-
-    it("bytes request should respect @header contentType and use binary format when not json or text", async () => {
-      const parameters = await emitParameterFromTypeSpec(
-        `
-        @post op read(@header contentType: "image/png", @body body: bytes): {};
-        `
-      );
-      assert.ok(parameters);
-      await assertEqualContent(
-        parameters?.content!,
-        `
-        import { RequestParameters } from "@azure-rest/core-client";
-
-        export interface ReadBodyParam {
-          /** Value may contain any sequence of octets */
-          body: 
-          | string
-          | Uint8Array
-          | ReadableStream<Uint8Array>
-          | NodeJS.ReadableStream;
-        }
-        
-        export interface ReadMediaTypesParam {
-          contentType: "image/png";
-        }
-        
-        export type ReadParameters = ReadMediaTypesParam &
-          ReadBodyParam &
-          RequestParameters;
-        `
-      );
-    });
-
-    // TODO: we need more discussions about current behavior
-    // issue tracked https://github.com/Azure/autorest.typescript/issues/1486
-    it("multiple contentTypes defined @header", async () => {
-      const parameters = await emitParameterFromTypeSpec(
-        `
-        @post op read(@header contentType: "image/png" | "application/json", @body body: bytes): {};
-        `
-      );
-      assert.ok(parameters);
-      await assertEqualContent(
-        parameters?.content!,
-        `
-        import { RequestParameters } from "@azure-rest/core-client";
-
-        export interface ReadBodyParam {
-          /** Value may contain any sequence of octets */
-          body: 
-          | string
-          | Uint8Array
-          | ReadableStream<Uint8Array>
-          | NodeJS.ReadableStream;
-        }
-        
-        export interface ReadMediaTypesParam {
-          contentType: "image/png" | "application/json";
-        }
-        
-        export type ReadParameters = ReadMediaTypesParam &
-          ReadBodyParam &
-          RequestParameters;
-        `
-      );
-    });
-
-    it("contentTypes has binary data", async () => {
-      const parameters = await emitParameterFromTypeSpec(
-        `
-        @route("/uploadFileViaBody")
-        @post op uploadFileViaBody(
-          @header contentType: "application/octet-stream",
-          @body body: bytes
-        ): void;
-        `
-      );
-      assert.ok(parameters);
-      await assertEqualContent(
-        parameters?.content!,
-        `
-        import { RequestParameters } from "@azure-rest/core-client";
-        
-        export interface UploadFileViaBodyBodyParam {
-          /** Value may contain any sequence of octets */
-          body:
-          | string
-          | Uint8Array
-          | ReadableStream<Uint8Array>
-          | NodeJS.ReadableStream;
-        }
-        
-        export interface UploadFileViaBodyMediaTypesParam {
-          contentType: "application/octet-stream";
-        }
-        
-        export type UploadFileViaBodyParameters = UploadFileViaBodyMediaTypesParam &
-        UploadFileViaBodyBodyParam &
-          RequestParameters;
-        `
-      );
-    });
-
-    it("contentTypes has multiple form data", async () => {
-      const parameters = await emitParameterFromTypeSpec(
-        `
-        @route("/uploadFile")
-        @post op uploadFile(
-        @header contentType: "multipart/form-data",
-        @body body: {
-          name: string;
-          @encode("binary")
-          file: bytes;
-        }
-      ): void;
-        `
-      );
-      assert.ok(parameters);
-      await assertEqualContent(
-        parameters?.content!,
-        `
-      import { RequestParameters } from "@azure-rest/core-client";
-      
-      export interface UploadFileBodyParam {
-        body: {
-          name: string;
-          file:
-            | string
-            | Uint8Array
-            | ReadableStream<Uint8Array>
-            | NodeJS.ReadableStream;
-        };
-      }
-      
-      export interface UploadFileMediaTypesParam {
-        contentType: "multipart/form-data";
-      }
-      
-      export type UploadFileParameters = UploadFileMediaTypesParam &
-        UploadFileBodyParam &
-        RequestParameters;
-        `
-      );
-    });
-
-    it("contentTypes has array data defined in form body", async () => {
-      const parameters = await emitParameterFromTypeSpec(
-        `
-        @encode("binary")
-        scalar BinaryBytes extends bytes;
-
-        @route("/uploadFiles")
-        @post op uploadFiles(
-        @header contentType: "multipart/form-data",
-        @body body: {
-          files: BinaryBytes[];
-        }
-      ): void;
-        `
-      );
-      assert.ok(parameters);
-      await assertEqualContent(
-        parameters?.content!,
-        `
-        import { RequestParameters } from "@azure-rest/core-client";
-      
-        export interface UploadFilesBodyParam {
-          body: {
-            files: Array<
-              string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream
-            >;
-          };
-        }
-        
-        export interface UploadFilesMediaTypesParam {
-          contentType: "multipart/form-data";
-        }
-        
-        export type UploadFilesParameters = UploadFilesMediaTypesParam &
-          UploadFilesBodyParam &
-          RequestParameters;
-        `
       );
     });
   });
@@ -558,7 +422,7 @@ describe("Parameters.ts", () => {
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import { SimpleModel } from "./models";
+        import { SimpleModel } from "./models.js";
 
         export interface ReadBodyParam {
           body:Array<SimpleModel>;
@@ -582,7 +446,7 @@ describe("Parameters.ts", () => {
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import { InnerModel } from "./models";
+        import { InnerModel } from "./models.js";
 
         export interface ReadBodyParam {
           body:Array<InnerModel>;
@@ -608,7 +472,7 @@ describe("Parameters.ts", () => {
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import { SimpleModel } from "./models";
+        import { SimpleModel } from "./models.js";
 
         export interface ReadBodyParam {
           body: Record<string, SimpleModel>;

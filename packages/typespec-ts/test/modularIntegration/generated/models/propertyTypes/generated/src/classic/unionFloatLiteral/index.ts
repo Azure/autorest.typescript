@@ -8,27 +8,27 @@ import {
   unionFloatLiteralPut,
 } from "../../api/unionFloatLiteral/index.js";
 import {
-  UnionFloatLiteralGetOptions,
-  UnionFloatLiteralPutOptions,
+  UnionFloatLiteralGetOptionalParams,
+  UnionFloatLiteralPutOptionalParams,
 } from "../../models/options.js";
 
 export interface UnionFloatLiteralOperations {
   get: (
-    options?: UnionFloatLiteralGetOptions,
+    options?: UnionFloatLiteralGetOptionalParams,
   ) => Promise<UnionFloatLiteralProperty>;
   put: (
     body: UnionFloatLiteralProperty,
-    options?: UnionFloatLiteralPutOptions,
+    options?: UnionFloatLiteralPutOptionalParams,
   ) => Promise<void>;
 }
 
 export function getUnionFloatLiteral(context: ValueTypesContext) {
   return {
-    get: (options?: UnionFloatLiteralGetOptions) =>
+    get: (options?: UnionFloatLiteralGetOptionalParams) =>
       unionFloatLiteralGet(context, options),
     put: (
       body: UnionFloatLiteralProperty,
-      options?: UnionFloatLiteralPutOptions,
+      options?: UnionFloatLiteralPutOptionalParams,
     ) => unionFloatLiteralPut(context, body, options),
   };
 }

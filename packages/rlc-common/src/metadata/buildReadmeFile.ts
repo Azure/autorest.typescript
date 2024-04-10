@@ -1,10 +1,13 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { RLCModel } from "../interfaces.js";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore: to fix the handlebars issue
 import hbs from "handlebars";
 import { NameType, normalizeName } from "../helpers/nameUtils.js";
 
-const readmeTemplate = `# {{ clientDescriptiveName }} library for JavaScript
+const azureReadmeTemplate = `# {{ clientDescriptiveName }} library for JavaScript
 
 {{ description }}
 
@@ -162,9 +165,9 @@ interface Metadata {
 export function buildReadmeFile(model: RLCModel) {
   const metadata = createMetadata(model) ?? {};
   const readmeFileContents = hbs.compile(
-    model.options?.branded === false
-      ? nonBrandedReadmeTemplate
-      : readmeTemplate,
+    model.options?.flavor === "azure"
+      ? azureReadmeTemplate
+      : nonBrandedReadmeTemplate,
     { noEscape: true }
   );
   return {

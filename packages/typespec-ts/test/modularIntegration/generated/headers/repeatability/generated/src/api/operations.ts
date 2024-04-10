@@ -10,13 +10,13 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { ImmediateSuccessOptions } from "../models/options.js";
+import { ImmediateSuccessOptionalParams } from "../models/options.js";
 
 export function _immediateSuccessSend(
   context: Client,
   repeatabilityRequestID: string,
   repeatabilityFirstSent: Date,
-  options: ImmediateSuccessOptions = { requestOptions: {} },
+  options: ImmediateSuccessOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ImmediateSuccess204Response> {
   return context
     .path("/special-headers/repeatability/immediateSuccess")
@@ -44,7 +44,7 @@ export async function immediateSuccess(
   context: Client,
   repeatabilityRequestID: string,
   repeatabilityFirstSent: Date,
-  options: ImmediateSuccessOptions = { requestOptions: {} },
+  options: ImmediateSuccessOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _immediateSuccessSend(
     context,

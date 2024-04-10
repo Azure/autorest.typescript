@@ -29,7 +29,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "float",
-    defaultValue: 42.42
+    defaultValue: 43.125
   },
   {
     type: "decimal",
@@ -106,7 +106,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "float/literal",
-    defaultValue: 42.42
+    defaultValue: 43.125
   },
   {
     type: "boolean/literal",
@@ -122,7 +122,7 @@ const testedTypes: TypeDetail[] = [
   },
   {
     type: "union/float/literal",
-    defaultValue: 43.43
+    defaultValue: 46.875
   }
 ];
 describe("ModelsPropertyTypesClient Rest Client", () => {

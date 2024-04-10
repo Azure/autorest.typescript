@@ -7,17 +7,17 @@ export {
   ContentTypeEnum,
   PagedSchemaGroup,
   SchemaGroup,
+  SchemaContentTypeValues,
   PagedVersion,
   SchemaVersion,
-  SchemaContentTypeValues,
 } from "./models.js";
 export {
-  SchemaOperationsListSchemaGroupsOptions,
-  SchemaOperationsGetSchemaByIdOptions,
-  SchemaOperationsListSchemaVersionsOptions,
-  SchemaOperationsGetSchemaByVersionOptions,
-  SchemaOperationsGetSchemaIdByContentOptions,
-  SchemaOperationsRegisterSchemaOptions,
+  SchemaOperationsListSchemaGroupsOptionalParams,
+  SchemaOperationsGetSchemaByIdOptionalParams,
+  SchemaOperationsListSchemaVersionsOptionalParams,
+  SchemaOperationsGetSchemaByVersionOptionalParams,
+  SchemaOperationsGetSchemaIdByContentOptionalParams,
+  SchemaOperationsRegisterSchemaOptionalParams,
 } from "./options.js";
 export {
   PageSettings,

@@ -13,13 +13,13 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  UnionFloatLiteralGetOptions,
-  UnionFloatLiteralPutOptions,
+  UnionFloatLiteralGetOptionalParams,
+  UnionFloatLiteralPutOptionalParams,
 } from "../../models/options.js";
 
 export function _unionFloatLiteralGetSend(
   context: Client,
-  options: UnionFloatLiteralGetOptions = { requestOptions: {} },
+  options: UnionFloatLiteralGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<UnionFloatLiteralGet200Response> {
   return context
     .path("/type/property/value-types/union/float/literal")
@@ -34,14 +34,14 @@ export async function _unionFloatLiteralGetDeserialize(
   }
 
   return {
-    property: result.body["property"] as any,
+    property: result.body["property"],
   };
 }
 
 /** Get call */
 export async function unionFloatLiteralGet(
   context: Client,
-  options: UnionFloatLiteralGetOptions = { requestOptions: {} },
+  options: UnionFloatLiteralGetOptionalParams = { requestOptions: {} },
 ): Promise<UnionFloatLiteralProperty> {
   const result = await _unionFloatLiteralGetSend(context, options);
   return _unionFloatLiteralGetDeserialize(result);
@@ -50,7 +50,7 @@ export async function unionFloatLiteralGet(
 export function _unionFloatLiteralPutSend(
   context: Client,
   body: UnionFloatLiteralProperty,
-  options: UnionFloatLiteralPutOptions = { requestOptions: {} },
+  options: UnionFloatLiteralPutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<UnionFloatLiteralPut204Response> {
   return context
     .path("/type/property/value-types/union/float/literal")
@@ -74,7 +74,7 @@ export async function _unionFloatLiteralPutDeserialize(
 export async function unionFloatLiteralPut(
   context: Client,
   body: UnionFloatLiteralProperty,
-  options: UnionFloatLiteralPutOptions = { requestOptions: {} },
+  options: UnionFloatLiteralPutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _unionFloatLiteralPutSend(context, body, options);
   return _unionFloatLiteralPutDeserialize(result);

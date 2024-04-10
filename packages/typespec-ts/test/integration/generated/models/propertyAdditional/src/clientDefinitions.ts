@@ -30,7 +30,7 @@ import {
   ExtendsModelArrayPutParameters,
   IsModelArrayGetParameters,
   IsModelArrayPutParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   ExtendsUnknownGet200Response,
   ExtendsUnknownPut204Response,
@@ -60,7 +60,7 @@ import {
   ExtendsModelArrayPut204Response,
   IsModelArrayGet200Response,
   IsModelArrayPut204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ExtendsUnknownGet {

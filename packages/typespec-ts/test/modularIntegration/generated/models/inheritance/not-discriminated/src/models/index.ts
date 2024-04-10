@@ -3,7 +3,7 @@
 
 export { Pet, Cat, Siamese } from "./models.js";
 export {
-  PostValidOptions,
-  GetValidOptions,
-  PutValidOptions,
+  PostValidOptionalParams,
+  GetValidOptionalParams,
+  PutValidOptionalParams,
 } from "./options.js";

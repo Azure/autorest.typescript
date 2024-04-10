@@ -4,19 +4,20 @@
 import { ArrayContext } from "../../api/ArrayContext.js";
 import { int64ValueGet, int64ValuePut } from "../../api/int64Value/index.js";
 import {
-  Int64ValueGetOptions,
-  Int64ValuePutOptions,
+  Int64ValueGetOptionalParams,
+  Int64ValuePutOptionalParams,
 } from "../../models/options.js";
 
 export interface Int64ValueOperations {
-  get: (options?: Int64ValueGetOptions) => Promise<number[]>;
-  put: (body: number[], options?: Int64ValuePutOptions) => Promise<void>;
+  get: (options?: Int64ValueGetOptionalParams) => Promise<number[]>;
+  put: (body: number[], options?: Int64ValuePutOptionalParams) => Promise<void>;
 }
 
 export function getInt64Value(context: ArrayContext) {
   return {
-    get: (options?: Int64ValueGetOptions) => int64ValueGet(context, options),
-    put: (body: number[], options?: Int64ValuePutOptions) =>
+    get: (options?: Int64ValueGetOptionalParams) =>
+      int64ValueGet(context, options),
+    put: (body: number[], options?: Int64ValuePutOptionalParams) =>
       int64ValuePut(context, body, options),
   };
 }

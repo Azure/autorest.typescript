@@ -21,7 +21,7 @@ import {
   ResponseHeaderRfc3339Parameters,
   ResponseHeaderRfc7231Parameters,
   ResponseHeaderUnixTimestampParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   QueryDefault204Response,
   QueryRfc3339204Response,
@@ -42,7 +42,7 @@ import {
   ResponseHeaderRfc3339204Response,
   ResponseHeaderRfc7231204Response,
   ResponseHeaderUnixTimestamp204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface QueryDefault {

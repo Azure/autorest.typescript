@@ -1,0 +1,16 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    "emitter-output-dir": "{project-root}"
+    generateMetadata: false
+    generateTest: false
+    addCredentials: false
+    azureSdkForJs: false
+    isTypeSpecTest: true
+    title: ScalarClient
+    isModularLibrary: true
+    hierarchyClient: false
+    packageDetails:
+      name: "@msinternal/scalar"
+      description: "Scalar client"

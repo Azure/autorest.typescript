@@ -4,8 +4,14 @@
 
 ```ts
 
+/// <reference types="node" />
+
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { createFile } from '@azure/core-rest-pipeline';
+import { createFileFromStream } from '@azure/core-rest-pipeline';
+import { CreateFileFromStreamOptions } from '@azure/core-rest-pipeline';
+import { CreateFileOptions } from '@azure/core-rest-pipeline';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
@@ -18,8 +24,16 @@ export interface ApiVersionPathParameterOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): FaceClient;
+function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): FaceClient;
 export default createClient;
+
+export { createFile }
+
+export { createFileFromStream }
+
+export { CreateFileFromStreamOptions }
+
+export { CreateFileOptions }
 
 // @public (undocumented)
 export interface CreateLivenessSession {
@@ -512,7 +526,7 @@ export interface LivenessWithVerifySessionAuditEntryOutput {
 // @public
 export interface LivenessWithVerifySessionCreationContent {
     Parameters: LivenessSessionCreationContent;
-    VerifyImage: string;
+    VerifyImage: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
 }
 
 // @public

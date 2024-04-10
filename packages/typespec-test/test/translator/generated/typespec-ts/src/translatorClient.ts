@@ -2,20 +2,20 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { TranslatorClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { TranslatorClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `TranslatorClient`
- * @param endpoint - Supported Text Translation endpoints (protocol and hostname, for example:
+ * @param endpointParam - Supported Text Translation endpoints (protocol and hostname, for example:
  *     https://api.cognitive.microsofttranslator.com).
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
+  endpointParam: string,
   options: ClientOptions = {},
 ): TranslatorClient {
-  const baseUrl = options.baseUrl ?? `${endpoint}`;
+  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
   options.apiVersion = options.apiVersion ?? "3.0";
   const userAgentInfo = `azsdk-js-cognitiveservices-translator-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -32,7 +32,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as TranslatorClient;
+  const client = getClient(endpointUrl, options) as TranslatorClient;
 
   return client;
 }

@@ -12,13 +12,13 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  StringsOnlyGetOptions,
-  StringsOnlySendOptions,
+  StringsOnlyGetOptionalParams,
+  StringsOnlySendOptionalParams,
 } from "../../models/options.js";
 
 export function _stringsOnlyGetSend(
   context: Client,
-  options: StringsOnlyGetOptions = { requestOptions: {} },
+  options: StringsOnlyGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<StringsOnlyGet200Response> {
   return context
     .path("/type/union/strings-only")
@@ -33,13 +33,13 @@ export async function _stringsOnlyGetDeserialize(
   }
 
   return {
-    prop: result.body["prop"] as any,
+    prop: result.body["prop"],
   };
 }
 
 export async function stringsOnlyGet(
   context: Client,
-  options: StringsOnlyGetOptions = { requestOptions: {} },
+  options: StringsOnlyGetOptionalParams = { requestOptions: {} },
 ): Promise<{ prop: "a" | "b" | "c" }> {
   const result = await _stringsOnlyGetSend(context, options);
   return _stringsOnlyGetDeserialize(result);
@@ -48,7 +48,7 @@ export async function stringsOnlyGet(
 export function _stringsOnlySendSend(
   context: Client,
   prop: "a" | "b" | "c",
-  options: StringsOnlySendOptions = { requestOptions: {} },
+  options: StringsOnlySendOptionalParams = { requestOptions: {} },
 ): StreamableMethod<StringsOnlySend204Response> {
   return context
     .path("/type/union/strings-only")
@@ -71,7 +71,7 @@ export async function _stringsOnlySendDeserialize(
 export async function stringsOnlySend(
   context: Client,
   prop: "a" | "b" | "c",
-  options: StringsOnlySendOptions = { requestOptions: {} },
+  options: StringsOnlySendOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _stringsOnlySendSend(context, prop, options);
   return _stringsOnlySendDeserialize(result);

@@ -11,7 +11,7 @@ import {
   FourParameters,
   FiveParameters,
   SixParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   One204Response,
   Two204Response,
@@ -22,7 +22,7 @@ import {
   Four204Response,
   Five204Response,
   Six204Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface One {

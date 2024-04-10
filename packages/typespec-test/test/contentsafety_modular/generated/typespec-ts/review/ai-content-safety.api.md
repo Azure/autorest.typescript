@@ -10,13 +10,13 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
+// @public (undocumented)
+export interface AddOrUpdateBlockItemsOptionalParams extends OperationOptions {
+}
+
 // @public
 export interface AddOrUpdateBlockItemsOptions {
     blockItems: TextBlockItemInfo[];
-}
-
-// @public (undocumented)
-export interface AddOrUpdateBlockItemsRequestOptions extends OperationOptions {
 }
 
 // @public
@@ -24,23 +24,27 @@ export interface AddOrUpdateBlockItemsResult {
     value?: TextBlockItem[];
 }
 
+// @public (undocumented)
+export interface AnalyzeImageOptionalParams extends OperationOptions {
+}
+
 // @public
 export interface AnalyzeImageOptions {
     categories?: ImageCategory[];
-    image: ImageData_2;
+    image: ImageData;
     outputType?: AnalyzeImageOutputType;
 }
 
 // @public
 export type AnalyzeImageOutputType = string;
 
-// @public (undocumented)
-export interface AnalyzeImageRequestOptions extends OperationOptions {
-}
-
 // @public
 export interface AnalyzeImageResult {
     analyzeResults: ImageAnalyzeSeverityResult[];
+}
+
+// @public (undocumented)
+export interface AnalyzeTextOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -55,10 +59,6 @@ export interface AnalyzeTextOptions {
 // @public
 export type AnalyzeTextOutputType = string;
 
-// @public (undocumented)
-export interface AnalyzeTextRequestOptions extends OperationOptions {
-}
-
 // @public
 export interface AnalyzeTextResult {
     analyzeResults: TextAnalyzeSeverityResult[];
@@ -67,18 +67,18 @@ export interface AnalyzeTextResult {
 
 // @public (undocumented)
 export class ContentSafetyClient {
-    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ContentSafetyClientOptions);
-    addOrUpdateBlockItems(blocklistName: string, body: AddOrUpdateBlockItemsOptions, options?: AddOrUpdateBlockItemsRequestOptions): Promise<AddOrUpdateBlockItemsResult>;
-    analyzeImage(body: AnalyzeImageOptions, options?: AnalyzeImageRequestOptions): Promise<AnalyzeImageResult>;
-    analyzeText(body: AnalyzeTextOptions, options?: AnalyzeTextRequestOptions): Promise<AnalyzeTextResult>;
-    createOrUpdateTextBlocklist(blocklistName: string, resource: TextBlocklist, options?: CreateOrUpdateTextBlocklistOptions): Promise<TextBlocklist>;
-    deleteTextBlocklist(blocklistName: string, options?: DeleteTextBlocklistOptions): Promise<void>;
-    getTextBlocklist(blocklistName: string, options?: GetTextBlocklistOptions): Promise<TextBlocklist>;
-    getTextBlocklistItem(blocklistName: string, blockItemId: string, options?: GetTextBlocklistItemOptions): Promise<TextBlockItem>;
-    listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptions): PagedAsyncIterableIterator<TextBlockItem>;
-    listTextBlocklists(options?: ListTextBlocklistsOptions): PagedAsyncIterableIterator<TextBlocklist>;
+    constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: ContentSafetyClientOptions);
+    addOrUpdateBlockItems(blocklistName: string, body: AddOrUpdateBlockItemsOptions, options?: AddOrUpdateBlockItemsOptionalParams): Promise<AddOrUpdateBlockItemsResult>;
+    analyzeImage(body: AnalyzeImageOptions, options?: AnalyzeImageOptionalParams): Promise<AnalyzeImageResult>;
+    analyzeText(body: AnalyzeTextOptions, options?: AnalyzeTextOptionalParams): Promise<AnalyzeTextResult>;
+    createOrUpdateTextBlocklist(blocklistName: string, resource: TextBlocklist, options?: CreateOrUpdateTextBlocklistOptionalParams): Promise<TextBlocklist>;
+    deleteTextBlocklist(blocklistName: string, options?: DeleteTextBlocklistOptionalParams): Promise<void>;
+    getTextBlocklist(blocklistName: string, options?: GetTextBlocklistOptionalParams): Promise<TextBlocklist>;
+    getTextBlocklistItem(blocklistName: string, blockItemId: string, options?: GetTextBlocklistItemOptionalParams): Promise<TextBlockItem>;
+    listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptionalParams): PagedAsyncIterableIterator<TextBlockItem>;
+    listTextBlocklists(options?: ListTextBlocklistsOptionalParams): PagedAsyncIterableIterator<TextBlocklist>;
     readonly pipeline: Pipeline;
-    removeBlockItems(blocklistName: string, body: RemoveBlockItemsOptions, options?: RemoveBlockItemsRequestOptions): Promise<void>;
+    removeBlockItems(blocklistName: string, body: RemoveBlockItemsOptions, options?: RemoveBlockItemsOptionalParams): Promise<void>;
 }
 
 // @public (undocumented)
@@ -91,20 +91,20 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 };
 
 // @public (undocumented)
-export interface CreateOrUpdateTextBlocklistOptions extends OperationOptions {
+export interface CreateOrUpdateTextBlocklistOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
 // @public (undocumented)
-export interface DeleteTextBlocklistOptions extends OperationOptions {
+export interface DeleteTextBlocklistOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface GetTextBlocklistItemOptions extends OperationOptions {
+export interface GetTextBlocklistItemOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface GetTextBlocklistOptions extends OperationOptions {
+export interface GetTextBlocklistOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -117,21 +117,20 @@ export interface ImageAnalyzeSeverityResult {
 export type ImageCategory = string;
 
 // @public
-interface ImageData_2 {
+export interface ImageData {
     blobUrl?: string;
     content?: Uint8Array;
 }
-export { ImageData_2 as ImageData }
 
 // @public (undocumented)
-export interface ListTextBlocklistItemsOptions extends OperationOptions {
+export interface ListTextBlocklistItemsOptionalParams extends OperationOptions {
     maxpagesize?: number;
     skip?: number;
     top?: number;
 }
 
 // @public (undocumented)
-export interface ListTextBlocklistsOptions extends OperationOptions {
+export interface ListTextBlocklistsOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -143,13 +142,13 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 
 // @public
 export interface PagedTextBlockItem {
-    nextLink?: string;
+    readonly nextLink?: string;
     value: TextBlockItem[];
 }
 
 // @public
 export interface PagedTextBlocklist {
-    nextLink?: string;
+    readonly nextLink?: string;
     value: TextBlocklist[];
 }
 
@@ -158,13 +157,13 @@ export interface PageSettings {
     continuationToken?: string;
 }
 
+// @public (undocumented)
+export interface RemoveBlockItemsOptionalParams extends OperationOptions {
+}
+
 // @public
 export interface RemoveBlockItemsOptions {
     blockItemIds: string[];
-}
-
-// @public (undocumented)
-export interface RemoveBlockItemsRequestOptions extends OperationOptions {
 }
 
 // @public
@@ -175,7 +174,7 @@ export interface TextAnalyzeSeverityResult {
 
 // @public
 export interface TextBlockItem {
-    readonly blockItemId: string;
+    blockItemId: string;
     description?: string;
     text: string;
 }
@@ -188,7 +187,7 @@ export interface TextBlockItemInfo {
 
 // @public
 export interface TextBlocklist {
-    readonly blocklistName: string;
+    blocklistName: string;
     description?: string;
 }
 

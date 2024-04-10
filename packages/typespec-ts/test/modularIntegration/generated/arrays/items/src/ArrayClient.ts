@@ -51,7 +51,7 @@ export class ArrayClient {
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
-  /** Illustrates various of dictionaries. */
+  /** Illustrates various types of arrays. */
   constructor(options: ArrayClientOptions = {}) {
     this._client = createArray(options);
     this.pipeline = this._client.pipeline;

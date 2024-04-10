@@ -89,7 +89,7 @@ describe("Responses.ts", () => {
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
-      import { KeyOutput, ErrorModelOutput } from "./outputModels";
+      import { KeyOutput, ErrorModelOutput } from "./outputModels.js";
       
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
@@ -139,7 +139,7 @@ describe("Responses.ts", () => {
         parameters?.content!,
         `
         import { HttpResponse } from "@azure-rest/core-client";
-        import { SimpleModelOutput } from "./outputModels";
+        import { SimpleModelOutput } from "./outputModels.js";
     
         /** The request has succeeded. */
         export interface Read200Response extends HttpResponse {
@@ -277,7 +277,7 @@ describe("Responses.ts", () => {
         parameters?.content!,
         `
         import { HttpResponse } from "@azure-rest/core-client";
-        import { ErrorResponseOutput } from "./outputModels";
+        import { ErrorResponseOutput } from "./outputModels.js";
 
         export interface ReadDefaultResponse extends HttpResponse {
           status: string;
@@ -304,7 +304,7 @@ describe("Responses.ts", () => {
         `
       import { RawHttpHeaders } from "@azure/core-rest-pipeline";
       import { HttpResponse } from "@azure-rest/core-client";
-      import { KeyOutput } from "./outputModels";
+      import { KeyOutput } from "./outputModels.js";
       
       export interface Read200Headers {
         foo: string;
@@ -508,7 +508,7 @@ describe("Responses.ts", () => {
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
-      import { SimpleModelOutput } from "./outputModels";
+      import { SimpleModelOutput } from "./outputModels.js";
 
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {
@@ -532,7 +532,7 @@ describe("Responses.ts", () => {
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
-      import { InnerModelOutput } from "./outputModels";
+      import { InnerModelOutput } from "./outputModels.js";
 
       /** The request has succeeded. */
       export interface Read200Response extends HttpResponse {

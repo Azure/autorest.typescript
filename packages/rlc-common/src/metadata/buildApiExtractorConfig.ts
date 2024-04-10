@@ -5,17 +5,22 @@ import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 
 export function buildApiExtractorConfig(model: RLCModel) {
-  let { generateTest } = model.options || {};
-  const { packageDetails, isModularLibrary } = model.options || {};
-  // Take the undefined as true by default
-  generateTest = generateTest === true || generateTest === undefined;
+  const { packageDetails, isModularLibrary, generateTest } =
+    model.options || {};
   const project = new Project();
+
+  let mainEntryPointFilePath = "./dist/esm/index.d.ts";
+
+  if (model.options?.moduleKind === "cjs") {
+    mainEntryPointFilePath = `./types${
+      generateTest || isModularLibrary ? "/src" : ""
+    }/index.d.ts`;
+  }
+
   const config = {
     $schema:
       "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
-    mainEntryPointFilePath: `./types${
-      generateTest || isModularLibrary ? "/src" : ""
-    }/index.d.ts`,
+    mainEntryPointFilePath,
     docModel: {
       enabled: true
     },

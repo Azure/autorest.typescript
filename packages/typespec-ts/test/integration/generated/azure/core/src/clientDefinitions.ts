@@ -13,7 +13,7 @@ import {
   ExportParameters,
   ListFirstItemParameters,
   ListSecondItemParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   CreateOrUpdate200Response,
   CreateOrUpdate201Response,
@@ -23,8 +23,8 @@ import {
   CreateOrReplaceDefaultResponse,
   Get200Response,
   GetDefaultResponse,
-  DeleteOperation204Response,
-  DeleteOperationDefaultResponse,
+  Delete204Response,
+  DeleteDefaultResponse,
   List200Response,
   ListDefaultResponse,
   ListWithPage200Response,
@@ -33,13 +33,13 @@ import {
   ListWithParametersDefaultResponse,
   ListWithCustomPageModel200Response,
   ListWithCustomPageModelDefaultResponse,
-  ExportOperation200Response,
-  ExportOperationDefaultResponse,
+  Export200Response,
+  ExportDefaultResponse,
   ListFirstItem200Response,
   ListFirstItemDefaultResponse,
   ListSecondItem200Response,
   ListSecondItemDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface CreateOrUpdate {
@@ -66,9 +66,7 @@ export interface CreateOrUpdate {
   /** Deletes a User */
   delete(
     options?: DeleteParameters,
-  ): StreamableMethod<
-    DeleteOperation204Response | DeleteOperationDefaultResponse
-  >;
+  ): StreamableMethod<Delete204Response | DeleteDefaultResponse>;
 }
 
 export interface List {
@@ -107,9 +105,7 @@ export interface Export {
   /** Exports a User */
   post(
     options: ExportParameters,
-  ): StreamableMethod<
-    ExportOperation200Response | ExportOperationDefaultResponse
-  >;
+  ): StreamableMethod<Export200Response | ExportDefaultResponse>;
 }
 
 export interface ListFirstItem {

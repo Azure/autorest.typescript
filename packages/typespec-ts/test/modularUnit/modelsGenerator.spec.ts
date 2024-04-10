@@ -136,7 +136,7 @@ describe("modular encode test for property type datetime", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -167,7 +167,7 @@ describe("modular encode test for property type datetime", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -196,7 +196,7 @@ describe("modular encode test for property type datetime", () => {
       export function _readSend(
         context: Client,
         prop: Date,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -219,7 +219,7 @@ describe("modular encode test for property type datetime", () => {
       export async function read(
         context: Client,
         prop: Date,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<void> {
         const result = await _readSend(context, prop, options);
         return _readDeserialize(result);
@@ -264,7 +264,7 @@ describe("modular encode test for property type datetime", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -291,7 +291,7 @@ describe("modular encode test for property type datetime", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -336,7 +336,7 @@ describe("modular encode test for property type datetime", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -363,7 +363,7 @@ describe("modular encode test for property type datetime", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -405,7 +405,7 @@ describe("modular encode test for property type datetime", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -430,7 +430,7 @@ describe("modular encode test for property type datetime", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -473,7 +473,7 @@ describe("modular encode test for property type duration", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -498,7 +498,7 @@ describe("modular encode test for property type duration", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -540,7 +540,7 @@ describe("modular encode test for property type duration", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -565,7 +565,7 @@ describe("modular encode test for property type duration", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -610,7 +610,7 @@ describe("modular encode test for property type duration", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -637,7 +637,7 @@ describe("modular encode test for property type duration", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -681,7 +681,7 @@ describe("modular encode test for property type bytes", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -709,7 +709,7 @@ describe("modular encode test for property type bytes", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -752,7 +752,7 @@ describe("modular encode test for property type bytes", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -780,7 +780,7 @@ describe("modular encode test for property type bytes", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -823,7 +823,7 @@ describe("modular encode test for property type bytes", () => {
       export function _readSend(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -851,7 +851,7 @@ describe("modular encode test for property type bytes", () => {
       export async function read(
         context: Client,
         body: Foo,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Foo> {
         const result = await _readSend(context, body, options);
         return _readDeserialize(result);
@@ -945,7 +945,7 @@ describe("inheritance & polymorphism", () => {
       
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -967,7 +967,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Cat> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1024,7 +1024,7 @@ describe("inheritance & polymorphism", () => {
 
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -1046,7 +1046,7 @@ describe("inheritance & polymorphism", () => {
 
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Cat> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1078,25 +1078,25 @@ describe("inheritance & polymorphism", () => {
     await assertEqualContent(
       modelFile?.getFullText()!,
       `
-      export interface PetParent {
+      export interface Pet {
         /** the discriminator possible values: cat, dog */
         kind: string;
         name: string;
         weight?: number;
       }
 
-      export interface Cat extends PetParent {
+      export interface Cat extends Pet {
         kind: "cat";
         meow: number;
       }
 
-      export interface Dog extends PetParent {
+      export interface Dog extends Pet {
         kind: "dog";
         bark: string;
       }
       
-      /** Alias for Pet */
-      export type Pet = Cat | Dog | PetParent;`
+      /** Alias for PetUnion */
+      export type PetUnion = Cat | Dog | Pet;`
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -1113,7 +1113,7 @@ describe("inheritance & polymorphism", () => {
       
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -1135,7 +1135,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Cat> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1167,25 +1167,25 @@ describe("inheritance & polymorphism", () => {
     await assertEqualContent(
       modelFile?.getFullText()!,
       `
-      export interface PetParent {
+      export interface Pet {
         /** the discriminator possible values: cat, dog */
         kind: string;
         name: string;
         weight?: number;
       }
 
-      export interface Cat extends PetParent {
+      export interface Cat extends Pet {
         kind: "cat";
         meow: number;
       }
 
-      export interface Dog extends PetParent {
+      export interface Dog extends Pet {
         kind: "dog";
         bark: string;
       }
       
-      /** Alias for Pet */
-      export type Pet = Cat | Dog | PetParent;`
+      /** Alias for PetUnion */
+      export type PetUnion = Cat | Dog | Pet;`
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -1202,14 +1202,14 @@ describe("inheritance & polymorphism", () => {
       
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<Pet> {
+      export async function _readDeserialize(result: Read200Response): Promise<PetUnion> {
         if (result.status !== "200") {
           throw createRestError(result);
         }
@@ -1219,11 +1219,184 @@ describe("inheritance & polymorphism", () => {
       
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
-      ): Promise<Pet> {
+        options: ReadOptionalParams = { requestOptions: {} }
+      ): Promise<PetUnion> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
       }      
+      `
+    );
+  });
+
+  it("should handle circular in model properties with inheritance", async () => {
+    const tspContent = `
+    @discriminator("kind")
+    model Pet {
+      kind: string;
+      name: string;
+      weight?: float32;
+    }
+    model Cat extends Pet {
+      kind: "cat";
+      meow: int32;
+    }
+    @discriminator("type")
+    model Dog extends Pet {
+      kind: "dog";
+      type: string;
+      bark: string;
+    }
+    model Gold extends Dog {
+      type: "gold";
+      friends: Pet[];
+    }
+    op read(): { @body body: Pet };
+    `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelFile);
+    assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+      export interface Pet {
+        /** the discriminator possible values: cat, dog */
+        kind: string;
+        name: string;
+        weight?: number;
+      }
+
+      export interface Cat extends Pet {
+        kind: "cat";
+        meow: number;
+      }
+
+      export interface Dog extends Pet {
+        kind: "dog";
+        /** the discriminator possible values: gold */
+        type: string;
+        bark: string;
+      }
+      
+      export interface Gold extends Dog {
+        type: "gold";
+        friends: PetUnion[];
+      }
+
+      /** Alias for PetUnion */
+      export type PetUnion = Cat | DogUnion | Pet;
+      /** Alias for DogUnion */
+      export type DogUnion = Gold | Dog;
+      `
+    );
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+        createRestError
+      } from "@azure-rest/core-client";
+      
+      export function _readSend(
+        context: Client,
+        options: ReadOptionalParams = { requestOptions: {} }
+      ): StreamableMethod<Read200Response> {
+        return context
+          .path("/")
+          .get({ ...operationOptionsToRequestParameters(options) });
+      }
+      
+      export async function _readDeserialize(result: Read200Response): Promise<PetUnion> {
+        if (result.status !== "200") {
+          throw createRestError(result);
+        }
+      
+        return result.body;
+      }
+      
+      export async function read(
+        context: Client,
+        options: ReadOptionalParams = { requestOptions: {} }
+      ): Promise<PetUnion> {
+        const result = await _readSend(context, options);
+        return _readDeserialize(result);
+      }      
+      `
+    );
+  });
+
+  it("should handle circular in model properties with combination", async () => {
+    const tspContent = `
+    model Foo {
+      name: string;
+      weight?: float32;
+      bar: Bar;
+    }
+    model Bar {
+      foo: Foo;
+    }
+    op read(): { @body body: Foo };
+    `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelFile);
+    assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+      export interface Foo {
+        name: string;
+        weight?: number;
+        bar: Bar;
+      }
+      
+      export interface Bar {
+        foo: Foo;
+      }
+      `
+    );
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+        createRestError,
+      } from "@azure-rest/core-client";
+      
+      export function _readSend(
+        context: Client,
+        options: ReadOptionalParams = { requestOptions: {} }
+      ): StreamableMethod<Read200Response> {
+        return context
+          .path("/")
+          .get({ ...operationOptionsToRequestParameters(options) });
+      }
+      
+      export async function _readDeserialize(result: Read200Response): Promise<Foo> {
+        if (result.status !== "200") {
+          throw createRestError(result);
+        }
+      
+        return {
+          name: result.body["name"],
+          weight: result.body["weight"],
+          bar: { foo: result.body.bar.foo },
+        };
+      }
+      
+      export async function read(
+        context: Client,
+        options: ReadOptionalParams = { requestOptions: {} }
+      ): Promise<Foo> {
+        const result = await _readSend(context, options);
+        return _readDeserialize(result);
+      }
       `
     );
   });
@@ -1285,7 +1458,7 @@ describe("inheritance & polymorphism", () => {
 
       export function _readSend(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
           .path("/")
@@ -1308,7 +1481,7 @@ describe("inheritance & polymorphism", () => {
 
       export async function read(
         context: Client,
-        options: ReadOptions = { requestOptions: {} }
+        options: ReadOptionalParams = { requestOptions: {} }
       ): Promise<Cat> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
@@ -1352,7 +1525,8 @@ describe("inheritance & polymorphism", () => {
       await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
-        /** Alias for SchemaContentTypeValues */
+        /** Type of SchemaContentTypeValues */
+        /** */
         export type SchemaContentTypeValues =
           | "application/json; serialization=Avro"
           | "application/json; serialization=json"
@@ -1383,13 +1557,14 @@ describe("inheritance & polymorphism", () => {
           context: Client,
           contentType: SchemaContentTypeValues,
           body: string,
-          options: GetOptions = { requestOptions: {} }
+          options: GetOptionalParams = { requestOptions: {} }
         ): StreamableMethod<Get204Response> {
             return context
               .path("/")
               .post({
                 ...operationOptionsToRequestParameters(options),
                 contentType: contentType,
+                body: body
               });
         }
         
@@ -1405,7 +1580,7 @@ describe("inheritance & polymorphism", () => {
           context: Client,
           contentType: SchemaContentTypeValues,
           body: string,
-          options: GetOptions = { requestOptions: {} }
+          options: GetOptionalParams = { requestOptions: {} }
         ): Promise<void> {
           const result = await _getSend(context, contentType, body, options);
           return _getDeserialize(result);
@@ -1449,7 +1624,8 @@ describe("inheritance & polymorphism", () => {
       await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
-        /** Alias for SchemaContentTypeValues */
+        /** Type of SchemaContentTypeValues */
+        /** */
         export type SchemaContentTypeValues =
           | "application/json; serialization=Avro"
           | "application/json; serialization=json"
@@ -1507,13 +1683,14 @@ describe("inheritance & polymorphism", () => {
           context: Client,
           testHeader: "A" | "B",
           body: string,
-          options: GetOptions = { requestOptions: {} },
+          options: GetOptionalParams = { requestOptions: {} },
         ): StreamableMethod<Get204Response> {
           return context
             .path("/")
             .post({
               ...operationOptionsToRequestParameters(options),
               headers: { "test-header": testHeader },
+              body: body
             });
         }
         export async function _getDeserialize(result: Get204Response): Promise<void> {
@@ -1526,7 +1703,7 @@ describe("inheritance & polymorphism", () => {
           context: Client,
           testHeader: "A" | "B",
           body: string,
-          options: GetOptions = { requestOptions: {} },
+          options: GetOptionalParams = { requestOptions: {} },
         ): Promise<void> {
           const result = await _getSend(context, testHeader, body, options);
           return _getDeserialize(result);
@@ -1603,9 +1780,8 @@ describe("inheritance & polymorphism", () => {
         true
       );
       assert.isUndefined(schemaOutput);
-      const paramOutput = await emitModularOperationsFromTypeSpec(
-        tspDefinition
-      );
+      const paramOutput =
+        await emitModularOperationsFromTypeSpec(tspDefinition);
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
       await assertEqualContent(
@@ -1679,10 +1855,9 @@ describe("inheritance & polymorphism", () => {
         | "text/plain; charset=utf-8"
         | "text/vnd.ms.protobuf";
         `
-      )
-      const paramOutput = await emitModularOperationsFromTypeSpec(
-        tspDefinition
       );
+      const paramOutput =
+        await emitModularOperationsFromTypeSpec(tspDefinition);
       assert.ok(paramOutput);
       assert.strictEqual(paramOutput?.length, 1);
       await assertEqualContent(
@@ -1777,5 +1952,95 @@ describe("inheritance & polymorphism", () => {
         `
       );
     });
+  });
+});
+
+describe("`is`", () => {
+  it("should generate correct name and properties if A is B<Template>", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(`
+    model B<Parameter> {
+      prop1: string;
+      prop2: Parameter;
+    }
+    model A is B<string> {
+      @query
+      name: string;
+    };
+      op read(@body body: A): void;
+      `);
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface A {
+        prop1: string;
+        prop2: string;
+      }`
+    );
+  });
+});
+
+describe("`extends`", () => {
+  it("should generate correct name and properties if A extends B", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(`
+      model B {
+        prop1: string;
+        prop2: string;
+      }
+      model A extends B {
+        @query
+        name: string;
+      };
+      op read(@body body: A): void;
+      `);
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface B {
+        prop1: string;
+        prop2: string;
+      }
+      
+      export interface A extends B {}`
+    );
+  });
+});
+
+describe("visibility", () => {
+  it("should generate readonly for @visibility('read')", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(`
+      model A  {
+        @visibility("read")
+        exactVersion?: string;
+      };
+      op read(@body body: A): void;
+      `);
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface A {
+        readonly exactVersion?: string;
+      }`
+    );
+  });
+
+  it("should not generate readonly for @visibility('read', 'create')", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(`
+      model A  {
+        @visibility("read", "create")
+        exactVersion?: string;
+      };
+      op read(@body body: A): void;
+      `);
+    assert.ok(modelFile);
+    await assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface A {
+        exactVersion?: string;
+      }`
+    );
   });
 });

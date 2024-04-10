@@ -13,13 +13,13 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  MixedLiteralsGetOptions,
-  MixedLiteralsSendOptions,
+  MixedLiteralsGetOptionalParams,
+  MixedLiteralsSendOptionalParams,
 } from "../../models/options.js";
 
 export function _mixedLiteralsGetSend(
   context: Client,
-  options: MixedLiteralsGetOptions = { requestOptions: {} },
+  options: MixedLiteralsGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<MixedLiteralsGet200Response> {
   return context
     .path("/type/union/mixed-literals")
@@ -35,17 +35,17 @@ export async function _mixedLiteralsGetDeserialize(
 
   return {
     prop: {
-      stringLiteral: result.body.prop["stringLiteral"] as any,
-      intLiteral: result.body.prop["intLiteral"] as any,
-      floatLiteral: result.body.prop["floatLiteral"] as any,
-      booleanLiteral: result.body.prop["booleanLiteral"] as any,
+      stringLiteral: result.body.prop["stringLiteral"],
+      intLiteral: result.body.prop["intLiteral"],
+      floatLiteral: result.body.prop["floatLiteral"],
+      booleanLiteral: result.body.prop["booleanLiteral"],
     },
   };
 }
 
 export async function mixedLiteralsGet(
   context: Client,
-  options: MixedLiteralsGetOptions = { requestOptions: {} },
+  options: MixedLiteralsGetOptionalParams = { requestOptions: {} },
 ): Promise<{ prop: MixedLiteralsCases }> {
   const result = await _mixedLiteralsGetSend(context, options);
   return _mixedLiteralsGetDeserialize(result);
@@ -54,7 +54,7 @@ export async function mixedLiteralsGet(
 export function _mixedLiteralsSendSend(
   context: Client,
   prop: MixedLiteralsCases,
-  options: MixedLiteralsSendOptions = { requestOptions: {} },
+  options: MixedLiteralsSendOptionalParams = { requestOptions: {} },
 ): StreamableMethod<MixedLiteralsSend204Response> {
   return context
     .path("/type/union/mixed-literals")
@@ -84,7 +84,7 @@ export async function _mixedLiteralsSendDeserialize(
 export async function mixedLiteralsSend(
   context: Client,
   prop: MixedLiteralsCases,
-  options: MixedLiteralsSendOptions = { requestOptions: {} },
+  options: MixedLiteralsSendOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _mixedLiteralsSendSend(context, prop, options);
   return _mixedLiteralsSendDeserialize(result);

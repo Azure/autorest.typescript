@@ -13,13 +13,13 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  UnionStringLiteralGetOptions,
-  UnionStringLiteralPutOptions,
+  UnionStringLiteralGetOptionalParams,
+  UnionStringLiteralPutOptionalParams,
 } from "../../models/options.js";
 
 export function _unionStringLiteralGetSend(
   context: Client,
-  options: UnionStringLiteralGetOptions = { requestOptions: {} },
+  options: UnionStringLiteralGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<UnionStringLiteralGet200Response> {
   return context
     .path("/type/property/value-types/union/string/literal")
@@ -34,14 +34,14 @@ export async function _unionStringLiteralGetDeserialize(
   }
 
   return {
-    property: result.body["property"] as any,
+    property: result.body["property"],
   };
 }
 
 /** Get call */
 export async function unionStringLiteralGet(
   context: Client,
-  options: UnionStringLiteralGetOptions = { requestOptions: {} },
+  options: UnionStringLiteralGetOptionalParams = { requestOptions: {} },
 ): Promise<UnionStringLiteralProperty> {
   const result = await _unionStringLiteralGetSend(context, options);
   return _unionStringLiteralGetDeserialize(result);
@@ -50,7 +50,7 @@ export async function unionStringLiteralGet(
 export function _unionStringLiteralPutSend(
   context: Client,
   body: UnionStringLiteralProperty,
-  options: UnionStringLiteralPutOptions = { requestOptions: {} },
+  options: UnionStringLiteralPutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<UnionStringLiteralPut204Response> {
   return context
     .path("/type/property/value-types/union/string/literal")
@@ -74,7 +74,7 @@ export async function _unionStringLiteralPutDeserialize(
 export async function unionStringLiteralPut(
   context: Client,
   body: UnionStringLiteralProperty,
-  options: UnionStringLiteralPutOptions = { requestOptions: {} },
+  options: UnionStringLiteralPutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _unionStringLiteralPutSend(context, body, options);
   return _unionStringLiteralPutDeserialize(result);

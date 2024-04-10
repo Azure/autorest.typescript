@@ -4,17 +4,23 @@
 import { ValueTypesContext } from "../../api/ValueTypesContext.js";
 import { StringProperty } from "../../models/models.js";
 import { stringGet, stringPut } from "../../api/string/index.js";
-import { StringGetOptions, StringPutOptions } from "../../models/options.js";
+import {
+  StringGetOptionalParams,
+  StringPutOptionalParams,
+} from "../../models/options.js";
 
 export interface StringOperations {
-  get: (options?: StringGetOptions) => Promise<StringProperty>;
-  put: (body: StringProperty, options?: StringPutOptions) => Promise<void>;
+  get: (options?: StringGetOptionalParams) => Promise<StringProperty>;
+  put: (
+    body: StringProperty,
+    options?: StringPutOptionalParams,
+  ) => Promise<void>;
 }
 
 export function getString(context: ValueTypesContext) {
   return {
-    get: (options?: StringGetOptions) => stringGet(context, options),
-    put: (body: StringProperty, options?: StringPutOptions) =>
+    get: (options?: StringGetOptionalParams) => stringGet(context, options),
+    put: (body: StringProperty, options?: StringPutOptionalParams) =>
       stringPut(context, body, options),
   };
 }

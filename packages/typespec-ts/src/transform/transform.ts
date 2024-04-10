@@ -60,6 +60,7 @@ export async function transformRLCModel(
     NameType.Class
   );
   const importSet = initInternalImports();
+  const urlInfo = transformUrlInfo(client, dpgContext);
   const paths: Paths = transformPaths(program, client, dpgContext);
   const schemas: Schema[] = transformSchemas(program, client, dpgContext);
   const responses: OperationResponse[] = transformToResponseTypes(
@@ -70,13 +71,17 @@ export async function transformRLCModel(
   const parameters: OperationParameter[] = transformToParameterTypes(
     importSet,
     client,
-    dpgContext
+    dpgContext,
+    urlInfo?.apiVersionInfo
   );
-  const helperDetails = transformHelperFunctionDetails(client, dpgContext);
+  const helperDetails = transformHelperFunctionDetails(
+    client,
+    dpgContext,
+    options.flavor
+  );
   // Enrich client-level annotation detail
   helperDetails.clientLroOverload = getClientLroOverload(paths);
-  const urlInfo = transformUrlInfo(dpgContext);
-  const apiVersionInfo = transformApiVersionInfo(client, dpgContext, urlInfo);
+
   const telemetryOptions = transformTelemetryInfo(dpgContext, client);
   const model: RLCModel = {
     srcPath,
@@ -85,14 +90,14 @@ export async function transformRLCModel(
     options,
     schemas,
     responses,
-    apiVersionInfo,
+    apiVersionInfo: urlInfo?.apiVersionInfo,
     parameters,
     helperDetails,
     urlInfo,
     telemetryOptions,
     importInfo: {
       internalImports: importSet,
-      runtimeImports: buildRuntimeImports(options.branded)
+      runtimeImports: buildRuntimeImports(options.flavor)
     }
   };
   model.sampleGroups = transformSampleGroups(
@@ -100,10 +105,16 @@ export async function transformRLCModel(
     options?.generateSample ===
       true /* Enable mock sample content if generateSample === true */
   );
+  options.generateSample =
+    (options.generateSample === true || options.generateSample === undefined) &&
+    (model.sampleGroups ?? []).length > 0;
   return model;
 }
 
-export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {
+export function transformUrlInfo(
+  client: SdkClient,
+  dpgContext: SdkContext
+): UrlInfo | undefined {
   const program = dpgContext.program;
   const serviceNs = getDefaultService(program)?.type;
   let endpoint = undefined;
@@ -123,13 +134,11 @@ export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {
           continue;
         }
 
-        const schema = getSchemaForType(
-          dpgContext,
-          type,
-          [SchemaContext.Exception, SchemaContext.Input],
-          false,
-          property!
-        );
+        const schema = getSchemaForType(dpgContext, type, {
+          usage: [SchemaContext.Exception, SchemaContext.Input],
+          needRef: false,
+          relevantProperty: property
+        });
         urlParameters.push({
           oriName: key,
           name: normalizeName(key, NameType.Parameter, true),
@@ -143,8 +152,12 @@ export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {
       }
     }
   }
+  let hasApiVersionInUrl = false;
   if (endpoint && urlParameters.length > 0) {
     for (const param of urlParameters) {
+      if (param.oriName === "apiVersion") {
+        hasApiVersionInUrl = true;
+      }
       if (param.oriName) {
         const regexp = new RegExp(`{${param.oriName}}`, "g");
         endpoint = endpoint.replace(regexp, `{${param.name}}`);
@@ -153,11 +166,26 @@ export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {
   }
   // Set the default value if missing endpoint parameter
   if (endpoint == undefined && urlParameters.length === 0) {
-    endpoint = "{endpoint}";
+    endpoint = "{endpointParam}";
     urlParameters.push({
-      name: "endpoint",
+      name: "endpointParam",
       type: "string"
     });
   }
-  return { endpoint, urlParameters };
+  const apiVersionInfo = !hasApiVersionInUrl
+    ? transformApiVersionInfo(client, dpgContext, { endpoint, urlParameters })
+    : undefined;
+  if (
+    apiVersionInfo &&
+    urlParameters &&
+    apiVersionInfo?.definedPosition === "query" &&
+    !apiVersionInfo.isCrossedVersion &&
+    !apiVersionInfo.defaultValue
+  ) {
+    urlParameters.push({
+      name: "api-version",
+      type: "string"
+    });
+  }
+  return { endpoint, urlParameters, apiVersionInfo };
 }

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { MyOpParameters } from "./parameters";
-import { MyOp200Response } from "./responses";
+import { MyOpParameters } from "./parameters.js";
+import { MyOp200Response } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface MyOp {

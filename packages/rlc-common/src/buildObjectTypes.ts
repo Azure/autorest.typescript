@@ -205,7 +205,8 @@ function getObjectInterfaceDeclaration(
   propertySignatures = addDiscriminatorProperty(
     model,
     objectSchema,
-    propertySignatures
+    propertySignatures,
+    schemaUsage
   );
 
   // Calculate the parents of the current object
@@ -229,9 +230,14 @@ function isPolymorphicParent(objectSchema: ObjectSchema) {
 function addDiscriminatorProperty(
   model: RLCModel,
   objectSchema: ObjectSchema,
-  properties: PropertySignatureStructure[]
+  properties: PropertySignatureStructure[],
+  schemaUsage: SchemaContext[]
 ): PropertySignatureStructure[] {
-  const polymorphicProperty = getDiscriminatorProperty(model, objectSchema);
+  const polymorphicProperty = getDiscriminatorProperty(
+    model,
+    objectSchema,
+    schemaUsage
+  );
 
   if (polymorphicProperty) {
     // It is possible that the polymorphic property needs to override an existing property.
@@ -251,7 +257,8 @@ function addDiscriminatorProperty(
  */
 function getDiscriminatorProperty(
   model: RLCModel,
-  objectSchema: ObjectSchema
+  objectSchema: ObjectSchema,
+  schemaUsage: SchemaContext[]
 ): PropertySignatureStructure | undefined {
   const discriminatorValue = objectSchema.discriminatorValue;
   if (!discriminatorValue && !objectSchema.discriminator) {
@@ -267,13 +274,17 @@ function getDiscriminatorProperty(
         `getDiscriminatorProperty: Expected object ${objectSchema.name} to have a discriminator in its hierarchy but found none`
       );
     }
+    const inputTypeName =
+      objectSchema.discriminator?.typeName ?? objectSchema.discriminator?.type;
     return {
       kind: StructureKind.PropertySignature,
       name: `"${discriminatorPropertyName}"`,
       type:
         model.options?.sourceFrom === "Swagger"
           ? discriminators
-          : objectSchema.discriminator?.type
+          : schemaUsage.includes(SchemaContext.Output)
+            ? objectSchema.discriminator?.outputTypeName ?? inputTypeName
+            : inputTypeName
     };
   }
 

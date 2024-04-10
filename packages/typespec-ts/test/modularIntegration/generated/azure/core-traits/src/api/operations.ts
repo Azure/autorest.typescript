@@ -16,15 +16,15 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  SmokeTestOptions,
-  RepeatableActionOptions,
+  SmokeTestOptionalParams,
+  RepeatableActionOptionalParams,
 } from "../models/options.js";
 
 export function _smokeTestSend(
   context: Client,
   id: number,
   foo: string,
-  options: SmokeTestOptions = { requestOptions: {} },
+  options: SmokeTestOptionalParams = { requestOptions: {} },
 ): StreamableMethod<SmokeTest200Response | SmokeTestDefaultResponse> {
   return context
     .path("/azure/core/traits/user/{id}", id)
@@ -69,7 +69,7 @@ export async function smokeTest(
   context: Client,
   id: number,
   foo: string,
-  options: SmokeTestOptions = { requestOptions: {} },
+  options: SmokeTestOptionalParams = { requestOptions: {} },
 ): Promise<User> {
   const result = await _smokeTestSend(context, id, foo, options);
   return _smokeTestDeserialize(result);
@@ -79,7 +79,7 @@ export function _repeatableActionSend(
   context: Client,
   id: number,
   body: UserActionParam,
-  options: RepeatableActionOptions = { requestOptions: {} },
+  options: RepeatableActionOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   RepeatableAction200Response | RepeatableActionDefaultResponse
 > {
@@ -119,7 +119,7 @@ export async function repeatableAction(
   context: Client,
   id: number,
   body: UserActionParam,
-  options: RepeatableActionOptions = { requestOptions: {} },
+  options: RepeatableActionOptionalParams = { requestOptions: {} },
 ): Promise<UserActionResponse> {
   const result = await _repeatableActionSend(context, id, body, options);
   return _repeatableActionDeserialize(result);

@@ -2,15 +2,15 @@
 // Licensed under the MIT license.
 
 import {
-  AnalyzeTextOptions,
-  AnalyzeTextResult,
-  AnalyzeImageOptions,
-  AnalyzeImageResult,
   TextBlocklist,
   AddOrUpdateBlockItemsOptions,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
   RemoveBlockItemsOptions,
+  AnalyzeImageOptions,
+  AnalyzeImageResult,
+  AnalyzeTextOptions,
+  AnalyzeTextResult,
   PagedTextBlocklist,
   PagedTextBlockItem,
 } from "../models/models.js";
@@ -48,22 +48,22 @@ import {
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
-  AnalyzeTextRequestOptions,
-  AnalyzeImageRequestOptions,
-  GetTextBlocklistOptions,
-  CreateOrUpdateTextBlocklistOptions,
-  DeleteTextBlocklistOptions,
-  ListTextBlocklistsOptions,
-  AddOrUpdateBlockItemsRequestOptions,
-  RemoveBlockItemsRequestOptions,
-  GetTextBlocklistItemOptions,
-  ListTextBlocklistItemsOptions,
+  AnalyzeTextOptionalParams,
+  AnalyzeImageOptionalParams,
+  GetTextBlocklistOptionalParams,
+  CreateOrUpdateTextBlocklistOptionalParams,
+  DeleteTextBlocklistOptionalParams,
+  ListTextBlocklistsOptionalParams,
+  AddOrUpdateBlockItemsOptionalParams,
+  RemoveBlockItemsOptionalParams,
+  GetTextBlocklistItemOptionalParams,
+  ListTextBlocklistItemsOptionalParams,
 } from "../models/options.js";
 
 export function _analyzeTextSend(
   context: Client,
   body: AnalyzeTextOptions,
-  options: AnalyzeTextRequestOptions = { requestOptions: {} },
+  options: AnalyzeTextOptionalParams = { requestOptions: {} },
 ): StreamableMethod<AnalyzeText200Response | AnalyzeTextDefaultResponse> {
   return context
     .path("/text:analyze")
@@ -87,13 +87,14 @@ export async function _analyzeTextDeserialize(
   }
 
   return {
-    blocklistsMatchResults: !result.body["blocklistsMatchResults"]
-      ? result.body["blocklistsMatchResults"]
-      : result.body["blocklistsMatchResults"].map((p) => ({
-          blocklistName: p["blocklistName"],
-          blockItemId: p["blockItemId"],
-          blockItemText: p["blockItemText"],
-        })),
+    blocklistsMatchResults:
+      result.body["blocklistsMatchResults"] === undefined
+        ? result.body["blocklistsMatchResults"]
+        : result.body["blocklistsMatchResults"].map((p) => ({
+            blocklistName: p["blocklistName"],
+            blockItemId: p["blockItemId"],
+            blockItemText: p["blockItemText"],
+          })),
     analyzeResults: result.body["analyzeResults"].map((p) => ({
       category: p["category"],
       severity: p["severity"],
@@ -105,7 +106,7 @@ export async function _analyzeTextDeserialize(
 export async function analyzeText(
   context: Client,
   body: AnalyzeTextOptions,
-  options: AnalyzeTextRequestOptions = { requestOptions: {} },
+  options: AnalyzeTextOptionalParams = { requestOptions: {} },
 ): Promise<AnalyzeTextResult> {
   const result = await _analyzeTextSend(context, body, options);
   return _analyzeTextDeserialize(result);
@@ -114,7 +115,7 @@ export async function analyzeText(
 export function _analyzeImageSend(
   context: Client,
   body: AnalyzeImageOptions,
-  options: AnalyzeImageRequestOptions = { requestOptions: {} },
+  options: AnalyzeImageOptionalParams = { requestOptions: {} },
 ): StreamableMethod<AnalyzeImage200Response | AnalyzeImageDefaultResponse> {
   return context
     .path("/image:analyze")
@@ -153,7 +154,7 @@ export async function _analyzeImageDeserialize(
 export async function analyzeImage(
   context: Client,
   body: AnalyzeImageOptions,
-  options: AnalyzeImageRequestOptions = { requestOptions: {} },
+  options: AnalyzeImageOptionalParams = { requestOptions: {} },
 ): Promise<AnalyzeImageResult> {
   const result = await _analyzeImageSend(context, body, options);
   return _analyzeImageDeserialize(result);
@@ -162,7 +163,7 @@ export async function analyzeImage(
 export function _getTextBlocklistSend(
   context: Client,
   blocklistName: string,
-  options: GetTextBlocklistOptions = { requestOptions: {} },
+  options: GetTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   GetTextBlocklist200Response | GetTextBlocklistDefaultResponse
 > {
@@ -188,7 +189,7 @@ export async function _getTextBlocklistDeserialize(
 export async function getTextBlocklist(
   context: Client,
   blocklistName: string,
-  options: GetTextBlocklistOptions = { requestOptions: {} },
+  options: GetTextBlocklistOptionalParams = { requestOptions: {} },
 ): Promise<TextBlocklist> {
   const result = await _getTextBlocklistSend(context, blocklistName, options);
   return _getTextBlocklistDeserialize(result);
@@ -198,7 +199,7 @@ export function _createOrUpdateTextBlocklistSend(
   context: Client,
   blocklistName: string,
   resource: TextBlocklist,
-  options: CreateOrUpdateTextBlocklistOptions = { requestOptions: {} },
+  options: CreateOrUpdateTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | CreateOrUpdateTextBlocklist200Response
   | CreateOrUpdateTextBlocklist201Response
@@ -210,7 +211,10 @@ export function _createOrUpdateTextBlocklistSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: { description: resource["description"] },
+      body: {
+        blocklistName: resource["blocklistName"],
+        description: resource["description"],
+      },
     });
 }
 
@@ -235,7 +239,7 @@ export async function createOrUpdateTextBlocklist(
   context: Client,
   blocklistName: string,
   resource: TextBlocklist,
-  options: CreateOrUpdateTextBlocklistOptions = { requestOptions: {} },
+  options: CreateOrUpdateTextBlocklistOptionalParams = { requestOptions: {} },
 ): Promise<TextBlocklist> {
   const result = await _createOrUpdateTextBlocklistSend(
     context,
@@ -249,7 +253,7 @@ export async function createOrUpdateTextBlocklist(
 export function _deleteTextBlocklistSend(
   context: Client,
   blocklistName: string,
-  options: DeleteTextBlocklistOptions = { requestOptions: {} },
+  options: DeleteTextBlocklistOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   DeleteTextBlocklist204Response | DeleteTextBlocklistDefaultResponse
 > {
@@ -272,7 +276,7 @@ export async function _deleteTextBlocklistDeserialize(
 export async function deleteTextBlocklist(
   context: Client,
   blocklistName: string,
-  options: DeleteTextBlocklistOptions = { requestOptions: {} },
+  options: DeleteTextBlocklistOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _deleteTextBlocklistSend(
     context,
@@ -284,7 +288,7 @@ export async function deleteTextBlocklist(
 
 export function _listTextBlocklistsSend(
   context: Client,
-  options: ListTextBlocklistsOptions = { requestOptions: {} },
+  options: ListTextBlocklistsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ListTextBlocklists200Response | ListTextBlocklistsDefaultResponse
 > {
@@ -312,7 +316,7 @@ export async function _listTextBlocklistsDeserialize(
 /** Get all text blocklists details. */
 export function listTextBlocklists(
   context: Client,
-  options: ListTextBlocklistsOptions = { requestOptions: {} },
+  options: ListTextBlocklistsOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<TextBlocklist> {
   return buildPagedAsyncIterator(
     context,
@@ -326,7 +330,7 @@ export function _addOrUpdateBlockItemsSend(
   context: Client,
   blocklistName: string,
   body: AddOrUpdateBlockItemsOptions,
-  options: AddOrUpdateBlockItemsRequestOptions = { requestOptions: {} },
+  options: AddOrUpdateBlockItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   AddOrUpdateBlockItems200Response | AddOrUpdateBlockItemsDefaultResponse
 > {
@@ -356,13 +360,14 @@ export async function _addOrUpdateBlockItemsDeserialize(
   }
 
   return {
-    value: !result.body["value"]
-      ? result.body["value"]
-      : result.body["value"].map((p) => ({
-          blockItemId: p["blockItemId"],
-          description: p["description"],
-          text: p["text"],
-        })),
+    value:
+      result.body["value"] === undefined
+        ? result.body["value"]
+        : result.body["value"].map((p) => ({
+            blockItemId: p["blockItemId"],
+            description: p["description"],
+            text: p["text"],
+          })),
   };
 }
 
@@ -371,7 +376,7 @@ export async function addOrUpdateBlockItems(
   context: Client,
   blocklistName: string,
   body: AddOrUpdateBlockItemsOptions,
-  options: AddOrUpdateBlockItemsRequestOptions = { requestOptions: {} },
+  options: AddOrUpdateBlockItemsOptionalParams = { requestOptions: {} },
 ): Promise<AddOrUpdateBlockItemsResult> {
   const result = await _addOrUpdateBlockItemsSend(
     context,
@@ -386,7 +391,7 @@ export function _removeBlockItemsSend(
   context: Client,
   blocklistName: string,
   body: RemoveBlockItemsOptions,
-  options: RemoveBlockItemsRequestOptions = { requestOptions: {} },
+  options: RemoveBlockItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   RemoveBlockItems204Response | RemoveBlockItemsDefaultResponse
 > {
@@ -413,7 +418,7 @@ export async function removeBlockItems(
   context: Client,
   blocklistName: string,
   body: RemoveBlockItemsOptions,
-  options: RemoveBlockItemsRequestOptions = { requestOptions: {} },
+  options: RemoveBlockItemsOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _removeBlockItemsSend(
     context,
@@ -428,7 +433,7 @@ export function _getTextBlocklistItemSend(
   context: Client,
   blocklistName: string,
   blockItemId: string,
-  options: GetTextBlocklistItemOptions = { requestOptions: {} },
+  options: GetTextBlocklistItemOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   GetTextBlocklistItem200Response | GetTextBlocklistItemDefaultResponse
 > {
@@ -460,7 +465,7 @@ export async function getTextBlocklistItem(
   context: Client,
   blocklistName: string,
   blockItemId: string,
-  options: GetTextBlocklistItemOptions = { requestOptions: {} },
+  options: GetTextBlocklistItemOptionalParams = { requestOptions: {} },
 ): Promise<TextBlockItem> {
   const result = await _getTextBlocklistItemSend(
     context,
@@ -474,7 +479,7 @@ export async function getTextBlocklistItem(
 export function _listTextBlocklistItemsSend(
   context: Client,
   blocklistName: string,
-  options: ListTextBlocklistItemsOptions = { requestOptions: {} },
+  options: ListTextBlocklistItemsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ListTextBlocklistItems200Response | ListTextBlocklistItemsDefaultResponse
 > {
@@ -513,7 +518,7 @@ export async function _listTextBlocklistItemsDeserialize(
 export function listTextBlocklistItems(
   context: Client,
   blocklistName: string,
-  options: ListTextBlocklistItemsOptions = { requestOptions: {} },
+  options: ListTextBlocklistItemsOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<TextBlockItem> {
   return buildPagedAsyncIterator(
     context,

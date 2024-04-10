@@ -109,7 +109,7 @@ export interface CommonScriptModelOutput {
 }
 
 // @public
-function createClient(endpoint: string, options?: ClientOptions): TranslatorClient;
+function createClient(endpointParam: string, options?: ClientOptions): TranslatorClient;
 export default createClient;
 
 // @public (undocumented)

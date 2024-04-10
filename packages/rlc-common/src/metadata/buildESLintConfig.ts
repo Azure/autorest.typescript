@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 
@@ -14,8 +17,7 @@ const esLintConfig = {
 };
 
 export function buildEsLintConfig(model: RLCModel) {
-  const branded = model.options?.branded ?? true;
-  if (branded === false) {
+  if (model.options?.flavor !== "azure") {
     return;
   }
   const project = new Project();

@@ -2,22 +2,22 @@
 // Licensed under the MIT license.
 
 export {
-  DogParent,
+  Dog,
   Golden,
   DogKind,
-  SnakeParent,
+  Snake,
   Cobra,
   SnakeKind,
-  Dog,
-  Snake,
+  DogUnion,
+  SnakeUnion,
 } from "./models.js";
 export {
-  GetExtensibleModelOptions,
-  PutExtensibleModelOptions,
-  GetExtensibleModelMissingDiscriminatorOptions,
-  GetExtensibleModelWrongDiscriminatorOptions,
-  GetFixedModelOptions,
-  PutFixedModelOptions,
-  GetFixedModelMissingDiscriminatorOptions,
-  GetFixedModelWrongDiscriminatorOptions,
+  GetExtensibleModelOptionalParams,
+  PutExtensibleModelOptionalParams,
+  GetExtensibleModelMissingDiscriminatorOptionalParams,
+  GetExtensibleModelWrongDiscriminatorOptionalParams,
+  GetFixedModelOptionalParams,
+  PutFixedModelOptionalParams,
+  GetFixedModelMissingDiscriminatorOptionalParams,
+  GetFixedModelWrongDiscriminatorOptionalParams,
 } from "./options.js";

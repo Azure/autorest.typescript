@@ -6,8 +6,15 @@ describe("modular client context type", () => {
   it("handle with no default values in server", async () => {
     const tspContent = `
     import "@typespec/http";
+    import "@typespec/rest";
+    import "@typespec/versioning";
+    import "@azure-tools/typespec-azure-core";
 
     using TypeSpec.Http;
+    using TypeSpec.Rest;
+    using TypeSpec.Versioning;
+    using Azure.Core;
+    using Azure.Core.Traits;
     
     @server(
       "{endpoint}/client/structure/{client}",
@@ -21,10 +28,16 @@ describe("modular client context type", () => {
       }
     )
     @service({
-      title: "MultiClient",
-      version: "1.0.0",
+      title: "MultiClient"
     })
+    @versioned(Client.Structure.Service.Versions)
     namespace Client.Structure.Service;
+
+    enum Versions {
+      /** Version 2022-08-31 */
+      @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+      \`2022-08-30\`,
+    }
     
     enum ClientType {
       Default: "default",
@@ -36,36 +49,47 @@ describe("modular client context type", () => {
     @route("/one")
     @post
     op one(): void;
-        `
-    const clientContext = await emitModularClientContextFromTypeSpec(tspContent, true);
+        `;
+    const clientContext = await emitModularClientContextFromTypeSpec(
+      tspContent,
+      true
+    );
     assert.ok(clientContext);
     await assertEqualContent(
-        clientContext?.getFullText()!,
-        `
-        import { ClientOptions } from "@azure-rest/core-client";
+      clientContext?.getFullText()!,
+      `
+        import { ClientOptions  } from "@azure-rest/core-client";
         import { ServiceContext } from "../rest/index.js";
         import getClient from "../rest/index.js";
         
-        export interface ServiceClientOptions extends ClientOptions {}
+        export interface ServiceClientOptions  extends ClientOptions  {}
         
         export { ServiceContext } from "../rest/index.js";
         
         export function createService(
-          endpoint: string,
-          client: ClientType,
-          options: ServiceClientOptions = {}
+          endpointParam: string,
+          clientParam: ClientType,
+          options: ServiceClientOptions  = {}
         ): ServiceContext {
-          const clientContext = getClient(endpoint, client, options);
+          const clientContext = getClient(endpointParam, clientParam, options);
           return clientContext;
         }`
-      );
+    );
   });
 
   it("handle with default values in server", async () => {
-    const clientContext = await emitModularClientContextFromTypeSpec(`
+    const clientContext = await emitModularClientContextFromTypeSpec(
+      `
     import "@typespec/http";
+    import "@typespec/rest";
+    import "@typespec/versioning";
+    import "@azure-tools/typespec-azure-core";
 
     using TypeSpec.Http;
+    using TypeSpec.Rest;
+    using TypeSpec.Versioning;
+    using Azure.Core;
+    using Azure.Core.Traits;
     
     @server(
       "{endpoint}/client/structure/{client}",
@@ -79,10 +103,16 @@ describe("modular client context type", () => {
       }
     )
     @service({
-      title: "MultiClient",
-      version: "1.0.0",
+      title: "MultiClient"
     })
+    @versioned(Client.Structure.Service.Versions)
     namespace Client.Structure.Service;
+
+    enum Versions {
+      /** Version 2022-08-31 */
+      @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+      \`2022-08-30\`,
+    }
     
     enum ClientType {
       Default: "default",
@@ -94,27 +124,29 @@ describe("modular client context type", () => {
     @route("/one")
     @post
     op one(): void;
-        `, true);
+        `,
+      true
+    );
     assert.ok(clientContext);
     await assertEqualContent(
-        clientContext?.getFullText()!,
-        `
-        import { ClientOptions } from "@azure-rest/core-client";
+      clientContext?.getFullText()!,
+      `
+        import { ClientOptions  } from "@azure-rest/core-client";
         import { ServiceContext } from "../rest/index.js";
         import getClient from "../rest/index.js";
         
-        export interface ServiceClientOptions extends ClientOptions {}
+        export interface ServiceClientOptions  extends ClientOptions  {}
         
         export { ServiceContext } from "../rest/index.js";
         
         export function createService(
-          endpoint: string,
-          client: ClientType,
-          options: ServiceClientOptions = {}
+          endpointParam: string,
+          clientParam: ClientType,
+          options: ServiceClientOptions  = {}
         ): ServiceContext {
-          const clientContext = getClient(endpoint, client, options);
+          const clientContext = getClient(endpointParam, clientParam, options);
           return clientContext;
         }`
-      );
+    );
   });
 });

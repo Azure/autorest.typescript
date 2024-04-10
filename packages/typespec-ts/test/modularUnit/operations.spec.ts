@@ -29,9 +29,8 @@ describe("operations", () => {
           ...Bar): OkResponse;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -49,7 +48,7 @@ describe("operations", () => {
           csvArrayHeader: Uint8Array[],
           utcDateHeader: Date, 
           body: Bar, 
-          options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
+          options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod<Read200Response> {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), 
               headers: {
                 "required-header": requiredHeader,
@@ -97,7 +96,7 @@ describe("operations", () => {
           csvArrayHeader: Uint8Array[],
           utcDateHeader: Date, 
           body: Bar, 
-          options: ReadOptions = { requestOptions: {} }): Promise<void> {
+          options: ReadOptionalParams = { requestOptions: {} }): Promise<void> {
             const result = await _readSend(context, requiredHeader, bytesHeader, value, csvArrayHeader, utcDateHeader, body, options);
             return _readDeserialize(result);
         }`,
@@ -140,7 +139,7 @@ describe("operations", () => {
       import { TestingContext as Client } from "../rest/index.js";
       import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
   
-      export function _readSend(context: Client, nullableRequiredHeader: (string | null), options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
+      export function _readSend(context: Client, nullableRequiredHeader: (string | null), options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod<Read200Response> {
           return context.path("/", ).get({...operationOptionsToRequestParameters(options), 
           headers: {"nullable-required-header": nullableRequiredHeader},});
       }
@@ -153,7 +152,7 @@ describe("operations", () => {
           return;
       }
   
-      export async function read(context: Client, nullableRequiredHeader: (string | null), options: ReadOptions = { requestOptions: {} }): Promise<void> {
+      export async function read(context: Client, nullableRequiredHeader: (string | null), options: ReadOptionalParams = { requestOptions: {} }): Promise<void> {
           const result = await _readSend(context, nullableRequiredHeader, options);
           return _readDeserialize(result);
       }
@@ -163,7 +162,7 @@ describe("operations", () => {
   });
 
   // TODO: need to fix the tests
-  describe.skip("array as body", () => {
+  describe("array as body", () => {
     it("should generate required model array as request body", async () => {
       const tspContent = `
         model Bar {
@@ -173,9 +172,8 @@ describe("operations", () => {
         op read(@body bars?: Bar[]): OkResponse;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -184,10 +182,10 @@ describe("operations", () => {
         import { TestingContext as Client } from "../rest/index.js";
         import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
-        export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
+        export function _readSend(context: Client, bars?: Bar[], options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
               ...operationOptionsToRequestParameters(options),
-              body: bars.map((p) => {
+              body: (bars ?? []).map((p) => {
                     return {
                       prop1: p["prop1"],
                       prop2: p["prop2"],
@@ -204,13 +202,13 @@ describe("operations", () => {
           return;
         }
         
-        export async function read(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): Promise<void> {
+        export async function read(context: Client, bars?: Bar[], options: ReadOptionalParams = { requestOptions: {} }): Promise<void> {
             const result = await _readSend(context, bars, options);
             return _readDeserialize(result);
         }`
       );
     });
-    it("should handle `undefined` for named model array as request body", async () => {
+    it.skip("should handle `undefined` for named model array as request body", async () => {
       const tspContent = `
         model Bar {
           prop1: string;
@@ -219,9 +217,8 @@ describe("operations", () => {
         op read(@body bars: Bar[]): OkResponse;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -230,7 +227,7 @@ describe("operations", () => {
         import { TestingContext as Client } from "../rest/index.js";
         import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
-        export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
+        export function _readSend(context: Client, bars: Bar[], options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
               ...operationOptionsToRequestParameters(options),
               body: bars.map((p) => {
@@ -250,13 +247,13 @@ describe("operations", () => {
           return;
         }
         
-        export async function read(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): Promise<void> {
+        export async function read(context: Client, bars: Bar[], options: ReadOptionalParams = { requestOptions: {} }): Promise<void> {
             const result = await _readSend(context, bars, options);
             return _readDeserialize(result);
         }`
       );
     });
-    it("should handle `null` for anonymous model array as request body", async () => {
+    it.skip("should handle `null` for anonymous model array as request body", async () => {
       const tspContent = `
         model Bar {
           prop1: string;
@@ -265,9 +262,8 @@ describe("operations", () => {
         op read(): { a: Bar}[] | null;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -276,7 +272,7 @@ describe("operations", () => {
         import { TestingContext as Client } from "../rest/index.js";
         import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
-        export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
+        export function _readSend(context: Client, bars: Bar[], options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
               ...operationOptionsToRequestParameters(options),
               body: bars.map((p) => {
@@ -296,13 +292,13 @@ describe("operations", () => {
           return;
         }
         
-        export async function read(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): Promise<void> {
+        export async function read(context: Client, bars: Bar[], options: ReadOptionalParams = { requestOptions: {} }): Promise<void> {
             const result = await _readSend(context, bars, options);
             return _readDeserialize(result);
         }`
       );
     });
-    it("should handle `null` for named array as response body", async () => {
+    it.skip("should handle `null` for named array as response body", async () => {
       const tspContent = `
         model Bar {
           prop1: string;
@@ -311,9 +307,8 @@ describe("operations", () => {
         op read(@body bars?: Bar[]): Bar[] | null;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -322,7 +317,7 @@ describe("operations", () => {
         import { TestingContext as Client } from "../rest/index.js";
         import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
-        export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
+        export function _readSend(context: Client, bars: Bar[], options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
               ...operationOptionsToRequestParameters(options),
               body: bars.map((p) => {
@@ -342,7 +337,7 @@ describe("operations", () => {
           return;
         }
         
-        export async function read(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): Promise<void> {
+        export async function read(context: Client, bars: Bar[], options: ReadOptionalParams = { requestOptions: {} }): Promise<void> {
             const result = await _readSend(context, bars, options);
             return _readDeserialize(result);
         }`
@@ -366,9 +361,8 @@ describe("operations", () => {
         op read(...Foo): OkResponse;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -384,35 +378,38 @@ describe("operations", () => {
         export function _readSend(
           context: Client,
           body: Foo,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod<Read200Response> {
           return context
             .path("/")
             .post({
               ...operationOptionsToRequestParameters(options),
               body: {
-                optionalBars: !body["optionalBars"]
-                  ? body["optionalBars"]
-                  : body["optionalBars"].map((p) => ({
-                      prop1: p["prop1"],
-                      prop2: p["prop2"],
-                    })),
+                optionalBars:
+                  body["optionalBars"] === undefined
+                    ? body["optionalBars"]
+                    : body["optionalBars"].map((p) => ({
+                        prop1: p["prop1"],
+                        prop2: p["prop2"],
+                      })),
                 requiredBars: body["requiredBars"].map((p) => ({
                   prop1: p["prop1"],
                   prop2: p["prop2"],
                 })),
-                nullableBars: !body["nullableBars"]
-                  ? body["nullableBars"]
-                  : body["nullableBars"].map((p) => ({
-                      prop1: p["prop1"],
-                      prop2: p["prop2"],
-                    })),
-                nullableRequiredBars: !body["nullableRequiredBars"]
-                  ? body["nullableRequiredBars"]
-                  : body["nullableRequiredBars"].map((p) => ({
-                      prop1: p["prop1"],
-                      prop2: p["prop2"],
-                    })),
+                nullableBars:
+                  body["nullableBars"] === undefined || body["nullableBars"] === null
+                    ? body["nullableBars"]
+                    : body["nullableBars"].map((p) => ({
+                        prop1: p["prop1"],
+                        prop2: p["prop2"],
+                      })),
+                nullableRequiredBars:
+                  body["nullableRequiredBars"] === null
+                    ? body["nullableRequiredBars"]
+                    : body["nullableRequiredBars"].map((p) => ({
+                        prop1: p["prop1"],
+                        prop2: p["prop2"],
+                      })),
               },
             });
         }
@@ -428,7 +425,7 @@ describe("operations", () => {
         export async function read(
           context: Client,
           body: Foo,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): Promise<void> {
           const result = await _readSend(context, body, options);
           return _readDeserialize(result);
@@ -451,9 +448,8 @@ describe("operations", () => {
         op read(): Foo;
           `;
 
-      const operationFiles = await emitModularOperationsFromTypeSpec(
-        tspContent
-      );
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       await assertEqualContent(
@@ -468,7 +464,7 @@ describe("operations", () => {
         
         export function _readSend(
           context: Client,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): StreamableMethod<Read200Response> {
           return context
             .path("/")
@@ -480,34 +476,38 @@ describe("operations", () => {
             throw createRestError(result);
           }
           return {
-            optionalBars: !result.body["optionalBars"]
-              ? result.body["optionalBars"]
-              : result.body["optionalBars"].map((p) => ({
-                  prop1: p["prop1"],
-                  prop2: p["prop2"],
-                })),
+            optionalBars:
+              result.body["optionalBars"] === undefined
+                ? result.body["optionalBars"]
+                : result.body["optionalBars"].map((p) => ({
+                    prop1: p["prop1"],
+                    prop2: p["prop2"],
+                  })),
             requiredBars: result.body["requiredBars"].map((p) => ({
               prop1: p["prop1"],
               prop2: p["prop2"],
             })),
-            nullableBars: !result.body["nullableBars"]
-              ? result.body["nullableBars"]
-              : result.body["nullableBars"].map((p) => ({
-                  prop1: p["prop1"],
-                  prop2: p["prop2"],
-                })),
-            nullableRequiredBars: !result.body["nullableRequiredBars"]
-              ? result.body["nullableRequiredBars"]
-              : result.body["nullableRequiredBars"].map((p) => ({
-                  prop1: p["prop1"],
-                  prop2: p["prop2"],
-                })),
+            nullableBars:
+              result.body["nullableBars"] === undefined ||
+              result.body["nullableBars"] === null
+                ? result.body["nullableBars"]
+                : result.body["nullableBars"].map((p) => ({
+                    prop1: p["prop1"],
+                    prop2: p["prop2"],
+                  })),
+            nullableRequiredBars:
+              result.body["nullableRequiredBars"] === null
+                ? result.body["nullableRequiredBars"]
+                : result.body["nullableRequiredBars"].map((p) => ({
+                    prop1: p["prop1"],
+                    prop2: p["prop2"],
+                  })),
           };
         }
         
         export async function read(
           context: Client,
-          options: ReadOptions = { requestOptions: {} }
+          options: ReadOptionalParams = { requestOptions: {} }
         ): Promise<Foo> {
           const result = await _readSend(context, options);
           return _readDeserialize(result);
@@ -549,7 +549,7 @@ describe("operations", () => {
         import { TestingContext as Client } from "../rest/index.js";
         import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
-        export function _testSend(context: Client, options: TestOptions = { requestOptions: {} }): StreamableMethod<Test200Response | TestDefaultResponse> {
+        export function _testSend(context: Client, options: TestOptionalParams = { requestOptions: {} }): StreamableMethod<Test200Response | TestDefaultResponse> {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ;  
         }
 
@@ -563,7 +563,7 @@ describe("operations", () => {
             }
         }
 
-        export function test(context: Client, options: TestOptions = { requestOptions: {} }): PagedAsyncIterableIterator<string> {
+        export function test(context: Client, options: TestOptionalParams = { requestOptions: {} }): PagedAsyncIterableIterator<string> {
             return buildPagedAsyncIterator(
                     context,
                     () => _testSend(context, options),
@@ -617,7 +617,7 @@ describe("operations", () => {
         import { TestingContext as Client } from "../rest/index.js";
         import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
-        export function _testSend(context: Client, options: TestOptions = { requestOptions: {} }): StreamableMethod<Test200Response | TestDefaultResponse> {
+        export function _testSend(context: Client, options: TestOptionalParams = { requestOptions: {} }): StreamableMethod<Test200Response | TestDefaultResponse> {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ; 
         }
 
@@ -631,7 +631,7 @@ describe("operations", () => {
             }
         }
 
-        export async function test(context: Client, options: TestOptions = { requestOptions: {} }): Promise<Bar> {
+        export async function test(context: Client, options: TestOptionalParams = { requestOptions: {} }): Promise<Bar> {
             const result = await _testSend(context, options);
             return _testDeserialize(result);
         }`,

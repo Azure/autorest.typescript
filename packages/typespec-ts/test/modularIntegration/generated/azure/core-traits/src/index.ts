@@ -7,6 +7,6 @@ export {
   UserActionParam,
   UserActionResponse,
   RepeatabilityResult,
-  SmokeTestOptions,
-  RepeatableActionOptions,
+  SmokeTestOptionalParams,
+  RepeatableActionOptionalParams,
 } from "./models/index.js";

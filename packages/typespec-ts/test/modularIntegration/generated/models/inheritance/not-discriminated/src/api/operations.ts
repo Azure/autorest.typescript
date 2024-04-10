@@ -14,15 +14,15 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  PostValidOptions,
-  GetValidOptions,
-  PutValidOptions,
+  PostValidOptionalParams,
+  GetValidOptionalParams,
+  PutValidOptionalParams,
 } from "../models/options.js";
 
 export function _postValidSend(
   context: Client,
   input: Siamese,
-  options: PostValidOptions = { requestOptions: {} },
+  options: PostValidOptionalParams = { requestOptions: {} },
 ): StreamableMethod<PostValid204Response> {
   return context
     .path("/type/model/inheritance/not-discriminated/valid")
@@ -45,7 +45,7 @@ export async function _postValidDeserialize(
 export async function postValid(
   context: Client,
   input: Siamese,
-  options: PostValidOptions = { requestOptions: {} },
+  options: PostValidOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _postValidSend(context, input, options);
   return _postValidDeserialize(result);
@@ -53,7 +53,7 @@ export async function postValid(
 
 export function _getValidSend(
   context: Client,
-  options: GetValidOptions = { requestOptions: {} },
+  options: GetValidOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetValid200Response> {
   return context
     .path("/type/model/inheritance/not-discriminated/valid")
@@ -76,7 +76,7 @@ export async function _getValidDeserialize(
 
 export async function getValid(
   context: Client,
-  options: GetValidOptions = { requestOptions: {} },
+  options: GetValidOptionalParams = { requestOptions: {} },
 ): Promise<Siamese> {
   const result = await _getValidSend(context, options);
   return _getValidDeserialize(result);
@@ -85,7 +85,7 @@ export async function getValid(
 export function _putValidSend(
   context: Client,
   input: Siamese,
-  options: PutValidOptions = { requestOptions: {} },
+  options: PutValidOptionalParams = { requestOptions: {} },
 ): StreamableMethod<PutValid200Response> {
   return context
     .path("/type/model/inheritance/not-discriminated/valid")
@@ -112,7 +112,7 @@ export async function _putValidDeserialize(
 export async function putValid(
   context: Client,
   input: Siamese,
-  options: PutValidOptions = { requestOptions: {} },
+  options: PutValidOptionalParams = { requestOptions: {} },
 ): Promise<Siamese> {
   const result = await _putValidSend(context, input, options);
   return _putValidDeserialize(result);

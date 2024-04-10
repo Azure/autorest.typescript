@@ -3,7 +3,7 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { A } from "./models/models.js";
-import { Op1Options } from "./models/options.js";
+import { Op1OptionalParams } from "./models/options.js";
 import { getBOperations, BOperations } from "./classic/b/index.js";
 import { getDOperations, DOperations } from "./classic/d/index.js";
 import { createFoo, FooClientOptions, FooContext, op1 } from "./api/index.js";
@@ -22,7 +22,10 @@ export class FooClient {
     this.d = getDOperations(this._client);
   }
 
-  op1(body: A, options: Op1Options = { requestOptions: {} }): Promise<void> {
+  op1(
+    body: A,
+    options: Op1OptionalParams = { requestOptions: {} },
+  ): Promise<void> {
     return op1(this._client, body, options);
   }
 

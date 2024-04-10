@@ -12,13 +12,13 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  NoOperationParamsOptions,
-  WithOperationPathParamOptions,
+  NoOperationParamsOptionalParams,
+  WithOperationPathParamOptionalParams,
 } from "../models/options.js";
 
 export function _noOperationParamsSend(
   context: Client,
-  options: NoOperationParamsOptions = { requestOptions: {} },
+  options: NoOperationParamsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<NoOperationParams204Response> {
   return context
     .path("/")
@@ -37,7 +37,7 @@ export async function _noOperationParamsDeserialize(
 
 export async function noOperationParams(
   context: Client,
-  options: NoOperationParamsOptions = { requestOptions: {} },
+  options: NoOperationParamsOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _noOperationParamsSend(context, options);
   return _noOperationParamsDeserialize(result);
@@ -46,7 +46,7 @@ export async function noOperationParams(
 export function _withOperationPathParamSend(
   context: Client,
   keyword: string,
-  options: WithOperationPathParamOptions = { requestOptions: {} },
+  options: WithOperationPathParamOptionalParams = { requestOptions: {} },
 ): StreamableMethod<WithOperationPathParam204Response> {
   return context
     .path("/{keyword}", keyword)
@@ -66,7 +66,7 @@ export async function _withOperationPathParamDeserialize(
 export async function withOperationPathParam(
   context: Client,
   keyword: string,
-  options: WithOperationPathParamOptions = { requestOptions: {} },
+  options: WithOperationPathParamOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _withOperationPathParamSend(context, keyword, options);
   return _withOperationPathParamDeserialize(result);

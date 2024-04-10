@@ -52,7 +52,7 @@ export interface IntLiteralPropertyOutput {
 /** Model with float literal property */
 export interface FloatLiteralPropertyOutput {
   /** Property */
-  property?: 1.2;
+  property?: 1.25;
 }
 
 /** Model with boolean literal property */
@@ -76,7 +76,7 @@ export interface UnionIntLiteralPropertyOutput {
 /** Model with union of float literal property */
 export interface UnionFloatLiteralPropertyOutput {
   /** Property */
-  property?: 1.2 | 2.3;
+  property?: 1.25 | 2.375;
 }
 
 /** Model with required and optional properties */

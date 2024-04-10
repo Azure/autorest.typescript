@@ -7,20 +7,23 @@ import {
   float32ValuePut,
 } from "../../api/float32Value/index.js";
 import {
-  Float32ValueGetOptions,
-  Float32ValuePutOptions,
+  Float32ValueGetOptionalParams,
+  Float32ValuePutOptionalParams,
 } from "../../models/options.js";
 
 export interface Float32ValueOperations {
-  get: (options?: Float32ValueGetOptions) => Promise<number[]>;
-  put: (body: number[], options?: Float32ValuePutOptions) => Promise<void>;
+  get: (options?: Float32ValueGetOptionalParams) => Promise<number[]>;
+  put: (
+    body: number[],
+    options?: Float32ValuePutOptionalParams,
+  ) => Promise<void>;
 }
 
 export function getFloat32Value(context: ArrayContext) {
   return {
-    get: (options?: Float32ValueGetOptions) =>
+    get: (options?: Float32ValueGetOptionalParams) =>
       float32ValueGet(context, options),
-    put: (body: number[], options?: Float32ValuePutOptions) =>
+    put: (body: number[], options?: Float32ValuePutOptionalParams) =>
       float32ValuePut(context, body, options),
   };
 }

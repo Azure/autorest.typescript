@@ -22,7 +22,7 @@ describe("Spread(...) and alias", () => {
         parameters?.content!,
         `
             import { RequestParameters } from "@azure-rest/core-client";
-            import { User } from "./models";
+            import { User } from "./models.js";
 
             export interface ReadBodyParam {
               body: User;
@@ -54,7 +54,7 @@ describe("Spread(...) and alias", () => {
         parameters?.content!,
         `
             import { RequestParameters } from "@azure-rest/core-client";
-            import { SimpleModel } from "./models";
+            import { SimpleModel } from "./models.js";
     
             export interface ReadBodyParam {
                body?: SimpleModel;
@@ -84,7 +84,7 @@ describe("Spread(...) and alias", () => {
         parameters?.content!,
         `
             import { RequestParameters } from "@azure-rest/core-client";
-            import { User } from "./models";
+            import { User } from "./models.js";
 
             export interface ReadBodyParam {
                 body: User;
@@ -144,7 +144,7 @@ describe("Spread(...) and alias", () => {
         parameters?.content!,
         `
                 import { RequestParameters } from "@azure-rest/core-client";
-                import { User } from "./models";
+                import { User } from "./models.js";
         
                 export interface ReadBodyParam {
                   body?: { user: User };
@@ -178,7 +178,7 @@ describe("Spread(...) and alias", () => {
         parameters?.content!,
         `
                 import { RequestParameters } from "@azure-rest/core-client";
-                import { User } from "./models";
+                import { User } from "./models.js";
         
                 export interface ReadBodyParam {
                   body?: { user: User };

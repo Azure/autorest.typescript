@@ -12,8 +12,8 @@ dotenv.config();
  * @summary call operation RequestUnionBody
  */
 async function requestUnionBodySample() {
-  const endpoint = "{Your endpoint}";
-  const client = createUnionBodyClient(endpoint);
+  const endpointParam = "{Your endpointParam}";
+  const client = createUnionBodyClient(endpointParam);
   const result = await client
     .path("/request-union-body")
     .post({ body: { payMethod: "01" } });

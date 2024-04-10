@@ -2,16 +2,16 @@
 // Licensed under the MIT license.
 
 import {
-  ListFilesResponse,
   OpenAIFile,
+  ListFilesResponse,
   CreateFileRequest,
   DeleteFileResponse,
 } from "../../models/models.js";
 import {
   FilesCreate200Response,
   FilesCreateDefaultResponse,
-  FilesDeleteOperation200Response,
-  FilesDeleteOperationDefaultResponse,
+  FilesDelete200Response,
+  FilesDeleteDefaultResponse,
   FilesDownload200Response,
   FilesDownloadDefaultResponse,
   FilesList200Response,
@@ -26,17 +26,18 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { uint8ArrayToString } from "@azure/core-util";
 import {
-  FilesListOptions,
-  FilesCreateOptions,
-  FilesRetrieveOptions,
-  FilesDeleteOperationOptions,
-  FilesDownloadOptions,
+  FilesListOptionalParams,
+  FilesCreateOptionalParams,
+  FilesRetrieveOptionalParams,
+  FilesDeleteOptionalParams,
+  FilesDownloadOptionalParams,
 } from "../../models/options.js";
 
 export function _listSend(
   context: Client,
-  options: FilesListOptions = { requestOptions: {} },
+  options: FilesListOptionalParams = { requestOptions: {} },
 ): StreamableMethod<FilesList200Response | FilesListDefaultResponse> {
   return context
     .path("/files")
@@ -59,7 +60,7 @@ export async function _listDeserialize(
       createdAt: new Date(p["createdAt"]),
       filename: p["filename"],
       purpose: p["purpose"],
-      status: p["status"] as any,
+      status: p["status"],
       statusDetails: p["status_details"],
     })),
   };
@@ -67,7 +68,7 @@ export async function _listDeserialize(
 
 export async function list(
   context: Client,
-  options: FilesListOptions = { requestOptions: {} },
+  options: FilesListOptionalParams = { requestOptions: {} },
 ): Promise<ListFilesResponse> {
   const result = await _listSend(context, options);
   return _listDeserialize(result);
@@ -76,14 +77,17 @@ export async function list(
 export function _createSend(
   context: Client,
   file: CreateFileRequest,
-  options: FilesCreateOptions = { requestOptions: {} },
+  options: FilesCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<FilesCreate200Response | FilesCreateDefaultResponse> {
   return context
     .path("/files")
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: { file: file["file"], purpose: file["purpose"] },
+      body: {
+        file: uint8ArrayToString(file["file"], "base64"),
+        purpose: file["purpose"],
+      },
     });
 }
 
@@ -101,7 +105,7 @@ export async function _createDeserialize(
     createdAt: new Date(result.body["createdAt"]),
     filename: result.body["filename"],
     purpose: result.body["purpose"],
-    status: result.body["status"] as any,
+    status: result.body["status"],
     statusDetails: result.body["status_details"],
   };
 }
@@ -109,7 +113,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   file: CreateFileRequest,
-  options: FilesCreateOptions = { requestOptions: {} },
+  options: FilesCreateOptionalParams = { requestOptions: {} },
 ): Promise<OpenAIFile> {
   const result = await _createSend(context, file, options);
   return _createDeserialize(result);
@@ -118,7 +122,7 @@ export async function create(
 export function _retrieveSend(
   context: Client,
   fileId: string,
-  options: FilesRetrieveOptions = { requestOptions: {} },
+  options: FilesRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod<FilesRetrieve200Response | FilesRetrieveDefaultResponse> {
   return context
     .path("/files/files/{file_id}", fileId)
@@ -139,7 +143,7 @@ export async function _retrieveDeserialize(
     createdAt: new Date(result.body["createdAt"]),
     filename: result.body["filename"],
     purpose: result.body["purpose"],
-    status: result.body["status"] as any,
+    status: result.body["status"],
     statusDetails: result.body["status_details"],
   };
 }
@@ -147,26 +151,24 @@ export async function _retrieveDeserialize(
 export async function retrieve(
   context: Client,
   fileId: string,
-  options: FilesRetrieveOptions = { requestOptions: {} },
+  options: FilesRetrieveOptionalParams = { requestOptions: {} },
 ): Promise<OpenAIFile> {
   const result = await _retrieveSend(context, fileId, options);
   return _retrieveDeserialize(result);
 }
 
-export function _deleteOperationSend(
+export function _$deleteSend(
   context: Client,
   fileId: string,
-  options: FilesDeleteOperationOptions = { requestOptions: {} },
-): StreamableMethod<
-  FilesDeleteOperation200Response | FilesDeleteOperationDefaultResponse
-> {
+  options: FilesDeleteOptionalParams = { requestOptions: {} },
+): StreamableMethod<FilesDelete200Response | FilesDeleteDefaultResponse> {
   return context
     .path("/files/files/{file_id}", fileId)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _deleteOperationDeserialize(
-  result: FilesDeleteOperation200Response | FilesDeleteOperationDefaultResponse,
+export async function _$deleteDeserialize(
+  result: FilesDelete200Response | FilesDeleteDefaultResponse,
 ): Promise<DeleteFileResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -179,19 +181,24 @@ export async function _deleteOperationDeserialize(
   };
 }
 
-export async function deleteOperation(
+/**
+ *  @fixme delete is a reserved word that cannot be used as an operation name.
+ *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+ *         to the operation to override the generated name.
+ */
+export async function $delete(
   context: Client,
   fileId: string,
-  options: FilesDeleteOperationOptions = { requestOptions: {} },
+  options: FilesDeleteOptionalParams = { requestOptions: {} },
 ): Promise<DeleteFileResponse> {
-  const result = await _deleteOperationSend(context, fileId, options);
-  return _deleteOperationDeserialize(result);
+  const result = await _$deleteSend(context, fileId, options);
+  return _$deleteDeserialize(result);
 }
 
 export function _downloadSend(
   context: Client,
   fileId: string,
-  options: FilesDownloadOptions = { requestOptions: {} },
+  options: FilesDownloadOptionalParams = { requestOptions: {} },
 ): StreamableMethod<FilesDownload200Response | FilesDownloadDefaultResponse> {
   return context
     .path("/files/files/{file_id}/content", fileId)
@@ -211,7 +218,7 @@ export async function _downloadDeserialize(
 export async function download(
   context: Client,
   fileId: string,
-  options: FilesDownloadOptions = { requestOptions: {} },
+  options: FilesDownloadOptionalParams = { requestOptions: {} },
 ): Promise<string> {
   const result = await _downloadSend(context, fileId, options);
   return _downloadDeserialize(result);

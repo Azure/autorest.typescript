@@ -9,7 +9,7 @@ import {
   UserListResultsOutput,
   PagedFirstItemOutput,
   PagedSecondItemOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface CreateOrUpdate200Response extends HttpResponse {
@@ -143,36 +143,36 @@ export interface ListWithCustomPageModelDefaultResponse extends HttpResponse {
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface DeleteOperation204Response extends HttpResponse {
+export interface Delete204Response extends HttpResponse {
   status: "204";
 }
 
-export interface DeleteOperationDefaultHeaders {
+export interface DeleteDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface DeleteOperationDefaultResponse extends HttpResponse {
+export interface DeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & DeleteOperationDefaultHeaders;
+  headers: RawHttpHeaders & DeleteDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface ExportOperation200Response extends HttpResponse {
+export interface Export200Response extends HttpResponse {
   status: "200";
   body: UserOutput;
 }
 
-export interface ExportOperationDefaultHeaders {
+export interface ExportDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface ExportOperationDefaultResponse extends HttpResponse {
+export interface ExportDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & ExportOperationDefaultHeaders;
+  headers: RawHttpHeaders & ExportDefaultHeaders;
 }
 
 /** The request has succeeded. */

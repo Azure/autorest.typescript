@@ -91,11 +91,11 @@ function regularAutorestPackage(
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.2.0" }),
       ...(!useCoreV2 && { "@azure/core-http": "^3.0.0" }),
       ...(useCoreV2 && { "@azure/core-client": "^1.7.0" }),
-      ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.3.0" }),
+      ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.6.0" }),
       ...(useCoreV2 &&
         coreHttpCompatMode && { "@azure/core-http-compat": "^1.2.0" }),
       ...(useCoreV2 && {
-        "@azure/core-rest-pipeline": "^1.12.0"
+        "@azure/core-rest-pipeline": "^1.14.0"
       }),
       ...(tracingInfo && {
         "@azure/core-tracing": "^1.0.0"
@@ -196,7 +196,7 @@ function regularAutorestPackage(
 
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
-    packageInfo.devDependencies["@azure/identity"] = "^3.3.0";
+    packageInfo.devDependencies["@azure/identity"] = "^4.0.1";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
     packageInfo.devDependencies["mocha"] = "^10.0.0";

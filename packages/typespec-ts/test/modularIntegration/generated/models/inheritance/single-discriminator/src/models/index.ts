@@ -2,22 +2,22 @@
 // Licensed under the MIT license.
 
 export {
-  BirdParent,
+  Bird,
   SeaGull,
   Sparrow,
   Goose,
   Eagle,
-  DinosaurParent,
-  TRex,
-  Bird,
   Dinosaur,
+  TRex,
+  BirdUnion,
+  DinosaurUnion,
 } from "./models.js";
 export {
-  GetModelOptions,
-  PutModelOptions,
-  GetRecursiveModelOptions,
-  PutRecursiveModelOptions,
-  GetMissingDiscriminatorOptions,
-  GetWrongDiscriminatorOptions,
-  GetLegacyModelOptions,
+  GetModelOptionalParams,
+  PutModelOptionalParams,
+  GetRecursiveModelOptionalParams,
+  PutRecursiveModelOptionalParams,
+  GetMissingDiscriminatorOptionalParams,
+  GetWrongDiscriminatorOptionalParams,
+  GetLegacyModelOptionalParams,
 } from "./options.js";

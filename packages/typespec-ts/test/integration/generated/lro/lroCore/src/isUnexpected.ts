@@ -6,13 +6,13 @@ import {
   CreateOrReplace201Response,
   CreateOrReplaceLogicalResponse,
   CreateOrReplaceDefaultResponse,
-  DeleteOperation202Response,
+  Delete202Response,
   DeleteLogicalResponse,
-  DeleteOperationDefaultResponse,
-  ExportOperation202Response,
+  DeleteDefaultResponse,
+  Export202Response,
   ExportLogicalResponse,
-  ExportOperationDefaultResponse,
-} from "./responses";
+  ExportDefaultResponse,
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "PUT /azure/core/lro/standard/users/{name}": ["200", "201"],
@@ -30,33 +30,27 @@ export function isUnexpected(
     | CreateOrReplaceDefaultResponse,
 ): response is CreateOrReplaceDefaultResponse;
 export function isUnexpected(
-  response:
-    | DeleteOperation202Response
-    | DeleteLogicalResponse
-    | DeleteOperationDefaultResponse,
-): response is DeleteOperationDefaultResponse;
+  response: Delete202Response | DeleteLogicalResponse | DeleteDefaultResponse,
+): response is DeleteDefaultResponse;
 export function isUnexpected(
-  response:
-    | ExportOperation202Response
-    | ExportLogicalResponse
-    | ExportOperationDefaultResponse,
-): response is ExportOperationDefaultResponse;
+  response: Export202Response | ExportLogicalResponse | ExportDefaultResponse,
+): response is ExportDefaultResponse;
 export function isUnexpected(
   response:
     | CreateOrReplace200Response
     | CreateOrReplace201Response
     | CreateOrReplaceLogicalResponse
     | CreateOrReplaceDefaultResponse
-    | DeleteOperation202Response
+    | Delete202Response
     | DeleteLogicalResponse
-    | DeleteOperationDefaultResponse
-    | ExportOperation202Response
+    | DeleteDefaultResponse
+    | Export202Response
     | ExportLogicalResponse
-    | ExportOperationDefaultResponse,
+    | ExportDefaultResponse,
 ): response is
   | CreateOrReplaceDefaultResponse
-  | DeleteOperationDefaultResponse
-  | ExportOperationDefaultResponse {
+  | DeleteDefaultResponse
+  | ExportDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

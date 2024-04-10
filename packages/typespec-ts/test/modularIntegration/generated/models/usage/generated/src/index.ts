@@ -6,7 +6,7 @@ export {
   InputRecord,
   OutputRecord,
   InputOutputRecord,
-  InputOptions,
-  OutputOptions,
-  InputAndOutputOptions,
+  InputOptionalParams,
+  OutputOptionalParams,
+  InputAndOutputOptionalParams,
 } from "./models/index.js";

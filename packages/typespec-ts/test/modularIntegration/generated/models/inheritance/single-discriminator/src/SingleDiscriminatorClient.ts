@@ -2,15 +2,15 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { Bird, Dinosaur } from "./models/models.js";
+import { BirdUnion, DinosaurUnion } from "./models/models.js";
 import {
-  GetModelOptions,
-  PutModelOptions,
-  GetRecursiveModelOptions,
-  PutRecursiveModelOptions,
-  GetMissingDiscriminatorOptions,
-  GetWrongDiscriminatorOptions,
-  GetLegacyModelOptions,
+  GetModelOptionalParams,
+  PutModelOptionalParams,
+  GetRecursiveModelOptionalParams,
+  PutRecursiveModelOptionalParams,
+  GetMissingDiscriminatorOptionalParams,
+  GetWrongDiscriminatorOptionalParams,
+  GetLegacyModelOptionalParams,
 } from "./models/options.js";
 import {
   getModel,
@@ -38,45 +38,47 @@ export class SingleDiscriminatorClient {
     this.pipeline = this._client.pipeline;
   }
 
-  getModel(options: GetModelOptions = { requestOptions: {} }): Promise<Bird> {
+  getModel(
+    options: GetModelOptionalParams = { requestOptions: {} },
+  ): Promise<BirdUnion> {
     return getModel(this._client, options);
   }
 
   putModel(
-    input: Bird,
-    options: PutModelOptions = { requestOptions: {} },
+    input: BirdUnion,
+    options: PutModelOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return putModel(this._client, input, options);
   }
 
   getRecursiveModel(
-    options: GetRecursiveModelOptions = { requestOptions: {} },
-  ): Promise<Bird> {
+    options: GetRecursiveModelOptionalParams = { requestOptions: {} },
+  ): Promise<BirdUnion> {
     return getRecursiveModel(this._client, options);
   }
 
   putRecursiveModel(
-    input: Bird,
-    options: PutRecursiveModelOptions = { requestOptions: {} },
+    input: BirdUnion,
+    options: PutRecursiveModelOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return putRecursiveModel(this._client, input, options);
   }
 
   getMissingDiscriminator(
-    options: GetMissingDiscriminatorOptions = { requestOptions: {} },
-  ): Promise<Bird> {
+    options: GetMissingDiscriminatorOptionalParams = { requestOptions: {} },
+  ): Promise<BirdUnion> {
     return getMissingDiscriminator(this._client, options);
   }
 
   getWrongDiscriminator(
-    options: GetWrongDiscriminatorOptions = { requestOptions: {} },
-  ): Promise<Bird> {
+    options: GetWrongDiscriminatorOptionalParams = { requestOptions: {} },
+  ): Promise<BirdUnion> {
     return getWrongDiscriminator(this._client, options);
   }
 
   getLegacyModel(
-    options: GetLegacyModelOptions = { requestOptions: {} },
-  ): Promise<Dinosaur> {
+    options: GetLegacyModelOptionalParams = { requestOptions: {} },
+  ): Promise<DinosaurUnion> {
     return getLegacyModel(this._client, options);
   }
 }
