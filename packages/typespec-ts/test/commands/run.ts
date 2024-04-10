@@ -17,13 +17,12 @@ export async function runTypespec(config: TypeSpecRanchConfig, mode: string) {
     "..",
     `./temp/http/${sourceTypespec}`
   );
-  let subPath = "integration";
+  let subPath = joinPath("e2e-test", "rlc");
   if (mode.includes("non-branded")) {
-    subPath = `nonBrandedIntegration/${
-      mode.includes("modular") ? "modular" : "rlc"
-    }`;
+    const leafFolder = mode.includes("modular") ? "modular" : "rlc";
+    subPath = joinPath("e2e-test", "unbranded", leafFolder);
   } else if (mode.includes("modular")) {
-    subPath = "modularIntegration";
+    subPath = joinPath("e2e-test", "modular");
   }
   const outputPath = joinPath(
     `${__dirname}`,
