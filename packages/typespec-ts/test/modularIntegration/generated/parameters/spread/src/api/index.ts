@@ -5,7 +5,7 @@ export {
   createSpread,
   SpreadClientOptions,
   SpreadContext,
-} from "./SpreadContext.js";
+} from "./spreadContext.js";
 export {
   aliasSpreadAsRequestBody,
   aliasSpreadAsRequestParameter,

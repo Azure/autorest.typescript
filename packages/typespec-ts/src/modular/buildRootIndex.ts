@@ -1,6 +1,7 @@
 import { Project, SourceFile } from "ts-morph";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import { normalizeName, NameType } from "@azure-tools/rlc-common";
 
 export function buildRootIndex(
   codeModel: ModularCodeModel,
@@ -51,7 +52,7 @@ function exportClassicalClient(
     namedExports: [clientName, `${clientName}Options`],
     moduleSpecifier: `./${
       subfolder !== "" && !isSubClient ? subfolder + "/" : ""
-    }${clientName}.js`
+    }${normalizeName(clientName, NameType.File)}.js`
   });
 }
 
@@ -105,7 +106,7 @@ export function buildSubClientIndexFile(
   const clientName = `${getClientName(client)}Client`;
   const clientFilePath = `${srcPath}/${
     subfolder !== "" ? subfolder + "/" : ""
-  }${clientName}.ts`;
+  }${normalizeName(clientName, NameType.File)}.ts`;
   const clientFile = codeModel.project.getSourceFile(clientFilePath);
 
   if (!clientFile) {

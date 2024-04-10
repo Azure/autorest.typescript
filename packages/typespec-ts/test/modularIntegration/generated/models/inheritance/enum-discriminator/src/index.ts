@@ -4,7 +4,7 @@
 export {
   EnumDiscriminatorClient,
   EnumDiscriminatorClientOptions,
-} from "./EnumDiscriminatorClient.js";
+} from "./enumDiscriminatorClient.js";
 export {
   Dog,
   Golden,

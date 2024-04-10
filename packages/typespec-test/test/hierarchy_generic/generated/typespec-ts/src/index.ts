@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { FooClient, FooClientOptions } from "./FooClient.js";
+export { FooClient, FooClientOptions } from "./fooClient.js";
 export {
   A,
   BA,

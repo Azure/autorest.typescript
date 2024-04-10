@@ -5,4 +5,4 @@ export {
   createParametrizedHost,
   ParametrizedHostClientOptions,
   ParametrizedHostContext,
-} from "./ParametrizedHostContext.js";
+} from "./parametrizedHostContext.js";

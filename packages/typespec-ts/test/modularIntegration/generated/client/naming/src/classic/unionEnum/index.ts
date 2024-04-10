@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { NamingContext } from "../../api/NamingContext.js";
+import { NamingContext } from "../../api/namingContext.js";
 import { ClientExtensibleEnum, ExtensibleEnum } from "../../models/models.js";
 import {
   unionEnumName,

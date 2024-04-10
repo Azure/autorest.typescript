@@ -22,13 +22,13 @@ export function getClassicalOperation(
     .filter((i) => {
       return (
         i.getModuleSpecifierValue() ===
-        `${"../".repeat(layer + 2)}api/${modularClientName}.js`
+        `${"../".repeat(layer + 2)}api/${normalizeName(modularClientName, NameType.File)}.js`
       );
     });
   if (!hasClientContextImport || hasClientContextImport.length === 0) {
     classicFile.addImportDeclaration({
       namedImports: [client.rlcClientName],
-      moduleSpecifier: `${"../".repeat(layer + 2)}api/${modularClientName}.js`
+      moduleSpecifier: `${"../".repeat(layer + 2)}api/${normalizeName(modularClientName, NameType.File)}.js`
     });
   }
 

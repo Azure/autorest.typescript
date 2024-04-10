@@ -5,7 +5,7 @@ export {
   createSpecialWords,
   SpecialWordsClientOptions,
   SpecialWordsContext,
-} from "./SpecialWordsContext.js";
+} from "./specialWordsContext.js";
 export { modelPropertiesSameAsModel } from "./modelProperties/index.js";
 export {
   modelsWithAnd,

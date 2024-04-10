@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { NamingClient, NamingClientOptions } from "./NamingClient.js";
+export { NamingClient, NamingClientOptions } from "./namingClient.js";
 export {
   ClientNameModel,
   LanguageClientNameModel,

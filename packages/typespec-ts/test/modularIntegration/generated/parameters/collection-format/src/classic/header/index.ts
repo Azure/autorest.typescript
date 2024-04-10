@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { CollectionFormatContext } from "../../api/CollectionFormatContext.js";
+import { CollectionFormatContext } from "../../api/collectionFormatContext.js";
 import { headerCsv } from "../../api/header/index.js";
 import { HeaderCsvOptionalParams } from "../../models/options.js";
 

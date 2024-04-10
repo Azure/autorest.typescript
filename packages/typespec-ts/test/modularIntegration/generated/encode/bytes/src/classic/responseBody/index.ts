@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { BytesContext } from "../../api/BytesContext.js";
+import { BytesContext } from "../../api/bytesContext.js";
 import {
   responseBodyDefault,
   responseBodyOctetStream,

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { AnomalyDetectorContext } from "../../api/AnomalyDetectorContext.js";
+import { AnomalyDetectorContext } from "../../api/anomalyDetectorContext.js";
 import {
   UnivariateUnivariateDetectionOptions,
   UnivariateUnivariateEntireDetectionResult,

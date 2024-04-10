@@ -5,7 +5,7 @@ export {
   createAccess,
   AccessClientOptions,
   AccessContext,
-} from "./AccessContext.js";
+} from "./accessContext.js";
 export {
   noDecoratorInPublic,
   publicDecoratorInPublic,

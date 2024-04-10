@@ -5,7 +5,7 @@ export {
   createNaming,
   NamingClientOptions,
   NamingContext,
-} from "./NamingContext.js";
+} from "./namingContext.js";
 export {
   clientName,
   parameter,

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { UnionContext } from "../../api/UnionContext.js";
+import { UnionContext } from "../../api/unionContext.js";
 import { EnumsOnlyCases } from "../../models/models.js";
 import { enumsOnlyGet, enumsOnlySend } from "../../api/enumsOnly/index.js";
 import {

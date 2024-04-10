@@ -4,7 +4,7 @@
 export {
   ChatProtocolClient,
   ChatProtocolClientOptions,
-} from "./ChatProtocolClient.js";
+} from "./chatProtocolClient.js";
 export {
   StreamingChatCompletionOptions,
   ChatMessage,

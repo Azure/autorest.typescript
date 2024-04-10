@@ -9,7 +9,11 @@ import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { importModels } from "./buildOperations.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { getImportSpecifier } from "@azure-tools/rlc-common";
+import {
+  getImportSpecifier,
+  normalizeName,
+  NameType
+} from "@azure-tools/rlc-common";
 import { getType } from "./helpers/typeHelpers.js";
 
 /**
@@ -27,7 +31,7 @@ export function buildClientContext(
   const clientContextFile = codeModel.project.createSourceFile(
     `${srcPath}/${
       subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }/api/${name}Context.ts`
+    }/api/${normalizeName(name, NameType.File)}Context.ts`
   );
 
   let factoryFunction;
@@ -44,7 +48,9 @@ export function buildClientContext(
     extends: ["ClientOptions"],
     properties: client.parameters
       .filter((p) => {
-        return p.optional || p.type.type !== "constant" && p.clientDefaultValue;
+        return (
+          p.optional || (p.type.type !== "constant" && p.clientDefaultValue)
+        );
       })
       .map((p) => {
         return {

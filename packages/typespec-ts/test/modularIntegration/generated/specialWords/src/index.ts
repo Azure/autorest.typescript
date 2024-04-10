@@ -4,7 +4,7 @@
 export {
   SpecialWordsClient,
   SpecialWordsClientOptions,
-} from "./SpecialWordsClient.js";
+} from "./specialWordsClient.js";
 export {
   SameAsModel,
   And,

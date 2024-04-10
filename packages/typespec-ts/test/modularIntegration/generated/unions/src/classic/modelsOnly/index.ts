@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { UnionContext } from "../../api/UnionContext.js";
+import { UnionContext } from "../../api/unionContext.js";
 import { Cat, Dog } from "../../models/models.js";
 import { modelsOnlyGet, modelsOnlySend } from "../../api/modelsOnly/index.js";
 import {

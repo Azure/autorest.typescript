@@ -6,4 +6,4 @@ export {
   createRenamedOperation,
   RenamedOperationClientOptions,
   ServiceContext,
-} from "./RenamedOperationContext.js";
+} from "./renamedOperationContext.js";

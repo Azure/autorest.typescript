@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { WidgetServiceContext } from "../../api/WidgetServiceContext.js";
+import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
 import {
   Widget,
   CreateWidget,

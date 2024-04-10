@@ -4,7 +4,7 @@
 export {
   AnomalyDetectorClient,
   AnomalyDetectorClientOptions,
-} from "./AnomalyDetectorClient.js";
+} from "./anomalyDetectorClient.js";
 export {
   MultivariateMultivariateDetectionResult,
   MultivariateMultivariateBatchDetectionResultSummary,

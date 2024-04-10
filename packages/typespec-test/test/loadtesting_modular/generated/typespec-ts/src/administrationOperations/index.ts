@@ -4,7 +4,7 @@
 export {
   AdministrationOperationsClient,
   AdministrationOperationsClientOptions,
-} from "./AdministrationOperationsClient.js";
+} from "./administrationOperationsClient.js";
 export {
   Test,
   PassFailCriteria,

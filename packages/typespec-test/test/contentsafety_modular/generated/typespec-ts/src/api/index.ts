@@ -5,7 +5,7 @@ export {
   createContentSafety,
   ContentSafetyClientOptions,
   ContentSafetyContext,
-} from "./ContentSafetyContext.js";
+} from "./contentSafetyContext.js";
 export {
   analyzeText,
   analyzeImage,

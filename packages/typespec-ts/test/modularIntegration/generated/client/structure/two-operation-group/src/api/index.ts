@@ -5,4 +5,4 @@ export {
   createTwoOperationGroup,
   TwoOperationGroupClientOptions,
   ServiceContext,
-} from "./TwoOperationGroupContext.js";
+} from "./twoOperationGroupContext.js";

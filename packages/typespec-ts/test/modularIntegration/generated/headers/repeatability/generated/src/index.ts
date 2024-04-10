@@ -4,5 +4,5 @@
 export {
   RepeatabilityClient,
   RepeatabilityClientOptions,
-} from "./RepeatabilityClient.js";
+} from "./repeatabilityClient.js";
 export { ImmediateSuccessOptionalParams } from "./models/index.js";

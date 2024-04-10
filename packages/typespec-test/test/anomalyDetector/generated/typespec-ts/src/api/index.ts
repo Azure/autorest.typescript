@@ -5,4 +5,4 @@ export {
   createAnomalyDetector,
   AnomalyDetectorClientOptions,
   AnomalyDetectorContext,
-} from "./AnomalyDetectorContext.js";
+} from "./anomalyDetectorContext.js";

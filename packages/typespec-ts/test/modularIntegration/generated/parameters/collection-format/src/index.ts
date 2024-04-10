@@ -4,7 +4,7 @@
 export {
   CollectionFormatClient,
   CollectionFormatClientOptions,
-} from "./CollectionFormatClient.js";
+} from "./collectionFormatClient.js";
 export {
   QueryMultiOptionalParams,
   QuerySsvOptionalParams,

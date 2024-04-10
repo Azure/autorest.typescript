@@ -4,7 +4,7 @@
 export {
   ParametrizedHostClient,
   ParametrizedHostClientOptions,
-} from "./ParametrizedHostClient.js";
+} from "./parametrizedHostClient.js";
 export {
   Collection,
   ConfidentialLedgerListCollectionsOptionalParams,
