@@ -20,7 +20,7 @@ import {
   UsageContext,
 } from "./api/index.js";
 
-export { UsageClientOptions } from "./api/UsageContext.js";
+export { UsageClientOptions } from "./api/usageContext.js";
 
 export class UsageClient {
   private _client: UsageContext;
