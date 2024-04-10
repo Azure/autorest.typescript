@@ -197,6 +197,7 @@ importers:
       '@azure-tools/typespec-ts': workspace:^0.26.1
       '@types/mocha': ^5.2.7
       '@types/node': ^18.0.0
+      '@types/progress': ~2.0.7
       '@typespec/compiler': '>=0.54.0 <1.0.0'
       '@typespec/http': '>=0.54.0 <1.0.0'
       '@typespec/openapi': '>=0.54.0 <1.0.0'
@@ -204,6 +205,7 @@ importers:
       '@typespec/rest': '>=0.54.0 <1.0.0'
       '@typespec/versioning': '>=0.54.0 <1.0.0'
       prettier: ^3.1.0
+      progress: ~2.0.3
       ts-node: ^8.5.2
       typescript: ~5.2.0
     dependencies:
@@ -221,6 +223,8 @@ importers:
     devDependencies:
       '@types/mocha': 5.2.7
       '@types/node': 18.18.0
+      '@types/progress': 2.0.7
+      progress: 2.0.3
       ts-node: 8.10.2_typescript@5.2.2
       typescript: 5.2.2
 
@@ -1145,6 +1149,12 @@ packages:
 
   /@types/node/18.18.0:
     resolution: {integrity: sha512-3xA4X31gHT1F1l38ATDIL9GpRLdwVhnEFC8Uikv5ZLlXATwrCYyPq7ZWHxzxc3J/30SUiwiYT+bQe0/XvKlWbw==}
+
+  /@types/progress/2.0.7:
+    resolution: {integrity: sha512-iadjw02vte8qWx7U0YM++EybBha2CQLPGu9iJ97whVgJUT5Zq9MjAPYUnbfRI2Kpehimf1QjFJYxD0t8nqzu5w==}
+    dependencies:
+      '@types/node': 18.18.0
+    dev: true
 
   /@types/semver/7.5.3:
     resolution: {integrity: sha512-OxepLK9EuNEIPxWNME+C6WwbRAOOI2o2BaQEGzz5Lu2e4Z5eDnEo+/aVEDMIXywoJitJ7xWd641wrGLZdtwRyw==}
