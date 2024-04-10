@@ -6,13 +6,13 @@ import {
   StringBodyGetAsTextParameters,
   StringBodySendAsJsonParameters,
   StringBodyGetAsJsonParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   StringBodySendAsText200Response,
   StringBodyGetAsText200Response,
   StringBodySendAsJson200Response,
   StringBodyGetAsJson200Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface SendAsText {

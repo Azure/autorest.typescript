@@ -1,9 +1,9 @@
 import { assert } from "chai";
 import MediaTypeClientFactory, {
-    MediaTypeClient
+  MediaTypeClient
 } from "./generated/payload/media-type/src/index.js";
 
-describe.only("MediaType Client", () => {
+describe("MediaType Client", () => {
   let client: MediaTypeClient;
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe.only("MediaType Client", () => {
     try {
       const result = await client
         .path("/payload/media-type/string-body/getAsText")
-        .get({"accept": "text/plain"});
+        .get({ accept: "text/plain" });
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, "{cat}");
     } catch (err) {
@@ -31,7 +31,7 @@ describe.only("MediaType Client", () => {
     try {
       const result = await client
         .path("/payload/media-type/string-body/sendAsText")
-        .post({body:"{cat}",contentType: "text/plain"});
+        .post({ body: "{cat}", contentType: "text/plain" });
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);
@@ -42,7 +42,7 @@ describe.only("MediaType Client", () => {
     try {
       const result = await client
         .path("/payload/media-type/string-body/sendAsJson")
-        .post({body:"foo",contentType: "application/json"});
+        .post({ body: "foo", contentType: "application/json" });
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);
@@ -53,7 +53,7 @@ describe.only("MediaType Client", () => {
     try {
       const result = await client
         .path("/payload/media-type/string-body/getAsJson")
-        .get({"accept": "application/json"});
+        .get({ accept: "application/json" });
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, "foo");
     } catch (err) {
