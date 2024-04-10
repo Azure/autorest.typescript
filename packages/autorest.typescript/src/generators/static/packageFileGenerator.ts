@@ -109,7 +109,7 @@ function regularAutorestPackage(
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",
-      mkdirp: "^2.1.2",
+      mkdirp: "^3.0.1",
       typescript: "~5.3.3",
       "uglify-js": "^3.4.9",
       rimraf: "^5.0.0",

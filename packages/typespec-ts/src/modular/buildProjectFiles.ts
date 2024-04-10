@@ -203,7 +203,7 @@ function emitNonBrandedPackage(codeModel: ModularCodeModel) {
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",
       "@types/node": "^18.0.0",
-      mkdirp: "^2.1.2",
+      mkdirp: "^3.0.1",
       prettier: "^3.1.0",
       rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
@@ -305,7 +305,7 @@ function emitBrandedPackage(codeModel: ModularCodeModel) {
       "@types/node": "^18.0.0",
       dotenv: "^16.0.0",
       eslint: "^8.0.0",
-      mkdirp: "^2.1.2",
+      mkdirp: "^3.0.1",
       prettier: "^3.1.0",
       rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
