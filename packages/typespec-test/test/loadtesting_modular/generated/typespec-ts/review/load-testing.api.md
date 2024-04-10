@@ -271,13 +271,13 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 
 // @public
 export interface PagedFileInfo {
-    readonly nextLink?: string;
+    nextLink?: string;
     value: FileInfo[];
 }
 
 // @public
 export interface PagedTest {
-    readonly nextLink?: string;
+    nextLink?: string;
     value: Test[];
 }
 
