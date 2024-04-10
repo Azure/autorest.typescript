@@ -1,0 +1,15 @@
+emit:
+  # - "@azure-tools/typespec-autorest"
+  # Uncomment this line and add "@azure-tools/typespec-python" to your package.json to generate Python code
+  # - "@azure-tools/typespec-python"
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    azureSdkForJs: false
+    enableOperationGroup: true
+    isModularLibrary: true
+    hierarchyClient: false
+    packageDetails:
+      name: "@azure/arm-networkanalytics"
+      description: Microsoft NetworkAnalytics

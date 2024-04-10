@@ -1,7 +1,7 @@
 {
-  "name": "@msinternal/openai",
+  "name": "@azure/arm-networkanalytics",
   "version": "1.0.0-beta.1",
-  "description": "OpenAI Inference Service",
+  "description": "Microsoft NetworkAnalytics",
   "engines": {
     "node": ">=18.0.0"
   },
@@ -10,7 +10,9 @@
   "tshy": {
     "exports": {
       "./package.json": "./package.json",
-      ".": "./src/index.ts"
+      ".": "./src/index.ts",
+      "./api": "./src/api/index.ts",
+      "./models": "./src/models/index.ts"
     },
     "dialects": ["esm", "commonjs"],
     "esmDialects": ["browser", "react-native"],
@@ -28,7 +30,8 @@
     "@azure/logger": "^1.0.0",
     "tslib": "^2.6.2",
     "@azure/core-lro": "^2.5.4",
-    "@azure/abort-controller": "^1.0.0"
+    "@azure/abort-controller": "^1.0.0",
+    "@azure/core-paging": "^1.5.0"
   },
   "devDependencies": {
     "dotenv": "^16.0.0",
