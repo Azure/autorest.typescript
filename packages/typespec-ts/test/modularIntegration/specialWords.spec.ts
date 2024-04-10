@@ -1,5 +1,6 @@
 import { assert } from "chai";
 import { SpecialWordsClient } from "./generated/specialWords/src/index.js";
+
 describe("Special Words Client", () => {
   let client: SpecialWordsClient;
 
