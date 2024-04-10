@@ -14,14 +14,14 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  StringGetKnownValueOptions,
-  StringPutKnownValueOptions,
-  StringPutUnknownValueOptions,
+  StringGetKnownValueOptionalParams,
+  StringPutKnownValueOptionalParams,
+  StringPutUnknownValueOptionalParams,
 } from "../../models/options.js";
 
 export function _getKnownValueSend(
   context: Client,
-  options: StringGetKnownValueOptions = { requestOptions: {} },
+  options: StringGetKnownValueOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetKnownValue200Response> {
   return context
     .path("/type/enum/fixed/string/known-value")
@@ -41,7 +41,7 @@ export async function _getKnownValueDeserialize(
 /** getKnownValue */
 export async function getKnownValue(
   context: Client,
-  options: StringGetKnownValueOptions = { requestOptions: {} },
+  options: StringGetKnownValueOptionalParams = { requestOptions: {} },
 ): Promise<DaysOfWeekEnum> {
   const result = await _getKnownValueSend(context, options);
   return _getKnownValueDeserialize(result);
@@ -50,7 +50,7 @@ export async function getKnownValue(
 export function _putKnownValueSend(
   context: Client,
   body: DaysOfWeekEnum,
-  options: StringPutKnownValueOptions = { requestOptions: {} },
+  options: StringPutKnownValueOptionalParams = { requestOptions: {} },
 ): StreamableMethod<PutKnownValue204Response> {
   return context
     .path("/type/enum/fixed/string/known-value")
@@ -71,7 +71,7 @@ export async function _putKnownValueDeserialize(
 export async function putKnownValue(
   context: Client,
   body: DaysOfWeekEnum,
-  options: StringPutKnownValueOptions = { requestOptions: {} },
+  options: StringPutKnownValueOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putKnownValueSend(context, body, options);
   return _putKnownValueDeserialize(result);
@@ -80,7 +80,7 @@ export async function putKnownValue(
 export function _putUnknownValueSend(
   context: Client,
   body: DaysOfWeekEnum,
-  options: StringPutUnknownValueOptions = { requestOptions: {} },
+  options: StringPutUnknownValueOptionalParams = { requestOptions: {} },
 ): StreamableMethod<PutUnknownValue204Response> {
   return context
     .path("/type/enum/fixed/string/unknown-value")
@@ -101,7 +101,7 @@ export async function _putUnknownValueDeserialize(
 export async function putUnknownValue(
   context: Client,
   body: DaysOfWeekEnum,
-  options: StringPutUnknownValueOptions = { requestOptions: {} },
+  options: StringPutUnknownValueOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putUnknownValueSend(context, body, options);
   return _putUnknownValueDeserialize(result);

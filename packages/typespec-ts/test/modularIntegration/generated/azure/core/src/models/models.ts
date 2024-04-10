@@ -61,7 +61,7 @@ export interface PagedUser {
   /** The User items on this page */
   value: User[];
   /** The link to the next page of items */
-  readonly nextLink?: string;
+  nextLink?: string;
 }
 
 /** Paged collection of User items */
@@ -69,7 +69,7 @@ export interface PagedUser {
   /** The User items on this page */
   value: User[];
   /** The link to the next page of items */
-  readonly nextLink?: string;
+  nextLink?: string;
 }
 
 /** Paged collection of FirstItem items */
@@ -77,7 +77,7 @@ export interface PagedFirstItem {
   /** The FirstItem items on this page */
   value: FirstItem[];
   /** The link to the next page of items */
-  readonly nextLink?: string;
+  nextLink?: string;
 }
 
 /** Paged collection of SecondItem items */
@@ -85,5 +85,5 @@ export interface PagedSecondItem {
   /** The SecondItem items on this page */
   value: SecondItem[];
   /** The link to the next page of items */
-  readonly nextLink?: string;
+  nextLink?: string;
 }

@@ -4,8 +4,8 @@
 export { FixedClient, FixedClientOptions } from "./FixedClient.js";
 export {
   DaysOfWeekEnum,
-  StringGetKnownValueOptions,
-  StringPutKnownValueOptions,
-  StringPutUnknownValueOptions,
+  StringGetKnownValueOptionalParams,
+  StringPutKnownValueOptionalParams,
+  StringPutUnknownValueOptionalParams,
 } from "./models/index.js";
 export { StringOperations } from "./classic/index.js";
