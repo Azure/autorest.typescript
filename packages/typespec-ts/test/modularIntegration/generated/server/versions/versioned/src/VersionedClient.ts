@@ -3,9 +3,9 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  WithoutApiVersionOptions,
-  WithQueryApiVersionOptions,
-  WithPathApiVersionOptions,
+  WithoutApiVersionOptionalParams,
+  WithQueryApiVersionOptionalParams,
+  WithPathApiVersionOptionalParams,
 } from "./models/options.js";
 import {
   withoutApiVersion,

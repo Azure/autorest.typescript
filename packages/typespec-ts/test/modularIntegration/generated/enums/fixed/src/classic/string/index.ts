@@ -9,36 +9,36 @@ import {
   putUnknownValue,
 } from "../../api/string/index.js";
 import {
-  StringGetKnownValueOptions,
-  StringPutKnownValueOptions,
-  StringPutUnknownValueOptions,
+  StringGetKnownValueOptionalParams,
+  StringPutKnownValueOptionalParams,
+  StringPutUnknownValueOptionalParams,
 } from "../../models/options.js";
 
 export interface StringOperations {
   getKnownValue: (
-    options?: StringGetKnownValueOptions,
+    options?: StringGetKnownValueOptionalParams,
   ) => Promise<DaysOfWeekEnum>;
   putKnownValue: (
     body: DaysOfWeekEnum,
-    options?: StringPutKnownValueOptions,
+    options?: StringPutKnownValueOptionalParams,
   ) => Promise<void>;
   putUnknownValue: (
     body: DaysOfWeekEnum,
-    options?: StringPutUnknownValueOptions,
+    options?: StringPutUnknownValueOptionalParams,
   ) => Promise<void>;
 }
 
 export function getString(context: FixedContext) {
   return {
-    getKnownValue: (options?: StringGetKnownValueOptions) =>
+    getKnownValue: (options?: StringGetKnownValueOptionalParams) =>
       getKnownValue(context, options),
     putKnownValue: (
       body: DaysOfWeekEnum,
-      options?: StringPutKnownValueOptions,
+      options?: StringPutKnownValueOptionalParams,
     ) => putKnownValue(context, body, options),
     putUnknownValue: (
       body: DaysOfWeekEnum,
-      options?: StringPutUnknownValueOptions,
+      options?: StringPutUnknownValueOptionalParams,
     ) => putUnknownValue(context, body, options),
   };
 }

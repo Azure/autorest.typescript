@@ -12,5 +12,5 @@ export interface PagedUser {
   /** The User items on this page */
   value: User[];
   /** The link to the next page of items */
-  readonly nextLink?: string;
+  nextLink?: string;
 }

@@ -3,7 +3,7 @@
 
 export { DaysOfWeekEnum } from "./models.js";
 export {
-  StringGetKnownValueOptions,
-  StringPutKnownValueOptions,
-  StringPutUnknownValueOptions,
+  StringGetKnownValueOptionalParams,
+  StringPutKnownValueOptionalParams,
+  StringPutUnknownValueOptionalParams,
 } from "./options.js";

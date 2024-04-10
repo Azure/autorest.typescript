@@ -3,8 +3,8 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface StringGetKnownValueOptions extends OperationOptions {}
+export interface StringGetKnownValueOptionalParams extends OperationOptions {}
 
-export interface StringPutKnownValueOptions extends OperationOptions {}
+export interface StringPutKnownValueOptionalParams extends OperationOptions {}
 
-export interface StringPutUnknownValueOptions extends OperationOptions {}
+export interface StringPutUnknownValueOptionalParams extends OperationOptions {}

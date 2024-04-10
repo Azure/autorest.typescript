@@ -7,9 +7,9 @@ export {
 } from "./ExtensibleClient.js";
 export {
   DaysOfWeekExtensibleEnum,
-  StringGetKnownValueOptions,
-  StringGetUnknownValueOptions,
-  StringPutKnownValueOptions,
-  StringPutUnknownValueOptions,
+  StringGetKnownValueOptionalParams,
+  StringGetUnknownValueOptionalParams,
+  StringPutKnownValueOptionalParams,
+  StringPutUnknownValueOptionalParams,
 } from "./models/index.js";
 export { StringOperations } from "./classic/index.js";
