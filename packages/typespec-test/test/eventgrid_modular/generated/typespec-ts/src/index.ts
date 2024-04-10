@@ -15,6 +15,7 @@ export {
   RejectOptions,
   RejectResult,
   ServiceApiVersions,
+  PublishCloudEventOptionalParams,
   PublishCloudEventsOptionalParams,
   ReceiveCloudEventsOptionalParams,
   AcknowledgeCloudEventsOptionalParams,

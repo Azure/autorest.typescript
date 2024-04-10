@@ -208,6 +208,7 @@ export {
   ApplicationListResult,
   BatchApplication,
   Versions,
+  ListApplicationsOptionalParams,
   GetApplicationOptionalParams,
   ListPoolUsageMetricsOptionalParams,
   CreatePoolOptionalParams,

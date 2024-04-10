@@ -17,5 +17,6 @@ export {
   ChatCompletionRecord,
   ChatChoiceRecord,
   APIVersion,
+  CreateStreamingOptionalParams,
   CreateOptionalParams,
 } from "./models/index.js";

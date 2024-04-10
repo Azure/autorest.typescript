@@ -295,7 +295,7 @@ export interface PagedFileInfo {
   /** The FileInfo items on this page */
   value: FileInfo[];
   /** The link to the next page of items */
-  readonly nextLink?: string;
+  nextLink?: string;
 }
 
 /** Collection of tests */
@@ -303,7 +303,7 @@ export interface PagedTest {
   /** The Test items on this page */
   value: Test[];
   /** The link to the next page of items */
-  readonly nextLink?: string;
+  nextLink?: string;
 }
 
 /** */
