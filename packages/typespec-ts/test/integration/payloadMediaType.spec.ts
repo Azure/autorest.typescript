@@ -8,10 +8,7 @@ describe("MediaType Client", () => {
 
   beforeEach(() => {
     client = MediaTypeClientFactory({
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      allowInsecureConnection: true
     });
   });
 
