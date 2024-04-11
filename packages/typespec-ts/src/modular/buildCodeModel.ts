@@ -151,7 +151,8 @@ function applyCasing(
 const typesMap = new Map<EmitterType, HrlcType>();
 const simpleTypesMap = new Map<string, HrlcType>();
 const endpointPathParameters: Record<string, any>[] = [];
-let apiVersionParam: Parameter | undefined = undefined;
+let methodApiVersionParam: Parameter | undefined = undefined;
+let hasServerApiVersion = false;
 
 function isSimpleType(
   program: Program,
@@ -838,7 +839,7 @@ function emitBasicOperation(
     const emittedParam = emitParameter(context, param, "Method");
     if (isApiVersion(context, param)) {
       emittedParam.isApiVersion = true;
-      apiVersionParam = emittedParam;
+      methodApiVersionParam = emittedParam;
     }
     parameters.push(emittedParam);
   }
@@ -1682,13 +1683,9 @@ function emitServerParams(
         "Client"
       );
       endpointPathParameters.push(emittedParameter);
-      if (
-        isApiVersion(context, serverParameter as any) &&
-        apiVersionParam === undefined
-      ) {
+      if (isApiVersion(context, serverParameter as any)) {
         emittedParameter.isApiVersion = true;
-        apiVersionParam = emittedParameter;
-        continue;
+        hasServerApiVersion = true;
       }
       params.push(emittedParameter);
     }
@@ -1764,10 +1761,10 @@ function emitGlobalParameters(
   return clientParameters;
 }
 
-function getApiVersionParameter(): Parameter | void {
-  if (apiVersionParam) {
+function getMethodApiVersionParameter(): Parameter | void {
+  if (methodApiVersionParam) {
     return {
-      ...apiVersionParam,
+      ...methodApiVersionParam,
       isApiVersion: true
     };
   }
@@ -1781,7 +1778,7 @@ function emitClients(
   const program = context.program;
   const clients = listClients(context);
   const retval: HrlcClient[] = [];
-  apiVersionParam = undefined;
+  methodApiVersionParam = undefined;
   for (const client of clients) {
     const clientName = getLibraryName(context, client.type).replace(
       "Client",
@@ -1807,9 +1804,14 @@ function emitClients(
       rlcHelperDetails:
         rlcModels && rlcModels.helperDetails ? rlcModels.helperDetails : {}
     };
-    const emittedApiVersionParam = getApiVersionParameter();
-    if (emittedApiVersionParam && context.hasApiVersionInClient) {
-      emittedClient.parameters.push(emittedApiVersionParam);
+    const methodApiVersionParam = getMethodApiVersionParameter();
+    if (
+      methodApiVersionParam &&
+      context.hasApiVersionInClient &&
+      !hasServerApiVersion
+    ) {
+      // prompt method-level api version to client level only when there is no client one defined
+      emittedClient.parameters.push(methodApiVersionParam);
       // if we have client level api version, we need to remove it from all operations
       emittedClient.operationGroups.map((opGroup) => {
         opGroup.operations.map((op) => {
