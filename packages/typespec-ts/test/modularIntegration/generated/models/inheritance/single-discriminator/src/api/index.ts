@@ -14,4 +14,4 @@ export {
   createSingleDiscriminator,
   SingleDiscriminatorClientOptions,
   SingleDiscriminatorContext,
-} from "./SingleDiscriminatorContext.js";
+} from "./singleDiscriminatorContext.js";

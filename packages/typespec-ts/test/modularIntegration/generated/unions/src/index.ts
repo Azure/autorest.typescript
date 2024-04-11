@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { UnionClient, UnionClientOptions } from "./UnionClient.js";
+export { UnionClient, UnionClientOptions } from "./unionClient.js";
 export {
   MixedTypesCases,
   Cat,

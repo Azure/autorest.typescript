@@ -5,7 +5,7 @@ export {
   createNotVersioned,
   NotVersionedClientOptions,
   NotVersionedContext,
-} from "./NotVersionedContext.js";
+} from "./notVersionedContext.js";
 export {
   withoutApiVersion,
   withQueryApiVersion,

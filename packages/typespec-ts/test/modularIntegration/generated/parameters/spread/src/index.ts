@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { SpreadClient, SpreadClientOptions } from "./SpreadClient.js";
+export { SpreadClient, SpreadClientOptions } from "./spreadClient.js";
 export {
   BodyParameter,
   ModelSpreadAsRequestBodyOptionalParams,

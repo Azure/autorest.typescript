@@ -41,6 +41,9 @@ export function transformApiVersionInfo(
   if (pathVersionDetail && queryVersionDetail) {
     return pathVersionDetail;
   }
+  if (pathVersionDetail && !queryVersionDetail) {
+    dpgContext.hasApiVersionInClient = true;
+  }
   return {
     definedPosition: extractDefinedPosition(
       queryVersionDetail,

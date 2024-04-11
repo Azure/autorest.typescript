@@ -6,4 +6,4 @@ export {
   createScalar,
   ScalarClientOptions,
   ScalarContext,
-} from "./ScalarContext.js";
+} from "./scalarContext.js";

@@ -4,7 +4,7 @@
 export {
   TestRunOperationsClient,
   TestRunOperationsClientOptions,
-} from "./TestRunOperationsClient.js";
+} from "./testRunOperationsClient.js";
 export {
   Test,
   PassFailCriteria,

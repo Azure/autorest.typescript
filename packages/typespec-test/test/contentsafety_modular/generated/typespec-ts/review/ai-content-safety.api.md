@@ -83,6 +83,7 @@ export class ContentSafetyClient {
 
 // @public (undocumented)
 export interface ContentSafetyClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public

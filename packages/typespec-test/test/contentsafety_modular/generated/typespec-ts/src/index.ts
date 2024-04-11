@@ -4,7 +4,7 @@
 export {
   ContentSafetyClient,
   ContentSafetyClientOptions,
-} from "./ContentSafetyClient.js";
+} from "./contentSafetyClient.js";
 export {
   TextBlocklist,
   TextBlockItemInfo,

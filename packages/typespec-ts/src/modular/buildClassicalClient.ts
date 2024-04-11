@@ -35,14 +35,18 @@ export function buildClassicalClient(
   const subfolder = client.subfolder ?? "";
 
   const clientFile = codeModel.project.createSourceFile(
-    `${srcPath}/${
-      subfolder !== "" ? subfolder + "/" : ""
-    }${classicalClientname}.ts`
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
+      classicalClientname,
+      NameType.File
+    )}.ts`
   );
 
   clientFile.addExportDeclaration({
     namedExports: [`${classicalClientname}Options`],
-    moduleSpecifier: `./api/${modularClientName}Context.js`
+    moduleSpecifier: `./api/${normalizeName(
+      modularClientName,
+      NameType.File
+    )}Context.js`
   });
 
   const clientClass = clientFile.addClass({

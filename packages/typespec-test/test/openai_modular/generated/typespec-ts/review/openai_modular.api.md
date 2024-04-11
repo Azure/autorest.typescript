@@ -879,6 +879,7 @@ export class OpenAIClient {
 
 // @public (undocumented)
 export interface OpenAIClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public

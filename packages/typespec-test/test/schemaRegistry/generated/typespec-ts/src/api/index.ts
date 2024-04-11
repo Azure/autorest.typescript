@@ -5,4 +5,4 @@ export {
   createSchemaRegistry,
   SchemaRegistryClientOptions,
   SchemaRegistryContext,
-} from "./SchemaRegistryContext.js";
+} from "./schemaRegistryContext.js";

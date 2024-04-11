@@ -110,6 +110,7 @@ export class SchemaRegistryClient {
 
 // @public (undocumented)
 export interface SchemaRegistryClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public

@@ -17,8 +17,7 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "NodeNext",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "paths": { "@msinternal/ai-anomaly-detector": ["./src/index"] }
+    "esModuleInterop": true
   },
-  "include": ["./src/**/*.ts", "./test/**/*.ts", "samples-dev/**/*.ts"]
+  "include": ["./src/**/*.ts", "./test/**/*.ts"]
 }

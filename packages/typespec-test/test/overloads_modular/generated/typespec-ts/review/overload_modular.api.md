@@ -42,6 +42,7 @@ export class WidgetManagerClient {
 
 // @public (undocumented)
 export interface WidgetManagerClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
 // (No @packageDocumentation comment for this package)

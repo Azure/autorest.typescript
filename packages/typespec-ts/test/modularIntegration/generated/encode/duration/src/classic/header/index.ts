@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { DurationContext } from "../../api/DurationContext.js";
+import { DurationContext } from "../../api/durationContext.js";
 import {
   headerDefault,
   headerIso8601,

@@ -5,7 +5,7 @@ export {
   createBasic,
   BasicClientOptions,
   BasicContext,
-} from "./BasicContext.js";
+} from "./basicContext.js";
 export {
   createOrUpdate,
   createOrReplace,

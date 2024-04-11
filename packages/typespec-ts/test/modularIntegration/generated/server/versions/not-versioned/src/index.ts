@@ -4,7 +4,7 @@
 export {
   NotVersionedClient,
   NotVersionedClientOptions,
-} from "./NotVersionedClient.js";
+} from "./notVersionedClient.js";
 export {
   WithoutApiVersionOptionalParams,
   WithQueryApiVersionOptionalParams,

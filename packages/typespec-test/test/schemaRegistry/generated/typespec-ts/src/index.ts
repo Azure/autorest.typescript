@@ -4,7 +4,7 @@
 export {
   SchemaRegistryClient,
   SchemaRegistryClientOptions,
-} from "./SchemaRegistryClient.js";
+} from "./schemaRegistryClient.js";
 export {
   SchemaGroup,
   SchemaVersion,

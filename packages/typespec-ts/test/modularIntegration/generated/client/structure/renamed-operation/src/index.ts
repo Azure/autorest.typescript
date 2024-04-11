@@ -4,7 +4,7 @@
 export {
   RenamedOperationClient,
   RenamedOperationClientOptions,
-} from "./RenamedOperationClient.js";
+} from "./renamedOperationClient.js";
 export {
   ClientType,
   RenamedOneOptionalParams,
