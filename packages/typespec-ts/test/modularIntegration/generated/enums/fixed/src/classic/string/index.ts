@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { FixedContext } from "../../api/FixedContext.js";
+import { FixedContext } from "../../api/fixedContext.js";
 import { DaysOfWeekEnum } from "../../models/models.js";
 import {
   getKnownValue,

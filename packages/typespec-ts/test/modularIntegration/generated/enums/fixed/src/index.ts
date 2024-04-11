@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { FixedClient, FixedClientOptions } from "./FixedClient.js";
+export { FixedClient, FixedClientOptions } from "./fixedClient.js";
 export {
   DaysOfWeekEnum,
   StringGetKnownValueOptionalParams,

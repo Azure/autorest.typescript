@@ -5,4 +5,4 @@ export {
   createFixed,
   FixedClientOptions,
   FixedContext,
-} from "./FixedContext.js";
+} from "./fixedContext.js";

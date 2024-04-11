@@ -12,7 +12,7 @@ import {
   ExtensibleContext,
 } from "./api/index.js";
 
-export { ExtensibleClientOptions } from "./api/ExtensibleContext.js";
+export { ExtensibleClientOptions } from "./api/extensibleContext.js";
 
 export class ExtensibleClient {
   private _client: ExtensibleContext;

@@ -5,4 +5,4 @@ export {
   createExtensible,
   ExtensibleClientOptions,
   ExtensibleContext,
-} from "./ExtensibleContext.js";
+} from "./extensibleContext.js";

@@ -4,7 +4,7 @@
 export {
   ExtensibleClient,
   ExtensibleClientOptions,
-} from "./ExtensibleClient.js";
+} from "./extensibleClient.js";
 export {
   DaysOfWeekExtensibleEnum,
   StringGetKnownValueOptionalParams,

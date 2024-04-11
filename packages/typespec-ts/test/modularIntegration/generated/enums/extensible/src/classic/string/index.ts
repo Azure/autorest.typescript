@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ExtensibleContext } from "../../api/ExtensibleContext.js";
+import { ExtensibleContext } from "../../api/extensibleContext.js";
 import { DaysOfWeekExtensibleEnum } from "../../models/models.js";
 import {
   getKnownValue,
