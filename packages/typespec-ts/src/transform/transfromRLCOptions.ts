@@ -69,7 +69,6 @@ function extractRLCOptions(
     emitterOptions
   );
   const hierarchyClient = getHierarchyClient(emitterOptions);
-  const useLegacyV2Lro = getUseLegacyV2Lro(dpgContext, emitterOptions);
   return {
     ...emitterOptions,
     ...credentialInfo,
@@ -86,8 +85,7 @@ function extractRLCOptions(
     sourceFrom: "TypeSpec",
     enableOperationGroup,
     enableModelNamespace,
-    hierarchyClient,
-    useLegacyV2Lro
+    hierarchyClient
   };
 }
 
@@ -144,22 +142,6 @@ function processAuth(program: Program) {
     }
   }
   return securityInfo;
-}
-
-function getUseLegacyV2Lro(
-  dpgContext: SdkContext,
-  emitterOptions: EmitterOptions
-) {
-  if (emitterOptions.isModularLibrary) {
-    if (emitterOptions.useLegacyV2Lro === true) {
-      reportDiagnostic(dpgContext.program, {
-        code: "disable-legacy-v2-lro",
-        target: NoTarget
-      });
-    }
-    return false;
-  }
-  return emitterOptions.useLegacyV2Lro ?? false;
 }
 
 function getEnableOperationGroup(

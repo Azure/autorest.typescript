@@ -44,7 +44,6 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const azureSdkForJs = await getAzureSdkForJs(host);
   const dependencyInfo = await getDependencyInfo(host);
   const flavor = await getFlavor(host);
-  const useLegacyV2Lro = await getUseLegacyV2Lro(host);
 
   return {
     azureArm,
@@ -79,21 +78,13 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     coreHttpCompatMode,
     dependencyInfo,
     useLegacyLro,
-    flavor,
-    useLegacyV2Lro
+    flavor
   };
 }
 
 async function getUseLegacyLro(host: AutorestExtensionHost): Promise<boolean> {
   const useLegacyLroOption = await host.getValue("use-legacy-lro");
   return useLegacyLroOption === null ? false : Boolean(useLegacyLroOption);
-}
-
-async function getUseLegacyV2Lro(
-  host: AutorestExtensionHost
-): Promise<boolean> {
-  const useLegacyV2LroOption = await host.getValue("use-legacy-v2-lro");
-  return useLegacyV2LroOption === null ? false : Boolean(useLegacyV2LroOption);
 }
 
 async function getHasShortcutMethods(

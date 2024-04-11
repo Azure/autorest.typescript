@@ -17,8 +17,7 @@ export function transformOptions(model: CodeModel): RLCOptions {
     dependencyInfo,
     productDocLink,
     azureArm,
-    flavor,
-    useLegacyV2Lro
+    flavor
   } = getAutorestOptions();
   const options: RLCOptions = { moduleKind: "cjs" };
   options.includeShortcuts = rlcShortcut;
@@ -46,6 +45,5 @@ export function transformOptions(model: CodeModel): RLCOptions {
   options.sourceFrom = "Swagger";
   // Always enable operation group prefix for swagger
   options.enableOperationGroup = true;
-  options.useLegacyV2Lro = useLegacyV2Lro;
   return options;
 }

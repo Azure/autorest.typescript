@@ -37,8 +37,7 @@ export function buildPackageFile(
     hasLro: hasPollingOperations(model),
     hasPaging: hasPagingOperations(model),
     monorepoPackageDirectory: model.options?.azureOutputDirectory,
-    specSource: model.options?.sourceFrom ?? "TypeSpec",
-    useLegacyV2Lro: model.options?.useLegacyV2Lro ?? false
+    specSource: model.options?.sourceFrom ?? "TypeSpec"
   };
 
   if (isAzureMonorepoPackage(model)) {
