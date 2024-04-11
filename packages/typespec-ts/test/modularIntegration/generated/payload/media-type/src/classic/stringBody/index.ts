@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { MediaTypeContext } from "../../api/MediaTypeContext.js";
+import { MediaTypeContext } from "../../api/mediaTypeContext.js";
 import {
   sendAsText,
   getAsText,
@@ -9,34 +9,34 @@ import {
   getAsJson,
 } from "../../api/stringBody/index.js";
 import {
-  StringBodySendAsTextOptions,
-  StringBodyGetAsTextOptions,
-  StringBodySendAsJsonOptions,
-  StringBodyGetAsJsonOptions,
+  StringBodySendAsTextOptionalParams,
+  StringBodyGetAsTextOptionalParams,
+  StringBodySendAsJsonOptionalParams,
+  StringBodyGetAsJsonOptionalParams,
 } from "../../models/options.js";
 
 export interface StringBodyOperations {
   sendAsText: (
     text: string,
-    options?: StringBodySendAsTextOptions,
+    options?: StringBodySendAsTextOptionalParams,
   ) => Promise<void>;
-  getAsText: (options?: StringBodyGetAsTextOptions) => Promise<string>;
+  getAsText: (options?: StringBodyGetAsTextOptionalParams) => Promise<string>;
   sendAsJson: (
     text: string,
-    options?: StringBodySendAsJsonOptions,
+    options?: StringBodySendAsJsonOptionalParams,
   ) => Promise<void>;
-  getAsJson: (options?: StringBodyGetAsJsonOptions) => Promise<string>;
+  getAsJson: (options?: StringBodyGetAsJsonOptionalParams) => Promise<string>;
 }
 
 export function getStringBody(context: MediaTypeContext) {
   return {
-    sendAsText: (text: string, options?: StringBodySendAsTextOptions) =>
+    sendAsText: (text: string, options?: StringBodySendAsTextOptionalParams) =>
       sendAsText(context, text, options),
-    getAsText: (options?: StringBodyGetAsTextOptions) =>
+    getAsText: (options?: StringBodyGetAsTextOptionalParams) =>
       getAsText(context, options),
-    sendAsJson: (text: string, options?: StringBodySendAsJsonOptions) =>
+    sendAsJson: (text: string, options?: StringBodySendAsJsonOptionalParams) =>
       sendAsJson(context, text, options),
-    getAsJson: (options?: StringBodyGetAsJsonOptions) =>
+    getAsJson: (options?: StringBodyGetAsJsonOptionalParams) =>
       getAsJson(context, options),
   };
 }

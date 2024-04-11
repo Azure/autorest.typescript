@@ -12,7 +12,7 @@ import {
   MediaTypeContext,
 } from "./api/index.js";
 
-export { MediaTypeClientOptions } from "./api/MediaTypeContext.js";
+export { MediaTypeClientOptions } from "./api/mediaTypeContext.js";
 
 export class MediaTypeClient {
   private _client: MediaTypeContext;

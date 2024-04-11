@@ -5,4 +5,4 @@ export {
   createMediaType,
   MediaTypeClientOptions,
   MediaTypeContext,
-} from "./MediaTypeContext.js";
+} from "./mediaTypeContext.js";

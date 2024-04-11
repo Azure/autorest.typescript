@@ -14,16 +14,16 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  StringBodySendAsTextOptions,
-  StringBodyGetAsTextOptions,
-  StringBodySendAsJsonOptions,
-  StringBodyGetAsJsonOptions,
+  StringBodySendAsTextOptionalParams,
+  StringBodyGetAsTextOptionalParams,
+  StringBodySendAsJsonOptionalParams,
+  StringBodyGetAsJsonOptionalParams,
 } from "../../models/options.js";
 
 export function _sendAsTextSend(
   context: Client,
   text: string,
-  options: StringBodySendAsTextOptions = { requestOptions: {} },
+  options: StringBodySendAsTextOptionalParams = { requestOptions: {} },
 ): StreamableMethod<SendAsText200Response> {
   return context
     .path("/payload/media-type/string-body/sendAsText")
@@ -47,7 +47,7 @@ export async function _sendAsTextDeserialize(
 export async function sendAsText(
   context: Client,
   text: string,
-  options: StringBodySendAsTextOptions = { requestOptions: {} },
+  options: StringBodySendAsTextOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _sendAsTextSend(context, text, options);
   return _sendAsTextDeserialize(result);
@@ -55,7 +55,7 @@ export async function sendAsText(
 
 export function _getAsTextSend(
   context: Client,
-  options: StringBodyGetAsTextOptions = { requestOptions: {} },
+  options: StringBodyGetAsTextOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetAsText200Response> {
   return context
     .path("/payload/media-type/string-body/getAsText")
@@ -74,7 +74,7 @@ export async function _getAsTextDeserialize(
 
 export async function getAsText(
   context: Client,
-  options: StringBodyGetAsTextOptions = { requestOptions: {} },
+  options: StringBodyGetAsTextOptionalParams = { requestOptions: {} },
 ): Promise<string> {
   const result = await _getAsTextSend(context, options);
   return _getAsTextDeserialize(result);
@@ -83,7 +83,7 @@ export async function getAsText(
 export function _sendAsJsonSend(
   context: Client,
   text: string,
-  options: StringBodySendAsJsonOptions = { requestOptions: {} },
+  options: StringBodySendAsJsonOptionalParams = { requestOptions: {} },
 ): StreamableMethod<SendAsJson200Response> {
   return context
     .path("/payload/media-type/string-body/sendAsJson")
@@ -107,7 +107,7 @@ export async function _sendAsJsonDeserialize(
 export async function sendAsJson(
   context: Client,
   text: string,
-  options: StringBodySendAsJsonOptions = { requestOptions: {} },
+  options: StringBodySendAsJsonOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _sendAsJsonSend(context, text, options);
   return _sendAsJsonDeserialize(result);
@@ -115,7 +115,7 @@ export async function sendAsJson(
 
 export function _getAsJsonSend(
   context: Client,
-  options: StringBodyGetAsJsonOptions = { requestOptions: {} },
+  options: StringBodyGetAsJsonOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetAsJson200Response> {
   return context
     .path("/payload/media-type/string-body/getAsJson")
@@ -134,7 +134,7 @@ export async function _getAsJsonDeserialize(
 
 export async function getAsJson(
   context: Client,
-  options: StringBodyGetAsJsonOptions = { requestOptions: {} },
+  options: StringBodyGetAsJsonOptionalParams = { requestOptions: {} },
 ): Promise<string> {
   const result = await _getAsJsonSend(context, options);
   return _getAsJsonDeserialize(result);

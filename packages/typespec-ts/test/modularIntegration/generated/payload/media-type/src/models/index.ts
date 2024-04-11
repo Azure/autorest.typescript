@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 export {
-  StringBodySendAsTextOptions,
-  StringBodyGetAsTextOptions,
-  StringBodySendAsJsonOptions,
-  StringBodyGetAsJsonOptions,
+  StringBodySendAsTextOptionalParams,
+  StringBodyGetAsTextOptionalParams,
+  StringBodySendAsJsonOptionalParams,
+  StringBodyGetAsJsonOptionalParams,
 } from "./options.js";

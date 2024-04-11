@@ -3,14 +3,14 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface StringBodySendAsTextOptions extends OperationOptions {
+export interface StringBodySendAsTextOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
-export interface StringBodyGetAsTextOptions extends OperationOptions {}
+export interface StringBodyGetAsTextOptionalParams extends OperationOptions {}
 
-export interface StringBodySendAsJsonOptions extends OperationOptions {
+export interface StringBodySendAsJsonOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
-export interface StringBodyGetAsJsonOptions extends OperationOptions {}
+export interface StringBodyGetAsJsonOptionalParams extends OperationOptions {}
