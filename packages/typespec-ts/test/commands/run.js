@@ -5,11 +5,12 @@ import { parentPort } from "worker_threads";
 import { runCommand } from "./runCommand.js";
 
 parentPort.on("message", async ({ config, mode }) => {
+  let outputLog = "";
   try {
-    await runTypespec(config, mode);
-    parentPort.postMessage({ status: "closed", result });
+    outputLog = await runTypespec(config, mode);
+    parentPort.postMessage({ status: "closed", outputLog });
   } catch (e) {
-    parentPort.postMessage({ status: "closed", error: e });
+    parentPort.postMessage({ status: "closed", error: e, outputLog: e });
   }
 });
 
@@ -18,7 +19,7 @@ export async function runTypespec(config, mode) {
     sourceTypespec = config.inputPath;
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
-  console.log(`=== Start ${targetFolder} ===`);
+  let outputLog = `=== Start ${targetFolder} ===\n`;
 
   let typespecPath = joinPath(
     `${__dirname}`,
@@ -44,7 +45,7 @@ export async function runTypespec(config, mode) {
     const entry = joinPath(typespecPath, filename);
     if (fsextra.existsSync(entry)) {
       typespecPath = entry;
-      console.log(`Existing the entry file: ${entry}`);
+      outputLog += `Existing entry file: ${entry}\n`;
       break;
     }
   }
@@ -57,14 +58,12 @@ export async function runTypespec(config, mode) {
   ];
 
   try {
-    const result = await runCommand(npxCommand, commandArguments, outputPath);
-    console.log("Generated output:", result.toString());
-    console.log(`=== End ${targetFolder} ===`);
-    return result;
+    await runCommand(npxCommand, commandArguments, outputPath);
+    outputLog += `=== End ${targetFolder} ===\n`;
+    return outputLog;
   } catch (e) {
-    console.log("Error happened");
-    const error = new Error(e.stdout.toString());
-    console.error(error);
-    throw error;
+    outputLog += "Error happened\n";
+    outputLog += "\x1b[31m" + JSON.stringify(e) + "\x1b[0m\n";
+    throw outputLog;
   }
 }

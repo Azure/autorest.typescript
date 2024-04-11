@@ -43,7 +43,7 @@ async function generateTypeSpecs(tag = "rlc", isDebugging) {
     }
 
     // Wait for an available worker
-    if (activeWorkers >= maxConcurrentWorkers) {
+    while (activeWorkers >= maxConcurrentWorkers) {
       await new Promise((resolve) => {
         setTimeout(resolve, 1000);
       });
@@ -56,9 +56,13 @@ async function generateTypeSpecs(tag = "rlc", isDebugging) {
 
     worker.postMessage({ config: tsp, mode: tag });
 
-    worker.on("message", ({ status, error }) => {
+    worker.on("message", ({ status, outputLog }) => {
       if (status === "closed") {
         activeWorkers--;
+      }
+
+      if (outputLog) {
+        console.log(outputLog);
       }
     });
 

@@ -26,7 +26,7 @@ async function generateSmokeTests() {
 
   for (const folder of folders) {
     // Wait for an available worker
-    if (activeWorkers >= maxConcurrentWorkers) {
+    while (activeWorkers >= maxConcurrentWorkers) {
       await new Promise((resolve) => {
         setTimeout(resolve, 1000);
       });
@@ -38,17 +38,19 @@ async function generateSmokeTests() {
     // Send the worker the data it needs to do the work
     worker.postMessage({ folder });
 
-    worker.on("message", ({ status, error }) => {
+    worker.on("message", ({ status, error, outputLog }) => {
       if (status === "closed") {
         activeWorkers--;
       }
 
       if (error) {
-        console.error(
-          `Error occurred during execution\n${JSON.stringify(error)}`
-        );
+        outputLog += `Error occurred during execution\n${JSON.stringify(
+          error
+        )} \n`;
         failed.push(folder);
       }
+
+      console.log(outputLog);
     });
 
     worker.on("error", (error) => {
