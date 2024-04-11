@@ -164,7 +164,7 @@ export interface CreateChatCompletionRequest {
    * between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100
    * should result in a ban or exclusive selection of the relevant token.
    */
-  logit_bias?: TypeSpecRecord | null;
+  logit_bias?: Record<string, number> | null;
   /**
    * A unique identifier representing your end-user, which can help OpenAI to monitor and detect
    * abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).
@@ -225,8 +225,6 @@ export interface ChatCompletionFunctionCallOption {
   /** The name of the function to call. */
   name: string;
 }
-
-export interface TypeSpecRecord extends Record<string, number> {}
 
 export interface CreateFineTuningJobRequest {
   /**
@@ -350,7 +348,7 @@ export interface CreateCompletionRequest {
    * between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100
    * should result in a ban or exclusive selection of the relevant token.
    */
-  logit_bias?: TypeSpecRecord | null;
+  logit_bias?: Record<string, number> | null;
   /**
    * A unique identifier representing your end-user, which can help OpenAI to monitor and detect
    * abuse. [Learn more](/docs/guides/safety-best-practices/end-user-ids).
