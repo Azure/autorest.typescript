@@ -9,12 +9,6 @@ import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
-// @public
-export type AlignMode = "Inner" | "Outer";
-
-// @public
-export type AlignModeOutput = "Inner" | "Outer";
-
 // @public (undocumented)
 export type AlignMode = "Inner" | "Outer";
 
@@ -26,36 +20,27 @@ export class AnomalyDetectorClient {
     readonly univariate: UnivariateOperations;
 }
 
-export type AnomalyDetectorErrorCodesOutput = "InvalidCustomInterval" | "BadArgument" | "InvalidGranularity" | "InvalidPeriod" | "InvalidModelArgument" | "InvalidSeries" | "InvalidJsonFormat" | "RequiredGranularity" | "RequiredSeries" | "InvalidImputeMode" | "InvalidImputeFixedValue";
-
-// @public
-// @public
-export type DataSchema = "OneTable" | "MultiTable";
-
-// @public
-export type DataSchemaOutput = "OneTable" | "MultiTable";
-
 // @public (undocumented)
 export interface AnomalyDetectorClientOptions extends ClientOptions {
     apiVersion?: string;
 }
 
-// @public
-export type AnomalyDetectorErrorCodes = string;
+// @public (undocumented)
+export type AnomalyDetectorErrorCodes = "InvalidCustomInterval" | "BadArgument" | "InvalidGranularity" | "InvalidPeriod" | "InvalidModelArgument" | "InvalidSeries" | "InvalidJsonFormat" | "RequiredGranularity" | "RequiredSeries" | "InvalidImputeMode" | "InvalidImputeFixedValue";
 
 // @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public
-export type DataSchema = string;
+// @public (undocumented)
+export type DataSchema = "OneTable" | "MultiTable";
 
-// @public
-export type FillNAMethod = string;
+// @public (undocumented)
+export type FillNAMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
 
-// @public
-export type ImputeMode = string;
+// @public (undocumented)
+export type ImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
 
 // @public (undocumented)
 export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
@@ -68,12 +53,11 @@ export interface MultivariateAlignPolicy {
 }
 
 // @public
-export type FillNAMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
-
-// @public
-export type FillNAMethodOutput = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
-
-// @public
+export interface MultivariateAnomalyDetectionModel {
+    createdTime: Date;
+    lastUpdatedTime: Date;
+    readonly modelId: string;
+    modelInfo?: MultivariateModelInfo;
 }
 
 // @public
@@ -117,9 +101,6 @@ export interface MultivariateDetectMultivariateBatchAnomalyOptionalParams extend
 // @public (undocumented)
 export interface MultivariateDetectMultivariateLastAnomalyOptionalParams extends OperationOptions {
 }
-// @public
-export type ImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
-
 
 // @public
 export interface MultivariateDiagnosticsInfo {
@@ -148,19 +129,6 @@ export interface MultivariateListMultivariateModelsOptionalParams extends Operat
 }
 
 // @public
-export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
-
-// @public
-export type ModelStatusOutput = "CREATED" | "RUNNING" | "READY" | "FAILED";
-
-// @public
-    alignMode?: AlignMode;
-    fillNAMethod?: FillNAMethod;
-    alignMode?: AlignModeOutput;
-    fillNAMethod?: FillNAMethodOutput;
-export type MultivariateBatchDetectionStatusOutput = "CREATED" | "RUNNING" | "READY" | "FAILED";
-
-// @public
 export interface MultivariateModelInfo {
     alignPolicy?: MultivariateAlignPolicy;
     dataSchema?: DataSchema;
@@ -169,11 +137,9 @@ export interface MultivariateModelInfo {
     displayName?: string;
     endTime: Date;
     readonly errors?: MultivariateErrorResponse[];
-    status?: ModelStatus;
-    dataSchema?: DataSchemaOutput;
     slidingWindow?: number;
     startTime: Date;
-    status?: ModelStatusOutput;
+    status?: ModelStatus;
 }
 
 // @public
@@ -210,7 +176,6 @@ export interface MultivariateMultivariateBatchDetectionResultSummary {
 
 // @public
 export interface MultivariateMultivariateDetectionResult {
-    status: MultivariateBatchDetectionStatusOutput;
     readonly resultId: string;
     results: MultivariateAnomalyState[];
     summary: MultivariateMultivariateBatchDetectionResultSummary;
@@ -278,9 +243,6 @@ export interface PageSettings {
     continuationToken?: string;
 }
 
-// @public
-export type TimeGranularity = "yearly" | "monthly" | "weekly" | "daily" | "hourly" | "minutely" | "secondly" | "microsecond" | "none";
-
 // @public (undocumented)
 export type TimeGranularity = "yearly" | "monthly" | "weekly" | "daily" | "hourly" | "minutely" | "secondly" | "microsecond" | "none";
 
@@ -306,7 +268,6 @@ export interface UnivariateOperations {
     detectUnivariateLastPoint: (options: UnivariateUnivariateDetectionOptions, optionalParams?: UnivariateDetectUnivariateLastPointOptionalParams) => Promise<UnivariateUnivariateLastDetectionResult>;
 }
 
-    code?: AnomalyDetectorErrorCodesOutput;
 // @public
 export interface UnivariateTimeSeriesPoint {
     timestamp?: Date;
@@ -366,6 +327,9 @@ export interface UnivariateUnivariateLastDetectionResult {
     suggestedWindow: number;
     upperMargin: number;
 }
+
+// @public (undocumented)
+export type Versions = "v1.1";
 
 // (No @packageDocumentation comment for this package)
 
