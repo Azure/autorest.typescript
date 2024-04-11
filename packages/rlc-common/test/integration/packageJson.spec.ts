@@ -4,56 +4,7 @@
 import { expect } from "chai";
 import { buildPackageFile } from "../../src/metadata/buildPackageFile.js";
 import "mocha";
-import { PackageFlavor, RLCModel } from "../../src/interfaces.js";
-import {
-  buildRuntimeImports,
-  initInternalImports
-} from "../../src/helpers/importsUtil.js";
-
-type TestModelConfig = {
-  moduleKind?: "esm" | "cjs";
-  description?: string;
-  withTests?: boolean;
-  withSamples?: boolean;
-  isMonorepo?: boolean;
-  libraryName?: string;
-  version?: string;
-  flavor?: PackageFlavor;
-  srcPath?: string;
-  source?: "TypeSpec" | "Swagger";
-  monorepoPackageDirectory?: string;
-};
-
-function createMockModel(config: TestModelConfig = {}): RLCModel {
-  return {
-    importInfo: {
-      runtimeImports: buildRuntimeImports(config.flavor),
-      internalImports: initInternalImports()
-    },
-    libraryName: config.libraryName ?? "@msinternal/test",
-    // Package json file generation doesn't need paths information
-    paths: {},
-    // Package json file generation doesn't need schemas information
-    schemas: [],
-    srcPath: config.srcPath ?? "src",
-    options: {
-      azureOutputDirectory: config.monorepoPackageDirectory,
-      packageDetails: {
-        name: config.libraryName ?? "@msinternal/test",
-        version: config.version ?? "1.0.0",
-        description: config.description ?? "A test package",
-        nameWithoutScope: "test",
-        scopeName: "msinternal"
-      },
-      azureSdkForJs: config.isMonorepo ?? false,
-      flavor: config.flavor,
-      generateTest: config.withTests ?? false,
-      generateSample: config.withSamples ?? false,
-      moduleKind: config.moduleKind,
-      sourceFrom: config.source ?? "TypeSpec"
-    }
-  };
-}
+import { createMockModel, TestModelConfig } from "./mockHelper.js";
 
 describe("Package file generation", () => {
   describe("Flavor agnostic config", () => {
@@ -374,10 +325,7 @@ describe("Package file generation", () => {
         "integration-test",
         "npm run integration-test:node && npm run integration-test:browser"
       );
-      expect(packageFile.scripts).to.have.property(
-        "pack",
-        "npm pack 2>&1"
-      );
+      expect(packageFile.scripts).to.have.property("pack", "npm pack 2>&1");
       expect(packageFile.scripts).to.have.property(
         "unit-test",
         "npm run unit-test:node && npm run unit-test:browser"
@@ -386,7 +334,6 @@ describe("Package file generation", () => {
         "format",
         'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"'
       );
-
     });
 
     it("[cjs] should include correct test devCependencies with tests", () => {
@@ -485,10 +432,7 @@ describe("Package file generation", () => {
         "integration-test",
         "npm run integration-test:node && npm run integration-test:browser"
       );
-      expect(packageFile.scripts).to.have.property(
-        "pack",
-        "npm pack 2>&1"
-      );
+      expect(packageFile.scripts).to.have.property("pack", "npm pack 2>&1");
       expect(packageFile.scripts).to.have.property(
         "unit-test",
         "npm run unit-test:node && npm run unit-test:browser"
