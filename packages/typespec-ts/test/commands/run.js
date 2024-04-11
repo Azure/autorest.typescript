@@ -1,10 +1,21 @@
 import { execSync } from "child_process";
 import { dirname, join as joinPath } from "path";
 import { fileURLToPath } from "url";
-import { TypeSpecRanchConfig } from "./cadl-ranch-list.js";
 import fsextra from "fs-extra";
+import { parentPort } from "worker_threads";
+
 const MAX_BUFFER = 10 * 1024 * 1024;
-export async function runTypespec(config: TypeSpecRanchConfig, mode: string) {
+
+parentPort.on("message", async ({ config, mode }) => {
+  try {
+    await runTypespec(config, mode);
+    parentPort.postMessage({ status: "closed", result });
+  } catch (e) {
+    parentPort.postMessage({ status: "closed", error: e });
+  }
+});
+
+export async function runTypespec(config, mode) {
   const targetFolder = config.outputPath,
     sourceTypespec = config.inputPath;
   const __filename = fileURLToPath(import.meta.url);
@@ -40,7 +51,7 @@ export async function runTypespec(config: TypeSpecRanchConfig, mode: string) {
     }
   }
   const typespecCommand = `cd ${outputPath} && npx tsp`;
-  const commandArguments: string[] = [
+  const commandArguments = [
     "compile",
     `${typespecPath}`,
     "--config tspconfig.yaml "
@@ -56,8 +67,8 @@ export async function runTypespec(config: TypeSpecRanchConfig, mode: string) {
     return result;
   } catch (e) {
     console.log("Error happened");
-    console.error(Error((e as any).stdout.toString()));
-    process.exitCode = 1;
+    const error = new Error(e.stdout.toString());
+    console.error(error);
+    throw error;
   }
-  return;
 }
