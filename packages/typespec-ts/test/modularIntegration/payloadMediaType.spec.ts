@@ -10,18 +10,12 @@ describe("MediaType Client", () => {
     });
   });
 
-  it.skip("should getAsText", async () => {
+  it("should getAsText", async () => {
     try {
       const result = await client.stringBody.getAsText({
         requestOptions: { headers: { accept: "text/plain" } }
       });
-      // const result = await client.stringBody.getAsText({
-      //   onResponse: (res) => {
-      //     res.rawHeaders["accept"] = "text/plain";
-      //   }
-      // });
-      console.log(result);
-      assert.isUndefined(result);
+      assert.strictEqual(result, "{cat}");
     } catch (err) {
       assert.fail(err as string);
     }
