@@ -31,7 +31,8 @@ import {
   hasUnexpectedHelper,
   RLCModel,
   buildSamples,
-  buildVitestConfig
+  buildVitestConfig,
+  buildTsTestBrowserConfig
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
@@ -288,6 +289,7 @@ export async function $onEmit(context: EmitContext) {
       if (option.moduleKind === "esm") {
         commonBuilders.push((model) => buildVitestConfig(model, "node"));
         commonBuilders.push((model) => buildVitestConfig(model, "browser"));
+        commonBuilders.push((model) => buildTsTestBrowserConfig(model));
       }
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
