@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ValueTypesContext } from "../../api/ValueTypesContext.js";
+import { ValueTypesContext } from "../../api/valueTypesContext.js";
 import { IntLiteralProperty } from "../../models/models.js";
 import { intLiteralGet, intLiteralPut } from "../../api/intLiteral/index.js";
 import {

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { AccessClient, AccessClientOptions } from "./AccessClient.js";
+export { AccessClient, AccessClientOptions } from "./accessClient.js";
 export {
   BaseModel,
   OuterModel,

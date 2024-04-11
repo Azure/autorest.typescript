@@ -4,7 +4,7 @@
 export {
   WidgetManagerClient,
   WidgetManagerClientOptions,
-} from "./WidgetManagerClient.js";
+} from "./widgetManagerClient.js";
 export {
   FooOperationsGetAvatarAsPngOptionalParams,
   FooOperationsGetAvatarAsJpegOptionalParams,

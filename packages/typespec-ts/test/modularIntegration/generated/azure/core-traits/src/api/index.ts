@@ -6,4 +6,4 @@ export {
   createTraits,
   TraitsClientOptions,
   TraitsContext,
-} from "./TraitsContext.js";
+} from "./traitsContext.js";

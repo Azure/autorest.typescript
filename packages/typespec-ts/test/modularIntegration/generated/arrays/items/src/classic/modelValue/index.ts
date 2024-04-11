@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ArrayContext } from "../../api/ArrayContext.js";
+import { ArrayContext } from "../../api/arrayContext.js";
 import { InnerModel } from "../../models/models.js";
 import { modelValueGet, modelValuePut } from "../../api/modelValue/index.js";
 import {

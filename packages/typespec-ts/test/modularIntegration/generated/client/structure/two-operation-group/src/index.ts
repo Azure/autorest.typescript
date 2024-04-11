@@ -4,7 +4,7 @@
 export {
   TwoOperationGroupClient,
   TwoOperationGroupClientOptions,
-} from "./TwoOperationGroupClient.js";
+} from "./twoOperationGroupClient.js";
 export {
   ClientType,
   Group1OneOptionalParams,

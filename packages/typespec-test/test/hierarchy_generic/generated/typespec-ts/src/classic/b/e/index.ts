@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { FooContext } from "../../../api/FooContext.js";
+import { FooContext } from "../../../api/fooContext.js";
 import { BECOperations, getBECOperations } from "./c/index.js";
 
 export interface BEOperations {

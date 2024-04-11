@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { OpenAIContext } from "../../api/OpenAIContext.js";
+import { OpenAIContext } from "../../api/openAIContext.js";
 import { CreateEditRequest, CreateEditResponse } from "../../models/models.js";
 import { create } from "../../api/edits/index.js";
 import { EditsCreateOptionalParams } from "../../models/options.js";

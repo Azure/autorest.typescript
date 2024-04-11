@@ -5,7 +5,7 @@ export {
   createValueTypes,
   ValueTypesClientOptions,
   ValueTypesContext,
-} from "./ValueTypesContext.js";
+} from "./valueTypesContext.js";
 export { booleanGet, booleanPut } from "./boolean/index.js";
 export {
   booleanLiteralGet,

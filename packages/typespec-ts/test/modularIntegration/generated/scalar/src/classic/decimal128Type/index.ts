@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ScalarContext } from "../../api/ScalarContext.js";
+import { ScalarContext } from "../../api/scalarContext.js";
 import {
   decimal128TypeResponseBody,
   decimal128TypeRequestBody,

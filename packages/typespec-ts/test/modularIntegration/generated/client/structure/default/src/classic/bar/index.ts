@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ServiceContext } from "../../api/ServiceContext.js";
+import { ServiceContext } from "../../api/serviceContext.js";
 import { five, six } from "../../api/bar/index.js";
 import {
   BarFiveOptionalParams,

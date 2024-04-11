@@ -6,4 +6,4 @@ export {
   createService,
   ServiceClientOptions,
   ServiceContext,
-} from "./ServiceContext.js";
+} from "./serviceContext.js";

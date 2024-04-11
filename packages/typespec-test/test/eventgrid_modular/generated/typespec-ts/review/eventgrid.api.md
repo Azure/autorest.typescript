@@ -59,6 +59,7 @@ export class EventGridClient {
 
 // @public (undocumented)
 export interface EventGridClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public

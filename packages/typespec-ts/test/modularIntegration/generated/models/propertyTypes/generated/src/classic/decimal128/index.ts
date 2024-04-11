@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ValueTypesContext } from "../../api/ValueTypesContext.js";
+import { ValueTypesContext } from "../../api/valueTypesContext.js";
 import { Decimal128Property } from "../../models/models.js";
 import { decimal128Get, decimal128Put } from "../../api/decimal128/index.js";
 import {

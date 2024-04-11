@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ArrayContext } from "../../api/ArrayContext.js";
+import { ArrayContext } from "../../api/arrayContext.js";
 import { int64ValueGet, int64ValuePut } from "../../api/int64Value/index.js";
 import {
   Int64ValueGetOptionalParams,

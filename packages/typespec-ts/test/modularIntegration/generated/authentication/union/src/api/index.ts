@@ -6,4 +6,4 @@ export {
   createUnion,
   UnionClientOptions,
   UnionContext,
-} from "./UnionContext.js";
+} from "./unionContext.js";
