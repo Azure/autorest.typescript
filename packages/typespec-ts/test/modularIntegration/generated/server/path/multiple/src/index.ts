@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { MultipleClient, MultipleClientOptions } from "./MultipleClient.js";
+export { MultipleClient, MultipleClientOptions } from "./multipleClient.js";
 export {
   Versions,
-  NoOperationParamsOptions,
-  WithOperationPathParamOptions,
+  NoOperationParamsOptionalParams,
+  WithOperationPathParamOptionalParams,
 } from "./models/index.js";

@@ -1,26 +1,29 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ArrayContext } from "../../api/ArrayContext.js";
+import { ArrayContext } from "../../api/arrayContext.js";
 import {
   durationValueGet,
   durationValuePut,
 } from "../../api/durationValue/index.js";
 import {
-  DurationValueGetOptions,
-  DurationValuePutOptions,
+  DurationValueGetOptionalParams,
+  DurationValuePutOptionalParams,
 } from "../../models/options.js";
 
 export interface DurationValueOperations {
-  get: (options?: DurationValueGetOptions) => Promise<string[]>;
-  put: (body: string[], options?: DurationValuePutOptions) => Promise<void>;
+  get: (options?: DurationValueGetOptionalParams) => Promise<string[]>;
+  put: (
+    body: string[],
+    options?: DurationValuePutOptionalParams,
+  ) => Promise<void>;
 }
 
 export function getDurationValue(context: ArrayContext) {
   return {
-    get: (options?: DurationValueGetOptions) =>
+    get: (options?: DurationValueGetOptionalParams) =>
       durationValueGet(context, options),
-    put: (body: string[], options?: DurationValuePutOptions) =>
+    put: (body: string[], options?: DurationValuePutOptionalParams) =>
       durationValuePut(context, body, options),
   };
 }

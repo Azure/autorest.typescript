@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { BasicClient, BasicClientOptions } from "./BasicClient.js";
+export { BasicClient, BasicClientOptions } from "./basicClient.js";
 export {
   User,
   UserOrder,
@@ -13,17 +13,17 @@ export {
   FirstItem,
   PagedSecondItem,
   SecondItem,
-  CreateOrUpdateOptions,
-  CreateOrReplaceOptions,
-  GetOptions,
-  ListOptions,
-  ListWithPageOptions,
-  ListWithParametersOptions,
-  ListWithCustomPageModelOptions,
-  DeleteOperationOptions,
-  ExportOperationOptions,
-  ListFirstItemOptions,
-  ListSecondItemOptions,
+  CreateOrUpdateOptionalParams,
+  CreateOrReplaceOptionalParams,
+  GetOptionalParams,
+  ListOptionalParams,
+  ListWithPageOptionalParams,
+  ListWithParametersOptionalParams,
+  ListWithCustomPageModelOptionalParams,
+  DeleteOptionalParams,
+  ExportOptionalParams,
+  ListFirstItemOptionalParams,
+  ListSecondItemOptionalParams,
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,

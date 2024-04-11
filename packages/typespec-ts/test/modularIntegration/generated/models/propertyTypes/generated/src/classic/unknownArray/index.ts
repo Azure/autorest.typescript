@@ -1,31 +1,35 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ValueTypesContext } from "../../api/ValueTypesContext.js";
+import { ValueTypesContext } from "../../api/valueTypesContext.js";
 import { UnknownArrayProperty } from "../../models/models.js";
 import {
   unknownArrayGet,
   unknownArrayPut,
 } from "../../api/unknownArray/index.js";
 import {
-  UnknownArrayGetOptions,
-  UnknownArrayPutOptions,
+  UnknownArrayGetOptionalParams,
+  UnknownArrayPutOptionalParams,
 } from "../../models/options.js";
 
 export interface UnknownArrayOperations {
-  get: (options?: UnknownArrayGetOptions) => Promise<UnknownArrayProperty>;
+  get: (
+    options?: UnknownArrayGetOptionalParams,
+  ) => Promise<UnknownArrayProperty>;
   put: (
     body: UnknownArrayProperty,
-    options?: UnknownArrayPutOptions,
+    options?: UnknownArrayPutOptionalParams,
   ) => Promise<void>;
 }
 
 export function getUnknownArray(context: ValueTypesContext) {
   return {
-    get: (options?: UnknownArrayGetOptions) =>
+    get: (options?: UnknownArrayGetOptionalParams) =>
       unknownArrayGet(context, options),
-    put: (body: UnknownArrayProperty, options?: UnknownArrayPutOptions) =>
-      unknownArrayPut(context, body, options),
+    put: (
+      body: UnknownArrayProperty,
+      options?: UnknownArrayPutOptionalParams,
+    ) => unknownArrayPut(context, body, options),
   };
 }
 

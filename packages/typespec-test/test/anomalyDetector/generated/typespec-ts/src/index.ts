@@ -1,15 +1,58 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import AnomalyDetectorClient from "./anomalyDetectorClient.js";
-
-export * from "./anomalyDetectorClient.js";
-export * from "./parameters.js";
-export * from "./responses.js";
-export * from "./clientDefinitions.js";
-export * from "./isUnexpected.js";
-export * from "./models.js";
-export * from "./outputModels.js";
-export * from "./paginateHelper.js";
-
-export default AnomalyDetectorClient;
+export {
+  AnomalyDetectorClient,
+  AnomalyDetectorClientOptions,
+} from "./anomalyDetectorClient.js";
+export {
+  MultivariateMultivariateDetectionResult,
+  MultivariateMultivariateBatchDetectionResultSummary,
+  MultivariateBatchDetectionStatus,
+  MultivariateErrorResponse,
+  MultivariateVariableState,
+  MultivariateMultivariateBatchDetectionOptions,
+  MultivariateAnomalyState,
+  MultivariateAnomalyValue,
+  MultivariateAnomalyInterpretation,
+  MultivariateCorrelationChanges,
+  MultivariateModelInfo,
+  DataSchema,
+  MultivariateAlignPolicy,
+  AlignMode,
+  FillNAMethod,
+  ModelStatus,
+  MultivariateDiagnosticsInfo,
+  MultivariateModelState,
+  MultivariateAnomalyDetectionModel,
+  MultivariateModelList,
+  MultivariateMultivariateLastDetectionOptions,
+  MultivariateVariableValues,
+  MultivariateMultivariateLastDetectionResult,
+  UnivariateUnivariateDetectionOptions,
+  UnivariateTimeSeriesPoint,
+  TimeGranularity,
+  ImputeMode,
+  UnivariateUnivariateEntireDetectionResult,
+  AnomalyDetectorErrorCodes,
+  UnivariateUnivariateLastDetectionResult,
+  UnivariateUnivariateChangePointDetectionOptions,
+  UnivariateUnivariateChangePointDetectionResult,
+  UnivariateDetectUnivariateEntireSeriesOptionalParams,
+  UnivariateDetectUnivariateLastPointOptionalParams,
+  UnivariateDetectUnivariateChangePointOptionalParams,
+  MultivariateGetMultivariateBatchDetectionResultOptionalParams,
+  MultivariateTrainMultivariateModelOptionalParams,
+  MultivariateListMultivariateModelsOptionalParams,
+  MultivariateDeleteMultivariateModelOptionalParams,
+  MultivariateGetMultivariateModelOptionalParams,
+  MultivariateDetectMultivariateBatchAnomalyOptionalParams,
+  MultivariateDetectMultivariateLastAnomalyOptionalParams,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./models/index.js";
+export {
+  MultivariateOperations,
+  UnivariateOperations,
+} from "./classic/index.js";

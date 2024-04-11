@@ -4,9 +4,9 @@
 export {
   NotVersionedClient,
   NotVersionedClientOptions,
-} from "./NotVersionedClient.js";
+} from "./notVersionedClient.js";
 export {
-  WithoutApiVersionOptions,
-  WithQueryApiVersionOptions,
-  WithPathApiVersionOptions,
+  WithoutApiVersionOptionalParams,
+  WithQueryApiVersionOptionalParams,
+  WithPathApiVersionOptionalParams,
 } from "./models/index.js";

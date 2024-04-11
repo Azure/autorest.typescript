@@ -4,5 +4,5 @@
 export {
   NotDefinedClient,
   NotDefinedClientOptions,
-} from "./NotDefinedClient.js";
-export { ValidOptions } from "./models/index.js";
+} from "./notDefinedClient.js";
+export { ValidOptionalParams } from "./models/index.js";

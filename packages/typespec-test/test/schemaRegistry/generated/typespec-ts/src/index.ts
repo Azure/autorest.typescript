@@ -4,7 +4,7 @@
 export {
   SchemaRegistryClient,
   SchemaRegistryClientOptions,
-} from "./SchemaRegistryClient.js";
+} from "./schemaRegistryClient.js";
 export {
   SchemaProperties,
   SchemaFormat,
@@ -14,12 +14,12 @@ export {
   SchemaContentTypeValues,
   PagedVersion,
   SchemaVersion,
-  SchemaOperationsListSchemaGroupsOptions,
-  SchemaOperationsGetSchemaByIdOptions,
-  SchemaOperationsListSchemaVersionsOptions,
-  SchemaOperationsGetSchemaByVersionOptions,
-  SchemaOperationsGetSchemaIdByContentOptions,
-  SchemaOperationsRegisterSchemaOptions,
+  SchemaOperationsListSchemaGroupsOptionalParams,
+  SchemaOperationsGetSchemaByIdOptionalParams,
+  SchemaOperationsListSchemaVersionsOptionalParams,
+  SchemaOperationsGetSchemaByVersionOptionalParams,
+  SchemaOperationsGetSchemaIdByContentOptionalParams,
+  SchemaOperationsRegisterSchemaOptionalParams,
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,

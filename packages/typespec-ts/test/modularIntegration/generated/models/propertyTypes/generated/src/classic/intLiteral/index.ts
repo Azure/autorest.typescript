@@ -1,26 +1,27 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ValueTypesContext } from "../../api/ValueTypesContext.js";
+import { ValueTypesContext } from "../../api/valueTypesContext.js";
 import { IntLiteralProperty } from "../../models/models.js";
 import { intLiteralGet, intLiteralPut } from "../../api/intLiteral/index.js";
 import {
-  IntLiteralGetOptions,
-  IntLiteralPutOptions,
+  IntLiteralGetOptionalParams,
+  IntLiteralPutOptionalParams,
 } from "../../models/options.js";
 
 export interface IntLiteralOperations {
-  get: (options?: IntLiteralGetOptions) => Promise<IntLiteralProperty>;
+  get: (options?: IntLiteralGetOptionalParams) => Promise<IntLiteralProperty>;
   put: (
     body: IntLiteralProperty,
-    options?: IntLiteralPutOptions,
+    options?: IntLiteralPutOptionalParams,
   ) => Promise<void>;
 }
 
 export function getIntLiteral(context: ValueTypesContext) {
   return {
-    get: (options?: IntLiteralGetOptions) => intLiteralGet(context, options),
-    put: (body: IntLiteralProperty, options?: IntLiteralPutOptions) =>
+    get: (options?: IntLiteralGetOptionalParams) =>
+      intLiteralGet(context, options),
+    put: (body: IntLiteralProperty, options?: IntLiteralPutOptionalParams) =>
       intLiteralPut(context, body, options),
   };
 }

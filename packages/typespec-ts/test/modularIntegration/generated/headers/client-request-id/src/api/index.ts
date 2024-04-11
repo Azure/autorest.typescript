@@ -6,4 +6,4 @@ export {
   createRequestId,
   RequestIdClientOptions,
   RequestIdClientContext,
-} from "./RequestIdContext.js";
+} from "./requestIdContext.js";

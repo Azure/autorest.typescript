@@ -123,12 +123,12 @@ export interface TodoItemsUpdate200Response extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface TodoItemsDeleteOperation200Response extends HttpResponse {
+export interface TodoItemsDelete200Response extends HttpResponse {
   status: "200";
 }
 
 /** The server cannot find the requested resource. */
-export interface TodoItemsDeleteOperation404Response extends HttpResponse {
+export interface TodoItemsDelete404Response extends HttpResponse {
   status: "404";
 }
 

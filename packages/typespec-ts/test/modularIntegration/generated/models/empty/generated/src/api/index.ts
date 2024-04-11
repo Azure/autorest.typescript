@@ -5,5 +5,5 @@ export {
   createEmpty,
   EmptyClientOptions,
   EmptyContext,
-} from "./EmptyContext.js";
+} from "./emptyContext.js";
 export { putEmpty, getEmpty, postRoundTripEmpty } from "./operations.js";

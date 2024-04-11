@@ -3,4 +3,4 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface GetOptions extends OperationOptions {}
+export interface GetOptionalParams extends OperationOptions {}

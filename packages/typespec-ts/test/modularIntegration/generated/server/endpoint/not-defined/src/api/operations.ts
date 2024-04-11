@@ -10,11 +10,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { ValidOptions } from "../models/options.js";
+import { ValidOptionalParams } from "../models/options.js";
 
 export function _validSend(
   context: Client,
-  options: ValidOptions = { requestOptions: {} },
+  options: ValidOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Valid200Response> {
   return context
     .path("/server/endpoint/not-defined/valid")
@@ -33,7 +33,7 @@ export async function _validDeserialize(
 
 export async function valid(
   context: Client,
-  options: ValidOptions = { requestOptions: {} },
+  options: ValidOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _validSend(context, options);
   return _validDeserialize(result);

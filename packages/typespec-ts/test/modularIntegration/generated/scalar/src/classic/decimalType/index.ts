@@ -1,39 +1,43 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ScalarContext } from "../../api/ScalarContext.js";
+import { ScalarContext } from "../../api/scalarContext.js";
 import {
   decimalTypeResponseBody,
   decimalTypeRequestBody,
   decimalTypeRequestParameter,
 } from "../../api/decimalType/index.js";
 import {
-  DecimalTypeResponseBodyOptions,
-  DecimalTypeRequestBodyOptions,
-  DecimalTypeRequestParameterOptions,
+  DecimalTypeResponseBodyOptionalParams,
+  DecimalTypeRequestBodyOptionalParams,
+  DecimalTypeRequestParameterOptionalParams,
 } from "../../models/options.js";
 
 export interface DecimalTypeOperations {
-  responseBody: (options?: DecimalTypeResponseBodyOptions) => Promise<number>;
+  responseBody: (
+    options?: DecimalTypeResponseBodyOptionalParams,
+  ) => Promise<number>;
   requestBody: (
     body: number,
-    options?: DecimalTypeRequestBodyOptions,
+    options?: DecimalTypeRequestBodyOptionalParams,
   ) => Promise<void>;
   requestParameter: (
     value: number,
-    options?: DecimalTypeRequestParameterOptions,
+    options?: DecimalTypeRequestParameterOptionalParams,
   ) => Promise<void>;
 }
 
 export function getDecimalType(context: ScalarContext) {
   return {
-    responseBody: (options?: DecimalTypeResponseBodyOptions) =>
+    responseBody: (options?: DecimalTypeResponseBodyOptionalParams) =>
       decimalTypeResponseBody(context, options),
-    requestBody: (body: number, options?: DecimalTypeRequestBodyOptions) =>
-      decimalTypeRequestBody(context, body, options),
+    requestBody: (
+      body: number,
+      options?: DecimalTypeRequestBodyOptionalParams,
+    ) => decimalTypeRequestBody(context, body, options),
     requestParameter: (
       value: number,
-      options?: DecimalTypeRequestParameterOptions,
+      options?: DecimalTypeRequestParameterOptionalParams,
     ) => decimalTypeRequestParameter(context, value, options),
   };
 }

@@ -4,7 +4,7 @@
 export {
   WidgetServiceClient,
   WidgetServiceClientOptions,
-} from "./WidgetServiceClient.js";
+} from "./widgetServiceClient.js";
 export {
   Widget,
   WidgetError,
@@ -13,14 +13,14 @@ export {
   UpdateWidget,
   AnalyzeResult,
   NonReferencedModel,
-  WidgetsListWidgetsOptions,
-  WidgetsListWidgetsPagesOptions,
-  WidgetsQueryWidgetsPagesOptions,
-  WidgetsGetWidgetOptions,
-  WidgetsCreateWidgetOptions,
-  WidgetsUpdateWidgetOptions,
-  WidgetsDeleteWidgetOptions,
-  WidgetsAnalyzeWidgetOptions,
+  WidgetsListWidgetsOptionalParams,
+  WidgetsListWidgetsPagesOptionalParams,
+  WidgetsQueryWidgetsPagesOptionalParams,
+  WidgetsGetWidgetOptionalParams,
+  WidgetsCreateWidgetOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsAnalyzeWidgetOptionalParams,
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,

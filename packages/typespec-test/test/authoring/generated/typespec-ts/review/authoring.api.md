@@ -31,7 +31,7 @@ export default createClient;
 
 // @public (undocumented)
 export interface CreateOrUpdate {
-    delete(options?: DeleteParameters): StreamableMethod<DeleteOperation202Response | DeleteOperationDefaultResponse>;
+    delete(options?: DeleteParameters): StreamableMethod<Delete202Response | DeleteDefaultResponse>;
     get(options?: GetParameters): StreamableMethod<Get200Response | GetDefaultResponse>;
     patch(options: CreateOrUpdateParameters): StreamableMethod<CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse>;
 }
@@ -103,6 +103,36 @@ export interface CreateOrUpdateMediaTypesParam {
 export type CreateOrUpdateParameters = CreateOrUpdateMediaTypesParam & CreateOrUpdateBodyParam & RequestParameters;
 
 // @public (undocumented)
+export interface Delete202Headers {
+    "operation-location": string;
+}
+
+// @public
+export interface Delete202Response extends HttpResponse {
+    // (undocumented)
+    body: OperationStatusOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & Delete202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface DeleteDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface DeleteDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & DeleteDefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
 export interface DeleteDeployment202Headers {
     "operation-location": string;
 }
@@ -149,36 +179,6 @@ export interface DeleteLogicalResponse extends HttpResponse {
     body: OperationStatusOutput;
     // (undocumented)
     status: "200";
-}
-
-// @public (undocumented)
-export interface DeleteOperation202Headers {
-    "operation-location": string;
-}
-
-// @public
-export interface DeleteOperation202Response extends HttpResponse {
-    // (undocumented)
-    body: OperationStatusOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & DeleteOperation202Headers;
-    // (undocumented)
-    status: "202";
-}
-
-// @public (undocumented)
-export interface DeleteOperationDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface DeleteOperationDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & DeleteOperationDefaultHeaders;
-    // (undocumented)
-    status: string;
 }
 
 // @public (undocumented)
@@ -268,41 +268,41 @@ export type DeployProjectParameters = DeployProjectBodyParam & RequestParameters
 
 // @public (undocumented)
 export interface Export {
-    post(options: ExportParameters): StreamableMethod<ExportOperation202Response | ExportOperationDefaultResponse>;
+    post(options: ExportParameters): StreamableMethod<Export202Response | ExportDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface Export202Headers {
+    "operation-location": string;
+}
+
+// @public
+export interface Export202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & Export202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface ExportDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface ExportDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & ExportDefaultHeaders;
+    // (undocumented)
+    status: string;
 }
 
 // @public
 export interface ExportLogicalResponse extends HttpResponse {
     // (undocumented)
     status: "200";
-}
-
-// @public (undocumented)
-export interface ExportOperation202Headers {
-    "operation-location": string;
-}
-
-// @public
-export interface ExportOperation202Response extends HttpResponse {
-    // (undocumented)
-    headers: RawHttpHeaders & ExportOperation202Headers;
-    // (undocumented)
-    status: "202";
-}
-
-// @public (undocumented)
-export interface ExportOperationDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface ExportOperationDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & ExportOperationDefaultHeaders;
-    // (undocumented)
-    status: string;
 }
 
 // @public (undocumented)
@@ -413,10 +413,10 @@ export type GetDeploymentStatusParameters = RequestParameters;
 export function getLongRunningPoller<TResult extends CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse>(client: Client, initialResponse: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
-export function getLongRunningPoller<TResult extends DeleteLogicalResponse | DeleteOperationDefaultResponse>(client: Client, initialResponse: DeleteOperation202Response | DeleteOperationDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends DeleteLogicalResponse | DeleteDefaultResponse>(client: Client, initialResponse: Delete202Response | DeleteDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
-export function getLongRunningPoller<TResult extends ExportLogicalResponse | ExportOperationDefaultResponse>(client: Client, initialResponse: ExportOperation202Response | ExportOperationDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends ExportLogicalResponse | ExportDefaultResponse>(client: Client, initialResponse: Export202Response | ExportDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
 export function getLongRunningPoller<TResult extends ImportxLogicalResponse | ImportxDefaultResponse>(client: Client, initialResponse: Importx202Response | ImportxDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
@@ -566,13 +566,13 @@ export function isUnexpected(response: CreateOrUpdate200Response | CreateOrUpdat
 export function isUnexpected(response: Get200Response | GetDefaultResponse): response is GetDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: DeleteOperation202Response | DeleteLogicalResponse | DeleteOperationDefaultResponse): response is DeleteOperationDefaultResponse;
+export function isUnexpected(response: Delete202Response | DeleteLogicalResponse | DeleteDefaultResponse): response is DeleteDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: ListProjects200Response | ListProjectsDefaultResponse): response is ListProjectsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ExportOperation202Response | ExportLogicalResponse | ExportOperationDefaultResponse): response is ExportOperationDefaultResponse;
+export function isUnexpected(response: Export202Response | ExportLogicalResponse | ExportDefaultResponse): response is ExportDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: Importx202Response | ImportxLogicalResponse | ImportxDefaultResponse): response is ImportxDefaultResponse;

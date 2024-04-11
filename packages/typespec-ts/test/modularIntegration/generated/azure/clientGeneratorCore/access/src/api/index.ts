@@ -5,14 +5,14 @@ export {
   createAccess,
   AccessClientOptions,
   AccessContext,
-} from "./AccessContext.js";
+} from "./accessContext.js";
 export {
   noDecoratorInPublic,
   publicDecoratorInPublic,
   noDecoratorInInternal,
   internalDecoratorInInternal,
   publicDecoratorInInternal,
-  publicOperation,
+  $public,
   internal,
   operation,
   discriminator,

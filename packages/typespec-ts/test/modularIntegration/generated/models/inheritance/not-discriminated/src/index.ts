@@ -4,12 +4,12 @@
 export {
   NotDiscriminatedClient,
   NotDiscriminatedClientOptions,
-} from "./NotDiscriminatedClient.js";
+} from "./notDiscriminatedClient.js";
 export {
   Pet,
   Cat,
   Siamese,
-  PostValidOptions,
-  GetValidOptions,
-  PutValidOptions,
+  PostValidOptionalParams,
+  GetValidOptionalParams,
+  PutValidOptionalParams,
 } from "./models/index.js";

@@ -10,11 +10,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { QuxEightOptions } from "../../models/options.js";
+import { QuxEightOptionalParams } from "../../models/options.js";
 
 export function _eightSend(
   context: Client,
-  options: QuxEightOptions = { requestOptions: {} },
+  options: QuxEightOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Eight204Response> {
   return context
     .path("/eight")
@@ -33,7 +33,7 @@ export async function _eightDeserialize(
 
 export async function eight(
   context: Client,
-  options: QuxEightOptions = { requestOptions: {} },
+  options: QuxEightOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _eightSend(context, options);
   return _eightDeserialize(result);

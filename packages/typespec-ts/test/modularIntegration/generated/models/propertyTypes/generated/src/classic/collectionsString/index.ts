@@ -1,34 +1,34 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ValueTypesContext } from "../../api/ValueTypesContext.js";
+import { ValueTypesContext } from "../../api/valueTypesContext.js";
 import { CollectionsStringProperty } from "../../models/models.js";
 import {
   collectionsStringGet,
   collectionsStringPut,
 } from "../../api/collectionsString/index.js";
 import {
-  CollectionsStringGetOptions,
-  CollectionsStringPutOptions,
+  CollectionsStringGetOptionalParams,
+  CollectionsStringPutOptionalParams,
 } from "../../models/options.js";
 
 export interface CollectionsStringOperations {
   get: (
-    options?: CollectionsStringGetOptions,
+    options?: CollectionsStringGetOptionalParams,
   ) => Promise<CollectionsStringProperty>;
   put: (
     body: CollectionsStringProperty,
-    options?: CollectionsStringPutOptions,
+    options?: CollectionsStringPutOptionalParams,
   ) => Promise<void>;
 }
 
 export function getCollectionsString(context: ValueTypesContext) {
   return {
-    get: (options?: CollectionsStringGetOptions) =>
+    get: (options?: CollectionsStringGetOptionalParams) =>
       collectionsStringGet(context, options),
     put: (
       body: CollectionsStringProperty,
-      options?: CollectionsStringPutOptions,
+      options?: CollectionsStringPutOptionalParams,
     ) => collectionsStringPut(context, body, options),
   };
 }

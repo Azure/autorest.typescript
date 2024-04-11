@@ -4,30 +4,32 @@
 import { OperationOptions } from "@azure-rest/core-client";
 import { FileType } from "./models.js";
 
-export interface CreateOrUpdateTestOptions extends OperationOptions {
+export interface CreateOrUpdateTestOptionalParams extends OperationOptions {
   contentType?: string;
 }
 
-export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
-  contentType?: string;
-}
-
-export interface CreateOrUpdateServerMetricsConfigOptions
+export interface CreateOrUpdateAppComponentsOptionalParams
   extends OperationOptions {
   contentType?: string;
 }
 
-export interface GetAppComponentsOptions extends OperationOptions {}
+export interface CreateOrUpdateServerMetricsConfigOptionalParams
+  extends OperationOptions {
+  contentType?: string;
+}
 
-export interface GetServerMetricsConfigOptions extends OperationOptions {}
+export interface GetAppComponentsOptionalParams extends OperationOptions {}
 
-export interface GetTestOptions extends OperationOptions {}
+export interface GetServerMetricsConfigOptionalParams
+  extends OperationOptions {}
 
-export interface GetTestFileOptions extends OperationOptions {}
+export interface GetTestOptionalParams extends OperationOptions {}
 
-export interface ListTestFilesOptions extends OperationOptions {}
+export interface GetTestFileOptionalParams extends OperationOptions {}
 
-export interface ListTestsOptions extends OperationOptions {
+export interface ListTestFilesOptionalParams extends OperationOptions {}
+
+export interface ListTestsOptionalParams extends OperationOptions {
   /**
    * Sort on the supported fields in (field asc/desc) format. eg:
    * lastModifiedDateTime asc. Supported fields - lastModifiedDateTime
@@ -53,12 +55,12 @@ export interface ListTestsOptions extends OperationOptions {
   maxpagesize?: number;
 }
 
-export interface UploadTestFileOptions extends OperationOptions {
+export interface UploadTestFileOptionalParams extends OperationOptions {
   contentType?: string;
   /** File type */
   fileType?: FileType;
 }
 
-export interface DeleteTestFileOptions extends OperationOptions {}
+export interface DeleteTestFileOptionalParams extends OperationOptions {}
 
-export interface DeleteTestOptions extends OperationOptions {}
+export interface DeleteTestOptionalParams extends OperationOptions {}

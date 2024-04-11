@@ -9,7 +9,12 @@ import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { importModels } from "./buildOperations.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { getImportSpecifier } from "@azure-tools/rlc-common";
+import {
+  getImportSpecifier,
+  normalizeName,
+  NameType
+} from "@azure-tools/rlc-common";
+import { getType } from "./helpers/typeHelpers.js";
 
 /**
  * This function creates the file containing the modular client context
@@ -26,7 +31,7 @@ export function buildClientContext(
   const clientContextFile = codeModel.project.createSourceFile(
     `${srcPath}/${
       subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }/api/${name}Context.ts`
+    }/api/${normalizeName(name, NameType.File)}Context.ts`
   );
 
   let factoryFunction;
@@ -40,9 +45,22 @@ export function buildClientContext(
   clientContextFile.addInterface({
     name: `${name}ClientOptions`,
     isExported: true,
-    extends: ["ClientOptions"]
+    extends: ["ClientOptions"],
+    properties: client.parameters
+      .filter((p) => {
+        return (
+          p.optional || (p.type.type !== "constant" && p.clientDefaultValue)
+        );
+      })
+      .map((p) => {
+        return {
+          name: p.clientName,
+          type: getType(p.type).name,
+          hasQuestionToken: true,
+          docs: getDocsFromDescription(p.description)
+        };
+      })
   });
-
   if (isRLCMultiEndpoint(dpgContext)) {
     clientContextFile.addImportDeclaration({
       moduleSpecifier: `../../rest/${subfolder}/index.js`,

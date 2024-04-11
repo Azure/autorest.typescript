@@ -5,7 +5,7 @@ export {
   createDatetime,
   DatetimeClientOptions,
   DatetimeContext,
-} from "./DatetimeContext.js";
+} from "./datetimeContext.js";
 export {
   headerDefault,
   headerRfc3339,

@@ -260,13 +260,13 @@ export interface TodoItemsCreateJsonMediaTypesParam {
 export type TodoItemsCreateJsonParameters = TodoItemsCreateJsonMediaTypesParam & TodoItemsCreateJsonBodyParam & RequestParameters;
 
 // @public
-export interface TodoItemsDeleteOperation200Response extends HttpResponse {
+export interface TodoItemsDelete200Response extends HttpResponse {
     // (undocumented)
     status: "200";
 }
 
 // @public
-export interface TodoItemsDeleteOperation404Response extends HttpResponse {
+export interface TodoItemsDelete404Response extends HttpResponse {
     // (undocumented)
     status: "404";
 }
@@ -277,7 +277,7 @@ export type TodoItemsDeleteParameters = RequestParameters;
 // @public (undocumented)
 export interface TodoItemsGet {
     // (undocumented)
-    delete(options?: TodoItemsDeleteParameters): StreamableMethod<TodoItemsDeleteOperation200Response | TodoItemsDeleteOperation404Response>;
+    delete(options?: TodoItemsDeleteParameters): StreamableMethod<TodoItemsDelete200Response | TodoItemsDelete404Response>;
     // (undocumented)
     get(options?: TodoItemsGetParameters): StreamableMethod<TodoItemsGet200Response | TodoItemsGet404Response>;
     // (undocumented)

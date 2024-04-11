@@ -214,6 +214,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "payload/pageable"
   },
   {
+    outputPath: "payload/media-type",
+    inputPath: "payload/media-type"
+  },
+  {
     outputPath: "client/naming",
     inputPath: "client/naming"
   },
@@ -407,6 +411,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "server/endpoint/not-defined",
     inputPath: "server/endpoint/not-defined"
+  },
+  {
+    outputPath: "specialWords",
+    inputPath: "special-words"
   }
 ];
 

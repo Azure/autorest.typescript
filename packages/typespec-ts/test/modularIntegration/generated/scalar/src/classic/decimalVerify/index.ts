@@ -1,28 +1,31 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ScalarContext } from "../../api/ScalarContext.js";
+import { ScalarContext } from "../../api/scalarContext.js";
 import {
   decimalVerifyPrepareVerify,
   decimalVerifyVerify,
 } from "../../api/decimalVerify/index.js";
 import {
-  DecimalVerifyPrepareVerifyOptions,
-  DecimalVerifyVerifyOptions,
+  DecimalVerifyPrepareVerifyOptionalParams,
+  DecimalVerifyVerifyOptionalParams,
 } from "../../models/options.js";
 
 export interface DecimalVerifyOperations {
   prepareVerify: (
-    options?: DecimalVerifyPrepareVerifyOptions,
+    options?: DecimalVerifyPrepareVerifyOptionalParams,
   ) => Promise<number[]>;
-  verify: (body: number, options?: DecimalVerifyVerifyOptions) => Promise<void>;
+  verify: (
+    body: number,
+    options?: DecimalVerifyVerifyOptionalParams,
+  ) => Promise<void>;
 }
 
 export function getDecimalVerify(context: ScalarContext) {
   return {
-    prepareVerify: (options?: DecimalVerifyPrepareVerifyOptions) =>
+    prepareVerify: (options?: DecimalVerifyPrepareVerifyOptionalParams) =>
       decimalVerifyPrepareVerify(context, options),
-    verify: (body: number, options?: DecimalVerifyVerifyOptions) =>
+    verify: (body: number, options?: DecimalVerifyVerifyOptionalParams) =>
       decimalVerifyVerify(context, body, options),
   };
 }

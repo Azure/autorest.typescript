@@ -14,15 +14,15 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  PutEmptyOptions,
-  GetEmptyOptions,
-  PostRoundTripEmptyOptions,
+  PutEmptyOptionalParams,
+  GetEmptyOptionalParams,
+  PostRoundTripEmptyOptionalParams,
 } from "../models/options.js";
 
 export function _putEmptySend(
   context: Client,
   input: EmptyInput,
-  options: PutEmptyOptions = { requestOptions: {} },
+  options: PutEmptyOptionalParams = { requestOptions: {} },
 ): StreamableMethod<PutEmpty204Response> {
   return context
     .path("/type/model/empty/alone")
@@ -42,7 +42,7 @@ export async function _putEmptyDeserialize(
 export async function putEmpty(
   context: Client,
   input: EmptyInput,
-  options: PutEmptyOptions = { requestOptions: {} },
+  options: PutEmptyOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putEmptySend(context, input, options);
   return _putEmptyDeserialize(result);
@@ -50,7 +50,7 @@ export async function putEmpty(
 
 export function _getEmptySend(
   context: Client,
-  options: GetEmptyOptions = { requestOptions: {} },
+  options: GetEmptyOptionalParams = { requestOptions: {} },
 ): StreamableMethod<GetEmpty200Response> {
   return context
     .path("/type/model/empty/alone")
@@ -69,7 +69,7 @@ export async function _getEmptyDeserialize(
 
 export async function getEmpty(
   context: Client,
-  options: GetEmptyOptions = { requestOptions: {} },
+  options: GetEmptyOptionalParams = { requestOptions: {} },
 ): Promise<EmptyOutput> {
   const result = await _getEmptySend(context, options);
   return _getEmptyDeserialize(result);
@@ -78,7 +78,7 @@ export async function getEmpty(
 export function _postRoundTripEmptySend(
   context: Client,
   body: EmptyInputOutput,
-  options: PostRoundTripEmptyOptions = { requestOptions: {} },
+  options: PostRoundTripEmptyOptionalParams = { requestOptions: {} },
 ): StreamableMethod<PostRoundTripEmpty200Response> {
   return context
     .path("/type/model/empty/round-trip")
@@ -98,7 +98,7 @@ export async function _postRoundTripEmptyDeserialize(
 export async function postRoundTripEmpty(
   context: Client,
   body: EmptyInputOutput,
-  options: PostRoundTripEmptyOptions = { requestOptions: {} },
+  options: PostRoundTripEmptyOptionalParams = { requestOptions: {} },
 ): Promise<EmptyInputOutput> {
   const result = await _postRoundTripEmptySend(context, body, options);
   return _postRoundTripEmptyDeserialize(result);

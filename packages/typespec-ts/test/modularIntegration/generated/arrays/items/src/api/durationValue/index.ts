@@ -12,13 +12,13 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  DurationValueGetOptions,
-  DurationValuePutOptions,
+  DurationValueGetOptionalParams,
+  DurationValuePutOptionalParams,
 } from "../../models/options.js";
 
 export function _durationValueGetSend(
   context: Client,
-  options: DurationValueGetOptions = { requestOptions: {} },
+  options: DurationValueGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<DurationValueGet200Response> {
   return context
     .path("/type/array/duration")
@@ -37,7 +37,7 @@ export async function _durationValueGetDeserialize(
 
 export async function durationValueGet(
   context: Client,
-  options: DurationValueGetOptions = { requestOptions: {} },
+  options: DurationValueGetOptionalParams = { requestOptions: {} },
 ): Promise<string[]> {
   const result = await _durationValueGetSend(context, options);
   return _durationValueGetDeserialize(result);
@@ -46,7 +46,7 @@ export async function durationValueGet(
 export function _durationValuePutSend(
   context: Client,
   body: string[],
-  options: DurationValuePutOptions = { requestOptions: {} },
+  options: DurationValuePutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<DurationValuePut204Response> {
   return context
     .path("/type/array/duration")
@@ -66,7 +66,7 @@ export async function _durationValuePutDeserialize(
 export async function durationValuePut(
   context: Client,
   body: string[],
-  options: DurationValuePutOptions = { requestOptions: {} },
+  options: DurationValuePutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _durationValuePutSend(context, body, options);
   return _durationValuePutDeserialize(result);

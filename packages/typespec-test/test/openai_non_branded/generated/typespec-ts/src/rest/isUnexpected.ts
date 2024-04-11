@@ -29,8 +29,8 @@ import {
   FilesCreateDefaultResponse,
   FilesRetrieve200Response,
   FilesRetrieveDefaultResponse,
-  FilesDeleteOperation200Response,
-  FilesDeleteOperationDefaultResponse,
+  FilesDelete200Response,
+  FilesDeleteDefaultResponse,
   FilesDownload200Response,
   FilesDownloadDefaultResponse,
   FineTunesCreate200Response,
@@ -47,8 +47,8 @@ import {
   ModelsListDefaultResponse,
   ModelsRetrieve200Response,
   ModelsRetrieveDefaultResponse,
-  ModelsDeleteOperation200Response,
-  ModelsDeleteOperationDefaultResponse,
+  ModelsDelete200Response,
+  ModelsDeleteDefaultResponse,
   ImagesCreate200Response,
   ImagesCreateDefaultResponse,
   ImagesCreateEdit200Response,
@@ -147,10 +147,8 @@ export function isUnexpected(
   response: FilesRetrieve200Response | FilesRetrieveDefaultResponse,
 ): response is FilesRetrieveDefaultResponse;
 export function isUnexpected(
-  response:
-    | FilesDeleteOperation200Response
-    | FilesDeleteOperationDefaultResponse,
-): response is FilesDeleteOperationDefaultResponse;
+  response: FilesDelete200Response | FilesDeleteDefaultResponse,
+): response is FilesDeleteDefaultResponse;
 export function isUnexpected(
   response: FilesDownload200Response | FilesDownloadDefaultResponse,
 ): response is FilesDownloadDefaultResponse;
@@ -176,10 +174,8 @@ export function isUnexpected(
   response: ModelsRetrieve200Response | ModelsRetrieveDefaultResponse,
 ): response is ModelsRetrieveDefaultResponse;
 export function isUnexpected(
-  response:
-    | ModelsDeleteOperation200Response
-    | ModelsDeleteOperationDefaultResponse,
-): response is ModelsDeleteOperationDefaultResponse;
+  response: ModelsDelete200Response | ModelsDeleteDefaultResponse,
+): response is ModelsDeleteDefaultResponse;
 export function isUnexpected(
   response: ImagesCreate200Response | ImagesCreateDefaultResponse,
 ): response is ImagesCreateDefaultResponse;
@@ -224,8 +220,8 @@ export function isUnexpected(
     | FilesCreateDefaultResponse
     | FilesRetrieve200Response
     | FilesRetrieveDefaultResponse
-    | FilesDeleteOperation200Response
-    | FilesDeleteOperationDefaultResponse
+    | FilesDelete200Response
+    | FilesDeleteDefaultResponse
     | FilesDownload200Response
     | FilesDownloadDefaultResponse
     | FineTunesCreate200Response
@@ -242,8 +238,8 @@ export function isUnexpected(
     | ModelsListDefaultResponse
     | ModelsRetrieve200Response
     | ModelsRetrieveDefaultResponse
-    | ModelsDeleteOperation200Response
-    | ModelsDeleteOperationDefaultResponse
+    | ModelsDelete200Response
+    | ModelsDeleteDefaultResponse
     | ImagesCreate200Response
     | ImagesCreateDefaultResponse
     | ImagesCreateEdit200Response
@@ -267,7 +263,7 @@ export function isUnexpected(
   | FilesListDefaultResponse
   | FilesCreateDefaultResponse
   | FilesRetrieveDefaultResponse
-  | FilesDeleteOperationDefaultResponse
+  | FilesDeleteDefaultResponse
   | FilesDownloadDefaultResponse
   | FineTunesCreateDefaultResponse
   | FineTunesListDefaultResponse
@@ -276,7 +272,7 @@ export function isUnexpected(
   | FineTunesCancelDefaultResponse
   | ModelsListDefaultResponse
   | ModelsRetrieveDefaultResponse
-  | ModelsDeleteOperationDefaultResponse
+  | ModelsDeleteDefaultResponse
   | ImagesCreateDefaultResponse
   | ImagesCreateEditDefaultResponse
   | ImagesCreateVariationDefaultResponse

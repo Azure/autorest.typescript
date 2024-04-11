@@ -50,7 +50,7 @@ describe("modular special union serialization", () => {
       export function _customGet1Send(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): StreamableMethod<CustomGet1204Response> {
         return context
           .path("/customGet1")
@@ -78,7 +78,7 @@ describe("modular special union serialization", () => {
       export async function customGet1(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): Promise<void> {
         const result = await _customGet1Send(context, body, options);
         return _customGet1Deserialize(result);
@@ -138,7 +138,7 @@ describe("modular special union serialization", () => {
       export function _customGet1Send(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): StreamableMethod<CustomGet1204Response> {
         return context
           .path("/customGet1")
@@ -166,7 +166,7 @@ describe("modular special union serialization", () => {
       export async function customGet1(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): Promise<void> {
         const result = await _customGet1Send(context, body, options);
         return _customGet1Deserialize(result);
@@ -218,7 +218,7 @@ describe("modular special union serialization", () => {
       export function _customGet1Send(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): StreamableMethod<CustomGet1204Response> {
         return context
           .path("/customGet1")
@@ -246,7 +246,7 @@ describe("modular special union serialization", () => {
       export async function customGet1(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): Promise<void> {
         const result = await _customGet1Send(context, body, options);
         return _customGet1Deserialize(result);
@@ -298,7 +298,7 @@ describe("modular special union serialization", () => {
       export function _customGet1Send(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): StreamableMethod<CustomGet1204Response> {
         return context
           .path("/customGet1")
@@ -326,7 +326,7 @@ describe("modular special union serialization", () => {
       export async function customGet1(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): Promise<void> {
         const result = await _customGet1Send(context, body, options);
         return _customGet1Deserialize(result);
@@ -383,7 +383,7 @@ describe("modular special union serialization", () => {
       export function _customGet1Send(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): StreamableMethod<CustomGet1204Response> {
         return context
           .path("/customGet1")
@@ -411,7 +411,7 @@ describe("modular special union serialization", () => {
       export async function customGet1(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): Promise<void> {
         const result = await _customGet1Send(context, body, options);
         return _customGet1Deserialize(result);
@@ -468,7 +468,7 @@ describe("modular special union serialization", () => {
       export function _customGet1Send(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): StreamableMethod<CustomGet1204Response> {
         return context
           .path("/customGet1")
@@ -496,7 +496,7 @@ describe("modular special union serialization", () => {
       export async function customGet1(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): Promise<void> {
         const result = await _customGet1Send(context, body, options);
         return _customGet1Deserialize(result);
@@ -590,7 +590,7 @@ describe("modular special union serialization", () => {
       export function _customGet1Send(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): StreamableMethod<CustomGet1204Response> {
         return context
           .path("/customGet1")
@@ -615,7 +615,7 @@ describe("modular special union serialization", () => {
       export async function customGet1(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): Promise<void> {
         const result = await _customGet1Send(context, body, options);
         return _customGet1Deserialize(result);
@@ -706,7 +706,7 @@ describe("modular special union serialization", () => {
       export function _customGet1Send(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): StreamableMethod<CustomGet1204Response> {
         return context
           .path("/customGet1")
@@ -734,7 +734,7 @@ describe("modular special union serialization", () => {
       export async function customGet1(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): Promise<void> {
         const result = await _customGet1Send(context, body, options);
         return _customGet1Deserialize(result);
@@ -835,7 +835,7 @@ describe("modular special union serialization", () => {
       export function _customGet1Send(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} },
+        options: CustomGet1OptionalParams = { requestOptions: {} },
       ): StreamableMethod<CustomGet1204Response> {
         return context
           .path("/customGet1")
@@ -860,7 +860,7 @@ describe("modular special union serialization", () => {
       export async function customGet1(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} },
+        options: CustomGet1OptionalParams = { requestOptions: {} },
       ): Promise<void> {
         const result = await _customGet1Send(context, body, options);
         return _customGet1Deserialize(result);
@@ -961,7 +961,7 @@ describe("modular special union serialization", () => {
       export function _customGet1Send(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} },
+        options: CustomGet1OptionalParams = { requestOptions: {} },
       ): StreamableMethod<CustomGet1204Response> {
         return context
           .path("/customGet1")
@@ -986,7 +986,7 @@ describe("modular special union serialization", () => {
       export async function customGet1(
         context: Client,
         body: Widget1,
-        options: CustomGet1Options = { requestOptions: {} },
+        options: CustomGet1OptionalParams = { requestOptions: {} },
       ): Promise<void> {
         const result = await _customGet1Send(context, body, options);
         return _customGet1Deserialize(result);
@@ -1040,7 +1040,7 @@ describe("modular special union deserialization", () => {
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): StreamableMethod<CustomGet1200Response> {
         return context
           .path("/customGet1")
@@ -1061,7 +1061,7 @@ describe("modular special union deserialization", () => {
       }
       export async function customGet1(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): Promise<Widget1> {
         const result = await _customGet1Send(context, options);
         return _customGet1Deserialize(result);
@@ -1120,7 +1120,7 @@ describe("modular special union deserialization", () => {
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): StreamableMethod<CustomGet1200Response> {
         return context
           .path("/customGet1")
@@ -1141,7 +1141,7 @@ describe("modular special union deserialization", () => {
       }
       export async function customGet1(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): Promise<Widget1> {
         const result = await _customGet1Send(context, options);
         return _customGet1Deserialize(result);
@@ -1192,7 +1192,7 @@ describe("modular special union deserialization", () => {
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): StreamableMethod<CustomGet1200Response> {
         return context
           .path("/customGet1")
@@ -1213,7 +1213,7 @@ describe("modular special union deserialization", () => {
       }
       export async function customGet1(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): Promise<Widget1> {
         const result = await _customGet1Send(context, options);
         return _customGet1Deserialize(result);
@@ -1264,7 +1264,7 @@ describe("modular special union deserialization", () => {
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): StreamableMethod<CustomGet1200Response> {
         return context
           .path("/customGet1")
@@ -1285,7 +1285,7 @@ describe("modular special union deserialization", () => {
       }
       export async function customGet1(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): Promise<Widget1> {
         const result = await _customGet1Send(context, options);
         return _customGet1Deserialize(result);
@@ -1341,7 +1341,7 @@ describe("modular special union deserialization", () => {
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): StreamableMethod<CustomGet1200Response> {
         return context
           .path("/customGet1")
@@ -1362,7 +1362,7 @@ describe("modular special union deserialization", () => {
       }
       export async function customGet1(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): Promise<Widget1> {
         const result = await _customGet1Send(context, options);
         return _customGet1Deserialize(result);
@@ -1417,7 +1417,7 @@ describe("modular special union deserialization", () => {
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): StreamableMethod<CustomGet1200Response> {
         return context
           .path("/customGet1")
@@ -1438,7 +1438,7 @@ describe("modular special union deserialization", () => {
       }
       export async function customGet1(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): Promise<Widget1> {
         const result = await _customGet1Send(context, options);
         return _customGet1Deserialize(result);
@@ -1527,7 +1527,7 @@ describe("modular special union deserialization", () => {
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): StreamableMethod<CustomGet1200Response> {
         return context
           .path("/customGet1")
@@ -1548,7 +1548,7 @@ describe("modular special union deserialization", () => {
       }
       export async function customGet1(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): Promise<Widget1> {
         const result = await _customGet1Send(context, options);
         return _customGet1Deserialize(result);
@@ -1639,7 +1639,7 @@ describe("modular special union deserialization", () => {
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): StreamableMethod<CustomGet1200Response> {
         return context
           .path("/customGet1")
@@ -1660,7 +1660,7 @@ describe("modular special union deserialization", () => {
       }
       export async function customGet1(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} }
+        options: CustomGet1OptionalParams = { requestOptions: {} }
       ): Promise<Widget1> {
         const result = await _customGet1Send(context, options);
         return _customGet1Deserialize(result);
@@ -1763,7 +1763,7 @@ describe("modular special union deserialization", () => {
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} },
+        options: CustomGet1OptionalParams = { requestOptions: {} },
       ): StreamableMethod<CustomGet1200Response> {
         return context
           .path("/customGet1")
@@ -1784,7 +1784,7 @@ describe("modular special union deserialization", () => {
       }
       export async function customGet1(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} },
+        options: CustomGet1OptionalParams = { requestOptions: {} },
       ): Promise<Widget1> {
         const result = await _customGet1Send(context, options);
         return _customGet1Deserialize(result);
@@ -1893,7 +1893,7 @@ describe("modular special union deserialization", () => {
       } from "@azure-rest/core-client";
       export function _customGet1Send(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} },
+        options: CustomGet1OptionalParams = { requestOptions: {} },
       ): StreamableMethod<CustomGet1200Response> {
         return context
           .path("/customGet1")
@@ -1914,7 +1914,7 @@ describe("modular special union deserialization", () => {
       }
       export async function customGet1(
         context: Client,
-        options: CustomGet1Options = { requestOptions: {} },
+        options: CustomGet1OptionalParams = { requestOptions: {} },
       ): Promise<Widget1> {
         const result = await _customGet1Send(context, options);
         return _customGet1Deserialize(result);

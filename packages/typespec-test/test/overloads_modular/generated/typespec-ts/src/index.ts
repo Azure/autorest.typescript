@@ -4,9 +4,9 @@
 export {
   WidgetManagerClient,
   WidgetManagerClientOptions,
-} from "./WidgetManagerClient.js";
+} from "./widgetManagerClient.js";
 export {
-  FooOperationsGetAvatarAsPngOptions,
-  FooOperationsGetAvatarAsJpegOptions,
+  FooOperationsGetAvatarAsPngOptionalParams,
+  FooOperationsGetAvatarAsJpegOptionalParams,
 } from "./models/index.js";
 export { FooOperationsOperations } from "./classic/index.js";

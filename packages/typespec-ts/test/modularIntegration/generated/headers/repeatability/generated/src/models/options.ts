@@ -3,4 +3,4 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface ImmediateSuccessOptions extends OperationOptions {}
+export interface ImmediateSuccessOptionalParams extends OperationOptions {}

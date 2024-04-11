@@ -5,5 +5,5 @@ export {
   createNotDefined,
   NotDefinedClientOptions,
   NotDefinedContext,
-} from "./NotDefinedContext.js";
+} from "./notDefinedContext.js";
 export { valid } from "./operations.js";

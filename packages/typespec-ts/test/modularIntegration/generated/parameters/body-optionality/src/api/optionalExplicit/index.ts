@@ -13,14 +13,14 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  OptionalExplicitSetOptions,
-  OptionalExplicitOmitOptions,
+  OptionalExplicitSetOptionalParams,
+  OptionalExplicitOmitOptionalParams,
 } from "../../models/options.js";
 
 export function _setSend(
   context: Client,
   body?: BodyModel,
-  options: OptionalExplicitSetOptions = { requestOptions: {} },
+  options: OptionalExplicitSetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<SetModel204Response> {
   return context
     .path("/parameters/body-optionality/optional-explicit/set")
@@ -43,7 +43,7 @@ export async function _setDeserialize(
 export async function set(
   context: Client,
   body?: BodyModel,
-  options: OptionalExplicitSetOptions = { requestOptions: {} },
+  options: OptionalExplicitSetOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _setSend(context, body, options);
   return _setDeserialize(result);
@@ -52,7 +52,7 @@ export async function set(
 export function _omitSend(
   context: Client,
   body?: BodyModel,
-  options: OptionalExplicitOmitOptions = { requestOptions: {} },
+  options: OptionalExplicitOmitOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Omit204Response> {
   return context
     .path("/parameters/body-optionality/optional-explicit/omit")
@@ -73,7 +73,7 @@ export async function _omitDeserialize(result: Omit204Response): Promise<void> {
 export async function omit(
   context: Client,
   body?: BodyModel,
-  options: OptionalExplicitOmitOptions = { requestOptions: {} },
+  options: OptionalExplicitOmitOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _omitSend(context, body, options);
   return _omitDeserialize(result);

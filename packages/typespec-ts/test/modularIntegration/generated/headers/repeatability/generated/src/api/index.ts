@@ -6,4 +6,4 @@ export {
   createRepeatability,
   RepeatabilityClientOptions,
   RepeatabilityContext,
-} from "./RepeatabilityContext.js";
+} from "./repeatabilityContext.js";

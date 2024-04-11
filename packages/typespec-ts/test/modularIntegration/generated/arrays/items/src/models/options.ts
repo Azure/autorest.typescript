@@ -3,42 +3,42 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface Int32ValueGetOptions extends OperationOptions {}
+export interface Int32ValueGetOptionalParams extends OperationOptions {}
 
-export interface Int32ValuePutOptions extends OperationOptions {}
+export interface Int32ValuePutOptionalParams extends OperationOptions {}
 
-export interface Int64ValueGetOptions extends OperationOptions {}
+export interface Int64ValueGetOptionalParams extends OperationOptions {}
 
-export interface Int64ValuePutOptions extends OperationOptions {}
+export interface Int64ValuePutOptionalParams extends OperationOptions {}
 
-export interface BooleanValueGetOptions extends OperationOptions {}
+export interface BooleanValueGetOptionalParams extends OperationOptions {}
 
-export interface BooleanValuePutOptions extends OperationOptions {}
+export interface BooleanValuePutOptionalParams extends OperationOptions {}
 
-export interface StringValueGetOptions extends OperationOptions {}
+export interface StringValueGetOptionalParams extends OperationOptions {}
 
-export interface StringValuePutOptions extends OperationOptions {}
+export interface StringValuePutOptionalParams extends OperationOptions {}
 
-export interface Float32ValueGetOptions extends OperationOptions {}
+export interface Float32ValueGetOptionalParams extends OperationOptions {}
 
-export interface Float32ValuePutOptions extends OperationOptions {}
+export interface Float32ValuePutOptionalParams extends OperationOptions {}
 
-export interface DatetimeValueGetOptions extends OperationOptions {}
+export interface DatetimeValueGetOptionalParams extends OperationOptions {}
 
-export interface DatetimeValuePutOptions extends OperationOptions {}
+export interface DatetimeValuePutOptionalParams extends OperationOptions {}
 
-export interface DurationValueGetOptions extends OperationOptions {}
+export interface DurationValueGetOptionalParams extends OperationOptions {}
 
-export interface DurationValuePutOptions extends OperationOptions {}
+export interface DurationValuePutOptionalParams extends OperationOptions {}
 
-export interface UnknownValueGetOptions extends OperationOptions {}
+export interface UnknownValueGetOptionalParams extends OperationOptions {}
 
-export interface UnknownValuePutOptions extends OperationOptions {}
+export interface UnknownValuePutOptionalParams extends OperationOptions {}
 
-export interface ModelValueGetOptions extends OperationOptions {}
+export interface ModelValueGetOptionalParams extends OperationOptions {}
 
-export interface ModelValuePutOptions extends OperationOptions {}
+export interface ModelValuePutOptionalParams extends OperationOptions {}
 
-export interface NullableFloatValueGetOptions extends OperationOptions {}
+export interface NullableFloatValueGetOptionalParams extends OperationOptions {}
 
-export interface NullableFloatValuePutOptions extends OperationOptions {}
+export interface NullableFloatValuePutOptionalParams extends OperationOptions {}

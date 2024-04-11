@@ -31,7 +31,7 @@ describe("api operations in Modular", () => {
          export function _uploadFileViaBodySend(
            context: Client,
            body: Uint8Array,
-           options: UploadFileViaBodyOptions = { requestOptions: {} }
+           options: UploadFileViaBodyOptionalParams = { requestOptions: {} }
          ): StreamableMethod<UploadFileViaBody204Response> {
            return context
              .path("/uploadFileViaBody")
@@ -52,7 +52,7 @@ describe("api operations in Modular", () => {
          export async function uploadFileViaBody(
            context: Client,
            body: Uint8Array,
-           options: UploadFileViaBodyOptions = { requestOptions: {} }
+           options: UploadFileViaBodyOptionalParams = { requestOptions: {} }
          ): Promise<void> {
            const result = await _uploadFileViaBodySend(context, body, options);
            return _uploadFileViaBodyDeserialize(result);
@@ -87,7 +87,7 @@ describe("api operations in Modular", () => {
          export function _uploadFileViaBodySend(
            context: Client,
            body: Uint8Array,
-           options: UploadFileViaBodyOptions = { requestOptions: {} }
+           options: UploadFileViaBodyOptionalParams = { requestOptions: {} }
          ): StreamableMethod<UploadFileViaBody204Response> {
            return context
              .path("/uploadFileViaBody")
@@ -108,7 +108,7 @@ describe("api operations in Modular", () => {
          export async function uploadFileViaBody(
            context: Client,
            body: Uint8Array,
-           options: UploadFileViaBodyOptions = { requestOptions: {} }
+           options: UploadFileViaBodyOptionalParams = { requestOptions: {} }
          ): Promise<void> {
            const result = await _uploadFileViaBodySend(context, body, options);
            return _uploadFileViaBodyDeserialize(result);
@@ -145,7 +145,7 @@ describe("api operations in Modular", () => {
            context: Client,
            name: string,
            file: Uint8Array,
-           options: UploadFileOptions = { requestOptions: {} }
+           options: UploadFileOptionalParams = { requestOptions: {} }
          ): StreamableMethod<UploadFile204Response> {
            return context
              .path("/uploadFile")
@@ -167,7 +167,7 @@ describe("api operations in Modular", () => {
            context: Client,
            name: string,
            file: Uint8Array,
-           options: UploadFileOptions = { requestOptions: {} }
+           options: UploadFileOptionalParams = { requestOptions: {} }
          ): Promise<void> {
            const result = await _uploadFileSend(context, name, file, options);
            return _uploadFileDeserialize(result);
@@ -204,7 +204,7 @@ describe("api operations in Modular", () => {
          export function _uploadFilesSend(
            context: Client,
            files: Uint8Array[],
-           options: UploadFilesOptions = { requestOptions: {} }
+           options: UploadFilesOptionalParams = { requestOptions: {} }
          ): StreamableMethod<UploadFiles204Response> {
            return context
              .path("/uploadFiles")
@@ -225,7 +225,7 @@ describe("api operations in Modular", () => {
          export async function uploadFiles(
            context: Client,
            files: Uint8Array[],
-           options: UploadFilesOptions = { requestOptions: {} }
+           options: UploadFilesOptionalParams = { requestOptions: {} }
          ): Promise<void> {
            const result = await _uploadFilesSend(context, files, options);
            return _uploadFilesDeserialize(result);
@@ -259,7 +259,7 @@ describe("api operations in Modular", () => {
          } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
-           options: DownloadFileOptions = { requestOptions: {} }
+           options: DownloadFileOptionalParams = { requestOptions: {} }
          ): StreamableMethod<DownloadFile200Response> {
            return context
              .path("/downloadFile")
@@ -275,7 +275,7 @@ describe("api operations in Modular", () => {
          }
          export async function downloadFile(
            context: Client,
-           options: DownloadFileOptions = { requestOptions: {} }
+           options: DownloadFileOptionalParams = { requestOptions: {} }
          ): Promise<Uint8Array> {
            const result = await _downloadFileSend(context, options);
            return _downloadFileDeserialize(result);
@@ -310,7 +310,7 @@ describe("api operations in Modular", () => {
          } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
-           options: DownloadFileOptions = { requestOptions: {} }
+           options: DownloadFileOptionalParams = { requestOptions: {} }
          ): StreamableMethod<DownloadFile200Response> {
            return context
              .path("/downloadFile")
@@ -326,7 +326,7 @@ describe("api operations in Modular", () => {
          }
          export async function downloadFile(
            context: Client,
-           options: DownloadFileOptions = { requestOptions: {} }
+           options: DownloadFileOptionalParams = { requestOptions: {} }
          ): Promise<Uint8Array> {
            const result = await _downloadFileSend(context, options);
            return _downloadFileDeserialize(result);
@@ -362,7 +362,7 @@ describe("api operations in Modular", () => {
          import { stringToUint8Array } from "@azure/core-util";
          export function _downloadFileSend(
            context: Client,
-           options: DownloadFileOptions = { requestOptions: {} }
+           options: DownloadFileOptionalParams = { requestOptions: {} }
          ): StreamableMethod<DownloadFile200Response> {
            return context
              .path("/downloadFile")
@@ -384,7 +384,7 @@ describe("api operations in Modular", () => {
          }
          export async function downloadFile(
            context: Client,
-           options: DownloadFileOptions = { requestOptions: {} }
+           options: DownloadFileOptionalParams = { requestOptions: {} }
          ): Promise<{ name: string; file: Uint8Array }> {
            const result = await _downloadFileSend(context, options);
            return _downloadFileDeserialize(result);
@@ -422,7 +422,7 @@ describe("api operations in Modular", () => {
          import { stringToUint8Array } from "@azure/core-util";
          export function _downloadFileSend(
            context: Client,
-           options: DownloadFileOptions = { requestOptions: {} }
+           options: DownloadFileOptionalParams = { requestOptions: {} }
          ): StreamableMethod<DownloadFile200Response> {
            return context
              .path("/downloadFile")
@@ -443,7 +443,7 @@ describe("api operations in Modular", () => {
          }
          export async function downloadFile(
            context: Client,
-           options: DownloadFileOptions = { requestOptions: {} }
+           options: DownloadFileOptionalParams = { requestOptions: {} }
          ): Promise<{ name: string; file: Uint8Array[] }> {
            const result = await _downloadFileSend(context, options);
            return _downloadFileDeserialize(result);
@@ -478,7 +478,7 @@ describe("api operations in Modular", () => {
         
         export function _testSend(
           context: Client,
-          options: TestOptions = { requestOptions: {} },
+          options: TestOptionalParams = { requestOptions: {} },
         ): StreamableMethod<Test200Response> {
           return context
             .path("/")
@@ -497,7 +497,7 @@ describe("api operations in Modular", () => {
         
         export async function test(
           context: Client,
-          options: TestOptions = { requestOptions: {} },
+          options: TestOptionalParams = { requestOptions: {} },
         ): Promise<string> {
           const result = await _testSend(context, options);
           return _testDeserialize(result);
@@ -510,18 +510,18 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         clientContext?.getFullText()!,
         `
-        import { ClientOptions } from "@azure-rest/core-client";
+        import { ClientOptions  } from "@azure-rest/core-client";
         import { TestingContext } from "../rest/index.js";
         import getClient from "../rest/index.js";
         
-        export interface TestingClientOptions extends ClientOptions {}
+        export interface TestingClientOptions  extends ClientOptions  {}
         
         export { TestingContext } from "../rest/index.js";
         
         export function createTesting(
           endpoint: string,
           apiVersion: string,
-          options: TestingClientOptions = {},
+          options: TestingClientOptions  = {},
         ): TestingContext {
           const clientContext = getClient(endpoint, apiVersion, options);
           return clientContext;
@@ -535,7 +535,7 @@ describe("api operations in Modular", () => {
         `
         import { Pipeline } from "@azure/core-rest-pipeline";
         
-        export { TestingClientOptions } from "./api/TestingContext.js";
+        export { TestingClientOptions  } from "./api/testingContext.js";
         
         export class TestingClient {
           private _client: TestingContext;
@@ -545,13 +545,13 @@ describe("api operations in Modular", () => {
           constructor(
             endpoint: string,
             apiVersion: string,
-            options: TestingClientOptions = {},
+            options: TestingClientOptions  = {},
           ) {
             this._client = createTesting(endpoint, apiVersion, options);
             this.pipeline = this._client.pipeline;
           }
         
-          test(options: TestOptions = { requestOptions: {} }): Promise<string> {
+          test(options: TestOptionalParams = { requestOptions: {} }): Promise<string> {
             return test(this._client, options);
           }
         }
@@ -589,7 +589,7 @@ describe("api operations in Modular", () => {
         
         export function _testSend(
           context: Client,
-          options: TestOptions = { requestOptions: {} },
+          options: TestOptionalParams = { requestOptions: {} },
         ): StreamableMethod<Test200Response> {
           return context
             .path("/")
@@ -608,7 +608,7 @@ describe("api operations in Modular", () => {
         
         export async function test(
           context: Client,
-          options: TestOptions = { requestOptions: {} },
+          options: TestOptionalParams = { requestOptions: {} },
         ): Promise<string> {
           const result = await _testSend(context, options);
           return _testDeserialize(result);
@@ -624,17 +624,19 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         clientContext?.getFullText()!,
         `
-        import { ClientOptions } from "@azure-rest/core-client";
+        import { ClientOptions  } from "@azure-rest/core-client";
         import { TestingContext } from "../rest/index.js";
         import getClient from "../rest/index.js";
         
-        export interface TestingClientOptions extends ClientOptions {}
+        export interface TestingClientOptions extends ClientOptions  {
+          apiVersion?: string;
+        }
         
         export { TestingContext } from "../rest/index.js";
         
         export function createTesting(
           endpoint: string,
-          options: TestingClientOptions = {},
+          options: TestingClientOptions  = {},
         ): TestingContext {
           const clientContext = getClient(endpoint, options);
           return clientContext;
@@ -652,7 +654,7 @@ describe("api operations in Modular", () => {
         `
         import { Pipeline } from "@azure/core-rest-pipeline";
         
-        export { TestingClientOptions } from "./api/TestingContext.js";
+        export { TestingClientOptions  } from "./api/testingContext.js";
         
         export class TestingClient {
           private _client: TestingContext;
@@ -661,13 +663,13 @@ describe("api operations in Modular", () => {
         
           constructor(
             endpoint: string,
-            options: TestingClientOptions = {},
+            options: TestingClientOptions  = {},
           ) {
             this._client = createTesting(endpoint, options);
             this.pipeline = this._client.pipeline;
           }
         
-          test(options: TestOptions = { requestOptions: {} }): Promise<string> {
+          test(options: TestOptionalParams = { requestOptions: {} }): Promise<string> {
             return test(this._client, options);
           }
         }
@@ -706,7 +708,7 @@ describe("api operations in Modular", () => {
         export function _testSend(
           context: Client,
           apiVersion: string,
-          options: TestOptions = { requestOptions: {} },
+          options: TestOptionalParams = { requestOptions: {} },
         ): StreamableMethod<Test200Response> {
           return context
             .path("/test")
@@ -729,7 +731,7 @@ describe("api operations in Modular", () => {
         export async function test(
           context: Client,
           apiVersion: string,
-          options: TestOptions = { requestOptions: {} },
+          options: TestOptionalParams = { requestOptions: {} },
         ): Promise<string> {
           const result = await _testSend(context, apiVersion, options);
           return _testDeserialize(result);
@@ -737,7 +739,7 @@ describe("api operations in Modular", () => {
         
         export function _test1Send(
           context: Client,
-          options: Test1Options = { requestOptions: {} },
+          options: Test1OptionalParams = { requestOptions: {} },
         ): StreamableMethod<Test1200Response> {
           return context
             .path("/test1")
@@ -756,7 +758,7 @@ describe("api operations in Modular", () => {
         
         export async function test1(
           context: Client,
-          options: Test1Options = { requestOptions: {} },
+          options: Test1OptionalParams = { requestOptions: {} },
         ): Promise<string> {
           const result = await _test1Send(context, options);
           return _test1Deserialize(result);
@@ -770,17 +772,17 @@ describe("api operations in Modular", () => {
       await assertEqualContent(
         clientContext?.getFullText()!,
         `
-        import { ClientOptions } from "@azure-rest/core-client";
+        import { ClientOptions  } from "@azure-rest/core-client";
         import { TestingContext } from "../rest/index.js";
         import getClient from "../rest/index.js";
         
-        export interface TestingClientOptions extends ClientOptions {}
+        export interface TestingClientOptions  extends ClientOptions  {}
         
         export { TestingContext } from "../rest/index.js";
         
         export function createTesting(
           endpoint: string,
-          options: TestingClientOptions = {},
+          options: TestingClientOptions  = {},
         ): TestingContext {
           const clientContext = getClient(endpoint, options);
           return clientContext;
@@ -794,7 +796,7 @@ describe("api operations in Modular", () => {
         `
         import { Pipeline } from "@azure/core-rest-pipeline";
         
-        export { TestingClientOptions } from "./api/TestingContext.js";
+        export { TestingClientOptions  } from "./api/testingContext.js";
         
         export class TestingClient {
           private _client: TestingContext;
@@ -803,7 +805,7 @@ describe("api operations in Modular", () => {
         
           constructor(
             endpoint: string,
-            options: TestingClientOptions = {},
+            options: TestingClientOptions  = {},
           ) {
             this._client = createTesting(endpoint, options);
             this.pipeline = this._client.pipeline;
@@ -811,12 +813,12 @@ describe("api operations in Modular", () => {
         
           test(
             apiVersion: string,
-            options: TestOptions = { requestOptions: {} },
+            options: TestOptionalParams = { requestOptions: {} },
           ): Promise<string> {
             return test(this._client, apiVersion, options);
           }
 
-          test1(options: Test1Options = { requestOptions: {} }): Promise<string> {
+          test1(options: Test1OptionalParams = { requestOptions: {} }): Promise<string> {
             return test1(this._client, options);
           }
         }

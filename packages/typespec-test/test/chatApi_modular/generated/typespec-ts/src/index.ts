@@ -4,7 +4,7 @@
 export {
   ChatProtocolClient,
   ChatProtocolClientOptions,
-} from "./ChatProtocolClient.js";
+} from "./chatProtocolClient.js";
 export {
   StreamingChatCompletionOptions,
   ChatMessage,
@@ -16,6 +16,6 @@ export {
   ChatCompletionOptions,
   ChatCompletion,
   ChatChoice,
-  CreateStreamingOptions,
-  CreateOptions,
+  CreateStreamingOptionalParams,
+  CreateOptionalParams,
 } from "./models/index.js";

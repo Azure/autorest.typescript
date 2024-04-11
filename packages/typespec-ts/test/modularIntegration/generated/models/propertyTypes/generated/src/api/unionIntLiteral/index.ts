@@ -13,13 +13,13 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  UnionIntLiteralGetOptions,
-  UnionIntLiteralPutOptions,
+  UnionIntLiteralGetOptionalParams,
+  UnionIntLiteralPutOptionalParams,
 } from "../../models/options.js";
 
 export function _unionIntLiteralGetSend(
   context: Client,
-  options: UnionIntLiteralGetOptions = { requestOptions: {} },
+  options: UnionIntLiteralGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<UnionIntLiteralGet200Response> {
   return context
     .path("/type/property/value-types/union/int/literal")
@@ -41,7 +41,7 @@ export async function _unionIntLiteralGetDeserialize(
 /** Get call */
 export async function unionIntLiteralGet(
   context: Client,
-  options: UnionIntLiteralGetOptions = { requestOptions: {} },
+  options: UnionIntLiteralGetOptionalParams = { requestOptions: {} },
 ): Promise<UnionIntLiteralProperty> {
   const result = await _unionIntLiteralGetSend(context, options);
   return _unionIntLiteralGetDeserialize(result);
@@ -50,7 +50,7 @@ export async function unionIntLiteralGet(
 export function _unionIntLiteralPutSend(
   context: Client,
   body: UnionIntLiteralProperty,
-  options: UnionIntLiteralPutOptions = { requestOptions: {} },
+  options: UnionIntLiteralPutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<UnionIntLiteralPut204Response> {
   return context
     .path("/type/property/value-types/union/int/literal")
@@ -74,7 +74,7 @@ export async function _unionIntLiteralPutDeserialize(
 export async function unionIntLiteralPut(
   context: Client,
   body: UnionIntLiteralProperty,
-  options: UnionIntLiteralPutOptions = { requestOptions: {} },
+  options: UnionIntLiteralPutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _unionIntLiteralPutSend(context, body, options);
   return _unionIntLiteralPutDeserialize(result);
