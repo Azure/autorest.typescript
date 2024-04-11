@@ -4,6 +4,8 @@
 
 ```ts
 
+import { AbortSignalLike } from '@azure/abort-controller';
+import { CancelOnProgress } from '@azure/core-lro';
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { CreateHttpPollerOptions } from '@azure/core-lro';
@@ -15,7 +17,6 @@ import { OperationState } from '@azure/core-lro';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
-import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
@@ -1214,6 +1215,32 @@ export interface SexMismatchInference extends RadiologyInsightsInferenceParent {
 export interface SexMismatchInferenceOutput extends RadiologyInsightsInferenceOutputParent {
     kind: "sexMismatch";
     sexIndication: CodeableConceptOutput;
+}
+
+// @public
+export interface SimplePollerLike<TState extends OperationState<TResult>, TResult> {
+    // (undocumented)
+    readonly isDone: boolean;
+    // (undocumented)
+    readonly isStopped: boolean;
+    // (undocumented)
+    onProgress(callback: (state: TState) => void): CancelOnProgress;
+    // (undocumented)
+    readonly operationState: TState | undefined;
+    // (undocumented)
+    poll(options?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TState>;
+    // (undocumented)
+    pollUntilDone(pollOptions?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TResult>;
+    // (undocumented)
+    readonly result: TResult | undefined;
+    // (undocumented)
+    serialize(): Promise<string>;
+    // (undocumented)
+    submitted(): Promise<void>;
 }
 
 // @public
