@@ -169,6 +169,7 @@ export function transformUrlInfo(
     for (const param of urlParameters) {
       if (param.oriName === "apiVersion") {
         hasApiVersionInUrl = true;
+        dpgContext.hasApiVersionInClient = true;
       }
       if (param.oriName) {
         const regexp = new RegExp(`{${param.oriName}}`, "g");
