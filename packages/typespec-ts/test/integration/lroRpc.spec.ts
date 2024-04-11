@@ -4,7 +4,7 @@ import SpecsAzureCoreLroStandardClientFactory, {
   isUnexpected
 } from "./generated/lro/lroRPC/src/index.js";
 import { assert } from "chai";
-describe.only("RpcClient Rest Client", () => {
+describe("RpcClient Rest Client", () => {
   let client: RpcClient;
 
   beforeEach(() => {

@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { Client, HttpResponse } from "@azure-rest/core-client";
+import { AbortSignalLike } from "@azure/abort-controller";
 import {
   CancelOnProgress,
   CreateHttpPollerOptions,
@@ -20,13 +21,15 @@ import {
   DeleteLogicalResponse,
   ExportOperation202Response,
   ExportOperationDefaultResponse,
-  ExportLogicalResponse
+  ExportLogicalResponse,
 } from "./responses.js";
-import { AbortSignalLike } from "@azure/abort-controller";
 
+/**
+ * A simple poller that can be used to poll a long running operation.
+ */
 export interface SimplePollerLike<
   TState extends OperationState<TResult>,
-  TResult
+  TResult,
 > {
   readonly isDone: boolean;
   readonly isStopped: boolean;
@@ -40,6 +43,7 @@ export interface SimplePollerLike<
   serialize(): Promise<string>;
   submitted(): Promise<void>;
 }
+
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
  * @param client - Client to use for sending the request to get additional pages.
@@ -48,35 +52,35 @@ export interface SimplePollerLike<
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
 export async function getLongRunningPoller<
-  TResult extends ExportLogicalResponse | ExportOperationDefaultResponse
+  TResult extends ExportLogicalResponse | ExportOperationDefaultResponse,
 >(
   client: Client,
   initialResponse: ExportOperation202Response | ExportOperationDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<
   TResult extends
-  | CreateOrReplaceLogicalResponse
-  | CreateOrReplaceDefaultResponse
+    | CreateOrReplaceLogicalResponse
+    | CreateOrReplaceDefaultResponse,
 >(
   client: Client,
   initialResponse:
     | CreateOrReplace200Response
     | CreateOrReplace201Response
     | CreateOrReplaceDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<
-  TResult extends DeleteLogicalResponse | DeleteOperationDefaultResponse
+  TResult extends DeleteLogicalResponse | DeleteOperationDefaultResponse,
 >(
   client: Client,
   initialResponse: DeleteOperation202Response | DeleteOperationDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(
   client: Client,
   initialResponse: TResult,
-  options: CreateHttpPollerOptions<TResult, OperationState<TResult>> = {}
+  options: CreateHttpPollerOptions<TResult, OperationState<TResult>> = {},
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>> {
   const poller: LongRunningOperation<TResult> = {
     sendInitialRequest: async () => {
@@ -97,12 +101,11 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
       lroResponse.rawResponse.headers["x-ms-original-url"] =
         initialResponse.request.url;
       return lroResponse;
-    }
+    },
   };
 
   options.resolveOnUnsuccessful = options.resolveOnUnsuccessful ?? true;
   const httpPoller = createHttpPoller(poller, options);
-
   const simplePoller: SimplePollerLike<OperationState<TResult>, TResult> = {
     isDone: httpPoller.isDone,
     isStopped: httpPoller.isStopped,
@@ -114,7 +117,6 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
     serialize: httpPoller.serialize,
     submitted: httpPoller.submitted,
   };
-
   return simplePoller;
 }
 
@@ -124,11 +126,11 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
  * @returns - An LRO response that the LRO implementation understands
  */
 function getLroResponse<TResult extends HttpResponse>(
-  response: TResult
+  response: TResult,
 ): OperationResponse<TResult> {
   if (Number.isNaN(response.status)) {
     throw new TypeError(
-      `Status code of the response is not a number. Value: ${response.status}`
+      `Status code of the response is not a number. Value: ${response.status}`,
     );
   }
 
@@ -137,7 +139,7 @@ function getLroResponse<TResult extends HttpResponse>(
     rawResponse: {
       ...response,
       statusCode: Number.parseInt(response.status),
-      body: response.body
-    }
+      body: response.body,
+    },
   };
 }

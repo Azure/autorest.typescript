@@ -2,26 +2,27 @@
 // Licensed under the MIT license.
 
 import { Client, HttpResponse } from "@azure-rest/core-client";
+import { AbortSignalLike } from "@azure/abort-controller";
 import {
   CancelOnProgress,
   CreateHttpPollerOptions,
   LongRunningOperation,
   OperationResponse,
   OperationState,
-
   createHttpPoller,
-
 } from "@azure/core-lro";
 import {
   LongRunningRpc202Response,
   LongRunningRpcDefaultResponse,
   LongRunningRpcLogicalResponse,
 } from "./responses.js";
-import { AbortSignalLike } from "@azure/abort-controller";
 
+/**
+ * A simple poller that can be used to poll a long running operation.
+ */
 export interface SimplePollerLike<
   TState extends OperationState<TResult>,
-  TResult
+  TResult,
 > {
   readonly isDone: boolean;
   readonly isStopped: boolean;
@@ -79,7 +80,6 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
 
   options.resolveOnUnsuccessful = options.resolveOnUnsuccessful ?? true;
   const httpPoller = createHttpPoller(poller, options);
-
   const simplePoller: SimplePollerLike<OperationState<TResult>, TResult> = {
     isDone: httpPoller.isDone,
     isStopped: httpPoller.isStopped,
@@ -91,7 +91,6 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
     serialize: httpPoller.serialize,
     submitted: httpPoller.submitted,
   };
-
   return simplePoller;
 }
 
