@@ -1,11 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Versions } from "../models/models.js";
 import { ClientOptions } from "@azure-rest/core-client";
 import { MultipleContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
-export interface MultipleClientOptions extends ClientOptions {}
+export interface MultipleClientOptions extends ClientOptions {
+  /** Pass in v1.0 for API version. */
+  apiVersion?: Versions;
+}
 
 export { MultipleContext } from "../rest/index.js";
 
