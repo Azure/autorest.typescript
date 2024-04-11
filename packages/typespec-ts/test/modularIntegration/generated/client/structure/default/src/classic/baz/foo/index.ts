@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ServiceContext } from "../../../api/ServiceContext.js";
+import { ServiceContext } from "../../../api/serviceContext.js";
 import { seven } from "../../../api/baz/foo/index.js";
 import { BazFooSevenOptionalParams } from "../../../models/options.js";
 

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { DatetimeContext } from "../../api/DatetimeContext.js";
+import { DatetimeContext } from "../../api/datetimeContext.js";
 import {
   headerDefault,
   headerRfc3339,

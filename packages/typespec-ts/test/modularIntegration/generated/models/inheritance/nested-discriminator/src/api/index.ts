@@ -5,7 +5,7 @@ export {
   createNestedDiscriminator,
   NestedDiscriminatorClientOptions,
   NestedDiscriminatorContext,
-} from "./NestedDiscriminatorContext.js";
+} from "./nestedDiscriminatorContext.js";
 export {
   getModel,
   putModel,

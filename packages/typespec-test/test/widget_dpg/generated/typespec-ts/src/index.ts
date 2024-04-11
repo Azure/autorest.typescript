@@ -4,7 +4,7 @@
 export {
   WidgetServiceClient,
   WidgetServiceClientOptions,
-} from "./WidgetServiceClient.js";
+} from "./widgetServiceClient.js";
 export {
   Widget,
   WidgetError,

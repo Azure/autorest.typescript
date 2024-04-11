@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { BodyOptionalityContext } from "../../api/BodyOptionalityContext.js";
+import { BodyOptionalityContext } from "../../api/bodyOptionalityContext.js";
 import { BodyModel } from "../../models/models.js";
 import { set, omit } from "../../api/optionalExplicit/index.js";
 import {

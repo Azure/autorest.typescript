@@ -81,12 +81,15 @@ export function getSendPrivateFunction(
 
   const operationPath = operation.url;
   const operationMethod = operation.method.toLowerCase();
+  const optionalParamName = parameters.filter(
+    (p) => p.type?.toString().endsWith("OptionalParams")
+  )[0]?.name;
 
   const statements: string[] = [];
   statements.push(
     `return context.path("${operationPath}", ${getPathParameters(
       operation
-    )}).${operationMethod}({...operationOptionsToRequestParameters(options), ${getRequestParameters(
+    )}).${operationMethod}({...operationOptionsToRequestParameters(${optionalParamName}), ${getRequestParameters(
       dpgContext,
       operation,
       runtimeImports
@@ -237,7 +240,7 @@ function getOperationSignatureParameters(
 
   // Add the options parameter
   const optionsParam = {
-    name: parameters.has("options")? "optionalParams": "options",
+    name: parameters.has("options") ? "optionalParams" : "options",
     type: optionsType,
     initializer: "{ requestOptions: {} }"
   };

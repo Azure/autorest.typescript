@@ -29,6 +29,7 @@ export class AdministrationOperationsClient {
 
 // @public (undocumented)
 export interface AdministrationOperationsClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public
@@ -598,6 +599,7 @@ export interface TestRunOperationsClientOptionalLoadTestConfig {
 
 // @public (undocumented)
 export interface TestRunOperationsClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public

@@ -214,6 +214,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "payload/pageable"
   },
   {
+    outputPath: "payload/media-type",
+    inputPath: "payload/media-type"
+  },
+  {
     outputPath: "client/naming",
     inputPath: "client/naming"
   },

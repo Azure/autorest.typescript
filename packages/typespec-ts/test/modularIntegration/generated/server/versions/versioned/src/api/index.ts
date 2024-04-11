@@ -10,4 +10,4 @@ export {
   createVersioned,
   VersionedClientOptions,
   VersionedContext,
-} from "./VersionedContext.js";
+} from "./versionedContext.js";

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ServiceContext } from "../../api/RenamedOperationContext.js";
+import { ServiceContext } from "../../api/renamedOperationContext.js";
 import { renamedTwo, renamedFour, renamedSix } from "../../api/group/index.js";
 import {
   GroupRenamedTwoOptionalParams,

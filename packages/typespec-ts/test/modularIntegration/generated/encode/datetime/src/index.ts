@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { DatetimeClient, DatetimeClientOptions } from "./DatetimeClient.js";
+export { DatetimeClient, DatetimeClientOptions } from "./datetimeClient.js";
 export {
   DefaultDatetimeProperty,
   Rfc3339DatetimeProperty,

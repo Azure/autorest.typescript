@@ -4,7 +4,7 @@
 export {
   SingleDiscriminatorClient,
   SingleDiscriminatorClientOptions,
-} from "./SingleDiscriminatorClient.js";
+} from "./singleDiscriminatorClient.js";
 export {
   Bird,
   SeaGull,

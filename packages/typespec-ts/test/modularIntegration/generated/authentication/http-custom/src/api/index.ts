@@ -5,5 +5,5 @@ export {
   createCustom,
   CustomClientOptions,
   CustomContext,
-} from "./CustomContext.js";
+} from "./customContext.js";
 export { valid, invalid } from "./operations.js";

@@ -1,6 +1,7 @@
 import { assert } from "chai";
-import { SpecialWordsClient } from "./generated/specialWords/src/SpecialWordsClient.js";
-describe.only("Special Words Client", () => {
+import { SpecialWordsClient } from "./generated/specialWords/src/index.js";
+
+describe("Special Words Client", () => {
   let client: SpecialWordsClient;
 
   beforeEach(() => {

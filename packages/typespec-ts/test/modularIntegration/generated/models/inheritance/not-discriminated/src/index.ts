@@ -4,7 +4,7 @@
 export {
   NotDiscriminatedClient,
   NotDiscriminatedClientOptions,
-} from "./NotDiscriminatedClient.js";
+} from "./notDiscriminatedClient.js";
 export {
   Pet,
   Cat,

@@ -22,13 +22,13 @@ export function getClassicalOperation(
     .filter((i) => {
       return (
         i.getModuleSpecifierValue() ===
-        `${"../".repeat(layer + 2)}api/${modularClientName}.js`
+        `${"../".repeat(layer + 2)}api/${normalizeName(modularClientName, NameType.File)}.js`
       );
     });
   if (!hasClientContextImport || hasClientContextImport.length === 0) {
     classicFile.addImportDeclaration({
       namedImports: [client.rlcClientName],
-      moduleSpecifier: `${"../".repeat(layer + 2)}api/${modularClientName}.js`
+      moduleSpecifier: `${"../".repeat(layer + 2)}api/${normalizeName(modularClientName, NameType.File)}.js`
     });
   }
 
@@ -80,7 +80,10 @@ export function getClassicalOperation(
           .map(
             (p) =>
               p.name +
-              (p.name === "options" || p.hasQuestionToken ? "?" : "") +
+              (p.type?.toString().endsWith("OptionalParams") ||
+              p.hasQuestionToken
+                ? "?"
+                : "") +
               ": " +
               p.type
           )
@@ -121,7 +124,10 @@ export function getClassicalOperation(
               .map(
                 (p) =>
                   p.name +
-                  (p.name === "options" || p.hasQuestionToken ? "?" : "") +
+                  (p.type?.toString().endsWith("OptionalParams") ||
+                  p.hasQuestionToken
+                    ? "?"
+                    : "") +
                   ": " +
                   p.type
               )
@@ -211,9 +217,13 @@ export function getClassicalOperation(
     });
   }
 
-  function getClassicalMethodName(declaration: OptionalKind<FunctionDeclarationStructure> & { propertyName?: string }) {
+  function getClassicalMethodName(
+    declaration: OptionalKind<FunctionDeclarationStructure> & {
+      propertyName?: string;
+    }
+  ) {
     return (
-      operationMap.get(declaration) ?? 
+      operationMap.get(declaration) ??
       declaration.propertyName ??
       declaration.name ??
       "FIXME"

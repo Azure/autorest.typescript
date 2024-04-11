@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ValueTypesContext } from "../../api/ValueTypesContext.js";
+import { ValueTypesContext } from "../../api/valueTypesContext.js";
 import { BytesProperty } from "../../models/models.js";
 import { bytesGet, bytesPut } from "../../api/bytes/index.js";
 import {
