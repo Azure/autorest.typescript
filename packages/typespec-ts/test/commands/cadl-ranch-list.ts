@@ -381,6 +381,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     inputPath: "type/union"
   },
   {
+    outputPath: "payload/media-type",
+    inputPath: "payload/media-type"
+  },
+  {
     outputPath: "server/versions/versioned",
     inputPath: "server/versions/versioned"
   },
