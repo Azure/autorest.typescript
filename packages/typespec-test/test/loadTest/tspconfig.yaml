@@ -25,7 +25,6 @@ options:
     generateSample: true
     azureSdkForJs: false
     enableOperationGroup: true
-    useLegacyV2Lro: true
     packageDetails:
       name: "@azure-rest/load-testing"
       description: "This package contains Microsoft Azure LoadTestingClient client library."
