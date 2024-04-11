@@ -63,7 +63,6 @@ async function generate(path) {
       throw new Error(logs); // Include the logs in the thrown error
     }
 
-    // If you want to return the output as well on success, you can do so here
     return { logs, output }; // Return the logs on success
   } catch (e) {
     // Combine both logs and output for the error case
