@@ -36,3 +36,4 @@ export * from "./buildLogger.js";
 export * from "./buildSamples.js";
 export * from "./transformSampleGroups.js";
 export * from "./helpers/importsUtil.js";
+export * from "./metadata/buildBrowserConfig.js";
