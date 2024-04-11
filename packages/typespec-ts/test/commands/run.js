@@ -1,10 +1,8 @@
-import { execSync } from "child_process";
 import { dirname, join as joinPath } from "path";
 import { fileURLToPath } from "url";
 import fsextra from "fs-extra";
 import { parentPort } from "worker_threads";
-
-const MAX_BUFFER = 10 * 1024 * 1024;
+import { runCommand } from "./runCommand.js";
 
 parentPort.on("message", async ({ config, mode }) => {
   try {
@@ -50,18 +48,16 @@ export async function runTypespec(config, mode) {
       break;
     }
   }
-  const typespecCommand = `cd ${outputPath} && npx tsp`;
+  const npxCommand = `npx`;
   const commandArguments = [
+    "tsp",
     "compile",
     `${typespecPath}`,
     "--config tspconfig.yaml "
   ];
-  const command = `${typespecCommand} ${commandArguments.join(" ")}`;
-  console.log(command);
+
   try {
-    const result = execSync(command, {
-      maxBuffer: MAX_BUFFER
-    });
+    const result = await runCommand(npxCommand, commandArguments, outputPath);
     console.log("Generated output:", result.toString());
     console.log(`=== End ${targetFolder} ===`);
     return result;

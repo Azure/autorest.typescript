@@ -16,6 +16,8 @@ async function generateSmokeTests() {
   const maxConcurrentWorkers = os.cpus().length;
   let activeWorkers = 0;
 
+  console.log(`Max concurrent workers: ${maxConcurrentWorkers}`);
+
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
   const root = join(__dirname, "..");
@@ -69,7 +71,9 @@ async function generateSmokeTests() {
   }
 
   if (failed.length > 0) {
-    console.error(`Failed folders: ${failed.join(", ")}`);
+    console.error("\x1b[31m%s\x1b[0m", `Failed folders: ${failed.join(", ")}`);
+  } else {
+    console.log("\x1b[32m%s\x1b[0m", "All specs succeeded!");
   }
 }
 

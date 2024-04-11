@@ -1,83 +1,60 @@
-import { existsSync } from "fs";
-import { readdir } from "fs/promises";
-import { execSync } from "child_process";
+import { readdir, cp as copy } from "fs/promises";
+import { existsSync as exists } from "fs";
+import { runCommand } from "./runCommand.js";
 import { parentPort } from "worker_threads";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-const MAX_BUFFER = 10 * 1024 * 1024;
 
-function generate(path) {
-  let generateCmd = `cd ${path} && npx tsp compile ./spec`;
-  try {
-    // Prepare the generate command
-    if (existsSync(join(path, "spec", "tspconfig.yaml"))) {
-      generateCmd = `cd ${path}/spec && npx tsp compile --config ./tspconfig.yaml .`;
-    }
-    if (existsSync(join(path, "spec", "client.tsp"))) {
-      generateCmd += "/client.tsp";
-    }
-    // Clean up the folder before generation
-    const hasCustomization = hasCustomizationFolder(path);
-    if (existsSync(join(path, "generated", "typespec-ts"))) {
-      const cleanUpCmd = `rm -rf ${join(path, "generated", "typespec-ts")}`;
-      console.log("Run command:", cleanUpCmd);
-      execSync(cleanUpCmd, {
-        maxBuffer: MAX_BUFFER,
-      });
-    }
-    // Recovery the sources folder if we have
-    if (hasCustomization) {
-      const recoveryCmd = `mkdir -p ${join(
-        path,
-        "generated",
-        "typespec-ts",
-        "sources"
-      )}`;
-      console.log("Run command:", recoveryCmd);
-      execSync(recoveryCmd, {
-        maxBuffer: MAX_BUFFER,
-      });
-    }
-  } catch (e) {
-    // do nothing
-    console.log("Preparation error:", e);
+async function generate(path) {
+  let specPath = join(path, "spec");
+  let compileArgs = ["tsp", "compile"];
+
+  if (exists(join(specPath, "tspconfig.yaml"))) {
+    compileArgs = ["tsp", "compile", "--config", "tspconfig.yaml"];
   }
 
-  console.log("Run command:", generateCmd);
-  const result = execSync(generateCmd, {
-    maxBuffer: MAX_BUFFER,
-  });
-  console.log("Generated output:", result.toString("utf8"));
-}
-
-function copyFile(path) {
-  if (hasCustomizationFolder(path)) {
-    const customizationPath = join(
-      path,
-      "generated/typespec-ts/sources/generated/src"
-    );
-    const srcPath = join(path, "generated/typespec-ts");
-    const cp = `cp -rf ${customizationPath} ${srcPath}`;
-    console.log(cp);
-    const result = execSync(cp, {
-      maxBuffer: MAX_BUFFER,
-    });
-    console.log("Copy file output:", result.toString("utf8"));
+  if (exists(join(specPath, "client.tsp"))) {
+    compileArgs.push("client.tsp");
+  } else {
+    compileArgs.push("main.tsp");
   }
+
+  // Run generate command
+  console.log("Run command: npx", compileArgs.join(" "));
+  const generateResult = await runCommand("npx", compileArgs, specPath);
+  console.log("Generated output:", generateResult);
 }
 
-function build(path) {
-  const command = `cd ${path}/generated/typespec-ts && npm install && npm run build`;
-  console.log(command);
-  const result = execSync(command, {
-    maxBuffer: MAX_BUFFER,
+async function copyFiles(path) {
+  const hasCustomization = await hasCustomizationFolder(path);
+  if (!hasCustomization) {
+    return;
+  }
+
+  const customizationPath = join(
+    path,
+    "generated/typespec-ts/sources/generated/src"
+  );
+  const srcPath = join(path, "generated/typespec-ts/src");
+
+  await copy(customizationPath, srcPath, {
+    recursive: true,
+    force: true,
   });
-  console.log("build output:", result.toString("utf8"));
 }
 
-function hasCustomizationFolder(path) {
+async function build(path) {
+  const buildPath = join(path, "generated/typespec-ts");
+
+  console.log("Running npm install and build");
+  await runCommand("npm", ["install"], buildPath);
+  await runCommand("npm", ["run", "build"], buildPath);
+  console.log("Build completed");
+}
+
+async function hasCustomizationFolder(path) {
   const customizationPath = join(path, "generated/typespec-ts/sources");
-  return existsSync(customizationPath);
+  return exists(customizationPath);
 }
 
 async function createSmokeTest(folder) {
@@ -91,9 +68,9 @@ async function createSmokeTest(folder) {
   if (contents.includes("skip")) {
     console.log(`          ##### Skipped #####          `);
   } else {
-    generate(path);
-    copyFile(path);
-    build(path);
+    await generate(path);
+    await copyFiles(path);
+    await build(path);
   }
   console.log(`================End ${folder}===============`);
 }

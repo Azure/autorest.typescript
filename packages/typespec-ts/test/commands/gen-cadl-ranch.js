@@ -35,6 +35,8 @@ async function generateTypeSpecs(tag = "rlc", isDebugging) {
   const maxConcurrentWorkers = os.cpus().length;
   let activeWorkers = 0;
 
+  console.log(`Max concurrent workers: ${maxConcurrentWorkers}`);
+
   for (const tsp of list) {
     if (isDebugging === true && tsp.debug !== true) {
       continue;
@@ -61,13 +63,13 @@ async function generateTypeSpecs(tag = "rlc", isDebugging) {
     });
 
     worker.on("error", (error) => {
-      console.error(`Error from worker: ${error}`);
+      logError(`Error from worker: ${error}`);
       activeWorkers--;
     });
 
     worker.on("exit", (code) => {
       if (code !== 0) {
-        console.error(`Worker stopped with exit code ${code}`);
+        logError(`Worker stopped with exit code ${code}`);
       }
       activeWorkers--;
     });
@@ -93,7 +95,7 @@ let exitCode = 0;
 try {
   await main();
 } catch (e) {
-  console.error(`Error occurred during execution\n${e.message}`);
+  logError(`Error occurred during execution\n${e.message}`);
   exitCode = 1;
 } finally {
   process.exit(exitCode);
