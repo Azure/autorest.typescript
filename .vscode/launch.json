@@ -124,8 +124,8 @@
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/typespec-ts",
       "runtimeArgs": [
-        "ts-node",
-        "./test/commands/gen-cadl-ranch.ts",
+        "node",
+        "./test/commands/gen-cadl-ranch.js",
         "--tag=rlc",
         "--debug"
       ],
