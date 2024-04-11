@@ -2,8 +2,9 @@ import { readdir } from "fs/promises";
 import { join, dirname } from "path";
 import { Worker } from "worker_threads";
 import { fileURLToPath } from "url";
-import os from "os";
 import ProgressBar from "progress";
+import { exitCode } from "process";
+const errorFolders = [];
 
 async function main() {
   const __filename = fileURLToPath(import.meta.url);
@@ -16,22 +17,14 @@ async function main() {
 
   const folders = folder ? [folder] : await readdir(join(root, "test"));
 
-  // Determine the number of cores
-  const maxConcurrentWorkers = os.cpus().length;
+  const workerPromises = [];
 
-  const errorFolders = [];
-  let activeWorkers = 0;
-
-  // Define color codes
-  const green = "\x1b[32m";
-  const red = "\x1b[31m";
-  const reset = "\x1b[0m";
   const progressBar = new ProgressBar("  [:bar] :percent :elapseds", {
     total: folders.length * 3, // * 3 because there are 3 steps per folder
     width: 20,
-    complete: `${green}=${reset}`,
-    incomplete: `${red}-${reset}`,
-    head: `${green}>${reset}`,
+    complete: "\x1b[32m=\x1b[0m", // green
+    incomplete: "\x1b[31m-\x1b[0m", // red
+    head: "\x1b[32m>\x1b[0m", // green
   });
 
   setInterval(() => {
@@ -39,42 +32,38 @@ async function main() {
   }, 200);
 
   for (const folder of folders) {
-    if (activeWorkers >= maxConcurrentWorkers) {
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for an available worker
-    }
+    const workerPromise = new Promise((resolve, reject) => {
+      const worker = new Worker("./eng/smoke-test-worker.js");
 
-    const worker = new Worker("./eng/smoke-test-worker.js");
-    activeWorkers++;
+      worker.postMessage(join(root, "test", folder));
 
-    worker.postMessage(join(root, "test", folder));
+      worker.on("message", (result) => {
+        progressBar.tick();
+        if (result.startsWith("Completed processing")) {
+          resolve();
+        }
+      });
 
-    worker.on("message", (result) => {
-      progressBar.tick(1);
-
-      if (result.startsWith("Completed processing")) {
-        activeWorkers--;
-      }
-    });
-
-    worker.on("error", (error) => {
-      console.error(`Error from worker: ${error}`);
-      errorFolders.push(folder);
-      activeWorkers--;
-    });
-
-    worker.on("exit", (code) => {
-      if (code !== 0) {
-        console.error(`Worker stopped with exit code ${code}`);
+      worker.on("error", (error) => {
+        console.error(`Error from worker: ${error}`);
         errorFolders.push(folder);
-      }
-      activeWorkers--;
+        reject(error);
+      });
+
+      worker.on("exit", (code) => {
+        if (code !== 0) {
+          console.error(`Worker stopped with exit code ${code}`);
+          errorFolders.push(folder);
+        }
+        resolve();
+      });
     });
+
+    workerPromises.push(workerPromise);
   }
 
-  // Wait until all workers have finished
-  while (activeWorkers > 0) {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-  }
+  // Wait for all workers to complete
+  await Promise.allSettled(workerPromises);
 
   if (errorFolders.length > 0) {
     console.error("Errors occurred in the following folders:");
@@ -84,17 +73,17 @@ async function main() {
   }
 }
 
-(async () => {
-  try {
-    console.time("totalRuntime");
-    await main();
+try {
+  let exitCode = 0;
+  console.time("totalRuntime");
+  await main();
+  if (errorFolders.length === 0) {
     console.log("\x1b[32m%s\x1b[0m", "\nAll tests passed!");
-  } catch (e) {
-    console.error(e);
-    console.timeEnd("totalRuntime");
-    process.exit(1);
-  } finally {
-    console.timeEnd("totalRuntime");
-    process.exit(0);
   }
-})();
+} catch (e) {
+  console.error(e);
+  exitCode = 1;
+} finally {
+  console.timeEnd("totalRuntime");
+  process.exit(exitCode);
+}
