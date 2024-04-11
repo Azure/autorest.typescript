@@ -62,7 +62,7 @@ export interface CompletionsOptions {
    * a full ban or exclusive selection of a token, respectively. The exact behavior of a given bias
    * score varies by model.
    */
-  logit_bias?: TypeSpecRecord;
+  logit_bias?: Record<string, number>;
   /**
    * An identifier for the caller or end user of the operation. This may be used for tracking
    * or rate-limiting purposes.
@@ -120,8 +120,6 @@ export interface CompletionsOptions {
   model?: string;
 }
 
-export interface TypeSpecRecord extends Record<string, number> {}
-
 /**
  * The configuration information for a chat completions request.
  * Completions support a wide variety of tasks and generate text that continues from or "completes"
@@ -170,7 +168,7 @@ export interface ChatCompletionsOptions {
    * a full ban or exclusive selection of a token, respectively. The exact behavior of a given bias
    * score varies by model.
    */
-  logit_bias?: TypeSpecRecord;
+  logit_bias?: Record<string, number>;
   /**
    * An identifier for the caller or end user of the operation. This may be used for tracking
    * or rate-limiting purposes.

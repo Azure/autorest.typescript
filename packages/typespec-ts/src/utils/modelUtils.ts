@@ -624,7 +624,7 @@ function getSchemaForModel(
     true /** shouldGuard */
   );
 
-  if (modelSchema.name === "Record" && isRecordModelType(program, model)) {
+  if (model.name === "Record" && isRecordModelType(program, model)) {
     return getSchemaForRecordModel(dpgContext, model, { usage });
   }
   modelSchema.typeName = modelSchema.name;

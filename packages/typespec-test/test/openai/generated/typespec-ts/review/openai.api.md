@@ -121,7 +121,7 @@ export interface ChatCompletionsOptions {
     frequency_penalty?: number;
     function_call?: FunctionCallPreset | FunctionName;
     functions?: Array<FunctionDefinition>;
-    logit_bias?: TypeSpecRecord;
+    logit_bias?: Record<string, number>;
     max_tokens?: number;
     messages: Array<ChatMessage>;
     model?: string;
@@ -184,7 +184,7 @@ export interface CompletionsLogProbabilityModelOutput {
     text_offset: number[];
     token_logprobs: (number | null)[];
     tokens: string[];
-    top_logprobs: TypeSpecRecordOutput[];
+    top_logprobs: Record<string, number | null>[];
 }
 
 // @public
@@ -192,7 +192,7 @@ export interface CompletionsOptions {
     best_of?: number;
     echo?: boolean;
     frequency_penalty?: number;
-    logit_bias?: TypeSpecRecord;
+    logit_bias?: Record<string, number>;
     logprobs?: number;
     max_tokens?: number;
     model?: string;
@@ -565,14 +565,6 @@ export interface Routes {
     (path: "/deployments/{deploymentId}/extensions/chat/completions", deploymentId: string): GetChatCompletionsWithAzureExtensions;
     (path: "/operations/images/{operationId}", operationId: string): GetAzureBatchImageGenerationOperationStatus;
     (path: "/images/generations:submit"): BeginAzureBatchImageGeneration;
-}
-
-// @public (undocumented)
-export interface TypeSpecRecord extends Record<string, number> {
-}
-
-// @public (undocumented)
-export interface TypeSpecRecordOutput extends Record<string, number | null> {
 }
 
 // (No @packageDocumentation comment for this package)

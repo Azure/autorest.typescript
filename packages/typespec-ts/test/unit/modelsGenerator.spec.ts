@@ -118,6 +118,31 @@ describe("Input/output model type", () => {
 
     it("should generate nullable model", async () => {
       const tspDefinition = `
+      alias NullableFloat = float32 | null;
+      model SimpleModel {
+        color: Record<NullableFloat>[];
+      }
+      `;
+      const tspType = "SimpleModel";
+      const typeScriptType = "SimpleModel";
+      await verifyPropertyType(tspType, typeScriptType, {
+        additionalTypeSpecDefinition: tspDefinition,
+        outputType: "SimpleModelOutput",
+        additionalInputContent: `
+        export interface SimpleModel {
+          color: Record<string, number | null>[];
+        }
+          `,
+        additionalOutputContent: `
+        export interface SimpleModelOutput {
+          color: Record<string, number | null>[];
+        }
+          `
+      });
+    });
+
+    it("should generate nullable model", async () => {
+      const tspDefinition = `
       model SimpleModel {
         color: "red" | "blue";
       }

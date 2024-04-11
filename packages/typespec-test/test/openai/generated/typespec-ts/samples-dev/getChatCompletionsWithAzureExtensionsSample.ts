@@ -47,7 +47,7 @@ async function getChatCompletionsWithAzureExtensionsSample() {
         max_tokens: 123,
         temperature: 123,
         top_p: 123,
-        logit_bias: {},
+        logit_bias: { key: 123 },
         user: "{Your user}",
         n: 123,
         stop: ["{Your stop}"],
