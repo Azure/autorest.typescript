@@ -2,13 +2,14 @@
 // Licensed under the MIT license.
 
 import { Client, HttpResponse } from "@azure-rest/core-client";
+import { AbortSignalLike } from "@azure/abort-controller";
 import {
+  CancelOnProgress,
   CreateHttpPollerOptions,
   LongRunningOperation,
   OperationResponse,
   OperationState,
-  SimplePollerLike,
-  createInitializedHttpPoller,
+  createHttpPoller,
 } from "@azure/core-lro";
 import {
   CreateOrReplace200Response,
@@ -22,6 +23,27 @@ import {
   ExportOperationDefaultResponse,
   ExportLogicalResponse,
 } from "./responses.js";
+
+/**
+ * A simple poller that can be used to poll a long running operation.
+ */
+export interface SimplePollerLike<
+  TState extends OperationState<TResult>,
+  TResult,
+> {
+  readonly isDone: boolean;
+  readonly isStopped: boolean;
+  onProgress(callback: (state: TState) => void): CancelOnProgress;
+  readonly operationState: TState | undefined;
+  poll(options?: { abortSignal?: AbortSignalLike }): Promise<TState>;
+  pollUntilDone(pollOptions?: {
+    abortSignal?: AbortSignalLike;
+  }): Promise<TResult>;
+  readonly result: TResult | undefined;
+  serialize(): Promise<string>;
+  submitted(): Promise<void>;
+}
+
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
  * @param client - Client to use for sending the request to get additional pages.
@@ -83,7 +105,19 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
   };
 
   options.resolveOnUnsuccessful = options.resolveOnUnsuccessful ?? true;
-  return createInitializedHttpPoller(poller, "SimplePoller", options);
+  const httpPoller = createHttpPoller(poller, options);
+  const simplePoller: SimplePollerLike<OperationState<TResult>, TResult> = {
+    isDone: httpPoller.isDone,
+    isStopped: httpPoller.isStopped,
+    onProgress: httpPoller.onProgress,
+    operationState: httpPoller.operationState,
+    poll: httpPoller.poll,
+    pollUntilDone: httpPoller.pollUntilDone,
+    result: httpPoller.result,
+    serialize: httpPoller.serialize,
+    submitted: httpPoller.submitted,
+  };
+  return simplePoller;
 }
 
 /**
