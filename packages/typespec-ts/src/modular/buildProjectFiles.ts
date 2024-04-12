@@ -207,7 +207,7 @@ function emitNonBrandedPackage(codeModel: ModularCodeModel) {
       prettier: "^3.1.0",
       rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
-      typescript: "~5.3.3",
+      typescript: "~5.4.5",
       "@rollup/plugin-commonjs": "^24.0.0",
       "@rollup/plugin-json": "^6.0.0",
       "@rollup/plugin-multi-entry": "^6.0.0",
@@ -309,7 +309,7 @@ function emitBrandedPackage(codeModel: ModularCodeModel) {
       prettier: "^3.1.0",
       rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
-      typescript: "~5.3.3"
+      typescript: "~5.4.5"
     }
   } as any;
 
