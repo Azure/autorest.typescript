@@ -152,7 +152,7 @@ const typesMap = new Map<EmitterType, HrlcType>();
 const simpleTypesMap = new Map<string, HrlcType>();
 const endpointPathParameters: Record<string, any>[] = [];
 let methodApiVersionParam: Parameter | undefined = undefined;
-let hasServerApiVersion = false;
+let serverApiVersionParam: Parameter | undefined = undefined;
 
 function isSimpleType(
   program: Program,
@@ -1685,7 +1685,7 @@ function emitServerParams(
       endpointPathParameters.push(emittedParameter);
       if (isApiVersion(context, serverParameter as any)) {
         emittedParameter.isApiVersion = true;
-        hasServerApiVersion = true;
+        serverApiVersionParam = emittedParameter;
       }
       params.push(emittedParameter);
     }
@@ -1807,8 +1807,8 @@ function emitClients(
     const methodApiVersionParam = getMethodApiVersionParameter();
     if (
       methodApiVersionParam &&
-      context.hasApiVersionInClient &&
-      !hasServerApiVersion
+      !serverApiVersionParam &&
+      context.hasApiVersionInClient
     ) {
       // prompt method-level api version to client level only when there is no client one defined
       emittedClient.parameters.push(methodApiVersionParam);
