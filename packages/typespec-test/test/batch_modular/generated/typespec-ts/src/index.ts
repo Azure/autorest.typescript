@@ -207,6 +207,7 @@ export {
   NodeRemoveOptions,
   ApplicationListResult,
   BatchApplication,
+  Versions,
   ListApplicationsOptionalParams,
   GetApplicationOptionalParams,
   ListPoolUsageMetricsOptionalParams,

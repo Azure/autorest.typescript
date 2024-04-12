@@ -9,8 +9,8 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public
-export type AccessScope = string;
+// @public (undocumented)
+export type AccessScope = "job";
 
 // @public
 export interface AccountListSupportedImagesResult {
@@ -23,8 +23,8 @@ export interface AffinityInformation {
     affinityId: string;
 }
 
-// @public
-export type AllocationState = string;
+// @public (undocumented)
+export type AllocationState = "steady" | "resizing" | "stopping";
 
 // @public
 export interface ApplicationListResult {
@@ -65,8 +65,8 @@ export interface AutoScaleRunError {
     values?: NameValuePair[];
 }
 
-// @public
-export type AutoUserScope = string;
+// @public (undocumented)
+export type AutoUserScope = "task" | "pool";
 
 // @public
 export interface AutoUserSpecification {
@@ -367,8 +367,8 @@ export interface BatchNode {
     vmSize?: string;
 }
 
-// @public
-export type BatchNodeDeallocationOption = string;
+// @public (undocumented)
+export type BatchNodeDeallocationOption = "requeue" | "terminate" | "taskcompletion" | "retaineddata";
 
 // @public
 export interface BatchNodeEndpointConfiguration {
@@ -382,8 +382,8 @@ export interface BatchNodeError {
     message?: string;
 }
 
-// @public
-export type BatchNodeFillType = string;
+// @public (undocumented)
+export type BatchNodeFillType = "spread" | "pack";
 
 // @public
 export interface BatchNodeIdentityReference {
@@ -406,11 +406,11 @@ export interface BatchNodeListResult {
     value?: BatchNode[];
 }
 
-// @public
-export type BatchNodeRebootOption = string;
+// @public (undocumented)
+export type BatchNodeRebootOption = "requeue" | "terminate" | "taskcompletion" | "retaineddata";
 
-// @public
-export type BatchNodeReimageOption = string;
+// @public (undocumented)
+export type BatchNodeReimageOption = "requeue" | "terminate" | "taskcompletion" | "retaineddata";
 
 // @public
 export interface BatchNodeRemoteLoginSettingsResult {
@@ -418,8 +418,8 @@ export interface BatchNodeRemoteLoginSettingsResult {
     remoteLoginPort: number;
 }
 
-// @public
-export type BatchNodeState = string;
+// @public (undocumented)
+export type BatchNodeState = "idle" | "rebooting" | "reimaging" | "running" | "unusable" | "creating" | "starting" | "waitingforstarttask" | "starttaskfailed" | "unknown" | "leavingpool" | "offline" | "preempted";
 
 // @public
 export interface BatchNodeUserCreateOptions {
@@ -622,8 +622,8 @@ export interface BatchTaskListSubtasksResult {
     value?: SubtaskInformation[];
 }
 
-// @public
-export type CachingType = string;
+// @public (undocumented)
+export type CachingType = "none" | "readonly" | "readwrite";
 
 // @public (undocumented)
 export interface CancelCertificateDeletionOptionalParams extends OperationOptions {
@@ -631,8 +631,8 @@ export interface CancelCertificateDeletionOptionalParams extends OperationOption
     timeOutInSeconds?: number;
 }
 
-// @public
-export type CertificateFormat = string;
+// @public (undocumented)
+export type CertificateFormat = "pfx" | "cer";
 
 // @public
 export interface CertificateListResult {
@@ -649,14 +649,14 @@ export interface CertificateReference {
     visibility?: CertificateVisibility[];
 }
 
-// @public
-export type CertificateState = string;
+// @public (undocumented)
+export type CertificateState = "active" | "deleting" | "deletefailed";
 
-// @public
-export type CertificateStoreLocation = string;
+// @public (undocumented)
+export type CertificateStoreLocation = "currentuser" | "localmachine";
 
-// @public
-export type CertificateVisibility = string;
+// @public (undocumented)
+export type CertificateVisibility = "starttask" | "task" | "remoteuser";
 
 // @public
 export interface CifsMountConfiguration {
@@ -688,11 +688,11 @@ export interface ContainerRegistry {
     username?: string;
 }
 
-// @public
-export type ContainerType = string;
+// @public (undocumented)
+export type ContainerType = "dockerCompatible" | "criCompatible";
 
-// @public
-export type ContainerWorkingDirectory = string;
+// @public (undocumented)
+export type ContainerWorkingDirectory = "taskWorkingDirectory" | "containerImageDefault";
 
 // @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
@@ -829,22 +829,22 @@ export interface DeleteTaskOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public
-export type DependencyAction = string;
+// @public (undocumented)
+export type DependencyAction = "satisfy" | "block";
 
-// @public
-export type DiffDiskPlacement = string;
+// @public (undocumented)
+export type DiffDiskPlacement = "cachedisk";
 
 // @public
 export interface DiffDiskSettings {
     placement?: DiffDiskPlacement;
 }
 
-// @public
-export type DisableBatchNodeSchedulingOption = string;
+// @public (undocumented)
+export type DisableBatchNodeSchedulingOption = "requeue" | "terminate" | "taskcompletion";
 
-// @public
-export type DisableJobOption = string;
+// @public (undocumented)
+export type DisableJobOption = "requeue" | "terminate" | "wait";
 
 // @public (undocumented)
 export interface DisableJobOptionalParams extends OperationOptions {
@@ -885,14 +885,14 @@ export interface DiskEncryptionConfiguration {
     targets?: DiskEncryptionTarget[];
 }
 
-// @public
-export type DiskEncryptionTarget = string;
+// @public (undocumented)
+export type DiskEncryptionTarget = "osdisk" | "temporarydisk";
 
-// @public
-export type DynamicVNetAssignmentScope = string;
+// @public (undocumented)
+export type DynamicVNetAssignmentScope = "none" | "job";
 
-// @public
-export type ElevationLevel = string;
+// @public (undocumented)
+export type ElevationLevel = "nonadmin" | "admin";
 
 // @public (undocumented)
 export interface EnableJobOptionalParams extends OperationOptions {
@@ -937,8 +937,8 @@ export interface EnvironmentSetting {
     value?: string;
 }
 
-// @public
-export type ErrorCategory = string;
+// @public (undocumented)
+export type ErrorCategory = "usererror" | "servererror";
 
 // @public
 export interface ErrorMessage {
@@ -1153,8 +1153,8 @@ export interface InboundEndpoint {
     publicIpAddress?: string;
 }
 
-// @public
-export type InboundEndpointProtocol = string;
+// @public (undocumented)
+export type InboundEndpointProtocol = "tcp" | "udp";
 
 // @public
 export interface InboundNATPool {
@@ -1175,11 +1175,11 @@ export interface InstanceViewStatus {
     time?: string;
 }
 
-// @public
-export type IpAddressProvisioningType = string;
+// @public (undocumented)
+export type IpAddressProvisioningType = "batchmanaged" | "usermanaged" | "nopublicipaddresses";
 
-// @public
-export type JobAction = string;
+// @public (undocumented)
+export type JobAction = "none" | "disable" | "terminate";
 
 // @public
 export interface JobConstraints {
@@ -1257,8 +1257,8 @@ export interface JobPreparationTaskExecutionInformation {
     taskRootDirectoryUrl?: string;
 }
 
-// @public
-export type JobPreparationTaskState = string;
+// @public (undocumented)
+export type JobPreparationTaskState = "running" | "completed";
 
 // @public
 export interface JobReleaseTask {
@@ -1285,8 +1285,8 @@ export interface JobReleaseTaskExecutionInformation {
     taskRootDirectoryUrl?: string;
 }
 
-// @public
-export type JobReleaseTaskState = string;
+// @public (undocumented)
+export type JobReleaseTaskState = "running" | "completed";
 
 // @public
 export interface JobScheduleExecutionInformation {
@@ -1305,8 +1305,8 @@ export interface JobScheduleExistsOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public
-export type JobScheduleState = string;
+// @public (undocumented)
+export type JobScheduleState = "active" | "completed" | "disabled" | "terminating" | "deleting";
 
 // @public
 export interface JobScheduleStatistics {
@@ -1353,8 +1353,8 @@ export interface JobSpecification {
     usesTaskDependencies?: boolean;
 }
 
-// @public
-export type JobState = string;
+// @public (undocumented)
+export type JobState = "active" | "disabling" | "disabled" | "enabling" | "terminating" | "completed" | "deleting";
 
 // @public
 export interface JobStatistics {
@@ -1521,8 +1521,8 @@ export interface ListTasksOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public
-export type LoginMode = string;
+// @public (undocumented)
+export type LoginMode = "batch" | "interactive";
 
 // @public
 export interface MetadataItem {
@@ -1568,8 +1568,8 @@ export interface NetworkSecurityGroupRule {
     sourcePortRanges?: string[];
 }
 
-// @public
-export type NetworkSecurityGroupRuleAccess = string;
+// @public (undocumented)
+export type NetworkSecurityGroupRuleAccess = "allow" | "deny";
 
 // @public
 export interface NfsMountConfiguration {
@@ -1584,8 +1584,8 @@ export interface NodeAgentInformation {
     version: string;
 }
 
-// @public
-export type NodeCommunicationMode = string;
+// @public (undocumented)
+export type NodeCommunicationMode = "default" | "classic" | "simplified";
 
 // @public
 export interface NodeCounts {
@@ -1629,8 +1629,8 @@ export interface NodePlacementConfiguration {
     policy?: NodePlacementPolicyType;
 }
 
-// @public
-export type NodePlacementPolicyType = string;
+// @public (undocumented)
+export type NodePlacementPolicyType = "regional" | "zonal";
 
 // @public
 export interface NodeRebootOptions {
@@ -1662,19 +1662,19 @@ export interface NodeVMExtensionList {
     value?: NodeVMExtension[];
 }
 
-// @public
-export type OnAllTasksComplete = string;
+// @public (undocumented)
+export type OnAllTasksComplete = "noaction" | "terminatejob";
 
-// @public
-export type OnTaskFailure = string;
+// @public (undocumented)
+export type OnTaskFailure = "noaction" | "performexitoptionsjobaction";
 
 // @public
 export interface OSDisk {
     ephemeralOSDiskSettings?: DiffDiskSettings;
 }
 
-// @public
-export type OSType = string;
+// @public (undocumented)
+export type OSType = "linux" | "windows";
 
 // @public
 export interface OutputFile {
@@ -1696,8 +1696,8 @@ export interface OutputFileDestination {
     container?: OutputFileBlobContainerDestination;
 }
 
-// @public
-export type OutputFileUploadCondition = string;
+// @public (undocumented)
+export type OutputFileUploadCondition = "tasksuccess" | "taskfailure" | "taskcompletion";
 
 // @public
 export interface OutputFileUploadOptions {
@@ -1731,8 +1731,8 @@ export interface PoolExistsOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public
-export type PoolIdentityType = string;
+// @public (undocumented)
+export type PoolIdentityType = "UserAssigned" | "None";
 
 // @public
 export interface PoolInformation {
@@ -1740,8 +1740,8 @@ export interface PoolInformation {
     poolId?: string;
 }
 
-// @public
-export type PoolLifetimeOption = string;
+// @public (undocumented)
+export type PoolLifetimeOption = "jobschedule" | "job";
 
 // @public
 export interface PoolListUsageMetricsResult {
@@ -1788,8 +1788,8 @@ export interface PoolSpecification {
     vmSize: string;
 }
 
-// @public
-export type PoolState = string;
+// @public (undocumented)
+export type PoolState = "active" | "deleting";
 
 // @public
 export interface PoolStatistics {
@@ -1957,8 +1957,8 @@ export interface Schedule {
     startWindow?: string;
 }
 
-// @public
-export type SchedulingState = string;
+// @public (undocumented)
+export type SchedulingState = "enabled" | "disabled";
 
 // @public
 export interface StartTask {
@@ -1984,11 +1984,11 @@ export interface StartTaskInformation {
     state: StartTaskState;
 }
 
-// @public
-export type StartTaskState = string;
+// @public (undocumented)
+export type StartTaskState = "running" | "completed";
 
-// @public
-export type StatusLevelTypes = string;
+// @public (undocumented)
+export type StatusLevelTypes = "Error" | "Info" | "Warning";
 
 // @public (undocumented)
 export interface StopPoolResizeOptionalParams extends OperationOptions {
@@ -2000,8 +2000,8 @@ export interface StopPoolResizeOptionalParams extends OperationOptions {
     timeOutInSeconds?: number;
 }
 
-// @public
-export type StorageAccountType = string;
+// @public (undocumented)
+export type StorageAccountType = "standard_lrs" | "premium_lrs";
 
 // @public
 export interface SubtaskInformation {
@@ -2019,8 +2019,8 @@ export interface SubtaskInformation {
     stateTransitionTime?: Date;
 }
 
-// @public
-export type SubtaskState = string;
+// @public (undocumented)
+export type SubtaskState = "preparing" | "running" | "completed";
 
 // @public
 export interface TaskAddCollectionResult {
@@ -2037,8 +2037,8 @@ export interface TaskAddResult {
     taskId: string;
 }
 
-// @public
-export type TaskAddStatus = string;
+// @public (undocumented)
+export type TaskAddStatus = "Success" | "clienterror" | "servererror";
 
 // @public
 export interface TaskConstraints {
@@ -2097,8 +2097,8 @@ export interface TaskExecutionInformation {
     startTime?: Date;
 }
 
-// @public
-export type TaskExecutionResult = string;
+// @public (undocumented)
+export type TaskExecutionResult = "success" | "failure";
 
 // @public
 export interface TaskFailureInformation {
@@ -2138,8 +2138,8 @@ export interface TaskSlotCounts {
     succeeded: number;
 }
 
-// @public
-export type TaskState = string;
+// @public (undocumented)
+export type TaskState = "active" | "preparing" | "running" | "completed";
 
 // @public
 export interface TaskStatistics {
@@ -2270,8 +2270,11 @@ export interface UserIdentity {
     username?: string;
 }
 
-// @public
-export type VerificationType = string;
+// @public (undocumented)
+export type VerificationType = "verified" | "unverified";
+
+// @public (undocumented)
+export type Versions = "2023-05-01.17.0";
 
 // @public
 export interface VirtualMachineConfiguration {

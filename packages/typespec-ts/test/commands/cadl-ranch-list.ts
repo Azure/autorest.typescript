@@ -415,6 +415,14 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "specialWords",
     inputPath: "special-words"
+  },
+  {
+    outputPath: "enums/extensible",
+    inputPath: "type/enum/extensible"
+  },
+  {
+    outputPath: "enums/fixed",
+    inputPath: "type/enum/fixed"
   }
 ];
 

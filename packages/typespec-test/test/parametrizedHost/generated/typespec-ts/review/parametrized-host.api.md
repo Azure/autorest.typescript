@@ -35,6 +35,8 @@ export class ParametrizedHostClient {
 // @public (undocumented)
 export interface ParametrizedHostClientOptions extends ClientOptions {
     // (undocumented)
+    apiVersion?: string;
+    // (undocumented)
     host?: string;
     // (undocumented)
     subdomain?: string;

@@ -36,10 +36,15 @@ export interface StringAndArrayCases {
 
 export interface EnumsOnlyCases {
   /** This should be receive/send the left variant */
-  lr: string | "left" | "right" | "up" | "down";
+  lr: LR | UD;
   /** This should be receive/send the up variant */
-  ud: string | "up" | "down";
+  ud: UD | UD;
 }
+
+/** */
+export type LR = "left" | "right";
+/** */
+export type UD = "up" | "down";
 
 export interface Dog {
   bark: string;

@@ -8,11 +8,11 @@ import {
   TestRun,
   TestRunAppComponents,
   TestRunServerMetricConfig,
+  DimensionValueList,
   MetricDefinitionCollection,
   MetricNamespaceCollection,
   MetricRequestPayload,
   TimeSeriesElement,
-  DimensionValueList,
 } from "./models/models.js";
 import {
   TestRunOptionalParams,

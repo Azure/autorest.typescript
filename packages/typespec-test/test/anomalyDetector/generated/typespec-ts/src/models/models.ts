@@ -179,8 +179,8 @@ export interface MultivariateModelInfo {
 }
 
 /** Data schema of input data source: OneTable or MultiTable. The default DataSchema is OneTable. */
-/** "OneTable", "MultiTable" */
-export type DataSchema = string;
+/** */
+export type DataSchema = "OneTable" | "MultiTable";
 
 /** An optional field, indicating the manner to align multiple variables. */
 export interface MultivariateAlignPolicy {
@@ -201,8 +201,13 @@ export interface MultivariateAlignPolicy {
 /** */
 export type AlignMode = "Inner" | "Outer";
 /** An optional field, indicating how missing values will be filled. One of Previous, Subsequent, Linear, Zero, Fixed. */
-/** "Previous", "Subsequent", "Linear", "Zero", "Fixed" */
-export type FillNAMethod = string;
+/** */
+export type FillNAMethod =
+  | "Previous"
+  | "Subsequent"
+  | "Linear"
+  | "Zero"
+  | "Fixed";
 /** */
 export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
 
@@ -361,8 +366,14 @@ export type TimeGranularity =
   | "secondly"
   | "microsecond"
   | "none";
-/** "auto", "previous", "linear", "fixed", "zero", "notFill" */
-export type ImputeMode = string;
+/** */
+export type ImputeMode =
+  | "auto"
+  | "previous"
+  | "linear"
+  | "fixed"
+  | "zero"
+  | "notFill";
 
 /** The response of entire anomaly detection. */
 export interface UnivariateUnivariateEntireDetectionResult {
@@ -420,8 +431,19 @@ export interface UnivariateUnivariateEntireDetectionResult {
   severity?: number[];
 }
 
-/** "InvalidCustomInterval", "BadArgument", "InvalidGranularity", "InvalidPeriod", "InvalidModelArgument", "InvalidSeries", "InvalidJsonFormat", "RequiredGranularity", "RequiredSeries", "InvalidImputeMode", "InvalidImputeFixedValue" */
-export type AnomalyDetectorErrorCodes = string;
+/** */
+export type AnomalyDetectorErrorCodes =
+  | "InvalidCustomInterval"
+  | "BadArgument"
+  | "InvalidGranularity"
+  | "InvalidPeriod"
+  | "InvalidModelArgument"
+  | "InvalidSeries"
+  | "InvalidJsonFormat"
+  | "RequiredGranularity"
+  | "RequiredSeries"
+  | "InvalidImputeMode"
+  | "InvalidImputeFixedValue";
 
 /** The response of last anomaly detection. */
 export interface UnivariateUnivariateLastDetectionResult {
@@ -522,3 +544,6 @@ export interface UnivariateUnivariateChangePointDetectionResult {
   /** the change point confidence of each point */
   confidenceScores?: number[];
 }
+
+/** */
+export type Versions = "v1.1";

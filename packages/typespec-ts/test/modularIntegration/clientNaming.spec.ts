@@ -98,4 +98,26 @@ describe("NameAndEncodedName Client", () => {
       assert.fail(err as string);
     }
   });
+
+  it("should work union enum name", async () => {
+    try {
+      const result = await client.unionEnum.unionEnumName("value1", {
+        requestOptions: { headers: { "content-type": "text/plain" } }
+      });
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should work with union enum member name", async () => {
+    try {
+      const result = await client.unionEnum.unionEnumMemberName("value1", {
+        requestOptions: { headers: { "content-type": "text/plain" } }
+      });
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
 });

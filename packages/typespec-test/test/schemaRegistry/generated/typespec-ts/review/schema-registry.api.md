@@ -9,8 +9,8 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public
-export type ContentTypeEnum = string;
+// @public (undocumented)
+export type ContentTypeEnum = "application/octet-stream" | "application/json; serialization=Avro" | "application/json; serialization=json" | "text/vnd.ms.protobuf";
 
 // @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
@@ -26,13 +26,13 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 
 // @public
 export interface PagedSchemaGroup {
-    readonly nextLink?: string;
+    nextLink?: string;
     value: SchemaGroup[];
 }
 
 // @public
 export interface PagedVersion {
-    readonly nextLink?: string;
+    nextLink?: string;
     value: SchemaVersion[];
 }
 
@@ -44,8 +44,8 @@ export interface PageSettings {
 // @public (undocumented)
 export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";
 
-// @public
-export type SchemaFormat = string;
+// @public (undocumented)
+export type SchemaFormat = "Avro" | "Json" | "Custom" | "Protobuf";
 
 // @public
 export interface SchemaGroup {
@@ -117,6 +117,9 @@ export interface SchemaRegistryClientOptions extends ClientOptions {
 export interface SchemaVersion {
     readonly schemaVersion: number;
 }
+
+// @public (undocumented)
+export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
 
 // (No @packageDocumentation comment for this package)
 

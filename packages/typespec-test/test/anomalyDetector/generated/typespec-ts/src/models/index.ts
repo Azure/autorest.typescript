@@ -34,6 +34,7 @@ export {
   UnivariateUnivariateLastDetectionResult,
   UnivariateUnivariateChangePointDetectionOptions,
   UnivariateUnivariateChangePointDetectionResult,
+  Versions,
 } from "./models.js";
 export {
   UnivariateDetectUnivariateEntireSeriesOptionalParams,

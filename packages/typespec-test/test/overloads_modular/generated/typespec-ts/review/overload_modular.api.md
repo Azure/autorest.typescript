@@ -31,6 +31,9 @@ export interface FooOperationsOperations {
 }
 
 // @public (undocumented)
+export type Versions = "2022-08-30";
+
+// @public (undocumented)
 export class WidgetManagerClient {
     constructor(endpointParam: string, credential: KeyCredential | TokenCredential, options?: WidgetManagerClientOptions);
     readonly fooOperations: FooOperationsOperations;

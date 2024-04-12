@@ -455,18 +455,27 @@ export interface LedgerEntryOutput {
 }
 
 // @public
+export type LedgerQueryStateOutput = "Loading" | "Ready";
+
+// @public
 export interface LedgerUser {
-    assignedRole: "Administrator" | "Contributor" | "Reader";
+    assignedRole: LedgerUserRole;
 }
 
 // @public
 export interface LedgerUserOutput {
-    assignedRole: "Administrator" | "Contributor" | "Reader";
+    assignedRole: LedgerUserRoleOutput;
     readonly userId: string;
 }
 
 // @public
 export type LedgerUserResourceMergeAndPatch = Partial<LedgerUser>;
+
+// @public
+export type LedgerUserRole = "Administrator" | "Contributor" | "Reader";
+
+// @public
+export type LedgerUserRoleOutput = "Administrator" | "Contributor" | "Reader";
 
 // @public (undocumented)
 export interface ListCollections {
@@ -534,7 +543,7 @@ export type ListLedgerEntriesParameters = RequestParameters;
 export interface PagedLedgerEntriesOutput {
     entries: Array<LedgerEntryOutput>;
     nextLink?: string;
-    state: "Loading" | "Ready";
+    state: LedgerQueryStateOutput;
 }
 
 // @public
@@ -578,13 +587,16 @@ export interface Routes {
 // @public
 export interface TransactionReceiptOutput {
     receipt: ReceiptContentsOutput;
-    state: "Loading" | "Ready";
+    state: LedgerQueryStateOutput;
     transactionId: string;
 }
 
 // @public
+export type TransactionStateOutput = "Committed" | "Pending";
+
+// @public
 export interface TransactionStatusOutput {
-    state: "Committed" | "Pending";
+    state: TransactionStateOutput;
     transactionId: string;
 }
 

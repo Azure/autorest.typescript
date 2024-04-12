@@ -98,3 +98,6 @@ export interface RejectResult {
   /** Array of lock tokens values for the successfully rejected cloud events. */
   succeededLockTokens: string[];
 }
+
+/** */
+export type ServiceApiVersions = "2023-06-01-preview";
