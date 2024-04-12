@@ -9,7 +9,7 @@ importers:
       "@autorest/codemodel": ~4.19.2
       "@autorest/extension-base": ^3.5.0
       "@autorest/testmodeler": ^2.4.0
-      "@azure-rest/core-client": ^1.2.0
+      "@azure-rest/core-client": ^1.4.0
       "@azure-tools/codegen": ^2.9.1
       "@azure-tools/rlc-common": workspace:^0.26.1
       "@azure-tools/test-recorder": ^3.0.0
@@ -77,7 +77,7 @@ importers:
       "@autorest/codemodel": 4.19.3
       "@autorest/extension-base": 3.5.2
       "@autorest/testmodeler": 2.6.1
-      "@azure-rest/core-client": 1.2.0
+      "@azure-rest/core-client": 1.4.0
       "@azure-tools/codegen": 2.9.2
       "@azure-tools/rlc-common": link:../rlc-common
       "@azure/core-auth": 1.6.0
@@ -343,23 +343,6 @@ packages:
       }
     dev: false
 
-  /@azure-rest/core-client/1.2.0:
-    resolution:
-      {
-        integrity: sha512-+3zapvYc+25FpTzCkcYqsh/v8BiSJhMGseWhMgec5RqsH1VovIUHNyNS7hQDECv3QslL6M3TxZnDNmCqoz5IZA==,
-      }
-    engines: { node: ">=18.0.0" }
-    dependencies:
-      "@azure/abort-controller": 2.0.0
-      "@azure/core-auth": 1.6.0
-      "@azure/core-rest-pipeline": 1.14.0
-      "@azure/core-tracing": 1.0.1
-      "@azure/core-util": 1.5.0
-      tslib: 2.6.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /@azure-rest/core-client/1.4.0:
     resolution:
       {
@@ -375,8 +358,8 @@ packages:
       tslib: 2.6.2
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
+    dev: false
+    
   /@azure-tools/async-io/3.0.254:
     resolution:
       {
