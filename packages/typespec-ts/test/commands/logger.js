@@ -17,6 +17,6 @@ export function createTaskLogger() {
       }
       // Clear the buffer after flushing
       entries = [];
-    },
+    }
   };
 }

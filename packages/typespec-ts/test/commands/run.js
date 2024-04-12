@@ -1,25 +1,25 @@
 import { dirname, join as joinPath } from "path";
+import { npxCommand } from "./runCommand.js";
 import { fileURLToPath } from "url";
-import fsextra from "fs-extra";
-import { parentPort } from "worker_threads";
-import { runCommand } from "./runCommand.js";
+import { access } from "fs/promises";
+import { createTaskLogger } from "./logger.js";
 
-parentPort.on("message", async ({ config, mode }) => {
-  let outputLog = "";
+async function exists(filePath) {
   try {
-    outputLog = await runTypespec(config, mode);
-    parentPort.postMessage({ status: "closed", outputLog });
-  } catch (e) {
-    parentPort.postMessage({ status: "closed", error: e, outputLog: e });
+    await access(filePath);
+    return true;
+  } catch (err) {
+    return false;
   }
-});
+}
 
 export async function runTypespec(config, mode) {
+  const logger = createTaskLogger();
   const targetFolder = config.outputPath,
     sourceTypespec = config.inputPath;
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
-  let outputLog = `=== Start ${targetFolder} ===\n`;
+  logger.log(`=== Start ${targetFolder} ===`);
 
   let typespecPath = joinPath(
     `${__dirname}`,
@@ -43,27 +43,25 @@ export async function runTypespec(config, mode) {
   const possibleEntryFiles = ["client.tsp", "main.tsp"];
   for (let filename of possibleEntryFiles) {
     const entry = joinPath(typespecPath, filename);
-    if (fsextra.existsSync(entry)) {
+    if (await exists(entry)) {
       typespecPath = entry;
-      outputLog += `Existing entry file: ${entry}\n`;
+      logger.log(`Existing the entry file: ${entry}`);
       break;
     }
   }
-  const npxCommand = `npx`;
+  const workingDir = outputPath;
   const commandArguments = [
-    "tsp",
     "compile",
     `${typespecPath}`,
     "--config tspconfig.yaml "
   ];
-
   try {
-    await runCommand(npxCommand, commandArguments, outputPath);
-    outputLog += `=== End ${targetFolder} ===\n`;
-    return outputLog;
+    await npxCommand("tsp", commandArguments, workingDir, logger);
+    logger.log(`=== End ${targetFolder} ===`);
   } catch (e) {
-    outputLog += "Error happened\n";
-    outputLog += "\x1b[31m" + JSON.stringify(e) + "\x1b[0m\n";
-    throw outputLog;
+    logger.error(e.toString());
+    process.exitCode = 1;
+  } finally {
+    logger.flush();
   }
 }
