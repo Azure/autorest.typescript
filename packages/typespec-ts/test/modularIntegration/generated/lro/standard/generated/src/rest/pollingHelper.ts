@@ -107,13 +107,21 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
   options.resolveOnUnsuccessful = options.resolveOnUnsuccessful ?? true;
   const httpPoller = createHttpPoller(poller, options);
   const simplePoller: SimplePollerLike<OperationState<TResult>, TResult> = {
-    isDone: httpPoller.isDone,
-    isStopped: httpPoller.isStopped,
+    get isDone() {
+      return httpPoller.isDone;
+    },
+    get isStopped() {
+      return httpPoller.isStopped;
+    },
+    get operationState() {
+      return httpPoller.operationState;
+    },
+    get result() {
+      return httpPoller.result;
+    },
     onProgress: httpPoller.onProgress,
-    operationState: httpPoller.operationState,
     poll: httpPoller.poll,
     pollUntilDone: httpPoller.pollUntilDone,
-    result: httpPoller.result,
     serialize: httpPoller.serialize,
     submitted: httpPoller.submitted,
   };
