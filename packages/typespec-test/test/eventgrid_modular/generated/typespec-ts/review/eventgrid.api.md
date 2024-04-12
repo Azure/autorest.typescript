@@ -128,6 +128,9 @@ export interface ReleaseResult {
     succeededLockTokens: string[];
 }
 
+// @public (undocumented)
+export type ServiceApiVersions = "2023-06-01-preview";
+
 // (No @packageDocumentation comment for this package)
 
 ```

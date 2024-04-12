@@ -3,6 +3,11 @@
 
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
+  WithoutApiVersionOptionalParams,
+  WithQueryApiVersionOptionalParams,
+  WithPathApiVersionOptionalParams,
+} from "./models/options.js";
+import {
   withoutApiVersion,
   withQueryApiVersion,
   withPathApiVersion,
@@ -10,11 +15,6 @@ import {
   VersionedClientOptions,
   VersionedContext,
 } from "./api/index.js";
-import {
-  WithoutApiVersionOptionalParams,
-  WithQueryApiVersionOptionalParams,
-  WithPathApiVersionOptionalParams,
-} from "./models/options.js";
 
 export { VersionedClientOptions } from "./api/versionedContext.js";
 

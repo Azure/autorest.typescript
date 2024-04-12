@@ -7,6 +7,10 @@ export interface UnionEnumValueProperty {
   property: "value2";
 }
 
+/** Type of ExtendedEnum */
+/** "value2" */
+export type ExtendedEnum = string;
+
 /** Model with a union of float literal as property. */
 export interface UnionFloatLiteralProperty {
   /** Property */

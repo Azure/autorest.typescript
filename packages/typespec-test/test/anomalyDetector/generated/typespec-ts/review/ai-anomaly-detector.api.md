@@ -25,22 +25,22 @@ export interface AnomalyDetectorClientOptions extends ClientOptions {
     apiVersion?: string;
 }
 
-// @public
-export type AnomalyDetectorErrorCodes = string;
+// @public (undocumented)
+export type AnomalyDetectorErrorCodes = "InvalidCustomInterval" | "BadArgument" | "InvalidGranularity" | "InvalidPeriod" | "InvalidModelArgument" | "InvalidSeries" | "InvalidJsonFormat" | "RequiredGranularity" | "RequiredSeries" | "InvalidImputeMode" | "InvalidImputeFixedValue";
 
 // @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public
-export type DataSchema = string;
+// @public (undocumented)
+export type DataSchema = "OneTable" | "MultiTable";
 
-// @public
-export type FillNAMethod = string;
+// @public (undocumented)
+export type FillNAMethod = "Previous" | "Subsequent" | "Linear" | "Zero" | "Fixed";
 
-// @public
-export type ImputeMode = string;
+// @public (undocumented)
+export type ImputeMode = "auto" | "previous" | "linear" | "fixed" | "zero" | "notFill";
 
 // @public (undocumented)
 export type ModelStatus = "CREATED" | "RUNNING" | "READY" | "FAILED";
@@ -327,6 +327,9 @@ export interface UnivariateUnivariateLastDetectionResult {
     suggestedWindow: number;
     upperMargin: number;
 }
+
+// @public (undocumented)
+export type Versions = "v1.1";
 
 // (No @packageDocumentation comment for this package)
 

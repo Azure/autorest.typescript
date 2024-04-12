@@ -8,13 +8,14 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { SchemaContext } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
-import { getHttpOperation, HttpOperation } from "@typespec/http";
+import { getHttpOperation, getServers, HttpOperation } from "@typespec/http";
 import {
   getSchemaForType,
   includeDerivedModel,
   getBodyType,
   trimUsage,
-  isAzureCoreErrorType
+  isAzureCoreErrorType,
+  getDefaultService
 } from "../utils/modelUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { KnownMediaType, extractMediaTypes } from "../utils/mediaTypes.js";
@@ -65,7 +66,9 @@ export function transformSchemas(
     const bodyModel = getBodyType(program, route);
     if (
       bodyModel &&
-      (bodyModel.kind === "Model" || bodyModel.kind === "Union")
+      (bodyModel.kind === "Model" ||
+        bodyModel.kind === "Union" ||
+        bodyModel.kind === "Enum")
     ) {
       requestBodySet.add(bodyModel);
       const contentTypes: KnownMediaType[] = extractMediaTypes(
@@ -96,6 +99,22 @@ export function transformSchemas(
       }
     }
   }
+  function transformHostParameters() {
+    const serviceNs = getDefaultService(program)?.type;
+    if (serviceNs) {
+      const host = getServers(program, serviceNs);
+      if (host && host?.[0] && host?.[0]?.parameters) {
+        for (const key of host[0].parameters.keys()) {
+          const type = host?.[0]?.parameters.get(key)?.type;
+          if (!type) {
+            continue;
+          }
+          getGeneratedModels(type, SchemaContext.Input);
+        }
+      }
+    }
+  }
+  transformHostParameters();
   program.stateMap(modelKey).forEach((context, tspModel) => {
     const model = getSchemaForType(dpgContext, tspModel, {
       usage: context,
@@ -161,26 +180,21 @@ export function transformSchemas(
       }
       for (const prop of model.properties) {
         const [, propType] = prop;
-        if (
-          propType.type.kind === "Model" &&
-          (!program.stateMap(modelKey).get(propType.type) ||
-            !program.stateMap(modelKey).get(propType.type)?.includes(context))
-        ) {
+        if (program.stateMap(modelKey).get(propType.type)?.includes(context)) {
+          continue;
+        }
+        if (propType.type.kind === "Model") {
           if (isAzureCoreErrorType(propType.type)) {
             continue;
           }
           getGeneratedModels(propType.type, context);
-        }
-        if (
-          propType.type.kind === "Union" &&
-          (!program.stateMap(modelKey).get(propType.type) ||
-            !program.stateMap(modelKey).get(propType.type)?.includes(context))
-        ) {
+        } else if (propType.type.kind === "Union") {
           const variants = Array.from(propType.type.variants.values());
           for (const variant of variants) {
             if (
               (variant.type.kind === "Model" ||
-                variant.type.kind === "Union") &&
+                variant.type.kind === "Union" ||
+                variant.type.kind === "Enum") &&
               (!program.stateMap(modelKey).get(variant.type) ||
                 !program
                   .stateMap(modelKey)
@@ -194,6 +208,8 @@ export function transformSchemas(
           if (!propType.type.expression) {
             setModelMap(propType.type, context);
           }
+        } else if (propType.type.kind === "Enum") {
+          getGeneratedModels(propType.type, context);
         }
       }
       const baseModel = model.baseModel;
@@ -236,6 +252,8 @@ export function transformSchemas(
       }
     } else if (model.kind === "ModelProperty") {
       getGeneratedModels(model.type, context);
+    } else if (model.kind === "Enum") {
+      setModelMap(model, context);
     }
   }
   const allSchemas = Array.from(schemas, function (item) {

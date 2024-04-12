@@ -68,7 +68,7 @@ export interface FineTuningJobOutput {
    * The Unix timestamp (in seconds) for when the fine-tuning job was finished. The value will be
    * null if the fine-tuning job is still running.
    */
-  finished_at: string | null;
+  finished_at: number | null;
   /** The base model that is being fine-tuned. */
   model: string;
   /**

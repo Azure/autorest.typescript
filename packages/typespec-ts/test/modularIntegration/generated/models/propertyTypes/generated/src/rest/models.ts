@@ -76,7 +76,7 @@ export interface DurationProperty {
 /** Model with enum properties */
 export interface EnumProperty {
   /** Property */
-  property: "ValueOne" | "ValueTwo";
+  property: FixedInnerEnum;
 }
 
 /** Model with extensible enum properties */
@@ -196,5 +196,7 @@ export interface UnionEnumValueProperty {
   property: "value2";
 }
 
+/** Enum that will be used as a property for model EnumProperty. Non-extensible. */
+export type FixedInnerEnum = "ValueOne" | "ValueTwo";
 /** Alias for InnerEnum */
 export type InnerEnum = string | "ValueOne" | "ValueTwo";

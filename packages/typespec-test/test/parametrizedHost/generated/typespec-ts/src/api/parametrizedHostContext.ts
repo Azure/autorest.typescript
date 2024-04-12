@@ -10,6 +10,7 @@ export interface ParametrizedHostClientOptions extends ClientOptions {
   host?: string;
   subdomain?: string;
   sufix?: string;
+  apiVersion?: string;
 }
 
 export { ParametrizedHostContext } from "../rest/index.js";

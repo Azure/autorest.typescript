@@ -63,7 +63,7 @@ import {
   createMetadataInfo,
   Visibility
 } from "@typespec/http";
-import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
+import { getPagedResult } from "@azure-tools/typespec-azure-core";
 import { extractPagedMetadataNested } from "./operationUtil.js";
 import {
   getDefaultApiVersion,
@@ -624,7 +624,7 @@ function getSchemaForModel(
     true /** shouldGuard */
   );
 
-  if (modelSchema.name === "Record" && isRecordModelType(program, model)) {
+  if (model.name === "Record" && isRecordModelType(program, model)) {
     return getSchemaForRecordModel(dpgContext, model, { usage });
   }
   modelSchema.typeName = modelSchema.name;
@@ -924,16 +924,22 @@ function getSchemaForEnum(dpgContext: SdkContext, e: Enum) {
     values.push(getSchemaForType(dpgContext, option));
   }
 
-  const schema: any = { type, description: getDoc(dpgContext.program, e) };
+  const schema: any = {
+    type: "object",
+    name: e.name,
+    typeName: e.name,
+    outputTypeName: e.name + "Output",
+    description: getDoc(dpgContext.program, e),
+    memberType: type
+  };
+
   if (values.length > 0) {
     schema.enum = values;
-    schema.type = values
+    const unionAlias = values
       .map((item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`)
       .join(" | ");
-    if (!isFixed(dpgContext.program, e)) {
-      schema.name = "string";
-      schema.typeName = "string";
-    }
+    schema.alias = unionAlias;
+    schema.outputAlias = unionAlias;
   }
   return schema;
 }

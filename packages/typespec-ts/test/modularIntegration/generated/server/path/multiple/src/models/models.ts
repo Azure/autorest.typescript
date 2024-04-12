@@ -2,5 +2,5 @@
 // Licensed under the MIT license.
 
 /** Service versions */
-/** "v1.0" */
-export type Versions = string;
+/** */
+export type Versions = "v1.0";

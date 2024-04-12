@@ -71,8 +71,8 @@ async function createJobSample() {
                   phases: ["notApplicable"],
                   studyType: "interventional",
                   recruitmentStatus: "unknownStatus",
-                  conditions: ["notApplicable"],
-                  sponsors: ["notApplicable"],
+                  conditions: ["{Your conditions}"],
+                  sponsors: ["{Your sponsors}"],
                   contacts: [
                     {
                       name: "{Your name}",
@@ -93,15 +93,15 @@ async function createJobSample() {
             ],
             registryFilters: [
               {
-                conditions: ["notApplicable"],
-                studyTypes: ["notApplicable"],
-                recruitmentStatuses: ["notApplicable"],
-                sponsors: ["notApplicable"],
+                conditions: ["{Your conditions}"],
+                studyTypes: ["interventional"],
+                recruitmentStatuses: ["unknownStatus"],
+                sponsors: ["{Your sponsors}"],
                 phases: ["notApplicable"],
                 purposes: ["notApplicable"],
-                ids: ["notApplicable"],
-                sources: ["notApplicable"],
-                facilityNames: ["notApplicable"],
+                ids: ["{Your ids}"],
+                sources: ["custom"],
+                facilityNames: ["{Your facilityNames}"],
                 facilityLocations: [
                   {
                     city: "{Your city}",

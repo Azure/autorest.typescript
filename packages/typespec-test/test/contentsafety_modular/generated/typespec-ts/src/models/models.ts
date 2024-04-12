@@ -9,18 +9,18 @@ export interface TextBlocklist {
   description?: string;
 }
 
-/** The request of adding blockItems to text blocklist. */
-export interface AddOrUpdateBlockItemsOptions {
-  /** Array of blockItemInfo to add. */
-  blockItems: TextBlockItemInfo[];
-}
-
 /** Block item info in text blocklist. */
 export interface TextBlockItemInfo {
   /** Block item description. */
   description?: string;
   /** Block item content. */
   text: string;
+}
+
+/** The request of adding blockItems to text blocklist. */
+export interface AddOrUpdateBlockItemsOptions {
+  /** Array of blockItemInfo to add. */
+  blockItems: TextBlockItemInfo[];
 }
 
 /** The response of adding blockItems to text blocklist. */
@@ -64,11 +64,11 @@ export interface ImageData {
 }
 
 /** Image analyze category */
-/** "Hate", "SelfHarm", "Sexual", "Violence" */
-export type ImageCategory = string;
+/** */
+export type ImageCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 /** The type of image analysis output. */
-/** "FourLevels" */
-export type AnalyzeImageOutputType = string;
+/** */
+export type AnalyzeImageOutputType = "FourLevels";
 
 /** The analysis response of the image. */
 export interface AnalyzeImageResult {
@@ -99,11 +99,11 @@ export interface AnalyzeTextOptions {
 }
 
 /** Text analyze category */
-/** "Hate", "SelfHarm", "Sexual", "Violence" */
-export type TextCategory = string;
+/** */
+export type TextCategory = "Hate" | "SelfHarm" | "Sexual" | "Violence";
 /** The type of text analysis output. */
-/** "FourLevels", "EightLevels" */
-export type AnalyzeTextOutputType = string;
+/** */
+export type AnalyzeTextOutputType = "FourLevels" | "EightLevels";
 
 /** The analysis response of the text */
 export interface AnalyzeTextResult {
@@ -131,12 +131,15 @@ export interface TextAnalyzeSeverityResult {
   severity?: number;
 }
 
+/** */
+export type Versions = "2023-10-01";
+
 /** Paged collection of TextBlocklist items */
 export interface PagedTextBlocklist {
   /** The TextBlocklist items on this page */
   value: TextBlocklist[];
   /** The link to the next page of items */
-  readonly nextLink?: string;
+  nextLink?: string;
 }
 
 /** Paged collection of TextBlockItem items */
@@ -144,5 +147,5 @@ export interface PagedTextBlockItem {
   /** The TextBlockItem items on this page */
   value: TextBlockItem[];
   /** The link to the next page of items */
-  readonly nextLink?: string;
+  nextLink?: string;
 }

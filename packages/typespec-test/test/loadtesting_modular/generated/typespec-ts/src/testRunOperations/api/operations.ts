@@ -6,6 +6,7 @@ import {
   TestRun,
   TestRunAppComponents,
   TestRunServerMetricConfig,
+  DimensionValueList,
   MetricDefinitionCollection,
   MetricNamespaceCollection,
   MetricRequestPayload,
@@ -13,7 +14,6 @@ import {
   TimeSeriesElement,
   PagedTestRun,
   PagedDimensionValueList,
-  DimensionValueList,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";

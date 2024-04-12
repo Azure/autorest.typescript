@@ -4,9 +4,10 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { MultipleParamInServerPathClient } from "./clientDefinitions.js";
+import { Versions } from "./models.js";
 
 export interface MultipleParamInServerPathClientOptions extends ClientOptions {
-  apiVersion?: string;
+  apiVersion?: Versions;
 }
 
 /**
