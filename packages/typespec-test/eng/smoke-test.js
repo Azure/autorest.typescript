@@ -1,8 +1,9 @@
-import { readdir, access, rm, mkdir, cp } from "fs/promises";
+import { readdir, access, rm } from "fs/promises";
 import { join, dirname } from "path";
 import { spawn } from "child_process";
 import { fileURLToPath } from "url";
 import { createTaskLogger } from "./logger.js";
+import os from "os";
 
 async function exists(filePath) {
   try {
@@ -13,13 +14,34 @@ async function exists(filePath) {
   }
 }
 
+console.log(`Memory limit: ${memoryLimit}GB`);
+
+const calculateMemoryLimit = () => {
+  const totalMemory = os.totalmem();
+  const freeMemory = os.freemem();
+  const minimumFreeMemory = 1024 * 1024 * 1024; // e.g., 1GB
+
+  if (freeMemory > minimumFreeMemory) {
+    // Allow using up to 50% of total memory if there is at least 1GB free
+    return Math.floor(totalMemory / 1024 / 1024 / 1024 / 2); // in GB
+  } else {
+    // Default or lower memory limit if free memory is less than 1GB
+    return 512; // 512MB as a fallback
+  }
+};
+
 function runCommand(command, args = [], workingDirectory, logger) {
+  const isLinux = os.platform() === "linux";
+
+  const memoryLimit = calculateMemoryLimit();
+
   return new Promise((resolve, reject) => {
     const env = { ...process.env, FORCE_COLOR: "true" };
 
     const child = spawn(command, [...args], {
       cwd: workingDirectory ?? process.cwd(),
-      shell: true,
+      execArgv: !isLinux ? [`--max-old-space-size=${memoryLimit}`] : undefined, // Adjusting memory limit
+      shell: isLinux,
       env,
       stdio: ["inherit", "pipe", "pipe"], // Use 'inherit' to 'pipe' for stdout and stderr
     });
@@ -78,7 +100,6 @@ async function generate(path, logger) {
 
   try {
     await npxCommand("tsp", tspArgs, workingDir, logger);
-    logger.log("Generated output:", result);
   } catch (e) {
     logger.error(Error(e.toString("utf8")));
   }

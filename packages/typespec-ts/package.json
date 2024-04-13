@@ -7,14 +7,14 @@
   "scripts": {
     "clean": "rimraf ./dist ./typespec-output",
     "build": "tsc -p .",
-    "test": "npm run unit-test && npm run integration-test-ci",
+    "test": "npm-run-all --parallel unit-test integration-test-ci",
     "lint": "eslint src --ext .ts --max-warnings=0",
     "lint:fix": "eslint src --fix --ext .ts",
     "format": "npm run -s prettier -- --write",
     "check-format": "npm run prettier -- --check",
     "prettier": "prettier --config ./.prettierrc \"src/**/*.ts\"",
     "check:tree": "node --loader ts-node/esm ./test/commands/check-clean-tree.ts",
-    "integration-test-ci": "npm run integration-test-ci:rlc && npm run integration-test-ci:modular && npm run integration-test-ci:non-branded-rlc && npm run integration-test-ci:non-branded-modular",
+    "integration-test-ci": "npm-run-all --parallel integration-test-ci:rlc integration-test-ci:modular integration-test-ci:non-branded-rlc integration-test-ci:non-branded-modular",
     "integration-test-ci:rlc": "npm run start-test-server:rlc & npm run copy:typespec && npm run generate-and-run:rlc && npm run stop-test-server",
     "integration-test-ci:modular": "npm run start-test-server:modular & npm run copy:typespec && npm run generate-and-run:modular && npm run stop-test-server",
     "integration-test-ci:non-branded-rlc": "npm run start-test-server:non-branded-rlc & npm run copy:typespec && npm run generate-tsp-only:non-branded-rlc && npm run integration-test:alone:non-branded-rlc && npm run stop-test-server",
@@ -40,7 +40,7 @@
     "integration-test:alone:non-branded-rlc": "cross-env TS_NODE_PROJECT=tsconfig.integration.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./test/nonBrandedIntegration/rlc/*.spec.ts",
     "integration-test:alone:non-branded-modular": "cross-env TS_NODE_PROJECT=tsconfig.integration.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 36000 ./test/nonBrandedIntegration/modular/*.spec.ts",
     "stop-test-server": "npx cadl-ranch server stop",
-    "unit-test": "npm run unit-test:rlc && npm run unit-test:modular",
+    "unit-test": "npm-run-all --parallel unit-test:rlc unit-test:modular",
     "unit-test:rlc": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --timeout 36000 './test/unit/**/*.spec.ts'",
     "unit-test:modular": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --no-timeout './test/modularUnit/**/*.spec.ts'"
   },
@@ -48,7 +48,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/chai": "^4.3.1",
-    "@types/mocha": "^9.1.1",
+    "@types/mocha": "^10.0.6",
     "@types/node": "^18.0.0",
     "@types/fs-extra": "^9.0.13",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
@@ -56,7 +56,7 @@
     "chai": "^4.3.6",
     "mkdirp": "^3.0.1",
     "eslint": "^8.9.0",
-    "mocha": "^9.2.2",
+    "mocha": "^10.4.0",
     "rimraf": "^5.0.0",
     "ts-node": "~10.9.1",
     "typescript": "~5.4.5",
@@ -80,7 +80,8 @@
     "@typespec/compiler": ">=0.55.0 <1.0.0",
     "@typespec/http": ">=0.55.0 <1.0.0",
     "@typespec/rest": ">=0.55.0 <1.0.0",
-    "@typespec/versioning": ">=0.55.0 <1.0.0"
+    "@typespec/versioning": ">=0.55.0 <1.0.0",
+    "npm-run-all": "~4.1.5"
   },
   "peerDependencies": {
     "@azure-tools/typespec-azure-core": ">=0.41.0 <1.0.0",

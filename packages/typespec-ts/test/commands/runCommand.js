@@ -1,12 +1,16 @@
 import { spawn } from "child_process";
+console.log(`Memory limit: ${memoryLimit}GB`);
 
 export async function runCommand(command, args = [], workingDirectory, logger) {
+  const isLinux = os.platform() === "linux";
+  const memoryLimit = calculateMemoryLimit();
+
   return new Promise((resolve, reject) => {
     const env = { ...process.env, FORCE_COLOR: "true" };
-
     const child = spawn(command, [...args], {
       cwd: workingDirectory ?? process.cwd(),
-      shell: true,
+      shell: isLinux,
+      execArgv: !isLinux ? [`--max-old-space-size=${memoryLimit}`] : undefined, // Adjusting memory limit
       env,
       stdio: ["inherit", "pipe", "pipe"] // Use 'inherit' to 'pipe' for stdout and stderr
     });
