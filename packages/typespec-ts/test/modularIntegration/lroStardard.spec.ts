@@ -96,7 +96,7 @@ describe("LROStandardClient Classical Client", () => {
       }
     });
 
-    it("poll should catch the inital error", async () => {
+    it("poll should catch the initial error", async () => {
       try {
         const poller = client.createOrReplace("madge", {
           role: "foo"
@@ -107,12 +107,12 @@ describe("LROStandardClient Classical Client", () => {
       } catch (err: any) {
         assert.strictEqual(
           err.message,
-          "The long-running operation has failed"
+          "Body provided doesn't match expected body"
         );
       }
     });
 
-    it("pollUntilDone should catch the inital error", async () => {
+    it("pollUntilDone should catch the initial error", async () => {
       try {
         const poller = client.createOrReplace("madge", {
           role: "foo"
@@ -123,12 +123,12 @@ describe("LROStandardClient Classical Client", () => {
       } catch (err: any) {
         assert.strictEqual(
           err.message,
-          "The long-running operation has failed"
+          "Body provided doesn't match expected body"
         );
       }
     });
 
-    it("await should catch inital exception", async () => {
+    it("await should catch initial exception", async () => {
       try {
         await client.createOrReplace("madge", {
           role: "foo"
@@ -137,7 +137,7 @@ describe("LROStandardClient Classical Client", () => {
       } catch (err: any) {
         assert.strictEqual(
           err.message,
-          "The long-running operation has failed"
+          "Body provided doesn't match expected body"
         );
       }
     });
