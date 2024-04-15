@@ -151,8 +151,7 @@ export interface SpreadModelArrayRecordOutput
 }
 
 /** The model spread Record<string> with the different known property type */
-export interface DifferentSpreadStringRecordOutput
-  extends Record<string, string> {
+export interface DifferentSpreadStringRecordOutput extends Record<string, any> {
   /** The name property */
   id: number;
 }
@@ -165,8 +164,7 @@ export interface DifferentSpreadStringDerivedOutput
 }
 
 /** The model spread Record<float32> with the different known property type */
-export interface DifferentSpreadFloatRecordOutput
-  extends Record<string, number> {
+export interface DifferentSpreadFloatRecordOutput extends Record<string, any> {
   /** The id property */
   name: string;
 }
@@ -179,8 +177,7 @@ export interface DifferentSpreadFloatDerivedOutput
 }
 
 /** The model spread Record<ModelForRecord> with the different known property type */
-export interface DifferentSpreadModelRecordOutput
-  extends Record<string, ModelForRecordOutput> {
+export interface DifferentSpreadModelRecordOutput extends Record<string, any> {
   knownProp: string;
 }
 
@@ -193,7 +190,7 @@ export interface DifferentSpreadModelDerivedOutput
 
 /** The model spread Record<ModelForRecord[]> with the different known property type */
 export interface DifferentSpreadModelArrayRecordOutput
-  extends Record<string, Array<ModelForRecordOutput>> {
+  extends Record<string, any> {
   knownProp: string;
 }
 
@@ -205,22 +202,20 @@ export interface DifferentSpreadModelArrayDerivedOutput
 }
 
 /** The model spread Record<string> and Record<float32> */
-export interface MultipleSpreadRecordOutput
-  extends Record<string, string | number> {
+export interface MultipleSpreadRecordOutput extends Record<string, any> {
   /** The name property */
   flag: boolean;
 }
 
 /** The model spread Record<string | float32> */
-export interface SpreadRecordForUnionOutput
-  extends Record<string, string | number> {
+export interface SpreadRecordForUnionOutput extends Record<string, any> {
   /** The name property */
   flag: boolean;
 }
 
 /** The model spread Record<WidgetData> */
 export interface SpreadRecordForDiscriminatedUnionOutput
-  extends Record<string, WidgetDataOutput> {
+  extends Record<string, any> {
   /** The name property */
   name: string;
 }
@@ -238,14 +233,14 @@ export interface WidgetData1Output {
 
 /** The model spread Record<WidgetData0 | WidgetData1> */
 export interface SpreadRecordForNonDiscriminatedUnionOutput
-  extends Record<string, WidgetData0Output | WidgetData1Output> {
+  extends Record<string, any> {
   /** The name property */
   name: string;
 }
 
 /** The model spread Record<WidgetData2 | WidgetData1> */
 export interface SpreadRecordForNonDiscriminatedUnion2Output
-  extends Record<string, WidgetData2Output | WidgetData1Output> {
+  extends Record<string, any> {
   /** The name property */
   name: string;
 }
@@ -257,7 +252,7 @@ export interface WidgetData2Output {
 
 /** The model spread Record<WidgetData2[] | WidgetData1> */
 export interface SpreadRecordForNonDiscriminatedUnion3Output
-  extends Record<string, Array<WidgetData2Output> | WidgetData1Output> {
+  extends Record<string, any> {
   /** The name property */
   name: string;
 }

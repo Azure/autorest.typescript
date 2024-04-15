@@ -147,7 +147,7 @@ export interface SpreadModelArrayRecord
 }
 
 /** The model spread Record<string> with the different known property type */
-export interface DifferentSpreadStringRecord extends Record<string, string> {
+export interface DifferentSpreadStringRecord extends Record<string, unknown> {
   /** The name property */
   id: number;
 }
@@ -160,7 +160,7 @@ export interface DifferentSpreadStringDerived
 }
 
 /** The model spread Record<float32> with the different known property type */
-export interface DifferentSpreadFloatRecord extends Record<string, number> {
+export interface DifferentSpreadFloatRecord extends Record<string, unknown> {
   /** The id property */
   name: string;
 }
@@ -173,8 +173,7 @@ export interface DifferentSpreadFloatDerived
 }
 
 /** The model spread Record<ModelForRecord> with the different known property type */
-export interface DifferentSpreadModelRecord
-  extends Record<string, ModelForRecord> {
+export interface DifferentSpreadModelRecord extends Record<string, unknown> {
   knownProp: string;
 }
 
@@ -187,7 +186,7 @@ export interface DifferentSpreadModelDerived
 
 /** The model spread Record<ModelForRecord[]> with the different known property type */
 export interface DifferentSpreadModelArrayRecord
-  extends Record<string, Array<ModelForRecord>> {
+  extends Record<string, unknown> {
   knownProp: string;
 }
 
@@ -199,20 +198,20 @@ export interface DifferentSpreadModelArrayDerived
 }
 
 /** The model spread Record<string> and Record<float32> */
-export interface MultipleSpreadRecord extends Record<string, string | number> {
+export interface MultipleSpreadRecord extends Record<string, unknown> {
   /** The name property */
   flag: boolean;
 }
 
 /** The model spread Record<string | float32> */
-export interface SpreadRecordForUnion extends Record<string, string | number> {
+export interface SpreadRecordForUnion extends Record<string, unknown> {
   /** The name property */
   flag: boolean;
 }
 
 /** The model spread Record<WidgetData> */
 export interface SpreadRecordForDiscriminatedUnion
-  extends Record<string, WidgetData> {
+  extends Record<string, unknown> {
   /** The name property */
   name: string;
 }
@@ -230,14 +229,14 @@ export interface WidgetData1 {
 
 /** The model spread Record<WidgetData0 | WidgetData1> */
 export interface SpreadRecordForNonDiscriminatedUnion
-  extends Record<string, WidgetData0 | WidgetData1> {
+  extends Record<string, unknown> {
   /** The name property */
   name: string;
 }
 
 /** The model spread Record<WidgetData2 | WidgetData1> */
 export interface SpreadRecordForNonDiscriminatedUnion2
-  extends Record<string, WidgetData2 | WidgetData1> {
+  extends Record<string, unknown> {
   /** The name property */
   name: string;
 }
@@ -249,7 +248,7 @@ export interface WidgetData2 {
 
 /** The model spread Record<WidgetData2[] | WidgetData1> */
 export interface SpreadRecordForNonDiscriminatedUnion3
-  extends Record<string, Array<WidgetData2> | WidgetData1> {
+  extends Record<string, unknown> {
   /** The name property */
   name: string;
 }
