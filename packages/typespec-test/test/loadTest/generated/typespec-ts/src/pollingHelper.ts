@@ -25,16 +25,53 @@ export interface SimplePollerLike<
   TState extends OperationState<TResult>,
   TResult,
 > {
+  /**
+   * Returns true if the poller has finished polling.
+   */
   readonly isDone: boolean;
+  /**
+   * Returns true if the poller is stopped.
+   */
   readonly isStopped: boolean;
-  onProgress(callback: (state: TState) => void): CancelOnProgress;
+  /**
+   * Returns the state of the operation.
+   */
   readonly operationState: TState | undefined;
+  /**
+   * Returns the result value of the operation,
+   * regardless of the state of the poller.
+   * It can return undefined or an incomplete form of the final TResult value
+   * depending on the implementation.
+   */
+  readonly result: TResult | undefined;
+  /**
+   * Returns a promise that will resolve once a single polling request finishes.
+   * It does this by calling the update method of the Poller's operation.
+   */
   poll(options?: { abortSignal?: AbortSignalLike }): Promise<TState>;
+  /**
+   * Returns a promise that will resolve once the underlying operation is completed.
+   */
   pollUntilDone(pollOptions?: {
     abortSignal?: AbortSignalLike;
   }): Promise<TResult>;
-  readonly result: TResult | undefined;
+  /**
+   * Invokes the provided callback after each polling is completed,
+   * sending the current state of the poller's operation.
+   *
+   * It returns a method that can be used to stop receiving updates on the given callback function.
+   */
+  onProgress(callback: (state: TState) => void): CancelOnProgress;
+
+  /**
+   * Returns a promise that could be used for serialized version of the poller's operation
+   * by invoking the operation's serialize method.
+   */
   serialize(): Promise<string>;
+
+  /**
+   * Returns a promise that could be used to check if the poller has been submitted.
+   */
   submitted(): Promise<void>;
 }
 

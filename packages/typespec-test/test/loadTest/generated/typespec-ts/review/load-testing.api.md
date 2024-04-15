@@ -1407,27 +1407,18 @@ export interface SecretOutput {
 
 // @public
 export interface SimplePollerLike<TState extends OperationState<TResult>, TResult> {
-    // (undocumented)
     readonly isDone: boolean;
-    // (undocumented)
     readonly isStopped: boolean;
-    // (undocumented)
     onProgress(callback: (state: TState) => void): CancelOnProgress;
-    // (undocumented)
     readonly operationState: TState | undefined;
-    // (undocumented)
     poll(options?: {
         abortSignal?: AbortSignalLike;
     }): Promise<TState>;
-    // (undocumented)
     pollUntilDone(pollOptions?: {
         abortSignal?: AbortSignalLike;
     }): Promise<TResult>;
-    // (undocumented)
     readonly result: TResult | undefined;
-    // (undocumented)
     serialize(): Promise<string>;
-    // (undocumented)
     submitted(): Promise<void>;
 }
 
