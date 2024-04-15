@@ -10,6 +10,7 @@ options:
     enableOperationGroup: true
     isModularLibrary: true
     hierarchyClient: false
+    generateOrphanModels: true
     packageDetails:
       name: "@azure/arm-networkanalytics"
       description: Microsoft NetworkAnalytics

@@ -197,6 +197,12 @@ export interface UserAssignedIdentity {
   principalId?: string;
 }
 
+/** Common error response for all Azure Resource Manager APIs to return error details for failed operations. */
+export interface ErrorResponse {
+  /** The error object. */
+  error?: ErrorDetail;
+}
+
 /** The error detail. */
 export interface ErrorDetail {
   /** The error code. */
@@ -240,6 +246,22 @@ export interface DataProductUpdateProperties {
   privateLinksEnabled?: ControlState;
   /** Current configured minor version of the data product resource. */
   currentMinorVersion?: string;
+}
+
+/** Standard Azure Resource Manager operation status response */
+export interface ArmOperationStatusResourceProvisioningState {
+  /** The operation status */
+  status: ResourceProvisioningState;
+  /** The name of the  operationStatus resource */
+  readonly name?: string;
+  /** Operation start time */
+  readonly startTime?: Date;
+  /** Operation complete time */
+  readonly endTime?: Date;
+  /** The progress made toward completing the operation */
+  readonly percentComplete?: number;
+  /** Errors that occurred if the operation ended with Canceled or Failed status */
+  readonly error?: ErrorDetail;
 }
 
 /** The provisioning state of a resource type. */
@@ -480,6 +502,15 @@ export type Origin = "user" | "system" | "user,system";
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
 /** */
 export type ActionType = "Internal";
+
+/** Resource Access Rules. */
+export interface ResourceAccessRules {
+  /** The tenant ID of resource. */
+  tenantId: string;
+  /** Resource ID */
+  resourceId: string;
+}
+
 /** Specifies whether traffic is bypassed for Logging/Metrics/AzureServices. Possible values are any combination of Logging|Metrics|AzureServices (For example, "Logging, Metrics"), or None to bypass none of those traffics. */
 /** "None", "Logging", "Metrics", "AzureServices" */
 export type Bypass = string;
