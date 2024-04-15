@@ -3,14 +3,6 @@ import { onExit } from "./childProcessOnExit";
 import { join } from "path";
 
 async function main() {
-  const rlcIntegration = join(
-    `${__dirname}`,
-    "..",
-    "..",
-    "test",
-    "rlcIntegration"
-  );
-  console.log(rlcIntegration);
   // install extra dependencies for RLC tests
   await installDependencies(
     join(`${__dirname}`, "..", "..", "test", "rlcIntegration")
@@ -21,15 +13,13 @@ const installDependencies = async (projectPath?: string) => {
   if (!projectPath) {
     return;
   }
-  const npmInstall = spawn("npm install", {
+  const npmCommand = `npm${/^win/.test(process.platform) ? ".cmd" : ""}`;
+  const npmInstall = spawn(npmCommand, ["install"], {
     stdio: [process.stdin, process.stdout, process.stderr],
-    shell: process.platform === "win32",
     cwd: projectPath
   });
-  const res = await onExit(npmInstall);
-  console.log(res);
+  await onExit(npmInstall);
   console.log("Installed dependencies for path", projectPath);
-  return res;
 };
 
 main().catch((error) => {
