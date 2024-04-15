@@ -24,8 +24,7 @@ import {
   getSchemaForType,
   getFormattedPropertyDoc,
   getBodyType,
-  getSerializeTypeName,
-  BINARY_AND_FILE_TYPE_UNION
+  getSerializeTypeName
 } from "../utils/modelUtils.js";
 
 import {
@@ -44,7 +43,8 @@ import {
   KnownMediaType,
   extractMediaTypes,
   hasMediaType,
-  isMediaTypeJsonMergePatch
+  isMediaTypeJsonMergePatch,
+  isMediaTypeMultipartFormData
 } from "../utils/mediaTypes.js";
 
 export function transformToParameterTypes(
@@ -289,12 +289,21 @@ function transformRequestBody(
     usage: [SchemaContext.Input, SchemaContext.Exception]
   });
 
-  const descriptions = getBodyDescriptions(dpgContext, schema, parameters);
+  const isMultipartForm =
+    hasMediaType(KnownMediaType.MultipartFormData, contentTypes) &&
+    contentTypes.length === 1;
+
+  const descriptions = getBodyDescriptions(
+    dpgContext,
+    schema,
+    parameters,
+    isMultipartForm
+  );
   const type = getRequestBodyType(schema, importedModels, headers);
 
   return {
     isPartialBody: false,
-    needsFilePolyfil: isMultpartFileUpload(),
+    isMultipartForm,
     body: [
       {
         properties: schema.properties,
@@ -307,22 +316,6 @@ function transformRequestBody(
       }
     ]
   };
-  function isMultpartFileUpload() {
-    const isMultipartForm =
-      hasMediaType(KnownMediaType.MultipartFormData, contentTypes) &&
-      contentTypes.length === 1;
-    let hasFileType = false;
-    if (schema.type === "object" && schema.properties) {
-      for (const p of Object.values(schema.properties)) {
-        if ((p as Schema).typeName?.includes(BINARY_AND_FILE_TYPE_UNION)) {
-          hasFileType = true;
-          break;
-        }
-      }
-    }
-
-    return isMultipartForm && hasFileType;
-  }
 }
 
 function getRequestBodyType(
@@ -346,20 +339,28 @@ function getRequestBodyType(
   ) {
     typeName = `${typeName}ResourceMergeAndPatch`;
   }
+
+  if (isMediaTypeMultipartFormData(contentTypes ?? [])) {
+    typeName = `FormDataPayload<${typeName}>`;
+  }
+
   return typeName;
 }
 
 function getBodyDescriptions(
   dpgContext: SdkContext,
   bodySchema: Schema,
-  parameters: HttpOperationParameters
+  parameters: HttpOperationParameters,
+  multipart: boolean
 ) {
   const description =
     parameters.bodyParameter &&
     getFormattedPropertyDoc(
       dpgContext.program,
       parameters.bodyParameter,
-      bodySchema
+      bodySchema,
+      { multipart }
     );
+
   return description ? [description] : [];
 }

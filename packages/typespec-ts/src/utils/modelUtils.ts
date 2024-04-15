@@ -194,6 +194,7 @@ export function getSchemaForType(
       }
       schema.typeName = `${schema.name}`;
     }
+
     schema.usage = usage;
     return schema;
   } else if (type.kind === "Union") {
@@ -1420,12 +1421,13 @@ function getEnumStringDescription(type: any) {
   return undefined;
 }
 
+const formDataPayloadDescription = `This payload is a multipart/form-data body, represented as an array of parts. Each part is an object with a name property
+and a body property. A file name and a MIME type can be optionally provided for parts that represent file uploads.
+
+Alternatively, instead of an array of parts, an instance of FormData can also be passed as the body here.`;
+
 function getBinaryDescripton(type: any) {
   if (type?.typeName?.includes(BINARY_TYPE_UNION)) {
-    if (type?.typeName?.includes(BINARY_AND_FILE_TYPE_UNION)) {
-      return `NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.`;
-    }
     return `Value may contain any sequence of octets`;
   }
   return undefined;
@@ -1450,15 +1452,21 @@ export function getFormattedPropertyDoc(
   program: Program,
   type: ModelProperty | Type,
   schemaType: any,
-  sperator: string = "\n\n"
+  options?: {
+    separator?: string;
+    multipart?: boolean;
+  }
 ) {
   const propertyDoc = getDoc(program, type);
   const enhancedDocFromType =
     getEnumStringDescription(schemaType) ??
     getDecimalDescription(schemaType) ??
+    (options?.multipart ? formDataPayloadDescription : undefined) ??
     getBinaryDescripton(schemaType);
   if (propertyDoc && enhancedDocFromType) {
-    return `${propertyDoc}${sperator}${enhancedDocFromType}`;
+    return `${propertyDoc}${
+      options?.separator ?? "\n\n"
+    }${enhancedDocFromType}`;
   }
   return propertyDoc ?? enhancedDocFromType;
 }

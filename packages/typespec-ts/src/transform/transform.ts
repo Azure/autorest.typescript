@@ -154,8 +154,10 @@ export function transformUrlInfo(
           type: getTypeName(schema, usage),
           description:
             (getDoc(program, property) &&
-              getFormattedPropertyDoc(program, property, schema, " ")) ??
-            getFormattedPropertyDoc(program, type, schema, " " /* separator*/),
+              getFormattedPropertyDoc(program, property, schema, {
+                separator: " "
+              })) ??
+            getFormattedPropertyDoc(program, type, schema, { separator: " " }),
           value: predictDefaultValue(dpgContext, host?.[0]?.parameters.get(key))
         });
       }

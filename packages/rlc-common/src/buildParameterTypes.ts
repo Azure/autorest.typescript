@@ -22,6 +22,7 @@ import {
   getParameterTypeName
 } from "./helpers/nameConstructors.js";
 import { getImportSpecifier } from "./helpers/importsUtil.js";
+import { hasMultipartFormBody } from "./helpers/operationHelpers.js";
 
 export function buildParameterTypes(model: RLCModel) {
   const project = new Project();
@@ -146,9 +147,15 @@ export function buildParameterTypes(model: RLCModel) {
       }
     ]);
   }
+
+  const restClientImports = ["RequestParameters"];
+  if (hasMultipartFormBody(model)) {
+    restClientImports.push("type FormDataPayload");
+  }
+
   parametersFile.addImportDeclarations([
     {
-      namedImports: ["RequestParameters"],
+      namedImports: restClientImports,
       moduleSpecifier: getImportSpecifier(
         "restClient",
         model.importInfo.runtimeImports
@@ -173,6 +180,7 @@ export function buildParameterTypes(model: RLCModel) {
       }
     ]);
   }
+
   return { path: filePath, content: parametersFile.getFullText() };
 }
 
