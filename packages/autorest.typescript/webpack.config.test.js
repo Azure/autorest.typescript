@@ -1,23 +1,22 @@
-const { readdirSync, statSync } = require("fs");
+const { readdirSync, statSync, existsSync } = require("fs");
 const { join: joinPath, sep, extname } = require("path");
 const webpack = require("webpack");
 const { spawn } = require("child_process");
 
 function getIntegrationTestFiles(env) {
   const mode = env.mode ?? "hlc";
-  if (mode === "rlc") {
+  if (mode === "hlc") {
+    removeDependencies();
+  } else {
     copyPackageJson();
     installDependencies();
-  } else {
-    removeDependencies();
   }
   const dirPath = joinPath(
     __dirname,
     "test-browser",
-    mode === "rlc" ? rlcIntegration : integration
+    mode === "hlc" ? "integration" : "rlcIntegration"
   );
   let files = readdirSync(dirPath);
-
   files = files
     .filter(
       (name) =>
@@ -30,14 +29,18 @@ function getIntegrationTestFiles(env) {
 
 async function removeDependencies() {
   const packageJson = joinPath(__dirname, "test-browser", "package.json");
+  if (!existsSync(packageJson)) {
+    return;
+  }
   const nodeModules = joinPath(__dirname, "test-browser", "node_modules");
-  const rmCommand = `rm -rf`;
-  const rm = spawn(rmCommand, [packageJson, nodeModules], {
+  const rmCommand = `rm`;
+  const rm = spawn(rmCommand, ["-rf", packageJson, nodeModules], {
     stdio: [process.stdin, process.stdout, process.stderr]
   });
   rm.on("error", (err) => {
-    console.error("Failed to install dependencies", err);
+    console.error("Failed to remove dependencies", err);
   });
+  console.log("Removed dependencies for hlc browser tests", nodeModules);
 }
 
 async function copyPackageJson() {
@@ -67,9 +70,8 @@ async function installDependencies() {
   npmInstall.on("error", (err) => {
     console.error("Failed to install dependencies", err);
   });
+  console.log("Installed dependencies for rlc browser tests", path);
 }
-
-// const entry = getIntegrationTestFiles();
 
 module.exports = (env) => ({
   target: "web",

@@ -13,7 +13,7 @@
     "test:node": "npm run unit-test && npm run start-test-server:v2 & npm run integration-test:alone & npm run rlc-integration-test:alone & npm run test-version-tolerance & npm run stop-test-server",
     "test:node:alone": "npm run unit-test && npm run integration-test:alone && npm run rlc-integration-test:alone && npm run test-version-tolerance",
     "test:browser": "npm run start-test-server:v2 & npm run integration-test:browser & npm run rlc-integration-test:browser & npm run test-version-tolerance & npm run stop-test-server",
-    "test:browser:alone": "npm run integration-test:browser && npm run rlc-integration-test:browser && npm run test-version-tolerance",
+    "test:browser:alone": "npm run rlc-integration-test:browser && npm run integration-test:browser &&  npm run test-version-tolerance",
     "rlc-test:node": "npm run unit-test && npm run start-test-server:v2 & npm run rlc-integration-test:alone && npm run stop-test-server",
     "rlc-test:browser": "npm run start-test-server:v2 & npm run rlc-integration-test:browser && npm run stop-test-server",
     "unit-test": "mocha -r ts-node/register \"./test/unit/**/*spec.ts\"",
