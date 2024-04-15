@@ -7,4 +7,5 @@ export {
   WithoutApiVersionOptionalParams,
   WithQueryApiVersionOptionalParams,
   WithPathApiVersionOptionalParams,
+  WithQueryOldApiVersionOptionalParams,
 } from "./models/index.js";

@@ -83,6 +83,12 @@ export interface IsStringAdditionalPropertiesOutput
   name: string;
 }
 
+/** The model spread Record<string> with the same known property type */
+export interface SpreadStringRecordOutput extends Record<string, string> {
+  /** The name property */
+  name: string;
+}
+
 /** The model extends from Record<float32> type. */
 export interface ExtendsFloatAdditionalPropertiesOutput
   extends Record<string, number> {
@@ -97,9 +103,17 @@ export interface IsFloatAdditionalPropertiesOutput
   id: number;
 }
 
+/** The model spread Record<float32> with the same known property type */
+export interface SpreadFloatRecordOutput extends Record<string, number> {
+  /** The id property */
+  id: number;
+}
+
 /** The model extends from Record<ModelForRecord> type. */
 export interface ExtendsModelAdditionalPropertiesOutput
-  extends Record<string, ModelForRecordOutput> {}
+  extends Record<string, ModelForRecordOutput> {
+  knownProp: ModelForRecordOutput;
+}
 
 /** model for record */
 export interface ModelForRecordOutput {
@@ -109,15 +123,144 @@ export interface ModelForRecordOutput {
 
 /** The model is from Record<ModelForRecord> type. */
 export interface IsModelAdditionalPropertiesOutput
-  extends Record<string, ModelForRecordOutput> {}
+  extends Record<string, ModelForRecordOutput> {
+  knownProp: ModelForRecordOutput;
+}
+
+/** The model spread Record<ModelForRecord> with the same known property type */
+export interface SpreadModelRecordOutput
+  extends Record<string, ModelForRecordOutput> {
+  knownProp: ModelForRecordOutput;
+}
 
 /** The model extends from Record<ModelForRecord[]> type. */
 export interface ExtendsModelArrayAdditionalPropertiesOutput
-  extends Record<string, Array<ModelForRecordOutput>> {}
+  extends Record<string, Array<ModelForRecordOutput>> {
+  knownProp: Array<ModelForRecordOutput>;
+}
 
 /** The model is from Record<ModelForRecord[]> type. */
 export interface IsModelArrayAdditionalPropertiesOutput
-  extends Record<string, Array<ModelForRecordOutput>> {}
+  extends Record<string, Array<ModelForRecordOutput>> {
+  knownProp: Array<ModelForRecordOutput>;
+}
+
+export interface SpreadModelArrayRecordOutput
+  extends Record<string, Array<ModelForRecordOutput>> {
+  knownProp: Array<ModelForRecordOutput>;
+}
+
+/** The model spread Record<string> with the different known property type */
+export interface DifferentSpreadStringRecordOutput
+  extends Record<string, string> {
+  /** The name property */
+  id: number;
+}
+
+/** The model extends from a model that spread Record<string> with the different known property type */
+export interface DifferentSpreadStringDerivedOutput
+  extends DifferentSpreadStringRecordOutput {
+  /** The index property */
+  derivedProp: string;
+}
+
+/** The model spread Record<float32> with the different known property type */
+export interface DifferentSpreadFloatRecordOutput
+  extends Record<string, number> {
+  /** The id property */
+  name: string;
+}
+
+/** The model extends from a model that spread Record<float32> with the different known property type */
+export interface DifferentSpreadFloatDerivedOutput
+  extends DifferentSpreadFloatRecordOutput {
+  /** The index property */
+  derivedProp: number;
+}
+
+/** The model spread Record<ModelForRecord> with the different known property type */
+export interface DifferentSpreadModelRecordOutput
+  extends Record<string, ModelForRecordOutput> {
+  knownProp: string;
+}
+
+/** The model extends from a model that spread Record<ModelForRecord> with the different known property type */
+export interface DifferentSpreadModelDerivedOutput
+  extends DifferentSpreadModelRecordOutput {
+  /** The index property */
+  derivedProp: ModelForRecordOutput;
+}
+
+/** The model spread Record<ModelForRecord[]> with the different known property type */
+export interface DifferentSpreadModelArrayRecordOutput
+  extends Record<string, Array<ModelForRecordOutput>> {
+  knownProp: string;
+}
+
+/** The model extends from a model that spread Record<ModelForRecord[]> with the different known property type */
+export interface DifferentSpreadModelArrayDerivedOutput
+  extends DifferentSpreadModelArrayRecordOutput {
+  /** The index property */
+  derivedProp: Array<ModelForRecordOutput>;
+}
+
+/** The model spread Record<string> and Record<float32> */
+export interface MultipleSpreadRecordOutput
+  extends Record<string, string | number> {
+  /** The name property */
+  flag: boolean;
+}
+
+/** The model spread Record<string | float32> */
+export interface SpreadRecordForUnionOutput
+  extends Record<string, string | number> {
+  /** The name property */
+  flag: boolean;
+}
+
+/** The model spread Record<WidgetData> */
+export interface SpreadRecordForDiscriminatedUnionOutput
+  extends Record<string, WidgetDataOutput> {
+  /** The name property */
+  name: string;
+}
+
+export interface WidgetData0Output {
+  kind: "kind0";
+  fooProp: string;
+}
+
+export interface WidgetData1Output {
+  kind: "kind1";
+  start: string;
+  end?: string;
+}
+
+/** The model spread Record<WidgetData0 | WidgetData1> */
+export interface SpreadRecordForNonDiscriminatedUnionOutput
+  extends Record<string, WidgetData0Output | WidgetData1Output> {
+  /** The name property */
+  name: string;
+}
+
+/** The model spread Record<WidgetData2 | WidgetData1> */
+export interface SpreadRecordForNonDiscriminatedUnion2Output
+  extends Record<string, WidgetData2Output | WidgetData1Output> {
+  /** The name property */
+  name: string;
+}
+
+export interface WidgetData2Output {
+  kind: "kind1";
+  start: string;
+}
+
+/** The model spread Record<WidgetData2[] | WidgetData1> */
+export interface SpreadRecordForNonDiscriminatedUnion3Output
+  extends Record<string, Array<WidgetData2Output> | WidgetData1Output> {
+  /** The name property */
+  name: string;
+}
 
 /** The model extends from Record<unknown> with a discriminator. */
 export type ExtendsUnknownAdditionalPropertiesDiscriminatedOutput =
@@ -127,3 +270,5 @@ export type ExtendsUnknownAdditionalPropertiesDiscriminatedOutput =
 export type IsUnknownAdditionalPropertiesDiscriminatedOutput =
   | IsUnknownAdditionalPropertiesDiscriminatedOutputParent
   | IsUnknownAdditionalPropertiesDiscriminatedDerivedOutput;
+/** Alias for WidgetDataOutput */
+export type WidgetDataOutput = WidgetData0Output | WidgetData1Output;

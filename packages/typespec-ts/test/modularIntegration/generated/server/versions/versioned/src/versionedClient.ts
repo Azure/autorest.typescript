@@ -6,11 +6,13 @@ import {
   WithoutApiVersionOptionalParams,
   WithQueryApiVersionOptionalParams,
   WithPathApiVersionOptionalParams,
+  WithQueryOldApiVersionOptionalParams,
 } from "./models/options.js";
 import {
   withoutApiVersion,
   withQueryApiVersion,
   withPathApiVersion,
+  withQueryOldApiVersion,
   createVersioned,
   VersionedClientOptions,
   VersionedContext,
@@ -46,5 +48,11 @@ export class VersionedClient {
     options: WithPathApiVersionOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return withPathApiVersion(this._client, apiVersion, options);
+  }
+
+  withQueryOldApiVersion(
+    options: WithQueryOldApiVersionOptionalParams = { requestOptions: {} },
+  ): Promise<void> {
+    return withQueryOldApiVersion(this._client, options);
   }
 }
