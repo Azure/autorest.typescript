@@ -113,4 +113,29 @@ describe("ClientEncodedNameClient Rest Client", () => {
       assert.fail(err as string);
     }
   });
+
+  it("should work with union enum name", async () => {
+    try {
+      const result = await client
+        .path("/client/naming/union-enum/union-enum-name")
+        .post({ body: "value1", headers: { "content-type": "text/plain" } });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should work with union enum member name", async () => {
+    try {
+      const result = await client
+        .path("/client/naming/union-enum/union-enum-member-name")
+        .post({
+          body: "value1",
+          headers: { "content-type": "text/plain" }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
 });

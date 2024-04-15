@@ -29,10 +29,14 @@ export class AdministrationOperationsClient {
 
 // @public (undocumented)
 export interface AdministrationOperationsClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
-// @public
-export type AggregationType = string;
+// @public (undocumented)
+export type AggregationType = "Average" | "Count" | "None" | "Total" | "Percentile90" | "Percentile95" | "Percentile99";
+
+// @public (undocumented)
+export type APIVersions = "2022-11-01";
 
 // @public
 export interface AppComponent {
@@ -52,8 +56,8 @@ export interface CertificateMetadata {
     value?: string;
 }
 
-// @public
-export type CertificateType = string;
+// @public (undocumented)
+export type CertificateType = "AKV_CERT_URI";
 
 // @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
@@ -123,11 +127,11 @@ export interface FileInfo {
     validationStatus?: FileStatus;
 }
 
-// @public
-export type FileStatus = string;
+// @public (undocumented)
+export type FileStatus = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE" | "VALIDATION_INITIATED" | "VALIDATION_NOT_REQUIRED";
 
-// @public
-export type FileType = string;
+// @public (undocumented)
+export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
 
 // @public (undocumented)
 export interface GetAppComponentsOptionalParams extends OperationOptions {
@@ -153,8 +157,8 @@ export interface GetTestRunFileOptionalParams extends OperationOptions {
 export interface GetTestRunOptionalParams extends OperationOptions {
 }
 
-// @public
-export type Interval = string;
+// @public (undocumented)
+export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public (undocumented)
 export interface ListMetricDefinitionsOptionalParams extends OperationOptions {
@@ -236,8 +240,8 @@ export interface MetricNamespace {
     name?: string;
 }
 
-// @public
-export type MetricUnit = string;
+// @public (undocumented)
+export type MetricUnit = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
 
 // @public
 export interface MetricValue {
@@ -268,13 +272,13 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 
 // @public
 export interface PagedFileInfo {
-    readonly nextLink?: string;
+    nextLink?: string;
     value: FileInfo[];
 }
 
 // @public
 export interface PagedTest {
-    readonly nextLink?: string;
+    nextLink?: string;
     value: Test[];
 }
 
@@ -300,20 +304,20 @@ export interface PassFailMetric {
     value?: number;
 }
 
-// @public
-export type PFAction = string;
+// @public (undocumented)
+export type PFAction = "continue" | "stop";
 
-// @public
-export type PFAgFunc = string;
+// @public (undocumented)
+export type PFAgFunc = "count" | "percentage" | "avg" | "p50" | "p90" | "p95" | "p99" | "min" | "max";
 
-// @public
-export type PFMetrics = string;
+// @public (undocumented)
+export type PFMetrics = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
 
-// @public
-export type PFResult = string;
+// @public (undocumented)
+export type PFResult = "passed" | "undetermined" | "failed";
 
-// @public
-export type PFTestResult = string;
+// @public (undocumented)
+export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 
 // @public
 export interface ResourceMetric {
@@ -333,11 +337,11 @@ export interface Secret {
     value?: string;
 }
 
-// @public
-export type SecretType = string;
+// @public (undocumented)
+export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
-// @public
-export type Status = string;
+// @public (undocumented)
+export type Status = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
 
 // @public (undocumented)
 export interface StopTestRunOptionalParams extends OperationOptions {
@@ -451,8 +455,11 @@ export class TestRunOperationsClient {
     testRun(testRunId: string, resource: TestRunOperationsClientTestRun, options?: TestRunOptionalParams): Promise<TestRunOperationsClientTestRun>;
 }
 
-// @public
-export type TestRunOperationsClientAggregationType = string;
+// @public (undocumented)
+export type TestRunOperationsClientAggregationType = "Average" | "Count" | "None" | "Total" | "Percentile90" | "Percentile95" | "Percentile99";
+
+// @public (undocumented)
+export type TestRunOperationsClientAPIVersions = "2022-11-01";
 
 // @public
 export interface TestRunOperationsClientAppComponent {
@@ -472,8 +479,8 @@ export interface TestRunOperationsClientCertificateMetadata {
     value?: string;
 }
 
-// @public
-export type TestRunOperationsClientCertificateType = string;
+// @public (undocumented)
+export type TestRunOperationsClientCertificateType = "AKV_CERT_URI";
 
 // @public
 export type TestRunOperationsClientContinuablePage<TElement, TPage = TElement[]> = TPage & {
@@ -525,11 +532,11 @@ export interface TestRunOperationsClientFileInfo {
     validationStatus?: TestRunOperationsClientFileStatus;
 }
 
-// @public
-export type TestRunOperationsClientFileStatus = string;
+// @public (undocumented)
+export type TestRunOperationsClientFileStatus = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE" | "VALIDATION_INITIATED" | "VALIDATION_NOT_REQUIRED";
 
-// @public
-export type TestRunOperationsClientFileType = string;
+// @public (undocumented)
+export type TestRunOperationsClientFileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
 
 // @public (undocumented)
 export interface TestRunOperationsClientGetAppComponentsOptionalParams extends OperationOptions {
@@ -539,8 +546,8 @@ export interface TestRunOperationsClientGetAppComponentsOptionalParams extends O
 export interface TestRunOperationsClientGetServerMetricsConfigOptionalParams extends OperationOptions {
 }
 
-// @public
-export type TestRunOperationsClientInterval = string;
+// @public (undocumented)
+export type TestRunOperationsClientInterval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public
 export interface TestRunOperationsClientLoadTestConfiguration {
@@ -573,8 +580,8 @@ export interface TestRunOperationsClientMetricNamespace {
     name?: string;
 }
 
-// @public
-export type TestRunOperationsClientMetricUnit = string;
+// @public (undocumented)
+export type TestRunOperationsClientMetricUnit = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
 
 // @public
 export interface TestRunOperationsClientMetricValue {
@@ -598,6 +605,7 @@ export interface TestRunOperationsClientOptionalLoadTestConfig {
 
 // @public (undocumented)
 export interface TestRunOperationsClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public
@@ -629,20 +637,20 @@ export interface TestRunOperationsClientPassFailMetric {
     value?: number;
 }
 
-// @public
-export type TestRunOperationsClientPFAction = string;
+// @public (undocumented)
+export type TestRunOperationsClientPFAction = "continue" | "stop";
 
-// @public
-export type TestRunOperationsClientPFAgFunc = string;
+// @public (undocumented)
+export type TestRunOperationsClientPFAgFunc = "count" | "percentage" | "avg" | "p50" | "p90" | "p95" | "p99" | "min" | "max";
 
-// @public
-export type TestRunOperationsClientPFMetrics = string;
+// @public (undocumented)
+export type TestRunOperationsClientPFMetrics = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
 
-// @public
-export type TestRunOperationsClientPFResult = string;
+// @public (undocumented)
+export type TestRunOperationsClientPFResult = "passed" | "undetermined" | "failed";
 
-// @public
-export type TestRunOperationsClientPFTestResult = string;
+// @public (undocumented)
+export type TestRunOperationsClientPFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 
 // @public
 export interface TestRunOperationsClientResourceMetric {
@@ -662,11 +670,11 @@ export interface TestRunOperationsClientSecret {
     value?: string;
 }
 
-// @public
-export type TestRunOperationsClientSecretType = string;
+// @public (undocumented)
+export type TestRunOperationsClientSecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
-// @public
-export type TestRunOperationsClientStatus = string;
+// @public (undocumented)
+export type TestRunOperationsClientStatus = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
 
 // @public
 export interface TestRunOperationsClientTest {
@@ -765,8 +773,8 @@ export interface TestRunOperationsClientTestRunStatistics {
     readonly transaction?: string;
 }
 
-// @public
-export type TestRunOperationsClientTimeGrain = string;
+// @public (undocumented)
+export type TestRunOperationsClientTimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public
 export interface TestRunOperationsClientTimeSeriesElement {
@@ -814,8 +822,8 @@ export interface TestServerMetricConfig {
     readonly testId?: string;
 }
 
-// @public
-export type TimeGrain = string;
+// @public (undocumented)
+export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public
 export interface TimeSeriesElement {

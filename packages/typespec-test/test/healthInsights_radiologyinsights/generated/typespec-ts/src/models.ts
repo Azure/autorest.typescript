@@ -339,20 +339,12 @@ export interface ContactDetail extends Element {
  * See https://www.hl7.org/fhir/R4/datatypes.html#ContactPoint
  */
 export interface ContactPoint {
-  /**
-   * phone | fax | email | pager | url | sms | other
-   *
-   * Possible values: "phone", "fax", "email", "pager", "url", "sms", "other"
-   */
-  system?: string;
+  /** phone | fax | email | pager | url | sms | other */
+  system?: ContactPointSystem;
   /** The actual contact point details */
   value?: string;
-  /**
-   * home | work | temp | old | mobile - purpose of this contact point
-   *
-   * Possible values: "home", "work", "temp", "old", "mobile"
-   */
-  use?: string;
+  /** home | work | temp | old | mobile - purpose of this contact point */
+  use?: ContactPointUse;
   /** Specify preferred order of use (1 = highest) */
   rank?: number;
   /** Time period when the contact point was/is in use */
@@ -373,12 +365,8 @@ export interface RecommendationFinding extends Extendible {
   finding?: Observation;
   /** critical finding inference */
   criticalFinding?: CriticalResult;
-  /**
-   * recommendation finding status
-   *
-   * Possible values: "present", "differential", "ruleOut", "conditional"
-   */
-  recommendationFindingStatus: string;
+  /** recommendation finding status */
+  recommendationFindingStatus: RecommendationFindingStatusType;
 }
 
 /**
@@ -390,12 +378,8 @@ export interface Observation extends DomainResourceParent {
   resourceType: "Observation";
   /** Business Identifier for observation */
   identifier?: Array<Identifier>;
-  /**
-   * registered | preliminary | final | amended +
-   *
-   * Possible values: "registered", "preliminary", "final", "amended", "corrected", "cancelled", "entered-in-error", "unknown"
-   */
-  status: string;
+  /** registered | preliminary | final | amended + */
+  status: ObservationStatusCodeType;
   /** Classification of  type of observation */
   category?: Array<CodeableConcept>;
   /** Type of observation (code / type) */
@@ -583,12 +567,8 @@ export interface ResearchStudy extends DomainResourceParent {
   protocol?: Array<Reference>;
   /** Part of larger study */
   partOf?: Array<Reference>;
-  /**
-   * active | administratively-completed | approved | closed-to-accrual | closed-to-accrual-and-intervention | completed | disapproved | in-review | temporarily-closed-to-accrual | temporarily-closed-to-accrual-and-intervention | withdrawn
-   *
-   * Possible values: "active", "administratively-completed", "approved", "closed-to-accrual", "closed-to-accrual-and-intervention", "completed", "disapproved", "in-review", "temporarily-closed-to-accrual", "temporarily-closed-to-accrual-and-intervention", "withdrawn"
-   */
-  status: string;
+  /** active | administratively-completed | approved | closed-to-accrual | closed-to-accrual-and-intervention | completed | disapproved | in-review | temporarily-closed-to-accrual | temporarily-closed-to-accrual-and-intervention | withdrawn */
+  status: ResearchStudyStatusCodeType;
   /** treatment | prevention | diagnostic | supportive-care | screening | health-services-research | basic-science | device-feasibility */
   primaryPurposeType?: CodeableConcept;
   /** n-a | early-phase-1 | phase-1 | phase-1-phase-2 | phase-2 | phase-2-phase-3 | phase-3 | phase-4 */
@@ -665,12 +645,8 @@ export interface LateralityDiscrepancyInference
   kind: "lateralityDiscrepancy";
   /** laterality indication */
   lateralityIndication?: CodeableConcept;
-  /**
-   * mismatch type
-   *
-   * Possible values: "orderLateralityMismatch", "textLateralityContradiction", "textLateralityMissing"
-   */
-  discrepancyType: string;
+  /** mismatch type */
+  discrepancyType: LateralityDiscrepancyType;
 }
 
 /**
@@ -833,7 +809,7 @@ export interface FollowupCommunicationInference
   /** The communication date/time. */
   dateTime?: Date[] | string[];
   /** The recipient of the communication. */
-  recipient?: string[];
+  recipient?: MedicalProfessionalType[];
   /** Communication was acknowledged */
   wasAcknowledged: boolean;
 }
@@ -860,12 +836,8 @@ export interface PatientRecord {
 
 /** Patient structured information, including demographics and known structured clinical information. */
 export interface PatientInfo {
-  /**
-   * The patient's sex.
-   *
-   * Possible values: "female", "male", "unspecified"
-   */
-  sex?: string;
+  /** The patient's sex. */
+  sex?: PatientInfoSex;
   /** The patient's date of birth. */
   birthDate?: Date | string;
   /** Known clinical information for the patient, structured. */
@@ -881,12 +853,8 @@ export interface Encounter {
    * In case of admission, use timePeriod.start to indicate the admission time and timePeriod.end to indicate the discharge time.
    */
   period?: TimePeriod;
-  /**
-   * The class of the encounter.
-   *
-   * Possible values: "inpatient", "ambulatory", "observation", "emergency", "virtual", "healthHome"
-   */
-  class?: string;
+  /** The class of the encounter. */
+  class?: EncounterClass;
 }
 
 /** A duration of time during which an event is happening */
@@ -899,18 +867,10 @@ export interface TimePeriod {
 
 /** A clinical document related to a patient. Document here is in the wide sense - not just a text document (note). */
 export interface PatientDocument {
-  /**
-   * The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document).
-   *
-   * Possible values: "note", "fhirBundle", "dicom", "genomicSequencing"
-   */
-  type: string;
-  /**
-   * The type of the clinical document.
-   *
-   * Possible values: "consultation", "dischargeSummary", "historyAndPhysical", "radiologyReport", "procedure", "progress", "laboratory", "pathologyReport"
-   */
-  clinicalType?: string;
+  /** The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). */
+  type: DocumentType;
+  /** The type of the clinical document. */
+  clinicalType?: ClinicalDocumentType;
   /** A given identifier for the document. Has to be unique across all documents for a single patient. */
   id: string;
   /** A 2 letter ISO 639-1 representation of the language of the document. */
@@ -919,12 +879,8 @@ export interface PatientDocument {
   createdDateTime?: Date | string;
   /** Document author(s) */
   authors?: Array<DocumentAuthor>;
-  /**
-   * specialty type the document
-   *
-   * Possible values: "pathology", "radiology"
-   */
-  specialtyType?: string;
+  /** specialty type the document */
+  specialtyType?: SpecialtyType;
   /** Administrative metadata for the document. */
   administrativeMetadata?: DocumentAdministrativeMetadata;
   /** The content of the patient document. */
@@ -953,10 +909,8 @@ export interface DocumentContent {
    * The type of the content's source.
    * In case the source type is 'inline', the content is given as a string (for instance, text).
    * In case the source type is 'reference', the content is given as a URI.
-   *
-   * Possible values: "inline", "reference"
    */
-  sourceType: string;
+  sourceType: DocumentContentSourceType;
   /** The content of the document, given either inline (as a string) or as a reference (URI). */
   value: string;
 }
@@ -972,7 +926,7 @@ export interface RadiologyInsightsModelConfiguration {
    * This could be used if only part of the Radiology Insights inferences are required.
    * If this list is omitted or empty, the model will return all the inference types.
    */
-  inferenceTypes?: string[];
+  inferenceTypes?: RadiologyInsightsInferenceType[];
   /** The options for the Radiology Insights Inferences */
   inferenceOptions?: RadiologyInsightsInferenceOptions;
   /** Local for the model to use. If not specified, the model will use the default locale */
@@ -1042,3 +996,110 @@ export type ProcedureRecommendation =
   | ProcedureRecommendationParent
   | GenericProcedureRecommendation
   | ImagingProcedureRecommendation;
+/**
+ * Contact Point System
+ * see https://www.hl7.org/fhir/R4/valueset-contact-point-system.html
+ */
+export type ContactPointSystem =
+  | "phone"
+  | "fax"
+  | "email"
+  | "pager"
+  | "url"
+  | "sms"
+  | "other";
+/**
+ * Contact Point Use
+ * See: 	http://hl7.org/fhir/ValueSet/contact-point-use
+ */
+export type ContactPointUse = "home" | "work" | "temp" | "old" | "mobile";
+/**
+ * Observation Status
+ * Based on [FHIR ObservationStatus](https://www.hl7.org/fhir/R4/valueset-observation-status.html)
+ */
+export type ObservationStatusCodeType =
+  | "registered"
+  | "preliminary"
+  | "final"
+  | "amended"
+  | "corrected"
+  | "cancelled"
+  | "entered-in-error"
+  | "unknown";
+/** https://www.hl7.org/fhir/R4/codesystem-research-study-status.html */
+export type ResearchStudyStatusCodeType =
+  | "active"
+  | "administratively-completed"
+  | "approved"
+  | "closed-to-accrual"
+  | "closed-to-accrual-and-intervention"
+  | "completed"
+  | "disapproved"
+  | "in-review"
+  | "temporarily-closed-to-accrual"
+  | "temporarily-closed-to-accrual-and-intervention"
+  | "withdrawn";
+/** Recommendation finding status */
+export type RecommendationFindingStatusType =
+  | "present"
+  | "differential"
+  | "ruleOut"
+  | "conditional";
+/** Laterality discrepancy type */
+export type LateralityDiscrepancyType =
+  | "orderLateralityMismatch"
+  | "textLateralityContradiction"
+  | "textLateralityMissing";
+/** Medical Professional Type */
+export type MedicalProfessionalType =
+  | "unknown"
+  | "doctor"
+  | "nurse"
+  | "midwife"
+  | "physicianAssistant";
+/** The patient's sex. */
+export type PatientInfoSex = "female" | "male" | "unspecified";
+/** Known values codes that can be used to indicate the class of encounter (TODO://Based on FHIR value set--http://....). */
+export type EncounterClass =
+  | "inpatient"
+  | "ambulatory"
+  | "observation"
+  | "emergency"
+  | "virtual"
+  | "healthHome";
+/** The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). */
+export type DocumentType =
+  | "note"
+  | "fhirBundle"
+  | "dicom"
+  | "genomicSequencing";
+/** The type of the clinical document. */
+export type ClinicalDocumentType =
+  | "consultation"
+  | "dischargeSummary"
+  | "historyAndPhysical"
+  | "radiologyReport"
+  | "procedure"
+  | "progress"
+  | "laboratory"
+  | "pathologyReport";
+/** Known values codes that can be used to indicate the type of the Specialty. */
+export type SpecialtyType = "pathology" | "radiology";
+/**
+ * The type of the content's source.
+ * In case the source type is 'inline', the content is given as a string (for instance, text).
+ * In case the source type is 'reference', the content is given as a URI.
+ */
+export type DocumentContentSourceType = "inline" | "reference";
+/** A Radiology Insights inference types. */
+export type RadiologyInsightsInferenceType =
+  | "ageMismatch"
+  | "lateralityDiscrepancy"
+  | "sexMismatch"
+  | "completeOrderDiscrepancy"
+  | "limitedOrderDiscrepancy"
+  | "finding"
+  | "criticalResult"
+  | "followupRecommendation"
+  | "followupCommunication"
+  | "radiologyProcedure";

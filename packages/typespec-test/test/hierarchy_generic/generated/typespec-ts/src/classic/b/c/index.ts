@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { FooContext } from "../../../api/FooContext.js";
+import { FooContext } from "../../../api/fooContext.js";
 import { BA } from "../../../models/models.js";
 import { op1 } from "../../../api/b/c/index.js";
 import { BCOp1OptionalParams } from "../../../models/options.js";

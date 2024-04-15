@@ -196,7 +196,7 @@ export interface DeploymentJobOutput {
     readonly id: string;
     jobId: string;
     readonly lastUpdatedDateTime: string;
-    status: "notStarted" | "running" | "succeeded" | "failed" | "cancelled" | "cancelling" | "partiallyCompleted";
+    status: JobStatusOutput;
     warnings: Array<JobWarningOutput>;
 }
 
@@ -608,6 +608,9 @@ export function isUnexpected(response: GetSupportedLanguages200Response | GetSup
 export function isUnexpected(response: ListTrainingConfigVersions200Response | ListTrainingConfigVersionsDefaultResponse): response is ListTrainingConfigVersionsDefaultResponse;
 
 // @public
+export type JobStatusOutput = "notStarted" | "running" | "succeeded" | "failed" | "cancelled" | "cancelling" | "partiallyCompleted";
+
+// @public
 export interface JobWarningOutput {
     code: string;
     message: string;
@@ -720,10 +723,13 @@ export interface ListTrainingConfigVersionsQueryParamProperties {
 }
 
 // @public
+export type OperationStateOutput = "NotStarted" | "Running" | "Succeeded" | "Failed" | "Canceled";
+
+// @public
 export interface OperationStatusOutput {
     error?: ErrorModel;
     id: string;
-    status: string;
+    status: OperationStateOutput;
 }
 
 // @public
@@ -758,10 +764,16 @@ export interface Project {
     description?: string;
     language: string;
     multilingual?: boolean;
-    projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
+    projectKind: ProjectKind;
     settings?: ProjectSettings;
     storageInputContainerName: string;
 }
+
+// @public
+export type ProjectKind = "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
+
+// @public
+export type ProjectKindOutput = "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
 
 // @public
 export interface ProjectOutput {
@@ -772,7 +784,7 @@ export interface ProjectOutput {
     readonly lastModifiedDateTime: string;
     readonly lastTrainedDateTime: string;
     multilingual?: boolean;
-    projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
+    projectKind: ProjectKindOutput;
     readonly projectName: string;
     settings?: ProjectSettingsOutput;
     storageInputContainerName: string;
@@ -857,7 +869,7 @@ export interface SwapDeploymentsJobOutput {
     readonly id: string;
     jobId: string;
     readonly lastUpdatedDateTime: string;
-    status: "notStarted" | "running" | "succeeded" | "failed" | "cancelled" | "cancelling" | "partiallyCompleted";
+    status: JobStatusOutput;
     warnings: Array<JobWarningOutput>;
 }
 

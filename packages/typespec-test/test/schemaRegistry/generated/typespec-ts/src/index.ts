@@ -4,16 +4,17 @@
 export {
   SchemaRegistryClient,
   SchemaRegistryClientOptions,
-} from "./SchemaRegistryClient.js";
+} from "./schemaRegistryClient.js";
 export {
+  SchemaGroup,
+  SchemaVersion,
+  SchemaContentTypeValues,
   SchemaProperties,
   SchemaFormat,
   ContentTypeEnum,
+  ServiceApiVersions,
   PagedSchemaGroup,
-  SchemaGroup,
-  SchemaContentTypeValues,
   PagedVersion,
-  SchemaVersion,
   SchemaOperationsListSchemaGroupsOptionalParams,
   SchemaOperationsGetSchemaByIdOptionalParams,
   SchemaOperationsListSchemaVersionsOptionalParams,

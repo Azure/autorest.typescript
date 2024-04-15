@@ -5,7 +5,7 @@ export {
   createArray,
   ArrayClientOptions,
   ArrayContext,
-} from "./ArrayContext.js";
+} from "./arrayContext.js";
 export { booleanValueGet, booleanValuePut } from "./booleanValue/index.js";
 export { datetimeValueGet, datetimeValuePut } from "./datetimeValue/index.js";
 export { durationValueGet, durationValuePut } from "./durationValue/index.js";

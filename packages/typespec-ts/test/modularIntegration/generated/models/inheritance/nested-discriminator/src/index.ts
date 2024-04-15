@@ -4,7 +4,7 @@
 export {
   NestedDiscriminatorClient,
   NestedDiscriminatorClientOptions,
-} from "./NestedDiscriminatorClient.js";
+} from "./nestedDiscriminatorClient.js";
 export {
   Fish,
   Shark,

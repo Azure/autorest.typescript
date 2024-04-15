@@ -5,7 +5,7 @@ export {
   createBatch,
   BatchClientOptions,
   BatchContext,
-} from "./BatchContext.js";
+} from "./batchContext.js";
 export {
   listApplications,
   getApplication,

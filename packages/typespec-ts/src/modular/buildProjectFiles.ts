@@ -203,11 +203,11 @@ function emitNonBrandedPackage(codeModel: ModularCodeModel) {
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",
       "@types/node": "^18.0.0",
-      mkdirp: "^2.1.2",
+      mkdirp: "^3.0.1",
       prettier: "^3.1.0",
       rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
-      typescript: "~5.3.3",
+      typescript: "~5.4.5",
       "@rollup/plugin-commonjs": "^24.0.0",
       "@rollup/plugin-json": "^6.0.0",
       "@rollup/plugin-multi-entry": "^6.0.0",
@@ -284,7 +284,7 @@ function emitBrandedPackage(codeModel: ModularCodeModel) {
     autoPublish: false,
     dependencies: {
       "@azure/core-auth": "^1.6.0",
-      "@azure-rest/core-client": "^1.2.0",
+      "@azure-rest/core-client": "^1.4.0",
       "@azure/core-rest-pipeline": "^1.14.0",
       "@azure/logger": "^1.0.0",
       tslib: "^2.2.0",
@@ -305,11 +305,11 @@ function emitBrandedPackage(codeModel: ModularCodeModel) {
       "@types/node": "^18.0.0",
       dotenv: "^16.0.0",
       eslint: "^8.0.0",
-      mkdirp: "^2.1.2",
+      mkdirp: "^3.0.1",
       prettier: "^3.1.0",
       rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
-      typescript: "~5.3.3"
+      typescript: "~5.4.5"
     }
   } as any;
 

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ServiceContext } from "../../api/TwoOperationGroupContext.js";
+import { ServiceContext } from "../../api/twoOperationGroupContext.js";
 import { one, three, four } from "../../api/group1/index.js";
 import {
   Group1OneOptionalParams,

@@ -4,11 +4,11 @@
 export {
   ContentSafetyClient,
   ContentSafetyClientOptions,
-} from "./ContentSafetyClient.js";
+} from "./contentSafetyClient.js";
 export {
   TextBlocklist,
-  AddOrUpdateBlockItemsOptions,
   TextBlockItemInfo,
+  AddOrUpdateBlockItemsOptions,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
   RemoveBlockItemsOptions,
@@ -24,6 +24,7 @@ export {
   AnalyzeTextResult,
   TextBlocklistMatchResult,
   TextAnalyzeSeverityResult,
+  Versions,
   PagedTextBlocklist,
   PagedTextBlockItem,
   AnalyzeTextOptionalParams,

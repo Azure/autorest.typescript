@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { SchemaRegistryContext } from "../../api/SchemaRegistryContext.js";
+import { SchemaRegistryContext } from "../../api/schemaRegistryContext.js";
 import {
   SchemaGroup,
-  SchemaContentTypeValues,
   SchemaVersion,
+  SchemaContentTypeValues,
 } from "../../models/models.js";
 import {
   listSchemaGroups,

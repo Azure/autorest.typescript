@@ -4,9 +4,10 @@
 export {
   ValueTypesClient,
   ValueTypesClientOptions,
-} from "./ValueTypesClient.js";
+} from "./valueTypesClient.js";
 export {
   UnionEnumValueProperty,
+  ExtendedEnum,
   UnionFloatLiteralProperty,
   UnionIntLiteralProperty,
   UnionStringLiteralProperty,

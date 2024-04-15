@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { SpecialWordsContext } from "../../api/SpecialWordsContext.js";
+import { SpecialWordsContext } from "../../api/specialWordsContext.js";
 import {
   parametersWithAnd,
   parametersWithAs,

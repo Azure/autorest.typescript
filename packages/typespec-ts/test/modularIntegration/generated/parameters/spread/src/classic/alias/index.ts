@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { SpreadContext } from "../../api/SpreadContext.js";
+import { SpreadContext } from "../../api/spreadContext.js";
 import {
   aliasSpreadAsRequestBody,
   aliasSpreadAsRequestParameter,

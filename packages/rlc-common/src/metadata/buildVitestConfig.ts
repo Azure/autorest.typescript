@@ -37,7 +37,6 @@ const browserConfig = (options: {
     "define": {
       "process.env": process.env
     },
-    ${options.isAzureSdkForJs ? `plugins: [browserMap()],` : ""}
     "test": {
       "reporters": ["basic", "junit"],
       "outputFile": {
@@ -103,13 +102,6 @@ export function buildVitestConfig(
     moduleSpecifier: "vitest/config",
     namedImports: ["defineConfig"]
   });
-
-  if (platform === "browser" && isAzureSdkForJs) {
-    configFile.addImportDeclaration({
-      moduleSpecifier: "@azure-tools/vite-plugin-browser-test-map",
-      defaultImport: "browserMap"
-    });
-  }
 
   return {
     path: filePath,

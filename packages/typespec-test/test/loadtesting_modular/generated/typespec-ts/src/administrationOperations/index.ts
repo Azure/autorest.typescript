@@ -4,7 +4,7 @@
 export {
   AdministrationOperationsClient,
   AdministrationOperationsClientOptions,
-} from "./AdministrationOperationsClient.js";
+} from "./administrationOperationsClient.js";
 export {
   Test,
   PassFailCriteria,
@@ -29,6 +29,7 @@ export {
   ResourceMetric,
   PagedFileInfo,
   PagedTest,
+  APIVersions,
   TestRun,
   ErrorDetails,
   TestRunStatistics,
@@ -37,6 +38,8 @@ export {
   TestRunOutputArtifacts,
   PFTestResult,
   Status,
+  Interval,
+  DimensionValueList,
   MetricDefinition,
   NameAndDesc,
   AggregationType,
@@ -48,8 +51,6 @@ export {
   TimeSeriesElement,
   MetricValue,
   DimensionValue,
-  Interval,
-  DimensionValueList,
   CreateOrUpdateTestOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
   CreateOrUpdateServerMetricsConfigOptionalParams,

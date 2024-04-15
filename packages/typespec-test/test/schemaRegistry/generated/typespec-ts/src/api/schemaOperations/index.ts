@@ -2,11 +2,11 @@
 // Licensed under the MIT license.
 
 import {
-  PagedSchemaGroup,
   SchemaGroup,
-  SchemaContentTypeValues,
-  PagedVersion,
   SchemaVersion,
+  SchemaContentTypeValues,
+  PagedSchemaGroup,
+  PagedVersion,
 } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";

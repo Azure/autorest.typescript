@@ -1,18 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { BasicClient, BasicClientOptions } from "./BasicClient.js";
+export { BasicClient, BasicClientOptions } from "./basicClient.js";
 export {
   User,
   UserOrder,
   ListItemInputBody,
-  UserListResults,
-  PagedUser,
   ListItemInputExtensibleEnum,
-  PagedFirstItem,
+  UserListResults,
   FirstItem,
-  PagedSecondItem,
   SecondItem,
+  Versions,
+  PagedUser,
+  PagedFirstItem,
+  PagedSecondItem,
   CreateOrUpdateOptionalParams,
   CreateOrReplaceOptionalParams,
   GetOptionalParams,

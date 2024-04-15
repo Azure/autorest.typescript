@@ -59,6 +59,7 @@ export class EventGridClient {
 
 // @public (undocumented)
 export interface EventGridClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public
@@ -126,6 +127,9 @@ export interface ReleaseResult {
     failedLockTokens: FailedLockToken[];
     succeededLockTokens: string[];
 }
+
+// @public (undocumented)
+export type ServiceApiVersions = "2023-06-01-preview";
 
 // (No @packageDocumentation comment for this package)
 

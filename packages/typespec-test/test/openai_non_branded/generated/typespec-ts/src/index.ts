@@ -1,6 +1,6 @@
 // Licensed under the MIT license.
 
-export { OpenAIClient, OpenAIClientOptions } from "./OpenAIClient.js";
+export { OpenAIClient, OpenAIClientOptions } from "./openAIClient.js";
 export {
   CreateModerationRequest,
   CreateModerationResponse,
@@ -35,10 +35,10 @@ export {
   ListPaginatedFineTuningJobsResponse,
   ListFineTuningJobEventsResponse,
   FineTuningJobEvent,
-  CreateChatCompletionRequest,
   ChatCompletionRequestMessage,
   ChatCompletionFunctions,
   ChatCompletionFunctionCallOption,
+  CreateChatCompletionRequest,
   CreateChatCompletionResponse,
   ChatCompletionResponseMessage,
   CreateTranslationRequest,

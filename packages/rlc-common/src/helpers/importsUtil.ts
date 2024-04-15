@@ -12,7 +12,7 @@ export function buildRuntimeImports(flavor?: PackageFlavor): Imports {
       restClient: {
         type: "restClient",
         specifier: "@azure-rest/core-client",
-        version: "^1.2.0"
+        version: "^1.4.0"
       },
       coreAuth: {
         type: "coreAuth",
@@ -77,6 +77,10 @@ export function initInternalImports(): Imports {
     },
     modularModel: {
       type: "modularModel",
+      importsSet: new Set<string>()
+    },
+    rlcClientFactory: {
+      type: "rlcClientFactory",
       importsSet: new Set<string>()
     }
   } as Imports;

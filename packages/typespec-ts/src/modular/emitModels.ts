@@ -67,6 +67,7 @@ export function extractAliases(codeModel: ModularCodeModel): Type[] {
 function buildEnumModel(
   model: Type
 ): OptionalKind<TypeAliasDeclarationStructure> {
+  const valueType = model.valueType?.type === "string" ? "string" : "number";
   return {
     name: model.name!,
     isExported: true,
@@ -76,14 +77,23 @@ function buildEnumModel(
       // output will be a literal union which is self documenting
       model.isFixed
         ? ""
-        : // When we generate an "extensible" enum, the type will be "string" so we list the known values
+        : // When we generate an "extensible" enum, the type will be "string" or "number" so we list the known values
           // in the docs for user reference.
-          (model.values ?? []).map((v) => `"${v.value}"`).join(", ")
+          getEnumValues()
     ],
-    type: model.isFixed
-      ? (model.values ?? []).map((v) => `"${v.value}"`).join(" | ")
-      : "string"
+    type: buildEnumType()
   };
+
+  function buildEnumType() {
+    return model.isFixed ? getEnumValues(" | ") : valueType;
+  }
+
+  function getEnumValues(separator: string = ", ") {
+    const splitWord = valueType === "string" ? `"` : ``;
+    return (model.values ?? [])
+      .map((v) => `${splitWord}${v.value}${splitWord}`)
+      .join(separator);
+  }
 }
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {

@@ -5,7 +5,7 @@ export {
   createAdministrationOperations,
   AdministrationOperationsClientOptions,
   AzureLoadTestingContext,
-} from "./AdministrationOperationsContext.js";
+} from "./administrationOperationsContext.js";
 export {
   createOrUpdateTest,
   createOrUpdateAppComponents,

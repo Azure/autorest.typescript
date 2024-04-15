@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { BatchClient, BatchClientOptions } from "./BatchClient.js";
+export { BatchClient, BatchClientOptions } from "./batchClient.js";
 export {
   BatchNodeUserCreateOptions,
   BatchError,
@@ -207,6 +207,7 @@ export {
   NodeRemoveOptions,
   ApplicationListResult,
   BatchApplication,
+  Versions,
   ListApplicationsOptionalParams,
   GetApplicationOptionalParams,
   ListPoolUsageMetricsOptionalParams,

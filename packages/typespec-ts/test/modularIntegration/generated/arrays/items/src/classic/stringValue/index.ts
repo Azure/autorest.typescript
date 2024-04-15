@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ArrayContext } from "../../api/ArrayContext.js";
+import { ArrayContext } from "../../api/arrayContext.js";
 import { stringValueGet, stringValuePut } from "../../api/stringValue/index.js";
 import {
   StringValueGetOptionalParams,

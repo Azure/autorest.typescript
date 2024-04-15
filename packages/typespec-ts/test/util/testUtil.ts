@@ -78,6 +78,7 @@ export function createDpgContextTestHelper(
   const defaultOptions = {
     generateProtocolMethods: true,
     generateConvenienceMethods: true,
+    flattenUnionAsEnum: false,
     emitters: [
       {
         main: "@azure-tools/typespec-ts",

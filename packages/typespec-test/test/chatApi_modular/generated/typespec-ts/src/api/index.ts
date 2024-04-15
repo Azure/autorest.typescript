@@ -5,5 +5,5 @@ export {
   createChatProtocol,
   ChatProtocolClientOptions,
   ChatProtocolContext,
-} from "./ChatProtocolContext.js";
+} from "./chatProtocolContext.js";
 export { createStreaming, create } from "./operations.js";

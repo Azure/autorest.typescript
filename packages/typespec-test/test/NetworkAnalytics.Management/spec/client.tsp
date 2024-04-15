@@ -18,3 +18,9 @@ using Azure.ClientGenerator.Core;
 @@access(Microsoft.NetworkAnalytics.Versions,
   Access.public
 );
+@@usage(Microsoft.NetworkAnalytics.ResourceAccessRules,
+  Usage.input 
+);
+@@access(Microsoft.NetworkAnalytics.ResourceAccessRules,
+  Access.public
+);

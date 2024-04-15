@@ -4,7 +4,7 @@
 export {
   AdministrationOperationsClient,
   AdministrationOperationsClientOptions,
-} from "./administrationOperations/AdministrationOperationsClient.js";
+} from "./administrationOperations/administrationOperationsClient.js";
 export {
   Test,
   PassFailCriteria,
@@ -29,6 +29,7 @@ export {
   ResourceMetric,
   PagedFileInfo,
   PagedTest,
+  APIVersions,
   TestRun,
   ErrorDetails,
   TestRunStatistics,
@@ -37,6 +38,8 @@ export {
   TestRunOutputArtifacts,
   PFTestResult,
   Status,
+  Interval,
+  DimensionValueList,
   MetricDefinition,
   NameAndDesc,
   AggregationType,
@@ -48,8 +51,6 @@ export {
   TimeSeriesElement,
   MetricValue,
   DimensionValue,
-  Interval,
-  DimensionValueList,
   CreateOrUpdateTestOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
   CreateOrUpdateServerMetricsConfigOptionalParams,
@@ -69,7 +70,7 @@ export {
 export {
   TestRunOperationsClient,
   TestRunOperationsClientOptions,
-} from "./testRunOperations/TestRunOperationsClient.js";
+} from "./testRunOperations/testRunOperationsClient.js";
 export {
   Test as TestRunOperationsClientTest,
   PassFailCriteria as TestRunOperationsClientPassFailCriteria,
@@ -90,6 +91,7 @@ export {
   FileStatus as TestRunOperationsClientFileStatus,
   AppComponent as TestRunOperationsClientAppComponent,
   ResourceMetric as TestRunOperationsClientResourceMetric,
+  APIVersions as TestRunOperationsClientAPIVersions,
   TestRun as TestRunOperationsClientTestRun,
   ErrorDetails as TestRunOperationsClientErrorDetails,
   TestRunStatistics as TestRunOperationsClientTestRunStatistics,
@@ -98,6 +100,8 @@ export {
   TestRunOutputArtifacts as TestRunOperationsClientTestRunOutputArtifacts,
   PFTestResult as TestRunOperationsClientPFTestResult,
   Status as TestRunOperationsClientStatus,
+  Interval as TestRunOperationsClientInterval,
+  DimensionValueList as TestRunOperationsClientDimensionValueList,
   MetricDefinition as TestRunOperationsClientMetricDefinition,
   NameAndDesc as TestRunOperationsClientNameAndDesc,
   AggregationType as TestRunOperationsClientAggregationType,
@@ -109,8 +113,6 @@ export {
   TimeSeriesElement as TestRunOperationsClientTimeSeriesElement,
   MetricValue as TestRunOperationsClientMetricValue,
   DimensionValue as TestRunOperationsClientDimensionValue,
-  Interval as TestRunOperationsClientInterval,
-  DimensionValueList as TestRunOperationsClientDimensionValueList,
   TestRunOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams as TestRunOperationsClientCreateOrUpdateAppComponentsOptionalParams,
   CreateOrUpdateServerMetricsConfigOptionalParams as TestRunOperationsClientCreateOrUpdateServerMetricsConfigOptionalParams,
