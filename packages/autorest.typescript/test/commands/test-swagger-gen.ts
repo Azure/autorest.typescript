@@ -2,6 +2,7 @@ import { spawn } from "child_process";
 import { TracingInfo } from "../../src/models/clientDetails";
 import { onExit } from "./childProcessOnExit";
 import { runAutorest } from "./run";
+import { join } from "path";
 
 interface SwaggerConfig {
   swaggerOrConfig: string;
@@ -1117,7 +1118,7 @@ const generateSwaggers = async (
   if (isRlc) {
     testSwaggers = rlcTestSwaggers;
   }
-  const swaggers = Object.keys(testSwaggers).filter(name => {
+  const swaggers = Object.keys(testSwaggers).filter((name) => {
     if (!whiteList || !whiteList.length) {
       return true;
     }
@@ -1200,10 +1201,34 @@ const generateSwaggers = async (
       isDebugging
     );
   }
+
+  if (isRlc) {
+    const rlcIntegration = join(
+      `${__dirname}`,
+      "..",
+      "..",
+      "test",
+      "rlcIntegration"
+    );
+    console.log(rlcIntegration);
+    installPackages(join(`${__dirname}`, "..", "..", "test", "rlcIntegration"));
+  }
+};
+
+const installPackages = async (projectPath?: string) => {
+  if (!projectPath) {
+    return;
+  }
+  const npmCommand = `npm${/^win/.test(process.platform) ? ".cmd" : ""}`;
+  const npmInstall = spawn(npmCommand, ["install"], {
+    stdio: [process.stdin, process.stdout, process.stderr],
+    cwd: projectPath
+  });
+  await onExit(npmInstall);
 };
 
 const buildWhitelist = () => {
-  if (process.argv.find(arg => arg === "--all-rlc")) {
+  if (process.argv.find((arg) => arg === "--all-rlc")) {
     console.log("Generating all RLC test clients");
     for (const swagger in testSwaggers) {
       if (testSwaggers[swagger].restLevelClient) {
@@ -1214,7 +1239,7 @@ const buildWhitelist = () => {
     return;
   }
 
-  if (process.argv.find(arg => arg === "--non-hlc")) {
+  if (process.argv.find((arg) => arg === "--non-hlc")) {
     console.log("Generating all non-RLC test clients");
 
     for (const swagger in testSwaggers) {
@@ -1241,7 +1266,7 @@ const buildWhitelist = () => {
 
     const swaggers = includesValue.split(",");
 
-    swaggers.forEach(swagger => {
+    swaggers.forEach((swagger) => {
       const validSwaggers = Object.keys(testSwaggers);
       if (!validSwaggers.includes(swagger)) {
         throw new Error(
@@ -1287,7 +1312,7 @@ const run = async () => {
   await generateSwaggers(whiteList, isDebugging, isRlc);
 };
 
-run().catch(error => {
+run().catch((error) => {
   console.error(error);
   process.exit(-1000);
 });
