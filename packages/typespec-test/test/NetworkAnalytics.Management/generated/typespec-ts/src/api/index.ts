@@ -5,7 +5,7 @@ export {
   createNetworkAnalytics,
   NetworkAnalyticsClientOptions,
   NetworkAnalyticsContext,
-} from "./NetworkAnalyticsContext.js";
+} from "./networkAnalyticsContext.js";
 export {
   dataProductsCreate,
   dataProductsGet,

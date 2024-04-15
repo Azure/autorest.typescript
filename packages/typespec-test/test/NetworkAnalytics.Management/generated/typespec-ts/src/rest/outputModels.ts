@@ -11,18 +11,10 @@ export interface OperationOutput {
   readonly isDataAction?: boolean;
   /** Localized display information for this particular operation. */
   display?: OperationDisplayOutput;
-  /**
-   * The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system"
-   *
-   * Possible values: "user", "system", "user,system"
-   */
-  readonly origin?: string;
-  /**
-   * Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs.
-   *
-   * Possible values: "Internal"
-   */
-  actionType?: string;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  readonly origin?: OriginOutput;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: ActionTypeOutput;
 }
 
 /** Localized display information for and operation. */
@@ -120,22 +112,14 @@ export interface ArmResourceOutput extends ArmResourceBaseOutput {
 export interface SystemDataOutput {
   /** The identity that created the resource. */
   readonly createdBy?: string;
-  /**
-   * The type of identity that created the resource.
-   *
-   * Possible values: "User", "Application", "ManagedIdentity", "Key"
-   */
-  readonly createdByType?: string;
+  /** The type of identity that created the resource. */
+  readonly createdByType?: createdByTypeOutput;
   /** The type of identity that created the resource. */
   readonly createdAt?: string;
   /** The identity that last modified the resource. */
   readonly lastModifiedBy?: string;
-  /**
-   * The type of identity that last modified the resource.
-   *
-   * Possible values: "User", "Application", "ManagedIdentity", "Key"
-   */
-  readonly lastModifiedByType?: string;
+  /** The type of identity that last modified the resource. */
+  readonly lastModifiedByType?: createdByTypeOutput;
   /** The timestamp of resource last modification (UTC) */
   readonly lastModifiedAt?: string;
 }
@@ -273,12 +257,8 @@ export interface ManagedIdentityPropertiesOutput {
   readonly tenantId?: string;
   /** The active directory identifier of this principal. */
   readonly principalId?: string;
-  /**
-   * The type of managed identity assigned to this resource.
-   *
-   * Possible values: "None", "SystemAssigned", "UserAssigned", "SystemAssigned, UserAssigned"
-   */
-  type: string;
+  /** The type of managed identity assigned to this resource. */
+  type: ManagedIdentityTypeOutput;
   /** The identities assigned to this resource by the user. */
   userAssignedIdentities?: Record<string, UserAssignedIdentityOutput>;
 }
@@ -333,12 +313,8 @@ export interface PrivateEndpointConnectionPropertiesOutput {
   privateEndpoint?: PrivateEndpointOutput;
   /** A collection of information about the state of the connection between service consumer and provider. */
   privateLinkServiceConnectionState: PrivateLinkServiceConnectionStateOutput;
-  /**
-   * The provisioning state of the private endpoint connection resource.
-   *
-   * Possible values: "Succeeded", "Failed", "Canceled", "Creating", "Deleting"
-   */
-  provisioningState?: string;
+  /** The provisioning state of the private endpoint connection resource. */
+  provisioningState?: PrivateEndpointConnectionProvisioningStateOutput;
 }
 
 /** The private endpoint resource */
@@ -349,12 +325,8 @@ export interface PrivateEndpointOutput {
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionStateOutput {
-  /**
-   * Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
-   *
-   * Possible values: "Pending", "Approved", "Rejected"
-   */
-  status?: string;
+  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  status?: PrivateEndpointServiceConnectionStatusOutput;
   /** The reason for approval/rejection of the connection. */
   description?: string;
   /** A message indicating if changes on the service provider require any updates on the consumer. */
@@ -416,6 +388,10 @@ export interface ListRoleAssignmentsOutput {
 
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
 export type PagedOperationOutput = Paged<OperationOutput>;
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OriginOutput = "user" | "system" | "user,system";
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type ActionTypeOutput = "Internal";
 /** Alias for ProvisioningStateOutput */
 export type ProvisioningStateOutput =
   | string
@@ -426,12 +402,36 @@ export type ProvisioningStateOutput =
   | "Updating"
   | "Deleting"
   | "Accepted";
+/** The kind of entity that created the resource. */
+export type createdByTypeOutput =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
 /** Alias for ControlStateOutput */
 export type ControlStateOutput = string | "Enabled" | "Disabled";
 /** Alias for DefaultActionOutput */
 export type DefaultActionOutput = string | "Allow" | "Deny";
+/** The kind of managed identity assigned to this resource. */
+export type ManagedIdentityTypeOutput =
+  | "None"
+  | "SystemAssigned"
+  | "UserAssigned"
+  | "SystemAssigned, UserAssigned";
 /** Alias for DataTypeStateOutput */
 export type DataTypeStateOutput = string | "Stopped" | "Running";
+/** The private endpoint connection status */
+export type PrivateEndpointServiceConnectionStatusOutput =
+  | "Pending"
+  | "Approved"
+  | "Rejected";
+/** The provisioning state of the connection */
+export type PrivateEndpointConnectionProvisioningStateOutput =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Creating"
+  | "Deleting";
 /** The response of a DataProductsCatalog list operation. */
 export type DataProductsCatalogListResultOutput =
   Paged<DataProductsCatalogOutput>;

@@ -54,6 +54,8 @@ export {
   OperationDisplay,
   Origin,
   ActionType,
+  Bypass,
+  Versions,
 } from "./models.js";
 export {
   OperationsListOptionalParams,

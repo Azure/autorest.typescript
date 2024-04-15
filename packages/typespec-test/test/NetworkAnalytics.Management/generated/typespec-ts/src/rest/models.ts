@@ -150,12 +150,8 @@ export interface ConsumptionEndpointsProperties {}
 
 /** The properties of the managed service identities assigned to this resource. */
 export interface ManagedIdentityProperties {
-  /**
-   * The type of managed identity assigned to this resource.
-   *
-   * Possible values: "None", "SystemAssigned", "UserAssigned", "SystemAssigned, UserAssigned"
-   */
-  type: string;
+  /** The type of managed identity assigned to this resource. */
+  type: ManagedIdentityType;
   /** The identities assigned to this resource by the user. */
   userAssignedIdentities?: Record<string, UserAssignedIdentity>;
 }
@@ -201,12 +197,8 @@ export interface PrivateEndpointConnectionProperties {
   privateEndpoint?: PrivateEndpoint;
   /** A collection of information about the state of the connection between service consumer and provider. */
   privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-  /**
-   * The provisioning state of the private endpoint connection resource.
-   *
-   * Possible values: "Succeeded", "Failed", "Canceled", "Creating", "Deleting"
-   */
-  provisioningState?: string;
+  /** The provisioning state of the private endpoint connection resource. */
+  provisioningState?: PrivateEndpointConnectionProvisioningState;
 }
 
 /** The private endpoint resource */
@@ -217,12 +209,8 @@ export interface PrivateEndpoint {
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export interface PrivateLinkServiceConnectionState {
-  /**
-   * Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
-   *
-   * Possible values: "Pending", "Approved", "Rejected"
-   */
-  status?: string;
+  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  status?: PrivateEndpointServiceConnectionStatus;
   /** The reason for approval/rejection of the connection. */
   description?: string;
   /** A message indicating if changes on the service provider require any updates on the consumer. */
@@ -350,11 +338,31 @@ export type ProvisioningState =
   | "Updating"
   | "Deleting"
   | "Accepted";
+/** The kind of entity that created the resource. */
+export type createdByType = "User" | "Application" | "ManagedIdentity" | "Key";
 /** Alias for ControlState */
 export type ControlState = string | "Enabled" | "Disabled";
 /** Alias for DefaultAction */
 export type DefaultAction = string | "Allow" | "Deny";
+/** The kind of managed identity assigned to this resource. */
+export type ManagedIdentityType =
+  | "None"
+  | "SystemAssigned"
+  | "UserAssigned"
+  | "SystemAssigned, UserAssigned";
 /** Alias for DataTypeState */
 export type DataTypeState = string | "Stopped" | "Running";
+/** The private endpoint connection status */
+export type PrivateEndpointServiceConnectionStatus =
+  | "Pending"
+  | "Approved"
+  | "Rejected";
+/** The provisioning state of the connection */
+export type PrivateEndpointConnectionProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Creating"
+  | "Deleting";
 /** Alias for DataProductUserRole */
 export type DataProductUserRole = string | "Reader" | "SensitiveReader";

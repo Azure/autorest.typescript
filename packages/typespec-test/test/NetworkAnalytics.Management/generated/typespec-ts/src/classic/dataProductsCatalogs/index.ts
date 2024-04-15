@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { NetworkAnalyticsContext } from "../../api/NetworkAnalyticsContext.js";
+import { NetworkAnalyticsContext } from "../../api/networkAnalyticsContext.js";
 import { DataProductsCatalog } from "../../models/models.js";
 import {
   dataProductsCatalogsGet,

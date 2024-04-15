@@ -4,7 +4,7 @@
 export {
   NetworkAnalyticsClient,
   NetworkAnalyticsClientOptions,
-} from "./NetworkAnalyticsClient.js";
+} from "./networkAnalyticsClient.js";
 export {
   ArmResourceBase,
   ArmResource,
@@ -58,6 +58,8 @@ export {
   OperationDisplay,
   Origin,
   ActionType,
+  Bypass,
+  Versions,
   OperationsListOptionalParams,
   DataProductsCatalogsGetOptionalParams,
   DataProductsCatalogsListByResourceGroupOptionalParams,

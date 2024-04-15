@@ -31,8 +31,8 @@ export interface SystemData {
 }
 
 /** The kind of entity that created the resource. */
-/** "User", "Application", "ManagedIdentity", "Key" */
-export type createdByType = string;
+/** */
+export type createdByType = "User" | "Application" | "ManagedIdentity" | "Key";
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource */
 export interface TrackedResourceBase extends ArmResource {
@@ -182,8 +182,12 @@ export interface ManagedIdentityProperties {
 }
 
 /** The kind of managed identity assigned to this resource. */
-/** "None", "SystemAssigned", "UserAssigned", "SystemAssigned, UserAssigned" */
-export type ManagedIdentityType = string;
+/** */
+export type ManagedIdentityType =
+  | "None"
+  | "SystemAssigned"
+  | "UserAssigned"
+  | "SystemAssigned, UserAssigned";
 
 /** A managed identity assigned by the user. */
 export interface UserAssignedIdentity {
@@ -239,8 +243,8 @@ export interface DataProductUpdateProperties {
 }
 
 /** The provisioning state of a resource type. */
-/** "Succeeded", "Failed", "Canceled" */
-export type ResourceProvisioningState = string;
+/** */
+export type ResourceProvisioningState = "Succeeded" | "Failed" | "Canceled";
 
 /** The details for storage account sas creation. */
 export interface AccountSas {
@@ -315,7 +319,7 @@ export interface DataProductListResult {
   /** The DataProduct items on this page */
   value: DataProduct[];
   /** The link to the next page of items */
-  readonly nextLink?: string;
+  nextLink?: string;
 }
 
 /** The base proxy resource. */
@@ -387,7 +391,7 @@ export interface DataTypeListResult {
   /** The DataType items on this page */
   value: DataType[];
   /** The link to the next page of items */
-  readonly nextLink?: string;
+  nextLink?: string;
 }
 
 /** The data catalog resource. */
@@ -433,7 +437,7 @@ export interface DataProductsCatalogListResult {
   /** The DataProductsCatalog items on this page */
   value: DataProductsCatalog[];
   /** The link to the next page of items */
-  readonly nextLink?: string;
+  nextLink?: string;
 }
 
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
@@ -441,7 +445,7 @@ export interface PagedOperation {
   /** The Operation items on this page */
   value: Operation[];
   /** The link to the next page of items */
-  readonly nextLink?: string;
+  nextLink?: string;
 }
 
 /** Details of a REST API operation, returned from the Resource Provider Operations API */
@@ -471,8 +475,14 @@ export interface OperationDisplay {
 }
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-/** "user", "system", "user,system" */
-export type Origin = string;
+/** */
+export type Origin = "user" | "system" | "user,system";
 /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-/** "Internal" */
-export type ActionType = string;
+/** */
+export type ActionType = "Internal";
+/** Specifies whether traffic is bypassed for Logging/Metrics/AzureServices. Possible values are any combination of Logging|Metrics|AzureServices (For example, "Logging, Metrics"), or None to bypass none of those traffics. */
+/** "None", "Logging", "Metrics", "AzureServices" */
+export type Bypass = string;
+/** The available API versions for the Microsoft.NetworkAnalytics RP. */
+/** */
+export type Versions = "2023-11-15";
