@@ -1117,7 +1117,7 @@ const generateSwaggers = async (
   if (isRlc) {
     testSwaggers = rlcTestSwaggers;
   }
-  const swaggers = Object.keys(testSwaggers).filter((name) => {
+  const swaggers = Object.keys(testSwaggers).filter(name => {
     if (!whiteList || !whiteList.length) {
       return true;
     }
@@ -1203,7 +1203,7 @@ const generateSwaggers = async (
 };
 
 const buildWhitelist = () => {
-  if (process.argv.find((arg) => arg === "--all-rlc")) {
+  if (process.argv.find(arg => arg === "--all-rlc")) {
     console.log("Generating all RLC test clients");
     for (const swagger in testSwaggers) {
       if (testSwaggers[swagger].restLevelClient) {
@@ -1214,7 +1214,7 @@ const buildWhitelist = () => {
     return;
   }
 
-  if (process.argv.find((arg) => arg === "--non-hlc")) {
+  if (process.argv.find(arg => arg === "--non-hlc")) {
     console.log("Generating all non-RLC test clients");
 
     for (const swagger in testSwaggers) {
@@ -1241,7 +1241,7 @@ const buildWhitelist = () => {
 
     const swaggers = includesValue.split(",");
 
-    swaggers.forEach((swagger) => {
+    swaggers.forEach(swagger => {
       const validSwaggers = Object.keys(testSwaggers);
       if (!validSwaggers.includes(swagger)) {
         throw new Error(
@@ -1287,7 +1287,7 @@ const run = async () => {
   await generateSwaggers(whiteList, isDebugging, isRlc);
 };
 
-run().catch((error) => {
+run().catch(error => {
   console.error(error);
   process.exit(-1000);
 });

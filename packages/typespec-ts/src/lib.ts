@@ -90,8 +90,7 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
       nullable: true,
       enum: ["esm", "cjs"],
       default: "esm"
-    },
-    useLegacyV2Lro: { type: "boolean", nullable: true }
+    }
   },
   required: []
 };
@@ -223,12 +222,6 @@ const libDef = {
       severity: "warning",
       messages: {
         default: paramMessage`Please note the header ${"type"} is not serializable.`
-      }
-    },
-    "disable-legacy-v2-lro": {
-      severity: "warning",
-      messages: {
-        default: `The option useLegacyV2Lro is disabled for modular libraries.`
       }
     }
   },
