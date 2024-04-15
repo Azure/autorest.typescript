@@ -1,36 +1,79 @@
 const { readdirSync, statSync } = require("fs");
 const { join: joinPath, sep, extname } = require("path");
 const webpack = require("webpack");
+const { spawn } = require("child_process");
 
-function getIntegrationTestFiles() {
-  let hlcDirPath = joinPath(__dirname, "test-browser", "integration");
-  let hlcFiles = readdirSync(hlcDirPath);
-  let rlcDirPath = joinPath(__dirname, "test-browser", "rlcIntegration");
-  let rlcFiles = readdirSync(rlcDirPath);
-  hlcFiles = hlcFiles
+function getIntegrationTestFiles(env) {
+  const mode = env.mode ?? "hlc";
+  if (mode === "rlc") {
+    copyPackageJson();
+    installDependencies();
+  } else {
+    removeDependencies();
+  }
+  const dirPath = joinPath(
+    __dirname,
+    "test-browser",
+    mode === "rlc" ? rlcIntegration : integration
+  );
+  let files = readdirSync(dirPath);
+
+  files = files
     .filter(
-      name =>
-        extname(name) === ".js" &&
-        statSync(`${hlcDirPath}${sep}${name}`).isFile()
+      (name) =>
+        extname(name) === ".js" && statSync(`${dirPath}${sep}${name}`).isFile()
     )
-    .map(filename => `${hlcDirPath}${sep}${filename}`);
+    .map((filename) => `${dirPath}${sep}${filename}`);
 
-  rlcFiles = rlcFiles
-    .filter(
-      name =>
-        extname(name) === ".js" &&
-        statSync(`${rlcDirPath}${sep}${name}`).isFile()
-    )
-    .map(filename => `${rlcDirPath}${sep}${filename}`);
-
-  return [...hlcFiles, ...rlcFiles];
+  return [...files];
 }
 
-const entry = getIntegrationTestFiles();
+async function removeDependencies() {
+  const packageJson = joinPath(__dirname, "test-browser", "package.json");
+  const nodeModules = joinPath(__dirname, "test-browser", "node_modules");
+  const rmCommand = `rm -rf`;
+  const rm = spawn(rmCommand, [packageJson, nodeModules], {
+    stdio: [process.stdin, process.stdout, process.stderr]
+  });
+  rm.on("error", (err) => {
+    console.error("Failed to install dependencies", err);
+  });
+}
 
-module.exports = {
+async function copyPackageJson() {
+  const srcPath = joinPath(
+    __dirname,
+    "test",
+    "commands",
+    "browser.package.json"
+  );
+  const destPath = joinPath(__dirname, "test-browser", "package.json");
+  const cpCommand = `cp`;
+  const cp = spawn(cpCommand, [srcPath, destPath], {
+    stdio: [process.stdin, process.stdout, process.stderr]
+  });
+  cp.on("error", (err) => {
+    console.error("Failed to install dependencies", err);
+  });
+}
+
+async function installDependencies() {
+  let path = joinPath(__dirname, "test-browser");
+  const npmCommand = `npm${/^win/.test(process.platform) ? ".cmd" : ""}`;
+  const npmInstall = spawn(npmCommand, ["install"], {
+    stdio: [process.stdin, process.stdout, process.stderr],
+    cwd: path
+  });
+  npmInstall.on("error", (err) => {
+    console.error("Failed to install dependencies", err);
+  });
+}
+
+// const entry = getIntegrationTestFiles();
+
+module.exports = (env) => ({
   target: "web",
-  entry,
+  entry: getIntegrationTestFiles(env),
   output: {
     filename: "index.js",
     path: joinPath(__dirname, "test-browser")
@@ -64,4 +107,4 @@ module.exports = {
       Buffer: ["buffer", "Buffer"]
     })
   ]
-};
+});
