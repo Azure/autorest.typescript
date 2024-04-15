@@ -2,7 +2,6 @@ import { spawn } from "child_process";
 import { TracingInfo } from "../../src/models/clientDetails";
 import { onExit } from "./childProcessOnExit";
 import { runAutorest } from "./run";
-import { join } from "path";
 
 interface SwaggerConfig {
   swaggerOrConfig: string;
@@ -1201,30 +1200,6 @@ const generateSwaggers = async (
       isDebugging
     );
   }
-
-  if (isRlc) {
-    const rlcIntegration = join(
-      `${__dirname}`,
-      "..",
-      "..",
-      "test",
-      "rlcIntegration"
-    );
-    console.log(rlcIntegration);
-    installPackages(join(`${__dirname}`, "..", "..", "test", "rlcIntegration"));
-  }
-};
-
-const installPackages = async (projectPath?: string) => {
-  if (!projectPath) {
-    return;
-  }
-  const npmCommand = `npm${/^win/.test(process.platform) ? ".cmd" : ""}`;
-  const npmInstall = spawn(npmCommand, ["install"], {
-    stdio: [process.stdin, process.stdout, process.stderr],
-    cwd: projectPath
-  });
-  await onExit(npmInstall);
 };
 
 const buildWhitelist = () => {
