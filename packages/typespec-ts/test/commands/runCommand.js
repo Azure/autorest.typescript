@@ -9,10 +9,10 @@ export async function runCommand(command, args = [], workingDirectory, logger) {
     const env = { ...process.env, FORCE_COLOR: "true" };
     const child = spawn(command, [...args], {
       cwd: workingDirectory ?? process.cwd(),
-      shell: isLinux,
+      shell: true,
       execArgv: !isLinux ? [`--max-old-space-size=${memoryLimit}`] : undefined, // Adjusting memory limit
       env,
-      stdio: ["inherit", "pipe", "pipe"] // Use 'inherit' to 'pipe' for stdout and stderr
+      stdio: ["pipe"] // Use 'inherit' to 'pipe' for stdout and stderr
     });
 
     child.stdout.on("data", (data) => {
