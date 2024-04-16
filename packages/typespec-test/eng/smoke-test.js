@@ -14,8 +14,6 @@ async function exists(filePath) {
   }
 }
 
-console.log(`Memory limit: ${memoryLimit}GB`);
-
 const calculateMemoryLimit = () => {
   const totalMemory = os.totalmem();
   const freeMemory = os.freemem();
@@ -30,10 +28,11 @@ const calculateMemoryLimit = () => {
   }
 };
 
+const memoryLimit = calculateMemoryLimit();
+console.log(`Memory limit: ${memoryLimit}GB`);
+
 function runCommand(command, args = [], workingDirectory, logger) {
   const isLinux = os.platform() === "linux";
-
-  const memoryLimit = calculateMemoryLimit();
 
   return new Promise((resolve, reject) => {
     const env = { ...process.env, FORCE_COLOR: "true" };
