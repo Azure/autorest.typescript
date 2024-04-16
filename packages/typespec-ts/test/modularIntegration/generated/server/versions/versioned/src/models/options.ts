@@ -10,3 +10,7 @@ export interface WithQueryApiVersionOptionalParams extends OperationOptions {
 }
 
 export interface WithPathApiVersionOptionalParams extends OperationOptions {}
+
+export interface WithQueryOldApiVersionOptionalParams extends OperationOptions {
+  apiVersion?: string;
+}

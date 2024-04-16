@@ -5,6 +5,7 @@ export {
   withoutApiVersion,
   withQueryApiVersion,
   withPathApiVersion,
+  withQueryOldApiVersion,
 } from "./operations.js";
 export {
   createVersioned,

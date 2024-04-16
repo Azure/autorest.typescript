@@ -11,12 +11,30 @@ import {
   IsUnknownAdditionalPropertiesDiscriminated,
   ExtendsStringAdditionalProperties,
   IsStringAdditionalProperties,
+  SpreadStringRecord,
   ExtendsFloatAdditionalProperties,
   IsFloatAdditionalProperties,
+  SpreadFloatRecord,
   ExtendsModelAdditionalProperties,
   IsModelAdditionalProperties,
+  SpreadModelRecord,
   ExtendsModelArrayAdditionalProperties,
   IsModelArrayAdditionalProperties,
+  SpreadModelArrayRecord,
+  DifferentSpreadStringRecord,
+  DifferentSpreadFloatRecord,
+  DifferentSpreadModelRecord,
+  DifferentSpreadModelArrayRecord,
+  DifferentSpreadStringDerived,
+  DifferentSpreadFloatDerived,
+  DifferentSpreadModelDerived,
+  DifferentSpreadModelArrayDerived,
+  MultipleSpreadRecord,
+  SpreadRecordForUnion,
+  SpreadRecordForDiscriminatedUnion,
+  SpreadRecordForNonDiscriminatedUnion,
+  SpreadRecordForNonDiscriminatedUnion2,
+  SpreadRecordForNonDiscriminatedUnion3,
 } from "./models.js";
 
 export type ExtendsUnknownGetParameters = RequestParameters;
@@ -89,6 +107,15 @@ export interface IsStringPutBodyParam {
 }
 
 export type IsStringPutParameters = IsStringPutBodyParam & RequestParameters;
+export type SpreadStringGetParameters = RequestParameters;
+
+export interface SpreadStringPutBodyParam {
+  /** body */
+  body: SpreadStringRecord;
+}
+
+export type SpreadStringPutParameters = SpreadStringPutBodyParam &
+  RequestParameters;
 export type ExtendsFloatGetParameters = RequestParameters;
 
 export interface ExtendsFloatPutBodyParam {
@@ -106,6 +133,15 @@ export interface IsFloatPutBodyParam {
 }
 
 export type IsFloatPutParameters = IsFloatPutBodyParam & RequestParameters;
+export type SpreadFloatGetParameters = RequestParameters;
+
+export interface SpreadFloatPutBodyParam {
+  /** body */
+  body: SpreadFloatRecord;
+}
+
+export type SpreadFloatPutParameters = SpreadFloatPutBodyParam &
+  RequestParameters;
 export type ExtendsModelGetParameters = RequestParameters;
 
 export interface ExtendsModelPutBodyParam {
@@ -123,6 +159,15 @@ export interface IsModelPutBodyParam {
 }
 
 export type IsModelPutParameters = IsModelPutBodyParam & RequestParameters;
+export type SpreadModelGetParameters = RequestParameters;
+
+export interface SpreadModelPutBodyParam {
+  /** body */
+  body: SpreadModelRecord;
+}
+
+export type SpreadModelPutParameters = SpreadModelPutBodyParam &
+  RequestParameters;
 export type ExtendsModelArrayGetParameters = RequestParameters;
 
 export interface ExtendsModelArrayPutBodyParam {
@@ -141,3 +186,138 @@ export interface IsModelArrayPutBodyParam {
 
 export type IsModelArrayPutParameters = IsModelArrayPutBodyParam &
   RequestParameters;
+export type SpreadModelArrayGetParameters = RequestParameters;
+
+export interface SpreadModelArrayPutBodyParam {
+  /** body */
+  body: SpreadModelArrayRecord;
+}
+
+export type SpreadModelArrayPutParameters = SpreadModelArrayPutBodyParam &
+  RequestParameters;
+export type SpreadDifferentStringGetParameters = RequestParameters;
+
+export interface SpreadDifferentStringPutBodyParam {
+  /** body */
+  body: DifferentSpreadStringRecord;
+}
+
+export type SpreadDifferentStringPutParameters =
+  SpreadDifferentStringPutBodyParam & RequestParameters;
+export type SpreadDifferentFloatGetParameters = RequestParameters;
+
+export interface SpreadDifferentFloatPutBodyParam {
+  /** body */
+  body: DifferentSpreadFloatRecord;
+}
+
+export type SpreadDifferentFloatPutParameters =
+  SpreadDifferentFloatPutBodyParam & RequestParameters;
+export type SpreadDifferentModelGetParameters = RequestParameters;
+
+export interface SpreadDifferentModelPutBodyParam {
+  /** body */
+  body: DifferentSpreadModelRecord;
+}
+
+export type SpreadDifferentModelPutParameters =
+  SpreadDifferentModelPutBodyParam & RequestParameters;
+export type SpreadDifferentModelArrayGetParameters = RequestParameters;
+
+export interface SpreadDifferentModelArrayPutBodyParam {
+  /** body */
+  body: DifferentSpreadModelArrayRecord;
+}
+
+export type SpreadDifferentModelArrayPutParameters =
+  SpreadDifferentModelArrayPutBodyParam & RequestParameters;
+export type ExtendsDifferentSpreadStringGetParameters = RequestParameters;
+
+export interface ExtendsDifferentSpreadStringPutBodyParam {
+  /** body */
+  body: DifferentSpreadStringDerived;
+}
+
+export type ExtendsDifferentSpreadStringPutParameters =
+  ExtendsDifferentSpreadStringPutBodyParam & RequestParameters;
+export type ExtendsDifferentSpreadFloatGetParameters = RequestParameters;
+
+export interface ExtendsDifferentSpreadFloatPutBodyParam {
+  /** body */
+  body: DifferentSpreadFloatDerived;
+}
+
+export type ExtendsDifferentSpreadFloatPutParameters =
+  ExtendsDifferentSpreadFloatPutBodyParam & RequestParameters;
+export type ExtendsDifferentSpreadModelGetParameters = RequestParameters;
+
+export interface ExtendsDifferentSpreadModelPutBodyParam {
+  /** body */
+  body: DifferentSpreadModelDerived;
+}
+
+export type ExtendsDifferentSpreadModelPutParameters =
+  ExtendsDifferentSpreadModelPutBodyParam & RequestParameters;
+export type ExtendsDifferentSpreadModelArrayGetParameters = RequestParameters;
+
+export interface ExtendsDifferentSpreadModelArrayPutBodyParam {
+  /** body */
+  body: DifferentSpreadModelArrayDerived;
+}
+
+export type ExtendsDifferentSpreadModelArrayPutParameters =
+  ExtendsDifferentSpreadModelArrayPutBodyParam & RequestParameters;
+export type MultipleSpreadGetParameters = RequestParameters;
+
+export interface MultipleSpreadPutBodyParam {
+  /** body */
+  body: MultipleSpreadRecord;
+}
+
+export type MultipleSpreadPutParameters = MultipleSpreadPutBodyParam &
+  RequestParameters;
+export type SpreadRecordUnionGetParameters = RequestParameters;
+
+export interface SpreadRecordUnionPutBodyParam {
+  /** body */
+  body: SpreadRecordForUnion;
+}
+
+export type SpreadRecordUnionPutParameters = SpreadRecordUnionPutBodyParam &
+  RequestParameters;
+export type SpreadRecordDiscriminatedUnionGetParameters = RequestParameters;
+
+export interface SpreadRecordDiscriminatedUnionPutBodyParam {
+  /** body */
+  body: SpreadRecordForDiscriminatedUnion;
+}
+
+export type SpreadRecordDiscriminatedUnionPutParameters =
+  SpreadRecordDiscriminatedUnionPutBodyParam & RequestParameters;
+export type SpreadRecordNonDiscriminatedUnionGetParameters = RequestParameters;
+
+export interface SpreadRecordNonDiscriminatedUnionPutBodyParam {
+  /** body */
+  body: SpreadRecordForNonDiscriminatedUnion;
+}
+
+export type SpreadRecordNonDiscriminatedUnionPutParameters =
+  SpreadRecordNonDiscriminatedUnionPutBodyParam & RequestParameters;
+export type SpreadRecordNonDiscriminatedUnion2GetParameters = RequestParameters;
+
+export interface SpreadRecordNonDiscriminatedUnion2PutBodyParam {
+  /** body */
+  body: SpreadRecordForNonDiscriminatedUnion2;
+}
+
+export type SpreadRecordNonDiscriminatedUnion2PutParameters =
+  SpreadRecordNonDiscriminatedUnion2PutBodyParam & RequestParameters;
+export type SpreadRecordNonDiscriminatedUnion3GetParameters = RequestParameters;
+
+export interface SpreadRecordNonDiscriminatedUnion3PutBodyParam {
+  /** body */
+  body: SpreadRecordForNonDiscriminatedUnion3;
+}
+
+export type SpreadRecordNonDiscriminatedUnion3PutParameters =
+  SpreadRecordNonDiscriminatedUnion3PutBodyParam & RequestParameters;

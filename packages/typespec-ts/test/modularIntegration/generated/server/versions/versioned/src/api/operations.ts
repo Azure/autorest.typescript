@@ -6,6 +6,7 @@ import {
   WithoutApiVersion200Response,
   WithPathApiVersion200Response,
   WithQueryApiVersion200Response,
+  WithQueryOldApiVersion200Response,
 } from "../rest/index.js";
 import {
   StreamableMethod,
@@ -16,6 +17,7 @@ import {
   WithoutApiVersionOptionalParams,
   WithQueryApiVersionOptionalParams,
   WithPathApiVersionOptionalParams,
+  WithQueryOldApiVersionOptionalParams,
 } from "../models/options.js";
 
 export function _withoutApiVersionSend(
@@ -107,4 +109,36 @@ export async function withPathApiVersion(
 ): Promise<void> {
   const result = await _withPathApiVersionSend(context, apiVersion, options);
   return _withPathApiVersionDeserialize(result);
+}
+
+export function _withQueryOldApiVersionSend(
+  context: Client,
+  options: WithQueryOldApiVersionOptionalParams = { requestOptions: {} },
+): StreamableMethod<WithQueryOldApiVersion200Response> {
+  return context
+    .path("/server/versions/versioned/with-query-old-api-version")
+    .head({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: {
+        "api-version": options?.apiVersion ?? "2022-12-01-preview",
+      },
+    });
+}
+
+export async function _withQueryOldApiVersionDeserialize(
+  result: WithQueryOldApiVersion200Response,
+): Promise<void> {
+  if (result.status !== "200") {
+    throw createRestError(result);
+  }
+
+  return;
+}
+
+export async function withQueryOldApiVersion(
+  context: Client,
+  options: WithQueryOldApiVersionOptionalParams = { requestOptions: {} },
+): Promise<void> {
+  const result = await _withQueryOldApiVersionSend(context, options);
+  return _withQueryOldApiVersionDeserialize(result);
 }

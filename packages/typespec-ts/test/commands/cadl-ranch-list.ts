@@ -162,10 +162,6 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "parameters/spread"
   },
   {
-    outputPath: "projection",
-    inputPath: "projection/projected-name"
-  },
-  {
     outputPath: "server/path/single",
     inputPath: "server/path/single"
   },

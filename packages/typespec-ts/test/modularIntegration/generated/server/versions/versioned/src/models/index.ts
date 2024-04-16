@@ -6,4 +6,5 @@ export {
   WithoutApiVersionOptionalParams,
   WithQueryApiVersionOptionalParams,
   WithPathApiVersionOptionalParams,
+  WithQueryOldApiVersionOptionalParams,
 } from "./options.js";

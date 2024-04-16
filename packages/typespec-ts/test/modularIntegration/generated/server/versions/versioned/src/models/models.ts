@@ -3,4 +3,4 @@
 
 /** The version of the API. */
 /** */
-export type Versions = "2022-12-01-preview";
+export type Versions = "2021-01-01-preview" | "2022-12-01-preview";
