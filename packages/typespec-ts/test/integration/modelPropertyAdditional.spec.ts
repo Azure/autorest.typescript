@@ -2,7 +2,7 @@ import { assert } from "chai";
 import AdditionalPropertiesClientFactory, {
   AdditionalPropertiesClient
 } from "./generated/models/propertyAdditional/src/index.js";
-describe("ClientRequestIdClient", () => {
+describe.only("ClientRequestIdClient", () => {
   let client: AdditionalPropertiesClient;
 
   beforeEach(() => {
@@ -217,7 +217,8 @@ describe("ClientRequestIdClient", () => {
         .path("/type/property/additionalProperties/extendsRecordModel")
         .put({
           body: {
-            prop: { state: "ok" }
+            prop: { state: "ok" },
+            knownProp:{state:"ok"}
           }
         });
       assert.strictEqual(result.status, "204");
@@ -244,7 +245,8 @@ describe("ClientRequestIdClient", () => {
         .path("/type/property/additionalProperties/isRecordModel")
         .put({
           body: {
-            prop: { state: "ok" }
+            prop: { state: "ok" },
+            knownProp:{state:"ok"}
           }
         });
       assert.strictEqual(result.status, "204");
@@ -273,7 +275,8 @@ describe("ClientRequestIdClient", () => {
         .path("/type/property/additionalProperties/extendsRecordModelArray")
         .put({
           body: {
-            prop: [{ state: "ok" }, { state: "ok" }]
+            prop: [{ state: "ok" }, { state: "ok" }],
+            knownProp:[{ state: "ok" }, { state: "ok" }]
           }
         });
       assert.strictEqual(result.status, "204");
@@ -302,7 +305,8 @@ describe("ClientRequestIdClient", () => {
         .path("/type/property/additionalProperties/isRecordModelArray")
         .put({
           body: {
-            prop: [{ state: "ok" }, { state: "ok" }]
+            prop: [{ state: "ok" }, { state: "ok" }],
+            knownProp:[{ state: "ok" }, { state: "ok" }]
           }
         });
       assert.strictEqual(result.status, "204");
