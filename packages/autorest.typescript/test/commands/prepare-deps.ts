@@ -9,7 +9,7 @@ async function main() {
     await copyPackageJson();
     await installDependencies(join(`${__dirname}`, "..", "..", "test-browser"));
   } else if (isRemoval) {
-    await removeDependencies([
+    await removeFiles([
       join(`${__dirname}`, "..", "..", "test-browser", "package.json"),
       join(`${__dirname}`, "..", "..", "test-browser", "node_modules")
     ]);
@@ -20,7 +20,7 @@ async function main() {
   }
 }
 
-async function removeDependencies(files: string[]) {
+async function removeFiles(files: string[]) {
   const existing = files.filter((file) => existsSync(file));
   if (existing.length === 0) {
     console.log("No dependencies to remove");
