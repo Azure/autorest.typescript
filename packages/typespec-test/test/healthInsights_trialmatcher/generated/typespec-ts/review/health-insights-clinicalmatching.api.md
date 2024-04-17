@@ -340,19 +340,23 @@ export interface Routes {
 
 // @public
 export interface SimplePollerLike<TState extends OperationState<TResult>, TResult> {
-    readonly isDone: boolean;
-    readonly isStopped: boolean;
+    getOperationState(): TState;
+    getResult(): TResult | undefined;
+    isDone(): boolean;
+    isStopped(): boolean;
     onProgress(callback: (state: TState) => void): CancelOnProgress;
-    readonly operationState: TState | undefined;
     poll(options?: {
         abortSignal?: AbortSignalLike;
     }): Promise<TState>;
     pollUntilDone(pollOptions?: {
         abortSignal?: AbortSignalLike;
     }): Promise<TResult>;
-    readonly result: TResult | undefined;
     serialize(): Promise<string>;
+    // @deprecated (undocumented)
+    stopPolling(): void;
     submitted(): Promise<void>;
+    // @deprecated (undocumented)
+    toString(): string;
 }
 
 // @public
