@@ -93,7 +93,7 @@ describe("LRO Rest Client", () => {
       if (isUnexpected(response)) {
         assert.fail(`Unexpected status code ${response.status}`);
       }
-      assert.equal(poller?.operationState?.status, "canceled");
+      assert.equal(poller.getOperationState().status, "canceled");
       assert.equal(response.status, "200");
       assert.deepEqual(response.body.properties?.provisioningState, "Canceled");
     });
@@ -145,7 +145,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "200");
     });
 
@@ -159,7 +159,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "204");
       assert.equal(result.body, undefined);
     });
@@ -174,7 +174,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "204");
       assert.equal(result.body, undefined);
     });
@@ -187,7 +187,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "200");
       assert.deepEqual(result.body, { id: "100", name: "foo" });
     });
@@ -202,7 +202,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "200");
     });
 
@@ -216,7 +216,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "200");
     });
 
@@ -230,7 +230,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "200");
     });
 
@@ -244,7 +244,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "200");
     });
 
@@ -259,7 +259,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "204");
       assert.equal(result.body, undefined);
     });
@@ -273,7 +273,7 @@ describe("LRO Rest Client", () => {
         intervalInMs: 0
       });
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "200");
     });
 
@@ -290,7 +290,7 @@ describe("LRO Rest Client", () => {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
       }
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.body.properties?.provisioningState, "Failed");
     });
 
@@ -304,7 +304,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
@@ -346,7 +346,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "200");
       assert.equal(result.body.id, "100");
       assert.equal(result.body.name, "foo");
@@ -364,7 +364,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "200");
       assert.deepEqual(result.body.status, "succeeded");
     });
@@ -381,7 +381,7 @@ describe("LRO Rest Client", () => {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
       }
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "200");
       assert.equal(result.body.id, "1");
       assert.equal(result.body.name, "product");
@@ -397,7 +397,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "200");
     });
 
@@ -411,7 +411,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "succeeded");
+      assert.equal(poller.getOperationState().status, "succeeded");
       assert.equal(result.status, "200");
     });
 
@@ -438,7 +438,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "canceled");
+      assert.equal(poller.getOperationState().status, "canceled");
       assert.equal(result.status, "200");
     });
 
@@ -452,7 +452,7 @@ describe("LRO Rest Client", () => {
       });
 
       const result = await poller.pollUntilDone();
-      assert.equal(poller?.operationState?.status, "failed");
+      assert.equal(poller.getOperationState().status, "failed");
       assert.equal(result.status, "200");
     });
 
@@ -525,7 +525,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
 
-      assert.equal(poller?.operationState?.status, "failed");
+      assert.equal(poller.getOperationState().status, "failed");
       if (isUnexpected(result)) {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
@@ -589,7 +589,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "200");
-      assert.equal(poller?.operationState?.status, "canceled");
+      assert.equal(poller.getOperationState().status, "canceled");
     });
 
     it("should handle putAsyncSubResource", async () => {
@@ -646,7 +646,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "200");
-      assert.equal(poller?.operationState?.status, "failed");
+      assert.equal(poller.getOperationState().status, "failed");
     });
 
     it("should handle postAsyncRetrySucceeded", async () => {
@@ -679,7 +679,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "200");
-      assert.equal(poller?.operationState?.status, "canceled");
+      assert.equal(poller.getOperationState().status, "canceled");
     });
   });
 
@@ -799,7 +799,7 @@ describe("LRO Rest Client", () => {
       });
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "400");
-      assert.equal(poller?.operationState?.status, "failed");
+      assert.equal(poller.getOperationState().status, "failed");
     });
 
     it("should get 400 with putNonRetry201Creating400InvalidJson ", async () => {
@@ -813,7 +813,7 @@ describe("LRO Rest Client", () => {
       });
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "400");
-      assert.equal(poller?.operationState?.status, "failed");
+      assert.equal(poller.getOperationState().status, "failed");
     });
 
     it("should handle putAsyncRelativeRetry400 ", async () => {
@@ -828,7 +828,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "400");
-      assert.equal(poller?.operationState?.status, "failed");
+      assert.equal(poller.getOperationState().status, "failed");
     });
 
     it("should handle delete202NonRetry400 ", async () => {
@@ -844,7 +844,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "400");
-      assert.equal(poller?.operationState?.status, "failed");
+      assert.equal(poller.getOperationState().status, "failed");
     });
 
     it("should handle deleteNonRetry400 ", async () => {
@@ -869,7 +869,7 @@ describe("LRO Rest Client", () => {
         poller.pollUntilDone(),
         /Polling was unsuccessful/
       );
-      assert.equal(poller?.operationState?.status, "running");
+      assert.equal(poller.getOperationState().status, "running");
     });
 
     it("should handle postNonRetry400 ", async () => {
@@ -892,7 +892,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "400");
-      assert.equal(poller?.operationState?.status, "failed");
+      assert.equal(poller.getOperationState().status, "failed");
     });
 
     it("should handle postAsyncRelativeRetry400 ", async () => {
@@ -908,7 +908,7 @@ describe("LRO Rest Client", () => {
         poller.pollUntilDone(),
         /Polling was unsuccessful/
       );
-      assert.equal(poller?.operationState?.status, "running");
+      assert.equal(poller.getOperationState().status, "running");
     });
 
     it("should handle PutError201NoProvisioningStatePayload ", async () => {
@@ -1030,7 +1030,7 @@ describe("LRO Rest Client", () => {
       });
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "404");
-      assert.equal(poller?.operationState?.status, "failed");
+      assert.equal(poller.getOperationState().status, "failed");
     });
 
     it("should handle delete202RetryInvalidHeader ", async () => {
@@ -1044,7 +1044,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "404");
-      assert.equal(poller?.operationState?.status, "failed");
+      assert.equal(poller.getOperationState().status, "failed");
     });
 
     it("should handle deleteAsyncRelativeRetryInvalidHeader ", async () => {
@@ -1058,7 +1058,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "404");
-      assert.equal(poller?.operationState?.status, "failed");
+      assert.equal(poller.getOperationState().status, "failed");
     });
 
     it("should handle DeleteAsyncRelativeRetryInvalidJsonPolling ", async () => {
@@ -1098,7 +1098,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "404");
-      assert.equal(poller?.operationState?.status, "failed");
+      assert.equal(poller.getOperationState().status, "failed");
     });
 
     it("should handle postAsyncRelativeRetryInvalidHeader ", async () => {
@@ -1112,7 +1112,7 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "404");
-      assert.equal(poller?.operationState?.status, "failed");
+      assert.equal(poller.getOperationState().status, "failed");
     });
 
     it("should handle postAsyncRelativeRetryInvalidJsonPolling ", async () => {
