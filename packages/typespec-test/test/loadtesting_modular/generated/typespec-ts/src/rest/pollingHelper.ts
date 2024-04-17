@@ -28,22 +28,22 @@ export interface SimplePollerLike<
   /**
    * Returns true if the poller has finished polling.
    */
-  readonly isDone: boolean;
+  isDone(): boolean;
   /**
    * Returns true if the poller is stopped.
    */
-  readonly isStopped: boolean;
+  isStopped(): boolean;
   /**
    * Returns the state of the operation.
    */
-  readonly operationState: TState | undefined;
+  getOperationState(): TState;
   /**
    * Returns the result value of the operation,
    * regardless of the state of the poller.
    * It can return undefined or an incomplete form of the final TResult value
    * depending on the implementation.
    */
-  readonly result: TResult | undefined;
+  getResult(): TResult | undefined;
   /**
    * Returns a promise that will resolve once a single polling request finishes.
    * It does this by calling the update method of the Poller's operation.
@@ -70,9 +70,19 @@ export interface SimplePollerLike<
   serialize(): Promise<string>;
 
   /**
-   * Returns a promise that could be used to check if the poller has been submitted.
+   * Wait the poller to be submitted.
    */
   submitted(): Promise<void>;
+
+  /**
+   * @deprecated Use `serialize` instead.
+   */
+  toString(): string;
+
+  /**
+   * @deprecated this operation is not supported anymore.
+   */
+  stopPolling(): void;
 }
 
 /**
@@ -124,17 +134,28 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
   options.resolveOnUnsuccessful = options.resolveOnUnsuccessful ?? true;
   const httpPoller = createHttpPoller(poller, options);
   const simplePoller: SimplePollerLike<OperationState<TResult>, TResult> = {
-    get isDone() {
+    isDone() {
       return httpPoller.isDone;
     },
-    get isStopped() {
+    isStopped() {
       return httpPoller.isStopped;
     },
-    get operationState() {
+    getOperationState() {
+      if (!httpPoller.operationState) {
+        throw new Error(
+          "Operation state is not available. The poller may not have been started and you could await submitted() before calling getOperationState().",
+        );
+      }
       return httpPoller.operationState;
     },
-    get result() {
+    getResult() {
       return httpPoller.result;
+    },
+    toString() {
+      throw new Error("Method is deprecated. Use `serialize` instead.");
+    },
+    stopPolling() {
+      throw new Error("Method is deprecated and no longer supported.");
     },
     onProgress: httpPoller.onProgress,
     poll: httpPoller.poll,
