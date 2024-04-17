@@ -98,3 +98,23 @@ export type FormDataCheckFileNameAndContentTypeParameters =
   FormDataCheckFileNameAndContentTypeMediaTypesParam &
     FormDataCheckFileNameAndContentTypeBodyParam &
     RequestParameters;
+
+export interface FormDataAnonymousModelBodyParam {
+  body?: {
+    profileImage:
+      | string
+      | Uint8Array
+      | ReadableStream<Uint8Array>
+      | NodeJS.ReadableStream
+      | File;
+  };
+}
+
+export interface FormDataAnonymousModelMediaTypesParam {
+  contentType: "multipart/form-data";
+}
+
+export type FormDataAnonymousModelParameters =
+  FormDataAnonymousModelMediaTypesParam &
+    FormDataAnonymousModelBodyParam &
+    RequestParameters;

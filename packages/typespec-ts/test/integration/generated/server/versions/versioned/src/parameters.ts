@@ -16,3 +16,14 @@ export interface WithQueryApiVersionQueryParam {
 export type WithQueryApiVersionParameters = WithQueryApiVersionQueryParam &
   RequestParameters;
 export type WithPathApiVersionParameters = RequestParameters;
+
+export interface WithQueryOldApiVersionQueryParamProperties {
+  "api-version": string;
+}
+
+export interface WithQueryOldApiVersionQueryParam {
+  queryParameters: WithQueryOldApiVersionQueryParamProperties;
+}
+
+export type WithQueryOldApiVersionParameters =
+  WithQueryOldApiVersionQueryParam & RequestParameters;
