@@ -252,7 +252,7 @@ export async function $onEmit(context: EmitContext) {
       }
 
       if (!emitterOptions.generateOrphanModels) {
-        removeUnusedInterfaces(project);
+        // removeUnusedInterfaces(project);
       }
 
       for (const file of project.getSourceFiles()) {

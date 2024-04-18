@@ -34,9 +34,10 @@ function getCoreClientErrorType(name: string, coreClientTypes: Set<string>) {
 function extractModels(codeModel: ModularCodeModel): Type[] {
   const models = codeModel.types.filter(
     (t) =>
-      (t.type === "model" || t.type === "enum") &&
-      !isAzureCoreErrorSdkType(t) &&
-      !(t.type == "model" && t.name === "")
+      ((t.type === "model" || t.type === "enum") &&
+        !isAzureCoreErrorSdkType(t) &&
+        !(t.type == "model" && t.name === "")) ||
+      (t.type === "dict" && t.properties?.length && t.properties.length > 0)
   );
 
   for (const model of codeModel.types) {
@@ -105,6 +106,9 @@ export function buildModelInterface(
   cache: { coreClientTypes: Set<string> }
 ): InterfaceStructure {
   const modelProperties = model.properties ?? [];
+  if (model.name === "DifferentSpreadStringRecord") {
+    model;
+  }
   const modelInterface = {
     name: model.alias ?? model.name ?? "FIXMYNAME",
     isExported: true,
@@ -168,7 +172,11 @@ export function buildModels(
         ? model.parents?.forEach((p) =>
             modelInterface.extends.push(p.alias ?? getType(p, p.format).name)
           )
-        : undefined;
+        : model.type === "dict" &&
+            model.properties?.length &&
+            model.properties?.length > 0
+          ? addExtendedDictInfo(model, modelInterface, codeModel.modularOptions.legacy)
+          : undefined;
       modelsFile.addInterface(modelInterface);
     }
   }
@@ -189,6 +197,24 @@ export function buildModels(
     modelsFile.addTypeAlias(buildModelTypeAlias(alias));
   });
   return modelsFile;
+}
+
+function addExtendedDictInfo(model: Type, modelInterface: InterfaceStructure, legacy: boolean = false) {
+  if (model.properties?.every(p => {p.type.name === model.elementType?.name})) {
+    modelInterface.extends.push(
+      `Record<string, ${getType(model.elementType!).name ?? "any"}>`
+    )
+  } else if(legacy) {
+    modelInterface.extends.push(`Record<string, any>`);
+  } else {
+    modelInterface.properties?.push({
+      name: "additionalProperties",
+      docs: ["Additional properties"],
+      hasQuestionToken: true,
+      isReadonly: false,
+      type: `Record<string, ${getType(model.elementType!).name ?? "any"}>`
+    });
+  }
 }
 
 export function buildModelTypeAlias(model: Type) {

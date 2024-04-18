@@ -1344,6 +1344,7 @@ function emitListOrDict(
       if (name === "string") {
         return {
           type: "dict",
+          name: type.name,
           elementType: getType(context, type.indexer.value!, { usage })
         };
       } else if (name === "integer") {
@@ -1862,7 +1863,7 @@ export function emitCodeModel(
   // Get types
   const codeModel: ModularCodeModel = {
     options: dpgContext.rlcOptions ?? {},
-    modularOptions: { sourceRoot: modularSourcesRoot },
+    modularOptions: { sourceRoot: modularSourcesRoot, legacy: !!dpgContext.rlcOptions?.legacy },
     namespace: clientNamespaceString,
     subnamespaceToClients: {},
     clients: [],
@@ -1875,6 +1876,9 @@ export function emitCodeModel(
   simpleTypesMap.clear();
   const allModels = getAllModels(dpgContext);
   for (const model of allModels) {
+    if (model.name.startsWith("DifferentSpreadStringRecord")) {
+      model;
+    }
     getType(dpgContext, model.__raw!, { usage: model.usage as UsageFlags });
   }
 
