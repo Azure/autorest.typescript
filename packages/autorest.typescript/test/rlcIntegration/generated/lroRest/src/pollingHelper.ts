@@ -69,12 +69,12 @@ export interface SimplePollerLike<
   submitted(): Promise<void>;
 
   /**
-   * @deprecated Use `serialize` instead.
+   * Returns a string representation of the poller's operation.
    */
   toString(): string;
 
   /**
-   * @deprecated this operation is not supported anymore.
+   * Stops the poller from continuing to poll. Please note this will only stop the client-side polling
    */
   stopPolling(): void;
 }
@@ -91,6 +91,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
   initialResponse: TResult,
   options: CreateHttpPollerOptions<TResult, OperationState<TResult>> = {},
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>> {
+  const abortController = new AbortController();
   const poller: LongRunningOperation<TResult> = {
     sendInitialRequest: async () => {
       // In the case of Rest Clients we are building the LRO poller object from a response that's the reason
@@ -98,14 +99,29 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
       // response we were provided.
       return getLroResponse(initialResponse);
     },
-    sendPollRequest: async (path) => {
+    sendPollRequest: async (
+      path,
+      options?: { abortSignal?: AbortSignalLike },
+    ) => {
       // This is the callback that is going to be called to poll the service
       // to get the latest status. We use the client provided and the polling path
       // which is an opaque URL provided by caller, the service sends this in one of the following headers: operation-location, azure-asyncoperation or location
       // depending on the lro pattern that the service implements. If non is provided we default to the initial path.
+      const inputAbortSignal = options?.abortSignal;
+      function abortListener(): void {
+        abortController.abort();
+      }
+      const abortSignal = abortController.signal;
+      if (inputAbortSignal?.aborted) {
+        abortController.abort();
+      } else if (!abortSignal.aborted) {
+        inputAbortSignal?.addEventListener("abort", abortListener, {
+          once: true,
+        });
+      }
       const response = await client
         .pathUnchecked(path ?? initialResponse.request.url)
-        .get();
+        .get({ abortSignal });
       const lroResponse = getLroResponse(response as TResult);
       lroResponse.rawResponse.headers["x-ms-original-url"] =
         initialResponse.request.url;
@@ -134,14 +150,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
       return httpPoller.result;
     },
     toString() {
-      if (!httpPoller.operationState) {
-        throw new Error(
-          "Operation state is not available. The poller may not have been started and you could await submitted() before calling getOperationState().",
-        );
-      }
-      return JSON.stringify({
-        httpPoller.operationState,
-      });
+      throw new Error("Method is deprecated. Use `serialize` instead.");
     },
     stopPolling() {
       throw new Error("Method is deprecated and no longer supported.");
