@@ -4224,10 +4224,8 @@ export interface SimplePollerLike<TState extends OperationState<TResult>, TResul
         abortSignal?: AbortSignalLike;
     }): Promise<TResult>;
     serialize(): Promise<string>;
-    // @deprecated (undocumented)
     stopPolling(): void;
     submitted(): Promise<void>;
-    // @deprecated (undocumented)
     toString(): string;
 }
 
