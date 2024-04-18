@@ -12,7 +12,7 @@ importers:
       '@autorest/testmodeler': ^2.4.0
       '@azure-rest/core-client': ^1.4.0
       '@azure-tools/codegen': ^2.9.1
-      '@azure-tools/rlc-common': workspace:^0.26.1
+      '@azure-tools/rlc-common': workspace:^0.27.0
       '@azure-tools/test-recorder': ^3.0.0
       '@azure/abort-controller': ^1.0.1
       '@azure/core-auth': ^1.6.0
@@ -194,7 +194,7 @@ importers:
       '@azure-tools/typespec-autorest': '>=0.41.0 <1.0.0'
       '@azure-tools/typespec-azure-core': '>=0.41.0 <1.0.0'
       '@azure-tools/typespec-client-generator-core': 0.42.0-dev.6
-      '@azure-tools/typespec-ts': workspace:^0.26.1
+      '@azure-tools/typespec-ts': workspace:^0.27.0
       '@types/mocha': ^5.2.7
       '@types/node': ^18.0.0
       '@typespec/compiler': '>=0.55.0 <1.0.0'
@@ -230,7 +230,7 @@ importers:
       '@azure-tools/cadl-ranch': ^0.12.7
       '@azure-tools/cadl-ranch-expect': ^0.13.3
       '@azure-tools/cadl-ranch-specs': ^0.31.8
-      '@azure-tools/rlc-common': workspace:^0.26.1
+      '@azure-tools/rlc-common': workspace:^0.27.0
       '@azure-tools/typespec-azure-core': '>=0.41.0 <1.0.0'
       '@azure-tools/typespec-client-generator-core': 0.42.0-dev.6
       '@azure/core-auth': ^1.6.0
@@ -534,7 +534,7 @@ packages:
       '@typespec/http': 0.55.0_@typespec+compiler@0.55.0
       '@typespec/rest': 0.55.0_h4qt3u6oalgs36clp2xs2lq3z4
       '@typespec/versioning': 0.55.0_@typespec+compiler@0.55.0
-      change-case: 5.4.3
+      change-case: 5.4.4
       pluralize: 8.0.0
 
   /@azure/abort-controller/1.1.0:
@@ -2001,6 +2001,9 @@ packages:
 
   /change-case/5.4.3:
     resolution: {integrity: sha512-4cdyvorTy/lViZlVzw2O8/hHCLUuHqp4KpSSP3DlauhFCf3LdnfF+p5s0EAhjKsU7bqrMzu7iQArYfoPiHO2nw==}
+
+  /change-case/5.4.4:
+    resolution: {integrity: sha512-HRQyTk2/YPEkt9TnUPbOpr64Uw3KOicFWPVBb+xiHvd6eBx/qPr9xqfBFDT8P2vWsvvz4jbEkfDe71W3VyNu2w==}
 
   /check-error/1.0.2:
     resolution: {integrity: sha512-BrgHpW9NURQgzoNyjfq0Wu6VFO6D7IZEmJNdtgNqpzGG8RuNFHt2jQxWlAs4HMe119chBnv+34syEZtc6IhLtA==}
