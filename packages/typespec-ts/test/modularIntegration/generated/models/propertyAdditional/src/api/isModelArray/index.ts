@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ModelForRecord } from "../../models/models.js";
+import { IsModelArrayAdditionalProperties } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   IsModelArrayGet200Response,
@@ -28,7 +28,7 @@ export function _getSend(
 
 export async function _getDeserialize(
   result: IsModelArrayGet200Response,
-): Promise<Record<string, ModelForRecord[]>> {
+): Promise<IsModelArrayAdditionalProperties> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -42,14 +42,14 @@ export async function _getDeserialize(
 export async function get(
   context: Client,
   options: IsModelArrayGetOptionalParams = { requestOptions: {} },
-): Promise<Record<string, ModelForRecord[]>> {
+): Promise<IsModelArrayAdditionalProperties> {
   const result = await _getSend(context, options);
   return _getDeserialize(result);
 }
 
 export function _putSend(
   context: Client,
-  body: Record<string, ModelForRecord[]>,
+  body: IsModelArrayAdditionalProperties,
   options: IsModelArrayPutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<IsModelArrayPut204Response> {
   return context
@@ -70,7 +70,7 @@ export async function _putDeserialize(
 /** Put operation */
 export async function put(
   context: Client,
-  body: Record<string, ModelForRecord[]>,
+  body: IsModelArrayAdditionalProperties,
   options: IsModelArrayPutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putSend(context, body, options);

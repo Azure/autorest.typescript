@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { AdditionalPropertiesContext } from "../../api/additionalPropertiesContext.js";
+import { SpreadFloatRecord } from "../../models/models.js";
 import { get, put } from "../../api/spreadFloat/index.js";
 import {
   SpreadFloatGetOptionalParams,
@@ -9,11 +10,9 @@ import {
 } from "../../models/options.js";
 
 export interface SpreadFloatOperations {
-  get: (
-    options?: SpreadFloatGetOptionalParams,
-  ) => Promise<Record<string, number>>;
+  get: (options?: SpreadFloatGetOptionalParams) => Promise<SpreadFloatRecord>;
   put: (
-    body: Record<string, number>,
+    body: SpreadFloatRecord,
     options?: SpreadFloatPutOptionalParams,
   ) => Promise<void>;
 }
@@ -21,10 +20,8 @@ export interface SpreadFloatOperations {
 export function getSpreadFloat(context: AdditionalPropertiesContext) {
   return {
     get: (options?: SpreadFloatGetOptionalParams) => get(context, options),
-    put: (
-      body: Record<string, number>,
-      options?: SpreadFloatPutOptionalParams,
-    ) => put(context, body, options),
+    put: (body: SpreadFloatRecord, options?: SpreadFloatPutOptionalParams) =>
+      put(context, body, options),
   };
 }
 

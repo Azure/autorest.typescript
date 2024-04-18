@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { AdditionalPropertiesContext } from "../../api/additionalPropertiesContext.js";
-import { ModelForRecord } from "../../models/models.js";
+import { SpreadModelRecord } from "../../models/models.js";
 import { get, put } from "../../api/spreadModel/index.js";
 import {
   SpreadModelGetOptionalParams,
@@ -10,11 +10,9 @@ import {
 } from "../../models/options.js";
 
 export interface SpreadModelOperations {
-  get: (
-    options?: SpreadModelGetOptionalParams,
-  ) => Promise<Record<string, ModelForRecord>>;
+  get: (options?: SpreadModelGetOptionalParams) => Promise<SpreadModelRecord>;
   put: (
-    body: Record<string, ModelForRecord>,
+    body: SpreadModelRecord,
     options?: SpreadModelPutOptionalParams,
   ) => Promise<void>;
 }
@@ -22,10 +20,8 @@ export interface SpreadModelOperations {
 export function getSpreadModel(context: AdditionalPropertiesContext) {
   return {
     get: (options?: SpreadModelGetOptionalParams) => get(context, options),
-    put: (
-      body: Record<string, ModelForRecord>,
-      options?: SpreadModelPutOptionalParams,
-    ) => put(context, body, options),
+    put: (body: SpreadModelRecord, options?: SpreadModelPutOptionalParams) =>
+      put(context, body, options),
   };
 }
 

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { WidgetData } from "../../models/models.js";
+import { SpreadRecordForDiscriminatedUnion } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   SpreadRecordDiscriminatedUnionGet200Response,
@@ -30,7 +30,7 @@ export function _getSend(
 
 export async function _getDeserialize(
   result: SpreadRecordDiscriminatedUnionGet200Response,
-): Promise<Record<string, WidgetData>> {
+): Promise<SpreadRecordForDiscriminatedUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -46,14 +46,14 @@ export async function get(
   options: SpreadRecordDiscriminatedUnionGetOptionalParams = {
     requestOptions: {},
   },
-): Promise<Record<string, WidgetData>> {
+): Promise<SpreadRecordForDiscriminatedUnion> {
   const result = await _getSend(context, options);
   return _getDeserialize(result);
 }
 
 export function _putSend(
   context: Client,
-  body: Record<string, WidgetData>,
+  body: SpreadRecordForDiscriminatedUnion,
   options: SpreadRecordDiscriminatedUnionPutOptionalParams = {
     requestOptions: {},
   },
@@ -76,7 +76,7 @@ export async function _putDeserialize(
 /** Put operation */
 export async function put(
   context: Client,
-  body: Record<string, WidgetData>,
+  body: SpreadRecordForDiscriminatedUnion,
   options: SpreadRecordDiscriminatedUnionPutOptionalParams = {
     requestOptions: {},
   },

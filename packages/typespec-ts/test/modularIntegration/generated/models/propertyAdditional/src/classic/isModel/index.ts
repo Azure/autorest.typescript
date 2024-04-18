@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { AdditionalPropertiesContext } from "../../api/additionalPropertiesContext.js";
-import { ModelForRecord } from "../../models/models.js";
+import { IsModelAdditionalProperties } from "../../models/models.js";
 import { get, put } from "../../api/isModel/index.js";
 import {
   IsModelGetOptionalParams,
@@ -12,9 +12,9 @@ import {
 export interface IsModelOperations {
   get: (
     options?: IsModelGetOptionalParams,
-  ) => Promise<Record<string, ModelForRecord>>;
+  ) => Promise<IsModelAdditionalProperties>;
   put: (
-    body: Record<string, ModelForRecord>,
+    body: IsModelAdditionalProperties,
     options?: IsModelPutOptionalParams,
   ) => Promise<void>;
 }
@@ -23,7 +23,7 @@ export function getIsModel(context: AdditionalPropertiesContext) {
   return {
     get: (options?: IsModelGetOptionalParams) => get(context, options),
     put: (
-      body: Record<string, ModelForRecord>,
+      body: IsModelAdditionalProperties,
       options?: IsModelPutOptionalParams,
     ) => put(context, body, options),
   };

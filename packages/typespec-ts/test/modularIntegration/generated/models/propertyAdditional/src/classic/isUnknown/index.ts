@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { AdditionalPropertiesContext } from "../../api/additionalPropertiesContext.js";
+import { IsUnknownAdditionalProperties } from "../../models/models.js";
 import { get, put } from "../../api/isUnknown/index.js";
 import {
   IsUnknownGetOptionalParams,
@@ -11,9 +12,9 @@ import {
 export interface IsUnknownOperations {
   get: (
     options?: IsUnknownGetOptionalParams,
-  ) => Promise<Record<string, unknown>>;
+  ) => Promise<IsUnknownAdditionalProperties>;
   put: (
-    body: Record<string, unknown>,
+    body: IsUnknownAdditionalProperties,
     options?: IsUnknownPutOptionalParams,
   ) => Promise<void>;
 }
@@ -22,7 +23,7 @@ export function getIsUnknown(context: AdditionalPropertiesContext) {
   return {
     get: (options?: IsUnknownGetOptionalParams) => get(context, options),
     put: (
-      body: Record<string, unknown>,
+      body: IsUnknownAdditionalProperties,
       options?: IsUnknownPutOptionalParams,
     ) => put(context, body, options),
   };

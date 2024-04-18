@@ -80,7 +80,7 @@ export interface DifferentSpreadModelArrayRecord {
 
 /** The model extends from a model that spread Record<ModelForRecord[]> with the different known property type */
 export interface DifferentSpreadModelArrayDerived
-  extends Record<string, ModelForRecord[]> {
+  extends DifferentSpreadModelArrayRecord {
   /** The index property */
   derivedProp: ModelForRecord[];
 }
@@ -94,7 +94,7 @@ export interface DifferentSpreadModelRecord {
 
 /** The model extends from a model that spread Record<ModelForRecord> with the different known property type */
 export interface DifferentSpreadModelDerived
-  extends Record<string, ModelForRecord> {
+  extends DifferentSpreadModelRecord {
   /** The index property */
   derivedProp: ModelForRecord;
 }
@@ -108,7 +108,8 @@ export interface DifferentSpreadFloatRecord {
 }
 
 /** The model extends from a model that spread Record<float32> with the different known property type */
-export interface DifferentSpreadFloatDerived extends Record<string, number> {
+export interface DifferentSpreadFloatDerived
+  extends DifferentSpreadFloatRecord {
   /** The index property */
   derivedProp: number;
 }
@@ -122,7 +123,8 @@ export interface DifferentSpreadStringRecord {
 }
 
 /** The model extends from a model that spread Record<string> with the different known property type */
-export interface DifferentSpreadStringDerived extends Record<string, string> {
+export interface DifferentSpreadStringDerived
+  extends DifferentSpreadStringRecord {
   /** The index property */
   derivedProp: string;
 }
@@ -242,7 +244,7 @@ export interface IsUnknownAdditionalProperties {
 
 /** The model extends from a type that is Record<unknown> type */
 export interface IsUnknownAdditionalPropertiesDerived
-  extends Record<string, unknown> {
+  extends IsUnknownAdditionalProperties {
   /** The index property */
   index: number;
   /** The age property */

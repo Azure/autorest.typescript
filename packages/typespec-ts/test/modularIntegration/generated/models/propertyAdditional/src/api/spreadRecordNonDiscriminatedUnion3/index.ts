@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { WidgetData2, WidgetData1 } from "../../models/models.js";
+import { SpreadRecordForNonDiscriminatedUnion3 } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   SpreadRecordNonDiscriminatedUnion3Get200Response,
@@ -32,7 +32,7 @@ export function _getSend(
 
 export async function _getDeserialize(
   result: SpreadRecordNonDiscriminatedUnion3Get200Response,
-): Promise<Record<string, WidgetData2[] | WidgetData1>> {
+): Promise<SpreadRecordForNonDiscriminatedUnion3> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -48,14 +48,14 @@ export async function get(
   options: SpreadRecordNonDiscriminatedUnion3GetOptionalParams = {
     requestOptions: {},
   },
-): Promise<Record<string, WidgetData2[] | WidgetData1>> {
+): Promise<SpreadRecordForNonDiscriminatedUnion3> {
   const result = await _getSend(context, options);
   return _getDeserialize(result);
 }
 
 export function _putSend(
   context: Client,
-  body: Record<string, WidgetData2[] | WidgetData1>,
+  body: SpreadRecordForNonDiscriminatedUnion3,
   options: SpreadRecordNonDiscriminatedUnion3PutOptionalParams = {
     requestOptions: {},
   },
@@ -80,7 +80,7 @@ export async function _putDeserialize(
 /** Put operation */
 export async function put(
   context: Client,
-  body: Record<string, WidgetData2[] | WidgetData1>,
+  body: SpreadRecordForNonDiscriminatedUnion3,
   options: SpreadRecordNonDiscriminatedUnion3PutOptionalParams = {
     requestOptions: {},
   },

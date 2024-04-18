@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { AdditionalPropertiesContext } from "../../api/additionalPropertiesContext.js";
+import { DifferentSpreadStringRecord } from "../../models/models.js";
 import { get, put } from "../../api/spreadDifferentString/index.js";
 import {
   SpreadDifferentStringGetOptionalParams,
@@ -11,9 +12,9 @@ import {
 export interface SpreadDifferentStringOperations {
   get: (
     options?: SpreadDifferentStringGetOptionalParams,
-  ) => Promise<Record<string, string>>;
+  ) => Promise<DifferentSpreadStringRecord>;
   put: (
-    body: Record<string, string>,
+    body: DifferentSpreadStringRecord,
     options?: SpreadDifferentStringPutOptionalParams,
   ) => Promise<void>;
 }
@@ -23,7 +24,7 @@ export function getSpreadDifferentString(context: AdditionalPropertiesContext) {
     get: (options?: SpreadDifferentStringGetOptionalParams) =>
       get(context, options),
     put: (
-      body: Record<string, string>,
+      body: DifferentSpreadStringRecord,
       options?: SpreadDifferentStringPutOptionalParams,
     ) => put(context, body, options),
   };

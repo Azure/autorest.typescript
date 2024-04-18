@@ -11,9 +11,9 @@ import {
 export interface IsUnknownDiscriminatedOperations {
   get: (
     options?: IsUnknownDiscriminatedGetOptionalParams,
-  ) => Promise<Record<string, unknown>>;
+  ) => Promise<IsUnknownAdditionalPropertiesDiscriminatedUnion>;
   put: (
-    body: Record<string, unknown>,
+    body: IsUnknownAdditionalPropertiesDiscriminatedUnion,
     options?: IsUnknownDiscriminatedPutOptionalParams,
   ) => Promise<void>;
 }
@@ -25,7 +25,7 @@ export function getIsUnknownDiscriminated(
     get: (options?: IsUnknownDiscriminatedGetOptionalParams) =>
       get(context, options),
     put: (
-      body: Record<string, unknown>,
+      body: IsUnknownAdditionalPropertiesDiscriminatedUnion,
       options?: IsUnknownDiscriminatedPutOptionalParams,
     ) => put(context, body, options),
   };

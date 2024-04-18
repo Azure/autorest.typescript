@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { AdditionalPropertiesContext } from "../../api/additionalPropertiesContext.js";
-import { ModelForRecord } from "../../models/models.js";
+import { DifferentSpreadModelRecord } from "../../models/models.js";
 import { get, put } from "../../api/spreadDifferentModel/index.js";
 import {
   SpreadDifferentModelGetOptionalParams,
@@ -12,9 +12,9 @@ import {
 export interface SpreadDifferentModelOperations {
   get: (
     options?: SpreadDifferentModelGetOptionalParams,
-  ) => Promise<Record<string, ModelForRecord>>;
+  ) => Promise<DifferentSpreadModelRecord>;
   put: (
-    body: Record<string, ModelForRecord>,
+    body: DifferentSpreadModelRecord,
     options?: SpreadDifferentModelPutOptionalParams,
   ) => Promise<void>;
 }
@@ -24,7 +24,7 @@ export function getSpreadDifferentModel(context: AdditionalPropertiesContext) {
     get: (options?: SpreadDifferentModelGetOptionalParams) =>
       get(context, options),
     put: (
-      body: Record<string, ModelForRecord>,
+      body: DifferentSpreadModelRecord,
       options?: SpreadDifferentModelPutOptionalParams,
     ) => put(context, body, options),
   };

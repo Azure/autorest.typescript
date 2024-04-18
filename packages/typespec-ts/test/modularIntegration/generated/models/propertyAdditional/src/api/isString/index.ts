@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { IsStringAdditionalProperties } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   IsStringGet200Response,
@@ -27,7 +28,7 @@ export function _getSend(
 
 export async function _getDeserialize(
   result: IsStringGet200Response,
-): Promise<Record<string, string>> {
+): Promise<IsStringAdditionalProperties> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -41,14 +42,14 @@ export async function _getDeserialize(
 export async function get(
   context: Client,
   options: IsStringGetOptionalParams = { requestOptions: {} },
-): Promise<Record<string, string>> {
+): Promise<IsStringAdditionalProperties> {
   const result = await _getSend(context, options);
   return _getDeserialize(result);
 }
 
 export function _putSend(
   context: Client,
-  body: Record<string, string>,
+  body: IsStringAdditionalProperties,
   options: IsStringPutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<IsStringPut204Response> {
   return context
@@ -69,7 +70,7 @@ export async function _putDeserialize(
 /** Put operation */
 export async function put(
   context: Client,
-  body: Record<string, string>,
+  body: IsStringAdditionalProperties,
   options: IsStringPutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putSend(context, body, options);

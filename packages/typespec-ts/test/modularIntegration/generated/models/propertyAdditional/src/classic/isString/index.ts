@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { AdditionalPropertiesContext } from "../../api/additionalPropertiesContext.js";
+import { IsStringAdditionalProperties } from "../../models/models.js";
 import { get, put } from "../../api/isString/index.js";
 import {
   IsStringGetOptionalParams,
@@ -9,9 +10,11 @@ import {
 } from "../../models/options.js";
 
 export interface IsStringOperations {
-  get: (options?: IsStringGetOptionalParams) => Promise<Record<string, string>>;
+  get: (
+    options?: IsStringGetOptionalParams,
+  ) => Promise<IsStringAdditionalProperties>;
   put: (
-    body: Record<string, string>,
+    body: IsStringAdditionalProperties,
     options?: IsStringPutOptionalParams,
   ) => Promise<void>;
 }
@@ -19,8 +22,10 @@ export interface IsStringOperations {
 export function getIsString(context: AdditionalPropertiesContext) {
   return {
     get: (options?: IsStringGetOptionalParams) => get(context, options),
-    put: (body: Record<string, string>, options?: IsStringPutOptionalParams) =>
-      put(context, body, options),
+    put: (
+      body: IsStringAdditionalProperties,
+      options?: IsStringPutOptionalParams,
+    ) => put(context, body, options),
   };
 }
 

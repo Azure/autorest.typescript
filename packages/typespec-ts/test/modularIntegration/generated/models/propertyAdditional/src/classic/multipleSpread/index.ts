@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { AdditionalPropertiesContext } from "../../api/additionalPropertiesContext.js";
+import { MultipleSpreadRecord } from "../../models/models.js";
 import { get, put } from "../../api/multipleSpread/index.js";
 import {
   MultipleSpreadGetOptionalParams,
@@ -11,9 +12,9 @@ import {
 export interface MultipleSpreadOperations {
   get: (
     options?: MultipleSpreadGetOptionalParams,
-  ) => Promise<Record<string, string | number>>;
+  ) => Promise<MultipleSpreadRecord>;
   put: (
-    body: Record<string, string | number>,
+    body: MultipleSpreadRecord,
     options?: MultipleSpreadPutOptionalParams,
   ) => Promise<void>;
 }
@@ -22,7 +23,7 @@ export function getMultipleSpread(context: AdditionalPropertiesContext) {
   return {
     get: (options?: MultipleSpreadGetOptionalParams) => get(context, options),
     put: (
-      body: Record<string, string | number>,
+      body: MultipleSpreadRecord,
       options?: MultipleSpreadPutOptionalParams,
     ) => put(context, body, options),
   };

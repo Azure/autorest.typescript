@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { AdditionalPropertiesContext } from "../../api/additionalPropertiesContext.js";
-import { ModelForRecord } from "../../models/models.js";
+import { SpreadModelArrayRecord } from "../../models/models.js";
 import { get, put } from "../../api/spreadModelArray/index.js";
 import {
   SpreadModelArrayGetOptionalParams,
@@ -12,9 +12,9 @@ import {
 export interface SpreadModelArrayOperations {
   get: (
     options?: SpreadModelArrayGetOptionalParams,
-  ) => Promise<Record<string, ModelForRecord[]>>;
+  ) => Promise<SpreadModelArrayRecord>;
   put: (
-    body: Record<string, ModelForRecord[]>,
+    body: SpreadModelArrayRecord,
     options?: SpreadModelArrayPutOptionalParams,
   ) => Promise<void>;
 }
@@ -23,7 +23,7 @@ export function getSpreadModelArray(context: AdditionalPropertiesContext) {
   return {
     get: (options?: SpreadModelArrayGetOptionalParams) => get(context, options),
     put: (
-      body: Record<string, ModelForRecord[]>,
+      body: SpreadModelArrayRecord,
       options?: SpreadModelArrayPutOptionalParams,
     ) => put(context, body, options),
   };

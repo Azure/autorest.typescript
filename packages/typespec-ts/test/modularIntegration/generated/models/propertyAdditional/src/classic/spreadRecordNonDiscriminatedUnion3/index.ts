@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { AdditionalPropertiesContext } from "../../api/additionalPropertiesContext.js";
-import { WidgetData2, WidgetData1 } from "../../models/models.js";
+import { SpreadRecordForNonDiscriminatedUnion3 } from "../../models/models.js";
 import {
   get,
   put,
@@ -15,9 +15,9 @@ import {
 export interface SpreadRecordNonDiscriminatedUnion3Operations {
   get: (
     options?: SpreadRecordNonDiscriminatedUnion3GetOptionalParams,
-  ) => Promise<Record<string, WidgetData2[] | WidgetData1>>;
+  ) => Promise<SpreadRecordForNonDiscriminatedUnion3>;
   put: (
-    body: Record<string, WidgetData2[] | WidgetData1>,
+    body: SpreadRecordForNonDiscriminatedUnion3,
     options?: SpreadRecordNonDiscriminatedUnion3PutOptionalParams,
   ) => Promise<void>;
 }
@@ -29,7 +29,7 @@ export function getSpreadRecordNonDiscriminatedUnion3(
     get: (options?: SpreadRecordNonDiscriminatedUnion3GetOptionalParams) =>
       get(context, options),
     put: (
-      body: Record<string, WidgetData2[] | WidgetData1>,
+      body: SpreadRecordForNonDiscriminatedUnion3,
       options?: SpreadRecordNonDiscriminatedUnion3PutOptionalParams,
     ) => put(context, body, options),
   };

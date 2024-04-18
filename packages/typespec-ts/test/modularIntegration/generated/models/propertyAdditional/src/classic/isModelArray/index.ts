@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { AdditionalPropertiesContext } from "../../api/additionalPropertiesContext.js";
-import { ModelForRecord } from "../../models/models.js";
+import { IsModelArrayAdditionalProperties } from "../../models/models.js";
 import { get, put } from "../../api/isModelArray/index.js";
 import {
   IsModelArrayGetOptionalParams,
@@ -12,9 +12,9 @@ import {
 export interface IsModelArrayOperations {
   get: (
     options?: IsModelArrayGetOptionalParams,
-  ) => Promise<Record<string, ModelForRecord[]>>;
+  ) => Promise<IsModelArrayAdditionalProperties>;
   put: (
-    body: Record<string, ModelForRecord[]>,
+    body: IsModelArrayAdditionalProperties,
     options?: IsModelArrayPutOptionalParams,
   ) => Promise<void>;
 }
@@ -23,7 +23,7 @@ export function getIsModelArray(context: AdditionalPropertiesContext) {
   return {
     get: (options?: IsModelArrayGetOptionalParams) => get(context, options),
     put: (
-      body: Record<string, ModelForRecord[]>,
+      body: IsModelArrayAdditionalProperties,
       options?: IsModelArrayPutOptionalParams,
     ) => put(context, body, options),
   };

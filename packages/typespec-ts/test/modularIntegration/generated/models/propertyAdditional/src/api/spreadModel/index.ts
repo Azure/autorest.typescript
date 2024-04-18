@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ModelForRecord } from "../../models/models.js";
+import { SpreadModelRecord } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   SpreadModelGet200Response,
@@ -28,7 +28,7 @@ export function _getSend(
 
 export async function _getDeserialize(
   result: SpreadModelGet200Response,
-): Promise<Record<string, ModelForRecord>> {
+): Promise<SpreadModelRecord> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -42,14 +42,14 @@ export async function _getDeserialize(
 export async function get(
   context: Client,
   options: SpreadModelGetOptionalParams = { requestOptions: {} },
-): Promise<Record<string, ModelForRecord>> {
+): Promise<SpreadModelRecord> {
   const result = await _getSend(context, options);
   return _getDeserialize(result);
 }
 
 export function _putSend(
   context: Client,
-  body: Record<string, ModelForRecord>,
+  body: SpreadModelRecord,
   options: SpreadModelPutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<SpreadModelPut204Response> {
   return context
@@ -70,7 +70,7 @@ export async function _putDeserialize(
 /** Put operation */
 export async function put(
   context: Client,
-  body: Record<string, ModelForRecord>,
+  body: SpreadModelRecord,
   options: SpreadModelPutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putSend(context, body, options);

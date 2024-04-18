@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { AdditionalPropertiesContext } from "../../api/additionalPropertiesContext.js";
+import { SpreadRecordForUnion } from "../../models/models.js";
 import { get, put } from "../../api/spreadRecordUnion/index.js";
 import {
   SpreadRecordUnionGetOptionalParams,
@@ -11,9 +12,9 @@ import {
 export interface SpreadRecordUnionOperations {
   get: (
     options?: SpreadRecordUnionGetOptionalParams,
-  ) => Promise<Record<string, string | number>>;
+  ) => Promise<SpreadRecordForUnion>;
   put: (
-    body: Record<string, string | number>,
+    body: SpreadRecordForUnion,
     options?: SpreadRecordUnionPutOptionalParams,
   ) => Promise<void>;
 }
@@ -23,7 +24,7 @@ export function getSpreadRecordUnion(context: AdditionalPropertiesContext) {
     get: (options?: SpreadRecordUnionGetOptionalParams) =>
       get(context, options),
     put: (
-      body: Record<string, string | number>,
+      body: SpreadRecordForUnion,
       options?: SpreadRecordUnionPutOptionalParams,
     ) => put(context, body, options),
   };

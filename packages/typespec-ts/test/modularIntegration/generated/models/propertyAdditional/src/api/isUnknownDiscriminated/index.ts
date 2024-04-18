@@ -27,7 +27,7 @@ export function _getSend(
 
 export async function _getDeserialize(
   result: IsUnknownDiscriminatedGet200Response,
-): Promise<Record<string, unknown>> {
+): Promise<IsUnknownAdditionalPropertiesDiscriminatedUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -39,14 +39,14 @@ export async function _getDeserialize(
 export async function get(
   context: Client,
   options: IsUnknownDiscriminatedGetOptionalParams = { requestOptions: {} },
-): Promise<Record<string, unknown>> {
+): Promise<IsUnknownAdditionalPropertiesDiscriminatedUnion> {
   const result = await _getSend(context, options);
   return _getDeserialize(result);
 }
 
 export function _putSend(
   context: Client,
-  body: Record<string, unknown>,
+  body: IsUnknownAdditionalPropertiesDiscriminatedUnion,
   options: IsUnknownDiscriminatedPutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<IsUnknownDiscriminatedPut204Response> {
   return context
@@ -67,7 +67,7 @@ export async function _putDeserialize(
 /** Put operation */
 export async function put(
   context: Client,
-  body: Record<string, unknown>,
+  body: IsUnknownAdditionalPropertiesDiscriminatedUnion,
   options: IsUnknownDiscriminatedPutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putSend(context, body, options);

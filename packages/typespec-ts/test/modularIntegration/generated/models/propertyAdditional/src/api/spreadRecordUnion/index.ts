@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { SpreadRecordForUnion } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   SpreadRecordUnionGet200Response,
@@ -27,7 +28,7 @@ export function _getSend(
 
 export async function _getDeserialize(
   result: SpreadRecordUnionGet200Response,
-): Promise<Record<string, string | number>> {
+): Promise<SpreadRecordForUnion> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -41,14 +42,14 @@ export async function _getDeserialize(
 export async function get(
   context: Client,
   options: SpreadRecordUnionGetOptionalParams = { requestOptions: {} },
-): Promise<Record<string, string | number>> {
+): Promise<SpreadRecordForUnion> {
   const result = await _getSend(context, options);
   return _getDeserialize(result);
 }
 
 export function _putSend(
   context: Client,
-  body: Record<string, string | number>,
+  body: SpreadRecordForUnion,
   options: SpreadRecordUnionPutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<SpreadRecordUnionPut204Response> {
   return context
@@ -69,7 +70,7 @@ export async function _putDeserialize(
 /** Put operation */
 export async function put(
   context: Client,
-  body: Record<string, string | number>,
+  body: SpreadRecordForUnion,
   options: SpreadRecordUnionPutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putSend(context, body, options);

@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { AdditionalPropertiesContext } from "../../api/additionalPropertiesContext.js";
+import { DifferentSpreadFloatRecord } from "../../models/models.js";
 import { get, put } from "../../api/spreadDifferentFloat/index.js";
 import {
   SpreadDifferentFloatGetOptionalParams,
@@ -11,9 +12,9 @@ import {
 export interface SpreadDifferentFloatOperations {
   get: (
     options?: SpreadDifferentFloatGetOptionalParams,
-  ) => Promise<Record<string, number>>;
+  ) => Promise<DifferentSpreadFloatRecord>;
   put: (
-    body: Record<string, number>,
+    body: DifferentSpreadFloatRecord,
     options?: SpreadDifferentFloatPutOptionalParams,
   ) => Promise<void>;
 }
@@ -23,7 +24,7 @@ export function getSpreadDifferentFloat(context: AdditionalPropertiesContext) {
     get: (options?: SpreadDifferentFloatGetOptionalParams) =>
       get(context, options),
     put: (
-      body: Record<string, number>,
+      body: DifferentSpreadFloatRecord,
       options?: SpreadDifferentFloatPutOptionalParams,
     ) => put(context, body, options),
   };
