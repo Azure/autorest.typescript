@@ -134,7 +134,14 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
       return httpPoller.result;
     },
     toString() {
-      throw new Error("Method is deprecated. Use `serialize` instead.");
+      if (!httpPoller.operationState) {
+        throw new Error(
+          "Operation state is not available. The poller may not have been started and you could await submitted() before calling getOperationState().",
+        );
+      }
+      return JSON.stringify({
+        httpPoller.operationState,
+      });
     },
     stopPolling() {
       throw new Error("Method is deprecated and no longer supported.");
