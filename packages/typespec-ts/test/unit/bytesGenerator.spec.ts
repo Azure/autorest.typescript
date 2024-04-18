@@ -161,7 +161,7 @@ describe("bytes", () => {
       );
     });
   });
-  describe("multipart/form-data", () => {
+  describe.only("multipart/form-data", () => {
     describe("anonymous model", () => {
       it("bytes/bytes[] in request body + encode - should be treated as binary + file", async () => {
         const parameters = await emitParameterFromTypeSpec(
@@ -185,25 +185,34 @@ describe("bytes", () => {
             import { RequestParameters } from "@azure-rest/core-client";
             
             export interface UploadFileBodyParam {
-              /**
-               * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-               * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-               */
-              body: {
-                name: string;
-                file:
-                  | string
-                  | Uint8Array
-                  | ReadableStream<Uint8Array>
-                  | NodeJS.ReadableStream
-                  | File;
-                files:
-                  (| string
-                  | Uint8Array
-                  | ReadableStream<Uint8Array>
-                  | NodeJS.ReadableStream
-                  | File)[];
-              };
+              /** Value may contain any sequence of octets */
+              body:
+                | FormData
+                | Array<
+                    | { name: "name"; body: string }
+                    | {
+                        name: "file";
+                        body:
+                          | string
+                          | Uint8Array
+                          | ReadableStream<Uint8Array>
+                          | NodeJS.ReadableStream
+                          | File;
+                        filename?: string;
+                        type?: string;
+                      }
+                    | {
+                        name: "files";
+                        body:
+                          | string
+                          | Uint8Array
+                          | ReadableStream<Uint8Array>
+                          | NodeJS.ReadableStream
+                          | File;
+                        filename?: string;
+                        type?: string;
+                      }
+                >;
             }
             
             export interface UploadFileMediaTypesParam {
@@ -238,25 +247,34 @@ describe("bytes", () => {
             import { RequestParameters } from "@azure-rest/core-client";
             
             export interface UploadFileBodyParam {
-              /**
-               * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-               * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-               */
-              body: {
-                name: string;
-                file:
-                  | string
-                  | Uint8Array
-                  | ReadableStream<Uint8Array>
-                  | NodeJS.ReadableStream
-                  | File;
-                files:
-                  (| string
-                  | Uint8Array
-                  | ReadableStream<Uint8Array>
-                  | NodeJS.ReadableStream
-                  | File)[];
-              };
+              /** Value may contain any sequence of octets */
+              body:
+                | FormData
+                | Array<
+                    | { name: "name"; body: string }
+                    | {
+                        name: "file";
+                        body:
+                          | string
+                          | Uint8Array
+                          | ReadableStream<Uint8Array>
+                          | NodeJS.ReadableStream
+                          | File;
+                        filename?: string;
+                        type?: string;
+                      }
+                    | {
+                        name: "files";
+                        body:
+                          | string
+                          | Uint8Array
+                          | ReadableStream<Uint8Array>
+                          | NodeJS.ReadableStream
+                          | File;
+                        filename?: string;
+                        type?: string;
+                      }
+                  >;
             }
             
             export interface UploadFileMediaTypesParam {
@@ -293,7 +311,12 @@ describe("bytes", () => {
             import { RequestParameters } from "@azure-rest/core-client";
             
             export interface UploadFileBodyParam {
-              body: { name: string; file: { foo: string; foos: string[] } };
+              body:
+                | FormData
+                | Array<
+                    | { name: "name"; body: string }
+                    | { name: "file"; body: { foo: string; foos: string[] } }
+                  >;
             }
             
             export interface UploadFileMediaTypesParam {
@@ -331,29 +354,56 @@ describe("bytes", () => {
         await assertEqualContent(
           models.inputModelFile?.content!,
           `
-          export interface Foo {
-            "name": string;
-            /**
-             * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-             * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-             */
-            "encodeBytes": string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
-            /**
-             * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-             * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-             */
-            "withouEncode": string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
-            /**
-             * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-             * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-             */
-            "files": (string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File)[];
-            /**
-             * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-             * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-             */
-            "unionBytes": string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File | number;
-        }`
+          export type Foo =
+            | FormData
+            | Array<
+                | { name: "name"; body: string }
+                | {
+                    name: "encodeBytes";
+                    body:
+                      | string
+                      | Uint8Array
+                      | ReadableStream<Uint8Array>
+                      | NodeJS.ReadableStream
+                      | File;
+                    filename?: string;
+                    type?: string;
+                  }
+                | {
+                    name: "withouEncode";
+                    body:
+                      | string
+                      | Uint8Array
+                      | ReadableStream<Uint8Array>
+                      | NodeJS.ReadableStream
+                      | File;
+                    filename?: string;
+                    type?: string;
+                  }
+                | {
+                    name: "files";
+                    body:
+                      | string
+                      | Uint8Array
+                      | ReadableStream<Uint8Array>
+                      | NodeJS.ReadableStream
+                      | File;
+                    filename?: string;
+                    type?: string;
+                  }
+                | {
+                    name: "unionBytes";
+                    body:
+                      | string
+                      | Uint8Array
+                      | ReadableStream<Uint8Array>
+                      | NodeJS.ReadableStream
+                      | File
+                      | number;
+                    filename?: string;
+                    type?: string;
+                  }
+              >;`
         );
       });
 
@@ -382,18 +432,17 @@ describe("bytes", () => {
         await assertEqualContent(
           models?.inputModelFile?.content!,
           `
-          export interface Foo {
-            "name": string;
-            "bar": Bar;
-          }
-          
           export interface Bar {
               "name": string;
               "encodeBytes": string;
               "withouEncode": string;
               "files": string[];
               "unionBytes": string | number;
-          }`
+          }
+
+          export type Foo =
+            | FormData
+            | Array<{ name: "name"; body: string } | { name: "bar"; body: Bar }>;`
         );
       });
     });

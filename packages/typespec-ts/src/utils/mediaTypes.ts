@@ -127,7 +127,17 @@ export function isMediaTypeXml(mediaType: string): boolean {
     : false;
 }
 
-export function isMediaTypeMultipartFormData(mediaType: string): boolean {
+export function isMediaTypeMultipartFormData(
+  mediaType: string | string[]
+): boolean {
+  if (Array.isArray(mediaType)) {
+    return Boolean(
+      mediaType.length === 1 &&
+        mediaType[0] &&
+        isMediaTypeMultipartFormData(mediaType[0])
+    );
+  }
+
   const mt = parseMediaType(mediaType);
   return mt ? mt.type === multipart && mt.subtype === formData : false;
 }
