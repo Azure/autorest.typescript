@@ -62,7 +62,7 @@ describe("LROStandardClient Classical Client", () => {
     });
 
     // Skip this case: https://github.com/Azure/autorest.typescript/issues/2316
-    it.skip("should abort signal", async () => {
+    it.only("should abort signal", async () => {
       const abortController = new AbortController();
       const poller = client.createOrReplace(
         "madge",

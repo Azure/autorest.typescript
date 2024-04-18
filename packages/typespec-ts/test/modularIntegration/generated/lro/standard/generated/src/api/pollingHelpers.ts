@@ -7,13 +7,13 @@ import {
   ResourceLocationConfig,
   LongRunningOperation,
   createHttpPoller,
-  OperationResponse,
+  OperationResponse
 } from "@azure/core-lro";
 
 import {
   Client,
   PathUncheckedResponse,
-  createRestError,
+  createRestError
 } from "@azure-rest/core-client";
 import { AbortSignalLike } from "@azure/abort-controller";
 import { isUnexpected } from "../rest/index.js";
@@ -41,20 +41,26 @@ export interface GetLongRunningPollerOptions<TResponse> {
   /**
    * The function to get the initial response
    */
-  getInitialResponse?: () => PromiseLike<TResponse>;
+  getInitialResponse?: (options?: {
+    abortSignal?: AbortSignalLike;
+  }) => PromiseLike<TResponse>;
 }
 export function getLongRunningPoller<
   TResponse extends PathUncheckedResponse,
-  TResult = void,
+  TResult = void
 >(
   client: Client,
   processResponseBody: (result: TResponse) => PromiseLike<TResult>,
-  options: GetLongRunningPollerOptions<TResponse>,
+  options: GetLongRunningPollerOptions<TResponse>
 ): PollerLike<OperationState<TResult>, TResult> {
+  const abortController = new AbortController();
+  function abortListener(): void {
+    abortController.abort();
+  }
   const { restoreFrom, getInitialResponse } = options;
   if (!restoreFrom && !getInitialResponse) {
     throw new Error(
-      "Either restoreFrom or getInitialResponse must be specified",
+      "Either restoreFrom or getInitialResponse must be specified"
     );
   }
   let initialResponse: TResponse | undefined = undefined;
@@ -62,28 +68,53 @@ export function getLongRunningPoller<
     sendInitialRequest: async () => {
       if (!getInitialResponse) {
         throw new Error(
-          "getInitialResponse is required when initializing a new poller",
+          "getInitialResponse is required when initializing a new poller"
         );
       }
-      initialResponse = await getInitialResponse();
+      const clientAbortSignal = options?.abortSignal;
+      const abortSignal = abortController.signal;
+      if (clientAbortSignal?.aborted) {
+        abortController.abort();
+      } else if (!abortSignal.aborted) {
+        clientAbortSignal?.addEventListener("abort", abortListener, {
+          once: true
+        });
+      }
+      initialResponse = await getInitialResponse({ abortSignal });
       return getLroResponse(initialResponse);
     },
     sendPollRequest: async (
       path: string,
       pollOptions?: {
         abortSignal?: AbortSignalLike;
-      },
+      }
     ) => {
+      const clientAbortSignal = options?.abortSignal;
+      const methodAbortSignal = pollOptions?.abortSignal;
+
+      const abortSignal = abortController.signal;
+      if (methodAbortSignal?.aborted) {
+        abortController.abort();
+      } else if (clientAbortSignal?.aborted) {
+        abortController.abort();
+      } else if (!abortSignal.aborted) {
+        clientAbortSignal?.addEventListener("abort", abortListener, {
+          once: true
+        });
+        methodAbortSignal?.addEventListener("abort", abortListener, {
+          once: true
+        });
+      }
       const response = await client
         .pathUnchecked(path)
-        .get({ abortSignal: options.abortSignal ?? pollOptions?.abortSignal });
+        .get({ abortSignal: abortSignal });
       if (options.initialUrl || initialResponse) {
         response.headers["x-ms-original-url"] =
           options.initialUrl ?? initialResponse!.request.url;
       }
 
       return getLroResponse(response as TResponse);
-    },
+    }
   };
   return createHttpPoller(poller, {
     intervalInMs: options?.updateIntervalInMs,
@@ -91,7 +122,7 @@ export function getLongRunningPoller<
     restoreFrom: options?.restoreFrom,
     processResult: (result: unknown) => {
       return processResponseBody(result as TResponse) as TResult;
-    },
+    }
   });
 }
 /**
@@ -101,7 +132,7 @@ export function getLongRunningPoller<
  * @returns - An LRO response that the LRO implementation understands
  */
 function getLroResponse<TResponse extends PathUncheckedResponse>(
-  response: TResponse,
+  response: TResponse
 ): OperationResponse<TResponse> {
   if (isUnexpected(response as PathUncheckedResponse)) {
     throw createRestError(response);
@@ -111,7 +142,7 @@ function getLroResponse<TResponse extends PathUncheckedResponse>(
     rawResponse: {
       ...response,
       statusCode: Number.parseInt(response.status),
-      body: response.body,
-    },
+      body: response.body
+    }
   };
 }
