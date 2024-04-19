@@ -1676,7 +1676,7 @@ function getMultipartInlineSignature(
       }
 
       if (typeName.includes("File")) {
-        return `{ name: ${propertyName}, body: ${typeName}, filename?: string, type?: string }`;
+        return `{ name: ${propertyName}, body: ${typeName}, filename?: string, contentType?: string }`;
       } else {
         return `{ name: ${propertyName}, body: ${typeName} }`;
       }

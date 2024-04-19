@@ -12,7 +12,7 @@ export function buildRuntimeImports(flavor?: PackageFlavor): Imports {
       restClient: {
         type: "restClient",
         specifier: "@azure-rest/core-client",
-        version: "^1.4.0"
+        version: "/home/timov/src/azure-sdk-for-js/sdk/core/core-client-rest"
       },
       coreAuth: {
         type: "coreAuth",

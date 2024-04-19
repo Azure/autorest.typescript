@@ -81,7 +81,7 @@ export function buildObjectAliases(
         if (sig.type?.toString().includes("File")) {
           return `{name: ${sig.name}, body: ${
             sig.type ?? "unknown"
-          }, filename?: string, type?: string }`;
+          }, filename?: string, contentType?: string }`;
         } else {
           return `{name: ${sig.name}, body: ${sig.type ?? "unknown"} }`;
         }
