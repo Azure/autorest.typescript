@@ -164,7 +164,7 @@ function getCjsDevDependencies({
       "karma-sourcemap-loader": "^0.3.8",
       karma: "^6.2.0",
       nyc: "^15.1.0",
-      esm: "^3.2.18"
+      tsx: "^4.7.1"
     };
   }
 
