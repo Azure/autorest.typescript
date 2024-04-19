@@ -71,17 +71,18 @@ describe("EncodeDatetimeClient Rest Client", () => {
         assert.fail(err as string);
       }
     });
-
   });
 
   describe("property", () => {
     it(`should post bytes`, async () => {
       try {
-        const result = await client.path(`/encode/bytes/property/default`).post({
-          body: {
-            value: "dGVzdA=="
-          }
-        });
+        const result = await client
+          .path(`/encode/bytes/property/default`)
+          .post({
+            body: {
+              value: "dGVzdA=="
+            }
+          });
         assert.strictEqual(result.status, "200");
       } catch (err) {
         assert.fail(err as string);
@@ -103,11 +104,13 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should post bytes base64url encoding`, async () => {
       try {
-        const result = await client.path(`/encode/bytes/property/base64url`).post({
-          body: {
-            value: "dGVzdA"
-          }
-        });
+        const result = await client
+          .path(`/encode/bytes/property/base64url`)
+          .post({
+            body: {
+              value: "dGVzdA"
+            }
+          });
         assert.strictEqual(result.status, "200");
       } catch (err) {
         assert.fail(err as string);
@@ -128,7 +131,6 @@ describe("EncodeDatetimeClient Rest Client", () => {
         assert.fail(err as string);
       }
     });
-
   });
 
   describe("header", () => {
@@ -185,17 +187,20 @@ describe("EncodeDatetimeClient Rest Client", () => {
         assert.fail(err as string);
       }
     });
-
   });
 
   describe("request body", () => {
-    const pngFile = readFileSync(resolve("../../packages/typespec-ts/temp/assets/image.png"));
+    const pngFile = readFileSync(
+      resolve("../../packages/typespec-ts/temp/assets/image.png")
+    );
     it(`should post bytes`, async () => {
       try {
-        const result = await client.path(`/encode/bytes/body/request/default`).post({
-          contentType: "application/json",
-          body: "dGVzdA=="
-        });
+        const result = await client
+          .path(`/encode/bytes/body/request/default`)
+          .post({
+            contentType: "application/json",
+            body: "dGVzdA=="
+          });
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -204,10 +209,12 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should post bytes base64 encoding`, async () => {
       try {
-        const result = await client.path(`/encode/bytes/body/request/base64`).post({
-          contentType: "application/json",
-          body: "dGVzdA=="
-        });
+        const result = await client
+          .path(`/encode/bytes/body/request/base64`)
+          .post({
+            contentType: "application/json",
+            body: "dGVzdA=="
+          });
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -216,17 +223,19 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should post bytes base64url encoding`, async () => {
       try {
-        const result = await client.path(`/encode/bytes/body/request/base64url`).post({
-          contentType: "application/json",
-          body: "dGVzdA"
-        });
+        const result = await client
+          .path(`/encode/bytes/body/request/base64url`)
+          .post({
+            contentType: "application/json",
+            body: "dGVzdA"
+          });
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
       }
     });
 
-    it.skip(`should post bytes with custom content type`, async () => {
+    it(`should post bytes with custom content type`, async () => {
       try {
         const result = await client
           .path(`/encode/bytes/body/request/custom-content-type`)
@@ -240,7 +249,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
       }
     }).timeout(10000);
 
-    it.skip(`should post bytes with custom content type`, async () => {
+    it(`should post bytes with custom content type`, async () => {
       try {
         const result = await client
           .path(`/encode/bytes/body/request/octet-stream`)
@@ -256,12 +265,16 @@ describe("EncodeDatetimeClient Rest Client", () => {
   });
 
   describe("response body", () => {
-    const pngFile = readFileSync(resolve("../../packages/typespec-ts/temp/assets/image.png"));
+    const pngFile = readFileSync(
+      resolve("../../packages/typespec-ts/temp/assets/image.png")
+    );
     it(`should get bytes with base64 encoding by default`, async () => {
       try {
-        const result = await client.path(`/encode/bytes/body/response/default`).get();
+        const result = await client
+          .path(`/encode/bytes/body/response/default`)
+          .get();
         assert.strictEqual(result.status, "200");
-        assert.strictEqual(result.body, "dGVzdA==")
+        assert.strictEqual(result.body, "dGVzdA==");
       } catch (err) {
         assert.fail(err as string);
       }
@@ -269,9 +282,11 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should get bytes base64 encoding`, async () => {
       try {
-        const result = await client.path(`/encode/bytes/body/response/base64`).get();
+        const result = await client
+          .path(`/encode/bytes/body/response/base64`)
+          .get();
         assert.strictEqual(result.status, "200");
-        assert.strictEqual(result.body, "dGVzdA==")
+        assert.strictEqual(result.body, "dGVzdA==");
       } catch (err) {
         assert.fail(err as string);
       }
@@ -279,21 +294,24 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should get bytes base64url encoding`, async () => {
       try {
-        const result = await client.path(`/encode/bytes/body/response/base64url`).get();
+        const result = await client
+          .path(`/encode/bytes/body/response/base64url`)
+          .get();
         assert.strictEqual(result.status, "200");
-        assert.strictEqual(result.body, "dGVzdA")
+        assert.strictEqual(result.body, "dGVzdA");
       } catch (err) {
         assert.fail(err as string);
       }
     });
 
-    it.skip(`should get bytes with custom content type`, async () => {
+    it.only(`should get bytes with custom content type`, async () => {
       try {
         const result = await client
           .path(`/encode/bytes/body/response/custom-content-type`)
           .get({
             contentType: "image/png"
           });
+        // console.log(result.status, Buffer.from(result.body), pngFile);
         assert.strictEqual(result.status, "200");
         assert.strictEqual(Buffer.from(result.body), pngFile);
       } catch (err) {
@@ -301,13 +319,14 @@ describe("EncodeDatetimeClient Rest Client", () => {
       }
     });
 
-    it.skip(`should get bytes with octet-stream content type`, async () => {
+    it.only(`should get bytes with octet-stream content type`, async () => {
       try {
         const result = await client
           .path(`/encode/bytes/body/response/octet-stream`)
           .get({
-            contentType: "application/octet-stream",
+            contentType: "application/octet-stream"
           });
+        // console.log(result.status, Buffer.from(result.body), pngFile);
         assert.strictEqual(result.status, "200");
         assert.strictEqual(Buffer.from(result.body), pngFile);
       } catch (err) {

@@ -170,7 +170,7 @@ describe("EncodeBytesClient Modular Client", () => {
     });
   });
 
-  describe.skip("request body", () => {
+  describe("request body", () => {
     const pngFile = readFileSync(
       resolve("../../packages/typespec-ts/temp/assets/image.png")
     );
@@ -203,7 +203,7 @@ describe("EncodeBytesClient Modular Client", () => {
       }
     });
 
-    it(`should post bytes base64url encoding`, async () => {
+    it.only(`should post bytes base64url encoding`, async () => {
       try {
         const result = await client.requestBody.base64url(
           stringToUint8Array("dGVzdA", "base64url"),
@@ -217,7 +217,7 @@ describe("EncodeBytesClient Modular Client", () => {
       }
     });
 
-    it.skip(`should post bytes with custom content type`, async () => {
+    it(`should post bytes with custom content type`, async () => {
       try {
         const result = await client.requestBody.customContentType(pngFile, {
           contentType: "image/png"
@@ -228,7 +228,7 @@ describe("EncodeBytesClient Modular Client", () => {
       }
     }).timeout(10000);
 
-    it.skip(`should post bytes with custom content type`, async () => {
+    it(`should post bytes with custom content type`, async () => {
       try {
         const result = await client.requestBody.octetStream(pngFile, {
           contentType: "application/octet-stream"
@@ -271,7 +271,7 @@ describe("EncodeBytesClient Modular Client", () => {
       }
     });
 
-    it.skip(`should get bytes with custom content type`, async () => {
+    it.only(`should get bytes with custom content type`, async () => {
       try {
         const result = await client.responseBody.customContentType({
           onResponse: (res) => {
@@ -284,7 +284,7 @@ describe("EncodeBytesClient Modular Client", () => {
       }
     });
 
-    it.skip(`should get bytes with octet-stream content type`, async () => {
+    it.only(`should get bytes with octet-stream content type`, async () => {
       try {
         const result = await client.responseBody.octetStream({
           onResponse: (res) => {
