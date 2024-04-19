@@ -166,7 +166,7 @@ export function _requestBodyBase64urlSend(
     .path("/encode/bytes/body/request/base64url")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: uint8ArrayToString(value, "base64"),
+      body: uint8ArrayToString(value, "base64url"),
     });
 }
 

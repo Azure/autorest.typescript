@@ -3,6 +3,7 @@ import EncodeBytesClientFactory, {
   BytesClient
 } from "./generated/encode/bytes/src/index.js";
 import { buildCsvCollection } from "./generated/encode/bytes/src/serializeHelper.js";
+import { uint8ArrayToString } from "@azure/core-util";
 import { readFileSync } from "fs";
 import { resolve } from "path";
 
@@ -267,7 +268,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
   describe("response body", () => {
     const pngFile = readFileSync(
       resolve("../../packages/typespec-ts/temp/assets/image.png")
-    );
+    ).toString();
     it(`should get bytes with base64 encoding by default`, async () => {
       try {
         const result = await client
@@ -304,7 +305,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
       }
     });
 
-    it.only(`should get bytes with custom content type`, async () => {
+    it(`should get bytes with custom content type`, async () => {
       try {
         const result = await client
           .path(`/encode/bytes/body/response/custom-content-type`)
@@ -313,13 +314,13 @@ describe("EncodeDatetimeClient Rest Client", () => {
           });
         // console.log(result.status, Buffer.from(result.body), pngFile);
         assert.strictEqual(result.status, "200");
-        assert.strictEqual(Buffer.from(result.body), pngFile);
+        assert.strictEqual(uint8ArrayToString(result.body, "utf-8"), pngFile);
       } catch (err) {
         assert.fail(err as string);
       }
     });
 
-    it.only(`should get bytes with octet-stream content type`, async () => {
+    it(`should get bytes with octet-stream content type`, async () => {
       try {
         const result = await client
           .path(`/encode/bytes/body/response/octet-stream`)
@@ -328,7 +329,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
           });
         // console.log(result.status, Buffer.from(result.body), pngFile);
         assert.strictEqual(result.status, "200");
-        assert.strictEqual(Buffer.from(result.body), pngFile);
+        assert.strictEqual(uint8ArrayToString(result.body, "utf-8"), pngFile);
       } catch (err) {
         assert.fail(err as string);
       }

@@ -97,8 +97,8 @@ describe("EncodeBytesClient Modular Client", () => {
           value: stringToUint8Array("dGVzdA", "base64url")
         });
         assert.deepEqual(
-          result.value,
-          stringToUint8Array("dGVzdA", "base64url")
+          uint8ArrayToString(result.value, "base64url"),
+          "dGVzdA"
         );
       } catch (err) {
         assert.fail(err as string);
@@ -203,7 +203,7 @@ describe("EncodeBytesClient Modular Client", () => {
       }
     });
 
-    it.only(`should post bytes base64url encoding`, async () => {
+    it(`should post bytes base64url encoding`, async () => {
       try {
         const result = await client.requestBody.base64url(
           stringToUint8Array("dGVzdA", "base64url"),
@@ -243,7 +243,7 @@ describe("EncodeBytesClient Modular Client", () => {
   describe("response body", () => {
     const pngFile = readFileSync(
       resolve("../../packages/typespec-ts/temp/assets/image.png")
-    );
+    ).toString();
     it(`should get bytes with base64 encoding by default`, async () => {
       try {
         const result = await client.responseBody.default();
@@ -271,27 +271,27 @@ describe("EncodeBytesClient Modular Client", () => {
       }
     });
 
-    it.only(`should get bytes with custom content type`, async () => {
+    it(`should get bytes with custom content type`, async () => {
       try {
         const result = await client.responseBody.customContentType({
           onResponse: (res) => {
             res.headers.get("content-type") === "image/png";
           }
         });
-        assert.strictEqual(Buffer.from(result), pngFile);
+        assert.strictEqual(uint8ArrayToString(result, "utf-8"), pngFile);
       } catch (err) {
         assert.fail(err as string);
       }
     });
 
-    it.only(`should get bytes with octet-stream content type`, async () => {
+    it(`should get bytes with octet-stream content type`, async () => {
       try {
         const result = await client.responseBody.octetStream({
           onResponse: (res) => {
             res.headers.get("content-type") === "application/octet-stream";
           }
         });
-        assert.strictEqual(Buffer.from(result), pngFile);
+        assert.strictEqual(uint8ArrayToString(result, "utf-8"), pngFile);
       } catch (err) {
         assert.fail(err as string);
       }
