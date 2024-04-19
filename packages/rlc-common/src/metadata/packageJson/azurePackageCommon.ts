@@ -98,7 +98,7 @@ function getAzurePackageCjsDevDependencies({
     return {};
   }
   const testDevDependencies = {
-    c8: "^9.1.0",
+    nyc: "^15.1.0",
     mocha: "^10.0.0",
     "@types/mocha": "^10.0.0",
     "cross-env": "^7.0.2",
