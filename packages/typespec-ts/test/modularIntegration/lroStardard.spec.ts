@@ -61,8 +61,7 @@ describe("LROStandardClient Classical Client", () => {
       assert.deepEqual(states, ["running", "succeeded"]);
     });
 
-    // Skip this case: https://github.com/Azure/autorest.typescript/issues/2316
-    it.only("should abort signal", async () => {
+    it("should abort initial request", async () => {
       const abortController = new AbortController();
       const poller = client.createOrReplace(
         "madge",
@@ -73,11 +72,70 @@ describe("LROStandardClient Classical Client", () => {
           abortSignal: abortController.signal
         }
       );
-      await poller.submitted();
-      assert.strictEqual(poller.operationState?.status, "running");
       abortController.abort();
-      poller.poll();
-      assert.strictEqual(poller.operationState?.status, "cancelled");
+      try {
+        await poller.submitted();
+        assert.fail("Should throw an AbortError");
+      } catch (err: any) {
+        assert.strictEqual(err.message, "The operation was aborted.");
+      }
+    });
+
+    it("should abort polling request", async () => {
+      const abortController = new AbortController();
+      const poller = client.createOrReplace(
+        "madge",
+        {
+          role: "contributor"
+        } as any,
+        {
+          abortSignal: abortController.signal
+        }
+      );
+      try {
+        await poller.submitted();
+        abortController.abort();
+        await poller.poll();
+        assert.fail("Should throw an AbortError");
+      } catch (err: any) {
+        assert.strictEqual(err.message, "The operation was aborted.");
+      }
+    });
+
+    it("should abort pollUntilDone request", async () => {
+      const abortController = new AbortController();
+      const poller = client.createOrReplace("madge", {
+        role: "contributor"
+      } as any);
+      abortController.abort();
+      try {
+        await poller.pollUntilDone({ abortSignal: abortController.signal });
+        assert.fail("Should throw an AbortError");
+      } catch (err: any) {
+        assert.strictEqual(err.message, "The operation was aborted.");
+      }
+    });
+
+    it("should abort polling request if both method and polling abort is set", async () => {
+      const methodAbort = new AbortController();
+      const pollAbort = new AbortController();
+      const poller = client.createOrReplace(
+        "madge",
+        {
+          role: "contributor"
+        } as any,
+        {
+          abortSignal: methodAbort.signal
+        }
+      );
+
+      try {
+        pollAbort.abort();
+        await poller.pollUntilDone({ abortSignal: pollAbort.signal });
+        assert.fail("Should throw an AbortError");
+      } catch (err: any) {
+        assert.strictEqual(err.message, "The operation was aborted.");
+      }
     });
 
     it("submitted should catch the initial error", async () => {

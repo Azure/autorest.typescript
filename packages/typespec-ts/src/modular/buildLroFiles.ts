@@ -338,10 +338,13 @@ export function buildGetPollerHelper(
       );
     }
     let initialResponse: TResponse | undefined = undefined;
+    const pollAbortController = new AbortController();
     const poller: LongRunningOperation<TResponse> = {
       sendInitialRequest: async () => {
         if (!getInitialResponse) {
-          throw new Error("getInitialResponse is required when initializing a new poller");
+          throw new Error(
+            "getInitialResponse is required when initializing a new poller"
+          );
         }
         initialResponse = await getInitialResponse();
         return getLroResponse(initialResponse);
@@ -352,14 +355,35 @@ export function buildGetPollerHelper(
           abortSignal?: AbortSignalLike;
         }
       ) => {
-        const response = await client
-          .pathUnchecked(path)
-          .get({ abortSignal: options.abortSignal ?? pollOptions?.abortSignal });
+        // The poll request would both listen to the user provided abort signal and the poller's own abort signal
+        function abortListener(): void {
+          pollAbortController.abort();
+        }
+        const abortSignal = pollAbortController.signal;
+        if (options.abortSignal?.aborted) {
+          pollAbortController.abort();
+        } else if (pollOptions?.abortSignal?.aborted) {
+          pollAbortController.abort();
+        } else if (!abortSignal.aborted) {
+          options.abortSignal?.addEventListener("abort", abortListener, {
+            once: true
+          });
+          pollOptions?.abortSignal?.addEventListener("abort", abortListener, {
+            once: true
+          });
+        }
+        let response;
+        try {
+          response = await client.pathUnchecked(path).get({ abortSignal });
+        } finally {
+          options.abortSignal?.removeEventListener("abort", abortListener);
+          pollOptions?.abortSignal?.removeEventListener("abort", abortListener);
+        }
         if (options.initialUrl || initialResponse) {
           response.headers["x-ms-original-url"] =
             options.initialUrl ?? initialResponse!.request.url;
         }
-  
+
         return getLroResponse(response as TResponse);
       }
     };
