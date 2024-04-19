@@ -1,113 +1,126 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export interface MultiPartRequest {
-  id: string;
-  /**
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-   */
-  profileImage:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream
-    | File;
-}
-
-export interface ComplexPartsRequest {
-  id: string;
-  address: Address;
-  /**
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-   */
-  profileImage:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream
-    | File;
-  previousAddresses: Array<Address>;
-  /**
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-   */
-  pictures: (
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream
-    | File
-  )[];
-}
-
 export interface Address {
   city: string;
 }
 
-export interface JsonPartRequest {
-  address: Address;
-  /**
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-   */
-  profileImage:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream
-    | File;
-}
-
-export interface BinaryArrayPartsRequest {
-  id: string;
-  /**
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-   */
-  pictures: (
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream
-    | File
-  )[];
-}
-
-export interface JsonArrayPartsRequest {
-  /**
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-   */
-  profileImage:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream
-    | File;
-  previousAddresses: Array<Address>;
-}
-
-export interface MultiBinaryPartsRequest {
-  /**
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-   */
-  profileImage:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream
-    | File;
-  /**
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-   */
-  picture?:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream
-    | File;
-}
+export type MultiPartRequest =
+  | FormData
+  | Array<
+      | { name: "id"; body: string }
+      | {
+          name: "profileImage";
+          body:
+            | string
+            | Uint8Array
+            | ReadableStream<Uint8Array>
+            | NodeJS.ReadableStream
+            | File;
+          filename?: string;
+          contentType?: string;
+        }
+    >;
+export type ComplexPartsRequest =
+  | FormData
+  | Array<
+      | { name: "id"; body: string }
+      | { name: "address"; body: Address }
+      | {
+          name: "profileImage";
+          body:
+            | string
+            | Uint8Array
+            | ReadableStream<Uint8Array>
+            | NodeJS.ReadableStream
+            | File;
+          filename?: string;
+          contentType?: string;
+        }
+      | { name: Address; body: Address }
+      | {
+          name: "pictures";
+          body:
+            | string
+            | Uint8Array
+            | ReadableStream<Uint8Array>
+            | NodeJS.ReadableStream
+            | File;
+          filename?: string;
+          contentType?: string;
+        }
+    >;
+export type JsonPartRequest =
+  | FormData
+  | Array<
+      | { name: "address"; body: Address }
+      | {
+          name: "profileImage";
+          body:
+            | string
+            | Uint8Array
+            | ReadableStream<Uint8Array>
+            | NodeJS.ReadableStream
+            | File;
+          filename?: string;
+          contentType?: string;
+        }
+    >;
+export type BinaryArrayPartsRequest =
+  | FormData
+  | Array<
+      | { name: "id"; body: string }
+      | {
+          name: "pictures";
+          body:
+            | string
+            | Uint8Array
+            | ReadableStream<Uint8Array>
+            | NodeJS.ReadableStream
+            | File;
+          filename?: string;
+          contentType?: string;
+        }
+    >;
+export type JsonArrayPartsRequest =
+  | FormData
+  | Array<
+      | {
+          name: "profileImage";
+          body:
+            | string
+            | Uint8Array
+            | ReadableStream<Uint8Array>
+            | NodeJS.ReadableStream
+            | File;
+          filename?: string;
+          contentType?: string;
+        }
+      | { name: Address; body: Address }
+    >;
+export type MultiBinaryPartsRequest =
+  | FormData
+  | Array<
+      | {
+          name: "profileImage";
+          body:
+            | string
+            | Uint8Array
+            | ReadableStream<Uint8Array>
+            | NodeJS.ReadableStream
+            | File;
+          filename?: string;
+          contentType?: string;
+        }
+      | {
+          name: "picture";
+          body:
+            | string
+            | Uint8Array
+            | ReadableStream<Uint8Array>
+            | NodeJS.ReadableStream
+            | File;
+          filename?: string;
+          contentType?: string;
+        }
+    >;

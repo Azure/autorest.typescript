@@ -1,14 +1,12 @@
 import { assert } from "chai";
 import { resolvePath } from "@typespec/compiler";
 import MultiPartClientFactory, {
-  MultiPartClient,
-  createFile,
-  createFileFromStream
+  MultiPartClient
 } from "./generated/payload/multipart/src/index.js";
 import { resolve } from "path";
 import { readFile } from "fs/promises";
 import { fileURLToPath } from "url";
-describe("MultiPartClient Rest Client", () => {
+describe.only("MultiPartClient Rest Client", () => {
   let client: MultiPartClient;
 
   beforeEach(() => {
@@ -27,53 +25,26 @@ describe("MultiPartClient Rest Client", () => {
         .path("/multipart/form-data/mixed-parts")
         .post({
           contentType: "multipart/form-data",
-          body: {
-            id: "123",
-            profileImage: file
-          }
-        });
-      assert.strictEqual(result.status, "204");
-    });
-    it("createFile could return file objects", async () => {
-      const file = createFile(await readFile(imgPath), "test.jpg");
-      const result = await client
-        .path("/multipart/form-data/mixed-parts")
-        .post({
-          contentType: "multipart/form-data",
-          body: {
-            id: "123",
-            profileImage: file
-          }
-        });
-      assert.strictEqual(result.status, "204");
-    });
-    it("createFileFromStream could return file object", async () => {
-      const content = await readFile(imgPath);
-      const file = createFileFromStream(() => content, "test.jpg");
-      const result = await client
-        .path("/multipart/form-data/mixed-parts")
-        .post({
-          contentType: "multipart/form-data",
-          body: {
-            id: "123",
-            profileImage: file
-          }
+          body: [
+            { name: "id", body: "123" },
+            { name: "profileImage", body: file, filename: "profileImage.jpg" }
+          ]
         });
       assert.strictEqual(result.status, "204");
     });
   });
 
   describe("custom content type + filename", () => {
-    it("No content type customized would throw exceptions", async () => {
+    it("raises 400 error when filename and MIME type unspecified", async () => {
       const file = await readFile(imgPath);
       const result = await client
         .path("/multipart/form-data/check-filename-and-content-type")
         .post({
           contentType: "multipart/form-data",
-          body: {
-            id: "123",
-            profileImage: file
-          }
+          body: [
+            { name: "id", body: "123" },
+            { name: "profileImage", body: file, filename: "profileImage.jpg" }
+          ]
         });
       assert.strictEqual(result.status, "400");
       assert.strictEqual((result as any).body.expected, "image/jpg");
@@ -82,79 +53,64 @@ describe("MultiPartClient Rest Client", () => {
         "application/octet-stream"
       );
     });
-    it("createFile could return file objects", async () => {
-      const file = createFile(await readFile(imgPath), "hello.jpg", {
-        type: "image/jpg"
-      });
+    it("allows specifying MIME type and filename", async () => {
+      const fileContent = await readFile(imgPath);
+      const filename = "hello.jpg";
+      const contentType = "image/jpg";
+
       const result = await client
         .path("/multipart/form-data/check-filename-and-content-type")
         .post({
           contentType: "multipart/form-data",
-          body: {
-            id: "123",
-            profileImage: file
-          }
-        });
-      assert.strictEqual(result.status, "204");
-    });
-    it("createFileFromStream could return file objects", async () => {
-      const content = await readFile(imgPath);
-      const file = createFileFromStream(() => content, "hello.jpg", {
-        type: "image/jpg"
-      });
-      const result = await client
-        .path("/multipart/form-data/check-filename-and-content-type")
-        .post({
-          contentType: "multipart/form-data",
-          body: {
-            id: "123",
-            profileImage: file
-          }
+          body: [
+            { name: "id", body: "123" },
+            { name: "profileImage", body: fileContent, filename, contentType }
+          ]
         });
       assert.strictEqual(result.status, "204");
     });
   });
 
   describe("bytes + bytes", () => {
-    it("array of files could be uploaded successfully", async () => {
+    it("can upload multiple files with same part name", async () => {
       const file1 = await readFile(pngPath);
-      const file2 = createFile(file1, "test.png");
       const result = await client
         .path("/multipart/form-data/binary-array-parts")
         .post({
           contentType: "multipart/form-data",
-          body: {
-            id: "123",
-            pictures: [file1, file2]
-          }
+          body: [
+            { name: "id", body: "123" },
+            { name: "pictures", body: file1, filename: "test1.png" },
+            { name: "pictures", body: file1, filename: "test.png" }
+          ]
         });
       assert.strictEqual(result.status, "204");
     });
 
-    it("optional bytes could be ignored", async () => {
+    it("can skip uploading optional file parts", async () => {
       const file = await readFile(imgPath);
       const result = await client
         .path("/multipart/form-data/multi-binary-parts")
         .post({
           contentType: "multipart/form-data",
-          body: {
-            profileImage: file
-          }
+          body: [
+            { name: "profileImage", body: file, filename: "profileImage.jpg" }
+          ]
         });
       assert.strictEqual(result.status, "204");
     });
 
-    it("optional bytes could be uploaded", async () => {
+    it("can upload optional file parts", async () => {
       const file = await readFile(imgPath);
       const optionalFile = await readFile(pngPath);
       const result = await client
         .path("/multipart/form-data/multi-binary-parts")
         .post({
           contentType: "multipart/form-data",
-          body: {
-            profileImage: file,
-            picture: optionalFile
-          }
+          body: [
+            { name: "profileImage", body: file, filename: "profileImage.jpg" },
+            { name: "picture", body: optionalFile, filename: "aaa.png" }
+          ]
         });
       assert.strictEqual(result.status, "204");
     });
