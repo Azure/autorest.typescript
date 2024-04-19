@@ -375,7 +375,7 @@ describe("Package file generation", () => {
         "karma-sourcemap-loader"
       );
       expect(packageFile.devDependencies).to.have.property("karma");
-      expect(packageFile.devDependencies).to.have.property("c8");
+      expect(packageFile.devDependencies).to.have.property("nyc");
       expect(packageFile.devDependencies).to.have.property("tsx");
     });
 
@@ -483,7 +483,7 @@ describe("Package file generation", () => {
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
-      expect(packageFile.devDependencies).to.have.property("c8");
+      expect(packageFile.devDependencies).to.have.property("nyc");
       expect(packageFile.devDependencies).to.have.property("mocha");
       expect(packageFile.devDependencies).to.have.property("@types/mocha");
       expect(packageFile.devDependencies).to.have.property("cross-env");
