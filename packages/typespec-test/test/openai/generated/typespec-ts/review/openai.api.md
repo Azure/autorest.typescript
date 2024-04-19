@@ -37,10 +37,6 @@ export interface AzureChatExtensionsMessageContextOutput {
 // @public
 export type AzureChatExtensionType = "AzureCognitiveSearch";
 
-// @public (undocumented)
-export interface AzureCoreTraitsOutput {
-}
-
 // @public
 export type AzureOpenAIOperationStateOutput = "notRunning" | "running" | "succeeded" | "canceled" | "failed";
 

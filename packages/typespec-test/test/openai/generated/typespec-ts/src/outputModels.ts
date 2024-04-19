@@ -9,8 +9,6 @@ export interface DeploymentOutput {
   readonly deploymentId: string;
 }
 
-export interface AzureCoreTraitsOutput {}
-
 /**
  * Representation of the response data from an embeddings request.
  * Embeddings measure the relatedness of text strings and are commonly used for search, clustering,
