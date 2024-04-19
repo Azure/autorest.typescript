@@ -331,11 +331,12 @@ function emitBrandedPackage(codeModel: ModularCodeModel) {
       });
     }
     packageInfo.scripts["build"] =
-      "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && api-extractor run --local";
+      "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && dev-tool run extract-api";
     packageInfo.scripts["build:debug"] =
-      "tsc -p . && dev-tool run bundle && api-extractor run --local";
+      "tsc -p . && dev-tool run bundle && dev-tool run extract-api";
     packageInfo.scripts["build:browser"] = "tsc -p . && dev-tool run bundle";
     packageInfo.scripts["build:node"] = "tsc -p . && dev-tool run bundle";
+    packageInfo.scripts["extract-api"] = "dev-tool run extract-api";
     packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
     packageInfo.devDependencies["@azure/eslint-plugin-azure-sdk"] = "^3.0.0";
     // azsdkjs repo use dev-tool to run vendored prettier
