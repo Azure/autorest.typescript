@@ -426,7 +426,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
-        "rimraf review && mkdirp ./review && api-extractor run --local"
+        "rimraf review && mkdirp ./review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "integration-test",
