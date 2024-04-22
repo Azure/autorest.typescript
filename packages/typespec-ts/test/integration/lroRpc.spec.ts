@@ -13,7 +13,7 @@ describe("RpcClient Rest Client", () => {
     });
   });
 
-  it("should put LRO response", async () => {
+  it("should post LRO response", async () => {
     try {
       const initialResponse = await client
         .path("/azure/core/lro/rpc/generations:submit")
