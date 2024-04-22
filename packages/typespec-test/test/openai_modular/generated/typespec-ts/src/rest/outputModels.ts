@@ -3,12 +3,6 @@
 
 import { ErrorModel } from "@azure-rest/core-client";
 
-/** A specific deployment */
-export interface DeploymentOutput {
-  /** Specifies either the model deployment name (when using Azure OpenAI) or model name (when using non-Azure OpenAI) to use for this request. */
-  readonly deploymentId: string;
-}
-
 /** Result information for an operation that transcribed spoken audio into written text. */
 export interface AudioTranscriptionOutput {
   /** The transcribed text for the provided audio data. */
@@ -571,43 +565,6 @@ export interface AzureGroundingEnhancementCoordinatePointOutput {
   y: number;
 }
 
-/** Represents the request data used to generate images. */
-export interface ImageGenerationOptionsOutput {
-  /**
-   * The model name or Azure OpenAI model deployment name to use for image generation. If not specified, dall-e-2 will be
-   * inferred as a default.
-   */
-  model?: string;
-  /** A description of the desired images. */
-  prompt: string;
-  /**
-   * The number of images to generate.
-   * Dall-e-2 models support values between 1 and 10.
-   * Dall-e-3 models only support a value of 1.
-   */
-  n?: number;
-  /**
-   * The desired dimensions for generated images.
-   * Dall-e-2 models support 256x256, 512x512, or 1024x1024.
-   * Dall-e-3 models support 1024x1024, 1792x1024, or 1024x1792.
-   */
-  size?: ImageSizeOutput;
-  /** The format in which image generation response items should be presented. */
-  response_format?: ImageGenerationResponseFormatOutput;
-  /**
-   * The desired image generation quality level to use.
-   * Only configurable with dall-e-3 models.
-   */
-  quality?: ImageGenerationQualityOutput;
-  /**
-   * The desired image generation style to use.
-   * Only configurable with dall-e-3 models.
-   */
-  style?: ImageGenerationStyleOutput;
-  /** A unique identifier representing your end-user, which can help to monitor and detect abuse. */
-  user?: string;
-}
-
 /** The result of a successful image generation operation. */
 export interface ImageGenerationsOutput {
   /**
@@ -712,25 +669,6 @@ export type ChatRoleOutput =
   | "user"
   | "function"
   | "tool";
-/** The desired size of generated images. */
-export type ImageSizeOutput =
-  | "256x256"
-  | "512x512"
-  | "1024x1024"
-  | "1792x1024"
-  | "1024x1792";
-/** The format in which the generated images are returned. */
-export type ImageGenerationResponseFormatOutput = "url" | "b64_json";
-/**
- * An image generation configuration that specifies how the model should prioritize quality, cost, and speed.
- * Only configurable with dall-e-3 models.
- */
-export type ImageGenerationQualityOutput = "standard" | "hd";
-/**
- * An image generation configuration that specifies how the model should incorporate realism and other visual characteristics.
- * Only configurable with dall-e-3 models.
- */
-export type ImageGenerationStyleOutput = "natural" | "vivid";
 /** The state of a job or item. */
 export type AzureOpenAIOperationStateOutput =
   | "notRunning"
