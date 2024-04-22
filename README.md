@@ -25,6 +25,7 @@ This repository is the code generator libraries for Azure TypeScript SDK and Azu
 
 Inside this project, we support both high level client generation and rest level client generation. In the rest level client generation, we support generate code from both rest api specs and typespec. In the high level client generation, we only support generation from rest api specs.  
 
+
 - [**@autorest/typescript:**](https://github.com/Azure/autorest.typescript/tree/main/packages/autorest.typescript) contains the original high level client generation and the rest level client generation, mostly including the transformation from autorest code model into RLC model part.
 - [**@azure-tools/typespec-ts:**](https://github.com/Azure/autorest.typescript/tree/main/packages/typespec-ts) is the typescript TypeSpec emitter, which contains the transformation from TypeSpec model into RLC model.
 - [**@azure-tools/rlc-common:**](https://github.com/Azure/autorest.typescript/tree/main/packages/rlc-common) contains the common generation logic from RLC model into rest client libraries code part. Which is depended by both `@autorest/typescript` rlc generation part and `@azure-tools/typespec-ts`.
