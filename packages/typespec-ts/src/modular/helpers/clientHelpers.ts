@@ -24,6 +24,7 @@ export function getClientParameters(
     ...parameters
       .filter(
         (p) =>
+          p.optional === false &&
           p.type.type !== "constant" &&
           (p.clientDefaultValue === null || p.clientDefaultValue === undefined)
       )

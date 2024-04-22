@@ -1,4 +1,4 @@
-import {
+import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
   getLroMetadata,
   getPagedResult,
   isFixed
@@ -69,7 +69,6 @@ import {
   getAllModels,
   SdkBuiltInType,
   getSdkBuiltInType,
-  getClientType,
   SdkEnumValueType,
   getLibraryName,
   getWireName
@@ -157,7 +156,8 @@ function applyCasing(
 const typesMap = new Map<EmitterType, HrlcType>();
 const simpleTypesMap = new Map<string, HrlcType>();
 const endpointPathParameters: Record<string, any>[] = [];
-let apiVersionParam: Parameter | undefined = undefined;
+let methodApiVersionParam: Parameter | undefined = undefined;
+let serverApiVersionParam: Parameter | undefined = undefined;
 
 function isSimpleType(
   program: Program,
@@ -428,7 +428,11 @@ function emitParamBase(
 
   if (parameter.kind === "ModelProperty") {
     optional = parameter.optional;
-    name = getLibraryName(context, parameter);
+    name = normalizeName(
+      getLibraryName(context, parameter),
+      NameType.Parameter,
+      true
+    );
     restApiName = getWireName(context, parameter);
     description = getDocStr(program, parameter);
     addedOn = getAddedOnVersion(program, parameter);
@@ -518,7 +522,7 @@ function emitParameter(
 
   if (
     isApiVersion(context, parameter as HttpOperationParameter) &&
-    paramMap.location === "query"
+    (paramMap.location === "query" || paramMap.location === "endpointPath")
   ) {
     const defaultApiVersion = getDefaultApiVersion(
       context,
@@ -779,8 +783,7 @@ function emitBasicOperation(
   if (
     namespaceHierarchies.length === 0 &&
     context.rlcOptions?.hierarchyClient === false &&
-    operationGroupName !== "" &&
-    namespaceHierarchies[0] !== operationGroupName
+    operationGroupName !== ""
   ) {
     namespaceHierarchies.push(operationGroupName);
   }
@@ -792,7 +795,7 @@ function emitBasicOperation(
     const emittedParam = emitParameter(context, param, "Method");
     if (isApiVersion(context, param)) {
       emittedParam.isApiVersion = true;
-      apiVersionParam = emittedParam;
+      methodApiVersionParam = emittedParam;
     }
     parameters.push(emittedParam);
   }
@@ -871,7 +874,7 @@ function emitBasicOperation(
       param.clientName = param.clientName + "Parameter";
     });
   return {
-    name: normalizeName(name, NameType.Operation, true),
+    name,
     description: getDocStr(context.program, operation),
     summary: getSummary(context.program, operation) ?? "",
     url: httpOperation.path,
@@ -978,8 +981,11 @@ function emitModel(
     baseModel = getType(context, type.baseModel, { usage });
   }
   const effectiveName = getEffectiveSchemaType(context.program, type).name;
-  const overridedModelName =
-    getLibraryName(context, type) ?? getFriendlyName(context.program, type);
+  const overridedModelName = normalizeName(
+    getLibraryName(context, type) ?? getFriendlyName(context.program, type),
+    NameType.Interface,
+    true
+  );
   const fullNamespaceName =
     getModelNamespaceName(context, type.namespace!)
       .map((nsName) => {
@@ -1064,7 +1070,7 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
     description: getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
-    isFixed: isFixed(program, type),
+    isFixed: true
     coreTypeInfo: buildCoreTypeInfo(type)
   };
 }
@@ -1325,36 +1331,11 @@ function mapTypeSpecType(
   }
 }
 
-function isExtensibleEnum(context: SdkContext, type: Enum): boolean {
-  if (isFixed(context.program, type)) {
-    return false;
-  }
-
-  if (context.rlcOptions?.flavor === "azure") {
-    return true;
-  }
-
-  return false;
-}
-
 function emitUnion(
   context: SdkContext,
   type: Union,
   usage: UsageFlags
 ): Record<string, any> {
-  let isVariantExtensible = false;
-
-  /**
-   * This is a temporary workaround to handle TCGC reporting incorrect isFixed for Unions with Enum variants
-   */
-  for (const [_, variant] of type.variants) {
-    if (variant.type.kind === "Enum") {
-      if (isExtensibleEnum(context, variant.type)) {
-        isVariantExtensible = true;
-        break;
-      }
-    }
-  }
   const sdkType = getSdkUnion(context, type);
   const nonNullOptions = getNonNullOptions(type);
   if (sdkType === undefined) {
@@ -1393,35 +1374,27 @@ function emitUnion(
           : variantTypes.map((x) => getTypeName(x).name).join(" | ")
     };
   } else if (sdkType.kind === "enum") {
+    const typeName = getLibraryName(context, type)
+      ? getLibraryName(context, type)
+      : sdkType.isGeneratedName
+        ? type.name
+        : sdkType.name;
     return {
-      name: getLibraryName(context, type)
-        ? getLibraryName(context, type)
-        : type.name ?? sdkType.name,
+      name: typeName,
       nullable: sdkType.nullable,
-      description: sdkType.description || `Type of ${sdkType.name}`,
+      description: sdkType.description || `Type of ${typeName}`,
       internal: true,
       type: sdkType.kind,
       valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
       values: sdkType.values.map((x) => emitEnumMember(context, x)),
-      isFixed: isVariantExtensible ? false : sdkType.isFixed,
+      isFixed: sdkType.isFixed,
       xmlMetadata: {},
       usage
     };
-  } else if (
-    isStringOrNumberKind(context.program, sdkType.kind) &&
-    isStringOrNumberKind(context.program, nonNullOptions[0]?.kind)
-  ) {
+  } else if (nonNullOptions.length === 1 && nonNullOptions[0]) {
     return {
-      name: undefined, // string/number union will be mapped as fixed enum without name
-      nullable: sdkType.nullable,
-      internal: true,
-      type: "enum",
-      valueType: emitSimpleType(context, sdkType as SdkBuiltInType),
-      values: nonNullOptions
-        .map((x) => getClientType(context, x))
-        .map((x) => emitEnumMember(context, x)),
-      isFixed: true,
-      xmlMetadata: {}
+      ...emitType(context, nonNullOptions[0], usage),
+      nullable: sdkType.nullable
     };
   } else {
     return {
@@ -1429,20 +1402,6 @@ function emitUnion(
       nullable: sdkType.nullable
     };
   }
-}
-
-function isStringOrNumberKind(program: Program, kind?: string): boolean {
-  if (!kind) {
-    return false;
-  }
-  kind = kind.toLowerCase();
-  try {
-    const type = emitStdScalar(program, { name: kind } as any);
-    kind = type["type"] ?? kind;
-  } catch (e: any) {
-    // ignore
-  }
-  return ["string", "number", "integer", "float"].includes(kind!);
 }
 
 function getNonNullOptions(type: Union) {
@@ -1478,7 +1437,7 @@ function emitSimpleType(
 
   return {
     nullable: sdkType.nullable,
-    type: "number", // TODO: switch to kind
+    type: sdkType.kind === "string" ? "string" : "number", // TODO: handle other types
     doc: "",
     apiVersions: [],
     sdkDefaultValue: undefined,
@@ -1681,13 +1640,10 @@ function emitServerParams(
         "Client"
       );
       endpointPathParameters.push(emittedParameter);
-      if (
-        isApiVersion(context, serverParameter as any) &&
-        apiVersionParam === undefined
-      ) {
+      if (isApiVersion(context, serverParameter as any)) {
         emittedParameter.isApiVersion = true;
-        apiVersionParam = emittedParameter;
-        continue;
+        serverApiVersionParam = emittedParameter;
+        emittedParameter.isApiVersion = true;
       }
       params.push(emittedParameter);
     }
@@ -1763,10 +1719,10 @@ function emitGlobalParameters(
   return clientParameters;
 }
 
-function getApiVersionParameter(): Parameter | void {
-  if (apiVersionParam) {
+function getMethodApiVersionParameter(): Parameter | void {
+  if (methodApiVersionParam) {
     return {
-      ...apiVersionParam,
+      ...methodApiVersionParam,
       isApiVersion: true
     };
   }
@@ -1780,7 +1736,7 @@ function emitClients(
   const program = context.program;
   const clients = listClients(context);
   const retval: HrlcClient[] = [];
-  apiVersionParam = undefined;
+  methodApiVersionParam = undefined;
   for (const client of clients) {
     const clientName = getLibraryName(context, client.type).replace(
       "Client",
@@ -1806,9 +1762,14 @@ function emitClients(
       rlcHelperDetails:
         rlcModels && rlcModels.helperDetails ? rlcModels.helperDetails : {}
     };
-    const emittedApiVersionParam = getApiVersionParameter();
-    if (emittedApiVersionParam && context.hasApiVersionInClient) {
-      emittedClient.parameters.push(emittedApiVersionParam);
+    const methodApiVersionParam = getMethodApiVersionParameter();
+    if (
+      methodApiVersionParam &&
+      !serverApiVersionParam &&
+      context.hasApiVersionInClient
+    ) {
+      // prompt method-level api version to client level only when there is no client one defined
+      emittedClient.parameters.push(methodApiVersionParam);
       // if we have client level api version, we need to remove it from all operations
       emittedClient.operationGroups.map((opGroup) => {
         opGroup.operations.map((op) => {
@@ -1872,7 +1833,7 @@ export function emitCodeModel(
   simpleTypesMap.clear();
   const allModels = getAllModels(dpgContext);
   for (const model of allModels) {
-    getType(dpgContext, model.__raw!, { usage: model.usage });
+    getType(dpgContext, model.__raw!, { usage: model.usage as UsageFlags });
   }
 
   for (const namespace of getNamespaces(dpgContext)) {

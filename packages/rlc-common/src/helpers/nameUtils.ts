@@ -22,6 +22,9 @@ const Newable = [NameType.Class, NameType.Interface, NameType.OperationGroup];
 export const ReservedModelNames: ReservedName[] = [
   { name: "any", reservedFor: [NameType.Parameter] },
   { name: "as", reservedFor: [NameType.Parameter] },
+  { name: "assert", reservedFor: [NameType.Parameter] },
+  { name: "async", reservedFor: [NameType.Parameter] },
+  { name: "await", reservedFor: [NameType.Parameter] },
   { name: "boolean", reservedFor: [NameType.Parameter, ...Newable] },
   { name: "break", reservedFor: [NameType.Parameter] },
   { name: "case", reservedFor: [NameType.Parameter] },
@@ -110,10 +113,10 @@ export function guardReservedNames(
 function getSuffix(nameType?: NameType) {
   switch (nameType) {
     case NameType.File:
-    case NameType.Property:
-      return "";
     case NameType.Operation:
-      return "Operation";
+      return "";
+    case NameType.Property:
+      return "Property";
     case NameType.OperationGroup:
       return "Operations";
     case NameType.Parameter:

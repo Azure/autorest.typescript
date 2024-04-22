@@ -7,9 +7,9 @@ import {
   InputOutputRecord,
 } from "./models/models.js";
 import {
-  InputOptions,
-  OutputOptions,
-  InputAndOutputOptions,
+  InputOptionalParams,
+  OutputOptionalParams,
+  InputAndOutputOptionalParams,
 } from "./models/options.js";
 import {
   input,
@@ -20,7 +20,7 @@ import {
   UsageContext,
 } from "./api/index.js";
 
-export { UsageClientOptions } from "./api/UsageContext.js";
+export { UsageClientOptions } from "./api/usageContext.js";
 
 export class UsageClient {
   private _client: UsageContext;
@@ -35,20 +35,20 @@ export class UsageClient {
 
   input(
     inputParameter: InputRecord,
-    options: InputOptions = { requestOptions: {} },
+    options: InputOptionalParams = { requestOptions: {} },
   ): Promise<void> {
     return input(this._client, inputParameter, options);
   }
 
   output(
-    options: OutputOptions = { requestOptions: {} },
+    options: OutputOptionalParams = { requestOptions: {} },
   ): Promise<OutputRecord> {
     return output(this._client, options);
   }
 
   inputAndOutput(
     body: InputOutputRecord,
-    options: InputAndOutputOptions = { requestOptions: {} },
+    options: InputAndOutputOptionalParams = { requestOptions: {} },
   ): Promise<InputOutputRecord> {
     return inputAndOutput(this._client, body, options);
   }

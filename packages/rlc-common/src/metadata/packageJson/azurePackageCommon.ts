@@ -35,7 +35,7 @@ export function getAzurePackageDependencies({
   useV3Lro
 }: AzurePackageInfoConfig) {
   let dependencies: Record<string, string> = {
-    "@azure-rest/core-client": "^1.2.0",
+    "@azure-rest/core-client": "^1.4.0",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-rest-pipeline": "^1.5.0",
     "@azure/logger": "^1.0.0",

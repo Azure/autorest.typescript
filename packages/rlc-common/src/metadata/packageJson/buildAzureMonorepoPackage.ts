@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { getPackageCommonInfo } from "./packageCommon.js";
+import {
+  getCommonPackageScripts,
+  getPackageCommonInfo
+} from "./packageCommon.js";
 
 import {
   getAzurePackageDevDependencies,
@@ -161,7 +164,7 @@ function getCjsDevDependencies({
       "karma-sourcemap-loader": "^0.3.8",
       karma: "^6.2.0",
       c8: "^8.0.0",
-      esm: "^3.2.18"
+      tsx: "^4.7.1"
     };
   }
 
@@ -188,6 +191,7 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
   const esmScripts = getEsmScripts(config);
   const cjsScripts = getCjsScripts(config);
   return {
+    ...getCommonPackageScripts(config),
     audit:
       "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
     "build:samples": "dev-tool samples publish --force",
@@ -218,7 +222,8 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
 
   return {
     "build:test": "npm run clean && tshy && dev-tool run build-test",
-    build: "npm run clean && tshy && api-extractor run --local",
+    build:
+      "npm run clean && tshy && mkdirp ./review && api-extractor run --local",
     "test:node":
       "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node",
     test: "npm run clean && tshy && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test",

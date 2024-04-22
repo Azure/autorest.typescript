@@ -19,8 +19,7 @@ import {
   NameType,
   OperationResponse,
   getResponseBaseName,
-  getResponseTypeName,
-  normalizeName
+  getResponseTypeName
 } from "@azure-tools/rlc-common";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
@@ -91,12 +90,15 @@ export function getSendPrivateFunction(
 
   const operationPath = operation.url;
   const operationMethod = operation.method.toLowerCase();
+  const optionalParamName = parameters.filter(
+    (p) => p.type?.toString().endsWith("OptionalParams")
+  )[0]?.name;
 
   const statements: string[] = [];
   statements.push(
     `return context.path("${operationPath}", ${getPathParameters(
       operation
-    )}).${operationMethod}({...operationOptionsToRequestParameters(options), ${getRequestParameters(
+    )}).${operationMethod}({...operationOptionsToRequestParameters(${optionalParamName}), ${getRequestParameters(
       dpgContext,
       operation,
       runtimeImports
@@ -285,7 +287,7 @@ function getOperationSignatureParameters(
 
   // Add the options parameter
   const optionsParam = {
-    name: "options",
+    name: parameters.has("options") ? "optionalParams" : "options",
     type: optionsType,
     initializer: "{ requestOptions: {} }"
   };
@@ -301,7 +303,7 @@ function getOperationSignatureParameters(
 export function getOperationFunction(
   operation: Operation,
   clientType: string
-): OptionalKind<FunctionDeclarationStructure> {
+): OptionalKind<FunctionDeclarationStructure> & { propertyName?: string } {
   if (isPagingOnlyOperation(operation)) {
     // Case 1: paging-only operation
     return getPagingOnlyOperationFunction(operation, clientType);
@@ -412,14 +414,15 @@ function getPagingOnlyOperationFunction(
     returnType = buildType(type.name, type, type.format);
   }
   const { name, fixme = [] } = getOperationName(operation);
-  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+  const functionStatement = {
     docs: [
       ...getDocsFromDescription(operation.description),
       ...getFixmeForMultilineDocs(fixme)
     ],
     isAsync: false,
     isExported: true,
-    name: normalizeName(operation.name, NameType.Operation, true),
+    name,
+    propertyName: operation.name,
     parameters,
     returnType: `PagedAsyncIterableIterator<${returnType.type}>`
   };
@@ -469,13 +472,7 @@ export function getOperationOptionsName(
     includeGroupName && operation.name.indexOf("_") === -1
       ? getClassicalLayerPrefix(operation, NameType.Interface)
       : "";
-  const optionName = `${prefix}${toPascalCase(operation.name)}Options`;
-  if (
-    operation.bodyParameter?.type.name === optionName ||
-    optionName === "ClientOptions"
-  ) {
-    return optionName.replace(/Options$/, "RequestOptions");
-  }
+  const optionName = `${prefix}${toPascalCase(operation.name)}OptionalParams`;
   return optionName;
 }
 
@@ -635,12 +632,12 @@ function buildBodyParameter(
     return bodyParameter.optional
       ? `body: typeof ${bodyParameter.clientName} === 'string'
     ? uint8ArrayToString(${bodyParameter.clientName}, "${getEncodingFormat(
-      bodyParameter.type
+      bodyParameter
     )}")
     : ${bodyParameter.clientName}`
       : `body: uint8ArrayToString(${
           bodyParameter.clientName
-        }, "${getEncodingFormat(bodyParameter.type)}")`;
+        }, "${getEncodingFormat(bodyParameter)}")`;
   } else if (bodyParameter.isBinaryPayload) {
     return `\nbody: ${bodyParameter.clientName},`;
   }
@@ -1290,6 +1287,9 @@ export function serializeRequestValue(
         return `${clientValue} as any`;
       }
     default:
+      if (clientValue === "constructorParam") {
+        return `${clientValue} as any`;
+      }
       return clientValue;
   }
 }

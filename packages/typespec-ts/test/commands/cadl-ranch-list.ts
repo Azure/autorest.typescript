@@ -162,10 +162,6 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "parameters/spread"
   },
   {
-    outputPath: "projection",
-    inputPath: "projection/projected-name"
-  },
-  {
     outputPath: "server/path/single",
     inputPath: "server/path/single"
   },
@@ -214,6 +210,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "payload/pageable"
   },
   {
+    outputPath: "payload/media-type",
+    inputPath: "payload/media-type"
+  },
+  {
     outputPath: "client/naming",
     inputPath: "client/naming"
   },
@@ -249,6 +249,14 @@ export const nonBrandedRlcTsps: TypeSpecRanchConfig[] = [
 export const modularTsps: TypeSpecRanchConfig[] = [
   { outputPath: "lro/rpc", inputPath: "azure/core/lro/rpc" },
   { outputPath: "lro/standard", inputPath: "azure/core/lro/standard" },
+  {
+    outputPath: "azure/clientGeneratorCore/access",
+    inputPath: "azure/client-generator-core/access"
+  },
+  {
+    outputPath: "azure/clientGeneratorCore/usage",
+    inputPath: "azure/client-generator-core/usage"
+  },
   {
     outputPath: "azure/clientGeneratorCore/access",
     inputPath: "azure/client-generator-core/access"
@@ -379,6 +387,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     inputPath: "type/union"
   },
   {
+    outputPath: "payload/media-type",
+    inputPath: "payload/media-type"
+  },
+  {
     outputPath: "server/versions/versioned",
     inputPath: "server/versions/versioned"
   },
@@ -405,6 +417,18 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "server/endpoint/not-defined",
     inputPath: "server/endpoint/not-defined"
+  },
+  {
+    outputPath: "specialWords",
+    inputPath: "special-words"
+  },
+  {
+    outputPath: "enums/extensible",
+    inputPath: "type/enum/extensible"
+  },
+  {
+    outputPath: "enums/fixed",
+    inputPath: "type/enum/fixed"
   }
 ];
 

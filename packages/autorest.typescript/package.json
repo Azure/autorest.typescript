@@ -1,6 +1,6 @@
 {
   "name": "@autorest/typescript",
-  "version": "6.0.18",
+  "version": "6.0.21",
   "scripts": {
     "build": "tsc -p . && npm run copyFiles",
     "build:test:browser": "tsc -p tsconfig.browser-test.json && webpack --config webpack.config.test.js",
@@ -56,7 +56,7 @@
     "@autorest/codemodel": "~4.19.2",
     "@autorest/extension-base": "^3.5.0",
     "@autorest/testmodeler": "^2.4.0",
-    "@azure-rest/core-client": "^1.2.0",
+    "@azure-rest/core-client": "^1.4.0",
     "@azure-tools/codegen": "^2.9.1",
     "@azure/core-client": "^1.6.1",
     "@azure/core-http": "^3.0.0",
@@ -75,7 +75,7 @@
     "source-map-support": "^0.5.16",
     "ts-morph": "^15.1.0",
     "@azure/core-auth": "^1.6.0",
-    "@azure-tools/rlc-common": "workspace:^0.25.0"
+    "@azure-tools/rlc-common": "workspace:^0.27.0"
   },
   "devDependencies": {
     "@azure-tools/test-recorder": "^3.0.0",
@@ -114,7 +114,7 @@
     "sinon": "^10.0.0",
     "source-map-loader": "^1.0.0",
     "ts-node": "^8.5.2",
-    "typescript": "~5.2.0",
+    "typescript": "~5.4.5",
     "wait-port": "^0.2.6",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",

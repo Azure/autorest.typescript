@@ -40,6 +40,7 @@ export interface BodyParameter {
   restApiName: string;
   location: "body";
   optional: boolean;
+  format?: string;
   description: string;
   clientName: string;
   inOverload: boolean;

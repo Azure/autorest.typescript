@@ -152,6 +152,9 @@ help-content:
       - key: package-name
         type: string
         description: The name of your package. This is the name your package will be published under.
+      - key: package-version
+        type: string
+        description: The version of your package.
       - key: source-code-folder-path
         type: string
         description: Where to output the generated code inside the output-folder. Defaults to src.
