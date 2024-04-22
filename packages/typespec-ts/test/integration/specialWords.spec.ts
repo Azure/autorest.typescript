@@ -789,7 +789,6 @@ describe("SpecialWordsClient Rest Client", () => {
           .path("/special-words/parameters/cancellationToken")
           .get({
             queryParameters: {
-              yield: "ok",
               cancellationToken:"ok"
             }
           });
