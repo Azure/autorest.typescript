@@ -97,7 +97,7 @@ describe("LROStandardClient Classical Client", () => {
       }
     });
 
-    it("poll should catch the inital error", async () => {
+    it("poll should catch the initial error", async () => {
       try {
         const poller = client.createOrReplace("madge", {
           role: "foo"
@@ -113,7 +113,7 @@ describe("LROStandardClient Classical Client", () => {
       }
     });
 
-    it("pollUntilDone should catch the inital error", async () => {
+    it("pollUntilDone should catch the initial error", async () => {
       try {
         const poller = client.createOrReplace("madge", {
           role: "foo"
@@ -129,7 +129,7 @@ describe("LROStandardClient Classical Client", () => {
       }
     });
 
-    it("await should catch inital exception", async () => {
+    it("await should catch initial exception", async () => {
       try {
         await client.createOrReplace("madge", {
           role: "foo"
@@ -147,7 +147,7 @@ describe("LROStandardClient Classical Client", () => {
   describe("delete", () => {
     it("should await poller result directly", async () => {
       try {
-        const result = await client.deleteOperation("madge");
+        const result = await client.delete("madge");
         assert.strictEqual(result, undefined);
       } catch (err) {
         assert.fail(err as string);
@@ -156,7 +156,7 @@ describe("LROStandardClient Classical Client", () => {
 
     it("should count polling counts correctly", async () => {
       try {
-        const poller = client.deleteOperation("madge");
+        const poller = client.delete("madge");
         let pollingCounts = 0;
         const expectedStates = ["running", "succeeded"];
         const actualStates: string[] = [];
@@ -173,13 +173,9 @@ describe("LROStandardClient Classical Client", () => {
     });
 
     it("serialize and rehydration", async () => {
-      const poller = client.deleteOperation("madge");
+      const poller = client.delete("madge");
       const restoredPoller = await poller.serialize();
-      const newPoller = restorePoller(
-        client,
-        restoredPoller,
-        client.deleteOperation
-      );
+      const newPoller = restorePoller(client, restoredPoller, client.delete);
       const result = await newPoller.pollUntilDone();
       assert.strictEqual(result, undefined);
     });
@@ -188,7 +184,7 @@ describe("LROStandardClient Classical Client", () => {
   describe("export", () => {
     it("should await poller result directly", async () => {
       try {
-        const result = await client.exportOperation("madge", "json");
+        const result = await client.export("madge", "json");
         assert.deepEqual(result, {
           name: "madge",
           resourceUri: "/users/madge"
@@ -200,7 +196,7 @@ describe("LROStandardClient Classical Client", () => {
 
     it("should count polling counts correctly", async () => {
       try {
-        const poller = client.exportOperation("madge", "json");
+        const poller = client.export("madge", "json");
         let pollingCounts = 0;
         const expectedStates = ["running", "succeeded"];
         const actualStates: string[] = [];
@@ -217,13 +213,9 @@ describe("LROStandardClient Classical Client", () => {
     });
 
     it("serialize and rehydration", async () => {
-      const poller = client.exportOperation("madge", "json");
+      const poller = client.export("madge", "json");
       const restoredPoller = await poller.serialize();
-      const newPoller = restorePoller(
-        client,
-        restoredPoller,
-        client.exportOperation
-      );
+      const newPoller = restorePoller(client, restoredPoller, client.export);
       const result = await newPoller.pollUntilDone();
       assert.deepEqual(result, {
         name: "madge",
