@@ -240,11 +240,6 @@ function createClient(endpointParam: string, credentials: TokenCredential | KeyC
 export default createClient;
 
 // @public
-export interface DeploymentOutput {
-    readonly deploymentId: string;
-}
-
-// @public
 export interface EmbeddingItemOutput {
     embedding: number[];
     index: number;
@@ -488,19 +483,7 @@ export interface ImageGenerationOptions {
 }
 
 // @public
-export interface ImageGenerationOptionsOutput {
-    n?: number;
-    prompt: string;
-    response_format?: ImageGenerationResponseFormatOutput;
-    size?: ImageSizeOutput;
-    user?: string;
-}
-
-// @public
 export type ImageGenerationResponseFormat = "url" | "b64_json";
-
-// @public
-export type ImageGenerationResponseFormatOutput = "url" | "b64_json";
 
 // @public
 export interface ImageGenerationsOutput {
@@ -520,9 +503,6 @@ export interface ImagePayloadOutput {
 
 // @public
 export type ImageSize = "256x256" | "512x512" | "1024x1024";
-
-// @public
-export type ImageSizeOutput = "256x256" | "512x512" | "1024x1024";
 
 // @public (undocumented)
 export function isUnexpected(response: GetEmbeddings200Response | GetEmbeddingsDefaultResponse): response is GetEmbeddingsDefaultResponse;

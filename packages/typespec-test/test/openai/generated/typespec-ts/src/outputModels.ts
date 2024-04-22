@@ -3,12 +3,6 @@
 
 import { ErrorModel } from "@azure-rest/core-client";
 
-/** A specific deployment */
-export interface DeploymentOutput {
-  /** Specifies either the model deployment name (when using Azure OpenAI) or model name (when using non-Azure OpenAI) to use for this request. */
-  readonly deploymentId: string;
-}
-
 /**
  * Representation of the response data from an embeddings request.
  * Embeddings measure the relatedness of text strings and are commonly used for search, clustering,
@@ -298,23 +292,6 @@ export interface ImagePayloadOutput {
   b64_json: string;
 }
 
-/** Represents the request data used to generate images. */
-export interface ImageGenerationOptionsOutput {
-  /** A description of the desired images. */
-  prompt: string;
-  /** The number of images to generate (defaults to 1). */
-  n?: number;
-  /** The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024 (defaults to 1024x1024). */
-  size?: ImageSizeOutput;
-  /**
-   *   The format in which image generation response items should be presented.
-   *   Azure OpenAI only supports URL response items.
-   */
-  response_format?: ImageGenerationResponseFormatOutput;
-  /** A unique identifier representing your end-user, which can help to monitor and detect abuse. */
-  user?: string;
-}
-
 /** Ratings for the intensity and risk level of harmful content. */
 export type ContentFilterSeverityOutput = "safe" | "low" | "medium" | "high";
 /** Representation of the manner in which a completions response concluded. */
@@ -337,7 +314,3 @@ export type AzureOpenAIOperationStateOutput =
   | "succeeded"
   | "canceled"
   | "failed";
-/** The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024. */
-export type ImageSizeOutput = "256x256" | "512x512" | "1024x1024";
-/** The format in which the generated images are returned. */
-export type ImageGenerationResponseFormatOutput = "url" | "b64_json";
