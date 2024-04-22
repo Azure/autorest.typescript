@@ -161,7 +161,7 @@ describe("bytes", () => {
       );
     });
   });
-  describe.only("multipart/form-data", () => {
+  describe("multipart/form-data", () => {
     describe("anonymous model", () => {
       it("bytes/bytes[] in request body + encode - should be treated as binary + file", async () => {
         const parameters = await emitParameterFromTypeSpec(
@@ -199,7 +199,7 @@ describe("bytes", () => {
                           | NodeJS.ReadableStream
                           | File;
                         filename?: string;
-                        type?: string;
+                        contentType?: string;
                       }
                     | {
                         name: "files";
@@ -210,7 +210,7 @@ describe("bytes", () => {
                           | NodeJS.ReadableStream
                           | File;
                         filename?: string;
-                        type?: string;
+                        contentType?: string;
                       }
                 >;
             }
@@ -261,7 +261,7 @@ describe("bytes", () => {
                           | NodeJS.ReadableStream
                           | File;
                         filename?: string;
-                        type?: string;
+                        contentType?: string;
                       }
                     | {
                         name: "files";
@@ -272,7 +272,7 @@ describe("bytes", () => {
                           | NodeJS.ReadableStream
                           | File;
                         filename?: string;
-                        type?: string;
+                        contentType?: string;
                       }
                   >;
             }
@@ -354,55 +354,68 @@ describe("bytes", () => {
         await assertEqualContent(
           models.inputModelFile?.content!,
           `
+          export interface FooNamePartDescriptor {
+            name: "name";
+            body: string;
+          }
+          
+          export interface FooEncodeBytesPartDescriptor {
+            name: "encodeBytes";
+            body:
+              | string
+              | Uint8Array
+              | ReadableStream<Uint8Array>
+              | NodeJS.ReadableStream
+              | File;
+            filename?: string;
+            contentType?: string;
+          }
+          
+          export interface FooWithouEncodePartDescriptor {
+            name: "withouEncode";
+            body:
+              | string
+              | Uint8Array
+              | ReadableStream<Uint8Array>
+              | NodeJS.ReadableStream
+              | File;
+            filename?: string;
+            contentType?: string;
+          }
+          
+          export interface FooFilesPartDescriptor {
+            name: "files";
+            body:
+              | string
+              | Uint8Array
+              | ReadableStream<Uint8Array>
+              | NodeJS.ReadableStream
+              | File;
+            filename?: string;
+            contentType?: string;
+          }
+          
+          export interface FooUnionBytesPartDescriptor {
+            name: "unionBytes";
+            body:
+              | string
+              | Uint8Array
+              | ReadableStream<Uint8Array>
+              | NodeJS.ReadableStream
+              | File
+              | number;
+            filename?: string;
+            contentType?: string;
+          }
+          
           export type Foo =
             | FormData
             | Array<
-                | { name: "name"; body: string }
-                | {
-                    name: "encodeBytes";
-                    body:
-                      | string
-                      | Uint8Array
-                      | ReadableStream<Uint8Array>
-                      | NodeJS.ReadableStream
-                      | File;
-                    filename?: string;
-                    type?: string;
-                  }
-                | {
-                    name: "withouEncode";
-                    body:
-                      | string
-                      | Uint8Array
-                      | ReadableStream<Uint8Array>
-                      | NodeJS.ReadableStream
-                      | File;
-                    filename?: string;
-                    type?: string;
-                  }
-                | {
-                    name: "files";
-                    body:
-                      | string
-                      | Uint8Array
-                      | ReadableStream<Uint8Array>
-                      | NodeJS.ReadableStream
-                      | File;
-                    filename?: string;
-                    type?: string;
-                  }
-                | {
-                    name: "unionBytes";
-                    body:
-                      | string
-                      | Uint8Array
-                      | ReadableStream<Uint8Array>
-                      | NodeJS.ReadableStream
-                      | File
-                      | number;
-                    filename?: string;
-                    type?: string;
-                  }
+                | FooNamePartDescriptor
+                | FooEncodeBytesPartDescriptor
+                | FooWithouEncodePartDescriptor
+                | FooFilesPartDescriptor
+                | FooUnionBytesPartDescriptor
               >;`
         );
       });
@@ -432,6 +445,16 @@ describe("bytes", () => {
         await assertEqualContent(
           models?.inputModelFile?.content!,
           `
+          export interface FooNamePartDescriptor {
+            name: "name";
+            body: string;
+          }
+          
+          export interface FooBarPartDescriptor {
+            name: "bar";
+            body: Bar;
+          }
+          
           export interface Bar {
               "name": string;
               "encodeBytes": string;
@@ -442,7 +465,7 @@ describe("bytes", () => {
 
           export type Foo =
             | FormData
-            | Array<{ name: "name"; body: string } | { name: "bar"; body: Bar }>;`
+            | Array<FooNamePartDescriptor | FooBarPartDescriptor>;`
         );
       });
     });

@@ -3,11 +3,12 @@
 
 import {
   InterfaceDeclarationStructure,
+  OptionalKind,
   PropertySignatureStructure,
   StructureKind,
   TypeAliasDeclarationStructure
 } from "ts-morph";
-import { NameType, normalizeName } from "./helpers/nameUtils.js";
+import { NameType, normalizeName, pascalCase } from "./helpers/nameUtils.js";
 import { isDictionarySchema, isObjectSchema } from "./helpers/schemaHelpers.js";
 import {
   ObjectSchema,
@@ -17,6 +18,7 @@ import {
   Schema,
   SchemaContext
 } from "./interfaces.js";
+import { getMultipartPartTypeName } from "./helpers/nameConstructors.js";
 
 /**
  * Generates interfaces for ObjectSchemas
@@ -37,11 +39,22 @@ export function buildObjectInterfaces(
     if (
       objectSchema.alias ||
       objectSchema.outputAlias ||
-      objectSchema.isMultipartBody ||
       objectSchema.fromCore
     ) {
       continue;
     }
+
+    if (objectSchema.isMultipartBody) {
+      objectInterfaces.push(
+        ...buildMultipartPartDefinitions(
+          objectSchema,
+          importedModels,
+          schemaUsage
+        )
+      );
+      continue;
+    }
+
     const baseName = getObjectBaseName(objectSchema, schemaUsage);
     const interfaceDeclaration = getObjectInterfaceDeclaration(
       model,
@@ -54,6 +67,66 @@ export function buildObjectInterfaces(
     objectInterfaces.push(interfaceDeclaration);
   }
   return objectInterfaces;
+}
+
+const MULTIPART_FILE_UPLOAD_MIME_PROPERTIES: OptionalKind<PropertySignatureStructure>[] =
+  [
+    {
+      name: "filename",
+      hasQuestionToken: true,
+      type: "string"
+    },
+    {
+      name: "contentType",
+      hasQuestionToken: true,
+      type: "string"
+    }
+  ];
+
+function buildMultipartPartDefinitions(
+  schema: ObjectSchema,
+  importedModels: Set<string>,
+  schemaUsage: SchemaContext[]
+): InterfaceDeclarationStructure[] {
+  if (!schema.isMultipartBody) {
+    return [];
+  }
+
+  // Transform property signatures into individual models
+  const propertySignatures = getPropertySignatures(
+    schema.properties ?? {},
+    schemaUsage,
+    importedModels,
+    { flattenArrays: true }
+  );
+
+  const structures: InterfaceDeclarationStructure[] = [];
+
+  for (const signature of propertySignatures) {
+    const name = signature.name;
+    const typeName = getMultipartPartTypeName(schema.name, name);
+
+    const isFileUpload = signature.type?.toString().includes("File") ?? false;
+
+    structures.push({
+      kind: StructureKind.Interface,
+      isExported: true,
+      name: typeName,
+      properties: [
+        {
+          name: "name",
+          type: name
+        },
+        {
+          name: "body",
+          type: signature.type
+        },
+        ...(isFileUpload ? MULTIPART_FILE_UPLOAD_MIME_PROPERTIES : [])
+      ]
+    });
+  }
+
+  return structures;
 }
 
 export function buildObjectAliases(
@@ -77,15 +150,9 @@ export function buildObjectAliases(
         { flattenArrays: true }
       );
 
-      const objectTypeDefinitions = propertySignatures.map((sig) => {
-        if (sig.type?.toString().includes("File")) {
-          return `{name: ${sig.name}, body: ${
-            sig.type ?? "unknown"
-          }, filename?: string, contentType?: string }`;
-        } else {
-          return `{name: ${sig.name}, body: ${sig.type ?? "unknown"} }`;
-        }
-      });
+      const objectTypeNames = propertySignatures.map((sig) =>
+        getMultipartPartTypeName(objectSchema.name, sig.name)
+      );
 
       objectAliases.push({
         kind: StructureKind.TypeAlias,
@@ -93,9 +160,7 @@ export function buildObjectAliases(
           docs: [{ description: objectSchema.description }]
         }),
         name: objectSchema.typeName!,
-        type: `FormData | Array<${
-          objectTypeDefinitions.join("|") || "unknown"
-        }>`,
+        type: `FormData | Array<${objectTypeNames.join("|") || "unknown"}>`,
         isExported: true
       });
     }
@@ -496,7 +561,10 @@ export function getPropertySignature(
 ): PropertySignatureStructure {
   let schema: Schema;
   if (options.flattenArrays && property.type === "array") {
-    schema = { name: property.name, ...((property as any).items ?? property) };
+    schema = {
+      ...((property as any).items ?? property),
+      name: property.name
+    };
   } else {
     schema = property;
   }
