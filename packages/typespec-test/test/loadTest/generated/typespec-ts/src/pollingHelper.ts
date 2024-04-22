@@ -76,11 +76,13 @@ export interface SimplePollerLike<
 
   /**
    * Returns a string representation of the poller's operation. Similar to serialize but returns a string.
+   * @deprecated Use serialize() instead.
    */
   toString(): string;
 
   /**
    * Stops the poller from continuing to poll. Please note this will only stop the client-side polling
+   * @deprecated Use abortSignal to stop polling instead.
    */
   stopPolling(): void;
 }
