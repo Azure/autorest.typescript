@@ -309,7 +309,7 @@ export function getOperationFunction(
     return getPagingOnlyOperationFunction(operation, clientType);
   } else if (isLroOnlyOperation(operation)) {
     // Case 2: lro-only operation
-    return getLroOnlyOperatonFunction(operation, clientType);
+    return getLroOnlyOperationFunction(operation, clientType);
   } else if (isLroAndPagingOperation(operation)) {
     // Case 3: both paging + lro operation is not supported yet so handle them as normal operation and customization may be needed
     // https://github.com/Azure/autorest.typescript/issues/2313
@@ -327,14 +327,15 @@ export function getOperationFunction(
     returnType = buildType(type.name, type, type.format);
   }
   const { name, fixme = [] } = getOperationName(operation);
-  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+  const functionStatement = {
     docs: [
       ...getDocsFromDescription(operation.description),
       ...getFixmeForMultilineDocs(fixme)
     ],
     isAsync: true,
     isExported: true,
-    name: normalizeName(operation.name, NameType.Operation, true),
+    name,
+    propertyName: operation.name,
     parameters,
     returnType: `Promise<${returnType.type}>`
   };
@@ -353,20 +354,21 @@ export function getOperationFunction(
   };
 }
 
-function getLroOnlyOperatonFunction(operation: Operation, clientType: string) {
+function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(operation, clientType);
   const returnType = buildLroReturnType(operation);
   const { name, fixme = [] } = getOperationName(operation);
-  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+  const functionStatement = {
     docs: [
       ...getDocsFromDescription(operation.description),
       ...getFixmeForMultilineDocs(fixme)
     ],
     isAsync: false,
     isExported: true,
-    name: normalizeName(operation.name, NameType.Operation, true),
+    name,
+    propertyName: operation.name,
     parameters,
     returnType: `PollerLike<OperationState<${returnType.type}>, ${returnType.type}>`
   };

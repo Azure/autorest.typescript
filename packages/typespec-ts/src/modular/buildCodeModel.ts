@@ -1,7 +1,6 @@
-import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
-  getLroMetadata,
+import {
   getPagedResult,
-  isFixed
+  getLroMetadata
 } from "@azure-tools/typespec-azure-core";
 import {
   Enum,
@@ -1070,7 +1069,7 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
     description: getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
-    isFixed: true
+    isFixed: true,
     coreTypeInfo: buildCoreTypeInfo(type)
   };
 }
