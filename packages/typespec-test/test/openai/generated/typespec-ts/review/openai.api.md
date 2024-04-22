@@ -21,7 +21,7 @@ import { TokenCredential } from '@azure/core-auth';
 // @public
 export interface AzureChatExtensionConfiguration {
     parameters: unknown;
-    type: string;
+    type: AzureChatExtensionType;
 }
 
 // @public
@@ -35,13 +35,23 @@ export interface AzureChatExtensionsMessageContextOutput {
 }
 
 // @public
+export type AzureChatExtensionType = "AzureCognitiveSearch";
+
+// @public (undocumented)
+export interface AzureCoreTraitsOutput {
+}
+
+// @public
+export type AzureOpenAIOperationStateOutput = "notRunning" | "running" | "succeeded" | "canceled" | "failed";
+
+// @public
 export interface BatchImageGenerationOperationResponseOutput {
     created: number;
     error?: ErrorModel;
     expires?: number;
     id: string;
     result?: ImageGenerationsOutput;
-    status: string;
+    status: AzureOpenAIOperationStateOutput;
 }
 
 // @public (undocumented)
@@ -100,7 +110,7 @@ export type BeginAzureBatchImageGenerationParameters = BeginAzureBatchImageGener
 export interface ChatChoiceOutput {
     content_filter_results?: ContentFilterResultsOutput;
     delta?: ChatMessageOutput;
-    finish_reason: string | null;
+    finish_reason: CompletionsFinishReasonOutput | null;
     index: number;
     message?: ChatMessageOutput;
 }
@@ -109,7 +119,7 @@ export interface ChatChoiceOutput {
 export interface ChatCompletionsOptions {
     dataSources?: Array<AzureChatExtensionConfiguration>;
     frequency_penalty?: number;
-    function_call?: string | FunctionName;
+    function_call?: FunctionCallPreset | FunctionName;
     functions?: Array<FunctionDefinition>;
     logit_bias?: Record<string, number>;
     max_tokens?: number;
@@ -139,7 +149,7 @@ export interface ChatMessage {
     context?: AzureChatExtensionsMessageContext;
     function_call?: FunctionCall;
     name?: string;
-    role: string;
+    role: ChatRole;
 }
 
 // @public
@@ -148,17 +158,26 @@ export interface ChatMessageOutput {
     context?: AzureChatExtensionsMessageContextOutput;
     function_call?: FunctionCallOutput;
     name?: string;
-    role: string;
+    role: ChatRoleOutput;
 }
+
+// @public
+export type ChatRole = "system" | "assistant" | "user" | "function" | "tool";
+
+// @public
+export type ChatRoleOutput = "system" | "assistant" | "user" | "function" | "tool";
 
 // @public
 export interface ChoiceOutput {
     content_filter_results?: ContentFilterResultsOutput;
-    finish_reason: string | null;
+    finish_reason: CompletionsFinishReasonOutput | null;
     index: number;
     logprobs: CompletionsLogProbabilityModelOutput | null;
     text: string;
 }
+
+// @public
+export type CompletionsFinishReasonOutput = "stop" | "length" | "content_filter" | "function_call";
 
 // @public
 export interface CompletionsLogProbabilityModelOutput {
@@ -206,7 +225,7 @@ export interface CompletionsUsageOutput {
 // @public
 export interface ContentFilterResultOutput {
     filtered: boolean;
-    severity: string;
+    severity: ContentFilterSeverityOutput;
 }
 
 // @public
@@ -216,6 +235,9 @@ export interface ContentFilterResultsOutput {
     sexual?: ContentFilterResultOutput;
     violence?: ContentFilterResultOutput;
 }
+
+// @public
+export type ContentFilterSeverityOutput = "safe" | "low" | "medium" | "high";
 
 // @public
 function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, options?: ClientOptions): OpenAIClient;
@@ -262,6 +284,9 @@ export interface FunctionCallOutput {
     arguments: string;
     name: string;
 }
+
+// @public
+export type FunctionCallPreset = "auto" | "none";
 
 // @public
 export interface FunctionDefinition {
@@ -461,8 +486,8 @@ export function getLongRunningPoller<TResult extends BeginAzureBatchImageGenerat
 export interface ImageGenerationOptions {
     n?: number;
     prompt: string;
-    response_format?: string;
-    size?: string;
+    response_format?: ImageGenerationResponseFormat;
+    size?: ImageSize;
     user?: string;
 }
 
@@ -470,10 +495,16 @@ export interface ImageGenerationOptions {
 export interface ImageGenerationOptionsOutput {
     n?: number;
     prompt: string;
-    response_format?: string;
-    size?: string;
+    response_format?: ImageGenerationResponseFormatOutput;
+    size?: ImageSizeOutput;
     user?: string;
 }
+
+// @public
+export type ImageGenerationResponseFormat = "url" | "b64_json";
+
+// @public
+export type ImageGenerationResponseFormatOutput = "url" | "b64_json";
 
 // @public
 export interface ImageGenerationsOutput {
@@ -490,6 +521,12 @@ export interface ImageLocationOutput {
 export interface ImagePayloadOutput {
     b64_json: string;
 }
+
+// @public
+export type ImageSize = "256x256" | "512x512" | "1024x1024";
+
+// @public
+export type ImageSizeOutput = "256x256" | "512x512" | "1024x1024";
 
 // @public (undocumented)
 export function isUnexpected(response: GetEmbeddings200Response | GetEmbeddingsDefaultResponse): response is GetEmbeddingsDefaultResponse;

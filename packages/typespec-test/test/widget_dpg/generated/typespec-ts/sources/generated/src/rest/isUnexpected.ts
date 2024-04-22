@@ -2,34 +2,22 @@
 // Licensed under the MIT license.
 
 import {
-  WidgetsListWidgets200Response,
-  WidgetsListWidgetsDefaultResponse,
-  WidgetsCreateWidget201Response,
-  WidgetsCreateWidgetDefaultResponse,
-  WidgetsListWidgetsPages200Response,
-  WidgetsListWidgetsPagesDefaultResponse,
-  WidgetsQueryWidgetsPages200Response,
-  WidgetsQueryWidgetsPagesDefaultResponse,
-  WidgetsGetWidget200Response,
-  WidgetsGetWidgetDefaultResponse,
-  WidgetsUpdateWidget200Response,
-  WidgetsUpdateWidgetDefaultResponse,
-  WidgetsDeleteWidget204Response,
-  WidgetsDeleteWidgetDefaultResponse,
-  WidgetsCreateOrReplace200Response,
-  WidgetsCreateOrReplace201Response,
-  WidgetsCreateOrReplaceLogicalResponse,
-  WidgetsCreateOrReplaceDefaultResponse,
-  WidgetsAnalyzeWidget200Response,
-  WidgetsAnalyzeWidgetDefaultResponse,
-  BudgetsCreateOrReplace200Response,
-  BudgetsCreateOrReplace201Response,
-  BudgetsCreateOrReplaceLogicalResponse,
-  BudgetsCreateOrReplaceDefaultResponse,
-  BudgetsCreateOrUpdate200Response,
-  BudgetsCreateOrUpdate201Response,
-  BudgetsCreateOrUpdateLogicalResponse,
-  BudgetsCreateOrUpdateDefaultResponse,
+  ListWidgets200Response,
+  ListWidgetsDefaultResponse,
+  CreateWidget201Response,
+  CreateWidgetDefaultResponse,
+  ListWidgetsPages200Response,
+  ListWidgetsPagesDefaultResponse,
+  QueryWidgetsPages200Response,
+  QueryWidgetsPagesDefaultResponse,
+  GetWidget200Response,
+  GetWidgetDefaultResponse,
+  UpdateWidget200Response,
+  UpdateWidgetDefaultResponse,
+  DeleteWidget204Response,
+  DeleteWidgetDefaultResponse,
+  AnalyzeWidget200Response,
+  AnalyzeWidgetDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
@@ -40,108 +28,60 @@ const responseMap: Record<string, string[]> = {
   "GET /widgets/{id}": ["200"],
   "PATCH /widgets/{id}": ["200"],
   "DELETE /widgets/{id}": ["204"],
-  "PUT /widgets/widgets/createOrReplace/users/{name}": ["200", "201"],
-  "GET /widgets/widgets/createOrReplace/users/{name}": ["200", "201"],
   "POST /widgets/{id}/analyze": ["200"],
-  "PUT /budgets/widgets/createOrReplace/users/{name}": ["200", "201"],
-  "GET /budgets/widgets/createOrReplace/users/{name}": ["200", "201"],
-  "PATCH /budgets/widgets/createOrUpdate/users/{name}": ["200", "201"],
-  "GET /budgets/widgets/createOrUpdate/users/{name}": ["200", "201"],
 };
 
 export function isUnexpected(
-  response: WidgetsListWidgets200Response | WidgetsListWidgetsDefaultResponse,
-): response is WidgetsListWidgetsDefaultResponse;
+  response: ListWidgets200Response | ListWidgetsDefaultResponse,
+): response is ListWidgetsDefaultResponse;
 export function isUnexpected(
-  response: WidgetsCreateWidget201Response | WidgetsCreateWidgetDefaultResponse,
-): response is WidgetsCreateWidgetDefaultResponse;
+  response: CreateWidget201Response | CreateWidgetDefaultResponse,
+): response is CreateWidgetDefaultResponse;
 export function isUnexpected(
-  response:
-    | WidgetsListWidgetsPages200Response
-    | WidgetsListWidgetsPagesDefaultResponse,
-): response is WidgetsListWidgetsPagesDefaultResponse;
+  response: ListWidgetsPages200Response | ListWidgetsPagesDefaultResponse,
+): response is ListWidgetsPagesDefaultResponse;
 export function isUnexpected(
-  response:
-    | WidgetsQueryWidgetsPages200Response
-    | WidgetsQueryWidgetsPagesDefaultResponse,
-): response is WidgetsQueryWidgetsPagesDefaultResponse;
+  response: QueryWidgetsPages200Response | QueryWidgetsPagesDefaultResponse,
+): response is QueryWidgetsPagesDefaultResponse;
 export function isUnexpected(
-  response: WidgetsGetWidget200Response | WidgetsGetWidgetDefaultResponse,
-): response is WidgetsGetWidgetDefaultResponse;
+  response: GetWidget200Response | GetWidgetDefaultResponse,
+): response is GetWidgetDefaultResponse;
 export function isUnexpected(
-  response: WidgetsUpdateWidget200Response | WidgetsUpdateWidgetDefaultResponse,
-): response is WidgetsUpdateWidgetDefaultResponse;
+  response: UpdateWidget200Response | UpdateWidgetDefaultResponse,
+): response is UpdateWidgetDefaultResponse;
 export function isUnexpected(
-  response: WidgetsDeleteWidget204Response | WidgetsDeleteWidgetDefaultResponse,
-): response is WidgetsDeleteWidgetDefaultResponse;
+  response: DeleteWidget204Response | DeleteWidgetDefaultResponse,
+): response is DeleteWidgetDefaultResponse;
 export function isUnexpected(
-  response:
-    | WidgetsCreateOrReplace200Response
-    | WidgetsCreateOrReplace201Response
-    | WidgetsCreateOrReplaceLogicalResponse
-    | WidgetsCreateOrReplaceDefaultResponse,
-): response is WidgetsCreateOrReplaceDefaultResponse;
+  response: AnalyzeWidget200Response | AnalyzeWidgetDefaultResponse,
+): response is AnalyzeWidgetDefaultResponse;
 export function isUnexpected(
   response:
-    | WidgetsAnalyzeWidget200Response
-    | WidgetsAnalyzeWidgetDefaultResponse,
-): response is WidgetsAnalyzeWidgetDefaultResponse;
-export function isUnexpected(
-  response:
-    | BudgetsCreateOrReplace200Response
-    | BudgetsCreateOrReplace201Response
-    | BudgetsCreateOrReplaceLogicalResponse
-    | BudgetsCreateOrReplaceDefaultResponse,
-): response is BudgetsCreateOrReplaceDefaultResponse;
-export function isUnexpected(
-  response:
-    | BudgetsCreateOrUpdate200Response
-    | BudgetsCreateOrUpdate201Response
-    | BudgetsCreateOrUpdateLogicalResponse
-    | BudgetsCreateOrUpdateDefaultResponse,
-): response is BudgetsCreateOrUpdateDefaultResponse;
-export function isUnexpected(
-  response:
-    | WidgetsListWidgets200Response
-    | WidgetsListWidgetsDefaultResponse
-    | WidgetsCreateWidget201Response
-    | WidgetsCreateWidgetDefaultResponse
-    | WidgetsListWidgetsPages200Response
-    | WidgetsListWidgetsPagesDefaultResponse
-    | WidgetsQueryWidgetsPages200Response
-    | WidgetsQueryWidgetsPagesDefaultResponse
-    | WidgetsGetWidget200Response
-    | WidgetsGetWidgetDefaultResponse
-    | WidgetsUpdateWidget200Response
-    | WidgetsUpdateWidgetDefaultResponse
-    | WidgetsDeleteWidget204Response
-    | WidgetsDeleteWidgetDefaultResponse
-    | WidgetsCreateOrReplace200Response
-    | WidgetsCreateOrReplace201Response
-    | WidgetsCreateOrReplaceLogicalResponse
-    | WidgetsCreateOrReplaceDefaultResponse
-    | WidgetsAnalyzeWidget200Response
-    | WidgetsAnalyzeWidgetDefaultResponse
-    | BudgetsCreateOrReplace200Response
-    | BudgetsCreateOrReplace201Response
-    | BudgetsCreateOrReplaceLogicalResponse
-    | BudgetsCreateOrReplaceDefaultResponse
-    | BudgetsCreateOrUpdate200Response
-    | BudgetsCreateOrUpdate201Response
-    | BudgetsCreateOrUpdateLogicalResponse
-    | BudgetsCreateOrUpdateDefaultResponse,
+    | ListWidgets200Response
+    | ListWidgetsDefaultResponse
+    | CreateWidget201Response
+    | CreateWidgetDefaultResponse
+    | ListWidgetsPages200Response
+    | ListWidgetsPagesDefaultResponse
+    | QueryWidgetsPages200Response
+    | QueryWidgetsPagesDefaultResponse
+    | GetWidget200Response
+    | GetWidgetDefaultResponse
+    | UpdateWidget200Response
+    | UpdateWidgetDefaultResponse
+    | DeleteWidget204Response
+    | DeleteWidgetDefaultResponse
+    | AnalyzeWidget200Response
+    | AnalyzeWidgetDefaultResponse,
 ): response is
-  | WidgetsListWidgetsDefaultResponse
-  | WidgetsCreateWidgetDefaultResponse
-  | WidgetsListWidgetsPagesDefaultResponse
-  | WidgetsQueryWidgetsPagesDefaultResponse
-  | WidgetsGetWidgetDefaultResponse
-  | WidgetsUpdateWidgetDefaultResponse
-  | WidgetsDeleteWidgetDefaultResponse
-  | WidgetsCreateOrReplaceDefaultResponse
-  | WidgetsAnalyzeWidgetDefaultResponse
-  | BudgetsCreateOrReplaceDefaultResponse
-  | BudgetsCreateOrUpdateDefaultResponse {
+  | ListWidgetsDefaultResponse
+  | CreateWidgetDefaultResponse
+  | ListWidgetsPagesDefaultResponse
+  | QueryWidgetsPagesDefaultResponse
+  | GetWidgetDefaultResponse
+  | UpdateWidgetDefaultResponse
+  | DeleteWidgetDefaultResponse
+  | AnalyzeWidgetDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

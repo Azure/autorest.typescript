@@ -4,10 +4,8 @@
 export {
   WidgetServiceClient,
   WidgetServiceClientOptions,
-} from "./WidgetServiceClient.js";
-export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
+} from "./widgetServiceClient.js";
 export {
-  User,
   Widget,
   WidgetError,
   ListWidgetsPagesResults,
@@ -15,20 +13,16 @@ export {
   UpdateWidget,
   AnalyzeResult,
   NonReferencedModel,
-  OperationStatus,
-  WidgetsListWidgetsOptions,
-  WidgetsListWidgetsPagesOptions,
-  WidgetsQueryWidgetsPagesOptions,
-  WidgetsGetWidgetOptions,
-  WidgetsCreateWidgetOptions,
-  WidgetsCreateOrReplaceOptions,
-  WidgetsUpdateWidgetOptions,
-  WidgetsDeleteWidgetOptions,
-  WidgetsAnalyzeWidgetOptions,
-  BudgetsCreateOrReplaceOptions,
-  BudgetsCreateOrUpdateOptions,
+  WidgetsListWidgetsOptionalParams,
+  WidgetsListWidgetsPagesOptionalParams,
+  WidgetsQueryWidgetsPagesOptionalParams,
+  WidgetsGetWidgetOptionalParams,
+  WidgetsCreateWidgetOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsAnalyzeWidgetOptionalParams,
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./models/index.js";
-export { BudgetsOperations, WidgetsOperations } from "./classic/index.js";
+export { WidgetsOperations } from "./classic/index.js";

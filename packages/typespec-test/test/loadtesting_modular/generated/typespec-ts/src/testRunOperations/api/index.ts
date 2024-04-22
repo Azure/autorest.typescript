@@ -21,4 +21,4 @@ export {
   createTestRunOperations,
   TestRunOperationsClientOptions,
   AzureLoadTestingContext,
-} from "./TestRunOperationsContext.js";
+} from "./testRunOperationsContext.js";

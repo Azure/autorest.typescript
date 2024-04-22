@@ -24,16 +24,6 @@ export interface ListWidgetsPagesResultsOutput {
   "odata.nextLink"?: string;
 }
 
-/** Details about a user. */
-export interface UserOutput {
-  /** The name of user. */
-  readonly name: string;
-  /** The role of user */
-  role: string;
-  /** The UUID of this widget. This is generated automatically by the service. */
-  id: string;
-}
-
 export interface AnalyzeResultOutput {
   summary: string;
 }

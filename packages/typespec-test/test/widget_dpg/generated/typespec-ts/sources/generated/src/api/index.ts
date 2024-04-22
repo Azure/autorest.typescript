@@ -5,4 +5,4 @@ export {
   createWidgetService,
   WidgetServiceClientOptions,
   WidgetServiceContext,
-} from "./WidgetServiceContext.js";
+} from "./widgetServiceContext.js";

@@ -10,7 +10,7 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public (undocumented)
-export interface AcknowledgeCloudEventsOptions extends OperationOptions {
+export interface AcknowledgeCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
@@ -47,18 +47,19 @@ export interface CloudEvent {
 
 // @public (undocumented)
 export class EventGridClient {
-    constructor(endpoint: string, credential: KeyCredential, options?: EventGridClientOptions);
-    acknowledgeCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: AcknowledgeOptions, options?: AcknowledgeCloudEventsOptions): Promise<AcknowledgeResult>;
+    constructor(endpointParam: string, credential: KeyCredential, options?: EventGridClientOptions);
+    acknowledgeCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: AcknowledgeOptions, options?: AcknowledgeCloudEventsOptionalParams): Promise<AcknowledgeResult>;
     readonly pipeline: Pipeline;
-    publishCloudEvent(topicName: string, event: CloudEvent, options?: PublishCloudEventOptions): Promise<Record<string, any>>;
-    publishCloudEvents(topicName: string, events: CloudEvent[], options?: PublishCloudEventsOptions): Promise<Record<string, any>>;
-    receiveCloudEvents(topicName: string, eventSubscriptionName: string, options?: ReceiveCloudEventsOptions): Promise<ReceiveResult>;
-    rejectCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: RejectOptions, options?: RejectCloudEventsOptions): Promise<RejectResult>;
-    releaseCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: ReleaseOptions, options?: ReleaseCloudEventsOptions): Promise<ReleaseResult>;
+    publishCloudEvent(topicName: string, event: CloudEvent, options?: PublishCloudEventOptionalParams): Promise<Record<string, any>>;
+    publishCloudEvents(topicName: string, events: CloudEvent[], options?: PublishCloudEventsOptionalParams): Promise<Record<string, any>>;
+    receiveCloudEvents(topicName: string, eventSubscriptionName: string, options?: ReceiveCloudEventsOptionalParams): Promise<ReceiveResult>;
+    rejectCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: RejectOptions, options?: RejectCloudEventsOptionalParams): Promise<RejectResult>;
+    releaseCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: ReleaseOptions, options?: ReleaseCloudEventsOptionalParams): Promise<ReleaseResult>;
 }
 
 // @public (undocumented)
 export interface EventGridClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public
@@ -69,17 +70,17 @@ export interface FailedLockToken {
 }
 
 // @public (undocumented)
-export interface PublishCloudEventOptions extends OperationOptions {
+export interface PublishCloudEventOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
 // @public (undocumented)
-export interface PublishCloudEventsOptions extends OperationOptions {
+export interface PublishCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
 // @public (undocumented)
-export interface ReceiveCloudEventsOptions extends OperationOptions {
+export interface ReceiveCloudEventsOptionalParams extends OperationOptions {
     maxEvents?: number;
     maxWaitTime?: number;
 }
@@ -96,7 +97,7 @@ export interface ReceiveResult {
 }
 
 // @public (undocumented)
-export interface RejectCloudEventsOptions extends OperationOptions {
+export interface RejectCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
@@ -112,7 +113,7 @@ export interface RejectResult {
 }
 
 // @public (undocumented)
-export interface ReleaseCloudEventsOptions extends OperationOptions {
+export interface ReleaseCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
 }
 
@@ -126,6 +127,9 @@ export interface ReleaseResult {
     failedLockTokens: FailedLockToken[];
     succeededLockTokens: string[];
 }
+
+// @public (undocumented)
+export type ServiceApiVersions = "2023-06-01-preview";
 
 // (No @packageDocumentation comment for this package)
 

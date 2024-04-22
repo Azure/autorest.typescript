@@ -3,8 +3,8 @@
 
 export {
   TextBlocklist,
-  AddOrUpdateBlockItemsOptions,
   TextBlockItemInfo,
+  AddOrUpdateBlockItemsOptions,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
   RemoveBlockItemsOptions,
@@ -20,20 +20,21 @@ export {
   AnalyzeTextResult,
   TextBlocklistMatchResult,
   TextAnalyzeSeverityResult,
+  Versions,
   PagedTextBlocklist,
   PagedTextBlockItem,
 } from "./models.js";
 export {
-  AnalyzeTextRequestOptions,
-  AnalyzeImageRequestOptions,
-  GetTextBlocklistOptions,
-  CreateOrUpdateTextBlocklistOptions,
-  DeleteTextBlocklistOptions,
-  ListTextBlocklistsOptions,
-  AddOrUpdateBlockItemsRequestOptions,
-  RemoveBlockItemsRequestOptions,
-  GetTextBlocklistItemOptions,
-  ListTextBlocklistItemsOptions,
+  AnalyzeTextOptionalParams,
+  AnalyzeImageOptionalParams,
+  GetTextBlocklistOptionalParams,
+  CreateOrUpdateTextBlocklistOptionalParams,
+  DeleteTextBlocklistOptionalParams,
+  ListTextBlocklistsOptionalParams,
+  AddOrUpdateBlockItemsOptionalParams,
+  RemoveBlockItemsOptionalParams,
+  GetTextBlocklistItemOptionalParams,
+  ListTextBlocklistItemsOptionalParams,
 } from "./options.js";
 export {
   PageSettings,

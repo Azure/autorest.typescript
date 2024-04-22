@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 export {
-  User,
   Widget,
   WidgetError,
   ListWidgetsPagesResults,
@@ -10,20 +9,16 @@ export {
   UpdateWidget,
   AnalyzeResult,
   NonReferencedModel,
-  OperationStatus,
 } from "./models.js";
 export {
-  WidgetsListWidgetsOptions,
-  WidgetsListWidgetsPagesOptions,
-  WidgetsQueryWidgetsPagesOptions,
-  WidgetsGetWidgetOptions,
-  WidgetsCreateWidgetOptions,
-  WidgetsCreateOrReplaceOptions,
-  WidgetsUpdateWidgetOptions,
-  WidgetsDeleteWidgetOptions,
-  WidgetsAnalyzeWidgetOptions,
-  BudgetsCreateOrReplaceOptions,
-  BudgetsCreateOrUpdateOptions,
+  WidgetsListWidgetsOptionalParams,
+  WidgetsListWidgetsPagesOptionalParams,
+  WidgetsQueryWidgetsPagesOptionalParams,
+  WidgetsGetWidgetOptionalParams,
+  WidgetsCreateWidgetOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsAnalyzeWidgetOptionalParams,
 } from "./options.js";
 export {
   PageSettings,

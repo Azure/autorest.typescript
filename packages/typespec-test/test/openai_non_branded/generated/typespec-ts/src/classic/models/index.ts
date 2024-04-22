@@ -1,34 +1,37 @@
 // Licensed under the MIT license.
 
-import { OpenAIContext } from "../../api/OpenAIContext.js";
+import { OpenAIContext } from "../../api/openAIContext.js";
 import {
   ListModelsResponse,
   Model,
   DeleteModelResponse,
 } from "../../models/models.js";
-import { list, retrieve, deleteOperation } from "../../api/models/index.js";
+import { list, retrieve, $delete } from "../../api/models/index.js";
 import {
-  ModelsListOptions,
-  ModelsRetrieveOptions,
-  ModelsDeleteOperationOptions,
+  ModelsListOptionalParams,
+  ModelsRetrieveOptionalParams,
+  ModelsDeleteOptionalParams,
 } from "../../models/options.js";
 
 export interface ModelsOperations {
-  list: (options?: ModelsListOptions) => Promise<ListModelsResponse>;
-  retrieve: (model: string, options?: ModelsRetrieveOptions) => Promise<Model>;
-  deleteOperation: (
+  list: (options?: ModelsListOptionalParams) => Promise<ListModelsResponse>;
+  retrieve: (
     model: string,
-    options?: ModelsDeleteOperationOptions,
+    options?: ModelsRetrieveOptionalParams,
+  ) => Promise<Model>;
+  delete: (
+    model: string,
+    options?: ModelsDeleteOptionalParams,
   ) => Promise<DeleteModelResponse>;
 }
 
 export function getModels(context: OpenAIContext) {
   return {
-    list: (options?: ModelsListOptions) => list(context, options),
-    retrieve: (model: string, options?: ModelsRetrieveOptions) =>
+    list: (options?: ModelsListOptionalParams) => list(context, options),
+    retrieve: (model: string, options?: ModelsRetrieveOptionalParams) =>
       retrieve(context, model, options),
-    deleteOperation: (model: string, options?: ModelsDeleteOperationOptions) =>
-      deleteOperation(context, model, options),
+    delete: (model: string, options?: ModelsDeleteOptionalParams) =>
+      $delete(context, model, options),
   };
 }
 

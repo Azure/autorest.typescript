@@ -7,16 +7,12 @@ import {
   WidgetsOperations,
 } from "./classic/widgets/index.js";
 import {
-  getBudgetsOperations,
-  BudgetsOperations,
-} from "./classic/budgets/index.js";
-import {
   createWidgetService,
   WidgetServiceClientOptions,
   WidgetServiceContext,
 } from "./api/index.js";
 
-export { WidgetServiceClientOptions } from "./api/WidgetServiceContext.js";
+export { WidgetServiceClientOptions } from "./api/widgetServiceContext.js";
 
 export class WidgetServiceClient {
   private _client: WidgetServiceContext;
@@ -27,11 +23,8 @@ export class WidgetServiceClient {
     this._client = createWidgetService(endpoint, options);
     this.pipeline = this._client.pipeline;
     this.widgets = getWidgetsOperations(this._client);
-    this.budgets = getBudgetsOperations(this._client);
   }
 
   /** The operation groups for Widgets */
   public readonly widgets: WidgetsOperations;
-  /** The operation groups for Budgets */
-  public readonly budgets: BudgetsOperations;
 }

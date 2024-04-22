@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { WidgetServiceContext } from "../../api/WidgetServiceContext.js";
+import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
 import {
-  User,
   Widget,
   CreateWidget,
   UpdateWidget,
@@ -15,23 +14,20 @@ import {
   queryWidgetsPages,
   getWidget,
   createWidget,
-  createOrReplace,
   updateWidget,
   deleteWidget,
   analyzeWidget,
 } from "../../api/widgets/index.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
-import { PollerLike, OperationState } from "@azure/core-lro";
 import {
-  WidgetsListWidgetsOptions,
-  WidgetsListWidgetsPagesOptions,
-  WidgetsQueryWidgetsPagesOptions,
-  WidgetsGetWidgetOptions,
-  WidgetsCreateWidgetOptions,
-  WidgetsCreateOrReplaceOptions,
-  WidgetsUpdateWidgetOptions,
-  WidgetsDeleteWidgetOptions,
-  WidgetsAnalyzeWidgetOptions,
+  WidgetsListWidgetsOptionalParams,
+  WidgetsListWidgetsPagesOptionalParams,
+  WidgetsQueryWidgetsPagesOptionalParams,
+  WidgetsGetWidgetOptionalParams,
+  WidgetsCreateWidgetOptionalParams,
+  WidgetsUpdateWidgetOptionalParams,
+  WidgetsDeleteWidgetOptionalParams,
+  WidgetsAnalyzeWidgetOptionalParams,
 } from "../../models/options.js";
 
 export interface WidgetsOperations {
@@ -41,40 +37,38 @@ export interface WidgetsOperations {
     value: Uint8Array,
     csvArrayHeader: Uint8Array[],
     utcDateHeader: Date,
-    options?: WidgetsListWidgetsOptions,
+    options?: WidgetsListWidgetsOptionalParams,
   ) => Promise<Widget[]>;
   listWidgetsPages: (
     page: number,
     pageSize: number,
-    options?: WidgetsListWidgetsPagesOptions,
+    options?: WidgetsListWidgetsPagesOptionalParams,
   ) => PagedAsyncIterableIterator<Widget>;
   queryWidgetsPages: (
     page: number,
     pageSize: number,
-    options?: WidgetsQueryWidgetsPagesOptions,
+    options?: WidgetsQueryWidgetsPagesOptionalParams,
   ) => PagedAsyncIterableIterator<Widget>;
-  getWidget: (id: string, options?: WidgetsGetWidgetOptions) => Promise<Widget>;
+  getWidget: (
+    id: string,
+    options?: WidgetsGetWidgetOptionalParams,
+  ) => Promise<Widget>;
   createWidget: (
     body: CreateWidget,
-    options?: WidgetsCreateWidgetOptions,
+    options?: WidgetsCreateWidgetOptionalParams,
   ) => Promise<Widget>;
-  createOrReplace: (
-    name: string,
-    resource: User,
-    options?: WidgetsCreateOrReplaceOptions,
-  ) => PollerLike<OperationState<User>, User>;
   updateWidget: (
     id: string,
     body: UpdateWidget,
-    options?: WidgetsUpdateWidgetOptions,
+    options?: WidgetsUpdateWidgetOptionalParams,
   ) => Promise<Widget>;
   deleteWidget: (
     id: string,
-    options?: WidgetsDeleteWidgetOptions,
+    options?: WidgetsDeleteWidgetOptionalParams,
   ) => Promise<void>;
   analyzeWidget: (
     id: string,
-    options?: WidgetsAnalyzeWidgetOptions,
+    options?: WidgetsAnalyzeWidgetOptionalParams,
   ) => Promise<AnalyzeResult>;
 }
 
@@ -86,7 +80,7 @@ export function getWidgets(context: WidgetServiceContext) {
       value: Uint8Array,
       csvArrayHeader: Uint8Array[],
       utcDateHeader: Date,
-      options?: WidgetsListWidgetsOptions,
+      options?: WidgetsListWidgetsOptionalParams,
     ) =>
       listWidgets(
         context,
@@ -100,30 +94,27 @@ export function getWidgets(context: WidgetServiceContext) {
     listWidgetsPages: (
       page: number,
       pageSize: number,
-      options?: WidgetsListWidgetsPagesOptions,
+      options?: WidgetsListWidgetsPagesOptionalParams,
     ) => listWidgetsPages(context, page, pageSize, options),
     queryWidgetsPages: (
       page: number,
       pageSize: number,
-      options?: WidgetsQueryWidgetsPagesOptions,
+      options?: WidgetsQueryWidgetsPagesOptionalParams,
     ) => queryWidgetsPages(context, page, pageSize, options),
-    getWidget: (id: string, options?: WidgetsGetWidgetOptions) =>
+    getWidget: (id: string, options?: WidgetsGetWidgetOptionalParams) =>
       getWidget(context, id, options),
-    createWidget: (body: CreateWidget, options?: WidgetsCreateWidgetOptions) =>
-      createWidget(context, body, options),
-    createOrReplace: (
-      name: string,
-      resource: User,
-      options?: WidgetsCreateOrReplaceOptions,
-    ) => createOrReplace(context, name, resource, options),
+    createWidget: (
+      body: CreateWidget,
+      options?: WidgetsCreateWidgetOptionalParams,
+    ) => createWidget(context, body, options),
     updateWidget: (
       id: string,
       body: UpdateWidget,
-      options?: WidgetsUpdateWidgetOptions,
+      options?: WidgetsUpdateWidgetOptionalParams,
     ) => updateWidget(context, id, body, options),
-    deleteWidget: (id: string, options?: WidgetsDeleteWidgetOptions) =>
+    deleteWidget: (id: string, options?: WidgetsDeleteWidgetOptionalParams) =>
       deleteWidget(context, id, options),
-    analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptions) =>
+    analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptionalParams) =>
       analyzeWidget(context, id, options),
   };
 }

@@ -13,12 +13,12 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { EditsCreateOptions } from "../../models/options.js";
+import { EditsCreateOptionalParams } from "../../models/options.js";
 
 export function _createSend(
   context: Client,
   edit: CreateEditRequest,
-  options: EditsCreateOptions = { requestOptions: {} },
+  options: EditsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<EditsCreate200Response | EditsCreateDefaultResponse> {
   return context
     .path("/edits")
@@ -61,7 +61,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   edit: CreateEditRequest,
-  options: EditsCreateOptions = { requestOptions: {} },
+  options: EditsCreateOptionalParams = { requestOptions: {} },
 ): Promise<CreateEditResponse> {
   const result = await _createSend(context, edit, options);
   return _createDeserialize(result);

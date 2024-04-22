@@ -2,22 +2,23 @@
 // Licensed under the MIT license.
 
 export {
+  SchemaGroup,
+  SchemaVersion,
+  SchemaContentTypeValues,
   SchemaProperties,
   SchemaFormat,
   ContentTypeEnum,
+  ServiceApiVersions,
   PagedSchemaGroup,
-  SchemaGroup,
-  SchemaContentTypeValues,
   PagedVersion,
-  SchemaVersion,
 } from "./models.js";
 export {
-  SchemaOperationsListSchemaGroupsOptions,
-  SchemaOperationsGetSchemaByIdOptions,
-  SchemaOperationsListSchemaVersionsOptions,
-  SchemaOperationsGetSchemaByVersionOptions,
-  SchemaOperationsGetSchemaIdByContentOptions,
-  SchemaOperationsRegisterSchemaOptions,
+  SchemaOperationsListSchemaGroupsOptionalParams,
+  SchemaOperationsGetSchemaByIdOptionalParams,
+  SchemaOperationsListSchemaVersionsOptionalParams,
+  SchemaOperationsGetSchemaByVersionOptionalParams,
+  SchemaOperationsGetSchemaIdByContentOptionalParams,
+  SchemaOperationsRegisterSchemaOptionalParams,
 } from "./options.js";
 export {
   PageSettings,

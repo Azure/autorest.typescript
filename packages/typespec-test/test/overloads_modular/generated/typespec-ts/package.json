@@ -43,7 +43,7 @@
     "review/*"
   ],
   "dependencies": {
-    "@azure-rest/core-client": "^1.2.0",
+    "@azure-rest/core-client": "^1.4.0",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-rest-pipeline": "^1.5.0",
     "@azure/logger": "^1.0.0",
@@ -56,8 +56,8 @@
     "eslint": "^8.55.0",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
-    "mkdirp": "^2.1.2",
-    "typescript": "~5.3.3",
+    "mkdirp": "^3.0.1",
+    "typescript": "~5.4.5",
     "tshy": "1.11.1",
     "@azure/core-util": "^1.0.0",
     "@azure-tools/test-credential": "^1.0.0",

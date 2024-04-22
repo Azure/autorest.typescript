@@ -5,7 +5,7 @@ export {
   createEventGrid,
   EventGridClientOptions,
   EventGridContext,
-} from "./EventGridContext.js";
+} from "./eventGridContext.js";
 export {
   publishCloudEvent,
   publishCloudEvents,

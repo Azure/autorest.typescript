@@ -9,10 +9,7 @@ export interface ProjectOutput {
   /** The project name. */
   readonly projectName: string;
   /** The project kind. */
-  projectKind:
-    | "CustomSingleLabelClassification"
-    | "CustomMultiLabelClassification"
-    | "CustomEntityRecognition";
+  projectKind: ProjectKindOutput;
   /** The storage container name. */
   storageInputContainerName: string;
   /** The project settings. */
@@ -40,12 +37,8 @@ export interface ProjectSettingsOutput extends Record<string, string> {}
 export interface OperationStatusOutput {
   /** The unique ID of the operation. */
   id: string;
-  /**
-   * The status of the operation
-   *
-   * Possible values: "NotStarted", "Running", "Succeeded", "Failed", "Canceled"
-   */
-  status: string;
+  /** The status of the operation */
+  status: OperationStateOutput;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModel;
 }
@@ -67,14 +60,7 @@ export interface DeploymentJobOutput {
   /** The expiration date time of the job. */
   readonly expirationDateTime: string;
   /** The job status. */
-  status:
-    | "notStarted"
-    | "running"
-    | "succeeded"
-    | "failed"
-    | "cancelled"
-    | "cancelling"
-    | "partiallyCompleted";
+  status: JobStatusOutput;
   /** The warnings that were encountered while executing the job. */
   warnings: Array<JobWarningOutput>;
   /** The errors encountered while executing the job. */
@@ -102,14 +88,7 @@ export interface SwapDeploymentsJobOutput {
   /** The expiration date time of the job. */
   readonly expirationDateTime: string;
   /** The job status. */
-  status:
-    | "notStarted"
-    | "running"
-    | "succeeded"
-    | "failed"
-    | "cancelled"
-    | "cancelling"
-    | "partiallyCompleted";
+  status: JobStatusOutput;
   /** The warnings that were encountered while executing the job. */
   warnings: Array<JobWarningOutput>;
   /** The errors encountered while executing the job. */
@@ -134,10 +113,31 @@ export interface TrainingConfigVersionOutput {
   modelExpirationDate: string;
 }
 
+/** Represents the project kind. */
+export type ProjectKindOutput =
+  | "CustomSingleLabelClassification"
+  | "CustomMultiLabelClassification"
+  | "CustomEntityRecognition";
+/** Enum describing allowed operation states. */
+export type OperationStateOutput =
+  | "NotStarted"
+  | "Running"
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";
 /** Paged collection of Project items */
 export type PagedProjectOutput = Paged<ProjectOutput>;
 /** Paged collection of Deployment items */
 export type PagedDeploymentOutput = Paged<DeploymentOutput>;
+/** Represents the job status. */
+export type JobStatusOutput =
+  | "notStarted"
+  | "running"
+  | "succeeded"
+  | "failed"
+  | "cancelled"
+  | "cancelling"
+  | "partiallyCompleted";
 /** A collection of SupportedLanguage resources. */
 export type PagedSupportedLanguageOutput = Paged<SupportedLanguageOutput>;
 /** A collection of TrainingConfigVersion resources. */

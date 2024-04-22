@@ -26,17 +26,17 @@ import {
   createRestError,
 } from "@typespec/ts-http-runtime";
 import {
-  FineTunesCreateOptions,
-  FineTunesListOptions,
-  FineTunesRetrieveOptions,
-  FineTunesListEventsOptions,
-  FineTunesCancelOptions,
+  FineTunesCreateOptionalParams,
+  FineTunesListOptionalParams,
+  FineTunesRetrieveOptionalParams,
+  FineTunesListEventsOptionalParams,
+  FineTunesCancelOptionalParams,
 } from "../../models/options.js";
 
 export function _createSend(
   context: Client,
   fineTune: CreateFineTuneRequest,
-  options: FineTunesCreateOptions = { requestOptions: {} },
+  options: FineTunesCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   FineTunesCreate200Response | FineTunesCreateDefaultResponse
 > {
@@ -136,7 +136,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   fineTune: CreateFineTuneRequest,
-  options: FineTunesCreateOptions = { requestOptions: {} },
+  options: FineTunesCreateOptionalParams = { requestOptions: {} },
 ): Promise<FineTune> {
   const result = await _createSend(context, fineTune, options);
   return _createDeserialize(result);
@@ -144,7 +144,7 @@ export async function create(
 
 export function _listSend(
   context: Client,
-  options: FineTunesListOptions = { requestOptions: {} },
+  options: FineTunesListOptionalParams = { requestOptions: {} },
 ): StreamableMethod<FineTunesList200Response | FineTunesListDefaultResponse> {
   return context
     .path("/fine-tunes")
@@ -225,7 +225,7 @@ export async function _listDeserialize(
 
 export async function list(
   context: Client,
-  options: FineTunesListOptions = { requestOptions: {} },
+  options: FineTunesListOptionalParams = { requestOptions: {} },
 ): Promise<ListFineTunesResponse> {
   const result = await _listSend(context, options);
   return _listDeserialize(result);
@@ -234,7 +234,7 @@ export async function list(
 export function _retrieveSend(
   context: Client,
   fineTuneId: string,
-  options: FineTunesRetrieveOptions = { requestOptions: {} },
+  options: FineTunesRetrieveOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse
 > {
@@ -317,7 +317,7 @@ export async function _retrieveDeserialize(
 export async function retrieve(
   context: Client,
   fineTuneId: string,
-  options: FineTunesRetrieveOptions = { requestOptions: {} },
+  options: FineTunesRetrieveOptionalParams = { requestOptions: {} },
 ): Promise<FineTune> {
   const result = await _retrieveSend(context, fineTuneId, options);
   return _retrieveDeserialize(result);
@@ -326,7 +326,7 @@ export async function retrieve(
 export function _listEventsSend(
   context: Client,
   fineTuneId: string,
-  options: FineTunesListEventsOptions = { requestOptions: {} },
+  options: FineTunesListEventsOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   FineTunesListEvents200Response | FineTunesListEventsDefaultResponse
 > {
@@ -359,7 +359,7 @@ export async function _listEventsDeserialize(
 export async function listEvents(
   context: Client,
   fineTuneId: string,
-  options: FineTunesListEventsOptions = { requestOptions: {} },
+  options: FineTunesListEventsOptionalParams = { requestOptions: {} },
 ): Promise<ListFineTuneEventsResponse> {
   const result = await _listEventsSend(context, fineTuneId, options);
   return _listEventsDeserialize(result);
@@ -368,7 +368,7 @@ export async function listEvents(
 export function _cancelSend(
   context: Client,
   fineTuneId: string,
-  options: FineTunesCancelOptions = { requestOptions: {} },
+  options: FineTunesCancelOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   FineTunesCancel200Response | FineTunesCancelDefaultResponse
 > {
@@ -451,7 +451,7 @@ export async function _cancelDeserialize(
 export async function cancel(
   context: Client,
   fineTuneId: string,
-  options: FineTunesCancelOptions = { requestOptions: {} },
+  options: FineTunesCancelOptionalParams = { requestOptions: {} },
 ): Promise<FineTune> {
   const result = await _cancelSend(context, fineTuneId, options);
   return _cancelDeserialize(result);

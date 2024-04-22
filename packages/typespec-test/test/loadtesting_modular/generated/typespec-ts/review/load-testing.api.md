@@ -4,48 +4,39 @@
 
 ```ts
 
-/// <reference types="node" />
-
-import { AbortSignalLike } from '@azure/abort-controller';
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { ErrorResponse } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
-import { OperationState } from '@azure/core-lro';
-import { Paged } from '@azure/core-paging';
-import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
-import { PollerLike } from '@azure/core-lro';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
 export class AdministrationOperationsClient {
-    constructor(endpoint: string, credential: TokenCredential, options?: AdministrationOperationsClientOptions);
-    createOrUpdateAppComponents(testId: string, body: TestAppComponents, options?: CreateOrUpdateAppComponentsOptions): Promise<TestAppComponents>;
-    createOrUpdateServerMetricsConfig(testId: string, body: TestServerMetricConfig, options?: CreateOrUpdateServerMetricsConfigOptions): Promise<TestServerMetricConfig>;
-    createOrUpdateTest(testId: string, body: Test, options?: CreateOrUpdateTestOptions): Promise<Test>;
-    deleteTest(testId: string, options?: DeleteTestOptions): Promise<void>;
-    deleteTestFile(testId: string, fileName: string, options?: DeleteTestFileOptions): Promise<void>;
-    getAppComponents(testId: string, options?: GetAppComponentsOptions): Promise<TestAppComponents>;
-    getServerMetricsConfig(testId: string, options?: GetServerMetricsConfigOptions): Promise<TestServerMetricConfig>;
-    getTest(testId: string, options?: GetTestOptions): Promise<Test>;
-    getTestFile(testId: string, fileName: string, options?: GetTestFileOptions): Promise<FileInfo>;
-    listTestFiles(testId: string, options?: ListTestFilesOptions): PagedAsyncIterableIterator<FileInfo>;
-    listTests(options?: ListTestsOptions): PagedAsyncIterableIterator<Test>;
+    constructor(endpointParam: string, credential: TokenCredential, options?: AdministrationOperationsClientOptions);
+    createOrUpdateAppComponents(testId: string, body: TestAppComponents, options?: CreateOrUpdateAppComponentsOptionalParams): Promise<TestAppComponents>;
+    createOrUpdateServerMetricsConfig(testId: string, body: TestServerMetricConfig, options?: CreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
+    createOrUpdateTest(testId: string, body: Test, options?: CreateOrUpdateTestOptionalParams): Promise<Test>;
+    deleteTest(testId: string, options?: DeleteTestOptionalParams): Promise<void>;
+    deleteTestFile(testId: string, fileName: string, options?: DeleteTestFileOptionalParams): Promise<void>;
+    getAppComponents(testId: string, options?: GetAppComponentsOptionalParams): Promise<TestAppComponents>;
+    getServerMetricsConfig(testId: string, options?: GetServerMetricsConfigOptionalParams): Promise<TestServerMetricConfig>;
+    getTest(testId: string, options?: GetTestOptionalParams): Promise<Test>;
+    getTestFile(testId: string, fileName: string, options?: GetTestFileOptionalParams): Promise<FileInfo>;
+    listTestFiles(testId: string, options?: ListTestFilesOptionalParams): PagedAsyncIterableIterator<FileInfo>;
+    listTests(options?: ListTestsOptionalParams): PagedAsyncIterableIterator<Test>;
     readonly pipeline: Pipeline;
-    uploadTestFile(testId: string, fileName: string, body: Uint8Array, options?: UploadTestFileOptions): Promise<FileInfo>;
+    uploadTestFile(testId: string, fileName: string, body: Uint8Array, options?: UploadTestFileOptionalParams): Promise<FileInfo>;
 }
 
 // @public (undocumented)
 export interface AdministrationOperationsClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
-// @public
-export type AggregationType = string;
+// @public (undocumented)
+export type AggregationType = "Average" | "Count" | "None" | "Total" | "Percentile90" | "Percentile95" | "Percentile99";
+
+// @public (undocumented)
+export type APIVersions = "2022-11-01";
 
 // @public
 export interface AppComponent {
@@ -65,8 +56,8 @@ export interface CertificateMetadata {
     value?: string;
 }
 
-// @public
-export type CertificateType = string;
+// @public (undocumented)
+export type CertificateType = "AKV_CERT_URI";
 
 // @public
 export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
@@ -74,33 +65,33 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 };
 
 // @public (undocumented)
-export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
+export interface CreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
 // @public (undocumented)
-export interface CreateOrUpdateServerMetricsConfigOptions extends OperationOptions {
+export interface CreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
 // @public (undocumented)
-export interface CreateOrUpdateTestOptions extends OperationOptions {
+export interface CreateOrUpdateTestOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
 // @public (undocumented)
-export interface DeleteTestFileOptions extends OperationOptions {
+export interface DeleteTestFileOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface DeleteTestOptions extends OperationOptions {
+export interface DeleteTestOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface DeleteTestRunOptions extends OperationOptions {
+export interface DeleteTestRunOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -136,57 +127,57 @@ export interface FileInfo {
     validationStatus?: FileStatus;
 }
 
-// @public
-export type FileStatus = string;
-
-// @public
-export type FileType = string;
+// @public (undocumented)
+export type FileStatus = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE" | "VALIDATION_INITIATED" | "VALIDATION_NOT_REQUIRED";
 
 // @public (undocumented)
-export interface GetAppComponentsOptions extends OperationOptions {
+export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
+
+// @public (undocumented)
+export interface GetAppComponentsOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface GetServerMetricsConfigOptions extends OperationOptions {
+export interface GetServerMetricsConfigOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface GetTestFileOptions extends OperationOptions {
+export interface GetTestFileOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface GetTestOptions extends OperationOptions {
+export interface GetTestOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface GetTestRunFileOptions extends OperationOptions {
+export interface GetTestRunFileOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface GetTestRunOptions extends OperationOptions {
+export interface GetTestRunOptionalParams extends OperationOptions {
 }
 
-// @public
-export type Interval = string;
+// @public (undocumented)
+export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public (undocumented)
-export interface ListMetricDefinitionsOptions extends OperationOptions {
+export interface ListMetricDefinitionsOptionalParams extends OperationOptions {
     metricNamespace?: string;
 }
 
 // @public (undocumented)
-export interface ListMetricDimensionValuesOptions extends OperationOptions {
+export interface ListMetricDimensionValuesOptionalParams extends OperationOptions {
     interval?: TestRunOperationsClientInterval;
     metricName?: string;
     timespan?: string;
 }
 
 // @public (undocumented)
-export interface ListMetricNamespacesOptions extends OperationOptions {
+export interface ListMetricNamespacesOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface ListMetricsOptions extends OperationOptions {
+export interface ListMetricsOptionalParams extends OperationOptions {
     aggregation?: string;
     interval?: TestRunOperationsClientInterval;
     metricName?: string;
@@ -195,11 +186,11 @@ export interface ListMetricsOptions extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface ListTestFilesOptions extends OperationOptions {
+export interface ListTestFilesOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface ListTestRunsOptions extends OperationOptions {
+export interface ListTestRunsOptionalParams extends OperationOptions {
     executionFrom?: string;
     executionTo?: string;
     maxpagesize?: number;
@@ -210,7 +201,7 @@ export interface ListTestRunsOptions extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface ListTestsOptions extends OperationOptions {
+export interface ListTestsOptionalParams extends OperationOptions {
     lastModifiedEndTime?: string;
     lastModifiedStartTime?: string;
     maxpagesize?: number;
@@ -249,8 +240,8 @@ export interface MetricNamespace {
     name?: string;
 }
 
-// @public
-export type MetricUnit = string;
+// @public (undocumented)
+export type MetricUnit = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
 
 // @public
 export interface MetricValue {
@@ -281,13 +272,13 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 
 // @public
 export interface PagedFileInfo {
-    readonly nextLink?: string;
+    nextLink?: string;
     value: FileInfo[];
 }
 
 // @public
 export interface PagedTest {
-    readonly nextLink?: string;
+    nextLink?: string;
     value: Test[];
 }
 
@@ -313,20 +304,20 @@ export interface PassFailMetric {
     value?: number;
 }
 
-// @public
-export type PFAction = string;
+// @public (undocumented)
+export type PFAction = "continue" | "stop";
 
-// @public
-export type PFAgFunc = string;
+// @public (undocumented)
+export type PFAgFunc = "count" | "percentage" | "avg" | "p50" | "p90" | "p95" | "p99" | "min" | "max";
 
-// @public
-export type PFMetrics = string;
+// @public (undocumented)
+export type PFMetrics = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
 
-// @public
-export type PFResult = string;
+// @public (undocumented)
+export type PFResult = "passed" | "undetermined" | "failed";
 
-// @public
-export type PFTestResult = string;
+// @public (undocumented)
+export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 
 // @public
 export interface ResourceMetric {
@@ -340,32 +331,20 @@ export interface ResourceMetric {
     unit?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "AzureLoadTestingContext" needs to be exported by the entry point index.d.ts
-//
-// @public
-export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: AzureLoadTestingContext | TestRunOperationsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
-
-// @public (undocumented)
-export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
-    abortSignal?: AbortSignalLike;
-    processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
-    updateIntervalInMs?: number;
-}
-
 // @public
 export interface Secret {
     type?: SecretType;
     value?: string;
 }
 
-// @public
-export type SecretType = string;
-
-// @public
-export type Status = string;
+// @public (undocumented)
+export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
 // @public (undocumented)
-export interface StopTestRunOptions extends OperationOptions {
+export type Status = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
+
+// @public (undocumented)
+export interface StopTestRunOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -453,31 +432,34 @@ export interface TestRunInputArtifacts {
 
 // @public (undocumented)
 export class TestRunOperationsClient {
-    constructor(endpoint: string, credential: TokenCredential, options?: TestRunOperationsClientOptions);
+    constructor(endpointParam: string, credential: TokenCredential, options?: TestRunOperationsClientOptions);
     // Warning: (ae-forgotten-export) The symbol "TestRunAppComponents" needs to be exported by the entry point index.d.ts
-    createOrUpdateAppComponents(testRunId: string, body: TestRunAppComponents, options?: TestRunOperationsClientCreateOrUpdateAppComponentsOptions): Promise<TestRunAppComponents>;
+    createOrUpdateAppComponents(testRunId: string, body: TestRunAppComponents, options?: TestRunOperationsClientCreateOrUpdateAppComponentsOptionalParams): Promise<TestRunAppComponents>;
     // Warning: (ae-forgotten-export) The symbol "TestRunServerMetricConfig" needs to be exported by the entry point index.d.ts
-    createOrUpdateServerMetricsConfig(testRunId: string, body: TestRunServerMetricConfig, options?: TestRunOperationsClientCreateOrUpdateServerMetricsConfigOptions): Promise<TestRunServerMetricConfig>;
-    deleteTestRun(testRunId: string, options?: DeleteTestRunOptions): Promise<void>;
-    getAppComponents(testRunId: string, options?: TestRunOperationsClientGetAppComponentsOptions): Promise<TestRunAppComponents>;
-    getServerMetricsConfig(testRunId: string, options?: TestRunOperationsClientGetServerMetricsConfigOptions): Promise<TestRunServerMetricConfig>;
-    getTestRun(testRunId: string, options?: GetTestRunOptions): Promise<TestRunOperationsClientTestRun>;
-    getTestRunFile(testRunId: string, fileName: string, options?: GetTestRunFileOptions): Promise<TestRunOperationsClientFileInfo>;
+    createOrUpdateServerMetricsConfig(testRunId: string, body: TestRunServerMetricConfig, options?: TestRunOperationsClientCreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
+    deleteTestRun(testRunId: string, options?: DeleteTestRunOptionalParams): Promise<void>;
+    getAppComponents(testRunId: string, options?: TestRunOperationsClientGetAppComponentsOptionalParams): Promise<TestRunAppComponents>;
+    getServerMetricsConfig(testRunId: string, options?: TestRunOperationsClientGetServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
+    getTestRun(testRunId: string, options?: GetTestRunOptionalParams): Promise<TestRunOperationsClientTestRun>;
+    getTestRunFile(testRunId: string, fileName: string, options?: GetTestRunFileOptionalParams): Promise<TestRunOperationsClientFileInfo>;
     // Warning: (ae-forgotten-export) The symbol "MetricDefinitionCollection" needs to be exported by the entry point index.d.ts
-    listMetricDefinitions(testRunId: string, options?: ListMetricDefinitionsOptions): Promise<MetricDefinitionCollection>;
-    listMetricDimensionValues(testRunId: string, name: string, metricNamespace: string, options?: ListMetricDimensionValuesOptions): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientDimensionValueList>;
+    listMetricDefinitions(testRunId: string, options?: ListMetricDefinitionsOptionalParams): Promise<MetricDefinitionCollection>;
+    listMetricDimensionValues(testRunId: string, name: string, metricNamespace: string, options?: ListMetricDimensionValuesOptionalParams): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientDimensionValueList>;
     // Warning: (ae-forgotten-export) The symbol "MetricNamespaceCollection" needs to be exported by the entry point index.d.ts
-    listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptions): Promise<MetricNamespaceCollection>;
+    listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptionalParams): Promise<MetricNamespaceCollection>;
     // Warning: (ae-forgotten-export) The symbol "MetricRequestPayload" needs to be exported by the entry point index.d.ts
-    listMetrics(testRunId: string, body: MetricRequestPayload, options?: ListMetricsOptions): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTimeSeriesElement>;
-    listTestRuns(options?: ListTestRunsOptions): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTestRun>;
+    listMetrics(testRunId: string, body: MetricRequestPayload, options?: ListMetricsOptionalParams): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTimeSeriesElement>;
+    listTestRuns(options?: ListTestRunsOptionalParams): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTestRun>;
     readonly pipeline: Pipeline;
-    stopTestRun(testRunId: string, options?: StopTestRunOptions): Promise<TestRunOperationsClientTestRun>;
-    testRun(testRunId: string, resource: TestRunOperationsClientTestRun, options?: TestRunOptions): PollerLike<OperationState<TestRunOperationsClientTestRun>, TestRunOperationsClientTestRun>;
+    stopTestRun(testRunId: string, options?: StopTestRunOptionalParams): Promise<TestRunOperationsClientTestRun>;
+    testRun(testRunId: string, resource: TestRunOperationsClientTestRun, options?: TestRunOptionalParams): Promise<TestRunOperationsClientTestRun>;
 }
 
-// @public
-export type TestRunOperationsClientAggregationType = string;
+// @public (undocumented)
+export type TestRunOperationsClientAggregationType = "Average" | "Count" | "None" | "Total" | "Percentile90" | "Percentile95" | "Percentile99";
+
+// @public (undocumented)
+export type TestRunOperationsClientAPIVersions = "2022-11-01";
 
 // @public
 export interface TestRunOperationsClientAppComponent {
@@ -497,8 +479,8 @@ export interface TestRunOperationsClientCertificateMetadata {
     value?: string;
 }
 
-// @public
-export type TestRunOperationsClientCertificateType = string;
+// @public (undocumented)
+export type TestRunOperationsClientCertificateType = "AKV_CERT_URI";
 
 // @public
 export type TestRunOperationsClientContinuablePage<TElement, TPage = TElement[]> = TPage & {
@@ -506,13 +488,13 @@ export type TestRunOperationsClientContinuablePage<TElement, TPage = TElement[]>
 };
 
 // @public (undocumented)
-export interface TestRunOperationsClientCreateOrUpdateAppComponentsOptions extends OperationOptions {
+export interface TestRunOperationsClientCreateOrUpdateAppComponentsOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
 // @public (undocumented)
-export interface TestRunOperationsClientCreateOrUpdateServerMetricsConfigOptions extends OperationOptions {
+export interface TestRunOperationsClientCreateOrUpdateServerMetricsConfigOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
@@ -550,22 +532,22 @@ export interface TestRunOperationsClientFileInfo {
     validationStatus?: TestRunOperationsClientFileStatus;
 }
 
-// @public
-export type TestRunOperationsClientFileStatus = string;
-
-// @public
-export type TestRunOperationsClientFileType = string;
+// @public (undocumented)
+export type TestRunOperationsClientFileStatus = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE" | "VALIDATION_INITIATED" | "VALIDATION_NOT_REQUIRED";
 
 // @public (undocumented)
-export interface TestRunOperationsClientGetAppComponentsOptions extends OperationOptions {
+export type TestRunOperationsClientFileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
+
+// @public (undocumented)
+export interface TestRunOperationsClientGetAppComponentsOptionalParams extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface TestRunOperationsClientGetServerMetricsConfigOptions extends OperationOptions {
+export interface TestRunOperationsClientGetServerMetricsConfigOptionalParams extends OperationOptions {
 }
 
-// @public
-export type TestRunOperationsClientInterval = string;
+// @public (undocumented)
+export type TestRunOperationsClientInterval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public
 export interface TestRunOperationsClientLoadTestConfiguration {
@@ -598,8 +580,8 @@ export interface TestRunOperationsClientMetricNamespace {
     name?: string;
 }
 
-// @public
-export type TestRunOperationsClientMetricUnit = string;
+// @public (undocumented)
+export type TestRunOperationsClientMetricUnit = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
 
 // @public
 export interface TestRunOperationsClientMetricValue {
@@ -623,6 +605,7 @@ export interface TestRunOperationsClientOptionalLoadTestConfig {
 
 // @public (undocumented)
 export interface TestRunOperationsClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public
@@ -654,20 +637,20 @@ export interface TestRunOperationsClientPassFailMetric {
     value?: number;
 }
 
-// @public
-export type TestRunOperationsClientPFAction = string;
+// @public (undocumented)
+export type TestRunOperationsClientPFAction = "continue" | "stop";
 
-// @public
-export type TestRunOperationsClientPFAgFunc = string;
+// @public (undocumented)
+export type TestRunOperationsClientPFAgFunc = "count" | "percentage" | "avg" | "p50" | "p90" | "p95" | "p99" | "min" | "max";
 
-// @public
-export type TestRunOperationsClientPFMetrics = string;
+// @public (undocumented)
+export type TestRunOperationsClientPFMetrics = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
 
-// @public
-export type TestRunOperationsClientPFResult = string;
+// @public (undocumented)
+export type TestRunOperationsClientPFResult = "passed" | "undetermined" | "failed";
 
-// @public
-export type TestRunOperationsClientPFTestResult = string;
+// @public (undocumented)
+export type TestRunOperationsClientPFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 
 // @public
 export interface TestRunOperationsClientResourceMetric {
@@ -687,11 +670,11 @@ export interface TestRunOperationsClientSecret {
     value?: string;
 }
 
-// @public
-export type TestRunOperationsClientSecretType = string;
+// @public (undocumented)
+export type TestRunOperationsClientSecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
-// @public
-export type TestRunOperationsClientStatus = string;
+// @public (undocumented)
+export type TestRunOperationsClientStatus = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
 
 // @public
 export interface TestRunOperationsClientTest {
@@ -790,8 +773,8 @@ export interface TestRunOperationsClientTestRunStatistics {
     readonly transaction?: string;
 }
 
-// @public
-export type TestRunOperationsClientTimeGrain = string;
+// @public (undocumented)
+export type TestRunOperationsClientTimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public
 export interface TestRunOperationsClientTimeSeriesElement {
@@ -800,10 +783,9 @@ export interface TestRunOperationsClientTimeSeriesElement {
 }
 
 // @public (undocumented)
-export interface TestRunOptions extends OperationOptions {
+export interface TestRunOptionalParams extends OperationOptions {
     contentType?: string;
     oldTestRunId?: string;
-    updateIntervalInMs?: number;
 }
 
 // @public
@@ -840,8 +822,8 @@ export interface TestServerMetricConfig {
     readonly testId?: string;
 }
 
-// @public
-export type TimeGrain = string;
+// @public (undocumented)
+export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public
 export interface TimeSeriesElement {
@@ -850,7 +832,7 @@ export interface TimeSeriesElement {
 }
 
 // @public (undocumented)
-export interface UploadTestFileOptions extends OperationOptions {
+export interface UploadTestFileOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;
     fileType?: FileType;

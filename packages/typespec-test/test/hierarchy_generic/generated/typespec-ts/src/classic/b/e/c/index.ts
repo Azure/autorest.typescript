@@ -1,18 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { FooContext } from "../../../../api/FooContext.js";
+import { FooContext } from "../../../../api/fooContext.js";
 import { BEA } from "../../../../models/models.js";
 import { op1 } from "../../../../api/b/e/c/index.js";
-import { BECOp1Options } from "../../../../models/options.js";
+import { BECOp1OptionalParams } from "../../../../models/options.js";
 
 export interface BECOperations {
-  op1: (body: BEA, options?: BECOp1Options) => Promise<void>;
+  op1: (body: BEA, options?: BECOp1OptionalParams) => Promise<void>;
 }
 
 export function getBEC(context: FooContext) {
   return {
-    op1: (body: BEA, options?: BECOp1Options) => op1(context, body, options),
+    op1: (body: BEA, options?: BECOp1OptionalParams) =>
+      op1(context, body, options),
   };
 }
 
