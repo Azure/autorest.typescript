@@ -783,8 +783,23 @@ describe("SpecialWordsClient Rest Client", () => {
         assert.fail(err as string);
       }
     });
+    it("should get special words for operation `cancellationToken`", async () => {
+      try {
+        const result = await client
+          .path("/special-words/parameters/cancellationToken")
+          .get({
+            queryParameters: {
+              yield: "ok",
+              cancellationToken:"ok"
+            }
+          });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
   });
-
+  
   describe("models", () => {
     it("should get special words for operation `and`", async () => {
       try {
