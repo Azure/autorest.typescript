@@ -3,7 +3,7 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface ListOptions extends OperationOptions {
+export interface ListOptionalParams extends OperationOptions {
   /** The maximum number of result items per page. */
   maxpagesize?: number;
 }

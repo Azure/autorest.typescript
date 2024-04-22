@@ -4,13 +4,13 @@
 export {
   CollectionFormatClient,
   CollectionFormatClientOptions,
-} from "./CollectionFormatClient.js";
+} from "./collectionFormatClient.js";
 export {
-  QueryMultiOptions,
-  QuerySsvOptions,
-  QueryTsvOptions,
-  QueryPipesOptions,
-  QueryCsvOptions,
-  HeaderCsvOptions,
+  QueryMultiOptionalParams,
+  QuerySsvOptionalParams,
+  QueryTsvOptionalParams,
+  QueryPipesOptionalParams,
+  QueryCsvOptionalParams,
+  HeaderCsvOptionalParams,
 } from "./models/index.js";
 export { HeaderOperations, QueryOperations } from "./classic/index.js";

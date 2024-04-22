@@ -4,7 +4,7 @@
 export {
   EnumDiscriminatorClient,
   EnumDiscriminatorClientOptions,
-} from "./EnumDiscriminatorClient.js";
+} from "./enumDiscriminatorClient.js";
 export {
   Dog,
   Golden,
@@ -14,12 +14,12 @@ export {
   SnakeKind,
   DogUnion,
   SnakeUnion,
-  GetExtensibleModelOptions,
-  PutExtensibleModelOptions,
-  GetExtensibleModelMissingDiscriminatorOptions,
-  GetExtensibleModelWrongDiscriminatorOptions,
-  GetFixedModelOptions,
-  PutFixedModelOptions,
-  GetFixedModelMissingDiscriminatorOptions,
-  GetFixedModelWrongDiscriminatorOptions,
+  GetExtensibleModelOptionalParams,
+  PutExtensibleModelOptionalParams,
+  GetExtensibleModelMissingDiscriminatorOptionalParams,
+  GetExtensibleModelWrongDiscriminatorOptionalParams,
+  GetFixedModelOptionalParams,
+  PutFixedModelOptionalParams,
+  GetFixedModelMissingDiscriminatorOptionalParams,
+  GetFixedModelWrongDiscriminatorOptionalParams,
 } from "./models/index.js";

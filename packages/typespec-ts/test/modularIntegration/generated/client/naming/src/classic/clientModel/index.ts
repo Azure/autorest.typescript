@@ -1,30 +1,30 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { NamingContext } from "../../api/NamingContext.js";
+import { NamingContext } from "../../api/namingContext.js";
 import { ClientModel, TSModel } from "../../models/models.js";
 import { client, language } from "../../api/clientModel/index.js";
 import {
-  ClientModelClientOptions,
-  ClientModelLanguageOptions,
+  ClientModelClientOptionalParams,
+  ClientModelLanguageOptionalParams,
 } from "../../models/options.js";
 
 export interface ClientModelOperations {
   client: (
     body: ClientModel,
-    options?: ClientModelClientOptions,
+    options?: ClientModelClientOptionalParams,
   ) => Promise<void>;
   language: (
     body: TSModel,
-    options?: ClientModelLanguageOptions,
+    options?: ClientModelLanguageOptionalParams,
   ) => Promise<void>;
 }
 
 export function getClientModel(context: NamingContext) {
   return {
-    client: (body: ClientModel, options?: ClientModelClientOptions) =>
+    client: (body: ClientModel, options?: ClientModelClientOptionalParams) =>
       client(context, body, options),
-    language: (body: TSModel, options?: ClientModelLanguageOptions) =>
+    language: (body: TSModel, options?: ClientModelLanguageOptionalParams) =>
       language(context, body, options),
   };
 }

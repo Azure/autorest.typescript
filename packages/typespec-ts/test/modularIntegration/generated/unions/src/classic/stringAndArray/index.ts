@@ -1,33 +1,35 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { UnionContext } from "../../api/UnionContext.js";
+import { UnionContext } from "../../api/unionContext.js";
 import { StringAndArrayCases } from "../../models/models.js";
 import {
   stringAndArrayGet,
   stringAndArraySend,
 } from "../../api/stringAndArray/index.js";
 import {
-  StringAndArrayGetOptions,
-  StringAndArraySendOptions,
+  StringAndArrayGetOptionalParams,
+  StringAndArraySendOptionalParams,
 } from "../../models/options.js";
 
 export interface StringAndArrayOperations {
   get: (
-    options?: StringAndArrayGetOptions,
+    options?: StringAndArrayGetOptionalParams,
   ) => Promise<{ prop: StringAndArrayCases }>;
   send: (
     prop: StringAndArrayCases,
-    options?: StringAndArraySendOptions,
+    options?: StringAndArraySendOptionalParams,
   ) => Promise<void>;
 }
 
 export function getStringAndArray(context: UnionContext) {
   return {
-    get: (options?: StringAndArrayGetOptions) =>
+    get: (options?: StringAndArrayGetOptionalParams) =>
       stringAndArrayGet(context, options),
-    send: (prop: StringAndArrayCases, options?: StringAndArraySendOptions) =>
-      stringAndArraySend(context, prop, options),
+    send: (
+      prop: StringAndArrayCases,
+      options?: StringAndArraySendOptionalParams,
+    ) => stringAndArraySend(context, prop, options),
   };
 }
 

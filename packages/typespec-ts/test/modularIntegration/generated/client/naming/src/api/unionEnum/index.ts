@@ -13,14 +13,14 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  UnionEnumUnionEnumNameOptions,
-  UnionEnumUnionEnumMemberNameOptions,
+  UnionEnumUnionEnumNameOptionalParams,
+  UnionEnumUnionEnumMemberNameOptionalParams,
 } from "../../models/options.js";
 
 export function _unionEnumNameSend(
   context: Client,
   body: ClientExtensibleEnum,
-  options: UnionEnumUnionEnumNameOptions = { requestOptions: {} },
+  options: UnionEnumUnionEnumNameOptionalParams = { requestOptions: {} },
 ): StreamableMethod<UnionEnumUnionEnumName204Response> {
   return context
     .path("/client/naming/union-enum/union-enum-name")
@@ -40,7 +40,7 @@ export async function _unionEnumNameDeserialize(
 export async function unionEnumName(
   context: Client,
   body: ClientExtensibleEnum,
-  options: UnionEnumUnionEnumNameOptions = { requestOptions: {} },
+  options: UnionEnumUnionEnumNameOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _unionEnumNameSend(context, body, options);
   return _unionEnumNameDeserialize(result);
@@ -49,7 +49,7 @@ export async function unionEnumName(
 export function _unionEnumMemberNameSend(
   context: Client,
   body: ExtensibleEnum,
-  options: UnionEnumUnionEnumMemberNameOptions = { requestOptions: {} },
+  options: UnionEnumUnionEnumMemberNameOptionalParams = { requestOptions: {} },
 ): StreamableMethod<UnionEnumUnionEnumMemberName204Response> {
   return context
     .path("/client/naming/union-enum/union-enum-member-name")
@@ -69,7 +69,7 @@ export async function _unionEnumMemberNameDeserialize(
 export async function unionEnumMemberName(
   context: Client,
   body: ExtensibleEnum,
-  options: UnionEnumUnionEnumMemberNameOptions = { requestOptions: {} },
+  options: UnionEnumUnionEnumMemberNameOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _unionEnumMemberNameSend(context, body, options);
   return _unionEnumMemberNameDeserialize(result);

@@ -12,12 +12,12 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { PutOptions, GetOptions } from "../models/options.js";
+import { PutOptionalParams, GetOptionalParams } from "../models/options.js";
 
 export function _putSend(
   context: Client,
   input: Extension,
-  options: PutOptions = { requestOptions: {} },
+  options: PutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Put204Response> {
   return context
     .path("/type/model/inheritance/recursive")
@@ -47,7 +47,7 @@ export async function _putDeserialize(result: Put204Response): Promise<void> {
 export async function put(
   context: Client,
   input: Extension,
-  options: PutOptions = { requestOptions: {} },
+  options: PutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putSend(context, input, options);
   return _putDeserialize(result);
@@ -55,7 +55,7 @@ export async function put(
 
 export function _getSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Get200Response> {
   return context
     .path("/type/model/inheritance/recursive")
@@ -83,7 +83,7 @@ export async function _getDeserialize(
 
 export async function get(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} },
 ): Promise<Extension> {
   const result = await _getSend(context, options);
   return _getDeserialize(result);

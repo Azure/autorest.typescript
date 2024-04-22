@@ -3,14 +3,14 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface Group1OneOptions extends OperationOptions {}
+export interface Group1OneOptionalParams extends OperationOptions {}
 
-export interface Group1ThreeOptions extends OperationOptions {}
+export interface Group1ThreeOptionalParams extends OperationOptions {}
 
-export interface Group1FourOptions extends OperationOptions {}
+export interface Group1FourOptionalParams extends OperationOptions {}
 
-export interface Group2TwoOptions extends OperationOptions {}
+export interface Group2TwoOptionalParams extends OperationOptions {}
 
-export interface Group2FiveOptions extends OperationOptions {}
+export interface Group2FiveOptionalParams extends OperationOptions {}
 
-export interface Group2SixOptions extends OperationOptions {}
+export interface Group2SixOptionalParams extends OperationOptions {}

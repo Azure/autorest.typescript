@@ -5,6 +5,10 @@ export {
   User,
   UserActionParam,
   UserActionResponse,
+  Versions,
   RepeatabilityResult,
 } from "./models.js";
-export { SmokeTestOptions, RepeatableActionOptions } from "./options.js";
+export {
+  SmokeTestOptionalParams,
+  RepeatableActionOptionalParams,
+} from "./options.js";

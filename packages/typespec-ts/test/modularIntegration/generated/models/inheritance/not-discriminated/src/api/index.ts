@@ -5,5 +5,5 @@ export {
   createNotDiscriminated,
   NotDiscriminatedClientOptions,
   NotDiscriminatedContext,
-} from "./NotDiscriminatedContext.js";
+} from "./notDiscriminatedContext.js";
 export { postValid, getValid, putValid } from "./operations.js";

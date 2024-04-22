@@ -1,28 +1,28 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { DurationClient, DurationClientOptions } from "./DurationClient.js";
+export { DurationClient, DurationClientOptions } from "./durationClient.js";
 export {
   DefaultDurationProperty,
   ISO8601DurationProperty,
   Int32SecondsDurationProperty,
   FloatSecondsDurationProperty,
   FloatSecondsDurationArrayProperty,
-  QueryDefaultOptions,
-  QueryIso8601Options,
-  QueryInt32SecondsOptions,
-  QueryFloatSecondsOptions,
-  QueryInt32SecondsArrayOptions,
-  PropertyDefaultOptions,
-  PropertyIso8601Options,
-  PropertyInt32SecondsOptions,
-  PropertyFloatSecondsOptions,
-  PropertyFloatSecondsArrayOptions,
-  HeaderDefaultOptions,
-  HeaderIso8601Options,
-  HeaderIso8601ArrayOptions,
-  HeaderInt32SecondsOptions,
-  HeaderFloatSecondsOptions,
+  QueryDefaultOptionalParams,
+  QueryIso8601OptionalParams,
+  QueryInt32SecondsOptionalParams,
+  QueryFloatSecondsOptionalParams,
+  QueryInt32SecondsArrayOptionalParams,
+  PropertyDefaultOptionalParams,
+  PropertyIso8601OptionalParams,
+  PropertyInt32SecondsOptionalParams,
+  PropertyFloatSecondsOptionalParams,
+  PropertyFloatSecondsArrayOptionalParams,
+  HeaderDefaultOptionalParams,
+  HeaderIso8601OptionalParams,
+  HeaderIso8601ArrayOptionalParams,
+  HeaderInt32SecondsOptionalParams,
+  HeaderFloatSecondsOptionalParams,
 } from "./models/index.js";
 export {
   HeaderOperations,

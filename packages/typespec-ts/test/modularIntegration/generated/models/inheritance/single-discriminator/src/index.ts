@@ -4,7 +4,7 @@
 export {
   SingleDiscriminatorClient,
   SingleDiscriminatorClientOptions,
-} from "./SingleDiscriminatorClient.js";
+} from "./singleDiscriminatorClient.js";
 export {
   Bird,
   SeaGull,
@@ -15,11 +15,11 @@ export {
   TRex,
   BirdUnion,
   DinosaurUnion,
-  GetModelOptions,
-  PutModelOptions,
-  GetRecursiveModelOptions,
-  PutRecursiveModelOptions,
-  GetMissingDiscriminatorOptions,
-  GetWrongDiscriminatorOptions,
-  GetLegacyModelOptions,
+  GetModelOptionalParams,
+  PutModelOptionalParams,
+  GetRecursiveModelOptionalParams,
+  PutRecursiveModelOptionalParams,
+  GetMissingDiscriminatorOptionalParams,
+  GetWrongDiscriminatorOptionalParams,
+  GetLegacyModelOptionalParams,
 } from "./models/index.js";

@@ -1,34 +1,34 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { UnionContext } from "../../api/UnionContext.js";
+import { UnionContext } from "../../api/unionContext.js";
 import { StringExtensibleNamedUnion } from "../../models/models.js";
 import {
   stringExtensibleNamedGet,
   stringExtensibleNamedSend,
 } from "../../api/stringExtensibleNamed/index.js";
 import {
-  StringExtensibleNamedGetOptions,
-  StringExtensibleNamedSendOptions,
+  StringExtensibleNamedGetOptionalParams,
+  StringExtensibleNamedSendOptionalParams,
 } from "../../models/options.js";
 
 export interface StringExtensibleNamedOperations {
   get: (
-    options?: StringExtensibleNamedGetOptions,
+    options?: StringExtensibleNamedGetOptionalParams,
   ) => Promise<{ prop: StringExtensibleNamedUnion }>;
   send: (
     prop: StringExtensibleNamedUnion,
-    options?: StringExtensibleNamedSendOptions,
+    options?: StringExtensibleNamedSendOptionalParams,
   ) => Promise<void>;
 }
 
 export function getStringExtensibleNamed(context: UnionContext) {
   return {
-    get: (options?: StringExtensibleNamedGetOptions) =>
+    get: (options?: StringExtensibleNamedGetOptionalParams) =>
       stringExtensibleNamedGet(context, options),
     send: (
       prop: StringExtensibleNamedUnion,
-      options?: StringExtensibleNamedSendOptions,
+      options?: StringExtensibleNamedSendOptionalParams,
     ) => stringExtensibleNamedSend(context, prop, options),
   };
 }

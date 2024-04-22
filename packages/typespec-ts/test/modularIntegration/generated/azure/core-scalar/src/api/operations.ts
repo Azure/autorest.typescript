@@ -16,16 +16,16 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  GetOptions,
-  PutOptions,
-  PostOptions,
-  HeaderOptions,
-  QueryOptions,
+  GetOptionalParams,
+  PutOptionalParams,
+  PostOptionalParams,
+  HeaderOptionalParams,
+  QueryOptionalParams,
 } from "../models/options.js";
 
 export function _getSend(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Get200Response> {
   return context
     .path("/azure/core/scalar/azureLocation")
@@ -43,7 +43,7 @@ export async function _getDeserialize(result: Get200Response): Promise<string> {
 /** get azureLocation value */
 export async function get(
   context: Client,
-  options: GetOptions = { requestOptions: {} },
+  options: GetOptionalParams = { requestOptions: {} },
 ): Promise<string> {
   const result = await _getSend(context, options);
   return _getDeserialize(result);
@@ -52,7 +52,7 @@ export async function get(
 export function _putSend(
   context: Client,
   body: string,
-  options: PutOptions = { requestOptions: {} },
+  options: PutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Put204Response> {
   return context
     .path("/azure/core/scalar/azureLocation")
@@ -71,7 +71,7 @@ export async function _putDeserialize(result: Put204Response): Promise<void> {
 export async function put(
   context: Client,
   body: string,
-  options: PutOptions = { requestOptions: {} },
+  options: PutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _putSend(context, body, options);
   return _putDeserialize(result);
@@ -80,7 +80,7 @@ export async function put(
 export function _postSend(
   context: Client,
   body: AzureLocationModel,
-  options: PostOptions = { requestOptions: {} },
+  options: PostOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Post200Response> {
   return context
     .path("/azure/core/scalar/azureLocation")
@@ -106,7 +106,7 @@ export async function _postDeserialize(
 export async function post(
   context: Client,
   body: AzureLocationModel,
-  options: PostOptions = { requestOptions: {} },
+  options: PostOptionalParams = { requestOptions: {} },
 ): Promise<AzureLocationModel> {
   const result = await _postSend(context, body, options);
   return _postDeserialize(result);
@@ -115,7 +115,7 @@ export async function post(
 export function _headerSend(
   context: Client,
   region: string,
-  options: HeaderOptions = { requestOptions: {} },
+  options: HeaderOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Header204Response> {
   return context
     .path("/azure/core/scalar/azureLocation/header")
@@ -139,7 +139,7 @@ export async function _headerDeserialize(
 export async function header(
   context: Client,
   region: string,
-  options: HeaderOptions = { requestOptions: {} },
+  options: HeaderOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _headerSend(context, region, options);
   return _headerDeserialize(result);
@@ -148,7 +148,7 @@ export async function header(
 export function _querySend(
   context: Client,
   region: string,
-  options: QueryOptions = { requestOptions: {} },
+  options: QueryOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Query204Response> {
   return context
     .path("/azure/core/scalar/azureLocation/query")
@@ -172,7 +172,7 @@ export async function _queryDeserialize(
 export async function query(
   context: Client,
   region: string,
-  options: QueryOptions = { requestOptions: {} },
+  options: QueryOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _querySend(context, region, options);
   return _queryDeserialize(result);

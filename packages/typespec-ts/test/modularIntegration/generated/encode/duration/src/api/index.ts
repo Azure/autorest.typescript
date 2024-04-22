@@ -5,7 +5,7 @@ export {
   createDuration,
   DurationClientOptions,
   DurationContext,
-} from "./DurationContext.js";
+} from "./durationContext.js";
 export {
   headerDefault,
   headerIso8601,

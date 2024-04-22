@@ -1,23 +1,29 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { UnionContext } from "../../api/UnionContext.js";
+import { UnionContext } from "../../api/unionContext.js";
 import { EnumsOnlyCases } from "../../models/models.js";
 import { enumsOnlyGet, enumsOnlySend } from "../../api/enumsOnly/index.js";
 import {
-  EnumsOnlyGetOptions,
-  EnumsOnlySendOptions,
+  EnumsOnlyGetOptionalParams,
+  EnumsOnlySendOptionalParams,
 } from "../../models/options.js";
 
 export interface EnumsOnlyOperations {
-  get: (options?: EnumsOnlyGetOptions) => Promise<{ prop: EnumsOnlyCases }>;
-  send: (prop: EnumsOnlyCases, options?: EnumsOnlySendOptions) => Promise<void>;
+  get: (
+    options?: EnumsOnlyGetOptionalParams,
+  ) => Promise<{ prop: EnumsOnlyCases }>;
+  send: (
+    prop: EnumsOnlyCases,
+    options?: EnumsOnlySendOptionalParams,
+  ) => Promise<void>;
 }
 
 export function getEnumsOnly(context: UnionContext) {
   return {
-    get: (options?: EnumsOnlyGetOptions) => enumsOnlyGet(context, options),
-    send: (prop: EnumsOnlyCases, options?: EnumsOnlySendOptions) =>
+    get: (options?: EnumsOnlyGetOptionalParams) =>
+      enumsOnlyGet(context, options),
+    send: (prop: EnumsOnlyCases, options?: EnumsOnlySendOptionalParams) =>
       enumsOnlySend(context, prop, options),
   };
 }

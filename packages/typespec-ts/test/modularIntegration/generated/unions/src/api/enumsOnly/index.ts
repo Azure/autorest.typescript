@@ -13,13 +13,13 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  EnumsOnlyGetOptions,
-  EnumsOnlySendOptions,
+  EnumsOnlyGetOptionalParams,
+  EnumsOnlySendOptionalParams,
 } from "../../models/options.js";
 
 export function _enumsOnlyGetSend(
   context: Client,
-  options: EnumsOnlyGetOptions = { requestOptions: {} },
+  options: EnumsOnlyGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<EnumsOnlyGet200Response> {
   return context
     .path("/type/union/enums-only")
@@ -40,7 +40,7 @@ export async function _enumsOnlyGetDeserialize(
 
 export async function enumsOnlyGet(
   context: Client,
-  options: EnumsOnlyGetOptions = { requestOptions: {} },
+  options: EnumsOnlyGetOptionalParams = { requestOptions: {} },
 ): Promise<{ prop: EnumsOnlyCases }> {
   const result = await _enumsOnlyGetSend(context, options);
   return _enumsOnlyGetDeserialize(result);
@@ -49,7 +49,7 @@ export async function enumsOnlyGet(
 export function _enumsOnlySendSend(
   context: Client,
   prop: EnumsOnlyCases,
-  options: EnumsOnlySendOptions = { requestOptions: {} },
+  options: EnumsOnlySendOptionalParams = { requestOptions: {} },
 ): StreamableMethod<EnumsOnlySend204Response> {
   return context
     .path("/type/union/enums-only")
@@ -72,7 +72,7 @@ export async function _enumsOnlySendDeserialize(
 export async function enumsOnlySend(
   context: Client,
   prop: EnumsOnlyCases,
-  options: EnumsOnlySendOptions = { requestOptions: {} },
+  options: EnumsOnlySendOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _enumsOnlySendSend(context, prop, options);
   return _enumsOnlySendDeserialize(result);

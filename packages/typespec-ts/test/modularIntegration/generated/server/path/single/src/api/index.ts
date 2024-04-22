@@ -6,4 +6,4 @@ export {
   createSingle,
   SingleClientOptions,
   SingleContext,
-} from "./SingleContext.js";
+} from "./singleContext.js";

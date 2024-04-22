@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { PagedUser, User } from "../models/models.js";
+import { User, PagedUser } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import { List200Response, PageableContext as Client } from "../rest/index.js";
@@ -10,11 +10,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { ListOptions } from "../models/options.js";
+import { ListOptionalParams } from "../models/options.js";
 
 export function _listSend(
   context: Client,
-  options: ListOptions = { requestOptions: {} },
+  options: ListOptionalParams = { requestOptions: {} },
 ): StreamableMethod<List200Response> {
   return context
     .path("/payload/pageable")
@@ -40,7 +40,7 @@ export async function _listDeserialize(
 /** List users */
 export function list(
   context: Client,
-  options: ListOptions = { requestOptions: {} },
+  options: ListOptionalParams = { requestOptions: {} },
 ): PagedAsyncIterableIterator<User> {
   return buildPagedAsyncIterator(
     context,

@@ -3,7 +3,7 @@
 
 export { InputRecord, OutputRecord, InputOutputRecord } from "./models.js";
 export {
-  InputOptions,
-  OutputOptions,
-  InputAndOutputOptions,
+  InputOptionalParams,
+  OutputOptionalParams,
+  InputAndOutputOptionalParams,
 } from "./options.js";

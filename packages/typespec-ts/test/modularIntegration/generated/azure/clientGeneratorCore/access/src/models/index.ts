@@ -16,13 +16,13 @@ export {
   AbstractModelUnion,
 } from "./models.js";
 export {
-  NoDecoratorInPublicOptions,
-  PublicDecoratorInPublicOptions,
-  NoDecoratorInInternalOptions,
-  InternalDecoratorInInternalOptions,
-  PublicDecoratorInInternalOptions,
-  PublicOperationOptions,
-  InternalOptions,
-  OperationOptions,
-  DiscriminatorOptions,
+  NoDecoratorInPublicOptionalParams,
+  PublicDecoratorInPublicOptionalParams,
+  NoDecoratorInInternalOptionalParams,
+  InternalDecoratorInInternalOptionalParams,
+  PublicDecoratorInInternalOptionalParams,
+  PublicOptionalParams,
+  InternalOptionalParams,
+  OperationOptionalParams,
+  DiscriminatorOptionalParams,
 } from "./options.js";

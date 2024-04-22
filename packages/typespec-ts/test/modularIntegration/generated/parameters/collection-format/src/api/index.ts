@@ -5,7 +5,7 @@ export {
   createCollectionFormat,
   CollectionFormatClientOptions,
   CollectionFormatContext,
-} from "./CollectionFormatContext.js";
+} from "./collectionFormatContext.js";
 export { headerCsv } from "./header/index.js";
 export {
   queryMulti,

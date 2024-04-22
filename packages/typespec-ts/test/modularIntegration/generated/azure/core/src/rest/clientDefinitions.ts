@@ -23,8 +23,8 @@ import {
   CreateOrReplaceDefaultResponse,
   Get200Response,
   GetDefaultResponse,
-  DeleteOperation204Response,
-  DeleteOperationDefaultResponse,
+  Delete204Response,
+  DeleteDefaultResponse,
   List200Response,
   ListDefaultResponse,
   ListWithPage200Response,
@@ -33,8 +33,8 @@ import {
   ListWithParametersDefaultResponse,
   ListWithCustomPageModel200Response,
   ListWithCustomPageModelDefaultResponse,
-  ExportOperation200Response,
-  ExportOperationDefaultResponse,
+  Export200Response,
+  ExportDefaultResponse,
   ListFirstItem200Response,
   ListFirstItemDefaultResponse,
   ListSecondItem200Response,
@@ -66,9 +66,7 @@ export interface CreateOrUpdate {
   /** Deletes a User */
   delete(
     options?: DeleteParameters,
-  ): StreamableMethod<
-    DeleteOperation204Response | DeleteOperationDefaultResponse
-  >;
+  ): StreamableMethod<Delete204Response | DeleteDefaultResponse>;
 }
 
 export interface List {
@@ -107,9 +105,7 @@ export interface Export {
   /** Exports a User */
   post(
     options: ExportParameters,
-  ): StreamableMethod<
-    ExportOperation200Response | ExportOperationDefaultResponse
-  >;
+  ): StreamableMethod<Export200Response | ExportDefaultResponse>;
 }
 
 export interface ListFirstItem {

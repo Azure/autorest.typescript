@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { BytesContext } from "../../api/BytesContext.js";
+import { BytesContext } from "../../api/bytesContext.js";
 import {
   responseBodyDefault,
   responseBodyOctetStream,
@@ -10,36 +10,39 @@ import {
   responseBodyBase64url,
 } from "../../api/responseBody/index.js";
 import {
-  ResponseBodyDefaultOptions,
-  ResponseBodyOctetStreamOptions,
-  ResponseBodyCustomContentTypeOptions,
-  ResponseBodyBase64Options,
-  ResponseBodyBase64urlOptions,
+  ResponseBodyDefaultOptionalParams,
+  ResponseBodyOctetStreamOptionalParams,
+  ResponseBodyCustomContentTypeOptionalParams,
+  ResponseBodyBase64OptionalParams,
+  ResponseBodyBase64urlOptionalParams,
 } from "../../models/options.js";
 
 export interface ResponseBodyOperations {
-  default: (options?: ResponseBodyDefaultOptions) => Promise<Uint8Array>;
+  default: (options?: ResponseBodyDefaultOptionalParams) => Promise<Uint8Array>;
   octetStream: (
-    options?: ResponseBodyOctetStreamOptions,
+    options?: ResponseBodyOctetStreamOptionalParams,
   ) => Promise<Uint8Array>;
   customContentType: (
-    options?: ResponseBodyCustomContentTypeOptions,
+    options?: ResponseBodyCustomContentTypeOptionalParams,
   ) => Promise<Uint8Array>;
-  base64: (options?: ResponseBodyBase64Options) => Promise<Uint8Array>;
-  base64url: (options?: ResponseBodyBase64urlOptions) => Promise<Uint8Array>;
+  base64: (options?: ResponseBodyBase64OptionalParams) => Promise<Uint8Array>;
+  base64url: (
+    options?: ResponseBodyBase64urlOptionalParams,
+  ) => Promise<Uint8Array>;
 }
 
 export function getResponseBody(context: BytesContext) {
   return {
-    default: (options?: ResponseBodyDefaultOptions) =>
+    default: (options?: ResponseBodyDefaultOptionalParams) =>
       responseBodyDefault(context, options),
-    octetStream: (options?: ResponseBodyOctetStreamOptions) =>
+    octetStream: (options?: ResponseBodyOctetStreamOptionalParams) =>
       responseBodyOctetStream(context, options),
-    customContentType: (options?: ResponseBodyCustomContentTypeOptions) =>
-      responseBodyCustomContentType(context, options),
-    base64: (options?: ResponseBodyBase64Options) =>
+    customContentType: (
+      options?: ResponseBodyCustomContentTypeOptionalParams,
+    ) => responseBodyCustomContentType(context, options),
+    base64: (options?: ResponseBodyBase64OptionalParams) =>
       responseBodyBase64(context, options),
-    base64url: (options?: ResponseBodyBase64urlOptions) =>
+    base64url: (options?: ResponseBodyBase64urlOptionalParams) =>
       responseBodyBase64url(context, options),
   };
 }

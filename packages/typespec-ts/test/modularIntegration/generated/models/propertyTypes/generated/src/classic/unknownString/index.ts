@@ -1,31 +1,35 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ValueTypesContext } from "../../api/ValueTypesContext.js";
+import { ValueTypesContext } from "../../api/valueTypesContext.js";
 import { UnknownStringProperty } from "../../models/models.js";
 import {
   unknownStringGet,
   unknownStringPut,
 } from "../../api/unknownString/index.js";
 import {
-  UnknownStringGetOptions,
-  UnknownStringPutOptions,
+  UnknownStringGetOptionalParams,
+  UnknownStringPutOptionalParams,
 } from "../../models/options.js";
 
 export interface UnknownStringOperations {
-  get: (options?: UnknownStringGetOptions) => Promise<UnknownStringProperty>;
+  get: (
+    options?: UnknownStringGetOptionalParams,
+  ) => Promise<UnknownStringProperty>;
   put: (
     body: UnknownStringProperty,
-    options?: UnknownStringPutOptions,
+    options?: UnknownStringPutOptionalParams,
   ) => Promise<void>;
 }
 
 export function getUnknownString(context: ValueTypesContext) {
   return {
-    get: (options?: UnknownStringGetOptions) =>
+    get: (options?: UnknownStringGetOptionalParams) =>
       unknownStringGet(context, options),
-    put: (body: UnknownStringProperty, options?: UnknownStringPutOptions) =>
-      unknownStringPut(context, body, options),
+    put: (
+      body: UnknownStringProperty,
+      options?: UnknownStringPutOptionalParams,
+    ) => unknownStringPut(context, body, options),
   };
 }
 
