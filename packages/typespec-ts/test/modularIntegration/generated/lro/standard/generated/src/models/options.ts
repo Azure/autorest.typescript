@@ -3,17 +3,17 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface CreateOrReplaceOptions extends OperationOptions {
+export interface CreateOrReplaceOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
 }
 
-export interface DeleteOperationOptions extends OperationOptions {
+export interface DeleteOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
 }
 
-export interface ExportOperationOptions extends OperationOptions {
+export interface ExportOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
 }

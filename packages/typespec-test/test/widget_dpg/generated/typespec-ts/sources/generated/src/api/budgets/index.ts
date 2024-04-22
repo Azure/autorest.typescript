@@ -22,15 +22,15 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  BudgetsCreateOrReplaceOptions,
-  BudgetsCreateOrUpdateOptions,
+  BudgetsCreateOrReplaceOptionalParams,
+  BudgetsCreateOrUpdateOptionalParams,
 } from "../../models/options.js";
 
 export function _createOrReplaceSend(
   context: Client,
   name: string,
   resource: User,
-  options: BudgetsCreateOrReplaceOptions = { requestOptions: {} },
+  options: BudgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | BudgetsCreateOrReplace200Response
   | BudgetsCreateOrReplace201Response
@@ -70,7 +70,7 @@ export function createOrReplace(
   context: Client,
   name: string,
   resource: User,
-  options: BudgetsCreateOrReplaceOptions = { requestOptions: {} },
+  options: BudgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<User>, User> {
   return getLongRunningPoller(context, _createOrReplaceDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
@@ -84,7 +84,7 @@ export function _createOrUpdateSend(
   context: Client,
   name: string,
   resource: User,
-  options: BudgetsCreateOrUpdateOptions = { requestOptions: {} },
+  options: BudgetsCreateOrUpdateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | BudgetsCreateOrUpdate200Response
   | BudgetsCreateOrUpdate201Response
@@ -126,7 +126,7 @@ export function createOrUpdate(
   context: Client,
   name: string,
   resource: User,
-  options: BudgetsCreateOrUpdateOptions = { requestOptions: {} },
+  options: BudgetsCreateOrUpdateOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<User>, User> {
   return getLongRunningPoller(context, _createOrUpdateDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,

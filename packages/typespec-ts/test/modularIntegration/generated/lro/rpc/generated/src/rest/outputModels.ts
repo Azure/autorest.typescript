@@ -13,12 +13,8 @@ export interface GenerationOptionsOutput {
 export interface ResourceOperationStatusOutput {
   /** The unique ID of the operation. */
   readonly id: string;
-  /**
-   * The status of the operation
-   *
-   * Possible values: "NotStarted", "Running", "Succeeded", "Failed", "Canceled"
-   */
-  status: string;
+  /** The status of the operation */
+  status: OperationStateOutput;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModel;
   /** The result of the operation. */
@@ -30,3 +26,11 @@ export interface GenerationResultOutput {
   /** The data. */
   data: string;
 }
+
+/** Enum describing allowed operation states. */
+export type OperationStateOutput =
+  | "NotStarted"
+  | "Running"
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";

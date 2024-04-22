@@ -4,6 +4,7 @@ import { isLroOnlyOperation } from "./helpers/operationHelpers.js";
 import { ModularCodeModel, Client } from "./modularCodeModel.js";
 import path from "path";
 import { buildLroDeserDetailMap } from "./buildOperations.js";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 
 /**
  * Always import LRO dependencies and remember to remove if unused.
@@ -215,12 +216,12 @@ function importClientContext(client: Client, sourceFile: SourceFile): string[] {
   const clientContextName = client.rlcClientName;
   sourceFile.addImportDeclaration({
     namedImports: [`${clientContextName}`],
-    moduleSpecifier: `./api/${name}Context.js`
+    moduleSpecifier: `./api/${normalizeName(name, NameType.File)}Context.js`
   });
 
   sourceFile.addImportDeclaration({
     namedImports: [`${classicalClientname}`],
-    moduleSpecifier: `./${classicalClientname}.js`
+    moduleSpecifier: `./${normalizeName(classicalClientname, NameType.File)}.js`
   });
   return [clientContextName, classicalClientname];
 }

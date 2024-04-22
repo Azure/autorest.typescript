@@ -5,20 +5,20 @@ import { PollerLike, OperationState } from "@azure/core-lro";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { User, ExportedUser } from "./models/models.js";
 import {
-  CreateOrReplaceOptions,
-  DeleteOperationOptions,
-  ExportOperationOptions,
+  CreateOrReplaceOptionalParams,
+  DeleteOptionalParams,
+  ExportOptionalParams,
 } from "./models/options.js";
 import {
   createOrReplace,
-  deleteOperation,
-  exportOperation,
+  $delete,
+  $export,
   createStandard,
   StandardClientOptions,
   StandardContext,
 } from "./api/index.js";
 
-export { StandardClientOptions } from "./api/StandardContext.js";
+export { StandardClientOptions } from "./api/standardContext.js";
 
 export class StandardClient {
   private _client: StandardContext;
@@ -35,25 +35,35 @@ export class StandardClient {
   createOrReplace(
     name: string,
     resource: User,
-    options: CreateOrReplaceOptions = { requestOptions: {} },
+    options: CreateOrReplaceOptionalParams = { requestOptions: {} },
   ): PollerLike<OperationState<User>, User> {
     return createOrReplace(this._client, name, resource, options);
   }
 
   /** Deletes a User */
-  deleteOperation(
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
+  delete(
     name: string,
-    options: DeleteOperationOptions = { requestOptions: {} },
+    options: DeleteOptionalParams = { requestOptions: {} },
   ): PollerLike<OperationState<void>, void> {
-    return deleteOperation(this._client, name, options);
+    return $delete(this._client, name, options);
   }
 
   /** Exports a User */
-  exportOperation(
+  /**
+   *  @fixme export is a reserved word that cannot be used as an operation name.
+   *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+   *         to the operation to override the generated name.
+   */
+  export(
     name: string,
     format: string,
-    options: ExportOperationOptions = { requestOptions: {} },
+    options: ExportOptionalParams = { requestOptions: {} },
   ): PollerLike<OperationState<ExportedUser>, ExportedUser> {
-    return exportOperation(this._client, name, format, options);
+    return $export(this._client, name, format, options);
   }
 }

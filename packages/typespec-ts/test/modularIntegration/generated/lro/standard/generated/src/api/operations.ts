@@ -9,12 +9,12 @@ import {
   CreateOrReplace201Response,
   CreateOrReplaceDefaultResponse,
   CreateOrReplaceLogicalResponse,
+  Delete202Response,
+  DeleteDefaultResponse,
   DeleteLogicalResponse,
-  DeleteOperation202Response,
-  DeleteOperationDefaultResponse,
+  Export202Response,
+  ExportDefaultResponse,
   ExportLogicalResponse,
-  ExportOperation202Response,
-  ExportOperationDefaultResponse,
   isUnexpected,
   StandardContext as Client,
 } from "../rest/index.js";
@@ -24,16 +24,16 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  CreateOrReplaceOptions,
-  DeleteOperationOptions,
-  ExportOperationOptions,
+  CreateOrReplaceOptionalParams,
+  DeleteOptionalParams,
+  ExportOptionalParams,
 } from "../models/options.js";
 
 export function _createOrReplaceSend(
   context: Client,
   name: string,
   resource: User,
-  options: CreateOrReplaceOptions = { requestOptions: {} },
+  options: CreateOrReplaceOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | CreateOrReplace200Response
   | CreateOrReplace201Response
@@ -71,7 +71,7 @@ export function createOrReplace(
   context: Client,
   name: string,
   resource: User,
-  options: CreateOrReplaceOptions = { requestOptions: {} },
+  options: CreateOrReplaceOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<User>, User> {
   return getLongRunningPoller(context, _createOrReplaceDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
@@ -81,25 +81,20 @@ export function createOrReplace(
   }) as PollerLike<OperationState<User>, User>;
 }
 
-export function _deleteOperationSend(
+export function _$deleteSend(
   context: Client,
   name: string,
-  options: DeleteOperationOptions = { requestOptions: {} },
+  options: DeleteOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  | DeleteOperation202Response
-  | DeleteOperationDefaultResponse
-  | DeleteLogicalResponse
+  Delete202Response | DeleteDefaultResponse | DeleteLogicalResponse
 > {
   return context
     .path("/azure/core/lro/standard/users/{name}", name)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _deleteOperationDeserialize(
-  result:
-    | DeleteOperation202Response
-    | DeleteOperationDefaultResponse
-    | DeleteLogicalResponse,
+export async function _$deleteDeserialize(
+  result: Delete202Response | DeleteDefaultResponse | DeleteLogicalResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -110,27 +105,30 @@ export async function _deleteOperationDeserialize(
 }
 
 /** Deletes a User */
-export function deleteOperation(
+/**
+ *  @fixme delete is a reserved word that cannot be used as an operation name.
+ *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+ *         to the operation to override the generated name.
+ */
+export function $delete(
   context: Client,
   name: string,
-  options: DeleteOperationOptions = { requestOptions: {} },
+  options: DeleteOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<void>, void> {
-  return getLongRunningPoller(context, _deleteOperationDeserialize, {
+  return getLongRunningPoller(context, _$deleteDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
-    getInitialResponse: () => _deleteOperationSend(context, name, options),
+    getInitialResponse: () => _$deleteSend(context, name, options),
   }) as PollerLike<OperationState<void>, void>;
 }
 
-export function _exportOperationSend(
+export function _$exportSend(
   context: Client,
   name: string,
   format: string,
-  options: ExportOperationOptions = { requestOptions: {} },
+  options: ExportOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  | ExportOperation202Response
-  | ExportOperationDefaultResponse
-  | ExportLogicalResponse
+  Export202Response | ExportDefaultResponse | ExportLogicalResponse
 > {
   return context
     .path("/azure/core/lro/standard/users/{name}:export", name)
@@ -140,11 +138,8 @@ export function _exportOperationSend(
     });
 }
 
-export async function _exportOperationDeserialize(
-  result:
-    | ExportOperation202Response
-    | ExportOperationDefaultResponse
-    | ExportLogicalResponse,
+export async function _$exportDeserialize(
+  result: Export202Response | ExportDefaultResponse | ExportLogicalResponse,
 ): Promise<ExportedUser> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -165,16 +160,20 @@ export async function _exportOperationDeserialize(
 }
 
 /** Exports a User */
-export function exportOperation(
+/**
+ *  @fixme export is a reserved word that cannot be used as an operation name.
+ *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+ *         to the operation to override the generated name.
+ */
+export function $export(
   context: Client,
   name: string,
   format: string,
-  options: ExportOperationOptions = { requestOptions: {} },
+  options: ExportOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<ExportedUser>, ExportedUser> {
-  return getLongRunningPoller(context, _exportOperationDeserialize, {
+  return getLongRunningPoller(context, _$exportDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,
     abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _exportOperationSend(context, name, format, options),
+    getInitialResponse: () => _$exportSend(context, name, format, options),
   }) as PollerLike<OperationState<ExportedUser>, ExportedUser>;
 }

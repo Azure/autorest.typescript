@@ -7,8 +7,8 @@ import {
   deserializeState,
   ResourceLocationConfig,
 } from "@azure/core-lro";
-import { WidgetServiceContext } from "./api/WidgetServiceContext.js";
-import { WidgetServiceClient } from "./WidgetServiceClient.js";
+import { WidgetServiceContext } from "./api/widgetServiceContext.js";
+import { WidgetServiceClient } from "./widgetServiceClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import { _createOrReplaceDeserialize } from "./api/widgets/index.js";
 import {
