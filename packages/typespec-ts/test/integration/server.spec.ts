@@ -167,4 +167,15 @@ describe(" VersionedParamInServerVersions Rest Client", () => {
       assert.fail(err as string);
     }
   });
+
+  it("should work with old param", async () => {
+    try {
+      const result = await client
+        .path("/server/versions/versioned/with-query-old-api-version")
+        .head({ queryParameters: { "api-version": "2021-01-01-preview" } });
+      assert.strictEqual(result.status, "200");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
 });

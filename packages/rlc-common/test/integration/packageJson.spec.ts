@@ -376,7 +376,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.devDependencies).to.have.property("karma");
       expect(packageFile.devDependencies).to.have.property("c8");
-      expect(packageFile.devDependencies).to.have.property("esm");
+      expect(packageFile.devDependencies).to.have.property("tsx");
     });
 
     it("[cjs] should include correct scripts with tests", () => {
