@@ -5,11 +5,13 @@ import {
   WithoutApiVersionParameters,
   WithQueryApiVersionParameters,
   WithPathApiVersionParameters,
+  WithQueryOldApiVersionParameters,
 } from "./parameters.js";
 import {
   WithoutApiVersion200Response,
   WithQueryApiVersion200Response,
   WithPathApiVersion200Response,
+  WithQueryOldApiVersion200Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -31,6 +33,12 @@ export interface WithPathApiVersion {
   ): StreamableMethod<WithPathApiVersion200Response>;
 }
 
+export interface WithQueryOldApiVersion {
+  head(
+    options?: WithQueryOldApiVersionParameters,
+  ): StreamableMethod<WithQueryOldApiVersion200Response>;
+}
+
 export interface Routes {
   /** Resource for '/server/versions/versioned/without-api-version' has methods for the following verbs: head */
   (path: "/server/versions/versioned/without-api-version"): WithoutApiVersion;
@@ -43,6 +51,10 @@ export interface Routes {
     path: "/server/versions/versioned/with-path-api-version/{apiVersion}",
     apiVersion: string,
   ): WithPathApiVersion;
+  /** Resource for '/server/versions/versioned/with-query-old-api-version' has methods for the following verbs: head */
+  (
+    path: "/server/versions/versioned/with-query-old-api-version",
+  ): WithQueryOldApiVersion;
 }
 
 export type VersionedParamInServerVersionsClient = Client & {
