@@ -1,11 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export interface WidgetData2 {
-  kind: "kind1";
-  start: string;
-}
-
 export interface WidgetData1 {
   kind: "kind1";
   start: Date;
@@ -188,16 +183,6 @@ export interface IsUnknownAdditionalPropertiesDiscriminated
   name: string;
   /** the discriminator possible values: derived */
   kind: string;
-}
-
-/** The derived discriminated type */
-export interface IsUnknownAdditionalPropertiesDiscriminatedDerived
-  extends IsUnknownAdditionalPropertiesDiscriminated {
-  kind: "derived";
-  /** The index property */
-  index: number;
-  /** The age property */
-  age?: number;
 }
 
 /** The model is from Record<unknown> type. */

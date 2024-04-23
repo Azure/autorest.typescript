@@ -1,21 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** The parameters for a widget status request */
-export interface BatchApplicationListHeadersOutput
-  extends BatchClientRequestHeadersOutput {}
-
-/** The parameters for a widget status request */
-export interface BatchClientRequestHeadersOutput {}
-
-/** Common path parms for Task related File operartions */
-export interface BatchTaskFileClientPathParametersOutput
-  extends BatchClientRequestHeadersOutput {}
-
-/** Common path parms for Node related File operartions */
-export interface BatchNodeFileClientPathParametersOutput
-  extends BatchClientRequestHeadersOutput {}
-
 /** The result of listing the applications available in an Account. */
 export interface ApplicationListResultOutput {
   /** The list of applications available in the Account. */
@@ -758,12 +743,6 @@ export interface UserAssignedIdentityOutput {
   readonly clientId?: string;
   /** The principal id of the user assigned identity. */
   readonly principalId?: string;
-}
-
-/** Options for evaluating an automatic scaling formula on an Azure Batch Pool. */
-export interface BatchPoolEvaluateAutoScaleOptionsOutput {
-  /** The formula for the desired number of Compute Nodes in the Pool. The formula is validated and its results calculated, but it is not applied to the Pool. To apply the formula to the Pool, 'Enable automatic scaling on a Pool'. For more information about specifying this formula, see Automatically scale Compute Nodes in an Azure Batch Pool (https://azure.microsoft.com/en-us/documentation/articles/batch-automatic-scaling). */
-  autoScaleFormula: string;
 }
 
 /** The result of listing the supported Virtual Machine Images. */
@@ -1604,42 +1583,6 @@ export interface BatchJobScheduleListResultOutput {
   "odata.nextLink"?: string;
 }
 
-/** Options for creating an Azure Batch Task. */
-export interface BatchTaskCreateOptionsOutput {
-  /** A string that uniquely identifies the Task within the Job. The ID can contain any combination of alphanumeric characters including hyphens and underscores, and cannot contain more than 64 characters. The ID is case-preserving and case-insensitive (that is, you may not have two IDs within a Job that differ only by case). */
-  id: string;
-  /** A display name for the Task. The display name need not be unique and can contain any Unicode characters up to a maximum length of 1024. */
-  displayName?: string;
-  /** How the Batch service should respond when the Task completes. */
-  exitConditions?: ExitConditionsOutput;
-  /** The command line of the Task. For multi-instance Tasks, the command line is executed as the primary Task, after the primary Task and all subtasks have finished executing the coordination command line. The command line does not run under a shell, and therefore cannot take advantage of shell features such as environment variable expansion. If you want to take advantage of such features, you should invoke the shell in the command line, for example using "cmd /c MyCommand" in Windows or "/bin/sh -c MyCommand" in Linux. If the command line refers to file paths, it should use a relative path (relative to the Task working directory), or use the Batch provided environment variable (https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables). */
-  commandLine: string;
-  /** The settings for the container under which the Task runs. If the Pool that will run this Task has containerConfiguration set, this must be set as well. If the Pool that will run this Task doesn't have containerConfiguration set, this must not be set. When this is specified, all directories recursively below the AZ_BATCH_NODE_ROOT_DIR (the root of Azure Batch directories on the node) are mapped into the container, all Task environment variables are mapped into the container, and the Task command line is executed in the container. Files produced in the container outside of AZ_BATCH_NODE_ROOT_DIR might not be reflected to the host disk, meaning that Batch file APIs will not be able to access those files. */
-  containerSettings?: TaskContainerSettingsOutput;
-  /** A list of files that the Batch service will download to the Compute Node before running the command line. For multi-instance Tasks, the resource files will only be downloaded to the Compute Node on which the primary Task is executed. There is a maximum size for the list of resource files.  When the max size is exceeded, the request will fail and the response error code will be RequestEntityTooLarge. If this occurs, the collection of ResourceFiles must be reduced in size. This can be achieved using .zip files, Application Packages, or Docker Containers. */
-  resourceFiles?: Array<ResourceFileOutput>;
-  /** A list of files that the Batch service will upload from the Compute Node after running the command line. For multi-instance Tasks, the files will only be uploaded from the Compute Node on which the primary Task is executed. */
-  outputFiles?: Array<OutputFileOutput>;
-  /** A list of environment variable settings for the Task. */
-  environmentSettings?: Array<EnvironmentSettingOutput>;
-  /** A locality hint that can be used by the Batch service to select a Compute Node on which to start the new Task. */
-  affinityInfo?: AffinityInformationOutput;
-  /** The execution constraints that apply to this Task. If you do not specify constraints, the maxTaskRetryCount is the maxTaskRetryCount specified for the Job, the maxWallClockTime is infinite, and the retentionTime is 7 days. */
-  constraints?: TaskConstraintsOutput;
-  /** The number of scheduling slots that the Task required to run. The default is 1. A Task can only be scheduled to run on a compute node if the node has enough free scheduling slots available. For multi-instance Tasks, this must be 1. */
-  requiredSlots?: number;
-  /** The user identity under which the Task runs. If omitted, the Task runs as a non-administrative user unique to the Task. */
-  userIdentity?: UserIdentityOutput;
-  /** An object that indicates that the Task is a multi-instance Task, and contains information about how to run the multi-instance Task. */
-  multiInstanceSettings?: MultiInstanceSettingsOutput;
-  /** The Tasks that this Task depends on. This Task will not be scheduled until all Tasks that it depends on have completed successfully. If any of those Tasks fail and exhaust their retry counts, this Task will never be scheduled. If the Job does not have usesTaskDependencies set to true, and this element is present, the request fails with error code TaskDependenciesNotSpecifiedOnJob. */
-  dependsOn?: TaskDependenciesOutput;
-  /** A list of Packages that the Batch service will deploy to the Compute Node before running the command line. Application packages are downloaded and deployed to a shared directory, not the Task working directory. Therefore, if a referenced package is already on the Node, and is up to date, then it is not re-downloaded; the existing copy on the Compute Node is used. If a referenced Package cannot be installed, for example because the package has been deleted or because download failed, the Task fails. */
-  applicationPackageReferences?: Array<ApplicationPackageReferenceOutput>;
-  /** The settings for an authentication token that the Task can use to perform Batch service operations. If this property is set, the Batch service provides the Task with an authentication token which can be used to authenticate Batch service operations without requiring an Account access key. The token is provided via the AZ_BATCH_AUTHENTICATION_TOKEN environment variable. The operations that the Task can carry out using the token depend on the settings. For example, a Task can request Job permissions in order to add other Tasks to the Job, or check the status of the Job or of other Tasks under the Job. */
-  authenticationTokenSettings?: AuthenticationTokenSettingsOutput;
-}
-
 /** Specifies how the Batch service should respond when the Task completes. */
 export interface ExitConditionsOutput {
   /** A list of individual Task exit codes and how the Batch service should respond to them. */
@@ -1873,12 +1816,6 @@ export interface TaskStatisticsOutput {
   writeIOGiB: number;
   /** The total wait time of the Task. The wait time for a Task is defined as the elapsed time between the creation of the Task and the start of Task execution. (If the Task is retried due to failures, the wait time is the time to the most recent Task execution.). */
   waitTime: string;
-}
-
-/** A collection of Azure Batch Tasks to add. */
-export interface BatchTaskCollectionOutput {
-  /** The collection of Tasks to add. The maximum count of Tasks is 100. The total serialized size of this collection must be less than 1MB. If it is greater than 1MB (for example if each Task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer Tasks. */
-  value: Array<BatchTaskCreateOptionsOutput>;
 }
 
 /** The result of adding a collection of Tasks to a Job. */
@@ -2122,18 +2059,6 @@ export interface BatchNodeRemoteLoginSettingsResultOutput {
   remoteLoginIPAddress: string;
   /** The port used for remote login to the Compute Node. */
   remoteLoginPort: number;
-}
-
-/** The Azure Batch service log files upload options for a Compute Node. */
-export interface UploadBatchServiceLogsOptionsOutput {
-  /** The URL of the container within Azure Blob Storage to which to upload the Batch Service log file(s). If a user assigned managed identity is not being used, the URL must include a Shared Access Signature (SAS) granting write permissions to the container. The SAS duration must allow enough time for the upload to finish. The start time for SAS is optional and recommended to not be specified. */
-  containerUrl: string;
-  /** The start of the time range from which to upload Batch Service log file(s). Any log file containing a log message in the time range will be uploaded. This means that the operation might retrieve more logs than have been requested since the entire log file is always uploaded, but the operation should not retrieve fewer logs than have been requested. */
-  startTime: string;
-  /** The end of the time range from which to upload Batch Service log file(s). Any log file containing a log message in the time range will be uploaded. This means that the operation might retrieve more logs than have been requested since the entire log file is always uploaded, but the operation should not retrieve fewer logs than have been requested. If omitted, the default is to upload all logs available after the startTime. */
-  endTime?: string;
-  /** The reference to the user assigned identity to use to access Azure Blob Storage specified by containerUrl. The identity must have write access to the Azure Blob Storage container. */
-  identityReference?: BatchNodeIdentityReferenceOutput;
 }
 
 /** The result of uploading Batch service log files from a specific Compute Node. */

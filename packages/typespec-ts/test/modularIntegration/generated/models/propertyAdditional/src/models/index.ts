@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 export {
-  WidgetData2,
   WidgetData1,
   SpreadRecordForNonDiscriminatedUnion3,
   SpreadRecordForNonDiscriminatedUnion2,
@@ -33,7 +32,6 @@ export {
   IsStringAdditionalProperties,
   ExtendsStringAdditionalProperties,
   IsUnknownAdditionalPropertiesDiscriminated,
-  IsUnknownAdditionalPropertiesDiscriminatedDerived,
   IsUnknownAdditionalProperties,
   IsUnknownAdditionalPropertiesDerived,
   ExtendsUnknownAdditionalPropertiesDiscriminated,
