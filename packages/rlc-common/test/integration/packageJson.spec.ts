@@ -295,7 +295,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "build",
-        "npm run clean && tshy && mkdirp ./review && api-extractor run --local"
+        "npm run clean && tshy && mkdirp ./review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "test:node",
@@ -319,7 +319,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
-        "rimraf review && mkdirp ./review && api-extractor run --local"
+        "rimraf review && mkdirp ./review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "integration-test",
@@ -390,7 +390,7 @@ describe("Package file generation", () => {
 
       expect(packageFile.scripts).to.have.property(
         "build",
-        "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && api-extractor run --local"
+        "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "build:node",
@@ -402,7 +402,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "build:debug",
-        "tsc -p . && dev-tool run bundle && api-extractor run --local"
+        "tsc -p . && dev-tool run bundle && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "integration-test:browser",
@@ -426,7 +426,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "extract-api",
-        "rimraf review && mkdirp ./review && api-extractor run --local"
+        "rimraf review && mkdirp ./review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "integration-test",
