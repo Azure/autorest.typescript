@@ -51,9 +51,6 @@ export type AzureHealthInsightsClient = Client & {
 export type ClinicalDocumentType = "consultation" | "dischargeSummary" | "historyAndPhysical" | "radiologyReport" | "procedure" | "progress" | "laboratory" | "pathologyReport";
 
 // @public
-export type ClinicalDocumentTypeOutput = "consultation" | "dischargeSummary" | "historyAndPhysical" | "radiologyReport" | "procedure" | "progress" | "laboratory" | "pathologyReport";
-
-// @public
 export interface CodeableConcept extends Element {
     coding?: Array<Coding>;
     text?: string;
@@ -304,19 +301,7 @@ export interface DocumentAdministrativeMetadata {
 }
 
 // @public
-export interface DocumentAdministrativeMetadataOutput {
-    encounterId?: string;
-    orderedProcedures?: Array<OrderedProcedureOutput>;
-}
-
-// @public
 export interface DocumentAuthor {
-    fullName?: string;
-    id?: string;
-}
-
-// @public
-export interface DocumentAuthorOutput {
     fullName?: string;
     id?: string;
 }
@@ -328,22 +313,10 @@ export interface DocumentContent {
 }
 
 // @public
-export interface DocumentContentOutput {
-    sourceType: DocumentContentSourceTypeOutput;
-    value: string;
-}
-
-// @public
 export type DocumentContentSourceType = "inline" | "reference";
 
 // @public
-export type DocumentContentSourceTypeOutput = "inline" | "reference";
-
-// @public
 export type DocumentType = "note" | "fhirBundle" | "dicom" | "genomicSequencing";
-
-// @public
-export type DocumentTypeOutput = "note" | "fhirBundle" | "dicom" | "genomicSequencing";
 
 // @public
 export type DomainResource = DomainResourceParent | Observation | Condition | ResearchStudy;
@@ -392,16 +365,6 @@ export interface Encounter {
 
 // @public
 export type EncounterClass = "inpatient" | "ambulatory" | "observation" | "emergency" | "virtual" | "healthHome";
-
-// @public
-export type EncounterClassOutput = "inpatient" | "ambulatory" | "observation" | "emergency" | "virtual" | "healthHome";
-
-// @public
-export interface EncounterOutput {
-    class?: EncounterClassOutput;
-    id: string;
-    period?: TimePeriodOutput;
-}
 
 // @public
 export interface Extendible {
@@ -465,11 +428,6 @@ export interface FindingOptions {
 }
 
 // @public
-export interface FindingOptionsOutput {
-    provideFocusedSentenceEvidence?: boolean;
-}
-
-// @public
 export interface FollowupCommunicationInference extends RadiologyInsightsInferenceParent {
     dateTime?: Date[] | string[];
     kind: "followupCommunication";
@@ -513,13 +471,6 @@ export interface FollowupRecommendationInferenceOutput extends RadiologyInsights
 
 // @public
 export interface FollowupRecommendationOptions {
-    includeRecommendationsInReferences?: boolean;
-    includeRecommendationsWithNoSpecifiedModality?: boolean;
-    provideFocusedSentenceEvidence?: boolean;
-}
-
-// @public
-export interface FollowupRecommendationOptionsOutput {
     includeRecommendationsInReferences?: boolean;
     includeRecommendationsWithNoSpecifiedModality?: boolean;
     provideFocusedSentenceEvidence?: boolean;
@@ -887,19 +838,6 @@ export interface PatientDocument {
 }
 
 // @public
-export interface PatientDocumentOutput {
-    administrativeMetadata?: DocumentAdministrativeMetadataOutput;
-    authors?: Array<DocumentAuthorOutput>;
-    clinicalType?: ClinicalDocumentTypeOutput;
-    content: DocumentContentOutput;
-    createdDateTime?: string;
-    id: string;
-    language?: string;
-    specialtyType?: SpecialtyTypeOutput;
-    type: DocumentTypeOutput;
-}
-
-// @public
 export interface PatientInfo {
     birthDate?: Date | string;
     clinicalInfo?: Array<Resource>;
@@ -907,17 +845,7 @@ export interface PatientInfo {
 }
 
 // @public
-export interface PatientInfoOutput {
-    birthDate?: string;
-    clinicalInfo?: Array<ResourceOutput>;
-    sex?: PatientInfoSexOutput;
-}
-
-// @public
 export type PatientInfoSex = "female" | "male" | "unspecified";
-
-// @public
-export type PatientInfoSexOutput = "female" | "male" | "unspecified";
 
 // @public
 export interface PatientRecord {
@@ -925,14 +853,6 @@ export interface PatientRecord {
     id: string;
     info?: PatientInfo;
     patientDocuments?: Array<PatientDocument>;
-}
-
-// @public
-export interface PatientRecordOutput {
-    encounters?: Array<EncounterOutput>;
-    id: string;
-    info?: PatientInfoOutput;
-    patientDocuments?: Array<PatientDocumentOutput>;
 }
 
 // @public
@@ -1002,24 +922,12 @@ export interface RadiologyInsightsData {
 }
 
 // @public
-export interface RadiologyInsightsDataOutput {
-    configuration?: RadiologyInsightsModelConfigurationOutput;
-    patients: Array<PatientRecordOutput>;
-}
-
-// @public
 export type RadiologyInsightsInference = RadiologyInsightsInferenceParent | AgeMismatchInference | SexMismatchInference | LateralityDiscrepancyInference | CompleteOrderDiscrepancyInference | LimitedOrderDiscrepancyInference | FindingInference | CriticalResultInference | RadiologyProcedureInference | FollowupRecommendationInference | FollowupCommunicationInference;
 
 // @public
 export interface RadiologyInsightsInferenceOptions {
     finding?: FindingOptions;
     followupRecommendation?: FollowupRecommendationOptions;
-}
-
-// @public
-export interface RadiologyInsightsInferenceOptionsOutput {
-    finding?: FindingOptionsOutput;
-    followupRecommendation?: FollowupRecommendationOptionsOutput;
 }
 
 // @public
@@ -1047,22 +955,10 @@ export interface RadiologyInsightsInferenceResultOutput {
 export type RadiologyInsightsInferenceType = "ageMismatch" | "lateralityDiscrepancy" | "sexMismatch" | "completeOrderDiscrepancy" | "limitedOrderDiscrepancy" | "finding" | "criticalResult" | "followupRecommendation" | "followupCommunication" | "radiologyProcedure";
 
 // @public
-export type RadiologyInsightsInferenceTypeOutput = "ageMismatch" | "lateralityDiscrepancy" | "sexMismatch" | "completeOrderDiscrepancy" | "limitedOrderDiscrepancy" | "finding" | "criticalResult" | "followupRecommendation" | "followupCommunication" | "radiologyProcedure";
-
-// @public
 export interface RadiologyInsightsModelConfiguration {
     includeEvidence?: boolean;
     inferenceOptions?: RadiologyInsightsInferenceOptions;
     inferenceTypes?: RadiologyInsightsInferenceType[];
-    locale?: string;
-    verbose?: boolean;
-}
-
-// @public
-export interface RadiologyInsightsModelConfigurationOutput {
-    includeEvidence?: boolean;
-    inferenceOptions?: RadiologyInsightsInferenceOptionsOutput;
-    inferenceTypes?: RadiologyInsightsInferenceTypeOutput[];
     locale?: string;
     verbose?: boolean;
 }
@@ -1301,18 +1197,9 @@ export interface SexMismatchInferenceOutput extends RadiologyInsightsInferenceOu
 export type SpecialtyType = "pathology" | "radiology";
 
 // @public
-export type SpecialtyTypeOutput = "pathology" | "radiology";
-
-// @public
 export interface TimePeriod {
     end?: Date | string;
     start?: Date | string;
-}
-
-// @public
-export interface TimePeriodOutput {
-    end?: string;
-    start?: string;
 }
 
 // (No @packageDocumentation comment for this package)
