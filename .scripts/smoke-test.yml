@@ -11,11 +11,11 @@ jobs:
         macOS_Node18:
           Pool:
           OSVmImage: "macOS-latest"
-          NodeTestVersion: "18.19.x"
+          NodeTestVersion: "18.x"
         Linux_Node18:
           Pool: ${{ parameters.LinuxPool }}
           OSVmImage: "ubuntu-20.04"
-          NodeTestVersion: "18.19.x"
+          NodeTestVersion: "18.x"
         Windows_Latest:
           Pool:
           OSVmImage: "Windows-latest"
