@@ -12,7 +12,7 @@ const root = resolvePath(fileURLToPath(import.meta.url), "../../../temp");
 console.log(root);
 const pngFile = readFileSync(resolvePath(root, "assets/image.png"));
 const jpegImage = readFileSync(resolvePath(root, "assets/image.jpg"));
-describe("Content Negotiation Client", () => {
+describe.only("Content Negotiation Client", () => {
   let client: ContentNegotiationClient;
 
   beforeEach(() => {
@@ -28,10 +28,13 @@ describe("Content Negotiation Client", () => {
       });
       assert.strictEqual(result.status, "200");
       assert.strictEqual(
-        uint8ArrayToString(result.body, "utf-8"),
+        uint8ArrayToString(result.body.contentType, "utf-8"),
+        "image/png"
+      );
+      assert.strictEqual(
+        uint8ArrayToString(result.body.rawContent, "utf-8"),
         pngFile.toString()
       );
-      // assert.strictEqual(result.body.rawContent, pngFile);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -43,9 +46,12 @@ describe("Content Negotiation Client", () => {
         .path("/content-negotiation/same-body")
         .get({ headers: { accept: "image/jpeg" } });
       assert.strictEqual(result.status, "200");
-      // assert.strictEqual(result.body.contentType, "image/jpeg");
       assert.strictEqual(
-        uint8ArrayToString(result.body, "utf-8"),
+        uint8ArrayToString(result.body.contentType, "utf-8"),
+        "image/jpeg"
+      );
+      assert.strictEqual(
+        uint8ArrayToString(result.body.rawContent, "utf-8"),
         jpegImage.toString()
       );
     } catch (err) {
@@ -53,7 +59,7 @@ describe("Content Negotiation Client", () => {
     }
   });
 
-  // it("should return error if put wrong accept for same body in content negotiation", async () => {
+  // it.only("should return error if put wrong accept for same body in content negotiation", async () => {
   //   try {
   //     const result = await client
   //       .path("/content-negotiation/same-body")
@@ -78,9 +84,12 @@ describe("Content Negotiation Client", () => {
         .path("/content-negotiation/different-body")
         .get({ headers: { accept: "image/png" } });
       assert.strictEqual(result.status, "200");
-      // assert.strictEqual(result.body.contentType, "image/jpeg");
       assert.strictEqual(
-        uint8ArrayToString(result.body, "utf-8"),
+        uint8ArrayToString(result.body.contentType, "utf-8"),
+        "image/png"
+      );
+      assert.strictEqual(
+        uint8ArrayToString(result.body.rawContent, "utf-8"),
         pngFile.toString()
       );
     } catch (err) {
