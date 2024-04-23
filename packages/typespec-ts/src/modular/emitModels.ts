@@ -106,9 +106,6 @@ export function buildModelInterface(
   cache: { coreClientTypes: Set<string> }
 ): InterfaceStructure {
   const modelProperties = model.properties ?? [];
-  if (model.name === "DifferentSpreadStringRecord") {
-    model;
-  }
   const modelInterface = {
     name: model.alias ?? model.name ?? "FIXMYNAME",
     isExported: true,
@@ -175,7 +172,11 @@ export function buildModels(
         : model.type === "dict" &&
             model.properties?.length &&
             model.properties?.length > 0
-          ? addExtendedDictInfo(model, modelInterface, codeModel.modularOptions.legacy)
+          ? addExtendedDictInfo(
+              model,
+              modelInterface,
+              codeModel.modularOptions.legacy
+            )
           : undefined;
       modelsFile.addInterface(modelInterface);
     }
@@ -199,12 +200,20 @@ export function buildModels(
   return modelsFile;
 }
 
-function addExtendedDictInfo(model: Type, modelInterface: InterfaceStructure, legacy: boolean = false) {
-  if (model.properties?.every(p => {p.type.name === model.elementType?.name})) {
+function addExtendedDictInfo(
+  model: Type,
+  modelInterface: InterfaceStructure,
+  legacy: boolean = false
+) {
+  if (
+    model.properties?.every((p) => {
+      p.type.name === model.elementType?.name;
+    })
+  ) {
     modelInterface.extends.push(
       `Record<string, ${getType(model.elementType!).name ?? "any"}>`
-    )
-  } else if(legacy) {
+    );
+  } else if (legacy) {
     modelInterface.extends.push(`Record<string, any>`);
   } else {
     modelInterface.properties?.push({

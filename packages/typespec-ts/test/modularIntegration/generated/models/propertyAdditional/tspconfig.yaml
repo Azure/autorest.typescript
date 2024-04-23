@@ -10,6 +10,8 @@ options:
     isTypeSpecTest: true
     enableOperationGroup: true
     isModularLibrary: true
+    # temporary only support legacy client for additional properties in modular
+    legacy: true
     packageDetails:
       name: "@msinternal/additional-property"
       description: "additional Property Test Service"

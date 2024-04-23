@@ -13,19 +13,17 @@ export interface WidgetData1 {
 }
 
 /** The model spread Record<WidgetData2[] | WidgetData1> */
-export interface SpreadRecordForNonDiscriminatedUnion3 {
+export interface SpreadRecordForNonDiscriminatedUnion3
+  extends Record<string, any> {
   /** The name property */
   name: string;
-  /** Additional properties */
-  additionalProperties?: Record<string, WidgetData2[] | WidgetData1>;
 }
 
 /** The model spread Record<WidgetData2 | WidgetData1> */
-export interface SpreadRecordForNonDiscriminatedUnion2 {
+export interface SpreadRecordForNonDiscriminatedUnion2
+  extends Record<string, any> {
   /** The name property */
   name: string;
-  /** Additional properties */
-  additionalProperties?: Record<string, WidgetData2 | WidgetData1>;
 }
 
 export interface WidgetData0 {
@@ -34,35 +32,28 @@ export interface WidgetData0 {
 }
 
 /** The model spread Record<WidgetData0 | WidgetData1> */
-export interface SpreadRecordForNonDiscriminatedUnion {
+export interface SpreadRecordForNonDiscriminatedUnion
+  extends Record<string, any> {
   /** The name property */
   name: string;
-  /** Additional properties */
-  additionalProperties?: Record<string, WidgetData0 | WidgetData1>;
 }
 
 /** The model spread Record<WidgetData> */
-export interface SpreadRecordForDiscriminatedUnion {
+export interface SpreadRecordForDiscriminatedUnion extends Record<string, any> {
   /** The name property */
   name: string;
-  /** Additional properties */
-  additionalProperties?: Record<string, WidgetData>;
 }
 
 /** The model spread Record<string | float32> */
-export interface SpreadRecordForUnion {
+export interface SpreadRecordForUnion extends Record<string, any> {
   /** The name property */
   flag: boolean;
-  /** Additional properties */
-  additionalProperties?: Record<string, string | number>;
 }
 
 /** The model spread Record<string> and Record<float32> */
-export interface MultipleSpreadRecord {
+export interface MultipleSpreadRecord extends Record<string, any> {
   /** The name property */
   flag: boolean;
-  /** Additional properties */
-  additionalProperties?: Record<string, string | number>;
 }
 
 /** model for record */
@@ -72,10 +63,8 @@ export interface ModelForRecord {
 }
 
 /** The model spread Record<ModelForRecord[]> with the different known property type */
-export interface DifferentSpreadModelArrayRecord {
+export interface DifferentSpreadModelArrayRecord extends Record<string, any> {
   knownProp: string;
-  /** Additional properties */
-  additionalProperties?: Record<string, ModelForRecord[]>;
 }
 
 /** The model extends from a model that spread Record<ModelForRecord[]> with the different known property type */
@@ -86,10 +75,8 @@ export interface DifferentSpreadModelArrayDerived
 }
 
 /** The model spread Record<ModelForRecord> with the different known property type */
-export interface DifferentSpreadModelRecord {
+export interface DifferentSpreadModelRecord extends Record<string, any> {
   knownProp: string;
-  /** Additional properties */
-  additionalProperties?: Record<string, ModelForRecord>;
 }
 
 /** The model extends from a model that spread Record<ModelForRecord> with the different known property type */
@@ -100,11 +87,9 @@ export interface DifferentSpreadModelDerived
 }
 
 /** The model spread Record<float32> with the different known property type */
-export interface DifferentSpreadFloatRecord {
+export interface DifferentSpreadFloatRecord extends Record<string, any> {
   /** The id property */
   name: string;
-  /** Additional properties */
-  additionalProperties?: Record<string, number>;
 }
 
 /** The model extends from a model that spread Record<float32> with the different known property type */
@@ -115,11 +100,9 @@ export interface DifferentSpreadFloatDerived
 }
 
 /** The model spread Record<string> with the different known property type */
-export interface DifferentSpreadStringRecord {
+export interface DifferentSpreadStringRecord extends Record<string, any> {
   /** The name property */
   id: number;
-  /** Additional properties */
-  additionalProperties?: Record<string, string>;
 }
 
 /** The model extends from a model that spread Record<string> with the different known property type */
@@ -129,17 +112,13 @@ export interface DifferentSpreadStringDerived
   derivedProp: string;
 }
 
-export interface SpreadModelArrayRecord {
+export interface SpreadModelArrayRecord extends Record<string, any> {
   knownProp: ModelForRecord[];
-  /** Additional properties */
-  additionalProperties?: Record<string, ModelForRecord[]>;
 }
 
 /** The model is from Record<ModelForRecord[]> type. */
-export interface IsModelArrayAdditionalProperties {
+export interface IsModelArrayAdditionalProperties extends Record<string, any> {
   knownProp: ModelForRecord[];
-  /** Additional properties */
-  additionalProperties?: Record<string, ModelForRecord[]>;
 }
 
 /** The model extends from Record<ModelForRecord[]> type. */
@@ -149,17 +128,13 @@ export interface ExtendsModelArrayAdditionalProperties
 }
 
 /** The model spread Record<ModelForRecord> with the same known property type */
-export interface SpreadModelRecord {
+export interface SpreadModelRecord extends Record<string, any> {
   knownProp: ModelForRecord;
-  /** Additional properties */
-  additionalProperties?: Record<string, ModelForRecord>;
 }
 
 /** The model is from Record<ModelForRecord> type. */
-export interface IsModelAdditionalProperties {
+export interface IsModelAdditionalProperties extends Record<string, any> {
   knownProp: ModelForRecord;
-  /** Additional properties */
-  additionalProperties?: Record<string, ModelForRecord>;
 }
 
 /** The model extends from Record<ModelForRecord> type. */
@@ -169,19 +144,15 @@ export interface ExtendsModelAdditionalProperties
 }
 
 /** The model spread Record<float32> with the same known property type */
-export interface SpreadFloatRecord {
+export interface SpreadFloatRecord extends Record<string, any> {
   /** The id property */
   id: number;
-  /** Additional properties */
-  additionalProperties?: Record<string, number>;
 }
 
 /** The model is from Record<float32> type. */
-export interface IsFloatAdditionalProperties {
+export interface IsFloatAdditionalProperties extends Record<string, any> {
   /** The id property */
   id: number;
-  /** Additional properties */
-  additionalProperties?: Record<string, number>;
 }
 
 /** The model extends from Record<float32> type. */
@@ -192,19 +163,15 @@ export interface ExtendsFloatAdditionalProperties
 }
 
 /** The model spread Record<string> with the same known property type */
-export interface SpreadStringRecord {
+export interface SpreadStringRecord extends Record<string, any> {
   /** The name property */
   name: string;
-  /** Additional properties */
-  additionalProperties?: Record<string, string>;
 }
 
 /** The model is from Record<string> type. */
-export interface IsStringAdditionalProperties {
+export interface IsStringAdditionalProperties extends Record<string, any> {
   /** The name property */
   name: string;
-  /** Additional properties */
-  additionalProperties?: Record<string, string>;
 }
 
 /** The model extends from Record<string> type. */
@@ -215,13 +182,12 @@ export interface ExtendsStringAdditionalProperties
 }
 
 /** The model is Record<unknown> with a discriminator. */
-export interface IsUnknownAdditionalPropertiesDiscriminated {
+export interface IsUnknownAdditionalPropertiesDiscriminated
+  extends Record<string, any> {
   /** The name property */
   name: string;
   /** the discriminator possible values: derived */
   kind: string;
-  /** Additional properties */
-  additionalProperties?: Record<string, unknown>;
 }
 
 /** The derived discriminated type */
@@ -235,11 +201,9 @@ export interface IsUnknownAdditionalPropertiesDiscriminatedDerived
 }
 
 /** The model is from Record<unknown> type. */
-export interface IsUnknownAdditionalProperties {
+export interface IsUnknownAdditionalProperties extends Record<string, any> {
   /** The name property */
   name: string;
-  /** Additional properties */
-  additionalProperties?: Record<string, unknown>;
 }
 
 /** The model extends from a type that is Record<unknown> type */

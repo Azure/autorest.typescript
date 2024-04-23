@@ -1389,8 +1389,10 @@ function emitUnion(
     const unionName = getLibraryName(context, type)
       ? getLibraryName(context, type)
       : type.name;
-    const discriminatorPropertyName = getDiscriminator(context.program, type)
-      ?.propertyName;
+    const discriminatorPropertyName = getDiscriminator(
+      context.program,
+      type
+    )?.propertyName;
     const variantTypes = sdkType.values.map((x) => {
       const valueType = getType(context, x.__raw!, { usage });
       if (valueType.properties && discriminatorPropertyName) {
@@ -1863,7 +1865,10 @@ export function emitCodeModel(
   // Get types
   const codeModel: ModularCodeModel = {
     options: dpgContext.rlcOptions ?? {},
-    modularOptions: { sourceRoot: modularSourcesRoot, legacy: !!dpgContext.rlcOptions?.legacy },
+    modularOptions: {
+      sourceRoot: modularSourcesRoot,
+      legacy: !!dpgContext.rlcOptions?.legacy
+    },
     namespace: clientNamespaceString,
     subnamespaceToClients: {},
     clients: [],
