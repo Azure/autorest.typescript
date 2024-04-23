@@ -139,6 +139,11 @@ model ImageGenerationOptions {
 
   @doc("A unique identifier representing your end-user, which can help to monitor and detect abuse.")
   user?: string;
+
+  @removed(ServiceApiVersions.v2024_02_15_Preview)
+  @added(ServiceApiVersions.v2023_06_01_Preview)
+  @doc("A test property to test against the removed decorator on properties.")
+  testProp: string;
 }
 
 @doc("""
