@@ -47,12 +47,6 @@ export interface BrokerPropertiesOutput {
   deliveryCount: number;
 }
 
-/** Array of lock token strings for the corresponding received Cloud Events to be acknowledged. */
-export interface AcknowledgeOptionsOutput {
-  /** String array of lock tokens. */
-  lockTokens: string[];
-}
-
 /** The result of the Acknowledge operation. */
 export interface AcknowledgeResultOutput {
   /** Array of LockToken values for failed cloud events. Each LockToken includes the lock token value along with the related error information (namely, the error code and description). */
@@ -71,24 +65,12 @@ export interface FailedLockTokenOutput {
   errorDescription: string;
 }
 
-/** Array of lock token strings for the corresponding received Cloud Events to be released. */
-export interface ReleaseOptionsOutput {
-  /** String array of lock tokens. */
-  lockTokens: string[];
-}
-
 /** The result of the Release operation. */
 export interface ReleaseResultOutput {
   /** Array of LockToken values for failed cloud events. Each LockToken includes the lock token value along with the related error information (namely, the error code and description). */
   failedLockTokens: Array<FailedLockTokenOutput>;
   /** Array of lock tokens values for the successfully released cloud events. */
   succeededLockTokens: string[];
-}
-
-/** Array of lock token strings for the corresponding received Cloud Events to be rejected. */
-export interface RejectOptionsOutput {
-  /** String array of lock tokens. */
-  lockTokens: string[];
 }
 
 /** The result of the Reject operation. */

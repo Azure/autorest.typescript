@@ -13,14 +13,14 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  ClientModelClientOptions,
-  ClientModelLanguageOptions,
+  ClientModelClientOptionalParams,
+  ClientModelLanguageOptionalParams,
 } from "../../models/options.js";
 
 export function _clientSend(
   context: Client,
   body: ClientModel,
-  options: ClientModelClientOptions = { requestOptions: {} },
+  options: ClientModelClientOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ModelClient204Response> {
   return context
     .path("/client/naming/model/client")
@@ -43,7 +43,7 @@ export async function _clientDeserialize(
 export async function client(
   context: Client,
   body: ClientModel,
-  options: ClientModelClientOptions = { requestOptions: {} },
+  options: ClientModelClientOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _clientSend(context, body, options);
   return _clientDeserialize(result);
@@ -52,7 +52,7 @@ export async function client(
 export function _languageSend(
   context: Client,
   body: TSModel,
-  options: ClientModelLanguageOptions = { requestOptions: {} },
+  options: ClientModelLanguageOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ModelLanguage204Response> {
   return context
     .path("/client/naming/model/language")
@@ -75,7 +75,7 @@ export async function _languageDeserialize(
 export async function language(
   context: Client,
   body: TSModel,
-  options: ClientModelLanguageOptions = { requestOptions: {} },
+  options: ClientModelLanguageOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _languageSend(context, body, options);
   return _languageDeserialize(result);

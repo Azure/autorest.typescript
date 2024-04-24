@@ -62,7 +62,6 @@ describe("Input/output model type", () => {
     );
     assert.ok(schemaOutput);
     const { inputModelFile, outputModelFile } = schemaOutput!;
-    // console.log(inputModelFile?.content);
     assert.strictEqual(inputModelFile?.path, "models.ts");
     await assertEqualContent(
       inputModelFile?.content!,
@@ -119,6 +118,31 @@ describe("Input/output model type", () => {
 
     it("should generate nullable model", async () => {
       const tspDefinition = `
+      alias NullableFloat = float32 | null;
+      model SimpleModel {
+        color: Record<NullableFloat>[];
+      }
+      `;
+      const tspType = "SimpleModel";
+      const typeScriptType = "SimpleModel";
+      await verifyPropertyType(tspType, typeScriptType, {
+        additionalTypeSpecDefinition: tspDefinition,
+        outputType: "SimpleModelOutput",
+        additionalInputContent: `
+        export interface SimpleModel {
+          color: Record<string, number | null>[];
+        }
+          `,
+        additionalOutputContent: `
+        export interface SimpleModelOutput {
+          color: Record<string, number | null>[];
+        }
+          `
+      });
+    });
+
+    it("should generate nullable model", async () => {
+      const tspDefinition = `
       model SimpleModel {
         color: "red" | "blue";
       }
@@ -165,150 +189,168 @@ describe("Input/output model type", () => {
       await verifyPropertyType("float64", "number");
     });
   });
-  describe("string generation", () => {
-    it("should handle extensible_enum as property -> string", async () => {
-      // When extensible_enum is comsumed as body property it should be string only
-      const schemaOutput = await emitModelsFromTypeSpec(`
-      @doc("Extensible enum model description")
-      enum TranslationLanguageValues {
-        #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
-        English,
-        #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
-        Chinese,
-      }
-      model InputOutputModel {
-        @doc("Property description")
-        prop: TranslationLanguageValues;
-      }
-      @route("/models")
-      @get
-      op getModel(@body input: InputOutputModel): InputOutputModel;
-      `);
-      assert.ok(schemaOutput);
-      const { inputModelFile, outputModelFile } = schemaOutput!;
-      await assertEqualContent(
-        inputModelFile?.content!,
-        `
-      export interface InputOutputModel {
-        /**
-         * Property description
-         *
-         * Possible values: "English", "Chinese"
-         */
-        prop: string;
-      }`
-      );
-      await assertEqualContent(
-        outputModelFile?.content!,
-        `
-      export interface InputOutputModelOutput {
-        /**
-         * Property description
-         *
-         * Possible values: "English", "Chinese"
-         */
-        prop: string;
-      }`
-      );
-    });
-    it("should handle extensible_enum as body -> string", async () => {
-      // When extensible_enum is comsumed as body property it should be string only
-      const schemaOutput = await emitParameterFromTypeSpec(`
-      #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
-      enum TranslationLanguage {
-        English,
-        Chinese,
-      }
-      model InputOutputModel {
-        prop: TranslationLanguage;
-      }
-      @route("/models")
-      @get
-      op getModel(@body input: TranslationLanguage): InputOutputModel;
-      `);
-      assert.ok(schemaOutput);
-      await assertEqualContent(
-        schemaOutput?.content!,
-        `
-      import { RequestParameters } from "@azure-rest/core-client";
-      
-      export interface GetModelBodyParam {
-        /** Possible values: "English", "Chinese" */
-        body: string;
-      }
-      
-      export type GetModelParameters = GetModelBodyParam & RequestParameters;`
-      );
-    });
-
-    describe("fixed enum", () => {
-      it("should handle enum -> string_literals", async () => {
-        const tspTypeDefinition = `
-        #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-        @fixed
-        @doc("Translation Language Values")
-        enum TranslationLanguageValues {
-          @doc("English descriptions")
-          English,
-          @doc("Chinese descriptions")
-          Chinese,
-        }`;
-        const tspType = "TranslationLanguageValues";
-        const typeScriptType = `"English" | "Chinese"`;
-        await verifyPropertyType(
-          tspType,
-          typeScriptType,
-          {
-            additionalTypeSpecDefinition: tspTypeDefinition
-          },
-          true
-        );
+  describe("string", () => {
+    describe("enum", () => {
+      describe("without @fixed", () => {
+        it("should handle enum as property -> type alias with union", async () => {
+          const schemaOutput = await emitModelsFromTypeSpec(`
+          @doc("Extensible enum model description")
+          enum TranslationLanguageValues {
+            #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+            English,
+            #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+            Chinese,
+          }
+          model InputOutputModel {
+            @doc("Property description")
+            prop: TranslationLanguageValues;
+          }
+          @route("/models")
+          @get
+          op getModel(@body input: InputOutputModel): InputOutputModel;
+          `);
+          assert.ok(schemaOutput);
+          const { inputModelFile, outputModelFile } = schemaOutput!;
+          await assertEqualContent(
+            inputModelFile?.content!,
+            `
+          export interface InputOutputModel {
+            /** Property description */
+            prop: TranslationLanguageValues;
+          }
+          
+          /** Extensible enum model description */
+          export type TranslationLanguageValues = "English" | "Chinese";
+          `
+          );
+          await assertEqualContent(
+            outputModelFile?.content!,
+            `
+            export interface InputOutputModelOutput {
+              /** Property description */
+              prop: TranslationLanguageValuesOutput;
+            }
+            
+            /** Extensible enum model description */
+            export type TranslationLanguageValuesOutput = "English" | "Chinese";`
+          );
+        });
+        it("should handle enum as body -> type alias with union", async () => {
+          const schemaOutput = await emitParameterFromTypeSpec(`
+          #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+          enum TranslationLanguage {
+            English,
+            Chinese,
+          }
+          model InputOutputModel {
+            prop: TranslationLanguage;
+          }
+          @route("/models")
+          @get
+          op getModel(@body input: TranslationLanguage): InputOutputModel;
+          `);
+          assert.ok(schemaOutput);
+          await assertEqualContent(
+            schemaOutput?.content!,
+            `
+          import { RequestParameters } from "@azure-rest/core-client";
+          import { TranslationLanguage } from "./models.js";
+          
+          export interface GetModelBodyParam {
+            body: TranslationLanguage;
+          }
+          
+          export type GetModelParameters = GetModelBodyParam & RequestParameters;`
+          );
+        });
       });
+      describe("with @fixed", () => {
+        it("should handle enum -> string_literals", async () => {
+          const tspTypeDefinition = `
+          #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+          @fixed
+          @doc("Translation Language Values")
+          enum TranslationLanguageValues {
+            @doc("English descriptions")
+            English,
+            @doc("Chinese descriptions")
+            Chinese,
+          }`;
+          const tspType = "TranslationLanguageValues";
+          const typeScriptType = `TranslationLanguageValues`;
+          await verifyPropertyType(
+            tspType,
+            typeScriptType,
+            {
+              outputType: `TranslationLanguageValuesOutput`,
+              additionalTypeSpecDefinition: tspTypeDefinition,
+              additionalInputContent: `
+              /** Translation Language Values */
+              export type TranslationLanguageValues = "English" | "Chinese";
+              `,
+              additionalOutputContent: `
+              /** Translation Language Values */
+              export type TranslationLanguageValuesOutput = "English" | "Chinese";
+              `
+            },
+            true
+          );
+        });
 
-      it("with enum value is xx.xx", async () => {
-        const tspTypeDefinition = `
-        #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-        @fixed
-        @doc("Translation Language Values")
-        enum TranslationLanguageValues {
-          @doc("English descriptions")
-          \`English.Class\`,
-          @doc("Chinese descriptions")
-          \`Chinese.Class\`,
-        }`;
-        const tspType = "TranslationLanguageValues";
-        const typeScriptType = `"English.Class" | "Chinese.Class"`;
-        await verifyPropertyType(
-          tspType,
-          typeScriptType,
-          {
-            additionalTypeSpecDefinition: tspTypeDefinition
-          },
-          true
-        );
-      });
+        it("with enum value is xx.xx", async () => {
+          const tspTypeDefinition = `
+          #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+          @fixed
+          @doc("Translation Language Values")
+          enum TranslationLanguageValues {
+            @doc("English descriptions")
+            \`English.Class\`,
+            @doc("Chinese descriptions")
+            \`Chinese.Class\`,
+          }`;
+          const tspType = "TranslationLanguageValues";
+          const typeScriptType = `TranslationLanguageValues`;
+          await verifyPropertyType(
+            tspType,
+            typeScriptType,
+            {
+              outputType: `TranslationLanguageValuesOutput`,
+              additionalTypeSpecDefinition: tspTypeDefinition,
+              additionalInputContent: `
+              /** Translation Language Values */
+              export type TranslationLanguageValues = "English.Class" | "Chinese.Class";
+              `,
+              additionalOutputContent: `
+              /** Translation Language Values */
+              export type TranslationLanguageValuesOutput = "English.Class" | "Chinese.Class";
+              `
+            },
+            true
+          );
+        });
 
-      it("should handle enum member", async () => {
-        const tspTypeDefinition = `
-        #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-        @fixed
-        @doc("Translation Language Values")
-        enum TranslationLanguageValues {
-          @doc("English descriptions")
-          English,
-          @doc("Chinese descriptions")
-          Chinese,
-        }`;
-        const tspType = "TranslationLanguageValues.English";
-        const typeScriptType = `"English"`;
-        await verifyPropertyType(
-          tspType,
-          typeScriptType,
-          {
-            additionalTypeSpecDefinition: tspTypeDefinition
-          },
-          true
-        );
+        it("should handle enum member", async () => {
+          const tspTypeDefinition = `
+          #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+          @fixed
+          @doc("Translation Language Values")
+          enum TranslationLanguageValues {
+            @doc("English descriptions")
+            English,
+            @doc("Chinese descriptions")
+            Chinese,
+          }`;
+          const tspType = "TranslationLanguageValues.English";
+          const typeScriptType = `"English"`;
+          await verifyPropertyType(
+            tspType,
+            typeScriptType,
+            {
+              additionalTypeSpecDefinition: tspTypeDefinition
+            },
+            true
+          );
+        });
       });
     });
 
@@ -617,7 +659,7 @@ describe("Input/output model type", () => {
       });
     });
 
-    it("should handle fixed enum array", async () => {
+    it("should handle enum with @fixed array", async () => {
       const tspDefinition = `
       #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
       #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
@@ -628,20 +670,28 @@ describe("Input/output model type", () => {
       }
       `;
       const tspType = "DiskEncryptionTarget[]";
-      const typeScriptType = `("osdisk" | "temporarydisk")[]`;
+      const typeScriptType = `DiskEncryptionTarget[]`;
       const inputModelName = typeScriptType;
       await verifyPropertyType(
         tspType,
         inputModelName,
         {
           additionalTypeSpecDefinition: tspDefinition,
-          outputType: typeScriptType
+          outputType: `DiskEncryptionTargetOutput[]`,
+          additionalInputContent: `
+          /** Alias for DiskEncryptionTarget */
+          export type DiskEncryptionTarget = "osdisk" | "temporarydisk";
+          `,
+          additionalOutputContent: `
+          /** Alias for DiskEncryptionTargetOutput */
+          export type DiskEncryptionTargetOutput = "osdisk" | "temporarydisk";
+          `
         },
         true
       );
     });
 
-    it("should handle extensible enum array", async () => {
+    it("should handle enum without fixed array", async () => {
       const tspDefinition = `
       #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
       enum DiskEncryptionTarget {
@@ -650,14 +700,22 @@ describe("Input/output model type", () => {
       }
       `;
       const tspType = "DiskEncryptionTarget[]";
-      const typeScriptType = `string[]`;
+      const typeScriptType = `DiskEncryptionTarget[]`;
       const inputModelName = typeScriptType;
       await verifyPropertyType(
         tspType,
         inputModelName,
         {
           additionalTypeSpecDefinition: tspDefinition,
-          outputType: typeScriptType
+          outputType: `DiskEncryptionTargetOutput[]`,
+          additionalInputContent: `
+          /** Alias for DiskEncryptionTarget */
+          export type DiskEncryptionTarget = "osdisk" | "temporarydisk";
+          `,
+          additionalOutputContent: `
+          /** Alias for DiskEncryptionTargetOutput */
+          export type DiskEncryptionTargetOutput = "osdisk" | "temporarydisk";
+          `
         },
         true
       );
@@ -972,10 +1030,12 @@ describe("Input/output model type", () => {
             }
 
             export interface BOutputParent {
-              a: string;
+              a: AOutput;
             }
 
-            export type BOutput = BOutputParent | COutput;`
+            export type BOutput = BOutputParent | COutput;
+            /** Alias for AOutput */
+            export type AOutput = "AA" | "BB";`
             );
           });
 
@@ -993,9 +1053,11 @@ describe("Input/output model type", () => {
             }
     
             export interface BOutput {
-              /** Possible values: "AA", "BB" */
-              a: string;
-            }`
+              a: AOutput;
+            }
+            
+            /** Alias for AOutput */
+            export type AOutput = "AA" | "BB";`
             );
           });
         });
@@ -1030,9 +1092,12 @@ describe("Input/output model type", () => {
             }
     
             export interface BOutput {
-              /** Possible values: 1.1, 2.2 */
-              a: string;
-            }`
+              a: AOutput;
+            }
+            
+            /** Alias for AOutput */
+            export type AOutput = 1.1 | 2.2;
+            `
             );
           });
         });
@@ -2640,6 +2705,56 @@ describe("Input/output model type", () => {
       );
     });
 
+    it("ErrorResponse model would not be renamed even enabling the namespace name", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(
+        `
+      import "@azure-tools/typespec-client-generator-core";
+      import "@azure-tools/typespec-azure-core";
+      import "@typespec/http";
+      import "@typespec/rest";
+      import "@typespec/versioning";
+
+      using Azure.ClientGenerator.Core;
+      using Azure.Core;
+      using TypeSpec.Rest; 
+      using TypeSpec.Http;
+      using TypeSpec.Versioning;
+      
+      @service
+      namespace MyNamespace;
+      @doc("testing")
+      model A {
+        @doc("testing")
+        errors?: Azure.Core.Foundations.ErrorResponse[];
+      }
+
+      interface MyInterface {
+        @route("/op2")
+        op1(a: A): void
+      }
+      `,
+        false,
+        true,
+        true,
+        true,
+        true
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile } = schemaOutput!;
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        import { ErrorResponse } from "@azure-rest/core-client";
+        
+        /** testing */
+        export interface A {
+          /** testing */
+          "errors"?: Array<ErrorResponse>;
+        }
+     `
+      );
+    });
+
     it("Azure.Core.Foundations.InnerError -> InnerError", async () => {
       const tspDefinition = `
       @doc("testing")
@@ -2929,7 +3044,6 @@ describe("Input/output model type", () => {
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
-      // console.log(inputModelFile?.content);
       assert.strictEqual(inputModelFile?.path, "models.ts");
       await assertEqualContent(
         inputModelFile?.content!,
@@ -3120,7 +3234,6 @@ describe("Input/output model type", () => {
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
-      // console.log(inputModelFile?.content);
       assert.strictEqual(inputModelFile?.path, "models.ts");
       await assertEqualContent(
         inputModelFile?.content!,
@@ -3457,7 +3570,7 @@ describe("Input/output model type", () => {
       );
     });
 
-    it("extensible enums with string literals being used in regular headers", async () => {
+    it("enums with string literals being used in regular headers", async () => {
       const tspDefinition = `
       import "@typespec/http";
       import "@typespec/rest";
@@ -3490,11 +3603,17 @@ describe("Input/output model type", () => {
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+      /** Alias for SchemaContentTypeValues */
+      export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";
+      `
+      );
       assert.isUndefined(outputModelFile);
-      assert.isUndefined(inputModelFile);
     });
 
-    it("fixed enums with string literals being used in regular headers", async () => {
+    it("enums with @fixed with string literals being used in regular headers", async () => {
       const tspDefinition = `
       import "@typespec/http";
       import "@typespec/rest";
@@ -3530,8 +3649,14 @@ describe("Input/output model type", () => {
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+      /** Alias for SchemaContentTypeValues */
+      export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";
+      `
+      );
       assert.isUndefined(outputModelFile);
-      assert.isUndefined(inputModelFile);
       const paramOutput = await emitParameterFromTypeSpec(
         tspDefinition,
         false,
@@ -3546,13 +3671,10 @@ describe("Input/output model type", () => {
         `
         import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
         import { RequestParameters } from "@azure-rest/core-client";
+        import { SchemaContentTypeValues } from "./models.js";
         
         export interface GetHeaders {
-          "test-header":
-            | "application/json; serialization=Avro"
-            | "application/json; serialization=json"
-            | "text/plain; charset=utf-8"
-            | "text/vnd.ms.protobuf";
+          "test-header": SchemaContentTypeValues;
         }
         
         export interface GetBodyParam {
@@ -3568,81 +3690,7 @@ describe("Input/output model type", () => {
       );
     });
 
-    it("fixed enums with string literals being used in regular headers", async () => {
-      const tspDefinition = `
-      import "@typespec/http";
-      import "@typespec/rest";
-      import "@azure-tools/typespec-azure-core";
-
-      @service({
-        title: "Widget Service",
-      })
-      namespace DemoService;
-      
-      using TypeSpec.Http;
-      using TypeSpec.Rest;
-      using Azure.Core;
-      
-      @fixed
-      enum SchemaContentTypeValues {
-        avro: "application/json; serialization=Avro",
-        json: "application/json; serialization=json",
-        custom: "text/plain; charset=utf-8",
-        protobuf: "text/vnd.ms.protobuf",
-      }
-      
-      op get(
-        @header("test-header") testHeader: SchemaContentTypeValues,
-        @body body: string,
-      ): NoContentResponse;
-      `;
-      const schemaOutput = await emitModelsFromTypeSpec(
-        tspDefinition,
-        true,
-        false,
-        true
-      );
-      assert.ok(schemaOutput);
-      const { inputModelFile, outputModelFile } = schemaOutput!;
-      assert.isUndefined(outputModelFile);
-      assert.isUndefined(inputModelFile);
-      const paramOutput = await emitParameterFromTypeSpec(
-        tspDefinition,
-        false,
-        false,
-        true,
-        true
-      );
-      assert.ok(paramOutput);
-      assert.strictEqual(paramOutput?.path, "parameters.ts");
-      await assertEqualContent(
-        paramOutput?.content!,
-        `
-        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
-        import { RequestParameters } from "@azure-rest/core-client";
-        
-        export interface GetHeaders {
-          "test-header":
-            | "application/json; serialization=Avro"
-            | "application/json; serialization=json"
-            | "text/plain; charset=utf-8"
-            | "text/vnd.ms.protobuf";
-        }
-        
-        export interface GetBodyParam {
-          body: string;
-        }
-        
-        export interface GetHeaderParam {
-          headers: RawHttpHeadersInput & GetHeaders;
-        }
-        
-        export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
-        `
-      );
-    });
-
-    it("fixed enums with number literals being used in regular headers", async () => {
+    it("enums with number literals being used in regular headers", async () => {
       const tspDefinition = `
       import "@typespec/http";
       import "@typespec/rest";
@@ -3678,8 +3726,14 @@ describe("Input/output model type", () => {
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        /** Alias for EnumTest */
+        export type EnumTest = 1 | 2 | 3 | 4;
+        `
+      );
       assert.isUndefined(outputModelFile);
-      assert.isUndefined(inputModelFile);
       const paramOutput = await emitParameterFromTypeSpec(
         tspDefinition,
         false,
@@ -3693,9 +3747,10 @@ describe("Input/output model type", () => {
         `
         import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
         import { RequestParameters } from "@azure-rest/core-client";
+        import { EnumTest } from "./models.js";
         
         export interface GetHeaders {
-          "test-header": 1 | 2 | 3 | 4;
+          "test-header": EnumTest;
         }
         
         export interface GetBodyParam {

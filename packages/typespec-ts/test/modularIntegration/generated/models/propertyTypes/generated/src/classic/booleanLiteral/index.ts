@@ -1,31 +1,35 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ValueTypesContext } from "../../api/ValueTypesContext.js";
+import { ValueTypesContext } from "../../api/valueTypesContext.js";
 import { BooleanLiteralProperty } from "../../models/models.js";
 import {
   booleanLiteralGet,
   booleanLiteralPut,
 } from "../../api/booleanLiteral/index.js";
 import {
-  BooleanLiteralGetOptions,
-  BooleanLiteralPutOptions,
+  BooleanLiteralGetOptionalParams,
+  BooleanLiteralPutOptionalParams,
 } from "../../models/options.js";
 
 export interface BooleanLiteralOperations {
-  get: (options?: BooleanLiteralGetOptions) => Promise<BooleanLiteralProperty>;
+  get: (
+    options?: BooleanLiteralGetOptionalParams,
+  ) => Promise<BooleanLiteralProperty>;
   put: (
     body: BooleanLiteralProperty,
-    options?: BooleanLiteralPutOptions,
+    options?: BooleanLiteralPutOptionalParams,
   ) => Promise<void>;
 }
 
 export function getBooleanLiteral(context: ValueTypesContext) {
   return {
-    get: (options?: BooleanLiteralGetOptions) =>
+    get: (options?: BooleanLiteralGetOptionalParams) =>
       booleanLiteralGet(context, options),
-    put: (body: BooleanLiteralProperty, options?: BooleanLiteralPutOptions) =>
-      booleanLiteralPut(context, body, options),
+    put: (
+      body: BooleanLiteralProperty,
+      options?: BooleanLiteralPutOptionalParams,
+    ) => booleanLiteralPut(context, body, options),
   };
 }
 

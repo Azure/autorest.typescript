@@ -7,8 +7,8 @@ import {
   deserializeState,
   ResourceLocationConfig,
 } from "@azure/core-lro";
-import { AzureLoadTestingContext } from "./api/TestRunOperationsContext.js";
-import { TestRunOperationsClient } from "./TestRunOperationsClient.js";
+import { AzureLoadTestingContext } from "./api/testRunOperationsContext.js";
+import { TestRunOperationsClient } from "./testRunOperationsClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import { _testRunDeserialize } from "./api/operations.js";
 import {

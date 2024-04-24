@@ -11,11 +11,11 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { OneOptions, TwoOptions } from "../models/options.js";
+import { OneOptionalParams, TwoOptionalParams } from "../models/options.js";
 
 export function _oneSend(
   context: Client,
-  options: OneOptions = { requestOptions: {} },
+  options: OneOptionalParams = { requestOptions: {} },
 ): StreamableMethod<One204Response> {
   return context
     .path("/one")
@@ -32,7 +32,7 @@ export async function _oneDeserialize(result: One204Response): Promise<void> {
 
 export async function one(
   context: Client,
-  options: OneOptions = { requestOptions: {} },
+  options: OneOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _oneSend(context, options);
   return _oneDeserialize(result);
@@ -40,7 +40,7 @@ export async function one(
 
 export function _twoSend(
   context: Client,
-  options: TwoOptions = { requestOptions: {} },
+  options: TwoOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Two204Response> {
   return context
     .path("/two")
@@ -57,7 +57,7 @@ export async function _twoDeserialize(result: Two204Response): Promise<void> {
 
 export async function two(
   context: Client,
-  options: TwoOptions = { requestOptions: {} },
+  options: TwoOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _twoSend(context, options);
   return _twoDeserialize(result);

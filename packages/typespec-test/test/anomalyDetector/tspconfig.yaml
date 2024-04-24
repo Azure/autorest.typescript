@@ -4,10 +4,9 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     generateMetadata: true
-    generateTest: true
-    generateSample: true
     azureSdkForJs: false
     enableModelNamespace: true
+    isModularLibrary: true
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:
       name: "@msinternal/ai-anomaly-detector"

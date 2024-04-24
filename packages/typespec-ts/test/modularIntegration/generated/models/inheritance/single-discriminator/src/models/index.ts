@@ -13,11 +13,11 @@ export {
   DinosaurUnion,
 } from "./models.js";
 export {
-  GetModelOptions,
-  PutModelOptions,
-  GetRecursiveModelOptions,
-  PutRecursiveModelOptions,
-  GetMissingDiscriminatorOptions,
-  GetWrongDiscriminatorOptions,
-  GetLegacyModelOptions,
+  GetModelOptionalParams,
+  PutModelOptionalParams,
+  GetRecursiveModelOptionalParams,
+  PutRecursiveModelOptionalParams,
+  GetMissingDiscriminatorOptionalParams,
+  GetWrongDiscriminatorOptionalParams,
+  GetLegacyModelOptionalParams,
 } from "./options.js";

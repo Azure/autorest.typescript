@@ -1,23 +1,27 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ArrayContext } from "../../api/ArrayContext.js";
+import { ArrayContext } from "../../api/arrayContext.js";
 import { InnerModel } from "../../models/models.js";
 import { modelValueGet, modelValuePut } from "../../api/modelValue/index.js";
 import {
-  ModelValueGetOptions,
-  ModelValuePutOptions,
+  ModelValueGetOptionalParams,
+  ModelValuePutOptionalParams,
 } from "../../models/options.js";
 
 export interface ModelValueOperations {
-  get: (options?: ModelValueGetOptions) => Promise<InnerModel[]>;
-  put: (body: InnerModel[], options?: ModelValuePutOptions) => Promise<void>;
+  get: (options?: ModelValueGetOptionalParams) => Promise<InnerModel[]>;
+  put: (
+    body: InnerModel[],
+    options?: ModelValuePutOptionalParams,
+  ) => Promise<void>;
 }
 
 export function getModelValue(context: ArrayContext) {
   return {
-    get: (options?: ModelValueGetOptions) => modelValueGet(context, options),
-    put: (body: InnerModel[], options?: ModelValuePutOptions) =>
+    get: (options?: ModelValueGetOptionalParams) =>
+      modelValueGet(context, options),
+    put: (body: InnerModel[], options?: ModelValuePutOptionalParams) =>
       modelValuePut(context, body, options),
   };
 }

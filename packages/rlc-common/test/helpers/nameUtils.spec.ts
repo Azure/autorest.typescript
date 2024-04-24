@@ -23,7 +23,7 @@ describe("#normalizeName", () => {
   describe("for operation", () => {
     it("should return the name with the suffix 'Operation' if the name is a reserved name", () => {
       expect(normalizeName("export", NameType.Operation, true)).to.equal(
-        "exportOperation"
+        "export"
       );
     });
 

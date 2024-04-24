@@ -121,7 +121,9 @@ const buildDefaultReturn = (
   hasApiVersionInClient: boolean = false
 ) => {
   const defaultDef = !hasDefault
-    ? (hasApiVersionInClient? `options.apiVersion = options.apiVersion ?? apiVersion;`: "")
+    ? hasApiVersionInClient
+      ? `options.apiVersion = options.apiVersion ?? apiVersion;`
+      : ""
     : `options.apiVersion = options.apiVersion ?? "2022-05-15-preview";`;
   const apiVersionDef = !hasQueryDefinition
     ? `\n    client.pipeline.removePolicy({ name: "ApiVersionPolicy" });\n    \n`
@@ -133,11 +135,17 @@ const buildDefaultReturn = (
   
   /**
    * Initialize a new instance of \`testClient\`
-   * @param endpointParam - The endpoint to use.${hasApiVersionInClient && !hasDefault? "\n   * @param apiVersion - The parameter apiVersion": ""}
+   * @param endpointParam - The endpoint to use.${
+     hasApiVersionInClient && !hasDefault
+       ? "\n   * @param apiVersion - The parameter apiVersion"
+       : ""
+   }
    * @param options - the parameter for all optional parameters
    */
   export default function createClient(
-    endpointParam: string,${hasApiVersionInClient && !hasDefault? "\napiVersion: string,": ""}
+    endpointParam: string,${
+      hasApiVersionInClient && !hasDefault ? "\napiVersion: string," : ""
+    }
     options: ClientOptions = {}
   ): testClient {
     const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language\`;
@@ -168,9 +176,10 @@ const buildPathReturn_WithDefault = () => {
   import { getClient, ClientOptions } from "@azure-rest/core-client";
   import { logger } from "./logger.js";
   import { testClient } from "./clientDefinitions.js";
+  import { Versions } from "./models.js";
 
   export interface testClientOptions extends ClientOptions {
-    apiVersion?: string;
+    apiVersion?: Versions;
   }
   
   /**
@@ -213,16 +222,17 @@ const buildPathReturn_WithoutDefault = () => {
   import { getClient, ClientOptions } from "@azure-rest/core-client";
   import { logger } from "./logger.js";
   import { testClient } from "./clientDefinitions.js";
+  import { Versions } from "./models.js";
   
   /**
    * Initialize a new instance of \`testClient\`
    * @param endpointParam - The endpoint to use.
-   * @param apiVersion - Api Version Possible values: "2022-05-15-preview"
+   * @param apiVersion - Api Version
    * @param options - the parameter for all optional parameters
    */
   export default function createClient(
     endpointParam: string,
-    apiVersion: string,
+    apiVersion: Versions,
     options: ClientOptions = {}
   ): testClient {
     const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/anomalydetector/\${apiVersion}\`;

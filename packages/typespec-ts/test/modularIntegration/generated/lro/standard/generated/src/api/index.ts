@@ -1,13 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  createOrReplace,
-  deleteOperation,
-  exportOperation,
-} from "./operations.js";
+export { createOrReplace, $delete, $export } from "./operations.js";
 export {
   createStandard,
   StandardClientOptions,
   StandardContext,
-} from "./StandardContext.js";
+} from "./standardContext.js";

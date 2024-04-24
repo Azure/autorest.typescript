@@ -16,7 +16,8 @@ import {
   SchemaContext,
   UrlInfo,
   initInternalImports,
-  transformSampleGroups
+  transformSampleGroups,
+  Imports
 } from "@azure-tools/rlc-common";
 import { getDoc } from "@typespec/compiler";
 import { getServers } from "@typespec/http";
@@ -24,6 +25,7 @@ import { join } from "path";
 import {
   getDefaultService,
   getFormattedPropertyDoc,
+  getImportedModelName,
   getSchemaForType,
   getTypeName,
   predictDefaultValue
@@ -60,7 +62,7 @@ export async function transformRLCModel(
     NameType.Class
   );
   const importSet = initInternalImports();
-  const urlInfo = transformUrlInfo(client, dpgContext);
+  const urlInfo = transformUrlInfo(client, dpgContext, importSet);
   const paths: Paths = transformPaths(program, client, dpgContext);
   const schemas: Schema[] = transformSchemas(program, client, dpgContext);
   const responses: OperationResponse[] = transformToResponseTypes(
@@ -113,8 +115,11 @@ export async function transformRLCModel(
 
 export function transformUrlInfo(
   client: SdkClient,
-  dpgContext: SdkContext
+  dpgContext: SdkContext,
+  importDetails: Imports
 ): UrlInfo | undefined {
+  const importedModels = new Set<string>();
+  const usage = [SchemaContext.Exception, SchemaContext.Input];
   const program = dpgContext.program;
   const serviceNs = getDefaultService(program)?.type;
   let endpoint = undefined;
@@ -135,28 +140,36 @@ export function transformUrlInfo(
         }
 
         const schema = getSchemaForType(dpgContext, type, {
-          usage: [SchemaContext.Exception, SchemaContext.Input],
+          usage: usage,
           needRef: false,
           relevantProperty: property
         });
+        getImportedModelName(schema, usage)?.forEach(
+          importedModels.add,
+          importedModels
+        );
         urlParameters.push({
           oriName: key,
           name: normalizeName(key, NameType.Parameter, true),
-          type: getTypeName(schema),
+          type: getTypeName(schema, usage),
           description:
             (getDoc(program, property) &&
               getFormattedPropertyDoc(program, property, schema, " ")) ??
-            getFormattedPropertyDoc(program, type, schema, " " /* sperator*/),
+            getFormattedPropertyDoc(program, type, schema, " " /* separator*/),
           value: predictDefaultValue(dpgContext, host?.[0]?.parameters.get(key))
         });
       }
     }
+  }
+  if (importedModels.size > 0) {
+    importDetails.rlcClientFactory.importsSet = importedModels;
   }
   let hasApiVersionInUrl = false;
   if (endpoint && urlParameters.length > 0) {
     for (const param of urlParameters) {
       if (param.oriName === "apiVersion") {
         hasApiVersionInUrl = true;
+        dpgContext.hasApiVersionInClient = true;
       }
       if (param.oriName) {
         const regexp = new RegExp(`{${param.oriName}}`, "g");

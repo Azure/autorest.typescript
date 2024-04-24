@@ -38,3 +38,8 @@ export interface FormDataCheckFileNameAndContentType204Response
   extends HttpResponse {
   status: "204";
 }
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface FormDataAnonymousModel204Response extends HttpResponse {
+  status: "204";
+}

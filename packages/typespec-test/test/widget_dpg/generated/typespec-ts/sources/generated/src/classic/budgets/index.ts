@@ -1,25 +1,25 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { WidgetServiceContext } from "../../api/WidgetServiceContext.js";
+import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
 import { User } from "../../models/models.js";
 import { createOrReplace, createOrUpdate } from "../../api/budgets/index.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
-  BudgetsCreateOrReplaceOptions,
-  BudgetsCreateOrUpdateOptions,
+  BudgetsCreateOrReplaceOptionalParams,
+  BudgetsCreateOrUpdateOptionalParams,
 } from "../../models/options.js";
 
 export interface BudgetsOperations {
   createOrReplace: (
     name: string,
     resource: User,
-    options?: BudgetsCreateOrReplaceOptions,
+    options?: BudgetsCreateOrReplaceOptionalParams,
   ) => PollerLike<OperationState<User>, User>;
   createOrUpdate: (
     name: string,
     resource: User,
-    options?: BudgetsCreateOrUpdateOptions,
+    options?: BudgetsCreateOrUpdateOptionalParams,
   ) => PollerLike<OperationState<User>, User>;
 }
 
@@ -28,12 +28,12 @@ export function getBudgets(context: WidgetServiceContext) {
     createOrReplace: (
       name: string,
       resource: User,
-      options?: BudgetsCreateOrReplaceOptions,
+      options?: BudgetsCreateOrReplaceOptionalParams,
     ) => createOrReplace(context, name, resource, options),
     createOrUpdate: (
       name: string,
       resource: User,
-      options?: BudgetsCreateOrUpdateOptions,
+      options?: BudgetsCreateOrUpdateOptionalParams,
     ) => createOrUpdate(context, name, resource, options),
   };
 }

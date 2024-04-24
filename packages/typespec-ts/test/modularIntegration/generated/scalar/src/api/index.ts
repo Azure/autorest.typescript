@@ -5,7 +5,7 @@ export {
   createScalar,
   ScalarClientOptions,
   ScalarContext,
-} from "./ScalarContext.js";
+} from "./scalarContext.js";
 export { booleanGet, booleanPut } from "./boolean/index.js";
 export {
   decimal128TypeResponseBody,

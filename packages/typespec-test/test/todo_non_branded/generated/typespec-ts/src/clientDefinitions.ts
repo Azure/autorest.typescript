@@ -38,8 +38,8 @@ import {
   TodoItemsGet200Response,
   TodoItemsGet404Response,
   TodoItemsUpdate200Response,
-  TodoItemsDeleteOperation200Response,
-  TodoItemsDeleteOperation404Response,
+  TodoItemsDelete200Response,
+  TodoItemsDelete404Response,
   TodoItemsAttachmentsList200Response,
   TodoItemsAttachmentsList404Response,
   TodoItemsAttachmentsCreateUrlAttachment200Response,
@@ -117,9 +117,7 @@ export interface TodoItemsGet {
   ): StreamableMethod<TodoItemsUpdate200Response>;
   delete(
     options?: TodoItemsDeleteParameters,
-  ): StreamableMethod<
-    TodoItemsDeleteOperation200Response | TodoItemsDeleteOperation404Response
-  >;
+  ): StreamableMethod<TodoItemsDelete200Response | TodoItemsDelete404Response>;
 }
 
 export interface TodoItemsAttachmentsList {

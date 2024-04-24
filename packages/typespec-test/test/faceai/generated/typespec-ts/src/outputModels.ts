@@ -9,12 +9,6 @@ export interface LivenessSessionCreationResultOutput {
   authToken: string;
 }
 
-/** The ApiVersion path parameter. */
-export interface ApiVersionPathParameterOutput {}
-
-/** The request for list resources. */
-export interface ListRequestOptionsOutput {}
-
 /** Session result of detect liveness. */
 export interface LivenessSessionOutput {
   /** Device Correlation Id to use for linking multiple sessions together. */
@@ -31,12 +25,8 @@ export interface LivenessSessionOutput {
   sessionStartDateTime?: string;
   /** Whether or not the session is expired. */
   sessionExpired: boolean;
-  /**
-   * The session status.
-   *
-   * Possible values: "NotStarted", "Started", "ResultAvailable"
-   */
-  status: string;
+  /** The session status. */
+  status: SessionStatusOutput;
   /** The last result of session. */
   result?: LivenessSessionAuditEntryOutput;
 }
@@ -119,12 +109,8 @@ export interface LivenessWithVerifySessionOutput {
   sessionStartDateTime?: string;
   /** Whether or not the session is expired. */
   sessionExpired: boolean;
-  /**
-   * The session status.
-   *
-   * Possible values: "NotStarted", "Started", "ResultAvailable"
-   */
-  status: string;
+  /** The session status. */
+  status: SessionStatusOutput;
   /** The last result of session. */
   result?: LivenessWithVerifySessionAuditEntryOutput;
 }
@@ -148,3 +134,6 @@ export interface LivenessWithVerifySessionAuditEntryOutput {
   /** The digest of the request body. */
   digest: string;
 }
+
+/** Session status. */
+export type SessionStatusOutput = "NotStarted" | "Started" | "ResultAvailable";

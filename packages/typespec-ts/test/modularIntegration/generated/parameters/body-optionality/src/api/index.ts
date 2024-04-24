@@ -5,5 +5,5 @@ export {
   createBodyOptionality,
   BodyOptionalityClientOptions,
   BodyOptionalityContext,
-} from "./BodyOptionalityContext.js";
+} from "./bodyOptionalityContext.js";
 export { requiredExplicit, requiredImplicit } from "./operations.js";

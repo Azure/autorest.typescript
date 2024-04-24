@@ -33,7 +33,7 @@ export function getAzurePackageDependencies({
   hasPaging
 }: AzurePackageInfoConfig) {
   let dependencies: Record<string, string> = {
-    "@azure-rest/core-client": "^1.2.0",
+    "@azure-rest/core-client": "^1.4.0",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-rest-pipeline": "^1.5.0",
     "@azure/logger": "^1.0.0",
@@ -98,7 +98,7 @@ function getAzurePackageCjsDevDependencies({
     return {};
   }
   const testDevDependencies = {
-    c8: "^8.0.0",
+    nyc: "^15.1.0",
     mocha: "^10.0.0",
     "@types/mocha": "^10.0.0",
     "cross-env": "^7.0.2",

@@ -4,56 +4,7 @@
 import { expect } from "chai";
 import { buildPackageFile } from "../../src/metadata/buildPackageFile.js";
 import "mocha";
-import { PackageFlavor, RLCModel } from "../../src/interfaces.js";
-import {
-  buildRuntimeImports,
-  initInternalImports
-} from "../../src/helpers/importsUtil.js";
-
-type TestModelConfig = {
-  moduleKind?: "esm" | "cjs";
-  description?: string;
-  withTests?: boolean;
-  withSamples?: boolean;
-  isMonorepo?: boolean;
-  libraryName?: string;
-  version?: string;
-  flavor?: PackageFlavor;
-  srcPath?: string;
-  source?: "TypeSpec" | "Swagger";
-  monorepoPackageDirectory?: string;
-};
-
-function createMockModel(config: TestModelConfig = {}): RLCModel {
-  return {
-    importInfo: {
-      runtimeImports: buildRuntimeImports(config.flavor),
-      internalImports: initInternalImports()
-    },
-    libraryName: config.libraryName ?? "@msinternal/test",
-    // Package json file generation doesn't need paths information
-    paths: {},
-    // Package json file generation doesn't need schemas information
-    schemas: [],
-    srcPath: config.srcPath ?? "src",
-    options: {
-      azureOutputDirectory: config.monorepoPackageDirectory,
-      packageDetails: {
-        name: config.libraryName ?? "@msinternal/test",
-        version: config.version ?? "1.0.0",
-        description: config.description ?? "A test package",
-        nameWithoutScope: "test",
-        scopeName: "msinternal"
-      },
-      azureSdkForJs: config.isMonorepo ?? false,
-      flavor: config.flavor,
-      generateTest: config.withTests ?? false,
-      generateSample: config.withSamples ?? false,
-      moduleKind: config.moduleKind,
-      sourceFrom: config.source ?? "TypeSpec"
-    }
-  };
-}
+import { createMockModel, TestModelConfig } from "./mockHelper.js";
 
 describe("Package file generation", () => {
   describe("Flavor agnostic config", () => {
@@ -344,7 +295,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "build",
-        "npm run clean && tshy && api-extractor run --local"
+        "npm run clean && tshy && mkdirp ./review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "test:node",
@@ -361,6 +312,27 @@ describe("Package file generation", () => {
       expect(packageFile.scripts).to.have.property(
         "unit-test:node",
         "dev-tool run test:vitest --no-test-proxy"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "clean",
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "extract-api",
+        "rimraf review && mkdirp ./review && dev-tool run extract-api"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "integration-test",
+        "npm run integration-test:node && npm run integration-test:browser"
+      );
+      expect(packageFile.scripts).to.have.property("pack", "npm pack 2>&1");
+      expect(packageFile.scripts).to.have.property(
+        "unit-test",
+        "npm run unit-test:node && npm run unit-test:browser"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "format",
+        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"'
       );
     });
 
@@ -403,8 +375,8 @@ describe("Package file generation", () => {
         "karma-sourcemap-loader"
       );
       expect(packageFile.devDependencies).to.have.property("karma");
-      expect(packageFile.devDependencies).to.have.property("c8");
-      expect(packageFile.devDependencies).to.have.property("esm");
+      expect(packageFile.devDependencies).to.have.property("nyc");
+      expect(packageFile.devDependencies).to.have.property("tsx");
     });
 
     it("[cjs] should include correct scripts with tests", () => {
@@ -418,7 +390,7 @@ describe("Package file generation", () => {
 
       expect(packageFile.scripts).to.have.property(
         "build",
-        "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && api-extractor run --local"
+        "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "build:node",
@@ -430,7 +402,7 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "build:debug",
-        "tsc -p . && dev-tool run bundle && api-extractor run --local"
+        "tsc -p . && dev-tool run bundle && dev-tool run extract-api"
       );
       expect(packageFile.scripts).to.have.property(
         "integration-test:browser",
@@ -447,6 +419,27 @@ describe("Package file generation", () => {
       expect(packageFile.scripts).to.have.property(
         "unit-test:browser",
         "dev-tool run test:browser"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "clean",
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "extract-api",
+        "rimraf review && mkdirp ./review && dev-tool run extract-api"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "integration-test",
+        "npm run integration-test:node && npm run integration-test:browser"
+      );
+      expect(packageFile.scripts).to.have.property("pack", "npm pack 2>&1");
+      expect(packageFile.scripts).to.have.property(
+        "unit-test",
+        "npm run unit-test:node && npm run unit-test:browser"
+      );
+      expect(packageFile.scripts).to.have.property(
+        "format",
+        'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"'
       );
     });
   });
@@ -490,7 +483,7 @@ describe("Package file generation", () => {
       const packageFileContent = buildPackageFile(model);
       const packageFile = JSON.parse(packageFileContent?.content ?? "{}");
 
-      expect(packageFile.devDependencies).to.have.property("c8");
+      expect(packageFile.devDependencies).to.have.property("nyc");
       expect(packageFile.devDependencies).to.have.property("mocha");
       expect(packageFile.devDependencies).to.have.property("@types/mocha");
       expect(packageFile.devDependencies).to.have.property("cross-env");

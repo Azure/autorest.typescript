@@ -24,15 +24,15 @@ import {
 } from "@azure-rest/core-client";
 import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
 import {
-  ImagesCreateOptions,
-  ImagesCreateEditOptions,
-  ImagesCreateVariationOptions,
+  ImagesCreateOptionalParams,
+  ImagesCreateEditOptionalParams,
+  ImagesCreateVariationOptionalParams,
 } from "../../models/options.js";
 
 export function _createSend(
   context: Client,
   image: CreateImageRequest,
-  options: ImagesCreateOptions = { requestOptions: {} },
+  options: ImagesCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ImagesCreate200Response | ImagesCreateDefaultResponse> {
   return context
     .path("/images/generations")
@@ -70,7 +70,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   image: CreateImageRequest,
-  options: ImagesCreateOptions = { requestOptions: {} },
+  options: ImagesCreateOptionalParams = { requestOptions: {} },
 ): Promise<ImagesResponse> {
   const result = await _createSend(context, image, options);
   return _createDeserialize(result);
@@ -79,7 +79,7 @@ export async function create(
 export function _createEditSend(
   context: Client,
   image: CreateImageEditRequest,
-  options: ImagesCreateEditOptions = { requestOptions: {} },
+  options: ImagesCreateEditOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
 > {
@@ -125,7 +125,7 @@ export async function _createEditDeserialize(
 export async function createEdit(
   context: Client,
   image: CreateImageEditRequest,
-  options: ImagesCreateEditOptions = { requestOptions: {} },
+  options: ImagesCreateEditOptionalParams = { requestOptions: {} },
 ): Promise<ImagesResponse> {
   const result = await _createEditSend(context, image, options);
   return _createEditDeserialize(result);
@@ -134,7 +134,7 @@ export async function createEdit(
 export function _createVariationSend(
   context: Client,
   image: CreateImageVariationRequest,
-  options: ImagesCreateVariationOptions = { requestOptions: {} },
+  options: ImagesCreateVariationOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ImagesCreateVariation200Response | ImagesCreateVariationDefaultResponse
 > {
@@ -177,7 +177,7 @@ export async function _createVariationDeserialize(
 export async function createVariation(
   context: Client,
   image: CreateImageVariationRequest,
-  options: ImagesCreateVariationOptions = { requestOptions: {} },
+  options: ImagesCreateVariationOptionalParams = { requestOptions: {} },
 ): Promise<ImagesResponse> {
   const result = await _createVariationSend(context, image, options);
   return _createVariationDeserialize(result);

@@ -13,13 +13,13 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  BooleanLiteralGetOptions,
-  BooleanLiteralPutOptions,
+  BooleanLiteralGetOptionalParams,
+  BooleanLiteralPutOptionalParams,
 } from "../../models/options.js";
 
 export function _booleanLiteralGetSend(
   context: Client,
-  options: BooleanLiteralGetOptions = { requestOptions: {} },
+  options: BooleanLiteralGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<BooleanLiteralGet200Response> {
   return context
     .path("/type/property/value-types/boolean/literal")
@@ -41,7 +41,7 @@ export async function _booleanLiteralGetDeserialize(
 /** Get call */
 export async function booleanLiteralGet(
   context: Client,
-  options: BooleanLiteralGetOptions = { requestOptions: {} },
+  options: BooleanLiteralGetOptionalParams = { requestOptions: {} },
 ): Promise<BooleanLiteralProperty> {
   const result = await _booleanLiteralGetSend(context, options);
   return _booleanLiteralGetDeserialize(result);
@@ -50,7 +50,7 @@ export async function booleanLiteralGet(
 export function _booleanLiteralPutSend(
   context: Client,
   body: BooleanLiteralProperty,
-  options: BooleanLiteralPutOptions = { requestOptions: {} },
+  options: BooleanLiteralPutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<BooleanLiteralPut204Response> {
   return context
     .path("/type/property/value-types/boolean/literal")
@@ -74,7 +74,7 @@ export async function _booleanLiteralPutDeserialize(
 export async function booleanLiteralPut(
   context: Client,
   body: BooleanLiteralProperty,
-  options: BooleanLiteralPutOptions = { requestOptions: {} },
+  options: BooleanLiteralPutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _booleanLiteralPutSend(context, body, options);
   return _booleanLiteralPutDeserialize(result);

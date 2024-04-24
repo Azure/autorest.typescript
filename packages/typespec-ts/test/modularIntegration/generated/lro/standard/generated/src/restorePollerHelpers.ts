@@ -7,13 +7,13 @@ import {
   deserializeState,
   ResourceLocationConfig,
 } from "@azure/core-lro";
-import { StandardContext } from "./api/StandardContext.js";
-import { StandardClient } from "./StandardClient.js";
+import { StandardContext } from "./api/standardContext.js";
+import { StandardClient } from "./standardClient.js";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import {
   _createOrReplaceDeserialize,
-  _deleteOperationDeserialize,
-  _exportOperationDeserialize,
+  _$deleteDeserialize,
+  _$exportDeserialize,
 } from "./api/operations.js";
 import {
   PathUncheckedResponse,
@@ -81,9 +81,8 @@ export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
 
 const deserializeMap: Record<string, Function> = {
   "PUT /azure/core/lro/standard/users/{name}": _createOrReplaceDeserialize,
-  "DELETE /azure/core/lro/standard/users/{name}": _deleteOperationDeserialize,
-  "POST /azure/core/lro/standard/users/{name}:export":
-    _exportOperationDeserialize,
+  "DELETE /azure/core/lro/standard/users/{name}": _$deleteDeserialize,
+  "POST /azure/core/lro/standard/users/{name}:export": _$exportDeserialize,
 };
 
 function getDeserializationHelper(

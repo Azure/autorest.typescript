@@ -3,7 +3,7 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface LongRunningRpcOptions extends OperationOptions {
+export interface LongRunningRpcOptionalParams extends OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
 }

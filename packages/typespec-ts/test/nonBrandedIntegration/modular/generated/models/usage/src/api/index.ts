@@ -5,4 +5,4 @@ export {
   createUsage,
   UsageClientOptions,
   UsageContext,
-} from "./UsageContext.js";
+} from "./usageContext.js";

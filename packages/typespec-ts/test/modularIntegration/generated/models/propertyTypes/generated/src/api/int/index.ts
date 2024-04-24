@@ -12,11 +12,14 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { IntGetOptions, IntPutOptions } from "../../models/options.js";
+import {
+  IntGetOptionalParams,
+  IntPutOptionalParams,
+} from "../../models/options.js";
 
 export function _intGetSend(
   context: Client,
-  options: IntGetOptions = { requestOptions: {} },
+  options: IntGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<IntGet200Response> {
   return context
     .path("/type/property/value-types/int")
@@ -38,7 +41,7 @@ export async function _intGetDeserialize(
 /** Get call */
 export async function intGet(
   context: Client,
-  options: IntGetOptions = { requestOptions: {} },
+  options: IntGetOptionalParams = { requestOptions: {} },
 ): Promise<IntProperty> {
   const result = await _intGetSend(context, options);
   return _intGetDeserialize(result);
@@ -47,7 +50,7 @@ export async function intGet(
 export function _intPutSend(
   context: Client,
   body: IntProperty,
-  options: IntPutOptions = { requestOptions: {} },
+  options: IntPutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<IntPut204Response> {
   return context
     .path("/type/property/value-types/int")
@@ -71,7 +74,7 @@ export async function _intPutDeserialize(
 export async function intPut(
   context: Client,
   body: IntProperty,
-  options: IntPutOptions = { requestOptions: {} },
+  options: IntPutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _intPutSend(context, body, options);
   return _intPutDeserialize(result);

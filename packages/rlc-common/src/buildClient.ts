@@ -223,6 +223,25 @@ export function buildClient(model: RLCModel): File | undefined {
       )
     }
   ]);
+  if (
+    (model.importInfo.internalImports?.rlcClientFactory?.importsSet?.size ??
+      0) > 0
+  ) {
+    clientFile.addImportDeclarations([
+      {
+        namedImports: Array.from(
+          model.importInfo.internalImports.rlcClientFactory.importsSet!
+        ),
+        moduleSpecifier: getImportModuleName(
+          {
+            cjsName: `./models`,
+            esModulesName: `./models.js`
+          },
+          model
+        )
+      }
+    ]);
+  }
   return { path: filePath, content: clientFile.getFullText() };
 }
 

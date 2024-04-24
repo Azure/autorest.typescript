@@ -16,12 +16,12 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { LongRunningRpcOptions } from "../models/options.js";
+import { LongRunningRpcOptionalParams } from "../models/options.js";
 
 export function _longRunningRpcSend(
   context: Client,
   body: GenerationOptions,
-  options: LongRunningRpcOptions = { requestOptions: {} },
+  options: LongRunningRpcOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | LongRunningRpc202Response
   | LongRunningRpcDefaultResponse
@@ -62,7 +62,7 @@ export async function _longRunningRpcDeserialize(
 export function longRunningRpc(
   context: Client,
   body: GenerationOptions,
-  options: LongRunningRpcOptions = { requestOptions: {} },
+  options: LongRunningRpcOptionalParams = { requestOptions: {} },
 ): PollerLike<OperationState<GenerationResult>, GenerationResult> {
   return getLongRunningPoller(context, _longRunningRpcDeserialize, {
     updateIntervalInMs: options?.updateIntervalInMs,

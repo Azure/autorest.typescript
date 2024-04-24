@@ -16,3 +16,7 @@ export interface ExportedUser {
   /** The exported URI. */
   resourceUri: string;
 }
+
+/** The API version. */
+/** */
+export type Versions = "2022-12-01-preview";

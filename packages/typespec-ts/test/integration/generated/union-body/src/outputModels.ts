@@ -7,10 +7,12 @@ export interface RequestRegisterCCOutput
 }
 
 export interface CommonRegistrationRequestOutput {
-  /** Possible values: "01" */
-  payMethod: string;
+  payMethod: PAYMENT_METHODSOutput;
 }
 
 export interface RequestRegisterVAOutput {
   prop: string;
 }
+
+/** Alias for PAYMENT_METHODSOutput */
+export type PAYMENT_METHODSOutput = "01";

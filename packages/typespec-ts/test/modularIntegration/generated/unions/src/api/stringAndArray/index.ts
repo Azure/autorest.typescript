@@ -13,13 +13,13 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  StringAndArrayGetOptions,
-  StringAndArraySendOptions,
+  StringAndArrayGetOptionalParams,
+  StringAndArraySendOptionalParams,
 } from "../../models/options.js";
 
 export function _stringAndArrayGetSend(
   context: Client,
-  options: StringAndArrayGetOptions = { requestOptions: {} },
+  options: StringAndArrayGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<StringAndArrayGet200Response> {
   return context
     .path("/type/union/string-and-array")
@@ -43,7 +43,7 @@ export async function _stringAndArrayGetDeserialize(
 
 export async function stringAndArrayGet(
   context: Client,
-  options: StringAndArrayGetOptions = { requestOptions: {} },
+  options: StringAndArrayGetOptionalParams = { requestOptions: {} },
 ): Promise<{ prop: StringAndArrayCases }> {
   const result = await _stringAndArrayGetSend(context, options);
   return _stringAndArrayGetDeserialize(result);
@@ -52,7 +52,7 @@ export async function stringAndArrayGet(
 export function _stringAndArraySendSend(
   context: Client,
   prop: StringAndArrayCases,
-  options: StringAndArraySendOptions = { requestOptions: {} },
+  options: StringAndArraySendOptionalParams = { requestOptions: {} },
 ): StreamableMethod<StringAndArraySend204Response> {
   return context
     .path("/type/union/string-and-array")
@@ -75,7 +75,7 @@ export async function _stringAndArraySendDeserialize(
 export async function stringAndArraySend(
   context: Client,
   prop: StringAndArrayCases,
-  options: StringAndArraySendOptions = { requestOptions: {} },
+  options: StringAndArraySendOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _stringAndArraySendSend(context, prop, options);
   return _stringAndArraySendDeserialize(result);

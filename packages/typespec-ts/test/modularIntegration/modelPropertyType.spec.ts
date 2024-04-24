@@ -120,6 +120,10 @@ const testedTypes: TypeDetail[] = [
   {
     type: "union/float/literal",
     defaultValue: 46.875
+  },
+  {
+    type: "union-enum-value",
+    defaultValue: "value2"
   }
 ];
 
@@ -227,6 +231,9 @@ describe("ModelsPropertyTypesClient Rest Client", () => {
             break;
           case "union/float/literal":
             result = await client.unionFloatLiteral.get();
+            break;
+          case "union-enum-value":
+            result = await client.unionEnumValue.get();
             break;
           default:
             throw new Error(`Unknown type ${item.type}`);
@@ -372,6 +379,11 @@ describe("ModelsPropertyTypesClient Rest Client", () => {
             break;
           case "union/float/literal":
             result = await client.unionFloatLiteral.put({
+              property: item.defaultValue
+            });
+            break;
+          case "union-enum-value":
+            result = await client.unionEnumValue.put({
               property: item.defaultValue
             });
             break;

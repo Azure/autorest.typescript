@@ -5,9 +5,10 @@ export {
   withoutApiVersion,
   withQueryApiVersion,
   withPathApiVersion,
+  withQueryOldApiVersion,
 } from "./operations.js";
 export {
   createVersioned,
   VersionedClientOptions,
   VersionedContext,
-} from "./VersionedContext.js";
+} from "./versionedContext.js";

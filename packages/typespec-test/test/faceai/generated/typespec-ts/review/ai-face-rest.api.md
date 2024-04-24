@@ -20,10 +20,6 @@ import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
-export interface ApiVersionPathParameterOutput {
-}
-
-// @public
 function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): FaceClient;
 export default createClient;
 
@@ -459,10 +455,6 @@ export interface ListLivenessWithVerifySessionsQueryParamProperties {
 }
 
 // @public
-export interface ListRequestOptionsOutput {
-}
-
-// @public
 export interface LivenessSessionAuditEntryOutput {
     clientRequestId: string;
     digest: string;
@@ -508,7 +500,7 @@ export interface LivenessSessionOutput {
     result?: LivenessSessionAuditEntryOutput;
     sessionExpired: boolean;
     sessionStartDateTime?: string;
-    status: string;
+    status: SessionStatusOutput;
 }
 
 // @public
@@ -539,7 +531,7 @@ export interface LivenessWithVerifySessionOutput {
     result?: LivenessWithVerifySessionAuditEntryOutput;
     sessionExpired: boolean;
     sessionStartDateTime?: string;
-    status: string;
+    status: SessionStatusOutput;
 }
 
 // @public (undocumented)
@@ -567,6 +559,9 @@ export interface SessionAuditEntryResponseInfoOutput {
     latencyInMilliseconds: number;
     statusCode: number;
 }
+
+// @public
+export type SessionStatusOutput = "NotStarted" | "Started" | "ResultAvailable";
 
 // (No @packageDocumentation comment for this package)
 

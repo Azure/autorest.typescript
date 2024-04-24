@@ -13,12 +13,13 @@ export {
   ReleaseResult,
   RejectOptions,
   RejectResult,
+  ServiceApiVersions,
 } from "./models.js";
 export {
-  PublishCloudEventOptions,
-  PublishCloudEventsOptions,
-  ReceiveCloudEventsOptions,
-  AcknowledgeCloudEventsOptions,
-  ReleaseCloudEventsOptions,
-  RejectCloudEventsOptions,
+  PublishCloudEventOptionalParams,
+  PublishCloudEventsOptionalParams,
+  ReceiveCloudEventsOptionalParams,
+  AcknowledgeCloudEventsOptionalParams,
+  ReleaseCloudEventsOptionalParams,
+  RejectCloudEventsOptionalParams,
 } from "./options.js";

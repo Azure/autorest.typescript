@@ -16,17 +16,17 @@ import {
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
-  RequestBodyDefaultOptions,
-  RequestBodyOctetStreamOptions,
-  RequestBodyCustomContentTypeOptions,
-  RequestBodyBase64Options,
-  RequestBodyBase64urlOptions,
+  RequestBodyDefaultOptionalParams,
+  RequestBodyOctetStreamOptionalParams,
+  RequestBodyCustomContentTypeOptionalParams,
+  RequestBodyBase64OptionalParams,
+  RequestBodyBase64urlOptionalParams,
 } from "../../models/options.js";
 
 export function _requestBodyDefaultSend(
   context: Client,
   value: Uint8Array,
-  options: RequestBodyDefaultOptions = { requestOptions: {} },
+  options: RequestBodyDefaultOptionalParams = { requestOptions: {} },
 ): StreamableMethod<RequestBodyDefault204Response> {
   return context
     .path("/encode/bytes/body/request/default")
@@ -49,7 +49,7 @@ export async function _requestBodyDefaultDeserialize(
 export async function requestBodyDefault(
   context: Client,
   value: Uint8Array,
-  options: RequestBodyDefaultOptions = { requestOptions: {} },
+  options: RequestBodyDefaultOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _requestBodyDefaultSend(context, value, options);
   return _requestBodyDefaultDeserialize(result);
@@ -58,7 +58,7 @@ export async function requestBodyDefault(
 export function _requestBodyOctetStreamSend(
   context: Client,
   value: Uint8Array,
-  options: RequestBodyOctetStreamOptions = { requestOptions: {} },
+  options: RequestBodyOctetStreamOptionalParams = { requestOptions: {} },
 ): StreamableMethod<RequestBodyOctetStream204Response> {
   return context
     .path("/encode/bytes/body/request/octet-stream")
@@ -82,7 +82,7 @@ export async function _requestBodyOctetStreamDeserialize(
 export async function requestBodyOctetStream(
   context: Client,
   value: Uint8Array,
-  options: RequestBodyOctetStreamOptions = { requestOptions: {} },
+  options: RequestBodyOctetStreamOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _requestBodyOctetStreamSend(context, value, options);
   return _requestBodyOctetStreamDeserialize(result);
@@ -91,7 +91,7 @@ export async function requestBodyOctetStream(
 export function _requestBodyCustomContentTypeSend(
   context: Client,
   value: Uint8Array,
-  options: RequestBodyCustomContentTypeOptions = { requestOptions: {} },
+  options: RequestBodyCustomContentTypeOptionalParams = { requestOptions: {} },
 ): StreamableMethod<RequestBodyCustomContentType204Response> {
   return context
     .path("/encode/bytes/body/request/custom-content-type")
@@ -115,7 +115,7 @@ export async function _requestBodyCustomContentTypeDeserialize(
 export async function requestBodyCustomContentType(
   context: Client,
   value: Uint8Array,
-  options: RequestBodyCustomContentTypeOptions = { requestOptions: {} },
+  options: RequestBodyCustomContentTypeOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _requestBodyCustomContentTypeSend(
     context,
@@ -128,7 +128,7 @@ export async function requestBodyCustomContentType(
 export function _requestBodyBase64Send(
   context: Client,
   value: Uint8Array,
-  options: RequestBodyBase64Options = { requestOptions: {} },
+  options: RequestBodyBase64OptionalParams = { requestOptions: {} },
 ): StreamableMethod<RequestBodyBase64204Response> {
   return context
     .path("/encode/bytes/body/request/base64")
@@ -151,7 +151,7 @@ export async function _requestBodyBase64Deserialize(
 export async function requestBodyBase64(
   context: Client,
   value: Uint8Array,
-  options: RequestBodyBase64Options = { requestOptions: {} },
+  options: RequestBodyBase64OptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _requestBodyBase64Send(context, value, options);
   return _requestBodyBase64Deserialize(result);
@@ -160,13 +160,13 @@ export async function requestBodyBase64(
 export function _requestBodyBase64urlSend(
   context: Client,
   value: Uint8Array,
-  options: RequestBodyBase64urlOptions = { requestOptions: {} },
+  options: RequestBodyBase64urlOptionalParams = { requestOptions: {} },
 ): StreamableMethod<RequestBodyBase64url204Response> {
   return context
     .path("/encode/bytes/body/request/base64url")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: uint8ArrayToString(value, "base64"),
+      body: uint8ArrayToString(value, "base64url"),
     });
 }
 
@@ -183,7 +183,7 @@ export async function _requestBodyBase64urlDeserialize(
 export async function requestBodyBase64url(
   context: Client,
   value: Uint8Array,
-  options: RequestBodyBase64urlOptions = { requestOptions: {} },
+  options: RequestBodyBase64urlOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _requestBodyBase64urlSend(context, value, options);
   return _requestBodyBase64urlDeserialize(result);

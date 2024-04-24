@@ -397,11 +397,19 @@ export function getImmediateParentsNames(
         ? "Output"
         : "";
       const name = isDictionarySchema(parent)
-        ? `${
-            (schemaUsage.includes(SchemaContext.Output)
-              ? parent.outputTypeName
-              : parent.typeName) ?? parent.name
-          }`
+        ? Object.entries(objectSchema.properties!)?.some(
+            (prop) =>
+              `Record<string, ${prop[1].typeName ?? prop[1].type}>` !==
+              parent.typeName
+          )
+          ? schemaUsage.includes(SchemaContext.Output)
+            ? "Record<string, any>"
+            : "Record<string, unknown>"
+          : `${
+              (schemaUsage.includes(SchemaContext.Output)
+                ? parent.outputTypeName
+                : parent.typeName) ?? parent.name
+            }`
         : `${normalizeName(
             parent.name,
             NameType.Interface,

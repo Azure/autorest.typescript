@@ -5,7 +5,7 @@ export {
   createBytes,
   BytesClientOptions,
   BytesContext,
-} from "./BytesContext.js";
+} from "./bytesContext.js";
 export {
   headerDefault,
   headerBase64,

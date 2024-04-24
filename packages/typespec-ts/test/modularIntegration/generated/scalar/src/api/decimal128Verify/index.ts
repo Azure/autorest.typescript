@@ -12,13 +12,13 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  Decimal128VerifyPrepareVerifyOptions,
-  Decimal128VerifyVerifyOptions,
+  Decimal128VerifyPrepareVerifyOptionalParams,
+  Decimal128VerifyVerifyOptionalParams,
 } from "../../models/options.js";
 
 export function _decimal128VerifyPrepareVerifySend(
   context: Client,
-  options: Decimal128VerifyPrepareVerifyOptions = { requestOptions: {} },
+  options: Decimal128VerifyPrepareVerifyOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Decimal128VerifyPrepareVerify200Response> {
   return context
     .path("/type/scalar/decimal128/prepare_verify")
@@ -37,7 +37,7 @@ export async function _decimal128VerifyPrepareVerifyDeserialize(
 
 export async function decimal128VerifyPrepareVerify(
   context: Client,
-  options: Decimal128VerifyPrepareVerifyOptions = { requestOptions: {} },
+  options: Decimal128VerifyPrepareVerifyOptionalParams = { requestOptions: {} },
 ): Promise<number[]> {
   const result = await _decimal128VerifyPrepareVerifySend(context, options);
   return _decimal128VerifyPrepareVerifyDeserialize(result);
@@ -46,7 +46,7 @@ export async function decimal128VerifyPrepareVerify(
 export function _decimal128VerifyVerifySend(
   context: Client,
   body: number,
-  options: Decimal128VerifyVerifyOptions = { requestOptions: {} },
+  options: Decimal128VerifyVerifyOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Decimal128VerifyVerify204Response> {
   return context
     .path("/type/scalar/decimal128/verify")
@@ -66,7 +66,7 @@ export async function _decimal128VerifyVerifyDeserialize(
 export async function decimal128VerifyVerify(
   context: Client,
   body: number,
-  options: Decimal128VerifyVerifyOptions = { requestOptions: {} },
+  options: Decimal128VerifyVerifyOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _decimal128VerifyVerifySend(context, body, options);
   return _decimal128VerifyVerifyDeserialize(result);

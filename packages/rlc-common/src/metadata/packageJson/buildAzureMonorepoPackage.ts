@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { getPackageCommonInfo } from "./packageCommon.js";
+import {
+  getCommonPackageScripts,
+  getPackageCommonInfo
+} from "./packageCommon.js";
 
 import {
   getAzurePackageDevDependencies,
@@ -160,8 +163,8 @@ function getCjsDevDependencies({
       "karma-source-map-support": "~1.4.0",
       "karma-sourcemap-loader": "^0.3.8",
       karma: "^6.2.0",
-      c8: "^8.0.0",
-      esm: "^3.2.18"
+      nyc: "^15.1.0",
+      tsx: "^4.7.1"
     };
   }
 
@@ -188,12 +191,15 @@ function getAzureMonorepoScripts(config: AzureMonorepoInfoConfig) {
   const esmScripts = getEsmScripts(config);
   const cjsScripts = getCjsScripts(config);
   return {
+    ...getCommonPackageScripts(config),
     audit:
       "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
     "build:samples": "dev-tool samples publish --force",
     "check-format":
       'dev-tool run vendored prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"',
     "execute:samples": "dev-tool samples run samples-dev",
+    "extract-api":
+      "rimraf review && mkdirp ./review && dev-tool run extract-api",
     format:
       'dev-tool run vendored prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.{ts,cts,mts}" "test/**/*.{ts,cts,mts}" "*.{js,cjs,mjs,json}"',
     "integration-test:browser": "echo skipped",
@@ -218,7 +224,8 @@ function getEsmScripts({ moduleKind }: AzureMonorepoInfoConfig) {
 
   return {
     "build:test": "npm run clean && tshy && dev-tool run build-test",
-    build: "npm run clean && tshy && api-extractor run --local",
+    build:
+      "npm run clean && tshy && mkdirp ./review && dev-tool run extract-api",
     "test:node":
       "npm run clean && tshy && npm run unit-test:node && npm run integration-test:node",
     test: "npm run clean && tshy && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test",
@@ -235,11 +242,11 @@ function getCjsScripts({ moduleKind }: AzureMonorepoInfoConfig) {
 
   return {
     build:
-      "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && api-extractor run --local",
+      "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && dev-tool run extract-api",
     "build:node": "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1",
     "build:test": "tsc -p . && dev-tool run bundle",
     "build:debug":
-      "tsc -p . && dev-tool run bundle && api-extractor run --local",
+      "tsc -p . && dev-tool run bundle && dev-tool run extract-api",
     "integration-test:browser": "dev-tool run test:browser",
     "integration-test:node":
       "dev-tool run test:node-js-input -- --timeout 5000000 'dist-esm/test/**/*.spec.js'",

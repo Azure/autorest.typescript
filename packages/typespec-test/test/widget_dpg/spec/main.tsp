@@ -148,7 +148,7 @@ result in an error.
         @statusCode code: 201;
         @body widget: Widget;
     } | WidgetError;
- 
+
     @route("/widgets/createOrReplace")
     op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User>;
 
@@ -169,7 +169,6 @@ are optional and will be updated within the widget if provided.
         @path id: string
     ): AnalyzeResult | WidgetError;
 }
-
 
 @route("/budgets")
 @tag("Widgets")

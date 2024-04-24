@@ -62,8 +62,12 @@ export interface NonReferencedModel {
   prop2: string;
 }
 
+/** The Contoso Widget Manager service version. */
+/** */
+export type Versions = "1.0.0";
+
 /** Provides status details for long running operations. */
-export interface OperationStatus {
+export interface OperationStatusUserError {
   /** The unique ID of the operation. */
   id: string;
   /** The status of the operation */

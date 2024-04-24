@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ServiceContext } from "../../../api/ServiceContext.js";
+import { ServiceContext } from "../../../api/serviceContext.js";
 import { seven } from "../../../api/baz/foo/index.js";
-import { BazFooSevenOptions } from "../../../models/options.js";
+import { BazFooSevenOptionalParams } from "../../../models/options.js";
 
 export interface BazFooOperations {
-  seven: (options?: BazFooSevenOptions) => Promise<void>;
+  seven: (options?: BazFooSevenOptionalParams) => Promise<void>;
 }
 
 export function getBazFoo(context: ServiceContext) {
   return {
-    seven: (options?: BazFooSevenOptions) => seven(context, options),
+    seven: (options?: BazFooSevenOptionalParams) => seven(context, options),
   };
 }
 

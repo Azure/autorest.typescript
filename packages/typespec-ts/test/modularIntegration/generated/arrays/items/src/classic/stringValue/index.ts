@@ -1,22 +1,26 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ArrayContext } from "../../api/ArrayContext.js";
+import { ArrayContext } from "../../api/arrayContext.js";
 import { stringValueGet, stringValuePut } from "../../api/stringValue/index.js";
 import {
-  StringValueGetOptions,
-  StringValuePutOptions,
+  StringValueGetOptionalParams,
+  StringValuePutOptionalParams,
 } from "../../models/options.js";
 
 export interface StringValueOperations {
-  get: (options?: StringValueGetOptions) => Promise<string[]>;
-  put: (body: string[], options?: StringValuePutOptions) => Promise<void>;
+  get: (options?: StringValueGetOptionalParams) => Promise<string[]>;
+  put: (
+    body: string[],
+    options?: StringValuePutOptionalParams,
+  ) => Promise<void>;
 }
 
 export function getStringValue(context: ArrayContext) {
   return {
-    get: (options?: StringValueGetOptions) => stringValueGet(context, options),
-    put: (body: string[], options?: StringValuePutOptions) =>
+    get: (options?: StringValueGetOptionalParams) =>
+      stringValueGet(context, options),
+    put: (body: string[], options?: StringValuePutOptionalParams) =>
       stringValuePut(context, body, options),
   };
 }

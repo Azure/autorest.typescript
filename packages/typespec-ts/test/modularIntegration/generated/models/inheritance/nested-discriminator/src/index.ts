@@ -4,7 +4,7 @@
 export {
   NestedDiscriminatorClient,
   NestedDiscriminatorClientOptions,
-} from "./NestedDiscriminatorClient.js";
+} from "./nestedDiscriminatorClient.js";
 export {
   Fish,
   Shark,
@@ -13,10 +13,10 @@ export {
   Salmon,
   FishUnion,
   SharkUnion,
-  GetModelOptions,
-  PutModelOptions,
-  GetRecursiveModelOptions,
-  PutRecursiveModelOptions,
-  GetMissingDiscriminatorOptions,
-  GetWrongDiscriminatorOptions,
+  GetModelOptionalParams,
+  PutModelOptionalParams,
+  GetRecursiveModelOptionalParams,
+  PutRecursiveModelOptionalParams,
+  GetMissingDiscriminatorOptionalParams,
+  GetWrongDiscriminatorOptionalParams,
 } from "./models/index.js";

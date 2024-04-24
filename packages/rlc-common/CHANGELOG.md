@@ -1,3 +1,32 @@
+## 0.27.0 (2024-04-18)
+
+- [Feature] Support server parameter in modular. Please refer to [#2424](https://github.com/Azure/autorest.typescript/pull/2424).
+- [Feature] Support special words. Please refer to [#2387](https://github.com/Azure/autorest.typescript/pull/2387).
+- [Feature] Support additional properties full cases in RLC. Please refer to [#2445](https://github.com/Azure/autorest.typescript/pull/2445).
+- [Feature] Support the change for union and enums in modular and RLC. Please refer to [#2380](https://github.com/Azure/autorest.typescript/pull/2380).
+- [Feature] Upgrade typespec compiler to 0.55.0. Please refer to [#2380](https://github.com/Azure/autorest.typescript/pull/2380).
+- [Feature] Bump typescript version to typescript@~5.4.5. Please refer to [#2442](https://github.com/Azure/autorest.typescript/pull/2442).
+- [Feature] Update @azure-rest/core-client to 1.4.0.. Please refer to [#2441](https://github.com/Azure/autorest.typescript/pull/2441).
+- [Feature] Upgrade mkdirp to ^3.0.1. Please refer to [#2436](https://github.com/Azure/autorest.typescript/pull/2436).
+- [Bugfix] Fix missing `pack` scripts in package.json. Please refer to [#2426](https://github.com/Azure/autorest.typescript/pull/2426).
+
+## 0.26.1 (2024-04-04)
+
+- [Bugfix] Fix missing scripts in package.json file. Please refer to [#2402](https://github.com/Azure/autorest.typescript/pull/2402).
+
+## 0.26.0 (2024-04-03)
+
+- [Feature] Enable esm for RLC generation from TypeSpec. Please refer to [#2338](https://github.com/Azure/autorest.typescript/pull/2338).
+- [Feature] Support usage and access. Please refer to [#2356](https://github.com/Azure/autorest.typescript/pull/2356).
+- [Feature] Support server versions in modular. Please refer to [#2261](https://github.com/Azure/autorest.typescript/pull/2261).
+- [Feature] Deprecate baseurl in favor of endpoint in RLC. Please refer to [#2246](https://github.com/Azure/autorest.typescript/pull/2246).
+- [Bugfix] Fix error model rename issue. Please refer to [#2379](https://github.com/Azure/autorest.typescript/pull/2379).
+- [Bugfix] Fix issues: anonymous array model import and sample mock value for credential. Please refer to [#2342](https://github.com/Azure/autorest.typescript/pull/2342).
+
+## 0.25.0 (2024-03-08)
+
+- [Feature] Upgrade @azure-tools/typespec-client-generator-core to 0.40.0. Please refer to [#2341](https://github.com/Azure/autorest.typescript/pull/2341).
+
 ## 0.24.0 (2024-03-07)
 
 - [Feature] Upgrade TypeSpec compiler to 0.54.0. Please refer to [#2334](https://github.com/Azure/autorest.typescript/pull/2334).

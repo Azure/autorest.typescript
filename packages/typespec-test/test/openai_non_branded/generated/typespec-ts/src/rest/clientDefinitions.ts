@@ -59,8 +59,8 @@ import {
   FilesCreateDefaultResponse,
   FilesRetrieve200Response,
   FilesRetrieveDefaultResponse,
-  FilesDeleteOperation200Response,
-  FilesDeleteOperationDefaultResponse,
+  FilesDelete200Response,
+  FilesDeleteDefaultResponse,
   FilesDownload200Response,
   FilesDownloadDefaultResponse,
   FineTunesCreate200Response,
@@ -77,8 +77,8 @@ import {
   ModelsListDefaultResponse,
   ModelsRetrieve200Response,
   ModelsRetrieveDefaultResponse,
-  ModelsDeleteOperation200Response,
-  ModelsDeleteOperationDefaultResponse,
+  ModelsDelete200Response,
+  ModelsDeleteDefaultResponse,
   ImagesCreate200Response,
   ImagesCreateDefaultResponse,
   ImagesCreateEdit200Response,
@@ -198,9 +198,7 @@ export interface FilesRetrieve {
   ): StreamableMethod<FilesRetrieve200Response | FilesRetrieveDefaultResponse>;
   delete(
     options?: FilesDeleteParameters,
-  ): StreamableMethod<
-    FilesDeleteOperation200Response | FilesDeleteOperationDefaultResponse
-  >;
+  ): StreamableMethod<FilesDelete200Response | FilesDeleteDefaultResponse>;
 }
 
 export interface FilesDownload {
@@ -258,9 +256,7 @@ export interface ModelsRetrieve {
   >;
   delete(
     options?: ModelsDeleteParameters,
-  ): StreamableMethod<
-    ModelsDeleteOperation200Response | ModelsDeleteOperationDefaultResponse
-  >;
+  ): StreamableMethod<ModelsDelete200Response | ModelsDeleteDefaultResponse>;
 }
 
 export interface ImagesCreate {

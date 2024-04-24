@@ -1,31 +1,35 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ValueTypesContext } from "../../api/ValueTypesContext.js";
+import { ValueTypesContext } from "../../api/valueTypesContext.js";
 import { ExtensibleEnumProperty } from "../../models/models.js";
 import {
   extensibleEnumGet,
   extensibleEnumPut,
 } from "../../api/extensibleEnum/index.js";
 import {
-  ExtensibleEnumGetOptions,
-  ExtensibleEnumPutOptions,
+  ExtensibleEnumGetOptionalParams,
+  ExtensibleEnumPutOptionalParams,
 } from "../../models/options.js";
 
 export interface ExtensibleEnumOperations {
-  get: (options?: ExtensibleEnumGetOptions) => Promise<ExtensibleEnumProperty>;
+  get: (
+    options?: ExtensibleEnumGetOptionalParams,
+  ) => Promise<ExtensibleEnumProperty>;
   put: (
     body: ExtensibleEnumProperty,
-    options?: ExtensibleEnumPutOptions,
+    options?: ExtensibleEnumPutOptionalParams,
   ) => Promise<void>;
 }
 
 export function getExtensibleEnum(context: ValueTypesContext) {
   return {
-    get: (options?: ExtensibleEnumGetOptions) =>
+    get: (options?: ExtensibleEnumGetOptionalParams) =>
       extensibleEnumGet(context, options),
-    put: (body: ExtensibleEnumProperty, options?: ExtensibleEnumPutOptions) =>
-      extensibleEnumPut(context, body, options),
+    put: (
+      body: ExtensibleEnumProperty,
+      options?: ExtensibleEnumPutOptionalParams,
+    ) => extensibleEnumPut(context, body, options),
   };
 }
 

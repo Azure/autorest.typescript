@@ -6,4 +6,4 @@ export {
   createPageable,
   PageableClientOptions,
   PageableContext,
-} from "./PageableContext.js";
+} from "./pageableContext.js";

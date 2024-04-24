@@ -17,3 +17,8 @@ export interface WithQueryApiVersion200Response extends HttpResponse {
 export interface WithPathApiVersion200Response extends HttpResponse {
   status: "200";
 }
+
+/** The request has succeeded. */
+export interface WithQueryOldApiVersion200Response extends HttpResponse {
+  status: "200";
+}

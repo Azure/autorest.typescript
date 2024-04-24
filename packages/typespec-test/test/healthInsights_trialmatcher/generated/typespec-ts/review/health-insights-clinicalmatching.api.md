@@ -21,7 +21,7 @@ import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
 export interface AcceptedAge {
-    unit: string;
+    unit: AgeUnit;
     value: number;
 }
 
@@ -32,15 +32,18 @@ export interface AcceptedAgeRange {
 }
 
 // @public
+export type AgeUnit = "years" | "months" | "days";
+
+// @public
 export interface AreaGeometry {
     coordinates: number[];
-    type: string;
+    type: GeoJsonGeometryType;
 }
 
 // @public
 export interface AreaProperties {
     radius: number;
-    subType: string;
+    subType: GeoJsonPropertiesSubType;
 }
 
 // @public
@@ -60,6 +63,9 @@ export interface ClinicalCodedElementOutput {
 }
 
 // @public
+export type ClinicalDocumentType = "consultation" | "dischargeSummary" | "historyAndPhysical" | "procedure" | "progress" | "imaging" | "laboratory" | "pathology";
+
+// @public
 export interface ClinicalNoteEvidenceOutput {
     id: string;
     length: number;
@@ -68,9 +74,12 @@ export interface ClinicalNoteEvidenceOutput {
 }
 
 // @public
+export type ClinicalTrialAcceptedSex = "all" | "female" | "male";
+
+// @public
 export interface ClinicalTrialDemographics {
     acceptedAgeRange?: AcceptedAgeRange;
-    acceptedSex?: string;
+    acceptedSex?: ClinicalTrialAcceptedSex;
 }
 
 // @public
@@ -86,10 +95,10 @@ export interface ClinicalTrialMetadata {
     conditions: string[];
     contacts?: Array<ContactDetails>;
     facilities?: Array<ClinicalTrialResearchFacility>;
-    phases?: string[];
-    recruitmentStatus?: string;
+    phases?: ClinicalTrialPhase[];
+    recruitmentStatus?: ClinicalTrialRecruitmentStatus;
     sponsors?: string[];
-    studyType?: string;
+    studyType?: ClinicalTrialStudyType;
 }
 
 // @public
@@ -97,11 +106,26 @@ export interface ClinicalTrialMetadataOutput {
     conditions: string[];
     contacts?: Array<ContactDetailsOutput>;
     facilities?: Array<ClinicalTrialResearchFacilityOutput>;
-    phases?: string[];
-    recruitmentStatus?: string;
+    phases?: ClinicalTrialPhaseOutput[];
+    recruitmentStatus?: ClinicalTrialRecruitmentStatusOutput;
     sponsors?: string[];
-    studyType?: string;
+    studyType?: ClinicalTrialStudyTypeOutput;
 }
+
+// @public
+export type ClinicalTrialPhase = "notApplicable" | "earlyPhase1" | "phase1" | "phase2" | "phase3" | "phase4";
+
+// @public
+export type ClinicalTrialPhaseOutput = "notApplicable" | "earlyPhase1" | "phase1" | "phase2" | "phase3" | "phase4";
+
+// @public
+export type ClinicalTrialPurpose = "notApplicable" | "screening" | "diagnostic" | "prevention" | "healthServicesResearch" | "treatment" | "deviceFeasibility" | "supportiveCare" | "basicScience" | "other";
+
+// @public
+export type ClinicalTrialRecruitmentStatus = "unknownStatus" | "notYetRecruiting" | "recruiting" | "enrollingByInvitation";
+
+// @public
+export type ClinicalTrialRecruitmentStatusOutput = "unknownStatus" | "notYetRecruiting" | "recruiting" | "enrollingByInvitation";
 
 // @public
 export interface ClinicalTrialRegistryFilter {
@@ -110,12 +134,12 @@ export interface ClinicalTrialRegistryFilter {
     facilityLocations?: Array<GeographicLocation>;
     facilityNames?: string[];
     ids?: string[];
-    phases?: string[];
-    purposes?: string[];
-    recruitmentStatuses?: string[];
-    sources?: string[];
+    phases?: ClinicalTrialPhase[];
+    purposes?: ClinicalTrialPurpose[];
+    recruitmentStatuses?: ClinicalTrialRecruitmentStatus[];
+    sources?: ClinicalTrialSource[];
     sponsors?: string[];
-    studyTypes?: string[];
+    studyTypes?: ClinicalTrialStudyType[];
 }
 
 // @public
@@ -139,6 +163,18 @@ export interface ClinicalTrials {
     customTrials?: Array<ClinicalTrialDetails>;
     registryFilters?: Array<ClinicalTrialRegistryFilter>;
 }
+
+// @public
+export type ClinicalTrialSource = "custom" | "clinicaltrials.gov";
+
+// @public
+export type ClinicalTrialSourceOutput = "custom" | "clinicaltrials.gov";
+
+// @public
+export type ClinicalTrialStudyType = "interventional" | "observational" | "expandedAccess" | "patientRegistries";
+
+// @public
+export type ClinicalTrialStudyTypeOutput = "interventional" | "observational" | "expandedAccess" | "patientRegistries";
 
 // @public
 export interface ContactDetails {
@@ -232,9 +268,15 @@ export type CreateJobParameters = CreateJobHeaderParam & CreateJobBodyParam & Re
 
 // @public
 export interface DocumentContent {
-    sourceType: string;
+    sourceType: DocumentContentSourceType;
     value: string;
 }
+
+// @public
+export type DocumentContentSourceType = "inline" | "reference";
+
+// @public
+export type DocumentType = "note" | "fhirBundle" | "dicom" | "genomicSequencing";
 
 // @public
 export interface ExtendedClinicalCodedElementOutput {
@@ -250,7 +292,7 @@ export interface ExtendedClinicalCodedElementOutput {
 export interface GeographicArea {
     geometry: AreaGeometry;
     properties: AreaProperties;
-    type: string;
+    type: GeoJsonType;
 }
 
 // @public
@@ -259,6 +301,15 @@ export interface GeographicLocation {
     countryOrRegion: string;
     state?: string;
 }
+
+// @public
+export type GeoJsonGeometryType = "Point";
+
+// @public
+export type GeoJsonPropertiesSubType = "Circle";
+
+// @public
+export type GeoJsonType = "Feature";
 
 // @public (undocumented)
 export interface GetJob {
@@ -306,21 +357,27 @@ export function isUnexpected(response: GetJob200Response | GetJobDefaultResponse
 export function isUnexpected(response: CreateJob200Response | CreateJob202Response | CreateJobLogicalResponse | CreateJobDefaultResponse): response is CreateJobDefaultResponse;
 
 // @public
+export type JobStatusOutput = "notStarted" | "running" | "succeeded" | "failed" | "partiallyCompleted";
+
+// @public
 export interface PatientDocument {
-    clinicalType?: string;
+    clinicalType?: ClinicalDocumentType;
     content: DocumentContent;
     createdDateTime?: Date | string;
     id: string;
     language?: string;
-    type: string;
+    type: DocumentType;
 }
 
 // @public
 export interface PatientInfo {
     birthDate?: Date | string;
     clinicalInfo?: Array<ClinicalCodedElement>;
-    sex?: string;
+    sex?: PatientInfoSex;
 }
+
+// @public
+export type PatientInfoSex = "female" | "male" | "unspecified";
 
 // @public
 export interface PatientRecord {
@@ -380,10 +437,13 @@ export interface TrialMatcherInferenceOutput {
     evidence?: Array<TrialMatcherInferenceEvidenceOutput>;
     id?: string;
     metadata?: ClinicalTrialMetadataOutput;
-    source?: string;
-    type: string;
+    source?: ClinicalTrialSourceOutput;
+    type: TrialMatcherInferenceTypeOutput;
     value: string;
 }
+
+// @public
+export type TrialMatcherInferenceTypeOutput = "trialEligibility";
 
 // @public
 export interface TrialMatcherModelConfiguration {
@@ -407,7 +467,7 @@ export interface TrialMatcherResultOutput {
     readonly jobId: string;
     readonly lastUpdateDateTime: string;
     readonly results?: TrialMatcherResultsOutput;
-    readonly status: string;
+    readonly status: JobStatusOutput;
 }
 
 // @public
