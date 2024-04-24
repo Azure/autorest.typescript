@@ -5,6 +5,7 @@ describe("NameAndEncodedName Client", () => {
 
   beforeEach(() => {
     client = new JsonClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

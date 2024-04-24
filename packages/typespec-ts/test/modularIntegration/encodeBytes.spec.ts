@@ -8,6 +8,7 @@ describe("EncodeBytesClient Modular Client", () => {
 
   beforeEach(() => {
     client = new BytesClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

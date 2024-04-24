@@ -47,4 +47,12 @@ async function main() {
   await generateTypeSpecs(tag, isDebugging);
 }
 
-await main();
+let exitCode = 0;
+try {
+  await main();
+} catch (e) {
+  console.error(e);
+  exitCode = 1;
+} finally {
+  process.exit(exitCode);
+}

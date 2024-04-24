@@ -60,8 +60,8 @@ export async function runTypespec(config, mode) {
     logger.log(`=== End ${targetFolder} ===`);
   } catch (e) {
     logger.error(e.toString());
-    process.exitCode = 1;
   } finally {
     logger.flush();
+    throw e;
   }
 }

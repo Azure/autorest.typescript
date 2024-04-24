@@ -9,6 +9,7 @@ describe("NotDiscriminatedClient Rest Client", () => {
 
   beforeEach(() => {
     client = new NotDiscriminatedClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
   });

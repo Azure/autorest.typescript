@@ -6,6 +6,7 @@ describe("Repeatability Client", () => {
 
   beforeEach(() => {
     client = new RepeatabilityClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
   });
