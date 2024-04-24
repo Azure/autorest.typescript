@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { RecognitionModel } from "./models.js";
 import {
   GetFaceOperationStatusParameters,
   DetectFromUrlParameters,
@@ -1763,13 +1764,13 @@ export interface Routes {
   (
     path: "/persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces",
     personId: string,
-    recognitionModel: object,
+    recognitionModel: RecognitionModel,
   ): AddPersonFace;
   /** Resource for '/persons/\{personId\}/recognitionModels/\{recognitionModel\}/persistedfaces/\{persistedFaceId\}' has methods for the following verbs: delete, get, patch */
   (
     path: "/persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces/{persistedFaceId}",
     personId: string,
-    recognitionModel: object,
+    recognitionModel: RecognitionModel,
     persistedFaceId: string,
   ): DeletePersonFace;
   /** Resource for '/dynamicpersongroups/\{dynamicPersonGroupId\}' has methods for the following verbs: put, delete, get, patch */
