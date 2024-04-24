@@ -6,6 +6,8 @@
 
 /// <reference types="node" />
 
+import { AbortSignalLike } from '@azure/abort-controller';
+import { CancelOnProgress } from '@azure/core-lro';
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { CreateHttpPollerOptions } from '@azure/core-lro';
@@ -17,12 +19,8 @@ import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
-import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
-
-// @public
-export type AggregationTypeOutput = "Average" | "Count" | "None" | "Total" | "Percentile90" | "Percentile95" | "Percentile99";
 
 // @public
 export interface AppComponent {
@@ -51,22 +49,16 @@ export type AzureLoadTestingClient = Client & {
 // @public
 export interface CertificateMetadata {
     name?: string;
-    type?: CertificateType;
+    type?: string;
     value?: string;
 }
 
 // @public
 export interface CertificateMetadataOutput {
     name?: string;
-    type?: CertificateTypeOutput;
+    type?: string;
     value?: string;
 }
-
-// @public
-export type CertificateType = "AKV_CERT_URI";
-
-// @public
-export type CertificateTypeOutput = "AKV_CERT_URI";
 
 // @public
 function createClient(endpointParam: string, credentials: TokenCredential, options?: ClientOptions): AzureLoadTestingClient;
@@ -103,33 +95,21 @@ export interface ErrorDetailsOutput {
 export interface FileInfo {
     expireDateTime?: string;
     fileName?: string;
-    fileType?: FileType;
+    fileType?: string;
     url?: string;
     validationFailureDetails?: string;
-    validationStatus?: FileStatus;
+    validationStatus?: string;
 }
 
 // @public
 export interface FileInfoOutput {
     expireDateTime?: string;
     fileName?: string;
-    fileType?: FileTypeOutput;
+    fileType?: string;
     url?: string;
     validationFailureDetails?: string;
-    validationStatus?: FileStatusOutput;
+    validationStatus?: string;
 }
-
-// @public
-export type FileStatus = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE" | "VALIDATION_INITIATED" | "VALIDATION_NOT_REQUIRED";
-
-// @public
-export type FileStatusOutput = "NOT_VALIDATED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE" | "VALIDATION_INITIATED" | "VALIDATION_NOT_REQUIRED";
-
-// @public
-export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
-
-// @public
-export type FileTypeOutput = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
 
 // @public
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
@@ -142,9 +122,6 @@ export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise
     page: TPage;
     nextPageLink?: string;
 }>;
-
-// @public
-export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public (undocumented)
 export function isUnexpected(response: LoadTestAdministrationCreateOrUpdateTest200Response | LoadTestAdministrationCreateOrUpdateTest201Response | LoadTestAdministrationCreateOrUpdateTestDefaultResponse): response is LoadTestAdministrationCreateOrUpdateTestDefaultResponse;
@@ -659,7 +636,7 @@ export interface LoadTestAdministrationUploadTestFileQueryParam {
 
 // @public (undocumented)
 export interface LoadTestAdministrationUploadTestFileQueryParamProperties {
-    fileType?: FileType;
+    fileType?: string;
 }
 
 // @public
@@ -1052,7 +1029,7 @@ export interface LoadTestRunListMetricDimensionValuesQueryParam {
 
 // @public (undocumented)
 export interface LoadTestRunListMetricDimensionValuesQueryParamProperties {
-    interval?: Interval;
+    interval?: string;
     metricName?: string;
     metricNamespace: string;
     timespan?: string;
@@ -1134,7 +1111,7 @@ export interface LoadTestRunListMetricsQueryParam {
 // @public (undocumented)
 export interface LoadTestRunListMetricsQueryParamProperties {
     aggregation?: string;
-    interval?: Interval;
+    interval?: string;
     metricName?: string;
     metricNamespace?: string;
     timespan?: string;
@@ -1247,7 +1224,7 @@ export type LoadTestRunTestRunListServerMetricsConfigParameters = RequestParamet
 
 // @public
 export interface MetricAvailabilityOutput {
-    timeGrain?: TimeGrainOutput;
+    timeGrain?: string;
 }
 
 // @public
@@ -1262,9 +1239,9 @@ export interface MetricDefinitionOutput {
     metricAvailabilities?: Array<MetricAvailabilityOutput>;
     name?: string;
     namespace?: string;
-    primaryAggregationType?: AggregationTypeOutput;
+    primaryAggregationType?: string;
     supportedAggregationTypes?: string[];
-    unit?: MetricUnitOutput;
+    unit?: string;
 }
 
 // @public
@@ -1282,9 +1259,6 @@ export interface MetricNamespaceOutput {
 export interface MetricRequestPayload {
     filters?: Array<DimensionFilter>;
 }
-
-// @public
-export type MetricUnitOutput = "NotSpecified" | "Percent" | "Count" | "Seconds" | "Milliseconds" | "Bytes" | "BytesPerSecond" | "CountPerSecond";
 
 // @public
 export interface MetricValueOutput {
@@ -1356,9 +1330,9 @@ export interface PassFailCriteriaOutput {
 
 // @public
 export interface PassFailMetric {
-    action?: PFAction;
-    aggregate?: PFAgFunc;
-    clientMetric?: PFMetrics;
+    action?: string;
+    aggregate?: string;
+    clientMetric?: string;
     condition?: string;
     requestName?: string;
     value?: number;
@@ -1366,45 +1340,15 @@ export interface PassFailMetric {
 
 // @public
 export interface PassFailMetricOutput {
-    action?: PFActionOutput;
+    action?: string;
     readonly actualValue?: number;
-    aggregate?: PFAgFuncOutput;
-    clientMetric?: PFMetricsOutput;
+    aggregate?: string;
+    clientMetric?: string;
     condition?: string;
     requestName?: string;
-    readonly result?: PFResultOutput;
+    readonly result?: string;
     value?: number;
 }
-
-// @public
-export type PFAction = "continue" | "stop";
-
-// @public
-export type PFActionOutput = "continue" | "stop";
-
-// @public
-export type PFAgFunc = "count" | "percentage" | "avg" | "p50" | "p90" | "p95" | "p99" | "min" | "max";
-
-// @public
-export type PFAgFuncOutput = "count" | "percentage" | "avg" | "p50" | "p90" | "p95" | "p99" | "min" | "max";
-
-// @public
-export type PFMetrics = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
-
-// @public
-export type PFMetricsOutput = "response_time_ms" | "latency" | "error" | "requests" | "requests_per_sec";
-
-// @public
-export type PFResult = "passed" | "undetermined" | "failed";
-
-// @public
-export type PFResultOutput = "passed" | "undetermined" | "failed";
-
-// @public
-export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
-
-// @public
-export type PFTestResultOutput = "PASSED" | "NOT_APPLICABLE" | "FAILED";
 
 // @public
 export interface ResourceMetric {
@@ -1451,27 +1395,36 @@ export interface Routes {
 
 // @public
 export interface Secret {
-    type?: SecretType;
+    type?: string;
     value?: string;
 }
 
 // @public
 export interface SecretOutput {
-    type?: SecretTypeOutput;
+    type?: string;
     value?: string;
 }
 
 // @public
-export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
-
-// @public
-export type SecretTypeOutput = "AKV_SECRET_URI" | "SECRET_VALUE";
-
-// @public
-export type Status = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
-
-// @public
-export type StatusOutput = "ACCEPTED" | "NOTSTARTED" | "PROVISIONING" | "PROVISIONED" | "CONFIGURING" | "CONFIGURED" | "EXECUTING" | "EXECUTED" | "DEPROVISIONING" | "DEPROVISIONED" | "DONE" | "CANCELLING" | "CANCELLED" | "FAILED" | "VALIDATION_SUCCESS" | "VALIDATION_FAILURE";
+export interface SimplePollerLike<TState extends OperationState<TResult>, TResult> {
+    getOperationState(): TState;
+    getResult(): TResult | undefined;
+    isDone(): boolean;
+    isStopped(): boolean;
+    onProgress(callback: (state: TState) => void): CancelOnProgress;
+    poll(options?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TState>;
+    pollUntilDone(pollOptions?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TResult>;
+    serialize(): Promise<string>;
+    // @deprecated
+    stopPolling(): void;
+    submitted(): Promise<void>;
+    // @deprecated
+    toString(): string;
+}
 
 // @public
 export interface Test {
@@ -1622,11 +1575,11 @@ export interface TestRunOutput {
     readonly portalUrl?: string;
     secrets?: Record<string, SecretOutput>;
     readonly startDateTime?: string;
-    readonly status?: StatusOutput;
+    readonly status?: string;
     readonly subnetId?: string;
     readonly testArtifacts?: TestRunArtifactsOutput;
     testId?: string;
-    readonly testResult?: PFTestResultOutput;
+    readonly testResult?: string;
     readonly testRunId: string;
     readonly testRunStatistics?: Record<string, TestRunStatisticsOutput>;
     readonly virtualUsers?: number;
@@ -1704,9 +1657,6 @@ export interface TestServerMetricConfigOutput {
 
 // @public
 export type TestServerMetricConfigResourceMergeAndPatch = Partial<TestServerMetricConfig>;
-
-// @public
-export type TimeGrainOutput = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 // @public
 export interface TimeSeriesElementOutput {
