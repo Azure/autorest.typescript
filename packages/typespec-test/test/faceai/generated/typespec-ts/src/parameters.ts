@@ -13,6 +13,41 @@ import {
 
 export type GetFaceOperationStatusParameters = RequestParameters;
 
+export interface DetectFromUrlBodyParam {
+  body?: { url: string };
+}
+
+export interface DetectFromUrlQueryParamProperties {
+  /** Return faceIds of the detected faces or not. The default value is true. */
+  returnFaceId?: boolean;
+  /** Return face landmarks of the detected faces or not. The default value is false. */
+  returnFaceLandmarks?: boolean;
+  /** Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost. */
+  returnFaceAttributes?: FaceAttributeType[];
+  /** The 'recognitionModel' associated with the detected faceIds. Supported 'recognitionModel' values include 'recognition_01', 'recognition_02', 'recognition_03' or 'recognition_04'. The default value is 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'. */
+  recognitionModel?: RecognitionModel;
+  /** Return 'recognitionModel' or not. The default value is false. */
+  returnRecognitionModel?: boolean;
+  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  detectionModel?: DetectionModel;
+  /** The number of seconds for the face ID being cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours). */
+  faceIdTimeToLive?: number;
+}
+
+export interface DetectFromUrlQueryParam {
+  queryParameters?: DetectFromUrlQueryParamProperties;
+}
+
+export interface DetectFromUrlMediaTypesParam {
+  /** The format of the HTTP payload. */
+  contentType: "application/json";
+}
+
+export type DetectFromUrlParameters = DetectFromUrlQueryParam &
+  DetectFromUrlMediaTypesParam &
+  DetectFromUrlBodyParam &
+  RequestParameters;
+
 export interface DetectBodyParam {
   /**
    * The input image binary.
@@ -55,41 +90,6 @@ export interface DetectMediaTypesParam {
 export type DetectParameters = DetectQueryParam &
   DetectMediaTypesParam &
   DetectBodyParam &
-  RequestParameters;
-
-export interface DetectFromUrlBodyParam {
-  body?: { url: string };
-}
-
-export interface DetectFromUrlQueryParamProperties {
-  /** Return faceIds of the detected faces or not. The default value is true. */
-  returnFaceId?: boolean;
-  /** Return face landmarks of the detected faces or not. The default value is false. */
-  returnFaceLandmarks?: boolean;
-  /** Analyze and return the one or more specified face attributes in the comma-separated string like 'returnFaceAttributes=headPose,glasses'. Face attribute analysis has additional computational and time cost. */
-  returnFaceAttributes?: FaceAttributeType[];
-  /** The 'recognitionModel' associated with the detected faceIds. Supported 'recognitionModel' values include 'recognition_01', 'recognition_02', 'recognition_03' or 'recognition_04'. The default value is 'recognition_01'. 'recognition_04' is recommended since its accuracy is improved on faces wearing masks compared with 'recognition_03', and its overall accuracy is improved compared with 'recognition_01' and 'recognition_02'. */
-  recognitionModel?: RecognitionModel;
-  /** Return 'recognitionModel' or not. The default value is false. */
-  returnRecognitionModel?: boolean;
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
-  detectionModel?: DetectionModel;
-  /** The number of seconds for the face ID being cached. Supported range from 60 seconds up to 86400 seconds. The default value is 86400 (24 hours). */
-  faceIdTimeToLive?: number;
-}
-
-export interface DetectFromUrlQueryParam {
-  queryParameters?: DetectFromUrlQueryParamProperties;
-}
-
-export interface DetectFromUrlMediaTypesParam {
-  /** The format of the HTTP payload. */
-  contentType: "application/json";
-}
-
-export type DetectFromUrlParameters = DetectFromUrlQueryParam &
-  DetectFromUrlMediaTypesParam &
-  DetectFromUrlBodyParam &
   RequestParameters;
 
 export interface FindSimilarBodyParam {
@@ -250,6 +250,28 @@ export interface GetFaceListsQueryParam {
 
 export type GetFaceListsParameters = GetFaceListsQueryParam & RequestParameters;
 
+export interface AddFaceListFaceFromUrlBodyParam {
+  body?: { url: string };
+}
+
+export interface AddFaceListFaceFromUrlQueryParamProperties {
+  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
+  targetFace?: number[];
+  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  detectionModel?: DetectionModel;
+  /** User-provided data attached to the face. The size limit is 1K. */
+  userData?: string;
+}
+
+export interface AddFaceListFaceFromUrlQueryParam {
+  queryParameters?: AddFaceListFaceFromUrlQueryParamProperties;
+}
+
+export type AddFaceListFaceFromUrlParameters =
+  AddFaceListFaceFromUrlQueryParam &
+    AddFaceListFaceFromUrlBodyParam &
+    RequestParameters;
+
 export interface AddFaceListFaceBodyParam {
   /**
    * The image to be analyzed
@@ -285,28 +307,6 @@ export type AddFaceListFaceParameters = AddFaceListFaceQueryParam &
   AddFaceListFaceMediaTypesParam &
   AddFaceListFaceBodyParam &
   RequestParameters;
-
-export interface AddFaceListFaceFromUrlBodyParam {
-  body?: { url: string };
-}
-
-export interface AddFaceListFaceFromUrlQueryParamProperties {
-  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
-  targetFace?: number[];
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
-  detectionModel?: DetectionModel;
-  /** User-provided data attached to the face. The size limit is 1K. */
-  userData?: string;
-}
-
-export interface AddFaceListFaceFromUrlQueryParam {
-  queryParameters?: AddFaceListFaceFromUrlQueryParamProperties;
-}
-
-export type AddFaceListFaceFromUrlParameters =
-  AddFaceListFaceFromUrlQueryParam &
-    AddFaceListFaceFromUrlBodyParam &
-    RequestParameters;
 export type DeleteFaceListFaceParameters = RequestParameters;
 
 export interface CreateLargeFaceListBodyParam {
@@ -358,6 +358,28 @@ export type GetLargeFaceListsParameters = GetLargeFaceListsQueryParam &
 export type GetLargeFaceListTrainingStatusParameters = RequestParameters;
 export type TrainLargeFaceListParameters = RequestParameters;
 
+export interface AddLargeFaceListFaceFromUrlBodyParam {
+  body?: { url: string };
+}
+
+export interface AddLargeFaceListFaceFromUrlQueryParamProperties {
+  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
+  targetFace?: number[];
+  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  detectionModel?: DetectionModel;
+  /** User-provided data attached to the face. The size limit is 1K. */
+  userData?: string;
+}
+
+export interface AddLargeFaceListFaceFromUrlQueryParam {
+  queryParameters?: AddLargeFaceListFaceFromUrlQueryParamProperties;
+}
+
+export type AddLargeFaceListFaceFromUrlParameters =
+  AddLargeFaceListFaceFromUrlQueryParam &
+    AddLargeFaceListFaceFromUrlBodyParam &
+    RequestParameters;
+
 export interface AddLargeFaceListFaceBodyParam {
   /**
    * The image to be analyzed
@@ -393,28 +415,6 @@ export type AddLargeFaceListFaceParameters = AddLargeFaceListFaceQueryParam &
   AddLargeFaceListFaceMediaTypesParam &
   AddLargeFaceListFaceBodyParam &
   RequestParameters;
-
-export interface AddLargeFaceListFaceFromUrlBodyParam {
-  body?: { url: string };
-}
-
-export interface AddLargeFaceListFaceFromUrlQueryParamProperties {
-  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
-  targetFace?: number[];
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
-  detectionModel?: DetectionModel;
-  /** User-provided data attached to the face. The size limit is 1K. */
-  userData?: string;
-}
-
-export interface AddLargeFaceListFaceFromUrlQueryParam {
-  queryParameters?: AddLargeFaceListFaceFromUrlQueryParamProperties;
-}
-
-export type AddLargeFaceListFaceFromUrlParameters =
-  AddLargeFaceListFaceFromUrlQueryParam &
-    AddLargeFaceListFaceFromUrlBodyParam &
-    RequestParameters;
 export type DeleteLargeFaceListFaceParameters = RequestParameters;
 export type GetLargeFaceListFaceParameters = RequestParameters;
 
@@ -438,6 +438,300 @@ export interface GetLargeFaceListFacesQueryParam {
 
 export type GetLargeFaceListFacesParameters = GetLargeFaceListFacesQueryParam &
   RequestParameters;
+
+export interface CreatePersonGroupBodyParam {
+  body?: {
+    name: string;
+    userData?: string;
+    recognitionModel?: RecognitionModel;
+  };
+}
+
+export type CreatePersonGroupParameters = CreatePersonGroupBodyParam &
+  RequestParameters;
+export type DeletePersonGroupParameters = RequestParameters;
+
+export interface GetPersonGroupQueryParamProperties {
+  /** Return 'recognitionModel' or not. The default value is false. */
+  returnRecognitionModel?: boolean;
+}
+
+export interface GetPersonGroupQueryParam {
+  queryParameters?: GetPersonGroupQueryParamProperties;
+}
+
+export type GetPersonGroupParameters = GetPersonGroupQueryParam &
+  RequestParameters;
+
+export interface UpdatePersonGroupBodyParam {
+  body?: { name: string; userData?: string };
+}
+
+export type UpdatePersonGroupParameters = UpdatePersonGroupBodyParam &
+  RequestParameters;
+
+export interface GetPersonGroupsQueryParamProperties {
+  /** List resources greater than the "start". It contains no more than 64 characters. Default is empty. */
+  start?: string;
+  /** The number of items to list, ranging in [1, 1000]. Default is 1000. */
+  top?: number;
+  /** Return 'recognitionModel' or not. The default value is false. */
+  returnRecognitionModel?: boolean;
+}
+
+export interface GetPersonGroupsQueryParam {
+  queryParameters?: GetPersonGroupsQueryParamProperties;
+}
+
+export type GetPersonGroupsParameters = GetPersonGroupsQueryParam &
+  RequestParameters;
+export type GetPersonGroupTrainingStatusParameters = RequestParameters;
+export type TrainPersonGroupParameters = RequestParameters;
+
+export interface CreatePersonGroupPersonBodyParam {
+  body?: { name: string; userData?: string };
+}
+
+export type CreatePersonGroupPersonParameters =
+  CreatePersonGroupPersonBodyParam & RequestParameters;
+export type DeletePersonGroupPersonParameters = RequestParameters;
+export type GetPersonGroupPersonParameters = RequestParameters;
+
+export interface UpdatePersonGroupPersonBodyParam {
+  body?: { name: string; userData?: string };
+}
+
+export type UpdatePersonGroupPersonParameters =
+  UpdatePersonGroupPersonBodyParam & RequestParameters;
+
+export interface GetPersonGroupPersonsQueryParamProperties {
+  /** List resources greater than the "start". It contains no more than 64 characters. Default is empty. */
+  start?: string;
+  /** The number of items to list, ranging in [1, 1000]. Default is 1000. */
+  top?: number;
+}
+
+export interface GetPersonGroupPersonsQueryParam {
+  queryParameters?: GetPersonGroupPersonsQueryParamProperties;
+}
+
+export type GetPersonGroupPersonsParameters = GetPersonGroupPersonsQueryParam &
+  RequestParameters;
+
+export interface AddPersonGroupPersonFaceFromUrlBodyParam {
+  body?: { url: string };
+}
+
+export interface AddPersonGroupPersonFaceFromUrlQueryParamProperties {
+  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
+  targetFace?: number[];
+  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  detectionModel?: DetectionModel;
+  /** User-provided data attached to the face. The size limit is 1K. */
+  userData?: string;
+}
+
+export interface AddPersonGroupPersonFaceFromUrlQueryParam {
+  queryParameters?: AddPersonGroupPersonFaceFromUrlQueryParamProperties;
+}
+
+export type AddPersonGroupPersonFaceFromUrlParameters =
+  AddPersonGroupPersonFaceFromUrlQueryParam &
+    AddPersonGroupPersonFaceFromUrlBodyParam &
+    RequestParameters;
+
+export interface AddPersonGroupPersonFaceBodyParam {
+  /**
+   * The image to be analyzed
+   *
+   * Value may contain any sequence of octets
+   */
+  body:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
+}
+
+export interface AddPersonGroupPersonFaceQueryParamProperties {
+  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
+  targetFace?: number[];
+  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  detectionModel?: DetectionModel;
+  /** User-provided data attached to the face. The size limit is 1K. */
+  userData?: string;
+}
+
+export interface AddPersonGroupPersonFaceQueryParam {
+  queryParameters?: AddPersonGroupPersonFaceQueryParamProperties;
+}
+
+export interface AddPersonGroupPersonFaceMediaTypesParam {
+  /** The format of the HTTP payload. */
+  contentType: "application/octet-stream";
+}
+
+export type AddPersonGroupPersonFaceParameters =
+  AddPersonGroupPersonFaceQueryParam &
+    AddPersonGroupPersonFaceMediaTypesParam &
+    AddPersonGroupPersonFaceBodyParam &
+    RequestParameters;
+export type DeletePersonGroupPersonFaceParameters = RequestParameters;
+export type GetPersonGroupPersonFaceParameters = RequestParameters;
+
+export interface UpdatePersonGroupPersonFaceBodyParam {
+  body?: { userData?: string };
+}
+
+export type UpdatePersonGroupPersonFaceParameters =
+  UpdatePersonGroupPersonFaceBodyParam & RequestParameters;
+
+export interface CreateLargePersonGroupBodyParam {
+  body?: {
+    name: string;
+    userData?: string;
+    recognitionModel?: RecognitionModel;
+  };
+}
+
+export type CreateLargePersonGroupParameters = CreateLargePersonGroupBodyParam &
+  RequestParameters;
+export type DeleteLargePersonGroupParameters = RequestParameters;
+
+export interface GetLargePersonGroupQueryParamProperties {
+  /** Return 'recognitionModel' or not. The default value is false. */
+  returnRecognitionModel?: boolean;
+}
+
+export interface GetLargePersonGroupQueryParam {
+  queryParameters?: GetLargePersonGroupQueryParamProperties;
+}
+
+export type GetLargePersonGroupParameters = GetLargePersonGroupQueryParam &
+  RequestParameters;
+
+export interface UpdateLargePersonGroupBodyParam {
+  body?: { name: string; userData?: string };
+}
+
+export type UpdateLargePersonGroupParameters = UpdateLargePersonGroupBodyParam &
+  RequestParameters;
+
+export interface GetLargePersonGroupsQueryParamProperties {
+  /** List resources greater than the "start". It contains no more than 64 characters. Default is empty. */
+  start?: string;
+  /** The number of items to list, ranging in [1, 1000]. Default is 1000. */
+  top?: number;
+  /** Return 'recognitionModel' or not. The default value is false. */
+  returnRecognitionModel?: boolean;
+}
+
+export interface GetLargePersonGroupsQueryParam {
+  queryParameters?: GetLargePersonGroupsQueryParamProperties;
+}
+
+export type GetLargePersonGroupsParameters = GetLargePersonGroupsQueryParam &
+  RequestParameters;
+export type GetLargePersonGroupTrainingStatusParameters = RequestParameters;
+export type TrainLargePersonGroupParameters = RequestParameters;
+
+export interface CreateLargePersonGroupPersonBodyParam {
+  body?: { name: string; userData?: string };
+}
+
+export type CreateLargePersonGroupPersonParameters =
+  CreateLargePersonGroupPersonBodyParam & RequestParameters;
+export type DeleteLargePersonGroupPersonParameters = RequestParameters;
+export type GetLargePersonGroupPersonParameters = RequestParameters;
+
+export interface UpdateLargePersonGroupPersonBodyParam {
+  body?: { name: string; userData?: string };
+}
+
+export type UpdateLargePersonGroupPersonParameters =
+  UpdateLargePersonGroupPersonBodyParam & RequestParameters;
+
+export interface GetLargePersonGroupPersonsQueryParamProperties {
+  /** List resources greater than the "start". It contains no more than 64 characters. Default is empty. */
+  start?: string;
+  /** The number of items to list, ranging in [1, 1000]. Default is 1000. */
+  top?: number;
+}
+
+export interface GetLargePersonGroupPersonsQueryParam {
+  queryParameters?: GetLargePersonGroupPersonsQueryParamProperties;
+}
+
+export type GetLargePersonGroupPersonsParameters =
+  GetLargePersonGroupPersonsQueryParam & RequestParameters;
+
+export interface AddLargePersonGroupPersonFaceFromUrlBodyParam {
+  body?: { url: string };
+}
+
+export interface AddLargePersonGroupPersonFaceFromUrlQueryParamProperties {
+  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
+  targetFace?: number[];
+  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  detectionModel?: DetectionModel;
+  /** User-provided data attached to the face. The size limit is 1K. */
+  userData?: string;
+}
+
+export interface AddLargePersonGroupPersonFaceFromUrlQueryParam {
+  queryParameters?: AddLargePersonGroupPersonFaceFromUrlQueryParamProperties;
+}
+
+export type AddLargePersonGroupPersonFaceFromUrlParameters =
+  AddLargePersonGroupPersonFaceFromUrlQueryParam &
+    AddLargePersonGroupPersonFaceFromUrlBodyParam &
+    RequestParameters;
+
+export interface AddLargePersonGroupPersonFaceBodyParam {
+  /**
+   * The image to be analyzed
+   *
+   * Value may contain any sequence of octets
+   */
+  body:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
+}
+
+export interface AddLargePersonGroupPersonFaceQueryParamProperties {
+  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
+  targetFace?: number[];
+  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
+  detectionModel?: DetectionModel;
+  /** User-provided data attached to the face. The size limit is 1K. */
+  userData?: string;
+}
+
+export interface AddLargePersonGroupPersonFaceQueryParam {
+  queryParameters?: AddLargePersonGroupPersonFaceQueryParamProperties;
+}
+
+export interface AddLargePersonGroupPersonFaceMediaTypesParam {
+  /** The format of the HTTP payload. */
+  contentType: "application/octet-stream";
+}
+
+export type AddLargePersonGroupPersonFaceParameters =
+  AddLargePersonGroupPersonFaceQueryParam &
+    AddLargePersonGroupPersonFaceMediaTypesParam &
+    AddLargePersonGroupPersonFaceBodyParam &
+    RequestParameters;
+export type DeleteLargePersonGroupPersonFaceParameters = RequestParameters;
+export type GetLargePersonGroupPersonFaceParameters = RequestParameters;
+
+export interface UpdateLargePersonGroupPersonFaceBodyParam {
+  body?: { userData?: string };
+}
+
+export type UpdateLargePersonGroupPersonFaceParameters =
+  UpdateLargePersonGroupPersonFaceBodyParam & RequestParameters;
 
 export interface CreatePersonBodyParam {
   body?: { name: string; userData?: string };
@@ -595,300 +889,6 @@ export interface GetDynamicPersonGroupPersonsQueryParam {
 
 export type GetDynamicPersonGroupPersonsParameters =
   GetDynamicPersonGroupPersonsQueryParam & RequestParameters;
-
-export interface CreatePersonGroupBodyParam {
-  body?: {
-    name: string;
-    userData?: string;
-    recognitionModel?: RecognitionModel;
-  };
-}
-
-export type CreatePersonGroupParameters = CreatePersonGroupBodyParam &
-  RequestParameters;
-export type DeletePersonGroupParameters = RequestParameters;
-
-export interface GetPersonGroupQueryParamProperties {
-  /** Return 'recognitionModel' or not. The default value is false. */
-  returnRecognitionModel?: boolean;
-}
-
-export interface GetPersonGroupQueryParam {
-  queryParameters?: GetPersonGroupQueryParamProperties;
-}
-
-export type GetPersonGroupParameters = GetPersonGroupQueryParam &
-  RequestParameters;
-
-export interface UpdatePersonGroupBodyParam {
-  body?: { name: string; userData?: string };
-}
-
-export type UpdatePersonGroupParameters = UpdatePersonGroupBodyParam &
-  RequestParameters;
-
-export interface GetPersonGroupsQueryParamProperties {
-  /** List resources greater than the "start". It contains no more than 64 characters. Default is empty. */
-  start?: string;
-  /** The number of items to list, ranging in [1, 1000]. Default is 1000. */
-  top?: number;
-  /** Return 'recognitionModel' or not. The default value is false. */
-  returnRecognitionModel?: boolean;
-}
-
-export interface GetPersonGroupsQueryParam {
-  queryParameters?: GetPersonGroupsQueryParamProperties;
-}
-
-export type GetPersonGroupsParameters = GetPersonGroupsQueryParam &
-  RequestParameters;
-export type GetPersonGroupTrainingStatusParameters = RequestParameters;
-export type TrainPersonGroupParameters = RequestParameters;
-
-export interface CreatePersonGroupPersonBodyParam {
-  body?: { name: string; userData?: string };
-}
-
-export type CreatePersonGroupPersonParameters =
-  CreatePersonGroupPersonBodyParam & RequestParameters;
-export type DeletePersonGroupPersonParameters = RequestParameters;
-export type GetPersonGroupPersonParameters = RequestParameters;
-
-export interface UpdatePersonGroupPersonBodyParam {
-  body?: { name: string; userData?: string };
-}
-
-export type UpdatePersonGroupPersonParameters =
-  UpdatePersonGroupPersonBodyParam & RequestParameters;
-
-export interface GetPersonGroupPersonsQueryParamProperties {
-  /** List resources greater than the "start". It contains no more than 64 characters. Default is empty. */
-  start?: string;
-  /** The number of items to list, ranging in [1, 1000]. Default is 1000. */
-  top?: number;
-}
-
-export interface GetPersonGroupPersonsQueryParam {
-  queryParameters?: GetPersonGroupPersonsQueryParamProperties;
-}
-
-export type GetPersonGroupPersonsParameters = GetPersonGroupPersonsQueryParam &
-  RequestParameters;
-
-export interface AddPersonGroupPersonFaceBodyParam {
-  /**
-   * The image to be analyzed
-   *
-   * Value may contain any sequence of octets
-   */
-  body:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
-}
-
-export interface AddPersonGroupPersonFaceQueryParamProperties {
-  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
-  targetFace?: number[];
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
-  detectionModel?: DetectionModel;
-  /** User-provided data attached to the face. The size limit is 1K. */
-  userData?: string;
-}
-
-export interface AddPersonGroupPersonFaceQueryParam {
-  queryParameters?: AddPersonGroupPersonFaceQueryParamProperties;
-}
-
-export interface AddPersonGroupPersonFaceMediaTypesParam {
-  /** The format of the HTTP payload. */
-  contentType: "application/octet-stream";
-}
-
-export type AddPersonGroupPersonFaceParameters =
-  AddPersonGroupPersonFaceQueryParam &
-    AddPersonGroupPersonFaceMediaTypesParam &
-    AddPersonGroupPersonFaceBodyParam &
-    RequestParameters;
-
-export interface AddPersonGroupPersonFaceFromUrlBodyParam {
-  body?: { url: string };
-}
-
-export interface AddPersonGroupPersonFaceFromUrlQueryParamProperties {
-  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
-  targetFace?: number[];
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
-  detectionModel?: DetectionModel;
-  /** User-provided data attached to the face. The size limit is 1K. */
-  userData?: string;
-}
-
-export interface AddPersonGroupPersonFaceFromUrlQueryParam {
-  queryParameters?: AddPersonGroupPersonFaceFromUrlQueryParamProperties;
-}
-
-export type AddPersonGroupPersonFaceFromUrlParameters =
-  AddPersonGroupPersonFaceFromUrlQueryParam &
-    AddPersonGroupPersonFaceFromUrlBodyParam &
-    RequestParameters;
-export type DeletePersonGroupPersonFaceParameters = RequestParameters;
-export type GetPersonGroupPersonFaceParameters = RequestParameters;
-
-export interface UpdatePersonGroupPersonFaceBodyParam {
-  body?: { userData?: string };
-}
-
-export type UpdatePersonGroupPersonFaceParameters =
-  UpdatePersonGroupPersonFaceBodyParam & RequestParameters;
-
-export interface CreateLargePersonGroupBodyParam {
-  body?: {
-    name: string;
-    userData?: string;
-    recognitionModel?: RecognitionModel;
-  };
-}
-
-export type CreateLargePersonGroupParameters = CreateLargePersonGroupBodyParam &
-  RequestParameters;
-export type DeleteLargePersonGroupParameters = RequestParameters;
-
-export interface GetLargePersonGroupQueryParamProperties {
-  /** Return 'recognitionModel' or not. The default value is false. */
-  returnRecognitionModel?: boolean;
-}
-
-export interface GetLargePersonGroupQueryParam {
-  queryParameters?: GetLargePersonGroupQueryParamProperties;
-}
-
-export type GetLargePersonGroupParameters = GetLargePersonGroupQueryParam &
-  RequestParameters;
-
-export interface UpdateLargePersonGroupBodyParam {
-  body?: { name: string; userData?: string };
-}
-
-export type UpdateLargePersonGroupParameters = UpdateLargePersonGroupBodyParam &
-  RequestParameters;
-
-export interface GetLargePersonGroupsQueryParamProperties {
-  /** List resources greater than the "start". It contains no more than 64 characters. Default is empty. */
-  start?: string;
-  /** The number of items to list, ranging in [1, 1000]. Default is 1000. */
-  top?: number;
-  /** Return 'recognitionModel' or not. The default value is false. */
-  returnRecognitionModel?: boolean;
-}
-
-export interface GetLargePersonGroupsQueryParam {
-  queryParameters?: GetLargePersonGroupsQueryParamProperties;
-}
-
-export type GetLargePersonGroupsParameters = GetLargePersonGroupsQueryParam &
-  RequestParameters;
-export type GetLargePersonGroupTrainingStatusParameters = RequestParameters;
-export type TrainLargePersonGroupParameters = RequestParameters;
-
-export interface CreateLargePersonGroupPersonBodyParam {
-  body?: { name: string; userData?: string };
-}
-
-export type CreateLargePersonGroupPersonParameters =
-  CreateLargePersonGroupPersonBodyParam & RequestParameters;
-export type DeleteLargePersonGroupPersonParameters = RequestParameters;
-export type GetLargePersonGroupPersonParameters = RequestParameters;
-
-export interface UpdateLargePersonGroupPersonBodyParam {
-  body?: { name: string; userData?: string };
-}
-
-export type UpdateLargePersonGroupPersonParameters =
-  UpdateLargePersonGroupPersonBodyParam & RequestParameters;
-
-export interface GetLargePersonGroupPersonsQueryParamProperties {
-  /** List resources greater than the "start". It contains no more than 64 characters. Default is empty. */
-  start?: string;
-  /** The number of items to list, ranging in [1, 1000]. Default is 1000. */
-  top?: number;
-}
-
-export interface GetLargePersonGroupPersonsQueryParam {
-  queryParameters?: GetLargePersonGroupPersonsQueryParamProperties;
-}
-
-export type GetLargePersonGroupPersonsParameters =
-  GetLargePersonGroupPersonsQueryParam & RequestParameters;
-
-export interface AddLargePersonGroupPersonFaceBodyParam {
-  /**
-   * The image to be analyzed
-   *
-   * Value may contain any sequence of octets
-   */
-  body:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
-}
-
-export interface AddLargePersonGroupPersonFaceQueryParamProperties {
-  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
-  targetFace?: number[];
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
-  detectionModel?: DetectionModel;
-  /** User-provided data attached to the face. The size limit is 1K. */
-  userData?: string;
-}
-
-export interface AddLargePersonGroupPersonFaceQueryParam {
-  queryParameters?: AddLargePersonGroupPersonFaceQueryParamProperties;
-}
-
-export interface AddLargePersonGroupPersonFaceMediaTypesParam {
-  /** The format of the HTTP payload. */
-  contentType: "application/octet-stream";
-}
-
-export type AddLargePersonGroupPersonFaceParameters =
-  AddLargePersonGroupPersonFaceQueryParam &
-    AddLargePersonGroupPersonFaceMediaTypesParam &
-    AddLargePersonGroupPersonFaceBodyParam &
-    RequestParameters;
-
-export interface AddLargePersonGroupPersonFaceFromUrlBodyParam {
-  body?: { url: string };
-}
-
-export interface AddLargePersonGroupPersonFaceFromUrlQueryParamProperties {
-  /** A face rectangle to specify the target face to be added to a person, in the format of 'targetFace=left,top,width,height'. */
-  targetFace?: number[];
-  /** The 'detectionModel' associated with the detected faceIds. Supported 'detectionModel' values include 'detection_01', 'detection_02' and 'detection_03'. The default value is 'detection_01'. */
-  detectionModel?: DetectionModel;
-  /** User-provided data attached to the face. The size limit is 1K. */
-  userData?: string;
-}
-
-export interface AddLargePersonGroupPersonFaceFromUrlQueryParam {
-  queryParameters?: AddLargePersonGroupPersonFaceFromUrlQueryParamProperties;
-}
-
-export type AddLargePersonGroupPersonFaceFromUrlParameters =
-  AddLargePersonGroupPersonFaceFromUrlQueryParam &
-    AddLargePersonGroupPersonFaceFromUrlBodyParam &
-    RequestParameters;
-export type DeleteLargePersonGroupPersonFaceParameters = RequestParameters;
-export type GetLargePersonGroupPersonFaceParameters = RequestParameters;
-
-export interface UpdateLargePersonGroupPersonFaceBodyParam {
-  body?: { userData?: string };
-}
-
-export type UpdateLargePersonGroupPersonFaceParameters =
-  UpdateLargePersonGroupPersonFaceBodyParam & RequestParameters;
 
 export interface CreateLivenessSessionBodyParam {
   body?: LivenessSessionCreationContent;

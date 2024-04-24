@@ -6,7 +6,7 @@ export interface FaceOperationStatusOutput {
   /** Operation ID of the operation. */
   readonly operationId: string;
   /** Current status of the operation. */
-  status: OperationStateOutput;
+  status: FaceOperationStateOutput;
   /** Date and time the operation was created. */
   createdDateTime: string;
   /** Date and time the operation was finished. */
@@ -15,14 +15,28 @@ export interface FaceOperationStatusOutput {
   message?: string;
 }
 
+/** A response containing error details. */
+export interface FaceErrorResponseOutput {
+  /** The error object. */
+  error: FaceErrorOutput;
+}
+
+/** The error object. */
+export interface FaceErrorOutput {
+  /** One of a server-defined set of error codes. */
+  code: string;
+  /** A human-readable representation of the error. */
+  message: string;
+}
+
 /** Response for detect API. */
 export interface FaceDetectionResultOutput {
   /** Unique faceId of the detected face, created by detection API and it will expire 24 hours after the detection call. To return this, it requires 'returnFaceId' parameter to be true. */
-  faceId: string;
+  faceId?: string;
   /** The 'recognitionModel' associated with this faceId. This is only returned when 'returnRecognitionModel' is explicitly set as true. */
   recognitionModel?: RecognitionModelOutput;
   /** A rectangle area for the face location on image. */
-  faceRectangle?: FaceRectangleOutput;
+  faceRectangle: FaceRectangleOutput;
   /** An array of 27-point face landmarks pointing to the important positions of face components. To return this, it requires 'returnFaceLandmarks' parameter to be true. */
   faceLandmarks?: FaceLandmarksOutput;
   /** Face attributes for detected face. */
@@ -225,25 +239,11 @@ export interface MaskPropertiesOutput {
   type: MaskTypeOutput;
 }
 
-/** A response containing error details. */
-export interface FaceErrorResponseOutput {
-  /** The error object. */
-  error: FaceErrorOutput;
-}
-
-/** The error object. */
-export interface FaceErrorOutput {
-  /** One of a server-defined set of error codes. */
-  code: string;
-  /** A human-readable representation of the error. */
-  message: string;
-}
-
 /** Response body for find similar face operation. */
 export interface FindSimilarResultOutput {
   /** Confidence value of the candidate. The higher confidence, the more similar. Range between [0,1]. */
   confidence: number;
-  /** faceId of candidate face when find by faceIds. faceId is created by Face - Detect and will expire 24 hours after the detection call. */
+  /** faceId of candidate face when find by faceIds. faceId is created by "Detect" and will expire 24 hours after the detection call. */
   faceId?: string;
   /** persistedFaceId of candidate face when find by faceListId or largeFaceListId. persistedFaceId in face list/large face list is persisted and will not expire. */
   persistedFaceId?: string;
@@ -317,7 +317,7 @@ export interface FaceListItemOutput {
 
 /** Response body for adding face. */
 export interface AddFaceResultOutput {
-  /** persistedFaceId of the added face, which is persisted and will not expire. Different from faceId which is created in Face - Detect and will expire in 24 hours after the detection call. */
+  /** Persisted Face ID of the added face, which is persisted and will not expire. Different from faceId which is created in "Detect" and will expire in 24 hours after the detection call. */
   persistedFaceId: string;
 }
 
@@ -336,7 +336,7 @@ export interface LargeFaceListOutput {
 /** Training status of a container */
 export interface TrainingStatusOutput {
   /** Training status of the container. */
-  status: OperationStateOutput;
+  status: FaceOperationStateOutput;
   /** A combined UTC date and time string that describes the created time of the person group, large person group or large face list. */
   createdDateTime: string;
   /** A combined UTC date and time string that describes the last modify time of the person group, large person group or large face list, could be null value when the group is not successfully trained. */
@@ -355,10 +355,74 @@ export interface LargeFaceListFaceOutput {
   userData?: string;
 }
 
+/** The container of the uploaded person data, including face recognition feature, and up to 10,000 persons. To handle larger scale face identification problem, please consider using Large Person Group. */
+export interface PersonGroupOutput {
+  /** User defined name, maximum length is 128. */
+  name: string;
+  /** Optional user defined data. Length should not exceed 16K. */
+  userData?: string;
+  /** Name of recognition model. Recognition model is used when the face features are extracted and associated with detected faceIds. */
+  recognitionModel?: RecognitionModelOutput;
+  /** ID of the container. */
+  readonly personGroupId: string;
+}
+
 /** Response of create person. */
 export interface CreatePersonResultOutput {
   /** Person ID of the person. */
   personId: string;
+}
+
+/** The person in a specified person group. To add face to this person, please call "Add Large Person Group Person Face". */
+export interface PersonGroupPersonOutput {
+  /** ID of the person. */
+  readonly personId: string;
+  /** User defined name, maximum length is 128. */
+  name: string;
+  /** Optional user defined data. Length should not exceed 16K. */
+  userData?: string;
+  /** Face ids of registered faces in the person. */
+  persistedFaceIds?: string[];
+}
+
+/** Face resource for person group person. */
+export interface PersonGroupPersonFaceOutput {
+  /** Face ID of the face. */
+  readonly persistedFaceId: string;
+  /** User-provided data attached to the face. The length limit is 1K. */
+  userData?: string;
+}
+
+/** The container of the uploaded person data, including face recognition feature, and up to 1,000,000 people. */
+export interface LargePersonGroupOutput {
+  /** User defined name, maximum length is 128. */
+  name: string;
+  /** Optional user defined data. Length should not exceed 16K. */
+  userData?: string;
+  /** Name of recognition model. Recognition model is used when the face features are extracted and associated with detected faceIds. */
+  recognitionModel?: RecognitionModelOutput;
+  /** ID of the container. */
+  readonly largePersonGroupId: string;
+}
+
+/** The person in a specified large person group. To add face to this person, please call "Add Large Person Group Person Face". */
+export interface LargePersonGroupPersonOutput {
+  /** ID of the person. */
+  readonly personId: string;
+  /** User defined name, maximum length is 128. */
+  name: string;
+  /** Optional user defined data. Length should not exceed 16K. */
+  userData?: string;
+  /** Face ids of registered faces in the person. */
+  persistedFaceIds?: string[];
+}
+
+/** Face resource for large person group person. */
+export interface LargePersonGroupPersonFaceOutput {
+  /** Face ID of the face. */
+  readonly persistedFaceId: string;
+  /** User-provided data attached to the face. The length limit is 1K. */
+  userData?: string;
 }
 
 /** Person resource for person directory */
@@ -393,7 +457,7 @@ export interface ListFaceResultOutput {
   persistedFaceIds: string[];
 }
 
-/** A container that references PersonDirectory Person - Create. */
+/** A container that references Person Directory "Create Person". */
 export interface DynamicPersonGroupOutput {
   /** ID of the dynamic person group. */
   readonly dynamicPersonGroupId: string;
@@ -409,139 +473,75 @@ export interface ListPersonResultOutput {
   personIds: string[];
 }
 
-/** The container of the uploaded person data, including face recognition feature, and up to 10,000 persons. To handle larger scale face identification problem, please consider using LargePersonGroup. */
-export interface PersonGroupOutput {
-  /** User defined name, maximum length is 128. */
-  name: string;
-  /** Optional user defined data. Length should not exceed 16K. */
-  userData?: string;
-  /** Name of recognition model. Recognition model is used when the face features are extracted and associated with detected faceIds. */
-  recognitionModel?: RecognitionModelOutput;
-  /** ID of the container. */
-  readonly personGroupId: string;
-}
-
-/** The person in a specified person group. To add face to this person, please call LargePersonGroup PersonFace - Add. */
-export interface PersonGroupPersonOutput {
-  /** ID of the person. */
-  readonly personId: string;
-  /** User defined name, maximum length is 128. */
-  name: string;
-  /** Optional user defined data. Length should not exceed 16K. */
-  userData?: string;
-  /** Face ids of registered faces in the person. */
-  readonly persistedFaceIds?: string[];
-}
-
-/** Face resource for person group person. */
-export interface PersonGroupPersonFaceOutput {
-  /** Face ID of the face. */
-  readonly persistedFaceId: string;
-  /** User-provided data attached to the face. The length limit is 1K. */
-  userData?: string;
-}
-
-/** The container of the uploaded person data, including face recognition feature, and up to 1,000,000 people. */
-export interface LargePersonGroupOutput {
-  /** User defined name, maximum length is 128. */
-  name: string;
-  /** Optional user defined data. Length should not exceed 16K. */
-  userData?: string;
-  /** Name of recognition model. Recognition model is used when the face features are extracted and associated with detected faceIds. */
-  recognitionModel?: RecognitionModelOutput;
-  /** ID of the container. */
-  readonly largePersonGroupId: string;
-}
-
-/** The person in a specified large person group. To add face to this person, please call LargePersonGroup PersonFace - Add. */
-export interface LargePersonGroupPersonOutput {
-  /** ID of the person. */
-  readonly personId: string;
-  /** User defined name, maximum length is 128. */
-  name: string;
-  /** Optional user defined data. Length should not exceed 16K. */
-  userData?: string;
-  /** Face ids of registered faces in the person. */
-  readonly persistedFaceIds?: string[];
-}
-
-/** Face resource for large person group person. */
-export interface LargePersonGroupPersonFaceOutput {
-  /** Face ID of the face. */
-  readonly persistedFaceId: string;
-  /** User-provided data attached to the face. The length limit is 1K. */
-  userData?: string;
-}
-
 /** Response of liveness session creation. */
 export interface LivenessSessionCreationResultOutput {
-  /** Unique ID to reference this session. */
+  /** The unique session ID of the created session. It will expire 48 hours after it was created or may be deleted sooner using the corresponding Session DELETE operation. */
   sessionId: string;
-  /** Authorization token for use by the client application */
+  /** Bearer token to provide authentication for the Vision SDK running on a client application. This Bearer token has limited permissions to perform only the required action and expires after the TTL time. It is also auditable. */
   authToken: string;
 }
 
 /** Session result of detect liveness. */
 export interface LivenessSessionOutput {
-  /** Unique ID to reference this session. */
+  /** The unique ID to reference this session. */
   readonly id: string;
-  /** Session creation time in millisecond from epoch. */
-  readonly createdDateTime: string;
-  /** Session started time from session auth token. */
-  readonly sessionStartDateTime?: string;
+  /** DateTime when this session was created. */
+  createdDateTime: string;
+  /** DateTime when this session was started by the client. */
+  sessionStartDateTime?: string;
   /** Whether or not the session is expired. */
-  readonly sessionExpired: boolean;
-  /** Device Correlation Id to use for linking multiple sessions together. */
-  deviceCorrelationId: string;
-  /** Session length in seconds. Range is 60 to 86400 seconds. */
+  sessionExpired: boolean;
+  /** Unique Guid per each end-user device. This is to provide rate limiting and anti-hammering. If 'deviceCorrelationIdSetInClient' is true in this request, this 'deviceCorrelationId' must be null. */
+  deviceCorrelationId?: string;
+  /** Seconds the session should last for. Range is 60 to 86400 seconds. Default value is 600. */
   authTokenTimeToLiveInSeconds?: number;
-  /** The session status. */
+  /** The current status of the session. */
   status: FaceSessionStatusOutput;
-  /** The last result of session. */
+  /** The latest session audit result only populated if status == 'ResultAvailable'. */
   result?: LivenessSessionAuditEntryOutput;
 }
 
 /** Audit entry for a request in session. */
 export interface LivenessSessionAuditEntryOutput {
-  /** ID of this audit entry. */
+  /** The unique id to refer to this audit request. Use this id with the 'start' query parameter to continue on to the next page of audit results. */
   id: number;
-  /** Session ID of this audit entry. */
+  /** The unique sessionId of the created session. It will expire 48 hours after it was created or may be deleted sooner using the corresponding session DELETE operation. */
   sessionId: string;
-  /** Request ID in the request header. */
+  /** The unique requestId that is returned by the service to the client in the 'apim-request-id' header. */
   requestId: string;
-  /** Client request ID in the request header. */
+  /** The unique clientRequestId that is sent by the client in the 'client-request-id' header. */
   clientRequestId: string;
-  /** The UTC date time of the request. */
+  /** The UTC DateTime that the request was received. */
   receivedDateTime: string;
   /** The request of this entry. */
   request: SessionAuditEntryRequestInfoOutput;
   /** The response of this entry. */
   response: SessionAuditEntryResponseInfoOutput;
-  /** The digest of the request body. */
+  /** The server calculated digest for this request. If the client reported digest differs from the server calculated digest, then the message integrity between the client and service has been compromised and the result should not be trusted. For more information, see how to guides on how to leverage this value to secure your end-to-end solution. */
   digest: string;
 }
 
 /** Audit entry for a request in the session. */
 export interface SessionAuditEntryRequestInfoOutput {
-  /** The relative URL of the liveness request. */
+  /** The relative URL and query of the liveness request. */
   url: string;
-  /** The HTTP method of the request. */
+  /** The HTTP method of the request (i.e., GET, POST, DELETE). */
   method: string;
   /** The length of the request body in bytes. */
   contentLength?: number;
   /** The content type of the request. */
   contentType: string;
-  /** The user agent of the request. */
+  /** The user agent used to submit the request. */
   userAgent?: string;
 }
 
 /** Audit entry for a response in the session. */
 export interface SessionAuditEntryResponseInfoOutput {
-  /** The response body. */
+  /** The response body. The schema of this field will depend on the request.url and request.method used by the client. */
   body: LivenessResponseBodyOutput;
-  /** The HTTP status code of the request. */
+  /** The HTTP status code returned to the client. */
   statusCode: number;
-  /** The latency of the request. */
+  /** The server measured latency for this request in milliseconds. */
   latencyInMilliseconds: number;
 }
 
@@ -589,42 +589,53 @@ export interface LivenessWithVerifyImageOutput {
 
 /** Session data returned for enumeration. */
 export interface LivenessSessionItemOutput {
-  /** Unique ID to reference this session. */
+  /** The unique ID to reference this session. */
   readonly id: string;
-  /** Session creation time in millisecond from epoch. */
-  readonly createdDateTime: string;
-  /** Session started time from session auth token. */
-  readonly sessionStartDateTime?: string;
+  /** DateTime when this session was created. */
+  createdDateTime: string;
+  /** DateTime when this session was started by the client. */
+  sessionStartDateTime?: string;
   /** Whether or not the session is expired. */
-  readonly sessionExpired: boolean;
-  /** Device Correlation Id to use for linking multiple sessions together. */
-  deviceCorrelationId: string;
-  /** Session length in seconds. Range is 60 to 86400 seconds. */
+  sessionExpired: boolean;
+  /** Unique Guid per each end-user device. This is to provide rate limiting and anti-hammering. If 'deviceCorrelationIdSetInClient' is true in this request, this 'deviceCorrelationId' must be null. */
+  deviceCorrelationId?: string;
+  /** Seconds the session should last for. Range is 60 to 86400 seconds. Default value is 600. */
   authTokenTimeToLiveInSeconds?: number;
+}
+
+/** Response of liveness session with verify creation with verify image provided. */
+export interface LivenessSessionWithVerifyCreationResultOutput {
+  /** The unique session ID of the created session. It will expire 48 hours after it was created or may be deleted sooner using the corresponding Session DELETE operation. */
+  sessionId: string;
+  /** Bearer token to provide authentication for the Vision SDK running on a client application. This Bearer token has limited permissions to perform only the required action and expires after the TTL time. It is also auditable. */
+  authToken: string;
+  /** The detail of face for verification. */
+  verifyImage: LivenessWithVerifyImageOutput;
 }
 
 /** Session result of detect liveness with verify. */
 export interface LivenessWithVerifySessionOutput {
-  /** Unique ID to reference this session. */
+  /** The unique ID to reference this session. */
   readonly id: string;
-  /** Session creation time in millisecond from epoch. */
-  readonly createdDateTime: string;
-  /** Session started time from session auth token. */
-  readonly sessionStartDateTime?: string;
+  /** DateTime when this session was created. */
+  createdDateTime: string;
+  /** DateTime when this session was started by the client. */
+  sessionStartDateTime?: string;
   /** Whether or not the session is expired. */
-  readonly sessionExpired: boolean;
-  /** Device Correlation Id to use for linking multiple sessions together. */
-  deviceCorrelationId: string;
-  /** Session length in seconds. Range is 60 to 86400 seconds. */
+  sessionExpired: boolean;
+  /** Unique Guid per each end-user device. This is to provide rate limiting and anti-hammering. If 'deviceCorrelationIdSetInClient' is true in this request, this 'deviceCorrelationId' must be null. */
+  deviceCorrelationId?: string;
+  /** Seconds the session should last for. Range is 60 to 86400 seconds. Default value is 600. */
   authTokenTimeToLiveInSeconds?: number;
-  /** The session status. */
+  /** The current status of the session. */
   status: FaceSessionStatusOutput;
-  /** The last result of session. */
+  /** The latest session audit result only populated if status == 'ResultAvailable'. */
   result?: LivenessSessionAuditEntryOutput;
 }
 
-/** The status of long running operation. */
-export type OperationStateOutput =
+/** Alias for FaceOperationStateOutput */
+export type FaceOperationStateOutput =
+  | string
   | "notStarted"
   | "running"
   | "succeeded"
@@ -636,14 +647,16 @@ export type RecognitionModelOutput =
   | "recognition_02"
   | "recognition_03"
   | "recognition_04";
-/** Glasses type of the face. */
+/** Alias for GlassesTypeOutput */
 export type GlassesTypeOutput =
+  | string
   | "noGlasses"
   | "readingGlasses"
   | "sunglasses"
   | "swimmingGoggles";
-/** Name of the hair color. */
+/** Alias for HairColorTypeOutput */
 export type HairColorTypeOutput =
+  | string
   | "unknown"
   | "white"
   | "gray"
@@ -652,25 +665,27 @@ export type HairColorTypeOutput =
   | "red"
   | "black"
   | "other";
-/** Type of the accessory. */
-export type AccessoryTypeOutput = "headwear" | "glasses" | "mask";
-/** Indicates level of blurriness. */
-export type BlurLevelOutput = "low" | "medium" | "high";
-/** Indicates level of exposure. */
+/** Alias for AccessoryTypeOutput */
+export type AccessoryTypeOutput = string | "headwear" | "glasses" | "mask";
+/** Alias for BlurLevelOutput */
+export type BlurLevelOutput = string | "low" | "medium" | "high";
+/** Alias for ExposureLevelOutput */
 export type ExposureLevelOutput =
+  | string
   | "underExposure"
   | "goodExposure"
   | "overExposure";
-/** Indicates level of noise. */
-export type NoiseLevelOutput = "low" | "medium" | "high";
-/** Type of the mask. */
+/** Alias for NoiseLevelOutput */
+export type NoiseLevelOutput = string | "low" | "medium" | "high";
+/** Alias for MaskTypeOutput */
 export type MaskTypeOutput =
+  | string
   | "faceMask"
   | "noMask"
   | "otherMaskOrOcclusion"
   | "uncertain";
-/** Indicates quality of image for recognition. */
-export type QualityForRecognitionOutput = "low" | "medium" | "high";
+/** Alias for QualityForRecognitionOutput */
+export type QualityForRecognitionOutput = string | "low" | "medium" | "high";
 /** Alias for FaceSessionStatusOutput */
 export type FaceSessionStatusOutput =
   | string

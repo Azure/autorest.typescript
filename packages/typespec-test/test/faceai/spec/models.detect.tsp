@@ -44,48 +44,48 @@ alias FaceDetectionOptions = {
 };
 
 #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "Use fixed enum to represent modelAsString = false"
-#suppress "@azure-tools/typespec-azure-core/no-enum" "Use fixed enum to avoid breaking change"
 @doc("Available options for detect face with attribute.")
-@fixed
-enum FaceAttributeType {
+union FaceAttributeType {
+  string,
+
   @doc("3-D roll/yaw/pitch angles for face direction.")
-  headPose,
+  "headPose",
 
   @doc("Glasses type. Values include 'NoGlasses', 'ReadingGlasses', 'Sunglasses', 'SwimmingGoggles'.")
-  glasses,
+  "glasses",
 
   @doc("Whether each facial area is occluded, including forehead, eyes and mouth.")
-  occlusion,
+  "occlusion",
 
   @doc("Accessories around face, including 'headwear', 'glasses' and 'mask'. Empty array means no accessories detected. Note this is after a face is detected. Large mask could result in no face to be detected.")
-  accessories,
+  "accessories",
 
   @doc("Face is blurry or not. Level returns 'Low', 'Medium' or 'High'. Value returns a number between [0,1], the larger the blurrier.")
-  blur,
+  "blur",
 
   @doc("Face exposure level. Level returns 'GoodExposure', 'OverExposure' or 'UnderExposure'.")
-  exposure,
+  "exposure",
 
   @doc("Noise level of face pixels. Level returns 'Low', 'Medium' and 'High'. Value returns a number between [0,1], the larger the noisier")
-  noise,
+  "noise",
 
   @doc("Whether each face is wearing a mask. Mask type returns 'noMask', 'faceMask', 'otherMaskOrOcclusion', or 'uncertain'. Value returns a boolean 'noseAndMouthCovered' indicating whether nose and mouth are covered.")
-  mask,
+  "mask",
 
   @doc("The overall image quality regarding whether the image being used in the detection is of sufficient quality to attempt face recognition on. The value is an informal rating of low, medium, or high. Only 'high' quality images are recommended for person enrollment and quality at or above 'medium' is recommended for identification scenarios. The attribute is only available when using any combinations of detection models detection_01 or detection_03, and recognition models recognition_03 or recognition_04.")
-  qualityForRecognition,
+  "qualityForRecognition",
 }
 
 @doc("Response for detect API.")
 model FaceDetectionResult {
   @doc("Unique faceId of the detected face, created by detection API and it will expire 24 hours after the detection call. To return this, it requires 'returnFaceId' parameter to be true.")
-  faceId: uuid;
+  faceId?: uuid;
 
   @doc("The 'recognitionModel' associated with this faceId. This is only returned when 'returnRecognitionModel' is explicitly set as true.")
   recognitionModel?: RecognitionModel;
 
   @doc("A rectangle area for the face location on image.")
-  faceRectangle?: FaceRectangle;
+  faceRectangle: FaceRectangle;
 
   @doc("An array of 27-point face landmarks pointing to the important positions of face components. To return this, it requires 'returnFaceLandmarks' parameter to be true.")
   faceLandmarks?: FaceLandmarks;
@@ -264,22 +264,21 @@ model FacialHair {
   sideburns: float32;
 }
 
-#suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "Use fixed enum to represent modelAsString = false"
-#suppress "@azure-tools/typespec-azure-core/no-enum" "Use fixed enum to avoid breaking change"
 @doc("Glasses type of the face.")
-@fixed
-enum GlassesType {
+union GlassesType {
+  string,
+
   @doc("No glasses on the face.")
-  noGlasses,
+  "noGlasses",
 
   @doc("Normal glasses on the face.")
-  readingGlasses,
+  "readingGlasses",
 
   @doc("Sunglasses on the face.")
-  sunglasses,
+  "sunglasses",
 
   @doc("Swimming goggles on the face.")
-  swimmingGoggles,
+  "swimmingGoggles",
 }
 
 @doc("3-D roll/yaw/pitch angles for face direction.")
@@ -319,34 +318,33 @@ model HairColor {
   confidence: float32;
 }
 
-#suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "Use fixed enum to represent modelAsString = false"
-#suppress "@azure-tools/typespec-azure-core/no-enum" "Use fixed enum to avoid breaking change"
 @doc("Name of the hair color.")
-@fixed
-enum HairColorType {
+union HairColorType {
+  string,
+
   @doc("Unknown.")
   unknownHairColor: "unknown",
 
   @doc("White.")
-  white,
+  "white",
 
   @doc("Gray.")
-  gray,
+  "gray",
 
   @doc("Blond.")
-  blond,
+  "blond",
 
   @doc("Brown.")
-  brown,
+  "brown",
 
   @doc("Red.")
-  red,
+  "red",
 
   @doc("Black.")
-  black,
+  "black",
 
   @doc("Other.")
-  other,
+  "other",
 }
 
 @doc("Properties describing occlusions on a given face.")
@@ -372,19 +370,18 @@ model AccessoryItem {
   confidence: float32;
 }
 
-#suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "Use fixed enum to represent modelAsString = false"
-#suppress "@azure-tools/typespec-azure-core/no-enum" "Use fixed enum to avoid breaking change"
 @doc("Type of the accessory.")
-@fixed
-enum AccessoryType {
-  @doc("Headwear.")
-  headwear,
+union AccessoryType {
+  string,
+
+  @doc("Head wear.")
+  "headwear",
 
   @doc("Glasses.")
-  glasses,
+  "glasses",
 
   @doc("Mask.")
-  mask,
+  "mask",
 }
 
 @doc("Properties describing any presence of blur within the image.")
@@ -398,19 +395,18 @@ model BlurProperties {
   value: float32;
 }
 
-#suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "Use fixed enum to represent modelAsString = false"
-#suppress "@azure-tools/typespec-azure-core/no-enum" "Use fixed enum to avoid breaking change"
 @doc("Indicates level of blurriness.")
-@fixed
-enum BlurLevel {
+union BlurLevel {
+  string,
+
   @doc("Low blur level.")
-  low,
+  "low",
 
   @doc("Medium blur level.")
-  medium,
+  "medium",
 
   @doc("High blur level.")
-  high,
+  "high",
 }
 
 @doc("Properties describing exposure level of the image.")
@@ -424,19 +420,18 @@ model ExposureProperties {
   value: float32;
 }
 
-#suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "Use fixed enum to represent modelAsString = false"
-#suppress "@azure-tools/typespec-azure-core/no-enum" "Use fixed enum to avoid breaking change"
 @doc("Indicates level of exposure.")
-@fixed
-enum ExposureLevel {
+union ExposureLevel {
+  string,
+
   @doc("Low exposure level.")
-  underExposure,
+  "underExposure",
 
   @doc("Good exposure level.")
-  goodExposure,
+  "goodExposure",
 
   @doc("High exposure level.")
-  overExposure,
+  "overExposure",
 }
 
 @doc("Properties describing noise level of the image.")
@@ -450,19 +445,18 @@ model NoiseProperties {
   value: float32;
 }
 
-#suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "Use fixed enum to represent modelAsString = false"
-#suppress "@azure-tools/typespec-azure-core/no-enum" "Use fixed enum to avoid breaking change"
 @doc("Indicates level of noise.")
-@fixed
-enum NoiseLevel {
+union NoiseLevel {
+  string,
+
   @doc("Low noise level.")
-  low,
+  "low",
 
   @doc("Medium noise level.")
-  medium,
+  "medium",
 
   @doc("High noise level.")
-  high,
+  "high",
 }
 
 @doc("Properties describing the presence of a mask on a given face.")
@@ -474,35 +468,33 @@ model MaskProperties {
   type: MaskType;
 }
 
-#suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "Use fixed enum to represent modelAsString = false"
-#suppress "@azure-tools/typespec-azure-core/no-enum" "Use fixed enum to avoid breaking change"
 @doc("Type of the mask.")
-@fixed
-enum MaskType {
+union MaskType {
+  string,
+
   @doc("Face mask.")
-  faceMask,
+  "faceMask",
 
   @doc("No mask.")
-  noMask,
+  "noMask",
 
   @doc("Other types of mask or occlusion.")
-  otherMaskOrOcclusion,
+  "otherMaskOrOcclusion",
 
   @doc("Uncertain.")
-  uncertain,
+  "uncertain",
 }
 
-#suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "Use fixed enum to represent modelAsString = false"
-#suppress "@azure-tools/typespec-azure-core/no-enum" "Use fixed enum to avoid breaking change"
 @doc("Indicates quality of image for recognition.")
-@fixed
-enum QualityForRecognition {
+union QualityForRecognition {
+  string,
+
   @doc("Low quality.")
-  low,
+  "low",
 
   @doc("Medium quality.")
-  medium,
+  "medium",
 
   @doc("High quality.")
-  high,
+  "high",
 }

@@ -29,7 +29,7 @@ model FaceOperationStatus {
   operationId: uuid;
 
   @doc("Current status of the operation.")
-  status: OperationState;
+  status: FaceOperationState;
 
   @doc("Date and time the operation was created.")
   createdDateTime: utcDateTime;
@@ -56,7 +56,7 @@ model PersonDirectoryRecognitionModel {
 @doc("Face resource for person directory person.")
 model PersonDirectoryFace is BaseFace;
 
-@doc("A container that references PersonDirectory Person - Create.")
+@doc("A container that references Person Directory \"Create Person\".")
 @resource("dynamicpersongroups")
 model DynamicPersonGroup {
   @key
@@ -68,17 +68,17 @@ model DynamicPersonGroup {
 }
 
 alias CreateDynamicPersonGroupOptions = {
-  @doc("Array of personIds created by PersonDirectory Person - Create to add.")
+  @doc("Array of personIds created by Person Directory \"Create Person\" to be added.")
   addPersonIds?: uuid[];
 
   ...UserDefinedFields;
 };
 
 alias UpdateDynamicPersonGroupOptions = {
-  @doc("Array of personIds created by PersonDirectory Person - Create to add.")
+  @doc("Array of personIds created by Person Directory \"Create Person\" to be added.")
   addPersonIds?: uuid[];
 
-  @doc("Array of personIds created by PersonDirectory Person - Create to remove.")
+  @doc("Array of personIds created by Person Directory \"Create Person\" to be removed.")
   removePersonIds?: uuid[];
 
   ...UserDefinedFields;
