@@ -173,7 +173,7 @@ export type PathParameter = {
 
 export interface OperationHelperDetail {
   lroDetails?: OperationLroDetail;
-  isPageable?: boolean;
+  isPaging?: boolean;
 }
 
 export const OPERATION_LRO_HIGH_PRIORITY = 0,

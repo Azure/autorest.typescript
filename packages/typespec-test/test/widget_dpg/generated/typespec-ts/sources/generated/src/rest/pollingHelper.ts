@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
+// Licensed under the MIT license.
 
-export const pollingContent = `
 import { Client, HttpResponse } from "@azure-rest/core-client";
 import { AbortSignalLike } from "@azure/abort-controller";
 import {
@@ -12,20 +11,27 @@ import {
   OperationState,
   createHttpPoller,
 } from "@azure/core-lro";
-{{#if clientOverload}}
 import {
-  {{#each importedResponses}}
-  {{this}},
-  {{/each}}
-} from "./responses{{#if isEsm}}.js{{/if}}";
-{{/if}}
+  WidgetsCreateOrReplace200Response,
+  WidgetsCreateOrReplace201Response,
+  WidgetsCreateOrReplaceDefaultResponse,
+  WidgetsCreateOrReplaceLogicalResponse,
+  BudgetsCreateOrReplace200Response,
+  BudgetsCreateOrReplace201Response,
+  BudgetsCreateOrReplaceDefaultResponse,
+  BudgetsCreateOrReplaceLogicalResponse,
+  BudgetsCreateOrUpdate200Response,
+  BudgetsCreateOrUpdate201Response,
+  BudgetsCreateOrUpdateDefaultResponse,
+  BudgetsCreateOrUpdateLogicalResponse,
+} from "./responses.js";
 
 /**
  * A simple poller that can be used to poll a long running operation.
  */
 export interface SimplePollerLike<
   TState extends OperationState<TResult>,
-  TResult
+  TResult,
 > {
   /**
    * Returns true if the poller has finished polling.
@@ -96,22 +102,47 @@ export interface SimplePollerLike<
  * @param options - Options to set a resume state or custom polling interval.
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
-{{#if clientOverload}}
-{{#each overloadMap}}
 export async function getLongRunningPoller<
-  TResult extends {{ this.finalResponses }}
+  TResult extends
+    | BudgetsCreateOrUpdateLogicalResponse
+    | BudgetsCreateOrUpdateDefaultResponse,
 >(
   client: Client,
-  initialResponse: {{ this.initialResponses }},
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+  initialResponse:
+    | BudgetsCreateOrUpdate200Response
+    | BudgetsCreateOrUpdate201Response
+    | BudgetsCreateOrUpdateDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-{{/each}}
-{{/if}}
+export async function getLongRunningPoller<
+  TResult extends
+    | WidgetsCreateOrReplaceLogicalResponse
+    | WidgetsCreateOrReplaceDefaultResponse,
+>(
+  client: Client,
+  initialResponse:
+    | WidgetsCreateOrReplace200Response
+    | WidgetsCreateOrReplace201Response
+    | WidgetsCreateOrReplaceDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends
+    | BudgetsCreateOrReplaceLogicalResponse
+    | BudgetsCreateOrReplaceDefaultResponse,
+>(
+  client: Client,
+  initialResponse:
+    | BudgetsCreateOrReplace200Response
+    | BudgetsCreateOrReplace201Response
+    | BudgetsCreateOrReplaceDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(
-    client: Client,
-    initialResponse: TResult,
-    options: CreateHttpPollerOptions<TResult, OperationState<TResult>> = {}
-    ): Promise<SimplePollerLike<OperationState<TResult>, TResult>> { 
+  client: Client,
+  initialResponse: TResult,
+  options: CreateHttpPollerOptions<TResult, OperationState<TResult>> = {},
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>> {
   const abortController = new AbortController();
   const poller: LongRunningOperation<TResult> = {
     sendInitialRequest: async () => {
@@ -122,7 +153,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
     },
     sendPollRequest: async (
       path,
-      options?: { abortSignal?: AbortSignalLike }
+      options?: { abortSignal?: AbortSignalLike },
     ) => {
       // This is the callback that is going to be called to poll the service
       // to get the latest status. We use the client provided and the polling path
@@ -137,7 +168,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
         abortController.abort();
       } else if (!abortSignal.aborted) {
         inputAbortSignal?.addEventListener("abort", abortListener, {
-          once: true
+          once: true,
         });
       }
       let response;
@@ -152,7 +183,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
       lroResponse.rawResponse.headers["x-ms-original-url"] =
         initialResponse.request.url;
       return lroResponse;
-    }
+    },
   };
 
   options.resolveOnUnsuccessful = options.resolveOnUnsuccessful ?? true;
@@ -167,7 +198,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
     getOperationState() {
       if (!httpPoller.operationState) {
         throw new Error(
-          "Operation state is not available. The poller may not have been started and you could await submitted() before calling getOperationState()."
+          "Operation state is not available. The poller may not have been started and you could await submitted() before calling getOperationState().",
         );
       }
       return httpPoller.operationState;
@@ -178,11 +209,11 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
     toString() {
       if (!httpPoller.operationState) {
         throw new Error(
-          "Operation state is not available. The poller may not have been started and you could await submitted() before calling getOperationState()."
+          "Operation state is not available. The poller may not have been started and you could await submitted() before calling getOperationState().",
         );
       }
       return JSON.stringify({
-        state: httpPoller.operationState
+        state: httpPoller.operationState,
       });
     },
     stopPolling() {
@@ -192,7 +223,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
     poll: httpPoller.poll,
     pollUntilDone: httpPoller.pollUntilDone,
     serialize: httpPoller.serialize,
-    submitted: httpPoller.submitted
+    submitted: httpPoller.submitted,
   };
   return simplePoller;
 }
@@ -203,11 +234,11 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
  * @returns - An LRO response that the LRO implementation understands
  */
 function getLroResponse<TResult extends HttpResponse>(
-  response: TResult
-): OperationResponse<TResult>  {
+  response: TResult,
+): OperationResponse<TResult> {
   if (Number.isNaN(response.status)) {
     throw new TypeError(
-      \`Status code of the response is not a number. Value: \${response.status}\`
+      `Status code of the response is not a number. Value: ${response.status}`,
     );
   }
 
@@ -216,8 +247,7 @@ function getLroResponse<TResult extends HttpResponse>(
     rawResponse: {
       ...response,
       statusCode: Number.parseInt(response.status),
-      body: response.body
-    }
+      body: response.body,
+    },
   };
 }
-`;
