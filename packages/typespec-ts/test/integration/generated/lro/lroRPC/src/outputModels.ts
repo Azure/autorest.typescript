@@ -1,28 +1,32 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ErrorResponse } from "@azure-rest/core-client";
+import { ErrorModel } from "@azure-rest/core-client";
 
-/** Result of the job */
-export interface JobResultOutput {
-  /** A processing job identifier. */
-  readonly jobId: string;
-  /** Comment. */
-  readonly comment: string;
-  /** The status of the processing job. */
-  readonly status: JobStatusOutput;
-  /** Error objects that describes the error when status is "Failed". */
-  readonly errors?: Array<ErrorResponse>;
-  /** The results. */
-  readonly results?: string[];
+/** Options for the generation. */
+export interface GenerationOptionsOutput {
+  /** Prompt. */
+  prompt: string;
 }
 
-/** Alias for JobStatusOutput */
-export type JobStatusOutput =
-  | string
-  | "notStarted"
-  | "running"
-  | "Succeeded"
-  | "Failed"
-  | "canceled"
-  | "partiallyCompleted";
+/** Provides status details for long running operations. */
+export interface ResourceOperationStatusOutput {
+  /** The unique ID of the operation. */
+  readonly id: string;
+  /**
+   * The status of the operation
+   *
+   * Possible values: "NotStarted", "Running", "Succeeded", "Failed", "Canceled"
+   */
+  status: string;
+  /** Error object that describes the error when status is "Failed". */
+  error?: ErrorModel;
+  /** The result of the operation. */
+  result?: GenerationResultOutput;
+}
+
+/** Result of the generation. */
+export interface GenerationResultOutput {
+  /** The data. */
+  data: string;
+}

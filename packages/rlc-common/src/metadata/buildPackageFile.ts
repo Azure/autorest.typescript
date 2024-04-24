@@ -37,9 +37,7 @@ export function buildPackageFile(
     hasLro: hasPollingOperations(model),
     hasPaging: hasPagingOperations(model),
     monorepoPackageDirectory: model.options?.azureOutputDirectory,
-    specSource: model.options?.sourceFrom ?? "TypeSpec",
-    // Currently we would use v3 LRO for modular libraries
-    useV3Lro: model.options?.isModularLibrary ?? false
+    specSource: model.options?.sourceFrom ?? "TypeSpec"
   };
 
   if (isAzureMonorepoPackage(model)) {

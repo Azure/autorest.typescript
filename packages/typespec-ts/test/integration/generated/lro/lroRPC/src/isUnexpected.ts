@@ -2,39 +2,28 @@
 // Licensed under the MIT license.
 
 import {
-  GetJob200Response,
-  GetJobDefaultResponse,
-  CreateJob202Response,
-  CreateJobLogicalResponse,
-  CreateJobDefaultResponse,
+  LongRunningRpc202Response,
+  LongRunningRpcLogicalResponse,
+  LongRunningRpcDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
-  "GET /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs/{jobId}":
-    ["200"],
-  "POST /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs":
-    ["202"],
-  "GET /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs":
-    ["200", "202"],
+  "POST /azure/core/lro/rpc/generations:submit": ["202"],
+  "GET /azure/core/lro/rpc/generations:submit": ["200", "202"],
 };
 
 export function isUnexpected(
-  response: GetJob200Response | GetJobDefaultResponse,
-): response is GetJobDefaultResponse;
+  response:
+    | LongRunningRpc202Response
+    | LongRunningRpcLogicalResponse
+    | LongRunningRpcDefaultResponse,
+): response is LongRunningRpcDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateJob202Response
-    | CreateJobLogicalResponse
-    | CreateJobDefaultResponse,
-): response is CreateJobDefaultResponse;
-export function isUnexpected(
-  response:
-    | GetJob200Response
-    | GetJobDefaultResponse
-    | CreateJob202Response
-    | CreateJobLogicalResponse
-    | CreateJobDefaultResponse,
-): response is GetJobDefaultResponse | CreateJobDefaultResponse {
+    | LongRunningRpc202Response
+    | LongRunningRpcLogicalResponse
+    | LongRunningRpcDefaultResponse,
+): response is LongRunningRpcDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

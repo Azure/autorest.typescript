@@ -2,12 +2,11 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { JobData } from "./models.js";
+import { GenerationOptions } from "./models.js";
 
-export type GetJobParameters = RequestParameters;
-
-export interface CreateJobBodyParam {
-  body?: JobData;
+export interface LongRunningRpcBodyParam {
+  body?: GenerationOptions;
 }
 
-export type CreateJobParameters = CreateJobBodyParam & RequestParameters;
+export type LongRunningRpcParameters = LongRunningRpcBodyParam &
+  RequestParameters;

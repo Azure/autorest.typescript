@@ -61,8 +61,7 @@ describe("LROStandardClient Classical Client", () => {
       assert.deepEqual(states, ["running", "succeeded"]);
     });
 
-    // Skip this case: https://github.com/Azure/autorest.typescript/issues/2316
-    it.skip("should abort signal", async () => {
+    it("should abort initial request", async () => {
       const abortController = new AbortController();
       const poller = client.createOrReplace(
         "madge",
@@ -73,15 +72,73 @@ describe("LROStandardClient Classical Client", () => {
           abortSignal: abortController.signal
         }
       );
-      await poller.submitted();
-      assert.strictEqual(poller.operationState?.status, "running");
       abortController.abort();
-      poller.poll();
-      assert.strictEqual(poller.operationState?.status, "cancelled");
+      try {
+        await poller.submitted();
+        assert.fail("Should throw an AbortError");
+      } catch (err: any) {
+        assert.strictEqual(err.message, "The operation was aborted.");
+      }
     });
 
-    // Skip this case: https://github.com/Azure/azure-sdk-for-js/issues/28694
-    it.skip("submitted should catch the initial error", async () => {
+    it("should abort polling request", async () => {
+      const abortController = new AbortController();
+      const poller = client.createOrReplace(
+        "madge",
+        {
+          role: "contributor"
+        } as any,
+        {
+          abortSignal: abortController.signal
+        }
+      );
+      try {
+        await poller.submitted();
+        abortController.abort();
+        await poller.poll();
+        assert.fail("Should throw an AbortError");
+      } catch (err: any) {
+        assert.strictEqual(err.message, "The operation was aborted.");
+      }
+    });
+
+    it("should abort pollUntilDone request", async () => {
+      const abortController = new AbortController();
+      const poller = client.createOrReplace("madge", {
+        role: "contributor"
+      } as any);
+      abortController.abort();
+      try {
+        await poller.pollUntilDone({ abortSignal: abortController.signal });
+        assert.fail("Should throw an AbortError");
+      } catch (err: any) {
+        assert.strictEqual(err.message, "The operation was aborted.");
+      }
+    });
+
+    it("should abort polling request if both method and polling abort is set", async () => {
+      const methodAbort = new AbortController();
+      const pollAbort = new AbortController();
+      const poller = client.createOrReplace(
+        "madge",
+        {
+          role: "contributor"
+        } as any,
+        {
+          abortSignal: methodAbort.signal
+        }
+      );
+
+      try {
+        pollAbort.abort();
+        await poller.pollUntilDone({ abortSignal: pollAbort.signal });
+        assert.fail("Should throw an AbortError");
+      } catch (err: any) {
+        assert.strictEqual(err.message, "The operation was aborted.");
+      }
+    });
+
+    it("submitted should catch the initial error", async () => {
       try {
         const poller = client.createOrReplace("madge", {
           role: "foo"
@@ -92,12 +149,12 @@ describe("LROStandardClient Classical Client", () => {
       } catch (err: any) {
         assert.strictEqual(
           err.message,
-          "The long-running operation has failed"
+          "Body provided doesn't match expected body"
         );
       }
     });
 
-    it("poll should catch the inital error", async () => {
+    it("poll should catch the initial error", async () => {
       try {
         const poller = client.createOrReplace("madge", {
           role: "foo"
@@ -108,12 +165,12 @@ describe("LROStandardClient Classical Client", () => {
       } catch (err: any) {
         assert.strictEqual(
           err.message,
-          "The long-running operation has failed"
+          "Body provided doesn't match expected body"
         );
       }
     });
 
-    it("pollUntilDone should catch the inital error", async () => {
+    it("pollUntilDone should catch the initial error", async () => {
       try {
         const poller = client.createOrReplace("madge", {
           role: "foo"
@@ -124,12 +181,12 @@ describe("LROStandardClient Classical Client", () => {
       } catch (err: any) {
         assert.strictEqual(
           err.message,
-          "The long-running operation has failed"
+          "Body provided doesn't match expected body"
         );
       }
     });
 
-    it("await should catch inital exception", async () => {
+    it("await should catch initial exception", async () => {
       try {
         await client.createOrReplace("madge", {
           role: "foo"
@@ -138,7 +195,7 @@ describe("LROStandardClient Classical Client", () => {
       } catch (err: any) {
         assert.strictEqual(
           err.message,
-          "The long-running operation has failed"
+          "Body provided doesn't match expected body"
         );
       }
     });
