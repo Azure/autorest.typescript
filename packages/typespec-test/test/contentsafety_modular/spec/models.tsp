@@ -107,7 +107,7 @@ model AnalyzeImageOptions {
 }
 
 @doc("The content or blob url of image, could be base64 encoding bytes or blob url. You can choose only one of them. If both are given, the request will be refused. The maximum size of image is 2048 pixels * 2048 pixels, no larger than 4MB at the same time. The minimum size of image is 50 pixels * 50 pixels.")
-@projectedName("csharp", "ContentSafetyImageData")
+@clientName("ContentSafetyImageData")
 model ImageData {
   @doc("Base64 encoding of image.")
   content?: bytes;

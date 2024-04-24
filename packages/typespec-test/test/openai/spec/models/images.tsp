@@ -49,7 +49,7 @@ model ImageGenerationOptions {
     The format in which image generation response items should be presented.
     Azure OpenAI only supports URL response items.
   """)
-  @projectedName("json", "response_format")
+  @encodedName("application/json", "response_format")
   responseFormat?: ImageGenerationResponseFormat;
 
   @doc("A unique identifier representing your end-user, which can help to monitor and detect abuse.")
@@ -68,7 +68,7 @@ model ImageLocation {
 @added(ServiceApiVersions.v2023_06_01_Preview)
 model ImagePayload {
   @doc("The complete data for an image represented as a base64-encoded string.")
-  @projectedName("json", "b64_json")
+  @encodedName("application/json", "b64_json")
   base64Data: string;
 }
 
@@ -76,7 +76,7 @@ model ImagePayload {
 @added(ServiceApiVersions.v2023_06_01_Preview)
 model ImageGenerations {
   @doc("A timestamp when this job or item was created (in unix epochs).")
-  @projectedName("json", "created")
+  @encodedName("application/json", "created")
   @projectedName("java", "createdAt")
   @encode(DateTimeKnownEncoding.unixTimestamp, int32)
   created: utcDateTime;
@@ -97,7 +97,7 @@ model BatchImageGenerationOperationResponse {
   id: string;
 
   @doc("A timestamp when this job or item was created (in unix epochs).")
-  @projectedName("json", "created")
+  @encodedName("application/json", "created")
   @projectedName("java", "createdAt")
   @encode(DateTimeKnownEncoding.unixTimestamp, int32)
   created: utcDateTime;
