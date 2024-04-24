@@ -8,7 +8,7 @@ import {
   StructureKind,
   TypeAliasDeclarationStructure
 } from "ts-morph";
-import { NameType, normalizeName, pascalCase } from "./helpers/nameUtils.js";
+import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import { isDictionarySchema, isObjectSchema } from "./helpers/schemaHelpers.js";
 import {
   ObjectSchema,
@@ -69,7 +69,7 @@ export function buildObjectInterfaces(
   return objectInterfaces;
 }
 
-const MULTIPART_FILE_UPLOAD_MIME_PROPERTIES: OptionalKind<PropertySignatureStructure>[] =
+const MULTIPART_FILE_METADATA_PROPERTIES: OptionalKind<PropertySignatureStructure>[] =
   [
     {
       name: "filename",
@@ -121,7 +121,7 @@ function buildMultipartPartDefinitions(
           name: "body",
           type: signature.type
         },
-        ...(isFileUpload ? MULTIPART_FILE_UPLOAD_MIME_PROPERTIES : [])
+        ...(isFileUpload ? MULTIPART_FILE_METADATA_PROPERTIES : [])
       ]
     });
   }

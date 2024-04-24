@@ -73,7 +73,11 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { GetSchemaOptions, SdkContext } from "./interfaces.js";
 import { getModelNamespaceName } from "./namespaceUtils.js";
-import { KnownMediaType, hasMediaType } from "./mediaTypes.js";
+import {
+  KnownMediaType,
+  hasMediaType,
+  isMediaTypeMultipartFormData
+} from "./mediaTypes.js";
 
 export const BINARY_TYPE_UNION =
   "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
@@ -185,8 +189,7 @@ export function getSchemaForType(
           usage: [SchemaContext.Input],
           multipart:
             options?.isRequestBody &&
-            (options?.mediaTypes?.includes(KnownMediaType.MultipartFormData) ??
-              false)
+            isMediaTypeMultipartFormData(options?.mediaTypes ?? [])
         });
         schema.type = "object";
       }
@@ -609,9 +612,7 @@ function getSchemaForModel(
         .join("") + "List";
   }
 
-  const isMultipartBody = contentTypes?.includes(
-    KnownMediaType.MultipartFormData
-  );
+  const isMultipartBody = isMediaTypeMultipartFormData(contentTypes ?? []);
 
   const isCoreModel = isAzureCoreErrorType(model);
   const modelSchema: ObjectSchema = {

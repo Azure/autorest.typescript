@@ -6,7 +6,7 @@ import MultiPartClientFactory, {
 import { resolve } from "path";
 import { readFile } from "fs/promises";
 import { fileURLToPath } from "url";
-describe.only("MultiPartClient Rest Client", () => {
+describe("MultiPartClient Rest Client", () => {
   let client: MultiPartClient;
 
   beforeEach(() => {

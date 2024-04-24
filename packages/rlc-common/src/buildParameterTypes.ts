@@ -100,7 +100,6 @@ export function buildParameterTypes(model: RLCModel) {
       }
 
       // Add interfaces for body and query parameters
-
       parametersFile.addInterfaces([
         ...(bodyParameterDefinition ?? []),
         ...(queryParameterDefinitions ?? []),
