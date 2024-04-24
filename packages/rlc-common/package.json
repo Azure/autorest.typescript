@@ -18,7 +18,7 @@
     "lint:fix": "eslint src --fix --ext .ts",
     "format": "npm run -s prettier -- --write",
     "check-format": "npm run prettier -- --check",
-    "prettier": "prettier --config ./.prettierrc src/**/*.ts",
+    "prettier": "prettier --config ./.prettierrc \"src/**/*.ts\"",
     "build": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && node publishPackage.js",
     "build:cjs": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig-cjs.json && node publishPackage.js",
     "build:esm": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig.json && node publishPackage.js",
