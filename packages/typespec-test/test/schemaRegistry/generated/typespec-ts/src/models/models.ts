@@ -38,6 +38,15 @@ export interface SchemaProperties {
 /** Represents the format of the schema to be stored by the Schema Registry service. */
 /** */
 export type SchemaFormat = "Avro" | "Json" | "Custom" | "Protobuf";
+
+/** The schema content of a schema, along with id and meta properties. */
+export interface Schema {
+  /** The content of the schema. */
+  definition: string;
+  /** The properties of the schema. */
+  properties: SchemaProperties;
+}
+
 /** The content type for the schema. */
 /** */
 export type ContentTypeEnum =

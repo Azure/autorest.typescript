@@ -457,11 +457,58 @@ export type Status =
   | "FAILED"
   | "VALIDATION_SUCCESS"
   | "VALIDATION_FAILURE";
+
+/** Test run app component */
+export interface TestRunAppComponents {
+  /**
+   * Azure resource collection { resource id (fully qualified resource Id e.g
+   * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName})
+   * : resource object }
+   */
+  components: Record<string, AppComponent>;
+  /** Test run identifier */
+  readonly testRunId?: string;
+  /** The creation datetime(ISO 8601 literal format). */
+  readonly createdDateTime?: string;
+  /** The user that created. */
+  readonly createdBy?: string;
+  /** The last Modified datetime(ISO 8601 literal format). */
+  readonly lastModifiedDateTime?: string;
+  /** The user that last modified. */
+  readonly lastModifiedBy?: string;
+}
+
+/** Test run server metrics configuration */
+export interface TestRunServerMetricConfig {
+  /** Test run identifier */
+  readonly testRunId?: string;
+  /**
+   * Azure resource metrics collection {metric id : metrics object} (Refer :
+   * https://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition
+   * for metric id).
+   */
+  metrics?: Record<string, ResourceMetric>;
+  /** The creation datetime(ISO 8601 literal format). */
+  readonly createdDateTime?: string;
+  /** The user that created. */
+  readonly createdBy?: string;
+  /** The last Modified datetime(ISO 8601 literal format). */
+  readonly lastModifiedDateTime?: string;
+  /** The user that last modified. */
+  readonly lastModifiedBy?: string;
+}
+
 /** */
 export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 export interface DimensionValueList {
   value: string[];
+}
+
+/** Represents collection of metric definitions. */
+export interface MetricDefinitionCollection {
+  /** the values for the metric definitions. */
+  value: MetricDefinition[];
 }
 
 /** Metric definition */
@@ -527,6 +574,12 @@ export interface MetricAvailability {
 /** */
 export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
+/** Represents collection of metric namespaces. */
+export interface MetricNamespaceCollection {
+  /** The values for the metric namespaces. */
+  value: MetricNamespace[];
+}
+
 /** Metric namespace class specifies the metadata for a metric namespace. */
 export interface MetricNamespace {
   /** The namespace description. */
@@ -535,12 +588,31 @@ export interface MetricNamespace {
   name?: string;
 }
 
+/** Filters to fetch the set of metric */
+export interface MetricRequestPayload {
+  /**
+   * Get metrics for specific dimension values. Example: Metric contains dimension
+   * like SamplerName, Error. To retrieve all the time series data where SamplerName
+   * is equals to HTTPRequest1 or HTTPRequest2, the DimensionFilter value will be
+   * {"SamplerName", ["HTTPRequest1", "HTTPRequest2"}
+   */
+  filters?: DimensionFilter[];
+}
+
 /** Dimension name and values to filter */
 export interface DimensionFilter {
   /** The dimension name */
   name?: string;
   /** The dimension values. Maximum values can be 20. */
   values?: string[];
+}
+
+/** The response to a metrics query. */
+export interface PagedTimeSeriesElement {
+  /** The TimeSeriesElement items on this page */
+  value: TimeSeriesElement[];
+  /** The link to the next page of items */
+  nextLink?: string;
 }
 
 /** The time series returned when a data query is performed. */
@@ -565,4 +637,20 @@ export interface DimensionValue {
   name?: string;
   /** The value of the dimension. */
   value?: string;
+}
+
+/** Collection of test runs */
+export interface PagedTestRun {
+  /** The TestRun items on this page */
+  value: TestRun[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** Paged collection of DimensionValueList items */
+export interface PagedDimensionValueList {
+  /** The DimensionValueList items on this page */
+  value: DimensionValueList[];
+  /** The link to the next page of items */
+  nextLink?: string;
 }
