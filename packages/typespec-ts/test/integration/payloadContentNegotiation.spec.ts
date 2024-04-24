@@ -9,10 +9,9 @@ import { resolvePath } from "@typespec/compiler";
 import { fileURLToPath } from "url";
 
 const root = resolvePath(fileURLToPath(import.meta.url), "../../../temp");
-console.log(root);
 const pngFile = readFileSync(resolvePath(root, "assets/image.png"));
 const jpegImage = readFileSync(resolvePath(root, "assets/image.jpg"));
-describe.only("Content Negotiation Client", () => {
+describe("Content Negotiation Client", () => {
   let client: ContentNegotiationClient;
 
   beforeEach(() => {
@@ -28,11 +27,7 @@ describe.only("Content Negotiation Client", () => {
       });
       assert.strictEqual(result.status, "200");
       assert.strictEqual(
-        uint8ArrayToString(result.body.contentType, "utf-8"),
-        "image/png"
-      );
-      assert.strictEqual(
-        uint8ArrayToString(result.body.rawContent, "utf-8"),
+        uint8ArrayToString(result.body, "utf-8"),
         pngFile.toString()
       );
     } catch (err) {
@@ -47,11 +42,7 @@ describe.only("Content Negotiation Client", () => {
         .get({ headers: { accept: "image/jpeg" } });
       assert.strictEqual(result.status, "200");
       assert.strictEqual(
-        uint8ArrayToString(result.body.contentType, "utf-8"),
-        "image/jpeg"
-      );
-      assert.strictEqual(
-        uint8ArrayToString(result.body.rawContent, "utf-8"),
+        uint8ArrayToString(result.body, "utf-8"),
         jpegImage.toString()
       );
     } catch (err) {
@@ -59,24 +50,24 @@ describe.only("Content Negotiation Client", () => {
     }
   });
 
-  // it.only("should return error if put wrong accept for same body in content negotiation", async () => {
-  //   try {
-  //     const result = await client
-  //       .path("/content-negotiation/same-body")
-  //       .get({ headers: { accept: "wrongAccept" } });
-  //     assert.strictEqual(
-  //       (result.body as any).message,
-  //       "Unsupported Accept header"
-  //     );
-  //     assert.strictEqual(
-  //       (result.body as any).expected,
-  //       `"image/png" | "image/jpeg"`
-  //     );
-  //     assert.strictEqual((result.body as any).actual, "wrongAccept");
-  //   } catch (err) {
-  //     assert.fail(err as string);
-  //   }
-  // });
+  it("should return error if put wrong accept for same body in content negotiation", async () => {
+    try {
+      const result = await client
+        .path("/content-negotiation/same-body")
+        .get({ headers: { accept: "wrongAccept" } as any });
+      assert.strictEqual(
+        (result.body as any).message,
+        "Unsupported Accept header"
+      );
+      assert.strictEqual(
+        (result.body as any).expected,
+        `"image/png" | "image/jpeg"`
+      );
+      assert.strictEqual((result.body as any).actual, "wrongAccept");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
 
   it("should get image/png for different body in content negotiation", async () => {
     try {
@@ -85,11 +76,7 @@ describe.only("Content Negotiation Client", () => {
         .get({ headers: { accept: "image/png" } });
       assert.strictEqual(result.status, "200");
       assert.strictEqual(
-        uint8ArrayToString(result.body.contentType, "utf-8"),
-        "image/png"
-      );
-      assert.strictEqual(
-        uint8ArrayToString(result.body.rawContent, "utf-8"),
+        uint8ArrayToString(result.body, "utf-8"),
         pngFile.toString()
       );
     } catch (err) {
@@ -109,22 +96,22 @@ describe.only("Content Negotiation Client", () => {
     }
   });
 
-  // it("should return error if put wrong accept for different body in content negotiation", async () => {
-  //   try {
-  //     const result = await client
-  //       .path("/content-negotiation/different-body")
-  //       .get({ headers: { accept: "wrongAccept" } });
-  //     assert.strictEqual(
-  //       (result.body as any).message,
-  //       "Unsupported Accept header"
-  //     );
-  //     assert.strictEqual(
-  //       (result.body as any).expected,
-  //       `"image/png" | "application/json"`
-  //     );
-  //     assert.strictEqual((result.body as any).actual, "wrongAccept");
-  //   } catch (err) {
-  //     assert.fail(err as string);
-  //   }
-  // });
+  it("should return error if put wrong accept for different body in content negotiation", async () => {
+    try {
+      const result = await client
+        .path("/content-negotiation/different-body")
+        .get({ headers: { accept: "wrongAccept" } as any });
+      assert.strictEqual(
+        (result.body as any).message,
+        "Unsupported Accept header"
+      );
+      assert.strictEqual(
+        (result.body as any).expected,
+        `"image/png" | "application/json"`
+      );
+      assert.strictEqual((result.body as any).actual, "wrongAccept");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
 });
