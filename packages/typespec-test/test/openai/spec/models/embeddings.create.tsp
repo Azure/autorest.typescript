@@ -25,7 +25,7 @@ model EmbeddingsOptions {
     resource URI that's connected to.
     """)
   @encodedName("application/json", "model")
-  @projectedName("csharp", "InternalNonAzureModelName")
+  @clientName("InternalNonAzureModelName", "csharp")
   `model`?: string;
 
   @doc("""
@@ -60,7 +60,7 @@ model EmbeddingItem {
   embedding: float32[];
 
   @doc("Index of the prompt to which the EmbeddingItem corresponds.")
-  @projectedName("java", "promptIndex")
+  @clientName("promptIndex", "java")
   index: int32;
 }
 

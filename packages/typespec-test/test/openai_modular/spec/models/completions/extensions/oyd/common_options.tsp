@@ -14,17 +14,17 @@ alias OnYourDataCommonChatExtensionConfiguration = {
   If not otherwise provided, On Your Data will attempt to use System Managed Identity (default credential)
   authentication.
   """)
-  @projectedName("csharp", "Authentication")
+  @clientName("Authentication", "csharp")
   authentication?: OnYourDataAuthenticationOptions;
 
   #suppress "@azure-tools/typespec-azure-core/casing-style" "this represents the case-sensitive wire format"
   @doc("The configured top number of documents to feature for the configured query.")
-  @projectedName("csharp", "DocumentCount")
+  @clientName("DocumentCount", "csharp")
   @encodedName("application/json", "top_n_documents")
   topNDocuments?: int32;
 
   @doc("Whether queries should be restricted to use of indexed data.")
-  @projectedName("csharp", "ShouldRestrictResultScope")
+  @clientName("ShouldRestrictResultScope", "csharp")
   @encodedName("application/json", "in_scope")
   inScope?: boolean;
 

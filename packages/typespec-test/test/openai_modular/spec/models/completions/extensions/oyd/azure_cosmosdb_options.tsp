@@ -35,22 +35,22 @@ model AzureCosmosDBChatExtensionParameters {
   ...OnYourDataCommonChatExtensionConfiguration;
 
   @doc("The MongoDB vCore database name to use with Azure Cosmos DB.")
-  @projectedName("csharp", "DatabaseName")
+  @clientName("DatabaseName", "csharp")
   @encodedName("application/json", "database_name")
   databaseName: string;
 
   @doc("The name of the Azure Cosmos DB resource container.")
-  @projectedName("csharp", "ContainerName")
+  @clientName("ContainerName", "csharp")
   @encodedName("application/json", "container_name")
   containerName: string;
 
   @doc("The MongoDB vCore index name to use with Azure Cosmos DB.")
-  @projectedName("csharp", "IndexName")
+  @clientName("IndexName", "csharp")
   @encodedName("application/json", "index_name")
   indexName: string;
 
   @doc("Customized field mapping behavior to use when interacting with the search index.")
-  @projectedName("csharp", "FieldMappingOptions")
+  @clientName("FieldMappingOptions", "csharp")
   @encodedName("application/json", "fields_mapping")
   fieldsMapping: AzureCosmosDBFieldMappingOptions;
 
@@ -64,32 +64,32 @@ model AzureCosmosDBChatExtensionParameters {
 @added(ServiceApiVersions.v2024_02_15_Preview)
 model AzureCosmosDBFieldMappingOptions {
   @doc("The name of the index field to use as a title.")
-  @projectedName("csharp", "TitleFieldName")
+  @clientName("TitleFieldName", "csharp")
   @encodedName("application/json", "title_field")
   titleField?: string;
 
   @doc("The name of the index field to use as a URL.")
-  @projectedName("csharp", "UrlFieldName")
+  @clientName("UrlFieldName", "csharp")
   @encodedName("application/json", "url_field")
   urlField?: string;
 
   @doc("The name of the index field to use as a filepath.")
-  @projectedName("csharp", "FilepathFieldName")
+  @clientName("FilepathFieldName", "csharp")
   @encodedName("application/json", "filepath_field")
   filepathField?: string;
 
   @doc("The names of index fields that should be treated as content.")
-  @projectedName("csharp", "ContentFieldNames")
+  @clientName("ContentFieldNames", "csharp")
   @encodedName("application/json", "content_fields")
   contentFields: string[];
 
   @doc("The separator pattern that content fields should use.")
-  @projectedName("csharp", "ContentFieldSeparator")
+  @clientName("ContentFieldSeparator", "csharp")
   @encodedName("application/json", "content_fields_separator")
   contentFieldsSeparator?: string;
 
   @doc("The names of fields that represent vector data.")
-  @projectedName("csharp", "VectorFieldNames")
+  @clientName("VectorFieldNames", "csharp")
   @encodedName("application/json", "vector_fields")
   vectorFields: string[];
 }

@@ -31,7 +31,7 @@ model PineconeChatExtensionParameters {
   ...OnYourDataCommonChatExtensionConfiguration;
 
   @doc("The environment name of Pinecone.")
-  @projectedName("csharp", "EnvironmentName")
+  @clientName("EnvironmentName", "csharp")
   environment: string;
 
   @doc("The name of the Pinecone database index.")
@@ -39,7 +39,7 @@ model PineconeChatExtensionParameters {
   indexName: string;
 
   @doc("Customized field mapping behavior to use when interacting with the search index.")
-  @projectedName("csharp", "FieldMappingOptions")
+  @clientName("FieldMappingOptions", "csharp")
   @encodedName("application/json", "fields_mapping")
   fieldsMapping: PineconeFieldMappingOptions;
 
@@ -52,27 +52,27 @@ model PineconeChatExtensionParameters {
 @added(ServiceApiVersions.v2024_02_15_Preview)
 model PineconeFieldMappingOptions {
   @doc("The name of the index field to use as a title.")
-  @projectedName("csharp", "TitleFieldName")
+  @clientName("TitleFieldName", "csharp")
   @encodedName("application/json", "title_field")
   titleField?: string;
 
   @doc("The name of the index field to use as a URL.")
-  @projectedName("csharp", "UrlFieldName")
+  @clientName("UrlFieldName", "csharp")
   @encodedName("application/json", "url_field")
   urlField?: string;
 
   @doc("The name of the index field to use as a filepath.")
-  @projectedName("csharp", "FilepathFieldName")
+  @clientName("FilepathFieldName", "csharp")
   @encodedName("application/json", "filepath_field")
   filepathField?: string;
 
   @doc("The names of index fields that should be treated as content.")
-  @projectedName("csharp", "ContentFieldNames")
+  @clientName("ContentFieldNames", "csharp")
   @encodedName("application/json", "content_fields")
   contentFields: string[];
 
   @doc("The separator pattern that content fields should use.")
-  @projectedName("csharp", "ContentFieldSeparator")
+  @clientName("ContentFieldSeparator", "csharp")
   @encodedName("application/json", "content_fields_separator")
   contentFieldsSeparator?: string;
 }

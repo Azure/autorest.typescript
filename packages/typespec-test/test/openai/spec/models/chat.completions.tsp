@@ -255,7 +255,7 @@ model ChatCompletions {
     represented as seconds since the beginning of the Unix epoch of 00:00 on 1 Jan 1970.
     """)
   @encodedName("application/json", "created")
-  @projectedName("java", "createdAt")
+  @clientName("createdAt", "java")
   @encode(DateTimeKnownEncoding.unixTimestamp, int32)
   created: utcDateTime;
 

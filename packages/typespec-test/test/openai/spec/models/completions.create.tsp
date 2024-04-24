@@ -158,7 +158,7 @@ model Completions {
     represented as seconds since the beginning of the Unix epoch of 00:00 on 1 Jan 1970.
     """)
   @encodedName("application/json", "created")
-  @projectedName("java", "createdAt")
+  @clientName("createdAt", "java")
   @encode(DateTimeKnownEncoding.unixTimestamp, int32)
   created: utcDateTime;
 
@@ -234,18 +234,18 @@ model CompletionsLogProbabilityModel {
   @doc("A collection of log probability values for the tokens in this completions data.")
   @encodedName("application/json", "token_logprobs")
   @clientName("TokenLogProbabilities", "csharp")
-  @projectedName("java", "tokenLogProbabilities")
+  @clientName("tokenLogProbabilities", "java")
   tokenLogprobs: NullableFloat[];
 
   @doc("A mapping of tokens to maximum log probability values in this completions data.")
   @encodedName("application/json", "top_logprobs")
   @clientName("TopLogProbabilities", "csharp")
-  @projectedName("java", "topLogProbabilities")
+  @clientName("topLogProbabilities", "java")
   topLogprobs: Record<NullableFloat>[];
 
   @doc("The text offsets associated with tokens in this completions data.")
   @encodedName("application/json", "text_offset")
   @clientName("TextOffsets", "csharp")
-  @projectedName("java", "textOffsets")
+  @clientName("textOffsets", "java")
   textOffset: int32[];
 }

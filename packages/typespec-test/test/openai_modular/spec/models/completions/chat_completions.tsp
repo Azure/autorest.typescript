@@ -98,7 +98,7 @@ model ChatCompletionsOptions {
     interaction of these two settings is difficult to predict.
     """)
   @encodedName("application/json", "top_p")
-  @projectedName("csharp", "NucleusSamplingFactor")
+  @clientName("NucleusSamplingFactor", "csharp")
   topP?: float32;
 
   @doc("""
@@ -109,7 +109,7 @@ model ChatCompletionsOptions {
     score varies by model.
     """)
   @encodedName("application/json", "logit_bias")
-  @projectedName("csharp", "TokenSelectionBiases")
+  @clientName("TokenSelectionBiases", "csharp")
   logitBias?: Record<int32>;
 
   @doc("""
@@ -126,14 +126,14 @@ model ChatCompletionsOptions {
     Use carefully and ensure reasonable settings for max_tokens and stop.
     """)
   @encodedName("application/json", "n")
-  @projectedName("csharp", "ChoiceCount")
+  @clientName("ChoiceCount", "csharp")
   n?: int32;
 
   @doc("""
     A collection of textual sequences that will end completions generation.
     """)
   @encodedName("application/json", "stop")
-  @projectedName("csharp", "StopSequences")
+  @clientName("StopSequences", "csharp")
   stop?: string[];
 
   @doc("""
@@ -158,7 +158,7 @@ model ChatCompletionsOptions {
     A value indicating whether chat completions should be streamed for this request.
     """)
   @encodedName("application/json", "stream")
-  @projectedName("csharp", "InternalShouldStreamResponse")
+  @clientName("InternalShouldStreamResponse", "csharp")
   stream?: boolean;
 
   @doc("""
@@ -167,7 +167,7 @@ model ChatCompletionsOptions {
     resource URI that's connected to.
     """)
   @encodedName("application/json", "model")
-  @projectedName("csharp", "DeploymentName")
+  @clientName("DeploymentName", "csharp")
   `model`?: string;
 
   @doc("""
@@ -181,7 +181,7 @@ model ChatCompletionsOptions {
   //        service API version will absorb these proposed changes and allow us to retire the extra complexity.
   @added(ServiceApiVersions.v2024_02_15_Preview)
   @encodedName("application/json", "data_sources")
-  @projectedName("csharp", "InternalAzureExtensionsDataSources")
+  @clientName("InternalAzureExtensionsDataSources", "csharp")
   dataSources?: AzureChatExtensionConfiguration[];
 
   @added(ServiceApiVersions.v2024_02_15_Preview)
@@ -265,7 +265,7 @@ model ChatChoice {
 
   @doc("The delta message content for a streaming response.")
   @encodedName("application/json", "delta")
-  @projectedName("csharp", "InternalStreamingDeltaMessage")
+  @clientName("InternalStreamingDeltaMessage", "csharp")
   delta?: ChatResponseMessage;
 
   @doc("""
@@ -302,7 +302,7 @@ model ChatCompletions {
     represented as seconds since the beginning of the Unix epoch of 00:00 on 1 Jan 1970.
     """)
   @encodedName("application/json", "created")
-  @projectedName("java", "createdAt")
+  @clientName("createdAt", "java")
   @encode(DateTimeKnownEncoding.unixTimestamp, int32)
   created: utcDateTime;
 

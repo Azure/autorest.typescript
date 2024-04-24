@@ -19,7 +19,7 @@ provided prompt data.
 model CompletionsOptions {
   @doc("The prompts to generate completions from.")
   @encodedName("application/json", "prompt")
-  @projectedName("csharp", "Prompts")
+  @clientName("Prompts", "csharp")
   prompt: string[];
 
   @doc("The maximum number of tokens to generate.")
@@ -45,7 +45,7 @@ model CompletionsOptions {
     interaction of these two settings is difficult to predict.
     """)
   @encodedName("application/json", "top_p")
-  @projectedName("csharp", "NucleusSamplingFactor")
+  @clientName("NucleusSamplingFactor", "csharp")
   topP?: float32;
 
   @doc("""
@@ -56,7 +56,7 @@ model CompletionsOptions {
     score varies by model.
     """)
   @encodedName("application/json", "logit_bias")
-  @projectedName("csharp", "TokenSelectionBiases")
+  @clientName("TokenSelectionBiases", "csharp")
   logitBias?: Record<int32>;
 
   @doc("""
@@ -73,7 +73,7 @@ model CompletionsOptions {
     Use carefully and ensure reasonable settings for max_tokens and stop.
     """)
   @encodedName("application/json", "n")
-  @projectedName("csharp", "ChoicesPerPrompt")
+  @clientName("ChoicesPerPrompt", "csharp")
   n?: int32;
 
   @doc("""
@@ -81,7 +81,7 @@ model CompletionsOptions {
     tokens within a completions response.
     """)
   @encodedName("application/json", "logprobs")
-  @projectedName("csharp", "LogProbabilityCount")
+  @clientName("LogProbabilityCount", "csharp")
   logprobs?: int32;
 
   @doc("""
@@ -95,7 +95,7 @@ model CompletionsOptions {
     A collection of textual sequences that will end completions generation.
     """)
   @encodedName("application/json", "stop")
-  @projectedName("csharp", "StopSequences")
+  @clientName("StopSequences", "csharp")
   stop?: string[];
 
   @doc("""
@@ -125,14 +125,14 @@ model CompletionsOptions {
     Use carefully and ensure reasonable settings for max_tokens and stop.
     """)
   @encodedName("application/json", "best_of")
-  @projectedName("csharp", "GenerationSampleCount")
+  @clientName("GenerationSampleCount", "csharp")
   bestOf?: int32;
 
   @doc("""
     A value indicating whether chat completions should be streamed for this request.
     """)
   @encodedName("application/json", "stream")
-  @projectedName("csharp", "InternalShouldStreamResponse")
+  @clientName("InternalShouldStreamResponse", "csharp")
   stream?: boolean;
 
   @doc("""
@@ -141,7 +141,7 @@ model CompletionsOptions {
     resource URI that's connected to.
     """)
   @encodedName("application/json", "model")
-  @projectedName("csharp", "DeploymentName")
+  @clientName("DeploymentName", "csharp")
   `model`?: string;
 }
 
@@ -160,7 +160,7 @@ model Completions {
     represented as seconds since the beginning of the Unix epoch of 00:00 on 1 Jan 1970.
     """)
   @encodedName("application/json", "created")
-  @projectedName("java", "createdAt")
+  @clientName("createdAt", "java")
   @encode(DateTimeKnownEncoding.unixTimestamp, int32)
   created: utcDateTime;
 
@@ -213,7 +213,7 @@ model Choice {
   #suppress "@azure-tools/typespec-azure-core/no-nullable" "The operation already returns nulls"
   @doc("The log probabilities model for tokens associated with this completions choice.")
   @encodedName("application/json", "logprobs")
-  @projectedName("csharp", "LogProbabilityModel")
+  @clientName("LogProbabilityModel", "csharp")
   logprobs: CompletionsLogProbabilityModel | null;
 
   #suppress "@azure-tools/typespec-azure-core/no-nullable" "The operation already returns nulls"
@@ -235,19 +235,19 @@ model CompletionsLogProbabilityModel {
 
   @doc("A collection of log probability values for the tokens in this completions data.")
   @encodedName("application/json", "token_logprobs")
-  @projectedName("csharp", "TokenLogProbabilities")
-  @projectedName("java", "tokenLogProbabilities")
+  @clientName("TokenLogProbabilities", "csharp")
+  @clientName("tokenLogProbabilities", "java")
   tokenLogprobs: NullableFloat[];
 
   @doc("A mapping of tokens to maximum log probability values in this completions data.")
   @encodedName("application/json", "top_logprobs")
-  @projectedName("csharp", "TopLogProbabilities")
-  @projectedName("java", "topLogProbabilities")
+  @clientName("TopLogProbabilities", "csharp")
+  @clientName("topLogProbabilities", "java")
   topLogprobs: Record<NullableFloat>[];
 
   @doc("The text offsets associated with tokens in this completions data.")
   @encodedName("application/json", "text_offset")
-  @projectedName("csharp", "TextOffsets")
-  @projectedName("java", "textOffsets")
+  @clientName("TextOffsets", "csharp")
+  @clientName("textOffsets", "java")
   textOffset: int32[];
 }

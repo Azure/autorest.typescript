@@ -39,7 +39,7 @@ model ImageGenerationOptions {
   prompt: string;
 
   @doc("The number of images to generate (defaults to 1).")
-  @projectedName("csharp", "ImageCount")
+  @clientName("ImageCount", "csharp")
   n?: int32 = 1;
 
   @doc("The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024 (defaults to 1024x1024).")
@@ -58,7 +58,7 @@ model ImageGenerationOptions {
 
 @doc("An image response item that provides a URL from which an image may be accessed.")
 @added(ServiceApiVersions.v2023_06_01_Preview)
-@projectedName("csharp", "InternalImageLocation")
+@clientName("InternalImageLocation", "csharp")
 model ImageLocation {
   @doc("The URL that provides temporary access to download the generated image.")
   url: url;
@@ -77,7 +77,7 @@ model ImagePayload {
 model ImageGenerations {
   @doc("A timestamp when this job or item was created (in unix epochs).")
   @encodedName("application/json", "created")
-  @projectedName("java", "createdAt")
+  @clientName("createdAt", "java")
   @encode(DateTimeKnownEncoding.unixTimestamp, int32)
   created: utcDateTime;
 
@@ -98,7 +98,7 @@ model BatchImageGenerationOperationResponse {
 
   @doc("A timestamp when this job or item was created (in unix epochs).")
   @encodedName("application/json", "created")
-  @projectedName("java", "createdAt")
+  @clientName("createdAt", "java")
   @encode(DateTimeKnownEncoding.unixTimestamp, int32)
   created: utcDateTime;
 
