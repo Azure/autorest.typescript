@@ -266,6 +266,14 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     inputPath: "azure/client-generator-core/usage"
   },
   {
+    outputPath: "azure/clientGeneratorCore/access",
+    inputPath: "azure/client-generator-core/access"
+  },
+  {
+    outputPath: "azure/clientGeneratorCore/usage",
+    inputPath: "azure/client-generator-core/usage"
+  },
+  {
     outputPath: "parameters/body-optionality",
     inputPath: "parameters/body-optionality"
   },

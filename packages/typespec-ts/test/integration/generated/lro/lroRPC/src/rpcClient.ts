@@ -12,6 +12,7 @@ import { RpcClient } from "./clientDefinitions.js";
 export default function createClient(options: ClientOptions = {}): RpcClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "2022-12-01-preview";
   const userAgentInfo = `azsdk-js-lro-rpc-rest/1.0.0`;
   const userAgentPrefix =

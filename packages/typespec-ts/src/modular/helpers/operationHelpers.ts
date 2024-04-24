@@ -402,7 +402,6 @@ function buildLroReturnType(operation: Operation) {
 function getPagingOnlyOperationFunction(
   operation: Operation,
   clientType: string
-): OptionalKind<FunctionDeclarationStructure> {
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(operation, clientType);
