@@ -3,12 +3,6 @@
 
 import { ErrorModel } from "@azure-rest/core-client";
 
-/** Options for the generation. */
-export interface GenerationOptionsOutput {
-  /** Prompt. */
-  prompt: string;
-}
-
 /** Provides status details for long running operations. */
 export interface ResourceOperationStatusOutput {
   /** The unique ID of the operation. */
