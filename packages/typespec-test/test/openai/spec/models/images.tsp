@@ -2,10 +2,12 @@ import "@azure-tools/typespec-azure-core";
 import "@typespec/http";
 import "@typespec/versioning";
 import "./operations.common.tsp";
+import "@azure-tools/typespec-client-generator-core";
 
 using Azure.Core;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
+using Azure.ClientGenerator.Core;
 
 namespace Azure.OpenAI;
 
@@ -76,7 +78,6 @@ model ImagePayload {
 @added(ServiceApiVersions.v2023_06_01_Preview)
 model ImageGenerations {
   @doc("A timestamp when this job or item was created (in unix epochs).")
-  @encodedName("application/json", "created")
   @clientName("createdAt", "java")
   @encode(DateTimeKnownEncoding.unixTimestamp, int32)
   created: utcDateTime;
@@ -97,7 +98,6 @@ model BatchImageGenerationOperationResponse {
   id: string;
 
   @doc("A timestamp when this job or item was created (in unix epochs).")
-  @encodedName("application/json", "created")
   @clientName("createdAt", "java")
   @encode(DateTimeKnownEncoding.unixTimestamp, int32)
   created: utcDateTime;

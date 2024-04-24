@@ -1,9 +1,11 @@
 import "@typespec/versioning";
+import "@azure-tools/typespec-client-generator-core";
 import "./common.tsp";
 
 namespace Azure.OpenAI;
 
 using TypeSpec.Versioning;
+using Azure.ClientGenerator.Core;
 
 @doc("Defines available options for the underlying response format of output translation information.")
 @added(ServiceApiVersions.v2024_02_15_Preview)

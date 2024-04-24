@@ -1,10 +1,12 @@
 import "@typespec/rest";
 import "@typespec/http";
 import "@typespec/versioning";
+import "@azure-tools/typespec-client-generator-core";
 
 using TypeSpec.Rest;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
+using Azure.ClientGenerator.Core;
 
 namespace Azure.OpenAI;
 
@@ -18,7 +20,6 @@ model EmbeddingsOptions {
     An identifier for the caller or end user of the operation. This may be used for tracking
     or rate-limiting purposes.
     """)
-  @encodedName("application/json", "user")
   user?: string;
 
   @doc("""
@@ -26,7 +27,6 @@ model EmbeddingsOptions {
     Not applicable to Azure OpenAI, where deployment information should be included in the Azure
     resource URI that's connected to.
     """)
-  @encodedName("application/json", "model")
   @clientName("DeploymentName", "csharp")
   `model`?: string;
 

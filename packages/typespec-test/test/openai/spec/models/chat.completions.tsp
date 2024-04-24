@@ -1,6 +1,7 @@
 import "@typespec/rest";
 import "@typespec/http";
 import "@typespec/versioning";
+import "@azure-tools/typespec-client-generator-core";
 import "./azure.chat.extensions.tsp";
 import "./completions.common.tsp";
 import "./functions.tsp";
@@ -8,6 +9,7 @@ import "./functions.tsp";
 using TypeSpec.Rest;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
+using Azure.ClientGenerator.Core;
 
 namespace Azure.OpenAI;
 
@@ -34,12 +36,10 @@ enum ChatRole {
 @doc("A single, role-attributed message within a chat completion interaction.")
 model ChatMessage {
   @doc("The role associated with this message payload.")
-  @encodedName("application/json", "role")
   role: ChatRole;
 
   #suppress "@azure-tools/typespec-azure-core/no-nullable" "we explicitly want a nullable string"
   @doc("The text associated with this message payload.")
-  @encodedName("application/json", "content")
   content: string | null;
 
   @doc("""
@@ -78,7 +78,6 @@ model ChatCompletionsOptions {
     the behavior of the assistant, followed by alternating messages between the User and
     Assistant roles.
     """)
-  @encodedName("application/json", "messages")
   messages: ChatMessage[];
 
   @doc("A list of functions the model may generate JSON inputs for.")
@@ -106,7 +105,6 @@ model ChatCompletionsOptions {
     It is not recommended to modify temperature and top_p for the same completions request as the
     interaction of these two settings is difficult to predict.
     """)
-  @encodedName("application/json", "temperature")
   temperature?: float32;
 
   @doc("""
@@ -136,7 +134,6 @@ model ChatCompletionsOptions {
     An identifier for the caller or end user of the operation. This may be used for tracking
     or rate-limiting purposes.
     """)
-  @encodedName("application/json", "user")
   user?: string;
 
   @doc("""
@@ -145,14 +142,12 @@ model ChatCompletionsOptions {
     Because this setting can generate many completions, it may quickly consume your token quota.
     Use carefully and ensure reasonable settings for max_tokens and stop.
     """)
-  @encodedName("application/json", "n")
   @clientName("ChoiceCount", "csharp")
   n?: int32;
 
   @doc("""
     A collection of textual sequences that will end completions generation.
     """)
-  @encodedName("application/json", "stop")
   @clientName("StopSequences", "csharp")
   stop?: string[];
 
@@ -177,7 +172,6 @@ model ChatCompletionsOptions {
   @doc("""
     A value indicating whether chat completions should be streamed for this request.
     """)
-  @encodedName("application/json", "stream")
   @clientName("InternalShouldStreamResponse", "csharp")
   stream?: boolean;
 
@@ -186,7 +180,6 @@ model ChatCompletionsOptions {
     Not applicable to Azure OpenAI, where deployment information should be included in the Azure
     resource URI that's connected to.
     """)
-  @encodedName("application/json", "model")
   @clientName("InternalNonAzureModelName", "csharp")
   `model`?: string;
 
@@ -200,7 +193,6 @@ model ChatCompletionsOptions {
   //        "extensions" instead of "data sources" for representing the additional configuration information. A future
   //        service API version will absorb these proposed changes and allow us to retire the extra complexity.
   @added(ServiceApiVersions.v2023_08_01_Preview)
-  @encodedName("application/json", "dataSources")
   @clientName("InternalAzureExtensionsDataSources", "csharp")
   dataSources?: AzureChatExtensionConfiguration[];
 }
@@ -212,11 +204,9 @@ Token limits and other settings may limit the number of choices generated.
 """)
 model ChatChoice {
   @doc("The chat message for a given chat completions prompt.")
-  @encodedName("application/json", "message")
   message?: ChatMessage;
 
   @doc("The ordered index associated with this chat completions choice.")
-  @encodedName("application/json", "index")
   index: int32;
 
   #suppress "@azure-tools/typespec-azure-core/no-nullable" "The operation already returns nulls"
@@ -226,7 +216,6 @@ model ChatChoice {
   finishReason: CompletionsFinishReason | null;
 
   @doc("The delta message content for a streaming response.")
-  @encodedName("application/json", "delta")
   @clientName("InternalStreamingDeltaMessage", "csharp")
   delta?: ChatMessage;
 
@@ -247,14 +236,12 @@ provided prompt data.
 """)
 model ChatCompletions {
   @doc("A unique identifier associated with this chat completions response.")
-  @encodedName("application/json", "id")
   id: string;
 
   @doc("""
     The first timestamp associated with generation activity for this completions response,
     represented as seconds since the beginning of the Unix epoch of 00:00 on 1 Jan 1970.
     """)
-  @encodedName("application/json", "created")
   @clientName("createdAt", "java")
   @encode(DateTimeKnownEncoding.unixTimestamp, int32)
   created: utcDateTime;
@@ -264,7 +251,6 @@ model ChatCompletions {
     Generally, `n` choices are generated per provided prompt with a default value of 1.
     Token limits and other settings may limit the number of choices generated.
     """)
-  @encodedName("application/json", "choices")
   choices: ChatChoice[];
 
   @doc("""
@@ -278,6 +264,5 @@ model ChatCompletions {
   @doc("""
     Usage information for tokens processed and generated as part of this completions operation.
     """)
-  @encodedName("application/json", "usage")
   usage: CompletionsUsage;
 }

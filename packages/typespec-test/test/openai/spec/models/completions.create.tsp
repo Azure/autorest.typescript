@@ -2,10 +2,12 @@ import "@typespec/rest";
 import "@typespec/http";
 import "@typespec/versioning";
 import "./completions.common.tsp";
+import "@azure-tools/typespec-client-generator-core";
 
 using TypeSpec.Rest;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
+using Azure.ClientGenerator.Core;
 
 namespace Azure.OpenAI;
 
@@ -16,7 +18,6 @@ provided prompt data.
 """)
 model CompletionsOptions {
   @doc("The prompts to generate completions from.")
-  @encodedName("application/json", "prompt")
   @clientName("Prompts", "csharp")
   prompt: string[];
 
@@ -31,7 +32,6 @@ model CompletionsOptions {
     It is not recommended to modify temperature and top_p for the same completions request as the
     interaction of these two settings is difficult to predict.
     """)
-  @encodedName("application/json", "temperature")
   temperature?: float32;
 
   @doc("""
@@ -61,7 +61,6 @@ model CompletionsOptions {
     An identifier for the caller or end user of the operation. This may be used for tracking
     or rate-limiting purposes.
     """)
-  @encodedName("application/json", "user")
   user?: string;
 
   @doc("""
@@ -70,7 +69,6 @@ model CompletionsOptions {
     Because this setting can generate many completions, it may quickly consume your token quota.
     Use carefully and ensure reasonable settings for max_tokens and stop.
     """)
-  @encodedName("application/json", "n")
   @clientName("ChoicesPerPrompt", "csharp")
   n?: int32;
 
@@ -78,7 +76,6 @@ model CompletionsOptions {
     A value that controls the emission of log probabilities for the provided number of most likely
     tokens within a completions response.
     """)
-  @encodedName("application/json", "logprobs")
   @clientName("LogProbabilityCount", "csharp")
   logprobs?: int32;
 
@@ -86,13 +83,11 @@ model CompletionsOptions {
     A value specifying whether completions responses should include input prompts as prefixes to
     their generated output.
     """)
-  @encodedName("application/json", "echo")
   echo?: boolean;
 
   @doc("""
     A collection of textual sequences that will end completions generation.
     """)
-  @encodedName("application/json", "stop")
   @clientName("StopSequences", "csharp")
   stop?: string[];
 
@@ -129,7 +124,6 @@ model CompletionsOptions {
   @doc("""
     A value indicating whether chat completions should be streamed for this request.
     """)
-  @encodedName("application/json", "stream")
   @clientName("InternalShouldStreamResponse", "csharp")
   stream?: boolean;
 
@@ -138,7 +132,6 @@ model CompletionsOptions {
     Not applicable to Azure OpenAI, where deployment information should be included in the Azure
     resource URI that's connected to.
     """)
-  @encodedName("application/json", "model")
   @clientName("InternalNonAzureModelName", "csharp")
   `model`?: string;
 }
@@ -150,14 +143,12 @@ provided prompt data.
 """)
 model Completions {
   @doc("A unique identifier associated with this completions response.")
-  @encodedName("application/json", "id")
   id: string;
 
   @doc("""
     The first timestamp associated with generation activity for this completions response,
     represented as seconds since the beginning of the Unix epoch of 00:00 on 1 Jan 1970.
     """)
-  @encodedName("application/json", "created")
   @clientName("createdAt", "java")
   @encode(DateTimeKnownEncoding.unixTimestamp, int32)
   created: utcDateTime;
@@ -175,13 +166,11 @@ model Completions {
     Generally, `n` choices are generated per provided prompt with a default value of 1.
     Token limits and other settings may limit the number of choices generated.
     """)
-  @encodedName("application/json", "choices")
   choices: Choice[];
 
   @doc("""
     Usage information for tokens processed and generated as part of this completions operation.
     """)
-  @encodedName("application/json", "usage")
   usage: CompletionsUsage;
 }
 
@@ -192,11 +181,9 @@ Token limits and other settings may limit the number of choices generated.
 """)
 model Choice {
   @doc("The generated text for a given completions prompt.")
-  @encodedName("application/json", "text")
   text: string;
 
   @doc("The ordered index associated with this completions choice.")
-  @encodedName("application/json", "index")
   index: int32;
 
   @doc("""
@@ -210,7 +197,6 @@ model Choice {
 
   #suppress "@azure-tools/typespec-azure-core/no-nullable" "The operation already returns nulls"
   @doc("The log probabilities model for tokens associated with this completions choice.")
-  @encodedName("application/json", "logprobs")
   @clientName("LogProbabilityModel", "csharp")
   logprobs: CompletionsLogProbabilityModel | null;
 
@@ -228,7 +214,6 @@ Representation of a log probabilities model for a completions generation.
 """)
 model CompletionsLogProbabilityModel {
   @doc("The textual forms of tokens evaluated in this probability model.")
-  @encodedName("application/json", "tokens")
   tokens: string[];
 
   @doc("A collection of log probability values for the tokens in this completions data.")

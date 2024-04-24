@@ -4,7 +4,7 @@
 import { SchemaRegistryContext } from "../../api/schemaRegistryContext.js";
 import {
   SchemaGroup,
-  SchemaVersion,
+  Version,
   SchemaContentTypeValues,
 } from "../../models/models.js";
 import {
@@ -37,7 +37,7 @@ export interface SchemaOperationsOperations {
     groupName: string,
     name: string,
     options?: SchemaOperationsListSchemaVersionsOptionalParams,
-  ) => PagedAsyncIterableIterator<SchemaVersion>;
+  ) => PagedAsyncIterableIterator<Version>;
   getSchemaByVersion: (
     groupName: string,
     name: string,

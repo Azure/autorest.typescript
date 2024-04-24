@@ -1,9 +1,11 @@
 import "@typespec/versioning";
 import "./azure.chat.extensions.tsp";
+import "@azure-tools/typespec-client-generator-core";
 
 namespace Azure.OpenAI;
 
 using TypeSpec.Versioning;
+using Azure.ClientGenerator.Core;
 
 @doc("Optional settings to control how fields are processed when using a configured Azure Cognitive Search resource.")
 @added(ServiceApiVersions.v2023_08_01_Preview)
