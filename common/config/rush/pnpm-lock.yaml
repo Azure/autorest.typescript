@@ -9,7 +9,7 @@ importers:
     specifiers:
       '@autorest/codemodel': ~4.19.2
       '@autorest/extension-base': ^3.5.0
-      '@autorest/testmodeler': ^2.4.0
+      '@autorest/testmodeler': ^2.6.1
       '@azure-rest/core-client': ^1.4.0
       '@azure-tools/codegen': ^2.9.1
       '@azure-tools/rlc-common': workspace:^0.27.0
