@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { PollerLike, OperationState } from "@azure/core-lro";
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
@@ -73,7 +72,7 @@ export class TestRunOperationsClient {
     testRunId: string,
     resource: TestRun,
     options: TestRunOptionalParams = { requestOptions: {} },
-  ): PollerLike<OperationState<TestRun>, TestRun> {
+  ): Promise<TestRun> {
     return testRun(this._client, testRunId, resource, options);
   }
 

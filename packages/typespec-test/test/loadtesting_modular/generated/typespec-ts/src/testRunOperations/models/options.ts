@@ -5,8 +5,6 @@ import { OperationOptions } from "@azure-rest/core-client";
 import { Interval } from "./models.js";
 
 export interface TestRunOptionalParams extends OperationOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
   /** This request has a JSON Merge Patch body. */
   contentType?: string;
   /**
