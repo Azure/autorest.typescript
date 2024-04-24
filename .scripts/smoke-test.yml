@@ -8,10 +8,10 @@ jobs:
       - template: globals.yml
     strategy:
       matrix:
-        Linux_Node20:
+        Linux_Node18:
           Pool: ${{ parameters.LinuxPool }}
           OSVmImage: "ubuntu-20.04"
-          NodeTestVersion: "20.x"
+          NodeTestVersion: "18.x"
     steps:
       - template: build.yml
       - script: npm run clone:specs
