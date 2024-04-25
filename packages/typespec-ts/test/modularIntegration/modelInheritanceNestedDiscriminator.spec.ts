@@ -11,6 +11,7 @@ describe("NestedDiscriminatorClient Rest Client", () => {
 
   beforeEach(() => {
     client = new NestedDiscriminatorClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
   });

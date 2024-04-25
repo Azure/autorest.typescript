@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "@azure-tools/typespec-ts": "workspace:^0.26.1",
+    "@azure-tools/typespec-ts": "workspace:^0.27.0",
     "@typespec/openapi": ">=0.55.0 <1.0.0",
     "@azure-tools/typespec-autorest": ">=0.41.0 <1.0.0",
     "@typespec/openapi3": ">=0.55.0 <1.0.0",
     "@azure-tools/typespec-azure-core": ">=0.41.0 <1.0.0",
-    "@azure-tools/typespec-client-generator-core": "0.42.0-dev.6",
+    "@azure-tools/typespec-client-generator-core": ">=0.41.3 <1.0.0",
     "@typespec/compiler": ">=0.55.0 <1.0.0",
     "@typespec/http": ">=0.55.0 <1.0.0",
     "@typespec/rest": ">=0.55.0 <1.0.0",
@@ -22,7 +22,8 @@
     "@types/mocha": "^5.2.7"
   },
   "scripts": {
-    "smoke-test": "node ./eng/smoke-test.js",
+    "smoke-test": "node --max-old-space-size=4096 ./eng/smoke-test.js",
+    "smoke-test:workers": "node ./eng/smoke-test-main.js",
     "build": "echo skip",
     "regen-test-baselines": "npm run smoke-test",
     "check:tree": "node ./eng/check-clean-tree.js"

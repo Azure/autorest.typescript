@@ -132,6 +132,7 @@ describe("ModelsPropertyTypesClient Rest Client", () => {
 
   beforeEach(() => {
     client = new ValueTypesClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

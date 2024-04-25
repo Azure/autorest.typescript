@@ -132,6 +132,14 @@ export interface MultivariateCorrelationChanges {
   changedVariables?: string[];
 }
 
+/** Error response */
+export interface MultivariateResponseError {
+  /** The error code. */
+  code: string;
+  /** The message explaining the error reported by the service. */
+  message: string;
+}
+
 /**
  * Training result of a model including its status, errors and diagnostics
  * information.
@@ -429,6 +437,14 @@ export interface UnivariateUnivariateEntireDetectionResult {
    * sever the anomaly is. For normal points, the "severity" is always 0.
    */
   severity?: number[];
+}
+
+/** Error information returned by the API. */
+export interface UnivariateAnomalyDetectorError {
+  /** The error code. */
+  code?: AnomalyDetectorErrorCodes;
+  /** A message explaining the error reported by the service. */
+  message?: string;
 }
 
 /** */

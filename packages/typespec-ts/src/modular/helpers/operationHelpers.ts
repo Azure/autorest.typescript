@@ -502,12 +502,12 @@ function buildBodyParameter(
     return bodyParameter.optional
       ? `body: typeof ${bodyParameter.clientName} === 'string'
     ? uint8ArrayToString(${bodyParameter.clientName}, "${getEncodingFormat(
-      bodyParameter.type
+      bodyParameter
     )}")
     : ${bodyParameter.clientName}`
       : `body: uint8ArrayToString(${
           bodyParameter.clientName
-        }, "${getEncodingFormat(bodyParameter.type)}")`;
+        }, "${getEncodingFormat(bodyParameter)}")`;
   } else if (bodyParameter.isBinaryPayload) {
     return `\nbody: ${bodyParameter.clientName},`;
   }

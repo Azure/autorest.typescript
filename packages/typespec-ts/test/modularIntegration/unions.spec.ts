@@ -5,6 +5,7 @@ describe("Type Union Client", () => {
 
   beforeEach(() => {
     client = new UnionClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0
@@ -39,7 +40,7 @@ describe("Type Union Client", () => {
   });
   it("should send strings extensible union", async () => {
     try {
-      const result = await client.stringExtensible.send("custom")
+      const result = await client.stringExtensible.send("custom");
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -56,7 +57,7 @@ describe("Type Union Client", () => {
   });
   it("should send strings extensible union", async () => {
     try {
-      const result = await client.stringExtensibleNamed.send("custom")
+      const result = await client.stringExtensibleNamed.send("custom");
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -90,7 +91,7 @@ describe("Type Union Client", () => {
   });
   it("should send floats only union", async () => {
     try {
-      const result = await client.floatsOnly.send(2.2)
+      const result = await client.floatsOnly.send(2.2);
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -100,7 +101,10 @@ describe("Type Union Client", () => {
   it("should get models only union", async () => {
     try {
       const result = await client.modelsOnly.get();
-      assert.strictEqual(JSON.stringify(result.prop), JSON.stringify({ name: 'test' }));
+      assert.strictEqual(
+        JSON.stringify(result.prop),
+        JSON.stringify({ name: "test" })
+      );
     } catch (err) {
       assert.fail(err as string);
     }
@@ -125,7 +129,7 @@ describe("Type Union Client", () => {
   });
   it("should send enums only union", async () => {
     try {
-      const result = await client.enumsOnly.send({ lr: 'right', ud: 'up' });
+      const result = await client.enumsOnly.send({ lr: "right", ud: "up" });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -136,15 +140,18 @@ describe("Type Union Client", () => {
     try {
       const result = await client.stringAndArray.get();
       assert.strictEqual(result.prop.string, "test");
-      assert.strictEqual(result.prop.array[0], 'test1');
-      assert.strictEqual(result.prop.array[1], 'test2');
+      assert.strictEqual(result.prop.array[0], "test1");
+      assert.strictEqual(result.prop.array[1], "test2");
     } catch (err) {
       assert.fail(err as string);
     }
   });
   it("should send string and array union", async () => {
     try {
-      const result = await client.stringAndArray.send({ string: 'test', array: [ "test1", "test2" ] });
+      const result = await client.stringAndArray.send({
+        string: "test",
+        array: ["test1", "test2"]
+      });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -157,7 +164,7 @@ describe("Type Union Client", () => {
       assert.strictEqual(result.prop.stringLiteral, "a");
       assert.strictEqual(result.prop.intLiteral, 2);
       assert.strictEqual(result.prop.floatLiteral, 3.3);
-      assert.strictEqual(result.prop.booleanLiteral,true);
+      assert.strictEqual(result.prop.booleanLiteral, true);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -165,11 +172,11 @@ describe("Type Union Client", () => {
   it("should send mixed literals union", async () => {
     try {
       const result = await client.mixedLiterals.send({
-        stringLiteral: 'a',
+        stringLiteral: "a",
         intLiteral: 2,
         floatLiteral: 3.3,
         booleanLiteral: true
-      })
+      });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -179,21 +186,28 @@ describe("Type Union Client", () => {
   it("should get mixed types union", async () => {
     try {
       const result = await client.mixedTypes.get();
-      assert.strictEqual(JSON.stringify(result.prop.model), JSON.stringify({ name: 'test' }));
-      assert.strictEqual(result.prop.literal, 'a');
+      assert.strictEqual(
+        JSON.stringify(result.prop.model),
+        JSON.stringify({ name: "test" })
+      );
+      assert.strictEqual(result.prop.literal, "a");
       assert.strictEqual(result.prop.int, 2);
-      assert.strictEqual(result.prop.boolean,true);
+      assert.strictEqual(result.prop.boolean, true);
     } catch (err) {
       assert.fail(err as string);
     }
   });
   it("should send mixed types union", async () => {
     try {
-      const result = await client.mixedTypes.send({ model: { name: 'test' }, literal: 'a', int: 2, boolean: true });
+      const result = await client.mixedTypes.send({
+        model: { name: "test" },
+        literal: "a",
+        int: 2,
+        boolean: true
+      });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
     }
   });
 });
-

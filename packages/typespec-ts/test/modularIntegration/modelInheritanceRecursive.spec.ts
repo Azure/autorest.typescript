@@ -1,27 +1,31 @@
-import { Extension, RecursiveClient } from "./generated/models/inheritance/recursive/generated/src/index.js";
+import {
+  Extension,
+  RecursiveClient
+} from "./generated/models/inheritance/recursive/generated/src/index.js";
 import { assert } from "chai";
 
-const body : Extension= {
+const body: Extension = {
   level: 0,
   extension: [
     {
       level: 1,
       extension: [
         {
-          level: 2,
-        },
-      ],
+          level: 2
+        }
+      ]
     },
     {
-      level: 1,
-    },
-  ],
+      level: 1
+    }
+  ]
 };
 describe("Recursive Client", () => {
   let client: RecursiveClient;
 
   beforeEach(() => {
     client = new RecursiveClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
   });
@@ -43,5 +47,4 @@ describe("Recursive Client", () => {
       assert.fail(err as string);
     }
   });
-
 });

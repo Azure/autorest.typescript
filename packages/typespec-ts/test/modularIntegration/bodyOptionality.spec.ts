@@ -5,6 +5,7 @@ describe("Body Optionality Client", () => {
 
   beforeEach(() => {
     client = new BodyOptionalityClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

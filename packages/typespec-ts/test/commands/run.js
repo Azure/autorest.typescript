@@ -1,15 +1,25 @@
-import { execSync } from "child_process";
 import { dirname, join as joinPath } from "path";
+import { npxCommand } from "./runCommand.js";
 import { fileURLToPath } from "url";
-import { TypeSpecRanchConfig } from "./cadl-ranch-list.js";
-import fsextra from "fs-extra";
-const MAX_BUFFER = 10 * 1024 * 1024;
-export async function runTypespec(config: TypeSpecRanchConfig, mode: string) {
+import { access } from "fs/promises";
+import { createTaskLogger } from "./logger.js";
+
+async function exists(filePath) {
+  try {
+    await access(filePath);
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+
+export async function runTypespec(config, mode) {
+  const logger = createTaskLogger();
   const targetFolder = config.outputPath,
     sourceTypespec = config.inputPath;
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
-  console.log(`=== Start ${targetFolder} ===`);
+  logger.log(`=== Start ${targetFolder} ===`);
 
   let typespecPath = joinPath(
     `${__dirname}`,
@@ -33,31 +43,25 @@ export async function runTypespec(config: TypeSpecRanchConfig, mode: string) {
   const possibleEntryFiles = ["client.tsp", "main.tsp"];
   for (let filename of possibleEntryFiles) {
     const entry = joinPath(typespecPath, filename);
-    if (fsextra.existsSync(entry)) {
+    if (await exists(entry)) {
       typespecPath = entry;
-      console.log(`Existing the entry file: ${entry}`);
+      logger.log(`Existing the entry file: ${entry}`);
       break;
     }
   }
-  const typespecCommand = `cd ${outputPath} && npx tsp`;
-  const commandArguments: string[] = [
+  const workingDir = outputPath;
+  const commandArguments = [
     "compile",
     `${typespecPath}`,
     "--config tspconfig.yaml "
   ];
-  const command = `${typespecCommand} ${commandArguments.join(" ")}`;
-  console.log(command);
   try {
-    const result = execSync(command, {
-      maxBuffer: MAX_BUFFER
-    });
-    console.log("Generated output:", result.toString());
-    console.log(`=== End ${targetFolder} ===`);
-    return result;
+    await npxCommand("tsp", commandArguments, workingDir, logger);
+    logger.log(`=== End ${targetFolder} ===`);
   } catch (e) {
-    console.log("Error happened");
-    console.error(Error((e as any).stdout.toString()));
-    process.exitCode = 1;
+    logger.error(e.toString());
+  } finally {
+    logger.flush();
+    throw e;
   }
-  return;
 }

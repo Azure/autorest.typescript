@@ -9,12 +9,6 @@ export interface LivenessSessionCreationResultOutput {
   authToken: string;
 }
 
-/** The ApiVersion path parameter. */
-export interface ApiVersionPathParameterOutput {}
-
-/** The request for list resources. */
-export interface ListRequestOptionsOutput {}
-
 /** Session result of detect liveness. */
 export interface LivenessSessionOutput {
   /** Device Correlation Id to use for linking multiple sessions together. */

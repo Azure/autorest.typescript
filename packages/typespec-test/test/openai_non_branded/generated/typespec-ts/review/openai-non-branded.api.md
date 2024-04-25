@@ -420,6 +420,12 @@ export interface ErrorModel {
 }
 
 // @public (undocumented)
+export interface ErrorResponse {
+    // (undocumented)
+    error: ErrorModel;
+}
+
+// @public (undocumented)
 export interface FilesCreateOptionalParams extends OperationOptions {
     // (undocumented)
     contentType?: string;

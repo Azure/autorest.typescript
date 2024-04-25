@@ -22,7 +22,8 @@ describe("OAuth2Context in API Layer", () => {
         getToken: async () => Promise.resolve(null)
       },
       {
-        allowInsecureConnection: true
+        allowInsecureConnection: true,
+        endpoint: "http://localhost:3002"
       }
     );
 

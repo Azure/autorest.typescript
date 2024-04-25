@@ -5,11 +5,8 @@ import {
   rlcTsps
 } from "./cadl-ranch-list.js";
 import { runTypespec } from "./run.js";
-import pkg from "chalk";
-const { bold } = pkg;
-const logError = (str: string) => console.error(bold.red(str));
-// tag could be "rlc" | "modular"
-async function generateTypeSpecs(tag: string = "rlc", isDebugging?: boolean) {
+
+async function generateTypeSpecs(tag = "rlc", isDebugging) {
   let list = rlcTsps;
 
   switch (tag) {
@@ -30,12 +27,17 @@ async function generateTypeSpecs(tag: string = "rlc", isDebugging?: boolean) {
       break;
   }
 
+  const generatePromises = [];
+
   for (const tsp of list) {
     if (isDebugging === true && tsp.debug !== true) {
       continue;
     }
-    await runTypespec(tsp, tag);
+    const generatePromise = runTypespec(tsp, tag);
+    generatePromises.push(generatePromise);
   }
+
+  await Promise.allSettled(generatePromises);
 }
 
 async function main() {
@@ -45,7 +47,12 @@ async function main() {
   await generateTypeSpecs(tag, isDebugging);
 }
 
-main().catch((error) => {
-  logError(error);
-  process.exit(-1);
-});
+let exitCode = 0;
+try {
+  await main();
+} catch (e) {
+  console.error(e);
+  exitCode = 1;
+} finally {
+  process.exit(exitCode);
+}

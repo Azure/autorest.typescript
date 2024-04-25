@@ -6,7 +6,7 @@ options:
     isModularLibrary: true
     hierarchyClient: false
     generateOrphanModels: true
-    "emitter-output-dir": "{project-root}/../generated/typespec-ts"
+    "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:
       name: "@msinternal/openai_modular"
       description: "OpenAI Inference Service"

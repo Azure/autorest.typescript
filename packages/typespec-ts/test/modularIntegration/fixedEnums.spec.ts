@@ -5,6 +5,7 @@ describe("FixedEnums Rest Client", () => {
 
   beforeEach(() => {
     client = new FixedClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
   });

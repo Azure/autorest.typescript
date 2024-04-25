@@ -20,10 +20,6 @@ import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
-export interface ApiVersionPathParameterOutput {
-}
-
-// @public
 function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): FaceClient;
 export default createClient;
 
@@ -456,10 +452,6 @@ export interface ListLivenessWithVerifySessionsQueryParam {
 export interface ListLivenessWithVerifySessionsQueryParamProperties {
     start?: string;
     top?: number;
-}
-
-// @public
-export interface ListRequestOptionsOutput {
 }
 
 // @public
