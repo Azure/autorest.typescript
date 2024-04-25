@@ -5,6 +5,7 @@ describe("ExtensibleEnums Rest Client", () => {
 
   beforeEach(() => {
     client = new ExtensibleClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
   });
