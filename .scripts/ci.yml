@@ -242,10 +242,6 @@ stages:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-20.04"
               NodeTestVersion: "20.x"
-            Windows_Latest:
-              Pool:
-              OSVmImage: "Windows-latest"
-              NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
