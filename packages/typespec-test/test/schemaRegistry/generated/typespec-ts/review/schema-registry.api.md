@@ -33,7 +33,7 @@ export interface PagedSchemaGroup {
 // @public
 export interface PagedVersion {
     nextLink?: string;
-    value: Version[];
+    value: SchemaVersion[];
 }
 
 // @public
@@ -83,7 +83,7 @@ export interface SchemaOperationsOperations {
     // (undocumented)
     listSchemaGroups: (options?: SchemaOperationsListSchemaGroupsOptionalParams) => PagedAsyncIterableIterator<SchemaGroup>;
     // (undocumented)
-    listSchemaVersions: (groupName: string, name: string, options?: SchemaOperationsListSchemaVersionsOptionalParams) => PagedAsyncIterableIterator<Version>;
+    listSchemaVersions: (groupName: string, name: string, options?: SchemaOperationsListSchemaVersionsOptionalParams) => PagedAsyncIterableIterator<SchemaVersion>;
     // (undocumented)
     registerSchema: (groupName: string, name: string, contentType: SchemaContentTypeValues, content: Uint8Array, options?: SchemaOperationsRegisterSchemaOptionalParams) => Promise<void>;
 }
@@ -113,13 +113,13 @@ export interface SchemaRegistryClientOptions extends ClientOptions {
     apiVersion?: string;
 }
 
-// @public (undocumented)
-export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
-
 // @public
-export interface Version {
+export interface SchemaVersion {
     readonly schemaVersion: number;
 }
+
+// @public (undocumented)
+export type ServiceApiVersions = "2021-10" | "2022-10" | "2023-07-01";
 
 // (No @packageDocumentation comment for this package)
 

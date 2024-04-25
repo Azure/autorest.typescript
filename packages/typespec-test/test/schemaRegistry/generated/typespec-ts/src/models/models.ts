@@ -8,7 +8,7 @@ export interface SchemaGroup {
 }
 
 /** Schema versions resource. */
-export interface Version {
+export interface SchemaVersion {
   /** Version number of specific schema. */
   readonly schemaVersion: number;
 }
@@ -60,7 +60,7 @@ export interface PagedSchemaGroup {
 /** Paged collection of Version items */
 export interface PagedVersion {
   /** The Version items on this page */
-  value: Version[];
+  value: SchemaVersion[];
   /** The link to the next page of items */
   nextLink?: string;
 }
