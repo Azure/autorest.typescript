@@ -2,7 +2,7 @@
 
 This library is the TypeSpec typescript emitter for Rest Level Client. It take [TypeSpec](https://github.com/microsoft/typespec) as input, transform it into RLCModel, then call rlc-common library to generate the RLC code.
 
-On a high level, the entire Rest Level Client generation process would be:
+On a high le vel, the entire Rest Level Client generation process would be:
 
 TypeSpec Input -> TypeSpec Compiler -> TypeSpec Program -> Transform RLCModel -> TypeSpec RLC Common library to Generate Code
 
