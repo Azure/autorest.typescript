@@ -4,9 +4,22 @@
 
 ```ts
 
+/// <reference types="node" />
+
+import { AbortSignalLike } from '@azure/abort-controller';
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
+import { HttpResponse } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
+import { OperationState } from '@azure/core-lro';
+import { Paged } from '@azure/core-paging';
+import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { PollerLike } from '@azure/core-lro';
+import { RawHttpHeaders } from '@azure/core-rest-pipeline';
+import { RequestParameters } from '@azure-rest/core-client';
+import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
@@ -331,6 +344,18 @@ export interface ResourceMetric {
     unit?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "AzureLoadTestingContext" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(client: AzureLoadTestingContext | TestRunOperationsClient, serializedState: string, sourceOperation: (...args: any[]) => PollerLike<OperationState<TResult>, TResult>, options?: RestorePollerOptions<TResult>): PollerLike<OperationState<TResult>, TResult>;
+
+// @public (undocumented)
+export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedResponse = PathUncheckedResponse> extends OperationOptions {
+    abortSignal?: AbortSignalLike;
+    processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
+    updateIntervalInMs?: number;
+}
+
 // @public
 export interface Secret {
     type?: SecretType;
@@ -452,7 +477,7 @@ export class TestRunOperationsClient {
     listTestRuns(options?: ListTestRunsOptionalParams): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTestRun>;
     readonly pipeline: Pipeline;
     stopTestRun(testRunId: string, options?: StopTestRunOptionalParams): Promise<TestRunOperationsClientTestRun>;
-    testRun(testRunId: string, resource: TestRunOperationsClientTestRun, options?: TestRunOptionalParams): Promise<TestRunOperationsClientTestRun>;
+    testRun(testRunId: string, resource: TestRunOperationsClientTestRun, options?: TestRunOptionalParams): PollerLike<OperationState<TestRunOperationsClientTestRun>, TestRunOperationsClientTestRun>;
 }
 
 // @public (undocumented)
@@ -786,6 +811,7 @@ export interface TestRunOperationsClientTimeSeriesElement {
 export interface TestRunOptionalParams extends OperationOptions {
     contentType?: string;
     oldTestRunId?: string;
+    updateIntervalInMs?: number;
 }
 
 // @public
