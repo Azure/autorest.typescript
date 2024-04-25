@@ -613,6 +613,16 @@ describe("Special Words Client", () => {
     }
   });
 
+  
+  it("should post parameters withCancellationToken", async () => {
+    try {
+      const result = await client.parameters.withCancellationToken("ok");
+      assert.equal(result , undefined);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
   it("should post models withAnd", async () => {
     try {
       const result = await client.models.withAnd({

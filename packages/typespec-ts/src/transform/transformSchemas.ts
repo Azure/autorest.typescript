@@ -150,22 +150,6 @@ export function transformSchemas(
   }
   function getGeneratedModels(model: Type, context: SchemaContext) {
     if (model.kind === "Model") {
-      if (
-        model.templateMapper &&
-        model.templateMapper.args &&
-        model.templateMapper.args.length > 0
-      ) {
-        const temp = model.templateMapper.args[0];
-        if (
-          temp &&
-          temp.kind === "Model" &&
-          (!program.stateMap(modelKey).get(temp) ||
-            !program.stateMap(modelKey).get(temp)?.includes(context))
-        ) {
-          getGeneratedModels(temp, context);
-        }
-      }
-
       setModelMap(model, context);
       const indexer = (model as Model).indexer;
       if (
