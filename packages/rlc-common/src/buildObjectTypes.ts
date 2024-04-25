@@ -9,8 +9,13 @@ import {
   TypeAliasDeclarationStructure
 } from "ts-morph";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
-import { isDictionarySchema, isObjectSchema } from "./helpers/schemaHelpers.js";
 import {
+  isArraySchema,
+  isDictionarySchema,
+  isObjectSchema
+} from "./helpers/schemaHelpers.js";
+import {
+  ArraySchema,
   ObjectSchema,
   Parameter,
   Property,
@@ -97,7 +102,7 @@ function buildMultipartPartDefinitions(
     schema.properties ?? {},
     schemaUsage,
     importedModels,
-    { flattenArrays: true }
+    { flattenBinaryArrays: true }
   );
 
   const structures: InterfaceDeclarationStructure[] = [];
@@ -147,7 +152,7 @@ export function buildObjectAliases(
         objectSchema.properties ?? {},
         schemaUsage,
         importedModels,
-        { flattenArrays: true }
+        { flattenBinaryArrays: true }
       );
 
       const objectTypeNames = propertySignatures.map((sig) =>
@@ -523,7 +528,7 @@ export function getImmediateParentsNames(
 }
 
 interface GetPropertySignatureOptions {
-  flattenArrays?: boolean;
+  flattenBinaryArrays?: boolean;
 }
 
 function getPropertySignatures(
@@ -547,6 +552,14 @@ function getPropertySignatures(
   );
 }
 
+function isFileArrayUpload(schema: Schema): boolean {
+  return Boolean(
+    isArraySchema(schema) &&
+      (schema.items?.typeName?.includes("File") ||
+        schema.items?.outputTypeName?.includes("File"))
+  );
+}
+
 /**
  * Builds a Typescript property or parameter signature
  * @param schema - Property or parameter to get the Typescript signature for
@@ -560,9 +573,9 @@ export function getPropertySignature(
   options: GetPropertySignatureOptions = {}
 ): PropertySignatureStructure {
   let schema: Schema;
-  if (options.flattenArrays && property.type === "array") {
+  if (isFileArrayUpload(property)) {
     schema = {
-      ...((property as any).items ?? property),
+      ...((property as ArraySchema).items ?? property),
       name: property.name
     };
   } else {

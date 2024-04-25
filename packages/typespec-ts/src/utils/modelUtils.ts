@@ -1662,9 +1662,18 @@ function getMultipartInlineSignature(
 ): string {
   const types = Object.entries(schema.properties ?? {})
     .map(([propertyName, property]) => {
-      const schema = isArraySchema(property)
-        ? property.items ?? property
-        : property;
+      let schema: Schema;
+
+      // Flatten arrays for file uploads
+      if (
+        isArraySchema(property) &&
+        property.items &&
+        getTypeName(property.items, usage).includes(BINARY_AND_FILE_TYPE_UNION)
+      ) {
+        schema = property.items;
+      } else {
+        schema = property;
+      }
 
       const typeName = getTypeName(schema, usage);
       if (!typeName) {

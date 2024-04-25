@@ -42,7 +42,7 @@ export interface ComplexPartsRequestProfileImagePartDescriptor {
 
 export interface ComplexPartsRequestPreviousAddressesPartDescriptor {
   name: "previousAddresses";
-  body: Address;
+  body: Array<Address>;
 }
 
 export interface ComplexPartsRequestPicturesPartDescriptor {
@@ -109,7 +109,7 @@ export interface JsonArrayPartsRequestProfileImagePartDescriptor {
 
 export interface JsonArrayPartsRequestPreviousAddressesPartDescriptor {
   name: "previousAddresses";
-  body: Address;
+  body: Array<Address>;
 }
 
 export interface MultiBinaryPartsRequestProfileImagePartDescriptor {
