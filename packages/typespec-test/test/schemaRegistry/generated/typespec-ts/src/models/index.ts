@@ -7,6 +7,7 @@ export {
   SchemaContentTypeValues,
   SchemaProperties,
   SchemaFormat,
+  Schema,
   ContentTypeEnum,
   ServiceApiVersions,
   PagedSchemaGroup,
