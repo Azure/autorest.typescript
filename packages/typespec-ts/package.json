@@ -3,7 +3,7 @@
   "version": "0.27.0",
   "description": "An experimental TypeSpec emitter for TypeScript RLC",
   "main": "dist/src/index.js",
-  "type": "module",
+  "type": "mod ule",
   "scripts": {
     "clean": "rimraf ./dist ./typespec-output",
     "build": "tsc -p .",
