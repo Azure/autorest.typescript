@@ -554,11 +554,11 @@ function getPropertySignatures(
   );
 }
 
-function isFileArrayUpload(schema: Schema): boolean {
+function isBinaryArray(schema: Schema): boolean {
   return Boolean(
     isArraySchema(schema) &&
-      (schema.items?.typeName?.includes("File") ||
-        schema.items?.outputTypeName?.includes("File"))
+      (schema.items?.typeName?.includes("NodeJS.ReadableStream") ||
+        schema.items?.outputTypeName?.includes("NodeJS.ReadableStream"))
   );
 }
 
@@ -575,7 +575,7 @@ export function getPropertySignature(
   options: GetPropertySignatureOptions = {}
 ): PropertySignatureStructure {
   let schema: Schema;
-  if (isFileArrayUpload(property)) {
+  if (options.flattenBinaryArrays && isBinaryArray(property)) {
     schema = {
       ...((property as ArraySchema).items ?? property),
       name: property.name
