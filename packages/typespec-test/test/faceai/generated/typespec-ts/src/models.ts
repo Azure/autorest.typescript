@@ -1,22 +1,26 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** Data for creating liveness session. */
+/** Request for creating liveness session. */
 export interface LivenessSessionCreationContent {
-  /** Device Correlation Id to use for linking multiple sessions together. */
-  deviceCorrelationId: string;
-  /** Session length in seconds. Range is 60 to 86400 seconds. */
+  /** Type of liveness mode the client should follow. */
+  livenessOperationMode: LivenessOperationMode;
+  /** Whether or not to allow a '200 - Success' response body to be sent to the client, which may be undesirable for security reasons. Default is false, clients will receive a '204 - NoContent' empty body response. Regardless of selection, calling Session GetResult will always contain a response body enabling business logic to be implemented. */
+  sendResultsToClient?: boolean;
+  /** Whether or not to allow client to set their own 'deviceCorrelationId' via the Vision SDK. Default is false, and 'deviceCorrelationId' must be set in this request body. */
+  deviceCorrelationIdSetInClient?: boolean;
+  /** Unique Guid per each end-user device. This is to provide rate limiting and anti-hammering. If 'deviceCorrelationIdSetInClient' is true in this request, this 'deviceCorrelationId' must be null. */
+  deviceCorrelationId?: string;
+  /** Seconds the session should last for. Range is 60 to 86400 seconds. Default value is 600. */
   authTokenTimeToLiveInSeconds?: number;
-  /** The operation mode for the liveness modal. */
-  livenessOperationMode: string;
 }
 
-export interface LivenessWithVerifySessionCreationContentParametersPartDescriptor {
+export interface LivenessSessionWithVerifyImageCreationContentParametersPartDescriptor {
   name: "Parameters";
-  body: LivenessSessionCreationContent;
+  body: LivenessSessionCreationContentForMultipart;
 }
 
-export interface LivenessWithVerifySessionCreationContentVerifyImagePartDescriptor {
+export interface LivenessSessionWithVerifyImageCreationContentVerifyImagePartDescriptor {
   name: "VerifyImage";
   body:
     | string
@@ -28,10 +32,55 @@ export interface LivenessWithVerifySessionCreationContentVerifyImagePartDescript
   contentType?: string;
 }
 
+/** Dedicated parameter model for multipart/form-data. */
+export interface LivenessSessionCreationContentForMultipart {
+  /** Type of liveness mode the client should follow. */
+  livenessOperationMode: LivenessOperationMode;
+  /** Whether or not to allow a '200 - Success' response body to be sent to the client, which may be undesirable for security reasons. Default is false, clients will receive a '204 - NoContent' empty body response. Regardless of selection, calling Session GetResult will always contain a response body enabling business logic to be implemented. */
+  sendResultsToClient?: boolean;
+  /** Whether or not to allow client to set their own 'deviceCorrelationId' via the Vision SDK. Default is false, and 'deviceCorrelationId' must be set in this request body. */
+  deviceCorrelationIdSetInClient?: boolean;
+  /** Unique Guid per each end-user device. This is to provide rate limiting and anti-hammering. If 'deviceCorrelationIdSetInClient' is true in this request, this 'deviceCorrelationId' must be null. */
+  deviceCorrelationId?: string;
+  /** Seconds the session should last for. Range is 60 to 86400 seconds. Default value is 600. */
+  authTokenTimeToLiveInSeconds?: number;
+}
+
+/** Alias for FaceAttributeType */
+export type FaceAttributeType =
+  | string
+  | "headPose"
+  | "glasses"
+  | "occlusion"
+  | "accessories"
+  | "blur"
+  | "exposure"
+  | "noise"
+  | "mask"
+  | "qualityForRecognition";
+/** Alias for RecognitionModel */
+export type RecognitionModel =
+  | string
+  | "recognition_01"
+  | "recognition_02"
+  | "recognition_03"
+  | "recognition_04";
+/** Alias for DetectionModel */
+export type DetectionModel =
+  | string
+  | "detection_01"
+  | "detection_02"
+  | "detection_03";
+/** Alias for FindSimilarMatchMode */
+export type FindSimilarMatchMode = string | "matchPerson" | "matchFace";
+/** Alias for LivenessOperationMode */
+export type LivenessOperationMode = string | "Passive";
 /** Request of liveness with verify session creation. */
-export type LivenessWithVerifySessionCreationContent =
+export type LivenessSessionWithVerifyImageCreationContent =
   | FormData
   | Array<
-      | LivenessWithVerifySessionCreationContentParametersPartDescriptor
-      | LivenessWithVerifySessionCreationContentVerifyImagePartDescriptor
+      | LivenessSessionWithVerifyImageCreationContentParametersPartDescriptor
+      | LivenessSessionWithVerifyImageCreationContentVerifyImagePartDescriptor
     >;
+/** API versions for Azure AI Face API. */
+export type Versions = "v1.1-preview.1";
