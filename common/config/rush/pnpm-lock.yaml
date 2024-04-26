@@ -10,7 +10,7 @@ importers:
       '@autorest/codemodel': ~4.19.2
       '@autorest/extension-base': ^3.5.0
       '@autorest/testmodeler': ^2.6.1
-      '@azure-rest/core-client': ^1.4.0
+      '@azure-rest/core-client': ^2.0.0
       '@azure-tools/codegen': ^2.9.1
       '@azure-tools/rlc-common': workspace:^0.27.0
       '@azure-tools/test-recorder': ^3.0.0
@@ -78,7 +78,7 @@ importers:
       '@autorest/codemodel': 4.19.3
       '@autorest/extension-base': 3.5.2
       '@autorest/testmodeler': 2.6.1
-      '@azure-rest/core-client': 1.4.0
+      '@azure-rest/core-client': 2.0.0
       '@azure-tools/codegen': 2.9.2
       '@azure-tools/rlc-common': link:../rlc-common
       '@azure/core-auth': 1.6.0
@@ -335,20 +335,6 @@ packages:
     resolution: {integrity: sha512-7OXzYet3S/Hiow9LzHUY5qdNRnceSQd41wKEGzfcGVleyWRobYJgYxGmUEyFZP4ZSerAb+QqygSvo9yWIC3nrQ==}
     dev: false
 
-  /@azure-rest/core-client/1.4.0:
-    resolution: {integrity: sha512-ozTDPBVUDR5eOnMIwhggbnVmOrka4fXCs8n8mvUo4WLLc38kki6bAOByDoVZZPz/pZy2jMt2kwfpvy/UjALj6w==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      '@azure/abort-controller': 2.0.0
-      '@azure/core-auth': 1.6.0
-      '@azure/core-rest-pipeline': 1.14.0
-      '@azure/core-tracing': 1.0.1
-      '@azure/core-util': 1.5.0
-      tslib: 2.6.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /@azure-rest/core-client/2.0.0:
     resolution: {integrity: sha512-MXduH8EZCeH3Z4rMYgTlcI0O+iU9g6R0JKO9CyHni6gWulgBw+jFDB5vv3N1NbQ+xr1AvGjv//nYrqLTMvcSFg==}
     engines: {node: '>=18.0.0'}
@@ -361,7 +347,6 @@ packages:
       tslib: 2.6.2
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@azure-tools/async-io/3.0.254:
     resolution: {integrity: sha512-X1C7XdyCuo50ch9FzKtTvmK18FgDxxf1Bbt3cSoknQqeDaRegHSSCO+zByq2YA4NvUzKXeZ1engh29IDxZXgpQ==}
