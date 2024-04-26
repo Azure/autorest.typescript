@@ -21,7 +21,6 @@ export function buildPackageFile(
   const config: PackageCommonInfoConfig = {
     description: getDescription(model),
     moduleKind: model.options?.moduleKind ?? "esm",
-    isModularLibrary: model.options?.isModularLibrary ?? false,
     name: getPackageName(model),
     version: getPackageVersion(model),
     withSamples: model.options?.generateSample === true,

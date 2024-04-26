@@ -31,13 +31,10 @@ export function getAzureCommonPackageInfo(config: AzurePackageInfoConfig) {
 export function getAzurePackageDependencies({
   hasLro,
   hasPaging,
-  specSource,
-  isModularLibrary
+  specSource
 }: AzurePackageInfoConfig) {
   let dependencies: Record<string, string> = {
-    // Swagger and modular libraries currently only support the old multipart/form-data implementation.
-    "@azure-rest/core-client":
-      specSource === "Swagger" || isModularLibrary ? "^1.4.0" : "^2.0.0",
+    "@azure-rest/core-client": specSource === "Swagger" ? "^1.4.0" : "^2.0.0",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-rest-pipeline": "^1.5.0",
     "@azure/logger": "^1.0.0",
