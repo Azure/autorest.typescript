@@ -49,7 +49,8 @@ export function buildObjectInterfaces(
       continue;
     }
 
-    if (objectSchema.isMultipartBody) {
+    // FIXME: disabling new multipart generation for modular while we figure out the story
+    if (objectSchema.isMultipartBody && !model.options?.isModularLibrary) {
       objectInterfaces.push(
         ...buildMultipartPartDefinitions(
           objectSchema,
@@ -147,7 +148,8 @@ export function buildObjectAliases(
   const objectAliases: TypeAliasDeclarationStructure[] = [];
 
   for (const objectSchema of objectSchemas) {
-    if (objectSchema.isMultipartBody) {
+    // FIXME: disabling new multipart generation for modular while we figure out the story
+    if (objectSchema.isMultipartBody && !model.options?.isModularLibrary) {
       const propertySignatures = getPropertySignatures(
         objectSchema.properties ?? {},
         schemaUsage,
