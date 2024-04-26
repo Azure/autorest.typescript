@@ -30,10 +30,11 @@ export function getAzureCommonPackageInfo(config: AzurePackageInfoConfig) {
  */
 export function getAzurePackageDependencies({
   hasLro,
-  hasPaging
+  hasPaging,
+  specSource
 }: AzurePackageInfoConfig) {
   let dependencies: Record<string, string> = {
-    "@azure-rest/core-client": "^2.0.0",
+    "@azure-rest/core-client": specSource === "Swagger" ? "^1.4.0" : "^2.0.0",
     "@azure/core-auth": "^1.6.0",
     "@azure/core-rest-pipeline": "^1.5.0",
     "@azure/logger": "^1.0.0",
