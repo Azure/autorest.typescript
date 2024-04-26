@@ -8,10 +8,6 @@
 
 import { Client } from '@typespec/ts-http-runtime';
 import { ClientOptions } from '@typespec/ts-http-runtime';
-import { createFile } from '@typespec/ts-http-runtime';
-import { createFileFromStream } from '@typespec/ts-http-runtime';
-import { CreateFileFromStreamOptions } from '@typespec/ts-http-runtime';
-import { CreateFileOptions } from '@typespec/ts-http-runtime';
 import { HttpResponse } from '@typespec/ts-http-runtime';
 import { KeyCredential } from '@typespec/ts-http-runtime';
 import { RequestParameters } from '@typespec/ts-http-runtime';
@@ -20,14 +16,6 @@ import { StreamableMethod } from '@typespec/ts-http-runtime';
 // @public
 function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): TodoClient;
 export default createClient;
-
-export { createFile }
-
-export { createFileFromStream }
-
-export { CreateFileFromStreamOptions }
-
-export { CreateFileOptions }
 
 // @public (undocumented)
 export interface ErrorModelOutput {
@@ -121,9 +109,12 @@ export interface TodoItemsAttachmentsCreateFileAttachment404Response extends Htt
 // @public (undocumented)
 export interface TodoItemsAttachmentsCreateFileAttachmentBodyParam {
     // (undocumented)
-    body?: {
-        contents: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
-    };
+    body?: FormData | Array<{
+        name: "contents";
+        body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+        filename?: string;
+        contentType?: string;
+    }>;
 }
 
 // @public (undocumented)
@@ -210,10 +201,15 @@ export interface TodoItemsCreateForm422Response extends HttpResponse {
 // @public (undocumented)
 export interface TodoItemsCreateFormBodyParam {
     // (undocumented)
-    body?: {
-        item: TodoItem;
-        attachments?: (TodoUrlAttachment | string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File)[];
-    };
+    body?: FormData | Array<{
+        name: "item";
+        body: TodoItem;
+    } | {
+        name: "attachments";
+        body: TodoUrlAttachment | string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+        filename?: string;
+        contentType?: string;
+    }>;
 }
 
 // @public (undocumented)
