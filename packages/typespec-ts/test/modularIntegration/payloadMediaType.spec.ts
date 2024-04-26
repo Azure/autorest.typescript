@@ -6,6 +6,7 @@ describe("MediaType Client", () => {
 
   beforeEach(() => {
     client = new MediaTypeClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
   });

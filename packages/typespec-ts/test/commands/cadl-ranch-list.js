@@ -1,10 +1,4 @@
-export interface TypeSpecRanchConfig {
-  outputPath: string;
-  inputPath: string;
-  debug?: boolean;
-}
-
-export const rlcTsps: TypeSpecRanchConfig[] = [
+export const rlcTsps = [
   {
     outputPath: "payload/multipart",
     inputPath: "payload/multipart"
@@ -239,14 +233,14 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   }
 ];
 
-export const nonBrandedRlcTsps: TypeSpecRanchConfig[] = [
+export const nonBrandedRlcTsps = [
   {
     outputPath: "models/usage",
     inputPath: "type/model/usage"
   }
 ];
 
-export const modularTsps: TypeSpecRanchConfig[] = [
+export const modularTsps = [
   { outputPath: "lro/rpc", inputPath: "azure/core/lro/rpc" },
   { outputPath: "lro/standard", inputPath: "azure/core/lro/standard" },
   {
@@ -440,7 +434,7 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   }
 ];
 
-export const nonBrandedModularTsps: TypeSpecRanchConfig[] = [
+export const nonBrandedModularTsps = [
   {
     outputPath: "models/usage",
     inputPath: "type/model/usage"

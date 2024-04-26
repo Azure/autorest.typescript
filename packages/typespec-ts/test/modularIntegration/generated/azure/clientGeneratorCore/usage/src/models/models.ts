@@ -10,3 +10,8 @@ export interface InputModel {
 export interface OutputModel {
   name: string;
 }
+
+/** Not used anywhere, but access is override to public so still need to be generated and exported with serialization. */
+export interface OrphanModel {
+  name: string;
+}
