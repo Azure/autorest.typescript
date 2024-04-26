@@ -355,60 +355,6 @@ export interface LargeFaceListFaceOutput {
   userData?: string;
 }
 
-/** Response of create person. */
-export interface CreatePersonResultOutput {
-  /** Person ID of the person. */
-  personId: string;
-}
-
-/** Person resource for person directory */
-export interface PersonDirectoryPersonOutput {
-  /** Person ID of the person. */
-  readonly personId: string;
-  /** User defined name, maximum length is 128. */
-  name: string;
-  /** Optional user defined data. Length should not exceed 16K. */
-  userData?: string;
-}
-
-/** Response of list dynamic person group of person. */
-export interface ListGroupReferenceResultOutput {
-  /** Array of PersonDirectory DynamicPersonGroup ids. */
-  dynamicPersonGroupIds: string[];
-}
-
-/** Face resource for person directory person. */
-export interface PersonDirectoryFaceOutput {
-  /** Face ID of the face. */
-  readonly persistedFaceId: string;
-  /** User-provided data attached to the face. The length limit is 1K. */
-  userData?: string;
-}
-
-/** Response of list face of person. */
-export interface ListFaceResultOutput {
-  /** Id of person. */
-  personId: string;
-  /** Array of persisted face ids. */
-  persistedFaceIds: string[];
-}
-
-/** A container that references Person Directory "Create Person". */
-export interface DynamicPersonGroupOutput {
-  /** ID of the dynamic person group. */
-  readonly dynamicPersonGroupId: string;
-  /** User defined name, maximum length is 128. */
-  name: string;
-  /** Optional user defined data. Length should not exceed 16K. */
-  userData?: string;
-}
-
-/** Response of list dynamic person group person. */
-export interface ListPersonResultOutput {
-  /** Array of PersonDirectory Person ids. */
-  personIds: string[];
-}
-
 /** The container of the uploaded person data, including face recognition feature, and up to 10,000 persons. To handle larger scale face identification problem, please consider using Large Person Group. */
 export interface PersonGroupOutput {
   /** User defined name, maximum length is 128. */
@@ -419,6 +365,12 @@ export interface PersonGroupOutput {
   recognitionModel?: RecognitionModelOutput;
   /** ID of the container. */
   readonly personGroupId: string;
+}
+
+/** Response of create person. */
+export interface CreatePersonResultOutput {
+  /** Person ID of the person. */
+  personId: string;
 }
 
 /** The person in a specified person group. To add face to this person, please call "Add Large Person Group Person Face". */
@@ -471,6 +423,54 @@ export interface LargePersonGroupPersonFaceOutput {
   readonly persistedFaceId: string;
   /** User-provided data attached to the face. The length limit is 1K. */
   userData?: string;
+}
+
+/** Person resource for person directory */
+export interface PersonDirectoryPersonOutput {
+  /** Person ID of the person. */
+  readonly personId: string;
+  /** User defined name, maximum length is 128. */
+  name: string;
+  /** Optional user defined data. Length should not exceed 16K. */
+  userData?: string;
+}
+
+/** Response of list dynamic person group of person. */
+export interface ListGroupReferenceResultOutput {
+  /** Array of PersonDirectory DynamicPersonGroup ids. */
+  dynamicPersonGroupIds: string[];
+}
+
+/** Face resource for person directory person. */
+export interface PersonDirectoryFaceOutput {
+  /** Face ID of the face. */
+  readonly persistedFaceId: string;
+  /** User-provided data attached to the face. The length limit is 1K. */
+  userData?: string;
+}
+
+/** Response of list face of person. */
+export interface ListFaceResultOutput {
+  /** Id of person. */
+  personId: string;
+  /** Array of persisted face ids. */
+  persistedFaceIds: string[];
+}
+
+/** A container that references Person Directory "Create Person". */
+export interface DynamicPersonGroupOutput {
+  /** ID of the dynamic person group. */
+  readonly dynamicPersonGroupId: string;
+  /** User defined name, maximum length is 128. */
+  name: string;
+  /** Optional user defined data. Length should not exceed 16K. */
+  userData?: string;
+}
+
+/** Response of list dynamic person group person. */
+export interface ListPersonResultOutput {
+  /** Array of PersonDirectory Person ids. */
+  personIds: string[];
 }
 
 /** Response of liveness session creation. */
