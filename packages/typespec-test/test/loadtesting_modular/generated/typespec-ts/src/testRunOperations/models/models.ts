@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { ErrorModel } from "@azure-rest/core-client";
+import { OperationStatus as CoreOperationStatus } from "@azure/core-lro";
+
 /** Load test model */
 export interface Test {
   /** Pass fail criteria for a test. */
@@ -645,6 +648,18 @@ export interface PagedTestRun {
   value: TestRun[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+/** Provides status details for long running operations. */
+export interface OperationStatusTestRunError {
+  /** The unique ID of the operation. */
+  id: string;
+  /** The status of the operation */
+  status: CoreOperationStatus;
+  /** Error object that describes the error when status is "Failed". */
+  error?: ErrorModel;
+  /** The result of the operation. */
+  result?: TestRun;
 }
 
 /** Paged collection of DimensionValueList items */

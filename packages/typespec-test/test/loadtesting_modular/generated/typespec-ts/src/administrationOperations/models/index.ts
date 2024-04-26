@@ -54,6 +54,7 @@ export {
   MetricValue,
   DimensionValue,
   PagedTestRun,
+  OperationStatusTestRunError,
   PagedDimensionValueList,
 } from "./models.js";
 export {

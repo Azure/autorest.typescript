@@ -9,10 +9,12 @@
 import { AbortSignalLike } from '@azure/abort-controller';
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorModel } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
+import { OperationStatus } from '@azure/core-lro';
 import { Paged } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
@@ -281,6 +283,14 @@ export interface MetricValue {
 export interface NameAndDesc {
     description?: string;
     name?: string;
+}
+
+// @public
+export interface OperationStatusTestRunError {
+    error?: ErrorModel;
+    id: string;
+    result?: TestRun;
+    status: OperationStatus;
 }
 
 // @public
@@ -671,6 +681,14 @@ export interface TestRunOperationsClientMetricValue {
 export interface TestRunOperationsClientNameAndDesc {
     description?: string;
     name?: string;
+}
+
+// @public
+export interface TestRunOperationsClientOperationStatusTestRunError {
+    error?: ErrorModel;
+    id: string;
+    result?: TestRunOperationsClientTestRun;
+    status: OperationStatus;
 }
 
 // @public

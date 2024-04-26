@@ -58,6 +58,7 @@ export {
   MetricValue,
   DimensionValue,
   PagedTestRun,
+  OperationStatusTestRunError,
   PagedDimensionValueList,
   CreateOrUpdateTestOptionalParams,
   CreateOrUpdateAppComponentsOptionalParams,
