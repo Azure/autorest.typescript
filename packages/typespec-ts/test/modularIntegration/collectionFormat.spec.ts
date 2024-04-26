@@ -6,6 +6,7 @@ describe("CollectionFormatClient Classical Client", () => {
 
   beforeEach(() => {
     client = new CollectionFormatClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
   });

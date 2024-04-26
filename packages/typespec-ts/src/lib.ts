@@ -11,7 +11,6 @@ import { Options } from "prettier";
 
 export interface EmitterOptions extends RLCOptions {
   branded?: boolean;
-  generateOrphanModels?: boolean;
   legacy?: boolean;
 }
 
@@ -85,7 +84,6 @@ export const RLCOptionsSchema: JSONSchemaType<EmitterOptions> = {
     hierarchyClient: { type: "boolean", nullable: true },
     branded: { type: "boolean", nullable: true },
     flavor: { type: "string", nullable: true },
-    generateOrphanModels: { type: "boolean", nullable: true },
     moduleKind: {
       type: "string",
       nullable: true,

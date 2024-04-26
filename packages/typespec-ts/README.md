@@ -145,14 +145,6 @@ addCredentials: true
 credentialKeyHeaderName: Your-Subscription-Key
 ```
 
-### generateOrphanModels
-
-By default, we will not generate orphan models, if we want to generate them, we have to enable this option besides the `@access` and `@usage` configurations in client.tsp.
-
-```yaml
-generateOrphanModels: true
-```
-
 # Contributing
 
 If you want to contribute on this project read the [contrubuting document](./CONTRIBUTING.md) for more details.

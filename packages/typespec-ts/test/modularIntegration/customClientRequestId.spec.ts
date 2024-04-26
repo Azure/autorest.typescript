@@ -6,6 +6,7 @@ describe("RequestIdClient Classical Client", () => {
 
   beforeEach(() => {
     client = new RequestIdClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
   });
@@ -31,6 +32,7 @@ describe("RequestIdClient Classical Client", () => {
       };
       client = new RequestIdClient({
         allowInsecureConnection: true,
+        endpoint: "http://localhost:3002",
         additionalPolicies: [
           {
             policy: checkClientRequestIdPolicy,

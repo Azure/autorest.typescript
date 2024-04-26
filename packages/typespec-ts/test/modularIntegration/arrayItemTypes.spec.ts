@@ -57,6 +57,7 @@ describe("Array Item-Types Client", () => {
 
   beforeEach(() => {
     client = new ArrayClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

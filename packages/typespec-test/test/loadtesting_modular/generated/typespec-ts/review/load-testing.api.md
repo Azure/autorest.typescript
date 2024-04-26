@@ -235,9 +235,24 @@ export interface MetricDefinition {
 }
 
 // @public
+export interface MetricDefinitionCollection {
+    value: MetricDefinition[];
+}
+
+// @public
 export interface MetricNamespace {
     description?: string;
     name?: string;
+}
+
+// @public
+export interface MetricNamespaceCollection {
+    value: MetricNamespace[];
+}
+
+// @public
+export interface MetricRequestPayload {
+    filters?: DimensionFilter[];
 }
 
 // @public (undocumented)
@@ -271,6 +286,12 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
 }
 
 // @public
+export interface PagedDimensionValueList {
+    nextLink?: string;
+    value: DimensionValueList[];
+}
+
+// @public
 export interface PagedFileInfo {
     nextLink?: string;
     value: FileInfo[];
@@ -280,6 +301,18 @@ export interface PagedFileInfo {
 export interface PagedTest {
     nextLink?: string;
     value: Test[];
+}
+
+// @public
+export interface PagedTestRun {
+    nextLink?: string;
+    value: TestRun[];
+}
+
+// @public
+export interface PagedTimeSeriesElement {
+    nextLink?: string;
+    value: TimeSeriesElement[];
 }
 
 // @public
@@ -416,6 +449,16 @@ export interface TestRun {
 }
 
 // @public
+export interface TestRunAppComponents {
+    components: Record<string, AppComponent>;
+    readonly createdBy?: string;
+    readonly createdDateTime?: string;
+    readonly lastModifiedBy?: string;
+    readonly lastModifiedDateTime?: string;
+    readonly testRunId?: string;
+}
+
+// @public
 export interface TestRunArtifacts {
     readonly inputArtifacts?: TestRunInputArtifacts;
     outputArtifacts?: TestRunOutputArtifacts;
@@ -433,22 +476,17 @@ export interface TestRunInputArtifacts {
 // @public (undocumented)
 export class TestRunOperationsClient {
     constructor(endpointParam: string, credential: TokenCredential, options?: TestRunOperationsClientOptions);
-    // Warning: (ae-forgotten-export) The symbol "TestRunAppComponents" needs to be exported by the entry point index.d.ts
-    createOrUpdateAppComponents(testRunId: string, body: TestRunAppComponents, options?: TestRunOperationsClientCreateOrUpdateAppComponentsOptionalParams): Promise<TestRunAppComponents>;
-    // Warning: (ae-forgotten-export) The symbol "TestRunServerMetricConfig" needs to be exported by the entry point index.d.ts
-    createOrUpdateServerMetricsConfig(testRunId: string, body: TestRunServerMetricConfig, options?: TestRunOperationsClientCreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
+    createOrUpdateAppComponents(testRunId: string, body: TestRunOperationsClientTestRunAppComponents, options?: TestRunOperationsClientCreateOrUpdateAppComponentsOptionalParams): Promise<TestRunOperationsClientTestRunAppComponents>;
+    createOrUpdateServerMetricsConfig(testRunId: string, body: TestRunOperationsClientTestRunServerMetricConfig, options?: TestRunOperationsClientCreateOrUpdateServerMetricsConfigOptionalParams): Promise<TestRunOperationsClientTestRunServerMetricConfig>;
     deleteTestRun(testRunId: string, options?: DeleteTestRunOptionalParams): Promise<void>;
-    getAppComponents(testRunId: string, options?: TestRunOperationsClientGetAppComponentsOptionalParams): Promise<TestRunAppComponents>;
-    getServerMetricsConfig(testRunId: string, options?: TestRunOperationsClientGetServerMetricsConfigOptionalParams): Promise<TestRunServerMetricConfig>;
+    getAppComponents(testRunId: string, options?: TestRunOperationsClientGetAppComponentsOptionalParams): Promise<TestRunOperationsClientTestRunAppComponents>;
+    getServerMetricsConfig(testRunId: string, options?: TestRunOperationsClientGetServerMetricsConfigOptionalParams): Promise<TestRunOperationsClientTestRunServerMetricConfig>;
     getTestRun(testRunId: string, options?: GetTestRunOptionalParams): Promise<TestRunOperationsClientTestRun>;
     getTestRunFile(testRunId: string, fileName: string, options?: GetTestRunFileOptionalParams): Promise<TestRunOperationsClientFileInfo>;
-    // Warning: (ae-forgotten-export) The symbol "MetricDefinitionCollection" needs to be exported by the entry point index.d.ts
-    listMetricDefinitions(testRunId: string, options?: ListMetricDefinitionsOptionalParams): Promise<MetricDefinitionCollection>;
+    listMetricDefinitions(testRunId: string, options?: ListMetricDefinitionsOptionalParams): Promise<TestRunOperationsClientMetricDefinitionCollection>;
     listMetricDimensionValues(testRunId: string, name: string, metricNamespace: string, options?: ListMetricDimensionValuesOptionalParams): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientDimensionValueList>;
-    // Warning: (ae-forgotten-export) The symbol "MetricNamespaceCollection" needs to be exported by the entry point index.d.ts
-    listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptionalParams): Promise<MetricNamespaceCollection>;
-    // Warning: (ae-forgotten-export) The symbol "MetricRequestPayload" needs to be exported by the entry point index.d.ts
-    listMetrics(testRunId: string, body: MetricRequestPayload, options?: ListMetricsOptionalParams): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTimeSeriesElement>;
+    listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptionalParams): Promise<TestRunOperationsClientMetricNamespaceCollection>;
+    listMetrics(testRunId: string, body: TestRunOperationsClientMetricRequestPayload, options?: ListMetricsOptionalParams): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTimeSeriesElement>;
     listTestRuns(options?: ListTestRunsOptionalParams): TestRunOperationsClientPagedAsyncIterableIterator<TestRunOperationsClientTestRun>;
     readonly pipeline: Pipeline;
     stopTestRun(testRunId: string, options?: StopTestRunOptionalParams): Promise<TestRunOperationsClientTestRun>;
@@ -575,9 +613,24 @@ export interface TestRunOperationsClientMetricDefinition {
 }
 
 // @public
+export interface TestRunOperationsClientMetricDefinitionCollection {
+    value: TestRunOperationsClientMetricDefinition[];
+}
+
+// @public
 export interface TestRunOperationsClientMetricNamespace {
     description?: string;
     name?: string;
+}
+
+// @public
+export interface TestRunOperationsClientMetricNamespaceCollection {
+    value: TestRunOperationsClientMetricNamespace[];
+}
+
+// @public
+export interface TestRunOperationsClientMetricRequestPayload {
+    filters?: TestRunOperationsClientDimensionFilter[];
 }
 
 // @public (undocumented)
@@ -613,6 +666,36 @@ export interface TestRunOperationsClientPagedAsyncIterableIterator<TElement, TPa
     [Symbol.asyncIterator](): TestRunOperationsClientPagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
     byPage: (settings?: TPageSettings) => AsyncIterableIterator<TestRunOperationsClientContinuablePage<TElement, TPage>>;
     next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface TestRunOperationsClientPagedDimensionValueList {
+    nextLink?: string;
+    value: TestRunOperationsClientDimensionValueList[];
+}
+
+// @public
+export interface TestRunOperationsClientPagedFileInfo {
+    nextLink?: string;
+    value: TestRunOperationsClientFileInfo[];
+}
+
+// @public
+export interface TestRunOperationsClientPagedTest {
+    nextLink?: string;
+    value: TestRunOperationsClientTest[];
+}
+
+// @public
+export interface TestRunOperationsClientPagedTestRun {
+    nextLink?: string;
+    value: TestRunOperationsClientTestRun[];
+}
+
+// @public
+export interface TestRunOperationsClientPagedTimeSeriesElement {
+    nextLink?: string;
+    value: TestRunOperationsClientTimeSeriesElement[];
 }
 
 // @public
@@ -697,6 +780,16 @@ export interface TestRunOperationsClientTest {
 }
 
 // @public
+export interface TestRunOperationsClientTestAppComponents {
+    components: Record<string, TestRunOperationsClientAppComponent>;
+    readonly createdBy?: string;
+    readonly createdDateTime?: string;
+    readonly lastModifiedBy?: string;
+    readonly lastModifiedDateTime?: string;
+    readonly testId?: string;
+}
+
+// @public
 export interface TestRunOperationsClientTestInputArtifacts {
     readonly additionalFileInfo?: TestRunOperationsClientFileInfo[];
     configFileInfo?: TestRunOperationsClientFileInfo;
@@ -735,6 +828,16 @@ export interface TestRunOperationsClientTestRun {
 }
 
 // @public
+export interface TestRunOperationsClientTestRunAppComponents {
+    components: Record<string, TestRunOperationsClientAppComponent>;
+    readonly createdBy?: string;
+    readonly createdDateTime?: string;
+    readonly lastModifiedBy?: string;
+    readonly lastModifiedDateTime?: string;
+    readonly testRunId?: string;
+}
+
+// @public
 export interface TestRunOperationsClientTestRunArtifacts {
     readonly inputArtifacts?: TestRunOperationsClientTestRunInputArtifacts;
     outputArtifacts?: TestRunOperationsClientTestRunOutputArtifacts;
@@ -756,6 +859,16 @@ export interface TestRunOperationsClientTestRunOutputArtifacts {
 }
 
 // @public
+export interface TestRunOperationsClientTestRunServerMetricConfig {
+    readonly createdBy?: string;
+    readonly createdDateTime?: string;
+    readonly lastModifiedBy?: string;
+    readonly lastModifiedDateTime?: string;
+    metrics?: Record<string, TestRunOperationsClientResourceMetric>;
+    readonly testRunId?: string;
+}
+
+// @public
 export interface TestRunOperationsClientTestRunStatistics {
     readonly errorCount?: number;
     readonly errorPct?: number;
@@ -771,6 +884,16 @@ export interface TestRunOperationsClientTestRunStatistics {
     readonly sentKBytesPerSec?: number;
     readonly throughput?: number;
     readonly transaction?: string;
+}
+
+// @public
+export interface TestRunOperationsClientTestServerMetricConfig {
+    readonly createdBy?: string;
+    readonly createdDateTime?: string;
+    readonly lastModifiedBy?: string;
+    readonly lastModifiedDateTime?: string;
+    metrics?: Record<string, TestRunOperationsClientResourceMetric>;
+    readonly testId?: string;
 }
 
 // @public (undocumented)
@@ -792,6 +915,16 @@ export interface TestRunOptionalParams extends OperationOptions {
 export interface TestRunOutputArtifacts {
     logsFileInfo?: FileInfo;
     resultFileInfo?: FileInfo;
+}
+
+// @public
+export interface TestRunServerMetricConfig {
+    readonly createdBy?: string;
+    readonly createdDateTime?: string;
+    readonly lastModifiedBy?: string;
+    readonly lastModifiedDateTime?: string;
+    metrics?: Record<string, ResourceMetric>;
+    readonly testRunId?: string;
 }
 
 // @public

@@ -10,6 +10,7 @@ describe("EnumDiscriminatorClient Rest Client", () => {
 
   beforeEach(() => {
     client = new EnumDiscriminatorClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
   });
@@ -20,7 +21,7 @@ describe("EnumDiscriminatorClient Rest Client", () => {
   };
   const validFixedEnumBody: Snake = {
     length: 10,
-    kind: "cobra",
+    kind: "cobra"
   };
   it("should get extensible enum", async () => {
     try {

@@ -4,7 +4,10 @@ describe("SpreadClient Client", () => {
   let client: SpreadClient;
 
   beforeEach(() => {
-    client = new SpreadClient({ allowInsecureConnection: true });
+    client = new SpreadClient({
+      allowInsecureConnection: true,
+      endpoint: "http://localhost:3002"
+    });
   });
 
   it("should spread named model", async () => {
