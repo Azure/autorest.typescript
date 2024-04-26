@@ -4,6 +4,7 @@
 export interface PackageCommonInfoConfig {
   name: string;
   nameWithoutScope?: string;
+  isModularLibrary: boolean;
   version: string;
   description: string;
   moduleKind: "esm" | "cjs";
