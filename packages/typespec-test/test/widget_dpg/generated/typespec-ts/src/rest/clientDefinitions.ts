@@ -2,58 +2,44 @@
 // Licensed under the MIT license.
 
 import {
-  WidgetsListWidgetsParameters,
-  WidgetsCreateWidgetParameters,
-  WidgetsListWidgetsPagesParameters,
-  WidgetsQueryWidgetsPagesParameters,
-  WidgetsGetWidgetParameters,
-  WidgetsUpdateWidgetParameters,
-  WidgetsDeleteWidgetParameters,
-  WidgetsCreateOrReplaceParameters,
-  WidgetsAnalyzeWidgetParameters,
-  BudgetsCreateOrReplaceParameters,
-  BudgetsCreateOrUpdateParameters,
+  ListWidgetsParameters,
+  CreateWidgetParameters,
+  ListWidgetsPagesParameters,
+  QueryWidgetsPagesParameters,
+  GetWidgetParameters,
+  UpdateWidgetParameters,
+  DeleteWidgetParameters,
+  AnalyzeWidgetParameters,
 } from "./parameters.js";
 import {
-  WidgetsListWidgets200Response,
-  WidgetsListWidgetsDefaultResponse,
-  WidgetsCreateWidget201Response,
-  WidgetsCreateWidgetDefaultResponse,
-  WidgetsListWidgetsPages200Response,
-  WidgetsListWidgetsPagesDefaultResponse,
-  WidgetsQueryWidgetsPages200Response,
-  WidgetsQueryWidgetsPagesDefaultResponse,
-  WidgetsGetWidget200Response,
-  WidgetsGetWidgetDefaultResponse,
-  WidgetsUpdateWidget200Response,
-  WidgetsUpdateWidgetDefaultResponse,
-  WidgetsDeleteWidget204Response,
-  WidgetsDeleteWidgetDefaultResponse,
-  WidgetsCreateOrReplace200Response,
-  WidgetsCreateOrReplace201Response,
-  WidgetsCreateOrReplaceDefaultResponse,
-  WidgetsAnalyzeWidget200Response,
-  WidgetsAnalyzeWidgetDefaultResponse,
-  BudgetsCreateOrReplace200Response,
-  BudgetsCreateOrReplace201Response,
-  BudgetsCreateOrReplaceDefaultResponse,
-  BudgetsCreateOrUpdate200Response,
-  BudgetsCreateOrUpdate201Response,
-  BudgetsCreateOrUpdateDefaultResponse,
+  ListWidgets200Response,
+  ListWidgetsDefaultResponse,
+  CreateWidget201Response,
+  CreateWidgetDefaultResponse,
+  ListWidgetsPages200Response,
+  ListWidgetsPagesDefaultResponse,
+  QueryWidgetsPages200Response,
+  QueryWidgetsPagesDefaultResponse,
+  GetWidget200Response,
+  GetWidgetDefaultResponse,
+  UpdateWidget200Response,
+  UpdateWidgetDefaultResponse,
+  DeleteWidget204Response,
+  DeleteWidgetDefaultResponse,
+  AnalyzeWidget200Response,
+  AnalyzeWidgetDefaultResponse,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface WidgetsListWidgets {
+export interface ListWidgets {
   /**
    * List all widgets in the system. This operation is not paginated, and returns a simple array of widgets.
    *
    * It does not accept any options or parameters.
    */
   get(
-    options: WidgetsListWidgetsParameters,
-  ): StreamableMethod<
-    WidgetsListWidgets200Response | WidgetsListWidgetsDefaultResponse
-  >;
+    options: ListWidgetsParameters,
+  ): StreamableMethod<ListWidgets200Response | ListWidgetsDefaultResponse>;
   /**
    * Create a new widget.
    *
@@ -61,116 +47,57 @@ export interface WidgetsListWidgets {
    * result in an error.
    */
   post(
-    options?: WidgetsCreateWidgetParameters,
-  ): StreamableMethod<
-    WidgetsCreateWidget201Response | WidgetsCreateWidgetDefaultResponse
-  >;
+    options?: CreateWidgetParameters,
+  ): StreamableMethod<CreateWidget201Response | CreateWidgetDefaultResponse>;
 }
 
-export interface WidgetsListWidgetsPages {
+export interface ListWidgetsPages {
   get(
-    options: WidgetsListWidgetsPagesParameters,
+    options: ListWidgetsPagesParameters,
   ): StreamableMethod<
-    WidgetsListWidgetsPages200Response | WidgetsListWidgetsPagesDefaultResponse
+    ListWidgetsPages200Response | ListWidgetsPagesDefaultResponse
   >;
   post(
-    options: WidgetsQueryWidgetsPagesParameters,
+    options: QueryWidgetsPagesParameters,
   ): StreamableMethod<
-    | WidgetsQueryWidgetsPages200Response
-    | WidgetsQueryWidgetsPagesDefaultResponse
+    QueryWidgetsPages200Response | QueryWidgetsPagesDefaultResponse
   >;
 }
 
-export interface WidgetsGetWidget {
+export interface GetWidget {
   /** Get a widget by ID. */
   get(
-    options?: WidgetsGetWidgetParameters,
-  ): StreamableMethod<
-    WidgetsGetWidget200Response | WidgetsGetWidgetDefaultResponse
-  >;
+    options?: GetWidgetParameters,
+  ): StreamableMethod<GetWidget200Response | GetWidgetDefaultResponse>;
   /**
    * Update the contents of the widget. The widget ID is required in the input, but cannot be changed. All other fields
    * are optional and will be updated within the widget if provided.
    */
   patch(
-    options?: WidgetsUpdateWidgetParameters,
-  ): StreamableMethod<
-    WidgetsUpdateWidget200Response | WidgetsUpdateWidgetDefaultResponse
-  >;
+    options?: UpdateWidgetParameters,
+  ): StreamableMethod<UpdateWidget200Response | UpdateWidgetDefaultResponse>;
   /** Delete a widget by ID. */
   delete(
-    options?: WidgetsDeleteWidgetParameters,
-  ): StreamableMethod<
-    WidgetsDeleteWidget204Response | WidgetsDeleteWidgetDefaultResponse
-  >;
+    options?: DeleteWidgetParameters,
+  ): StreamableMethod<DeleteWidget204Response | DeleteWidgetDefaultResponse>;
 }
 
-export interface WidgetsCreateOrReplace {
-  /** Long-running resource create or replace operation template. */
-  put(
-    options: WidgetsCreateOrReplaceParameters,
-  ): StreamableMethod<
-    | WidgetsCreateOrReplace200Response
-    | WidgetsCreateOrReplace201Response
-    | WidgetsCreateOrReplaceDefaultResponse
-  >;
-}
-
-export interface WidgetsAnalyzeWidget {
+export interface AnalyzeWidget {
   /** Analyze a widget. The only guarantee is that this method will return a string containing the results of the analysis. */
   post(
-    options?: WidgetsAnalyzeWidgetParameters,
-  ): StreamableMethod<
-    WidgetsAnalyzeWidget200Response | WidgetsAnalyzeWidgetDefaultResponse
-  >;
-}
-
-export interface BudgetsCreateOrReplace {
-  /** Long-running resource create or replace operation template. */
-  put(
-    options: BudgetsCreateOrReplaceParameters,
-  ): StreamableMethod<
-    | BudgetsCreateOrReplace200Response
-    | BudgetsCreateOrReplace201Response
-    | BudgetsCreateOrReplaceDefaultResponse
-  >;
-}
-
-export interface BudgetsCreateOrUpdate {
-  /** Long-running resource create or update operation template. */
-  patch(
-    options: BudgetsCreateOrUpdateParameters,
-  ): StreamableMethod<
-    | BudgetsCreateOrUpdate200Response
-    | BudgetsCreateOrUpdate201Response
-    | BudgetsCreateOrUpdateDefaultResponse
-  >;
+    options?: AnalyzeWidgetParameters,
+  ): StreamableMethod<AnalyzeWidget200Response | AnalyzeWidgetDefaultResponse>;
 }
 
 export interface Routes {
   /** Resource for '/widgets' has methods for the following verbs: get, post */
-  (path: "/widgets"): WidgetsListWidgets;
+  (path: "/widgets"): ListWidgets;
   /** Resource for '/widgets/widgets/pages' has methods for the following verbs: get, post */
-  (path: "/widgets/widgets/pages"): WidgetsListWidgetsPages;
+  (path: "/widgets/widgets/pages"): ListWidgetsPages;
   /** Resource for '/widgets/\{id\}' has methods for the following verbs: get, patch, delete */
-  (path: "/widgets/{id}", id: string): WidgetsGetWidget;
-  /** Resource for '/widgets/widgets/createOrReplace/users/\{name\}' has methods for the following verbs: put */
-  (
-    path: "/widgets/widgets/createOrReplace/users/{name}",
-    name: string,
-  ): WidgetsCreateOrReplace;
+  (path: "/widgets/{id}", id: string): GetWidget;
   /** Resource for '/widgets/\{id\}/analyze' has methods for the following verbs: post */
-  (path: "/widgets/{id}/analyze", id: string): WidgetsAnalyzeWidget;
-  /** Resource for '/budgets/widgets/createOrReplace/users/\{name\}' has methods for the following verbs: put */
-  (
-    path: "/budgets/widgets/createOrReplace/users/{name}",
-    name: string,
-  ): BudgetsCreateOrReplace;
-  /** Resource for '/budgets/widgets/createOrUpdate/users/\{name\}' has methods for the following verbs: patch */
-  (
-    path: "/budgets/widgets/createOrUpdate/users/{name}",
-    name: string,
-  ): BudgetsCreateOrUpdate;
+  (path: "/widgets/{id}/analyze", id: string): AnalyzeWidget;
 }
 
 export type WidgetServiceContext = Client & {

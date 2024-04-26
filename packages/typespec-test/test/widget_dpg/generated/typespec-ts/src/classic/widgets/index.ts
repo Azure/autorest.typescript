@@ -3,7 +3,6 @@
 
 import { WidgetServiceContext } from "../../api/widgetServiceContext.js";
 import {
-  User,
   Widget,
   CreateWidget,
   UpdateWidget,
@@ -15,20 +14,17 @@ import {
   queryWidgetsPages,
   getWidget,
   createWidget,
-  createOrReplace,
   updateWidget,
   deleteWidget,
   analyzeWidget,
 } from "../../api/widgets/index.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
-import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   WidgetsListWidgetsOptionalParams,
   WidgetsListWidgetsPagesOptionalParams,
   WidgetsQueryWidgetsPagesOptionalParams,
   WidgetsGetWidgetOptionalParams,
   WidgetsCreateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
   WidgetsUpdateWidgetOptionalParams,
   WidgetsDeleteWidgetOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
@@ -61,11 +57,6 @@ export interface WidgetsOperations {
     body: CreateWidget,
     options?: WidgetsCreateWidgetOptionalParams,
   ) => Promise<Widget>;
-  createOrReplace: (
-    name: string,
-    resource: User,
-    options?: WidgetsCreateOrReplaceOptionalParams,
-  ) => PollerLike<OperationState<User>, User>;
   updateWidget: (
     id: string,
     body: UpdateWidget,
@@ -116,11 +107,6 @@ export function getWidgets(context: WidgetServiceContext) {
       body: CreateWidget,
       options?: WidgetsCreateWidgetOptionalParams,
     ) => createWidget(context, body, options),
-    createOrReplace: (
-      name: string,
-      resource: User,
-      options?: WidgetsCreateOrReplaceOptionalParams,
-    ) => createOrReplace(context, name, resource, options),
     updateWidget: (
       id: string,
       body: UpdateWidget,

@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { getLongRunningPoller } from "../pollingHelpers.js";
-import { PollerLike, OperationState } from "@azure/core-lro";
 import {
-  User,
   Widget,
   ListWidgetsPagesResults,
   CreateWidget,
@@ -14,29 +11,25 @@ import {
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
+  AnalyzeWidget200Response,
+  AnalyzeWidgetDefaultResponse,
   buildCsvCollection,
+  CreateWidget201Response,
+  CreateWidgetDefaultResponse,
+  DeleteWidget204Response,
+  DeleteWidgetDefaultResponse,
+  GetWidget200Response,
+  GetWidgetDefaultResponse,
   isUnexpected,
-  WidgetsAnalyzeWidget200Response,
-  WidgetsAnalyzeWidgetDefaultResponse,
-  WidgetsCreateOrReplace200Response,
-  WidgetsCreateOrReplace201Response,
-  WidgetsCreateOrReplaceDefaultResponse,
-  WidgetsCreateOrReplaceLogicalResponse,
-  WidgetsCreateWidget201Response,
-  WidgetsCreateWidgetDefaultResponse,
-  WidgetsDeleteWidget204Response,
-  WidgetsDeleteWidgetDefaultResponse,
+  ListWidgets200Response,
+  ListWidgetsDefaultResponse,
+  ListWidgetsPages200Response,
+  ListWidgetsPagesDefaultResponse,
+  QueryWidgetsPages200Response,
+  QueryWidgetsPagesDefaultResponse,
+  UpdateWidget200Response,
+  UpdateWidgetDefaultResponse,
   WidgetServiceContext as Client,
-  WidgetsGetWidget200Response,
-  WidgetsGetWidgetDefaultResponse,
-  WidgetsListWidgets200Response,
-  WidgetsListWidgetsDefaultResponse,
-  WidgetsListWidgetsPages200Response,
-  WidgetsListWidgetsPagesDefaultResponse,
-  WidgetsQueryWidgetsPages200Response,
-  WidgetsQueryWidgetsPagesDefaultResponse,
-  WidgetsUpdateWidget200Response,
-  WidgetsUpdateWidgetDefaultResponse,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -50,7 +43,6 @@ import {
   WidgetsQueryWidgetsPagesOptionalParams,
   WidgetsGetWidgetOptionalParams,
   WidgetsCreateWidgetOptionalParams,
-  WidgetsCreateOrReplaceOptionalParams,
   WidgetsUpdateWidgetOptionalParams,
   WidgetsDeleteWidgetOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
@@ -64,9 +56,7 @@ export function _listWidgetsSend(
   csvArrayHeader: Uint8Array[],
   utcDateHeader: Date,
   options: WidgetsListWidgetsOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  WidgetsListWidgets200Response | WidgetsListWidgetsDefaultResponse
-> {
+): StreamableMethod<ListWidgets200Response | ListWidgetsDefaultResponse> {
   return context
     .path("/widgets")
     .get({
@@ -104,7 +94,7 @@ export function _listWidgetsSend(
 }
 
 export async function _listWidgetsDeserialize(
-  result: WidgetsListWidgets200Response | WidgetsListWidgetsDefaultResponse,
+  result: ListWidgets200Response | ListWidgetsDefaultResponse,
 ): Promise<Widget[]> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -151,7 +141,7 @@ export function _listWidgetsPagesSend(
   pageSize: number,
   options: WidgetsListWidgetsPagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  WidgetsListWidgetsPages200Response | WidgetsListWidgetsPagesDefaultResponse
+  ListWidgetsPages200Response | ListWidgetsPagesDefaultResponse
 > {
   return context
     .path("/widgets/widgets/pages")
@@ -162,9 +152,7 @@ export function _listWidgetsPagesSend(
 }
 
 export async function _listWidgetsPagesDeserialize(
-  result:
-    | WidgetsListWidgetsPages200Response
-    | WidgetsListWidgetsPagesDefaultResponse,
+  result: ListWidgetsPages200Response | ListWidgetsPagesDefaultResponse,
 ): Promise<ListWidgetsPagesResults> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -200,7 +188,7 @@ export function _queryWidgetsPagesSend(
   pageSize: number,
   options: WidgetsQueryWidgetsPagesOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  WidgetsQueryWidgetsPages200Response | WidgetsQueryWidgetsPagesDefaultResponse
+  QueryWidgetsPages200Response | QueryWidgetsPagesDefaultResponse
 > {
   return context
     .path("/widgets/widgets/pages")
@@ -211,9 +199,7 @@ export function _queryWidgetsPagesSend(
 }
 
 export async function _queryWidgetsPagesDeserialize(
-  result:
-    | WidgetsQueryWidgetsPages200Response
-    | WidgetsQueryWidgetsPagesDefaultResponse,
+  result: QueryWidgetsPages200Response | QueryWidgetsPagesDefaultResponse,
 ): Promise<ListWidgetsPagesResults> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -247,16 +233,14 @@ export function _getWidgetSend(
   context: Client,
   id: string,
   options: WidgetsGetWidgetOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  WidgetsGetWidget200Response | WidgetsGetWidgetDefaultResponse
-> {
+): StreamableMethod<GetWidget200Response | GetWidgetDefaultResponse> {
   return context
     .path("/widgets/{id}", id)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getWidgetDeserialize(
-  result: WidgetsGetWidget200Response | WidgetsGetWidgetDefaultResponse,
+  result: GetWidget200Response | GetWidgetDefaultResponse,
 ): Promise<Widget> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -283,9 +267,7 @@ export function _createWidgetSend(
   context: Client,
   body: CreateWidget,
   options: WidgetsCreateWidgetOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  WidgetsCreateWidget201Response | WidgetsCreateWidgetDefaultResponse
-> {
+): StreamableMethod<CreateWidget201Response | CreateWidgetDefaultResponse> {
   return context
     .path("/widgets")
     .post({
@@ -295,7 +277,7 @@ export function _createWidgetSend(
 }
 
 export async function _createWidgetDeserialize(
-  result: WidgetsCreateWidget201Response | WidgetsCreateWidgetDefaultResponse,
+  result: CreateWidget201Response | CreateWidgetDefaultResponse,
 ): Promise<Widget> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -323,68 +305,12 @@ export async function createWidget(
   return _createWidgetDeserialize(result);
 }
 
-export function _createOrReplaceSend(
-  context: Client,
-  name: string,
-  resource: User,
-  options: WidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  | WidgetsCreateOrReplace200Response
-  | WidgetsCreateOrReplace201Response
-  | WidgetsCreateOrReplaceDefaultResponse
-  | WidgetsCreateOrReplaceLogicalResponse
-> {
-  return context
-    .path("/widgets/widgets/createOrReplace/users/{name}", name)
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { "api-version": options?.apiVersion ?? "1.0.0" },
-      body: { role: resource["role"], id: resource["id"] },
-    });
-}
-
-export async function _createOrReplaceDeserialize(
-  result:
-    | WidgetsCreateOrReplace200Response
-    | WidgetsCreateOrReplace201Response
-    | WidgetsCreateOrReplaceDefaultResponse
-    | WidgetsCreateOrReplaceLogicalResponse,
-): Promise<User> {
-  if (isUnexpected(result)) {
-    throw createRestError(result);
-  }
-
-  result = result as WidgetsCreateOrReplaceLogicalResponse;
-  return {
-    name: result.body["name"],
-    role: result.body["role"],
-    id: result.body["id"],
-  };
-}
-
-/** Long-running resource create or replace operation template. */
-export function createOrReplace(
-  context: Client,
-  name: string,
-  resource: User,
-  options: WidgetsCreateOrReplaceOptionalParams = { requestOptions: {} },
-): PollerLike<OperationState<User>, User> {
-  return getLongRunningPoller(context, _createOrReplaceDeserialize, {
-    updateIntervalInMs: options?.updateIntervalInMs,
-    abortSignal: options?.abortSignal,
-    getInitialResponse: () =>
-      _createOrReplaceSend(context, name, resource, options),
-  }) as PollerLike<OperationState<User>, User>;
-}
-
 export function _updateWidgetSend(
   context: Client,
   id: string,
   body: UpdateWidget,
   options: WidgetsUpdateWidgetOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  WidgetsUpdateWidget200Response | WidgetsUpdateWidgetDefaultResponse
-> {
+): StreamableMethod<UpdateWidget200Response | UpdateWidgetDefaultResponse> {
   return context
     .path("/widgets/{id}", id)
     .patch({
@@ -394,7 +320,7 @@ export function _updateWidgetSend(
 }
 
 export async function _updateWidgetDeserialize(
-  result: WidgetsUpdateWidget200Response | WidgetsUpdateWidgetDefaultResponse,
+  result: UpdateWidget200Response | UpdateWidgetDefaultResponse,
 ): Promise<Widget> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -425,16 +351,14 @@ export function _deleteWidgetSend(
   context: Client,
   id: string,
   options: WidgetsDeleteWidgetOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  WidgetsDeleteWidget204Response | WidgetsDeleteWidgetDefaultResponse
-> {
+): StreamableMethod<DeleteWidget204Response | DeleteWidgetDefaultResponse> {
   return context
     .path("/widgets/{id}", id)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteWidgetDeserialize(
-  result: WidgetsDeleteWidget204Response | WidgetsDeleteWidgetDefaultResponse,
+  result: DeleteWidget204Response | DeleteWidgetDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -457,16 +381,14 @@ export function _analyzeWidgetSend(
   context: Client,
   id: string,
   options: WidgetsAnalyzeWidgetOptionalParams = { requestOptions: {} },
-): StreamableMethod<
-  WidgetsAnalyzeWidget200Response | WidgetsAnalyzeWidgetDefaultResponse
-> {
+): StreamableMethod<AnalyzeWidget200Response | AnalyzeWidgetDefaultResponse> {
   return context
     .path("/widgets/{id}/analyze", id)
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _analyzeWidgetDeserialize(
-  result: WidgetsAnalyzeWidget200Response | WidgetsAnalyzeWidgetDefaultResponse,
+  result: AnalyzeWidget200Response | AnalyzeWidgetDefaultResponse,
 ): Promise<AnalyzeResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
