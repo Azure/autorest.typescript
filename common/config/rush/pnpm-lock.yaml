@@ -226,7 +226,7 @@ importers:
 
   ../../packages/typespec-ts:
     specifiers:
-      '@azure-rest/core-client': ^1.4.0
+      '@azure-rest/core-client': ^2.0.0
       '@azure-tools/cadl-ranch': ^0.12.7
       '@azure-tools/cadl-ranch-expect': ^0.13.3
       '@azure-tools/cadl-ranch-specs': ^0.31.8
@@ -272,7 +272,7 @@ importers:
       ts-morph: 15.1.0
       tslib: 2.6.2
     devDependencies:
-      '@azure-rest/core-client': 1.4.0
+      '@azure-rest/core-client': 2.0.0
       '@azure-tools/cadl-ranch': 0.12.7_2st3rkk3ecy4zxpm646kh3x7we
       '@azure-tools/cadl-ranch-expect': 0.13.3_jqtt3simmngrcvnphehjbnp5v4
       '@azure-tools/cadl-ranch-specs': 0.31.8_sn2g2ali27qzgjd2nm42z5e5my
@@ -347,6 +347,21 @@ packages:
       tslib: 2.6.2
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@azure-rest/core-client/2.0.0:
+    resolution: {integrity: sha512-MXduH8EZCeH3Z4rMYgTlcI0O+iU9g6R0JKO9CyHni6gWulgBw+jFDB5vv3N1NbQ+xr1AvGjv//nYrqLTMvcSFg==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      '@azure/abort-controller': 2.0.0
+      '@azure/core-auth': 1.6.0
+      '@azure/core-rest-pipeline': 1.14.0
+      '@azure/core-tracing': 1.0.1
+      '@azure/core-util': 1.5.0
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
 
   /@azure-tools/async-io/3.0.254:
     resolution: {integrity: sha512-X1C7XdyCuo50ch9FzKtTvmK18FgDxxf1Bbt3cSoknQqeDaRegHSSCO+zByq2YA4NvUzKXeZ1engh29IDxZXgpQ==}

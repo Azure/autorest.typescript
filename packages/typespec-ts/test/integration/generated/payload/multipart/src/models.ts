@@ -1,113 +1,177 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export interface MultiPartRequest {
-  id: string;
-  /**
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-   */
-  profileImage:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream
-    | File;
+export interface MultiPartRequestIdPartDescriptor {
+  name: "id";
+  body: string;
 }
 
-export interface ComplexPartsRequest {
-  id: string;
-  address: Address;
-  /**
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-   */
-  profileImage:
+export interface MultiPartRequestProfileImagePartDescriptor {
+  name: "profileImage";
+  body:
     | string
     | Uint8Array
     | ReadableStream<Uint8Array>
     | NodeJS.ReadableStream
     | File;
-  previousAddresses: Array<Address>;
-  /**
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-   */
-  pictures: (
+  filename?: string;
+  contentType?: string;
+}
+
+export interface ComplexPartsRequestIdPartDescriptor {
+  name: "id";
+  body: string;
+}
+
+export interface ComplexPartsRequestAddressPartDescriptor {
+  name: "address";
+  body: Address;
+}
+
+export interface ComplexPartsRequestProfileImagePartDescriptor {
+  name: "profileImage";
+  body:
     | string
     | Uint8Array
     | ReadableStream<Uint8Array>
     | NodeJS.ReadableStream
-    | File
-  )[];
+    | File;
+  filename?: string;
+  contentType?: string;
+}
+
+export interface ComplexPartsRequestPreviousAddressesPartDescriptor {
+  name: "previousAddresses";
+  body: Array<Address>;
+}
+
+export interface ComplexPartsRequestPicturesPartDescriptor {
+  name: "pictures";
+  body:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream
+    | File;
+  filename?: string;
+  contentType?: string;
 }
 
 export interface Address {
   city: string;
 }
 
-export interface JsonPartRequest {
-  address: Address;
-  /**
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-   */
-  profileImage:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream
-    | File;
+export interface JsonPartRequestAddressPartDescriptor {
+  name: "address";
+  body: Address;
 }
 
-export interface BinaryArrayPartsRequest {
-  id: string;
-  /**
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-   */
-  pictures: (
+export interface JsonPartRequestProfileImagePartDescriptor {
+  name: "profileImage";
+  body:
     | string
     | Uint8Array
     | ReadableStream<Uint8Array>
     | NodeJS.ReadableStream
-    | File
-  )[];
+    | File;
+  filename?: string;
+  contentType?: string;
 }
 
-export interface JsonArrayPartsRequest {
-  /**
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-   */
-  profileImage:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream
-    | File;
-  previousAddresses: Array<Address>;
+export interface BinaryArrayPartsRequestIdPartDescriptor {
+  name: "id";
+  body: string;
 }
 
-export interface MultiBinaryPartsRequest {
-  /**
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-   */
-  profileImage:
+export interface BinaryArrayPartsRequestPicturesPartDescriptor {
+  name: "pictures";
+  body:
     | string
     | Uint8Array
     | ReadableStream<Uint8Array>
     | NodeJS.ReadableStream
     | File;
-  /**
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
-   */
-  picture?:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream
-    | File;
+  filename?: string;
+  contentType?: string;
 }
+
+export interface JsonArrayPartsRequestProfileImagePartDescriptor {
+  name: "profileImage";
+  body:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream
+    | File;
+  filename?: string;
+  contentType?: string;
+}
+
+export interface JsonArrayPartsRequestPreviousAddressesPartDescriptor {
+  name: "previousAddresses";
+  body: Array<Address>;
+}
+
+export interface MultiBinaryPartsRequestProfileImagePartDescriptor {
+  name: "profileImage";
+  body:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream
+    | File;
+  filename?: string;
+  contentType?: string;
+}
+
+export interface MultiBinaryPartsRequestPicturePartDescriptor {
+  name: "picture";
+  body:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream
+    | File;
+  filename?: string;
+  contentType?: string;
+}
+
+export type MultiPartRequest =
+  | FormData
+  | Array<
+      | MultiPartRequestIdPartDescriptor
+      | MultiPartRequestProfileImagePartDescriptor
+    >;
+export type ComplexPartsRequest =
+  | FormData
+  | Array<
+      | ComplexPartsRequestIdPartDescriptor
+      | ComplexPartsRequestAddressPartDescriptor
+      | ComplexPartsRequestProfileImagePartDescriptor
+      | ComplexPartsRequestPreviousAddressesPartDescriptor
+      | ComplexPartsRequestPicturesPartDescriptor
+    >;
+export type JsonPartRequest =
+  | FormData
+  | Array<
+      | JsonPartRequestAddressPartDescriptor
+      | JsonPartRequestProfileImagePartDescriptor
+    >;
+export type BinaryArrayPartsRequest =
+  | FormData
+  | Array<
+      | BinaryArrayPartsRequestIdPartDescriptor
+      | BinaryArrayPartsRequestPicturesPartDescriptor
+    >;
+export type JsonArrayPartsRequest =
+  | FormData
+  | Array<
+      | JsonArrayPartsRequestProfileImagePartDescriptor
+      | JsonArrayPartsRequestPreviousAddressesPartDescriptor
+    >;
+export type MultiBinaryPartsRequest =
+  | FormData
+  | Array<
+      | MultiBinaryPartsRequestProfileImagePartDescriptor
+      | MultiBinaryPartsRequestPicturePartDescriptor
+    >;
