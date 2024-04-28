@@ -4,7 +4,7 @@
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
 import {
-  FaceOperationStatusOutput,
+  OperationResultOutput,
   FaceErrorResponseOutput,
   FaceDetectionResultOutput,
   FindSimilarResultOutput,
@@ -15,7 +15,7 @@ import {
   FaceListItemOutput,
   AddFaceResultOutput,
   LargeFaceListOutput,
-  TrainingStatusOutput,
+  TrainingResultOutput,
   LargeFaceListFaceOutput,
   PersonGroupOutput,
   CreatePersonResultOutput,
@@ -39,20 +39,20 @@ import {
 } from "./outputModels.js";
 
 /** A successful call returns the long running operation status. */
-export interface GetFaceOperationStatus200Response extends HttpResponse {
+export interface GetOperationResult200Response extends HttpResponse {
   status: "200";
-  body: FaceOperationStatusOutput;
+  body: OperationResultOutput;
 }
 
-export interface GetFaceOperationStatusDefaultHeaders {
+export interface GetOperationResultDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface GetFaceOperationStatusDefaultResponse extends HttpResponse {
+export interface GetOperationResultDefaultResponse extends HttpResponse {
   status: string;
   body: FaceErrorResponseOutput;
-  headers: RawHttpHeaders & GetFaceOperationStatusDefaultHeaders;
+  headers: RawHttpHeaders & GetOperationResultDefaultHeaders;
 }
 
 /** A successful call returns an array of face entries ranked by face rectangle size in descending order. An empty response indicates no faces detected. */
@@ -517,7 +517,7 @@ export interface GetLargeFaceListsDefaultResponse extends HttpResponse {
 export interface GetLargeFaceListTrainingStatus200Response
   extends HttpResponse {
   status: "200";
-  body: TrainingStatusOutput;
+  body: TrainingResultOutput;
 }
 
 export interface GetLargeFaceListTrainingStatusDefaultHeaders {
@@ -744,7 +744,7 @@ export interface GetPersonGroupsDefaultResponse extends HttpResponse {
 /** A successful call returns the Person Group's training status. */
 export interface GetPersonGroupTrainingStatus200Response extends HttpResponse {
   status: "200";
-  body: TrainingStatusOutput;
+  body: TrainingResultOutput;
 }
 
 export interface GetPersonGroupTrainingStatusDefaultHeaders {
@@ -1041,7 +1041,7 @@ export interface GetLargePersonGroupsDefaultResponse extends HttpResponse {
 export interface GetLargePersonGroupTrainingStatus200Response
   extends HttpResponse {
   status: "200";
-  body: TrainingStatusOutput;
+  body: TrainingResultOutput;
 }
 
 export interface GetLargePersonGroupTrainingStatusDefaultHeaders {
@@ -1283,6 +1283,12 @@ export interface CreatePersonDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & CreatePersonDefaultHeaders;
 }
 
+/** The final response for long-running createPerson operation */
+export interface CreatePersonLogicalResponse extends HttpResponse {
+  status: "200";
+  body: CreatePersonResultOutput;
+}
+
 export interface DeletePerson202Headers {
   "operation-location": string;
 }
@@ -1401,6 +1407,12 @@ export interface AddPersonFaceDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & AddPersonFaceDefaultHeaders;
 }
 
+/** The final response for long-running addPersonFace operation */
+export interface AddPersonFaceLogicalResponse extends HttpResponse {
+  status: "200";
+  body: AddFaceResultOutput;
+}
+
 export interface AddPersonFaceFromUrl202Headers {
   "operation-location": string;
   location: string;
@@ -1422,6 +1434,12 @@ export interface AddPersonFaceFromUrlDefaultResponse extends HttpResponse {
   status: string;
   body: FaceErrorResponseOutput;
   headers: RawHttpHeaders & AddPersonFaceFromUrlDefaultHeaders;
+}
+
+/** The final response for long-running addPersonFaceFromUrl operation */
+export interface AddPersonFaceFromUrlLogicalResponse extends HttpResponse {
+  status: "200";
+  body: AddFaceResultOutput;
 }
 
 export interface DeletePersonFace202Headers {
@@ -1500,19 +1518,38 @@ export interface GetPersonFacesDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & GetPersonFacesDefaultHeaders;
 }
 
-/** The request has succeeded. */
-export interface CreateDynamicPersonGroup200Response extends HttpResponse {
-  status: "200";
-}
-
-export interface CreateDynamicPersonGroup202Headers {
+export interface CreateDynamicPersonGroupWithPerson202Headers {
   "operation-location": string;
 }
 
 /** A successful call returns an empty response body. The service has accepted the request and will start processing soon. The client can query the operation status and result using the URL specified in the 'Operation-Location' response header. The URL expires in 48 hours. The URL provides the status of when Person Directory "Get Dynamic Person Group References" will return the changes made in this request. */
-export interface CreateDynamicPersonGroup202Response extends HttpResponse {
+export interface CreateDynamicPersonGroupWithPerson202Response
+  extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & CreateDynamicPersonGroup202Headers;
+  headers: RawHttpHeaders & CreateDynamicPersonGroupWithPerson202Headers;
+}
+
+export interface CreateDynamicPersonGroupWithPersonDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface CreateDynamicPersonGroupWithPersonDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders & CreateDynamicPersonGroupWithPersonDefaultHeaders;
+}
+
+/** The final response for long-running createDynamicPersonGroupWithPerson operation */
+export interface CreateDynamicPersonGroupWithPersonLogicalResponse
+  extends HttpResponse {
+  status: "200";
+}
+
+/** The request has succeeded. */
+export interface CreateDynamicPersonGroup200Response extends HttpResponse {
+  status: "200";
 }
 
 export interface CreateDynamicPersonGroupDefaultHeaders {
@@ -1569,19 +1606,39 @@ export interface GetDynamicPersonGroupDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & GetDynamicPersonGroupDefaultHeaders;
 }
 
-/** The request has succeeded. */
-export interface UpdateDynamicPersonGroup200Response extends HttpResponse {
-  status: "200";
-}
-
-export interface UpdateDynamicPersonGroup202Headers {
+export interface UpdateDynamicPersonGroupWithPersonChanges202Headers {
   "operation-location": string;
 }
 
 /** A successful call returns an empty response body. The service has accepted the request and will start processing soon. The client can query the operation status and result using the URL specified in the 'Operation-Location' response header. The URL expires in 48 hours. The URL provides the status of when Person Directory "Get Dynamic Person Group References" will return the changes made in this request. */
-export interface UpdateDynamicPersonGroup202Response extends HttpResponse {
+export interface UpdateDynamicPersonGroupWithPersonChanges202Response
+  extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & UpdateDynamicPersonGroup202Headers;
+  headers: RawHttpHeaders & UpdateDynamicPersonGroupWithPersonChanges202Headers;
+}
+
+export interface UpdateDynamicPersonGroupWithPersonChangesDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface UpdateDynamicPersonGroupWithPersonChangesDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: FaceErrorResponseOutput;
+  headers: RawHttpHeaders &
+    UpdateDynamicPersonGroupWithPersonChangesDefaultHeaders;
+}
+
+/** The final response for long-running updateDynamicPersonGroupWithPersonChanges operation */
+export interface UpdateDynamicPersonGroupWithPersonChangesLogicalResponse
+  extends HttpResponse {
+  status: "200";
+}
+
+/** The request has succeeded. */
+export interface UpdateDynamicPersonGroup200Response extends HttpResponse {
+  status: "200";
 }
 
 export interface UpdateDynamicPersonGroupDefaultHeaders {

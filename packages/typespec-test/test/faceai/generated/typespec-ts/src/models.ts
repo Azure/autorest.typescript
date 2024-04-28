@@ -57,7 +57,11 @@ export type FaceAttributeType =
   | "exposure"
   | "noise"
   | "mask"
-  | "qualityForRecognition";
+  | "qualityForRecognition"
+  | "age"
+  | "smile"
+  | "facialHair"
+  | "hair";
 /** Alias for RecognitionModel */
 export type RecognitionModel =
   | string

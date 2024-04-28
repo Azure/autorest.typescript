@@ -3,29 +3,33 @@
 
 import {
   ListBySubscription204Response,
-  ListByResourceGroup200Response,
   ListBySubscriptionDefaultResponse,
+  ListByResourceGroup200Response,
+  ListByResourceGroupDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
-  "POST /sharedroute/query": ["204"],
+  "POST /sharedroute/query": ["204", "200"],
   "POST /sharedroute/request-body": ["204"],
   "POST /sharedroute/response-body": ["200"],
   "POST /sharedroute/request-response": ["200"],
 };
 
 export function isUnexpected(
-  response:
-    | ListBySubscription204Response
-    | ListByResourceGroup200Response
-    | ListBySubscriptionDefaultResponse,
+  response: ListBySubscription204Response | ListBySubscriptionDefaultResponse,
 ): response is ListBySubscriptionDefaultResponse;
+export function isUnexpected(
+  response: ListByResourceGroup200Response | ListByResourceGroupDefaultResponse,
+): response is ListByResourceGroupDefaultResponse;
 export function isUnexpected(
   response:
     | ListBySubscription204Response
+    | ListBySubscriptionDefaultResponse
     | ListByResourceGroup200Response
-    | ListBySubscriptionDefaultResponse,
-): response is ListBySubscriptionDefaultResponse {
+    | ListByResourceGroupDefaultResponse,
+): response is
+  | ListBySubscriptionDefaultResponse
+  | ListByResourceGroupDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
