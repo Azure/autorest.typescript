@@ -2,7 +2,17 @@
 // Licensed under the MIT license.
 
 import { HttpResponse } from "@azure-rest/core-client";
-import { ResourceOutput } from "./outputModels.js";
+import { ErrorModelOutput, ResourceOutput } from "./outputModels.js";
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface ListBySubscription204Response extends HttpResponse {
+  status: "204";
+}
+
+export interface ListBySubscriptionDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorModelOutput;
+}
 
 /** The request has succeeded. */
 export interface ListByResourceGroup200Response extends HttpResponse {
@@ -10,10 +20,9 @@ export interface ListByResourceGroup200Response extends HttpResponse {
   body: Array<ResourceOutput>;
 }
 
-/** The request has succeeded. */
-export interface ListBySubscription200Response extends HttpResponse {
-  status: "200";
-  body: Array<ResourceOutput>;
+export interface ListByResourceGroupDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorModelOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
