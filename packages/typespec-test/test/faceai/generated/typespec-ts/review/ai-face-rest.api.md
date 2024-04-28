@@ -3907,8 +3907,8 @@ export interface Routes {
     (path: "/persons"): CreatePerson;
     (path: "/persons/{personId}", personId: string): DeletePerson;
     (path: "/persons/{personId}/dynamicPersonGroupReferences", personId: string): GetDynamicPersonGroupReferences;
-    (path: "/persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces", personId: string, recognitionModel: object): AddPersonFace;
-    (path: "/persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces/{persistedFaceId}", personId: string, recognitionModel: object, persistedFaceId: string): DeletePersonFace;
+    (path: "/persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces", personId: string, recognitionModel: RecognitionModel): AddPersonFace;
+    (path: "/persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces/{persistedFaceId}", personId: string, recognitionModel: RecognitionModel, persistedFaceId: string): DeletePersonFace;
     (path: "/dynamicpersongroups/{dynamicPersonGroupId}", dynamicPersonGroupId: string): CreateDynamicPersonGroup;
     (path: "/dynamicpersongroups"): GetDynamicPersonGroups;
     (path: "/dynamicpersongroups/{dynamicPersonGroupId}/persons", dynamicPersonGroupId: string): GetDynamicPersonGroupPersons;
