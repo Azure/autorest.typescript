@@ -49,9 +49,6 @@ export function buildOperationFiles(
         subfolder && subfolder !== "" ? subfolder + "/" : ""
       }api/${operationFileName}.ts`
     );
-    if (operationFileName.startsWith("extendsDifferentSpreadFloat")) {
-      operationGroup;
-    }
     // Import models used from ./models.ts
     // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
     importModels(
