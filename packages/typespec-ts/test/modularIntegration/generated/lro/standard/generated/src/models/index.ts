@@ -1,7 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { User, ExportedUser, Versions } from "./models.js";
+export {
+  User,
+  ExportedUser,
+  Versions,
+  OperationStatus,
+  ErrorResponseUserUserExportParamsExportedUserError,
+  OperationStatusExportedUserError,
+} from "./models.js";
 export {
   CreateOrReplaceOptionalParams,
   DeleteOptionalParams,

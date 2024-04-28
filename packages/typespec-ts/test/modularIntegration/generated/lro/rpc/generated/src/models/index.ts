@@ -1,5 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { GenerationOptions, GenerationResult, Versions } from "./models.js";
+export {
+  GenerationOptions,
+  GenerationResponse,
+  GenerationResult,
+  Versions,
+  GenerationOptionsGenerationResponseGenerationResultErrorErrorResponse,
+  OperationStatusGenerationResultError,
+} from "./models.js";
 export { LongRunningRpcOptionalParams } from "./options.js";
