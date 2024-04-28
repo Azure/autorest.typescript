@@ -63,7 +63,7 @@ export async function transformRLCModel(
   );
   const importSet = initInternalImports();
   const urlInfo = transformUrlInfo(client, dpgContext, importSet);
-  const paths: Paths = transformPaths(program, client, dpgContext);
+  const paths: Paths = transformPaths(importSet, client, dpgContext);
   const schemas: Schema[] = transformSchemas(program, client, dpgContext);
   const responses: OperationResponse[] = transformToResponseTypes(
     importSet,

@@ -182,12 +182,12 @@ export async function emitClientDefinitionFromTypeSpec(
   needAzureCore: boolean = false
 ) {
   const context = await rlcEmitterFor(tspContent, true, needAzureCore);
-  const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
+  const internalImports = initInternalImports();
   let paths = {};
   if (clients && clients[0]) {
-    paths = transformPaths(program, clients[0], dpgContext);
+    paths = transformPaths(internalImports, clients[0], dpgContext);
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return buildClientDefinitions({
@@ -196,7 +196,7 @@ export async function emitClientDefinitionFromTypeSpec(
     schemas: [],
     paths,
     importInfo: {
-      internalImports: initInternalImports(),
+      internalImports,
       runtimeImports: buildRuntimeImports("azure")
     }
   });

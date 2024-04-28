@@ -6,9 +6,10 @@ import {
   getParameterTypeName,
   PathMetadata,
   Paths,
-  OperationMethod
+  OperationMethod,
+  Imports
 } from "@azure-tools/rlc-common";
-import { getDoc, ignoreDiagnostics, Program } from "@typespec/compiler";
+import { getDoc, ignoreDiagnostics } from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
@@ -20,7 +21,11 @@ import {
   listOperationsInOperationGroup,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
-import { getSchemaForType } from "../utils/modelUtils.js";
+import {
+  getImportedModelName,
+  getSchemaForType,
+  getTypeName
+} from "../utils/modelUtils.js";
 import {
   extractOperationLroDetail,
   getOperationSuccessStatus,
@@ -32,12 +37,15 @@ import {
   sortedOperationResponses
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { SchemaContext } from "@azure-tools/rlc-common";
 
 export function transformPaths(
-  program: Program,
+  importDetails: Imports,
   client: SdkClient,
   dpgContext: SdkContext
 ): Paths {
+  const program = dpgContext.program;
+  const pathParamsImportedSet = new Set<string>();
   const paths: Paths = {};
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
@@ -46,7 +54,7 @@ export function transformPaths(
     if (route.overloads && route.overloads?.length > 0) {
       continue;
     }
-    transformOperation(dpgContext, route, paths);
+    transformOperation(dpgContext, route, paths, pathParamsImportedSet);
   }
   const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
@@ -60,8 +68,12 @@ export function transformPaths(
       if (route.overloads && route.overloads?.length > 0) {
         continue;
       }
-      transformOperation(dpgContext, route, paths);
+      transformOperation(dpgContext, route, paths, pathParamsImportedSet);
     }
+  }
+
+  if (pathParamsImportedSet.size > 0) {
+    importDetails.rlcClientDefinition.importsSet = pathParamsImportedSet;
   }
 
   return paths;
@@ -70,7 +82,8 @@ export function transformPaths(
 function transformOperation(
   dpgContext: SdkContext,
   route: HttpOperation,
-  paths: Paths
+  paths: Paths,
+  importSet: Set<string>
 ) {
   const program = dpgContext.program;
   const respNames = [];
@@ -121,11 +134,15 @@ function transformOperation(
       pathParameters: route.parameters.parameters
         .filter((p) => p.type === "path")
         .map((p) => {
+          const schemaUsage = [SchemaContext.Input, SchemaContext.Exception];
+          const schema = p.param.sourceProperty
+            ? getSchemaForType(dpgContext, p.param.sourceProperty?.type)
+            : getSchemaForType(dpgContext, p.param.type);
+          const importedNames = getImportedModelName(schema, schemaUsage) ?? [];
+          importedNames.forEach(importSet.add, importSet);
           return {
             name: p.name,
-            type: p.param.sourceProperty
-              ? getSchemaForType(dpgContext, p.param.sourceProperty?.type).type
-              : getSchemaForType(dpgContext, p.param.type).type,
+            type: getTypeName(schema, schemaUsage),
             description: getDoc(program, p.param)
           };
         }),

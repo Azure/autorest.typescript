@@ -30,6 +30,7 @@ export type ImportType =
   | "rlcIndex"
   | "modularModel"
   | "rlcClientFactory"
+  | "rlcClientDefinition"
   /**common third party imports */
   | "restClient"
   | "coreAuth"
