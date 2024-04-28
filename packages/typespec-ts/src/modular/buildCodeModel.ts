@@ -314,8 +314,11 @@ function processModelProperties(
     // because it's impossible to have a anonymous model as the polymorphic base in typespec
     // the only possibility is the anonymous model is an alias for an union type which has already been taken care of in the combined types.
     if (newValue.name) {
+      newValue.name = normalizeName(newValue.name, NameType.Interface);
       discriminatorInfo?.aliases.push(`${newValue.name}`);
-      newValue.alias = `${newValue.name}`;
+      newValue.alias = `${newValue.name} | ${discriminatorInfo.aliases.join(
+        " | "
+      )}`;
       newValue.name = `${newValue.name}Union`;
       newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
       newValue.types = discriminatorInfo?.discriminatedSubtypes;
@@ -1108,9 +1111,10 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
 
   return {
     type: "enum",
-    name: getLibraryName(context, type)
-      ? getLibraryName(context, type)
-      : type.name,
+    name: normalizeName(
+      getLibraryName(context, type) ? getLibraryName(context, type) : type.name,
+      NameType.Interface
+    ),
     description: getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
@@ -1401,7 +1405,9 @@ function emitUnion(
     });
     return {
       nullable: sdkType.nullable,
-      name: unionName,
+      name: unionName
+        ? normalizeName(unionName, NameType.Interface)
+        : undefined,
       description: `Type of ${unionName}`,
       internal: true,
       type: "combined",
