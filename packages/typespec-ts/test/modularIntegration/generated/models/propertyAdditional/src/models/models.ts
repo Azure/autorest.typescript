@@ -1,6 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export interface WidgetData2 {
+  kind: "kind1";
+  start: string;
+}
+
 export interface WidgetData1 {
   kind: "kind1";
   start: Date;
@@ -185,6 +190,16 @@ export interface IsUnknownAdditionalPropertiesDiscriminated
   kind: string;
 }
 
+/** The derived discriminated type */
+export interface IsUnknownAdditionalPropertiesDiscriminatedDerived
+  extends IsUnknownAdditionalPropertiesDiscriminated {
+  kind: "derived";
+  /** The index property */
+  index: number;
+  /** The age property */
+  age?: number;
+}
+
 /** The model is from Record<unknown> type. */
 export interface IsUnknownAdditionalProperties extends Record<string, any> {
   /** The name property */
@@ -237,6 +252,10 @@ export interface ExtendsUnknownAdditionalPropertiesDerived
 
 /** Alias for WidgetData */
 export type WidgetData = WidgetData0 | WidgetData1;
+/** Alias for IsUnknownAdditionalPropertiesDiscriminatedUnion */
+export type IsUnknownAdditionalPropertiesDiscriminatedUnion =
+  | IsUnknownAdditionalPropertiesDiscriminatedDerived
+  | IsUnknownAdditionalPropertiesDiscriminated;
 /** Alias for ExtendsUnknownAdditionalPropertiesDiscriminatedUnion */
 export type ExtendsUnknownAdditionalPropertiesDiscriminatedUnion =
   | ExtendsUnknownAdditionalPropertiesDiscriminatedDerived

@@ -238,7 +238,7 @@ export interface RLCOptions {
   flavor?: PackageFlavor;
   enableModelNamespace?: boolean;
   hierarchyClient?: boolean;
-  legacy?: boolean;
+  compatibilityMode?: boolean;
 }
 
 export interface ServiceInfo {

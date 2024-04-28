@@ -11,7 +11,7 @@ options:
     enableOperationGroup: true
     isModularLibrary: true
     # temporary only support legacy client for additional properties in modular
-    legacy: true
+    compatibilityMode: true
     packageDetails:
       name: "@msinternal/additional-property"
       description: "additional Property Test Service"

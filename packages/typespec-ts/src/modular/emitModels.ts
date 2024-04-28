@@ -60,7 +60,14 @@ function extractModels(codeModel: ModularCodeModel): Type[] {
 export function extractAliases(codeModel: ModularCodeModel): Type[] {
   const models = codeModel.types.filter(
     (t) =>
-      (t.type === "model" || t.type === "combined") && t.alias && t.aliasType
+      ((t.type === "model" || t.type === "combined") &&
+        t.alias &&
+        t.aliasType) ||
+      (t.type === "dict" &&
+        t.properties?.length &&
+        t.properties.length > 0 &&
+        t.alias &&
+        t.aliasType)
   );
   return models;
 }
@@ -175,7 +182,7 @@ export function buildModels(
           ? addExtendedDictInfo(
               model,
               modelInterface,
-              codeModel.modularOptions.legacy
+              codeModel.modularOptions.compatibilityMode
             )
           : undefined;
       modelsFile.addInterface(modelInterface);
@@ -203,7 +210,7 @@ export function buildModels(
 function addExtendedDictInfo(
   model: Type,
   modelInterface: InterfaceStructure,
-  legacy: boolean = false
+  compatibilityMode: boolean = false
 ) {
   if (
     model.properties?.every((p) => {
@@ -213,7 +220,7 @@ function addExtendedDictInfo(
     modelInterface.extends.push(
       `Record<string, ${getType(model.elementType!).name ?? "any"}>`
     );
-  } else if (legacy) {
+  } else if (compatibilityMode) {
     modelInterface.extends.push(`Record<string, any>`);
   } else {
     modelInterface.properties?.push({

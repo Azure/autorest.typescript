@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { IsUnknownAdditionalPropertiesDiscriminatedUnion } from "../../models/models.js";
 import {
   AdditionalPropertiesContext as Client,
   IsUnknownDiscriminatedGet200Response,

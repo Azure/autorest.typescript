@@ -1865,7 +1865,7 @@ export function emitCodeModel(
     options: dpgContext.rlcOptions ?? {},
     modularOptions: {
       sourceRoot: modularSourcesRoot,
-      legacy: !!dpgContext.rlcOptions?.legacy
+      compatibilityMode: !!dpgContext.rlcOptions?.compatibilityMode
     },
     namespace: clientNamespaceString,
     subnamespaceToClients: {},
@@ -1879,9 +1879,6 @@ export function emitCodeModel(
   simpleTypesMap.clear();
   const allModels = getAllModels(dpgContext);
   for (const model of allModels) {
-    if (model.name.startsWith("DifferentSpreadStringRecord")) {
-      model;
-    }
     getType(dpgContext, model.__raw!, { usage: model.usage as UsageFlags });
   }
 

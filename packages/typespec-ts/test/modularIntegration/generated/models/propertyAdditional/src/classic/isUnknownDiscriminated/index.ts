@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { AdditionalPropertiesContext } from "../../api/additionalPropertiesContext.js";
+import { IsUnknownAdditionalPropertiesDiscriminatedUnion } from "../../models/models.js";
 import { get, put } from "../../api/isUnknownDiscriminated/index.js";
 import {
   IsUnknownDiscriminatedGetOptionalParams,
