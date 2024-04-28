@@ -33,9 +33,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    knownProp: { state: result.body.knownProp["state"] },
-  };
+  return result.body;
 }
 
 /** Get call */

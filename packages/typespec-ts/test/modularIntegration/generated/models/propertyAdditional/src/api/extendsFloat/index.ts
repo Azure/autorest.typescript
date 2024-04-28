@@ -33,9 +33,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-  };
+  return result.body;
 }
 
 /** Get call */
@@ -54,10 +52,7 @@ export function _putSend(
 ): StreamableMethod<ExtendsFloatPut204Response> {
   return context
     .path("/type/property/additionalProperties/extendsRecordFloat")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: { id: body["id"] },
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putDeserialize(

@@ -33,9 +33,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    flag: result.body["flag"],
-  };
+  return result.body;
 }
 
 /** Get call */

@@ -37,9 +37,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    name: result.body["name"],
-  };
+  return result.body;
 }
 
 /** Get call */

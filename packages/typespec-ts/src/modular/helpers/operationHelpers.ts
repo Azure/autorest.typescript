@@ -171,6 +171,8 @@ export function getDeserializePrivateFunction(
   if (
     response?.type?.type === "any" ||
     response?.type?.type === "dict" ||
+    (response?.type?.type === "model" &&
+      allParents.some((p) => p.type === "dict")) ||
     response.isBinaryPayload ||
     response?.type?.aliasType
   ) {
@@ -454,7 +456,12 @@ function buildBodyParameter(
     return "";
   }
 
-  if (bodyParameter.type.type === "model" && !bodyParameter.type.aliasType) {
+  const allParents = getAllAncestors(bodyParameter.type);
+  if (
+    bodyParameter.type.type === "model" &&
+    !bodyParameter.type.aliasType &&
+    !allParents.some((p) => p.type === "dict")
+  ) {
     const bodyParts: string[] = getRequestModelMapping(
       bodyParameter.type,
       bodyParameter.clientName,
@@ -471,7 +478,9 @@ function buildBodyParameter(
       return `\nbody: ${bodyParameter.clientName},`;
     }
   } else if (
-    (bodyParameter.type.type === "model" && bodyParameter.type.aliasType) ||
+    (bodyParameter.type.type === "model" &&
+      (bodyParameter.type.aliasType ||
+        allParents.some((p) => p.type === "dict"))) ||
     bodyParameter.type.type === "dict"
   ) {
     return `\nbody: ${bodyParameter.clientName},`;

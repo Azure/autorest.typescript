@@ -33,9 +33,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    name: result.body["name"],
-  };
+  return result.body;
 }
 
 /** Get call */
@@ -54,10 +52,7 @@ export function _putSend(
 ): StreamableMethod<ExtendsUnknownPut204Response> {
   return context
     .path("/type/property/additionalProperties/extendsRecordUnknown")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: { name: body["name"] },
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putDeserialize(

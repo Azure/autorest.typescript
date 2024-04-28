@@ -33,9 +33,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    knownProp: result.body["knownProp"].map((p) => ({ state: p["state"] })),
-  };
+  return result.body;
 }
 
 /** Get call */

@@ -33,9 +33,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    knownProp: result.body["knownProp"].map((p) => ({ state: p["state"] })),
-  };
+  return result.body;
 }
 
 /** Get call */
@@ -54,12 +52,7 @@ export function _putSend(
 ): StreamableMethod<ExtendsModelArrayPut204Response> {
   return context
     .path("/type/property/additionalProperties/extendsRecordModelArray")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: {
-        knownProp: body["knownProp"].map((p) => ({ state: p["state"] })),
-      },
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putDeserialize(

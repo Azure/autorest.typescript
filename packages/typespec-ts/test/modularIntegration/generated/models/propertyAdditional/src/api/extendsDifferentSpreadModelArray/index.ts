@@ -37,10 +37,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    knownProp: result.body["knownProp"],
-    derivedProp: result.body["derivedProp"].map((p) => ({ state: p["state"] })),
-  };
+  return result.body;
 }
 
 /** Get call */
@@ -65,13 +62,7 @@ export function _putSend(
     .path(
       "/type/property/additionalProperties/extendsDifferentSpreadModelArray",
     )
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: {
-        knownProp: body["knownProp"],
-        derivedProp: body["derivedProp"].map((p) => ({ state: p["state"] })),
-      },
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putDeserialize(

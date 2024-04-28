@@ -35,10 +35,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    derivedProp: result.body["derivedProp"],
-  };
+  return result.body;
 }
 
 /** Get call */
@@ -61,10 +58,7 @@ export function _putSend(
 ): StreamableMethod<ExtendsDifferentSpreadStringPut204Response> {
   return context
     .path("/type/property/additionalProperties/extendsDifferentSpreadString")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: { id: body["id"], derivedProp: body["derivedProp"] },
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putDeserialize(

@@ -33,11 +33,7 @@ export async function _getDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    name: result.body["name"],
-    index: result.body["index"],
-    age: result.body["age"],
-  };
+  return result.body;
 }
 
 /** Get call */
@@ -56,10 +52,7 @@ export function _putSend(
 ): StreamableMethod<IsUnknownDerivedPut204Response> {
   return context
     .path("/type/property/additionalProperties/isRecordUnknownDerived")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: { name: body["name"], index: body["index"], age: body["age"] },
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: body });
 }
 
 export async function _putDeserialize(
