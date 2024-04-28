@@ -1166,8 +1166,6 @@ export function serializeRequestValue(
       } else {
         return `${clientValue} as any`;
       }
-    case "dict":
-      return `${clientValue}`;
     default:
       if (clientValue === "constructorParam") {
         return `${clientValue} as any`;
