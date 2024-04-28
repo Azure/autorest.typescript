@@ -1,10 +1,8 @@
 import "@typespec/http";
 import "@typespec/rest";
 import "@azure-tools/typespec-azure-core";
-import "@azure-tools/typespec-client-generator-core";
 
 using Azure.Core;
-using Azure.ClientGenerator.Core;
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
@@ -12,12 +10,8 @@ namespace Face;
 
 @pattern("^[a-z0-9-_]+$")
 @maxLength(64)
-scalar uuid extends Azure.Core.uuid;
-
-@pattern("^[a-z0-9-_]+$")
-@maxLength(64)
 @minLength(1)
-scalar groupId extends string;
+scalar collectionId extends string;
 
 @doc("The ApiVersion path parameter.")
 model ApiVersionPathParameter {
@@ -40,7 +34,6 @@ alias ListRequestOptions = {
 };
 
 @doc("The recognition model for the face.")
-@clientName("FaceRecognitionModel")
 union RecognitionModel {
   string,
 
@@ -58,7 +51,6 @@ union RecognitionModel {
 }
 
 @doc("The detection model for the face.")
-@clientName("FaceDetectionModel")
 union DetectionModel {
   string,
 
@@ -77,6 +69,17 @@ alias UserDefinedFields = {
   @maxLength(128)
   @minLength(1)
   name: string;
+
+  @doc("Optional user defined data. Length should not exceed 16K.")
+  @maxLength(16384)
+  userData?: string;
+};
+
+alias UserDefinedFieldsForUpdate = {
+  @doc("User defined name, maximum length is 128.")
+  @maxLength(128)
+  @minLength(1)
+  name?: string;
 
   @doc("Optional user defined data. Length should not exceed 16K.")
   @maxLength(16384)
@@ -154,7 +157,7 @@ alias ReturnRecognitionModelOptions = {
 
 @doc("The status of long running operation.")
 @lroStatus
-union FaceOperationState {
+union OperationStatus {
   string,
 
   @doc("The operation is not started.")
@@ -172,11 +175,10 @@ union FaceOperationState {
   "failed",
 }
 
-@doc("Training status of a container")
-@clientName("FaceCollectionTrainingStatus")
-model TrainingStatus {
+@doc("Training result of a container")
+model TrainingResult {
   @doc("Training status of the container.")
-  status: FaceOperationState;
+  status: OperationStatus;
 
   @doc("A combined UTC date and time string that describes the created time of the person group, large person group or large face list.")
   createdDateTime: utcDateTime;
@@ -192,7 +194,6 @@ model TrainingStatus {
 }
 
 @doc("Identify result.")
-@clientName("FaceIdentificationResult")
 model IdentificationResult {
   @doc("faceId of the query face.")
   faceId: uuid;
@@ -202,7 +203,6 @@ model IdentificationResult {
 }
 
 @doc("Candidate for identify call.")
-@clientName("FaceIdentificationCandidate")
 model IdentificationCandidate {
   @doc("personId of candidate person.")
   personId: uuid;
@@ -214,7 +214,6 @@ model IdentificationCandidate {
 }
 
 @doc("Verify result.")
-@clientName("FaceVerificationResult")
 model VerificationResult {
   @doc("True if the two faces belong to the same person or the face belongs to the person, otherwise false.")
   isIdentical: boolean;
@@ -237,7 +236,6 @@ union FindSimilarMatchMode {
 }
 
 @doc("Response body for find similar face operation.")
-@clientName("FaceFindSimilarResult")
 model FindSimilarResult {
   @doc("Confidence value of the candidate. The higher confidence, the more similar. Range between [0,1].")
   @minValue(0)
@@ -252,7 +250,6 @@ model FindSimilarResult {
 }
 
 @doc("Response body for group face operation.")
-@clientName("FaceGroupingResult")
 model GroupingResult {
   @doc("A partition of the original faces based on face similarity. Groups are ranked by number of faces.")
   groups: uuid[][];

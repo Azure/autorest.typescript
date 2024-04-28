@@ -77,7 +77,7 @@ op AddFaceFromUrl<TFace extends BaseFace> is Foundations.ResourceCollectionOpera
 @updatesResource(TResource)
 op FaceResourceUpdateOperation<
   TResource extends TypeSpec.Reflection.Model,
-  TParams extends TypeSpec.Reflection.Model = UserDefinedFields
+  TParams extends TypeSpec.Reflection.Model = UserDefinedFieldsForUpdate
 > is Foundations.ResourceOperation<
   TResource,
   TParams,
@@ -133,7 +133,7 @@ op FaceResourceTrain<TResource extends TypeSpec.Reflection.Model> is Foundations
   {},
   TypeSpec.Http.AcceptedResponse & {
     @header("operation-Location")
-    operationLocation: ResourceLocation<TrainingStatus>;
+    operationLocation: ResourceLocation<TrainingResult>;
   },
   ServiceTraits,
   FaceErrorResponse
@@ -145,7 +145,7 @@ op FaceResourceTrain<TResource extends TypeSpec.Reflection.Model> is Foundations
 op FaceResourceGetTrainingStatus<TResource extends TypeSpec.Reflection.Model> is Foundations.ResourceOperation<
   TResource,
   {},
-  TrainingStatus,
+  TrainingResult,
   ServiceTraits,
   FaceErrorResponse
 >;
