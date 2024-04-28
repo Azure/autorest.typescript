@@ -30,6 +30,9 @@ export function buildOperationFiles(
 ) {
   const operationFiles = [];
   for (const operationGroup of client.operationGroups) {
+    if (operationGroup.propertyName === "extendsDifferentSpreadFloat") {
+      operationGroup;
+    }
     clearImportSets(codeModel.runtimeImports);
     const operationFileName =
       operationGroup.className && operationGroup.namespaceHierarchies.length > 0

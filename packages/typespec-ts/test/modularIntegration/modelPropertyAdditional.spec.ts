@@ -17,6 +17,7 @@ describe.only("ModelPropertyAdditional Client", () => {
       const result = await client.extendsDifferentSpreadFloat.get();
       assert.deepEqual(result, {
         name: "abc",
+        prop: 43.125,
         derivedProp: 43.125,
       });
     } catch (err) {
@@ -29,6 +30,7 @@ describe.only("ModelPropertyAdditional Client", () => {
       const result = await client.extendsDifferentSpreadFloat.put(
       {
         name: "abc",
+        prop: 43.125,
         derivedProp: 43.125,
       });
       console.log(result)

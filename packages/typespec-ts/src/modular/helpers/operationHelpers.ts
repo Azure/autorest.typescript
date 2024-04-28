@@ -170,6 +170,7 @@ export function getDeserializePrivateFunction(
   const properties = getAllProperties(response.type, allParents) ?? [];
   if (
     response?.type?.type === "any" ||
+    response?.type?.type === "dict" ||
     response.isBinaryPayload ||
     response?.type?.aliasType
   ) {
@@ -470,8 +471,8 @@ function buildBodyParameter(
       return `\nbody: ${bodyParameter.clientName},`;
     }
   } else if (
-    bodyParameter.type.type === "model" &&
-    bodyParameter.type.aliasType
+    (bodyParameter.type.type === "model" && bodyParameter.type.aliasType) ||
+    bodyParameter.type.type === "dict"
   ) {
     return `\nbody: ${bodyParameter.clientName},`;
   }
@@ -1156,6 +1157,8 @@ export function serializeRequestValue(
       } else {
         return `${clientValue} as any`;
       }
+    case "dict":
+      return `${clientValue}`;
     default:
       if (clientValue === "constructorParam") {
         return `${clientValue} as any`;
