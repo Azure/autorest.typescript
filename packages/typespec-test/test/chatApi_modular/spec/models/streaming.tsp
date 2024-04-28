@@ -25,7 +25,7 @@ model ChoiceDelta<TState, TContext> {
   ...ContextProperty<TContext>;
 
   @doc("The reason this chat completion completed its generation.")
-  @projectedName("json", "finish_reason")
+  @encodedName("application/json", "finish_reason")
   finishReason?: FinishReason;
 }
 

@@ -1,4 +1,5 @@
 import "@typespec/versioning";
+import "@azure-tools/typespec-client-generator-core";
 import "./../../azure_chat_extensions.tsp";
 import "./common_options.tsp";
 import "./vector_search.tsp";
@@ -6,6 +7,7 @@ import "./vector_search.tsp";
 namespace Azure.OpenAI;
 
 using TypeSpec.Versioning;
+using Azure.ClientGenerator.Core;
 
 #suppress "@azure-tools/typespec-azure-core/casing-style" "this represents the case-sensitive wire format"
 @added(ServiceApiVersions.v2024_02_15_Preview)
@@ -35,27 +37,27 @@ model AzureCosmosDBChatExtensionParameters {
   ...OnYourDataCommonChatExtensionConfiguration;
 
   @doc("The MongoDB vCore database name to use with Azure Cosmos DB.")
-  @projectedName("csharp", "DatabaseName")
-  @projectedName("json", "database_name")
+  @clientName("DatabaseName", "csharp")
+  @encodedName("application/json", "database_name")
   databaseName: string;
 
   @doc("The name of the Azure Cosmos DB resource container.")
-  @projectedName("csharp", "ContainerName")
-  @projectedName("json", "container_name")
+  @clientName("ContainerName", "csharp")
+  @encodedName("application/json", "container_name")
   containerName: string;
 
   @doc("The MongoDB vCore index name to use with Azure Cosmos DB.")
-  @projectedName("csharp", "IndexName")
-  @projectedName("json", "index_name")
+  @clientName("IndexName", "csharp")
+  @encodedName("application/json", "index_name")
   indexName: string;
 
   @doc("Customized field mapping behavior to use when interacting with the search index.")
-  @projectedName("csharp", "FieldMappingOptions")
-  @projectedName("json", "fields_mapping")
+  @clientName("FieldMappingOptions", "csharp")
+  @encodedName("application/json", "fields_mapping")
   fieldsMapping: AzureCosmosDBFieldMappingOptions;
 
   @doc("The embedding dependency for vector search.")
-  @projectedName("json", "embedding_dependency")
+  @encodedName("application/json", "embedding_dependency")
   embeddingDependency: OnYourDataVectorizationSource;
 }
 
@@ -64,32 +66,32 @@ model AzureCosmosDBChatExtensionParameters {
 @added(ServiceApiVersions.v2024_02_15_Preview)
 model AzureCosmosDBFieldMappingOptions {
   @doc("The name of the index field to use as a title.")
-  @projectedName("csharp", "TitleFieldName")
-  @projectedName("json", "title_field")
+  @clientName("TitleFieldName", "csharp")
+  @encodedName("application/json", "title_field")
   titleField?: string;
 
   @doc("The name of the index field to use as a URL.")
-  @projectedName("csharp", "UrlFieldName")
-  @projectedName("json", "url_field")
+  @clientName("UrlFieldName", "csharp")
+  @encodedName("application/json", "url_field")
   urlField?: string;
 
   @doc("The name of the index field to use as a filepath.")
-  @projectedName("csharp", "FilepathFieldName")
-  @projectedName("json", "filepath_field")
+  @clientName("FilepathFieldName", "csharp")
+  @encodedName("application/json", "filepath_field")
   filepathField?: string;
 
   @doc("The names of index fields that should be treated as content.")
-  @projectedName("csharp", "ContentFieldNames")
-  @projectedName("json", "content_fields")
+  @clientName("ContentFieldNames", "csharp")
+  @encodedName("application/json", "content_fields")
   contentFields: string[];
 
   @doc("The separator pattern that content fields should use.")
-  @projectedName("csharp", "ContentFieldSeparator")
-  @projectedName("json", "content_fields_separator")
+  @clientName("ContentFieldSeparator", "csharp")
+  @encodedName("application/json", "content_fields_separator")
   contentFieldsSeparator?: string;
 
   @doc("The names of fields that represent vector data.")
-  @projectedName("csharp", "VectorFieldNames")
-  @projectedName("json", "vector_fields")
+  @clientName("VectorFieldNames", "csharp")
+  @encodedName("application/json", "vector_fields")
   vectorFields: string[];
 }

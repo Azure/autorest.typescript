@@ -4,13 +4,13 @@ import "./main.tsp";
 using Azure.ClientGenerator.Core;
 
 @@access(Azure.SchemaRegistry.Version, Access.internal);
-@@projectedName(Azure.SchemaRegistry.Version, "client", "SchemaVersion");
+@@clientName(Azure.SchemaRegistry.Version, "SchemaVersion");
 @@access(Azure.SchemaRegistry.SchemaGroup, Access.internal);
 
 // csharp modifications
 @@access(Azure.SchemaRegistry.ContentTypeEnum, Access.internal);
 @@usage(Azure.SchemaRegistry.ContentTypeEnum, Usage.input | Usage.output);
-@@projectedName(Azure.SchemaRegistry.ContentTypeEnum, "csharp", "ContentType");
+@@clientName(Azure.SchemaRegistry.ContentTypeEnum, "ContentType", "csharp");
 
 // operations
 @@access(Azure.SchemaRegistry.SchemaOperations.listSchemaGroups, Access.internal);
