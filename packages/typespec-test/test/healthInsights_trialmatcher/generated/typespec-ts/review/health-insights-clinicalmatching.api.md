@@ -342,7 +342,7 @@ export interface GetJobDefaultResponse extends HttpResponse {
 export type GetJobParameters = RequestParameters;
 
 // @public
-export function getLongRunningPoller<TResult extends CreateJobLogicalResponse | CreateJobDefaultResponse>(client: Client, initialResponse: CreateJob200Response | CreateJob202Response | CreateJobLogicalResponse | CreateJobDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends CreateJobLogicalResponse | CreateJobDefaultResponse>(client: Client, initialResponse: CreateJob200Response | CreateJob202Response | CreateJobDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
 export type HealthInsightsClinicalMatchingClient = Client & {

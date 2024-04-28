@@ -146,10 +146,10 @@ export interface FakedSharedModelOutput {
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
 // @public
-export function getLongRunningPoller<TResult extends CreateOrUpdateWidgetLogicalResponse | CreateOrUpdateWidgetDefaultResponse>(client: Client, initialResponse: CreateOrUpdateWidget200Response | CreateOrUpdateWidget201Response | CreateOrUpdateWidgetLogicalResponse | CreateOrUpdateWidgetDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends CreateOrUpdateWidgetLogicalResponse | CreateOrUpdateWidgetDefaultResponse>(client: Client, initialResponse: CreateOrUpdateWidget200Response | CreateOrUpdateWidget201Response | CreateOrUpdateWidgetDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
-export function getLongRunningPoller<TResult extends DeleteWidgetLogicalResponse | DeleteWidgetDefaultResponse>(client: Client, initialResponse: DeleteWidget202Response | DeleteWidgetLogicalResponse | DeleteWidgetDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends DeleteWidgetLogicalResponse | DeleteWidgetDefaultResponse>(client: Client, initialResponse: DeleteWidget202Response | DeleteWidgetDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public
 export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{

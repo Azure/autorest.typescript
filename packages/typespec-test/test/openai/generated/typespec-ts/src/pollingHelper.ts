@@ -12,8 +12,8 @@ import {
 } from "@azure/core-lro";
 import {
   BeginAzureBatchImageGeneration202Response,
-  BeginAzureBatchImageGenerationLogicalResponse,
   BeginAzureBatchImageGenerationDefaultResponse,
+  BeginAzureBatchImageGenerationLogicalResponse,
 } from "./responses.js";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
@@ -30,7 +30,6 @@ export async function getLongRunningPoller<
   client: Client,
   initialResponse:
     | BeginAzureBatchImageGeneration202Response
-    | BeginAzureBatchImageGenerationLogicalResponse
     | BeginAzureBatchImageGenerationDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;

@@ -135,7 +135,7 @@ export type FileTypeOutput = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFA
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
 // @public
-export function getLongRunningPoller<TResult extends LoadTestRunCreateOrUpdateTestRunLogicalResponse | LoadTestRunCreateOrUpdateTestRunDefaultResponse>(client: Client, initialResponse: LoadTestRunCreateOrUpdateTestRun200Response | LoadTestRunCreateOrUpdateTestRun201Response | LoadTestRunCreateOrUpdateTestRunLogicalResponse | LoadTestRunCreateOrUpdateTestRunDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends LoadTestRunCreateOrUpdateTestRunLogicalResponse | LoadTestRunCreateOrUpdateTestRunDefaultResponse>(client: Client, initialResponse: LoadTestRunCreateOrUpdateTestRun200Response | LoadTestRunCreateOrUpdateTestRun201Response | LoadTestRunCreateOrUpdateTestRunDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public
 export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{

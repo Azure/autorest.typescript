@@ -13,30 +13,30 @@ import {
 import {
   CreateOrUpdate200Response,
   CreateOrUpdate201Response,
-  CreateOrUpdateLogicalResponse,
   CreateOrUpdateDefaultResponse,
+  CreateOrUpdateLogicalResponse,
   Delete202Response,
-  DeleteLogicalResponse,
   DeleteDefaultResponse,
+  DeleteLogicalResponse,
   Export202Response,
-  ExportLogicalResponse,
   ExportDefaultResponse,
+  ExportLogicalResponse,
   Importx202Response,
-  ImportxLogicalResponse,
   ImportxDefaultResponse,
+  ImportxLogicalResponse,
   Train202Response,
-  TrainLogicalResponse,
   TrainDefaultResponse,
+  TrainLogicalResponse,
   DeployProject200Response,
   DeployProject201Response,
-  DeployProjectLogicalResponse,
   DeployProjectDefaultResponse,
+  DeployProjectLogicalResponse,
   DeleteDeployment202Response,
-  DeleteDeploymentLogicalResponse,
   DeleteDeploymentDefaultResponse,
+  DeleteDeploymentLogicalResponse,
   SwapDeployments202Response,
-  SwapDeploymentsLogicalResponse,
   SwapDeploymentsDefaultResponse,
+  SwapDeploymentsLogicalResponse,
 } from "./responses.js";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
@@ -52,7 +52,6 @@ export async function getLongRunningPoller<
   initialResponse:
     | CreateOrUpdate200Response
     | CreateOrUpdate201Response
-    | CreateOrUpdateLogicalResponse
     | CreateOrUpdateDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
@@ -60,40 +59,28 @@ export async function getLongRunningPoller<
   TResult extends DeleteLogicalResponse | DeleteDefaultResponse,
 >(
   client: Client,
-  initialResponse:
-    | Delete202Response
-    | DeleteLogicalResponse
-    | DeleteDefaultResponse,
+  initialResponse: Delete202Response | DeleteDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<
   TResult extends ExportLogicalResponse | ExportDefaultResponse,
 >(
   client: Client,
-  initialResponse:
-    | Export202Response
-    | ExportLogicalResponse
-    | ExportDefaultResponse,
+  initialResponse: Export202Response | ExportDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<
   TResult extends ImportxLogicalResponse | ImportxDefaultResponse,
 >(
   client: Client,
-  initialResponse:
-    | Importx202Response
-    | ImportxLogicalResponse
-    | ImportxDefaultResponse,
+  initialResponse: Importx202Response | ImportxDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<
   TResult extends TrainLogicalResponse | TrainDefaultResponse,
 >(
   client: Client,
-  initialResponse:
-    | Train202Response
-    | TrainLogicalResponse
-    | TrainDefaultResponse,
+  initialResponse: Train202Response | TrainDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<
@@ -103,7 +90,6 @@ export async function getLongRunningPoller<
   initialResponse:
     | DeployProject200Response
     | DeployProject201Response
-    | DeployProjectLogicalResponse
     | DeployProjectDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
@@ -115,7 +101,6 @@ export async function getLongRunningPoller<
   client: Client,
   initialResponse:
     | DeleteDeployment202Response
-    | DeleteDeploymentLogicalResponse
     | DeleteDeploymentDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
@@ -125,10 +110,7 @@ export async function getLongRunningPoller<
     | SwapDeploymentsDefaultResponse,
 >(
   client: Client,
-  initialResponse:
-    | SwapDeployments202Response
-    | SwapDeploymentsLogicalResponse
-    | SwapDeploymentsDefaultResponse,
+  initialResponse: SwapDeployments202Response | SwapDeploymentsDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(

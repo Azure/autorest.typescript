@@ -410,28 +410,28 @@ export interface GetDeploymentStatusDefaultResponse extends HttpResponse {
 export type GetDeploymentStatusParameters = RequestParameters;
 
 // @public
-export function getLongRunningPoller<TResult extends CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse>(client: Client, initialResponse: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse>(client: Client, initialResponse: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
-export function getLongRunningPoller<TResult extends DeleteLogicalResponse | DeleteDefaultResponse>(client: Client, initialResponse: Delete202Response | DeleteLogicalResponse | DeleteDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends DeleteLogicalResponse | DeleteDefaultResponse>(client: Client, initialResponse: Delete202Response | DeleteDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
-export function getLongRunningPoller<TResult extends ExportLogicalResponse | ExportDefaultResponse>(client: Client, initialResponse: Export202Response | ExportLogicalResponse | ExportDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends ExportLogicalResponse | ExportDefaultResponse>(client: Client, initialResponse: Export202Response | ExportDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
-export function getLongRunningPoller<TResult extends ImportxLogicalResponse | ImportxDefaultResponse>(client: Client, initialResponse: Importx202Response | ImportxLogicalResponse | ImportxDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends ImportxLogicalResponse | ImportxDefaultResponse>(client: Client, initialResponse: Importx202Response | ImportxDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
-export function getLongRunningPoller<TResult extends TrainLogicalResponse | TrainDefaultResponse>(client: Client, initialResponse: Train202Response | TrainLogicalResponse | TrainDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends TrainLogicalResponse | TrainDefaultResponse>(client: Client, initialResponse: Train202Response | TrainDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
-export function getLongRunningPoller<TResult extends DeployProjectLogicalResponse | DeployProjectDefaultResponse>(client: Client, initialResponse: DeployProject200Response | DeployProject201Response | DeployProjectLogicalResponse | DeployProjectDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends DeployProjectLogicalResponse | DeployProjectDefaultResponse>(client: Client, initialResponse: DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
-export function getLongRunningPoller<TResult extends DeleteDeploymentLogicalResponse | DeleteDeploymentDefaultResponse>(client: Client, initialResponse: DeleteDeployment202Response | DeleteDeploymentLogicalResponse | DeleteDeploymentDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends DeleteDeploymentLogicalResponse | DeleteDeploymentDefaultResponse>(client: Client, initialResponse: DeleteDeployment202Response | DeleteDeploymentDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
-export function getLongRunningPoller<TResult extends SwapDeploymentsLogicalResponse | SwapDeploymentsDefaultResponse>(client: Client, initialResponse: SwapDeployments202Response | SwapDeploymentsLogicalResponse | SwapDeploymentsDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends SwapDeploymentsLogicalResponse | SwapDeploymentsDefaultResponse>(client: Client, initialResponse: SwapDeployments202Response | SwapDeploymentsDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public
 export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
