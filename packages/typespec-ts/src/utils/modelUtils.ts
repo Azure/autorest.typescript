@@ -52,7 +52,8 @@ import {
   normalizeName,
   ObjectSchema,
   Schema,
-  SchemaContext
+  SchemaContext,
+  isArraySchema
 } from "@azure-tools/rlc-common";
 import {
   getHeaderFieldName,
@@ -72,7 +73,11 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { GetSchemaOptions, SdkContext } from "./interfaces.js";
 import { getModelNamespaceName } from "./namespaceUtils.js";
-import { KnownMediaType, hasMediaType } from "./mediaTypes.js";
+import {
+  KnownMediaType,
+  hasMediaType,
+  isMediaTypeMultipartFormData
+} from "./mediaTypes.js";
 
 export const BINARY_TYPE_UNION =
   "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
@@ -181,7 +186,10 @@ export function getSchemaForType(
           });
         }
         schema.typeName = getModelInlineSigniture(schema, {
-          usage: [SchemaContext.Input]
+          usage: [SchemaContext.Input],
+          multipart:
+            options?.isRequestBody &&
+            isMediaTypeMultipartFormData(options?.mediaTypes ?? [])
         });
         schema.type = "object";
       }
@@ -604,6 +612,8 @@ function getSchemaForModel(
         .join("") + "List";
   }
 
+  const isMultipartBody = isMediaTypeMultipartFormData(contentTypes ?? []);
+
   const isCoreModel = isAzureCoreErrorType(model);
   const modelSchema: ObjectSchema = {
     name: isCoreModel
@@ -614,6 +624,7 @@ function getSchemaForModel(
           ? fullNamespaceName
           : name,
     type: "object",
+    isMultipartBody,
     description: getDoc(program, model) ?? "",
     fromCore: isCoreModel
   };
@@ -1422,10 +1433,6 @@ function getEnumStringDescription(type: any) {
 
 function getBinaryDescripton(type: any) {
   if (type?.typeName?.includes(BINARY_TYPE_UNION)) {
-    if (type?.typeName?.includes(BINARY_AND_FILE_TYPE_UNION)) {
-      return `NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.`;
-    }
     return `Value may contain any sequence of octets`;
   }
   return undefined;
@@ -1610,8 +1617,20 @@ export function isAnonymousModelType(type: Type) {
  */
 export function getModelInlineSigniture(
   schema: ObjectSchema,
-  options: { importedModels?: Set<string>; usage?: SchemaContext[] } = {}
+  options: {
+    importedModels?: Set<string>;
+    usage?: SchemaContext[];
+    multipart?: boolean;
+  } = {}
 ) {
+  if (options.multipart) {
+    return getMultipartInlineSignature(
+      schema,
+      options.importedModels,
+      options.usage
+    );
+  }
+
   let schemaSignature = `{`;
   for (const propName in schema.properties) {
     const propType = schema.properties[propName]!;
@@ -1634,4 +1653,46 @@ export function getModelInlineSigniture(
 
   schemaSignature += `}`;
   return schemaSignature;
+}
+
+function getMultipartInlineSignature(
+  schema: ObjectSchema,
+  importedModels?: Set<string>,
+  usage?: SchemaContext[]
+): string {
+  const types = Object.entries(schema.properties ?? {})
+    .map(([propertyName, property]) => {
+      let schema: Schema;
+
+      // Flatten arrays for file uploads
+      if (
+        isArraySchema(property) &&
+        property.items &&
+        getTypeName(property.items, usage).includes(BINARY_AND_FILE_TYPE_UNION)
+      ) {
+        schema = property.items;
+      } else {
+        schema = property;
+      }
+
+      const typeName = getTypeName(schema, usage);
+      if (!typeName) {
+        return undefined;
+      }
+
+      const importNames = getImportedModelName(schema);
+      if (importedModels && importNames) {
+        importNames.forEach(importedModels.add.bind(importedModels));
+      }
+
+      if (typeName.includes("File")) {
+        return `{ name: ${propertyName}, body: ${typeName}, filename?: string, contentType?: string }`;
+      } else {
+        return `{ name: ${propertyName}, body: ${typeName} }`;
+      }
+    })
+    .filter(Boolean)
+    .join(" | ");
+
+  return `FormData | Array<${types}>`;
 }

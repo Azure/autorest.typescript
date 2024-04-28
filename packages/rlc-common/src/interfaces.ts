@@ -287,6 +287,7 @@ export interface ObjectSchema extends Schema {
   discriminatorValue?: string;
   discriminator?: Schema;
   isPolyParent?: boolean;
+  isMultipartBody?: boolean;
   children?: {
     all?: ObjectSchema[];
     immediate?: ObjectSchema[];
@@ -341,11 +342,6 @@ export interface ParameterBodyMetadata {
    * usually false in typespec source because rlc-common doesn't have to prepare the whole part shape
    */
   isPartialBody?: boolean;
-  /**
-   * The `File` type is only available in the browser and Node 20, so we need to check if the file type is included in the body
-   * If yes, we need to export the helpers for customers. This would be useful in multipart/form-data to upload files
-   */
-  needsFilePolyfil?: boolean;
   body?: ParameterBodySchema[];
 }
 

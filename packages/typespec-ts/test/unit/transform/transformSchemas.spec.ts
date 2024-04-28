@@ -439,6 +439,7 @@ describe("#transformSchemas", () => {
             type: "object",
             description: "",
             fromCore: false,
+            isMultipartBody: false,
             typeName: "A",
             properties: {
               '"foo"': {
@@ -456,6 +457,7 @@ describe("#transformSchemas", () => {
             type: "object",
             description: "",
             fromCore: false,
+            isMultipartBody: false,
             typeName: "B",
             properties: {
               '"bar"': {
@@ -504,6 +506,7 @@ describe("#transformSchemas", () => {
           type: "object",
           description: "",
           fromCore: false,
+          isMultipartBody: false,
           typeName: "A",
           properties: {},
           outputTypeName: "AOutput",
@@ -546,6 +549,7 @@ describe("#transformSchemas", () => {
           type: "object",
           description: "",
           fromCore: false,
+          isMultipartBody: false,
           typeName: "A",
           properties: {},
           outputTypeName: "AOutput",
@@ -591,6 +595,7 @@ describe("#transformSchemas", () => {
               type: "object",
               description: "",
               fromCore: false,
+              isMultipartBody: false,
               typeName: "A",
               properties: {
                 '"foo"': {
@@ -608,6 +613,7 @@ describe("#transformSchemas", () => {
               type: "object",
               description: "",
               fromCore: false,
+              isMultipartBody: false,
               typeName: "B",
               properties: {
                 '"baz"': {
@@ -640,6 +646,7 @@ describe("#transformSchemas", () => {
         type: "unknown",
         description: undefined,
         fromCore: false,
+        isMultipartBody: false,
         typeName: "Record<string, unknown>",
         outputTypeName: "Record<string, any>",
         properties: {},
@@ -663,6 +670,7 @@ describe("#transformSchemas", () => {
         type: "object",
         description: undefined,
         fromCore: false,
+        isMultipartBody: false,
         typeName: '{"name": string;"arguments": string;}',
         outputTypeName: '{"name": string;"arguments": string;}',
         properties: {
@@ -695,6 +703,7 @@ describe("#transformSchemas", () => {
         type: "object",
         description: undefined,
         fromCore: false,
+        isMultipartBody: false,
         typeName: '{"name": {"foo": {"bar": string;};};}',
         outputTypeName: '{"name": {"foo": {"bar": string;};};}',
         properties: {
@@ -703,6 +712,7 @@ describe("#transformSchemas", () => {
             type: "object",
             description: undefined,
             fromCore: false,
+            isMultipartBody: false,
             typeName: '{"foo": {"bar": string;};}',
             outputTypeName: '{"foo": {"bar": string;};}',
             required: true,
@@ -712,6 +722,7 @@ describe("#transformSchemas", () => {
                 name: "",
                 type: "object",
                 fromCore: false,
+                isMultipartBody: false,
                 description: undefined,
                 typeName: '{"bar": string;}',
                 outputTypeName: '{"bar": string;}',
@@ -745,6 +756,7 @@ describe("#transformSchemas", () => {
         type: "object",
         description: undefined,
         fromCore: false,
+        isMultipartBody: false,
         typeName: '{"name": Test;}',
         outputTypeName: '{"name": TestOutput;}',
         properties: {
@@ -753,6 +765,7 @@ describe("#transformSchemas", () => {
             type: "object",
             description: undefined,
             fromCore: false,
+            isMultipartBody: false,
             typeName: "Test",
             outputTypeName: "TestOutput",
             properties: {},
@@ -784,6 +797,7 @@ describe("#transformSchemas", () => {
           type: "object",
           description: "",
           fromCore: false,
+          isMultipartBody: false,
           typeName: '{"name": string;}',
           outputTypeName: '{"name": string;}',
           properties: {
@@ -820,6 +834,7 @@ describe("#transformSchemas", () => {
           type: "object",
           description: "",
           fromCore: false,
+          isMultipartBody: false,
           typeName: '{"name": string;}',
           outputTypeName: '{"name": string;}',
           properties: {
@@ -855,6 +870,7 @@ describe("#transformSchemas", () => {
             type: "object",
             description: "",
             fromCore: false,
+            isMultipartBody: false,
             typeName: '{"name": string;}',
             outputTypeName: '{"name": string;}',
             properties: {

@@ -24,8 +24,7 @@ import {
   getSchemaForType,
   getFormattedPropertyDoc,
   getBodyType,
-  getSerializeTypeName,
-  BINARY_AND_FILE_TYPE_UNION
+  getSerializeTypeName
 } from "../utils/modelUtils.js";
 
 import {
@@ -294,7 +293,6 @@ function transformRequestBody(
 
   return {
     isPartialBody: false,
-    needsFilePolyfil: isMultpartFileUpload(),
     body: [
       {
         properties: schema.properties,
@@ -303,26 +301,13 @@ function transformRequestBody(
         type,
         required: parameters?.bodyParameter?.optional === false,
         description: descriptions.join("\n\n"),
+        isMultipartBody:
+          hasMediaType(KnownMediaType.MultipartFormData, contentTypes) &&
+          contentTypes.length === 1,
         oriSchema: schema
       }
     ]
   };
-  function isMultpartFileUpload() {
-    const isMultipartForm =
-      hasMediaType(KnownMediaType.MultipartFormData, contentTypes) &&
-      contentTypes.length === 1;
-    let hasFileType = false;
-    if (schema.type === "object" && schema.properties) {
-      for (const p of Object.values(schema.properties)) {
-        if ((p as Schema).typeName?.includes(BINARY_AND_FILE_TYPE_UNION)) {
-          hasFileType = true;
-          break;
-        }
-      }
-    }
-
-    return isMultipartForm && hasFileType;
-  }
 }
 
 function getRequestBodyType(
