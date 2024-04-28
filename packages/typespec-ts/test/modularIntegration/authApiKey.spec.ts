@@ -10,7 +10,8 @@ describe("ApiKeyClient Classical Client", () => {
         key: "valid-key"
       },
       {
-        allowInsecureConnection: true
+        allowInsecureConnection: true,
+        endpoint: "http://localhost:3002"
       }
     );
   });

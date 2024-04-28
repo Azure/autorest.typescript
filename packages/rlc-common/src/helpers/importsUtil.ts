@@ -12,7 +12,7 @@ export function buildRuntimeImports(flavor?: PackageFlavor): Imports {
       restClient: {
         type: "restClient",
         specifier: "@azure-rest/core-client",
-        version: "^1.4.0"
+        version: "^2.0.0"
       },
       coreAuth: {
         type: "coreAuth",

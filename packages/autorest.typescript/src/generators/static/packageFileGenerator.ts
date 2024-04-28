@@ -185,6 +185,7 @@ function regularAutorestPackage(
     packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
     packageInfo.scripts["build"] =
       "npm run clean && tsc && dev-tool run bundle && npm run minify && mkdirp ./review && npm run extract-api";
+    packageInfo.scripts["extract-api"] = "dev-tool run extract-api";
   } else {
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
     packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";

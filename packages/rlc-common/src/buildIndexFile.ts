@@ -5,7 +5,6 @@ import { Project, SourceFile } from "ts-morph";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import {
   hasCsvCollection,
-  needsFilePolyfil,
   hasInputModels,
   hasMultiCollection,
   hasOutputModels,
@@ -19,7 +18,6 @@ import {
 import { RLCModel } from "./interfaces.js";
 import * as path from "path";
 import { getImportModuleName } from "./helpers/nameConstructors.js";
-import { getImportSpecifier } from "./helpers/importsUtil.js";
 
 export function buildIndexFile(model: RLCModel) {
   const multiClient = Boolean(model.options?.multiClient),
@@ -166,8 +164,6 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
     });
     exports.push("SerializeHelper");
   }
-
-  reExportFileHelperFromCore(file, model);
 
   file.addExportDeclarations([
     {
@@ -331,30 +327,8 @@ function generateRLCIndex(file: SourceFile, model: RLCModel) {
     ]);
   }
 
-  reExportFileHelperFromCore(file, model);
-
   file.addExportAssignment({
     expression: createClientFuncName,
     isExportEquals: false
   });
-}
-
-// re-export file helpers from core
-function reExportFileHelperFromCore(file: SourceFile, model: RLCModel) {
-  if (needsFilePolyfil(model)) {
-    file.addExportDeclarations([
-      {
-        moduleSpecifier: getImportSpecifier(
-          "restPipeline",
-          model.importInfo.runtimeImports
-        ),
-        namedExports: [
-          "createFile",
-          "createFileFromStream",
-          "type CreateFileOptions",
-          "type CreateFileFromStreamOptions"
-        ]
-      }
-    ]);
-  }
 }
