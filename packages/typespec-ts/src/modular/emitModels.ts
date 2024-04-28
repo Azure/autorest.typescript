@@ -9,7 +9,7 @@ import { Client, ModularCodeModel, Type } from "./modularCodeModel.js";
 import * as path from "path";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { buildOperationOptions } from "./buildOperations.js";
-import { getImportSpecifier } from "@azure-tools/rlc-common";
+import { NameType, getImportSpecifier, normalizeName } from "@azure-tools/rlc-common";
 
 // ====== UTILITIES ======
 
@@ -69,7 +69,7 @@ function buildEnumModel(
 ): OptionalKind<TypeAliasDeclarationStructure> {
   const valueType = model.valueType?.type === "string" ? "string" : "number";
   return {
-    name: model.name!,
+    name: normalizeName(model.name!, NameType.Interface),
     isExported: true,
     docs: [
       ...getDocsFromDescription(model.description),
@@ -106,7 +106,7 @@ export function buildModelInterface(
 ): InterfaceStructure {
   const modelProperties = model.properties ?? [];
   const modelInterface = {
-    name: model.alias ?? model.name ?? "FIXMYNAME",
+    name: normalizeName(model.alias ?? model.name ?? "FIXMYNAME", NameType.Interface),
     isExported: true,
     docs: getDocsFromDescription(model.description),
     extends: [] as string[],
@@ -193,7 +193,7 @@ export function buildModels(
 
 export function buildModelTypeAlias(model: Type) {
   return {
-    name: model.name!,
+    name: normalizeName(model.name!, NameType.Interface),
     isExported: true,
     docs: ["Alias for " + model.name],
     type: model.aliasType!
