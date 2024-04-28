@@ -3,11 +3,13 @@
 
 import {
   GetAudioTranscriptionAsPlainText200Response,
-  GetAudioTranscriptionAsResponseObject200Response,
   GetAudioTranscriptionAsPlainTextDefaultResponse,
+  GetAudioTranscriptionAsResponseObject200Response,
+  GetAudioTranscriptionAsResponseObjectDefaultResponse,
   GetAudioTranslationAsPlainText200Response,
-  GetAudioTranslationAsResponseObject200Response,
   GetAudioTranslationAsPlainTextDefaultResponse,
+  GetAudioTranslationAsResponseObject200Response,
+  GetAudioTranslationAsResponseObjectDefaultResponse,
   GetCompletions200Response,
   GetCompletionsDefaultResponse,
   GetChatCompletions200Response,
@@ -33,15 +35,23 @@ const responseMap: Record<string, string[]> = {
 export function isUnexpected(
   response:
     | GetAudioTranscriptionAsPlainText200Response
-    | GetAudioTranscriptionAsResponseObject200Response
     | GetAudioTranscriptionAsPlainTextDefaultResponse,
 ): response is GetAudioTranscriptionAsPlainTextDefaultResponse;
 export function isUnexpected(
   response:
+    | GetAudioTranscriptionAsResponseObject200Response
+    | GetAudioTranscriptionAsResponseObjectDefaultResponse,
+): response is GetAudioTranscriptionAsResponseObjectDefaultResponse;
+export function isUnexpected(
+  response:
     | GetAudioTranslationAsPlainText200Response
-    | GetAudioTranslationAsResponseObject200Response
     | GetAudioTranslationAsPlainTextDefaultResponse,
 ): response is GetAudioTranslationAsPlainTextDefaultResponse;
+export function isUnexpected(
+  response:
+    | GetAudioTranslationAsResponseObject200Response
+    | GetAudioTranslationAsResponseObjectDefaultResponse,
+): response is GetAudioTranslationAsResponseObjectDefaultResponse;
 export function isUnexpected(
   response: GetCompletions200Response | GetCompletionsDefaultResponse,
 ): response is GetCompletionsDefaultResponse;
@@ -60,11 +70,13 @@ export function isUnexpected(
 export function isUnexpected(
   response:
     | GetAudioTranscriptionAsPlainText200Response
-    | GetAudioTranscriptionAsResponseObject200Response
     | GetAudioTranscriptionAsPlainTextDefaultResponse
+    | GetAudioTranscriptionAsResponseObject200Response
+    | GetAudioTranscriptionAsResponseObjectDefaultResponse
     | GetAudioTranslationAsPlainText200Response
-    | GetAudioTranslationAsResponseObject200Response
     | GetAudioTranslationAsPlainTextDefaultResponse
+    | GetAudioTranslationAsResponseObject200Response
+    | GetAudioTranslationAsResponseObjectDefaultResponse
     | GetCompletions200Response
     | GetCompletionsDefaultResponse
     | GetChatCompletions200Response
@@ -77,7 +89,9 @@ export function isUnexpected(
     | GetEmbeddingsDefaultResponse,
 ): response is
   | GetAudioTranscriptionAsPlainTextDefaultResponse
+  | GetAudioTranscriptionAsResponseObjectDefaultResponse
   | GetAudioTranslationAsPlainTextDefaultResponse
+  | GetAudioTranslationAsResponseObjectDefaultResponse
   | GetCompletionsDefaultResponse
   | GetChatCompletionsDefaultResponse
   | GetImageGenerationsDefaultResponse

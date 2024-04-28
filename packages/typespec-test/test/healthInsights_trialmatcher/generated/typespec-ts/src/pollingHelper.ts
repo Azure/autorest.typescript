@@ -13,8 +13,8 @@ import {
 import {
   CreateJob200Response,
   CreateJob202Response,
-  CreateJobDefaultResponse,
   CreateJobLogicalResponse,
+  CreateJobDefaultResponse,
 } from "./responses.js";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
@@ -30,6 +30,7 @@ export async function getLongRunningPoller<
   initialResponse:
     | CreateJob200Response
     | CreateJob202Response
+    | CreateJobLogicalResponse
     | CreateJobDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;

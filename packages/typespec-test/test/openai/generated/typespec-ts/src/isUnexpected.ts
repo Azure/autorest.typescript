@@ -23,8 +23,8 @@ const responseMap: Record<string, string[]> = {
   "POST /deployments/{deploymentId}/chat/completions": ["200"],
   "POST /deployments/{deploymentId}/extensions/chat/completions": ["200"],
   "GET /operations/images/{operationId}": ["200"],
-  "POST /images/generations:submit": ["202"],
   "GET /images/generations:submit": ["200", "202"],
+  "POST /images/generations:submit": ["202"],
 };
 
 export function isUnexpected(

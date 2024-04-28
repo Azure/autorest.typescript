@@ -471,7 +471,7 @@ export interface GetEmbeddingsDefaultResponse extends HttpResponse {
 export type GetEmbeddingsParameters = GetEmbeddingsBodyParam & RequestParameters;
 
 // @public
-export function getLongRunningPoller<TResult extends BeginAzureBatchImageGenerationLogicalResponse | BeginAzureBatchImageGenerationDefaultResponse>(client: Client, initialResponse: BeginAzureBatchImageGeneration202Response | BeginAzureBatchImageGenerationDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends BeginAzureBatchImageGenerationLogicalResponse | BeginAzureBatchImageGenerationDefaultResponse>(client: Client, initialResponse: BeginAzureBatchImageGeneration202Response | BeginAzureBatchImageGenerationLogicalResponse | BeginAzureBatchImageGenerationDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public
 export interface ImageGenerationOptions {

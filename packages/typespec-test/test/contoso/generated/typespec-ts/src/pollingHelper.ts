@@ -13,11 +13,11 @@ import {
 import {
   CreateOrUpdateWidget200Response,
   CreateOrUpdateWidget201Response,
-  CreateOrUpdateWidgetDefaultResponse,
   CreateOrUpdateWidgetLogicalResponse,
+  CreateOrUpdateWidgetDefaultResponse,
   DeleteWidget202Response,
-  DeleteWidgetDefaultResponse,
   DeleteWidgetLogicalResponse,
+  DeleteWidgetDefaultResponse,
 } from "./responses.js";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
@@ -35,6 +35,7 @@ export async function getLongRunningPoller<
   initialResponse:
     | CreateOrUpdateWidget200Response
     | CreateOrUpdateWidget201Response
+    | CreateOrUpdateWidgetLogicalResponse
     | CreateOrUpdateWidgetDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
@@ -42,7 +43,10 @@ export async function getLongRunningPoller<
   TResult extends DeleteWidgetLogicalResponse | DeleteWidgetDefaultResponse,
 >(
   client: Client,
-  initialResponse: DeleteWidget202Response | DeleteWidgetDefaultResponse,
+  initialResponse:
+    | DeleteWidget202Response
+    | DeleteWidgetLogicalResponse
+    | DeleteWidgetDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(
