@@ -237,7 +237,8 @@ const responseMap: Record<string, string[]> = {
   "PATCH /largefacelists/{largeFaceListId}": ["200"],
   "GET /largefacelists": ["200"],
   "GET /largefacelists/{largeFaceListId}/training": ["200"],
-  "POST /largefacelists/{largeFaceListId}/train": ["202", "200"],
+  "GET /largefacelists/{largeFaceListId}/train": ["200", "202"],
+  "POST /largefacelists/{largeFaceListId}/train": ["202"],
   "POST /largefacelists/{largeFaceListId}/persistedfaces": ["200"],
   "GET /largefacelists/{largeFaceListId}/persistedfaces": ["200"],
   "DELETE /largefacelists/{largeFaceListId}/persistedfaces/{persistedFaceId}": [
@@ -255,7 +256,8 @@ const responseMap: Record<string, string[]> = {
   "PATCH /persongroups/{personGroupId}": ["200"],
   "GET /persongroups": ["200"],
   "GET /persongroups/{personGroupId}/training": ["200"],
-  "POST /persongroups/{personGroupId}/train": ["202", "200"],
+  "GET /persongroups/{personGroupId}/train": ["200", "202"],
+  "POST /persongroups/{personGroupId}/train": ["202"],
   "POST /persongroups/{personGroupId}/persons": ["200"],
   "GET /persongroups/{personGroupId}/persons": ["200"],
   "DELETE /persongroups/{personGroupId}/persons/{personId}": ["200"],
@@ -276,7 +278,8 @@ const responseMap: Record<string, string[]> = {
   "PATCH /largepersongroups/{largePersonGroupId}": ["200"],
   "GET /largepersongroups": ["200"],
   "GET /largepersongroups/{largePersonGroupId}/training": ["200"],
-  "POST /largepersongroups/{largePersonGroupId}/train": ["202", "200"],
+  "GET /largepersongroups/{largePersonGroupId}/train": ["200", "202"],
+  "POST /largepersongroups/{largePersonGroupId}/train": ["202"],
   "POST /largepersongroups/{largePersonGroupId}/persons": ["200"],
   "GET /largepersongroups/{largePersonGroupId}/persons": ["200"],
   "DELETE /largepersongroups/{largePersonGroupId}/persons/{personId}": ["200"],
@@ -290,25 +293,25 @@ const responseMap: Record<string, string[]> = {
     ["200"],
   "PATCH /largepersongroups/{largePersonGroupId}/persons/{personId}/persistedfaces/{persistedFaceId}":
     ["200"],
-  "POST /persons": ["202", "200"],
   "GET /persons": ["200"],
-  "DELETE /persons/{personId}": ["202", "200"],
+  "POST /persons": ["202"],
   "GET /persons/{personId}": ["200"],
+  "DELETE /persons/{personId}": ["202"],
   "PATCH /persons/{personId}": ["200"],
   "GET /persons/{personId}/dynamicPersonGroupReferences": ["200"],
-  "POST /persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces":
-    ["202", "200"],
   "GET /persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces":
     ["200"],
-  "DELETE /persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces/{persistedFaceId}":
-    ["202", "200"],
+  "POST /persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces":
+    ["202"],
   "GET /persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces/{persistedFaceId}":
     ["200"],
+  "DELETE /persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces/{persistedFaceId}":
+    ["202"],
   "PATCH /persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces/{persistedFaceId}":
     ["200"],
-  "PUT /dynamicpersongroups/{dynamicPersonGroupId}": ["202", "200"],
-  "DELETE /dynamicpersongroups/{dynamicPersonGroupId}": ["202", "200"],
   "GET /dynamicpersongroups/{dynamicPersonGroupId}": ["200"],
+  "PUT /dynamicpersongroups/{dynamicPersonGroupId}": ["202", "200"],
+  "DELETE /dynamicpersongroups/{dynamicPersonGroupId}": ["202"],
   "PATCH /dynamicpersongroups/{dynamicPersonGroupId}": ["202", "200"],
   "GET /dynamicpersongroups": ["200"],
   "GET /dynamicpersongroups/{dynamicPersonGroupId}/persons": ["200"],
