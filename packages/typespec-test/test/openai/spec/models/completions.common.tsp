@@ -11,15 +11,15 @@ other consumers.
 """)
 model CompletionsUsage {
   @doc("The number of tokens generated across all completions emissions.")
-  @projectedName("json", "completion_tokens")
+  @encodedName("application/json", "completion_tokens")
   completionTokens: int32;
 
   @doc("The number of tokens in the provided prompts for the completions request.")
-  @projectedName("json", "prompt_tokens")
+  @encodedName("application/json", "prompt_tokens")
   promptTokens: int32;
 
   @doc("The total number of tokens processed for the completions request and response.")
-  @projectedName("json", "total_tokens")
+  @encodedName("application/json", "total_tokens")
   totalTokens: int32;
 }
 
@@ -81,11 +81,9 @@ enum ContentFilterSeverity {
 @doc("Information about filtered content severity level and if it has been filtered or not.")
 model ContentFilterResult {
   @doc("Ratings for the intensity and risk level of filtered content.")
-  @projectedName("json", "severity")
   severity: ContentFilterSeverity;
 
   @doc("A value indicating whether or not the content has been filtered.")
-  @projectedName("json", "filtered")
   filtered: boolean;
 }
 
@@ -119,7 +117,7 @@ model ContentFilterResults {
   Describes language related to physical actions intended to purposely hurt, injure,
   or damage one’s body, or kill oneself.
   """)
-  @projectedName("json", "self_harm")
+  @encodedName("application/json", "self_harm")
   selfHarm?: ContentFilterResult;
 }
 
@@ -129,10 +127,10 @@ Content filtering results for a single prompt in the request.
 """)
 model PromptFilterResult {
   @doc("The index of this prompt in the set of prompt results")
-  @projectedName("json", "prompt_index")
+  @encodedName("application/json", "prompt_index")
   promptIndex: int32;
 
   @doc("Content filtering results for this prompt")
-  @projectedName("json", "content_filter_results")
+  @encodedName("application/json", "content_filter_results")
   contentFilterResults?: ContentFilterResults;
 }

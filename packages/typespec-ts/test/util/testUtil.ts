@@ -94,7 +94,8 @@ export function createDpgContextTestHelper(
     generateConvenienceMethods: resolvedOptions.generateConvenienceMethods,
     rlcOptions: { flavor: "azure", enableModelNamespace },
     generationPathDetail: {},
-    emitterName: "@azure-tools/typespec-ts"
+    emitterName: "@azure-tools/typespec-ts",
+    originalProgram: program
   } as SdkContext;
 }
 

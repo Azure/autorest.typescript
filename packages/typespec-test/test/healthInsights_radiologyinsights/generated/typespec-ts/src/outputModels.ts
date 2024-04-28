@@ -132,17 +132,6 @@ export interface ElementOutput {
 }
 
 /**
- * Concept - reference to a terminology or just text
- * Based on [FHIR CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept)
- */
-export interface CodeableConceptOutput extends ElementOutput {
-  /** Code defined by a terminology system */
-  coding?: Array<CodingOutput>;
-  /** Plain text representation of the concept */
-  text?: string;
-}
-
-/**
  * A Coding is a representation of a defined concept using a symbol from a defined "code system".
  * Based on [FHIR Coding](https://www.hl7.org/fhir/R4/datatypes.html#Coding)
  */
@@ -155,6 +144,17 @@ export interface CodingOutput extends ElementOutput {
   code?: string;
   /** Representation defined by the system */
   display?: string;
+}
+
+/**
+ * Concept - reference to a terminology or just text
+ * Based on [FHIR CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept)
+ */
+export interface CodeableConceptOutput extends ElementOutput {
+  /** Code defined by a terminology system */
+  coding?: Array<CodingOutput>;
+  /** Plain text representation of the concept */
+  text?: string;
 }
 
 /**
@@ -248,21 +248,6 @@ export interface PeriodOutput extends ElementOutput {
 }
 
 /**
- * A reference from one resource to another
- * Based on [FHIR Reference](https://www.hl7.org/fhir/R4/references.html)
- */
-export interface ReferenceOutput extends ElementOutput {
-  /** Literal reference, Relative, internal or absolute URL */
-  reference?: string;
-  /** Type the reference refers to (e.g. "Patient") */
-  type?: string;
-  /** Logical reference, when literal reference is not known */
-  identifier?: IdentifierOutput;
-  /** Text alternative for the resource */
-  display?: string;
-}
-
-/**
  * An identifier intended for computation
  * Based on [FHIR Identifier](https://www.hl7.org/fhir/R4/identifier.html)
  */
@@ -279,6 +264,21 @@ export interface IdentifierOutput extends ElementOutput {
   period?: PeriodOutput;
   /** Organization that issued id (may be just text) */
   assigner?: ReferenceOutput;
+}
+
+/**
+ * A reference from one resource to another
+ * Based on [FHIR Reference](https://www.hl7.org/fhir/R4/references.html)
+ */
+export interface ReferenceOutput extends ElementOutput {
+  /** Literal reference, Relative, internal or absolute URL */
+  reference?: string;
+  /** Type the reference refers to (e.g. "Patient") */
+  type?: string;
+  /** Logical reference, when literal reference is not known */
+  identifier?: IdentifierOutput;
+  /** Text alternative for the resource */
+  display?: string;
 }
 
 /**

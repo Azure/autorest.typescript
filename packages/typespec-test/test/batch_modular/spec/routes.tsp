@@ -2396,7 +2396,7 @@ The operation will be performed only if the resource's current ETag on the
 service exactly matches the value specified by the client.
 """)
   @header
-  @projectedName("python", "if__match")
+  @clientName("if__match", "python")
   `If-Match`?: string;
 
   @doc("""
@@ -2405,7 +2405,7 @@ The operation will be performed only if the resource's current ETag on the
 service does not match the value specified by the client.
 """)
   @header
-  @projectedName("python", "if_none_match")
+  @clientName("if_none_match", "python")
   `If-None-Match`?: string;
 }
 
@@ -2419,7 +2419,7 @@ been modified since the specified time.
 """)
   @header
   @encode(DateTimeKnownEncoding.rfc7231)
-  @projectedName("python", "if_modified_since")
+  @clientName("if_modified_since", "python")
   `If-Modified-Since`?: utcDateTime;
 
   @doc("""
@@ -2429,7 +2429,7 @@ not been modified since the specified time.
 """)
   @header
   @encode(DateTimeKnownEncoding.rfc7231)
-  @projectedName("python", "if_unmodified_since")
+  @clientName("if_unmodified_since", "python")
   `If-Unmodified-Since`?: utcDateTime;
 }
 
@@ -2442,7 +2442,7 @@ alias BatchResponseHeaders = BatchClientResponseHeaders &
 model BatchEtagResponseHeaders {
   @doc("The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers.")
   @header
-  @projectedName("python", "etag")
+  @clientName("etag", "python")
   ETag?: string;
 
   @doc("The time at which the resource was last modified.")
@@ -2555,7 +2555,7 @@ The maximum number of items to return in the response. A maximum of 1000
 applications can be returned.
 """)
   @query
-  @projectedName("client", "timeOutInSeconds")
+  @clientName("timeOutInSeconds")
   timeOut?: int32 = 30;
 
   @doc("""

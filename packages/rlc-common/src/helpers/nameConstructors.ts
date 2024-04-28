@@ -134,3 +134,13 @@ export function getClientName(model: RLCModel) {
 
   return clientInterfaceName;
 }
+
+export function getMultipartPartTypeName(schemaName: string, partName: string) {
+  const name = normalizeName(partName, NameType.Interface);
+  const bodyParamName = normalizeName(schemaName, NameType.Interface);
+
+  return normalizeName(
+    `${bodyParamName}_${name}_PartDescriptor`,
+    NameType.Interface
+  );
+}

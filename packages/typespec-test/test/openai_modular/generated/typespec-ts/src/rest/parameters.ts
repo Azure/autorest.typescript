@@ -102,12 +102,3 @@ export interface GetEmbeddingsBodyParam {
 
 export type GetEmbeddingsParameters = GetEmbeddingsBodyParam &
   RequestParameters;
-export type GetAzureBatchImageGenerationOperationStatusParameters =
-  RequestParameters;
-
-export interface BeginAzureBatchImageGenerationBodyParam {
-  body?: ImageGenerationOptions;
-}
-
-export type BeginAzureBatchImageGenerationParameters =
-  BeginAzureBatchImageGenerationBodyParam & RequestParameters;
