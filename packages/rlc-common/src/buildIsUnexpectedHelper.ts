@@ -60,8 +60,8 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
           };
         }
 
-        const successTypes = detail.responseTypes.success;
-        const errorTypes = detail.responseTypes.error;
+        const successTypes = [...detail.responseTypes.success];
+        const errorTypes = [...detail.responseTypes.error];
 
         if (
           model.helperDetails?.clientLroOverload &&
