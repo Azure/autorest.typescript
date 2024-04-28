@@ -22,20 +22,23 @@ model PersonDirectoryPerson {
 
 @resource("operations")
 @doc("Long running operation resource for person directory.")
-model FaceOperationStatus {
+model OperationResult {
   @key
   @visibility("read")
   @doc("Operation ID of the operation.")
   operationId: uuid;
 
   @doc("Current status of the operation.")
-  status: FaceOperationState;
+  status: OperationStatus;
 
   @doc("Date and time the operation was created.")
-  createdDateTime: utcDateTime;
+  createdTime: utcDateTime;
+
+  @doc("Date and time the operation was last updated.")
+  lastActionTime?: utcDateTime;
 
   @doc("Date and time the operation was finished.")
-  finishedDateTime?: utcDateTime;
+  finishedTime?: utcDateTime;
 
   @doc("Message for the operation.")
   message?: string;
@@ -62,32 +65,33 @@ model DynamicPersonGroup {
   @key
   @visibility("read")
   @doc("ID of the dynamic person group.")
-  dynamicPersonGroupId: groupId;
+  dynamicPersonGroupId: collectionId;
 
   ...UserDefinedFields;
 }
 
 alias CreateDynamicPersonGroupOptions = {
-  @doc("Array of personIds created by Person Directory \"Create Person\" to be added.")
-  addPersonIds?: uuid[];
-
   ...UserDefinedFields;
+
+  @doc("Array of personIds created by Person Directory \"Create Person\" to be added.")
+  @minItems(1)
+  addPersonIds: uuid[];
 };
 
 alias UpdateDynamicPersonGroupOptions = {
+  ...UserDefinedFieldsForUpdate;
+
   @doc("Array of personIds created by Person Directory \"Create Person\" to be added.")
   addPersonIds?: uuid[];
 
   @doc("Array of personIds created by Person Directory \"Create Person\" to be removed.")
   removePersonIds?: uuid[];
-
-  ...UserDefinedFields;
 };
 
 @doc("Response of list dynamic person group of person.")
 model ListGroupReferenceResult {
   @doc("Array of PersonDirectory DynamicPersonGroup ids.")
-  dynamicPersonGroupIds: groupId[];
+  dynamicPersonGroupIds: collectionId[];
 }
 
 @doc("Response of list face of person.")
