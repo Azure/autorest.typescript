@@ -32,7 +32,7 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
     for (const [methodName, methodDetails] of Object.entries(details.methods)) {
       const originalMethod = methodName.toUpperCase();
       const operation = `${originalMethod} ${path}`;
-      const successCodeSet = new Set<string>();
+      const successCodeSet = new Set<string>(map.operation ?? []);
       for (const detail of methodDetails) {
         detail.successStatus.forEach(successCodeSet.add, successCodeSet);
         // LROs may call the same path but with GET
@@ -50,8 +50,14 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
             (pathDictionary[path].methods["get"] &&
               pathDictionary[path].methods["get"][0]?.successStatus) ??
             detail.successStatus;
-          initialSuccessCodes.forEach(successCodeSet.add, successCodeSet);
-          logicalSuccessCodes.forEach(successCodeSet.add, successCodeSet);
+          map = {
+            ...map,
+            ...{
+              [operation]: Array.from(
+                new Set(logicalSuccessCodes.concat(initialSuccessCodes))
+              )
+            }
+          };
         }
 
         const successTypes = detail.responseTypes.success;
@@ -63,8 +69,8 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
             ?.success
         ) {
           successTypes.push(
-            ...detail.operationHelperDetail?.lroDetails?.logicalResponseTypes
-              .success
+            ...(detail.operationHelperDetail.lroDetails.logicalResponseTypes
+              .success ?? [])
           );
         }
 
