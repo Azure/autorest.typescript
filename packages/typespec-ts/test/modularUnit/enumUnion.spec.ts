@@ -842,13 +842,13 @@ describe("model type", () => {
         modelFile!.getFullText()!,
         `
         export interface Test {
-          color: LR | UD;
+          color: Lr | Ud;
         }
 
         /** */
-        export type LR = "left" | "right";
+        export type Lr = "left" | "right";
         /** */
-        export type UD = "up" | "down";
+        export type Ud = "up" | "down";
         `
       );
     });
