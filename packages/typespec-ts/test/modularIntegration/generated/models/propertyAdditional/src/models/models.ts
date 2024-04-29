@@ -112,12 +112,14 @@ export interface DifferentSpreadStringDerived
   derivedProp: string;
 }
 
-export interface SpreadModelArrayRecord extends Record<string, any> {
+export interface SpreadModelArrayRecord
+  extends Record<string, ModelForRecord[]> {
   knownProp: ModelForRecord[];
 }
 
 /** The model is from Record<ModelForRecord[]> type. */
-export interface IsModelArrayAdditionalProperties extends Record<string, any> {
+export interface IsModelArrayAdditionalProperties
+  extends Record<string, ModelForRecord[]> {
   knownProp: ModelForRecord[];
 }
 
@@ -128,12 +130,13 @@ export interface ExtendsModelArrayAdditionalProperties
 }
 
 /** The model spread Record<ModelForRecord> with the same known property type */
-export interface SpreadModelRecord extends Record<string, any> {
+export interface SpreadModelRecord extends Record<string, ModelForRecord> {
   knownProp: ModelForRecord;
 }
 
 /** The model is from Record<ModelForRecord> type. */
-export interface IsModelAdditionalProperties extends Record<string, any> {
+export interface IsModelAdditionalProperties
+  extends Record<string, ModelForRecord> {
   knownProp: ModelForRecord;
 }
 
@@ -144,13 +147,13 @@ export interface ExtendsModelAdditionalProperties
 }
 
 /** The model spread Record<float32> with the same known property type */
-export interface SpreadFloatRecord extends Record<string, any> {
+export interface SpreadFloatRecord extends Record<string, number> {
   /** The id property */
   id: number;
 }
 
 /** The model is from Record<float32> type. */
-export interface IsFloatAdditionalProperties extends Record<string, any> {
+export interface IsFloatAdditionalProperties extends Record<string, number> {
   /** The id property */
   id: number;
 }
@@ -163,13 +166,13 @@ export interface ExtendsFloatAdditionalProperties
 }
 
 /** The model spread Record<string> with the same known property type */
-export interface SpreadStringRecord extends Record<string, any> {
+export interface SpreadStringRecord extends Record<string, string> {
   /** The name property */
   name: string;
 }
 
 /** The model is from Record<string> type. */
-export interface IsStringAdditionalProperties extends Record<string, any> {
+export interface IsStringAdditionalProperties extends Record<string, string> {
   /** The name property */
   name: string;
 }

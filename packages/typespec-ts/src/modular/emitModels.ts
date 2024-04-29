@@ -214,7 +214,7 @@ function addExtendedDictInfo(
 ) {
   if (
     model.properties?.every((p) => {
-      p.type.name === model.elementType?.name;
+      return getType(p.type).name === getType(model.elementType!)?.name;
     })
   ) {
     modelInterface.extends.push(
