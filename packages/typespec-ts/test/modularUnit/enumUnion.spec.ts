@@ -852,7 +852,38 @@ describe("model type", () => {
         `
       );
     });
+    it("non standard enum name", async () => {
+      const modelFile = await emitModularModelsFromTypeSpec(`
+      union leftAndRight {
+        "left",
+        "right",
+      }
+      enum upAndDown {
+        up,
+        down,
+      }
 
+      model Test {
+        color: leftAndRight | upAndDown;
+      }
+      op read(@body body: Test): void;
+        `);
+      assert.ok(modelFile);
+      await assertEqualContent(
+        modelFile!.getFullText()!,
+        `
+        export interface Test {
+          color: LeftAndRight | UpAndDown;
+        }
+
+        /** Type of LeftAndRight */
+        /** */
+        export type LeftAndRight = "left" | "right";
+        /** */
+        export type UpAndDown = "up" | "down";
+        `
+      );
+    });
     it("nullable numeric literal", async () => {
       const modelFile = await emitModularModelsFromTypeSpec(`
         model Test {

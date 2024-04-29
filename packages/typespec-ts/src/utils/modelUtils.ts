@@ -401,10 +401,13 @@ function getSchemaForUnion(
       .map((item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`)
       .join(" | ");
     if (!union.expression) {
-      schema.name = union.name;
+      const unionName = union.name
+        ? normalizeName(union.name, NameType.Interface)
+        : undefined;
+      schema.name = unionName;
       schema.type = "object";
-      schema.typeName = union.name;
-      schema.outputTypeName = union.name + "Output";
+      schema.typeName = unionName;
+      schema.outputTypeName = unionName + "Output";
       schema.alias = unionAlias;
       schema.outputAlias = outputUnionAlias;
     } else if (union.expression && !union.name) {
@@ -938,8 +941,8 @@ function getSchemaForEnum(dpgContext: SdkContext, e: Enum) {
   const schema: any = {
     type: "object",
     name: e.name,
-    typeName: e.name,
-    outputTypeName: e.name + "Output",
+    typeName: normalizeName(e.name, NameType.Interface),
+    outputTypeName: normalizeName(e.name, NameType.Interface) + "Output",
     description: getDoc(dpgContext.program, e),
     memberType: type
   };
