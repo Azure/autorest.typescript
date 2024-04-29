@@ -253,7 +253,6 @@ describe("Parameters.ts", () => {
           export type TestParameters = TestQueryParam & RequestParameters;`
         );
         const models = await emitModelsFromTypeSpec(tspContent);
-        console.log(models);
         await assertEqualContent(
           models?.inputModelFile?.content!,
           `/** Alias for Foo */\nexport type Foo = "bar" | "baz";`
