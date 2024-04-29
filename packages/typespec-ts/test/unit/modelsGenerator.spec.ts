@@ -1605,6 +1605,43 @@ describe("Input/output model type", () => {
         }`
       );
     });
+
+    it("should handle model additional properties from spread record of int64 | string", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(`
+      
+      model Vegetables {
+        ...Record<int64 | string>;
+        carrots: int64;
+        beans: int64;
+      }
+      op post(@body body: Vegetables): { @body body: Vegetables };
+      `);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface Vegetables extends Record<string, number | string>{
+          carrots: number;
+          beans: number;
+        }
+        `
+      );
+
+      assert.ok(outputModelFile);
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+        export interface VegetablesOutput extends Record<string, number | string> {
+          carrots: number;
+          beans: number;
+        }
+        `
+      );
+    });
   });
   describe("bytes generation as property", () => {
     it("should handle bytes -> string", async () => {

@@ -298,7 +298,8 @@ export async function emitModularModelsFromTypeSpec(
   tspContent: string,
   needOptions: boolean = false,
   withRawContent: boolean = false,
-  needAzureCore: boolean = false
+  needAzureCore: boolean = false,
+  compatibilityMode: boolean = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
@@ -316,6 +317,7 @@ export async function emitModularModelsFromTypeSpec(
   const clients = getRLCClients(dpgContext);
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
+    dpgContext.rlcOptions!.compatibilityMode = compatibilityMode;
     const rlcModels = await transformRLCModel(clients[0], dpgContext);
     serviceNameToRlcModelsMap.set(clients[0].service.name, rlcModels);
     const modularCodeModel = emitCodeModel(

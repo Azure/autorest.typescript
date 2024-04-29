@@ -502,11 +502,15 @@ export function getImmediateParentsNames(
         ? "Output"
         : "";
       const name = isDictionarySchema(parent)
-        ? Object.entries(objectSchema.properties!)?.some(
-            (prop) =>
-              `Record<string, ${prop[1].typeName ?? prop[1].type}>` !==
-              parent.typeName
-          )
+        ? Object.entries(objectSchema.properties!)?.some((prop) => {
+            const typeName = prop[1].typeName ?? prop[1].type;
+            return (
+              `Record<string, ${typeName}>` !== parent.typeName &&
+              !(parent as any).additionalProperties?.typeName?.includes(
+                typeName
+              )
+            );
+          })
           ? schemaUsage.includes(SchemaContext.Output)
             ? "Record<string, any>"
             : "Record<string, unknown>"

@@ -213,8 +213,11 @@ function addExtendedDictInfo(
   compatibilityMode: boolean = false
 ) {
   if (
+    model.properties &&
+    model.properties.length > 0 &&
+    model.elementType &&
     model.properties?.every((p) => {
-      return getType(p.type).name === getType(model.elementType!)?.name;
+      return getType(model.elementType!)?.name.includes(getType(p.type).name);
     })
   ) {
     modelInterface.extends.push(

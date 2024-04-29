@@ -1809,3 +1809,34 @@ describe("visibility", () => {
     );
   });
 });
+
+describe("spread record", () => {
+  it.only("should handle model additional properties from spread record of int64 | string", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(
+      `
+    
+    model Vegetables {
+      ...Record<int64 | string>;
+      carrots: int64;
+      beans: int64;
+    }
+    op post(@body body: Vegetables): { @body body: Vegetables };
+    `,
+      false,
+      false,
+      false,
+      true
+    );
+    assert.ok(modelFile);
+    assert.strictEqual(modelFile?.getFilePath(), "/models/models.ts");
+    await assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface Vegetables extends Record<string, number | string>{
+        carrots: number;
+        beans: number;
+      }
+      `
+    );
+  });
+});
