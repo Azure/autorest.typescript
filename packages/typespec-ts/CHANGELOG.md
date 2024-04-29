@@ -1,3 +1,14 @@
+## 0.28.0 (2024-04-30)
+
+- [Feature] Generate types for new MFD design. Please refer to [#2455](https://github.com/Azure/autorest.typescript/pull/2455).
+- [Feature] Remove orphan model detection. Please refer to [#2478](https://github.com/Azure/autorest.typescript/pull/2478).
+- [Feature] Support projected version in modular and RLC. Please refer to [#2472](https://github.com/Azure/autorest.typescript/pull/2472).
+- [Feature] Normalize enum name in RLC and modular. Please refer to [#2483](https://github.com/Azure/autorest.typescript/pull/2483).
+- [Feature] Replace `esm` dev dependency with `tsx`. Please refer to [#2459](https://github.com/Azure/autorest.typescript/pull/2459).
+- [Feature] Use `dev-tool run extract-api`. Please refer to [#2462](https://github.com/Azure/autorest.typescript/pull/2462).
+- [Feature] Replace c8 with nyc for coverage. Please refer to [#2446](https://github.com/Azure/autorest.typescript/pull/2446).
+- [Bugfix] Fix named union as path parameter and isUnexpected overloading issue in RLC. Please refer to [#2484](https://github.com/Azure/autorest.typescript/pull/2484).
+
 ## 0.27.0 (2024-04-18)
 
 - [Feature] Support server parameter in modular. Please refer to [#2424](https://github.com/Azure/autorest.typescript/pull/2424).
