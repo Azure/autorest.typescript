@@ -316,9 +316,7 @@ function processModelProperties(
     if (newValue.name) {
       newValue.name = normalizeName(newValue.name, NameType.Interface);
       discriminatorInfo?.aliases.push(`${newValue.name}`);
-      newValue.alias = `${newValue.name} | ${discriminatorInfo.aliases.join(
-        " | "
-      )}`;
+      newValue.alias = `${newValue.name}`;
       newValue.name = `${newValue.name}Union`;
       newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
       newValue.types = discriminatorInfo?.discriminatedSubtypes;
