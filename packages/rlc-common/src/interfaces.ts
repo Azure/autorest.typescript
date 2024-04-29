@@ -137,7 +137,7 @@ export interface PagingDetails {
 
 export type Methods = {
   // could be more than one method if overloading
-  [key: string]: [OperationMethod, ...OperationMethod[]];
+  [key: string]: OperationMethod[];
 };
 
 export interface ResponseTypes {

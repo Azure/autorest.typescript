@@ -210,13 +210,15 @@ export function getClientLroOverload(pathDictionary: Paths) {
     allowCounts = 0;
   for (const details of Object.values(pathDictionary)) {
     for (const methodDetails of Object.values(details.methods)) {
-      const lroDetail = methodDetails[0].operationHelperDetail?.lroDetails;
-      if (lroDetail?.isLongRunning) {
-        lroCounts++;
-        if (!lroDetail.operationLroOverload) {
-          return false;
+      for (const detail of methodDetails) {
+        const lroDetail = detail.operationHelperDetail?.lroDetails;
+        if (lroDetail?.isLongRunning) {
+          lroCounts++;
+          if (!lroDetail.operationLroOverload) {
+            return false;
+          }
+          allowCounts++;
         }
-        allowCounts++;
       }
     }
   }
