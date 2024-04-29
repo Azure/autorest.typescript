@@ -852,7 +852,7 @@ describe("model type", () => {
         `
       );
     });
-    it("non standard enum name", async () => {
+    it("non-standard enum/union name", async () => {
       const modelFile = await emitModularModelsFromTypeSpec(`
       union leftAndRight {
         "left",
