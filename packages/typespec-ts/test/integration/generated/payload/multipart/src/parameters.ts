@@ -100,14 +100,19 @@ export type FormDataCheckFileNameAndContentTypeParameters =
     RequestParameters;
 
 export interface FormDataAnonymousModelBodyParam {
-  body?: {
-    profileImage:
-      | string
-      | Uint8Array
-      | ReadableStream<Uint8Array>
-      | NodeJS.ReadableStream
-      | File;
-  };
+  body?:
+    | FormData
+    | Array<{
+        name: "profileImage";
+        body:
+          | string
+          | Uint8Array
+          | ReadableStream<Uint8Array>
+          | NodeJS.ReadableStream
+          | File;
+        filename?: string;
+        contentType?: string;
+      }>;
 }
 
 export interface FormDataAnonymousModelMediaTypesParam {

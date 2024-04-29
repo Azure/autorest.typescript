@@ -86,7 +86,7 @@ export async function emitSchemasFromTypeSpec(
   const clients = getRLCClients(dpgContext);
   let rlcSchemas: Schema[] = [];
   if (clients && clients[0]) {
-    rlcSchemas = transformSchemas(program, clients[0], dpgContext);
+    rlcSchemas = transformSchemas(clients[0], dpgContext);
   }
   expectDiagnosticEmpty(program.diagnostics);
   return rlcSchemas;
@@ -107,7 +107,6 @@ export async function emitModelsFromTypeSpec(
     needTCGC,
     withRawContent
   );
-  const program = context.program;
   const dpgContext = createDpgContextTestHelper(
     context.program,
     enableModelNamespace
@@ -115,7 +114,7 @@ export async function emitModelsFromTypeSpec(
   const clients = getRLCClients(dpgContext);
   let rlcSchemas: Schema[] = [];
   if (clients && clients[0]) {
-    rlcSchemas = transformSchemas(program, clients[0], dpgContext);
+    rlcSchemas = transformSchemas(clients[0], dpgContext);
   }
   if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
@@ -155,9 +154,9 @@ export async function emitParameterFromTypeSpec(
   if (clients && clients[0]) {
     const urlInfo = transformUrlInfo(clients[0], dpgContext, importSet);
     parameters = transformToParameterTypes(
-      importSet,
       clients[0],
       dpgContext,
+      importSet,
       urlInfo?.apiVersionInfo
     );
   }
@@ -182,12 +181,12 @@ export async function emitClientDefinitionFromTypeSpec(
   needAzureCore: boolean = false
 ) {
   const context = await rlcEmitterFor(tspContent, true, needAzureCore);
-  const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
+  const internalImports = initInternalImports();
   let paths = {};
   if (clients && clients[0]) {
-    paths = transformPaths(program, clients[0], dpgContext);
+    paths = transformPaths(clients[0], dpgContext, internalImports);
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return buildClientDefinitions({
@@ -196,7 +195,7 @@ export async function emitClientDefinitionFromTypeSpec(
     schemas: [],
     paths,
     importInfo: {
-      internalImports: initInternalImports(),
+      internalImports,
       runtimeImports: buildRuntimeImports("azure")
     }
   });
@@ -271,7 +270,7 @@ export async function emitResponsesFromTypeSpec(
   const clients = getRLCClients(dpgContext);
   let responses;
   if (clients && clients[0]) {
-    responses = transformToResponseTypes(importSet, clients[0], dpgContext);
+    responses = transformToResponseTypes(clients[0], dpgContext, importSet);
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return buildResponseTypes({
@@ -336,11 +335,11 @@ export async function emitModularModelsFromTypeSpec(
     ) {
       if (needOptions) {
         return buildModelsOptions(
-          modularCodeModel,
-          modularCodeModel.clients[0]
+          modularCodeModel.clients[0],
+          modularCodeModel
         );
       }
-      return buildModels(modularCodeModel, modularCodeModel.clients[0]);
+      return buildModels(modularCodeModel.clients[0], modularCodeModel);
     }
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
@@ -427,9 +426,9 @@ export async function emitModularOperationsFromTypeSpec(
       modularCodeModel.clients[0]
     ) {
       const res = buildOperationFiles(
+        modularCodeModel.clients[0],
         dpgContext,
         modularCodeModel,
-        modularCodeModel.clients[0],
         false
       );
       if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
@@ -481,9 +480,9 @@ export async function emitModularClientContextFromTypeSpec(
       modularCodeModel.clients[0]
     ) {
       return buildClientContext(
+        modularCodeModel.clients[0],
         dpgContext,
-        modularCodeModel,
-        modularCodeModel.clients[0]
+        modularCodeModel
       );
     }
   }
@@ -531,9 +530,9 @@ export async function emitModularClientFromTypeSpec(
       modularCodeModel.clients[0]
     ) {
       return buildClassicalClient(
+        modularCodeModel.clients[0],
         dpgContext,
-        modularCodeModel,
-        modularCodeModel.clients[0]
+        modularCodeModel
       );
     }
   }

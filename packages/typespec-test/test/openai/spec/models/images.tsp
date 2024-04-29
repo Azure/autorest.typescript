@@ -2,10 +2,12 @@ import "@azure-tools/typespec-azure-core";
 import "@typespec/http";
 import "@typespec/versioning";
 import "./operations.common.tsp";
+import "@azure-tools/typespec-client-generator-core";
 
 using Azure.Core;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
+using Azure.ClientGenerator.Core;
 
 namespace Azure.OpenAI;
 
@@ -39,7 +41,7 @@ model ImageGenerationOptions {
   prompt: string;
 
   @doc("The number of images to generate (defaults to 1).")
-  @projectedName("csharp", "ImageCount")
+  @clientName("ImageCount", "csharp")
   n?: int32 = 1;
 
   @doc("The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024 (defaults to 1024x1024).")
@@ -49,7 +51,7 @@ model ImageGenerationOptions {
     The format in which image generation response items should be presented.
     Azure OpenAI only supports URL response items.
   """)
-  @projectedName("json", "response_format")
+  @encodedName("application/json", "response_format")
   responseFormat?: ImageGenerationResponseFormat;
 
   @doc("A unique identifier representing your end-user, which can help to monitor and detect abuse.")
@@ -58,7 +60,7 @@ model ImageGenerationOptions {
 
 @doc("An image response item that provides a URL from which an image may be accessed.")
 @added(ServiceApiVersions.v2023_06_01_Preview)
-@projectedName("csharp", "InternalImageLocation")
+@clientName("InternalImageLocation", "csharp")
 model ImageLocation {
   @doc("The URL that provides temporary access to download the generated image.")
   url: url;
@@ -68,7 +70,7 @@ model ImageLocation {
 @added(ServiceApiVersions.v2023_06_01_Preview)
 model ImagePayload {
   @doc("The complete data for an image represented as a base64-encoded string.")
-  @projectedName("json", "b64_json")
+  @encodedName("application/json", "b64_json")
   base64Data: string;
 }
 
@@ -76,8 +78,7 @@ model ImagePayload {
 @added(ServiceApiVersions.v2023_06_01_Preview)
 model ImageGenerations {
   @doc("A timestamp when this job or item was created (in unix epochs).")
-  @projectedName("json", "created")
-  @projectedName("java", "createdAt")
+  @clientName("createdAt", "java")
   @encode(DateTimeKnownEncoding.unixTimestamp, int32)
   created: utcDateTime;
 
@@ -97,8 +98,7 @@ model BatchImageGenerationOperationResponse {
   id: string;
 
   @doc("A timestamp when this job or item was created (in unix epochs).")
-  @projectedName("json", "created")
-  @projectedName("java", "createdAt")
+  @clientName("createdAt", "java")
   @encode(DateTimeKnownEncoding.unixTimestamp, int32)
   created: utcDateTime;
 

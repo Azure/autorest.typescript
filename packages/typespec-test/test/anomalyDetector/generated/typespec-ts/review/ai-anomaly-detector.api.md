@@ -211,6 +211,12 @@ export interface MultivariateOperations {
     trainMultivariateModel: (modelInfo: MultivariateModelInfo, options?: MultivariateTrainMultivariateModelOptionalParams) => Promise<MultivariateAnomalyDetectionModel>;
 }
 
+// @public
+export interface MultivariateResponseError {
+    code: string;
+    message: string;
+}
+
 // @public (undocumented)
 export interface MultivariateTrainMultivariateModelOptionalParams extends OperationOptions {
 }
@@ -245,6 +251,12 @@ export interface PageSettings {
 
 // @public (undocumented)
 export type TimeGranularity = "yearly" | "monthly" | "weekly" | "daily" | "hourly" | "minutely" | "secondly" | "microsecond" | "none";
+
+// @public
+export interface UnivariateAnomalyDetectorError {
+    code?: AnomalyDetectorErrorCodes;
+    message?: string;
+}
 
 // @public (undocumented)
 export interface UnivariateDetectUnivariateChangePointOptionalParams extends OperationOptions {

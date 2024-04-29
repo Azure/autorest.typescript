@@ -132,17 +132,6 @@ export interface ElementOutput {
 }
 
 /**
- * Concept - reference to a terminology or just text
- * Based on [FHIR CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept)
- */
-export interface CodeableConceptOutput extends ElementOutput {
-  /** Code defined by a terminology system */
-  coding?: Array<CodingOutput>;
-  /** Plain text representation of the concept */
-  text?: string;
-}
-
-/**
  * A Coding is a representation of a defined concept using a symbol from a defined "code system".
  * Based on [FHIR Coding](https://www.hl7.org/fhir/R4/datatypes.html#Coding)
  */
@@ -155,6 +144,17 @@ export interface CodingOutput extends ElementOutput {
   code?: string;
   /** Representation defined by the system */
   display?: string;
+}
+
+/**
+ * Concept - reference to a terminology or just text
+ * Based on [FHIR CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept)
+ */
+export interface CodeableConceptOutput extends ElementOutput {
+  /** Code defined by a terminology system */
+  coding?: Array<CodingOutput>;
+  /** Plain text representation of the concept */
+  text?: string;
 }
 
 /**
@@ -248,21 +248,6 @@ export interface PeriodOutput extends ElementOutput {
 }
 
 /**
- * A reference from one resource to another
- * Based on [FHIR Reference](https://www.hl7.org/fhir/R4/references.html)
- */
-export interface ReferenceOutput extends ElementOutput {
-  /** Literal reference, Relative, internal or absolute URL */
-  reference?: string;
-  /** Type the reference refers to (e.g. "Patient") */
-  type?: string;
-  /** Logical reference, when literal reference is not known */
-  identifier?: IdentifierOutput;
-  /** Text alternative for the resource */
-  display?: string;
-}
-
-/**
  * An identifier intended for computation
  * Based on [FHIR Identifier](https://www.hl7.org/fhir/R4/identifier.html)
  */
@@ -279,6 +264,21 @@ export interface IdentifierOutput extends ElementOutput {
   period?: PeriodOutput;
   /** Organization that issued id (may be just text) */
   assigner?: ReferenceOutput;
+}
+
+/**
+ * A reference from one resource to another
+ * Based on [FHIR Reference](https://www.hl7.org/fhir/R4/references.html)
+ */
+export interface ReferenceOutput extends ElementOutput {
+  /** Literal reference, Relative, internal or absolute URL */
+  reference?: string;
+  /** Type the reference refers to (e.g. "Patient") */
+  type?: string;
+  /** Logical reference, when literal reference is not known */
+  identifier?: IdentifierOutput;
+  /** Text alternative for the resource */
+  display?: string;
 }
 
 /**
@@ -854,149 +854,6 @@ export interface FollowupCommunicationInferenceOutput
   wasAcknowledged: boolean;
 }
 
-/** The body of the Radiology Insights request. */
-export interface RadiologyInsightsDataOutput {
-  /** The list of patients, including their clinical information and data. */
-  patients: Array<PatientRecordOutput>;
-  /** Configuration affecting the Radiology Insights model's inference. */
-  configuration?: RadiologyInsightsModelConfigurationOutput;
-}
-
-/** A patient record, including their clinical information and data. */
-export interface PatientRecordOutput {
-  /** A given identifier for the patient. Has to be unique across all patients in a single request. */
-  id: string;
-  /** Patient structured information, including demographics and known structured clinical information. */
-  info?: PatientInfoOutput;
-  /** Patient encounters/visits. */
-  encounters?: Array<EncounterOutput>;
-  /** Patient unstructured clinical data, given as documents. */
-  patientDocuments?: Array<PatientDocumentOutput>;
-}
-
-/** Patient structured information, including demographics and known structured clinical information. */
-export interface PatientInfoOutput {
-  /** The patient's sex. */
-  sex?: PatientInfoSexOutput;
-  /** The patient's date of birth. */
-  birthDate?: string;
-  /** Known clinical information for the patient, structured. */
-  clinicalInfo?: Array<ResourceOutput>;
-}
-
-/** visit/encounter information */
-export interface EncounterOutput {
-  /** The id of the visit. */
-  id: string;
-  /**
-   * Time period of the visit.
-   * In case of admission, use timePeriod.start to indicate the admission time and timePeriod.end to indicate the discharge time.
-   */
-  period?: TimePeriodOutput;
-  /** The class of the encounter. */
-  class?: EncounterClassOutput;
-}
-
-/** A duration of time during which an event is happening */
-export interface TimePeriodOutput {
-  /** Starting time with inclusive boundary */
-  start?: string;
-  /** End time with inclusive boundary, if not ongoing */
-  end?: string;
-}
-
-/** A clinical document related to a patient. Document here is in the wide sense - not just a text document (note). */
-export interface PatientDocumentOutput {
-  /** The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). */
-  type: DocumentTypeOutput;
-  /** The type of the clinical document. */
-  clinicalType?: ClinicalDocumentTypeOutput;
-  /** A given identifier for the document. Has to be unique across all documents for a single patient. */
-  id: string;
-  /** A 2 letter ISO 639-1 representation of the language of the document. */
-  language?: string;
-  /** The date and time when the document was created. */
-  createdDateTime?: string;
-  /** Document author(s) */
-  authors?: Array<DocumentAuthorOutput>;
-  /** specialty type the document */
-  specialtyType?: SpecialtyTypeOutput;
-  /** Administrative metadata for the document. */
-  administrativeMetadata?: DocumentAdministrativeMetadataOutput;
-  /** The content of the patient document. */
-  content: DocumentContentOutput;
-}
-
-/** Document author */
-export interface DocumentAuthorOutput {
-  /** author id */
-  id?: string;
-  /** Text representation of the full name */
-  fullName?: string;
-}
-
-/** Document administrative metadata */
-export interface DocumentAdministrativeMetadataOutput {
-  /** List of procedure information associated with the document. */
-  orderedProcedures?: Array<OrderedProcedureOutput>;
-  /** Reference to the encounter associated with the document. */
-  encounterId?: string;
-}
-
-/** The content of the patient document. */
-export interface DocumentContentOutput {
-  /**
-   * The type of the content's source.
-   * In case the source type is 'inline', the content is given as a string (for instance, text).
-   * In case the source type is 'reference', the content is given as a URI.
-   */
-  sourceType: DocumentContentSourceTypeOutput;
-  /** The content of the document, given either inline (as a string) or as a reference (URI). */
-  value: string;
-}
-
-/** Configuration affecting the Radiology Insights model's inference. */
-export interface RadiologyInsightsModelConfigurationOutput {
-  /** An indication whether the model should produce verbose output. */
-  verbose?: boolean;
-  /** An indication whether the model's output should include evidence for the inferences. */
-  includeEvidence?: boolean;
-  /**
-   * A list of inference types to be inferred for the current request.
-   * This could be used if only part of the Radiology Insights inferences are required.
-   * If this list is omitted or empty, the model will return all the inference types.
-   */
-  inferenceTypes?: RadiologyInsightsInferenceTypeOutput[];
-  /** The options for the Radiology Insights Inferences */
-  inferenceOptions?: RadiologyInsightsInferenceOptionsOutput;
-  /** Local for the model to use. If not specified, the model will use the default locale */
-  locale?: string;
-}
-
-/** The options for the Radiology Insights Inferences */
-export interface RadiologyInsightsInferenceOptionsOutput {
-  /** Followup Recommendation Options */
-  followupRecommendation?: FollowupRecommendationOptionsOutput;
-  /** Finding Options */
-  finding?: FindingOptionsOutput;
-}
-
-/** Followup Recommendation Options */
-export interface FollowupRecommendationOptionsOutput {
-  /** Include/Exclude followup recommendations with no specific radiologic modality, default is false. */
-  includeRecommendationsWithNoSpecifiedModality?: boolean;
-  /** Include/Exclude followup recommendations in references to a guideline or article, default is false. */
-  includeRecommendationsInReferences?: boolean;
-  /** Provide a single focused sentence as evidence for the recommendation, default is false. */
-  provideFocusedSentenceEvidence?: boolean;
-}
-
-/** Finding Options */
-export interface FindingOptionsOutput {
-  /** Provide a single focused sentence as evidence for the finding, default is false. */
-  provideFocusedSentenceEvidence?: boolean;
-}
-
 /** Provides status details for long running operations. */
 export interface HealthInsightsOperationStatusOutput {
   /** The unique ID of the operation. */
@@ -1120,51 +977,5 @@ export type MedicalProfessionalTypeOutput =
   | "nurse"
   | "midwife"
   | "physicianAssistant";
-/** The patient's sex. */
-export type PatientInfoSexOutput = "female" | "male" | "unspecified";
-/** Known values codes that can be used to indicate the class of encounter (TODO://Based on FHIR value set--http://....). */
-export type EncounterClassOutput =
-  | "inpatient"
-  | "ambulatory"
-  | "observation"
-  | "emergency"
-  | "virtual"
-  | "healthHome";
-/** The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document). */
-export type DocumentTypeOutput =
-  | "note"
-  | "fhirBundle"
-  | "dicom"
-  | "genomicSequencing";
-/** The type of the clinical document. */
-export type ClinicalDocumentTypeOutput =
-  | "consultation"
-  | "dischargeSummary"
-  | "historyAndPhysical"
-  | "radiologyReport"
-  | "procedure"
-  | "progress"
-  | "laboratory"
-  | "pathologyReport";
-/** Known values codes that can be used to indicate the type of the Specialty. */
-export type SpecialtyTypeOutput = "pathology" | "radiology";
-/**
- * The type of the content's source.
- * In case the source type is 'inline', the content is given as a string (for instance, text).
- * In case the source type is 'reference', the content is given as a URI.
- */
-export type DocumentContentSourceTypeOutput = "inline" | "reference";
-/** A Radiology Insights inference types. */
-export type RadiologyInsightsInferenceTypeOutput =
-  | "ageMismatch"
-  | "lateralityDiscrepancy"
-  | "sexMismatch"
-  | "completeOrderDiscrepancy"
-  | "limitedOrderDiscrepancy"
-  | "finding"
-  | "criticalResult"
-  | "followupRecommendation"
-  | "followupCommunication"
-  | "radiologyProcedure";
 /** Alias for RepeatabilityResultOutput */
 export type RepeatabilityResultOutput = "accepted" | "rejected";

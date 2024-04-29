@@ -9,6 +9,7 @@ describe("PageableClient Classical Client", () => {
 
   beforeEach(() => {
     client = new PageableClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
   });
@@ -76,7 +77,7 @@ describe("PageableClient Classical Client", () => {
     const continuationToken = firstPage.value.continuationToken;
     assert.strictEqual(
       continuationToken,
-      "http://localhost:3000/payload/pageable?skipToken=name-user7&maxpagesize=3"
+      "http://localhost:3002/payload/pageable?skipToken=name-user7&maxpagesize=3"
     );
     const items: User[] = [];
     for await (const pagedUsers of iter.byPage({ continuationToken })) {

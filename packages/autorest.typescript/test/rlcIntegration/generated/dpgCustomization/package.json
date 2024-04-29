@@ -66,7 +66,7 @@
   },
   "scripts": {
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
-    "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
+    "extract-api": "rimraf review && mkdirp ./review && dev-tool run extract-api",
     "pack": "npm pack 2>&1",
     "lint": "eslint package.json api-extractor.json src test --ext .ts --ext .cts --ext .mts",
     "lint:fix": "eslint package.json api-extractor.json src test --ext .ts --ext .cts --ext .mts --fix --fix-type [problem,suggestion]",
@@ -80,10 +80,10 @@
     "generate:client": "echo skipped",
     "test:browser": "npm run clean && npm run build:test && npm run unit-test:browser && npm run integration-test:browser",
     "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
-    "build": "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && api-extractor run --local",
+    "build": "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && dev-tool run extract-api",
     "build:node": "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1",
     "build:test": "tsc -p . && dev-tool run bundle",
-    "build:debug": "tsc -p . && dev-tool run bundle && api-extractor run --local",
+    "build:debug": "tsc -p . && dev-tool run bundle && dev-tool run extract-api",
     "unit-test:node": "dev-tool run test:node-ts-input -- --timeout 1200000 --exclude 'test/**/browser/*.spec.ts' 'test/**/*.spec.ts'",
     "unit-test:browser": "dev-tool run test:browser"
   },

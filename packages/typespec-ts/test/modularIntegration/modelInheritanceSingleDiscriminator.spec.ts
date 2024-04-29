@@ -10,6 +10,7 @@ describe("SingleDiscriminatorClient Rest Client", () => {
 
   beforeEach(() => {
     client = new SingleDiscriminatorClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
   });

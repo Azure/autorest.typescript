@@ -8,20 +8,41 @@ namespace TypeScript.Test.SharedRoute;
 model Resource {
   id: string;
 }
+
+@error
+model Error {
+  code: int32;
+  message: string;
+}
+
+model NoContentResponse { 
+  @statusCode statusCode: 202; 
+  @body body: Resource; 
+}
+
+model OkResponse { 
+  @statusCode statusCode: 200;
+  @body body: Resource[]; 
+}
+
+
 @route("/sharedroute")
 interface SharedRouteOperations {
+
   /**
    * different query & header parameters
    */
 
   @sharedRoute
   @route("/query")
-  listByResourceGroup(...Resource, @query filter: "resourceGroup"): Resource[];
+  listBySubscription(...Resource, @header filter: "subscription"): NoContentResponse | Error;
+
 
   @sharedRoute
   @route("/query")
-  listBySubscription(...Resource, @header filter: "subscription"): Resource[];
+  listByResourceGroup(...Resource, @query filter: "resourceGroup"): OkResponse | Error;
 
+  
   /**
    * different request bodies
    */

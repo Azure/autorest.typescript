@@ -11,7 +11,7 @@ import {
   SchemaContext,
   ApiVersionInfo
 } from "@azure-tools/rlc-common";
-import { ignoreDiagnostics, Program, Type } from "@typespec/compiler";
+import { ignoreDiagnostics, Type } from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
@@ -24,8 +24,7 @@ import {
   getSchemaForType,
   getFormattedPropertyDoc,
   getBodyType,
-  getSerializeTypeName,
-  BINARY_AND_FILE_TYPE_UNION
+  getSerializeTypeName
 } from "../utils/modelUtils.js";
 
 import {
@@ -48,9 +47,9 @@ import {
 } from "../utils/mediaTypes.js";
 
 export function transformToParameterTypes(
-  importDetails: Imports,
   client: SdkClient,
   dpgContext: SdkContext,
+  importDetails: Imports,
   apiVersionInfo?: ApiVersionInfo
 ): OperationParameter[] {
   const program = dpgContext.program;
@@ -63,7 +62,7 @@ export function transformToParameterTypes(
     if (route.overloads && route.overloads?.length > 0) {
       continue;
     }
-    transformToParameterTypesForRoute(program, route);
+    transformToParameterTypesForRoute(route);
   }
   const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
@@ -77,17 +76,14 @@ export function transformToParameterTypes(
       if (route.overloads && route.overloads?.length > 0) {
         continue;
       }
-      transformToParameterTypesForRoute(program, route);
+      transformToParameterTypesForRoute(route);
     }
   }
 
   if (outputImportedSet.size > 0) {
     importDetails.parameter.importsSet = outputImportedSet;
   }
-  function transformToParameterTypesForRoute(
-    program: Program,
-    route: HttpOperation
-  ) {
+  function transformToParameterTypesForRoute(route: HttpOperation) {
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
       operationGroup: getOperationGroupName(dpgContext, route),
@@ -294,7 +290,6 @@ function transformRequestBody(
 
   return {
     isPartialBody: false,
-    needsFilePolyfil: isMultpartFileUpload(),
     body: [
       {
         properties: schema.properties,
@@ -303,26 +298,13 @@ function transformRequestBody(
         type,
         required: parameters?.bodyParameter?.optional === false,
         description: descriptions.join("\n\n"),
+        isMultipartBody:
+          hasMediaType(KnownMediaType.MultipartFormData, contentTypes) &&
+          contentTypes.length === 1,
         oriSchema: schema
       }
     ]
   };
-  function isMultpartFileUpload() {
-    const isMultipartForm =
-      hasMediaType(KnownMediaType.MultipartFormData, contentTypes) &&
-      contentTypes.length === 1;
-    let hasFileType = false;
-    if (schema.type === "object" && schema.properties) {
-      for (const p of Object.values(schema.properties)) {
-        if ((p as Schema).typeName?.includes(BINARY_AND_FILE_TYPE_UNION)) {
-          hasFileType = true;
-          break;
-        }
-      }
-    }
-
-    return isMultipartForm && hasFileType;
-  }
 }
 
 function getRequestBodyType(

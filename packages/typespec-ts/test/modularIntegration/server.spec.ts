@@ -7,7 +7,7 @@ describe("Single Server Path Client", () => {
   let client: SingleClient;
 
   beforeEach(() => {
-    client = new SingleClient("http://localhost:3000", {
+    client = new SingleClient("http://localhost:3002", {
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0
@@ -29,7 +29,7 @@ describe("Multiple Server Path Client", () => {
   let client: MultipleClient;
 
   beforeEach(() => {
-    client = new MultipleClient("http://localhost:3000", {
+    client = new MultipleClient("http://localhost:3002", {
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0
@@ -60,7 +60,7 @@ describe("NotVersioned Server Version Client", () => {
   let client: NotVersionedClient;
 
   beforeEach(() => {
-    client = new NotVersionedClient("http://localhost:3000", {
+    client = new NotVersionedClient("http://localhost:3002", {
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0
@@ -100,7 +100,7 @@ describe("Versioned Server Version Client", () => {
   let client: VersionedClient;
 
   beforeEach(() => {
-    client = new VersionedClient("http://localhost:3000", {
+    client = new VersionedClient("http://localhost:3002", {
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

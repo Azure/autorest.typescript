@@ -7,8 +7,7 @@ export interface AudioTranscriptionOptions {
    * The audio data to transcribe. This must be the binary content of a file in one of the supported media formats:
    *  flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, webm.
    *
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
+   * Value may contain any sequence of octets
    */
   file:
     | string
@@ -47,8 +46,7 @@ export interface AudioTranslationOptions {
    * The audio data to translate. This must be the binary content of a file in one of the supported media formats:
    *  flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, webm.
    *
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
+   * Value may contain any sequence of octets
    */
   file:
     | string
