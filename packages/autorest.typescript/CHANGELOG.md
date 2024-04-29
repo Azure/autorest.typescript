@@ -1,6 +1,6 @@
 ## 6.0.22 (2024-04-30)
 
-- [Feature] Generate types for new MFD design. Please refer to [#2455](https://github.com/Azure/autorest.typescript/pull/2455).
+- [Feature] Generate types for new multipart/form-data design in RLC. Please refer to [#2455](https://github.com/Azure/autorest.typescript/pull/2455).
 - [Feature] Remove orphan model detection. Please refer to [#2478](https://github.com/Azure/autorest.typescript/pull/2478).
 - [Feature] Support projected version in modular and RLC. Please refer to [#2472](https://github.com/Azure/autorest.typescript/pull/2472).
 - [Feature] Normalize enum name in RLC and modular. Please refer to [#2483](https://github.com/Azure/autorest.typescript/pull/2483).
