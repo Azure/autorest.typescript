@@ -16,7 +16,8 @@ model Error {
 }
 
 model NoContentResponse { 
-  @statusCode statusCode: 204; 
+  @statusCode statusCode: 202; 
+  @body body: Resource; 
 }
 
 model OkResponse { 

@@ -2,11 +2,12 @@
 // Licensed under the MIT license.
 
 import { HttpResponse } from "@azure-rest/core-client";
-import { ErrorModelOutput, ResourceOutput } from "./outputModels.js";
+import { ResourceOutput, ErrorModelOutput } from "./outputModels.js";
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface ListBySubscription204Response extends HttpResponse {
-  status: "204";
+/** The request has been accepted for processing, but processing has not yet completed. */
+export interface ListBySubscription202Response extends HttpResponse {
+  status: "202";
+  body: ResourceOutput;
 }
 
 export interface ListBySubscriptionDefaultResponse extends HttpResponse {

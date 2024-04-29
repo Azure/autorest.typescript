@@ -12,7 +12,7 @@ import {
   ProcessStringParameters,
 } from "./parameters.js";
 import {
-  ListBySubscription204Response,
+  ListBySubscription202Response,
   ListBySubscriptionDefaultResponse,
   ListByResourceGroup200Response,
   ListByResourceGroupDefaultResponse,
@@ -30,7 +30,7 @@ export interface ListBySubscription {
   post(
     options: ListBySubscriptionParameters,
   ): StreamableMethod<
-    ListBySubscription204Response | ListBySubscriptionDefaultResponse
+    ListBySubscription202Response | ListBySubscriptionDefaultResponse
   >;
   post(
     options: ListByResourceGroupParameters,
