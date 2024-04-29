@@ -1,6 +1,7 @@
 import { assert } from "chai";
 import {
   emitClientFactoryFromTypeSpec,
+  emitModelsFromTypeSpec,
   emitParameterFromTypeSpec
 } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
@@ -26,7 +27,13 @@ describe("Parameters.ts", () => {
             export type TestParameters = RequestParameters;
             `
         );
-        const models = await emitClientFactoryFromTypeSpec(tspContent, false, true, false, true);
+        const models = await emitClientFactoryFromTypeSpec(
+          tspContent,
+          false,
+          true,
+          false,
+          true
+        );
         assert.ok(models);
         await assertEqualContent(
           models!.content,
@@ -183,6 +190,110 @@ describe("Parameters.ts", () => {
             
             export type TestParameters = TestQueryParam & RequestParameters;
             `
+        );
+      });
+    });
+
+    describe("union and enum", () => {
+      it("should generate string union literal query param", async () => {
+        const tspContent = `
+        model CustomerQuery {
+          @query
+          "foo": "bar" | "baz";
+        }
+        op test(...CustomerQuery): string;
+        `;
+        const parameters = await emitParameterFromTypeSpec(tspContent);
+        assert.ok(parameters);
+        await assertEqualContent(
+          parameters?.content!,
+          `
+          import { RequestParameters } from "@azure-rest/core-client";
+
+          export interface TestQueryParamProperties {
+              "foo": "bar" | "baz";
+          }
+          
+          export interface TestQueryParam {
+              queryParameters: TestQueryParamProperties;
+          }
+          
+          export type TestParameters = TestQueryParam & RequestParameters;`
+        );
+      });
+
+      it("should import name for named union as query param", async () => {
+        const tspContent = `
+        union Foo {
+          "bar";
+          "baz";
+        }
+        model CustomerQuery {
+          @query
+          "foo": Foo;
+        }
+        op test(...CustomerQuery): string;
+        `;
+        const parameters = await emitParameterFromTypeSpec(tspContent);
+        assert.ok(parameters);
+        await assertEqualContent(
+          parameters?.content!,
+          `
+          import { RequestParameters } from "@azure-rest/core-client";
+          import { Foo } from "./models.js";
+
+          export interface TestQueryParamProperties {
+              "foo": Foo;
+          }
+          
+          export interface TestQueryParam {
+              queryParameters: TestQueryParamProperties;
+          }
+          
+          export type TestParameters = TestQueryParam & RequestParameters;`
+        );
+        const models = await emitModelsFromTypeSpec(tspContent);
+        console.log(models);
+        await assertEqualContent(
+          models?.inputModelFile?.content!,
+          `/** Alias for Foo */\nexport type Foo = "bar" | "baz";`
+        );
+      });
+
+      it("should import name for enum as query param", async () => {
+        const tspContent = `
+        enum Foo {
+          "bar",
+          "baz",
+        }
+        model CustomerQuery {
+          @query
+          "foo": Foo;
+        }
+        op test(...CustomerQuery): string;
+        `;
+        const parameters = await emitParameterFromTypeSpec(tspContent);
+        assert.ok(parameters);
+        await assertEqualContent(
+          parameters?.content!,
+          `
+          import { RequestParameters } from "@azure-rest/core-client";
+          import { Foo } from "./models.js";
+
+          export interface TestQueryParamProperties {
+              "foo": Foo;
+          }
+          
+          export interface TestQueryParam {
+              queryParameters: TestQueryParamProperties;
+          }
+          
+          export type TestParameters = TestQueryParam & RequestParameters;`
+        );
+        const models = await emitModelsFromTypeSpec(tspContent);
+        await assertEqualContent(
+          models?.inputModelFile?.content!,
+          `/** Alias for Foo */\nexport type Foo = "bar" | "baz";`
         );
       });
     });
