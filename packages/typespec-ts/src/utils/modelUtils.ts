@@ -1511,7 +1511,7 @@ export function predictDefaultValue(
   if (!serviceNamespace) {
     return;
   }
-  const defaultApiVersion = getDefaultApiVersionString(program, dpgContext);
+  const defaultApiVersion = getDefaultApiVersionString(dpgContext);
   if (param && isApiVersion(dpgContext, param) && defaultApiVersion) {
     return defaultApiVersion;
   }
@@ -1556,9 +1556,9 @@ export function getDefaultService(program: Program): Service | undefined {
  * Return the default api version from the program; undefined if no default
  */
 export function getDefaultApiVersionString(
-  program: Program,
   dpgContext: SdkContext
 ): string | undefined {
+  const program = dpgContext.program;
   return getDefaultService(program)
     ? getDefaultApiVersion(dpgContext, getDefaultService(program)!.type)?.value
     : undefined;

@@ -335,11 +335,11 @@ export async function emitModularModelsFromTypeSpec(
     ) {
       if (needOptions) {
         return buildModelsOptions(
-          modularCodeModel,
-          modularCodeModel.clients[0]
+          modularCodeModel.clients[0],
+          modularCodeModel
         );
       }
-      return buildModels(modularCodeModel, modularCodeModel.clients[0]);
+      return buildModels(modularCodeModel.clients[0], modularCodeModel);
     }
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
@@ -426,9 +426,9 @@ export async function emitModularOperationsFromTypeSpec(
       modularCodeModel.clients[0]
     ) {
       const res = buildOperationFiles(
+        modularCodeModel.clients[0],
         dpgContext,
         modularCodeModel,
-        modularCodeModel.clients[0],
         false
       );
       if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
@@ -480,9 +480,9 @@ export async function emitModularClientContextFromTypeSpec(
       modularCodeModel.clients[0]
     ) {
       return buildClientContext(
+        modularCodeModel.clients[0],
         dpgContext,
-        modularCodeModel,
-        modularCodeModel.clients[0]
+        modularCodeModel
       );
     }
   }
@@ -530,9 +530,9 @@ export async function emitModularClientFromTypeSpec(
       modularCodeModel.clients[0]
     ) {
       return buildClassicalClient(
+        modularCodeModel.clients[0],
         dpgContext,
-        modularCodeModel,
-        modularCodeModel.clients[0]
+        modularCodeModel
       );
     }
   }

@@ -306,10 +306,10 @@ export function extractOperationLroDetail(
 }
 
 export function hasPollingOperations(
-  program: Program,
   client: SdkClient,
   dpgContext: SdkContext
 ) {
+  const program = dpgContext.program;
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
@@ -351,11 +351,8 @@ export function isPagingOperation(program: Program, operation: HttpOperation) {
   return false;
 }
 
-export function hasPagingOperations(
-  program: Program,
-  client: SdkClient,
-  dpgContext: SdkContext
-) {
+export function hasPagingOperations(client: SdkClient, dpgContext: SdkContext) {
+  const program = dpgContext.program;
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
