@@ -22,11 +22,7 @@ export function transformHelperFunctionDetails(
   flavor?: PackageFlavor
 ): HelperFunctionDetails {
   const program = dpgContext.program;
-  const serializeInfo = extractSpecialSerializeInfo(
-    program,
-    client,
-    dpgContext
-  );
+  const serializeInfo = extractSpecialSerializeInfo(client, dpgContext);
   // Disbale paging and long running for non-Azure clients.
   if (flavor !== "azure") {
     return {
@@ -38,9 +34,9 @@ export function transformHelperFunctionDetails(
 
   // Extract paged metadata from Azure.Core.Page
   const annotationDetails = {
-    hasLongRunning: hasPollingOperations(program, client, dpgContext)
+    hasLongRunning: hasPollingOperations(client, dpgContext)
   };
-  const details = extractPageDetailFromCore(program, client, dpgContext);
+  const details = extractPageDetailFromCore(client, dpgContext);
   if (details) {
     return {
       ...details,
@@ -110,12 +106,9 @@ export function getPageable(
   return program.stateMap(pageableOperationsKey).get(entity);
 }
 
-function extractPageDetailFromCore(
-  program: Program,
-  client: SdkClient,
-  dpgContext: SdkContext
-) {
-  if (!hasPagingOperations(program, client, dpgContext)) {
+function extractPageDetailFromCore(client: SdkClient, dpgContext: SdkContext) {
+  const program = dpgContext.program;
+  if (!hasPagingOperations(client, dpgContext)) {
     return;
   }
   const nextLinks = new Set<string>();
@@ -179,10 +172,10 @@ function extractPageDetailFromCore(
 }
 
 function extractSpecialSerializeInfo(
-  program: Program,
   client: SdkClient,
   dpgContext: SdkContext
 ) {
+  const program = dpgContext.program;
   let hasMultiCollection = false;
   let hasPipeCollection = false;
   let hasTsvCollection = false;

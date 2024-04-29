@@ -2,36 +2,34 @@
 // Licensed under the MIT license.
 
 import {
-  GetJob200Response,
-  GetJobDefaultResponse,
-  CreateJob202Response,
-  CreateJobLogicalResponse,
-  CreateJobDefaultResponse,
+  ListBySubscription202Response,
+  ListBySubscriptionDefaultResponse,
+  ListByResourceGroup200Response,
+  ListByResourceGroupDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
-  "GET /radiology-insights/jobs/{id}": ["200"],
-  "GET /radiology-insights/jobs": ["200", "202"],
-  "POST /radiology-insights/jobs": ["202"],
+  "POST /sharedroute/query": ["202", "200"],
+  "POST /sharedroute/request-body": ["204"],
+  "POST /sharedroute/response-body": ["200"],
+  "POST /sharedroute/request-response": ["200"],
 };
 
 export function isUnexpected(
-  response: GetJob200Response | GetJobDefaultResponse,
-): response is GetJobDefaultResponse;
+  response: ListBySubscription202Response | ListBySubscriptionDefaultResponse,
+): response is ListBySubscriptionDefaultResponse;
+export function isUnexpected(
+  response: ListByResourceGroup200Response | ListByResourceGroupDefaultResponse,
+): response is ListByResourceGroupDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateJob202Response
-    | CreateJobLogicalResponse
-    | CreateJobDefaultResponse,
-): response is CreateJobDefaultResponse;
-export function isUnexpected(
-  response:
-    | GetJob200Response
-    | GetJobDefaultResponse
-    | CreateJob202Response
-    | CreateJobLogicalResponse
-    | CreateJobDefaultResponse,
-): response is GetJobDefaultResponse | CreateJobDefaultResponse {
+    | ListBySubscription202Response
+    | ListBySubscriptionDefaultResponse
+    | ListByResourceGroup200Response
+    | ListByResourceGroupDefaultResponse,
+): response is
+  | ListBySubscriptionDefaultResponse
+  | ListByResourceGroupDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

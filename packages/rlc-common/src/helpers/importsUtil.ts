@@ -82,6 +82,10 @@ export function initInternalImports(): Imports {
     rlcClientFactory: {
       type: "rlcClientFactory",
       importsSet: new Set<string>()
+    },
+    rlcClientDefinition: {
+      type: "rlcClientDefinition",
+      importsSet: new Set<string>()
     }
   } as Imports;
 }

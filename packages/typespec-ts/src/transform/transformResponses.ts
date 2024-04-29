@@ -38,9 +38,9 @@ import {
 import { SdkContext } from "../utils/interfaces.js";
 
 export function transformToResponseTypes(
-  importDetails: Imports,
   client: SdkClient,
-  dpgContext: SdkContext
+  dpgContext: SdkContext,
+  importDetails: Imports
 ): OperationResponse[] {
   const program = dpgContext.program;
   const rlcResponses: OperationResponse[] = [];

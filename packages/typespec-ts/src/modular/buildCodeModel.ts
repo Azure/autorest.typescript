@@ -529,7 +529,7 @@ function emitParameter(
       clientDefaultValue = defaultApiVersion.value;
     }
     if (!clientDefaultValue) {
-      clientDefaultValue = getDefaultApiVersionString(context.program, context);
+      clientDefaultValue = getDefaultApiVersionString(context);
     }
     if (clientDefaultValue !== undefined) {
       paramMap.optional = true;

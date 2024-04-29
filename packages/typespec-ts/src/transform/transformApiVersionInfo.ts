@@ -26,14 +26,13 @@ export function transformApiVersionInfo(
   dpgContext: SdkContext,
   urlInfo?: UrlInfo
 ): ApiVersionInfo | undefined {
-  const program = dpgContext.program;
   const queryVersionDetail = getOperationApiVersion(client, dpgContext);
   const pathVersionDetail = extractPathApiVersion(urlInfo);
   const isCrossedVersion =
     pathVersionDetail?.isCrossedVersion || queryVersionDetail?.isCrossedVersion;
   const defaultValue =
     (pathVersionDetail || queryVersionDetail) && !isCrossedVersion
-      ? getDefaultApiVersionString(program, dpgContext) ??
+      ? getDefaultApiVersionString(dpgContext) ??
         pathVersionDetail?.defaultValue ??
         queryVersionDetail?.defaultValue
       : undefined;

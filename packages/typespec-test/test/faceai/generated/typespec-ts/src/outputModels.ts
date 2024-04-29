@@ -2,15 +2,17 @@
 // Licensed under the MIT license.
 
 /** Long running operation resource for person directory. */
-export interface FaceOperationStatusOutput {
+export interface OperationResultOutput {
   /** Operation ID of the operation. */
   readonly operationId: string;
   /** Current status of the operation. */
-  status: FaceOperationStateOutput;
+  status: OperationStatusOutput;
   /** Date and time the operation was created. */
-  createdDateTime: string;
+  createdTime: string;
+  /** Date and time the operation was last updated. */
+  lastActionTime?: string;
   /** Date and time the operation was finished. */
-  finishedDateTime?: string;
+  finishedTime?: string;
   /** Message for the operation. */
   message?: string;
 }
@@ -333,10 +335,10 @@ export interface LargeFaceListOutput {
   readonly largeFaceListId: string;
 }
 
-/** Training status of a container */
-export interface TrainingStatusOutput {
+/** Training result of a container */
+export interface TrainingResultOutput {
   /** Training status of the container. */
-  status: FaceOperationStateOutput;
+  status: OperationStatusOutput;
   /** A combined UTC date and time string that describes the created time of the person group, large person group or large face list. */
   createdDateTime: string;
   /** A combined UTC date and time string that describes the last modify time of the person group, large person group or large face list, could be null value when the group is not successfully trained. */
@@ -633,8 +635,8 @@ export interface LivenessWithVerifySessionOutput {
   result?: LivenessSessionAuditEntryOutput;
 }
 
-/** Alias for FaceOperationStateOutput */
-export type FaceOperationStateOutput =
+/** Alias for OperationStatusOutput */
+export type OperationStatusOutput =
   | string
   | "notStarted"
   | "running"
