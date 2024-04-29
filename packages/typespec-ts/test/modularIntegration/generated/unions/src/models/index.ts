@@ -7,8 +7,8 @@ export {
   MixedLiteralsCases,
   StringAndArrayCases,
   EnumsOnlyCases,
-  LR,
-  UD,
+  Lr,
+  Ud,
   Dog,
   StringExtensibleNamedUnion,
 } from "./models.js";
