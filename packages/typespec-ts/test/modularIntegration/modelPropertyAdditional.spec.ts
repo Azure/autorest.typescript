@@ -5,6 +5,7 @@ describe.only("ModelPropertyAdditional Client", () => {
 
   beforeEach(() => {
     client = new AdditionalPropertiesClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0
