@@ -40,9 +40,9 @@ import { SdkContext } from "../utils/interfaces.js";
 import { SchemaContext } from "@azure-tools/rlc-common";
 
 export function transformPaths(
-  importDetails: Imports,
   client: SdkClient,
-  dpgContext: SdkContext
+  dpgContext: SdkContext,
+  importDetails: Imports
 ): Paths {
   const program = dpgContext.program;
   const pathParamsImportedSet = new Set<string>();

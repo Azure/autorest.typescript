@@ -63,17 +63,17 @@ export async function transformRLCModel(
   );
   const importSet = initInternalImports();
   const urlInfo = transformUrlInfo(client, dpgContext, importSet);
-  const paths: Paths = transformPaths(importSet, client, dpgContext);
-  const schemas: Schema[] = transformSchemas(program, client, dpgContext);
+  const paths: Paths = transformPaths(client, dpgContext, importSet);
+  const schemas: Schema[] = transformSchemas(client, dpgContext);
   const responses: OperationResponse[] = transformToResponseTypes(
-    importSet,
-    client,
-    dpgContext
-  );
-  const parameters: OperationParameter[] = transformToParameterTypes(
-    importSet,
     client,
     dpgContext,
+    importSet
+  );
+  const parameters: OperationParameter[] = transformToParameterTypes(
+    client,
+    dpgContext,
+    importSet,
     urlInfo?.apiVersionInfo
   );
   const helperDetails = transformHelperFunctionDetails(
@@ -84,7 +84,7 @@ export async function transformRLCModel(
   // Enrich client-level annotation detail
   helperDetails.clientLroOverload = getClientLroOverload(paths);
 
-  const telemetryOptions = transformTelemetryInfo(dpgContext, client);
+  const telemetryOptions = transformTelemetryInfo(client, dpgContext);
   const model: RLCModel = {
     srcPath,
     libraryName,

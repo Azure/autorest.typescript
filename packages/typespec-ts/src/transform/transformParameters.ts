@@ -47,9 +47,9 @@ import {
 } from "../utils/mediaTypes.js";
 
 export function transformToParameterTypes(
-  importDetails: Imports,
   client: SdkClient,
   dpgContext: SdkContext,
+  importDetails: Imports,
   apiVersionInfo?: ApiVersionInfo
 ): OperationParameter[] {
   const program = dpgContext.program;

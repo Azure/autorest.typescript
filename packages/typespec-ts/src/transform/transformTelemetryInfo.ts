@@ -10,8 +10,8 @@ import { getCustomRequestHeaderNameForOperation } from "../utils/operationUtil.j
 import { getHttpOperation } from "@typespec/http";
 
 export function transformTelemetryInfo(
-  dpgContext: SdkContext,
-  client: SdkClient
+  client: SdkClient,
+  dpgContext: SdkContext
 ): TelemetryInfo | undefined {
   const customRequestIdHeaderName = getCustomRequestHeaderNameForClient(
     dpgContext,
