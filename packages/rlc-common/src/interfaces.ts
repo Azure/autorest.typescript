@@ -30,6 +30,7 @@ export type ImportType =
   | "rlcIndex"
   | "modularModel"
   | "rlcClientFactory"
+  | "rlcClientDefinition"
   /**common third party imports */
   | "restClient"
   | "coreAuth"
@@ -135,7 +136,8 @@ export interface PagingDetails {
 }
 
 export type Methods = {
-  [key: string]: [OperationMethod];
+  // could be more than one method if overloading
+  [key: string]: OperationMethod[];
 };
 
 export interface ResponseTypes {

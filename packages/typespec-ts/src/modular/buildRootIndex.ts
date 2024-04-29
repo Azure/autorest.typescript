@@ -4,8 +4,8 @@ import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import { normalizeName, NameType } from "@azure-tools/rlc-common";
 
 export function buildRootIndex(
-  codeModel: ModularCodeModel,
   client: Client,
+  codeModel: ModularCodeModel,
   rootIndexFile: SourceFile
 ) {
   const { project } = codeModel;
@@ -101,8 +101,8 @@ function exportModules(
 }
 
 export function buildSubClientIndexFile(
-  codeModel: ModularCodeModel,
-  client: Client
+  client: Client,
+  codeModel: ModularCodeModel
 ) {
   const subfolder = client.subfolder ?? "";
   const srcPath = codeModel.modularOptions.sourceRoot;

@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import {
-  GetFaceOperationStatusParameters,
+  GetOperationResultParameters,
   DetectFromUrlParameters,
   DetectParameters,
   FindSimilarParameters,
@@ -84,9 +84,11 @@ import {
   DeletePersonFaceParameters,
   GetPersonFaceParameters,
   UpdatePersonFaceParameters,
+  CreateDynamicPersonGroupWithPersonParameters,
   CreateDynamicPersonGroupParameters,
   DeleteDynamicPersonGroupParameters,
   GetDynamicPersonGroupParameters,
+  UpdateDynamicPersonGroupWithPersonChangesParameters,
   UpdateDynamicPersonGroupParameters,
   GetDynamicPersonGroupsParameters,
   GetDynamicPersonGroupPersonsParameters,
@@ -103,8 +105,8 @@ import {
   GetLivenessWithVerifySessionAuditEntriesParameters,
 } from "./parameters.js";
 import {
-  GetFaceOperationStatus200Response,
-  GetFaceOperationStatusDefaultResponse,
+  GetOperationResult200Response,
+  GetOperationResultDefaultResponse,
   DetectFromUrl200Response,
   DetectFromUrlDefaultResponse,
   Detect200Response,
@@ -267,15 +269,17 @@ import {
   GetPersonFaceDefaultResponse,
   UpdatePersonFace200Response,
   UpdatePersonFaceDefaultResponse,
+  CreateDynamicPersonGroupWithPerson202Response,
+  CreateDynamicPersonGroupWithPersonDefaultResponse,
   CreateDynamicPersonGroup200Response,
-  CreateDynamicPersonGroup202Response,
   CreateDynamicPersonGroupDefaultResponse,
   DeleteDynamicPersonGroup202Response,
   DeleteDynamicPersonGroupDefaultResponse,
   GetDynamicPersonGroup200Response,
   GetDynamicPersonGroupDefaultResponse,
+  UpdateDynamicPersonGroupWithPersonChanges202Response,
+  UpdateDynamicPersonGroupWithPersonChangesDefaultResponse,
   UpdateDynamicPersonGroup200Response,
-  UpdateDynamicPersonGroup202Response,
   UpdateDynamicPersonGroupDefaultResponse,
   GetDynamicPersonGroups200Response,
   GetDynamicPersonGroupsDefaultResponse,
@@ -304,14 +308,15 @@ import {
   GetLivenessWithVerifySessionAuditEntries200Response,
   GetLivenessWithVerifySessionAuditEntriesDefaultResponse,
 } from "./responses.js";
+import { RecognitionModel } from "./models.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface GetFaceOperationStatus {
+export interface GetOperationResult {
   /** Get status of a long running operation. */
   get(
-    options?: GetFaceOperationStatusParameters,
+    options?: GetOperationResultParameters,
   ): StreamableMethod<
-    GetFaceOperationStatus200Response | GetFaceOperationStatusDefaultResponse
+    GetOperationResult200Response | GetOperationResultDefaultResponse
   >;
 }
 
@@ -1371,7 +1376,22 @@ export interface DeletePersonFace {
   >;
 }
 
-export interface CreateDynamicPersonGroup {
+export interface CreateDynamicPersonGroupWithPerson {
+  /**
+   * A Dynamic Person Group is a container that references Person Directory "Create Person". After creation, use Person Directory "Update Dynamic Person Group" to add/remove persons to/from the Dynamic Person Group.
+   *
+   * Dynamic Person Group and user data will be stored on server until Person Directory "Delete Dynamic Person Group" is called. Use "Identify From Dynamic Person Group" with the dynamicPersonGroupId parameter to identify against persons.
+   *
+   * No image will be stored. Only the person's extracted face feature(s) and userData will be stored on server until Person Directory "Delete Person" or "Delete Person Face" is called.
+   *
+   * 'recognitionModel' does not need to be specified with Dynamic Person Groups. Dynamic Person Groups are references to Person Directory "Create Person" and therefore work with most all 'recognitionModels'. The faceId's provided during "Identify" determine the 'recognitionModel' used.
+   */
+  put(
+    options?: CreateDynamicPersonGroupWithPersonParameters,
+  ): StreamableMethod<
+    | CreateDynamicPersonGroupWithPerson202Response
+    | CreateDynamicPersonGroupWithPersonDefaultResponse
+  >;
   /**
    * A Dynamic Person Group is a container that references Person Directory "Create Person". After creation, use Person Directory "Update Dynamic Person Group" to add/remove persons to/from the Dynamic Person Group.
    *
@@ -1385,7 +1405,6 @@ export interface CreateDynamicPersonGroup {
     options?: CreateDynamicPersonGroupParameters,
   ): StreamableMethod<
     | CreateDynamicPersonGroup200Response
-    | CreateDynamicPersonGroup202Response
     | CreateDynamicPersonGroupDefaultResponse
   >;
   /** Deleting this Dynamic Person Group only delete the references to persons data. To delete actual person see Person Directory "Delete Person". */
@@ -1403,10 +1422,16 @@ export interface CreateDynamicPersonGroup {
   >;
   /** The properties keep unchanged if they are not in request body. */
   patch(
+    options?: UpdateDynamicPersonGroupWithPersonChangesParameters,
+  ): StreamableMethod<
+    | UpdateDynamicPersonGroupWithPersonChanges202Response
+    | UpdateDynamicPersonGroupWithPersonChangesDefaultResponse
+  >;
+  /** The properties keep unchanged if they are not in request body. */
+  patch(
     options?: UpdateDynamicPersonGroupParameters,
   ): StreamableMethod<
     | UpdateDynamicPersonGroup200Response
-    | UpdateDynamicPersonGroup202Response
     | UpdateDynamicPersonGroupDefaultResponse
   >;
 }
@@ -1611,10 +1636,7 @@ export interface GetLivenessWithVerifySessionAuditEntries {
 
 export interface Routes {
   /** Resource for '/operations/\{operationId\}' has methods for the following verbs: get */
-  (
-    path: "/operations/{operationId}",
-    operationId: string,
-  ): GetFaceOperationStatus;
+  (path: "/operations/{operationId}", operationId: string): GetOperationResult;
   /** Resource for '/detect' has methods for the following verbs: post */
   (path: "/detect"): DetectFromUrl;
   /** Resource for '/findsimilars' has methods for the following verbs: post */
@@ -1763,20 +1785,20 @@ export interface Routes {
   (
     path: "/persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces",
     personId: string,
-    recognitionModel: object,
+    recognitionModel: RecognitionModel,
   ): AddPersonFace;
   /** Resource for '/persons/\{personId\}/recognitionModels/\{recognitionModel\}/persistedfaces/\{persistedFaceId\}' has methods for the following verbs: delete, get, patch */
   (
     path: "/persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces/{persistedFaceId}",
     personId: string,
-    recognitionModel: object,
+    recognitionModel: RecognitionModel,
     persistedFaceId: string,
   ): DeletePersonFace;
   /** Resource for '/dynamicpersongroups/\{dynamicPersonGroupId\}' has methods for the following verbs: put, delete, get, patch */
   (
     path: "/dynamicpersongroups/{dynamicPersonGroupId}",
     dynamicPersonGroupId: string,
-  ): CreateDynamicPersonGroup;
+  ): CreateDynamicPersonGroupWithPerson;
   /** Resource for '/dynamicpersongroups' has methods for the following verbs: get */
   (path: "/dynamicpersongroups"): GetDynamicPersonGroups;
   /** Resource for '/dynamicpersongroups/\{dynamicPersonGroupId\}/persons' has methods for the following verbs: get */

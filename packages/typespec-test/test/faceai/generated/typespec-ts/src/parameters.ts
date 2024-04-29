@@ -11,7 +11,7 @@ import {
   LivenessSessionWithVerifyImageCreationContent,
 } from "./models.js";
 
-export type GetFaceOperationStatusParameters = RequestParameters;
+export type GetOperationResultParameters = RequestParameters;
 
 export interface DetectFromUrlBodyParam {
   body?: { url: string };
@@ -233,7 +233,7 @@ export interface GetFaceListQueryParam {
 export type GetFaceListParameters = GetFaceListQueryParam & RequestParameters;
 
 export interface UpdateFaceListBodyParam {
-  body?: { name: string; userData?: string };
+  body?: { name?: string; userData?: string };
 }
 
 export type UpdateFaceListParameters = UpdateFaceListBodyParam &
@@ -334,7 +334,7 @@ export type GetLargeFaceListParameters = GetLargeFaceListQueryParam &
   RequestParameters;
 
 export interface UpdateLargeFaceListBodyParam {
-  body?: { name: string; userData?: string };
+  body?: { name?: string; userData?: string };
 }
 
 export type UpdateLargeFaceListParameters = UpdateLargeFaceListBodyParam &
@@ -464,7 +464,7 @@ export type GetPersonGroupParameters = GetPersonGroupQueryParam &
   RequestParameters;
 
 export interface UpdatePersonGroupBodyParam {
-  body?: { name: string; userData?: string };
+  body?: { name?: string; userData?: string };
 }
 
 export type UpdatePersonGroupParameters = UpdatePersonGroupBodyParam &
@@ -498,7 +498,7 @@ export type DeletePersonGroupPersonParameters = RequestParameters;
 export type GetPersonGroupPersonParameters = RequestParameters;
 
 export interface UpdatePersonGroupPersonBodyParam {
-  body?: { name: string; userData?: string };
+  body?: { name?: string; userData?: string };
 }
 
 export type UpdatePersonGroupPersonParameters =
@@ -611,7 +611,7 @@ export type GetLargePersonGroupParameters = GetLargePersonGroupQueryParam &
   RequestParameters;
 
 export interface UpdateLargePersonGroupBodyParam {
-  body?: { name: string; userData?: string };
+  body?: { name?: string; userData?: string };
 }
 
 export type UpdateLargePersonGroupParameters = UpdateLargePersonGroupBodyParam &
@@ -645,7 +645,7 @@ export type DeleteLargePersonGroupPersonParameters = RequestParameters;
 export type GetLargePersonGroupPersonParameters = RequestParameters;
 
 export interface UpdateLargePersonGroupPersonBodyParam {
-  body?: { name: string; userData?: string };
+  body?: { name?: string; userData?: string };
 }
 
 export type UpdateLargePersonGroupPersonParameters =
@@ -742,7 +742,7 @@ export type DeletePersonParameters = RequestParameters;
 export type GetPersonParameters = RequestParameters;
 
 export interface UpdatePersonBodyParam {
-  body?: { name: string; userData?: string };
+  body?: { name?: string; userData?: string };
 }
 
 export type UpdatePersonParameters = UpdatePersonBodyParam & RequestParameters;
@@ -841,8 +841,15 @@ export type UpdatePersonFaceParameters = UpdatePersonFaceBodyParam &
   RequestParameters;
 export type GetPersonFacesParameters = RequestParameters;
 
+export interface CreateDynamicPersonGroupWithPersonBodyParam {
+  body?: { name: string; userData?: string; addPersonIds: string[] };
+}
+
+export type CreateDynamicPersonGroupWithPersonParameters =
+  CreateDynamicPersonGroupWithPersonBodyParam & RequestParameters;
+
 export interface CreateDynamicPersonGroupBodyParam {
-  body?: { addPersonIds?: string[]; name: string; userData?: string };
+  body?: { name: string; userData?: string };
 }
 
 export type CreateDynamicPersonGroupParameters =
@@ -850,13 +857,20 @@ export type CreateDynamicPersonGroupParameters =
 export type DeleteDynamicPersonGroupParameters = RequestParameters;
 export type GetDynamicPersonGroupParameters = RequestParameters;
 
-export interface UpdateDynamicPersonGroupBodyParam {
+export interface UpdateDynamicPersonGroupWithPersonChangesBodyParam {
   body?: {
+    name?: string;
+    userData?: string;
     addPersonIds?: string[];
     removePersonIds?: string[];
-    name: string;
-    userData?: string;
   };
+}
+
+export type UpdateDynamicPersonGroupWithPersonChangesParameters =
+  UpdateDynamicPersonGroupWithPersonChangesBodyParam & RequestParameters;
+
+export interface UpdateDynamicPersonGroupBodyParam {
+  body?: { name?: string; userData?: string };
 }
 
 export type UpdateDynamicPersonGroupParameters =

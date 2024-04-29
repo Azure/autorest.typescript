@@ -12,10 +12,10 @@ import {
 const responseMap: Record<string, string[]> = {
   "GET /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs/{jobId}":
     ["200"],
-  "POST /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs":
-    ["202"],
   "GET /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs":
     ["200", "202"],
+  "POST /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs":
+    ["202"],
 };
 
 export function isUnexpected(

@@ -7,7 +7,7 @@ import {
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import { SchemaContext } from "@azure-tools/rlc-common";
-import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
+import { ignoreDiagnostics, Model, Type } from "@typespec/compiler";
 import { getHttpOperation, getServers, HttpOperation } from "@typespec/http";
 import {
   getSchemaForType,
@@ -20,11 +20,8 @@ import {
 import { SdkContext } from "../utils/interfaces.js";
 import { KnownMediaType, extractMediaTypes } from "../utils/mediaTypes.js";
 
-export function transformSchemas(
-  program: Program,
-  client: SdkClient,
-  dpgContext: SdkContext
-) {
+export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
+  const program = dpgContext.program;
   const schemas: Map<string, SchemaContext[]> = new Map<
     string,
     SchemaContext[]

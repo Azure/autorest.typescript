@@ -2,25 +2,34 @@
 // Licensed under the MIT license.
 
 import {
-  GetFaceOperationStatus200Response,
-  GetFaceOperationStatusDefaultResponse,
+  GetOperationResult200Response,
+  GetOperationResultDefaultResponse,
   DetectFromUrl200Response,
-  Detect200Response,
   DetectFromUrlDefaultResponse,
+  Detect200Response,
+  DetectDefaultResponse,
   FindSimilar200Response,
-  FindSimilarFromFaceList200Response,
-  FindSimilarFromLargeFaceList200Response,
   FindSimilarDefaultResponse,
+  FindSimilarFromFaceList200Response,
+  FindSimilarFromFaceListDefaultResponse,
+  FindSimilarFromLargeFaceList200Response,
+  FindSimilarFromLargeFaceListDefaultResponse,
   IdentifyFromPersonGroup200Response,
-  IdentifyFromLargePersonGroup200Response,
-  IdentifyFromPersonDirectory200Response,
-  IdentifyFromDynamicPersonGroup200Response,
   IdentifyFromPersonGroupDefaultResponse,
+  IdentifyFromLargePersonGroup200Response,
+  IdentifyFromLargePersonGroupDefaultResponse,
+  IdentifyFromPersonDirectory200Response,
+  IdentifyFromPersonDirectoryDefaultResponse,
+  IdentifyFromDynamicPersonGroup200Response,
+  IdentifyFromDynamicPersonGroupDefaultResponse,
   VerifyFaceToFace200Response,
-  VerifyFromPersonGroup200Response,
-  VerifyFromLargePersonGroup200Response,
-  VerifyFromPersonDirectory200Response,
   VerifyFaceToFaceDefaultResponse,
+  VerifyFromPersonGroup200Response,
+  VerifyFromPersonGroupDefaultResponse,
+  VerifyFromLargePersonGroup200Response,
+  VerifyFromLargePersonGroupDefaultResponse,
+  VerifyFromPersonDirectory200Response,
+  VerifyFromPersonDirectoryDefaultResponse,
   Group200Response,
   GroupDefaultResponse,
   CreateFaceList200Response,
@@ -34,8 +43,9 @@ import {
   GetFaceLists200Response,
   GetFaceListsDefaultResponse,
   AddFaceListFaceFromUrl200Response,
-  AddFaceListFace200Response,
   AddFaceListFaceFromUrlDefaultResponse,
+  AddFaceListFace200Response,
+  AddFaceListFaceDefaultResponse,
   DeleteFaceListFace200Response,
   DeleteFaceListFaceDefaultResponse,
   CreateLargeFaceList200Response,
@@ -54,8 +64,9 @@ import {
   TrainLargeFaceListLogicalResponse,
   TrainLargeFaceListDefaultResponse,
   AddLargeFaceListFaceFromUrl200Response,
-  AddLargeFaceListFace200Response,
   AddLargeFaceListFaceFromUrlDefaultResponse,
+  AddLargeFaceListFace200Response,
+  AddLargeFaceListFaceDefaultResponse,
   GetLargeFaceListFaces200Response,
   GetLargeFaceListFacesDefaultResponse,
   DeleteLargeFaceListFace200Response,
@@ -90,8 +101,9 @@ import {
   UpdatePersonGroupPerson200Response,
   UpdatePersonGroupPersonDefaultResponse,
   AddPersonGroupPersonFaceFromUrl200Response,
-  AddPersonGroupPersonFace200Response,
   AddPersonGroupPersonFaceFromUrlDefaultResponse,
+  AddPersonGroupPersonFace200Response,
+  AddPersonGroupPersonFaceDefaultResponse,
   DeletePersonGroupPersonFace200Response,
   DeletePersonGroupPersonFaceDefaultResponse,
   GetPersonGroupPersonFace200Response,
@@ -124,8 +136,9 @@ import {
   UpdateLargePersonGroupPerson200Response,
   UpdateLargePersonGroupPersonDefaultResponse,
   AddLargePersonGroupPersonFaceFromUrl200Response,
-  AddLargePersonGroupPersonFace200Response,
   AddLargePersonGroupPersonFaceFromUrlDefaultResponse,
+  AddLargePersonGroupPersonFace200Response,
+  AddLargePersonGroupPersonFaceDefaultResponse,
   DeleteLargePersonGroupPersonFace200Response,
   DeleteLargePersonGroupPersonFaceDefaultResponse,
   GetLargePersonGroupPersonFace200Response,
@@ -133,6 +146,7 @@ import {
   UpdateLargePersonGroupPersonFace200Response,
   UpdateLargePersonGroupPersonFaceDefaultResponse,
   CreatePerson202Response,
+  CreatePersonLogicalResponse,
   CreatePersonDefaultResponse,
   GetPersons200Response,
   GetPersonsDefaultResponse,
@@ -146,8 +160,11 @@ import {
   GetDynamicPersonGroupReferences200Response,
   GetDynamicPersonGroupReferencesDefaultResponse,
   AddPersonFace202Response,
-  AddPersonFaceFromUrl202Response,
+  AddPersonFaceLogicalResponse,
   AddPersonFaceDefaultResponse,
+  AddPersonFaceFromUrl202Response,
+  AddPersonFaceFromUrlLogicalResponse,
+  AddPersonFaceFromUrlDefaultResponse,
   GetPersonFaces200Response,
   GetPersonFacesDefaultResponse,
   DeletePersonFace202Response,
@@ -157,16 +174,20 @@ import {
   GetPersonFaceDefaultResponse,
   UpdatePersonFace200Response,
   UpdatePersonFaceDefaultResponse,
+  CreateDynamicPersonGroupWithPerson202Response,
+  CreateDynamicPersonGroupWithPersonLogicalResponse,
+  CreateDynamicPersonGroupWithPersonDefaultResponse,
   CreateDynamicPersonGroup200Response,
-  CreateDynamicPersonGroup202Response,
   CreateDynamicPersonGroupDefaultResponse,
   DeleteDynamicPersonGroup202Response,
   DeleteDynamicPersonGroupLogicalResponse,
   DeleteDynamicPersonGroupDefaultResponse,
   GetDynamicPersonGroup200Response,
   GetDynamicPersonGroupDefaultResponse,
+  UpdateDynamicPersonGroupWithPersonChanges202Response,
+  UpdateDynamicPersonGroupWithPersonChangesLogicalResponse,
+  UpdateDynamicPersonGroupWithPersonChangesDefaultResponse,
   UpdateDynamicPersonGroup200Response,
-  UpdateDynamicPersonGroup202Response,
   UpdateDynamicPersonGroupDefaultResponse,
   GetDynamicPersonGroups200Response,
   GetDynamicPersonGroupsDefaultResponse,
@@ -183,8 +204,9 @@ import {
   GetLivenessSessionAuditEntries200Response,
   GetLivenessSessionAuditEntriesDefaultResponse,
   CreateLivenessWithVerifySessionWithVerifyImage200Response,
-  CreateLivenessWithVerifySession200Response,
   CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse,
+  CreateLivenessWithVerifySession200Response,
+  CreateLivenessWithVerifySessionDefaultResponse,
   GetLivenessWithVerifySessions200Response,
   GetLivenessWithVerifySessionsDefaultResponse,
   DeleteLivenessWithVerifySession200Response,
@@ -215,8 +237,8 @@ const responseMap: Record<string, string[]> = {
   "PATCH /largefacelists/{largeFaceListId}": ["200"],
   "GET /largefacelists": ["200"],
   "GET /largefacelists/{largeFaceListId}/training": ["200"],
-  "POST /largefacelists/{largeFaceListId}/train": ["202"],
   "GET /largefacelists/{largeFaceListId}/train": ["200", "202"],
+  "POST /largefacelists/{largeFaceListId}/train": ["202"],
   "POST /largefacelists/{largeFaceListId}/persistedfaces": ["200"],
   "GET /largefacelists/{largeFaceListId}/persistedfaces": ["200"],
   "DELETE /largefacelists/{largeFaceListId}/persistedfaces/{persistedFaceId}": [
@@ -234,8 +256,8 @@ const responseMap: Record<string, string[]> = {
   "PATCH /persongroups/{personGroupId}": ["200"],
   "GET /persongroups": ["200"],
   "GET /persongroups/{personGroupId}/training": ["200"],
-  "POST /persongroups/{personGroupId}/train": ["202"],
   "GET /persongroups/{personGroupId}/train": ["200", "202"],
+  "POST /persongroups/{personGroupId}/train": ["202"],
   "POST /persongroups/{personGroupId}/persons": ["200"],
   "GET /persongroups/{personGroupId}/persons": ["200"],
   "DELETE /persongroups/{personGroupId}/persons/{personId}": ["200"],
@@ -256,8 +278,8 @@ const responseMap: Record<string, string[]> = {
   "PATCH /largepersongroups/{largePersonGroupId}": ["200"],
   "GET /largepersongroups": ["200"],
   "GET /largepersongroups/{largePersonGroupId}/training": ["200"],
-  "POST /largepersongroups/{largePersonGroupId}/train": ["202"],
   "GET /largepersongroups/{largePersonGroupId}/train": ["200", "202"],
+  "POST /largepersongroups/{largePersonGroupId}/train": ["202"],
   "POST /largepersongroups/{largePersonGroupId}/persons": ["200"],
   "GET /largepersongroups/{largePersonGroupId}/persons": ["200"],
   "DELETE /largepersongroups/{largePersonGroupId}/persons/{personId}": ["200"],
@@ -271,26 +293,26 @@ const responseMap: Record<string, string[]> = {
     ["200"],
   "PATCH /largepersongroups/{largePersonGroupId}/persons/{personId}/persistedfaces/{persistedFaceId}":
     ["200"],
-  "POST /persons": ["202"],
   "GET /persons": ["200"],
-  "DELETE /persons/{personId}": ["202"],
+  "POST /persons": ["202"],
   "GET /persons/{personId}": ["200"],
+  "DELETE /persons/{personId}": ["202"],
   "PATCH /persons/{personId}": ["200"],
   "GET /persons/{personId}/dynamicPersonGroupReferences": ["200"],
-  "POST /persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces":
-    ["202"],
   "GET /persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces":
     ["200"],
-  "DELETE /persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces/{persistedFaceId}":
+  "POST /persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces":
     ["202"],
   "GET /persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces/{persistedFaceId}":
     ["200"],
+  "DELETE /persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces/{persistedFaceId}":
+    ["202"],
   "PATCH /persons/{personId}/recognitionModels/{recognitionModel}/persistedfaces/{persistedFaceId}":
     ["200"],
-  "PUT /dynamicpersongroups/{dynamicPersonGroupId}": ["200", "202"],
-  "DELETE /dynamicpersongroups/{dynamicPersonGroupId}": ["202"],
   "GET /dynamicpersongroups/{dynamicPersonGroupId}": ["200"],
-  "PATCH /dynamicpersongroups/{dynamicPersonGroupId}": ["200", "202"],
+  "PUT /dynamicpersongroups/{dynamicPersonGroupId}": ["202", "200"],
+  "DELETE /dynamicpersongroups/{dynamicPersonGroupId}": ["202"],
+  "PATCH /dynamicpersongroups/{dynamicPersonGroupId}": ["202", "200"],
   "GET /dynamicpersongroups": ["200"],
   "GET /dynamicpersongroups/{dynamicPersonGroupId}/persons": ["200"],
   "POST /detectLiveness/singleModal/sessions": ["200"],
@@ -308,39 +330,65 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response:
-    | GetFaceOperationStatus200Response
-    | GetFaceOperationStatusDefaultResponse,
-): response is GetFaceOperationStatusDefaultResponse;
+  response: GetOperationResult200Response | GetOperationResultDefaultResponse,
+): response is GetOperationResultDefaultResponse;
 export function isUnexpected(
-  response:
-    | DetectFromUrl200Response
-    | Detect200Response
-    | DetectFromUrlDefaultResponse,
+  response: DetectFromUrl200Response | DetectFromUrlDefaultResponse,
 ): response is DetectFromUrlDefaultResponse;
 export function isUnexpected(
-  response:
-    | FindSimilar200Response
-    | FindSimilarFromFaceList200Response
-    | FindSimilarFromLargeFaceList200Response
-    | FindSimilarDefaultResponse,
+  response: Detect200Response | DetectDefaultResponse,
+): response is DetectDefaultResponse;
+export function isUnexpected(
+  response: FindSimilar200Response | FindSimilarDefaultResponse,
 ): response is FindSimilarDefaultResponse;
 export function isUnexpected(
   response:
+    | FindSimilarFromFaceList200Response
+    | FindSimilarFromFaceListDefaultResponse,
+): response is FindSimilarFromFaceListDefaultResponse;
+export function isUnexpected(
+  response:
+    | FindSimilarFromLargeFaceList200Response
+    | FindSimilarFromLargeFaceListDefaultResponse,
+): response is FindSimilarFromLargeFaceListDefaultResponse;
+export function isUnexpected(
+  response:
     | IdentifyFromPersonGroup200Response
-    | IdentifyFromLargePersonGroup200Response
-    | IdentifyFromPersonDirectory200Response
-    | IdentifyFromDynamicPersonGroup200Response
     | IdentifyFromPersonGroupDefaultResponse,
 ): response is IdentifyFromPersonGroupDefaultResponse;
 export function isUnexpected(
   response:
-    | VerifyFaceToFace200Response
-    | VerifyFromPersonGroup200Response
-    | VerifyFromLargePersonGroup200Response
-    | VerifyFromPersonDirectory200Response
-    | VerifyFaceToFaceDefaultResponse,
+    | IdentifyFromLargePersonGroup200Response
+    | IdentifyFromLargePersonGroupDefaultResponse,
+): response is IdentifyFromLargePersonGroupDefaultResponse;
+export function isUnexpected(
+  response:
+    | IdentifyFromPersonDirectory200Response
+    | IdentifyFromPersonDirectoryDefaultResponse,
+): response is IdentifyFromPersonDirectoryDefaultResponse;
+export function isUnexpected(
+  response:
+    | IdentifyFromDynamicPersonGroup200Response
+    | IdentifyFromDynamicPersonGroupDefaultResponse,
+): response is IdentifyFromDynamicPersonGroupDefaultResponse;
+export function isUnexpected(
+  response: VerifyFaceToFace200Response | VerifyFaceToFaceDefaultResponse,
 ): response is VerifyFaceToFaceDefaultResponse;
+export function isUnexpected(
+  response:
+    | VerifyFromPersonGroup200Response
+    | VerifyFromPersonGroupDefaultResponse,
+): response is VerifyFromPersonGroupDefaultResponse;
+export function isUnexpected(
+  response:
+    | VerifyFromLargePersonGroup200Response
+    | VerifyFromLargePersonGroupDefaultResponse,
+): response is VerifyFromLargePersonGroupDefaultResponse;
+export function isUnexpected(
+  response:
+    | VerifyFromPersonDirectory200Response
+    | VerifyFromPersonDirectoryDefaultResponse,
+): response is VerifyFromPersonDirectoryDefaultResponse;
 export function isUnexpected(
   response: Group200Response | GroupDefaultResponse,
 ): response is GroupDefaultResponse;
@@ -362,9 +410,11 @@ export function isUnexpected(
 export function isUnexpected(
   response:
     | AddFaceListFaceFromUrl200Response
-    | AddFaceListFace200Response
     | AddFaceListFaceFromUrlDefaultResponse,
 ): response is AddFaceListFaceFromUrlDefaultResponse;
+export function isUnexpected(
+  response: AddFaceListFace200Response | AddFaceListFaceDefaultResponse,
+): response is AddFaceListFaceDefaultResponse;
 export function isUnexpected(
   response: DeleteFaceListFace200Response | DeleteFaceListFaceDefaultResponse,
 ): response is DeleteFaceListFaceDefaultResponse;
@@ -397,9 +447,13 @@ export function isUnexpected(
 export function isUnexpected(
   response:
     | AddLargeFaceListFaceFromUrl200Response
-    | AddLargeFaceListFace200Response
     | AddLargeFaceListFaceFromUrlDefaultResponse,
 ): response is AddLargeFaceListFaceFromUrlDefaultResponse;
+export function isUnexpected(
+  response:
+    | AddLargeFaceListFace200Response
+    | AddLargeFaceListFaceDefaultResponse,
+): response is AddLargeFaceListFaceDefaultResponse;
 export function isUnexpected(
   response:
     | GetLargeFaceListFaces200Response
@@ -474,9 +528,13 @@ export function isUnexpected(
 export function isUnexpected(
   response:
     | AddPersonGroupPersonFaceFromUrl200Response
-    | AddPersonGroupPersonFace200Response
     | AddPersonGroupPersonFaceFromUrlDefaultResponse,
 ): response is AddPersonGroupPersonFaceFromUrlDefaultResponse;
+export function isUnexpected(
+  response:
+    | AddPersonGroupPersonFace200Response
+    | AddPersonGroupPersonFaceDefaultResponse,
+): response is AddPersonGroupPersonFaceDefaultResponse;
 export function isUnexpected(
   response:
     | DeletePersonGroupPersonFace200Response
@@ -554,9 +612,13 @@ export function isUnexpected(
 export function isUnexpected(
   response:
     | AddLargePersonGroupPersonFaceFromUrl200Response
-    | AddLargePersonGroupPersonFace200Response
     | AddLargePersonGroupPersonFaceFromUrlDefaultResponse,
 ): response is AddLargePersonGroupPersonFaceFromUrlDefaultResponse;
+export function isUnexpected(
+  response:
+    | AddLargePersonGroupPersonFace200Response
+    | AddLargePersonGroupPersonFaceDefaultResponse,
+): response is AddLargePersonGroupPersonFaceDefaultResponse;
 export function isUnexpected(
   response:
     | DeleteLargePersonGroupPersonFace200Response
@@ -573,7 +635,10 @@ export function isUnexpected(
     | UpdateLargePersonGroupPersonFaceDefaultResponse,
 ): response is UpdateLargePersonGroupPersonFaceDefaultResponse;
 export function isUnexpected(
-  response: CreatePerson202Response | CreatePersonDefaultResponse,
+  response:
+    | CreatePerson202Response
+    | CreatePersonLogicalResponse
+    | CreatePersonDefaultResponse,
 ): response is CreatePersonDefaultResponse;
 export function isUnexpected(
   response: GetPersons200Response | GetPersonsDefaultResponse,
@@ -598,9 +663,15 @@ export function isUnexpected(
 export function isUnexpected(
   response:
     | AddPersonFace202Response
-    | AddPersonFaceFromUrl202Response
+    | AddPersonFaceLogicalResponse
     | AddPersonFaceDefaultResponse,
 ): response is AddPersonFaceDefaultResponse;
+export function isUnexpected(
+  response:
+    | AddPersonFaceFromUrl202Response
+    | AddPersonFaceFromUrlLogicalResponse
+    | AddPersonFaceFromUrlDefaultResponse,
+): response is AddPersonFaceFromUrlDefaultResponse;
 export function isUnexpected(
   response: GetPersonFaces200Response | GetPersonFacesDefaultResponse,
 ): response is GetPersonFacesDefaultResponse;
@@ -618,8 +689,13 @@ export function isUnexpected(
 ): response is UpdatePersonFaceDefaultResponse;
 export function isUnexpected(
   response:
+    | CreateDynamicPersonGroupWithPerson202Response
+    | CreateDynamicPersonGroupWithPersonLogicalResponse
+    | CreateDynamicPersonGroupWithPersonDefaultResponse,
+): response is CreateDynamicPersonGroupWithPersonDefaultResponse;
+export function isUnexpected(
+  response:
     | CreateDynamicPersonGroup200Response
-    | CreateDynamicPersonGroup202Response
     | CreateDynamicPersonGroupDefaultResponse,
 ): response is CreateDynamicPersonGroupDefaultResponse;
 export function isUnexpected(
@@ -635,8 +711,13 @@ export function isUnexpected(
 ): response is GetDynamicPersonGroupDefaultResponse;
 export function isUnexpected(
   response:
+    | UpdateDynamicPersonGroupWithPersonChanges202Response
+    | UpdateDynamicPersonGroupWithPersonChangesLogicalResponse
+    | UpdateDynamicPersonGroupWithPersonChangesDefaultResponse,
+): response is UpdateDynamicPersonGroupWithPersonChangesDefaultResponse;
+export function isUnexpected(
+  response:
     | UpdateDynamicPersonGroup200Response
-    | UpdateDynamicPersonGroup202Response
     | UpdateDynamicPersonGroupDefaultResponse,
 ): response is UpdateDynamicPersonGroupDefaultResponse;
 export function isUnexpected(
@@ -675,9 +756,13 @@ export function isUnexpected(
 export function isUnexpected(
   response:
     | CreateLivenessWithVerifySessionWithVerifyImage200Response
-    | CreateLivenessWithVerifySession200Response
     | CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse,
 ): response is CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse;
+export function isUnexpected(
+  response:
+    | CreateLivenessWithVerifySession200Response
+    | CreateLivenessWithVerifySessionDefaultResponse,
+): response is CreateLivenessWithVerifySessionDefaultResponse;
 export function isUnexpected(
   response:
     | GetLivenessWithVerifySessions200Response
@@ -700,25 +785,34 @@ export function isUnexpected(
 ): response is GetLivenessWithVerifySessionAuditEntriesDefaultResponse;
 export function isUnexpected(
   response:
-    | GetFaceOperationStatus200Response
-    | GetFaceOperationStatusDefaultResponse
+    | GetOperationResult200Response
+    | GetOperationResultDefaultResponse
     | DetectFromUrl200Response
-    | Detect200Response
     | DetectFromUrlDefaultResponse
+    | Detect200Response
+    | DetectDefaultResponse
     | FindSimilar200Response
-    | FindSimilarFromFaceList200Response
-    | FindSimilarFromLargeFaceList200Response
     | FindSimilarDefaultResponse
+    | FindSimilarFromFaceList200Response
+    | FindSimilarFromFaceListDefaultResponse
+    | FindSimilarFromLargeFaceList200Response
+    | FindSimilarFromLargeFaceListDefaultResponse
     | IdentifyFromPersonGroup200Response
-    | IdentifyFromLargePersonGroup200Response
-    | IdentifyFromPersonDirectory200Response
-    | IdentifyFromDynamicPersonGroup200Response
     | IdentifyFromPersonGroupDefaultResponse
+    | IdentifyFromLargePersonGroup200Response
+    | IdentifyFromLargePersonGroupDefaultResponse
+    | IdentifyFromPersonDirectory200Response
+    | IdentifyFromPersonDirectoryDefaultResponse
+    | IdentifyFromDynamicPersonGroup200Response
+    | IdentifyFromDynamicPersonGroupDefaultResponse
     | VerifyFaceToFace200Response
-    | VerifyFromPersonGroup200Response
-    | VerifyFromLargePersonGroup200Response
-    | VerifyFromPersonDirectory200Response
     | VerifyFaceToFaceDefaultResponse
+    | VerifyFromPersonGroup200Response
+    | VerifyFromPersonGroupDefaultResponse
+    | VerifyFromLargePersonGroup200Response
+    | VerifyFromLargePersonGroupDefaultResponse
+    | VerifyFromPersonDirectory200Response
+    | VerifyFromPersonDirectoryDefaultResponse
     | Group200Response
     | GroupDefaultResponse
     | CreateFaceList200Response
@@ -732,8 +826,9 @@ export function isUnexpected(
     | GetFaceLists200Response
     | GetFaceListsDefaultResponse
     | AddFaceListFaceFromUrl200Response
-    | AddFaceListFace200Response
     | AddFaceListFaceFromUrlDefaultResponse
+    | AddFaceListFace200Response
+    | AddFaceListFaceDefaultResponse
     | DeleteFaceListFace200Response
     | DeleteFaceListFaceDefaultResponse
     | CreateLargeFaceList200Response
@@ -752,8 +847,9 @@ export function isUnexpected(
     | TrainLargeFaceListLogicalResponse
     | TrainLargeFaceListDefaultResponse
     | AddLargeFaceListFaceFromUrl200Response
-    | AddLargeFaceListFace200Response
     | AddLargeFaceListFaceFromUrlDefaultResponse
+    | AddLargeFaceListFace200Response
+    | AddLargeFaceListFaceDefaultResponse
     | GetLargeFaceListFaces200Response
     | GetLargeFaceListFacesDefaultResponse
     | DeleteLargeFaceListFace200Response
@@ -788,8 +884,9 @@ export function isUnexpected(
     | UpdatePersonGroupPerson200Response
     | UpdatePersonGroupPersonDefaultResponse
     | AddPersonGroupPersonFaceFromUrl200Response
-    | AddPersonGroupPersonFace200Response
     | AddPersonGroupPersonFaceFromUrlDefaultResponse
+    | AddPersonGroupPersonFace200Response
+    | AddPersonGroupPersonFaceDefaultResponse
     | DeletePersonGroupPersonFace200Response
     | DeletePersonGroupPersonFaceDefaultResponse
     | GetPersonGroupPersonFace200Response
@@ -822,8 +919,9 @@ export function isUnexpected(
     | UpdateLargePersonGroupPerson200Response
     | UpdateLargePersonGroupPersonDefaultResponse
     | AddLargePersonGroupPersonFaceFromUrl200Response
-    | AddLargePersonGroupPersonFace200Response
     | AddLargePersonGroupPersonFaceFromUrlDefaultResponse
+    | AddLargePersonGroupPersonFace200Response
+    | AddLargePersonGroupPersonFaceDefaultResponse
     | DeleteLargePersonGroupPersonFace200Response
     | DeleteLargePersonGroupPersonFaceDefaultResponse
     | GetLargePersonGroupPersonFace200Response
@@ -831,6 +929,7 @@ export function isUnexpected(
     | UpdateLargePersonGroupPersonFace200Response
     | UpdateLargePersonGroupPersonFaceDefaultResponse
     | CreatePerson202Response
+    | CreatePersonLogicalResponse
     | CreatePersonDefaultResponse
     | GetPersons200Response
     | GetPersonsDefaultResponse
@@ -844,8 +943,11 @@ export function isUnexpected(
     | GetDynamicPersonGroupReferences200Response
     | GetDynamicPersonGroupReferencesDefaultResponse
     | AddPersonFace202Response
-    | AddPersonFaceFromUrl202Response
+    | AddPersonFaceLogicalResponse
     | AddPersonFaceDefaultResponse
+    | AddPersonFaceFromUrl202Response
+    | AddPersonFaceFromUrlLogicalResponse
+    | AddPersonFaceFromUrlDefaultResponse
     | GetPersonFaces200Response
     | GetPersonFacesDefaultResponse
     | DeletePersonFace202Response
@@ -855,16 +957,20 @@ export function isUnexpected(
     | GetPersonFaceDefaultResponse
     | UpdatePersonFace200Response
     | UpdatePersonFaceDefaultResponse
+    | CreateDynamicPersonGroupWithPerson202Response
+    | CreateDynamicPersonGroupWithPersonLogicalResponse
+    | CreateDynamicPersonGroupWithPersonDefaultResponse
     | CreateDynamicPersonGroup200Response
-    | CreateDynamicPersonGroup202Response
     | CreateDynamicPersonGroupDefaultResponse
     | DeleteDynamicPersonGroup202Response
     | DeleteDynamicPersonGroupLogicalResponse
     | DeleteDynamicPersonGroupDefaultResponse
     | GetDynamicPersonGroup200Response
     | GetDynamicPersonGroupDefaultResponse
+    | UpdateDynamicPersonGroupWithPersonChanges202Response
+    | UpdateDynamicPersonGroupWithPersonChangesLogicalResponse
+    | UpdateDynamicPersonGroupWithPersonChangesDefaultResponse
     | UpdateDynamicPersonGroup200Response
-    | UpdateDynamicPersonGroup202Response
     | UpdateDynamicPersonGroupDefaultResponse
     | GetDynamicPersonGroups200Response
     | GetDynamicPersonGroupsDefaultResponse
@@ -881,8 +987,9 @@ export function isUnexpected(
     | GetLivenessSessionAuditEntries200Response
     | GetLivenessSessionAuditEntriesDefaultResponse
     | CreateLivenessWithVerifySessionWithVerifyImage200Response
-    | CreateLivenessWithVerifySession200Response
     | CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse
+    | CreateLivenessWithVerifySession200Response
+    | CreateLivenessWithVerifySessionDefaultResponse
     | GetLivenessWithVerifySessions200Response
     | GetLivenessWithVerifySessionsDefaultResponse
     | DeleteLivenessWithVerifySession200Response
@@ -892,11 +999,20 @@ export function isUnexpected(
     | GetLivenessWithVerifySessionAuditEntries200Response
     | GetLivenessWithVerifySessionAuditEntriesDefaultResponse,
 ): response is
-  | GetFaceOperationStatusDefaultResponse
+  | GetOperationResultDefaultResponse
   | DetectFromUrlDefaultResponse
+  | DetectDefaultResponse
   | FindSimilarDefaultResponse
+  | FindSimilarFromFaceListDefaultResponse
+  | FindSimilarFromLargeFaceListDefaultResponse
   | IdentifyFromPersonGroupDefaultResponse
+  | IdentifyFromLargePersonGroupDefaultResponse
+  | IdentifyFromPersonDirectoryDefaultResponse
+  | IdentifyFromDynamicPersonGroupDefaultResponse
   | VerifyFaceToFaceDefaultResponse
+  | VerifyFromPersonGroupDefaultResponse
+  | VerifyFromLargePersonGroupDefaultResponse
+  | VerifyFromPersonDirectoryDefaultResponse
   | GroupDefaultResponse
   | CreateFaceListDefaultResponse
   | DeleteFaceListDefaultResponse
@@ -904,6 +1020,7 @@ export function isUnexpected(
   | UpdateFaceListDefaultResponse
   | GetFaceListsDefaultResponse
   | AddFaceListFaceFromUrlDefaultResponse
+  | AddFaceListFaceDefaultResponse
   | DeleteFaceListFaceDefaultResponse
   | CreateLargeFaceListDefaultResponse
   | DeleteLargeFaceListDefaultResponse
@@ -913,6 +1030,7 @@ export function isUnexpected(
   | GetLargeFaceListTrainingStatusDefaultResponse
   | TrainLargeFaceListDefaultResponse
   | AddLargeFaceListFaceFromUrlDefaultResponse
+  | AddLargeFaceListFaceDefaultResponse
   | GetLargeFaceListFacesDefaultResponse
   | DeleteLargeFaceListFaceDefaultResponse
   | GetLargeFaceListFaceDefaultResponse
@@ -930,6 +1048,7 @@ export function isUnexpected(
   | GetPersonGroupPersonDefaultResponse
   | UpdatePersonGroupPersonDefaultResponse
   | AddPersonGroupPersonFaceFromUrlDefaultResponse
+  | AddPersonGroupPersonFaceDefaultResponse
   | DeletePersonGroupPersonFaceDefaultResponse
   | GetPersonGroupPersonFaceDefaultResponse
   | UpdatePersonGroupPersonFaceDefaultResponse
@@ -946,6 +1065,7 @@ export function isUnexpected(
   | GetLargePersonGroupPersonDefaultResponse
   | UpdateLargePersonGroupPersonDefaultResponse
   | AddLargePersonGroupPersonFaceFromUrlDefaultResponse
+  | AddLargePersonGroupPersonFaceDefaultResponse
   | DeleteLargePersonGroupPersonFaceDefaultResponse
   | GetLargePersonGroupPersonFaceDefaultResponse
   | UpdateLargePersonGroupPersonFaceDefaultResponse
@@ -956,13 +1076,16 @@ export function isUnexpected(
   | UpdatePersonDefaultResponse
   | GetDynamicPersonGroupReferencesDefaultResponse
   | AddPersonFaceDefaultResponse
+  | AddPersonFaceFromUrlDefaultResponse
   | GetPersonFacesDefaultResponse
   | DeletePersonFaceDefaultResponse
   | GetPersonFaceDefaultResponse
   | UpdatePersonFaceDefaultResponse
+  | CreateDynamicPersonGroupWithPersonDefaultResponse
   | CreateDynamicPersonGroupDefaultResponse
   | DeleteDynamicPersonGroupDefaultResponse
   | GetDynamicPersonGroupDefaultResponse
+  | UpdateDynamicPersonGroupWithPersonChangesDefaultResponse
   | UpdateDynamicPersonGroupDefaultResponse
   | GetDynamicPersonGroupsDefaultResponse
   | GetDynamicPersonGroupPersonsDefaultResponse
@@ -972,6 +1095,7 @@ export function isUnexpected(
   | GetLivenessSessionResultDefaultResponse
   | GetLivenessSessionAuditEntriesDefaultResponse
   | CreateLivenessWithVerifySessionWithVerifyImageDefaultResponse
+  | CreateLivenessWithVerifySessionDefaultResponse
   | GetLivenessWithVerifySessionsDefaultResponse
   | DeleteLivenessWithVerifySessionDefaultResponse
   | GetLivenessWithVerifySessionResultDefaultResponse

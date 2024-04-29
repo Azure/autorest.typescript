@@ -23,9 +23,9 @@ import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { getImportSpecifier } from "@azure-tools/rlc-common";
 
 export function buildClassicalClient(
+  client: Client,
   dpgContext: SdkContext,
-  codeModel: ModularCodeModel,
-  client: Client
+  codeModel: ModularCodeModel
 ) {
   const { description } = client;
   const modularClientName = getClientName(client);

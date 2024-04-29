@@ -23,9 +23,9 @@ import {
  * file called operations.ts where all operations are generated.
  */
 export function buildOperationFiles(
+  client: Client,
   dpgContext: SdkContext,
   codeModel: ModularCodeModel,
-  client: Client,
   needUnexpectedHelper: boolean = true
 ) {
   const operationFiles = [];

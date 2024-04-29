@@ -145,8 +145,8 @@ export function buildModelInterface(
  * This function creates the file containing all the models defined in TypeSpec
  */
 export function buildModels(
-  codeModel: ModularCodeModel,
-  subClient: Client
+  subClient: Client,
+  codeModel: ModularCodeModel
 ): SourceFile | undefined {
   // We are generating both models and enums here
   const coreClientTypes = new Set<string>();
@@ -243,8 +243,8 @@ export function buildModelTypeAlias(model: Type) {
 }
 
 export function buildModelsOptions(
-  codeModel: ModularCodeModel,
-  client: Client
+  client: Client,
+  codeModel: ModularCodeModel
 ) {
   const modelOptionsFile = codeModel.project.createSourceFile(
     path.join(

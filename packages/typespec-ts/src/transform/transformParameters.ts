@@ -11,7 +11,7 @@ import {
   SchemaContext,
   ApiVersionInfo
 } from "@azure-tools/rlc-common";
-import { ignoreDiagnostics, Program, Type } from "@typespec/compiler";
+import { ignoreDiagnostics, Type } from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
@@ -47,9 +47,9 @@ import {
 } from "../utils/mediaTypes.js";
 
 export function transformToParameterTypes(
-  importDetails: Imports,
   client: SdkClient,
   dpgContext: SdkContext,
+  importDetails: Imports,
   apiVersionInfo?: ApiVersionInfo
 ): OperationParameter[] {
   const program = dpgContext.program;
@@ -62,7 +62,7 @@ export function transformToParameterTypes(
     if (route.overloads && route.overloads?.length > 0) {
       continue;
     }
-    transformToParameterTypesForRoute(program, route);
+    transformToParameterTypesForRoute(route);
   }
   const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
@@ -76,17 +76,14 @@ export function transformToParameterTypes(
       if (route.overloads && route.overloads?.length > 0) {
         continue;
       }
-      transformToParameterTypesForRoute(program, route);
+      transformToParameterTypesForRoute(route);
     }
   }
 
   if (outputImportedSet.size > 0) {
     importDetails.parameter.importsSet = outputImportedSet;
   }
-  function transformToParameterTypesForRoute(
-    program: Program,
-    route: HttpOperation
-  ) {
+  function transformToParameterTypesForRoute(route: HttpOperation) {
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
       operationGroup: getOperationGroupName(dpgContext, route),

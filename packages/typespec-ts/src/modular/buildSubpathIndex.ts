@@ -7,8 +7,8 @@ export interface buildSubpathIndexFileOptions {
 }
 
 export function buildSubpathIndexFile(
-  codeModel: ModularCodeModel,
   client: Client,
+  codeModel: ModularCodeModel,
   subpath: string,
   options: buildSubpathIndexFileOptions = {}
 ) {

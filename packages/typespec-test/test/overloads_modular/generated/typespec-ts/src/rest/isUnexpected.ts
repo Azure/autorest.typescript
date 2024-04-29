@@ -3,24 +3,26 @@
 
 import {
   GetAvatarAsPng204Response,
-  GetAvatarAsJpeg204Response,
   GetAvatarAsPngDefaultResponse,
+  GetAvatarAsJpeg204Response,
+  GetAvatarAsJpegDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = { "POST /avatar": ["204"] };
 
 export function isUnexpected(
-  response:
-    | GetAvatarAsPng204Response
-    | GetAvatarAsJpeg204Response
-    | GetAvatarAsPngDefaultResponse,
+  response: GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse,
 ): response is GetAvatarAsPngDefaultResponse;
+export function isUnexpected(
+  response: GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse,
+): response is GetAvatarAsJpegDefaultResponse;
 export function isUnexpected(
   response:
     | GetAvatarAsPng204Response
+    | GetAvatarAsPngDefaultResponse
     | GetAvatarAsJpeg204Response
-    | GetAvatarAsPngDefaultResponse,
-): response is GetAvatarAsPngDefaultResponse {
+    | GetAvatarAsJpegDefaultResponse,
+): response is GetAvatarAsPngDefaultResponse | GetAvatarAsJpegDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
