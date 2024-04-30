@@ -32,6 +32,22 @@ describe("MultiPartClient Rest Client", () => {
         });
       assert.strictEqual(result.status, "204");
     });
+
+    it("supports anonymous model file upload", async () => {
+      const result = await client
+        .path("/multipart/form-data/anonymous-model")
+        .post({
+          contentType: "multipart/form-data",
+          body: [
+            {
+              name: "profileImage",
+              body: await readFile(imgPath),
+              filename: "test.jpg"
+            }
+          ]
+        });
+      assert.strictEqual(result.status, "204");
+    });
   });
 
   describe("custom content type + filename", () => {
@@ -137,6 +153,26 @@ describe("MultiPartClient Rest Client", () => {
             { name: "pictures", body: optionalFile, filename: "aaa.png" }
           ]
         });
+      assert.strictEqual(result.status, "204");
+    });
+  });
+
+  describe("JSON parts", () => {
+    it("supports JSON part with file upload", async () => {
+      const profileImage = await readFile(imgPath);
+
+      const result = await client.path("/multipart/form-data/json-part").post({
+        contentType: "multipart/form-data",
+        body: [
+          { name: "address", body: { city: "X" } },
+          {
+            name: "profileImage",
+            body: profileImage,
+            filename: "profileImage.jpg"
+          }
+        ]
+      });
+
       assert.strictEqual(result.status, "204");
     });
   });
