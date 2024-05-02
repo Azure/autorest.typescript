@@ -28,26 +28,24 @@ export function transformApiVersionInfo(
 ): ApiVersionInfo | undefined {
   const queryVersionDetail = getOperationApiVersion(client, dpgContext);
   const pathVersionDetail = extractPathApiVersion(urlInfo);
-  const isCrossedVersion =
-    pathVersionDetail?.isCrossedVersion || queryVersionDetail?.isCrossedVersion;
-  const defaultValue =
-    (pathVersionDetail || queryVersionDetail) && !isCrossedVersion
-      ? getDefaultApiVersionString(dpgContext) ??
-        pathVersionDetail?.defaultValue ??
-        queryVersionDetail?.defaultValue
-      : undefined;
 
-  if (pathVersionDetail && queryVersionDetail) {
-    return pathVersionDetail;
-  }
   if (pathVersionDetail && !queryVersionDetail) {
     dpgContext.hasApiVersionInClient = true;
   }
+
+  const definedPosition =
+    pathVersionDetail && queryVersionDetail
+      ? pathVersionDetail.definedPosition
+      : extractDefinedPosition(queryVersionDetail, pathVersionDetail);
+
+  const isCrossedVersion = pathVersionDetail
+    ? pathVersionDetail.isCrossedVersion
+    : queryVersionDetail?.isCrossedVersion;
+
+  const defaultValue = getDefaultApiVersionString(dpgContext);
+
   return {
-    definedPosition: extractDefinedPosition(
-      queryVersionDetail,
-      pathVersionDetail
-    ),
+    definedPosition,
     isCrossedVersion,
     defaultValue
   };
