@@ -129,7 +129,7 @@ export function getDeserializePrivateFunction(
   const isLroOnly = isLroOnlyOperation(operation);
 
   // TODO: Support operation overloads
-  let response = operation.responses[0]!;
+  const response = operation.responses[0]!;
   let returnType;
   if (isLroOnly && operation.method.toLowerCase() !== "patch") {
     returnType = buildLroReturnType(operation);
