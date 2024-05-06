@@ -2,12 +2,12 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger.js";
+import { logger } from "../logger.js";
 import { KeyCredential } from "@azure/core-auth";
-import { AzureHealthInsightsClient } from "./clientDefinitions.js";
+import { AzureHealthInsightsContext } from "./clientDefinitions.js";
 
 /**
- * Initialize a new instance of `AzureHealthInsightsClient`
+ * Initialize a new instance of `AzureHealthInsightsContext`
  * @param endpointParam - Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus2.api.cognitive.microsoft.com).
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
@@ -16,7 +16,7 @@ export default function createClient(
   endpointParam: string,
   credentials: KeyCredential,
   options: ClientOptions = {},
-): AzureHealthInsightsClient {
+): AzureHealthInsightsContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/health-insights`;
   options.apiVersion = options.apiVersion ?? "2023-09-01-preview";
@@ -43,7 +43,7 @@ export default function createClient(
     endpointUrl,
     credentials,
     options,
-  ) as AzureHealthInsightsClient;
+  ) as AzureHealthInsightsContext;
 
   return client;
 }

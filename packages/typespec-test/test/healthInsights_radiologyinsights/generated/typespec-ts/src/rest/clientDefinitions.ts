@@ -31,6 +31,6 @@ export interface Routes {
   (path: "/radiology-insights/jobs"): CreateJob;
 }
 
-export type AzureHealthInsightsClient = Client & {
+export type AzureHealthInsightsContext = Client & {
   path: Routes;
 };

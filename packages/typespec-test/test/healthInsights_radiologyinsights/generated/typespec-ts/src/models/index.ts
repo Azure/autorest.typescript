@@ -2,10 +2,6 @@
 // Licensed under the MIT license.
 
 export {
-  RadiologyInsightsClient,
-  RadiologyInsightsClientOptions,
-} from "./radiologyInsightsClient.js";
-export {
   PatientRecord,
   PatientInfo,
   PatientInfoSex,
@@ -87,5 +83,5 @@ export {
   RadiologyInsightsInferenceUnion,
   DomainResourceUnion,
   ProcedureRecommendationUnion,
-  InferRadiologyInsightsOptionalParams,
-} from "./models/index.js";
+} from "./models.js";
+export { InferRadiologyInsightsOptionalParams } from "./options.js";

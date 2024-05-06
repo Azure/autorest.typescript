@@ -4,27 +4,14 @@
 
 ```ts
 
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { CreateHttpPollerOptions } from '@azure/core-lro';
 import { ErrorModel } from '@azure-rest/core-client';
-import { ErrorResponse } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
-import { OperationState } from '@azure/core-lro';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
-import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { SimplePollerLike } from '@azure/core-lro';
-import { StreamableMethod } from '@azure-rest/core-client';
+import { OperationOptions } from '@azure-rest/core-client';
+import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public
-export interface AgeMismatchInference extends RadiologyInsightsInferenceParent {
-    kind: "ageMismatch";
-}
-
-// @public
-export interface AgeMismatchInferenceOutput extends RadiologyInsightsInferenceOutputParent {
+export interface AgeMismatchInference extends RadiologyInsightsInference {
     kind: "ageMismatch";
 }
 
@@ -35,30 +22,15 @@ export interface Annotation extends Element {
     time?: string;
 }
 
-// @public
-export interface AnnotationOutput extends ElementOutput {
-    authorString?: string;
-    text: string;
-    time?: string;
-}
+// @public (undocumented)
+export type ApiVersion = "2023-09-01-preview";
 
 // @public (undocumented)
-export type AzureHealthInsightsClient = Client & {
-    path: Routes;
-};
-
-// @public
 export type ClinicalDocumentType = "consultation" | "dischargeSummary" | "historyAndPhysical" | "radiologyReport" | "procedure" | "progress" | "laboratory" | "pathologyReport";
 
 // @public
 export interface CodeableConcept extends Element {
     coding?: Array<Coding>;
-    text?: string;
-}
-
-// @public
-export interface CodeableConceptOutput extends ElementOutput {
-    coding?: Array<CodingOutput>;
     text?: string;
 }
 
@@ -71,15 +43,7 @@ export interface Coding extends Element {
 }
 
 // @public
-export interface CodingOutput extends ElementOutput {
-    code?: string;
-    display?: string;
-    system?: string;
-    version?: string;
-}
-
-// @public
-export interface CompleteOrderDiscrepancyInference extends RadiologyInsightsInferenceParent {
+export interface CompleteOrderDiscrepancyInference extends RadiologyInsightsInference {
     kind: "completeOrderDiscrepancy";
     missingBodyPartMeasurements?: Array<CodeableConcept>;
     missingBodyParts?: Array<CodeableConcept>;
@@ -87,15 +51,7 @@ export interface CompleteOrderDiscrepancyInference extends RadiologyInsightsInfe
 }
 
 // @public
-export interface CompleteOrderDiscrepancyInferenceOutput extends RadiologyInsightsInferenceOutputParent {
-    kind: "completeOrderDiscrepancy";
-    missingBodyPartMeasurements?: Array<CodeableConceptOutput>;
-    missingBodyParts?: Array<CodeableConceptOutput>;
-    orderType: CodeableConceptOutput;
-}
-
-// @public
-export interface Condition extends DomainResourceParent {
+export interface Condition extends DomainResource {
     abatementAge?: Quantity;
     abatementDateTime?: string;
     abatementPeriod?: Period;
@@ -121,53 +77,15 @@ export interface Condition extends DomainResourceParent {
 }
 
 // @public
-export interface ConditionOutput extends DomainResourceOutputParent {
-    abatementAge?: QuantityOutput;
-    abatementDateTime?: string;
-    abatementPeriod?: PeriodOutput;
-    abatementRange?: RangeOutput;
-    abatementString?: string;
-    bodySite?: Array<CodeableConceptOutput>;
-    category?: Array<CodeableConceptOutput>;
-    clinicalStatus?: CodeableConceptOutput;
-    code?: CodeableConceptOutput;
-    encounter?: ReferenceOutput;
-    identifier?: Array<IdentifierOutput>;
-    note?: Array<AnnotationOutput>;
-    onsetAge?: QuantityOutput;
-    onsetDateTime?: string;
-    onsetPeriod?: PeriodOutput;
-    onsetRange?: RangeOutput;
-    onsetString?: string;
-    recordedDate?: string;
-    resourceType: "Condition";
-    severity?: CodeableConceptOutput;
-    stage?: Array<ConditionStageOutput>;
-    verificationStatus?: CodeableConceptOutput;
-}
-
-// @public
 export interface ConditionStage {
     summary?: CodeableConcept;
     type?: CodeableConcept;
 }
 
 // @public
-export interface ConditionStageOutput {
-    summary?: CodeableConceptOutput;
-    type?: CodeableConceptOutput;
-}
-
-// @public
 export interface ContactDetail extends Element {
     name?: string;
     telecom?: Array<ContactPoint>;
-}
-
-// @public
-export interface ContactDetailOutput extends ElementOutput {
-    name?: string;
-    telecom?: Array<ContactPointOutput>;
 }
 
 // @public
@@ -179,96 +97,11 @@ export interface ContactPoint {
     value?: string;
 }
 
-// @public
-export interface ContactPointOutput {
-    period?: PeriodOutput;
-    rank?: number;
-    system?: ContactPointSystemOutput;
-    use?: ContactPointUseOutput;
-    value?: string;
-}
-
-// @public
+// @public (undocumented)
 export type ContactPointSystem = "phone" | "fax" | "email" | "pager" | "url" | "sms" | "other";
 
-// @public
-export type ContactPointSystemOutput = "phone" | "fax" | "email" | "pager" | "url" | "sms" | "other";
-
-// @public
+// @public (undocumented)
 export type ContactPointUse = "home" | "work" | "temp" | "old" | "mobile";
-
-// @public
-export type ContactPointUseOutput = "home" | "work" | "temp" | "old" | "mobile";
-
-// @public
-function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): AzureHealthInsightsClient;
-export default createClient;
-
-// @public (undocumented)
-export interface CreateJob {
-    post(options?: CreateJobParameters): StreamableMethod<CreateJob202Response | CreateJobDefaultResponse>;
-}
-
-// @public (undocumented)
-export interface CreateJob202Headers {
-    "operation-location": string;
-    "repeatability-result"?: RepeatabilityResultOutput;
-    "retry-after"?: number;
-}
-
-// @public
-export interface CreateJob202Response extends HttpResponse {
-    // (undocumented)
-    body: HealthInsightsOperationStatusOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & CreateJob202Headers;
-    // (undocumented)
-    status: "202";
-}
-
-// @public (undocumented)
-export interface CreateJobBodyParam {
-    // (undocumented)
-    body?: RadiologyInsightsData;
-}
-
-// @public (undocumented)
-export interface CreateJobDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface CreateJobDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & CreateJobDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export interface CreateJobHeaderParam {
-    // (undocumented)
-    headers?: RawHttpHeadersInput & CreateJobHeaders;
-}
-
-// @public (undocumented)
-export interface CreateJobHeaders {
-    "Repeatability-First-Sent"?: string;
-    "Repeatability-Request-ID"?: string;
-}
-
-// @public
-export interface CreateJobLogicalResponse extends HttpResponse {
-    // (undocumented)
-    body: HealthInsightsOperationStatusOutput;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export type CreateJobParameters = CreateJobHeaderParam & CreateJobBodyParam & RequestParameters;
 
 // @public
 export interface CriticalResult {
@@ -277,27 +110,15 @@ export interface CriticalResult {
 }
 
 // @public
-export interface CriticalResultInference extends RadiologyInsightsInferenceParent {
+export interface CriticalResultInference extends RadiologyInsightsInference {
     kind: "criticalResult";
     result: CriticalResult;
 }
 
 // @public
-export interface CriticalResultInferenceOutput extends RadiologyInsightsInferenceOutputParent {
-    kind: "criticalResult";
-    result: CriticalResultOutput;
-}
-
-// @public
-export interface CriticalResultOutput {
-    description: string;
-    finding?: ObservationOutput;
-}
-
-// @public
 export interface DocumentAdministrativeMetadata {
     encounterId?: string;
-    orderedProcedures?: Array<OrderedProcedure>;
+    orderedProcedures?: OrderedProcedure[];
 }
 
 // @public
@@ -312,47 +133,27 @@ export interface DocumentContent {
     value: string;
 }
 
-// @public
+// @public (undocumented)
 export type DocumentContentSourceType = "inline" | "reference";
 
-// @public
+// @public (undocumented)
 export type DocumentType = "note" | "fhirBundle" | "dicom" | "genomicSequencing";
 
 // @public
-export type DomainResource = DomainResourceParent | Observation | Condition | ResearchStudy;
-
-// @public
-export type DomainResourceOutput = DomainResourceOutputParent | ObservationOutput | ConditionOutput | ResearchStudyOutput;
-
-// @public
-export interface DomainResourceOutputParent extends ResourceOutput {
-    contained?: Array<ResourceOutput>;
-    extension?: Array<ExtensionOutput>;
-    modifierExtension?: Array<ExtensionOutput>;
-    // (undocumented)
-    resourceType: string;
-    text?: NarrativeOutput;
-}
-
-// @public
-export interface DomainResourceParent extends Resource {
+export interface DomainResource extends Resource {
     contained?: Array<Resource>;
     extension?: Array<Extension>;
     modifierExtension?: Array<Extension>;
-    // (undocumented)
     resourceType: string;
     text?: Narrative;
 }
 
 // @public
-export interface Element {
-    extension?: Array<Extension>;
-    id?: string;
-}
+export type DomainResourceUnion = Observation | Condition | ResearchStudy | DomainResource;
 
 // @public
-export interface ElementOutput {
-    extension?: Array<ExtensionOutput>;
+export interface Element {
+    extension?: Array<Extension>;
     id?: string;
 }
 
@@ -363,17 +164,12 @@ export interface Encounter {
     period?: TimePeriod;
 }
 
-// @public
+// @public (undocumented)
 export type EncounterClass = "inpatient" | "ambulatory" | "observation" | "emergency" | "virtual" | "healthHome";
 
 // @public
 export interface Extendible {
-    extension?: Array<Extension>;
-}
-
-// @public
-export interface ExtendibleOutput {
-    extension?: Array<ExtensionOutput>;
+    extension?: Extension[];
 }
 
 // @public
@@ -390,35 +186,12 @@ export interface Extension extends Element {
     valueReference?: Reference;
     valueSampledData?: SampledData;
     valueString?: string;
-    valueTime?: Date | string;
+    valueTime?: Date;
 }
 
 // @public
-export interface ExtensionOutput extends ElementOutput {
-    url: string;
-    valueBoolean?: boolean;
-    valueCodeableConcept?: CodeableConceptOutput;
-    valueDateTime?: string;
-    valueInteger?: number;
-    valuePeriod?: PeriodOutput;
-    valueQuantity?: QuantityOutput;
-    valueRange?: RangeOutput;
-    valueRatio?: RatioOutput;
-    valueReference?: ReferenceOutput;
-    valueSampledData?: SampledDataOutput;
-    valueString?: string;
-    valueTime?: string;
-}
-
-// @public
-export interface FindingInference extends RadiologyInsightsInferenceParent {
+export interface FindingInference extends RadiologyInsightsInference {
     finding: Observation;
-    kind: "finding";
-}
-
-// @public
-export interface FindingInferenceOutput extends RadiologyInsightsInferenceOutputParent {
-    finding: ObservationOutput;
     kind: "finding";
 }
 
@@ -428,23 +201,15 @@ export interface FindingOptions {
 }
 
 // @public
-export interface FollowupCommunicationInference extends RadiologyInsightsInferenceParent {
-    dateTime?: Date[] | string[];
+export interface FollowupCommunicationInference extends RadiologyInsightsInference {
+    dateTime?: Date[];
     kind: "followupCommunication";
-    recipient?: MedicalProfessionalType[];
+    recipient?: Array<MedicalProfessionalType>;
     wasAcknowledged: boolean;
 }
 
 // @public
-export interface FollowupCommunicationInferenceOutput extends RadiologyInsightsInferenceOutputParent {
-    dateTime?: string[];
-    kind: "followupCommunication";
-    recipient?: MedicalProfessionalTypeOutput[];
-    wasAcknowledged: boolean;
-}
-
-// @public
-export interface FollowupRecommendationInference extends RadiologyInsightsInferenceParent {
+export interface FollowupRecommendationInference extends RadiologyInsightsInference {
     effectiveDateTime?: string;
     effectivePeriod?: Period;
     findings?: Array<RecommendationFinding>;
@@ -453,20 +218,7 @@ export interface FollowupRecommendationInference extends RadiologyInsightsInfere
     isHedging: boolean;
     isOption: boolean;
     kind: "followupRecommendation";
-    recommendedProcedure: ProcedureRecommendation;
-}
-
-// @public
-export interface FollowupRecommendationInferenceOutput extends RadiologyInsightsInferenceOutputParent {
-    effectiveDateTime?: string;
-    effectivePeriod?: PeriodOutput;
-    findings?: Array<RecommendationFindingOutput>;
-    isConditional: boolean;
-    isGuideline: boolean;
-    isHedging: boolean;
-    isOption: boolean;
-    kind: "followupRecommendation";
-    recommendedProcedure: ProcedureRecommendationOutput;
+    recommendedProcedure: ProcedureRecommendationUnion;
 }
 
 // @public
@@ -477,68 +229,20 @@ export interface FollowupRecommendationOptions {
 }
 
 // @public
-export interface GenericProcedureRecommendation extends ProcedureRecommendationParent {
+export interface GenericProcedureRecommendation extends ProcedureRecommendation {
     code: CodeableConcept;
     description?: string;
     kind: "genericProcedureRecommendation";
 }
 
 // @public
-export interface GenericProcedureRecommendationOutput extends ProcedureRecommendationOutputParent {
-    code: CodeableConceptOutput;
-    description?: string;
-    kind: "genericProcedureRecommendation";
-}
-
-// @public (undocumented)
-export interface GetJob {
-    get(options?: GetJobParameters): StreamableMethod<GetJob200Response | GetJobDefaultResponse>;
-}
-
-// @public (undocumented)
-export interface GetJob200Headers {
-    "retry-after"?: number;
-}
-
-// @public
-export interface GetJob200Response extends HttpResponse {
-    // (undocumented)
-    body: RadiologyInsightsResultOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & GetJob200Headers;
-    // (undocumented)
-    status: "200";
-}
-
-// @public (undocumented)
-export interface GetJobDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface GetJobDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & GetJobDefaultHeaders;
-    // (undocumented)
-    status: string;
-}
-
-// @public (undocumented)
-export type GetJobParameters = RequestParameters;
-
-// @public
-export function getLongRunningPoller<TResult extends CreateJobLogicalResponse | CreateJobDefaultResponse>(client: Client, initialResponse: CreateJob202Response | CreateJobDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-
-// @public
-export interface HealthInsightsOperationStatusOutput {
-    readonly createdDateTime?: string;
+export interface HealthInsightsOperationStatusError {
+    readonly createdDateTime?: Date;
     error?: ErrorModel;
-    readonly expirationDateTime?: string;
+    readonly expirationDateTime?: Date;
     readonly id: string;
-    readonly lastUpdateDateTime?: string;
-    readonly status: JobStatusOutput;
+    readonly lastUpdateDateTime?: Date;
+    readonly status: JobStatus;
 }
 
 // @public
@@ -547,16 +251,6 @@ export interface Identifier extends Element {
     period?: Period;
     system?: string;
     type?: CodeableConcept;
-    use?: string;
-    value?: string;
-}
-
-// @public
-export interface IdentifierOutput extends ElementOutput {
-    assigner?: ReferenceOutput;
-    period?: PeriodOutput;
-    system?: string;
-    type?: CodeableConceptOutput;
     use?: string;
     value?: string;
 }
@@ -571,96 +265,49 @@ export interface ImagingProcedure {
 }
 
 // @public
-export interface ImagingProcedureOutput {
-    anatomy: CodeableConceptOutput;
-    contrast?: RadiologyCodeWithTypesOutput;
-    laterality?: CodeableConceptOutput;
-    modality: CodeableConceptOutput;
-    view?: RadiologyCodeWithTypesOutput;
-}
-
-// @public
-export interface ImagingProcedureRecommendation extends ProcedureRecommendationParent {
+export interface ImagingProcedureRecommendation extends ProcedureRecommendation {
     imagingProcedures: Array<ImagingProcedure>;
     kind: "imagingProcedureRecommendation";
     procedureCodes?: Array<CodeableConcept>;
 }
 
-// @public
-export interface ImagingProcedureRecommendationOutput extends ProcedureRecommendationOutputParent {
-    imagingProcedures: Array<ImagingProcedureOutput>;
-    kind: "imagingProcedureRecommendation";
-    procedureCodes?: Array<CodeableConceptOutput>;
+// @public (undocumented)
+export interface InferRadiologyInsightsOptionalParams extends OperationOptions {
+    repeatabilityFirstSent?: Date;
+    repeatabilityRequestId?: string;
 }
 
 // @public (undocumented)
-export function isUnexpected(response: GetJob200Response | GetJobDefaultResponse): response is GetJobDefaultResponse;
-
-// @public (undocumented)
-export function isUnexpected(response: CreateJob202Response | CreateJobLogicalResponse | CreateJobDefaultResponse): response is CreateJobDefaultResponse;
+export type JobStatus = "notStarted" | "running" | "succeeded" | "failed" | "canceled";
 
 // @public
-export type JobStatusOutput = "notStarted" | "running" | "succeeded" | "failed" | "canceled";
-
-// @public
-export interface LateralityDiscrepancyInference extends RadiologyInsightsInferenceParent {
+export interface LateralityDiscrepancyInference extends RadiologyInsightsInference {
     discrepancyType: LateralityDiscrepancyType;
     kind: "lateralityDiscrepancy";
     lateralityIndication?: CodeableConcept;
 }
 
-// @public
-export interface LateralityDiscrepancyInferenceOutput extends RadiologyInsightsInferenceOutputParent {
-    discrepancyType: LateralityDiscrepancyTypeOutput;
-    kind: "lateralityDiscrepancy";
-    lateralityIndication?: CodeableConceptOutput;
-}
-
-// @public
+// @public (undocumented)
 export type LateralityDiscrepancyType = "orderLateralityMismatch" | "textLateralityContradiction" | "textLateralityMissing";
 
 // @public
-export type LateralityDiscrepancyTypeOutput = "orderLateralityMismatch" | "textLateralityContradiction" | "textLateralityMissing";
-
-// @public
-export interface LimitedOrderDiscrepancyInference extends RadiologyInsightsInferenceParent {
+export interface LimitedOrderDiscrepancyInference extends RadiologyInsightsInference {
     kind: "limitedOrderDiscrepancy";
     orderType: CodeableConcept;
     presentBodyPartMeasurements?: Array<CodeableConcept>;
     presentBodyParts?: Array<CodeableConcept>;
 }
 
-// @public
-export interface LimitedOrderDiscrepancyInferenceOutput extends RadiologyInsightsInferenceOutputParent {
-    kind: "limitedOrderDiscrepancy";
-    orderType: CodeableConceptOutput;
-    presentBodyPartMeasurements?: Array<CodeableConceptOutput>;
-    presentBodyParts?: Array<CodeableConceptOutput>;
-}
-
-// @public
+// @public (undocumented)
 export type MedicalProfessionalType = "unknown" | "doctor" | "nurse" | "midwife" | "physicianAssistant";
-
-// @public
-export type MedicalProfessionalTypeOutput = "unknown" | "doctor" | "nurse" | "midwife" | "physicianAssistant";
 
 // @public
 export interface Meta {
     lastUpdated?: string;
     profile?: string[];
-    security?: Array<Coding>;
+    security?: Coding[];
     source?: string;
-    tag?: Array<Coding>;
-    versionId?: string;
-}
-
-// @public
-export interface MetaOutput {
-    lastUpdated?: string;
-    profile?: string[];
-    security?: Array<CodingOutput>;
-    source?: string;
-    tag?: Array<CodingOutput>;
+    tag?: Coding[];
     versionId?: string;
 }
 
@@ -671,13 +318,7 @@ export interface Narrative extends Element {
 }
 
 // @public
-export interface NarrativeOutput extends ElementOutput {
-    div: string;
-    status: string;
-}
-
-// @public
-export interface Observation extends DomainResourceParent {
+export interface Observation extends DomainResource {
     bodySite?: CodeableConcept;
     category?: Array<CodeableConcept>;
     code: CodeableConcept;
@@ -708,7 +349,7 @@ export interface Observation extends DomainResourceParent {
     valueRatio?: Ratio;
     valueSampledData?: SampledData;
     valueString?: string;
-    valueTime?: Date | string;
+    valueTime?: Date;
 }
 
 // @public
@@ -728,62 +369,7 @@ export interface ObservationComponent extends Element {
     valueReference?: Reference;
     valueSampledData?: SampledData;
     valueString?: string;
-    valueTime?: Date | string;
-}
-
-// @public
-export interface ObservationComponentOutput extends ElementOutput {
-    code: CodeableConceptOutput;
-    dataAbsentReason?: CodeableConceptOutput;
-    interpretation?: Array<CodeableConceptOutput>;
-    referenceRange?: Array<ObservationReferenceRangeOutput>;
-    valueBoolean?: boolean;
-    valueCodeableConcept?: CodeableConceptOutput;
-    valueDateTime?: string;
-    valueInteger?: number;
-    valuePeriod?: PeriodOutput;
-    valueQuantity?: QuantityOutput;
-    valueRange?: RangeOutput;
-    valueRatio?: RatioOutput;
-    valueReference?: ReferenceOutput;
-    valueSampledData?: SampledDataOutput;
-    valueString?: string;
-    valueTime?: string;
-}
-
-// @public
-export interface ObservationOutput extends DomainResourceOutputParent {
-    bodySite?: CodeableConceptOutput;
-    category?: Array<CodeableConceptOutput>;
-    code: CodeableConceptOutput;
-    component?: Array<ObservationComponentOutput>;
-    dataAbsentReason?: CodeableConceptOutput;
-    derivedFrom?: Array<ReferenceOutput>;
-    effectiveDateTime?: string;
-    effectiveInstant?: string;
-    effectivePeriod?: PeriodOutput;
-    encounter?: ReferenceOutput;
-    hasMember?: Array<ReferenceOutput>;
-    identifier?: Array<IdentifierOutput>;
-    interpretation?: Array<CodeableConceptOutput>;
-    issued?: string;
-    method?: CodeableConceptOutput;
-    note?: Array<AnnotationOutput>;
-    referenceRange?: Array<ObservationReferenceRangeOutput>;
-    resourceType: "Observation";
-    status: ObservationStatusCodeTypeOutput;
-    subject?: ReferenceOutput;
-    valueBoolean?: boolean;
-    valueCodeableConcept?: CodeableConceptOutput;
-    valueDateTime?: string;
-    valueInteger?: number;
-    valuePeriod?: PeriodOutput;
-    valueQuantity?: QuantityOutput;
-    valueRange?: RangeOutput;
-    valueRatio?: RatioOutput;
-    valueSampledData?: SampledDataOutput;
-    valueString?: string;
-    valueTime?: string;
+    valueTime?: Date;
 }
 
 // @public
@@ -796,31 +382,12 @@ export interface ObservationReferenceRange {
     type?: CodeableConcept;
 }
 
-// @public
-export interface ObservationReferenceRangeOutput {
-    age?: RangeOutput;
-    appliesTo?: Array<CodeableConceptOutput>;
-    high?: QuantityOutput;
-    low?: QuantityOutput;
-    text?: string;
-    type?: CodeableConceptOutput;
-}
-
-// @public
+// @public (undocumented)
 export type ObservationStatusCodeType = "registered" | "preliminary" | "final" | "amended" | "corrected" | "cancelled" | "entered-in-error" | "unknown";
-
-// @public
-export type ObservationStatusCodeTypeOutput = "registered" | "preliminary" | "final" | "amended" | "corrected" | "cancelled" | "entered-in-error" | "unknown";
 
 // @public
 export interface OrderedProcedure extends Extendible {
     code?: CodeableConcept;
-    description?: string;
-}
-
-// @public
-export interface OrderedProcedureOutput extends ExtendibleOutput {
-    code?: CodeableConceptOutput;
     description?: string;
 }
 
@@ -830,7 +397,7 @@ export interface PatientDocument {
     authors?: Array<DocumentAuthor>;
     clinicalType?: ClinicalDocumentType;
     content: DocumentContent;
-    createdDateTime?: Date | string;
+    createdDateTime?: Date;
     id: string;
     language?: string;
     specialtyType?: SpecialtyType;
@@ -839,20 +406,20 @@ export interface PatientDocument {
 
 // @public
 export interface PatientInfo {
-    birthDate?: Date | string;
-    clinicalInfo?: Array<Resource>;
+    birthDate?: Date;
+    clinicalInfo?: Resource[];
     sex?: PatientInfoSex;
 }
 
-// @public
+// @public (undocumented)
 export type PatientInfoSex = "female" | "male" | "unspecified";
 
 // @public
 export interface PatientRecord {
-    encounters?: Array<Encounter>;
+    encounters?: Encounter[];
     id: string;
     info?: PatientInfo;
-    patientDocuments?: Array<PatientDocument>;
+    patientDocuments?: PatientDocument[];
 }
 
 // @public
@@ -862,40 +429,15 @@ export interface Period extends Element {
 }
 
 // @public
-export interface PeriodOutput extends ElementOutput {
-    end?: string;
-    start?: string;
-}
-
-// @public
-export type ProcedureRecommendation = ProcedureRecommendationParent | GenericProcedureRecommendation | ImagingProcedureRecommendation;
-
-// @public
-export type ProcedureRecommendationOutput = ProcedureRecommendationOutputParent | GenericProcedureRecommendationOutput | ImagingProcedureRecommendationOutput;
-
-// @public
-export interface ProcedureRecommendationOutputParent {
-    // (undocumented)
+export interface ProcedureRecommendation {
     kind: string;
 }
 
 // @public
-export interface ProcedureRecommendationParent {
-    // (undocumented)
-    kind: string;
-}
+export type ProcedureRecommendationUnion = GenericProcedureRecommendation | ImagingProcedureRecommendation | ProcedureRecommendation;
 
 // @public
 export interface Quantity extends Element {
-    code?: string;
-    comparator?: string;
-    system?: string;
-    unit?: string;
-    value?: number;
-}
-
-// @public
-export interface QuantityOutput extends ElementOutput {
     code?: string;
     comparator?: string;
     system?: string;
@@ -909,10 +451,16 @@ export interface RadiologyCodeWithTypes {
     types: Array<CodeableConcept>;
 }
 
-// @public
-export interface RadiologyCodeWithTypesOutput {
-    code: CodeableConceptOutput;
-    types: Array<CodeableConceptOutput>;
+// @public (undocumented)
+export class RadiologyInsightsClient {
+    constructor(endpointParam: string, credential: KeyCredential, options?: RadiologyInsightsClientOptions);
+    inferRadiologyInsights(body: RadiologyInsightsData, options?: InferRadiologyInsightsOptionalParams): Promise<HealthInsightsOperationStatusError>;
+    readonly pipeline: Pipeline;
+}
+
+// @public (undocumented)
+export interface RadiologyInsightsClientOptions extends ClientOptions {
+    apiVersion?: string;
 }
 
 // @public
@@ -922,7 +470,9 @@ export interface RadiologyInsightsData {
 }
 
 // @public
-export type RadiologyInsightsInference = RadiologyInsightsInferenceParent | AgeMismatchInference | SexMismatchInference | LateralityDiscrepancyInference | CompleteOrderDiscrepancyInference | LimitedOrderDiscrepancyInference | FindingInference | CriticalResultInference | RadiologyProcedureInference | FollowupRecommendationInference | FollowupCommunicationInference;
+export interface RadiologyInsightsInference extends Extendible {
+    kind: string;
+}
 
 // @public
 export interface RadiologyInsightsInferenceOptions {
@@ -931,28 +481,16 @@ export interface RadiologyInsightsInferenceOptions {
 }
 
 // @public
-export type RadiologyInsightsInferenceOutput = RadiologyInsightsInferenceOutputParent | AgeMismatchInferenceOutput | SexMismatchInferenceOutput | LateralityDiscrepancyInferenceOutput | CompleteOrderDiscrepancyInferenceOutput | LimitedOrderDiscrepancyInferenceOutput | FindingInferenceOutput | CriticalResultInferenceOutput | RadiologyProcedureInferenceOutput | FollowupRecommendationInferenceOutput | FollowupCommunicationInferenceOutput;
-
-// @public
-export interface RadiologyInsightsInferenceOutputParent extends ExtendibleOutput {
-    // (undocumented)
-    kind: string;
-}
-
-// @public
-export interface RadiologyInsightsInferenceParent extends Extendible {
-    // (undocumented)
-    kind: string;
-}
-
-// @public
-export interface RadiologyInsightsInferenceResultOutput {
+export interface RadiologyInsightsInferenceResult {
     modelVersion: string;
-    patientResults: Array<RadiologyInsightsPatientResultOutput>;
+    patientResults: Array<RadiologyInsightsPatientResult>;
 }
 
-// @public
+// @public (undocumented)
 export type RadiologyInsightsInferenceType = "ageMismatch" | "lateralityDiscrepancy" | "sexMismatch" | "completeOrderDiscrepancy" | "limitedOrderDiscrepancy" | "finding" | "criticalResult" | "followupRecommendation" | "followupCommunication" | "radiologyProcedure";
+
+// @public
+export type RadiologyInsightsInferenceUnion = AgeMismatchInference | SexMismatchInference | LateralityDiscrepancyInference | CompleteOrderDiscrepancyInference | LimitedOrderDiscrepancyInference | FindingInference | CriticalResultInference | RadiologyProcedureInference | FollowupRecommendationInference | FollowupCommunicationInference | RadiologyInsightsInference;
 
 // @public
 export interface RadiologyInsightsModelConfiguration {
@@ -964,36 +502,28 @@ export interface RadiologyInsightsModelConfiguration {
 }
 
 // @public
-export interface RadiologyInsightsPatientResultOutput {
-    inferences: Array<RadiologyInsightsInferenceOutput>;
+export interface RadiologyInsightsPatientResult {
+    inferences: Array<RadiologyInsightsInferenceUnion>;
     patientId: string;
 }
 
 // @public
-export interface RadiologyInsightsResultOutput {
-    readonly createdDateTime?: string;
+export interface RadiologyInsightsResult {
+    readonly createdDateTime?: Date;
     error?: ErrorModel;
-    readonly expirationDateTime?: string;
+    readonly expirationDateTime?: Date;
     readonly id: string;
-    readonly lastUpdateDateTime?: string;
-    result?: RadiologyInsightsInferenceResultOutput;
-    readonly status: JobStatusOutput;
+    readonly lastUpdateDateTime?: Date;
+    result?: RadiologyInsightsInferenceResult;
+    readonly status: JobStatus;
 }
 
 // @public
-export interface RadiologyProcedureInference extends RadiologyInsightsInferenceParent {
+export interface RadiologyProcedureInference extends RadiologyInsightsInference {
     imagingProcedures: Array<ImagingProcedure>;
     kind: "radiologyProcedure";
     orderedProcedure: OrderedProcedure;
     procedureCodes?: Array<CodeableConcept>;
-}
-
-// @public
-export interface RadiologyProcedureInferenceOutput extends RadiologyInsightsInferenceOutputParent {
-    imagingProcedures: Array<ImagingProcedureOutput>;
-    kind: "radiologyProcedure";
-    orderedProcedure: OrderedProcedureOutput;
-    procedureCodes?: Array<CodeableConceptOutput>;
 }
 
 // @public
@@ -1003,21 +533,9 @@ export interface Range extends Element {
 }
 
 // @public
-export interface RangeOutput extends ElementOutput {
-    high?: QuantityOutput;
-    low?: QuantityOutput;
-}
-
-// @public
 export interface Ratio extends Element {
     denominator?: Quantity;
     numerator?: Quantity;
-}
-
-// @public
-export interface RatioOutput extends ElementOutput {
-    denominator?: QuantityOutput;
-    numerator?: QuantityOutput;
 }
 
 // @public
@@ -1027,18 +545,8 @@ export interface RecommendationFinding extends Extendible {
     recommendationFindingStatus: RecommendationFindingStatusType;
 }
 
-// @public
-export interface RecommendationFindingOutput extends ExtendibleOutput {
-    criticalFinding?: CriticalResultOutput;
-    finding?: ObservationOutput;
-    recommendationFindingStatus: RecommendationFindingStatusTypeOutput;
-}
-
-// @public
+// @public (undocumented)
 export type RecommendationFindingStatusType = "present" | "differential" | "ruleOut" | "conditional";
-
-// @public
-export type RecommendationFindingStatusTypeOutput = "present" | "differential" | "ruleOut" | "conditional";
 
 // @public
 export interface Reference extends Element {
@@ -1048,19 +556,11 @@ export interface Reference extends Element {
     type?: string;
 }
 
-// @public
-export interface ReferenceOutput extends ElementOutput {
-    display?: string;
-    identifier?: IdentifierOutput;
-    reference?: string;
-    type?: string;
-}
+// @public (undocumented)
+export type RepeatabilityResult = "accepted" | "rejected";
 
 // @public
-export type RepeatabilityResultOutput = "accepted" | "rejected";
-
-// @public
-export interface ResearchStudy extends DomainResourceParent {
+export interface ResearchStudy extends DomainResource {
     arm?: {
         name: string;
         type?: CodeableConcept;
@@ -1094,69 +594,16 @@ export interface ResearchStudy extends DomainResourceParent {
     title?: string;
 }
 
-// @public
-export interface ResearchStudyOutput extends DomainResourceOutputParent {
-    arm?: {
-        name: string;
-        type?: CodeableConceptOutput;
-        description?: string;
-    }[];
-    category?: Array<CodeableConceptOutput>;
-    condition?: Array<CodeableConceptOutput>;
-    contact?: Array<ContactDetailOutput>;
-    description?: string;
-    enrollment?: Array<ReferenceOutput>;
-    focus?: Array<CodeableConceptOutput>;
-    identifier?: Array<IdentifierOutput>;
-    keyword?: Array<CodeableConceptOutput>;
-    location?: Array<CodeableConceptOutput>;
-    note?: Array<AnnotationOutput>;
-    objective?: {
-        name: string;
-        type?: CodeableConceptOutput;
-    }[];
-    partOf?: Array<ReferenceOutput>;
-    period?: PeriodOutput;
-    phase?: CodeableConceptOutput;
-    primaryPurposeType?: CodeableConceptOutput;
-    principalInvestigator?: ReferenceOutput;
-    protocol?: Array<ReferenceOutput>;
-    reasonStopped?: CodeableConceptOutput;
-    resourceType: "ResearchStudy";
-    site?: Array<ReferenceOutput>;
-    sponsor?: ReferenceOutput;
-    status: ResearchStudyStatusCodeTypeOutput;
-    title?: string;
-}
-
-// @public
+// @public (undocumented)
 export type ResearchStudyStatusCodeType = "active" | "administratively-completed" | "approved" | "closed-to-accrual" | "closed-to-accrual-and-intervention" | "completed" | "disapproved" | "in-review" | "temporarily-closed-to-accrual" | "temporarily-closed-to-accrual-and-intervention" | "withdrawn";
 
 // @public
-export type ResearchStudyStatusCodeTypeOutput = "active" | "administratively-completed" | "approved" | "closed-to-accrual" | "closed-to-accrual-and-intervention" | "completed" | "disapproved" | "in-review" | "temporarily-closed-to-accrual" | "temporarily-closed-to-accrual-and-intervention" | "withdrawn";
-
-// @public
-export interface Resource extends Record<string, unknown> {
+export interface Resource {
     id?: string;
     implicitRules?: string;
     language?: string;
     meta?: Meta;
     resourceType: string;
-}
-
-// @public
-export interface ResourceOutput extends Record<string, any> {
-    id?: string;
-    implicitRules?: string;
-    language?: string;
-    meta?: MetaOutput;
-    resourceType: string;
-}
-
-// @public (undocumented)
-export interface Routes {
-    (path: "/radiology-insights/jobs/{id}", id: string): GetJob;
-    (path: "/radiology-insights/jobs"): CreateJob;
 }
 
 // @public
@@ -1171,35 +618,18 @@ export interface SampledData extends Element {
 }
 
 // @public
-export interface SampledDataOutput extends ElementOutput {
-    data?: string;
-    dimensions: number;
-    factor?: number;
-    lowerLimit?: number;
-    origin: QuantityOutput;
-    period: number;
-    upperLimit?: number;
-}
-
-// @public
-export interface SexMismatchInference extends RadiologyInsightsInferenceParent {
+export interface SexMismatchInference extends RadiologyInsightsInference {
     kind: "sexMismatch";
     sexIndication: CodeableConcept;
 }
 
-// @public
-export interface SexMismatchInferenceOutput extends RadiologyInsightsInferenceOutputParent {
-    kind: "sexMismatch";
-    sexIndication: CodeableConceptOutput;
-}
-
-// @public
+// @public (undocumented)
 export type SpecialtyType = "pathology" | "radiology";
 
 // @public
 export interface TimePeriod {
-    end?: Date | string;
-    start?: Date | string;
+    end?: Date;
+    start?: Date;
 }
 
 // (No @packageDocumentation comment for this package)
