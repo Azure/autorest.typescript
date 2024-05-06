@@ -86,7 +86,8 @@ import {
 import {
   buildCoreTypeInfo,
   getBodyType,
-  getDefaultApiVersionString
+  getDefaultApiVersionString,
+  isAzureCoreErrorType
 } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
 import {
@@ -586,33 +587,40 @@ function emitResponseHeaders(
 
 function emitResponse(
   context: SdkContext,
+  operation: Operation,
   response: HttpOperationResponse,
   innerResponse: HttpOperationResponseContent
 ): Response {
   let type = undefined;
-  // if (
-  //   innerResponse.body?.type &&
-  //   !isAzureCoreErrorType(innerResponse.body?.type)
-  // ) {
-  //   // temporary logic. It can be removed after compiler optimize the response
-  //   const candidate = [
-  //     "ResourceOkResponse",
-  //     "ResourceCreatedResponse",
-  //     "AcceptedResponse"
-  //   ];
-  //   const originType = innerResponse.body.type as Model;
-  //   if (
-  //     innerResponse.body.type.kind === "Model" &&
-  //     candidate.find((e) => e === originType.name)
-  //   ) {
-  //     const modelType = getEffectiveSchemaType(context.program, originType);
-  //     type = getType(context, modelType, { usage: UsageFlags.Output });
-  //   } else {
-  //     type = getType(context, innerResponse.body.type, {
-  //       usage: UsageFlags.Output
-  //     });
-  //   }
-  // }
+  if (
+    innerResponse.body?.type &&
+    !isAzureCoreErrorType(innerResponse.body?.type)
+  ) {
+    // temporary logic. It can be removed after compiler optimize the response
+    const candidate = [
+      "ResourceOkResponse",
+      "ResourceCreatedResponse",
+      "AcceptedResponse"
+    ];
+    const originType = innerResponse.body.type as Model;
+    if (
+      innerResponse.body.type.kind === "Model" &&
+      candidate.find((e) => e === originType.name)
+    ) {
+      const modelType = getEffectiveSchemaType(context.program, originType);
+      type = getType(context, modelType, { usage: UsageFlags.Output });
+    } else if (isLroResponse()) {
+      const metadata = getLroMetadata(context.program, operation);
+      type =
+        metadata?.finalResult === "void" || metadata?.finalResult === undefined
+          ? undefined
+          : getType(context, metadata.finalResult);
+    } else {
+      type = getType(context, innerResponse.body.type, {
+        usage: UsageFlags.Output
+      });
+    }
+  }
   const statusCodes: (number | "default")[] = [];
   if (response.statusCode === "*") {
     statusCodes.push("default");
@@ -633,6 +641,14 @@ function emitResponse(
         )
       : false
   };
+
+  function isLroResponse() {
+    return (
+      typeof response.statusCodes === "number" &&
+      ["200", "201", "202"]?.includes(`${response.statusCodes}`) &&
+      !!getLroMetadata(context.program, operation)
+    );
+  }
 }
 
 function emitOperation(
@@ -796,6 +812,7 @@ function emitBasicOperation(
     for (const innerResponse of response.responses) {
       const emittedResponse: Response = emitResponse(
         context,
+        operation,
         response,
         innerResponse
       );

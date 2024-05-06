@@ -31,26 +31,3 @@ export interface GenerationResult {
 /** The API version. */
 /** */
 export type Versions = "2022-12-01-preview";
-
-export interface GenerationOptionsGenerationResponseGenerationResultErrorErrorResponse {
-  /** The unique ID of the operation. */
-  readonly id: string;
-  /** The status of the operation */
-  status: CoreOperationStatus;
-  /** Error object that describes the error when status is "Failed". */
-  error?: ErrorModel;
-  /** The result of the operation. */
-  result?: GenerationResult;
-}
-
-/** Provides status details for long running operations. */
-export interface OperationStatusGenerationResultError {
-  /** The unique ID of the operation. */
-  readonly id: string;
-  /** The status of the operation */
-  status: CoreOperationStatus;
-  /** Error object that describes the error when status is "Failed". */
-  error?: ErrorModel;
-  /** The result of the operation. */
-  result?: GenerationResult;
-}

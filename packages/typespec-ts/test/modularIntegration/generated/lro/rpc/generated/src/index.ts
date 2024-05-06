@@ -8,7 +8,5 @@ export {
   GenerationResponse,
   GenerationResult,
   Versions,
-  GenerationOptionsGenerationResponseGenerationResultErrorErrorResponse,
-  OperationStatusGenerationResultError,
   LongRunningRpcOptionalParams,
 } from "./models/index.js";
