@@ -8,8 +8,8 @@ import {
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
-  "POST /azure/core/lro/rpc/generations:submit": ["202"],
   "GET /azure/core/lro/rpc/generations:submit": ["200", "202"],
+  "POST /azure/core/lro/rpc/generations:submit": ["202"],
 };
 
 export function isUnexpected(

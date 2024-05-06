@@ -132,7 +132,6 @@ export function getDeserializePrivateFunction(
   let response = operation.responses[0]!;
   let returnType;
   if (isLroOnly && operation.method.toLowerCase() !== "patch") {
-    response = operation.lroMetadata?.finalEnvelopeResponse ?? response;
     returnType = buildLroReturnType(operation);
   } else if (response?.type?.type) {
     returnType = buildType(

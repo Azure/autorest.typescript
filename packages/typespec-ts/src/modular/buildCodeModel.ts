@@ -86,8 +86,7 @@ import {
 import {
   buildCoreTypeInfo,
   getBodyType,
-  getDefaultApiVersionString,
-  isAzureCoreErrorType
+  getDefaultApiVersionString
 } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
 import {
@@ -591,29 +590,29 @@ function emitResponse(
   innerResponse: HttpOperationResponseContent
 ): Response {
   let type = undefined;
-  if (
-    innerResponse.body?.type &&
-    !isAzureCoreErrorType(innerResponse.body?.type)
-  ) {
-    // temporary logic. It can be removed after compiler optimize the response
-    const candidate = [
-      "ResourceOkResponse",
-      "ResourceCreatedResponse",
-      "AcceptedResponse"
-    ];
-    const originType = innerResponse.body.type as Model;
-    if (
-      innerResponse.body.type.kind === "Model" &&
-      candidate.find((e) => e === originType.name)
-    ) {
-      const modelType = getEffectiveSchemaType(context.program, originType);
-      type = getType(context, modelType, { usage: UsageFlags.Output });
-    } else {
-      type = getType(context, innerResponse.body.type, {
-        usage: UsageFlags.Output
-      });
-    }
-  }
+  // if (
+  //   innerResponse.body?.type &&
+  //   !isAzureCoreErrorType(innerResponse.body?.type)
+  // ) {
+  //   // temporary logic. It can be removed after compiler optimize the response
+  //   const candidate = [
+  //     "ResourceOkResponse",
+  //     "ResourceCreatedResponse",
+  //     "AcceptedResponse"
+  //   ];
+  //   const originType = innerResponse.body.type as Model;
+  //   if (
+  //     innerResponse.body.type.kind === "Model" &&
+  //     candidate.find((e) => e === originType.name)
+  //   ) {
+  //     const modelType = getEffectiveSchemaType(context.program, originType);
+  //     type = getType(context, modelType, { usage: UsageFlags.Output });
+  //   } else {
+  //     type = getType(context, innerResponse.body.type, {
+  //       usage: UsageFlags.Output
+  //     });
+  //   }
+  // }
   const statusCodes: (number | "default")[] = [];
   if (response.statusCode === "*") {
     statusCodes.push("default");
@@ -681,15 +680,15 @@ function emitOperation(
   emitExtraInfoForOperation(emittedOperation);
   return emittedOperation;
 
-  function emitExtraInfoForOperation(operaiton: HrlcOperation) {
+  function emitExtraInfoForOperation(emittedOperation: HrlcOperation) {
     if (lro) {
-      addLroInformation(context, operation, operaiton);
+      addLroInformation(context, operation, emittedOperation);
     }
     if (paging) {
-      addPagingInformation(context, operation, operaiton);
+      addPagingInformation(context, operation, emittedOperation);
     }
     if (lro && paging) {
-      operaiton["discriminator"] = "lropaging";
+      emittedOperation["discriminator"] = "lropaging";
     }
   }
 }
@@ -707,18 +706,7 @@ function addLroInformation(
         ? undefined
         : getType(context, metadata.finalResult),
     finalStateVia: metadata?.finalStateVia,
-    finalResultPath: metadata?.finalResultPath,
-    finalEnvelopeResponse: {
-      statusCodes: [200],
-      isBinaryPayload: false,
-      discriminator: emittedOperation.discriminator,
-      headers: [],
-      type:
-        metadata?.finalEnvelopeResult === "void" ||
-        metadata?.finalEnvelopeResult === undefined
-          ? undefined
-          : getType(context, metadata.finalEnvelopeResult)
-    }
+    finalResultPath: metadata?.finalResultPath
   };
 }
 

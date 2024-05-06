@@ -126,8 +126,7 @@
       "runtimeArgs": [
         "node",
         "./test/commands/gen-cadl-ranch.js",
-        "--tag=rlc",
-        "--debug"
+        "--tag=modular"
       ],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
