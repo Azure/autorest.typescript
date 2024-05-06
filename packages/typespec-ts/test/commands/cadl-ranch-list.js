@@ -247,32 +247,8 @@ export const nonBrandedRlcTsps = [
 
 
 export const modularTsps = [
-  {
-    outputPath: "azure/clientGeneratorCore/access",
-    inputPath: "azure/client-generator-core/access"
-  },
-  {
-    outputPath: "azure/clientGeneratorCore/usage",
-    inputPath: "azure/client-generator-core/usage"
-  },
   { outputPath: "lro/rpc", inputPath: "azure/core/lro/rpc" },
   { outputPath: "lro/standard", inputPath: "azure/core/lro/standard" },
-  {
-    outputPath: "azure/clientGeneratorCore/access",
-    inputPath: "azure/client-generator-core/access"
-  },
-  {
-    outputPath: "azure/clientGeneratorCore/usage",
-    inputPath: "azure/client-generator-core/usage"
-  },
-  {
-    outputPath: "azure/clientGeneratorCore/access",
-    inputPath: "azure/client-generator-core/access"
-  },
-  {
-    outputPath: "azure/clientGeneratorCore/usage",
-    inputPath: "azure/client-generator-core/usage"
-  },
   {
     outputPath: "azure/clientGeneratorCore/access",
     inputPath: "azure/client-generator-core/access"

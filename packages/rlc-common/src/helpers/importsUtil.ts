@@ -46,8 +46,7 @@ export function buildRuntimeImports(flavor?: PackageFlavor): Imports {
       },
       azureCoreLro: {
         type: "azureCoreLro",
-        specifier: "@azure/core-lro",
-        version: "^2.0.0"
+        specifier: "@azure/core-lro"
       }
     } as Imports;
   } else {
