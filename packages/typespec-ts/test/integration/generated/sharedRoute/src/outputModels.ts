@@ -5,3 +5,8 @@
 export interface ResourceOutput {
   id: string;
 }
+
+export interface ErrorModelOutput {
+  code: number;
+  message: string;
+}

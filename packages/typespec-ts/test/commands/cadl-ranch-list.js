@@ -230,6 +230,10 @@ export const rlcTsps = [
   {
     outputPath: "server/versions/not-versioned",
     inputPath: "server/versions/not-versioned"
+  },
+  {
+    outputPath: "payload/content-negotiation",
+    inputPath: "payload/content-negotiation"
   }
 ];
 

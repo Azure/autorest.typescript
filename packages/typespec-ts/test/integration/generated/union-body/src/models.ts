@@ -6,12 +6,12 @@ export interface RequestRegisterCC extends CommonRegistrationRequest {
 }
 
 export interface CommonRegistrationRequest {
-  payMethod: PAYMENT_METHODS;
+  payMethod: PaymentMethods;
 }
 
 export interface RequestRegisterVA {
   prop: string;
 }
 
-/** Alias for PAYMENT_METHODS */
-export type PAYMENT_METHODS = "01";
+/** Alias for PaymentMethods */
+export type PaymentMethods = "01";

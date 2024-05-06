@@ -210,13 +210,15 @@ export function getClientLroOverload(pathDictionary: Paths) {
     allowCounts = 0;
   for (const details of Object.values(pathDictionary)) {
     for (const methodDetails of Object.values(details.methods)) {
-      const lroDetail = methodDetails[0].operationHelperDetail?.lroDetails;
-      if (lroDetail?.isLongRunning) {
-        lroCounts++;
-        if (!lroDetail.operationLroOverload) {
-          return false;
+      for (const detail of methodDetails) {
+        const lroDetail = detail.operationHelperDetail?.lroDetails;
+        if (lroDetail?.isLongRunning) {
+          lroCounts++;
+          if (!lroDetail.operationLroOverload) {
+            return false;
+          }
+          allowCounts++;
         }
-        allowCounts++;
       }
     }
   }
@@ -304,10 +306,10 @@ export function extractOperationLroDetail(
 }
 
 export function hasPollingOperations(
-  program: Program,
   client: SdkClient,
   dpgContext: SdkContext
 ) {
+  const program = dpgContext.program;
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
@@ -349,11 +351,8 @@ export function isPagingOperation(program: Program, operation: HttpOperation) {
   return false;
 }
 
-export function hasPagingOperations(
-  program: Program,
-  client: SdkClient,
-  dpgContext: SdkContext
-) {
+export function hasPagingOperations(client: SdkClient, dpgContext: SdkContext) {
+  const program = dpgContext.program;
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));

@@ -215,28 +215,28 @@ export async function $onEmit(context: EmitContext) {
 
       const isMultiClients = modularCodeModel.clients.length > 1;
       for (const subClient of modularCodeModel.clients) {
-        buildModels(modularCodeModel, subClient);
-        buildModelsOptions(modularCodeModel, subClient);
+        buildModels(subClient, modularCodeModel);
+        buildModelsOptions(subClient, modularCodeModel);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
         buildSerializeUtils(modularCodeModel);
         // build paging files
-        buildPagingTypes(modularCodeModel, subClient);
+        buildPagingTypes(subClient, modularCodeModel);
         buildModularPagingHelpers(
-          modularCodeModel,
           subClient,
+          modularCodeModel,
           hasClientUnexpectedHelper,
           isMultiClients
         );
         // build operation files
         buildOperationFiles(
+          subClient,
           dpgContext,
           modularCodeModel,
-          subClient,
           hasClientUnexpectedHelper
         );
-        buildClientContext(dpgContext, modularCodeModel, subClient);
-
+        buildClientContext(subClient, dpgContext, modularCodeModel);
+        buildSubpathIndexFile(subClient, modularCodeModel, "models");
         // build lro files
         buildGetPollerHelper(
           modularCodeModel,
@@ -245,25 +245,24 @@ export async function $onEmit(context: EmitContext) {
           isMultiClients
         );
         buildRestorePollerHelper(modularCodeModel, subClient);
-        buildSubpathIndexFile(modularCodeModel, subClient, "models");
         if (dpgContext.rlcOptions?.hierarchyClient) {
-          buildSubpathIndexFile(modularCodeModel, subClient, "api");
+          buildSubpathIndexFile(subClient, modularCodeModel, "api");
         } else {
-          buildSubpathIndexFile(modularCodeModel, subClient, "api", {
+          buildSubpathIndexFile(subClient, modularCodeModel, "api", {
             exportIndex: true
           });
         }
 
-        buildClassicalClient(dpgContext, modularCodeModel, subClient);
+        buildClassicalClient(subClient, dpgContext, modularCodeModel);
         buildClassicOperationFiles(modularCodeModel, subClient);
-        buildSubpathIndexFile(modularCodeModel, subClient, "classic", {
+        buildSubpathIndexFile(subClient, modularCodeModel, "classic", {
           exportIndex: true,
           interfaceOnly: true
         });
         if (isMultiClients) {
-          buildSubClientIndexFile(modularCodeModel, subClient);
+          buildSubClientIndexFile(subClient, modularCodeModel);
         }
-        buildRootIndex(modularCodeModel, subClient, rootIndexFile);
+        buildRootIndex(subClient, modularCodeModel, rootIndexFile);
       }
 
       for (const file of project.getSourceFiles()) {

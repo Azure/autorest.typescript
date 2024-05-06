@@ -235,6 +235,49 @@ describe("Input/output model type", () => {
             export type TranslationLanguageValuesOutput = "English" | "Chinese";`
           );
         });
+        it("should handle enum with non-standard name as property -> type alias with union", async () => {
+          const schemaOutput = await emitModelsFromTypeSpec(`
+          @doc("Extensible enum model description")
+          enum translationLanguageValues {
+            #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+            English,
+            #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+            Chinese,
+          }
+          model InputOutputModel {
+            @doc("Property description")
+            prop: translationLanguageValues;
+          }
+          @route("/models")
+          @get
+          op getModel(@body input: InputOutputModel): InputOutputModel;
+          `);
+          assert.ok(schemaOutput);
+          const { inputModelFile, outputModelFile } = schemaOutput!;
+          await assertEqualContent(
+            inputModelFile?.content!,
+            `
+          export interface InputOutputModel {
+            /** Property description */
+            prop: TranslationLanguageValues;
+          }
+          
+          /** Extensible enum model description */
+          export type TranslationLanguageValues = "English" | "Chinese";
+          `
+          );
+          await assertEqualContent(
+            outputModelFile?.content!,
+            `
+            export interface InputOutputModelOutput {
+              /** Property description */
+              prop: TranslationLanguageValuesOutput;
+            }
+            
+            /** Extensible enum model description */
+            export type TranslationLanguageValuesOutput = "English" | "Chinese";`
+          );
+        });
         it("should handle enum as body -> type alias with union", async () => {
           const schemaOutput = await emitParameterFromTypeSpec(`
           #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
@@ -2269,6 +2312,27 @@ describe("Input/output model type", () => {
       }
       `;
       const tspType = "MyNamedUnion | null";
+      const inputModelName = "MyNamedUnion | null";
+      await verifyPropertyType(tspType, inputModelName, {
+        additionalTypeSpecDefinition: tspDefinition,
+        outputType: `MyNamedUnionOutput | null`,
+        additionalInputContent: `
+        /** Alias for MyNamedUnion */
+        export type MyNamedUnion = string | number;`,
+        additionalOutputContent: `
+        /** Alias for MyNamedUnionOutput */
+        export type MyNamedUnionOutput = string | number;`
+      });
+    });
+
+    it("union with non-standard name whose variants are pure primitive types", async () => {
+      const tspDefinition = `
+      union myNamedUnion {
+        one: string,
+        two: int32,
+      }
+      `;
+      const tspType = "myNamedUnion | null";
       const inputModelName = "MyNamedUnion | null";
       await verifyPropertyType(tspType, inputModelName, {
         additionalTypeSpecDefinition: tspDefinition,

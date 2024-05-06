@@ -1,12 +1,14 @@
 import "@azure-tools/typespec-azure-core";
 import "@typespec/http";
 import "@typespec/versioning";
+import "@azure-tools/typespec-client-generator-core";
 
 import "./common.tsp";
 
 using Azure.Core;
 using TypeSpec.Http;
 using TypeSpec.Versioning;
+using Azure.ClientGenerator.Core;
 
 namespace Azure.OpenAI;
 
@@ -109,7 +111,7 @@ model ImageGenerationOptions {
   Dall-e-2 models support values between 1 and 10.
   Dall-e-3 models only support a value of 1.
   """)
-  @projectedName("csharp", "ImageCount")
+  @clientName("ImageCount", "csharp")
   n?: int32 = 1;
 
   @doc("""
@@ -120,7 +122,7 @@ model ImageGenerationOptions {
   size?: ImageSize = ImageSize.size1024x1024;
 
   @doc("The format in which image generation response items should be presented.")
-  @projectedName("json", "response_format")
+  @encodedName("application/json", "response_format")
   responseFormat?: ImageGenerationResponseFormat = ImageGenerationResponseFormat.url;
 
   @doc("""
@@ -139,6 +141,11 @@ model ImageGenerationOptions {
 
   @doc("A unique identifier representing your end-user, which can help to monitor and detect abuse.")
   user?: string;
+
+  @removed(ServiceApiVersions.v2024_02_15_Preview)
+  @added(ServiceApiVersions.v2023_06_01_Preview)
+  @doc("A test property to test against the removed decorator on properties.")
+  testProp: string;
 }
 
 @doc("""
@@ -151,7 +158,7 @@ model ImageGenerationData {
   url?: url;
 
   @doc("The complete data for an image, represented as a base64-encoded string.")
-  @projectedName("json", "b64_json")
+  @encodedName("application/json", "b64_json")
   base64Data?: string;
 
   @doc("""
@@ -159,7 +166,7 @@ model ImageGenerationData {
   Only provided with dall-3-models and only when revisions were made to the prompt.
   """)
   @added(ServiceApiVersions.v2024_02_15_Preview)
-  @projectedName("json", "revised_prompt")
+  @encodedName("application/json", "revised_prompt")
   revisedPrompt?: string;
 }
 
@@ -170,8 +177,7 @@ model ImageGenerations {
   A timestamp representing when this operation was started.
   Expressed in seconds since the Unix epoch of 1970-01-01T00:00:00+0000.
   """)
-  @projectedName("json", "created")
-  @projectedName("java", "createdAt")
+  @clientName("createdAt", "java")
   @encode(DateTimeKnownEncoding.unixTimestamp, int32)
   created: utcDateTime;
 
@@ -197,8 +203,7 @@ model BatchImageGenerationOperationResponse {
   id: string;
 
   @doc("A timestamp when this job or item was created (in unix epochs).")
-  @projectedName("json", "created")
-  @projectedName("java", "createdAt")
+  @clientName("createdAt", "java")
   @encode(DateTimeKnownEncoding.unixTimestamp, int32)
   created: utcDateTime;
 

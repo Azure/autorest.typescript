@@ -318,6 +318,7 @@ function processModelProperties(
     // because it's impossible to have a anonymous model as the polymorphic base in typespec
     // the only possibility is the anonymous model is an alias for an union type which has already been taken care of in the combined types.
     if (newValue.name) {
+      newValue.name = normalizeName(newValue.name, NameType.Interface);
       discriminatorInfo?.aliases.push(`${newValue.name}`);
       newValue.alias = `${newValue.name}`;
       newValue.name = `${newValue.name}Union`;
@@ -533,7 +534,7 @@ function emitParameter(
       clientDefaultValue = defaultApiVersion.value;
     }
     if (!clientDefaultValue) {
-      clientDefaultValue = getDefaultApiVersionString(context.program, context);
+      clientDefaultValue = getDefaultApiVersionString(context);
     }
     if (clientDefaultValue !== undefined) {
       paramMap.optional = true;
@@ -1063,9 +1064,10 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
 
   return {
     type: "enum",
-    name: getLibraryName(context, type)
-      ? getLibraryName(context, type)
-      : type.name,
+    name: normalizeName(
+      getLibraryName(context, type) ? getLibraryName(context, type) : type.name,
+      NameType.Interface
+    ),
     description: getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
@@ -1355,10 +1357,13 @@ function emitUnion(
       }
       return valueType;
     });
+    const unionTypeName = unionName
+      ? normalizeName(unionName, NameType.Interface)
+      : undefined;
     return {
       nullable: sdkType.nullable,
-      name: unionName,
-      description: `Type of ${unionName}`,
+      name: unionTypeName,
+      description: `Type of ${unionTypeName}`,
       internal: true,
       type: "combined",
       types: variantTypes,
@@ -1373,11 +1378,14 @@ function emitUnion(
           : variantTypes.map((x) => getTypeName(x).name).join(" | ")
     };
   } else if (sdkType.kind === "enum") {
-    const typeName = getLibraryName(context, type)
+    let typeName = getLibraryName(context, type)
       ? getLibraryName(context, type)
       : sdkType.isGeneratedName
         ? type.name
         : sdkType.name;
+    typeName = typeName
+      ? normalizeName(typeName, NameType.Interface)
+      : undefined;
     return {
       name: typeName,
       nullable: sdkType.nullable,

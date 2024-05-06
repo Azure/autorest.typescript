@@ -20,9 +20,9 @@ import { getType } from "./helpers/typeHelpers.js";
  * This function creates the file containing the modular client context
  */
 export function buildClientContext(
+  client: Client,
   dpgContext: SdkContext,
-  codeModel: ModularCodeModel,
-  client: Client
+  codeModel: ModularCodeModel
 ): SourceFile {
   const { description, subfolder } = client;
   const name = getClientName(client);

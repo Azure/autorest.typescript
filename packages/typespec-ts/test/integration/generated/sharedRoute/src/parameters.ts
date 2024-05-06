@@ -5,22 +5,6 @@ import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
 import { Resource } from "./models.js";
 
-export interface ListByResourceGroupBodyParam {
-  body?: Resource;
-}
-
-export interface ListByResourceGroupQueryParamProperties {
-  filter: "resourceGroup";
-}
-
-export interface ListByResourceGroupQueryParam {
-  queryParameters: ListByResourceGroupQueryParamProperties;
-}
-
-export type ListByResourceGroupParameters = ListByResourceGroupQueryParam &
-  ListByResourceGroupBodyParam &
-  RequestParameters;
-
 export interface ListBySubscriptionHeaders {
   filter: "subscription";
 }
@@ -35,6 +19,22 @@ export interface ListBySubscriptionHeaderParam {
 
 export type ListBySubscriptionParameters = ListBySubscriptionHeaderParam &
   ListBySubscriptionBodyParam &
+  RequestParameters;
+
+export interface ListByResourceGroupBodyParam {
+  body?: Resource;
+}
+
+export interface ListByResourceGroupQueryParamProperties {
+  filter: "resourceGroup";
+}
+
+export interface ListByResourceGroupQueryParam {
+  queryParameters: ListByResourceGroupQueryParamProperties;
+}
+
+export type ListByResourceGroupParameters = ListByResourceGroupQueryParam &
+  ListByResourceGroupBodyParam &
   RequestParameters;
 
 export interface UpdateIntBodyParam {

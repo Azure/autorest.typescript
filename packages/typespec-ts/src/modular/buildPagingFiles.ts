@@ -5,7 +5,7 @@ import {
   isPagingOnlyOperation
 } from "./helpers/operationHelpers.js";
 
-export function buildPagingTypes(codeModel: ModularCodeModel, client: Client) {
+export function buildPagingTypes(client: Client, codeModel: ModularCodeModel) {
   if (!hasPagingOnlyOperation(client)) {
     return;
   }
@@ -112,8 +112,8 @@ export function buildPagingTypes(codeModel: ModularCodeModel, client: Client) {
 }
 
 export function buildPagingHelpers(
-  codeModel: ModularCodeModel,
   client: Client,
+  codeModel: ModularCodeModel,
   needUnexpectedHelper: boolean = true,
   isMultiClients: boolean = false
 ) {

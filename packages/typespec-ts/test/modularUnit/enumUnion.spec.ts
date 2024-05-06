@@ -842,17 +842,48 @@ describe("model type", () => {
         modelFile!.getFullText()!,
         `
         export interface Test {
-          color: LR | UD;
+          color: Lr | Ud;
         }
 
         /** */
-        export type LR = "left" | "right";
+        export type Lr = "left" | "right";
         /** */
-        export type UD = "up" | "down";
+        export type Ud = "up" | "down";
         `
       );
     });
+    it("non-standard enum/union name", async () => {
+      const modelFile = await emitModularModelsFromTypeSpec(`
+      union leftAndRight {
+        "left",
+        "right",
+      }
+      enum upAndDown {
+        up,
+        down,
+      }
 
+      model Test {
+        color: leftAndRight | upAndDown;
+      }
+      op read(@body body: Test): void;
+        `);
+      assert.ok(modelFile);
+      await assertEqualContent(
+        modelFile!.getFullText()!,
+        `
+        export interface Test {
+          color: LeftAndRight | UpAndDown;
+        }
+
+        /** Type of LeftAndRight */
+        /** */
+        export type LeftAndRight = "left" | "right";
+        /** */
+        export type UpAndDown = "up" | "down";
+        `
+      );
+    });
     it("nullable numeric literal", async () => {
       const modelFile = await emitModularModelsFromTypeSpec(`
         model Test {
