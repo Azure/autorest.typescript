@@ -13,7 +13,7 @@ describe("BasicClient Classical Client", () => {
 
   describe("list", () => {
     describe("next", () => {
-      it.only("should list all users", async () => {
+      it("should list all users", async () => {
         const iter = client.list({
           top: 5,
           skip: 10,

@@ -52,7 +52,7 @@ const testedTypes: TypeDetail[] = [
     defaultValue: [1.25, null, 3.0]
   }
 ];
-describe.only("Array Item-Types Client", () => {
+describe("Array Item-Types Client", () => {
   let client: ArrayItemTypesClient;
 
   beforeEach(() => {
