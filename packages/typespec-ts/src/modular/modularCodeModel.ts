@@ -87,7 +87,8 @@ export interface Type {
     | "combined"
     | "any"
     | "unknown"
-    | "never";
+    | "never"
+    | "void";
   policy?: Policy;
   apiVersions?: any[];
   clientDefaultValue?: any;

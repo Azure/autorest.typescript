@@ -4,6 +4,42 @@ import { assertEqualContent } from "../util/testUtil.js";
 import { Diagnostic } from "@typespec/compiler";
 
 describe("operations", () => {
+  describe("void parameter/return type", () => {
+    it("should handle void correctly", async () => {
+      const tspContent = `
+        op read(param: void): void;
+          `;
+
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
+      assert.ok(operationFiles);
+      assert.equal(operationFiles?.length, 1);
+      await assertEqualContent(
+        operationFiles?.[0]?.getFullText()!,
+        `
+        import { TestingContext as Client } from "../rest/index.js";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
+
+        export function _readSend(context: Client, param: void, options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod<Read204Response> {
+          return context.path("/", ).post({...operationOptionsToRequestParameters(options),
+            body: {"param": param}})  ;
+        }
+
+        export async function _readDeserialize(result: Read204Response): Promise<void> {
+          if(result.status !== "204"){
+            throw createRestError(result);
+          }
+      
+          return;
+        }
+        
+        export async function read(context: Client, param: void, options: ReadOptionalParams = { requestOptions: {} }): Promise<void> {
+            const result = await _readSend(context, param, options);
+            return _readDeserialize(result);
+        }`
+      );
+    });
+  });
   describe("nullable header", () => {
     it("required & optional & nullable headers", async () => {
       const tspContent = `

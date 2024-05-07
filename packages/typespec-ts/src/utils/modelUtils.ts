@@ -42,7 +42,8 @@ import {
   getEncode,
   EncodeData,
   isRecordModelType,
-  isArrayModelType
+  isArrayModelType,
+  isVoidType
 } from "@typespec/compiler";
 import { reportDiagnostic } from "../lib.js";
 import {
@@ -228,6 +229,9 @@ export function getSchemaForType(
   }
   if (isNullType(type)) {
     return { name: "null", type: "null" };
+  }
+  if (isVoidType(type)) {
+    return { name: "void", type: "void" };
   }
   reportDiagnostic(program, {
     code: "invalid-schema",
