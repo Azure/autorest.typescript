@@ -48,10 +48,10 @@ function getCoreLroType(name: string, coreLroTypes: Set<string>) {
 function extractModels(codeModel: ModularCodeModel): Type[] {
   const models = codeModel.types.filter(
     (t) =>
-      (t.type === "model" || t.type === "enum") &&
-      !isAzureCoreErrorSdkType(t) &&
-      !isAzureCoreLroSdkType(t) &&
-      !(t.type == "model" && t.name === "") || 
+      ((t.type === "model" || t.type === "enum") &&
+        !isAzureCoreErrorSdkType(t) &&
+        !isAzureCoreLroSdkType(t) &&
+        !(t.type == "model" && t.name === "")) ||
       (t.type === "dict" && t.properties?.length && t.properties.length > 0)
   );
 
