@@ -19,7 +19,15 @@ function isAzureCoreErrorSdkType(t: Type) {
     ["error", "errormodel", "innererror", "errorresponse"].includes(
       t.name.toLowerCase()
     ) &&
-    t.isCoreErrorType === true
+    t.coreTypeInfo === "ErrorType"
+  );
+}
+
+function isAzureCoreLroSdkType(t: Type) {
+  return (
+    t.name &&
+    ["operationstate"].includes(t.name.toLowerCase()) &&
+    t.coreTypeInfo === "LroType"
   );
 }
 
@@ -29,14 +37,21 @@ function getCoreClientErrorType(name: string, coreClientTypes: Set<string>) {
   return coreClientType;
 }
 
+function getCoreLroType(name: string, coreLroTypes: Set<string>) {
+  const coreLroType = name === "OperationState" ? "CoreOperationStatus" : name;
+  coreLroTypes.add(coreLroType);
+  return coreLroType;
+}
+
 // ====== TYPE EXTRACTION ======
 
 function extractModels(codeModel: ModularCodeModel): Type[] {
   const models = codeModel.types.filter(
     (t) =>
-      ((t.type === "model" || t.type === "enum") &&
-        !isAzureCoreErrorSdkType(t) &&
-        !(t.type == "model" && t.name === "")) ||
+      (t.type === "model" || t.type === "enum") &&
+      !isAzureCoreErrorSdkType(t) &&
+      !isAzureCoreLroSdkType(t) &&
+      !(t.type == "model" && t.name === "") || 
       (t.type === "dict" && t.properties?.length && t.properties.length > 0)
   );
 
@@ -110,7 +125,7 @@ type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
 
 export function buildModelInterface(
   model: Type,
-  cache: { coreClientTypes: Set<string> }
+  cache: { coreClientTypes: Set<string>; coreLroTypes: Set<string> }
 ): InterfaceStructure {
   const modelProperties = model.properties ?? [];
   const modelInterface = {
@@ -122,9 +137,13 @@ export function buildModelInterface(
       const propertyMetadata = getType(p.type, p.format);
       let propertyTypeName = propertyMetadata.name;
       if (isAzureCoreErrorSdkType(p.type)) {
-        propertyTypeName = isAzureCoreErrorSdkType(p.type)
-          ? getCoreClientErrorType(propertyTypeName, cache.coreClientTypes)
-          : propertyTypeName;
+        propertyTypeName = getCoreClientErrorType(
+          propertyTypeName,
+          cache.coreClientTypes
+        );
+      }
+      if (isAzureCoreLroSdkType(p.type)) {
+        propertyTypeName = getCoreLroType(propertyTypeName, cache.coreLroTypes);
       }
 
       return {
@@ -150,6 +169,7 @@ export function buildModels(
 ): SourceFile | undefined {
   // We are generating both models and enums here
   const coreClientTypes = new Set<string>();
+  const coreLroTypes = new Set<string>();
   // filter out the models/enums that are anonymous
   const models = extractModels(codeModel).filter((m) => !!m.name);
   const aliases = extractAliases(codeModel);
@@ -171,7 +191,10 @@ export function buildModels(
       const enumAlias = buildEnumModel(model);
       modelsFile.addTypeAlias(enumAlias);
     } else {
-      const modelInterface = buildModelInterface(model, { coreClientTypes });
+      const modelInterface = buildModelInterface(model, {
+        coreClientTypes,
+        coreLroTypes
+      });
       model.type === "model"
         ? model.parents?.forEach((p) =>
             modelInterface.extends.push(p.alias ?? getType(p, p.format).name)
@@ -197,6 +220,22 @@ export function buildModels(
           codeModel.runtimeImports
         ),
         namedImports: Array.from(coreClientTypes)
+      }
+    ]);
+  }
+
+  if (coreLroTypes.size > 0) {
+    modelsFile.addImportDeclarations([
+      {
+        moduleSpecifier: getImportSpecifier(
+          "azureCoreLro",
+          codeModel.runtimeImports
+        ),
+        namedImports: Array.from(coreLroTypes).map((t) =>
+          t === "CoreOperationStatus"
+            ? "OperationStatus as CoreOperationStatus"
+            : t
+        )
       }
     ]);
   }

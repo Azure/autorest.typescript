@@ -5,7 +5,8 @@ import {
   getOperationFunction,
   getSendPrivateFunction,
   getDeserializePrivateFunction,
-  getOperationOptionsName
+  getOperationOptionsName,
+  isLroOnlyOperation
 } from "./helpers/operationHelpers.js";
 import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
@@ -16,6 +17,9 @@ import {
   addImportsToFiles,
   clearImportSets
 } from "@azure-tools/rlc-common";
+import { importLroCoreDependencies } from "./buildLroFiles.js";
+import { OperationPathAndDeserDetails } from "./interfaces.js";
+import { getOperationName } from "./helpers/namingHelpers.js";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -49,6 +53,12 @@ export function buildOperationFiles(
         subfolder && subfolder !== "" ? subfolder + "/" : ""
       }api/${operationFileName}.ts`
     );
+    // We need to import the lro helpers and types explicitly because ts-morph may not be able to find correct ones.
+    importLroDependencies(
+      operationGroupFile,
+      operationGroup.namespaceHierarchies.length
+    );
+
     // Import models used from ./models.ts
     // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
     importModels(
@@ -180,8 +190,8 @@ export function importModels(
   );
   const models: string[] = [];
 
-  for (const entry of modelsFile?.getExportedDeclarations().entries() ?? []) {
-    models.push(entry[0]);
+  for (const [name] of modelsFile?.getExportedDeclarations().entries() ?? []) {
+    models.push(name);
   }
 
   if (models.length > 0 && !hasModelsImport) {
@@ -272,6 +282,20 @@ export function importPagingDependencies(
   });
 }
 
+export function importLroDependencies(
+  sourceFile: SourceFile,
+  importLayer: number = 0
+) {
+  sourceFile.addImportDeclaration({
+    moduleSpecifier: `${
+      importLayer === 0 ? "./" : "../".repeat(importLayer)
+    }pollingHelpers.js`,
+    namedImports: ["getLongRunningPoller"]
+  });
+
+  importLroCoreDependencies(sourceFile);
+}
+
 /**
  * This function generates the interfaces for each operation options
  */
@@ -285,17 +309,75 @@ export function buildOperationOptions(
   const options = [...optionalParameters];
 
   const name = getOperationOptionsName(operation, true);
+  const lroOptions = {
+    name: "updateIntervalInMs",
+    type: "number",
+    hasQuestionToken: true,
+    docs: ["Delay to wait until next poll, in milliseconds."]
+  };
 
   sourceFile.addInterface({
     name,
     isExported: true,
     extends: ["OperationOptions"],
-    properties: options.map((p) => {
-      return {
-        docs: getDocsFromDescription(p.description),
-        hasQuestionToken: true,
-        ...buildType(p.clientName, p.type, p.format)
-      };
-    })
+    properties: (isLroOnlyOperation(operation) ? [lroOptions] : []).concat(
+      options.map((p) => {
+        return {
+          docs: getDocsFromDescription(p.description),
+          hasQuestionToken: true,
+          ...buildType(p.clientName, p.type, p.format)
+        };
+      })
+    )
   });
+}
+
+/**
+ * This function creates a map of operation file path to operation names.
+ */
+export function buildLroDeserDetailMap(client: Client) {
+  const map = new Map<string, OperationPathAndDeserDetails[]>();
+  const existingNames = new Set<string>();
+  for (const operationGroup of client.operationGroups) {
+    const operations = operationGroup.operations.filter((o) =>
+      isLroOnlyOperation(o)
+    );
+    // skip this operation group if it has no LRO operations
+    if (operations.length === 0) {
+      continue;
+    }
+
+    const operationFileName =
+      operationGroup.className && operationGroup.namespaceHierarchies.length > 0
+        ? `${operationGroup.namespaceHierarchies
+            .map((hierarchy) => {
+              return normalizeName(hierarchy, NameType.File);
+            })
+            .join("/")}/index`
+        : // When the program has no operation groups defined all operations are put
+          // into a nameless operation group. We'll call this operations.
+          "operations";
+    map.set(
+      `./api/${operationFileName}.js`,
+      operations.map((o) => {
+        const { name } = getOperationName(o);
+        const deserName = `_${name}Deserialize`;
+        let renamedDeserName = undefined;
+        if (existingNames.has(deserName)) {
+          const newName = `${name}Deserialize_${operationFileName
+            .split("/")
+            .slice(0, -1)
+            .join("_")}`;
+          renamedDeserName = `_${normalizeName(newName, NameType.Method)}`;
+        }
+        existingNames.add(deserName);
+        return {
+          path: `${o.method.toUpperCase()} ${o.url}`,
+          deserName,
+          renamedDeserName
+        };
+      })
+    );
+  }
+  return map;
 }

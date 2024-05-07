@@ -23,7 +23,7 @@ export function transformHelperFunctionDetails(
 ): HelperFunctionDetails {
   const program = dpgContext.program;
   const serializeInfo = extractSpecialSerializeInfo(client, dpgContext);
-  // Disbale paging and long running for non-Azure clients.
+  // Disable paging and long running for non-Azure clients.
   if (flavor !== "azure") {
     return {
       hasLongRunning: false,

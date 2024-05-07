@@ -1,4 +1,7 @@
-import { getPagedResult } from "@azure-tools/typespec-azure-core";
+import {
+  getPagedResult,
+  getLroMetadata
+} from "@azure-tools/typespec-azure-core";
 import {
   Enum,
   getDoc,
@@ -81,6 +84,7 @@ import {
   Property
 } from "./modularCodeModel.js";
 import {
+  buildCoreTypeInfo,
   getBodyType,
   getDefaultApiVersionString,
   isAzureCoreErrorType
@@ -583,6 +587,7 @@ function emitResponseHeaders(
 
 function emitResponse(
   context: SdkContext,
+  operation: Operation,
   response: HttpOperationResponse,
   innerResponse: HttpOperationResponseContent
 ): Response {
@@ -604,6 +609,12 @@ function emitResponse(
     ) {
       const modelType = getEffectiveSchemaType(context.program, originType);
       type = getType(context, modelType, { usage: UsageFlags.Output });
+    } else if (isLroResponse()) {
+      const metadata = getLroMetadata(context.program, operation);
+      type =
+        metadata?.finalResult === "void" || metadata?.finalResult === undefined
+          ? undefined
+          : getType(context, metadata.finalResult);
     } else {
       type = getType(context, innerResponse.body.type, {
         usage: UsageFlags.Output
@@ -630,6 +641,14 @@ function emitResponse(
         )
       : false
   };
+
+  function isLroResponse() {
+    return (
+      typeof response.statusCodes === "number" &&
+      ["200", "201", "202"]?.includes(`${response.statusCodes}`) &&
+      !!getLroMetadata(context.program, operation)
+    );
+  }
 }
 
 function emitOperation(
@@ -640,15 +659,16 @@ function emitOperation(
   hierarchies: string[]
 ): HrlcOperation {
   const isAzureFlavor = rlcModels.options?.flavor === "azure";
+  const emittedOperation = emitBasicOperation(
+    context,
+    operation,
+    operationGroupName,
+    rlcModels,
+    hierarchies
+  );
   // Skip to extract paging and lro information for non-branded clients.
   if (!isAzureFlavor) {
-    return emitBasicOperation(
-      context,
-      operation,
-      operationGroupName,
-      rlcModels,
-      hierarchies
-    );
+    return emittedOperation;
   }
   const lro = isLongRunningOperation(
     context.program,
@@ -673,51 +693,46 @@ function emitOperation(
     });
   }
 
-  if (lro && paging) {
-    return emitLroPagingOperation(
-      context,
-      operation,
-      operationGroupName,
-      rlcModels,
-      hierarchies
-    );
-  } else if (paging) {
-    return emitPagingOperation(
-      context,
-      operation,
-      operationGroupName,
-      rlcModels,
-      hierarchies
-    );
-  } else if (lro) {
-    return emitLroOperation(
-      context,
-      operation,
-      operationGroupName,
-      rlcModels,
-      hierarchies
-    );
+  emitExtraInfoForOperation(emittedOperation);
+  return emittedOperation;
+
+  function emitExtraInfoForOperation(emittedOperation: HrlcOperation) {
+    if (lro) {
+      addLroInformation(context, operation, emittedOperation);
+    }
+    if (paging) {
+      addPagingInformation(context, operation, emittedOperation);
+    }
+    if (lro && paging) {
+      emittedOperation["discriminator"] = "lropaging";
+    }
   }
-  return emitBasicOperation(
-    context,
-    operation,
-    operationGroupName,
-    rlcModels,
-    hierarchies
-  );
 }
 
-function addLroInformation(emittedOperation: HrlcOperation) {
+function addLroInformation(
+  context: SdkContext,
+  operation: Operation,
+  emittedOperation: HrlcOperation
+) {
   emittedOperation["discriminator"] = "lro";
+  const metadata = getLroMetadata(context.program, operation);
+  emittedOperation["lroMetadata"] = {
+    finalResult:
+      metadata?.finalResult === "void" || metadata?.finalResult === undefined
+        ? undefined
+        : getType(context, metadata.finalResult),
+    finalStateVia: metadata?.finalStateVia,
+    finalResultPath: metadata?.finalResultPath
+  };
 }
 
 function addPagingInformation(
-  program: Program,
+  context: SdkContext,
   operation: Operation,
   emittedOperation: Record<string, any>
 ) {
   emittedOperation["discriminator"] = "paging";
-  const pagedResult = getPagedResult(program, operation);
+  const pagedResult = getPagedResult(context.program, operation);
   if (pagedResult === undefined) {
     throw Error(
       "Trying to add paging information, but not paging metadata for this operation"
@@ -725,62 +740,6 @@ function addPagingInformation(
   }
   emittedOperation["itemName"] = parseItemName(pagedResult);
   emittedOperation["continuationTokenName"] = parseNextLinkName(pagedResult);
-}
-
-function emitLroPagingOperation(
-  context: SdkContext,
-  operation: Operation,
-  operationGroupName: string,
-  rlcModels: RLCModel,
-  hierarchies: string[]
-): HrlcOperation {
-  const emittedOperation = emitBasicOperation(
-    context,
-    operation,
-    operationGroupName,
-    rlcModels,
-    hierarchies
-  );
-  addLroInformation(emittedOperation);
-  addPagingInformation(context.program, operation, emittedOperation);
-  emittedOperation["discriminator"] = "lropaging";
-  return emittedOperation;
-}
-
-function emitLroOperation(
-  context: SdkContext,
-  operation: Operation,
-  operationGroupName: string,
-  rlcModels: RLCModel,
-  hierarchies: string[]
-): HrlcOperation {
-  const emittedOperation = emitBasicOperation(
-    context,
-    operation,
-    operationGroupName,
-    rlcModels,
-    hierarchies
-  );
-  addLroInformation(emittedOperation);
-  return emittedOperation;
-}
-
-function emitPagingOperation(
-  context: SdkContext,
-  operation: Operation,
-  operationGroupName: string,
-  rlcModels: RLCModel,
-  hierarchies: string[]
-): HrlcOperation {
-  const emittedOperation = emitBasicOperation(
-    context,
-    operation,
-    operationGroupName,
-    rlcModels,
-    hierarchies
-  );
-  addPagingInformation(context.program, operation, emittedOperation);
-  return emittedOperation;
 }
 
 function emitBasicOperation(
@@ -853,6 +812,7 @@ function emitBasicOperation(
     for (const innerResponse of response.responses) {
       const emittedResponse: Response = emitResponse(
         context,
+        operation,
         response,
         innerResponse
       );
@@ -1080,7 +1040,7 @@ function emitModel(
       ? applyCasing(modelName, { casing: CASING })
       : modelName,
     base: modelName === "" ? "json" : "dpg",
-    isCoreErrorType: isAzureCoreErrorType(type),
+    coreTypeInfo: buildCoreTypeInfo(type),
     usage
   };
 }
@@ -1116,7 +1076,8 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
     description: getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
-    isFixed: true
+    isFixed: true,
+    coreTypeInfo: buildCoreTypeInfo(type)
   };
 }
 
@@ -1695,6 +1656,7 @@ function emitServerParams(
       if (isApiVersion(context, serverParameter as any)) {
         emittedParameter.isApiVersion = true;
         serverApiVersionParam = emittedParameter;
+        emittedParameter.isApiVersion = true;
       }
       params.push(emittedParameter);
     }

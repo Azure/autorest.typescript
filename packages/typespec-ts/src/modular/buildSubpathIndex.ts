@@ -14,7 +14,8 @@ export function buildSubpathIndexFile(
 ) {
   const { subfolder } = client;
   const srcPath = codeModel.modularOptions.sourceRoot;
-
+  // Skip to export these files because they are used internally.
+  const skipFiles = ["pagingHelpers.ts", "pollingHelpers.ts"];
   const apiFilePattern = join(srcPath, client.subfolder ?? "", subpath);
   const apiFiles = codeModel.project.getSourceFiles().filter((file) => {
     return file
@@ -32,9 +33,8 @@ export function buildSubpathIndexFile(
     if (!options.exportIndex && file.getFilePath().endsWith("index.ts")) {
       continue;
     }
-    // Skip to export pagingHelpers.ts
-    // pagingHelpers.ts is a file that is used internally and is not exported.
-    if (file.getFilePath().endsWith("pagingHelpers.ts")) {
+    // Skip to export these files because they are used internally.
+    if (skipFiles.some((skipFile) => file.getFilePath().endsWith(skipFile))) {
       continue;
     }
     if (file.getFilePath() === indexFile.getFilePath()) {
