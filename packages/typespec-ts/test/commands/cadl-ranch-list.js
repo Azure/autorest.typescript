@@ -1,3 +1,4 @@
+
 export const rlcTsps = [
   {
     outputPath: "payload/multipart",
@@ -81,7 +82,7 @@ export const rlcTsps = [
   },
   {
     outputPath: "lro/lroRPC",
-    inputPath: "azure/core/lro/rpc-legacy"
+    inputPath: "azure/core/lro/rpc"
   },
   {
     outputPath: "models/inheritance",
@@ -244,7 +245,10 @@ export const nonBrandedRlcTsps = [
   }
 ];
 
+
 export const modularTsps = [
+  { outputPath: "lro/rpc", inputPath: "azure/core/lro/rpc" },
+  { outputPath: "lro/standard", inputPath: "azure/core/lro/standard" },
   {
     outputPath: "azure/clientGeneratorCore/access",
     inputPath: "azure/client-generator-core/access"
