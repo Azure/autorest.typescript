@@ -10,4 +10,4 @@ options:
     azureSdkForJs: false
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:
-      name: "@azur/arm-containerservice"
+      name: "@azure/arm-containerservicefleet"
