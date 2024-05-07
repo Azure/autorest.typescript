@@ -1,6 +1,6 @@
-# Legacy REST client library for JavaScript
+# Rpc REST client library for JavaScript
 
-Illustrates bodies templated with Azure Core with long-running operation
+Illustrates bodies templated with Azure Core with long-running RPC operation
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 
@@ -20,13 +20,13 @@ Key links:
 
 ### Install the `@msinternal/lro-rpc` package
 
-Install the Legacy REST client REST client library for JavaScript with `npm`:
+Install the Rpc REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/lro-rpc
 ```
 
-### Create and authenticate a `LegacyClient`
+### Create and authenticate a `RpcClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

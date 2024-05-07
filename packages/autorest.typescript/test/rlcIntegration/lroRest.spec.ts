@@ -192,6 +192,22 @@ describe("LRO Rest Client", () => {
       assert.deepEqual(result.body, { id: "100", name: "foo" });
     });
 
+    it("should handle put202Retry200", async () => {
+      const initialResponse = await client.path("/lro/put/202/retry/200").put();
+      const poller = await getLongRunningPoller(client, initialResponse, {
+        intervalInMs: 0
+      });
+
+      try {
+        const promise = poller.pollUntilDone();
+        poller.stopPolling();
+        await promise;
+        assert.fail("Should be aborted by stopPolling");
+      } catch (e) {
+        assert.equal(e.message, "The operation was aborted.");
+      }
+    });
+
     it("should handle putNoHeaderInRetry", async () => {
       const initialResponse = await client
         .path("/lro/put/noheader/202/200")

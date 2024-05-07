@@ -15,17 +15,17 @@ describe("AzureLroCoreClient Rest Client", () => {
 
   it("should put LRO response", async () => {
     try {
-      const initalResponse = await client
+      const initialResponse = await client
         .path("/azure/core/lro/standard/users/{name}", "madge")
         .put({
           body: {
             role: "contributor"
           }
         });
-      const poller = await getLongRunningPoller(client, initalResponse);
+      const poller = await getLongRunningPoller(client, initialResponse);
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "200");
-      assert.strictEqual(initalResponse.status, "201");
+      assert.strictEqual(initialResponse.status, "201");
       if (isUnexpected(result)) {
         throw Error("Unexpected status code");
       }
@@ -40,17 +40,17 @@ describe("AzureLroCoreClient Rest Client", () => {
 
   it("should delete LRO response", async () => {
     try {
-      const initalResponse = await client
+      const initialResponse = await client
         .path("/azure/core/lro/standard/users/{name}", "madge")
         .delete({
           body: {
             role: "contributor"
           }
         });
-      const poller = await getLongRunningPoller(client, initalResponse);
+      const poller = await getLongRunningPoller(client, initialResponse);
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "200");
-      assert.strictEqual(initalResponse.status, "202");
+      assert.strictEqual(initialResponse.status, "202");
       if (isUnexpected(result)) {
         throw Error("Unexpected status code");
       }
@@ -64,17 +64,17 @@ describe("AzureLroCoreClient Rest Client", () => {
 
   it("should export LRO response", async () => {
     try {
-      const initalResponse = await client
+      const initialResponse = await client
         .path("/azure/core/lro/standard/users/{name}:export", "madge")
         .post({
           queryParameters: {
             format: "json"
           }
         });
-      const poller = await getLongRunningPoller(client, initalResponse);
+      const poller = await getLongRunningPoller(client, initialResponse);
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "200");
-      assert.strictEqual(initalResponse.status, "202");
+      assert.strictEqual(initialResponse.status, "202");
       if (isUnexpected(result)) {
         throw Error("Unexpected status code");
       }

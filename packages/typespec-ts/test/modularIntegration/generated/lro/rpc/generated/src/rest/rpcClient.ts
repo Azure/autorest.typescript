@@ -2,20 +2,18 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger.js";
-import { LegacyClient } from "./clientDefinitions.js";
+import { logger } from "../logger.js";
+import { RpcContext } from "./clientDefinitions.js";
 
 /**
- * Initialize a new instance of `LegacyClient`
+ * Initialize a new instance of `RpcContext`
  * @param options - the parameter for all optional parameters
  */
-export default function createClient(
-  options: ClientOptions = {},
-): LegacyClient {
+export default function createClient(options: ClientOptions = {}): RpcContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "2022-12-01-preview";
-  const userAgentInfo = `azsdk-js-lro-rpc-rest/1.0.0`;
+  const userAgentInfo = `azsdk-js-modular-lro-rpc-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -30,7 +28,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(endpointUrl, options) as LegacyClient;
+  const client = getClient(endpointUrl, options) as RpcContext;
 
   return client;
 }

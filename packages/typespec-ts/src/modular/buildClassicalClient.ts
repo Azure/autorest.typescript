@@ -21,6 +21,7 @@ import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { getImportSpecifier } from "@azure-tools/rlc-common";
+import { importLroCoreDependencies } from "./buildLroFiles.js";
 
 export function buildClassicalClient(
   client: Client,
@@ -89,6 +90,7 @@ export function buildClassicalClient(
       .join(",")})`
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline`);
+  importLroCoreDependencies(clientFile);
   importCredential(codeModel.runtimeImports, clientFile);
   importPipeline(codeModel.runtimeImports, clientFile);
   importAllModels(clientFile, srcPath, subfolder);
