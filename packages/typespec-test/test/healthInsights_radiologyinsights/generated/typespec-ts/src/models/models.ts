@@ -73,7 +73,7 @@ export interface Element {
   /** Unique id for inter-element referencing */
   id?: string;
   /** Additional Content defined by implementations */
-  extension?: Array<Extension>;
+  extension?: Extension[];
 }
 
 /**
@@ -132,7 +132,7 @@ export interface Quantity extends Element {
  */
 export interface CodeableConcept extends Element {
   /** Code defined by a terminology system */
-  coding?: Array<Coding>;
+  coding?: Coding[];
   /** Plain text representation of the concept */
   text?: string;
 }
@@ -284,7 +284,7 @@ export interface PatientDocument {
   /** The date and time when the document was created. */
   createdDateTime?: Date;
   /** Document author(s) */
-  authors?: Array<DocumentAuthor>;
+  authors?: DocumentAuthor[];
   /** specialty type the document */
   specialtyType?: SpecialtyType;
   /** Administrative metadata for the document. */
@@ -425,7 +425,7 @@ export interface FindingOptions {
 /** The body of the Radiology Insights request. */
 export interface RadiologyInsightsData {
   /** The list of patients, including their clinical information and data. */
-  patients: Array<PatientRecord>;
+  patients: PatientRecord[];
   /** Configuration affecting the Radiology Insights model's inference. */
   configuration?: RadiologyInsightsModelConfiguration;
 }
@@ -458,7 +458,7 @@ export type JobStatus =
 /** The inference results for the Radiology Insights request. */
 export interface RadiologyInsightsInferenceResult {
   /** Results for the patients given in the request. */
-  patientResults: Array<RadiologyInsightsPatientResult>;
+  patientResults: RadiologyInsightsPatientResult[];
   /** The version of the model used for inference, expressed as the model date. */
   modelVersion: string;
 }
@@ -468,7 +468,7 @@ export interface RadiologyInsightsPatientResult {
   /** The identifier given for the patient in the request. */
   patientId: string;
   /** The model's inferences for the given patient. */
-  inferences: Array<RadiologyInsightsInferenceUnion>;
+  inferences: RadiologyInsightsInferenceUnion[];
 }
 
 /**
@@ -543,9 +543,9 @@ export interface CompleteOrderDiscrepancyInference
   /** Order Type. */
   orderType: CodeableConcept;
   /** List of missing body parts required by a complete order. */
-  missingBodyParts?: Array<CodeableConcept>;
+  missingBodyParts?: CodeableConcept[];
   /** List of missing body parts that require measurement by a complete order. */
-  missingBodyPartMeasurements?: Array<CodeableConcept>;
+  missingBodyPartMeasurements?: CodeableConcept[];
 }
 
 /**
@@ -561,9 +561,9 @@ export interface LimitedOrderDiscrepancyInference
   /** Order Type. */
   orderType: CodeableConcept;
   /** Complete list of body parts found in the document. */
-  presentBodyParts?: Array<CodeableConcept>;
+  presentBodyParts?: CodeableConcept[];
   /** Complete list of body parts that require measurement by a complete order. */
-  presentBodyPartMeasurements?: Array<CodeableConcept>;
+  presentBodyPartMeasurements?: CodeableConcept[];
 }
 
 /**
@@ -585,11 +585,11 @@ export interface DomainResource extends Resource {
   /** Text summary of the resource, for human interpretation */
   text?: Narrative;
   /** Contained, inline Resources */
-  contained?: Array<Resource>;
+  contained?: Resource[];
   /** Additional Content defined by implementations */
-  extension?: Array<Extension>;
+  extension?: Extension[];
   /** Extensions that cannot be ignored */
-  modifierExtension?: Array<Extension>;
+  modifierExtension?: Extension[];
   /** the discriminator possible values: Observation, Condition, ResearchStudy */
   resourceType: string;
 }
@@ -602,11 +602,11 @@ export interface Observation extends DomainResource {
   /** resourceType */
   resourceType: "Observation";
   /** Business Identifier for observation */
-  identifier?: Array<Identifier>;
+  identifier?: Identifier[];
   /** registered | preliminary | final | amended + */
   status: ObservationStatusCodeType;
   /** Classification of  type of observation */
-  category?: Array<CodeableConcept>;
+  category?: CodeableConcept[];
   /** Type of observation (code / type) */
   code: CodeableConcept;
   /** Who and/or what the observation is about */
@@ -646,21 +646,21 @@ export interface Observation extends DomainResource {
   /** Why the result is missing */
   dataAbsentReason?: CodeableConcept;
   /** High, low, normal, etc. */
-  interpretation?: Array<CodeableConcept>;
+  interpretation?: CodeableConcept[];
   /** Comments about the observation */
-  note?: Array<Annotation>;
+  note?: Annotation[];
   /** Observed body part */
   bodySite?: CodeableConcept;
   /** How it was done */
   method?: CodeableConcept;
   /** Provides guide for interpretation */
-  referenceRange?: Array<ObservationReferenceRange>;
+  referenceRange?: ObservationReferenceRange[];
   /** Related resource that belongs to the Observation group */
-  hasMember?: Array<Reference>;
+  hasMember?: Reference[];
   /** Related measurements the observation is made from */
-  derivedFrom?: Array<Reference>;
+  derivedFrom?: Reference[];
   /** Component results */
-  component?: Array<ObservationComponent>;
+  component?: ObservationComponent[];
 }
 
 /**
@@ -703,7 +703,7 @@ export interface ObservationReferenceRange {
   /** Reference range qualifier */
   type?: CodeableConcept;
   /** Reference range population */
-  appliesTo?: Array<CodeableConcept>;
+  appliesTo?: CodeableConcept[];
   /** Applicable age range, if relevant */
   age?: Range;
   /** Text based reference range in an observation */
@@ -744,9 +744,9 @@ export interface ObservationComponent extends Element {
   /** Why the component result is missing */
   dataAbsentReason?: CodeableConcept;
   /** High, low, normal, etc. */
-  interpretation?: Array<CodeableConcept>;
+  interpretation?: CodeableConcept[];
   /** Provides guide for interpretation of component result */
-  referenceRange?: Array<ObservationReferenceRange>;
+  referenceRange?: ObservationReferenceRange[];
 }
 
 /**
@@ -757,19 +757,19 @@ export interface Condition extends DomainResource {
   /** resourceType */
   resourceType: "Condition";
   /** External Ids for this condition */
-  identifier?: Array<Identifier>;
+  identifier?: Identifier[];
   /** active | recurrence | relapse | inactive | remission | resolved */
   clinicalStatus?: CodeableConcept;
   /** unconfirmed | provisional | differential | confirmed | refuted | entered-in-error */
   verificationStatus?: CodeableConcept;
   /** problem-list-item | encounter-diagnosis */
-  category?: Array<CodeableConcept>;
+  category?: CodeableConcept[];
   /** Subjective severity of condition */
   severity?: CodeableConcept;
   /** Identification of the condition, problem or diagnosis */
   code?: CodeableConcept;
   /** Anatomical location, if relevant */
-  bodySite?: Array<CodeableConcept>;
+  bodySite?: CodeableConcept[];
   /** Encounter created as part of */
   encounter?: Reference;
   /** Estimated or actual date,  date-time, or age */
@@ -795,9 +795,9 @@ export interface Condition extends DomainResource {
   /** Date record was first recorded */
   recordedDate?: string;
   /** stge/grade, usually assessed formally */
-  stage?: Array<ConditionStage>;
+  stage?: ConditionStage[];
   /** Additional information about the Condition */
-  note?: Array<Annotation>;
+  note?: Annotation[];
 }
 
 /**
@@ -819,13 +819,13 @@ export interface ResearchStudy extends DomainResource {
   /** resourceType */
   resourceType: "ResearchStudy";
   /** Business Identifier for study */
-  identifier?: Array<Identifier>;
+  identifier?: Identifier[];
   /** Name for this study */
   title?: string;
   /** Steps followed in executing study */
-  protocol?: Array<Reference>;
+  protocol?: Reference[];
   /** Part of larger study */
-  partOf?: Array<Reference>;
+  partOf?: Reference[];
   /** active | administratively-completed | approved | closed-to-accrual | closed-to-accrual-and-intervention | completed | disapproved | in-review | temporarily-closed-to-accrual | temporarily-closed-to-accrual-and-intervention | withdrawn */
   status: ResearchStudyStatusCodeType;
   /** treatment | prevention | diagnostic | supportive-care | screening | health-services-research | basic-science | device-feasibility */
@@ -833,21 +833,21 @@ export interface ResearchStudy extends DomainResource {
   /** n-a | early-phase-1 | phase-1 | phase-1-phase-2 | phase-2 | phase-2-phase-3 | phase-3 | phase-4 */
   phase?: CodeableConcept;
   /** Classifications for the study */
-  category?: Array<CodeableConcept>;
+  category?: CodeableConcept[];
   /** Drugs, devices, etc. under study */
-  focus?: Array<CodeableConcept>;
+  focus?: CodeableConcept[];
   /** Condition being studied */
-  condition?: Array<CodeableConcept>;
+  condition?: CodeableConcept[];
   /** Contact details for the study */
-  contact?: Array<ContactDetail>;
+  contact?: ContactDetail[];
   /** Used to search for the study */
-  keyword?: Array<CodeableConcept>;
+  keyword?: CodeableConcept[];
   /** Geographic region(s) for study */
-  location?: Array<CodeableConcept>;
+  location?: CodeableConcept[];
   /** What this is study doing */
   description?: string;
   /** Inclusion & exclusion criteria */
-  enrollment?: Array<Reference>;
+  enrollment?: Reference[];
   /** When the study began and ended */
   period?: Period;
   /** Organization that initiates and is legally responsible for the study */
@@ -855,11 +855,11 @@ export interface ResearchStudy extends DomainResource {
   /** Researcher who oversees multiple aspects of the study */
   principalInvestigator?: Reference;
   /** Facility where study activities are conducted */
-  site?: Array<Reference>;
+  site?: Reference[];
   /** accrual-goal-met | closed-due-to-toxicity | closed-due-to-lack-of-study-progress | temporarily-closed-per-study-design */
   reasonStopped?: CodeableConcept;
   /** Comments made about the study */
-  note?: Array<Annotation>;
+  note?: Annotation[];
   /** Defined path through the study for a subject */
   arm?: { name: string; type?: CodeableConcept; description?: string }[];
   /** A goal for the study */
@@ -886,7 +886,7 @@ export interface ContactDetail extends Element {
   /** Name of an individual to contact */
   name?: string;
   /** Contact details for individual or organization */
-  telecom?: Array<ContactPoint>;
+  telecom?: ContactPoint[];
 }
 
 /**
@@ -959,9 +959,9 @@ export interface RadiologyProcedureInference
   /** The type of the inference. */
   kind: "radiologyProcedure";
   /** The LOINC codes for the procedure. */
-  procedureCodes?: Array<CodeableConcept>;
+  procedureCodes?: CodeableConcept[];
   /** Imaging procedure. */
-  imagingProcedures: Array<ImagingProcedure>;
+  imagingProcedures: ImagingProcedure[];
   /** The related procedure information from the document administration information or as extracted from the document. */
   orderedProcedure: OrderedProcedure;
 }
@@ -985,7 +985,7 @@ export interface RadiologyCodeWithTypes {
   /** Code */
   code: CodeableConcept;
   /** Collection of types */
-  types: Array<CodeableConcept>;
+  types: CodeableConcept[];
 }
 
 /** Recommendation Inference */
@@ -998,7 +998,7 @@ export interface FollowupRecommendationInference
   /** Clinically relevant time/time-period for recommendation */
   effectivePeriod?: Period;
   /** Findings related to this recommendation. */
-  findings?: Array<RecommendationFinding>;
+  findings?: RecommendationFinding[];
   /**
    * Indicate that the sentence with the recommendation holds a conditional statement.
    * Examples of conditional phrases: If the patient remains clinically symptomatic, Unless otherwise indicated clinically in the interim.
@@ -1063,9 +1063,9 @@ export interface ImagingProcedureRecommendation
   /** The type of the procedure. */
   kind: "imagingProcedureRecommendation";
   /** The LOINC codes for the procedure. */
-  procedureCodes?: Array<CodeableConcept>;
+  procedureCodes?: CodeableConcept[];
   /** Imaging procedure. */
-  imagingProcedures: Array<ImagingProcedure>;
+  imagingProcedures: ImagingProcedure[];
 }
 
 /** Communication Inference */
@@ -1076,7 +1076,7 @@ export interface FollowupCommunicationInference
   /** The communication date/time. */
   dateTime?: Date[];
   /** The recipient of the communication. */
-  recipient?: Array<MedicalProfessionalType>;
+  recipient?: MedicalProfessionalType[];
   /** Communication was acknowledged */
   wasAcknowledged: boolean;
 }

@@ -202,7 +202,7 @@ function handleDiscriminator(
   if (discriminator) {
     const discriminatorValues: string[] = [];
     const aliases: string[] = [];
-    const discriminatedSubtypes: Type[] = [];
+    const discriminatedSubtypes: Type[] = [type];
     for (const childModel of type.derivedModels) {
       const modelType = getType(context, childModel, { usage });
       aliases.push(modelType.name);
