@@ -1,0 +1,13 @@
+emit: [
+    "@azure-tools/typespec-ts",
+  ]
+options:
+  "@azure-tools/typespec-ts":
+    generateMetadata: true
+    generateTest: true
+    generateSample: true
+    isModularLibrary: true
+    azureSdkForJs: false
+    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    packageDetails:
+      name: "@azure/arm-sphere"
