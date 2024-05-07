@@ -1,5 +1,5 @@
 const { readdirSync, statSync } = require("fs");
-const { join: joinPath, sep, extname, resolve } = require("path");
+const { join: joinPath, sep, extname } = require("path");
 const webpack = require("webpack");
 
 function getIntegrationTestFiles(env) {
