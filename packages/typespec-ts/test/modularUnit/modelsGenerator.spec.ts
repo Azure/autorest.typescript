@@ -1864,4 +1864,37 @@ describe("spread record", () => {
       assert.equal(diagnostics[0]?.severity, "warning");
     }
   });
+
+  it("should handle model extends with additional properties", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(
+      `
+      model Base {
+        foo: int32;
+      }
+      model A extends Base{
+        ...Record<int32>;
+        prop: int32
+      }
+      op post(@body body: A): { @body body: A };
+    `,
+      false,
+      false,
+      false,
+      true
+    );
+    assert.ok(modelFile);
+    assert.strictEqual(modelFile?.getFilePath(), "/models/models.ts");
+    await assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface A extends Base, Record<string, number> {
+        prop: number;
+      }
+
+      export interface Base {
+        foo: number;
+      }
+      `
+    );
+  });
 });

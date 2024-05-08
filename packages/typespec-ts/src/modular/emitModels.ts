@@ -199,10 +199,10 @@ export function buildModels(
         coreClientTypes,
         coreLroTypes
       });
-      model.type === "model" &&
-        model.parents?.forEach((p) =>
-          modelInterface.extends.push(p.alias ?? getType(p, p.format).name)
-        );
+
+      model.parents?.forEach((p) =>
+        modelInterface.extends.push(p.alias ?? getType(p, p.format).name)
+      );
       if (isModelWithAdditionalProperties(model)) {
         addExtendedDictInfo(
           model,

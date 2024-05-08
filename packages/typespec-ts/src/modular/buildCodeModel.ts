@@ -386,6 +386,10 @@ function getType(
     if (type.kind === "Model") {
       // need to do properties after insertion to avoid infinite recursion
       processModelProperties(context, newValue, type, options.usage!);
+      if (newValue.type === "dict") {
+        newValue = { ...emitModel(context, type, options.usage!), ...newValue };
+        typesMap.set(effectiveModel, newValue);
+      }
     }
   } else {
     const key = JSON.stringify(newValue);

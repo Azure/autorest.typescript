@@ -819,20 +819,24 @@ function getSchemaForModel(
   }
 
   if (model.baseModel) {
-    modelSchema.parents = {
-      all: [
-        getSchemaForType(dpgContext, model.baseModel, {
-          usage,
-          needRef: true
-        })
-      ],
-      immediate: [
-        getSchemaForType(dpgContext, model.baseModel, {
-          usage,
-          needRef: true
-        })
-      ]
-    };
+    if (modelSchema.parents === undefined) {
+      modelSchema.parents = {
+        all: [],
+        immediate: []
+      };
+    }
+    modelSchema.parents.all?.push(
+      getSchemaForType(dpgContext, model.baseModel, {
+        usage,
+        needRef: true
+      })
+    );
+    modelSchema.parents.immediate?.push(
+      getSchemaForType(dpgContext, model.baseModel, {
+        usage,
+        needRef: true
+      })
+    );
   }
   return modelSchema;
 }
