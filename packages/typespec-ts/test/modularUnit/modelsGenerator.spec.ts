@@ -4,6 +4,7 @@ import {
   emitModularOperationsFromTypeSpec
 } from "../util/emitUtil.js";
 import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
+import { Diagnostic } from "@typespec/compiler";
 
 async function verifyModularPropertyType(
   tspType: string,
@@ -1811,7 +1812,7 @@ describe("visibility", () => {
 });
 
 describe("spread record", () => {
-  it.only("should handle model additional properties from spread record of int64 | string", async () => {
+  it("should handle model additional properties from spread record of int64 | string in compatibleMode", async () => {
     const modelFile = await emitModularModelsFromTypeSpec(
       `
     
@@ -1838,5 +1839,29 @@ describe("spread record", () => {
       }
       `
     );
+  });
+
+  it("should fail to handle model additional properties from spread record of int64 | string in non compatible mode", async () => {
+    try {
+      await emitModularModelsFromTypeSpec(
+        `
+      model Vegetables {
+        ...Record<int64 | string>;
+        carrots: int64;
+        beans: int64;
+      }
+      op post(@body body: Vegetables): { @body body: Vegetables };
+      `
+      );
+      assert.fail("Should throw diagnostic warnings");
+    } catch (e) {
+      const diagnostics = e as Diagnostic[];
+      assert.equal(diagnostics.length, 1);
+      assert.equal(
+        diagnostics[0]?.code,
+        "@azure-tools/typespec-ts/compatible-additional-properties"
+      );
+      assert.equal(diagnostics[0]?.severity, "warning");
+    }
   });
 });

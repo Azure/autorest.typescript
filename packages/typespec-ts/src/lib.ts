@@ -223,6 +223,12 @@ const libDef = {
       messages: {
         default: paramMessage`Please note the header ${"type"} is not serializable.`
       }
+    },
+    "compatible-additional-properties": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Please note that only compatible additional properties is supported for now. You can enable compatibilityMode to generate compatible additional properties for the model - ${"modelName"}.`
+      }
     }
   },
   emitter: {

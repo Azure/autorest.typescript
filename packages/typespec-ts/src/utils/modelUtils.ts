@@ -1337,11 +1337,7 @@ export function getSerializeTypeName(
     "Date | string",
     "string"
   );
-  const canSerialize = schema.enum
-    ? schema.enum.every((type) => {
-        return isSerializable(type) || type.type === "null";
-      })
-    : isSerializable(schema);
+  const canSerialize = isSerializable(schema);
   if (canSerialize) {
     return schema.alias ? typeName : formattedName;
   }
@@ -1352,6 +1348,11 @@ export function getSerializeTypeName(
   });
   return "string";
   function isSerializable(type: any) {
+    if (type.enum) {
+      return type.enum.every((i: any) => {
+        return isSerializable(i) || i.type === "null";
+      });
+    }
     return (
       ["string", "number", "boolean"].includes(type.type) || type.isConstant
     );

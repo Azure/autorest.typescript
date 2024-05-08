@@ -111,6 +111,7 @@ import { buildRuntimeImports } from "@azure-tools/rlc-common";
 import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
 import { getType as getTypeName } from "./helpers/typeHelpers.js";
+import { isModelWithAdditionalProperties } from "./emitModels.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -395,7 +396,19 @@ function getType(
       simpleTypesMap.set(key, newValue);
     }
   }
-
+  if (
+    type.kind === "Model" &&
+    isModelWithAdditionalProperties(newValue) &&
+    !context.rlcOptions?.compatibilityMode
+  ) {
+    reportDiagnostic(context.program, {
+      code: "compatible-additional-properties",
+      format: {
+        modelName: type?.name ?? ""
+      },
+      target: type
+    });
+  }
   return newValue;
 }
 

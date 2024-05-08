@@ -299,7 +299,8 @@ export async function emitModularModelsFromTypeSpec(
   needOptions: boolean = false,
   withRawContent: boolean = false,
   needAzureCore: boolean = false,
-  compatibilityMode: boolean = false
+  compatibilityMode: boolean = false,
+  mustEmptyDiagnostic = true
 ) {
   const context = await rlcEmitterFor(
     tspContent,
@@ -315,6 +316,7 @@ export async function emitModularModelsFromTypeSpec(
   >();
   const project = new Project();
   const clients = getRLCClients(dpgContext);
+  let modelFile = undefined;
   if (clients && clients[0]) {
     dpgContext.rlcOptions!.isModularLibrary = true;
     dpgContext.rlcOptions!.compatibilityMode = compatibilityMode;
@@ -336,16 +338,19 @@ export async function emitModularModelsFromTypeSpec(
       modularCodeModel.clients[0]
     ) {
       if (needOptions) {
-        return buildModelsOptions(
+        modelFile = buildModelsOptions(
           modularCodeModel.clients[0],
           modularCodeModel
         );
+      } else {
+        modelFile =  buildModels(modularCodeModel.clients[0], modularCodeModel);
       }
-      return buildModels(modularCodeModel.clients[0], modularCodeModel);
     }
   }
-  expectDiagnosticEmpty(dpgContext.program.diagnostics);
-  return undefined;
+  if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
+    throw dpgContext.program.diagnostics;
+  }
+  return modelFile;
 }
 
 export async function emitModularSerializeUtilsFromTypeSpec(

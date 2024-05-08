@@ -31,6 +31,14 @@ function isAzureCoreLroSdkType(t: Type) {
   );
 }
 
+function isAnonymousModel(t: Type) {
+  return t.type === "model" && t.name === "";
+}
+
+export function isModelWithAdditionalProperties(t: Type) {
+  return t.type === "dict" && t.properties?.length && t.properties.length > 0;
+}
+
 function getCoreClientErrorType(name: string, coreClientTypes: Set<string>) {
   const coreClientType: string = name === "Error" ? "ErrorModel" : name;
   coreClientTypes.add(coreClientType);
@@ -51,8 +59,8 @@ function extractModels(codeModel: ModularCodeModel): Type[] {
       ((t.type === "model" || t.type === "enum") &&
         !isAzureCoreErrorSdkType(t) &&
         !isAzureCoreLroSdkType(t) &&
-        !(t.type == "model" && t.name === "")) ||
-      (t.type === "dict" && t.properties?.length && t.properties.length > 0)
+        !isAnonymousModel(t)) ||
+      isModelWithAdditionalProperties(t)
   );
 
   for (const model of codeModel.types) {
@@ -78,11 +86,7 @@ export function extractAliases(codeModel: ModularCodeModel): Type[] {
       ((t.type === "model" || t.type === "combined") &&
         t.alias &&
         t.aliasType) ||
-      (t.type === "dict" &&
-        t.properties?.length &&
-        t.properties.length > 0 &&
-        t.alias &&
-        t.aliasType)
+      (isModelWithAdditionalProperties(t) && t.alias && t.aliasType)
   );
   return models;
 }
@@ -195,19 +199,17 @@ export function buildModels(
         coreClientTypes,
         coreLroTypes
       });
-      model.type === "model"
-        ? model.parents?.forEach((p) =>
-            modelInterface.extends.push(p.alias ?? getType(p, p.format).name)
-          )
-        : model.type === "dict" &&
-            model.properties?.length &&
-            model.properties?.length > 0
-          ? addExtendedDictInfo(
-              model,
-              modelInterface,
-              codeModel.modularOptions.compatibilityMode
-            )
-          : undefined;
+      model.type === "model" &&
+        model.parents?.forEach((p) =>
+          modelInterface.extends.push(p.alias ?? getType(p, p.format).name)
+        );
+      if (isModelWithAdditionalProperties(model)) {
+        addExtendedDictInfo(
+          model,
+          modelInterface,
+          codeModel.modularOptions.compatibilityMode
+        );
+      }
       modelsFile.addInterface(modelInterface);
     }
   }
