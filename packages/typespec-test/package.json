@@ -9,7 +9,6 @@
     "@typespec/openapi3": ">=0.55.0 <1.0.0",
     "@azure-tools/typespec-azure-core": ">=0.41.0 <1.0.0",
     "@azure-tools/typespec-client-generator-core": ">=0.41.5 <1.0.0",
-    "@azure-tools/typespec-azure-resource-manager":">=0.41.0 <1.0.0",
     "@typespec/compiler": ">=0.55.0 <1.0.0",
     "@typespec/http": ">=0.55.0 <1.0.0",
     "@typespec/rest": ">=0.55.0 <1.0.0",
