@@ -1304,7 +1304,7 @@ function emitListOrDict(
   if (type.indexer !== undefined) {
     if (!isNeverType(type.indexer.key)) {
       const name = type.indexer.key.name;
-      if (name === "string") {
+      if (name === "string" && type.name === "Record") {
         return {
           type: "dict",
           elementType: getType(context, type.indexer.value!, { usage })
