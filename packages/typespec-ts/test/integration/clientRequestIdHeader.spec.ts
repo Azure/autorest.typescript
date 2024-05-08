@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import ClientRequestIdClientFactory, {
   ClientRequestIdClient
-} from "./generated/headers/clientRequestId/src/index.js";
+} from "./generated/special-headers/client-request-id/src/index.js";
 describe("ClientRequestIdClient", () => {
   let client: ClientRequestIdClient;
 

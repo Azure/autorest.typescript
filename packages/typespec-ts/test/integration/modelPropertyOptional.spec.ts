@@ -1,6 +1,6 @@
 import TypePropertyOptionalClientFactory, {
   OptionalClient
-} from "./generated/models/propertyOptional/src/index.js";
+} from "./generated/type/property/optionality/src/index.js";
 import { assert } from "chai";
 
 describe("ModelsPropertyOptional Rest Client", () => {

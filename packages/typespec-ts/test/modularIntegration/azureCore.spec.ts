@@ -1,4 +1,4 @@
-import { BasicClient, User } from "./generated/azure/core/src/index.js";
+import { BasicClient, User } from "./generated/azure/core/basic/src/index.js";
 import { assert } from "chai";
 
 describe("BasicClient Classical Client", () => {

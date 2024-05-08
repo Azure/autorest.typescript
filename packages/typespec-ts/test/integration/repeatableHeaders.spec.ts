@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import RepeatabilityClientFactory, {
   RepeatabilityClient
-} from "./generated/headers/repeatability/src/index.js";
+} from "./generated/special-headers/repeatability/src/index.js";
 describe("RepeatabilityClient", () => {
   let client: RepeatabilityClient;
 

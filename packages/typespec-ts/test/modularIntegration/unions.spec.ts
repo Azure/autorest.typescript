@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { UnionClient } from "./generated/unions/src/index.js";
+import { UnionClient } from "./generated/type/union/src/index.js";
 describe("Type Union Client", () => {
   let client: UnionClient;
 

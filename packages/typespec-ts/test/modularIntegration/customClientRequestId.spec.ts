@@ -1,5 +1,5 @@
 import { PipelinePolicy } from "@azure/core-rest-pipeline";
-import { RequestIdClient } from "./generated/headers/client-request-id/src/index.js";
+import { RequestIdClient } from "./generated/special-headers/client-request-id/src/index.js";
 import { assert } from "chai";
 describe("RequestIdClient Classical Client", () => {
   let client: RequestIdClient;
