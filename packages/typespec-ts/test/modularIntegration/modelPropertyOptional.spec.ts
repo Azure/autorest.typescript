@@ -1,14 +1,12 @@
 import { assert } from "chai";
-import { OptionalClient } from "./generated/models/propertyOptional/generated/src/index.js";
+import { OptionalClient } from "./generated/type/property/optionality/generated/src/index.js";
 describe.only("Single Server Path Client", () => {
   let client: OptionalClient;
 
   beforeEach(() => {
     client = new OptionalClient({
-      allowInsecureConnection: true,
-      retryOptions: {
-        maxRetries: 0
-      }
+      endpoint: "http://localhost:3002",
+      allowInsecureConnection: true
     });
   });
   it("should work with no param", async () => {
