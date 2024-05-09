@@ -2,17 +2,17 @@
 // Licensed under the MIT license.
 
 import { ClientOptions } from "@azure-rest/core-client";
-import { RequestIdClientContext } from "../rest/index.js";
+import { XmsRequestIdClientContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
 
-export interface RequestIdClientOptions extends ClientOptions {}
+export interface XmsRequestIdClientOptions extends ClientOptions {}
 
-export { RequestIdClientContext } from "../rest/index.js";
+export { XmsRequestIdClientContext } from "../rest/index.js";
 
 /** Azure client request id header configurations. */
-export function createRequestId(
-  options: RequestIdClientOptions = {},
-): RequestIdClientContext {
+export function createXmsRequestId(
+  options: XmsRequestIdClientOptions = {},
+): XmsRequestIdClientContext {
   const clientContext = getClient(options);
   return clientContext;
 }

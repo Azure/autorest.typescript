@@ -3,7 +3,7 @@
 
 import {
   Get204Response,
-  RequestIdClientContext as Client,
+  XmsRequestIdClientContext as Client,
 } from "../rest/index.js";
 import {
   StreamableMethod,
@@ -17,8 +17,15 @@ export function _getSend(
   options: GetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Get204Response> {
   return context
-    .path("/special-headers/client-request-id")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .path("/azure/special-headers/x-ms-client-request-id")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        ...(options?.clientRequestId !== undefined
+          ? { "x-ms-client-request-id": options?.clientRequestId }
+          : {}),
+      },
+    });
 }
 
 export async function _getDeserialize(result: Get204Response): Promise<void> {
@@ -29,7 +36,7 @@ export async function _getDeserialize(result: Get204Response): Promise<void> {
   return;
 }
 
-/** Get operation with azure client request id header. */
+/** Get operation with azure `x-ms-client-request-id` header. */
 export async function get(
   context: Client,
   options: GetOptionalParams = { requestOptions: {} },

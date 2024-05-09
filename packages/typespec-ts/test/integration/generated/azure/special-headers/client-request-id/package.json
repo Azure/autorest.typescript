@@ -1,7 +1,7 @@
 {
   "name": "@msinternal/client-request-id",
   "version": "1.0.0-beta.1",
-  "description": "A generated SDK for ClientRequestIdClient.",
+  "description": "A generated SDK for XmsClientRequestIdClient.",
   "engines": {
     "node": ">=18.0.0"
   },

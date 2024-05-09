@@ -1,4 +1,4 @@
-# SpecialHeaders REST client library for JavaScript
+# AzureSpecialHeadersXms REST client library for JavaScript
 
 Azure client request id header configurations.
 
@@ -20,13 +20,13 @@ Key links:
 
 ### Install the `@msinternal/client-request-id` package
 
-Install the SpecialHeaders REST client REST client library for JavaScript with `npm`:
+Install the AzureSpecialHeadersXms REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/client-request-id
 ```
 
-### Create and authenticate a `ClientRequestIdClient`
+### Create and authenticate a `XmsClientRequestIdClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

@@ -1,4 +1,3 @@
-
 export const rlcTsps = [
   {
     outputPath: "payload/multipart",
@@ -9,8 +8,8 @@ export const rlcTsps = [
     inputPath: "union-body"
   },
   {
-    outputPath: "headers/clientRequestId",
-    inputPath: "special-headers/client-request-id"
+    outputPath: "azure/special-headers/client-request-id",
+    inputPath: "azure/special-headers/client-request-id"
   },
   {
     outputPath: "headers/repeatability",
@@ -245,7 +244,6 @@ export const nonBrandedRlcTsps = [
   }
 ];
 
-
 export const modularTsps = [
   { outputPath: "lro/rpc", inputPath: "azure/core/lro/rpc" },
   { outputPath: "lro/standard", inputPath: "azure/core/lro/standard" },
@@ -282,8 +280,8 @@ export const modularTsps = [
     inputPath: "client/structure/two-operation-group"
   },
   {
-    outputPath: "headers/client-request-id",
-    inputPath: "special-headers/client-request-id"
+    outputPath: "azure/special-headers/client-request-id",
+    inputPath: "azure/special-headers/client-request-id"
   },
   {
     outputPath: "parameters/collection-format",
@@ -425,7 +423,7 @@ export const modularTsps = [
   {
     outputPath: "models/propertyAdditional",
     inputPath: "type/property/additional-properties"
-  },
+  }
 ];
 
 export const nonBrandedModularTsps = [

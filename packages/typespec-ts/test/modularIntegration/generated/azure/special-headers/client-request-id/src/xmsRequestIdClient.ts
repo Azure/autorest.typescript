@@ -4,26 +4,26 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   get,
-  createRequestId,
-  RequestIdClientOptions,
-  RequestIdClientContext,
+  createXmsRequestId,
+  XmsRequestIdClientOptions,
+  XmsRequestIdClientContext,
 } from "./api/index.js";
 import { GetOptionalParams } from "./models/options.js";
 
-export { RequestIdClientOptions } from "./api/requestIdContext.js";
+export { XmsRequestIdClientOptions } from "./api/xmsRequestIdContext.js";
 
-export class RequestIdClient {
-  private _client: RequestIdClientContext;
+export class XmsRequestIdClient {
+  private _client: XmsRequestIdClientContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /** Azure client request id header configurations. */
-  constructor(options: RequestIdClientOptions = {}) {
-    this._client = createRequestId(options);
+  constructor(options: XmsRequestIdClientOptions = {}) {
+    this._client = createXmsRequestId(options);
     this.pipeline = this._client.pipeline;
   }
 
-  /** Get operation with azure client request id header. */
+  /** Get operation with azure `x-ms-client-request-id` header. */
   get(options: GetOptionalParams = { requestOptions: {} }): Promise<void> {
     return get(this._client, options);
   }

@@ -5,7 +5,7 @@ import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
 
 export interface GetHeaders {
-  "client-request-id"?: string;
+  "x-ms-client-request-id"?: string;
 }
 
 export interface GetHeaderParam {

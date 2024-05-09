@@ -2,19 +2,19 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "../logger.js";
-import { RequestIdClientContext } from "./clientDefinitions.js";
+import { logger } from "./logger.js";
+import { XmsClientRequestIdClient } from "./clientDefinitions.js";
 
 /**
- * Initialize a new instance of `RequestIdClientContext`
+ * Initialize a new instance of `XmsClientRequestIdClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {},
-): RequestIdClientContext {
+): XmsClientRequestIdClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
-  const userAgentInfo = `azsdk-js-modular-model-usage-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-client-request-id-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -27,14 +27,9 @@ export default function createClient(
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info,
     },
-    telemetryOptions: {
-      clientRequestIdHeaderName:
-        options.telemetryOptions?.clientRequestIdHeaderName ??
-        "client-request-id",
-    },
   };
 
-  const client = getClient(endpointUrl, options) as RequestIdClientContext;
+  const client = getClient(endpointUrl, options) as XmsClientRequestIdClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return client;

@@ -3,4 +3,6 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface GetOptionalParams extends OperationOptions {}
+export interface GetOptionalParams extends OperationOptions {
+  clientRequestId?: string;
+}

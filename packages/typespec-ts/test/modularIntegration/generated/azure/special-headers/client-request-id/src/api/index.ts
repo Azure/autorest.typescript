@@ -3,7 +3,7 @@
 
 export { get } from "./operations.js";
 export {
-  createRequestId,
-  RequestIdClientOptions,
-  RequestIdClientContext,
-} from "./requestIdContext.js";
+  createXmsRequestId,
+  XmsRequestIdClientOptions,
+  XmsRequestIdClientContext,
+} from "./xmsRequestIdContext.js";
