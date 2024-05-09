@@ -1,20 +1,26 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ValueTypesContext } from "../../api/ValueTypesContext.js";
+import { ValueTypesContext } from "../../api/valueTypesContext.js";
 import { BooleanProperty } from "../../models/models.js";
 import { booleanGet, booleanPut } from "../../api/boolean/index.js";
-import { BooleanGetOptions, BooleanPutOptions } from "../../models/options.js";
+import {
+  BooleanGetOptionalParams,
+  BooleanPutOptionalParams,
+} from "../../models/options.js";
 
 export interface BooleanOperations {
-  get: (options?: BooleanGetOptions) => Promise<BooleanProperty>;
-  put: (body: BooleanProperty, options?: BooleanPutOptions) => Promise<void>;
+  get: (options?: BooleanGetOptionalParams) => Promise<BooleanProperty>;
+  put: (
+    body: BooleanProperty,
+    options?: BooleanPutOptionalParams,
+  ) => Promise<void>;
 }
 
 export function getBoolean(context: ValueTypesContext) {
   return {
-    get: (options?: BooleanGetOptions) => booleanGet(context, options),
-    put: (body: BooleanProperty, options?: BooleanPutOptions) =>
+    get: (options?: BooleanGetOptionalParams) => booleanGet(context, options),
+    put: (body: BooleanProperty, options?: BooleanPutOptionalParams) =>
       booleanPut(context, body, options),
   };
 }

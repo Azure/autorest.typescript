@@ -2,7 +2,11 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { User, ListItemInputExtensibleEnum, ListItemInputBody } from "./models";
+import {
+  User,
+  ListItemInputExtensibleEnum,
+  ListItemInputBody,
+} from "./models.js";
 
 /** The resource instance. */
 export type UserResourceMergeAndPatch = Partial<User>;

@@ -29,12 +29,32 @@ export interface ListItemInputBody {
   inputName: string;
 }
 
+/** An extensible enum input parameter. */
+/** "First", "Second" */
+export type ListItemInputExtensibleEnum = string;
+
 export interface UserListResults {
   /** List of items. */
   items: User[];
   /** Link to fetch more items. */
   nextLink?: string;
 }
+
+/** First item. */
+export interface FirstItem {
+  /** The id of the item. */
+  readonly id: number;
+}
+
+/** Second item. */
+export interface SecondItem {
+  /** The name of the item. */
+  readonly name: string;
+}
+
+/** The version of the API. */
+/** */
+export type Versions = "2022-12-01-preview";
 
 /** Paged collection of User items */
 export interface PagedUser {
@@ -60,12 +80,6 @@ export interface PagedFirstItem {
   nextLink?: string;
 }
 
-/** First item. */
-export interface FirstItem {
-  /** The id of the item. */
-  readonly id: number;
-}
-
 /** Paged collection of SecondItem items */
 export interface PagedSecondItem {
   /** The SecondItem items on this page */
@@ -73,12 +87,3 @@ export interface PagedSecondItem {
   /** The link to the next page of items */
   nextLink?: string;
 }
-
-/** Second item. */
-export interface SecondItem {
-  /** The name of the item. */
-  readonly name: string;
-}
-
-/** Alias for ListItemInputExtensibleEnum */
-export type ListItemInputExtensibleEnum = string | "First" | "Second";

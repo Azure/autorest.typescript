@@ -5,7 +5,7 @@ export {
   createBasic,
   BasicClientOptions,
   BasicContext,
-} from "./BasicContext.js";
+} from "./basicContext.js";
 export {
   createOrUpdate,
   createOrReplace,
@@ -14,8 +14,8 @@ export {
   listWithPage,
   listWithParameters,
   listWithCustomPageModel,
-  deleteOperation,
-  exportOperation,
+  $delete,
+  $export,
   listFirstItem,
   listSecondItem,
 } from "./operations.js";

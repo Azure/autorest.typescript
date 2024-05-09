@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { LedgerEntry, LedgerUser } from "./models";
+import { LedgerEntry, LedgerUser } from "./models.js";
 
 export type ListCollectionsParameters = RequestParameters;
 export type GetEnclaveQuotesParameters = RequestParameters;

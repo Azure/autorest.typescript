@@ -1,12 +1,12 @@
 import path from "path";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import {
-  hasPagingOperation,
-  isPagingOperation
+  hasPagingOnlyOperation,
+  isPagingOnlyOperation
 } from "./helpers/operationHelpers.js";
 
-export function buildPagingTypes(codeModel: ModularCodeModel, client: Client) {
-  if (!hasPagingOperation(client)) {
+export function buildPagingTypes(client: Client, codeModel: ModularCodeModel) {
+  if (!hasPagingOnlyOperation(client)) {
     return;
   }
   const filePath = path.join(
@@ -112,14 +112,14 @@ export function buildPagingTypes(codeModel: ModularCodeModel, client: Client) {
 }
 
 export function buildPagingHelpers(
-  codeModel: ModularCodeModel,
   client: Client,
+  codeModel: ModularCodeModel,
   needUnexpectedHelper: boolean = true,
   isMultiClients: boolean = false
 ) {
   const pagingOperstions = client.operationGroups
     .flatMap((op) => op.operations)
-    .filter(isPagingOperation);
+    .filter(isPagingOnlyOperation);
   if (!pagingOperstions || pagingOperstions.length === 0) {
     return;
   }

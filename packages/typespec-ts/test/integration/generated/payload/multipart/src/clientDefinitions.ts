@@ -9,7 +9,8 @@ import {
   FormDataJsonArrayPartsParameters,
   FormDataMultiBinaryPartsParameters,
   FormDataCheckFileNameAndContentTypeParameters,
-} from "./parameters";
+  FormDataAnonymousModelParameters,
+} from "./parameters.js";
 import {
   FormDataBasic204Response,
   FormDataComplex204Response,
@@ -18,7 +19,8 @@ import {
   FormDataJsonArrayParts204Response,
   FormDataMultiBinaryParts204Response,
   FormDataCheckFileNameAndContentType204Response,
-} from "./responses";
+  FormDataAnonymousModel204Response,
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Basic {
@@ -70,6 +72,13 @@ export interface CheckFileNameAndContentType {
   ): StreamableMethod<FormDataCheckFileNameAndContentType204Response>;
 }
 
+export interface AnonymousModel {
+  /** Test content-type: multipart/form-data */
+  post(
+    options: FormDataAnonymousModelParameters,
+  ): StreamableMethod<FormDataAnonymousModel204Response>;
+}
+
 export interface Routes {
   /** Resource for '/multipart/form-data/mixed-parts' has methods for the following verbs: post */
   (path: "/multipart/form-data/mixed-parts"): Basic;
@@ -87,6 +96,8 @@ export interface Routes {
   (
     path: "/multipart/form-data/check-filename-and-content-type",
   ): CheckFileNameAndContentType;
+  /** Resource for '/multipart/form-data/anonymous-model' has methods for the following verbs: post */
+  (path: "/multipart/form-data/anonymous-model"): AnonymousModel;
 }
 
 export type MultiPartClient = Client & {

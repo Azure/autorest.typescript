@@ -8,12 +8,12 @@ import {
   CreateJob202Response,
   CreateJobLogicalResponse,
   CreateJobDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /trialmatcher/jobs/{jobId}": ["200"],
-  "POST /trialmatcher/jobs": ["200", "202"],
   "GET /trialmatcher/jobs": ["200", "202"],
+  "POST /trialmatcher/jobs": ["200", "202"],
 };
 
 export function isUnexpected(

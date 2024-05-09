@@ -5,7 +5,7 @@ export {
   createValueTypes,
   ValueTypesClientOptions,
   ValueTypesContext,
-} from "./ValueTypesContext.js";
+} from "./valueTypesContext.js";
 export { booleanGet, booleanPut } from "./boolean/index.js";
 export {
   booleanLiteralGet,
@@ -45,6 +45,10 @@ export { modelGet, modelPut } from "./model/index.js";
 export { neverGet, neverPut } from "./never/index.js";
 export { stringGet, stringPut } from "./string/index.js";
 export { stringLiteralGet, stringLiteralPut } from "./stringLiteral/index.js";
+export {
+  unionEnumValueGet,
+  unionEnumValuePut,
+} from "./unionEnumValue/index.js";
 export {
   unionFloatLiteralGet,
   unionFloatLiteralPut,

@@ -5,7 +5,7 @@ export {
   createUnion,
   UnionClientOptions,
   UnionContext,
-} from "./UnionContext.js";
+} from "./unionContext.js";
 export { enumsOnlyGet, enumsOnlySend } from "./enumsOnly/index.js";
 export { floatsOnlyGet, floatsOnlySend } from "./floatsOnly/index.js";
 export { intsOnlyGet, intsOnlySend } from "./intsOnly/index.js";

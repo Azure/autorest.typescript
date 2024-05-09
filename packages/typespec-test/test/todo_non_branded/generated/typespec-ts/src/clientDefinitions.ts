@@ -16,7 +16,7 @@ import {
   TodoItemsAttachmentsListParameters,
   TodoItemsAttachmentsCreateUrlAttachmentParameters,
   TodoItemsAttachmentsCreateFileAttachmentParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   UsersCreate200Response,
   UsersCreate409Response,
@@ -38,15 +38,15 @@ import {
   TodoItemsGet200Response,
   TodoItemsGet404Response,
   TodoItemsUpdate200Response,
-  TodoItemsDeleteOperation200Response,
-  TodoItemsDeleteOperation404Response,
+  TodoItemsDelete200Response,
+  TodoItemsDelete404Response,
   TodoItemsAttachmentsList200Response,
   TodoItemsAttachmentsList404Response,
   TodoItemsAttachmentsCreateUrlAttachment200Response,
   TodoItemsAttachmentsCreateUrlAttachment404Response,
   TodoItemsAttachmentsCreateFileAttachment200Response,
   TodoItemsAttachmentsCreateFileAttachment404Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@typespec/ts-http-runtime";
 
 export interface UsersCreate {
@@ -117,9 +117,7 @@ export interface TodoItemsGet {
   ): StreamableMethod<TodoItemsUpdate200Response>;
   delete(
     options?: TodoItemsDeleteParameters,
-  ): StreamableMethod<
-    TodoItemsDeleteOperation200Response | TodoItemsDeleteOperation404Response
-  >;
+  ): StreamableMethod<TodoItemsDelete200Response | TodoItemsDelete404Response>;
 }
 
 export interface TodoItemsAttachmentsList {

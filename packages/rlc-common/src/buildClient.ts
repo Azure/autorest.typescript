@@ -223,6 +223,25 @@ export function buildClient(model: RLCModel): File | undefined {
       )
     }
   ]);
+  if (
+    (model.importInfo.internalImports?.rlcClientFactory?.importsSet?.size ??
+      0) > 0
+  ) {
+    clientFile.addImportDeclarations([
+      {
+        namedImports: Array.from(
+          model.importInfo.internalImports.rlcClientFactory.importsSet!
+        ),
+        moduleSpecifier: getImportModuleName(
+          {
+            cjsName: `./models`,
+            esModulesName: `./models.js`
+          },
+          model
+        )
+      }
+    ]);
+  }
   return { path: filePath, content: clientFile.getFullText() };
 }
 
@@ -267,7 +286,7 @@ export function getClientFactoryBody(
     }
   }
 
-  let baseUrl: string;
+  let endpointUrl: string;
   if (urlParameters && endpoint) {
     let parsedEndpoint = endpoint;
     urlParameters.forEach((urlParameter) => {
@@ -277,9 +296,9 @@ export function getClientFactoryBody(
       );
     });
 
-    baseUrl = `options.baseUrl ?? \`${parsedEndpoint}\``;
+    endpointUrl = `options.endpoint ?? options.baseUrl ?? \`${parsedEndpoint}\``;
   } else {
-    baseUrl = `options.baseUrl ?? "${endpoint}"`;
+    endpointUrl = `options.endpoint ?? options.baseUrl ?? "${endpoint}"`;
   }
 
   let apiVersionStatement: string = "";
@@ -289,8 +308,9 @@ export function getClientFactoryBody(
     !!model.apiVersionInfo?.defaultValue
   ) {
     apiVersionStatement = `options.apiVersion = options.apiVersion ?? "${model.apiVersionInfo?.defaultValue}"`;
+  } else if (model.apiVersionInfo?.definedPosition === "query") {
+    apiVersionStatement = `options.apiVersion = options.apiVersion ?? apiVersion`;
   }
-
   if (!clientPackageName.endsWith("-rest")) {
     clientPackageName = clientPackageName + "-rest";
   }
@@ -317,16 +337,16 @@ export function getClientFactoryBody(
     }`
     : "";
 
-  const baseUrlStatement: VariableStatementStructure = {
+  const endpointUrlStatement: VariableStatementStructure = {
     kind: StructureKind.VariableStatement,
     declarationKind: VariableDeclarationKind.Const,
-    declarations: [{ name: "baseUrl", initializer: baseUrl }]
+    declarations: [{ name: "endpointUrl", initializer: endpointUrl }]
   };
 
   const { credentialScopes, credentialKeyHeaderName } = model.options;
   const scopesString = credentialScopes
     ? credentialScopes.map((cs) => `"${cs}"`).join(", ") ||
-      "`${baseUrl}/.default`"
+      "`${endpointUrl}/.default`"
     : "";
   const scopes = scopesString
     ? `scopes: options.credentials?.scopes ?? [${scopesString}],`
@@ -359,7 +379,7 @@ export function getClientFactoryBody(
       }`;
 
   const getClient = `const client = getClient(
-        baseUrl, ${credentialsOptions ? "credentials," : ""} options
+        endpointUrl, ${credentialsOptions ? "credentials," : ""} options
       ) as ${clientTypeName};
       `;
   const { customHttpAuthHeaderName, customHttpAuthSharedKeyPrefix } =
@@ -412,7 +432,7 @@ export function getClientFactoryBody(
 
   return [
     ...optionalUrlParameters,
-    baseUrlStatement,
+    endpointUrlStatement,
     apiVersionStatement,
     userAgentInfoStatement,
     userAgentStatement,

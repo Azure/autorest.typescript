@@ -3,20 +3,27 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface ClientNameOptions extends OperationOptions {}
+export interface ClientNameOptionalParams extends OperationOptions {}
 
-export interface ParameterOptions extends OperationOptions {}
+export interface ParameterOptionalParams extends OperationOptions {}
 
-export interface ClientRequestOptions extends OperationOptions {}
+export interface ClientOptionalParams extends OperationOptions {}
 
-export interface LanguageOptions extends OperationOptions {}
+export interface LanguageOptionalParams extends OperationOptions {}
 
-export interface CompatibleWithEncodedNameOptions extends OperationOptions {}
+export interface CompatibleWithEncodedNameOptionalParams
+  extends OperationOptions {}
 
-export interface RequestOptions extends OperationOptions {}
+export interface RequestOptionalParams extends OperationOptions {}
 
-export interface ResponseOptions extends OperationOptions {}
+export interface ResponseOptionalParams extends OperationOptions {}
 
-export interface ClientModelClientOptions extends OperationOptions {}
+export interface ClientModelClientOptionalParams extends OperationOptions {}
 
-export interface ClientModelLanguageOptions extends OperationOptions {}
+export interface ClientModelLanguageOptionalParams extends OperationOptions {}
+
+export interface UnionEnumUnionEnumNameOptionalParams
+  extends OperationOptions {}
+
+export interface UnionEnumUnionEnumMemberNameOptionalParams
+  extends OperationOptions {}

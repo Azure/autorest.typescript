@@ -29,6 +29,8 @@ export type ImportType =
   | "response"
   | "rlcIndex"
   | "modularModel"
+  | "rlcClientFactory"
+  | "rlcClientDefinition"
   /**common third party imports */
   | "restClient"
   | "coreAuth"
@@ -100,6 +102,7 @@ export interface PathTemplateApiVersion {
 export interface UrlInfo {
   endpoint?: string;
   urlParameters?: PathParameter[];
+  apiVersionInfo?: ApiVersionInfo;
 }
 
 export interface ApiVersionInfo {
@@ -133,7 +136,8 @@ export interface PagingDetails {
 }
 
 export type Methods = {
-  [key: string]: [OperationMethod];
+  // could be more than one method if overloading
+  [key: string]: OperationMethod[];
 };
 
 export interface ResponseTypes {
@@ -171,7 +175,7 @@ export type PathParameter = {
 
 export interface OperationHelperDetail {
   lroDetails?: OperationLroDetail;
-  isPageable?: boolean;
+  isPaging?: boolean;
 }
 
 export const OPERATION_LRO_HIGH_PRIORITY = 0,
@@ -231,10 +235,12 @@ export interface RLCOptions {
   azureArm?: boolean;
   sourceFrom?: "TypeSpec" | "Swagger";
   isModularLibrary?: boolean;
+  moduleKind?: "esm" | "cjs";
   enableOperationGroup?: boolean;
   flavor?: PackageFlavor;
   enableModelNamespace?: boolean;
   hierarchyClient?: boolean;
+  compatibilityMode?: boolean;
 }
 
 export interface ServiceInfo {
@@ -283,6 +289,7 @@ export interface ObjectSchema extends Schema {
   discriminatorValue?: string;
   discriminator?: Schema;
   isPolyParent?: boolean;
+  isMultipartBody?: boolean;
   children?: {
     all?: ObjectSchema[];
     immediate?: ObjectSchema[];
@@ -337,11 +344,6 @@ export interface ParameterBodyMetadata {
    * usually false in typespec source because rlc-common doesn't have to prepare the whole part shape
    */
   isPartialBody?: boolean;
-  /**
-   * The `File` type is only available in the browser and Node 20, so we need to check if the file type is included in the body
-   * If yes, we need to export the helpers for customers. This would be useful in multipart/form-data to upload files
-   */
-  needsFilePolyfil?: boolean;
   body?: ParameterBodySchema[];
 }
 

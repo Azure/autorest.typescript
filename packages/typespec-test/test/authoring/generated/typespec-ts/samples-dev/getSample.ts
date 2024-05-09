@@ -13,9 +13,9 @@ dotenv.config();
  * @summary call operation Get
  */
 async function getSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAuthoringClient(endpoint, credential);
+  const client = createAuthoringClient(endpointParam, credential);
   const projectName = "{Your projectName}";
   const result = await client
     .path("/authoring/analyze-text/projects/{projectName}", projectName)

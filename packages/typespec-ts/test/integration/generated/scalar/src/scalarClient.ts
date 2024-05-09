@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { ScalarClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { ScalarClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `ScalarClient`
@@ -12,7 +12,8 @@ import { ScalarClient } from "./clientDefinitions";
 export default function createClient(
   options: ClientOptions = {},
 ): ScalarClient {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-scalar-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -28,7 +29,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as ScalarClient;
+  const client = getClient(endpointUrl, options) as ScalarClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return client;

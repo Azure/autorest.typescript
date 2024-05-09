@@ -3,6 +3,7 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface NoOperationParamsOptions extends OperationOptions {}
+export interface NoOperationParamsOptionalParams extends OperationOptions {}
 
-export interface WithOperationPathParamOptions extends OperationOptions {}
+export interface WithOperationPathParamOptionalParams
+  extends OperationOptions {}

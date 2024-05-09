@@ -1,21 +1,25 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { NamingClient, NamingClientOptions } from "./NamingClient.js";
+export { NamingClient, NamingClientOptions } from "./namingClient.js";
 export {
   ClientNameModel,
   LanguageClientNameModel,
   ClientNameAndJsonEncodedNameModel,
+  ClientExtensibleEnum,
+  ExtensibleEnum,
   ClientModel,
   TSModel,
-  ClientNameOptions,
-  ParameterOptions,
-  ClientRequestOptions,
-  LanguageOptions,
-  CompatibleWithEncodedNameOptions,
-  RequestOptions,
-  ResponseOptions,
-  ClientModelClientOptions,
-  ClientModelLanguageOptions,
+  ClientNameOptionalParams,
+  ParameterOptionalParams,
+  ClientOptionalParams,
+  LanguageOptionalParams,
+  CompatibleWithEncodedNameOptionalParams,
+  RequestOptionalParams,
+  ResponseOptionalParams,
+  ClientModelClientOptionalParams,
+  ClientModelLanguageOptionalParams,
+  UnionEnumUnionEnumNameOptionalParams,
+  UnionEnumUnionEnumMemberNameOptionalParams,
 } from "./models/index.js";
-export { ClientModelOperations } from "./classic/index.js";
+export { ClientModelOperations, UnionEnumOperations } from "./classic/index.js";

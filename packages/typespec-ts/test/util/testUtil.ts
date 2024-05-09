@@ -27,16 +27,16 @@ export async function rlcEmitterFor(
   code: string,
   needNamespaces: boolean = true,
   needAzureCore: boolean = false,
-  ignoreClientApiVersion: boolean = false,
   needTCGC: boolean = false,
-  withRawContent: boolean = false
+  withRawContent: boolean = false,
+  withVersionedApiVersion: boolean = false
 ): Promise<TestHost> {
   const host: TestHost = await createRLCEmitterTestHost();
   const namespace = `
   #suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
+  ${withVersionedApiVersion ? "@versioned(Versions)" : ""}
   @service({
-    title: "Azure TypeScript Testing",
-    ${ignoreClientApiVersion ? "" : 'version: "2022-12-16-preview",'}
+    title: "Azure TypeScript Testing"
   })
 
   ${needAzureCore ? "@useDependency(Azure.Core.Versions.v1_0_Preview_2)" : ""} 
@@ -56,9 +56,12 @@ using TypeSpec.Http;
 using TypeSpec.Versioning;
 ${needTCGC ? "using Azure.ClientGenerator.Core;" : ""}
 ${needAzureCore ? "using Azure.Core;" : ""}
-
 ${needNamespaces ? namespace : ""}
-
+${
+  withVersionedApiVersion && needNamespaces
+    ? 'enum Versions { v2022_05_15_preview: "2022-05-15-preview"}'
+    : ""
+}
 ${code}
 `;
   host.addTypeSpecFile("main.tsp", content);
@@ -68,10 +71,14 @@ ${code}
   return host;
 }
 
-export function createDpgContextTestHelper(program: Program): SdkContext {
+export function createDpgContextTestHelper(
+  program: Program,
+  enableModelNamespace = false
+): SdkContext {
   const defaultOptions = {
     generateProtocolMethods: true,
     generateConvenienceMethods: true,
+    flattenUnionAsEnum: false,
     emitters: [
       {
         main: "@azure-tools/typespec-ts",
@@ -85,9 +92,10 @@ export function createDpgContextTestHelper(program: Program): SdkContext {
     program: program,
     generateProtocolMethods: resolvedOptions.generateProtocolMethods,
     generateConvenienceMethods: resolvedOptions.generateConvenienceMethods,
-    rlcOptions: { flavor: "azure" },
+    rlcOptions: { flavor: "azure", enableModelNamespace },
     generationPathDetail: {},
-    emitterName: "@azure-tools/typespec-ts"
+    emitterName: "@azure-tools/typespec-ts",
+    originalProgram: program
   } as SdkContext;
 }
 

@@ -15,9 +15,9 @@ dotenv.config();
  * @summary call operation CreateJob
  */
 async function createJobSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAzureHealthInsightsClient(endpoint, credential);
+  const client = createAzureHealthInsightsClient(endpointParam, credential);
   const initialResponse = await client
     .path("/radiology-insights/jobs")
     .post({
@@ -719,7 +719,7 @@ async function createJobSample() {
         configuration: {
           verbose: true,
           includeEvidence: true,
-          inferenceTypes: ["{Your inferenceTypes}"],
+          inferenceTypes: ["ageMismatch"],
           inferenceOptions: {
             followupRecommendation: {
               includeRecommendationsWithNoSpecifiedModality: true,

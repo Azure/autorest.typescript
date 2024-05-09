@@ -10,8 +10,8 @@ import {
   CreateOrReplaceDefaultResponse,
   Get200Response,
   GetDefaultResponse,
-  DeleteOperation204Response,
-  DeleteOperationDefaultResponse,
+  Delete204Response,
+  DeleteDefaultResponse,
   List200Response,
   ListDefaultResponse,
   ListWithPage200Response,
@@ -20,13 +20,13 @@ import {
   ListWithParametersDefaultResponse,
   ListWithCustomPageModel200Response,
   ListWithCustomPageModelDefaultResponse,
-  ExportOperation200Response,
-  ExportOperationDefaultResponse,
+  Export200Response,
+  ExportDefaultResponse,
   ListFirstItem200Response,
   ListFirstItemDefaultResponse,
   ListSecondItem200Response,
   ListSecondItemDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "PATCH /azure/core/basic/users/{id}": ["200", "201"],
@@ -58,8 +58,8 @@ export function isUnexpected(
   response: Get200Response | GetDefaultResponse,
 ): response is GetDefaultResponse;
 export function isUnexpected(
-  response: DeleteOperation204Response | DeleteOperationDefaultResponse,
-): response is DeleteOperationDefaultResponse;
+  response: Delete204Response | DeleteDefaultResponse,
+): response is DeleteDefaultResponse;
 export function isUnexpected(
   response: List200Response | ListDefaultResponse,
 ): response is ListDefaultResponse;
@@ -75,8 +75,8 @@ export function isUnexpected(
     | ListWithCustomPageModelDefaultResponse,
 ): response is ListWithCustomPageModelDefaultResponse;
 export function isUnexpected(
-  response: ExportOperation200Response | ExportOperationDefaultResponse,
-): response is ExportOperationDefaultResponse;
+  response: Export200Response | ExportDefaultResponse,
+): response is ExportDefaultResponse;
 export function isUnexpected(
   response: ListFirstItem200Response | ListFirstItemDefaultResponse,
 ): response is ListFirstItemDefaultResponse;
@@ -93,8 +93,8 @@ export function isUnexpected(
     | CreateOrReplaceDefaultResponse
     | Get200Response
     | GetDefaultResponse
-    | DeleteOperation204Response
-    | DeleteOperationDefaultResponse
+    | Delete204Response
+    | DeleteDefaultResponse
     | List200Response
     | ListDefaultResponse
     | ListWithPage200Response
@@ -103,8 +103,8 @@ export function isUnexpected(
     | ListWithParametersDefaultResponse
     | ListWithCustomPageModel200Response
     | ListWithCustomPageModelDefaultResponse
-    | ExportOperation200Response
-    | ExportOperationDefaultResponse
+    | Export200Response
+    | ExportDefaultResponse
     | ListFirstItem200Response
     | ListFirstItemDefaultResponse
     | ListSecondItem200Response
@@ -113,12 +113,12 @@ export function isUnexpected(
   | CreateOrUpdateDefaultResponse
   | CreateOrReplaceDefaultResponse
   | GetDefaultResponse
-  | DeleteOperationDefaultResponse
+  | DeleteDefaultResponse
   | ListDefaultResponse
   | ListWithPageDefaultResponse
   | ListWithParametersDefaultResponse
   | ListWithCustomPageModelDefaultResponse
-  | ExportOperationDefaultResponse
+  | ExportDefaultResponse
   | ListFirstItemDefaultResponse
   | ListSecondItemDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];

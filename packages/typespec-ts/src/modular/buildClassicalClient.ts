@@ -21,11 +21,12 @@ import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { getImportSpecifier } from "@azure-tools/rlc-common";
+import { importLroCoreDependencies } from "./buildLroFiles.js";
 
 export function buildClassicalClient(
+  client: Client,
   dpgContext: SdkContext,
-  codeModel: ModularCodeModel,
-  client: Client
+  codeModel: ModularCodeModel
 ) {
   const { description } = client;
   const modularClientName = getClientName(client);
@@ -35,14 +36,18 @@ export function buildClassicalClient(
   const subfolder = client.subfolder ?? "";
 
   const clientFile = codeModel.project.createSourceFile(
-    `${srcPath}/${
-      subfolder !== "" ? subfolder + "/" : ""
-    }${classicalClientname}.ts`
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
+      classicalClientname,
+      NameType.File
+    )}.ts`
   );
 
   clientFile.addExportDeclaration({
     namedExports: [`${classicalClientname}Options`],
-    moduleSpecifier: `./api/${modularClientName}Context.js`
+    moduleSpecifier: `./api/${normalizeName(
+      modularClientName,
+      NameType.File
+    )}Context.js`
   });
 
   const clientClass = clientFile.addClass({
@@ -85,6 +90,7 @@ export function buildClassicalClient(
       .join(",")})`
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline`);
+  importLroCoreDependencies(clientFile);
   importCredential(codeModel.runtimeImports, clientFile);
   importPipeline(codeModel.runtimeImports, clientFile);
   importAllModels(clientFile, srcPath, subfolder);
@@ -92,6 +98,7 @@ export function buildClassicalClient(
   importAllApis(clientFile, srcPath, subfolder);
   clientFile.fixMissingImports();
   clientFile.fixUnusedIdentifiers();
+  return clientFile;
 }
 
 function importAllApis(
@@ -202,7 +209,7 @@ function buildClientOperationGroups(
         const declarations = getOperationFunction(op, clientType);
         const method: MethodDeclarationStructure = {
           docs: declarations.docs,
-          name: declarations.name ?? "FIXME",
+          name: declarations.propertyName ?? declarations.name ?? "FIXME",
           kind: StructureKind.Method,
           returnType: declarations.returnType,
           parameters: declarations.parameters?.filter(

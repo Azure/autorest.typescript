@@ -5,4 +5,4 @@ export {
   createWidgetManager,
   WidgetManagerClientOptions,
   WidgetManagerContext,
-} from "./WidgetManagerContext.js";
+} from "./widgetManagerContext.js";

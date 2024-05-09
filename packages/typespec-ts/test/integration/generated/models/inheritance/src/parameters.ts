@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { Fish } from "./models";
+import { Fish } from "./models.js";
 
 export type GetModelParameters = RequestParameters;
 

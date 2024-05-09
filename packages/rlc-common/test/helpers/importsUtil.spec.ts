@@ -12,7 +12,7 @@ describe("#buildRuntimeImports", () => {
     expect(imports.restClient).to.deep.equal({
       type: "restClient",
       specifier: "@azure-rest/core-client",
-      version: "^1.2.0"
+      version: "^2.0.0"
     });
   });
 
@@ -21,7 +21,7 @@ describe("#buildRuntimeImports", () => {
     expect(imports.commonFallback).to.deep.equal({
       type: "commonFallback",
       specifier: "@typespec/ts-http-runtime",
-      version: "1.0.0-alpha.20240226.9"
+      version: "1.0.0-alpha.20240314.2"
     });
     expect(imports.restClient).to.be.undefined;
   });

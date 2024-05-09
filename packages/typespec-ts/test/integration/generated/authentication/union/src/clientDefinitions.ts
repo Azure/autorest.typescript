@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ValidKeyParameters, ValidTokenParameters } from "./parameters";
-import { ValidKey204Response, ValidToken204Response } from "./responses";
+import { ValidKeyParameters, ValidTokenParameters } from "./parameters.js";
+import { ValidKey204Response, ValidToken204Response } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ValidKey {

@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { HttpResponse } from "@azure-rest/core-client";
-import { FishOutput } from "./outputModels";
+import { FishOutput } from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface GetModel200Response extends HttpResponse {

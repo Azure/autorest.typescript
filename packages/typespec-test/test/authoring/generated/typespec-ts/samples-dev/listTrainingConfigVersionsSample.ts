@@ -13,9 +13,9 @@ dotenv.config();
  * @summary call operation ListTrainingConfigVersions
  */
 async function listTrainingConfigVersionsSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new AzureKeyCredential("{Your API key}");
-  const client = createAuthoringClient(endpoint, credential);
+  const client = createAuthoringClient(endpointParam, credential);
   const initialResponse = await client
     .path("/authoring/analyze-text/projects/global/training-config-versions")
     .get({ queryParameters: { top: 123, skip: 123, maxpagesize: 123 } });

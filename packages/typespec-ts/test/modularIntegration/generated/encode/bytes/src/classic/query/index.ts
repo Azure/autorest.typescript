@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { BytesContext } from "../../api/BytesContext.js";
+import { BytesContext } from "../../api/bytesContext.js";
 import {
   queryDefault,
   queryBase64,
@@ -9,36 +9,42 @@ import {
   queryBase64urlArray,
 } from "../../api/query/index.js";
 import {
-  QueryDefaultOptions,
-  QueryBase64Options,
-  QueryBase64urlOptions,
-  QueryBase64urlArrayOptions,
+  QueryDefaultOptionalParams,
+  QueryBase64OptionalParams,
+  QueryBase64urlOptionalParams,
+  QueryBase64urlArrayOptionalParams,
 } from "../../models/options.js";
 
 export interface QueryOperations {
-  default: (value: Uint8Array, options?: QueryDefaultOptions) => Promise<void>;
-  base64: (value: Uint8Array, options?: QueryBase64Options) => Promise<void>;
+  default: (
+    value: Uint8Array,
+    options?: QueryDefaultOptionalParams,
+  ) => Promise<void>;
+  base64: (
+    value: Uint8Array,
+    options?: QueryBase64OptionalParams,
+  ) => Promise<void>;
   base64url: (
     value: Uint8Array,
-    options?: QueryBase64urlOptions,
+    options?: QueryBase64urlOptionalParams,
   ) => Promise<void>;
   base64urlArray: (
     value: Uint8Array[],
-    options?: QueryBase64urlArrayOptions,
+    options?: QueryBase64urlArrayOptionalParams,
   ) => Promise<void>;
 }
 
 export function getQuery(context: BytesContext) {
   return {
-    default: (value: Uint8Array, options?: QueryDefaultOptions) =>
+    default: (value: Uint8Array, options?: QueryDefaultOptionalParams) =>
       queryDefault(context, value, options),
-    base64: (value: Uint8Array, options?: QueryBase64Options) =>
+    base64: (value: Uint8Array, options?: QueryBase64OptionalParams) =>
       queryBase64(context, value, options),
-    base64url: (value: Uint8Array, options?: QueryBase64urlOptions) =>
+    base64url: (value: Uint8Array, options?: QueryBase64urlOptionalParams) =>
       queryBase64url(context, value, options),
     base64urlArray: (
       value: Uint8Array[],
-      options?: QueryBase64urlArrayOptions,
+      options?: QueryBase64urlArrayOptionalParams,
     ) => queryBase64urlArray(context, value, options),
   };
 }

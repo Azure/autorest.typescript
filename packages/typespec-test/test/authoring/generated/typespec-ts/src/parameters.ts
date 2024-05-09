@@ -7,7 +7,7 @@ import {
   TrainingJobOptions,
   Deployment,
   SwapDeploymentsOptions,
-} from "./models";
+} from "./models.js";
 
 /** The resource instance. */
 export type ProjectResourceMergeAndPatch = Partial<Project>;

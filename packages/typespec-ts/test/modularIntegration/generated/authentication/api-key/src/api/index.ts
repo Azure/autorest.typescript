@@ -5,5 +5,5 @@ export {
   createApiKey,
   ApiKeyClientOptions,
   ApiKeyContext,
-} from "./ApiKeyContext.js";
+} from "./apiKeyContext.js";
 export { valid, invalid } from "./operations.js";

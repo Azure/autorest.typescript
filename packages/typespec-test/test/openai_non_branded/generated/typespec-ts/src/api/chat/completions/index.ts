@@ -15,12 +15,12 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@typespec/ts-http-runtime";
-import { ChatCompletionsCreateOptions } from "../../../models/options.js";
+import { ChatCompletionsCreateOptionalParams } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,
   body: CreateChatCompletionRequest,
-  options: ChatCompletionsCreateOptions = { requestOptions: {} },
+  options: ChatCompletionsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   ChatCompletionsCreate200Response | ChatCompletionsCreateDefaultResponse
 > {
@@ -105,7 +105,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   body: CreateChatCompletionRequest,
-  options: ChatCompletionsCreateOptions = { requestOptions: {} },
+  options: ChatCompletionsCreateOptionalParams = { requestOptions: {} },
 ): Promise<CreateChatCompletionResponse> {
   const result = await _createSend(context, body, options);
   return _createDeserialize(result);

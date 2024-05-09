@@ -1,19 +1,22 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ScalarContext } from "../../api/ScalarContext.js";
+import { ScalarContext } from "../../api/scalarContext.js";
 import { stringGet, stringPut } from "../../api/string/index.js";
-import { StringGetOptions, StringPutOptions } from "../../models/options.js";
+import {
+  StringGetOptionalParams,
+  StringPutOptionalParams,
+} from "../../models/options.js";
 
 export interface StringOperations {
-  get: (options?: StringGetOptions) => Promise<string>;
-  put: (body: string, options?: StringPutOptions) => Promise<void>;
+  get: (options?: StringGetOptionalParams) => Promise<string>;
+  put: (body: string, options?: StringPutOptionalParams) => Promise<void>;
 }
 
 export function getString(context: ScalarContext) {
   return {
-    get: (options?: StringGetOptions) => stringGet(context, options),
-    put: (body: string, options?: StringPutOptions) =>
+    get: (options?: StringGetOptionalParams) => stringGet(context, options),
+    put: (body: string, options?: StringPutOptionalParams) =>
       stringPut(context, body, options),
   };
 }

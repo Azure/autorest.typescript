@@ -2,35 +2,41 @@
 // Licensed under the MIT license.
 
 import {
-  ListByResourceGroupParameters,
   ListBySubscriptionParameters,
+  ListByResourceGroupParameters,
   UpdateIntParameters,
   UpdateStringParameters,
   ReturnsIntParameters,
   ReturnsStringParameters,
   ProcessIntParameters,
   ProcessStringParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
+  ListBySubscription202Response,
+  ListBySubscriptionDefaultResponse,
   ListByResourceGroup200Response,
-  ListBySubscription200Response,
+  ListByResourceGroupDefaultResponse,
   UpdateInt204Response,
   UpdateString204Response,
   ReturnsInt200Response,
   ReturnsString200Response,
   ProcessInt200Response,
   ProcessString200Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface ListByResourceGroup {
+export interface ListBySubscription {
   /** different query & header parameters */
   post(
-    options: ListByResourceGroupParameters,
-  ): StreamableMethod<ListByResourceGroup200Response>;
-  post(
     options: ListBySubscriptionParameters,
-  ): StreamableMethod<ListBySubscription200Response>;
+  ): StreamableMethod<
+    ListBySubscription202Response | ListBySubscriptionDefaultResponse
+  >;
+  post(
+    options: ListByResourceGroupParameters,
+  ): StreamableMethod<
+    ListByResourceGroup200Response | ListByResourceGroupDefaultResponse
+  >;
 }
 
 export interface UpdateInt {
@@ -59,7 +65,7 @@ export interface ProcessInt {
 
 export interface Routes {
   /** Resource for '/sharedroute/query' has methods for the following verbs: post */
-  (path: "/sharedroute/query"): ListByResourceGroup;
+  (path: "/sharedroute/query"): ListBySubscription;
   /** Resource for '/sharedroute/request-body' has methods for the following verbs: post */
   (path: "/sharedroute/request-body"): UpdateInt;
   /** Resource for '/sharedroute/response-body' has methods for the following verbs: post */

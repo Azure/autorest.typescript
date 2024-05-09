@@ -11,12 +11,12 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { ModelSpreadAsRequestBodyOptions } from "../../models/options.js";
+import { ModelSpreadAsRequestBodyOptionalParams } from "../../models/options.js";
 
 export function _modelSpreadAsRequestBodySend(
   context: Client,
   body: BodyParameter,
-  options: ModelSpreadAsRequestBodyOptions = { requestOptions: {} },
+  options: ModelSpreadAsRequestBodyOptionalParams = { requestOptions: {} },
 ): StreamableMethod<ModelSpreadAsRequestBody204Response> {
   return context
     .path("/parameters/spread/model/request-body")
@@ -39,7 +39,7 @@ export async function _modelSpreadAsRequestBodyDeserialize(
 export async function modelSpreadAsRequestBody(
   context: Client,
   body: BodyParameter,
-  options: ModelSpreadAsRequestBodyOptions = { requestOptions: {} },
+  options: ModelSpreadAsRequestBodyOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _modelSpreadAsRequestBodySend(context, body, options);
   return _modelSpreadAsRequestBodyDeserialize(result);

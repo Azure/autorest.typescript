@@ -5,6 +5,7 @@ describe("Scalar Client", () => {
 
   beforeEach(() => {
     client = new ScalarClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0
@@ -14,7 +15,13 @@ describe("Scalar Client", () => {
 
   it("should get string value", async () => {
     try {
-      const result = await client.string.get();
+      const result = await client.string.get({
+        requestOptions: {
+          headers: {
+            accept: "text/plain"
+          }
+        }
+      });
       assert.strictEqual(result, "test");
     } catch (err) {
       assert.fail(err as string);
@@ -23,7 +30,13 @@ describe("Scalar Client", () => {
 
   it("should put string value", async () => {
     try {
-      const result = await client.string.put(JSON.stringify("test"));
+      const result = await client.string.put("test", {
+        requestOptions: {
+          headers: {
+            "content-type": "text/plain"
+          }
+        }
+      });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -50,7 +63,13 @@ describe("Scalar Client", () => {
 
   it("should get unknown value", async () => {
     try {
-      const result = await client.unknown.get();
+      const result = await client.unknown.get({
+        requestOptions: {
+          headers: {
+            accept: "text/plain"
+          }
+        }
+      });
       assert.strictEqual(result, "test");
     } catch (err) {
       assert.fail(err as string);
@@ -59,7 +78,13 @@ describe("Scalar Client", () => {
 
   it("should put unknown value", async () => {
     try {
-      const result = await client.unknown.put(JSON.stringify("test"));
+      const result = await client.unknown.put("test", {
+        requestOptions: {
+          headers: {
+            "content-type": "text/plain"
+          }
+        }
+      });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -148,4 +173,3 @@ describe("Scalar Client", () => {
     }
   });
 });
-

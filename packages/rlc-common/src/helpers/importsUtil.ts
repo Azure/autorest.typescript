@@ -12,7 +12,7 @@ export function buildRuntimeImports(flavor?: PackageFlavor): Imports {
       restClient: {
         type: "restClient",
         specifier: "@azure-rest/core-client",
-        version: "^1.2.0"
+        version: "^2.0.0"
       },
       coreAuth: {
         type: "coreAuth",
@@ -43,6 +43,10 @@ export function buildRuntimeImports(flavor?: PackageFlavor): Imports {
         type: "azureTestRecorder",
         specifier: "@azure-tools/test-recorder",
         version: "^3.0.0"
+      },
+      azureCoreLro: {
+        type: "azureCoreLro",
+        specifier: "@azure/core-lro"
       }
     } as Imports;
   } else {
@@ -51,7 +55,7 @@ export function buildRuntimeImports(flavor?: PackageFlavor): Imports {
       commonFallback: {
         type: "commonFallback",
         specifier: "@typespec/ts-http-runtime",
-        version: "1.0.0-alpha.20240226.9"
+        version: "1.0.0-alpha.20240314.2"
       }
     } as Imports;
   }
@@ -78,6 +82,14 @@ export function initInternalImports(): Imports {
     modularModel: {
       type: "modularModel",
       importsSet: new Set<string>()
+    },
+    rlcClientFactory: {
+      type: "rlcClientFactory",
+      importsSet: new Set<string>()
+    },
+    rlcClientDefinition: {
+      type: "rlcClientDefinition",
+      importsSet: new Set<string>()
     }
   } as Imports;
 }
@@ -93,7 +105,8 @@ export function getImportSpecifier(
     coreAuth: "@azure/core-auth",
     restPipeline: "@azure/core-rest-pipeline",
     coreUtil: "@azure/core-util",
-    coreLogger: "@azure/logger"
+    coreLogger: "@azure/logger",
+    azureCoreLro: "@azure/core-lro"
   } as any;
   if (!includeFallback) {
     return imports[importType]?.specifier ?? "";

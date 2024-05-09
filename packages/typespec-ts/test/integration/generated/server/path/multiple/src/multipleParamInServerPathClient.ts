@@ -2,25 +2,28 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { MultipleParamInServerPathClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { MultipleParamInServerPathClient } from "./clientDefinitions.js";
+import { Versions } from "./models.js";
 
 export interface MultipleParamInServerPathClientOptions extends ClientOptions {
-  apiVersion?: string;
+  apiVersion?: Versions;
 }
 
 /**
  * Initialize a new instance of `MultipleParamInServerPathClient`
- * @param endpoint - Pass in http://localhost:3000 for endpoint.
+ * @param endpointParam - Pass in http://localhost:3000 for endpoint.
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
+  endpointParam: string,
   options: MultipleParamInServerPathClientOptions = {},
 ): MultipleParamInServerPathClient {
   const apiVersion = options.apiVersion ?? "v1.0";
-  const baseUrl =
-    options.baseUrl ?? `${endpoint}/server/path/multiple/${apiVersion}`;
+  const endpointUrl =
+    options.endpoint ??
+    options.baseUrl ??
+    `${endpointParam}/server/path/multiple/${apiVersion}`;
 
   const userAgentInfo = `azsdk-js-multipleparam-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -37,7 +40,10 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as MultipleParamInServerPathClient;
+  const client = getClient(
+    endpointUrl,
+    options,
+  ) as MultipleParamInServerPathClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 

@@ -61,7 +61,7 @@ import {
   LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse,
   LoadTestRunTestRunListServerMetricsConfig200Response,
   LoadTestRunTestRunListServerMetricsConfigDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "PATCH /tests/{testId}": ["200", "201"],
@@ -77,8 +77,8 @@ const responseMap: Record<string, string[]> = {
   "PATCH /tests/{testId}/server-metrics-config": ["200", "201"],
   "GET /tests/{testId}/server-metrics-config": ["200"],
   "DELETE /test-runs/{testRunId}": ["204"],
-  "PATCH /test-runs/{testRunId}": ["200", "201"],
   "GET /test-runs/{testRunId}": ["200"],
+  "PATCH /test-runs/{testRunId}": ["200", "201"],
   "GET /test-runs/{testRunId}/files/{fileName}": ["200"],
   "GET /test-runs": ["200"],
   "POST /test-runs/{testRunId}:stop": ["200"],

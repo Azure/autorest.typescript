@@ -22,13 +22,19 @@ export function getClassicalOperation(
     .filter((i) => {
       return (
         i.getModuleSpecifierValue() ===
-        `${"../".repeat(layer + 2)}api/${modularClientName}.js`
+        `${"../".repeat(layer + 2)}api/${normalizeName(
+          modularClientName,
+          NameType.File
+        )}.js`
       );
     });
   if (!hasClientContextImport || hasClientContextImport.length === 0) {
     classicFile.addImportDeclaration({
       namedImports: [client.rlcClientName],
-      moduleSpecifier: `${"../".repeat(layer + 2)}api/${modularClientName}.js`
+      moduleSpecifier: `${"../".repeat(layer + 2)}api/${normalizeName(
+        modularClientName,
+        NameType.File
+      )}.js`
     });
   }
 
@@ -78,7 +84,14 @@ export function getClassicalOperation(
         type: `(${d.parameters
           ?.filter((p) => p.name !== "context")
           .map(
-            (p) => p.name + (p.name === "options" ? "?" : "") + ": " + p.type
+            (p) =>
+              p.name +
+              (p.type?.toString().endsWith("OptionalParams") ||
+              p.hasQuestionToken
+                ? "?"
+                : "") +
+              ": " +
+              p.type
           )
           .join(",")}) => ${d.returnType}`
       });
@@ -116,7 +129,13 @@ export function getClassicalOperation(
               ?.filter((p) => p.name !== "context")
               .map(
                 (p) =>
-                  p.name + (p.name === "options" ? "?" : "") + ": " + p.type
+                  p.name +
+                  (p.type?.toString().endsWith("OptionalParams") ||
+                  p.hasQuestionToken
+                    ? "?"
+                    : "") +
+                  ": " +
+                  p.type
               )
               .join(",")}) => ${d.name}(${[
               "context",
@@ -205,8 +224,15 @@ export function getClassicalOperation(
   }
 
   function getClassicalMethodName(
-    declaration: OptionalKind<FunctionDeclarationStructure>
+    declaration: OptionalKind<FunctionDeclarationStructure> & {
+      propertyName?: string;
+    }
   ) {
-    return operationMap.get(declaration) ?? declaration.name ?? "FIXME";
+    return (
+      operationMap.get(declaration) ??
+      declaration.propertyName ??
+      declaration.name ??
+      "FIXME"
+    );
   }
 }

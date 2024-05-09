@@ -10,5 +10,8 @@ export interface LedgerEntry {
 /** Details about a Confidential ledger user. */
 export interface LedgerUser {
   /** The user's assigned role. */
-  assignedRole: "Administrator" | "Contributor" | "Reader";
+  assignedRole: LedgerUserRole;
 }
+
+/** Represents an assignable role. */
+export type LedgerUserRole = "Administrator" | "Contributor" | "Reader";

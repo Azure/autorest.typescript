@@ -1,5 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { CustomClient, CustomClientOptions } from "./CustomClient.js";
-export { ValidOptions, InvalidOptions } from "./models/index.js";
+export { CustomClient, CustomClientOptions } from "./customClient.js";
+export {
+  InvalidAuth,
+  ValidOptionalParams,
+  InvalidOptionalParams,
+} from "./models/index.js";

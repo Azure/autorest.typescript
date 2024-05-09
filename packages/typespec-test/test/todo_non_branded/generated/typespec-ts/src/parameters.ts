@@ -1,7 +1,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@typespec/ts-http-runtime";
-import { User, TodoItem, TodoUrlAttachment, TodoItemPatch } from "./models";
+import { User, TodoItem, TodoUrlAttachment, TodoItemPatch } from "./models.js";
 
 export interface UsersCreateBodyParam {
   body?: { user: User };
@@ -72,17 +72,23 @@ export type TodoItemsCreateJsonParameters = TodoItemsCreateJsonMediaTypesParam &
   RequestParameters;
 
 export interface TodoItemsCreateFormBodyParam {
-  body?: {
-    item: TodoItem;
-    attachments?: (
-      | TodoUrlAttachment
-      | string
-      | Uint8Array
-      | ReadableStream<Uint8Array>
-      | NodeJS.ReadableStream
-      | File
-    )[];
-  };
+  body?:
+    | FormData
+    | Array<
+        | { name: "item"; body: TodoItem }
+        | {
+            name: "attachments";
+            body:
+              | TodoUrlAttachment
+              | string
+              | Uint8Array
+              | ReadableStream<Uint8Array>
+              | NodeJS.ReadableStream
+              | File;
+            filename?: string;
+            contentType?: string;
+          }
+      >;
 }
 
 export interface TodoItemsCreateFormMediaTypesParam {
@@ -122,14 +128,19 @@ export type TodoItemsAttachmentsCreateUrlAttachmentParameters =
     RequestParameters;
 
 export interface TodoItemsAttachmentsCreateFileAttachmentBodyParam {
-  body?: {
-    contents:
-      | string
-      | Uint8Array
-      | ReadableStream<Uint8Array>
-      | NodeJS.ReadableStream
-      | File;
-  };
+  body?:
+    | FormData
+    | Array<{
+        name: "contents";
+        body:
+          | string
+          | Uint8Array
+          | ReadableStream<Uint8Array>
+          | NodeJS.ReadableStream
+          | File;
+        filename?: string;
+        contentType?: string;
+      }>;
 }
 
 export interface TodoItemsAttachmentsCreateFileAttachmentMediaTypesParam {

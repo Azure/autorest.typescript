@@ -4,16 +4,16 @@
 import { OperationOptions } from "@azure-rest/core-client";
 import { ListItemInputExtensibleEnum } from "./models.js";
 
-export interface CreateOrUpdateOptions extends OperationOptions {
+export interface CreateOrUpdateOptionalParams extends OperationOptions {
   /** This request has a JSON Merge Patch body. */
   contentType?: string;
 }
 
-export interface CreateOrReplaceOptions extends OperationOptions {}
+export interface CreateOrReplaceOptionalParams extends OperationOptions {}
 
-export interface GetOptions extends OperationOptions {}
+export interface GetOptionalParams extends OperationOptions {}
 
-export interface ListOptions extends OperationOptions {
+export interface ListOptionalParams extends OperationOptions {
   /** The number of result items to return. */
   top?: number;
   /** The number of result items to skip. */
@@ -30,19 +30,20 @@ export interface ListOptions extends OperationOptions {
   expand?: string[];
 }
 
-export interface ListWithPageOptions extends OperationOptions {}
+export interface ListWithPageOptionalParams extends OperationOptions {}
 
-export interface ListWithParametersOptions extends OperationOptions {
+export interface ListWithParametersOptionalParams extends OperationOptions {
   /** Another query parameter. */
   another?: ListItemInputExtensibleEnum;
 }
 
-export interface ListWithCustomPageModelOptions extends OperationOptions {}
+export interface ListWithCustomPageModelOptionalParams
+  extends OperationOptions {}
 
-export interface DeleteOperationOptions extends OperationOptions {}
+export interface DeleteOptionalParams extends OperationOptions {}
 
-export interface ExportOperationOptions extends OperationOptions {}
+export interface ExportOptionalParams extends OperationOptions {}
 
-export interface ListFirstItemOptions extends OperationOptions {}
+export interface ListFirstItemOptionalParams extends OperationOptions {}
 
-export interface ListSecondItemOptions extends OperationOptions {}
+export interface ListSecondItemOptionalParams extends OperationOptions {}

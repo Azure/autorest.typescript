@@ -19,7 +19,8 @@ export default function createClient(
   credentials: TokenCredential,
   options: ClientOptions = {},
 ): MultipleUrlParameterRestClient {
-  const baseUrl =
+  const endpointUrl =
+    options.endpoint ??
     options.baseUrl ??
     `${endpoint}/catalog/api/atlas/${serviceVersion}/{accountName}`;
 
@@ -42,7 +43,7 @@ export default function createClient(
   };
 
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     credentials,
     options,
   ) as MultipleUrlParameterRestClient;

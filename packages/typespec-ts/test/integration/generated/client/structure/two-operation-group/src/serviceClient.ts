@@ -2,22 +2,25 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { ServiceClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { ServiceClient } from "./clientDefinitions.js";
+import { ClientType } from "./models.js";
 
 /**
  * Initialize a new instance of `ServiceClient`
- * @param endpoint - Need to be set as 'http://localhost:3000' in client.
- * @param clientParam - Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. Possible values: "default", "multi-client", "renamed-operation", "two-operation-group"
+ * @param endpointParam - Need to be set as 'http://localhost:3000' in client.
+ * @param clientParam - Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client.
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
-  clientParam: string,
+  endpointParam: string,
+  clientParam: ClientType,
   options: ClientOptions = {},
 ): ServiceClient {
-  const baseUrl =
-    options.baseUrl ?? `${endpoint}/client/structure/${clientParam}`;
+  const endpointUrl =
+    options.endpoint ??
+    options.baseUrl ??
+    `${endpointParam}/client/structure/${clientParam}`;
 
   const userAgentInfo = `azsdk-js-client-structure-twoopgroup-rest/1.0.0`;
   const userAgentPrefix =
@@ -34,7 +37,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as ServiceClient;
+  const client = getClient(endpointUrl, options) as ServiceClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 

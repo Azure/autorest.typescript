@@ -8,14 +8,14 @@ import {
   CreateOrUpdateDefaultResponse,
   Get200Response,
   GetDefaultResponse,
-  DeleteOperation202Response,
+  Delete202Response,
   DeleteLogicalResponse,
-  DeleteOperationDefaultResponse,
+  DeleteDefaultResponse,
   ListProjects200Response,
   ListProjectsDefaultResponse,
-  ExportOperation202Response,
+  Export202Response,
   ExportLogicalResponse,
-  ExportOperationDefaultResponse,
+  ExportDefaultResponse,
   Importx202Response,
   ImportxLogicalResponse,
   ImportxDefaultResponse,
@@ -44,19 +44,19 @@ import {
   GetSupportedLanguagesDefaultResponse,
   ListTrainingConfigVersions200Response,
   ListTrainingConfigVersionsDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
-  "PATCH /authoring/analyze-text/projects/{projectName}": ["200", "201"],
   "GET /authoring/analyze-text/projects/{projectName}": ["200"],
+  "PATCH /authoring/analyze-text/projects/{projectName}": ["200", "201"],
   "DELETE /authoring/analyze-text/projects/{projectName}": ["202"],
   "GET /authoring/analyze-text/projects": ["200"],
-  "POST /authoring/analyze-text/projects/{projectName}:export": ["202"],
   "GET /authoring/analyze-text/projects/{projectName}:export": ["200", "202"],
-  "POST /authoring/analyze-text/projects/{projectName}:importx": ["202"],
+  "POST /authoring/analyze-text/projects/{projectName}:export": ["202"],
   "GET /authoring/analyze-text/projects/{projectName}:importx": ["200", "202"],
-  "POST /authoring/analyze-text/projects/{projectName}:train": ["202"],
+  "POST /authoring/analyze-text/projects/{projectName}:importx": ["202"],
   "GET /authoring/analyze-text/projects/{projectName}:train": ["200", "202"],
+  "POST /authoring/analyze-text/projects/{projectName}:train": ["202"],
   "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
     ["200"],
   "PUT /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
@@ -64,11 +64,11 @@ const responseMap: Record<string, string[]> = {
   "DELETE /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
     ["202"],
   "GET /authoring/analyze-text/projects/{projectName}/deployments": ["200"],
-  "POST /authoring/analyze-text/projects/{projectName}/deployments:swap": [
-    "202",
-  ],
   "GET /authoring/analyze-text/projects/{projectName}/deployments:swap": [
     "200",
+    "202",
+  ],
+  "POST /authoring/analyze-text/projects/{projectName}/deployments:swap": [
     "202",
   ],
   "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}":
@@ -92,20 +92,14 @@ export function isUnexpected(
   response: Get200Response | GetDefaultResponse,
 ): response is GetDefaultResponse;
 export function isUnexpected(
-  response:
-    | DeleteOperation202Response
-    | DeleteLogicalResponse
-    | DeleteOperationDefaultResponse,
-): response is DeleteOperationDefaultResponse;
+  response: Delete202Response | DeleteLogicalResponse | DeleteDefaultResponse,
+): response is DeleteDefaultResponse;
 export function isUnexpected(
   response: ListProjects200Response | ListProjectsDefaultResponse,
 ): response is ListProjectsDefaultResponse;
 export function isUnexpected(
-  response:
-    | ExportOperation202Response
-    | ExportLogicalResponse
-    | ExportOperationDefaultResponse,
-): response is ExportOperationDefaultResponse;
+  response: Export202Response | ExportLogicalResponse | ExportDefaultResponse,
+): response is ExportDefaultResponse;
 export function isUnexpected(
   response:
     | Importx202Response
@@ -166,14 +160,14 @@ export function isUnexpected(
     | CreateOrUpdateDefaultResponse
     | Get200Response
     | GetDefaultResponse
-    | DeleteOperation202Response
+    | Delete202Response
     | DeleteLogicalResponse
-    | DeleteOperationDefaultResponse
+    | DeleteDefaultResponse
     | ListProjects200Response
     | ListProjectsDefaultResponse
-    | ExportOperation202Response
+    | Export202Response
     | ExportLogicalResponse
-    | ExportOperationDefaultResponse
+    | ExportDefaultResponse
     | Importx202Response
     | ImportxLogicalResponse
     | ImportxDefaultResponse
@@ -205,9 +199,9 @@ export function isUnexpected(
 ): response is
   | CreateOrUpdateDefaultResponse
   | GetDefaultResponse
-  | DeleteOperationDefaultResponse
+  | DeleteDefaultResponse
   | ListProjectsDefaultResponse
-  | ExportOperationDefaultResponse
+  | ExportDefaultResponse
   | ImportxDefaultResponse
   | TrainDefaultResponse
   | GetDeploymentDefaultResponse

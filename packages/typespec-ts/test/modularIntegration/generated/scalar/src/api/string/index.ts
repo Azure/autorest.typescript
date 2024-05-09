@@ -11,11 +11,14 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { StringGetOptions, StringPutOptions } from "../../models/options.js";
+import {
+  StringGetOptionalParams,
+  StringPutOptionalParams,
+} from "../../models/options.js";
 
 export function _stringGetSend(
   context: Client,
-  options: StringGetOptions = { requestOptions: {} },
+  options: StringGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<StringModelGet200Response> {
   return context
     .path("/type/scalar/string")
@@ -35,7 +38,7 @@ export async function _stringGetDeserialize(
 /** get string value */
 export async function stringGet(
   context: Client,
-  options: StringGetOptions = { requestOptions: {} },
+  options: StringGetOptionalParams = { requestOptions: {} },
 ): Promise<string> {
   const result = await _stringGetSend(context, options);
   return _stringGetDeserialize(result);
@@ -44,7 +47,7 @@ export async function stringGet(
 export function _stringPutSend(
   context: Client,
   body: string,
-  options: StringPutOptions = { requestOptions: {} },
+  options: StringPutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<StringModelPut204Response> {
   return context
     .path("/type/scalar/string")
@@ -65,7 +68,7 @@ export async function _stringPutDeserialize(
 export async function stringPut(
   context: Client,
   body: string,
-  options: StringPutOptions = { requestOptions: {} },
+  options: StringPutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _stringPutSend(context, body, options);
   return _stringPutDeserialize(result);

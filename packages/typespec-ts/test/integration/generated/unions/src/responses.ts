@@ -10,7 +10,7 @@ import {
   StringAndArrayCasesOutput,
   MixedLiteralsCasesOutput,
   MixedTypesCasesOutput,
-} from "./outputModels";
+} from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface StringsOnlyGet200Response extends HttpResponse {

@@ -1,4 +1,7 @@
-import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
+import {
+  getPagedResult,
+  getLroMetadata
+} from "@azure-tools/typespec-azure-core";
 import {
   Enum,
   getDoc,
@@ -65,7 +68,6 @@ import {
   getAllModels,
   SdkBuiltInType,
   getSdkBuiltInType,
-  getClientType,
   SdkEnumValueType,
   getLibraryName,
   getWireName
@@ -82,8 +84,9 @@ import {
   Property
 } from "./modularCodeModel.js";
 import {
+  buildCoreTypeInfo,
   getBodyType,
-  getEnrichedDefaultApiVersion,
+  getDefaultApiVersionString,
   isAzureCoreErrorType
 } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
@@ -108,6 +111,7 @@ import { buildRuntimeImports } from "@azure-tools/rlc-common";
 import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
 import { getType as getTypeName } from "./helpers/typeHelpers.js";
+import { isModelWithAdditionalProperties } from "./emitModels.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -152,7 +156,8 @@ function applyCasing(
 const typesMap = new Map<EmitterType, HrlcType>();
 const simpleTypesMap = new Map<string, HrlcType>();
 const endpointPathParameters: Record<string, any>[] = [];
-let apiVersionParam: Parameter | undefined = undefined;
+let methodApiVersionParam: Parameter | undefined = undefined;
+let serverApiVersionParam: Parameter | undefined = undefined;
 
 function isSimpleType(
   program: Program,
@@ -252,20 +257,25 @@ function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
     return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
   }
 
-  let effective: Model;
+  // If type is an anonymous model, tries to find a named model that has the same properties
+  let effective: Model | undefined = undefined;
   if (type.kind === "Union") {
     const nonNullOptions = [...type.variants.values()]
       .map((x) => x.type)
       .filter((t) => !isNullType(t));
-    if (nonNullOptions.length === 1 && nonNullOptions[0]?.kind === "Model") {
+    if (
+      nonNullOptions.length === 1 &&
+      nonNullOptions[0]?.kind === "Model" &&
+      nonNullOptions[0]?.name === ""
+    ) {
       effective = getEffectiveModelType(program, nonNullOptions[0]);
     }
     return type as any;
-  } else {
+  } else if (type.name === "") {
     effective = getEffectiveModelType(program, type, isSchemaProperty);
   }
 
-  if (effective.name) {
+  if (effective?.name) {
     return effective;
   }
   return type as Model;
@@ -309,6 +319,7 @@ function processModelProperties(
     // because it's impossible to have a anonymous model as the polymorphic base in typespec
     // the only possibility is the anonymous model is an alias for an union type which has already been taken care of in the combined types.
     if (newValue.name) {
+      newValue.name = normalizeName(newValue.name, NameType.Interface);
       discriminatorInfo?.aliases.push(`${newValue.name}`);
       newValue.alias = `${newValue.name}`;
       newValue.name = `${newValue.name}Union`;
@@ -375,6 +386,10 @@ function getType(
     if (type.kind === "Model") {
       // need to do properties after insertion to avoid infinite recursion
       processModelProperties(context, newValue, type, options.usage!);
+      if (newValue.type === "dict") {
+        newValue = { ...emitModel(context, type, options.usage!), ...newValue };
+        typesMap.set(effectiveModel, newValue);
+      }
     }
   } else {
     const key = JSON.stringify(newValue);
@@ -385,7 +400,19 @@ function getType(
       simpleTypesMap.set(key, newValue);
     }
   }
-
+  if (
+    type.kind === "Model" &&
+    isModelWithAdditionalProperties(newValue) &&
+    !context.rlcOptions?.compatibilityMode
+  ) {
+    reportDiagnostic(context.program, {
+      code: "compatible-additional-properties",
+      format: {
+        modelName: type?.name ?? ""
+      },
+      target: type
+    });
+  }
   return newValue;
 }
 
@@ -418,7 +445,11 @@ function emitParamBase(
 
   if (parameter.kind === "ModelProperty") {
     optional = parameter.optional;
-    name = getLibraryName(context, parameter);
+    name = normalizeName(
+      getLibraryName(context, parameter),
+      NameType.Parameter,
+      true
+    );
     restApiName = getWireName(context, parameter);
     description = getDocStr(program, parameter);
     addedOn = getAddedOnVersion(program, parameter);
@@ -506,24 +537,24 @@ function emitParameter(
     clientDefaultValue = paramMap.type.value;
   }
 
-  if (isApiVersion(context, parameter as HttpOperationParameter)) {
+  if (
+    isApiVersion(context, parameter as HttpOperationParameter) &&
+    (paramMap.location === "query" || paramMap.location === "endpointPath")
+  ) {
     const defaultApiVersion = getDefaultApiVersion(
       context,
       getServiceNamespace(context.program)
     );
-    paramMap.type = defaultApiVersion
-      ? getConstantType(defaultApiVersion.value)
-      : { type: "string" };
-    paramMap.implementation = "Client";
+    paramMap.implementation = implementation;
     paramMap.in_docstring = false;
     if (defaultApiVersion) {
       clientDefaultValue = defaultApiVersion.value;
     }
     if (!clientDefaultValue) {
-      clientDefaultValue = getEnrichedDefaultApiVersion(
-        context.program,
-        context
-      );
+      clientDefaultValue = getDefaultApiVersionString(context);
+    }
+    if (clientDefaultValue !== undefined) {
+      paramMap.optional = true;
     }
   }
   return { clientDefaultValue, ...base, ...paramMap };
@@ -554,23 +585,6 @@ function emitFlattenedParameter(
   };
 }
 
-function getConstantType(key: string): HrlcType {
-  const cache = simpleTypesMap.get(key);
-  if (cache) {
-    return cache;
-  }
-  const type: HrlcType = {
-    apiVersions: [],
-    clientDefaultValue: null,
-    type: "constant",
-    value: key,
-    valueType: { type: "string" },
-    xmlMetadata: {}
-  };
-  simpleTypesMap.set(key, type);
-  return type;
-}
-
 function emitResponseHeaders(
   context: SdkContext,
   headers?: Record<string, ModelProperty>
@@ -590,6 +604,7 @@ function emitResponseHeaders(
 
 function emitResponse(
   context: SdkContext,
+  operation: Operation,
   response: HttpOperationResponse,
   innerResponse: HttpOperationResponseContent
 ): Response {
@@ -611,6 +626,12 @@ function emitResponse(
     ) {
       const modelType = getEffectiveSchemaType(context.program, originType);
       type = getType(context, modelType, { usage: UsageFlags.Output });
+    } else if (isLroResponse()) {
+      const metadata = getLroMetadata(context.program, operation);
+      type =
+        metadata?.finalResult === "void" || metadata?.finalResult === undefined
+          ? undefined
+          : getType(context, metadata.finalResult);
     } else {
       type = getType(context, innerResponse.body.type, {
         usage: UsageFlags.Output
@@ -637,6 +658,14 @@ function emitResponse(
         )
       : false
   };
+
+  function isLroResponse() {
+    return (
+      typeof response.statusCodes === "number" &&
+      ["200", "201", "202"]?.includes(`${response.statusCodes}`) &&
+      !!getLroMetadata(context.program, operation)
+    );
+  }
 }
 
 function emitOperation(
@@ -647,15 +676,16 @@ function emitOperation(
   hierarchies: string[]
 ): HrlcOperation {
   const isAzureFlavor = rlcModels.options?.flavor === "azure";
+  const emittedOperation = emitBasicOperation(
+    context,
+    operation,
+    operationGroupName,
+    rlcModels,
+    hierarchies
+  );
   // Skip to extract paging and lro information for non-branded clients.
   if (!isAzureFlavor) {
-    return emitBasicOperation(
-      context,
-      operation,
-      operationGroupName,
-      rlcModels,
-      hierarchies
-    );
+    return emittedOperation;
   }
   const lro = isLongRunningOperation(
     context.program,
@@ -680,51 +710,46 @@ function emitOperation(
     });
   }
 
-  if (lro && paging) {
-    return emitLroPagingOperation(
-      context,
-      operation,
-      operationGroupName,
-      rlcModels,
-      hierarchies
-    );
-  } else if (paging) {
-    return emitPagingOperation(
-      context,
-      operation,
-      operationGroupName,
-      rlcModels,
-      hierarchies
-    );
-  } else if (lro) {
-    return emitLroOperation(
-      context,
-      operation,
-      operationGroupName,
-      rlcModels,
-      hierarchies
-    );
+  emitExtraInfoForOperation(emittedOperation);
+  return emittedOperation;
+
+  function emitExtraInfoForOperation(emittedOperation: HrlcOperation) {
+    if (lro) {
+      addLroInformation(context, operation, emittedOperation);
+    }
+    if (paging) {
+      addPagingInformation(context, operation, emittedOperation);
+    }
+    if (lro && paging) {
+      emittedOperation["discriminator"] = "lropaging";
+    }
   }
-  return emitBasicOperation(
-    context,
-    operation,
-    operationGroupName,
-    rlcModels,
-    hierarchies
-  );
 }
 
-function addLroInformation(emittedOperation: HrlcOperation) {
+function addLroInformation(
+  context: SdkContext,
+  operation: Operation,
+  emittedOperation: HrlcOperation
+) {
   emittedOperation["discriminator"] = "lro";
+  const metadata = getLroMetadata(context.program, operation);
+  emittedOperation["lroMetadata"] = {
+    finalResult:
+      metadata?.finalResult === "void" || metadata?.finalResult === undefined
+        ? undefined
+        : getType(context, metadata.finalResult),
+    finalStateVia: metadata?.finalStateVia,
+    finalResultPath: metadata?.finalResultPath
+  };
 }
 
 function addPagingInformation(
-  program: Program,
+  context: SdkContext,
   operation: Operation,
   emittedOperation: Record<string, any>
 ) {
   emittedOperation["discriminator"] = "paging";
-  const pagedResult = getPagedResult(program, operation);
+  const pagedResult = getPagedResult(context.program, operation);
   if (pagedResult === undefined) {
     throw Error(
       "Trying to add paging information, but not paging metadata for this operation"
@@ -732,62 +757,6 @@ function addPagingInformation(
   }
   emittedOperation["itemName"] = parseItemName(pagedResult);
   emittedOperation["continuationTokenName"] = parseNextLinkName(pagedResult);
-}
-
-function emitLroPagingOperation(
-  context: SdkContext,
-  operation: Operation,
-  operationGroupName: string,
-  rlcModels: RLCModel,
-  hierarchies: string[]
-): HrlcOperation {
-  const emittedOperation = emitBasicOperation(
-    context,
-    operation,
-    operationGroupName,
-    rlcModels,
-    hierarchies
-  );
-  addLroInformation(emittedOperation);
-  addPagingInformation(context.program, operation, emittedOperation);
-  emittedOperation["discriminator"] = "lropaging";
-  return emittedOperation;
-}
-
-function emitLroOperation(
-  context: SdkContext,
-  operation: Operation,
-  operationGroupName: string,
-  rlcModels: RLCModel,
-  hierarchies: string[]
-): HrlcOperation {
-  const emittedOperation = emitBasicOperation(
-    context,
-    operation,
-    operationGroupName,
-    rlcModels,
-    hierarchies
-  );
-  addLroInformation(emittedOperation);
-  return emittedOperation;
-}
-
-function emitPagingOperation(
-  context: SdkContext,
-  operation: Operation,
-  operationGroupName: string,
-  rlcModels: RLCModel,
-  hierarchies: string[]
-): HrlcOperation {
-  const emittedOperation = emitBasicOperation(
-    context,
-    operation,
-    operationGroupName,
-    rlcModels,
-    hierarchies
-  );
-  addPagingInformation(context.program, operation, emittedOperation);
-  return emittedOperation;
 }
 
 function emitBasicOperation(
@@ -835,8 +804,7 @@ function emitBasicOperation(
   if (
     namespaceHierarchies.length === 0 &&
     context.rlcOptions?.hierarchyClient === false &&
-    operationGroupName !== "" &&
-    namespaceHierarchies[0] !== operationGroupName
+    operationGroupName !== ""
   ) {
     namespaceHierarchies.push(operationGroupName);
   }
@@ -846,8 +814,9 @@ function emitBasicOperation(
       continue;
     }
     const emittedParam = emitParameter(context, param, "Method");
-    if (isApiVersion(context, param) && apiVersionParam === undefined) {
-      apiVersionParam = emittedParam;
+    if (isApiVersion(context, param)) {
+      emittedParam.isApiVersion = true;
+      methodApiVersionParam = emittedParam;
     }
     parameters.push(emittedParam);
   }
@@ -860,6 +829,7 @@ function emitBasicOperation(
     for (const innerResponse of response.responses) {
       const emittedResponse: Response = emitResponse(
         context,
+        operation,
         response,
         innerResponse
       );
@@ -926,7 +896,7 @@ function emitBasicOperation(
       param.clientName = param.clientName + "Parameter";
     });
   return {
-    name: normalizeName(name, NameType.Operation, true),
+    name,
     description: getDocStr(context.program, operation),
     summary: getSummary(context.program, operation) ?? "",
     url: httpOperation.path,
@@ -951,7 +921,7 @@ function isReadOnly(program: Program, type: ModelProperty): boolean {
   // Only "read" should be readOnly
   const visibility = getVisibility(program, type);
   if (visibility) {
-    return visibility.includes("read");
+    return visibility.includes("read") && visibility.length === 1;
   } else {
     return false;
   }
@@ -1033,8 +1003,11 @@ function emitModel(
     baseModel = getType(context, type.baseModel, { usage });
   }
   const effectiveName = getEffectiveSchemaType(context.program, type).name;
-  const overridedModelName =
-    getLibraryName(context, type) ?? getFriendlyName(context.program, type);
+  const overridedModelName = normalizeName(
+    getLibraryName(context, type) ?? getFriendlyName(context.program, type),
+    NameType.Interface,
+    true
+  );
   const fullNamespaceName =
     getModelNamespaceName(context, type.namespace!)
       .map((nsName) => {
@@ -1084,7 +1057,7 @@ function emitModel(
       ? applyCasing(modelName, { casing: CASING })
       : modelName,
     base: modelName === "" ? "json" : "dpg",
-    isCoreErrorType: isAzureCoreErrorType(type),
+    coreTypeInfo: buildCoreTypeInfo(type),
     usage
   };
 }
@@ -1113,11 +1086,15 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
 
   return {
     type: "enum",
-    name: getLibraryName(context, type),
+    name: normalizeName(
+      getLibraryName(context, type) ? getLibraryName(context, type) : type.name,
+      NameType.Interface
+    ),
     description: getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
-    isFixed: isFixed(program, type)
+    isFixed: true,
+    coreTypeInfo: buildCoreTypeInfo(type)
   };
 }
 
@@ -1347,6 +1324,7 @@ function emitListOrDict(
       if (name === "string") {
         return {
           type: "dict",
+          name: type.name,
           elementType: getType(context, type.indexer.value!, { usage })
         };
       } else if (name === "integer") {
@@ -1402,10 +1380,13 @@ function emitUnion(
       }
       return valueType;
     });
+    const unionTypeName = unionName
+      ? normalizeName(unionName, NameType.Interface)
+      : undefined;
     return {
       nullable: sdkType.nullable,
-      name: unionName,
-      description: `Type of ${unionName}`,
+      name: unionTypeName,
+      description: `Type of ${unionTypeName}`,
       internal: true,
       type: "combined",
       types: variantTypes,
@@ -1420,10 +1401,18 @@ function emitUnion(
           : variantTypes.map((x) => getTypeName(x).name).join(" | ")
     };
   } else if (sdkType.kind === "enum") {
+    let typeName = getLibraryName(context, type)
+      ? getLibraryName(context, type)
+      : sdkType.isGeneratedName
+        ? type.name
+        : sdkType.name;
+    typeName = typeName
+      ? normalizeName(typeName, NameType.Interface)
+      : undefined;
     return {
-      name: sdkType.name,
+      name: typeName,
       nullable: sdkType.nullable,
-      description: sdkType.description || `Type of ${sdkType.name}`,
+      description: sdkType.description || `Type of ${typeName}`,
       internal: true,
       type: sdkType.kind,
       valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
@@ -1432,21 +1421,10 @@ function emitUnion(
       xmlMetadata: {},
       usage
     };
-  } else if (
-    isStringOrNumberKind(context.program, sdkType.kind) &&
-    isStringOrNumberKind(context.program, nonNullOptions[0]?.kind)
-  ) {
+  } else if (nonNullOptions.length === 1 && nonNullOptions[0]) {
     return {
-      name: undefined, // string/number union will be mapped as fixed enum without name
-      nullable: sdkType.nullable,
-      internal: true,
-      type: "enum",
-      valueType: emitSimpleType(context, sdkType as SdkBuiltInType),
-      values: nonNullOptions
-        .map((x) => getClientType(context, x))
-        .map((x) => emitEnumMember(context, x)),
-      isFixed: true,
-      xmlMetadata: {}
+      ...emitType(context, nonNullOptions[0], usage),
+      nullable: sdkType.nullable
     };
   } else {
     return {
@@ -1454,20 +1432,6 @@ function emitUnion(
       nullable: sdkType.nullable
     };
   }
-}
-
-function isStringOrNumberKind(program: Program, kind?: string): boolean {
-  if (!kind) {
-    return false;
-  }
-  kind = kind.toLowerCase();
-  try {
-    const type = emitStdScalar(program, { name: kind } as any);
-    kind = type["type"] ?? kind;
-  } catch (e: any) {
-    // ignore
-  }
-  return ["string", "number", "integer", "float"].includes(kind!);
 }
 
 function getNonNullOptions(type: Union) {
@@ -1503,7 +1467,7 @@ function emitSimpleType(
 
   return {
     nullable: sdkType.nullable,
-    type: "number", // TODO: switch to kind
+    type: sdkType.kind === "string" ? "string" : "number", // TODO: handle other types
     doc: "",
     apiVersions: [],
     sdkDefaultValue: undefined,
@@ -1706,12 +1670,10 @@ function emitServerParams(
         "Client"
       );
       endpointPathParameters.push(emittedParameter);
-      if (
-        isApiVersion(context, serverParameter as any) &&
-        apiVersionParam == undefined
-      ) {
-        apiVersionParam = emittedParameter;
-        continue;
+      if (isApiVersion(context, serverParameter as any)) {
+        emittedParameter.isApiVersion = true;
+        serverApiVersionParam = emittedParameter;
+        emittedParameter.isApiVersion = true;
       }
       params.push(emittedParameter);
     }
@@ -1787,27 +1749,10 @@ function emitGlobalParameters(
   return clientParameters;
 }
 
-function getApiVersionParameter(context: SdkContext): Parameter | void {
-  const version = getDefaultApiVersion(
-    context,
-    getServiceNamespace(context.program)
-  );
-  if (apiVersionParam) {
-    return { ...apiVersionParam, isApiVersion: true };
-  } else if (version !== undefined) {
+function getMethodApiVersionParameter(): Parameter | void {
+  if (methodApiVersionParam) {
     return {
-      clientName: "api_version",
-      clientDefaultValue: version.value,
-      description: "Api Version",
-      implementation: "Client",
-      location: "query",
-      restApiName: "api-version",
-      skipUrlEncoding: false,
-      optional: false,
-      inDocstring: true,
-      inOverload: false,
-      inOverriden: false,
-      type: getConstantType(version.value),
+      ...methodApiVersionParam,
       isApiVersion: true
     };
   }
@@ -1821,6 +1766,7 @@ function emitClients(
   const program = context.program;
   const clients = listClients(context);
   const retval: HrlcClient[] = [];
+  methodApiVersionParam = undefined;
   for (const client of clients) {
     const clientName = getLibraryName(context, client.type).replace(
       "Client",
@@ -1846,9 +1792,24 @@ function emitClients(
       rlcHelperDetails:
         rlcModels && rlcModels.helperDetails ? rlcModels.helperDetails : {}
     };
-    const emittedApiVersionParam = getApiVersionParameter(context);
-    if (emittedApiVersionParam) {
-      emittedClient.parameters.push(emittedApiVersionParam);
+    const methodApiVersionParam = getMethodApiVersionParameter();
+    if (
+      methodApiVersionParam &&
+      !serverApiVersionParam &&
+      context.hasApiVersionInClient
+    ) {
+      // prompt method-level api version to client level only when there is no client one defined
+      emittedClient.parameters.push(methodApiVersionParam);
+      // if we have client level api version, we need to remove it from all operations
+      emittedClient.operationGroups.map((opGroup) => {
+        opGroup.operations.map((op) => {
+          op.parameters = op.parameters.filter((param) => {
+            return !param.isApiVersion;
+          });
+          return op;
+        });
+        return opGroup;
+      });
     }
     retval.push(emittedClient);
   }
@@ -1889,7 +1850,10 @@ export function emitCodeModel(
   // Get types
   const codeModel: ModularCodeModel = {
     options: dpgContext.rlcOptions ?? {},
-    modularOptions: { sourceRoot: modularSourcesRoot },
+    modularOptions: {
+      sourceRoot: modularSourcesRoot,
+      compatibilityMode: !!dpgContext.rlcOptions?.compatibilityMode
+    },
     namespace: clientNamespaceString,
     subnamespaceToClients: {},
     clients: [],
@@ -1902,7 +1866,7 @@ export function emitCodeModel(
   simpleTypesMap.clear();
   const allModels = getAllModels(dpgContext);
   for (const model of allModels) {
-    getType(dpgContext, model.__raw!, { usage: model.usage });
+    getType(dpgContext, model.__raw!, { usage: model.usage as UsageFlags });
   }
 
   for (const namespace of getNamespaces(dpgContext)) {

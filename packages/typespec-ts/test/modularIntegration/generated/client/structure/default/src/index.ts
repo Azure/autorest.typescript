@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { ServiceClient, ServiceClientOptions } from "./ServiceClient.js";
+export { ServiceClient, ServiceClientOptions } from "./serviceClient.js";
 export {
   ClientType,
-  OneOptions,
-  TwoOptions,
-  BazFooSevenOptions,
-  QuxEightOptions,
-  QuxBarNineOptions,
-  FooThreeOptions,
-  FooFourOptions,
-  BarFiveOptions,
-  BarSixOptions,
+  OneOptionalParams,
+  TwoOptionalParams,
+  BazFooSevenOptionalParams,
+  QuxEightOptionalParams,
+  QuxBarNineOptionalParams,
+  FooThreeOptionalParams,
+  FooFourOptionalParams,
+  BarFiveOptionalParams,
+  BarSixOptionalParams,
 } from "./models/index.js";
 export {
   BarOperations,

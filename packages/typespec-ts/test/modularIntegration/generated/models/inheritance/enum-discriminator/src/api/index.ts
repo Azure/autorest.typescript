@@ -5,7 +5,7 @@ export {
   createEnumDiscriminator,
   EnumDiscriminatorClientOptions,
   EnumDiscriminatorContext,
-} from "./EnumDiscriminatorContext.js";
+} from "./enumDiscriminatorContext.js";
 export {
   getExtensibleModel,
   putExtensibleModel,

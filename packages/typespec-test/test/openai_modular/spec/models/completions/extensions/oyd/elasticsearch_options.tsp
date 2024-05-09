@@ -1,10 +1,12 @@
 import "@typespec/versioning";
+import "@azure-tools/typespec-client-generator-core";
 import "./../../azure_chat_extensions.tsp";
 import "./common_options.tsp";
 
 namespace Azure.OpenAI;
 
 using TypeSpec.Versioning;
+using Azure.ClientGenerator.Core;
 
 @added(ServiceApiVersions.v2024_02_15_Preview)
 @doc("""
@@ -32,20 +34,20 @@ model ElasticsearchChatExtensionParameters {
   endpoint: url;
 
   @doc("The index name of Elasticsearch®.")
-  @projectedName("json", "index_name")
+  @encodedName("application/json", "index_name")
   indexName: string;
 
   @doc("The index field mapping options of Elasticsearch®.")
-  @projectedName("csharp", "FieldMappingOptions")
-  @projectedName("json", "fields_mapping")
+  @clientName("FieldMappingOptions", "csharp")
+  @encodedName("application/json", "fields_mapping")
   fieldsMapping?: ElasticsearchIndexFieldMappingOptions;
 
   @doc("The query type of Elasticsearch®.")
-  @projectedName("json", "query_type")
+  @encodedName("application/json", "query_type")
   queryType?: ElasticsearchQueryType;
 
   @doc("The embedding dependency for vector search.")
-  @projectedName("json", "embedding_dependency")
+  @encodedName("application/json", "embedding_dependency")
   embeddingDependency?: OnYourDataVectorizationSource;
 }
 
@@ -53,33 +55,33 @@ model ElasticsearchChatExtensionParameters {
 @added(ServiceApiVersions.v2024_02_15_Preview)
 model ElasticsearchIndexFieldMappingOptions {
   @doc("The name of the index field to use as a title.")
-  @projectedName("csharp", "TitleFieldName")
-  @projectedName("json", "title_field")
+  @clientName("TitleFieldName", "csharp")
+  @encodedName("application/json", "title_field")
   titleField?: string;
 
   @doc("The name of the index field to use as a URL.")
-  @projectedName("csharp", "UrlFieldName")
-  @projectedName("json", "url_field")
+  @clientName("UrlFieldName", "csharp")
+  @encodedName("application/json", "url_field")
   urlField?: string;
 
   @doc("The name of the index field to use as a filepath.")
-  @projectedName("csharp", "FilepathFieldName")
-  @projectedName("json", "filepath_field")
+  @clientName("FilepathFieldName", "csharp")
+  @encodedName("application/json", "filepath_field")
   filepathField?: string;
 
   @doc("The names of index fields that should be treated as content.")
-  @projectedName("csharp", "ContentFieldNames")
-  @projectedName("json", "content_fields")
+  @clientName("ContentFieldNames", "csharp")
+  @encodedName("application/json", "content_fields")
   contentFields?: string[];
 
   @doc("The separator pattern that content fields should use.")
-  @projectedName("csharp", "ContentFieldSeparator")
-  @projectedName("json", "content_fields_separator")
+  @clientName("ContentFieldSeparator", "csharp")
+  @encodedName("application/json", "content_fields_separator")
   contentFieldsSeparator?: string;
 
   @doc("The names of fields that represent vector data.")
-  @projectedName("csharp", "VectorFieldNames")
-  @projectedName("json", "vector_fields")
+  @clientName("VectorFieldNames", "csharp")
+  @encodedName("application/json", "vector_fields")
   vectorFields?: string[];
 }
 

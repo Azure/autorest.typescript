@@ -4,6 +4,8 @@
 
 ```ts
 
+import { AbortSignalLike } from '@azure/abort-controller';
+import { CancelOnProgress } from '@azure/core-lro';
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { CreateHttpPollerOptions } from '@azure/core-lro';
@@ -14,14 +16,13 @@ import { KeyCredential } from '@azure/core-auth';
 import { OperationState } from '@azure/core-lro';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
-import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
 export interface AzureChatExtensionConfiguration {
     parameters: unknown;
-    type: string;
+    type: AzureChatExtensionType;
 }
 
 // @public
@@ -35,13 +36,19 @@ export interface AzureChatExtensionsMessageContextOutput {
 }
 
 // @public
+export type AzureChatExtensionType = "AzureCognitiveSearch";
+
+// @public
+export type AzureOpenAIOperationStateOutput = "notRunning" | "running" | "succeeded" | "canceled" | "failed";
+
+// @public
 export interface BatchImageGenerationOperationResponseOutput {
     created: number;
     error?: ErrorModel;
     expires?: number;
     id: string;
     result?: ImageGenerationsOutput;
-    status: string;
+    status: AzureOpenAIOperationStateOutput;
 }
 
 // @public (undocumented)
@@ -100,7 +107,7 @@ export type BeginAzureBatchImageGenerationParameters = BeginAzureBatchImageGener
 export interface ChatChoiceOutput {
     content_filter_results?: ContentFilterResultsOutput;
     delta?: ChatMessageOutput;
-    finish_reason: string | null;
+    finish_reason: CompletionsFinishReasonOutput | null;
     index: number;
     message?: ChatMessageOutput;
 }
@@ -109,7 +116,7 @@ export interface ChatChoiceOutput {
 export interface ChatCompletionsOptions {
     dataSources?: Array<AzureChatExtensionConfiguration>;
     frequency_penalty?: number;
-    function_call?: string | FunctionName;
+    function_call?: FunctionCallPreset | FunctionName;
     functions?: Array<FunctionDefinition>;
     logit_bias?: Record<string, number>;
     max_tokens?: number;
@@ -139,7 +146,7 @@ export interface ChatMessage {
     context?: AzureChatExtensionsMessageContext;
     function_call?: FunctionCall;
     name?: string;
-    role: string;
+    role: ChatRole;
 }
 
 // @public
@@ -148,17 +155,26 @@ export interface ChatMessageOutput {
     context?: AzureChatExtensionsMessageContextOutput;
     function_call?: FunctionCallOutput;
     name?: string;
-    role: string;
+    role: ChatRoleOutput;
 }
+
+// @public
+export type ChatRole = "system" | "assistant" | "user" | "function" | "tool";
+
+// @public
+export type ChatRoleOutput = "system" | "assistant" | "user" | "function" | "tool";
 
 // @public
 export interface ChoiceOutput {
     content_filter_results?: ContentFilterResultsOutput;
-    finish_reason: string | null;
+    finish_reason: CompletionsFinishReasonOutput | null;
     index: number;
     logprobs: CompletionsLogProbabilityModelOutput | null;
     text: string;
 }
+
+// @public
+export type CompletionsFinishReasonOutput = "stop" | "length" | "content_filter" | "function_call";
 
 // @public
 export interface CompletionsLogProbabilityModelOutput {
@@ -206,7 +222,7 @@ export interface CompletionsUsageOutput {
 // @public
 export interface ContentFilterResultOutput {
     filtered: boolean;
-    severity: string;
+    severity: ContentFilterSeverityOutput;
 }
 
 // @public
@@ -218,13 +234,11 @@ export interface ContentFilterResultsOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options?: ClientOptions): OpenAIClient;
-export default createClient;
+export type ContentFilterSeverityOutput = "safe" | "low" | "medium" | "high";
 
 // @public
-export interface DeploymentOutput {
-    readonly deploymentId: string;
-}
+function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, options?: ClientOptions): OpenAIClient;
+export default createClient;
 
 // @public
 export interface EmbeddingItemOutput {
@@ -262,6 +276,9 @@ export interface FunctionCallOutput {
     arguments: string;
     name: string;
 }
+
+// @public
+export type FunctionCallPreset = "auto" | "none";
 
 // @public
 export interface FunctionDefinition {
@@ -461,19 +478,13 @@ export function getLongRunningPoller<TResult extends BeginAzureBatchImageGenerat
 export interface ImageGenerationOptions {
     n?: number;
     prompt: string;
-    response_format?: string;
-    size?: string;
+    response_format?: ImageGenerationResponseFormat;
+    size?: ImageSize;
     user?: string;
 }
 
 // @public
-export interface ImageGenerationOptionsOutput {
-    n?: number;
-    prompt: string;
-    response_format?: string;
-    size?: string;
-    user?: string;
-}
+export type ImageGenerationResponseFormat = "url" | "b64_json";
 
 // @public
 export interface ImageGenerationsOutput {
@@ -490,6 +501,9 @@ export interface ImageLocationOutput {
 export interface ImagePayloadOutput {
     b64_json: string;
 }
+
+// @public
+export type ImageSize = "256x256" | "512x512" | "1024x1024";
 
 // @public (undocumented)
 export function isUnexpected(response: GetEmbeddings200Response | GetEmbeddingsDefaultResponse): response is GetEmbeddingsDefaultResponse;
@@ -528,6 +542,27 @@ export interface Routes {
     (path: "/deployments/{deploymentId}/extensions/chat/completions", deploymentId: string): GetChatCompletionsWithAzureExtensions;
     (path: "/operations/images/{operationId}", operationId: string): GetAzureBatchImageGenerationOperationStatus;
     (path: "/images/generations:submit"): BeginAzureBatchImageGeneration;
+}
+
+// @public
+export interface SimplePollerLike<TState extends OperationState<TResult>, TResult> {
+    getOperationState(): TState;
+    getResult(): TResult | undefined;
+    isDone(): boolean;
+    isStopped(): boolean;
+    onProgress(callback: (state: TState) => void): CancelOnProgress;
+    poll(options?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TState>;
+    pollUntilDone(pollOptions?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TResult>;
+    serialize(): Promise<string>;
+    // @deprecated
+    stopPolling(): void;
+    submitted(): Promise<void>;
+    // @deprecated
+    toString(): string;
 }
 
 // (No @packageDocumentation comment for this package)

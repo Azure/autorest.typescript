@@ -24,7 +24,7 @@ import {
   ResponseBodyCustomContentTypeParameters,
   ResponseBodyBase64Parameters,
   ResponseBodyBase64urlParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   QueryDefault204Response,
   QueryBase64204Response,
@@ -48,7 +48,7 @@ import {
   ResponseBodyCustomContentType200Response,
   ResponseBodyBase64200Response,
   ResponseBodyBase64url200Response,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface QueryDefault {

@@ -4,6 +4,8 @@
 
 ```ts
 
+import { AbortSignalLike } from '@azure/abort-controller';
+import { CancelOnProgress } from '@azure/core-lro';
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { CreateHttpPollerOptions } from '@azure/core-lro';
@@ -16,11 +18,10 @@ import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
-import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
-function createClient(endpoint: string, options?: ClientOptions): WidgetManagerClient;
+function createClient(endpointParam: string, options?: ClientOptions): WidgetManagerClient;
 export default createClient;
 
 // @public (undocumented)
@@ -268,10 +269,13 @@ export interface ListWidgetsDefaultResponse extends HttpResponse {
 export type ListWidgetsParameters = RequestParameters;
 
 // @public
+export type OperationStateOutput = "NotStarted" | "Running" | "Succeeded" | "Failed" | "Canceled";
+
+// @public
 export interface OperationStatusOutput {
     error?: ErrorModel;
     id: string;
-    status: string;
+    status: OperationStateOutput;
 }
 
 // @public
@@ -297,7 +301,7 @@ export interface ResourceOperationStatusOutput {
     error?: ErrorModel;
     id: string;
     result?: WidgetOutput;
-    status: string;
+    status: OperationStateOutput;
 }
 
 // @public (undocumented)
@@ -305,6 +309,27 @@ export interface Routes {
     (path: "/widgets/{widgetName}", widgetName: string): GetWidget;
     (path: "/widgets/{widgetName}/operations/{operationId}", widgetName: string, operationId: string): GetWidgetOperationStatus;
     (path: "/widgets"): ListWidgets;
+}
+
+// @public
+export interface SimplePollerLike<TState extends OperationState<TResult>, TResult> {
+    getOperationState(): TState;
+    getResult(): TResult | undefined;
+    isDone(): boolean;
+    isStopped(): boolean;
+    onProgress(callback: (state: TState) => void): CancelOnProgress;
+    poll(options?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TState>;
+    pollUntilDone(pollOptions?: {
+        abortSignal?: AbortSignalLike;
+    }): Promise<TResult>;
+    serialize(): Promise<string>;
+    // @deprecated
+    stopPolling(): void;
+    submitted(): Promise<void>;
+    // @deprecated
+    toString(): string;
 }
 
 // @public

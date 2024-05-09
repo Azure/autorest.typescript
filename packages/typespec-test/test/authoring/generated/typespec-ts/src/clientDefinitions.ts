@@ -18,19 +18,19 @@ import {
   GetSwapDeploymentsStatusParameters,
   GetSupportedLanguagesParameters,
   ListTrainingConfigVersionsParameters,
-} from "./parameters";
+} from "./parameters.js";
 import {
   CreateOrUpdate200Response,
   CreateOrUpdate201Response,
   CreateOrUpdateDefaultResponse,
   Get200Response,
   GetDefaultResponse,
-  DeleteOperation202Response,
-  DeleteOperationDefaultResponse,
+  Delete202Response,
+  DeleteDefaultResponse,
   ListProjects200Response,
   ListProjectsDefaultResponse,
-  ExportOperation202Response,
-  ExportOperationDefaultResponse,
+  Export202Response,
+  ExportDefaultResponse,
   Importx202Response,
   ImportxDefaultResponse,
   Train202Response,
@@ -54,7 +54,7 @@ import {
   GetSupportedLanguagesDefaultResponse,
   ListTrainingConfigVersions200Response,
   ListTrainingConfigVersionsDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface CreateOrUpdate {
@@ -73,9 +73,7 @@ export interface CreateOrUpdate {
   /** Deletes a project. */
   delete(
     options?: DeleteParameters,
-  ): StreamableMethod<
-    DeleteOperation202Response | DeleteOperationDefaultResponse
-  >;
+  ): StreamableMethod<Delete202Response | DeleteDefaultResponse>;
 }
 
 export interface ListProjects {
@@ -89,9 +87,7 @@ export interface Export {
   /** Triggers a job to export a project's data. */
   post(
     options: ExportParameters,
-  ): StreamableMethod<
-    ExportOperation202Response | ExportOperationDefaultResponse
-  >;
+  ): StreamableMethod<Export202Response | ExportDefaultResponse>;
 }
 
 export interface Importx {

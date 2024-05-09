@@ -1,8 +1,27 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** A single, role-attributed message within a chat completion interaction. */
+export interface ChatMessage {
+  /** The text associated with the message. */
+  content: string;
+  /** The role associated with the message. */
+  role: ChatRole;
+  /**
+   * Field that allows the chat app to store and retrieve data, the structure of such data is dependant on the backend
+   * being used. The client must send back the data in this field unchanged in subsequent requests, until the chat app
+   * sends a new one. The data in this field can be used to implement stateful services, such as remembering previous
+   * conversations or user preferences.
+   */
+  sessionState?: unknown;
+}
+
+/** A representation of the intended purpose of a message. */
+/** */
+export type ChatRole = "user" | "system" | "assistant";
+
 /** The configuration for a streaming chat completion request. */
-export interface StreamingChatCompletionOptions {
+export interface StreamingChatCompletionOptionsRecord {
   /** The collection of context messages associated with this completion request. */
   messages: ChatMessage[];
   /** Indicates whether the completion is a streaming or non-streaming completion. */
@@ -21,33 +40,14 @@ export interface StreamingChatCompletionOptions {
   context?: Record<string, unknown>;
 }
 
-/** A single, role-attributed message within a chat completion interaction. */
-export interface ChatMessage {
-  /** The text associated with the message. */
-  content: string;
-  /** The role associated with the message. */
-  role: ChatRole;
-  /**
-   * Field that allows the chat app to store and retrieve data, the structure of such data is dependant on the backend
-   * being used. The client must send back the data in this field unchanged in subsequent requests, until the chat app
-   * sends a new one. The data in this field can be used to implement stateful services, such as remembering previous
-   * conversations or user preferences.
-   */
-  sessionState?: unknown;
-}
-
-/** A representation of the intended purpose of a message. */
-/** "user", "system", "assistant" */
-export type ChatRole = string;
-
 /** A single response to a streaming completion request. */
-export interface ChatCompletionChunk {
+export interface ChatCompletionChunkRecord {
   /** The collection of choice deltas received in this chunk. */
-  choices: ChoiceDelta[];
+  choices: ChoiceDeltaRecord[];
 }
 
 /** The representation of an incremental choice received in a streaming completion. */
-export interface ChoiceDelta {
+export interface ChoiceDeltaRecord {
   /** The index of the of the chat choice, relative to the other choices in the same completion. */
   index: number;
   /** The partial message received for this choice. */
@@ -84,11 +84,11 @@ export interface ChatMessageDelta {
 }
 
 /** Representation of the reason why a chat session has finished processing. */
-/** "stop", "length" */
-export type FinishReason = string;
+/** */
+export type FinishReason = "stop" | "length";
 
 /** The configuration for a chat completion request. */
-export interface ChatCompletionOptions {
+export interface ChatCompletionOptionsRecord {
   /** The collection of context messages associated with this completion request. */
   messages: ChatMessage[];
   /** Indicates whether the completion is a streaming or non-streaming completion. */
@@ -108,13 +108,13 @@ export interface ChatCompletionOptions {
 }
 
 /** Representation of the response to a chat completion request. */
-export interface ChatCompletion {
+export interface ChatCompletionRecord {
   /** The collection of generated completions. */
-  choices: ChatChoice[];
+  choices: ChatChoiceRecord[];
 }
 
 /** The representation of a single generated completion. */
-export interface ChatChoice {
+export interface ChatChoiceRecord {
   /** The index of the of the chat choice, relative to the other choices in the same completion. */
   index: number;
   /** The chat message for a given chat completion. */
@@ -134,3 +134,6 @@ export interface ChatChoice {
   /** The reason this chat completion completed its generation. */
   finishReason: FinishReason;
 }
+
+/** */
+export type APIVersion = "2023-10-01-preview";

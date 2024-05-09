@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { SerializationEncodedNameJsonClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { SerializationEncodedNameJsonClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `SerializationEncodedNameJsonClient`
@@ -12,7 +12,8 @@ import { SerializationEncodedNameJsonClient } from "./clientDefinitions";
 export default function createClient(
   options: ClientOptions = {},
 ): SerializationEncodedNameJsonClient {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-serialization-encoded-name-json-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -29,7 +30,7 @@ export default function createClient(
   };
 
   const client = getClient(
-    baseUrl,
+    endpointUrl,
     options,
   ) as SerializationEncodedNameJsonClient;
 

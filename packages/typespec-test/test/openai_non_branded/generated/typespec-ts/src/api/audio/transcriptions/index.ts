@@ -16,12 +16,12 @@ import {
   uint8ArrayToString,
   createRestError,
 } from "@typespec/ts-http-runtime";
-import { AudioTranscriptionsCreateOptions } from "../../../models/options.js";
+import { AudioTranscriptionsCreateOptionalParams } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,
   audio: CreateTranscriptionRequest,
-  options: AudioTranscriptionsCreateOptions = { requestOptions: {} },
+  options: AudioTranscriptionsCreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
   | AudioTranscriptionsCreate200Response
   | AudioTranscriptionsCreateDefaultResponse
@@ -59,7 +59,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   audio: CreateTranscriptionRequest,
-  options: AudioTranscriptionsCreateOptions = { requestOptions: {} },
+  options: AudioTranscriptionsCreateOptionalParams = { requestOptions: {} },
 ): Promise<CreateTranscriptionResponse> {
   const result = await _createSend(context, audio, options);
   return _createDeserialize(result);

@@ -19,8 +19,7 @@ import {
   NameType,
   OperationResponse,
   getResponseBaseName,
-  getResponseTypeName,
-  normalizeName
+  getResponseTypeName
 } from "@azure-tools/rlc-common";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
@@ -60,6 +59,15 @@ function getRLCResponseType(rlcResponse?: OperationResponse) {
     .join(" | ");
 }
 
+function getRLCLroLogicalResponse(rlcResponse?: OperationResponse) {
+  const logicalResponse = (rlcResponse?.responses ?? []).filter(
+    (r) => r.predefinedName && r.predefinedName.endsWith(`LogicalResponse`)
+  );
+  return logicalResponse.length > 0
+    ? logicalResponse[0]!.predefinedName!
+    : "any";
+}
+
 export function getSendPrivateFunction(
   dpgContext: SdkContext,
   operation: Operation,
@@ -82,12 +90,15 @@ export function getSendPrivateFunction(
 
   const operationPath = operation.url;
   const operationMethod = operation.method.toLowerCase();
+  const optionalParamName = parameters.filter(
+    (p) => p.type?.toString().endsWith("OptionalParams")
+  )[0]?.name;
 
   const statements: string[] = [];
   statements.push(
     `return context.path("${operationPath}", ${getPathParameters(
       operation
-    )}).${operationMethod}({...operationOptionsToRequestParameters(options), ${getRequestParameters(
+    )}).${operationMethod}({...operationOptionsToRequestParameters(${optionalParamName}), ${getRequestParameters(
       dpgContext,
       operation,
       runtimeImports
@@ -107,18 +118,22 @@ export function getDeserializePrivateFunction(
   runtimeImports: RuntimeImports
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
-
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
       type: getRLCResponseType(operation.rlcResponse)
     }
   ];
+  // TODO: Support LRO + paging operation
+  // https://github.com/Azure/autorest.typescript/issues/2313
+  const isLroOnly = isLroOnlyOperation(operation);
 
   // TODO: Support operation overloads
   const response = operation.responses[0]!;
   let returnType;
-  if (response?.type?.type) {
+  if (isLroOnly && operation.method.toLowerCase() !== "patch") {
+    returnType = buildLroReturnType(operation);
+  } else if (response?.type?.type) {
     returnType = buildType(
       response.type.name,
       response.type,
@@ -164,33 +179,69 @@ export function getDeserializePrivateFunction(
     }
   }
 
-  const allParents = getAllAncestors(response.type);
-  const properties = getAllProperties(response.type, allParents) ?? [];
+  let deserializedType = isLroOnly
+    ? operation?.lroMetadata?.finalResult
+    : response.type;
+  let hasLroSubPath = operation?.lroMetadata?.finalResultPath !== undefined;
+  let deserializedRoot = hasLroSubPath
+    ? `result.body.${operation?.lroMetadata?.finalResultPath}`
+    : "result.body";
+  // TODO: Hard-coded for LRO PATCH case for now
+  // https://github.com/Azure/autorest.typescript/issues/2314
+  if (isLroOnly && operation.method.toLowerCase() === "patch") {
+    deserializedType = response.type;
+    hasLroSubPath = false;
+    deserializedRoot = "result.body";
+  }
+  if (isLroOnly) {
+    const lroLogicalResponse = getRLCLroLogicalResponse(operation.rlcResponse);
+    statements.push(`result = result as ${lroLogicalResponse};`);
+    if (hasLroSubPath) {
+      statements.push(
+        `if(${deserializedRoot.split(".").join("?.")} === undefined) {
+          throw createRestError(\`Expected a result in the response at position "${deserializedRoot}"\`, result);
+        }
+        `
+      );
+    }
+  }
+
+  const allParents = deserializedType ? getAllAncestors(deserializedType) : [];
+  const properties = deserializedType
+    ? getAllProperties(deserializedType, allParents)
+    : [];
   if (
-    response?.type?.type === "any" ||
+    deserializedType?.type === "any" ||
+    deserializedType?.type === "dict" ||
+    (deserializedType?.type === "model" &&
+      allParents.some((p) => p.type === "dict")) ||
     response.isBinaryPayload ||
-    response?.type?.aliasType
+    deserializedType?.aliasType
   ) {
     statements.push(`return result.body`);
-  } else if (properties.length > 0) {
+  } else if (deserializedType && properties.length > 0) {
     statements.push(
       `return {`,
-      getResponseMapping(response.type, "result.body", runtimeImports).join(
-        ","
-      ),
+      getResponseMapping(
+        deserializedType,
+        deserializedRoot,
+        runtimeImports
+      ).join(","),
       `}`
     );
-  } else if (returnType.type === "void") {
+  } else if (returnType.type === "void" || deserializedType === undefined) {
     statements.push(`return;`);
   } else {
     statements.push(
       `return ${deserializeResponseValue(
-        response.type,
-        "result.body",
+        deserializedType,
+        deserializedRoot,
         runtimeImports,
-        response.type.nullable !== undefined ? !response.type.nullable : false,
-        [response.type],
-        response.type.format
+        deserializedType.nullable !== undefined
+          ? !deserializedType.nullable
+          : false,
+        [deserializedType],
+        deserializedType.format
       )}`
     );
   }
@@ -224,21 +275,21 @@ function getOperationSignatureParameters(
     });
 
   if (operation.bodyParameter) {
-    parameters.set(
-      operation.bodyParameter?.clientName,
-      buildType(
+    parameters.set(operation.bodyParameter?.clientName, {
+      hasQuestionToken: operation.bodyParameter.optional,
+      ...buildType(
         operation.bodyParameter.clientName,
         operation.bodyParameter.type,
         operation.bodyParameter.type.format
       )
-    );
+    });
   }
   // Add context as the first parameter
   const contextParam = { name: "context", type: clientType };
 
   // Add the options parameter
   const optionsParam = {
-    name: "options",
+    name: parameters.has("options") ? "optionalParams" : "options",
     type: optionsType,
     initializer: "{ requestOptions: {} }"
   };
@@ -254,62 +305,148 @@ function getOperationSignatureParameters(
 export function getOperationFunction(
   operation: Operation,
   clientType: string
-): OptionalKind<FunctionDeclarationStructure> {
+): OptionalKind<FunctionDeclarationStructure> & { propertyName?: string } {
+  if (isPagingOnlyOperation(operation)) {
+    // Case 1: paging-only operation
+    return getPagingOnlyOperationFunction(operation, clientType);
+  } else if (isLroOnlyOperation(operation)) {
+    // Case 2: lro-only operation
+    return getLroOnlyOperationFunction(operation, clientType);
+  } else if (isLroAndPagingOperation(operation)) {
+    // Case 3: both paging + lro operation is not supported yet so handle them as normal operation and customization may be needed
+    // https://github.com/Azure/autorest.typescript/issues/2313
+  }
+
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(operation, clientType);
-  const isPaging = isPagingOperation(operation);
+  // TODO: Support operation overloads
+  const response = operation.responses[0]!;
+  let returnType = { name: "", type: "void" };
+  if (response.type?.type) {
+    const type =
+      extractPagingType(response.type, operation.itemName) ?? response.type;
+    returnType = buildType(type.name, type, type.format);
+  }
+  const { name, fixme = [] } = getOperationName(operation);
+  const functionStatement = {
+    docs: [
+      ...getDocsFromDescription(operation.description),
+      ...getFixmeForMultilineDocs(fixme)
+    ],
+    isAsync: true,
+    isExported: true,
+    name,
+    propertyName: operation.name,
+    parameters,
+    returnType: `Promise<${returnType.type}>`
+  };
+
+  const statements: string[] = [];
+  statements.push(
+    `const result = await _${name}Send(${parameters
+      .map((p) => p.name)
+      .join(", ")});`
+  );
+  statements.push(`return _${name}Deserialize(result);`);
+
+  return {
+    ...functionStatement,
+    statements
+  };
+}
+
+function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
+  // Extract required parameters
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] =
+    getOperationSignatureParameters(operation, clientType);
+  const returnType = buildLroReturnType(operation);
+  const { name, fixme = [] } = getOperationName(operation);
+  const functionStatement = {
+    docs: [
+      ...getDocsFromDescription(operation.description),
+      ...getFixmeForMultilineDocs(fixme)
+    ],
+    isAsync: false,
+    isExported: true,
+    name,
+    propertyName: operation.name,
+    parameters,
+    returnType: `PollerLike<OperationState<${returnType.type}>, ${returnType.type}>`
+  };
+
+  const statements: string[] = [];
+  statements.push(`
+  return getLongRunningPoller(context, _${name}Deserialize, {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () => _${name}Send(${parameters
+      .map((p) => p.name)
+      .join(", ")})
+  }) as PollerLike<OperationState<${returnType.type}>, ${returnType.type}>;
+  `);
+
+  return {
+    ...functionStatement,
+    statements
+  };
+}
+
+function buildLroReturnType(operation: Operation) {
+  const metadata = operation.lroMetadata;
+  if (metadata !== undefined && metadata.finalResult !== undefined) {
+    const type = metadata.finalResult;
+    return buildType(type.name, type, type.format);
+  }
+  return { name: "", type: "void" };
+}
+
+function getPagingOnlyOperationFunction(
+  operation: Operation,
+  clientType: string
+) {
+  // Extract required parameters
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] =
+    getOperationSignatureParameters(operation, clientType);
 
   // TODO: Support operation overloads
   const response = operation.responses[0]!;
   let returnType = { name: "", type: "void" };
   if (response.type?.type) {
-    let type = response.type;
-    if (isPaging) {
-      type = extractPagingType(type, operation.itemName) ?? type;
-    }
+    const type =
+      extractPagingType(response.type, operation.itemName) ?? response.type;
     returnType = buildType(type.name, type, type.format);
   }
   const { name, fixme = [] } = getOperationName(operation);
-  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+  const functionStatement = {
     docs: [
       ...getDocsFromDescription(operation.description),
       ...getFixmeForMultilineDocs(fixme)
     ],
-    isAsync: !isPaging,
+    isAsync: false,
     isExported: true,
-    name: normalizeName(operation.name, NameType.Operation, true),
+    name,
+    propertyName: operation.name,
     parameters,
-    returnType: isPaging
-      ? `PagedAsyncIterableIterator<${returnType.type}>`
-      : `Promise<${returnType.type}>`
+    returnType: `PagedAsyncIterableIterator<${returnType.type}>`
   };
 
   const statements: string[] = [];
-  if (isPaging) {
-    const options = [];
-    if (operation.itemName) {
-      options.push(`itemName: "${operation.itemName}"`);
-    }
-    if (operation.continuationTokenName) {
-      options.push(`nextLinkName: "${operation.continuationTokenName}"`);
-    }
-    statements.push(
-      `return buildPagedAsyncIterator(
-        context, 
-        () => _${name}Send(${parameters.map((p) => p.name).join(", ")}), 
-        _${name}Deserialize,
-        ${options.length > 0 ? `{${options.join(", ")}}` : ``}
-        );`
-    );
-  } else {
-    statements.push(
-      `const result = await _${name}Send(${parameters
-        .map((p) => p.name)
-        .join(", ")});`
-    );
-    statements.push(`return _${name}Deserialize(result);`);
+  const options = [];
+  if (operation.itemName) {
+    options.push(`itemName: "${operation.itemName}"`);
   }
+  if (operation.continuationTokenName) {
+    options.push(`nextLinkName: "${operation.continuationTokenName}"`);
+  }
+  statements.push(
+    `return buildPagedAsyncIterator(
+      context, 
+      () => _${name}Send(${parameters.map((p) => p.name).join(", ")}), 
+      _${name}Deserialize,
+      ${options.length > 0 ? `{${options.join(", ")}}` : ``}
+      );`
+  );
 
   return {
     ...functionStatement,
@@ -339,13 +476,7 @@ export function getOperationOptionsName(
     includeGroupName && operation.name.indexOf("_") === -1
       ? getClassicalLayerPrefix(operation, NameType.Interface)
       : "";
-  const optionName = `${prefix}${toPascalCase(operation.name)}Options`;
-  if (
-    operation.bodyParameter?.type.name === optionName ||
-    optionName === "ClientOptions"
-  ) {
-    return optionName.replace(/Options$/, "RequestOptions");
-  }
+  const optionName = `${prefix}${toPascalCase(operation.name)}OptionalParams`;
   return optionName;
 }
 
@@ -456,7 +587,12 @@ function buildBodyParameter(
     return "";
   }
 
-  if (bodyParameter.type.type === "model" && !bodyParameter.type.aliasType) {
+  const allParents = getAllAncestors(bodyParameter.type);
+  if (
+    bodyParameter.type.type === "model" &&
+    !bodyParameter.type.aliasType &&
+    !allParents.some((p) => p.type === "dict")
+  ) {
     const bodyParts: string[] = getRequestModelMapping(
       bodyParameter.type,
       bodyParameter.clientName,
@@ -465,13 +601,18 @@ function buildBodyParameter(
     );
 
     if (bodyParameter && bodyParts.length > 0) {
-      return `\nbody: {${bodyParts.join(",\n")}},`;
+      const optionalBody = bodyParameter.optional
+        ? `${bodyParameter.clientName} === undefined ? ${bodyParameter.clientName} : `
+        : "";
+      return `\nbody: ${optionalBody}{${bodyParts.join(",\n")}},`;
     } else if (bodyParameter && bodyParts.length === 0) {
       return `\nbody: ${bodyParameter.clientName},`;
     }
   } else if (
-    bodyParameter.type.type === "model" &&
-    bodyParameter.type.aliasType
+    (bodyParameter.type.type === "model" &&
+      (bodyParameter.type.aliasType ||
+        allParents.some((p) => p.type === "dict"))) ||
+    bodyParameter.type.type === "dict"
   ) {
     return `\nbody: ${bodyParameter.clientName},`;
   }
@@ -502,12 +643,12 @@ function buildBodyParameter(
     return bodyParameter.optional
       ? `body: typeof ${bodyParameter.clientName} === 'string'
     ? uint8ArrayToString(${bodyParameter.clientName}, "${getEncodingFormat(
-      bodyParameter.type
+      bodyParameter
     )}")
     : ${bodyParameter.clientName}`
       : `body: uint8ArrayToString(${
           bodyParameter.clientName
-        }, "${getEncodingFormat(bodyParameter.type)}")`;
+        }, "${getEncodingFormat(bodyParameter)}")`;
   } else if (bodyParameter.isBinaryPayload) {
     return `\nbody: ${bodyParameter.clientName},`;
   }
@@ -681,6 +822,16 @@ function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
       [param.type]
     ).join(", ")}}`;
   }
+  if (
+    param.restApiName === "api-version" &&
+    (param as any).location === "query"
+  ) {
+    return `"${param.restApiName}": ${
+      param.clientDefaultValue
+        ? `options?.${param.clientName} ?? "${param.clientDefaultValue}"`
+        : `options?.${param.clientName}`
+    }`;
+  }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
     `options?.${param.clientName}`,
@@ -780,7 +931,7 @@ export function getRequestModelMapping(
     const propertyFullName = `${propertyPath}.${property.clientName}`;
     if (property.type.type === "model") {
       let definition;
-      if (property.type.isCoreErrorType) {
+      if (property.type.coreTypeInfo === "ErrorType") {
         definition = `"${property.restApiName}": ${getNullableCheck(
           propertyFullName,
           property.type
@@ -875,7 +1026,7 @@ export function getResponseMapping(
     const propertyFullName = `${propertyPath}.${property.restApiName}`;
     if (property.type.type === "model") {
       let definition;
-      if (property.type.isCoreErrorType) {
+      if (property.type.coreTypeInfo === "ErrorType") {
         definition = `"${property.clientName}": ${getNullableCheck(
           propertyFullName,
           property.type
@@ -1058,7 +1209,8 @@ export function serializeRequestValue(
   typeStack: Type[] = [],
   format?: string
 ): string {
-  const requiredPrefix = required === false ? `${clientValue} === undefined` : "";
+  const requiredPrefix =
+    required === false ? `${clientValue} === undefined` : "";
   const nullablePrefix = type.nullable ? `${clientValue} === null` : "";
   const requiredOrNullablePrefix =
     requiredPrefix !== "" && nullablePrefix !== ""
@@ -1146,6 +1298,9 @@ export function serializeRequestValue(
         return `${clientValue} as any`;
       }
     default:
+      if (clientValue === "constructorParam") {
+        return `${clientValue} as any`;
+      }
       return clientValue;
   }
 }
@@ -1159,29 +1314,23 @@ function needsDeserialize(type?: Type) {
   );
 }
 
-export function hasLROOperation(
-  codeModel: ModularCodeModel,
-  needRLC: boolean = false
-) {
-  return (codeModel.clients ?? []).some(
-    (c) =>
-      (needRLC ? c.rlcHelperDetails.hasLongRunning : false) ||
-      (c.operationGroups ?? []).some((og) =>
-        (og.operations ?? []).some(isLROOperation)
-      )
-  );
+export function isLroAndPagingOperation(op: Operation): boolean {
+  return op.discriminator === "lropaging";
 }
 
-export function isLROOperation(op: Operation): boolean {
-  return op.discriminator === "lro" || op.discriminator === "lropaging";
+export function isLroOnlyOperation(op: Operation): boolean {
+  return op.discriminator === "lro";
 }
 
-export function hasPagingOperation(client: Client, needRLC?: boolean): boolean;
-export function hasPagingOperation(
+export function hasPagingOnlyOperation(
+  client: Client,
+  needRLC?: boolean
+): boolean;
+export function hasPagingOnlyOperation(
   codeModel: ModularCodeModel,
   needRLC?: boolean
 ): boolean;
-export function hasPagingOperation(
+export function hasPagingOnlyOperation(
   clientOrCodeModel: Client | ModularCodeModel,
   needRLC: boolean = false
 ): boolean {
@@ -1195,13 +1344,13 @@ export function hasPagingOperation(
     (c) =>
       (needRLC ? c.rlcHelperDetails.hasPaging : false) ||
       (c.operationGroups ?? []).some((og) =>
-        (og.operations ?? []).some(isPagingOperation)
+        (og.operations ?? []).some(isPagingOnlyOperation)
       )
   );
 }
 
-export function isPagingOperation(op: Operation): boolean {
-  return op.discriminator === "paging" || op.discriminator === "lropaging";
+export function isPagingOnlyOperation(op: Operation): boolean {
+  return op.discriminator === "paging";
 }
 
 export function getAllProperties(type: Type, parents?: Type[]): Property[] {

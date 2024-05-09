@@ -3,7 +3,13 @@
 
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
-import { InputTextElement, DictionaryExampleTextElement } from "./models";
+import {
+  TextTypes,
+  ProfanityActions,
+  ProfanityMarkers,
+  InputTextElement,
+  DictionaryExampleTextElement,
+} from "./models.js";
 
 export interface GetLanguagesHeaders {
   /** A client-generated GUID to uniquely identify the request. */
@@ -78,7 +84,7 @@ export interface TranslateQueryParamProperties {
    * Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed,
    * complete element. Possible values are: plain (default) or html.
    */
-  textType?: "plain" | "html";
+  textType?: TextTypes;
   /**
    * A string specifying the category (domain) of the translation. This parameter is used to get translations
    * from a customized system built with Custom Translator. Add the Category ID from your Custom Translator
@@ -89,12 +95,12 @@ export interface TranslateQueryParamProperties {
    * Specifies how profanities should be treated in translations.
    * Possible values are: NoAction (default), Marked or Deleted.
    */
-  profanityAction?: "NoAction" | "Marked" | "Deleted";
+  profanityAction?: ProfanityActions;
   /**
    * Specifies how profanities should be marked in translations.
    * Possible values are: Asterisk (default) or Tag.
    */
-  profanityMarker?: "Asterisk" | "Tag";
+  profanityMarker?: ProfanityMarkers;
   /**
    * Specifies whether to include alignment projection from source text to translated text.
    * Possible values are: true or false (default).

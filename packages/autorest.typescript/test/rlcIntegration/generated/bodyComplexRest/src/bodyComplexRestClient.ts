@@ -12,7 +12,8 @@ import { BodyComplexRestClient } from "./clientDefinitions";
 export default function createClient(
   options: ClientOptions = {},
 ): BodyComplexRestClient {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-body-complex-rest/1.0.0-preview1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -28,7 +29,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as BodyComplexRestClient;
+  const client = getClient(endpointUrl, options) as BodyComplexRestClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return client;

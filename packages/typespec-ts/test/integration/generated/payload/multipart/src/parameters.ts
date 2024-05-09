@@ -9,7 +9,7 @@ import {
   BinaryArrayPartsRequest,
   JsonArrayPartsRequest,
   MultiBinaryPartsRequest,
-} from "./models";
+} from "./models.js";
 
 export interface FormDataBasicBodyParam {
   body: MultiPartRequest;
@@ -97,4 +97,29 @@ export interface FormDataCheckFileNameAndContentTypeMediaTypesParam {
 export type FormDataCheckFileNameAndContentTypeParameters =
   FormDataCheckFileNameAndContentTypeMediaTypesParam &
     FormDataCheckFileNameAndContentTypeBodyParam &
+    RequestParameters;
+
+export interface FormDataAnonymousModelBodyParam {
+  body?:
+    | FormData
+    | Array<{
+        name: "profileImage";
+        body:
+          | string
+          | Uint8Array
+          | ReadableStream<Uint8Array>
+          | NodeJS.ReadableStream
+          | File;
+        filename?: string;
+        contentType?: string;
+      }>;
+}
+
+export interface FormDataAnonymousModelMediaTypesParam {
+  contentType: "multipart/form-data";
+}
+
+export type FormDataAnonymousModelParameters =
+  FormDataAnonymousModelMediaTypesParam &
+    FormDataAnonymousModelBodyParam &
     RequestParameters;

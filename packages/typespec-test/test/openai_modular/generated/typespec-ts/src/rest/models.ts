@@ -7,8 +7,7 @@ export interface AudioTranscriptionOptions {
    * The audio data to transcribe. This must be the binary content of a file in one of the supported media formats:
    *  flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, webm.
    *
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
+   * Value may contain any sequence of octets
    */
   file:
     | string
@@ -18,12 +17,8 @@ export interface AudioTranscriptionOptions {
     | File;
   /** The optional filename or descriptive identifier to associate with with the audio data. */
   filename?: string;
-  /**
-   * The requested format of the transcription response data, which will influence the content and detail of the result.
-   *
-   * Possible values: "json", "verbose_json", "text", "srt", "vtt"
-   */
-  response_format?: string;
+  /** The requested format of the transcription response data, which will influence the content and detail of the result. */
+  response_format?: AudioTranscriptionFormat;
   /**
    * The primary spoken language of the audio data to be transcribed, supplied as a two-letter ISO-639-1 language code
    * such as 'en' or 'fr'.
@@ -51,8 +46,7 @@ export interface AudioTranslationOptions {
    * The audio data to translate. This must be the binary content of a file in one of the supported media formats:
    *  flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, webm.
    *
-   * NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-   * You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.
+   * Value may contain any sequence of octets
    */
   file:
     | string
@@ -62,12 +56,8 @@ export interface AudioTranslationOptions {
     | File;
   /** The optional filename or descriptive identifier to associate with with the audio data. */
   filename?: string;
-  /**
-   * The requested format of the translation response data, which will influence the content and detail of the result.
-   *
-   * Possible values: "json", "verbose_json", "text", "srt", "vtt"
-   */
-  response_format?: string;
+  /** The requested format of the translation response data, which will influence the content and detail of the result. */
+  response_format?: AudioTranslationFormat;
   /**
    * An optional hint to guide the model's style or continue from a prior audio segment. The written language of the
    * prompt should match the primary spoken language of the audio data.
@@ -196,7 +186,7 @@ export interface ChatCompletionsOptions {
    *  Specifying a particular function via `{"name": "my_function"}` forces the model to call that function.
    *  "none" is the default when no functions are present. "auto" is the default if functions are present.
    */
-  function_call?: string | FunctionName;
+  function_call?: FunctionCallPreset | FunctionName;
   /** The maximum number of tokens to generate. */
   max_tokens?: number;
   /**
@@ -282,12 +272,14 @@ export interface ChatCompletionsOptions {
   /** The available tool definitions that the chat completions request can use, including caller-defined functions. */
   tools?: Array<ChatCompletionsToolDefinition>;
   /** If specified, the model will configure which of the provided tools it can use for the chat completions response. */
-  tool_choice?: string | ChatCompletionsNamedToolSelection;
+  tool_choice?:
+    | ChatCompletionsToolSelectionPreset
+    | ChatCompletionsNamedToolSelection;
 }
 
 /** An abstract representation of a chat message as provided in a request. */
 export interface ChatRequestMessageParent {
-  role: string;
+  role: ChatRole;
 }
 
 /**
@@ -343,10 +335,8 @@ export interface ChatMessageImageUrl {
   /**
    * The evaluation quality setting to use, which controls relative prioritization of speed, token consumption, and
    * accuracy.
-   *
-   * Possible values: "auto", "low", "high"
    */
-  detail?: string;
+  detail?: ChatMessageImageDetailLevel;
 }
 
 /** A request chat message representing response or action from the assistant. */
@@ -452,7 +442,7 @@ export interface FunctionName {
  *   The use of this configuration is compatible only with Azure OpenAI.
  */
 export interface AzureChatExtensionConfigurationParent {
-  type: string;
+  type: AzureChatExtensionType;
 }
 
 /**
@@ -494,12 +484,8 @@ export interface AzureSearchChatExtensionParameters {
   index_name: string;
   /** Customized field mapping behavior to use when interacting with the search index. */
   fields_mapping?: AzureSearchIndexFieldMappingOptions;
-  /**
-   * The query type to use with Azure Cognitive Search.
-   *
-   * Possible values: "simple", "semantic", "vector", "vector_simple_hybrid", "vector_semantic_hybrid"
-   */
-  query_type?: string;
+  /** The query type to use with Azure Cognitive Search. */
+  query_type?: AzureSearchQueryType;
   /** The additional semantic configuration for the query. */
   semantic_configuration?: string;
   /** Search filter. */
@@ -510,7 +496,7 @@ export interface AzureSearchChatExtensionParameters {
 
 /** The authentication options for Azure OpenAI On Your Data. */
 export interface OnYourDataAuthenticationOptionsParent {
-  type: string;
+  type: OnYourDataAuthenticationType;
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using an API key. */
@@ -596,7 +582,7 @@ export interface AzureSearchIndexFieldMappingOptions {
 
 /** An abstract representation of a vectorization source for Azure OpenAI On Your Data with vector search. */
 export interface OnYourDataVectorizationSourceParent {
-  type: string;
+  type: OnYourDataVectorizationSourceType;
 }
 
 /**
@@ -783,12 +769,8 @@ export interface ElasticsearchChatExtensionParameters {
   index_name: string;
   /** The index field mapping options of Elasticsearch®. */
   fields_mapping?: ElasticsearchIndexFieldMappingOptions;
-  /**
-   * The query type of Elasticsearch®.
-   *
-   * Possible values: "simple", "vector"
-   */
-  query_type?: string;
+  /** The query type of Elasticsearch®. */
+  query_type?: ElasticsearchQueryType;
   /** The embedding dependency for vector search. */
   embedding_dependency?: OnYourDataVectorizationSource;
 }
@@ -964,30 +946,20 @@ export interface ImageGenerationOptions {
    * The desired dimensions for generated images.
    * Dall-e-2 models support 256x256, 512x512, or 1024x1024.
    * Dall-e-3 models support 1024x1024, 1792x1024, or 1024x1792.
-   *
-   * Possible values: "256x256", "512x512", "1024x1024", "1792x1024", "1024x1792"
    */
-  size?: string;
-  /**
-   * The format in which image generation response items should be presented.
-   *
-   * Possible values: "url", "b64_json"
-   */
-  response_format?: string;
+  size?: ImageSize;
+  /** The format in which image generation response items should be presented. */
+  response_format?: ImageGenerationResponseFormat;
   /**
    * The desired image generation quality level to use.
    * Only configurable with dall-e-3 models.
-   *
-   * Possible values: "standard", "hd"
    */
-  quality?: string;
+  quality?: ImageGenerationQuality;
   /**
    * The desired image generation style to use.
    * Only configurable with dall-e-3 models.
-   *
-   * Possible values: "natural", "vivid"
    */
-  style?: string;
+  style?: ImageGenerationStyle;
   /** A unique identifier representing your end-user, which can help to monitor and detect abuse. */
   user?: string;
 }
@@ -996,18 +968,10 @@ export interface ImageGenerationOptions {
 export interface AudioSpeechOptions {
   /** The text to generate audio for. The maximum length is 4096 characters. */
   input: string;
-  /**
-   * The voice to use for text-to-speech.
-   *
-   * Possible values: "alloy", "echo", "fable", "onyx", "nova", "shimmer"
-   */
-  voice: string;
-  /**
-   * The audio output format for the spoken text. By default, the MP3 format will be used.
-   *
-   * Possible values: "mp3", "opus", "aac", "flac"
-   */
-  response_format?: string;
+  /** The voice to use for text-to-speech. */
+  voice: AudioSpeechVoice;
+  /** The audio output format for the spoken text. By default, the MP3 format will be used. */
+  response_format?: AudioSpeechOutputFormat;
   /** The speed of speech for generated audio. Values are valid in the range from 0.25 to 4.0, with 1.0 the default and higher values corresponding to faster speech. */
   speed?: number;
 }
@@ -1105,3 +1069,94 @@ export type ChatCompletionsToolDefinition =
 export type ChatCompletionsNamedToolSelection =
   | ChatCompletionsNamedToolSelectionParent
   | ChatCompletionsNamedFunctionToolSelection;
+/** Defines available options for the underlying response format of output transcription information. */
+export type AudioTranscriptionFormat =
+  | "json"
+  | "verbose_json"
+  | "text"
+  | "srt"
+  | "vtt";
+/** Defines available options for the underlying response format of output translation information. */
+export type AudioTranslationFormat =
+  | "json"
+  | "verbose_json"
+  | "text"
+  | "srt"
+  | "vtt";
+/** A description of the intended purpose of a message within a chat completions interaction. */
+export type ChatRole = "system" | "assistant" | "user" | "function" | "tool";
+/** A representation of the possible image detail levels for image-based chat completions message content. */
+export type ChatMessageImageDetailLevel = "auto" | "low" | "high";
+/**
+ * The collection of predefined behaviors for handling request-provided function information in a chat completions
+ * operation.
+ */
+export type FunctionCallPreset = "auto" | "none";
+/**
+ *   A representation of configuration data for a single Azure OpenAI chat extension. This will be used by a chat
+ *   completions request that should use Azure OpenAI chat extensions to augment the response behavior.
+ *   The use of this configuration is compatible only with Azure OpenAI.
+ */
+export type AzureChatExtensionType =
+  | "azure_search"
+  | "azure_ml_index"
+  | "azure_cosmos_db"
+  | "elasticsearch"
+  | "Pinecone";
+/** The authentication types supported with Azure OpenAI On Your Data. */
+export type OnYourDataAuthenticationType =
+  | "api_key"
+  | "connection_string"
+  | "key_and_key_id"
+  | "encoded_api_key"
+  | "access_token"
+  | "system_assigned_managed_identity"
+  | "user_assigned_managed_identity";
+/** The type of Azure Search retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
+export type AzureSearchQueryType =
+  | "simple"
+  | "semantic"
+  | "vector"
+  | "vector_simple_hybrid"
+  | "vector_semantic_hybrid";
+/**
+ * Represents the available sources Azure OpenAI On Your Data can use to configure vectorization of data for use with
+ * vector search.
+ */
+export type OnYourDataVectorizationSourceType =
+  | "endpoint"
+  | "deployment_name"
+  | "model_id";
+/** The type of Elasticsearch® retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
+export type ElasticsearchQueryType = "simple" | "vector";
+/** Represents a generic policy for how a chat completions tool may be selected. */
+export type ChatCompletionsToolSelectionPreset = "auto" | "none";
+/** The desired size of generated images. */
+export type ImageSize =
+  | "256x256"
+  | "512x512"
+  | "1024x1024"
+  | "1792x1024"
+  | "1024x1792";
+/** The format in which the generated images are returned. */
+export type ImageGenerationResponseFormat = "url" | "b64_json";
+/**
+ * An image generation configuration that specifies how the model should prioritize quality, cost, and speed.
+ * Only configurable with dall-e-3 models.
+ */
+export type ImageGenerationQuality = "standard" | "hd";
+/**
+ * An image generation configuration that specifies how the model should incorporate realism and other visual characteristics.
+ * Only configurable with dall-e-3 models.
+ */
+export type ImageGenerationStyle = "natural" | "vivid";
+/** The available voices for text-to-speech. */
+export type AudioSpeechVoice =
+  | "alloy"
+  | "echo"
+  | "fable"
+  | "onyx"
+  | "nova"
+  | "shimmer";
+/** The supported audio output formats for text-to-speech. */
+export type AudioSpeechOutputFormat = "mp3" | "opus" | "aac" | "flac";

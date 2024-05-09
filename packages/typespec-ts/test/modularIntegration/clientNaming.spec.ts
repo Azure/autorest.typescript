@@ -5,6 +5,7 @@ describe("NameAndEncodedName Client", () => {
 
   beforeEach(() => {
     client = new NamingClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0
@@ -93,6 +94,28 @@ describe("NameAndEncodedName Client", () => {
   it("should work with model language", async () => {
     try {
       const result = await client.clientModel.language({ defaultName: true });
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should work union enum name", async () => {
+    try {
+      const result = await client.unionEnum.unionEnumName("value1", {
+        requestOptions: { headers: { "content-type": "text/plain" } }
+      });
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should work with union enum member name", async () => {
+    try {
+      const result = await client.unionEnum.unionEnumMemberName("value1", {
+        requestOptions: { headers: { "content-type": "text/plain" } }
+      });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);

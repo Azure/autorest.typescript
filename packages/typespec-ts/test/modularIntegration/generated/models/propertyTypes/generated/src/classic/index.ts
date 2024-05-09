@@ -22,6 +22,7 @@ export { ModelOperations } from "./model/index.js";
 export { NeverOperations } from "./never/index.js";
 export { StringOperations } from "./string/index.js";
 export { StringLiteralOperations } from "./stringLiteral/index.js";
+export { UnionEnumValueOperations } from "./unionEnumValue/index.js";
 export { UnionFloatLiteralOperations } from "./unionFloatLiteral/index.js";
 export { UnionIntLiteralOperations } from "./unionIntLiteral/index.js";
 export { UnionStringLiteralOperations } from "./unionStringLiteral/index.js";

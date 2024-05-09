@@ -1,4 +1,4 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { ImmediateSuccessOptions } from "./options.js";
+export { ImmediateSuccessOptionalParams } from "./options.js";

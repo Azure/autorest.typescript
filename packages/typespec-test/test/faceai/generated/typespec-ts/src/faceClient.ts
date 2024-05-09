@@ -2,23 +2,32 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
-import { KeyCredential } from "@azure/core-auth";
-import { FaceClient } from "./clientDefinitions";
+import { logger } from "./logger.js";
+import { TokenCredential, KeyCredential } from "@azure/core-auth";
+import { FaceClient } from "./clientDefinitions.js";
+import { Versions } from "./models.js";
+
+export interface FaceClientOptions extends ClientOptions {
+  apiVersion?: Versions;
+}
 
 /**
  * Initialize a new instance of `FaceClient`
- * @param endpoint - Supported Cognitive Services endpoints (protocol and hostname, for example:
- * https://<resource-name>.cognitiveservices.azure.com).
+ * @param endpointParam - Supported Cognitive Services endpoints (protocol and hostname, for example:
+ * https://{resource-name}.cognitiveservices.azure.com).
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
-  credentials: KeyCredential,
-  options: ClientOptions = {},
+  endpointParam: string,
+  credentials: TokenCredential | KeyCredential,
+  options: FaceClientOptions = {},
 ): FaceClient {
-  const baseUrl = options.baseUrl ?? `${endpoint}`;
+  const apiVersion = options.apiVersion ?? "v1.1-preview.1";
+  const endpointUrl =
+    options.endpoint ??
+    options.baseUrl ??
+    `${endpointParam}/face/${apiVersion}`;
 
   const userAgentInfo = `azsdk-js-ai-face-rest/1.0.0-beta.1`;
   const userAgentPrefix =
@@ -34,12 +43,15 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
+      scopes: options.credentials?.scopes ?? [
+        "https://cognitiveservices.azure.com/.default",
+      ],
       apiKeyHeaderName:
         options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
     },
   };
 
-  const client = getClient(baseUrl, credentials, options) as FaceClient;
+  const client = getClient(endpointUrl, credentials, options) as FaceClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 

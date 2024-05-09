@@ -10,7 +10,8 @@ import { JsonContext } from "./clientDefinitions.js";
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(options: ClientOptions = {}): JsonContext {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-serialization-encoded-name-json-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -26,7 +27,7 @@ export default function createClient(options: ClientOptions = {}): JsonContext {
     },
   };
 
-  const client = getClient(baseUrl, options) as JsonContext;
+  const client = getClient(endpointUrl, options) as JsonContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return client;

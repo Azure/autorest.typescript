@@ -11,9 +11,9 @@ export interface Dog {
 
 export interface EnumsOnlyCases {
   /** This should be receive/send the left variant */
-  lr: string | string;
+  lr: Lr | Ud;
   /** This should be receive/send the up variant */
-  ud: string | string;
+  ud: Ud | Ud;
 }
 
 export interface StringAndArrayCases {
@@ -47,3 +47,7 @@ export interface MixedTypesCases {
 
 /** Alias for StringExtensibleNamedUnion */
 export type StringExtensibleNamedUnion = string | "b" | "c";
+/** Alias for Lr */
+export type Lr = "left" | "right";
+/** Alias for Ud */
+export type Ud = "up" | "down";

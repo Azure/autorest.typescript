@@ -30,12 +30,14 @@ import {
   RLCOptions,
   hasUnexpectedHelper,
   RLCModel,
-  buildSamples
+  buildSamples,
+  buildVitestConfig,
+  buildTsTestBrowserConfig
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
 import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
-import { Project, SyntaxKind } from "ts-morph";
+import { Project } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
 import {
@@ -47,7 +49,6 @@ import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
-import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
 import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
 import { join } from "path";
@@ -60,6 +61,11 @@ import {
   buildPagingHelpers as buildModularPagingHelpers
 } from "./modular/buildPagingFiles.js";
 import { EmitterOptions } from "./lib.js";
+import { getModuleExports } from "./modular/buildProjectFiles.js";
+import {
+  buildGetPollerHelper,
+  buildRestorePollerHelper
+} from "./modular/buildLroFiles.js";
 
 export * from "./lib.js";
 
@@ -67,10 +73,7 @@ export async function $onEmit(context: EmitContext) {
   /** Shared status */
   const program: Program = context.program;
   const emitterOptions: EmitterOptions = context.options;
-  const dpgContext = createSdkContext(
-    context,
-    "@azure-tools/typespec-ts"
-  ) as SdkContext;
+  const dpgContext = createContextWithDefaultOptions(context);
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
@@ -123,6 +126,28 @@ export async function $onEmit(context: EmitContext) {
         ? sourcesRoot
         : undefined
     };
+  }
+
+  function createContextWithDefaultOptions(
+    context: EmitContext<Record<string, any>>
+  ): SdkContext {
+    const tcgcSettings = {
+      "generate-protocol-methods": true,
+      "generate-convenience-methods": true,
+      "flatten-union-as-enum": false,
+      emitters: [
+        {
+          main: "@azure-tools/typespec-ts",
+          metadata: { name: "@azure-tools/typespec-ts" }
+        }
+      ]
+    };
+    context.options = {
+      ...context.options,
+      ...tcgcSettings
+    };
+
+    return createSdkContext(context) as SdkContext;
   }
 
   async function clearSrcFolder() {
@@ -190,47 +215,55 @@ export async function $onEmit(context: EmitContext) {
 
       const isMultiClients = modularCodeModel.clients.length > 1;
       for (const subClient of modularCodeModel.clients) {
-        buildModels(modularCodeModel, subClient);
-        buildModelsOptions(modularCodeModel, subClient);
+        buildModels(subClient, modularCodeModel);
+        buildModelsOptions(subClient, modularCodeModel);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
         buildSerializeUtils(modularCodeModel);
-        buildPagingTypes(modularCodeModel, subClient);
+        // build paging files
+        buildPagingTypes(subClient, modularCodeModel);
         buildModularPagingHelpers(
+          subClient,
+          modularCodeModel,
+          hasClientUnexpectedHelper,
+          isMultiClients
+        );
+        // build operation files
+        buildOperationFiles(
+          subClient,
+          dpgContext,
+          modularCodeModel,
+          hasClientUnexpectedHelper
+        );
+        buildClientContext(subClient, dpgContext, modularCodeModel);
+        buildSubpathIndexFile(subClient, modularCodeModel, "models");
+        // build lro files
+        buildGetPollerHelper(
           modularCodeModel,
           subClient,
           hasClientUnexpectedHelper,
           isMultiClients
         );
-        buildOperationFiles(
-          dpgContext,
-          modularCodeModel,
-          subClient,
-          hasClientUnexpectedHelper
-        );
-        buildClientContext(dpgContext, modularCodeModel, subClient);
-        buildSubpathIndexFile(modularCodeModel, subClient, "models");
+        buildRestorePollerHelper(modularCodeModel, subClient);
         if (dpgContext.rlcOptions?.hierarchyClient) {
-          buildSubpathIndexFile(modularCodeModel, subClient, "api");
+          buildSubpathIndexFile(subClient, modularCodeModel, "api");
         } else {
-          buildSubpathIndexFile(modularCodeModel, subClient, "api", {
+          buildSubpathIndexFile(subClient, modularCodeModel, "api", {
             exportIndex: true
           });
         }
 
-        buildClassicalClient(dpgContext, modularCodeModel, subClient);
+        buildClassicalClient(subClient, dpgContext, modularCodeModel);
         buildClassicOperationFiles(modularCodeModel, subClient);
-        buildSubpathIndexFile(modularCodeModel, subClient, "classic", {
+        buildSubpathIndexFile(subClient, modularCodeModel, "classic", {
           exportIndex: true,
           interfaceOnly: true
         });
         if (isMultiClients) {
-          buildSubClientIndexFile(modularCodeModel, subClient);
+          buildSubClientIndexFile(subClient, modularCodeModel);
         }
-        buildRootIndex(modularCodeModel, subClient, rootIndexFile);
+        buildRootIndex(subClient, modularCodeModel, rootIndexFile);
       }
-
-      removeUnusedInterfaces(project);
 
       for (const file of project.getSourceFiles()) {
         await emitContentByBuilder(
@@ -263,13 +296,20 @@ export async function $onEmit(context: EmitContext) {
         buildApiExtractorConfig,
         buildReadmeFile
       ];
+      if (option.moduleKind === "esm") {
+        commonBuilders.push((model) => buildVitestConfig(model, "node"));
+        commonBuilders.push((model) => buildVitestConfig(model, "browser"));
+        commonBuilders.push((model) => buildTsTestBrowserConfig(model));
+      }
       if (isAzureFlavor) {
         commonBuilders.push(buildEsLintConfig);
       }
-      if (!option.isModularLibrary) {
-        commonBuilders.push(buildPackageFile);
-        commonBuilders.push(buildTsConfig);
+      let moduleExports = {};
+      if (option.isModularLibrary) {
+        moduleExports = getModuleExports(modularCodeModel);
       }
+      commonBuilders.push((model) => buildPackageFile(model, moduleExports));
+      commonBuilders.push(buildTsConfig);
       // build metadata relevant files
       await emitContentByBuilder(
         program,
@@ -280,16 +320,6 @@ export async function $onEmit(context: EmitContext) {
 
       if (option.isModularLibrary) {
         const project = new Project();
-        emitPackage(
-          project,
-          dpgContext.generationPathDetail?.metadataDir ?? "",
-          modularCodeModel
-        );
-        emitTsConfig(
-          project,
-          dpgContext.generationPathDetail?.metadataDir ?? "",
-          modularCodeModel
-        );
         for (const file of project.getSourceFiles()) {
           await emitContentByBuilder(
             program,
@@ -316,88 +346,4 @@ export async function $onEmit(context: EmitContext) {
       );
     }
   }
-}
-
-/**
- * Removing this for now, as it has some problem when we have two models with the same name and only one of them is unused, this function will end up removing the other used models.
- */
-export function removeUnusedInterfaces(project: Project) {
-  const allInterfaces = project.getSourceFiles().flatMap((file) =>
-    file.getInterfaces().map((interfaceDeclaration) => {
-      return { interfaceDeclaration, filepath: file.getFilePath() };
-    })
-  );
-
-  const unusedInterfaces = allInterfaces.filter((interfaceDeclaration) => {
-    const references = interfaceDeclaration.interfaceDeclaration
-      .findReferencesAsNodes()
-      .filter((node) => {
-        const kind = node.getParent()?.getKind();
-        return (
-          kind !== SyntaxKind.ExportSpecifier &&
-          kind !== SyntaxKind.InterfaceDeclaration
-        );
-      });
-    return references.length === 0;
-  });
-
-  unusedInterfaces.forEach((interfaceDeclaration) => {
-    const references = interfaceDeclaration.interfaceDeclaration
-      .findReferencesAsNodes()
-      .filter((node) => {
-        const kind = node.getParent()?.getKind();
-        return kind === SyntaxKind.ExportSpecifier;
-      });
-    const map = new Map<string, string>();
-    references.forEach((node) => {
-      const exportPath = node.getSourceFile().getFilePath();
-      map.set(exportPath, node.getText());
-    });
-
-    // Get the index.ts file
-    const indexFiles = project.getSourceFiles().filter((file) => {
-      return file.getFilePath().endsWith("index.ts");
-    }); // Adjust the path to your index.ts file
-    // to make sure the top level index file is in the last
-    const sortedIndexFiles = indexFiles.sort((idx1, idx2) => {
-      return (
-        idx2.getFilePath().split("/").length -
-        idx1.getFilePath().split("/").length
-      );
-    });
-
-    const matchAliasNodes: string[] = [];
-    for (const indexFile of sortedIndexFiles) {
-      const filepath = indexFile.getFilePath();
-      if (map.has(filepath)) {
-        // Get all export declarations
-        const exportDeclarations = indexFile.getExportDeclarations();
-
-        // Iterate over each export declaration
-        exportDeclarations.forEach((exportDeclaration) => {
-          // Find named exports that match the unused interface
-          const matchingExports = exportDeclaration
-            .getNamedExports()
-            .filter((ne) => {
-              const aliasNode = ne.getAliasNode();
-              if (
-                aliasNode &&
-                aliasNode.getText() !== map.get(filepath) &&
-                ne.getName() === map.get(filepath)
-              ) {
-                matchAliasNodes.push(aliasNode.getText());
-              }
-              return (
-                matchAliasNodes.indexOf(ne.getName()) > -1 ||
-                ne.getName() === map.get(filepath) ||
-                ne.getAliasNode()?.getText() === map.get(filepath)
-              );
-            });
-          // Remove the matching exports
-          matchingExports.forEach((me) => me.remove());
-        });
-      }
-    }
-    interfaceDeclaration.interfaceDeclaration.remove();
-  });
 }

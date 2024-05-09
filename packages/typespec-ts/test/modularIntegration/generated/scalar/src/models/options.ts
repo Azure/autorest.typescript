@@ -3,36 +3,43 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface StringGetOptions extends OperationOptions {}
+export interface StringGetOptionalParams extends OperationOptions {}
 
-export interface StringPutOptions extends OperationOptions {}
+export interface StringPutOptionalParams extends OperationOptions {}
 
-export interface BooleanGetOptions extends OperationOptions {}
+export interface BooleanGetOptionalParams extends OperationOptions {}
 
-export interface BooleanPutOptions extends OperationOptions {}
+export interface BooleanPutOptionalParams extends OperationOptions {}
 
-export interface UnknownGetOptions extends OperationOptions {}
+export interface UnknownGetOptionalParams extends OperationOptions {}
 
-export interface UnknownPutOptions extends OperationOptions {}
+export interface UnknownPutOptionalParams extends OperationOptions {}
 
-export interface DecimalTypeResponseBodyOptions extends OperationOptions {}
-
-export interface DecimalTypeRequestBodyOptions extends OperationOptions {}
-
-export interface DecimalTypeRequestParameterOptions extends OperationOptions {}
-
-export interface Decimal128TypeResponseBodyOptions extends OperationOptions {}
-
-export interface Decimal128TypeRequestBodyOptions extends OperationOptions {}
-
-export interface Decimal128TypeRequestParameterOptions
+export interface DecimalTypeResponseBodyOptionalParams
   extends OperationOptions {}
 
-export interface DecimalVerifyPrepareVerifyOptions extends OperationOptions {}
-
-export interface DecimalVerifyVerifyOptions extends OperationOptions {}
-
-export interface Decimal128VerifyPrepareVerifyOptions
+export interface DecimalTypeRequestBodyOptionalParams
   extends OperationOptions {}
 
-export interface Decimal128VerifyVerifyOptions extends OperationOptions {}
+export interface DecimalTypeRequestParameterOptionalParams
+  extends OperationOptions {}
+
+export interface Decimal128TypeResponseBodyOptionalParams
+  extends OperationOptions {}
+
+export interface Decimal128TypeRequestBodyOptionalParams
+  extends OperationOptions {}
+
+export interface Decimal128TypeRequestParameterOptionalParams
+  extends OperationOptions {}
+
+export interface DecimalVerifyPrepareVerifyOptionalParams
+  extends OperationOptions {}
+
+export interface DecimalVerifyVerifyOptionalParams extends OperationOptions {}
+
+export interface Decimal128VerifyPrepareVerifyOptionalParams
+  extends OperationOptions {}
+
+export interface Decimal128VerifyVerifyOptionalParams
+  extends OperationOptions {}

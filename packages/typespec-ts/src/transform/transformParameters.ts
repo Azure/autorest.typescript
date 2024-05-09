@@ -8,9 +8,10 @@ import {
   ParameterBodyMetadata,
   ParameterMetadata,
   Schema,
-  SchemaContext
+  SchemaContext,
+  ApiVersionInfo
 } from "@azure-tools/rlc-common";
-import { ignoreDiagnostics, Program, Type } from "@typespec/compiler";
+import { ignoreDiagnostics, Type } from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
@@ -23,9 +24,7 @@ import {
   getSchemaForType,
   getFormattedPropertyDoc,
   getBodyType,
-  predictDefaultValue,
-  getSerializeTypeName,
-  BINARY_AND_FILE_TYPE_UNION
+  getSerializeTypeName
 } from "../utils/modelUtils.js";
 
 import {
@@ -48,9 +47,10 @@ import {
 } from "../utils/mediaTypes.js";
 
 export function transformToParameterTypes(
-  importDetails: Imports,
   client: SdkClient,
-  dpgContext: SdkContext
+  dpgContext: SdkContext,
+  importDetails: Imports,
+  apiVersionInfo?: ApiVersionInfo
 ): OperationParameter[] {
   const program = dpgContext.program;
   const rlcParameters: OperationParameter[] = [];
@@ -62,7 +62,7 @@ export function transformToParameterTypes(
     if (route.overloads && route.overloads?.length > 0) {
       continue;
     }
-    transformToParameterTypesForRoute(program, route);
+    transformToParameterTypesForRoute(route);
   }
   const operationGroups = listOperationGroups(dpgContext, client, true);
   for (const operationGroup of operationGroups) {
@@ -76,17 +76,14 @@ export function transformToParameterTypes(
       if (route.overloads && route.overloads?.length > 0) {
         continue;
       }
-      transformToParameterTypesForRoute(program, route);
+      transformToParameterTypesForRoute(route);
     }
   }
 
   if (outputImportedSet.size > 0) {
     importDetails.parameter.importsSet = outputImportedSet;
   }
-  function transformToParameterTypesForRoute(
-    program: Program,
-    route: HttpOperation
-  ) {
+  function transformToParameterTypesForRoute(route: HttpOperation) {
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
       operationGroup: getOperationGroupName(dpgContext, route),
@@ -97,6 +94,7 @@ export function transformToParameterTypes(
     const queryParams = transformQueryParameters(
       dpgContext,
       parameters,
+      { apiVersionInfo },
       outputImportedSet
     );
     // transform path param
@@ -205,12 +203,16 @@ function getParameterName(name: string) {
 function transformQueryParameters(
   dpgContext: SdkContext,
   parameters: HttpOperationParameters,
+  options: { apiVersionInfo: ApiVersionInfo | undefined },
   importModels: Set<string> = new Set<string>()
 ): ParameterMetadata[] {
   const queryParameters = parameters.parameters.filter(
     (p) =>
       p.type === "query" &&
-      !(isApiVersion(dpgContext, p) && predictDefaultValue(dpgContext, p.param))
+      !(
+        isApiVersion(dpgContext, p) &&
+        options.apiVersionInfo?.definedPosition === "query"
+      )
   );
   if (!queryParameters.length) {
     return [];
@@ -288,7 +290,6 @@ function transformRequestBody(
 
   return {
     isPartialBody: false,
-    needsFilePolyfil: isMultpartFileUpload(),
     body: [
       {
         properties: schema.properties,
@@ -297,26 +298,13 @@ function transformRequestBody(
         type,
         required: parameters?.bodyParameter?.optional === false,
         description: descriptions.join("\n\n"),
+        isMultipartBody:
+          hasMediaType(KnownMediaType.MultipartFormData, contentTypes) &&
+          contentTypes.length === 1,
         oriSchema: schema
       }
     ]
   };
-  function isMultpartFileUpload() {
-    const isMultipartForm =
-      hasMediaType(KnownMediaType.MultipartFormData, contentTypes) &&
-      contentTypes.length === 1;
-    let hasFileType = false;
-    if (schema.type === "object" && schema.properties) {
-      for (const p of Object.values(schema.properties)) {
-        if ((p as Schema).typeName?.includes(BINARY_AND_FILE_TYPE_UNION)) {
-          hasFileType = true;
-          break;
-        }
-      }
-    }
-
-    return isMultipartForm && hasFileType;
-  }
 }
 
 function getRequestBodyType(

@@ -2,15 +2,19 @@
 // Licensed under the MIT license.
 
 export {
-  StreamingChatCompletionOptions,
   ChatMessage,
   ChatRole,
-  ChatCompletionChunk,
-  ChoiceDelta,
+  StreamingChatCompletionOptionsRecord,
+  ChatCompletionChunkRecord,
+  ChoiceDeltaRecord,
   ChatMessageDelta,
   FinishReason,
-  ChatCompletionOptions,
-  ChatCompletion,
-  ChatChoice,
+  ChatCompletionOptionsRecord,
+  ChatCompletionRecord,
+  ChatChoiceRecord,
+  APIVersion,
 } from "./models.js";
-export { CreateStreamingOptions, CreateOptions } from "./options.js";
+export {
+  CreateStreamingOptionalParams,
+  CreateOptionalParams,
+} from "./options.js";

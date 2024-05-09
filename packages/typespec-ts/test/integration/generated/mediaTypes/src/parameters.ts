@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { SourcePath } from "./models";
+import { SourcePath } from "./models.js";
 
 export interface GetByUnionOnlyBodyParam {
   /**

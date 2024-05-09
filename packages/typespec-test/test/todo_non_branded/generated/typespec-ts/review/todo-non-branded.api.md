@@ -8,31 +8,27 @@
 
 import { Client } from '@typespec/ts-http-runtime';
 import { ClientOptions } from '@typespec/ts-http-runtime';
-import { createFile } from '@typespec/ts-http-runtime';
-import { createFileFromStream } from '@typespec/ts-http-runtime';
-import { CreateFileFromStreamOptions } from '@typespec/ts-http-runtime';
-import { CreateFileOptions } from '@typespec/ts-http-runtime';
 import { HttpResponse } from '@typespec/ts-http-runtime';
 import { KeyCredential } from '@typespec/ts-http-runtime';
 import { RequestParameters } from '@typespec/ts-http-runtime';
 import { StreamableMethod } from '@typespec/ts-http-runtime';
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): TodoClient;
+function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): TodoClient;
 export default createClient;
-
-export { createFile }
-
-export { createFileFromStream }
-
-export { CreateFileFromStreamOptions }
-
-export { CreateFileOptions }
 
 // @public (undocumented)
 export interface ErrorModelOutput {
     code: string;
     message: string;
+}
+
+// @public (undocumented)
+export interface InvalidTodoItemOutput extends ErrorModelOutput {
+}
+
+// @public
+export interface InvalidUserResponseOutput extends ErrorModelOutput {
 }
 
 // @public (undocumented)
@@ -113,9 +109,12 @@ export interface TodoItemsAttachmentsCreateFileAttachment404Response extends Htt
 // @public (undocumented)
 export interface TodoItemsAttachmentsCreateFileAttachmentBodyParam {
     // (undocumented)
-    body?: {
-        contents: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
-    };
+    body?: FormData | Array<{
+        name: "contents";
+        body: string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+        filename?: string;
+        contentType?: string;
+    }>;
 }
 
 // @public (undocumented)
@@ -194,7 +193,7 @@ export interface TodoItemsCreateForm200Response extends HttpResponse {
 // @public
 export interface TodoItemsCreateForm422Response extends HttpResponse {
     // (undocumented)
-    body: ErrorModelOutput;
+    body: InvalidTodoItemOutput;
     // (undocumented)
     status: "422";
 }
@@ -202,10 +201,15 @@ export interface TodoItemsCreateForm422Response extends HttpResponse {
 // @public (undocumented)
 export interface TodoItemsCreateFormBodyParam {
     // (undocumented)
-    body?: {
-        item: TodoItem;
-        attachments?: (TodoUrlAttachment | string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File)[];
-    };
+    body?: FormData | Array<{
+        name: "item";
+        body: TodoItem;
+    } | {
+        name: "attachments";
+        body: TodoUrlAttachment | string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream | File;
+        filename?: string;
+        contentType?: string;
+    }>;
 }
 
 // @public (undocumented)
@@ -228,7 +232,7 @@ export interface TodoItemsCreateJson200Response extends HttpResponse {
 // @public
 export interface TodoItemsCreateJson422Response extends HttpResponse {
     // (undocumented)
-    body: ErrorModelOutput;
+    body: InvalidTodoItemOutput;
     // (undocumented)
     status: "422";
 }
@@ -252,13 +256,13 @@ export interface TodoItemsCreateJsonMediaTypesParam {
 export type TodoItemsCreateJsonParameters = TodoItemsCreateJsonMediaTypesParam & TodoItemsCreateJsonBodyParam & RequestParameters;
 
 // @public
-export interface TodoItemsDeleteOperation200Response extends HttpResponse {
+export interface TodoItemsDelete200Response extends HttpResponse {
     // (undocumented)
     status: "200";
 }
 
 // @public
-export interface TodoItemsDeleteOperation404Response extends HttpResponse {
+export interface TodoItemsDelete404Response extends HttpResponse {
     // (undocumented)
     status: "404";
 }
@@ -269,7 +273,7 @@ export type TodoItemsDeleteParameters = RequestParameters;
 // @public (undocumented)
 export interface TodoItemsGet {
     // (undocumented)
-    delete(options?: TodoItemsDeleteParameters): StreamableMethod<TodoItemsDeleteOperation200Response | TodoItemsDeleteOperation404Response>;
+    delete(options?: TodoItemsDeleteParameters): StreamableMethod<TodoItemsDelete200Response | TodoItemsDelete404Response>;
     // (undocumented)
     get(options?: TodoItemsGetParameters): StreamableMethod<TodoItemsGet200Response | TodoItemsGet404Response>;
     // (undocumented)
@@ -413,6 +417,10 @@ export interface UserCreatedResponseOutput {
     username: string;
 }
 
+// @public
+export interface UserExistsResponseOutput extends ErrorModelOutput {
+}
+
 // @public (undocumented)
 export interface UsersCreate {
     // (undocumented)
@@ -430,7 +438,7 @@ export interface UsersCreate200Response extends HttpResponse {
 // @public
 export interface UsersCreate409Response extends HttpResponse {
     // (undocumented)
-    body: ErrorModelOutput;
+    body: UserExistsResponseOutput;
     // (undocumented)
     status: "409";
 }
@@ -438,7 +446,7 @@ export interface UsersCreate409Response extends HttpResponse {
 // @public
 export interface UsersCreate422Response extends HttpResponse {
     // (undocumented)
-    body: ErrorModelOutput;
+    body: InvalidUserResponseOutput;
     // (undocumented)
     status: "422";
 }
@@ -575,7 +583,7 @@ export interface UsersValidate200Response extends HttpResponse {
 // @public
 export interface UsersValidate422Response extends HttpResponse {
     // (undocumented)
-    body: ErrorModelOutput;
+    body: InvalidUserResponseOutput;
     // (undocumented)
     status: "422";
 }

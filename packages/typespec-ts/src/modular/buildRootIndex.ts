@@ -1,10 +1,11 @@
 import { Project, SourceFile } from "ts-morph";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import { normalizeName, NameType } from "@azure-tools/rlc-common";
 
 export function buildRootIndex(
-  codeModel: ModularCodeModel,
   client: Client,
+  codeModel: ModularCodeModel,
   rootIndexFile: SourceFile
 ) {
   const { project } = codeModel;
@@ -12,14 +13,30 @@ export function buildRootIndex(
   const subfolder = client.subfolder ?? "";
   const clientName = `${getClientName(client)}Client`;
   const clientFile = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${clientName}.ts`
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${normalizeName(
+      clientName,
+      NameType.File
+    )}.ts`
   );
 
   if (!clientFile) {
-    throw new Error(`Couldn't find client file: ${srcPath}/${clientName}.ts`);
+    throw new Error(
+      `Couldn't find client file: ${srcPath}/${normalizeName(
+        clientName,
+        NameType.File
+      )}.ts`
+    );
   }
 
   exportClassicalClient(client, rootIndexFile, subfolder);
+  exportRestoreHelpers(
+    rootIndexFile,
+    project,
+    srcPath,
+    clientName,
+    subfolder,
+    true
+  );
   exportModules(
     rootIndexFile,
     project,
@@ -40,6 +57,40 @@ export function buildRootIndex(
   );
 }
 
+function exportRestoreHelpers(
+  indexFile: SourceFile,
+  project: Project,
+  srcPath: string,
+  clientName: string,
+  subfolder: string = "",
+  isTopLevel: boolean = false
+) {
+  const helperFile = project.getSourceFile(
+    `${srcPath}/${
+      subfolder !== "" ? subfolder + "/" : ""
+    }restorePollerHelpers.ts`
+  );
+  if (!helperFile) {
+    return;
+  }
+  const exported = [...indexFile.getExportedDeclarations().keys()];
+  const namedExports = [...helperFile.getExportedDeclarations().keys()].map(
+    (helper) => {
+      if (exported.indexOf(helper) > -1) {
+        return `${helper} as ${clientName}${helper}`;
+      }
+      return helper;
+    }
+  );
+  const moduleSpecifier = `./${
+    isTopLevel && subfolder !== "" ? subfolder + "/" : ""
+  }restorePollerHelpers.js`;
+  indexFile.addExportDeclaration({
+    moduleSpecifier,
+    namedExports
+  });
+}
+
 function exportClassicalClient(
   client: Client,
   indexFile: SourceFile,
@@ -51,7 +102,7 @@ function exportClassicalClient(
     namedExports: [clientName, `${clientName}Options`],
     moduleSpecifier: `./${
       subfolder !== "" && !isSubClient ? subfolder + "/" : ""
-    }${clientName}.js`
+    }${normalizeName(clientName, NameType.File)}.js`
   });
 }
 
@@ -92,8 +143,8 @@ function exportModules(
 }
 
 export function buildSubClientIndexFile(
-  codeModel: ModularCodeModel,
-  client: Client
+  client: Client,
+  codeModel: ModularCodeModel
 ) {
   const subfolder = client.subfolder ?? "";
   const srcPath = codeModel.modularOptions.sourceRoot;
@@ -105,7 +156,7 @@ export function buildSubClientIndexFile(
   const clientName = `${getClientName(client)}Client`;
   const clientFilePath = `${srcPath}/${
     subfolder !== "" ? subfolder + "/" : ""
-  }${clientName}.ts`;
+  }${normalizeName(clientName, NameType.File)}.ts`;
   const clientFile = codeModel.project.getSourceFile(clientFilePath);
 
   if (!clientFile) {
@@ -113,6 +164,13 @@ export function buildSubClientIndexFile(
   }
 
   exportClassicalClient(client, subClientIndexFile, subfolder, true);
+  exportRestoreHelpers(
+    subClientIndexFile,
+    codeModel.project,
+    srcPath,
+    clientName,
+    subfolder
+  );
   exportModules(
     subClientIndexFile,
     codeModel.project,

@@ -2,10 +2,10 @@
 // Licensed under the MIT license.
 
 import {
-  StreamingChatCompletionOptions,
-  ChatCompletionChunk,
-  ChatCompletionOptions,
-  ChatCompletion,
+  StreamingChatCompletionOptionsRecord,
+  ChatCompletionChunkRecord,
+  ChatCompletionOptionsRecord,
+  ChatCompletionRecord,
 } from "../models/models.js";
 import {
   ChatProtocolContext as Client,
@@ -17,12 +17,15 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { CreateStreamingOptions, CreateOptions } from "../models/options.js";
+import {
+  CreateStreamingOptionalParams,
+  CreateOptionalParams,
+} from "../models/options.js";
 
 export function _createStreamingSend(
   context: Client,
-  body: StreamingChatCompletionOptions,
-  options: CreateStreamingOptions = { requestOptions: {} },
+  body: StreamingChatCompletionOptionsRecord,
+  options: CreateStreamingOptionalParams = { requestOptions: {} },
 ): StreamableMethod<CreateStreaming200Response> {
   return context
     .path("/chat")
@@ -43,7 +46,7 @@ export function _createStreamingSend(
 
 export async function _createStreamingDeserialize(
   result: CreateStreaming200Response,
-): Promise<ChatCompletionChunk> {
+): Promise<ChatCompletionChunkRecord> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -66,17 +69,17 @@ export async function _createStreamingDeserialize(
 /** Creates a new streaming chat completion. */
 export async function createStreaming(
   context: Client,
-  body: StreamingChatCompletionOptions,
-  options: CreateStreamingOptions = { requestOptions: {} },
-): Promise<ChatCompletionChunk> {
+  body: StreamingChatCompletionOptionsRecord,
+  options: CreateStreamingOptionalParams = { requestOptions: {} },
+): Promise<ChatCompletionChunkRecord> {
   const result = await _createStreamingSend(context, body, options);
   return _createStreamingDeserialize(result);
 }
 
 export function _createSend(
   context: Client,
-  body: ChatCompletionOptions,
-  options: CreateOptions = { requestOptions: {} },
+  body: ChatCompletionOptionsRecord,
+  options: CreateOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Create200Response> {
   return context
     .path("/chat")
@@ -97,7 +100,7 @@ export function _createSend(
 
 export async function _createDeserialize(
   result: Create200Response,
-): Promise<ChatCompletion> {
+): Promise<ChatCompletionRecord> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -120,9 +123,9 @@ export async function _createDeserialize(
 /** Creates a new chat completion. */
 export async function create(
   context: Client,
-  body: ChatCompletionOptions,
-  options: CreateOptions = { requestOptions: {} },
-): Promise<ChatCompletion> {
+  body: ChatCompletionOptionsRecord,
+  options: CreateOptionalParams = { requestOptions: {} },
+): Promise<ChatCompletionRecord> {
   const result = await _createSend(context, body, options);
   return _createDeserialize(result);
 }

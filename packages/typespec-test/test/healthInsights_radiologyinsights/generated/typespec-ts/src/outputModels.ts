@@ -7,12 +7,8 @@ import { ErrorModel } from "@azure-rest/core-client";
 export interface RadiologyInsightsResultOutput {
   /** The unique ID of the operation. */
   readonly id: string;
-  /**
-   * The status of the operation
-   *
-   * Possible values: "notStarted", "running", "succeeded", "failed", "canceled"
-   */
-  readonly status: string;
+  /** The status of the operation */
+  readonly status: JobStatusOutput;
   /** The date and time when the processing job was created. */
   readonly createdDateTime?: string;
   /** The date and time when the processing job is set to expire. */
@@ -136,17 +132,6 @@ export interface ElementOutput {
 }
 
 /**
- * Concept - reference to a terminology or just text
- * Based on [FHIR CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept)
- */
-export interface CodeableConceptOutput extends ElementOutput {
-  /** Code defined by a terminology system */
-  coding?: Array<CodingOutput>;
-  /** Plain text representation of the concept */
-  text?: string;
-}
-
-/**
  * A Coding is a representation of a defined concept using a symbol from a defined "code system".
  * Based on [FHIR Coding](https://www.hl7.org/fhir/R4/datatypes.html#Coding)
  */
@@ -159,6 +144,17 @@ export interface CodingOutput extends ElementOutput {
   code?: string;
   /** Representation defined by the system */
   display?: string;
+}
+
+/**
+ * Concept - reference to a terminology or just text
+ * Based on [FHIR CodeableConcept](https://www.hl7.org/fhir/R4/datatypes.html#CodeableConcept)
+ */
+export interface CodeableConceptOutput extends ElementOutput {
+  /** Code defined by a terminology system */
+  coding?: Array<CodingOutput>;
+  /** Plain text representation of the concept */
+  text?: string;
 }
 
 /**
@@ -252,21 +248,6 @@ export interface PeriodOutput extends ElementOutput {
 }
 
 /**
- * A reference from one resource to another
- * Based on [FHIR Reference](https://www.hl7.org/fhir/R4/references.html)
- */
-export interface ReferenceOutput extends ElementOutput {
-  /** Literal reference, Relative, internal or absolute URL */
-  reference?: string;
-  /** Type the reference refers to (e.g. "Patient") */
-  type?: string;
-  /** Logical reference, when literal reference is not known */
-  identifier?: IdentifierOutput;
-  /** Text alternative for the resource */
-  display?: string;
-}
-
-/**
  * An identifier intended for computation
  * Based on [FHIR Identifier](https://www.hl7.org/fhir/R4/identifier.html)
  */
@@ -283,6 +264,21 @@ export interface IdentifierOutput extends ElementOutput {
   period?: PeriodOutput;
   /** Organization that issued id (may be just text) */
   assigner?: ReferenceOutput;
+}
+
+/**
+ * A reference from one resource to another
+ * Based on [FHIR Reference](https://www.hl7.org/fhir/R4/references.html)
+ */
+export interface ReferenceOutput extends ElementOutput {
+  /** Literal reference, Relative, internal or absolute URL */
+  reference?: string;
+  /** Type the reference refers to (e.g. "Patient") */
+  type?: string;
+  /** Logical reference, when literal reference is not known */
+  identifier?: IdentifierOutput;
+  /** Text alternative for the resource */
+  display?: string;
 }
 
 /**
@@ -380,20 +376,12 @@ export interface ContactDetailOutput extends ElementOutput {
  * See https://www.hl7.org/fhir/R4/datatypes.html#ContactPoint
  */
 export interface ContactPointOutput {
-  /**
-   * phone | fax | email | pager | url | sms | other
-   *
-   * Possible values: "phone", "fax", "email", "pager", "url", "sms", "other"
-   */
-  system?: string;
+  /** phone | fax | email | pager | url | sms | other */
+  system?: ContactPointSystemOutput;
   /** The actual contact point details */
   value?: string;
-  /**
-   * home | work | temp | old | mobile - purpose of this contact point
-   *
-   * Possible values: "home", "work", "temp", "old", "mobile"
-   */
-  use?: string;
+  /** home | work | temp | old | mobile - purpose of this contact point */
+  use?: ContactPointUseOutput;
   /** Specify preferred order of use (1 = highest) */
   rank?: number;
   /** Time period when the contact point was/is in use */
@@ -414,12 +402,8 @@ export interface RecommendationFindingOutput extends ExtendibleOutput {
   finding?: ObservationOutput;
   /** critical finding inference */
   criticalFinding?: CriticalResultOutput;
-  /**
-   * recommendation finding status
-   *
-   * Possible values: "present", "differential", "ruleOut", "conditional"
-   */
-  recommendationFindingStatus: string;
+  /** recommendation finding status */
+  recommendationFindingStatus: RecommendationFindingStatusTypeOutput;
 }
 
 /**
@@ -431,12 +415,8 @@ export interface ObservationOutput extends DomainResourceOutputParent {
   resourceType: "Observation";
   /** Business Identifier for observation */
   identifier?: Array<IdentifierOutput>;
-  /**
-   * registered | preliminary | final | amended +
-   *
-   * Possible values: "registered", "preliminary", "final", "amended", "corrected", "cancelled", "entered-in-error", "unknown"
-   */
-  status: string;
+  /** registered | preliminary | final | amended + */
+  status: ObservationStatusCodeTypeOutput;
   /** Classification of  type of observation */
   category?: Array<CodeableConceptOutput>;
   /** Type of observation (code / type) */
@@ -624,12 +604,8 @@ export interface ResearchStudyOutput extends DomainResourceOutputParent {
   protocol?: Array<ReferenceOutput>;
   /** Part of larger study */
   partOf?: Array<ReferenceOutput>;
-  /**
-   * active | administratively-completed | approved | closed-to-accrual | closed-to-accrual-and-intervention | completed | disapproved | in-review | temporarily-closed-to-accrual | temporarily-closed-to-accrual-and-intervention | withdrawn
-   *
-   * Possible values: "active", "administratively-completed", "approved", "closed-to-accrual", "closed-to-accrual-and-intervention", "completed", "disapproved", "in-review", "temporarily-closed-to-accrual", "temporarily-closed-to-accrual-and-intervention", "withdrawn"
-   */
-  status: string;
+  /** active | administratively-completed | approved | closed-to-accrual | closed-to-accrual-and-intervention | completed | disapproved | in-review | temporarily-closed-to-accrual | temporarily-closed-to-accrual-and-intervention | withdrawn */
+  status: ResearchStudyStatusCodeTypeOutput;
   /** treatment | prevention | diagnostic | supportive-care | screening | health-services-research | basic-science | device-feasibility */
   primaryPurposeType?: CodeableConceptOutput;
   /** n-a | early-phase-1 | phase-1 | phase-1-phase-2 | phase-2 | phase-2-phase-3 | phase-3 | phase-4 */
@@ -708,12 +684,8 @@ export interface LateralityDiscrepancyInferenceOutput
   kind: "lateralityDiscrepancy";
   /** laterality indication */
   lateralityIndication?: CodeableConceptOutput;
-  /**
-   * mismatch type
-   *
-   * Possible values: "orderLateralityMismatch", "textLateralityContradiction", "textLateralityMissing"
-   */
-  discrepancyType: string;
+  /** mismatch type */
+  discrepancyType: LateralityDiscrepancyTypeOutput;
 }
 
 /**
@@ -877,186 +849,17 @@ export interface FollowupCommunicationInferenceOutput
   /** The communication date/time. */
   dateTime?: string[];
   /** The recipient of the communication. */
-  recipient?: string[];
+  recipient?: MedicalProfessionalTypeOutput[];
   /** Communication was acknowledged */
   wasAcknowledged: boolean;
-}
-
-/** The body of the Radiology Insights request. */
-export interface RadiologyInsightsDataOutput {
-  /** The list of patients, including their clinical information and data. */
-  patients: Array<PatientRecordOutput>;
-  /** Configuration affecting the Radiology Insights model's inference. */
-  configuration?: RadiologyInsightsModelConfigurationOutput;
-}
-
-/** A patient record, including their clinical information and data. */
-export interface PatientRecordOutput {
-  /** A given identifier for the patient. Has to be unique across all patients in a single request. */
-  id: string;
-  /** Patient structured information, including demographics and known structured clinical information. */
-  info?: PatientInfoOutput;
-  /** Patient encounters/visits. */
-  encounters?: Array<EncounterOutput>;
-  /** Patient unstructured clinical data, given as documents. */
-  patientDocuments?: Array<PatientDocumentOutput>;
-}
-
-/** Patient structured information, including demographics and known structured clinical information. */
-export interface PatientInfoOutput {
-  /**
-   * The patient's sex.
-   *
-   * Possible values: "female", "male", "unspecified"
-   */
-  sex?: string;
-  /** The patient's date of birth. */
-  birthDate?: string;
-  /** Known clinical information for the patient, structured. */
-  clinicalInfo?: Array<ResourceOutput>;
-}
-
-/** visit/encounter information */
-export interface EncounterOutput {
-  /** The id of the visit. */
-  id: string;
-  /**
-   * Time period of the visit.
-   * In case of admission, use timePeriod.start to indicate the admission time and timePeriod.end to indicate the discharge time.
-   */
-  period?: TimePeriodOutput;
-  /**
-   * The class of the encounter.
-   *
-   * Possible values: "inpatient", "ambulatory", "observation", "emergency", "virtual", "healthHome"
-   */
-  class?: string;
-}
-
-/** A duration of time during which an event is happening */
-export interface TimePeriodOutput {
-  /** Starting time with inclusive boundary */
-  start?: string;
-  /** End time with inclusive boundary, if not ongoing */
-  end?: string;
-}
-
-/** A clinical document related to a patient. Document here is in the wide sense - not just a text document (note). */
-export interface PatientDocumentOutput {
-  /**
-   * The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document).
-   *
-   * Possible values: "note", "fhirBundle", "dicom", "genomicSequencing"
-   */
-  type: string;
-  /**
-   * The type of the clinical document.
-   *
-   * Possible values: "consultation", "dischargeSummary", "historyAndPhysical", "radiologyReport", "procedure", "progress", "laboratory", "pathologyReport"
-   */
-  clinicalType?: string;
-  /** A given identifier for the document. Has to be unique across all documents for a single patient. */
-  id: string;
-  /** A 2 letter ISO 639-1 representation of the language of the document. */
-  language?: string;
-  /** The date and time when the document was created. */
-  createdDateTime?: string;
-  /** Document author(s) */
-  authors?: Array<DocumentAuthorOutput>;
-  /**
-   * specialty type the document
-   *
-   * Possible values: "pathology", "radiology"
-   */
-  specialtyType?: string;
-  /** Administrative metadata for the document. */
-  administrativeMetadata?: DocumentAdministrativeMetadataOutput;
-  /** The content of the patient document. */
-  content: DocumentContentOutput;
-}
-
-/** Document author */
-export interface DocumentAuthorOutput {
-  /** author id */
-  id?: string;
-  /** Text representation of the full name */
-  fullName?: string;
-}
-
-/** Document administrative metadata */
-export interface DocumentAdministrativeMetadataOutput {
-  /** List of procedure information associated with the document. */
-  orderedProcedures?: Array<OrderedProcedureOutput>;
-  /** Reference to the encounter associated with the document. */
-  encounterId?: string;
-}
-
-/** The content of the patient document. */
-export interface DocumentContentOutput {
-  /**
-   * The type of the content's source.
-   * In case the source type is 'inline', the content is given as a string (for instance, text).
-   * In case the source type is 'reference', the content is given as a URI.
-   *
-   * Possible values: "inline", "reference"
-   */
-  sourceType: string;
-  /** The content of the document, given either inline (as a string) or as a reference (URI). */
-  value: string;
-}
-
-/** Configuration affecting the Radiology Insights model's inference. */
-export interface RadiologyInsightsModelConfigurationOutput {
-  /** An indication whether the model should produce verbose output. */
-  verbose?: boolean;
-  /** An indication whether the model's output should include evidence for the inferences. */
-  includeEvidence?: boolean;
-  /**
-   * A list of inference types to be inferred for the current request.
-   * This could be used if only part of the Radiology Insights inferences are required.
-   * If this list is omitted or empty, the model will return all the inference types.
-   */
-  inferenceTypes?: string[];
-  /** The options for the Radiology Insights Inferences */
-  inferenceOptions?: RadiologyInsightsInferenceOptionsOutput;
-  /** Local for the model to use. If not specified, the model will use the default locale */
-  locale?: string;
-}
-
-/** The options for the Radiology Insights Inferences */
-export interface RadiologyInsightsInferenceOptionsOutput {
-  /** Followup Recommendation Options */
-  followupRecommendation?: FollowupRecommendationOptionsOutput;
-  /** Finding Options */
-  finding?: FindingOptionsOutput;
-}
-
-/** Followup Recommendation Options */
-export interface FollowupRecommendationOptionsOutput {
-  /** Include/Exclude followup recommendations with no specific radiologic modality, default is false. */
-  includeRecommendationsWithNoSpecifiedModality?: boolean;
-  /** Include/Exclude followup recommendations in references to a guideline or article, default is false. */
-  includeRecommendationsInReferences?: boolean;
-  /** Provide a single focused sentence as evidence for the recommendation, default is false. */
-  provideFocusedSentenceEvidence?: boolean;
-}
-
-/** Finding Options */
-export interface FindingOptionsOutput {
-  /** Provide a single focused sentence as evidence for the finding, default is false. */
-  provideFocusedSentenceEvidence?: boolean;
 }
 
 /** Provides status details for long running operations. */
 export interface HealthInsightsOperationStatusOutput {
   /** The unique ID of the operation. */
   readonly id: string;
-  /**
-   * The status of the operation
-   *
-   * Possible values: "notStarted", "running", "succeeded", "failed", "canceled"
-   */
-  readonly status: string;
+  /** The status of the operation */
+  readonly status: JobStatusOutput;
   /** The date and time when the processing job was created. */
   readonly createdDateTime?: string;
   /** The date and time when the processing job is set to expire. */
@@ -1106,5 +909,73 @@ export type ProcedureRecommendationOutput =
   | ProcedureRecommendationOutputParent
   | GenericProcedureRecommendationOutput
   | ImagingProcedureRecommendationOutput;
+/** The status of the processing job. */
+export type JobStatusOutput =
+  | "notStarted"
+  | "running"
+  | "succeeded"
+  | "failed"
+  | "canceled";
+/**
+ * Contact Point System
+ * see https://www.hl7.org/fhir/R4/valueset-contact-point-system.html
+ */
+export type ContactPointSystemOutput =
+  | "phone"
+  | "fax"
+  | "email"
+  | "pager"
+  | "url"
+  | "sms"
+  | "other";
+/**
+ * Contact Point Use
+ * See: 	http://hl7.org/fhir/ValueSet/contact-point-use
+ */
+export type ContactPointUseOutput = "home" | "work" | "temp" | "old" | "mobile";
+/**
+ * Observation Status
+ * Based on [FHIR ObservationStatus](https://www.hl7.org/fhir/R4/valueset-observation-status.html)
+ */
+export type ObservationStatusCodeTypeOutput =
+  | "registered"
+  | "preliminary"
+  | "final"
+  | "amended"
+  | "corrected"
+  | "cancelled"
+  | "entered-in-error"
+  | "unknown";
+/** https://www.hl7.org/fhir/R4/codesystem-research-study-status.html */
+export type ResearchStudyStatusCodeTypeOutput =
+  | "active"
+  | "administratively-completed"
+  | "approved"
+  | "closed-to-accrual"
+  | "closed-to-accrual-and-intervention"
+  | "completed"
+  | "disapproved"
+  | "in-review"
+  | "temporarily-closed-to-accrual"
+  | "temporarily-closed-to-accrual-and-intervention"
+  | "withdrawn";
+/** Recommendation finding status */
+export type RecommendationFindingStatusTypeOutput =
+  | "present"
+  | "differential"
+  | "ruleOut"
+  | "conditional";
+/** Laterality discrepancy type */
+export type LateralityDiscrepancyTypeOutput =
+  | "orderLateralityMismatch"
+  | "textLateralityContradiction"
+  | "textLateralityMissing";
+/** Medical Professional Type */
+export type MedicalProfessionalTypeOutput =
+  | "unknown"
+  | "doctor"
+  | "nurse"
+  | "midwife"
+  | "physicianAssistant";
 /** Alias for RepeatabilityResultOutput */
 export type RepeatabilityResultOutput = "accepted" | "rejected";

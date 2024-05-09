@@ -85,7 +85,7 @@ export function transformSampleGroups(model: RLCModel, allowMockValue = true) {
         methodParamNames: "",
         method,
         isLRO: detail.operationHelperDetail?.lroDetails?.isLongRunning ?? false,
-        isPaging: detail.operationHelperDetail?.isPageable ?? false,
+        isPaging: detail.operationHelperDetail?.isPaging ?? false,
         useLegacyLro: false
       };
       // client-level, path-level and method-level parameter preparation
@@ -126,7 +126,7 @@ function enrichLROAndPagingInSample(
 ) {
   const isLRO =
       operation.operationHelperDetail?.lroDetails?.isLongRunning ?? false,
-    isPaging = operation.operationHelperDetail?.isPageable ?? false;
+    isPaging = operation.operationHelperDetail?.isPaging ?? false;
   if (isPaging) {
     if (isLRO) {
       // TODO: report warning this is not supported
@@ -147,9 +147,6 @@ function transformSpecialLetterToSpace(str: string) {
     .replace(/,|\.|\(|\)/g, " ")
     .replace("'s ", " ");
 }
-
-const tokenCredentialPackage = "@azure/identity";
-const apiKeyCredentialPackage = "@azure/core-auth";
 
 function enrichImportedString(
   sampleGroup: RLCSampleGroup,
@@ -209,11 +206,17 @@ function convertClientLevelParameters(
     // Do not include parameters with constant values in the signature, these should go in the options bag
     (p) => p.value === undefined
   );
-  const { addCredentials, credentialScopes, credentialKeyHeaderName } =
-    model.options;
+  const {
+    addCredentials,
+    credentialScopes,
+    credentialKeyHeaderName,
+    customHttpAuthHeaderName,
+    flavor
+  } = model.options;
   const hasUrlParameter = !!urlParameters,
     hasCredentials =
-      addCredentials && (credentialScopes || credentialKeyHeaderName);
+      addCredentials &&
+      (credentialScopes || credentialKeyHeaderName || customHttpAuthHeaderName);
 
   if (hasUrlParameter) {
     // convert the host parameters in url
@@ -237,7 +240,11 @@ function convertClientLevelParameters(
   }
   if (hasCredentials) {
     // Currently only support token credential
-    if (credentialKeyHeaderName) {
+    const apiKeyCredentialPackage =
+      flavor === "azure" ? "@azure/core-auth" : "@typespec/ts-http-runtime";
+    const tokenCredentialPackage =
+      flavor === "azure" ? "@azure/identity" : "@typespec/ts-http-runtime";
+    if (credentialKeyHeaderName && flavor === "azure") {
       clientParams.push({
         name: "credential",
         assignment: `const credential = new AzureKeyCredential("{Your API key}");`
@@ -247,7 +254,15 @@ function convertClientLevelParameters(
         "AzureKeyCredential",
         importedDict
       );
-    } else {
+    } else if (
+      (credentialKeyHeaderName && flavor !== "azure") ||
+      customHttpAuthHeaderName
+    ) {
+      clientParams.push({
+        name: "credential",
+        assignment: `const credential = { key: "{Your API key}"};`
+      });
+    } else if (flavor === "azure") {
       clientParams.push({
         name: "credential",
         assignment: "const credential = new DefaultAzureCredential();"
@@ -257,6 +272,11 @@ function convertClientLevelParameters(
         "DefaultAzureCredential",
         importedDict
       );
+    } else {
+      clientParams.push({
+        name: "credential",
+        assignment: `const credential = {getToken: () => Promise.resolve({ token: "{Your token}", expiresOnTimestamp: 0 })};`
+      });
     }
   }
   return clientParams;

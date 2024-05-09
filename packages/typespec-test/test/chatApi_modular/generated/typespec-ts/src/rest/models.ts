@@ -25,12 +25,8 @@ export interface StreamingChatCompletionOptions {
 export interface ChatMessage {
   /** The text associated with the message. */
   content: string;
-  /**
-   * The role associated with the message.
-   *
-   * Possible values: "user", "system", "assistant"
-   */
-  role: string;
+  /** The role associated with the message. */
+  role: ChatRole;
   /**
    * Field that allows the chat app to store and retrieve data, the structure of such data is dependant on the backend
    * being used. The client must send back the data in this field unchanged in subsequent requests, until the chat app
@@ -59,3 +55,6 @@ export interface ChatCompletionOptions {
    */
   context?: Record<string, unknown>;
 }
+
+/** A representation of the intended purpose of a message. */
+export type ChatRole = "user" | "system" | "assistant";

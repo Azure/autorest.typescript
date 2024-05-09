@@ -6,7 +6,7 @@ import {
   SmokeTestDefaultResponse,
   RepeatableAction200Response,
   RepeatableActionDefaultResponse,
-} from "./responses";
+} from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /azure/core/traits/user/{id}": ["200"],

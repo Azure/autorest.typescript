@@ -1,11 +1,80 @@
 import { assert } from "chai";
-import { emitParameterFromTypeSpec } from "../util/emitUtil.js";
+import {
+  emitClientFactoryFromTypeSpec,
+  emitModelsFromTypeSpec,
+  emitParameterFromTypeSpec
+} from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Parameters.ts", () => {
   describe("query parameters", () => {
     describe("apiVersion in query", () => {
-      it("should't generate apiVersion if there's a client level apiVersion", async () => {
+      it("should not generate apiVersion if there's a client level apiVersion but without default value", async () => {
+        const tspContent = `
+        model ApiVersionParameter {
+          @query
+          "api-version": string;
+        }
+        op test(...ApiVersionParameter): string;
+        `;
+        const parameters = await emitParameterFromTypeSpec(tspContent);
+        assert.ok(parameters);
+        await assertEqualContent(
+          parameters?.content!,
+          `
+            import { RequestParameters } from "@azure-rest/core-client";
+            
+            export type TestParameters = RequestParameters;
+            `
+        );
+        const models = await emitClientFactoryFromTypeSpec(
+          tspContent,
+          false,
+          true,
+          false,
+          true
+        );
+        assert.ok(models);
+        await assertEqualContent(
+          models!.content,
+          `
+          import { getClient, ClientOptions } from "@azure-rest/core-client";
+          import { logger } from "./logger.js";
+          import { testClient } from "./clientDefinitions.js";
+          
+          /**
+           * Initialize a new instance of \`testClient\`
+           * @param endpointParam - The parameter endpointParam
+           * @param apiVersion - The parameter apiVersion
+           * @param options - the parameter for all optional parameters
+           */
+          export default function createClient(endpointParam: string, apiVersion: string, options: ClientOptions = {}): testClient {
+          const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`;
+          options.apiVersion = options.apiVersion ?? apiVersion;
+          const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
+          const userAgentPrefix =
+              options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+              ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
+              : \`\${userAgentInfo}\`;
+          options = {
+              ...options,
+              userAgentOptions: {
+              userAgentPrefix,
+              },
+              loggingOptions: {
+                logger: options.loggingOptions?.logger ?? logger.info
+              },
+          };
+          
+          const client = getClient(endpointUrl, options) as testClient;
+          
+          return client;
+      }
+      `
+        );
+      });
+
+      it("shouldn't generate apiVersion if there's a client level apiVersion and with default value", async () => {
         const parameters = await emitParameterFromTypeSpec(
           `
           model ApiVersionParameter {
@@ -13,7 +82,12 @@ describe("Parameters.ts", () => {
             "api-version": string;
           }
           op test(...ApiVersionParameter): string;
-          `
+          `,
+          false,
+          true,
+          false,
+          true,
+          true
         );
         assert.ok(parameters);
         await assertEqualContent(
@@ -21,19 +95,21 @@ describe("Parameters.ts", () => {
           `
             import { RequestParameters } from "@azure-rest/core-client";
             
-            export type TestParameters =  RequestParameters;
+            export type TestParameters = RequestParameters;
             `
         );
       });
-
-      it("should generate apiVersion if there's no client level apiVersion", async () => {
+      it("should generate apiVersion in query parameter if there's no client level apiVersion", async () => {
         const parameters = await emitParameterFromTypeSpec(
           `
           model ApiVersionParameter {
             @query
             "api-version": string;
           }
+          @route("/test")
           op test(...ApiVersionParameter): string;
+          @route("/test1")
+          op test1(): string;
           `,
           false,
           true
@@ -53,6 +129,7 @@ describe("Parameters.ts", () => {
             }
             
             export type TestParameters = TestQueryParam & RequestParameters;
+            export type Test1Parameters = RequestParameters;
             `
         );
       });
@@ -113,6 +190,109 @@ describe("Parameters.ts", () => {
             
             export type TestParameters = TestQueryParam & RequestParameters;
             `
+        );
+      });
+    });
+
+    describe("union and enum", () => {
+      it("should generate string union literal query param", async () => {
+        const tspContent = `
+        model CustomerQuery {
+          @query
+          "foo": "bar" | "baz";
+        }
+        op test(...CustomerQuery): string;
+        `;
+        const parameters = await emitParameterFromTypeSpec(tspContent);
+        assert.ok(parameters);
+        await assertEqualContent(
+          parameters?.content!,
+          `
+          import { RequestParameters } from "@azure-rest/core-client";
+
+          export interface TestQueryParamProperties {
+              "foo": "bar" | "baz";
+          }
+          
+          export interface TestQueryParam {
+              queryParameters: TestQueryParamProperties;
+          }
+          
+          export type TestParameters = TestQueryParam & RequestParameters;`
+        );
+      });
+
+      it("should import name for named union as query param", async () => {
+        const tspContent = `
+        union Foo {
+          "bar";
+          "baz";
+        }
+        model CustomerQuery {
+          @query
+          "foo": Foo;
+        }
+        op test(...CustomerQuery): string;
+        `;
+        const parameters = await emitParameterFromTypeSpec(tspContent);
+        assert.ok(parameters);
+        await assertEqualContent(
+          parameters?.content!,
+          `
+          import { RequestParameters } from "@azure-rest/core-client";
+          import { Foo } from "./models.js";
+
+          export interface TestQueryParamProperties {
+              "foo": Foo;
+          }
+          
+          export interface TestQueryParam {
+              queryParameters: TestQueryParamProperties;
+          }
+          
+          export type TestParameters = TestQueryParam & RequestParameters;`
+        );
+        const models = await emitModelsFromTypeSpec(tspContent);
+        await assertEqualContent(
+          models?.inputModelFile?.content!,
+          `/** Alias for Foo */\nexport type Foo = "bar" | "baz";`
+        );
+      });
+
+      it("should import name for enum as query param", async () => {
+        const tspContent = `
+        enum Foo {
+          "bar",
+          "baz",
+        }
+        model CustomerQuery {
+          @query
+          "foo": Foo;
+        }
+        op test(...CustomerQuery): string;
+        `;
+        const parameters = await emitParameterFromTypeSpec(tspContent);
+        assert.ok(parameters);
+        await assertEqualContent(
+          parameters?.content!,
+          `
+          import { RequestParameters } from "@azure-rest/core-client";
+          import { Foo } from "./models.js";
+
+          export interface TestQueryParamProperties {
+              "foo": Foo;
+          }
+          
+          export interface TestQueryParam {
+              queryParameters: TestQueryParamProperties;
+          }
+          
+          export type TestParameters = TestQueryParam & RequestParameters;`
+        );
+        const models = await emitModelsFromTypeSpec(tspContent);
+        await assertEqualContent(
+          models?.inputModelFile?.content!,
+          `/** Alias for Foo */\nexport type Foo = "bar" | "baz";`
         );
       });
     });
@@ -352,7 +532,7 @@ describe("Parameters.ts", () => {
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import { SimpleModel } from "./models";
+        import { SimpleModel } from "./models.js";
 
         export interface ReadBodyParam {
           body:Array<SimpleModel>;
@@ -376,7 +556,7 @@ describe("Parameters.ts", () => {
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import { InnerModel } from "./models";
+        import { InnerModel } from "./models.js";
 
         export interface ReadBodyParam {
           body:Array<InnerModel>;
@@ -402,7 +582,7 @@ describe("Parameters.ts", () => {
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
-        import { SimpleModel } from "./models";
+        import { SimpleModel } from "./models.js";
 
         export interface ReadBodyParam {
           body: Record<string, SimpleModel>;

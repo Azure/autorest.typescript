@@ -3,6 +3,6 @@
 
 export { Versions } from "./models.js";
 export {
-  NoOperationParamsOptions,
-  WithOperationPathParamOptions,
+  NoOperationParamsOptionalParams,
+  WithOperationPathParamOptionalParams,
 } from "./options.js";

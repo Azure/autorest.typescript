@@ -1,41 +1,27 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { GetJobParameters, CreateJobParameters } from "./parameters";
+import { LongRunningRpcParameters } from "./parameters.js";
 import {
-  GetJob200Response,
-  GetJobDefaultResponse,
-  CreateJob202Response,
-  CreateJobDefaultResponse,
-} from "./responses";
+  LongRunningRpc202Response,
+  LongRunningRpcDefaultResponse,
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface GetJob {
-  /** Poll a Job */
-  get(
-    options?: GetJobParameters,
-  ): StreamableMethod<GetJob200Response | GetJobDefaultResponse>;
-}
-
-export interface CreateJob {
-  /** Creates a Job */
+export interface LongRunningRpc {
+  /** Generate data. */
   post(
-    options?: CreateJobParameters,
-  ): StreamableMethod<CreateJob202Response | CreateJobDefaultResponse>;
+    options?: LongRunningRpcParameters,
+  ): StreamableMethod<
+    LongRunningRpc202Response | LongRunningRpcDefaultResponse
+  >;
 }
 
 export interface Routes {
-  /** Resource for '/azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs/\{jobId\}' has methods for the following verbs: get */
-  (
-    path: "/azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs/{jobId}",
-    jobId: string,
-  ): GetJob;
-  /** Resource for '/azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs' has methods for the following verbs: post */
-  (
-    path: "/azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs",
-  ): CreateJob;
+  /** Resource for '/azure/core/lro/rpc/generations:submit' has methods for the following verbs: post */
+  (path: "/azure/core/lro/rpc/generations:submit"): LongRunningRpc;
 }
 
-export type LegacyClient = Client & {
+export type RpcClient = Client & {
   path: Routes;
 };

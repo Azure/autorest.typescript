@@ -23,7 +23,8 @@ describe("UnionContext in API Layer", () => {
         getToken: async () => Promise.resolve(null)
       },
       {
-        allowInsecureConnection: true
+        allowInsecureConnection: true,
+        endpoint: "http://localhost:3002"
       }
     );
 
@@ -49,7 +50,7 @@ describe("UnionContext in API Layer", () => {
       {
         key: "valid-key"
       },
-      { allowInsecureConnection: true }
+      { allowInsecureConnection: true, endpoint: "http://localhost:3002" }
     );
   }
 
@@ -85,7 +86,8 @@ describe("UnionClient in classical client", () => {
         getToken: async () => Promise.resolve(null)
       },
       {
-        allowInsecureConnection: true
+        allowInsecureConnection: true,
+        endpoint: "http://localhost:3002"
       }
     );
 
@@ -111,7 +113,7 @@ describe("UnionClient in classical client", () => {
       {
         key: "valid-key"
       },
-      { allowInsecureConnection: true }
+      { allowInsecureConnection: true, endpoint: "http://localhost:3002" }
     );
   }
 

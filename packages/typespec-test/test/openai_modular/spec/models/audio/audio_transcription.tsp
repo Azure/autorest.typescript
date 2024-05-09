@@ -1,9 +1,11 @@
 import "@typespec/versioning";
 import "./common.tsp";
+import "@azure-tools/typespec-client-generator-core";
 
 namespace Azure.OpenAI;
 
 using TypeSpec.Versioning;
+using Azure.ClientGenerator.Core;
 
 @doc("Defines available options for the underlying response format of output transcription information.")
 @added(ServiceApiVersions.v2024_02_15_Preview)
@@ -38,7 +40,7 @@ model AudioTranscriptionOptions {
   The audio data to transcribe. This must be the binary content of a file in one of the supported media formats:
    flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, webm.
   """)
-  @projectedName("csharp", "AudioData")
+  @clientName("AudioData", "csharp")
   file: bytes;
 
   @doc("""
@@ -51,7 +53,7 @@ model AudioTranscriptionOptions {
   @doc("""
   The requested format of the transcription response data, which will influence the content and detail of the result.
   """)
-  @projectedName("json", "response_format")
+  @encodedName("application/json", "response_format")
   responseFormat?: AudioTranscriptionFormat;
 
   @doc("""
@@ -80,7 +82,7 @@ model AudioTranscriptionOptions {
   // Implementation note: developer-facing specification of deployment or model by clients should be controlled either
   // via an operation parameter or by this request body field -- but only one of those. This field should be hidden by
   // clients if operation parameters are used and populated into the request body on an as-needed basis.
-  @projectedName("csharp", "DeploymentName")
+  @clientName("DeploymentName", "csharp")
   `model`?: string;
 }
 
@@ -109,17 +111,17 @@ model AudioTranscriptionSegment {
   temperature: float32;
 
   @doc("The average log probability associated with this audio segment.")
-  @projectedName("json", "avg_logprob")
-  @projectedName("csharp", "AverageLogProbability")
+  @encodedName("application/json", "avg_logprob")
+  @clientName("AverageLogProbability", "csharp")
   avgLogprob: float32;
 
   @doc("The compression ratio of this audio segment.")
-  @projectedName("json", "compression_ratio")
+  @encodedName("application/json", "compression_ratio")
   compressionRatio: float32;
 
   @doc("The probability of no speech detection within this audio segment.")
-  @projectedName("json", "no_speech_prob")
-  @projectedName("csharp", "NoSpeechProbability")
+  @encodedName("application/json", "no_speech_prob")
+  @clientName("NoSpeechProbability", "csharp")
   noSpeechProb: float32;
 
   @doc("The token IDs matching the transcribed text in this audio segment.")
@@ -142,7 +144,7 @@ model AudioTranscription {
   text: string;
 
   @doc("The label that describes which operation type generated the accompanying response data.")
-  @projectedName("csharp", "InternalAudioTaskLabel")
+  @clientName("InternalAudioTaskLabel", "csharp")
   task?: AudioTaskLabel;
 
   @doc("""

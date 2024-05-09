@@ -15,9 +15,9 @@ dotenv.config();
  * @summary call operation ListTestRuns
  */
 async function loadTestRunListTestRunsSample() {
-  const endpoint = "{Your endpoint}";
+  const endpointParam = "{Your endpointParam}";
   const credential = new DefaultAzureCredential();
-  const client = createAzureLoadTestingClient(endpoint, credential);
+  const client = createAzureLoadTestingClient(endpointParam, credential);
   const initialResponse = await client
     .path("/test-runs")
     .get({

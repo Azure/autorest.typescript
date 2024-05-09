@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
+import { logger } from "./logger.js";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
-import { AuthUnionClient } from "./clientDefinitions";
+import { AuthUnionClient } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `AuthUnionClient`
@@ -15,7 +15,8 @@ export default function createClient(
   credentials: TokenCredential | KeyCredential,
   options: ClientOptions = {},
 ): AuthUnionClient {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  const endpointUrl =
+    options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-auth-union-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -37,7 +38,11 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, credentials, options) as AuthUnionClient;
+  const client = getClient(
+    endpointUrl,
+    credentials,
+    options,
+  ) as AuthUnionClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return client;

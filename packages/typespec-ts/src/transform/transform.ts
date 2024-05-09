@@ -16,7 +16,8 @@ import {
   SchemaContext,
   UrlInfo,
   initInternalImports,
-  transformSampleGroups
+  transformSampleGroups,
+  Imports
 } from "@azure-tools/rlc-common";
 import { getDoc } from "@typespec/compiler";
 import { getServers } from "@typespec/http";
@@ -24,6 +25,7 @@ import { join } from "path";
 import {
   getDefaultService,
   getFormattedPropertyDoc,
+  getImportedModelName,
   getSchemaForType,
   getTypeName,
   predictDefaultValue
@@ -60,17 +62,19 @@ export async function transformRLCModel(
     NameType.Class
   );
   const importSet = initInternalImports();
-  const paths: Paths = transformPaths(program, client, dpgContext);
-  const schemas: Schema[] = transformSchemas(program, client, dpgContext);
+  const urlInfo = transformUrlInfo(client, dpgContext, importSet);
+  const paths: Paths = transformPaths(client, dpgContext, importSet);
+  const schemas: Schema[] = transformSchemas(client, dpgContext);
   const responses: OperationResponse[] = transformToResponseTypes(
-    importSet,
     client,
-    dpgContext
+    dpgContext,
+    importSet
   );
   const parameters: OperationParameter[] = transformToParameterTypes(
-    importSet,
     client,
-    dpgContext
+    dpgContext,
+    importSet,
+    urlInfo?.apiVersionInfo
   );
   const helperDetails = transformHelperFunctionDetails(
     client,
@@ -79,9 +83,8 @@ export async function transformRLCModel(
   );
   // Enrich client-level annotation detail
   helperDetails.clientLroOverload = getClientLroOverload(paths);
-  const urlInfo = transformUrlInfo(dpgContext);
-  const apiVersionInfo = transformApiVersionInfo(client, dpgContext, urlInfo);
-  const telemetryOptions = transformTelemetryInfo(dpgContext, client);
+
+  const telemetryOptions = transformTelemetryInfo(client, dpgContext);
   const model: RLCModel = {
     srcPath,
     libraryName,
@@ -89,7 +92,7 @@ export async function transformRLCModel(
     options,
     schemas,
     responses,
-    apiVersionInfo,
+    apiVersionInfo: urlInfo?.apiVersionInfo,
     parameters,
     helperDetails,
     urlInfo,
@@ -110,7 +113,13 @@ export async function transformRLCModel(
   return model;
 }
 
-export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {
+export function transformUrlInfo(
+  client: SdkClient,
+  dpgContext: SdkContext,
+  importDetails: Imports
+): UrlInfo | undefined {
+  const importedModels = new Set<string>();
+  const usage = [SchemaContext.Exception, SchemaContext.Input];
   const program = dpgContext.program;
   const serviceNs = getDefaultService(program)?.type;
   let endpoint = undefined;
@@ -131,25 +140,37 @@ export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {
         }
 
         const schema = getSchemaForType(dpgContext, type, {
-          usage: [SchemaContext.Exception, SchemaContext.Input],
+          usage: usage,
           needRef: false,
           relevantProperty: property
         });
+        getImportedModelName(schema, usage)?.forEach(
+          importedModels.add,
+          importedModels
+        );
         urlParameters.push({
           oriName: key,
           name: normalizeName(key, NameType.Parameter, true),
-          type: getTypeName(schema),
+          type: getTypeName(schema, usage),
           description:
             (getDoc(program, property) &&
               getFormattedPropertyDoc(program, property, schema, " ")) ??
-            getFormattedPropertyDoc(program, type, schema, " " /* sperator*/),
+            getFormattedPropertyDoc(program, type, schema, " " /* separator*/),
           value: predictDefaultValue(dpgContext, host?.[0]?.parameters.get(key))
         });
       }
     }
   }
+  if (importedModels.size > 0) {
+    importDetails.rlcClientFactory.importsSet = importedModels;
+  }
+  let hasApiVersionInUrl = false;
   if (endpoint && urlParameters.length > 0) {
     for (const param of urlParameters) {
+      if (param.oriName === "apiVersion") {
+        hasApiVersionInUrl = true;
+        dpgContext.hasApiVersionInClient = true;
+      }
       if (param.oriName) {
         const regexp = new RegExp(`{${param.oriName}}`, "g");
         endpoint = endpoint.replace(regexp, `{${param.name}}`);
@@ -158,11 +179,26 @@ export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {
   }
   // Set the default value if missing endpoint parameter
   if (endpoint == undefined && urlParameters.length === 0) {
-    endpoint = "{endpoint}";
+    endpoint = "{endpointParam}";
     urlParameters.push({
-      name: "endpoint",
+      name: "endpointParam",
       type: "string"
     });
   }
-  return { endpoint, urlParameters };
+  const apiVersionInfo = !hasApiVersionInUrl
+    ? transformApiVersionInfo(client, dpgContext, { endpoint, urlParameters })
+    : undefined;
+  if (
+    apiVersionInfo &&
+    urlParameters &&
+    apiVersionInfo?.definedPosition === "query" &&
+    !apiVersionInfo.isCrossedVersion &&
+    !apiVersionInfo.defaultValue
+  ) {
+    urlParameters.push({
+      name: "api-version",
+      type: "string"
+    });
+  }
+  return { endpoint, urlParameters, apiVersionInfo };
 }

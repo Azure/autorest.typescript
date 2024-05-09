@@ -1,10 +1,11 @@
 import { assert } from "chai";
-import { DatetimeClient } from "./generated/encode/datetime/src/index";
+import { DatetimeClient } from "./generated/encode/datetime/src/index.js";
 describe("EncodeDatetimeClient Rest Client", () => {
   let client: DatetimeClient;
 
   beforeEach(() => {
     client = new DatetimeClient({
+      endpoint: "http://localhost:3002",
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

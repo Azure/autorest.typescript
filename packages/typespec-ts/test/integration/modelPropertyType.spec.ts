@@ -123,6 +123,10 @@ const testedTypes: TypeDetail[] = [
   {
     type: "union/float/literal",
     defaultValue: 46.875
+  },
+  {
+    type: "union-enum-value",
+    defaultValue: "value2"
   }
 ];
 describe("ModelsPropertyTypesClient Rest Client", () => {

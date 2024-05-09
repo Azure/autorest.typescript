@@ -1,6 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** Template type for testing models with specific properties. Pass in the type of the property you are looking for */
+export interface UnionEnumValueProperty {
+  /** Property */
+  property: "value2";
+}
+
+/** Type of ExtendedEnum */
+/** "value2" */
+export type ExtendedEnum = string;
+
 /** Model with a union of float literal as property. */
 export interface UnionFloatLiteralProperty {
   /** Property */
@@ -112,6 +122,10 @@ export interface ExtensibleEnumProperty {
   property: InnerEnum;
 }
 
+/** Enum that will be used as a property for model EnumProperty. Extensible. */
+/** "ValueOne", "ValueTwo" */
+export type InnerEnum = string;
+
 /** Model with enum properties */
 export interface EnumProperty {
   /** Property */
@@ -175,6 +189,3 @@ export interface BooleanProperty {
   /** Property */
   property: boolean;
 }
-
-/** Alias for InnerEnum */
-export type InnerEnum = string | "ValueOne" | "ValueTwo";

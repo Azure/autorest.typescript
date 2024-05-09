@@ -52,7 +52,8 @@ import {
   normalizeName,
   ObjectSchema,
   Schema,
-  SchemaContext
+  SchemaContext,
+  isArraySchema
 } from "@azure-tools/rlc-common";
 import {
   getHeaderFieldName,
@@ -63,7 +64,7 @@ import {
   createMetadataInfo,
   Visibility
 } from "@typespec/http";
-import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
+import { getPagedResult } from "@azure-tools/typespec-azure-core";
 import { extractPagedMetadataNested } from "./operationUtil.js";
 import {
   getDefaultApiVersion,
@@ -72,7 +73,11 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { GetSchemaOptions, SdkContext } from "./interfaces.js";
 import { getModelNamespaceName } from "./namespaceUtils.js";
-import { KnownMediaType, hasMediaType } from "./mediaTypes.js";
+import {
+  KnownMediaType,
+  hasMediaType,
+  isMediaTypeMultipartFormData
+} from "./mediaTypes.js";
 
 export const BINARY_TYPE_UNION =
   "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
@@ -181,7 +186,10 @@ export function getSchemaForType(
           });
         }
         schema.typeName = getModelInlineSigniture(schema, {
-          usage: [SchemaContext.Input]
+          usage: [SchemaContext.Input],
+          multipart:
+            options?.isRequestBody &&
+            isMediaTypeMultipartFormData(options?.mediaTypes ?? [])
         });
         schema.type = "object";
       }
@@ -229,7 +237,11 @@ export function getSchemaForType(
   return undefined;
 }
 export function getEffectiveModelFromType(program: Program, type: Type): Type {
-  if (type.kind === "Model") {
+  /**
+   * If type is an anonymous model, tries to find a named model that has the same
+   * set of properties when non-schema properties are excluded.
+   */
+  if (type.kind === "Model" && type.name === "") {
     const effective = getEffectiveModelType(program, type, isSchemaProperty);
     if (effective.name) {
       return effective;
@@ -389,10 +401,13 @@ function getSchemaForUnion(
       .map((item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`)
       .join(" | ");
     if (!union.expression) {
-      schema.name = union.name;
+      const unionName = union.name
+        ? normalizeName(union.name, NameType.Interface)
+        : undefined;
+      schema.name = unionName;
       schema.type = "object";
-      schema.typeName = union.name;
-      schema.outputTypeName = union.name + "Output";
+      schema.typeName = unionName;
+      schema.outputTypeName = unionName + "Output";
       schema.alias = unionAlias;
       schema.outputAlias = outputUnionAlias;
     } else if (union.expression && !union.name) {
@@ -600,15 +615,21 @@ function getSchemaForModel(
         .join("") + "List";
   }
 
+  const isMultipartBody = isMediaTypeMultipartFormData(contentTypes ?? []);
+
+  const isCoreModel = isAzureCoreErrorType(model);
   const modelSchema: ObjectSchema = {
-    name:
-      overridedModelName !== name
+    name: isCoreModel
+      ? name
+      : overridedModelName !== name
         ? overridedModelName
         : dpgContext.rlcOptions?.enableModelNamespace
           ? fullNamespaceName
           : name,
     type: "object",
-    description: getDoc(program, model) ?? ""
+    isMultipartBody,
+    description: getDoc(program, model) ?? "",
+    fromCore: isCoreModel
   };
   // normalized the output name
   modelSchema.name = normalizeName(
@@ -617,16 +638,12 @@ function getSchemaForModel(
     true /** shouldGuard */
   );
 
-  if (modelSchema.name === "Record" && isRecordModelType(program, model)) {
+  if (model.name === "Record" && isRecordModelType(program, model)) {
     return getSchemaForRecordModel(dpgContext, model, { usage });
   }
   modelSchema.typeName = modelSchema.name;
   if (usage && usage.includes(SchemaContext.Output)) {
     modelSchema.outputTypeName = modelSchema.name + "Output";
-  }
-
-  if (isAzureCoreErrorType(model)) {
-    modelSchema.fromCore = true;
   }
 
   if (getPagedResult(program, model)) {
@@ -802,20 +819,24 @@ function getSchemaForModel(
   }
 
   if (model.baseModel) {
-    modelSchema.parents = {
-      all: [
-        getSchemaForType(dpgContext, model.baseModel, {
-          usage,
-          needRef: true
-        })
-      ],
-      immediate: [
-        getSchemaForType(dpgContext, model.baseModel, {
-          usage,
-          needRef: true
-        })
-      ]
-    };
+    if (modelSchema.parents === undefined) {
+      modelSchema.parents = {
+        all: [],
+        immediate: []
+      };
+    }
+    modelSchema.parents.all?.push(
+      getSchemaForType(dpgContext, model.baseModel, {
+        usage,
+        needRef: true
+      })
+    );
+    modelSchema.parents.immediate?.push(
+      getSchemaForType(dpgContext, model.baseModel, {
+        usage,
+        needRef: true
+      })
+    );
   }
   return modelSchema;
 }
@@ -921,16 +942,22 @@ function getSchemaForEnum(dpgContext: SdkContext, e: Enum) {
     values.push(getSchemaForType(dpgContext, option));
   }
 
-  const schema: any = { type, description: getDoc(dpgContext.program, e) };
+  const schema: any = {
+    type: "object",
+    name: e.name,
+    typeName: normalizeName(e.name, NameType.Interface),
+    outputTypeName: normalizeName(e.name, NameType.Interface) + "Output",
+    description: getDoc(dpgContext.program, e),
+    memberType: type
+  };
+
   if (values.length > 0) {
     schema.enum = values;
-    schema.type = values
+    const unionAlias = values
       .map((item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`)
       .join(" | ");
-    if (!isFixed(dpgContext.program, e)) {
-      schema.name = "string";
-      schema.typeName = "string";
-    }
+    schema.alias = unionAlias;
+    schema.outputAlias = unionAlias;
   }
   return schema;
 }
@@ -994,8 +1021,14 @@ function getSchemaForArrayModel(
       if (schema.items.typeName) {
         if (schema.items.type === "dictionary") {
           schema.typeName = `${schema.items.typeName}[]`;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `(${schema.items.outputTypeName})[]`;
+          }
         } else if (schema.items.type === "union") {
           schema.typeName = `(${schema.items.typeName})[]`;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `(${schema.items.outputTypeName})[]`;
+          }
         } else if (
           schema.items.typeName.includes(BINARY_TYPE_UNION) &&
           schema.items.type === "string"
@@ -1308,11 +1341,7 @@ export function getSerializeTypeName(
     "Date | string",
     "string"
   );
-  const canSerialize = schema.enum
-    ? schema.enum.every((type) => {
-        return isSerializable(type) || type.type === "null";
-      })
-    : isSerializable(schema);
+  const canSerialize = isSerializable(schema);
   if (canSerialize) {
     return schema.alias ? typeName : formattedName;
   }
@@ -1323,6 +1352,11 @@ export function getSerializeTypeName(
   });
   return "string";
   function isSerializable(type: any) {
+    if (type.enum) {
+      return type.enum.every((i: any) => {
+        return isSerializable(i) || i.type === "null";
+      });
+    }
     return (
       ["string", "number", "boolean"].includes(type.type) || type.isConstant
     );
@@ -1337,7 +1371,7 @@ export function getImportedModelName(
     case "array": {
       const ret = new Set<string>();
       [(schema as ArraySchema).items]
-        .filter((i?: Schema) => !!i && i.type === "object")
+        .filter((i?: Schema) => !!i)
         .forEach((i?: Schema) =>
           getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );
@@ -1364,7 +1398,7 @@ export function getImportedModelName(
     case "dictionary": {
       const ret = new Set<string>();
       [(schema as DictionarySchema).additionalProperties]
-        .filter((i?: Schema) => !!i && i.type === "object")
+        .filter((i?: Schema) => !!i)
         .forEach((i?: Schema) =>
           getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );
@@ -1374,7 +1408,7 @@ export function getImportedModelName(
     case "union": {
       const ret = new Set<string>();
       ((schema as Schema).enum ?? [])
-        .filter((i?: Schema) => !!i && i.type === "object")
+        .filter((i?: Schema) => !!i)
         .forEach((i?: Schema) =>
           getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );
@@ -1407,10 +1441,6 @@ function getEnumStringDescription(type: any) {
 
 function getBinaryDescripton(type: any) {
   if (type?.typeName?.includes(BINARY_TYPE_UNION)) {
-    if (type?.typeName?.includes(BINARY_AND_FILE_TYPE_UNION)) {
-      return `NOTE: The following type 'File' is part of WebAPI and available since Node 20. If your Node version is lower than Node 20.
-You could leverage our helpers 'createFile' or 'createFileFromStream' to create a File object. They could help you specify filename, type, and others.`;
-    }
     return `Value may contain any sequence of octets`;
   }
   return undefined;
@@ -1489,7 +1519,7 @@ export function predictDefaultValue(
   if (!serviceNamespace) {
     return;
   }
-  const defaultApiVersion = getEnrichedDefaultApiVersion(program, dpgContext);
+  const defaultApiVersion = getDefaultApiVersionString(dpgContext);
   if (param && isApiVersion(dpgContext, param) && defaultApiVersion) {
     return defaultApiVersion;
   }
@@ -1530,31 +1560,16 @@ export function getDefaultService(program: Program): Service | undefined {
   }
   return services[0];
 }
-
 /**
- * Get the default api-version both from versioned and service decorator
- * TODO: remember to switch to TCGC once the fix is done
- * @param program
- * @param dpgContext
- * @returns default api-version value
+ * Return the default api version from the program; undefined if no default
  */
-export function getEnrichedDefaultApiVersion(
-  program: Program,
+export function getDefaultApiVersionString(
   dpgContext: SdkContext
 ): string | undefined {
-  const serviceNamespace = getDefaultService(program);
-  if (!serviceNamespace) {
-    return;
-  }
-
-  const defaultVersion = getDefaultApiVersion(
-    dpgContext,
-    serviceNamespace!.type
-  );
-  if (defaultVersion) {
-    return defaultVersion.value;
-  }
-  return serviceNamespace.version;
+  const program = dpgContext.program;
+  return getDefaultService(program)
+    ? getDefaultApiVersion(dpgContext, getDefaultService(program)!.type)?.value
+    : undefined;
 }
 
 export function trimUsage(model: any) {
@@ -1572,16 +1587,35 @@ export function trimUsage(model: any) {
   return ordered;
 }
 
+export function buildCoreTypeInfo(t?: Type) {
+  return isAzureCoreErrorType(t)
+    ? "ErrorType"
+    : isAzureCoreLroType(t)
+      ? "LroType"
+      : undefined;
+}
+
 export function isAzureCoreErrorType(t?: Type): boolean {
   if (
     t?.kind !== "Model" ||
     !["error", "errorresponse", "innererror"].includes(t.name.toLowerCase())
   )
     return false;
+  return isAzureCoreFoundationsNamespace(t);
+}
+
+// Check if the type in the Azure.Core.Foundations has an LRO type in core
+export function isAzureCoreLroType(t?: Type): boolean {
+  if (t?.kind !== "Enum" || !["operationstate"].includes(t.name.toLowerCase()))
+    return false;
+  return isAzureCoreFoundationsNamespace(t);
+}
+
+function isAzureCoreFoundationsNamespace(t?: Type): boolean {
   const namespaces = ".Azure.Core.Foundations".split(".");
   while (
     namespaces.length > 0 &&
-    (t?.kind === "Model" || t?.kind === "Namespace") &&
+    (t?.kind === "Model" || t?.kind === "Enum" || t?.kind === "Namespace") &&
     t.namespace?.name === namespaces.pop()
   ) {
     t = t.namespace;
@@ -1610,8 +1644,20 @@ export function isAnonymousModelType(type: Type) {
  */
 export function getModelInlineSigniture(
   schema: ObjectSchema,
-  options: { importedModels?: Set<string>; usage?: SchemaContext[] } = {}
+  options: {
+    importedModels?: Set<string>;
+    usage?: SchemaContext[];
+    multipart?: boolean;
+  } = {}
 ) {
+  if (options.multipart) {
+    return getMultipartInlineSignature(
+      schema,
+      options.importedModels,
+      options.usage
+    );
+  }
+
   let schemaSignature = `{`;
   for (const propName in schema.properties) {
     const propType = schema.properties[propName]!;
@@ -1634,4 +1680,46 @@ export function getModelInlineSigniture(
 
   schemaSignature += `}`;
   return schemaSignature;
+}
+
+function getMultipartInlineSignature(
+  schema: ObjectSchema,
+  importedModels?: Set<string>,
+  usage?: SchemaContext[]
+): string {
+  const types = Object.entries(schema.properties ?? {})
+    .map(([propertyName, property]) => {
+      let schema: Schema;
+
+      // Flatten arrays for file uploads
+      if (
+        isArraySchema(property) &&
+        property.items &&
+        getTypeName(property.items, usage).includes(BINARY_AND_FILE_TYPE_UNION)
+      ) {
+        schema = property.items;
+      } else {
+        schema = property;
+      }
+
+      const typeName = getTypeName(schema, usage);
+      if (!typeName) {
+        return undefined;
+      }
+
+      const importNames = getImportedModelName(schema);
+      if (importedModels && importNames) {
+        importNames.forEach(importedModels.add.bind(importedModels));
+      }
+
+      if (typeName.includes("File")) {
+        return `{ name: ${propertyName}, body: ${typeName}, filename?: string, contentType?: string }`;
+      } else {
+        return `{ name: ${propertyName}, body: ${typeName} }`;
+      }
+    })
+    .filter(Boolean)
+    .join(" | ");
+
+  return `FormData | Array<${types}>`;
 }

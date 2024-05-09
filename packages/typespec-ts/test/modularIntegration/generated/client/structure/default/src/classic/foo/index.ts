@@ -1,19 +1,22 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ServiceContext } from "../../api/ServiceContext.js";
+import { ServiceContext } from "../../api/serviceContext.js";
 import { three, four } from "../../api/foo/index.js";
-import { FooThreeOptions, FooFourOptions } from "../../models/options.js";
+import {
+  FooThreeOptionalParams,
+  FooFourOptionalParams,
+} from "../../models/options.js";
 
 export interface FooOperations {
-  three: (options?: FooThreeOptions) => Promise<void>;
-  four: (options?: FooFourOptions) => Promise<void>;
+  three: (options?: FooThreeOptionalParams) => Promise<void>;
+  four: (options?: FooFourOptionalParams) => Promise<void>;
 }
 
 export function getFoo(context: ServiceContext) {
   return {
-    three: (options?: FooThreeOptions) => three(context, options),
-    four: (options?: FooFourOptions) => four(context, options),
+    three: (options?: FooThreeOptionalParams) => three(context, options),
+    four: (options?: FooFourOptionalParams) => four(context, options),
   };
 }
 

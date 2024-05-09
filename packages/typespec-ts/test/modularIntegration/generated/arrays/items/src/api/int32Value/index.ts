@@ -12,13 +12,13 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  Int32ValueGetOptions,
-  Int32ValuePutOptions,
+  Int32ValueGetOptionalParams,
+  Int32ValuePutOptionalParams,
 } from "../../models/options.js";
 
 export function _int32ValueGetSend(
   context: Client,
-  options: Int32ValueGetOptions = { requestOptions: {} },
+  options: Int32ValueGetOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Int32ValueGet200Response> {
   return context
     .path("/type/array/int32")
@@ -37,7 +37,7 @@ export async function _int32ValueGetDeserialize(
 
 export async function int32ValueGet(
   context: Client,
-  options: Int32ValueGetOptions = { requestOptions: {} },
+  options: Int32ValueGetOptionalParams = { requestOptions: {} },
 ): Promise<number[]> {
   const result = await _int32ValueGetSend(context, options);
   return _int32ValueGetDeserialize(result);
@@ -46,7 +46,7 @@ export async function int32ValueGet(
 export function _int32ValuePutSend(
   context: Client,
   body: number[],
-  options: Int32ValuePutOptions = { requestOptions: {} },
+  options: Int32ValuePutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<Int32ValuePut204Response> {
   return context
     .path("/type/array/int32")
@@ -66,7 +66,7 @@ export async function _int32ValuePutDeserialize(
 export async function int32ValuePut(
   context: Client,
   body: number[],
-  options: Int32ValuePutOptions = { requestOptions: {} },
+  options: Int32ValuePutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _int32ValuePutSend(context, body, options);
   return _int32ValuePutDeserialize(result);

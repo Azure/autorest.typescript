@@ -124,10 +124,9 @@
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/typespec-ts",
       "runtimeArgs": [
-        "ts-node",
-        "./test/commands/gen-cadl-ranch.ts",
-        "--tag=rlc",
-        "--debug"
+        "node",
+        "./test/commands/gen-cadl-ranch.js",
+        "--tag=modular"
       ],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],

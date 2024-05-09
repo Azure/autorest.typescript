@@ -3,22 +3,22 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface GetExtensibleModelOptions extends OperationOptions {}
+export interface GetExtensibleModelOptionalParams extends OperationOptions {}
 
-export interface PutExtensibleModelOptions extends OperationOptions {}
+export interface PutExtensibleModelOptionalParams extends OperationOptions {}
 
-export interface GetExtensibleModelMissingDiscriminatorOptions
+export interface GetExtensibleModelMissingDiscriminatorOptionalParams
   extends OperationOptions {}
 
-export interface GetExtensibleModelWrongDiscriminatorOptions
+export interface GetExtensibleModelWrongDiscriminatorOptionalParams
   extends OperationOptions {}
 
-export interface GetFixedModelOptions extends OperationOptions {}
+export interface GetFixedModelOptionalParams extends OperationOptions {}
 
-export interface PutFixedModelOptions extends OperationOptions {}
+export interface PutFixedModelOptionalParams extends OperationOptions {}
 
-export interface GetFixedModelMissingDiscriminatorOptions
+export interface GetFixedModelMissingDiscriminatorOptionalParams
   extends OperationOptions {}
 
-export interface GetFixedModelWrongDiscriminatorOptions
+export interface GetFixedModelWrongDiscriminatorOptionalParams
   extends OperationOptions {}

@@ -19,8 +19,24 @@ function isAzureCoreErrorSdkType(t: Type) {
     ["error", "errormodel", "innererror", "errorresponse"].includes(
       t.name.toLowerCase()
     ) &&
-    t.isCoreErrorType === true
+    t.coreTypeInfo === "ErrorType"
   );
+}
+
+function isAzureCoreLroSdkType(t: Type) {
+  return (
+    t.name &&
+    ["operationstate"].includes(t.name.toLowerCase()) &&
+    t.coreTypeInfo === "LroType"
+  );
+}
+
+function isAnonymousModel(t: Type) {
+  return t.type === "model" && t.name === "";
+}
+
+export function isModelWithAdditionalProperties(t: Type) {
+  return t.type === "dict" && t.properties?.length && t.properties.length > 0;
 }
 
 function getCoreClientErrorType(name: string, coreClientTypes: Set<string>) {
@@ -29,14 +45,22 @@ function getCoreClientErrorType(name: string, coreClientTypes: Set<string>) {
   return coreClientType;
 }
 
+function getCoreLroType(name: string, coreLroTypes: Set<string>) {
+  const coreLroType = name === "OperationState" ? "CoreOperationStatus" : name;
+  coreLroTypes.add(coreLroType);
+  return coreLroType;
+}
+
 // ====== TYPE EXTRACTION ======
 
 function extractModels(codeModel: ModularCodeModel): Type[] {
   const models = codeModel.types.filter(
     (t) =>
-      (t.type === "model" || t.type === "enum") &&
-      !isAzureCoreErrorSdkType(t) &&
-      !(t.type == "model" && t.name === "")
+      ((t.type === "model" || t.type === "enum") &&
+        !isAzureCoreErrorSdkType(t) &&
+        !isAzureCoreLroSdkType(t) &&
+        !isAnonymousModel(t)) ||
+      isModelWithAdditionalProperties(t)
   );
 
   for (const model of codeModel.types) {
@@ -59,7 +83,10 @@ function extractModels(codeModel: ModularCodeModel): Type[] {
 export function extractAliases(codeModel: ModularCodeModel): Type[] {
   const models = codeModel.types.filter(
     (t) =>
-      (t.type === "model" || t.type === "combined") && t.alias && t.aliasType
+      ((t.type === "model" || t.type === "combined") &&
+        t.alias &&
+        t.aliasType) ||
+      (isModelWithAdditionalProperties(t) && t.alias && t.aliasType)
   );
   return models;
 }
@@ -67,6 +94,7 @@ export function extractAliases(codeModel: ModularCodeModel): Type[] {
 function buildEnumModel(
   model: Type
 ): OptionalKind<TypeAliasDeclarationStructure> {
+  const valueType = model.valueType?.type === "string" ? "string" : "number";
   return {
     name: model.name!,
     isExported: true,
@@ -76,14 +104,23 @@ function buildEnumModel(
       // output will be a literal union which is self documenting
       model.isFixed
         ? ""
-        : // When we generate an "extensible" enum, the type will be "string" so we list the known values
+        : // When we generate an "extensible" enum, the type will be "string" or "number" so we list the known values
           // in the docs for user reference.
-          (model.values ?? []).map((v) => `"${v.value}"`).join(", ")
+          getEnumValues()
     ],
-    type: model.isFixed
-      ? (model.values ?? []).map((v) => `"${v.value}"`).join(" | ")
-      : "string"
+    type: buildEnumType()
   };
+
+  function buildEnumType() {
+    return model.isFixed ? getEnumValues(" | ") : valueType;
+  }
+
+  function getEnumValues(separator: string = ", ") {
+    const splitWord = valueType === "string" ? `"` : ``;
+    return (model.values ?? [])
+      .map((v) => `${splitWord}${v.value}${splitWord}`)
+      .join(separator);
+  }
 }
 
 type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
@@ -92,7 +129,7 @@ type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
 
 export function buildModelInterface(
   model: Type,
-  cache: { coreClientTypes: Set<string> }
+  cache: { coreClientTypes: Set<string>; coreLroTypes: Set<string> }
 ): InterfaceStructure {
   const modelProperties = model.properties ?? [];
   const modelInterface = {
@@ -104,9 +141,13 @@ export function buildModelInterface(
       const propertyMetadata = getType(p.type, p.format);
       let propertyTypeName = propertyMetadata.name;
       if (isAzureCoreErrorSdkType(p.type)) {
-        propertyTypeName = isAzureCoreErrorSdkType(p.type)
-          ? getCoreClientErrorType(propertyTypeName, cache.coreClientTypes)
-          : propertyTypeName;
+        propertyTypeName = getCoreClientErrorType(
+          propertyTypeName,
+          cache.coreClientTypes
+        );
+      }
+      if (isAzureCoreLroSdkType(p.type)) {
+        propertyTypeName = getCoreLroType(propertyTypeName, cache.coreLroTypes);
       }
 
       return {
@@ -127,12 +168,14 @@ export function buildModelInterface(
  * This function creates the file containing all the models defined in TypeSpec
  */
 export function buildModels(
-  codeModel: ModularCodeModel,
-  subClient: Client
+  subClient: Client,
+  codeModel: ModularCodeModel
 ): SourceFile | undefined {
   // We are generating both models and enums here
   const coreClientTypes = new Set<string>();
-  const models = extractModels(codeModel);
+  const coreLroTypes = new Set<string>();
+  // filter out the models/enums that are anonymous
+  const models = extractModels(codeModel).filter((m) => !!m.name);
   const aliases = extractAliases(codeModel);
   // Skip to generate models.ts if there is no any models
   if (models.length === 0 && aliases.length === 0) {
@@ -145,23 +188,28 @@ export function buildModels(
 
   for (const model of models) {
     if (model.type === "enum") {
-      if (!model.name || modelsFile.getTypeAlias(model.name!)) {
+      if (modelsFile.getTypeAlias(model.name!)) {
         // If the enum is already defined, we don't need to do anything
-        // If the enum is anonymous, we don't build any type alias for it
         continue;
       }
       const enumAlias = buildEnumModel(model);
       modelsFile.addTypeAlias(enumAlias);
     } else {
-      if (!model.name) {
-        continue;
+      const modelInterface = buildModelInterface(model, {
+        coreClientTypes,
+        coreLroTypes
+      });
+
+      model.parents?.forEach((p) =>
+        modelInterface.extends.push(p.alias ?? getType(p, p.format).name)
+      );
+      if (isModelWithAdditionalProperties(model)) {
+        addExtendedDictInfo(
+          model,
+          modelInterface,
+          codeModel.modularOptions.compatibilityMode
+        );
       }
-      const modelInterface = buildModelInterface(model, { coreClientTypes });
-      model.type === "model"
-        ? model.parents?.forEach((p) =>
-            modelInterface.extends.push(p.alias ?? getType(p, p.format).name)
-          )
-        : undefined;
       modelsFile.addInterface(modelInterface);
     }
   }
@@ -178,10 +226,55 @@ export function buildModels(
     ]);
   }
 
+  if (coreLroTypes.size > 0) {
+    modelsFile.addImportDeclarations([
+      {
+        moduleSpecifier: getImportSpecifier(
+          "azureCoreLro",
+          codeModel.runtimeImports
+        ),
+        namedImports: Array.from(coreLroTypes).map((t) =>
+          t === "CoreOperationStatus"
+            ? "OperationStatus as CoreOperationStatus"
+            : t
+        )
+      }
+    ]);
+  }
+
   aliases.forEach((alias) => {
     modelsFile.addTypeAlias(buildModelTypeAlias(alias));
   });
   return modelsFile;
+}
+
+function addExtendedDictInfo(
+  model: Type,
+  modelInterface: InterfaceStructure,
+  compatibilityMode: boolean = false
+) {
+  if (
+    model.properties &&
+    model.properties.length > 0 &&
+    model.elementType &&
+    model.properties?.every((p) => {
+      return getType(model.elementType!)?.name.includes(getType(p.type).name);
+    })
+  ) {
+    modelInterface.extends.push(
+      `Record<string, ${getType(model.elementType!).name ?? "any"}>`
+    );
+  } else if (compatibilityMode) {
+    modelInterface.extends.push(`Record<string, any>`);
+  } else {
+    modelInterface.properties?.push({
+      name: "additionalProperties",
+      docs: ["Additional properties"],
+      hasQuestionToken: true,
+      isReadonly: false,
+      type: `Record<string, ${getType(model.elementType!).name ?? "any"}>`
+    });
+  }
 }
 
 export function buildModelTypeAlias(model: Type) {
@@ -194,8 +287,8 @@ export function buildModelTypeAlias(model: Type) {
 }
 
 export function buildModelsOptions(
-  codeModel: ModularCodeModel,
-  client: Client
+  client: Client,
+  codeModel: ModularCodeModel
 ) {
   const modelOptionsFile = codeModel.project.createSourceFile(
     path.join(

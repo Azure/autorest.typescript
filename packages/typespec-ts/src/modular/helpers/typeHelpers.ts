@@ -103,7 +103,6 @@ export function getType(type: Type, format?: string): TypeMetadata {
 
     case "never":
       return { name: "never", nullable: type.nullable };
-
     default:
       throw new Error(`Unsupported type ${type.type}`);
   }
@@ -128,12 +127,18 @@ function handleConstantType(type: Type): TypeMetadata {
  * Handles the conversion of enum types to TypeScript representation metadata.
  */
 function handleEnumType(type: Type): TypeMetadata {
-  if (
-    !type.name &&
-    (!type?.valueType?.type ||
-      !["string", "number"].includes(type?.valueType?.type))
-  ) {
-    throw new Error("Unable to process enum without name");
+  if (!type.name) {
+    const valueType = !type.isFixed
+      ? ((type.values?.[0] as Type).valueType?.type ?? "string") + " | "
+      : "";
+    return {
+      name: `${valueType}${type.values
+        ?.map((e) => {
+          return getType(e as Type).name;
+        })
+        .join(" | ")}`,
+      nullable: type.nullable
+    };
   }
   const name = handleNullableTypeName({
     name: type.name,
@@ -227,7 +232,11 @@ function handleDictType(type: Type): TypeMetadata {
   if (!type.elementType) {
     throw new Error("Unable to process dict without elemetType info");
   }
-
+  if (type.name && type.properties && type.properties.length > 0) {
+    return {
+      name: type.name
+    };
+  }
   const elementType = getType(type.elementType, type.elementType.format);
   const elementName = elementType.name;
   return {

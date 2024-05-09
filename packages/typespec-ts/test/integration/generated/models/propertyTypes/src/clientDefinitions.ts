@@ -58,7 +58,9 @@ import {
   UnionIntLiteralPutParameters,
   UnionFloatLiteralGetParameters,
   UnionFloatLiteralPutParameters,
-} from "./parameters";
+  UnionEnumValueGetParameters,
+  UnionEnumValuePutParameters,
+} from "./parameters.js";
 import {
   BooleanModelGet200Response,
   BooleanModelPut204Response,
@@ -116,7 +118,9 @@ import {
   UnionIntLiteralPut204Response,
   UnionFloatLiteralGet200Response,
   UnionFloatLiteralPut204Response,
-} from "./responses";
+  UnionEnumValueGet200Response,
+  UnionEnumValuePut204Response,
+} from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface BooleanModelGet {
@@ -395,6 +399,17 @@ export interface UnionFloatLiteralGet {
   ): StreamableMethod<UnionFloatLiteralPut204Response>;
 }
 
+export interface UnionEnumValueGet {
+  /** Get call */
+  get(
+    options?: UnionEnumValueGetParameters,
+  ): StreamableMethod<UnionEnumValueGet200Response>;
+  /** Put operation */
+  put(
+    options: UnionEnumValuePutParameters,
+  ): StreamableMethod<UnionEnumValuePut204Response>;
+}
+
 export interface Routes {
   /** Resource for '/type/property/value-types/boolean' has methods for the following verbs: get, put */
   (path: "/type/property/value-types/boolean"): BooleanModelGet;
@@ -456,6 +471,8 @@ export interface Routes {
   (
     path: "/type/property/value-types/union/float/literal",
   ): UnionFloatLiteralGet;
+  /** Resource for '/type/property/value-types/union-enum-value' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/union-enum-value"): UnionEnumValueGet;
 }
 
 export type ValueTypesClient = Client & {

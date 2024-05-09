@@ -77,14 +77,28 @@ export interface PassFailMetric {
   readonly result?: PFResult;
 }
 
-/** "response_time_ms", "latency", "error", "requests", "requests_per_sec" */
-export type PFMetrics = string;
-/** "count", "percentage", "avg", "p50", "p90", "p95", "p99", "min", "max" */
-export type PFAgFunc = string;
-/** "continue", "stop" */
-export type PFAction = string;
-/** "passed", "undetermined", "failed" */
-export type PFResult = string;
+/** */
+export type PFMetrics =
+  | "response_time_ms"
+  | "latency"
+  | "error"
+  | "requests"
+  | "requests_per_sec";
+/** */
+export type PFAgFunc =
+  | "count"
+  | "percentage"
+  | "avg"
+  | "p50"
+  | "p90"
+  | "p95"
+  | "p99"
+  | "min"
+  | "max";
+/** */
+export type PFAction = "continue" | "stop";
+/** */
+export type PFResult = "passed" | "undetermined" | "failed";
 
 /** Secret */
 export interface Secret {
@@ -94,8 +108,8 @@ export interface Secret {
   type?: SecretType;
 }
 
-/** "AKV_SECRET_URI", "SECRET_VALUE" */
-export type SecretType = string;
+/** */
+export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
 
 /** Certificates metadata */
 export interface CertificateMetadata {
@@ -107,8 +121,8 @@ export interface CertificateMetadata {
   name?: string;
 }
 
-/** "AKV_CERT_URI" */
-export type CertificateType = string;
+/** */
+export type CertificateType = "AKV_CERT_URI";
 
 /** The load test configuration. */
 export interface LoadTestConfiguration {
@@ -178,10 +192,35 @@ export interface FileInfo {
   validationFailureDetails?: string;
 }
 
-/** "JMX_FILE", "USER_PROPERTIES", "ADDITIONAL_ARTIFACTS" */
-export type FileType = string;
-/** "NOT_VALIDATED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE", "VALIDATION_INITIATED", "VALIDATION_NOT_REQUIRED" */
-export type FileStatus = string;
+/** */
+export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
+/** */
+export type FileStatus =
+  | "NOT_VALIDATED"
+  | "VALIDATION_SUCCESS"
+  | "VALIDATION_FAILURE"
+  | "VALIDATION_INITIATED"
+  | "VALIDATION_NOT_REQUIRED";
+
+/** Test app component */
+export interface TestAppComponents {
+  /**
+   * Azure resource collection { resource id (fully qualified resource Id e.g
+   * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName})
+   * : resource object }
+   */
+  components: Record<string, AppComponent>;
+  /** Test identifier */
+  readonly testId?: string;
+  /** The creation datetime(ISO 8601 literal format). */
+  readonly createdDateTime?: string;
+  /** The user that created. */
+  readonly createdBy?: string;
+  /** The last Modified datetime(ISO 8601 literal format). */
+  readonly lastModifiedDateTime?: string;
+  /** The user that last modified. */
+  readonly lastModifiedBy?: string;
+}
 
 /**
  * An Azure resource object (Refer azure generic resource model :
@@ -207,6 +246,26 @@ export interface AppComponent {
   kind?: string;
 }
 
+/** Test server metrics configuration */
+export interface TestServerMetricConfig {
+  /** Test identifier */
+  readonly testId?: string;
+  /**
+   * Azure resource metrics collection {metric id : metrics object} (Refer :
+   * https://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition
+   * for metric id).
+   */
+  metrics?: Record<string, ResourceMetric>;
+  /** The creation datetime(ISO 8601 literal format). */
+  readonly createdDateTime?: string;
+  /** The user that created. */
+  readonly createdBy?: string;
+  /** The last Modified datetime(ISO 8601 literal format). */
+  readonly lastModifiedDateTime?: string;
+  /** The user that last modified. */
+  readonly lastModifiedBy?: string;
+}
+
 /**
  * Associated metric definition for particular metrics of the azure resource (
  * Refer :
@@ -230,6 +289,25 @@ export interface ResourceMetric {
   /** Azure resource type. */
   resourceType: string;
 }
+
+/** Collection of files. */
+export interface PagedFileInfo {
+  /** The FileInfo items on this page */
+  value: FileInfo[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** Collection of tests */
+export interface PagedTest {
+  /** The Test items on this page */
+  value: Test[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** */
+export type APIVersions = "2022-11-01";
 
 /** Load test run model */
 export interface TestRun {
@@ -359,10 +437,26 @@ export interface TestRunOutputArtifacts {
   logsFileInfo?: FileInfo;
 }
 
-/** "PASSED", "NOT_APPLICABLE", "FAILED" */
-export type PFTestResult = string;
-/** "ACCEPTED", "NOTSTARTED", "PROVISIONING", "PROVISIONED", "CONFIGURING", "CONFIGURED", "EXECUTING", "EXECUTED", "DEPROVISIONING", "DEPROVISIONED", "DONE", "CANCELLING", "CANCELLED", "FAILED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE" */
-export type Status = string;
+/** */
+export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
+/** */
+export type Status =
+  | "ACCEPTED"
+  | "NOTSTARTED"
+  | "PROVISIONING"
+  | "PROVISIONED"
+  | "CONFIGURING"
+  | "CONFIGURED"
+  | "EXECUTING"
+  | "EXECUTED"
+  | "DEPROVISIONING"
+  | "DEPROVISIONED"
+  | "DONE"
+  | "CANCELLING"
+  | "CANCELLED"
+  | "FAILED"
+  | "VALIDATION_SUCCESS"
+  | "VALIDATION_FAILURE";
 
 /** Test run app component */
 export interface TestRunAppComponents {
@@ -404,6 +498,13 @@ export interface TestRunServerMetricConfig {
   readonly lastModifiedBy?: string;
 }
 
+/** */
+export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
+
+export interface DimensionValueList {
+  value: string[];
+}
+
 /** Represents collection of metric definitions. */
 export interface MetricDefinitionCollection {
   /** the values for the metric definitions. */
@@ -441,10 +542,25 @@ export interface NameAndDesc {
   name?: string;
 }
 
-/** "Average", "Count", "None", "Total", "Percentile90", "Percentile95", "Percentile99" */
-export type AggregationType = string;
-/** "NotSpecified", "Percent", "Count", "Seconds", "Milliseconds", "Bytes", "BytesPerSecond", "CountPerSecond" */
-export type MetricUnit = string;
+/** */
+export type AggregationType =
+  | "Average"
+  | "Count"
+  | "None"
+  | "Total"
+  | "Percentile90"
+  | "Percentile95"
+  | "Percentile99";
+/** */
+export type MetricUnit =
+  | "NotSpecified"
+  | "Percent"
+  | "Count"
+  | "Seconds"
+  | "Milliseconds"
+  | "Bytes"
+  | "BytesPerSecond"
+  | "CountPerSecond";
 
 /** Metric availability specifies the time grain (aggregation interval or frequency) */
 export interface MetricAvailability {
@@ -455,8 +571,8 @@ export interface MetricAvailability {
   timeGrain?: TimeGrain;
 }
 
-/** "PT5S", "PT10S", "PT1M", "PT5M", "PT1H" */
-export type TimeGrain = string;
+/** */
+export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 /** Represents collection of metric namespaces. */
 export interface MetricNamespaceCollection {
@@ -531,17 +647,10 @@ export interface PagedTestRun {
   nextLink?: string;
 }
 
-/** "PT5S", "PT10S", "PT1M", "PT5M", "PT1H" */
-export type Interval = string;
-
 /** Paged collection of DimensionValueList items */
 export interface PagedDimensionValueList {
   /** The DimensionValueList items on this page */
   value: DimensionValueList[];
   /** The link to the next page of items */
   nextLink?: string;
-}
-
-export interface DimensionValueList {
-  value: string[];
 }

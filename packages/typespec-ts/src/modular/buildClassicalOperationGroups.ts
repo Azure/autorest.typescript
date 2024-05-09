@@ -8,6 +8,7 @@ import { getClassicalOperation } from "./helpers/classicalOperationHelpers.js";
 import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
 import { SourceFile } from "ts-morph";
 import { importModels, importPagingDependencies } from "./buildOperations.js";
+import { importLroCoreDependencies } from "./buildLroFiles.js";
 
 export function buildClassicOperationFiles(
   codeModel: ModularCodeModel,
@@ -60,6 +61,7 @@ export function buildClassicOperationFiles(
         subfolder,
         operationGroup.namespaceHierarchies.length
       );
+      importLroCoreDependencies(classicFile);
       classicFile.fixMissingImports();
       classicFile.fixUnusedIdentifiers();
       classicOperationFiles.set(classicOperationFileName, classicFile);
@@ -107,6 +109,8 @@ export function buildClassicOperationFiles(
           subfolder,
           operationGroup.namespaceHierarchies.length
         );
+        importLroCoreDependencies(classicFile);
+
         classicFile.fixMissingImports();
         classicFile.fixUnusedIdentifiers();
         classicOperationFiles.set(classicOperationFileName, classicFile);
