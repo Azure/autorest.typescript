@@ -1,4 +1,3 @@
-
 export const rlcTsps = [
   {
     outputPath: "payload/multipart",
@@ -245,7 +244,6 @@ export const nonBrandedRlcTsps = [
   }
 ];
 
-
 export const modularTsps = [
   { outputPath: "lro/rpc", inputPath: "azure/core/lro/rpc" },
   { outputPath: "lro/standard", inputPath: "azure/core/lro/standard" },
@@ -426,6 +424,10 @@ export const modularTsps = [
     outputPath: "models/propertyAdditional",
     inputPath: "type/property/additional-properties"
   },
+  {
+    outputPath: "payload/content-negotiation",
+    inputPath: "payload/content-negotiation"
+  }
 ];
 
 export const nonBrandedModularTsps = [
