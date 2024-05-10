@@ -234,6 +234,10 @@ export const rlcTsps = [
   {
     outputPath: "payload/content-negotiation",
     inputPath: "payload/content-negotiation"
+  },
+  {
+    outputPath: "parameters/basic",
+    inputPath: "parameters/basic"
   }
 ];
 
@@ -423,6 +427,10 @@ export const modularTsps = [
   {
     outputPath: "models/propertyAdditional",
     inputPath: "type/property/additional-properties"
+  },
+  {
+    outputPath: "parameters/basic",
+    inputPath: "parameters/basic"
   }
 ];
 
