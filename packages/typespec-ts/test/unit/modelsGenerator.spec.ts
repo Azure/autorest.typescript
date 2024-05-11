@@ -1643,6 +1643,73 @@ describe("Input/output model type", () => {
         }`
       );
     });
+
+    it("should handle model additional properties from spread record of int64 | string", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(`
+      
+      model Vegetables {
+        ...Record<int64 | string>;
+        carrots: int64;
+        beans: int64;
+      }
+      op post(@body body: Vegetables): { @body body: Vegetables };
+      `);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface Vegetables extends Record<string, number | string>{
+          carrots: number;
+          beans: number;
+        }
+        `
+      );
+
+      assert.ok(outputModelFile);
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      await assertEqualContent(
+        outputModelFile?.content!,
+        `
+        export interface VegetablesOutput extends Record<string, number | string> {
+          carrots: number;
+          beans: number;
+        }
+        `
+      );
+    });
+
+    it("should handle model extends with additional properties", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(`
+      
+      model Base {
+        foo: int32;
+      }
+      model A extends Base{
+        ...Record<int32>;
+        prop: int32
+      }
+      op post(@body body: A): { @body body: A };
+      `);
+      assert.ok(schemaOutput);
+      const { inputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      await assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface A extends Record<string, number>, Base {
+          prop: number;
+        }
+
+        export interface Base {
+          foo: number;
+        }
+        `
+      );
+    });
   });
   describe("bytes generation as property", () => {
     it("should handle bytes -> string", async () => {

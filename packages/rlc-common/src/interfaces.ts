@@ -240,6 +240,7 @@ export interface RLCOptions {
   flavor?: PackageFlavor;
   enableModelNamespace?: boolean;
   hierarchyClient?: boolean;
+  compatibilityMode?: boolean;
 }
 
 export interface ServiceInfo {

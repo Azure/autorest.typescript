@@ -235,7 +235,11 @@ function handleDictType(type: Type): TypeMetadata {
   if (!type.elementType) {
     throw new Error("Unable to process dict without elemetType info");
   }
-
+  if (type.name && type.properties && type.properties.length > 0) {
+    return {
+      name: type.name
+    };
+  }
   const elementType = getType(type.elementType, type.elementType.format);
   const elementName = elementType.name;
   return {
