@@ -31,6 +31,14 @@ function isAzureCoreLroSdkType(t: Type) {
   );
 }
 
+function isAnonymousModel(t: Type) {
+  return t.type === "model" && t.name === "";
+}
+
+export function isModelWithAdditionalProperties(t: Type) {
+  return t.type === "dict" && t.properties?.length && t.properties.length > 0;
+}
+
 function getCoreClientErrorType(name: string, coreClientTypes: Set<string>) {
   const coreClientType: string = name === "Error" ? "ErrorModel" : name;
   coreClientTypes.add(coreClientType);
@@ -48,10 +56,11 @@ function getCoreLroType(name: string, coreLroTypes: Set<string>) {
 function extractModels(codeModel: ModularCodeModel): Type[] {
   const models = codeModel.types.filter(
     (t) =>
-      (t.type === "model" || t.type === "enum") &&
-      !isAzureCoreErrorSdkType(t) &&
-      !isAzureCoreLroSdkType(t) &&
-      !(t.type == "model" && t.name === "")
+      ((t.type === "model" || t.type === "enum") &&
+        !isAzureCoreErrorSdkType(t) &&
+        !isAzureCoreLroSdkType(t) &&
+        !isAnonymousModel(t)) ||
+      isModelWithAdditionalProperties(t)
   );
 
   for (const model of codeModel.types) {
@@ -74,7 +83,10 @@ function extractModels(codeModel: ModularCodeModel): Type[] {
 export function extractAliases(codeModel: ModularCodeModel): Type[] {
   const models = codeModel.types.filter(
     (t) =>
-      (t.type === "model" || t.type === "combined") && t.alias && t.aliasType
+      ((t.type === "model" || t.type === "combined") &&
+        t.alias &&
+        t.aliasType) ||
+      (isModelWithAdditionalProperties(t) && t.alias && t.aliasType)
   );
   return models;
 }
@@ -187,11 +199,17 @@ export function buildModels(
         coreClientTypes,
         coreLroTypes
       });
-      model.type === "model"
-        ? model.parents?.forEach((p) =>
-            modelInterface.extends.push(p.alias ?? getType(p, p.format).name)
-          )
-        : undefined;
+
+      model.parents?.forEach((p) =>
+        modelInterface.extends.push(p.alias ?? getType(p, p.format).name)
+      );
+      if (isModelWithAdditionalProperties(model)) {
+        addExtendedDictInfo(
+          model,
+          modelInterface,
+          codeModel.modularOptions.compatibilityMode
+        );
+      }
       modelsFile.addInterface(modelInterface);
     }
   }
@@ -228,6 +246,35 @@ export function buildModels(
     modelsFile.addTypeAlias(buildModelTypeAlias(alias));
   });
   return modelsFile;
+}
+
+function addExtendedDictInfo(
+  model: Type,
+  modelInterface: InterfaceStructure,
+  compatibilityMode: boolean = false
+) {
+  if (
+    model.properties &&
+    model.properties.length > 0 &&
+    model.elementType &&
+    model.properties?.every((p) => {
+      return getType(model.elementType!)?.name.includes(getType(p.type).name);
+    })
+  ) {
+    modelInterface.extends.push(
+      `Record<string, ${getType(model.elementType!).name ?? "any"}>`
+    );
+  } else if (compatibilityMode) {
+    modelInterface.extends.push(`Record<string, any>`);
+  } else {
+    modelInterface.properties?.push({
+      name: "additionalProperties",
+      docs: ["Additional properties"],
+      hasQuestionToken: true,
+      isReadonly: false,
+      type: `Record<string, ${getType(model.elementType!).name ?? "any"}>`
+    });
+  }
 }
 
 export function buildModelTypeAlias(model: Type) {

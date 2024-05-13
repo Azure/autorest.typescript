@@ -28,6 +28,53 @@ describe("SpreadClient Client", () => {
     }
   });
 
+  it("should spread model composite request only with body", async () => {
+    try {
+      const result = await client.model.spreadCompositeRequestOnlyWithBody({
+        name: "foo"
+      });
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should spread model composite request without body", async () => {
+    try {
+      const result = await client.model.spreadCompositeRequestWithoutBody(
+        "foo",
+        "bar"
+      );
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should spread model composite request ", async () => {
+    try {
+      const result = await client.model.spreadCompositeRequest("foo", "bar", {
+        name: "foo"
+      });
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should spread model composite request mix", async () => {
+    try {
+      const result = await client.model.spreadCompositeRequestMix(
+        "foo",
+        "bar",
+        { prop: "foo" }
+      );
+      assert.isUndefined(result);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
   it("should spread alias with mixed params", async () => {
     try {
       const result = await client.alias.spreadAsRequestParameter(

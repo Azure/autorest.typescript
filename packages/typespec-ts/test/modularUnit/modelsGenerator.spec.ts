@@ -4,6 +4,7 @@ import {
   emitModularOperationsFromTypeSpec
 } from "../util/emitUtil.js";
 import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
+import { Diagnostic } from "@typespec/compiler";
 
 async function verifyModularPropertyType(
   tspType: string,
@@ -1806,6 +1807,94 @@ describe("visibility", () => {
       export interface A {
         exactVersion?: string;
       }`
+    );
+  });
+});
+
+describe("spread record", () => {
+  it("should handle model additional properties from spread record of int64 | string in compatibleMode", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(
+      `
+    
+    model Vegetables {
+      ...Record<int64 | string>;
+      carrots: int64;
+      beans: int64;
+    }
+    op post(@body body: Vegetables): { @body body: Vegetables };
+    `,
+      false,
+      false,
+      false,
+      true
+    );
+    assert.ok(modelFile);
+    assert.strictEqual(modelFile?.getFilePath(), "/models/models.ts");
+    await assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface Vegetables extends Record<string, number | string>{
+        carrots: number;
+        beans: number;
+      }
+      `
+    );
+  });
+
+  it("should fail to handle model additional properties from spread record of int64 | string in non compatible mode", async () => {
+    try {
+      await emitModularModelsFromTypeSpec(
+        `
+      model Vegetables {
+        ...Record<int64 | string>;
+        carrots: int64;
+        beans: int64;
+      }
+      op post(@body body: Vegetables): { @body body: Vegetables };
+      `
+      );
+      assert.fail("Should throw diagnostic warnings");
+    } catch (e) {
+      const diagnostics = e as Diagnostic[];
+      assert.equal(diagnostics.length, 1);
+      assert.equal(
+        diagnostics[0]?.code,
+        "@azure-tools/typespec-ts/compatible-additional-properties"
+      );
+      assert.equal(diagnostics[0]?.severity, "warning");
+    }
+  });
+
+  it("should handle model extends with additional properties", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(
+      `
+      model Base {
+        foo: int32;
+      }
+      model A extends Base{
+        ...Record<int32>;
+        prop: int32
+      }
+      op post(@body body: A): { @body body: A };
+    `,
+      false,
+      false,
+      false,
+      true
+    );
+    assert.ok(modelFile);
+    assert.strictEqual(modelFile?.getFilePath(), "/models/models.ts");
+    await assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface A extends Base, Record<string, number> {
+        prop: number;
+      }
+
+      export interface Base {
+        foo: number;
+      }
+      `
     );
   });
 });

@@ -6,6 +6,7 @@ import { Project } from "ts-morph";
 
 export interface ModularOptions {
   sourceRoot: string;
+  compatibilityMode: boolean;
 }
 export interface ModularCodeModel {
   options: RLCOptions;

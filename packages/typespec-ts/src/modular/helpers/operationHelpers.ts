@@ -212,6 +212,9 @@ export function getDeserializePrivateFunction(
     : [];
   if (
     deserializedType?.type === "any" ||
+    deserializedType?.type === "dict" ||
+    (deserializedType?.type === "model" &&
+      allParents.some((p) => p.type === "dict")) ||
     response.isBinaryPayload ||
     deserializedType?.aliasType
   ) {
@@ -584,7 +587,12 @@ function buildBodyParameter(
     return "";
   }
 
-  if (bodyParameter.type.type === "model" && !bodyParameter.type.aliasType) {
+  const allParents = getAllAncestors(bodyParameter.type);
+  if (
+    bodyParameter.type.type === "model" &&
+    !bodyParameter.type.aliasType &&
+    !allParents.some((p) => p.type === "dict")
+  ) {
     const bodyParts: string[] = getRequestModelMapping(
       bodyParameter.type,
       bodyParameter.clientName,
@@ -601,8 +609,10 @@ function buildBodyParameter(
       return `\nbody: ${bodyParameter.clientName},`;
     }
   } else if (
-    bodyParameter.type.type === "model" &&
-    bodyParameter.type.aliasType
+    (bodyParameter.type.type === "model" &&
+      (bodyParameter.type.aliasType ||
+        allParents.some((p) => p.type === "dict"))) ||
+    bodyParameter.type.type === "dict"
   ) {
     return `\nbody: ${bodyParameter.clientName},`;
   }

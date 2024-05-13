@@ -111,6 +111,7 @@ import { buildRuntimeImports } from "@azure-tools/rlc-common";
 import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
 import { getType as getTypeName } from "./helpers/typeHelpers.js";
+import { isModelWithAdditionalProperties } from "./emitModels.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -385,6 +386,10 @@ function getType(
     if (type.kind === "Model") {
       // need to do properties after insertion to avoid infinite recursion
       processModelProperties(context, newValue, type, options.usage!);
+      if (newValue.type === "dict") {
+        newValue = { ...emitModel(context, type, options.usage!), ...newValue };
+        typesMap.set(effectiveModel, newValue);
+      }
     }
   } else {
     const key = JSON.stringify(newValue);
@@ -395,7 +400,19 @@ function getType(
       simpleTypesMap.set(key, newValue);
     }
   }
-
+  if (
+    type.kind === "Model" &&
+    isModelWithAdditionalProperties(newValue) &&
+    !context.rlcOptions?.compatibilityMode
+  ) {
+    reportDiagnostic(context.program, {
+      code: "compatible-additional-properties",
+      format: {
+        modelName: type?.name ?? ""
+      },
+      target: type
+    });
+  }
   return newValue;
 }
 
@@ -1307,6 +1324,7 @@ function emitListOrDict(
       if (name === "string" && type.name === "Record") {
         return {
           type: "dict",
+          name: type.name,
           elementType: getType(context, type.indexer.value!, { usage })
         };
       } else if (name === "integer") {
@@ -1832,7 +1850,10 @@ export function emitCodeModel(
   // Get types
   const codeModel: ModularCodeModel = {
     options: dpgContext.rlcOptions ?? {},
-    modularOptions: { sourceRoot: modularSourcesRoot },
+    modularOptions: {
+      sourceRoot: modularSourcesRoot,
+      compatibilityMode: !!dpgContext.rlcOptions?.compatibilityMode
+    },
     namespace: clientNamespaceString,
     subnamespaceToClients: {},
     clients: [],
