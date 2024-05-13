@@ -6,34 +6,40 @@ import {
   QueryIso8601Parameters,
   QueryInt32SecondsParameters,
   QueryFloatSecondsParameters,
+  QueryFloat64SecondsParameters,
   QueryInt32SecondsArrayParameters,
   PropertyDefaultParameters,
   PropertyIso8601Parameters,
   PropertyInt32SecondsParameters,
   PropertyFloatSecondsParameters,
+  PropertyFloat64SecondsParameters,
   PropertyFloatSecondsArrayParameters,
   HeaderDefaultParameters,
   HeaderIso8601Parameters,
   HeaderIso8601ArrayParameters,
   HeaderInt32SecondsParameters,
   HeaderFloatSecondsParameters,
+  HeaderFloat64SecondsParameters,
 } from "./parameters.js";
 import {
   QueryDefault204Response,
   QueryIso8601204Response,
   QueryInt32Seconds204Response,
   QueryFloatSeconds204Response,
+  QueryFloat64Seconds204Response,
   QueryInt32SecondsArray204Response,
   PropertyDefault200Response,
   PropertyIso8601200Response,
   PropertyInt32Seconds200Response,
   PropertyFloatSeconds200Response,
+  PropertyFloat64Seconds200Response,
   PropertyFloatSecondsArray200Response,
   HeaderDefault204Response,
   HeaderIso8601204Response,
   HeaderIso8601Array204Response,
   HeaderInt32Seconds204Response,
   HeaderFloatSeconds204Response,
+  HeaderFloat64Seconds204Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -59,6 +65,12 @@ export interface QueryFloatSeconds {
   get(
     options: QueryFloatSecondsParameters,
   ): StreamableMethod<QueryFloatSeconds204Response>;
+}
+
+export interface QueryFloat64Seconds {
+  get(
+    options: QueryFloat64SecondsParameters,
+  ): StreamableMethod<QueryFloat64Seconds204Response>;
 }
 
 export interface QueryInt32SecondsArray {
@@ -89,6 +101,12 @@ export interface PropertyFloatSeconds {
   post(
     options: PropertyFloatSecondsParameters,
   ): StreamableMethod<PropertyFloatSeconds200Response>;
+}
+
+export interface PropertyFloat64Seconds {
+  post(
+    options: PropertyFloat64SecondsParameters,
+  ): StreamableMethod<PropertyFloat64Seconds200Response>;
 }
 
 export interface PropertyFloatSecondsArray {
@@ -127,6 +145,12 @@ export interface HeaderFloatSeconds {
   ): StreamableMethod<HeaderFloatSeconds204Response>;
 }
 
+export interface HeaderFloat64Seconds {
+  get(
+    options: HeaderFloat64SecondsParameters,
+  ): StreamableMethod<HeaderFloat64Seconds204Response>;
+}
+
 export interface Routes {
   /** Resource for '/encode/duration/query/default' has methods for the following verbs: get */
   (path: "/encode/duration/query/default"): QueryDefault;
@@ -136,6 +160,8 @@ export interface Routes {
   (path: "/encode/duration/query/int32-seconds"): QueryInt32Seconds;
   /** Resource for '/encode/duration/query/float-seconds' has methods for the following verbs: get */
   (path: "/encode/duration/query/float-seconds"): QueryFloatSeconds;
+  /** Resource for '/encode/duration/query/float64-seconds' has methods for the following verbs: get */
+  (path: "/encode/duration/query/float64-seconds"): QueryFloat64Seconds;
   /** Resource for '/encode/duration/query/int32-seconds-array' has methods for the following verbs: get */
   (path: "/encode/duration/query/int32-seconds-array"): QueryInt32SecondsArray;
   /** Resource for '/encode/duration/property/default' has methods for the following verbs: post */
@@ -146,6 +172,8 @@ export interface Routes {
   (path: "/encode/duration/property/int32-seconds"): PropertyInt32Seconds;
   /** Resource for '/encode/duration/property/float-seconds' has methods for the following verbs: post */
   (path: "/encode/duration/property/float-seconds"): PropertyFloatSeconds;
+  /** Resource for '/encode/duration/property/float64-seconds' has methods for the following verbs: post */
+  (path: "/encode/duration/property/float64-seconds"): PropertyFloat64Seconds;
   /** Resource for '/encode/duration/property/float-seconds-array' has methods for the following verbs: post */
   (
     path: "/encode/duration/property/float-seconds-array",
@@ -160,6 +188,8 @@ export interface Routes {
   (path: "/encode/duration/header/int32-seconds"): HeaderInt32Seconds;
   /** Resource for '/encode/duration/header/float-seconds' has methods for the following verbs: get */
   (path: "/encode/duration/header/float-seconds"): HeaderFloatSeconds;
+  /** Resource for '/encode/duration/header/float64-seconds' has methods for the following verbs: get */
+  (path: "/encode/duration/header/float64-seconds"): HeaderFloat64Seconds;
 }
 
 export type DurationContext = Client & {

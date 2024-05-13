@@ -8,6 +8,7 @@ import {
   ISO8601DurationProperty,
   Int32SecondsDurationProperty,
   FloatSecondsDurationProperty,
+  Float64SecondsDurationProperty,
   FloatSecondsDurationArrayProperty,
 } from "./models.js";
 
@@ -53,6 +54,17 @@ export interface QueryFloatSecondsQueryParam {
 export type QueryFloatSecondsParameters = QueryFloatSecondsQueryParam &
   RequestParameters;
 
+export interface QueryFloat64SecondsQueryParamProperties {
+  input: number;
+}
+
+export interface QueryFloat64SecondsQueryParam {
+  queryParameters: QueryFloat64SecondsQueryParamProperties;
+}
+
+export type QueryFloat64SecondsParameters = QueryFloat64SecondsQueryParam &
+  RequestParameters;
+
 export interface QueryInt32SecondsArrayQueryParamProperties {
   input: number[];
 }
@@ -90,6 +102,13 @@ export interface PropertyFloatSecondsBodyParam {
 }
 
 export type PropertyFloatSecondsParameters = PropertyFloatSecondsBodyParam &
+  RequestParameters;
+
+export interface PropertyFloat64SecondsBodyParam {
+  body: Float64SecondsDurationProperty;
+}
+
+export type PropertyFloat64SecondsParameters = PropertyFloat64SecondsBodyParam &
   RequestParameters;
 
 export interface PropertyFloatSecondsArrayBodyParam {
@@ -153,4 +172,15 @@ export interface HeaderFloatSecondsHeaderParam {
 }
 
 export type HeaderFloatSecondsParameters = HeaderFloatSecondsHeaderParam &
+  RequestParameters;
+
+export interface HeaderFloat64SecondsHeaders {
+  duration: number;
+}
+
+export interface HeaderFloat64SecondsHeaderParam {
+  headers: RawHttpHeadersInput & HeaderFloat64SecondsHeaders;
+}
+
+export type HeaderFloat64SecondsParameters = HeaderFloat64SecondsHeaderParam &
   RequestParameters;

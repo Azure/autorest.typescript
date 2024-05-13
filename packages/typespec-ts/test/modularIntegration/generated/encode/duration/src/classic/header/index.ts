@@ -8,6 +8,7 @@ import {
   headerIso8601Array,
   headerInt32Seconds,
   headerFloatSeconds,
+  headerFloat64Seconds,
 } from "../../api/header/index.js";
 import {
   HeaderDefaultOptionalParams,
@@ -15,6 +16,7 @@ import {
   HeaderIso8601ArrayOptionalParams,
   HeaderInt32SecondsOptionalParams,
   HeaderFloatSecondsOptionalParams,
+  HeaderFloat64SecondsOptionalParams,
 } from "../../models/options.js";
 
 export interface HeaderOperations {
@@ -38,6 +40,10 @@ export interface HeaderOperations {
     duration: number,
     options?: HeaderFloatSecondsOptionalParams,
   ) => Promise<void>;
+  float64Seconds: (
+    duration: number,
+    options?: HeaderFloat64SecondsOptionalParams,
+  ) => Promise<void>;
 }
 
 export function getHeader(context: DurationContext) {
@@ -58,6 +64,10 @@ export function getHeader(context: DurationContext) {
       duration: number,
       options?: HeaderFloatSecondsOptionalParams,
     ) => headerFloatSeconds(context, duration, options),
+    float64Seconds: (
+      duration: number,
+      options?: HeaderFloat64SecondsOptionalParams,
+    ) => headerFloat64Seconds(context, duration, options),
   };
 }
 

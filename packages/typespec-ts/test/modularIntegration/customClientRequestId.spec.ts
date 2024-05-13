@@ -1,11 +1,11 @@
 import { PipelinePolicy } from "@azure/core-rest-pipeline";
-import { RequestIdClient } from "./generated/headers/client-request-id/src/index.js";
+import { XmsRequestIdClient } from "./generated/azure/special-headers/client-request-id/src/index.js";
 import { assert } from "chai";
-describe("RequestIdClient Classical Client", () => {
-  let client: RequestIdClient;
+describe("XmsRequestIdClient Classical Client", () => {
+  let client: XmsRequestIdClient;
 
   beforeEach(() => {
-    client = new RequestIdClient({
+    client = new XmsRequestIdClient({
       endpoint: "http://localhost:3002",
       allowInsecureConnection: true
     });
@@ -23,14 +23,22 @@ describe("RequestIdClient Classical Client", () => {
   it("should override request id with client setting one", async () => {
     try {
       const overrideId = "86aede1f-96fa-4e7f-b1e1-bf8a947cb804";
+      const result = await client.get({
+        requestOptions: {
+          headers: {
+            "x-ms-client-request-id": overrideId
+          }
+        }
+      });
+      assert.isUndefined(result);
       const checkClientRequestIdPolicy: PipelinePolicy = {
         sendRequest: (req, next) => {
-          assert.equal(overrideId, req.headers.get("client-request-id"));
+          assert.equal(overrideId, req.headers.get("x-ms-client-request-id"));
           return next(req);
         },
         name: "preventCachingPolicy"
       };
-      client = new RequestIdClient({
+      client = new XmsRequestIdClient({
         allowInsecureConnection: true,
         endpoint: "http://localhost:3002",
         additionalPolicies: [
@@ -40,15 +48,6 @@ describe("RequestIdClient Classical Client", () => {
           }
         ]
       });
-
-      const result = await client.get({
-        requestOptions: {
-          headers: {
-            "client-request-id": overrideId
-          }
-        }
-      });
-      assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -56,7 +55,7 @@ describe("RequestIdClient Classical Client", () => {
 
   it("should override with x-test-client-request-id header", async () => {
     try {
-      client = new RequestIdClient({
+      client = new XmsRequestIdClient({
         allowInsecureConnection: true,
         telemetryOptions: {
           clientRequestIdHeaderName: "x-test-request-id"
