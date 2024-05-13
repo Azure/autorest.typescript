@@ -1619,7 +1619,7 @@ describe("inheritance & polymorphism", () => {
       op get(
         @header("test-header") testHeader: SchemaContentTypeValues,
         @body body: string,
-      ): { @header("test-header") testHeader: SchemaContentTypeValues };
+      ): { @header("test-header") testHeader: SchemaContentTypeValues; @statusCode _: 204; };
       `;
       const schemaOutput = await emitModularModelsFromTypeSpec(
         tspDefinition,
