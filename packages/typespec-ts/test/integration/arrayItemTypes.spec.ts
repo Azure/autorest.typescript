@@ -1,6 +1,6 @@
 import ArrayItemTypesClientFactory, {
   ArrayItemTypesClient
-} from "./generated/arrays/itemTypes/src/index.js";
+} from "./generated/type/array/src/index.js";
 import { assert } from "chai";
 import { matrix } from "../util/matrix.js";
 

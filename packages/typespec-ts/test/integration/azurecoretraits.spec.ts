@@ -2,7 +2,7 @@ import { assert } from "chai";
 import AzureCoreTraitsClientFactory, {
   AzureCoreTraitsClient,
   isUnexpected
-} from "./generated/azure/core-traits/src/index.js";
+} from "./generated/azure/core/traits/src/index.js";
 describe("Azure Core Traits Rest Client", () => {
   let client: AzureCoreTraitsClient;
 

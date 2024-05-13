@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import MediaTypesClientFactory, {
   MediaTypesClient
-} from "./generated/mediaTypes/src/index.js";
+} from "./generated/media-types/src/index.js";
 describe("MediaTypes Rest Client", () => {
   let client: MediaTypesClient;
 

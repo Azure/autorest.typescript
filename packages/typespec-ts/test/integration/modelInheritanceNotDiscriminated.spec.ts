@@ -1,7 +1,7 @@
 import NotDiscriminatedClientFactory, {
   NotDiscriminatedClient,
   Siamese
-} from "./generated/models/inheritance-not-discriminated/src/index.js";
+} from "./generated/type/model/inheritance/not-discriminated/src/index.js";
 import { assert } from "chai";
 
 describe("NotDiscriminatedClient Rest Client", () => {

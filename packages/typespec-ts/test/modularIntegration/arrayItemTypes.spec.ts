@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { ArrayClient } from "./generated/arrays/items/src/index.js";
+import { ArrayClient } from "./generated/type/array/src/index.js";
 
 interface TypeDetail {
   type: string;
