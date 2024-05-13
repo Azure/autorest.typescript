@@ -1658,7 +1658,7 @@ describe("Input/output model type", () => {
       assert.ok(schemaOutput);
       const { inputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
-      assert.include(inputModelFile?.path, "models.ts");
+      assert.isTrue(inputModelFile?.path?.endsWith("models.ts"));
       await assertEqualContent(
         inputModelFile?.content!,
         `

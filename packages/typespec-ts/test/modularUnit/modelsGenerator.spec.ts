@@ -1829,7 +1829,7 @@ describe("spread record", () => {
       true
     );
     assert.ok(modelFile);
-    assert.include(modelFile?.getFilePath(), "/models/models.ts");
+    assert.isTrue(modelFile?.getFilePath()?.endsWith("/models/models.ts"));
     await assertEqualContent(
       modelFile!.getFullText()!,
       `
@@ -1883,7 +1883,7 @@ describe("spread record", () => {
       true
     );
     assert.ok(modelFile);
-    assert.include(modelFile?.getFilePath(), "/models/models.ts");
+    assert.isTrue(modelFile?.getFilePath()?.endsWith("/models/models.ts"));
     await assertEqualContent(
       modelFile!.getFullText()!,
       `
