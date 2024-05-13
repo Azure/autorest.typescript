@@ -34,7 +34,7 @@
     "rollup-plugin-sourcemaps": "^0.6.3",
     "@azure/identity": "^4.0.1",
     "@azure-tools/test-recorder": "^3.0.0",
-    "@azure-tools/test-credential": "^1.0.0",
+    "@azure-tools/test-credential": "^1.1.0",
     "mocha": "^10.0.0",
     "@types/mocha": "^10.0.0",
     "tsx": "^4.7.1",
