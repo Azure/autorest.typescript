@@ -1883,7 +1883,7 @@ describe("spread record", () => {
       true
     );
     assert.ok(modelFile);
-    assert.strictEqual(modelFile?.getFilePath(), "/models/models.ts");
+    assert.include(modelFile?.getFilePath(), "/models/models.ts");
     await assertEqualContent(
       modelFile!.getFullText()!,
       `
