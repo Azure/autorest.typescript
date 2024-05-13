@@ -8,8 +8,8 @@ export const rlcTsps = [
     inputPath: "union-body"
   },
   {
-    outputPath: "special-headers/client-request-id",
-    inputPath: "special-headers/client-request-id"
+    outputPath: "azure/special-headers/client-request-id",
+    inputPath: "azure/special-headers/client-request-id"
   },
   {
     outputPath: "special-headers/repeatability",
@@ -234,6 +234,10 @@ export const rlcTsps = [
   {
     outputPath: "payload/content-negotiation",
     inputPath: "payload/content-negotiation"
+  },
+  {
+    outputPath: "parameters/basic",
+    inputPath: "parameters/basic"
   }
 ];
 
@@ -283,8 +287,8 @@ export const modularTsps = [
     inputPath: "client/structure/two-operation-group"
   },
   {
-    outputPath: "special-headers/client-request-id",
-    inputPath: "special-headers/client-request-id"
+    outputPath: "azure/special-headers/client-request-id",
+    inputPath: "azure/special-headers/client-request-id"
   },
   {
     outputPath: "parameters/collection-format",
@@ -422,6 +426,14 @@ export const modularTsps = [
   {
     outputPath: "type/enum/fixed",
     inputPath: "type/enum/fixed"
+  },
+  {
+    outputPath: "models/propertyAdditional",
+    inputPath: "type/property/additional-properties"
+  },
+  {
+    outputPath: "parameters/basic",
+    inputPath: "parameters/basic"
   }
 ];
 

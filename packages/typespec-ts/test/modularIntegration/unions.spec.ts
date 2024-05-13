@@ -203,7 +203,15 @@ describe("Type Union Client", () => {
         model: { name: "test" },
         literal: "a",
         int: 2,
-        boolean: true
+        boolean: true,
+        array: [
+          {
+            name: "test"
+          },
+          "a",
+          2,
+          true
+        ]
       });
       assert.isUndefined(result);
     } catch (err) {

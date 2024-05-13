@@ -22,6 +22,7 @@ async function mixedTypesSendSample() {
           literal: { name: "{Your name}" },
           int: { name: "{Your name}" },
           boolean: { name: "{Your name}" },
+          array: [{ name: "{Your name}" }],
         },
       },
     });
