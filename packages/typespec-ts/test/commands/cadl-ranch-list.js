@@ -452,7 +452,7 @@ export const modularTsps = [
     inputPath: "type/enum/fixed"
   },
   {
-    outputPath: "models/propertyAdditional",
+    outputPath: "type/property/additional-properties",
     inputPath: "type/property/additional-properties"
   },
   {
