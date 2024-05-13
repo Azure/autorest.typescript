@@ -622,7 +622,7 @@ describe("anonymous model", () => {
             foo?: string;
           };
         }
-        op read(@body body: Test): void;
+        op read(@bodyRoot body: Test): void;
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
@@ -723,7 +723,7 @@ describe("anonymous model", () => {
       }
       it("should map empty anonymous model({}) => Record<string, any>", async () => {
         const tspContent = `
-        op read(): {};
+        op read(): { @body _: {}; };
         `;
         // No models.ts file generated
         assert.isUndefined(await emitModularModelsFromTypeSpec(tspContent));
@@ -741,7 +741,7 @@ describe("anonymous model", () => {
         const tspContent = `
         model PublishResult {
         }
-        op read(): PublishResult;
+        op read(): {@body _: PublishResult};
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         await assertEqualContent(

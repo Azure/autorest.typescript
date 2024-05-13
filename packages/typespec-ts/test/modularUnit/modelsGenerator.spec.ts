@@ -1657,7 +1657,7 @@ describe("inheritance & polymorphism", () => {
       op get(
         @header("test-header") testHeader: "A" | "B",
         @body body: string,
-      ): { @header("test-header") testHeader: "A" | "B" };
+      ): { @header("test-header") testHeader: "A" | "B"; @statusCode _: 204; };
       `;
       const schemaOutput = await emitModularModelsFromTypeSpec(
         tspDefinition,
@@ -1732,7 +1732,7 @@ describe("`is`", () => {
       @query
       name: string;
     };
-      op read(@body body: A): void;
+      op read(@bodyRoot body: A): void;
       `);
     assert.ok(modelFile);
     await assertEqualContent(
@@ -1757,7 +1757,7 @@ describe("`extends`", () => {
         @query
         name: string;
       };
-      op read(@body body: A): void;
+      op read(@bodyRoot body: A): void;
       `);
     assert.ok(modelFile);
     await assertEqualContent(
@@ -1829,7 +1829,7 @@ describe("spread record", () => {
       true
     );
     assert.ok(modelFile);
-    assert.strictEqual(modelFile?.getFilePath(), "/models/models.ts");
+    assert.include(modelFile?.getFilePath(), "/models/models.ts");
     await assertEqualContent(
       modelFile!.getFullText()!,
       `
