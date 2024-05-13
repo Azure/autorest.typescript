@@ -2,7 +2,7 @@ import SpecsAzureCoreLroStandardClientFactory, {
   RpcClient,
   getLongRunningPoller,
   isUnexpected
-} from "./generated/lro/lroRPC/src/index.js";
+} from "./generated/azure/core/lro/rpc/src/index.js";
 import { assert } from "chai";
 describe("RpcClient Rest Client", () => {
   let client: RpcClient;

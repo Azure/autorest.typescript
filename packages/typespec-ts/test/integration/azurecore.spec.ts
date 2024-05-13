@@ -7,7 +7,7 @@ import AzureCoreClientFactory, {
   buildMultiCollection,
   isUnexpected,
   paginate
-} from "./generated/azure/core/src/index.js";
+} from "./generated/azure/core/basic/src/index.js";
 describe("Azure Core Rest Client", () => {
   let client: AzureCoreClient;
 

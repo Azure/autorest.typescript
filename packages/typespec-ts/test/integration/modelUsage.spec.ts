@@ -1,6 +1,6 @@
 import TypeModelUsageClientFactory, {
   UsageClient
-} from "./generated/models/usage/src/index.js";
+} from "./generated/type/model/usage/src/index.js";
 import { assert } from "chai";
 describe("ModelsUsageClient Rest Client", () => {
   let client: UsageClient;

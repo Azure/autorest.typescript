@@ -2,7 +2,7 @@ import SingleDiscriminatorClientFactory, {
   Eagle,
   SingleDiscriminatorClient,
   Sparrow
-} from "./generated/models/inheritance-single-discriminator/src/index.js";
+} from "./generated/type/model/inheritance/single-discriminator/src/index.js";
 import { assert } from "chai";
 
 describe("SingleDiscriminatorClient Rest Client", () => {
@@ -101,9 +101,7 @@ describe("SingleDiscriminatorClient Rest Client", () => {
   it("should get if wrong discriminator", async () => {
     try {
       const result = await client
-        .path(
-          "/type/model/inheritance/single-discriminator/wrongdiscriminator"
-        )
+        .path("/type/model/inheritance/single-discriminator/wrongdiscriminator")
         .get();
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, { wingspan: 1, kind: "wrongKind" } as any);
@@ -115,9 +113,7 @@ describe("SingleDiscriminatorClient Rest Client", () => {
   it("should get legacy model", async () => {
     try {
       const result = await client
-        .path(
-          "/type/model/inheritance/single-discriminator/legacy-model"
-        )
+        .path("/type/model/inheritance/single-discriminator/legacy-model")
         .get();
       assert.strictEqual(result.status, "200");
       assert.deepEqual(result.body, { size: 20, kind: "t-rex" });
