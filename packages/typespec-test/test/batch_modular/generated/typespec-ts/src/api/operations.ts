@@ -27,6 +27,8 @@ import {
   BatchJobScheduleCreateOptions,
   BatchJobScheduleListResult,
   BatchCertificate,
+  CertificateState,
+  DeleteCertificateError,
   CertificateListResult,
   BatchJob,
   BatchJobUpdateOptions,
@@ -179,7 +181,7 @@ import {
   PoolExists200Response,
   PoolExists404Response,
   PoolExistsDefaultResponse,
-  ReactivateTask204Response,
+  ReactivateTask200Response,
   ReactivateTaskDefaultResponse,
   RebootNode202Response,
   RebootNodeDefaultResponse,
@@ -205,7 +207,7 @@ import {
   TerminateJobDefaultResponse,
   TerminateJobSchedule202Response,
   TerminateJobScheduleDefaultResponse,
-  TerminateTask204Response,
+  TerminateTask200Response,
   TerminateTaskDefaultResponse,
   UpdateJob200Response,
   UpdateJobDefaultResponse,
@@ -9688,7 +9690,17 @@ export function _getCertificateSend(
 
 export async function _getCertificateDeserialize(
   result: GetCertificate200Response | GetCertificateDefaultResponse,
-): Promise<BatchCertificate> {
+): Promise<{
+  thumbprint: string;
+  thumbprintAlgorithm: string;
+  url?: string;
+  state?: CertificateState;
+  stateTransitionTime?: Date;
+  previousState?: CertificateState;
+  previousStateTransitionTime?: Date;
+  publicData?: Uint8Array;
+  deleteCertificateError?: DeleteCertificateError;
+}> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -9724,12 +9736,6 @@ export async function _getCertificateDeserialize(
                   value: p["value"],
                 })),
         },
-    data:
-      typeof result.body["data"] === "string"
-        ? stringToUint8Array(result.body["data"], "base64")
-        : result.body["data"],
-    certificateFormat: result.body["certificateFormat"],
-    password: result.body["password"],
   };
 }
 
@@ -9739,7 +9745,17 @@ export async function getCertificate(
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: GetCertificateOptionalParams = { requestOptions: {} },
-): Promise<BatchCertificate> {
+): Promise<{
+  thumbprint: string;
+  thumbprintAlgorithm: string;
+  url?: string;
+  state?: CertificateState;
+  stateTransitionTime?: Date;
+  previousState?: CertificateState;
+  previousStateTransitionTime?: Date;
+  publicData?: Uint8Array;
+  deleteCertificateError?: DeleteCertificateError;
+}> {
   const result = await _getCertificateSend(
     context,
     thumbprintAlgorithm,
@@ -17835,7 +17851,7 @@ export function _terminateTaskSend(
   jobId: string,
   taskId: string,
   options: TerminateTaskOptionalParams = { requestOptions: {} },
-): StreamableMethod<TerminateTask204Response | TerminateTaskDefaultResponse> {
+): StreamableMethod<TerminateTask200Response | TerminateTaskDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}/terminate", jobId, taskId)
     .post({
@@ -17862,7 +17878,7 @@ export function _terminateTaskSend(
 }
 
 export async function _terminateTaskDeserialize(
-  result: TerminateTask204Response | TerminateTaskDefaultResponse,
+  result: TerminateTask200Response | TerminateTaskDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -17891,7 +17907,7 @@ export function _reactivateTaskSend(
   jobId: string,
   taskId: string,
   options: ReactivateTaskOptionalParams = { requestOptions: {} },
-): StreamableMethod<ReactivateTask204Response | ReactivateTaskDefaultResponse> {
+): StreamableMethod<ReactivateTask200Response | ReactivateTaskDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}/reactivate", jobId, taskId)
     .post({
@@ -17918,7 +17934,7 @@ export function _reactivateTaskSend(
 }
 
 export async function _reactivateTaskDeserialize(
-  result: ReactivateTask204Response | ReactivateTaskDefaultResponse,
+  result: ReactivateTask200Response | ReactivateTaskDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);

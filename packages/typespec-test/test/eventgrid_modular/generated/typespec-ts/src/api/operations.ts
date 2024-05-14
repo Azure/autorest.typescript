@@ -81,12 +81,12 @@ export function _publishCloudEventSend(
 
 export async function _publishCloudEventDeserialize(
   result: PublishCloudEvent200Response | PublishCloudEventDefaultResponse,
-): Promise<Record<string, any>> {
+): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return;
 }
 
 /** Publish Single Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
@@ -95,7 +95,7 @@ export async function publishCloudEvent(
   topicName: string,
   event: CloudEvent,
   options: PublishCloudEventOptionalParams = { requestOptions: {} },
-): Promise<Record<string, any>> {
+): Promise<void> {
   const result = await _publishCloudEventSend(
     context,
     topicName,
@@ -142,12 +142,12 @@ export function _publishCloudEventsSend(
 
 export async function _publishCloudEventsDeserialize(
   result: PublishCloudEvents200Response | PublishCloudEventsDefaultResponse,
-): Promise<Record<string, any>> {
+): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
-  return result.body;
+  return;
 }
 
 /** Publish Batch Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
@@ -156,7 +156,7 @@ export async function publishCloudEvents(
   topicName: string,
   events: CloudEvent[],
   options: PublishCloudEventsOptionalParams = { requestOptions: {} },
-): Promise<Record<string, any>> {
+): Promise<void> {
   const result = await _publishCloudEventsSend(
     context,
     topicName,

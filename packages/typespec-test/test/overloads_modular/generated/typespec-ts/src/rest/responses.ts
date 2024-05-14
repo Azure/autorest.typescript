@@ -4,14 +4,14 @@
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 
-export interface GetAvatarAsPng204Headers {
+export interface GetAvatarAsPng200Headers {
   accept: "image/png";
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface GetAvatarAsPng204Response extends HttpResponse {
-  status: "204";
-  headers: RawHttpHeaders & GetAvatarAsPng204Headers;
+/** The request has succeeded. */
+export interface GetAvatarAsPng200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & GetAvatarAsPng200Headers;
 }
 
 export interface GetAvatarAsPngDefaultHeaders {
@@ -25,14 +25,14 @@ export interface GetAvatarAsPngDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & GetAvatarAsPngDefaultHeaders;
 }
 
-export interface GetAvatarAsJpeg204Headers {
+export interface GetAvatarAsJpeg200Headers {
   accept: "image/jpeg";
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface GetAvatarAsJpeg204Response extends HttpResponse {
-  status: "204";
-  headers: RawHttpHeaders & GetAvatarAsJpeg204Headers;
+/** The request has succeeded. */
+export interface GetAvatarAsJpeg200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & GetAvatarAsJpeg200Headers;
 }
 
 export interface GetAvatarAsJpegDefaultHeaders {

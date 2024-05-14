@@ -55,7 +55,7 @@ export class EventGridClient {
     topicName: string,
     event: CloudEvent,
     options: PublishCloudEventOptionalParams = { requestOptions: {} },
-  ): Promise<Record<string, any>> {
+  ): Promise<void> {
     return publishCloudEvent(this._client, topicName, event, options);
   }
 
@@ -64,7 +64,7 @@ export class EventGridClient {
     topicName: string,
     events: CloudEvent[],
     options: PublishCloudEventsOptionalParams = { requestOptions: {} },
-  ): Promise<Record<string, any>> {
+  ): Promise<void> {
     return publishCloudEvents(this._client, topicName, events, options);
   }
 

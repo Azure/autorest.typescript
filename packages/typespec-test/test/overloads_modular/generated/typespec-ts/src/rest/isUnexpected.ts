@@ -2,25 +2,25 @@
 // Licensed under the MIT license.
 
 import {
-  GetAvatarAsPng204Response,
+  GetAvatarAsPng200Response,
   GetAvatarAsPngDefaultResponse,
-  GetAvatarAsJpeg204Response,
+  GetAvatarAsJpeg200Response,
   GetAvatarAsJpegDefaultResponse,
 } from "./responses.js";
 
-const responseMap: Record<string, string[]> = { "POST /avatar": ["204"] };
+const responseMap: Record<string, string[]> = { "POST /avatar": ["200"] };
 
 export function isUnexpected(
-  response: GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse,
+  response: GetAvatarAsPng200Response | GetAvatarAsPngDefaultResponse,
 ): response is GetAvatarAsPngDefaultResponse;
 export function isUnexpected(
-  response: GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse,
+  response: GetAvatarAsJpeg200Response | GetAvatarAsJpegDefaultResponse,
 ): response is GetAvatarAsJpegDefaultResponse;
 export function isUnexpected(
   response:
-    | GetAvatarAsPng204Response
+    | GetAvatarAsPng200Response
     | GetAvatarAsPngDefaultResponse
-    | GetAvatarAsJpeg204Response
+    | GetAvatarAsJpeg200Response
     | GetAvatarAsJpegDefaultResponse,
 ): response is GetAvatarAsPngDefaultResponse | GetAvatarAsJpegDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];

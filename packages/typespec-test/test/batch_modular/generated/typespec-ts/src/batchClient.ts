@@ -24,6 +24,8 @@ import {
   BatchJobScheduleUpdateOptions,
   BatchJobScheduleCreateOptions,
   BatchCertificate,
+  CertificateState,
+  DeleteCertificateError,
   BatchJob,
   BatchJobUpdateOptions,
   BatchJobDisableOptions,
@@ -676,7 +678,17 @@ export class BatchClient {
     thumbprintAlgorithm: string,
     thumbprint: string,
     options: GetCertificateOptionalParams = { requestOptions: {} },
-  ): Promise<BatchCertificate> {
+  ): Promise<{
+    thumbprint: string;
+    thumbprintAlgorithm: string;
+    url?: string;
+    state?: CertificateState;
+    stateTransitionTime?: Date;
+    previousState?: CertificateState;
+    previousStateTransitionTime?: Date;
+    publicData?: Uint8Array;
+    deleteCertificateError?: DeleteCertificateError;
+  }> {
     return getCertificate(
       this._client,
       thumbprintAlgorithm,

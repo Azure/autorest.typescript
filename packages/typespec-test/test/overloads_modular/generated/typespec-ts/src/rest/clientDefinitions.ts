@@ -6,9 +6,9 @@ import {
   GetAvatarAsJpegParameters,
 } from "./parameters.js";
 import {
-  GetAvatarAsPng204Response,
+  GetAvatarAsPng200Response,
   GetAvatarAsPngDefaultResponse,
-  GetAvatarAsJpeg204Response,
+  GetAvatarAsJpeg200Response,
   GetAvatarAsJpegDefaultResponse,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
@@ -18,13 +18,13 @@ export interface GetAvatarAsPng {
   post(
     options: GetAvatarAsPngParameters,
   ): StreamableMethod<
-    GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse
+    GetAvatarAsPng200Response | GetAvatarAsPngDefaultResponse
   >;
   /** A remote procedure call (RPC) operation. */
   post(
     options: GetAvatarAsJpegParameters,
   ): StreamableMethod<
-    GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse
+    GetAvatarAsJpeg200Response | GetAvatarAsJpegDefaultResponse
   >;
 }
 

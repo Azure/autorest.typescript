@@ -18,7 +18,8 @@ import {
   BatchJobListPreparationAndReleaseTaskStatusResultOutput,
   TaskCountsResultOutput,
   CertificateListResultOutput,
-  BatchCertificateOutput,
+  CertificateStateOutput,
+  DeleteCertificateErrorOutput,
   BatchJobScheduleOutput,
   BatchJobScheduleListResultOutput,
   BatchTaskListResultOutput,
@@ -835,7 +836,17 @@ export interface GetCertificate200Headers {
 /** The request has succeeded. */
 export interface GetCertificate200Response extends HttpResponse {
   status: "200";
-  body: BatchCertificateOutput;
+  body: {
+    thumbprint: string;
+    thumbprintAlgorithm: string;
+    url?: string;
+    state?: CertificateStateOutput;
+    stateTransitionTime?: string;
+    previousState?: CertificateStateOutput;
+    previousStateTransitionTime?: string;
+    publicData?: string;
+    deleteCertificateError?: DeleteCertificateErrorOutput;
+  };
   headers: RawHttpHeaders & GetCertificate200Headers;
 }
 
@@ -1235,7 +1246,7 @@ export interface ListSubTasksDefaultResponse extends HttpResponse {
   body: BatchErrorOutput;
 }
 
-export interface TerminateTask204Headers {
+export interface TerminateTask200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1248,10 +1259,10 @@ export interface TerminateTask204Headers {
   dataserviceid: string;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface TerminateTask204Response extends HttpResponse {
-  status: "204";
-  headers: RawHttpHeaders & TerminateTask204Headers;
+/** The request has succeeded. */
+export interface TerminateTask200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & TerminateTask200Headers;
 }
 
 export interface TerminateTaskDefaultResponse extends HttpResponse {
@@ -1259,7 +1270,7 @@ export interface TerminateTaskDefaultResponse extends HttpResponse {
   body: BatchErrorOutput;
 }
 
-export interface ReactivateTask204Headers {
+export interface ReactivateTask200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1272,10 +1283,10 @@ export interface ReactivateTask204Headers {
   dataserviceid: string;
 }
 
-/** There is no content to send for this request, but the headers may be useful. */
-export interface ReactivateTask204Response extends HttpResponse {
-  status: "204";
-  headers: RawHttpHeaders & ReactivateTask204Headers;
+/** The request has succeeded. */
+export interface ReactivateTask200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & ReactivateTask200Headers;
 }
 
 export interface ReactivateTaskDefaultResponse extends HttpResponse {

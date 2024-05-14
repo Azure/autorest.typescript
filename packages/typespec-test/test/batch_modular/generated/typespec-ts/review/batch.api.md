@@ -146,7 +146,17 @@ export class BatchClient {
     enablePoolAutoScale(poolId: string, body: BatchPoolEnableAutoScaleOptions, options?: EnablePoolAutoScaleOptionalParams): Promise<void>;
     evaluatePoolAutoScale(poolId: string, body: BatchPoolEvaluateAutoScaleOptions, options?: EvaluatePoolAutoScaleOptionalParams): Promise<AutoScaleRun>;
     getApplication(applicationId: string, options?: GetApplicationOptionalParams): Promise<BatchApplication>;
-    getCertificate(thumbprintAlgorithm: string, thumbprint: string, options?: GetCertificateOptionalParams): Promise<BatchCertificate>;
+    getCertificate(thumbprintAlgorithm: string, thumbprint: string, options?: GetCertificateOptionalParams): Promise<{
+        thumbprint: string;
+        thumbprintAlgorithm: string;
+        url?: string;
+        state?: CertificateState;
+        stateTransitionTime?: Date;
+        previousState?: CertificateState;
+        previousStateTransitionTime?: Date;
+        publicData?: Uint8Array;
+        deleteCertificateError?: DeleteCertificateError;
+    }>;
     getJob(jobId: string, options?: GetJobOptionalParams): Promise<BatchJob>;
     getJobSchedule(jobScheduleId: string, options?: GetJobScheduleOptionalParams): Promise<BatchJobSchedule>;
     getJobTaskCounts(jobId: string, options?: GetJobTaskCountsOptionalParams): Promise<TaskCountsResult>;

@@ -15,20 +15,16 @@ import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
   isUnexpected,
   AnomalyDetectorContext as Client,
+  DeleteMultivariateModel200Response,
   DeleteMultivariateModel204Response,
-  DeleteMultivariateModelDefaultResponse,
+  DetectMultivariateBatchAnomaly200Response,
   DetectMultivariateBatchAnomaly202Response,
-  DetectMultivariateBatchAnomalyDefaultResponse,
   DetectMultivariateLastAnomaly200Response,
-  DetectMultivariateLastAnomalyDefaultResponse,
   GetMultivariateBatchDetectionResult200Response,
-  GetMultivariateBatchDetectionResultDefaultResponse,
   GetMultivariateModel200Response,
-  GetMultivariateModelDefaultResponse,
   ListMultivariateModels200Response,
-  ListMultivariateModelsDefaultResponse,
+  TrainMultivariateModel200Response,
   TrainMultivariateModel201Response,
-  TrainMultivariateModelDefaultResponse,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -51,19 +47,14 @@ export function _getMultivariateBatchDetectionResultSend(
   options: MultivariateGetMultivariateBatchDetectionResultOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | GetMultivariateBatchDetectionResult200Response
-  | GetMultivariateBatchDetectionResultDefaultResponse
-> {
+): StreamableMethod<GetMultivariateBatchDetectionResult200Response> {
   return context
     .path("/multivariate/detect-batch/{resultId}", resultId)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getMultivariateBatchDetectionResultDeserialize(
-  result:
-    | GetMultivariateBatchDetectionResult200Response
-    | GetMultivariateBatchDetectionResultDefaultResponse,
+  result: GetMultivariateBatchDetectionResult200Response,
 ): Promise<MultivariateMultivariateDetectionResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -163,7 +154,7 @@ export function _trainMultivariateModelSend(
     requestOptions: {},
   },
 ): StreamableMethod<
-  TrainMultivariateModel201Response | TrainMultivariateModelDefaultResponse
+  TrainMultivariateModel200Response | TrainMultivariateModel201Response
 > {
   return context
     .path("/multivariate/models")
@@ -219,9 +210,7 @@ export function _trainMultivariateModelSend(
 }
 
 export async function _trainMultivariateModelDeserialize(
-  result:
-    | TrainMultivariateModel201Response
-    | TrainMultivariateModelDefaultResponse,
+  result: TrainMultivariateModel200Response | TrainMultivariateModel201Response,
 ): Promise<MultivariateAnomalyDetectionModel> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -329,9 +318,7 @@ export function _listMultivariateModelsSend(
   options: MultivariateListMultivariateModelsOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  ListMultivariateModels200Response | ListMultivariateModelsDefaultResponse
-> {
+): StreamableMethod<ListMultivariateModels200Response> {
   return context
     .path("/multivariate/models")
     .get({
@@ -341,9 +328,7 @@ export function _listMultivariateModelsSend(
 }
 
 export async function _listMultivariateModelsDeserialize(
-  result:
-    | ListMultivariateModels200Response
-    | ListMultivariateModelsDefaultResponse,
+  result: ListMultivariateModels200Response,
 ): Promise<MultivariateModelList> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -451,7 +436,7 @@ export function _deleteMultivariateModelSend(
     requestOptions: {},
   },
 ): StreamableMethod<
-  DeleteMultivariateModel204Response | DeleteMultivariateModelDefaultResponse
+  DeleteMultivariateModel200Response | DeleteMultivariateModel204Response
 > {
   return context
     .path("/multivariate/models/{modelId}", modelId)
@@ -460,8 +445,8 @@ export function _deleteMultivariateModelSend(
 
 export async function _deleteMultivariateModelDeserialize(
   result:
-    | DeleteMultivariateModel204Response
-    | DeleteMultivariateModelDefaultResponse,
+    | DeleteMultivariateModel200Response
+    | DeleteMultivariateModel204Response,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -488,16 +473,14 @@ export function _getMultivariateModelSend(
   options: MultivariateGetMultivariateModelOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  GetMultivariateModel200Response | GetMultivariateModelDefaultResponse
-> {
+): StreamableMethod<GetMultivariateModel200Response> {
   return context
     .path("/multivariate/models/{modelId}", modelId)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getMultivariateModelDeserialize(
-  result: GetMultivariateModel200Response | GetMultivariateModelDefaultResponse,
+  result: GetMultivariateModel200Response,
 ): Promise<MultivariateAnomalyDetectionModel> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -603,8 +586,8 @@ export function _detectMultivariateBatchAnomalySend(
     requestOptions: {},
   },
 ): StreamableMethod<
+  | DetectMultivariateBatchAnomaly200Response
   | DetectMultivariateBatchAnomaly202Response
-  | DetectMultivariateBatchAnomalyDefaultResponse
 > {
   return context
     .path("/multivariate/models/{modelId}:detect-batch", modelId)
@@ -621,8 +604,8 @@ export function _detectMultivariateBatchAnomalySend(
 
 export async function _detectMultivariateBatchAnomalyDeserialize(
   result:
-    | DetectMultivariateBatchAnomaly202Response
-    | DetectMultivariateBatchAnomalyDefaultResponse,
+    | DetectMultivariateBatchAnomaly200Response
+    | DetectMultivariateBatchAnomaly202Response,
 ): Promise<MultivariateMultivariateDetectionResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -728,10 +711,7 @@ export function _detectMultivariateLastAnomalySend(
   optionalParams: MultivariateDetectMultivariateLastAnomalyOptionalParams = {
     requestOptions: {},
   },
-): StreamableMethod<
-  | DetectMultivariateLastAnomaly200Response
-  | DetectMultivariateLastAnomalyDefaultResponse
-> {
+): StreamableMethod<DetectMultivariateLastAnomaly200Response> {
   return context
     .path("/multivariate/models/{modelId}:detect-last", modelId)
     .post({
@@ -748,9 +728,7 @@ export function _detectMultivariateLastAnomalySend(
 }
 
 export async function _detectMultivariateLastAnomalyDeserialize(
-  result:
-    | DetectMultivariateLastAnomaly200Response
-    | DetectMultivariateLastAnomalyDefaultResponse,
+  result: DetectMultivariateLastAnomaly200Response,
 ): Promise<MultivariateMultivariateLastDetectionResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);

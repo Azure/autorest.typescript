@@ -21,19 +21,15 @@ import {
   DetectUnivariateChangePoint200Response,
   DetectUnivariateChangePointDefaultResponse,
   GetMultivariateBatchDetectionResult200Response,
-  GetMultivariateBatchDetectionResultDefaultResponse,
+  TrainMultivariateModel200Response,
   TrainMultivariateModel201Response,
-  TrainMultivariateModelDefaultResponse,
   ListMultivariateModels200Response,
-  ListMultivariateModelsDefaultResponse,
+  DeleteMultivariateModel200Response,
   DeleteMultivariateModel204Response,
-  DeleteMultivariateModelDefaultResponse,
   GetMultivariateModel200Response,
-  GetMultivariateModelDefaultResponse,
+  DetectMultivariateBatchAnomaly200Response,
   DetectMultivariateBatchAnomaly202Response,
-  DetectMultivariateBatchAnomalyDefaultResponse,
   DetectMultivariateLastAnomaly200Response,
-  DetectMultivariateLastAnomalyDefaultResponse,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -82,10 +78,7 @@ export interface GetMultivariateBatchDetectionResult {
    */
   get(
     options?: GetMultivariateBatchDetectionResultParameters,
-  ): StreamableMethod<
-    | GetMultivariateBatchDetectionResult200Response
-    | GetMultivariateBatchDetectionResultDefaultResponse
-  >;
+  ): StreamableMethod<GetMultivariateBatchDetectionResult200Response>;
 }
 
 export interface TrainMultivariateModel {
@@ -101,14 +94,12 @@ export interface TrainMultivariateModel {
   post(
     options: TrainMultivariateModelParameters,
   ): StreamableMethod<
-    TrainMultivariateModel201Response | TrainMultivariateModelDefaultResponse
+    TrainMultivariateModel200Response | TrainMultivariateModel201Response
   >;
   /** List models of a resource. */
   get(
     options?: ListMultivariateModelsParameters,
-  ): StreamableMethod<
-    ListMultivariateModels200Response | ListMultivariateModelsDefaultResponse
-  >;
+  ): StreamableMethod<ListMultivariateModels200Response>;
 }
 
 export interface DeleteMultivariateModel {
@@ -116,7 +107,7 @@ export interface DeleteMultivariateModel {
   delete(
     options?: DeleteMultivariateModelParameters,
   ): StreamableMethod<
-    DeleteMultivariateModel204Response | DeleteMultivariateModelDefaultResponse
+    DeleteMultivariateModel200Response | DeleteMultivariateModel204Response
   >;
   /**
    * Get detailed information of multivariate model, including the training status
@@ -124,9 +115,7 @@ export interface DeleteMultivariateModel {
    */
   get(
     options?: GetMultivariateModelParameters,
-  ): StreamableMethod<
-    GetMultivariateModel200Response | GetMultivariateModelDefaultResponse
-  >;
+  ): StreamableMethod<GetMultivariateModel200Response>;
 }
 
 export interface DetectMultivariateBatchAnomaly {
@@ -141,8 +130,8 @@ export interface DetectMultivariateBatchAnomaly {
   post(
     options: DetectMultivariateBatchAnomalyParameters,
   ): StreamableMethod<
+    | DetectMultivariateBatchAnomaly200Response
     | DetectMultivariateBatchAnomaly202Response
-    | DetectMultivariateBatchAnomalyDefaultResponse
   >;
 }
 
@@ -155,10 +144,7 @@ export interface DetectMultivariateLastAnomaly {
    */
   post(
     options: DetectMultivariateLastAnomalyParameters,
-  ): StreamableMethod<
-    | DetectMultivariateLastAnomaly200Response
-    | DetectMultivariateLastAnomalyDefaultResponse
-  >;
+  ): StreamableMethod<DetectMultivariateLastAnomaly200Response>;
 }
 
 export interface Routes {

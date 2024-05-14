@@ -260,48 +260,6 @@
         }
       }
     },
-    "AzureOpenAIOperationState": {
-      "type": "string",
-      "description": "The state of a job or item.",
-      "enum": [
-        "notRunning",
-        "running",
-        "succeeded",
-        "canceled",
-        "failed"
-      ],
-      "x-ms-enum": {
-        "name": "AzureOpenAIOperationState",
-        "modelAsString": true,
-        "values": [
-          {
-            "name": "notRunning",
-            "value": "notRunning",
-            "description": "The operation was created and is queued to be processed in the future."
-          },
-          {
-            "name": "running",
-            "value": "running",
-            "description": "The operation has started to be processed."
-          },
-          {
-            "name": "succeeded",
-            "value": "succeeded",
-            "description": "The operation has successfully be processed and is ready for consumption."
-          },
-          {
-            "name": "canceled",
-            "value": "canceled",
-            "description": "The operation has been canceled and is incomplete."
-          },
-          {
-            "name": "failed",
-            "value": "failed",
-            "description": "The operation has completed processing with a failure and cannot be further consumed."
-          }
-        ]
-      }
-    },
     "ChatChoice": {
       "type": "object",
       "description": "The representation of a single prompt completion as part of an overall chat completions request.\nGenerally, `n` choices are generated per provided prompt with a default value of 1.\nToken limits and other settings may limit the number of choices generated.",
@@ -870,42 +828,6 @@
         "prompt_tokens",
         "total_tokens"
       ]
-    },
-    "ServiceApiVersions": {
-      "type": "string",
-      "enum": [
-        "2022-12-01",
-        "2023-05-15",
-        "2023-06-01-preview",
-        "2023-07-01-preview",
-        "2023-08-01-preview"
-      ],
-      "x-ms-enum": {
-        "name": "ServiceApiVersions",
-        "modelAsString": true,
-        "values": [
-          {
-            "name": "v2022_12_01",
-            "value": "2022-12-01"
-          },
-          {
-            "name": "v2023_05_15",
-            "value": "2023-05-15"
-          },
-          {
-            "name": "v2023_06_01_Preview",
-            "value": "2023-06-01-preview"
-          },
-          {
-            "name": "v2023_07_01_Preview",
-            "value": "2023-07-01-preview"
-          },
-          {
-            "name": "v2023_08_01_Preview",
-            "value": "2023-08-01-preview"
-          }
-        ]
-      }
     }
   },
   "parameters": {
