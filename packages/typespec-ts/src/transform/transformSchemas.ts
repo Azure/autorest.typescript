@@ -77,7 +77,7 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
       getGeneratedModels(bodyModel, SchemaContext.Input);
     }
     for (const resp of route.responses) {
-      if (isAzureCoreErrorType(resp.type)) {
+      if (isAzureCoreErrorType(dpgContext.program, resp.type)) {
         continue;
       }
       for (const resps of resp.responses) {
@@ -159,7 +159,7 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
           continue;
         }
         if (propType.type.kind === "Model") {
-          if (isAzureCoreErrorType(propType.type)) {
+          if (isAzureCoreErrorType(dpgContext.program, propType.type)) {
             continue;
           }
           getGeneratedModels(propType.type, context);
