@@ -10,6 +10,6 @@ options:
     isTypeSpecTest: true
     title: ServiceDrivenNewClient
     packageDetails:
-      name: "@msinternal/srv-driven-2"
-      description: "Srv Driven 2 Test Service"
+      name: "@msinternal/srv-driven-main"
+      description: "Srv Driven Main Test Service"
       version: "1.0.0"

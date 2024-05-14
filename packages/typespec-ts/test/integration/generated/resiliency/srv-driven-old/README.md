@@ -6,7 +6,7 @@ Test that we can grow up a service spec and service deployment into a multi-vers
 
 Key links:
 
-- [Package (NPM)](https://www.npmjs.com/package/@msinternal/srv-driven-1)
+- [Package (NPM)](https://www.npmjs.com/package/@msinternal/srv-driven-old)
 
 ## Getting started
 
@@ -18,12 +18,12 @@ Key links:
 
 - You must have an [Azure subscription](https://azure.microsoft.com/free/) to use this package.
 
-### Install the `@msinternal/srv-driven-1` package
+### Install the `@msinternal/srv-driven-old` package
 
 Install the ServiceDrivenOld REST client REST client library for JavaScript with `npm`:
 
 ```bash
-npm install @msinternal/srv-driven-1
+npm install @msinternal/srv-driven-old
 ```
 
 ### Create and authenticate a `ServiceDrivenOldClient`

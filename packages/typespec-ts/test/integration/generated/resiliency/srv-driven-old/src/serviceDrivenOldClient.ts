@@ -3,14 +3,14 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
-import { ServiceDrivenNewClient } from "./clientDefinitions.js";
+import { ServiceDrivenOldClient } from "./clientDefinitions.js";
 
-export interface ServiceDrivenNewClientOptions extends ClientOptions {
+export interface ServiceDrivenOldClientOptions extends ClientOptions {
   apiVersion?: string;
 }
 
 /**
- * Initialize a new instance of `ServiceDrivenNewClient`
+ * Initialize a new instance of `ServiceDrivenOldClient`
  * @param endpointParam - Need to be set as 'http://localhost:3000' in client.
  * @param serviceDeploymentVersion - Pass in either 'v1' or 'v2'. This represents a version of the service deployment in history. 'v1' is for the deployment when the service had only one api version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'.
  * @param options - the parameter for all optional parameters
@@ -18,15 +18,15 @@ export interface ServiceDrivenNewClientOptions extends ClientOptions {
 export default function createClient(
   endpointParam: string,
   serviceDeploymentVersion: string,
-  options: ServiceDrivenNewClientOptions = {},
-): ServiceDrivenNewClient {
-  const apiVersion = options.apiVersion ?? "v2";
+  options: ServiceDrivenOldClientOptions = {},
+): ServiceDrivenOldClient {
+  const apiVersion = options.apiVersion ?? "v1";
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
-    `${endpointParam}/resiliency/service-driven/client:v2/service:${serviceDeploymentVersion}/api-version:${apiVersion}`;
+    `${endpointParam}/resiliency/service-driven/client:v1/service:${serviceDeploymentVersion}/api-version:${apiVersion}`;
 
-  const userAgentInfo = `azsdk-js-srv-driven-2-rest/1.0.0`;
+  const userAgentInfo = `azsdk-js-srv-driven-old-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -41,7 +41,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(endpointUrl, options) as ServiceDrivenNewClient;
+  const client = getClient(endpointUrl, options) as ServiceDrivenOldClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
