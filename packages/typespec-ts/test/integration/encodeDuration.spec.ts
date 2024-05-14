@@ -48,6 +48,22 @@ describe("EncodeDurationClient Rest Client", () => {
       }
     });
 
+    it(`should post float64-seconds property`, async () => {
+      try {
+        const result = await client
+          .path(`/encode/duration/property/float64-seconds`)
+          .post({
+            body: {
+              value: 35.621
+            }
+          });
+        assert.strictEqual(result.status, "200");
+        assert.strictEqual(result.body.value, 35.621);
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
     it(`should post int32-seconds property`, async () => {
       try {
         const result = await client
@@ -169,6 +185,21 @@ describe("EncodeDurationClient Rest Client", () => {
         assert.fail(err as string);
       }
     });
+
+    it(`should get float64-seconds query`, async () => {
+      try {
+        const result = await client
+          .path(`/encode/duration/query/float64-seconds`)
+          .get({
+            queryParameters: {
+              input: 35.621
+            }
+          });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
   });
 
   describe("header", () => {
@@ -236,6 +267,21 @@ describe("EncodeDurationClient Rest Client", () => {
       try {
         const result = await client
           .path(`/encode/duration/header/float-seconds`)
+          .get({
+            headers: {
+              duration: 35.621
+            }
+          });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it(`should get float64-seconds header`, async () => {
+      try {
+        const result = await client
+          .path(`/encode/duration/header/float64-seconds`)
           .get({
             headers: {
               duration: 35.621

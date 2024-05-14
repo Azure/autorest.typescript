@@ -1,6 +1,6 @@
 import TypePropertyValueTypesClientFactory, {
   ValueTypesClient
-} from "./generated/models/propertyTypes/src/index.js";
+} from "./generated/type/property/value-types/src/index.js";
 import { assert } from "chai";
 import { matrix } from "../util/matrix.js";
 

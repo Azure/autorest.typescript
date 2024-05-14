@@ -1,6 +1,6 @@
 import TypeEnumExtensibleClientFactory, {
   ExtensibleClient
-} from "./generated/enums/extensible/src/index.js";
+} from "./generated/type/enum/extensible/src/index.js";
 import { assert } from "chai";
 describe("ExtensibleEnums Rest Client", () => {
   let client: ExtensibleClient;
