@@ -34,6 +34,16 @@ export interface ResourceOperationStatusOutput {
   result?: WidgetOutput;
 }
 
+/** Provides status details for long running operations. */
+export interface OperationStatusOutput {
+  /** The unique ID of the operation. */
+  id: string;
+  /** The status of the operation */
+  status: OperationStateOutput;
+  /** Error object that describes the error when status is "Failed". */
+  error?: ErrorModel;
+}
+
 /** Enum describing allowed operation states. */
 export type OperationStateOutput =
   | "NotStarted"
