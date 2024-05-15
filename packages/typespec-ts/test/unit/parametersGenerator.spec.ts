@@ -593,4 +593,20 @@ describe("Parameters.ts", () => {
       );
     });
   });
+
+  describe("void as request body", () => {
+    it("void request generation", async () => {
+      const parameters = await emitParameterFromTypeSpec(`
+      op read(@body param: void): void;`);
+      assert.ok(parameters);
+      await assertEqualContent(
+        parameters?.content!,
+        `
+        import { RequestParameters } from "@azure-rest/core-client";
+        
+        export type ReadParameters = RequestParameters;
+      `
+      );
+    });
+  });
 });

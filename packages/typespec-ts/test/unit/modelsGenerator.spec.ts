@@ -88,40 +88,15 @@ describe("Input/output model type", () => {
   }
 
   describe("void generation", async () => {
-    it("should generate void only", async () => {
-      const tspType = "void";
-      const typeScriptType = "void";
-      await verifyPropertyType(tspType, typeScriptType);
-    });
-
-    it("should generate union containing void", async () => {
-      const tspType = `void | "1"`;
-      const typeScriptType = `void | "1"`;
-      await verifyPropertyType(tspType, typeScriptType);
-    });
-
-    it("should generate nullable model", async () => {
-      const tspDefinition = `
-      model SimpleModel {
-        color: void;
+    it("should throw exception for property with void type", async () => {
+      try {
+        const tspType = "void";
+        const typeScriptType = "void";
+        await verifyPropertyType(tspType, typeScriptType);
+        assert.fail("Should throw exception");
+      } catch (err: any) {
+        assert.equal(err[0].message, "Couldn't get schema for type Intrinsic");
       }
-      `;
-      const tspType = "SimpleModel";
-      const typeScriptType = "SimpleModel";
-      await verifyPropertyType(tspType, typeScriptType, {
-        additionalTypeSpecDefinition: tspDefinition,
-        outputType: "SimpleModelOutput",
-        additionalInputContent: `
-        export interface SimpleModel {
-          color: void;
-        }
-          `,
-        additionalOutputContent: `
-        export interface SimpleModelOutput {
-          color: void;
-        }
-          `
-      });
     });
   });
 
