@@ -5,6 +5,7 @@ import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   CloudEvent,
+  PublishResult,
   ReceiveResult,
   AcknowledgeOptions,
   AcknowledgeResult,
@@ -55,7 +56,7 @@ export class EventGridClient {
     topicName: string,
     event: CloudEvent,
     options: PublishCloudEventOptionalParams = { requestOptions: {} },
-  ): Promise<void> {
+  ): Promise<PublishResult> {
     return publishCloudEvent(this._client, topicName, event, options);
   }
 
@@ -64,7 +65,7 @@ export class EventGridClient {
     topicName: string,
     events: CloudEvent[],
     options: PublishCloudEventsOptionalParams = { requestOptions: {} },
-  ): Promise<void> {
+  ): Promise<PublishResult> {
     return publishCloudEvents(this._client, topicName, events, options);
   }
 

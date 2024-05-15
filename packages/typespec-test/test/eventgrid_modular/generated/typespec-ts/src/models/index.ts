@@ -3,6 +3,7 @@
 
 export {
   CloudEvent,
+  PublishResult,
   ReceiveResult,
   ReceiveDetails,
   BrokerProperties,
