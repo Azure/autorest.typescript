@@ -259,10 +259,7 @@ function transformBodyParameters(
     (parameters.bodyType ?? parameters.bodyParameter?.type) && inputBodyType
       ? inputBodyType
       : parameters.bodyType ?? parameters.bodyParameter?.type;
-  if (!bodyType) {
-    return;
-  }
-  if (isVoidType(bodyType)) {
+  if (!bodyType || isVoidType(bodyType)) {
     return;
   }
   return transformRequestBody(
