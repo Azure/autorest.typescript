@@ -595,7 +595,7 @@ describe("Parameters.ts", () => {
   });
 
   describe("void as request body", () => {
-    it("void request generation", async () => {
+    it("void request body should be emitted", async () => {
       const parameters = await emitParameterFromTypeSpec(`
       op read(@body param: void): void;`);
       assert.ok(parameters);

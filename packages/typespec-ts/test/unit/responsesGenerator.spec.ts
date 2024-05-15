@@ -107,7 +107,7 @@ describe("Responses.ts", () => {
   });
 
   describe("body generation", () => {
-    it("void as response body", async () => {
+    it("void as response body should be omitted", async () => {
       const parameters = await emitResponsesFromTypeSpec(`
       @post op read(): {@body body: void; @statusCode _: 204; };
       `);

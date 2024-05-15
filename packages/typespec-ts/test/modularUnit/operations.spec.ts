@@ -5,7 +5,7 @@ import { Diagnostic } from "@typespec/compiler";
 
 describe("operations", () => {
   describe("void parameter/return type", () => {
-    it("should handle void in request and response body", async () => {
+    it("void request body should be omitted", async () => {
       const tspContent = `
         op read(@body param: void): void;
           `;
@@ -39,7 +39,7 @@ describe("operations", () => {
       );
     });
 
-    it("should handle void correctly", async () => {
+    it("void response body should be omitted", async () => {
       const tspContent = `
         op read(): { @body _: void;};
           `;
@@ -73,7 +73,7 @@ describe("operations", () => {
       );
     });
 
-    it("should throw exception if void property", async () => {
+    it("should throw exception if property type as void", async () => {
       try {
         const tspContent = `
         op read(param: void): {};
