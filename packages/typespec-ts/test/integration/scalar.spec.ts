@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import ScalarClientFactory, {
   ScalarClient
-} from "./generated/scalar/src/index.js";
+} from "./generated/type/scalar/src/index.js";
 
 describe("Scalar Client", () => {
   let client: ScalarClient;

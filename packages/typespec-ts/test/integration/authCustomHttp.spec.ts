@@ -1,6 +1,6 @@
 import AuthHttpCustomClientFactory, {
   AuthHttpCustomClient
-} from "./generated/authentication/http-custom/src/index.js";
+} from "./generated/authentication/http/custom/src/index.js";
 import { assert } from "chai";
 describe("AuthHttpCustomClient Rest Client", () => {
   let client: AuthHttpCustomClient;

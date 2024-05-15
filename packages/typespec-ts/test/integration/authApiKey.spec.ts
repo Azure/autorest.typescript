@@ -1,6 +1,6 @@
 import ApiKeyClientFactory, {
   AuthApiKeyClient
-} from "./generated/authentication/apiKey/src/index.js";
+} from "./generated/authentication/api-key/src/index.js";
 import { assert } from "chai";
 describe("AuthApiKeyClient Rest Client", () => {
   let client: AuthApiKeyClient;

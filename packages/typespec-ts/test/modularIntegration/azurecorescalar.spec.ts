@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { ScalarClient } from "./generated/azure/core-scalar/src/index.js";
+import { ScalarClient } from "./generated/azure/core/scalar/src/index.js";
 describe("Scalar Azure core Client", () => {
   let client: ScalarClient;
 

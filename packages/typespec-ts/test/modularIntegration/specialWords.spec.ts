@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { SpecialWordsClient } from "./generated/specialWords/src/index.js";
+import { SpecialWordsClient } from "./generated/special-words/src/index.js";
 
 describe("Special Words Client", () => {
   let client: SpecialWordsClient;
@@ -616,11 +616,10 @@ describe("Special Words Client", () => {
     }
   });
 
-  
   it("should post parameters withCancellationToken", async () => {
     try {
       const result = await client.parameters.withCancellationToken("ok");
-      assert.equal(result , undefined);
+      assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }

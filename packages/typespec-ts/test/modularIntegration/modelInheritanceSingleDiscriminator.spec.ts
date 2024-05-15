@@ -2,7 +2,7 @@ import {
   Eagle,
   SingleDiscriminatorClient,
   Sparrow
-} from "./generated/models/inheritance/single-discriminator/src/index.js";
+} from "./generated/type/model/inheritance/single-discriminator/src/index.js";
 import { assert } from "chai";
 
 describe("SingleDiscriminatorClient Rest Client", () => {

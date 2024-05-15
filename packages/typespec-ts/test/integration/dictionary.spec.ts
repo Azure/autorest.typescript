@@ -2,7 +2,7 @@ import { assert } from "chai";
 import { matrix } from "../util/matrix.js";
 import DictClientFactory, {
   DictClient
-} from "./generated/dictionary/src/index.js";
+} from "./generated/type/dictionary/src/index.js";
 
 interface TypeDetail {
   type: string;

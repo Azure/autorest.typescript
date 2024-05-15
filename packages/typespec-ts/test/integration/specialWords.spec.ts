@@ -1,6 +1,6 @@
 import SpecialWordsClientFactory, {
   SpecialWordsClient
-} from "./generated/specialWords/src/index.js";
+} from "./generated/special-words/src/index.js";
 import { assert } from "chai";
 describe("SpecialWordsClient Rest Client", () => {
   let client: SpecialWordsClient;
@@ -789,7 +789,7 @@ describe("SpecialWordsClient Rest Client", () => {
           .path("/special-words/parameters/cancellationToken")
           .get({
             queryParameters: {
-              cancellationToken:"ok"
+              cancellationToken: "ok"
             }
           });
         assert.strictEqual(result.status, "204");
@@ -798,7 +798,7 @@ describe("SpecialWordsClient Rest Client", () => {
       }
     });
   });
-  
+
   describe("models", () => {
     it("should get special words for operation `and`", async () => {
       try {
