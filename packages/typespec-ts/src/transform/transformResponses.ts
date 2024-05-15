@@ -17,11 +17,9 @@ import {
 } from "@azure-tools/rlc-common";
 import { getDoc, ignoreDiagnostics } from "@typespec/compiler";
 import {
-  createMetadataInfo,
   getHttpOperation,
   HttpOperation,
-  HttpOperationResponse,
-  Visibility
+  HttpOperationResponse
 } from "@typespec/http";
 import {
   getImportedModelName,
@@ -187,16 +185,9 @@ function transformBody(
       descriptions.add("Value may contain any sequence of octets");
       continue;
     }
-    const metadataInfo = createMetadataInfo(dpgContext.program, {
-      canonicalVisibility: Visibility.Read
-    });
-    const bodySchema = getSchemaForType(
-      dpgContext,
-      metadataInfo.getEffectivePayloadType(body!.type, Visibility.Read),
-      {
-        usage: [SchemaContext.Output]
-      }
-    ) as Schema;
+    const bodySchema = getSchemaForType(dpgContext, body!.type, {
+      usage: [SchemaContext.Output]
+    }) as Schema;
     fromCore = bodySchema.fromCore ?? false;
     const bodyType = getTypeName(bodySchema);
     const importedNames = getImportedModelName(bodySchema);
