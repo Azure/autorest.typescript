@@ -207,7 +207,7 @@ import {
   TerminateJobDefaultResponse,
   TerminateJobSchedule202Response,
   TerminateJobScheduleDefaultResponse,
-  TerminateTask200Response,
+  TerminateTask204Response,
   TerminateTaskDefaultResponse,
   UpdateJob200Response,
   UpdateJobDefaultResponse,
@@ -17851,7 +17851,7 @@ export function _terminateTaskSend(
   jobId: string,
   taskId: string,
   options: TerminateTaskOptionalParams = { requestOptions: {} },
-): StreamableMethod<TerminateTask200Response | TerminateTaskDefaultResponse> {
+): StreamableMethod<TerminateTask204Response | TerminateTaskDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}/terminate", jobId, taskId)
     .post({
@@ -17878,7 +17878,7 @@ export function _terminateTaskSend(
 }
 
 export async function _terminateTaskDeserialize(
-  result: TerminateTask200Response | TerminateTaskDefaultResponse,
+  result: TerminateTask204Response | TerminateTaskDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);

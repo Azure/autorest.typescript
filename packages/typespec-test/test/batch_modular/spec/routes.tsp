@@ -1621,6 +1621,8 @@ primary task; subtasks are then terminated asynchronously in the background.
       @header("DataServiceId")
       @doc("The OData ID of the resource to which the request applied.")
       DataServiceId: string;
+
+      @statusCode _: 204;
     },
     {},
     BatchError
