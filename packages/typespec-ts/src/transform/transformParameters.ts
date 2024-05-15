@@ -11,7 +11,7 @@ import {
   SchemaContext,
   ApiVersionInfo
 } from "@azure-tools/rlc-common";
-import { ignoreDiagnostics, Type } from "@typespec/compiler";
+import { ignoreDiagnostics, isVoidType, Type } from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
@@ -260,6 +260,9 @@ function transformBodyParameters(
       ? inputBodyType
       : parameters.bodyType ?? parameters.bodyParameter?.type;
   if (!bodyType) {
+    return;
+  }
+  if (isVoidType(bodyType)) {
     return;
   }
   return transformRequestBody(
