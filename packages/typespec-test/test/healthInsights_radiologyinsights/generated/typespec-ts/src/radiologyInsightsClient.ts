@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { PollerLike, OperationState } from "@azure/core-lro";
 import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   RadiologyInsightsData,
-  HealthInsightsOperationStatusError,
+  RadiologyInsightsInferenceResult,
 } from "./models/models.js";
 import { InferRadiologyInsightsOptionalParams } from "./models/options.js";
 import {
@@ -35,7 +36,10 @@ export class RadiologyInsightsClient {
   inferRadiologyInsights(
     body: RadiologyInsightsData,
     options: InferRadiologyInsightsOptionalParams = { requestOptions: {} },
-  ): Promise<HealthInsightsOperationStatusError> {
+  ): PollerLike<
+    OperationState<RadiologyInsightsInferenceResult>,
+    RadiologyInsightsInferenceResult
+  > {
     return inferRadiologyInsights(this._client, body, options);
   }
 }

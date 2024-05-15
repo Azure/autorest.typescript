@@ -1,10 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { getLongRunningPoller } from "./pollingHelpers.js";
+import { PollerLike, OperationState } from "@azure/core-lro";
 import {
   RadiologyInsightsData,
-  HealthInsightsOperationStatusError,
+  RadiologyInsightsInferenceResult,
 } from "../models/models.js";
+import { deserializeRadiologyInsightsInferenceUnion } from "../utils/deserializeUtil.js";
 import {
   isUnexpected,
   AzureHealthInsightsContext as Client,
@@ -2481,36 +2484,46 @@ export async function _inferRadiologyInsightsDeserialize(
     | CreateJob202Response
     | CreateJobDefaultResponse
     | CreateJobLogicalResponse,
-): Promise<HealthInsightsOperationStatusError> {
+): Promise<RadiologyInsightsInferenceResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
+  result = result as CreateJobLogicalResponse;
+  if (result?.body?.result === undefined) {
+    throw createRestError(
+      `Expected a result in the response at position "result.body.result"`,
+      result,
+    );
+  }
+
   return {
-    id: result.body["id"],
-    status: result.body["status"],
-    createdDateTime:
-      result.body["createdDateTime"] !== undefined
-        ? new Date(result.body["createdDateTime"])
-        : undefined,
-    expirationDateTime:
-      result.body["expirationDateTime"] !== undefined
-        ? new Date(result.body["expirationDateTime"])
-        : undefined,
-    lastUpdateDateTime:
-      result.body["lastUpdateDateTime"] !== undefined
-        ? new Date(result.body["lastUpdateDateTime"])
-        : undefined,
-    error: !result.body.error ? undefined : result.body.error,
+    patientResults: result.body.result["patientResults"].map((p) => ({
+      patientId: p["patientId"],
+      inferences: p["inferences"].map((p) =>
+        deserializeRadiologyInsightsInferenceUnion(p),
+      ),
+    })),
+    modelVersion: result.body.result["modelVersion"],
   };
 }
 
 /** Creates a Radiology Insights job with the given request body. */
-export async function inferRadiologyInsights(
+export function inferRadiologyInsights(
   context: Client,
   body: RadiologyInsightsData,
   options: InferRadiologyInsightsOptionalParams = { requestOptions: {} },
-): Promise<HealthInsightsOperationStatusError> {
-  const result = await _inferRadiologyInsightsSend(context, body, options);
-  return _inferRadiologyInsightsDeserialize(result);
+): PollerLike<
+  OperationState<RadiologyInsightsInferenceResult>,
+  RadiologyInsightsInferenceResult
+> {
+  return getLongRunningPoller(context, _inferRadiologyInsightsDeserialize, {
+    updateIntervalInMs: options?.updateIntervalInMs,
+    abortSignal: options?.abortSignal,
+    getInitialResponse: () =>
+      _inferRadiologyInsightsSend(context, body, options),
+  }) as PollerLike<
+    OperationState<RadiologyInsightsInferenceResult>,
+    RadiologyInsightsInferenceResult
+  >;
 }

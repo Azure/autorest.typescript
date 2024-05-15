@@ -5,6 +5,7 @@ export {
   RadiologyInsightsClient,
   RadiologyInsightsClientOptions,
 } from "./radiologyInsightsClient.js";
+export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
   PatientRecord,
   PatientInfo,
