@@ -728,8 +728,8 @@ function deserializeUnionTypesFunction(
       }": return ${serializeType}${functionName}(obj${
         isPolymorphicBaseModel
           ? " as " +
-            getMappedType(type.type) +
-            (serializeType === "deserialize" ? "Rest" : "")
+            (type.alias ?? type.name) +
+            (serializeType === "serialize" ? "Rest" : "Output")
           : ""
       }); `
     );
