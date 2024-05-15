@@ -408,6 +408,15 @@ export interface User {
     username: string;
 }
 
+// @public (undocumented)
+export interface UserCreatedResponseOutput {
+    email: string;
+    readonly id: number;
+    password: string;
+    token: string;
+    username: string;
+}
+
 // @public
 export interface UserExistsResponseOutput extends ErrorModelOutput {
 }
@@ -421,12 +430,7 @@ export interface UsersCreate {
 // @public
 export interface UsersCreate200Response extends HttpResponse {
     // (undocumented)
-    body: {
-        id: number;
-        username: string;
-        email: string;
-        token: string;
-    };
+    body: UserCreatedResponseOutput;
     // (undocumented)
     status: "200";
 }
