@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import {
-  GetAvatarAsJpeg200Response,
+  GetAvatarAsJpeg204Response,
   GetAvatarAsJpegDefaultResponse,
-  GetAvatarAsPng200Response,
+  GetAvatarAsPng204Response,
   GetAvatarAsPngDefaultResponse,
   isUnexpected,
   WidgetManagerContext as Client,
@@ -23,7 +23,7 @@ export function _getAvatarAsPngSend(
   context: Client,
   image: Uint8Array,
   options: FooOperationsGetAvatarAsPngOptionalParams = { requestOptions: {} },
-): StreamableMethod<GetAvatarAsPng200Response | GetAvatarAsPngDefaultResponse> {
+): StreamableMethod<GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse> {
   return context
     .path("/avatar")
     .post({
@@ -31,12 +31,12 @@ export function _getAvatarAsPngSend(
       contentType: (options.contentType as any) ?? "image/png",
       body: image,
     }) as StreamableMethod<
-    GetAvatarAsPng200Response | GetAvatarAsPngDefaultResponse
+    GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse
   >;
 }
 
 export async function _getAvatarAsPngDeserialize(
-  result: GetAvatarAsPng200Response | GetAvatarAsPngDefaultResponse,
+  result: GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -60,7 +60,7 @@ export function _getAvatarAsJpegSend(
   image: Uint8Array,
   options: FooOperationsGetAvatarAsJpegOptionalParams = { requestOptions: {} },
 ): StreamableMethod<
-  GetAvatarAsJpeg200Response | GetAvatarAsJpegDefaultResponse
+  GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse
 > {
   return context
     .path("/avatar")
@@ -69,12 +69,12 @@ export function _getAvatarAsJpegSend(
       contentType: (options.contentType as any) ?? "image/jpeg",
       body: image,
     }) as StreamableMethod<
-    GetAvatarAsJpeg200Response | GetAvatarAsJpegDefaultResponse
+    GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse
   >;
 }
 
 export async function _getAvatarAsJpegDeserialize(
-  result: GetAvatarAsJpeg200Response | GetAvatarAsJpegDefaultResponse,
+  result: GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
