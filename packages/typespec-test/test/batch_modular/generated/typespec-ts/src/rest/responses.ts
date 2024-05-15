@@ -18,8 +18,7 @@ import {
   BatchJobListPreparationAndReleaseTaskStatusResultOutput,
   TaskCountsResultOutput,
   CertificateListResultOutput,
-  CertificateStateOutput,
-  DeleteCertificateErrorOutput,
+  BatchCertificateOutput,
   BatchJobScheduleOutput,
   BatchJobScheduleListResultOutput,
   BatchTaskListResultOutput,
@@ -836,17 +835,7 @@ export interface GetCertificate200Headers {
 /** The request has succeeded. */
 export interface GetCertificate200Response extends HttpResponse {
   status: "200";
-  body: {
-    thumbprint: string;
-    thumbprintAlgorithm: string;
-    url?: string;
-    state?: CertificateStateOutput;
-    stateTransitionTime?: string;
-    previousState?: CertificateStateOutput;
-    previousStateTransitionTime?: string;
-    publicData?: string;
-    deleteCertificateError?: DeleteCertificateErrorOutput;
-  };
+  body: BatchCertificateOutput;
   headers: RawHttpHeaders & GetCertificate200Headers;
 }
 
