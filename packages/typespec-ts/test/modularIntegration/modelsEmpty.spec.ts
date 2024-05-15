@@ -1,4 +1,4 @@
-import { EmptyClient } from "./generated/models/empty/generated/src/index.js";
+import { EmptyClient } from "./generated/type/model/empty/generated/src/index.js";
 import { assert } from "chai";
 
 const body = {};

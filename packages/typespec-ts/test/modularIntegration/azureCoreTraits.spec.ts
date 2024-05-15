@@ -1,4 +1,4 @@
-import { TraitsClient } from "./generated/azure/core-traits/src/index.js";
+import { TraitsClient } from "./generated/azure/core/traits/src/index.js";
 import { assert } from "chai";
 
 describe("Traits Client", () => {

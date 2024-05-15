@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import AccessClientFactory, {
   AccessClient
-} from "./generated/azure/clientGeneratorCore/access/src/index.js";
+} from "./generated/azure/client-generator-core/access/src/index.js";
 
 describe("Access Client", () => {
   let client: AccessClient;

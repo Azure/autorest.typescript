@@ -621,7 +621,10 @@ describe("header parameters", () => {
       const schemaOutput = await emitModularModelsFromTypeSpec(
         tspDefinition,
         false,
-        true
+        true,
+        false,
+        false,
+        false
       );
       assert.ok(schemaOutput);
       await assertEqualContent(

@@ -7,6 +7,7 @@ import {
   queryIso8601,
   queryInt32Seconds,
   queryFloatSeconds,
+  queryFloat64Seconds,
   queryInt32SecondsArray,
 } from "../../api/query/index.js";
 import {
@@ -14,6 +15,7 @@ import {
   QueryIso8601OptionalParams,
   QueryInt32SecondsOptionalParams,
   QueryFloatSecondsOptionalParams,
+  QueryFloat64SecondsOptionalParams,
   QueryInt32SecondsArrayOptionalParams,
 } from "../../models/options.js";
 
@@ -34,6 +36,10 @@ export interface QueryOperations {
     input: number,
     options?: QueryFloatSecondsOptionalParams,
   ) => Promise<void>;
+  float64Seconds: (
+    input: number,
+    options?: QueryFloat64SecondsOptionalParams,
+  ) => Promise<void>;
   int32SecondsArray: (
     input: number[],
     options?: QueryInt32SecondsArrayOptionalParams,
@@ -50,6 +56,10 @@ export function getQuery(context: DurationContext) {
       queryInt32Seconds(context, input, options),
     floatSeconds: (input: number, options?: QueryFloatSecondsOptionalParams) =>
       queryFloatSeconds(context, input, options),
+    float64Seconds: (
+      input: number,
+      options?: QueryFloat64SecondsOptionalParams,
+    ) => queryFloat64Seconds(context, input, options),
     int32SecondsArray: (
       input: number[],
       options?: QueryInt32SecondsArrayOptionalParams,

@@ -6,6 +6,7 @@ import { Project } from "ts-morph";
 
 export interface ModularOptions {
   sourceRoot: string;
+  compatibilityMode: boolean;
 }
 export interface ModularCodeModel {
   options: RLCOptions;
@@ -101,7 +102,7 @@ export interface Type {
   format?: string;
   properties?: Property[];
   types?: Type[];
-  isCoreErrorType?: boolean;
+  coreTypeInfo?: "ErrorType" | "LroType";
   usage?: UsageFlags;
   alias?: string;
   aliasType?: string;
@@ -182,4 +183,12 @@ export interface Operation {
   addedOn?: string;
   rlcResponse?: OperationResponse;
   namespaceHierarchies: string[];
+  lroMetadata?: LroOperationMetadata;
+}
+
+export interface LroOperationMetadata {
+  finalStateVia?: string;
+  finalResult?: Type;
+  /** The path to the field in the 'finalEnvelopeResult' that contains the 'finalResult'. */
+  finalResultPath?: string;
 }

@@ -5,7 +5,9 @@ export {
   WidgetServiceClient,
   WidgetServiceClientOptions,
 } from "./widgetServiceClient.js";
+export { restorePoller, RestorePollerOptions } from "./restorePollerHelpers.js";
 export {
+  User,
   Widget,
   WidgetError,
   ListWidgetsPagesResults,
@@ -13,16 +15,20 @@ export {
   UpdateWidget,
   AnalyzeResult,
   NonReferencedModel,
+  Versions,
   WidgetsListWidgetsOptionalParams,
   WidgetsListWidgetsPagesOptionalParams,
   WidgetsQueryWidgetsPagesOptionalParams,
   WidgetsGetWidgetOptionalParams,
   WidgetsCreateWidgetOptionalParams,
+  WidgetsCreateOrReplaceOptionalParams,
   WidgetsUpdateWidgetOptionalParams,
   WidgetsDeleteWidgetOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
+  BudgetsCreateOrReplaceOptionalParams,
+  BudgetsCreateOrUpdateOptionalParams,
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./models/index.js";
-export { WidgetsOperations } from "./classic/index.js";
+export { BudgetsOperations, WidgetsOperations } from "./classic/index.js";

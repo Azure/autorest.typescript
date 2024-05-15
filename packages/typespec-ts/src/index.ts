@@ -62,6 +62,10 @@ import {
 } from "./modular/buildPagingFiles.js";
 import { EmitterOptions } from "./lib.js";
 import { getModuleExports } from "./modular/buildProjectFiles.js";
+import {
+  buildGetPollerHelper,
+  buildRestorePollerHelper
+} from "./modular/buildLroFiles.js";
 
 export * from "./lib.js";
 
@@ -216,6 +220,7 @@ export async function $onEmit(context: EmitContext) {
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
         buildSerializeUtils(modularCodeModel);
+        // build paging files
         buildPagingTypes(subClient, modularCodeModel);
         buildModularPagingHelpers(
           subClient,
@@ -223,6 +228,7 @@ export async function $onEmit(context: EmitContext) {
           hasClientUnexpectedHelper,
           isMultiClients
         );
+        // build operation files
         buildOperationFiles(
           subClient,
           dpgContext,
@@ -231,6 +237,14 @@ export async function $onEmit(context: EmitContext) {
         );
         buildClientContext(subClient, dpgContext, modularCodeModel);
         buildSubpathIndexFile(subClient, modularCodeModel, "models");
+        // build lro files
+        buildGetPollerHelper(
+          modularCodeModel,
+          subClient,
+          hasClientUnexpectedHelper,
+          isMultiClients
+        );
+        buildRestorePollerHelper(modularCodeModel, subClient);
         if (dpgContext.rlcOptions?.hierarchyClient) {
           buildSubpathIndexFile(subClient, modularCodeModel, "api");
         } else {

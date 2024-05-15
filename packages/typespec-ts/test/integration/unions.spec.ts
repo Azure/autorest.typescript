@@ -2,7 +2,7 @@ import UnionsClientFactory, {
   CatOutput,
   DogOutput,
   UnionsClient
-} from "./generated/unions/src/index.js";
+} from "./generated/type/union/src/index.js";
 import { assert } from "chai";
 describe("UnionsClient Rest Client", () => {
   let client: UnionsClient;
@@ -272,7 +272,15 @@ describe("UnionsClient Rest Client", () => {
             },
             literal: "a",
             int: 2,
-            boolean: true
+            boolean: true,
+            array: [
+              {
+                name: "test"
+              },
+              "a",
+              2,
+              true
+            ]
           }
         }
       });

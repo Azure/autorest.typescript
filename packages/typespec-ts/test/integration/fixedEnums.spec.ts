@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import TypeEnumFixedClientFactory, {
   FixedClient
-} from "./generated/enums/fixed/src/index.js";
+} from "./generated/type/enum/fixed/src/index.js";
 describe("FixedEnums Rest Client", () => {
   let client: FixedClient;
 
@@ -16,7 +16,9 @@ describe("FixedEnums Rest Client", () => {
 
   it("should get known value", async () => {
     try {
-      const result = await client.path("/type/enum/fixed/string/known-value").get();
+      const result = await client
+        .path("/type/enum/fixed/string/known-value")
+        .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body, "Monday");
     } catch (err) {
@@ -26,10 +28,12 @@ describe("FixedEnums Rest Client", () => {
 
   it("should put known value", async () => {
     try {
-      const result = await client.path("/type/enum/fixed/string/known-value").put({
-        body: "Monday",
-        contentType: "application/json"
-      });
+      const result = await client
+        .path("/type/enum/fixed/string/known-value")
+        .put({
+          body: "Monday",
+          contentType: "application/json"
+        });
       assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);

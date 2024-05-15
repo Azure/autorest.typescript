@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { ScalarClient } from "./generated/scalar/src/index.js";
+import { ScalarClient } from "./generated/type/scalar/src/index.js";
 describe("Scalar Client", () => {
   let client: ScalarClient;
 

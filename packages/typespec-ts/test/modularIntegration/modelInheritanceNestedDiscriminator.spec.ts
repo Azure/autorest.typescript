@@ -3,7 +3,7 @@ import {
   NestedDiscriminatorClient,
   Salmon,
   Shark
-} from "./generated/models/inheritance/nested-discriminator/src/index.js";
+} from "./generated/type/model/inheritance/nested-discriminator/src/index.js";
 import { assert } from "chai";
 
 describe("NestedDiscriminatorClient Rest Client", () => {

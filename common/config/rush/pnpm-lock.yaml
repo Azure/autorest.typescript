@@ -227,14 +227,15 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       '@azure-rest/core-client': ^2.0.0
-      '@azure-tools/cadl-ranch': ^0.12.7
-      '@azure-tools/cadl-ranch-expect': ^0.13.3
-      '@azure-tools/cadl-ranch-specs': ^0.31.8
+      '@azure-tools/cadl-ranch': ^0.12.8
+      '@azure-tools/cadl-ranch-expect': ^0.13.4
+      '@azure-tools/cadl-ranch-specs': ^0.33.4
       '@azure-tools/rlc-common': workspace:^0.28.0
       '@azure-tools/typespec-azure-core': '>=0.41.0 <1.0.0'
       '@azure-tools/typespec-client-generator-core': '>=0.41.5 <1.0.0'
+      '@azure/abort-controller': ^2.0.0
       '@azure/core-auth': ^1.6.0
-      '@azure/core-lro': ^2.5.4
+      '@azure/core-lro': 3.0.0-beta.1
       '@azure/core-paging': ^1.5.0
       '@azure/core-rest-pipeline': ^1.14.0
       '@azure/core-util': ^1.4.0
@@ -273,13 +274,14 @@ importers:
       tslib: 2.6.2
     devDependencies:
       '@azure-rest/core-client': 2.0.0
-      '@azure-tools/cadl-ranch': 0.12.7_2st3rkk3ecy4zxpm646kh3x7we
-      '@azure-tools/cadl-ranch-expect': 0.13.3_jqtt3simmngrcvnphehjbnp5v4
-      '@azure-tools/cadl-ranch-specs': 0.31.8_sn2g2ali27qzgjd2nm42z5e5my
+      '@azure-tools/cadl-ranch': 0.12.8_2st3rkk3ecy4zxpm646kh3x7we
+      '@azure-tools/cadl-ranch-expect': 0.13.4_jqtt3simmngrcvnphehjbnp5v4
+      '@azure-tools/cadl-ranch-specs': 0.33.4_7d3u5ppn6ufi5rnmiiqyp44gby
       '@azure-tools/typespec-azure-core': 0.41.0_osvotlf4anf4wofkp3olgsifya
       '@azure-tools/typespec-client-generator-core': 0.41.5_ejdluhimozvsug6nabr5tzgmai
+      '@azure/abort-controller': 2.0.0
       '@azure/core-auth': 1.6.0
-      '@azure/core-lro': 2.5.4
+      '@azure/core-lro': 3.0.0-beta.1
       '@azure/core-paging': 1.5.0
       '@azure/core-rest-pipeline': 1.14.0
       '@azure/core-util': 1.5.0
@@ -377,8 +379,8 @@ packages:
     dependencies:
       body-parser: 1.20.2
       deep-equal: 2.2.2
-      express: 4.18.2
-      express-promise-router: 4.1.1_express@4.18.2
+      express: 4.19.2
+      express-promise-router: 4.1.1_express@4.19.2
       glob: 10.3.9
       morgan: 1.10.0
       multer: 1.4.5-lts.1
@@ -401,14 +403,14 @@ packages:
       - supports-color
     dev: true
 
-  /@azure-tools/cadl-ranch-expect/0.13.3_jqtt3simmngrcvnphehjbnp5v4:
-    resolution: {integrity: sha512-CkLsiRci29AvU08vJXLx8O4t2p+60cH7OhLD11IBvfx4czwsShI5AKswvm0ESanuwpquCF3RATu+UTqVM+pYTA==}
+  /@azure-tools/cadl-ranch-expect/0.13.4_jqtt3simmngrcvnphehjbnp5v4:
+    resolution: {integrity: sha512-2j9Mxr8tz7zF8j8L/R/KEPhES/cJDt21wUTkQv0TKwZ4Kz5HGHBCsvnOnoBs72H7Q8DHpqOIhNDak40BHCrEGA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': ~0.55.0
-      '@typespec/http': ~0.55.0
-      '@typespec/rest': ~0.55.0
-      '@typespec/versioning': ~0.55.0
+      '@typespec/compiler': ~0.56.0
+      '@typespec/http': ~0.56.0
+      '@typespec/rest': ~0.56.0
+      '@typespec/versioning': ~0.56.0
     dependencies:
       '@typespec/compiler': 0.55.0
       '@typespec/http': 0.55.0_@typespec+compiler@0.55.0
@@ -416,20 +418,35 @@ packages:
       '@typespec/versioning': 0.55.0_@typespec+compiler@0.55.0
     dev: true
 
-  /@azure-tools/cadl-ranch-specs/0.31.8_sn2g2ali27qzgjd2nm42z5e5my:
-    resolution: {integrity: sha512-KNp+eP8KN4m+z1eMzBbO84h5kEHOLCoR0Tn37rs1MTTIxiJQhJ2MKEktAcrLI8jqzaA8UUhomTwZIf6ZMSTR5Q==}
+  /@azure-tools/cadl-ranch-expect/0.13.4_woha2iffpvtzgq7pkoo7oeny2i:
+    resolution: {integrity: sha512-2j9Mxr8tz7zF8j8L/R/KEPhES/cJDt21wUTkQv0TKwZ4Kz5HGHBCsvnOnoBs72H7Q8DHpqOIhNDak40BHCrEGA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@azure-tools/cadl-ranch-expect': ~0.13.3
-      '@azure-tools/typespec-azure-core': ~0.41.0
-      '@typespec/compiler': ~0.55.0
-      '@typespec/http': ~0.55.0
-      '@typespec/rest': ~0.55.0
-      '@typespec/versioning': ~0.55.0
+      '@typespec/compiler': ~0.56.0
+      '@typespec/http': ~0.56.0
+      '@typespec/rest': ~0.56.0
+      '@typespec/versioning': ~0.56.0
     dependencies:
-      '@azure-tools/cadl-ranch': 0.12.7_2st3rkk3ecy4zxpm646kh3x7we
+      '@typespec/compiler': 0.56.0
+      '@typespec/http': 0.56.0_@typespec+compiler@0.56.0
+      '@typespec/rest': 0.56.0_shwv7qwegi6hba73djsyxw3opq
+      '@typespec/versioning': 0.55.0_@typespec+compiler@0.55.0
+    dev: true
+
+  /@azure-tools/cadl-ranch-specs/0.33.4_7d3u5ppn6ufi5rnmiiqyp44gby:
+    resolution: {integrity: sha512-xTTyZIWT8bjXNoFr1M5CA6L7yo3mLBMzSDYPepCCWk3Wx8P2bl0NkK9YS4udfTA9TKlUJPSW23DvHcQfJ2rurQ==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@azure-tools/cadl-ranch-expect': ~0.13.4
+      '@azure-tools/typespec-azure-core': ~0.42.0
+      '@typespec/compiler': ~0.56.0
+      '@typespec/http': ~0.56.0
+      '@typespec/rest': ~0.56.0
+      '@typespec/versioning': ~0.56.0
+    dependencies:
+      '@azure-tools/cadl-ranch': 0.12.8_2st3rkk3ecy4zxpm646kh3x7we
       '@azure-tools/cadl-ranch-api': 0.4.3
-      '@azure-tools/cadl-ranch-expect': 0.13.3_jqtt3simmngrcvnphehjbnp5v4
+      '@azure-tools/cadl-ranch-expect': 0.13.4_jqtt3simmngrcvnphehjbnp5v4
       '@azure-tools/typespec-azure-core': 0.41.0_osvotlf4anf4wofkp3olgsifya
       '@typespec/compiler': 0.55.0
       '@typespec/http': 0.55.0_@typespec+compiler@0.55.0
@@ -441,19 +458,19 @@ packages:
       - supports-color
     dev: true
 
-  /@azure-tools/cadl-ranch/0.12.7_2st3rkk3ecy4zxpm646kh3x7we:
-    resolution: {integrity: sha512-lhJP81l7i+ScW14TYJ7P4qerkYsGGXFpAsxXUUk7hhu5vQL6TuMj/dyVXFU5nE3h2TAW+SOM+Lk6awRLxY5s+A==}
+  /@azure-tools/cadl-ranch/0.12.8_2st3rkk3ecy4zxpm646kh3x7we:
+    resolution: {integrity: sha512-dkVz6YxwFBgwmWtYqpzY1cuncuuHcvQbd8gHx1j9tvl8VjEjd5gVTAEFkp9ZuOM8P9L/VP5x4q14RlRMOMitHQ==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:
       '@azure-tools/cadl-ranch-api': 0.4.3
       '@azure-tools/cadl-ranch-coverage-sdk': 0.8.2
-      '@azure-tools/cadl-ranch-expect': 0.13.3_jqtt3simmngrcvnphehjbnp5v4
+      '@azure-tools/cadl-ranch-expect': 0.13.4_woha2iffpvtzgq7pkoo7oeny2i
       '@azure/identity': 3.3.0
       '@types/js-yaml': 4.0.6
-      '@typespec/compiler': 0.55.0
-      '@typespec/http': 0.55.0_@typespec+compiler@0.55.0
-      '@typespec/rest': 0.55.0_h4qt3u6oalgs36clp2xs2lq3z4
+      '@typespec/compiler': 0.56.0
+      '@typespec/http': 0.56.0_@typespec+compiler@0.56.0
+      '@typespec/rest': 0.56.0_shwv7qwegi6hba73djsyxw3opq
       ajv: 8.12.0
       body-parser: 1.20.2
       deep-equal: 2.2.2
@@ -628,6 +645,16 @@ packages:
       '@azure/core-util': 1.5.0
       '@azure/logger': 1.0.4
       tslib: 2.6.2
+
+  /@azure/core-lro/3.0.0-beta.1:
+    resolution: {integrity: sha512-KbkVHWhLnlDQRtIZGCPQFB6y2xgeL7p5iICRYTCDjHBpWX9W/I3HkkvbvK4SordNsKwWbLKfPLrOJKJdsJocEQ==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      '@azure/abort-controller': 2.0.0
+      '@azure/core-util': 1.5.0
+      '@azure/logger': 1.0.4
+      tslib: 2.6.2
+    dev: true
 
   /@azure/core-paging/1.5.0:
     resolution: {integrity: sha512-zqWdVIt+2Z+3wqxEOGzR5hXFZ8MGKK52x4vFLw8n58pR6ZfKRx3EXYTxTaYxYHc/PexPUTyimcTWFJbji9Z6Iw==}
@@ -1346,6 +1373,26 @@ packages:
       yaml: 2.4.1
       yargs: 17.7.2
 
+  /@typespec/compiler/0.56.0:
+    resolution: {integrity: sha512-K+VhXycoeqcoSGtB0/l1XYco4V2qRsCOOwqklVM4Yew7kTcKVfz7CT7a6a2OKWDMNg5iijZtRBoM5YF50XtQug==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
+    dependencies:
+      '@babel/code-frame': 7.24.2
+      ajv: 8.12.0
+      change-case: 5.4.4
+      globby: 14.0.1
+      mustache: 4.2.0
+      picocolors: 1.0.0
+      prettier: 3.2.5
+      prompts: 2.4.2
+      semver: 7.6.0
+      vscode-languageserver: 9.0.1
+      vscode-languageserver-textdocument: 1.0.11
+      yaml: 2.4.1
+      yargs: 17.7.2
+    dev: true
+
   /@typespec/http/0.55.0_@typespec+compiler@0.55.0:
     resolution: {integrity: sha512-r30RWzMTJgbyRpdtZxezlvXI/nkAvgilX1OM+s3A039lGLA+JRukgvKIZ3LaNr3lNXHiqeWQDrIZNhqBnpW1zw==}
     engines: {node: '>=18.0.0'}
@@ -1353,6 +1400,15 @@ packages:
       '@typespec/compiler': ~0.55.0
     dependencies:
       '@typespec/compiler': 0.55.0
+
+  /@typespec/http/0.56.0_@typespec+compiler@0.56.0:
+    resolution: {integrity: sha512-f/tpHRWev9bnAtNPFkfCU/5SFou9glA/rPDY0m2W5bK6EG1/6/TKKKz5FoKPA4xvc2dQ5vu/ouGLb4i5UzXvWQ==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      '@typespec/compiler': ~0.56.0
+    dependencies:
+      '@typespec/compiler': 0.56.0
+    dev: true
 
   /@typespec/openapi/0.55.0_h4qt3u6oalgs36clp2xs2lq3z4:
     resolution: {integrity: sha512-5T4VuJSOGfMFSs+1dOl3U3BC6VhKAxSTBrwcQDIEEygnqCSbj/tMFDhNfzKYKARRDotgM8ESOrZU6XH5srVR7A==}
@@ -1390,6 +1446,17 @@ packages:
     dependencies:
       '@typespec/compiler': 0.55.0
       '@typespec/http': 0.55.0_@typespec+compiler@0.55.0
+
+  /@typespec/rest/0.56.0_shwv7qwegi6hba73djsyxw3opq:
+    resolution: {integrity: sha512-8w4WhWDcpEQNW8bB1BHhiBxIQUChDJtyq/n9p2OI/Bm1wncd61y/ZNOtcxmlKq8uB9d+dzHiZdEfqFCR8HF8/Q==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      '@typespec/compiler': ~0.56.0
+      '@typespec/http': ~0.56.0
+    dependencies:
+      '@typespec/compiler': 0.56.0
+      '@typespec/http': 0.56.0_@typespec+compiler@0.56.0
+    dev: true
 
   /@typespec/ts-http-runtime/1.0.0-alpha.20240314.2:
     resolution: {integrity: sha512-Rc/bFkKLbrEo9KKXiSdRYNSmosZ1W6ycQKEKScpXvK4jaXFNyCvmS0tLv7rEN4EzEEds2fPzEHNtX4e8gMu/lA==}

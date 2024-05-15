@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import UsageClientFactory, {
   UsageClient
-} from "./generated/azure/clientGeneratorCore/usage/src/index.js";
+} from "./generated/azure/client-generator-core/usage/src/index.js";
 
 describe("Usage Client", () => {
   let client: UsageClient;
