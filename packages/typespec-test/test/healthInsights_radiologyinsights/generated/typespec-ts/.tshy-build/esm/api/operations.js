@@ -23,7 +23,7 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
             patients: body["patients"].map((p) => ({
                 id: p["id"],
                 info: !p.info
-                    ? undefined
+                    ? p.info
                     : {
                         sex: p.info?.["sex"],
                         birthDate: p.info?.["birthDate"]?.toDateString(),
@@ -33,7 +33,7 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                 resourceType: p["resourceType"],
                                 id: p["id"],
                                 meta: !p.meta
-                                    ? undefined
+                                    ? p.meta
                                     : {
                                         versionId: p.meta?.["versionId"],
                                         lastUpdated: p.meta?.["lastUpdated"],
@@ -48,16 +48,17 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                     : p["extension"].map((p) => ({
                                                         id: p["id"],
                                                         extension: !p.extension
-                                                            ? undefined
+                                                            ? p.extension
                                                             : p.extension,
                                                         url: p["url"],
                                                         valueQuantity: !p.valueQuantity
-                                                            ? undefined
+                                                            ? p.valueQuantity
                                                             : {
                                                                 id: p.valueQuantity?.["id"],
                                                                 extension: !p.valueQuantity
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueQuantity
+                                                                        ?.extension
                                                                     : p.valueQuantity
                                                                         ?.extension,
                                                                 value: p.valueQuantity?.["value"],
@@ -67,14 +68,15 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                 code: p.valueQuantity?.["code"],
                                                             },
                                                         valueCodeableConcept: !p.valueCodeableConcept
-                                                            ? undefined
+                                                            ? p.valueCodeableConcept
                                                             : {
                                                                 id: p
                                                                     .valueCodeableConcept?.["id"],
                                                                 extension: !p
                                                                     .valueCodeableConcept
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueCodeableConcept
+                                                                        ?.extension
                                                                     : p
                                                                         .valueCodeableConcept
                                                                         ?.extension,
@@ -85,7 +87,7 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     : p.valueCodeableConcept?.["coding"].map((p) => ({
                                                                         id: p["id"],
                                                                         extension: !p.extension
-                                                                            ? undefined
+                                                                            ? p.extension
                                                                             : p.extension,
                                                                         system: p["system"],
                                                                         version: p["version"],
@@ -99,23 +101,24 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                         valueBoolean: p["valueBoolean"],
                                                         valueInteger: p["valueInteger"],
                                                         valueRange: !p.valueRange
-                                                            ? undefined
+                                                            ? p.valueRange
                                                             : {
                                                                 id: p.valueRange?.["id"],
                                                                 extension: !p.valueRange
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueRange?.extension
                                                                     : p.valueRange
                                                                         ?.extension,
                                                                 low: !p.valueRange?.low
-                                                                    ? undefined
+                                                                    ? p.valueRange?.low
                                                                     : {
                                                                         id: p.valueRange
                                                                             ?.low?.["id"],
                                                                         extension: !p
                                                                             .valueRange?.low
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueRange?.low
+                                                                                ?.extension
                                                                             : p.valueRange?.low
                                                                                 ?.extension,
                                                                         value: p.valueRange?.low?.["value"],
@@ -127,14 +130,15 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             ?.low?.["code"],
                                                                     },
                                                                 high: !p.valueRange?.high
-                                                                    ? undefined
+                                                                    ? p.valueRange?.high
                                                                     : {
                                                                         id: p.valueRange
                                                                             ?.high?.["id"],
                                                                         extension: !p
                                                                             .valueRange?.high
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueRange?.high
+                                                                                ?.extension
                                                                             : p.valueRange
                                                                                 ?.high
                                                                                 ?.extension,
@@ -151,17 +155,17 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     },
                                                             },
                                                         valueRatio: !p.valueRatio
-                                                            ? undefined
+                                                            ? p.valueRatio
                                                             : {
                                                                 id: p.valueRatio?.["id"],
                                                                 extension: !p.valueRatio
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueRatio?.extension
                                                                     : p.valueRatio
                                                                         ?.extension,
                                                                 numerator: !p.valueRatio
                                                                     ?.numerator
-                                                                    ? undefined
+                                                                    ? p.valueRatio?.numerator
                                                                     : {
                                                                         id: p.valueRatio
                                                                             ?.numerator?.["id"],
@@ -169,7 +173,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             .valueRatio
                                                                             ?.numerator
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueRatio
+                                                                                ?.numerator
+                                                                                ?.extension
                                                                             : p.valueRatio
                                                                                 ?.numerator
                                                                                 ?.extension,
@@ -186,7 +192,8 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     },
                                                                 denominator: !p.valueRatio
                                                                     ?.denominator
-                                                                    ? undefined
+                                                                    ? p.valueRatio
+                                                                        ?.denominator
                                                                     : {
                                                                         id: p.valueRatio
                                                                             ?.denominator?.["id"],
@@ -194,7 +201,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             .valueRatio
                                                                             ?.denominator
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueRatio
+                                                                                ?.denominator
+                                                                                ?.extension
                                                                             : p.valueRatio
                                                                                 ?.denominator
                                                                                 ?.extension,
@@ -211,13 +220,14 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     },
                                                             },
                                                         valueSampledData: !p.valueSampledData
-                                                            ? undefined
+                                                            ? p.valueSampledData
                                                             : {
                                                                 id: p.valueSampledData?.["id"],
                                                                 extension: !p
                                                                     .valueSampledData
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueSampledData
+                                                                        ?.extension
                                                                     : p.valueSampledData
                                                                         ?.extension,
                                                                 origin: {
@@ -226,7 +236,8 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     extension: !p
                                                                         .valueSampledData
                                                                         ?.origin.extension
-                                                                        ? undefined
+                                                                        ? p.valueSampledData
+                                                                            ?.origin.extension
                                                                         : p.valueSampledData
                                                                             ?.origin
                                                                             .extension,
@@ -252,24 +263,25 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                         valueTime: p["valueTime"]?.toTimeString(),
                                                         valueDateTime: p["valueDateTime"],
                                                         valuePeriod: !p.valuePeriod
-                                                            ? undefined
+                                                            ? p.valuePeriod
                                                             : {
                                                                 id: p.valuePeriod?.["id"],
                                                                 extension: !p.valuePeriod
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valuePeriod?.extension
                                                                     : p.valuePeriod
                                                                         ?.extension,
                                                                 start: p.valuePeriod?.["start"],
                                                                 end: p.valuePeriod?.["end"],
                                                             },
                                                         valueReference: !p.valueReference
-                                                            ? undefined
+                                                            ? p.valueReference
                                                             : {
                                                                 id: p.valueReference?.["id"],
                                                                 extension: !p.valueReference
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueReference
+                                                                        ?.extension
                                                                     : p.valueReference
                                                                         ?.extension,
                                                                 reference: p.valueReference?.["reference"],
@@ -277,7 +289,8 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                 identifier: !p
                                                                     .valueReference
                                                                     ?.identifier
-                                                                    ? undefined
+                                                                    ? p.valueReference
+                                                                        ?.identifier
                                                                     : {
                                                                         id: p.valueReference
                                                                             ?.identifier?.["id"],
@@ -285,7 +298,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             .valueReference
                                                                             ?.identifier
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueReference
+                                                                                ?.identifier
+                                                                                ?.extension
                                                                             : p.valueReference
                                                                                 ?.identifier
                                                                                 ?.extension,
@@ -294,7 +309,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                         type: !p
                                                                             .valueReference
                                                                             ?.identifier?.type
-                                                                            ? undefined
+                                                                            ? p.valueReference
+                                                                                ?.identifier
+                                                                                ?.type
                                                                             : {
                                                                                 id: p
                                                                                     .valueReference
@@ -305,7 +322,11 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                     ?.identifier
                                                                                     ?.type
                                                                                     ?.extension
-                                                                                    ? undefined
+                                                                                    ? p
+                                                                                        .valueReference
+                                                                                        ?.identifier
+                                                                                        ?.type
+                                                                                        ?.extension
                                                                                     : p
                                                                                         .valueReference
                                                                                         ?.identifier
@@ -323,7 +344,7 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                     : p.valueReference?.identifier?.type?.["coding"].map((p) => ({
                                                                                         id: p["id"],
                                                                                         extension: !p.extension
-                                                                                            ? undefined
+                                                                                            ? p.extension
                                                                                             : p.extension,
                                                                                         system: p["system"],
                                                                                         version: p["version"],
@@ -342,7 +363,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                         period: !p
                                                                             .valueReference
                                                                             ?.identifier?.period
-                                                                            ? undefined
+                                                                            ? p.valueReference
+                                                                                ?.identifier
+                                                                                ?.period
                                                                             : {
                                                                                 id: p
                                                                                     .valueReference
@@ -353,7 +376,11 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                     ?.identifier
                                                                                     ?.period
                                                                                     ?.extension
-                                                                                    ? undefined
+                                                                                    ? p
+                                                                                        .valueReference
+                                                                                        ?.identifier
+                                                                                        ?.period
+                                                                                        ?.extension
                                                                                     : p
                                                                                         .valueReference
                                                                                         ?.identifier
@@ -372,7 +399,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             .valueReference
                                                                             ?.identifier
                                                                             ?.assigner
-                                                                            ? undefined
+                                                                            ? p.valueReference
+                                                                                ?.identifier
+                                                                                ?.assigner
                                                                             : p.valueReference
                                                                                 ?.identifier
                                                                                 ?.assigner,
@@ -394,16 +423,17 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                     : p["extension"].map((p) => ({
                                                         id: p["id"],
                                                         extension: !p.extension
-                                                            ? undefined
+                                                            ? p.extension
                                                             : p.extension,
                                                         url: p["url"],
                                                         valueQuantity: !p.valueQuantity
-                                                            ? undefined
+                                                            ? p.valueQuantity
                                                             : {
                                                                 id: p.valueQuantity?.["id"],
                                                                 extension: !p.valueQuantity
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueQuantity
+                                                                        ?.extension
                                                                     : p.valueQuantity
                                                                         ?.extension,
                                                                 value: p.valueQuantity?.["value"],
@@ -413,14 +443,15 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                 code: p.valueQuantity?.["code"],
                                                             },
                                                         valueCodeableConcept: !p.valueCodeableConcept
-                                                            ? undefined
+                                                            ? p.valueCodeableConcept
                                                             : {
                                                                 id: p
                                                                     .valueCodeableConcept?.["id"],
                                                                 extension: !p
                                                                     .valueCodeableConcept
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueCodeableConcept
+                                                                        ?.extension
                                                                     : p
                                                                         .valueCodeableConcept
                                                                         ?.extension,
@@ -431,7 +462,7 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     : p.valueCodeableConcept?.["coding"].map((p) => ({
                                                                         id: p["id"],
                                                                         extension: !p.extension
-                                                                            ? undefined
+                                                                            ? p.extension
                                                                             : p.extension,
                                                                         system: p["system"],
                                                                         version: p["version"],
@@ -445,23 +476,24 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                         valueBoolean: p["valueBoolean"],
                                                         valueInteger: p["valueInteger"],
                                                         valueRange: !p.valueRange
-                                                            ? undefined
+                                                            ? p.valueRange
                                                             : {
                                                                 id: p.valueRange?.["id"],
                                                                 extension: !p.valueRange
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueRange?.extension
                                                                     : p.valueRange
                                                                         ?.extension,
                                                                 low: !p.valueRange?.low
-                                                                    ? undefined
+                                                                    ? p.valueRange?.low
                                                                     : {
                                                                         id: p.valueRange
                                                                             ?.low?.["id"],
                                                                         extension: !p
                                                                             .valueRange?.low
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueRange?.low
+                                                                                ?.extension
                                                                             : p.valueRange?.low
                                                                                 ?.extension,
                                                                         value: p.valueRange?.low?.["value"],
@@ -473,14 +505,15 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             ?.low?.["code"],
                                                                     },
                                                                 high: !p.valueRange?.high
-                                                                    ? undefined
+                                                                    ? p.valueRange?.high
                                                                     : {
                                                                         id: p.valueRange
                                                                             ?.high?.["id"],
                                                                         extension: !p
                                                                             .valueRange?.high
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueRange?.high
+                                                                                ?.extension
                                                                             : p.valueRange
                                                                                 ?.high
                                                                                 ?.extension,
@@ -497,17 +530,17 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     },
                                                             },
                                                         valueRatio: !p.valueRatio
-                                                            ? undefined
+                                                            ? p.valueRatio
                                                             : {
                                                                 id: p.valueRatio?.["id"],
                                                                 extension: !p.valueRatio
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueRatio?.extension
                                                                     : p.valueRatio
                                                                         ?.extension,
                                                                 numerator: !p.valueRatio
                                                                     ?.numerator
-                                                                    ? undefined
+                                                                    ? p.valueRatio?.numerator
                                                                     : {
                                                                         id: p.valueRatio
                                                                             ?.numerator?.["id"],
@@ -515,7 +548,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             .valueRatio
                                                                             ?.numerator
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueRatio
+                                                                                ?.numerator
+                                                                                ?.extension
                                                                             : p.valueRatio
                                                                                 ?.numerator
                                                                                 ?.extension,
@@ -532,7 +567,8 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     },
                                                                 denominator: !p.valueRatio
                                                                     ?.denominator
-                                                                    ? undefined
+                                                                    ? p.valueRatio
+                                                                        ?.denominator
                                                                     : {
                                                                         id: p.valueRatio
                                                                             ?.denominator?.["id"],
@@ -540,7 +576,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             .valueRatio
                                                                             ?.denominator
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueRatio
+                                                                                ?.denominator
+                                                                                ?.extension
                                                                             : p.valueRatio
                                                                                 ?.denominator
                                                                                 ?.extension,
@@ -557,13 +595,14 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     },
                                                             },
                                                         valueSampledData: !p.valueSampledData
-                                                            ? undefined
+                                                            ? p.valueSampledData
                                                             : {
                                                                 id: p.valueSampledData?.["id"],
                                                                 extension: !p
                                                                     .valueSampledData
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueSampledData
+                                                                        ?.extension
                                                                     : p.valueSampledData
                                                                         ?.extension,
                                                                 origin: {
@@ -572,7 +611,8 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     extension: !p
                                                                         .valueSampledData
                                                                         ?.origin.extension
-                                                                        ? undefined
+                                                                        ? p.valueSampledData
+                                                                            ?.origin.extension
                                                                         : p.valueSampledData
                                                                             ?.origin
                                                                             .extension,
@@ -598,24 +638,25 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                         valueTime: p["valueTime"]?.toTimeString(),
                                                         valueDateTime: p["valueDateTime"],
                                                         valuePeriod: !p.valuePeriod
-                                                            ? undefined
+                                                            ? p.valuePeriod
                                                             : {
                                                                 id: p.valuePeriod?.["id"],
                                                                 extension: !p.valuePeriod
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valuePeriod?.extension
                                                                     : p.valuePeriod
                                                                         ?.extension,
                                                                 start: p.valuePeriod?.["start"],
                                                                 end: p.valuePeriod?.["end"],
                                                             },
                                                         valueReference: !p.valueReference
-                                                            ? undefined
+                                                            ? p.valueReference
                                                             : {
                                                                 id: p.valueReference?.["id"],
                                                                 extension: !p.valueReference
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueReference
+                                                                        ?.extension
                                                                     : p.valueReference
                                                                         ?.extension,
                                                                 reference: p.valueReference?.["reference"],
@@ -623,7 +664,8 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                 identifier: !p
                                                                     .valueReference
                                                                     ?.identifier
-                                                                    ? undefined
+                                                                    ? p.valueReference
+                                                                        ?.identifier
                                                                     : {
                                                                         id: p.valueReference
                                                                             ?.identifier?.["id"],
@@ -631,7 +673,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             .valueReference
                                                                             ?.identifier
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueReference
+                                                                                ?.identifier
+                                                                                ?.extension
                                                                             : p.valueReference
                                                                                 ?.identifier
                                                                                 ?.extension,
@@ -640,7 +684,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                         type: !p
                                                                             .valueReference
                                                                             ?.identifier?.type
-                                                                            ? undefined
+                                                                            ? p.valueReference
+                                                                                ?.identifier
+                                                                                ?.type
                                                                             : {
                                                                                 id: p
                                                                                     .valueReference
@@ -651,7 +697,11 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                     ?.identifier
                                                                                     ?.type
                                                                                     ?.extension
-                                                                                    ? undefined
+                                                                                    ? p
+                                                                                        .valueReference
+                                                                                        ?.identifier
+                                                                                        ?.type
+                                                                                        ?.extension
                                                                                     : p
                                                                                         .valueReference
                                                                                         ?.identifier
@@ -669,7 +719,7 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                     : p.valueReference?.identifier?.type?.["coding"].map((p) => ({
                                                                                         id: p["id"],
                                                                                         extension: !p.extension
-                                                                                            ? undefined
+                                                                                            ? p.extension
                                                                                             : p.extension,
                                                                                         system: p["system"],
                                                                                         version: p["version"],
@@ -688,7 +738,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                         period: !p
                                                                             .valueReference
                                                                             ?.identifier?.period
-                                                                            ? undefined
+                                                                            ? p.valueReference
+                                                                                ?.identifier
+                                                                                ?.period
                                                                             : {
                                                                                 id: p
                                                                                     .valueReference
@@ -699,7 +751,11 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                     ?.identifier
                                                                                     ?.period
                                                                                     ?.extension
-                                                                                    ? undefined
+                                                                                    ? p
+                                                                                        .valueReference
+                                                                                        ?.identifier
+                                                                                        ?.period
+                                                                                        ?.extension
                                                                                     : p
                                                                                         .valueReference
                                                                                         ?.identifier
@@ -718,7 +774,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             .valueReference
                                                                             ?.identifier
                                                                             ?.assigner
-                                                                            ? undefined
+                                                                            ? p.valueReference
+                                                                                ?.identifier
+                                                                                ?.assigner
                                                                             : p.valueReference
                                                                                 ?.identifier
                                                                                 ?.assigner,
@@ -741,7 +799,7 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                     : p["encounters"].map((p) => ({
                         id: p["id"],
                         period: !p.period
-                            ? undefined
+                            ? p.period
                             : {
                                 start: p.period?.["start"]?.toISOString(),
                                 end: p.period?.["end"]?.toISOString(),
@@ -764,7 +822,7 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                             })),
                         specialtyType: p["specialtyType"],
                         administrativeMetadata: !p.administrativeMetadata
-                            ? undefined
+                            ? p.administrativeMetadata
                             : {
                                 orderedProcedures: p.administrativeMetadata?.["orderedProcedures"] ===
                                     undefined
@@ -775,16 +833,16 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                             : p["extension"].map((p) => ({
                                                 id: p["id"],
                                                 extension: !p.extension
-                                                    ? undefined
+                                                    ? p.extension
                                                     : p.extension,
                                                 url: p["url"],
                                                 valueQuantity: !p.valueQuantity
-                                                    ? undefined
+                                                    ? p.valueQuantity
                                                     : {
                                                         id: p.valueQuantity?.["id"],
                                                         extension: !p.valueQuantity
                                                             ?.extension
-                                                            ? undefined
+                                                            ? p.valueQuantity?.extension
                                                             : p.valueQuantity
                                                                 ?.extension,
                                                         value: p.valueQuantity?.["value"],
@@ -794,13 +852,14 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                         code: p.valueQuantity?.["code"],
                                                     },
                                                 valueCodeableConcept: !p.valueCodeableConcept
-                                                    ? undefined
+                                                    ? p.valueCodeableConcept
                                                     : {
                                                         id: p.valueCodeableConcept?.["id"],
                                                         extension: !p
                                                             .valueCodeableConcept
                                                             ?.extension
-                                                            ? undefined
+                                                            ? p.valueCodeableConcept
+                                                                ?.extension
                                                             : p.valueCodeableConcept
                                                                 ?.extension,
                                                         coding: p.valueCodeableConcept?.["coding"] === undefined
@@ -808,7 +867,7 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                             : p.valueCodeableConcept?.["coding"].map((p) => ({
                                                                 id: p["id"],
                                                                 extension: !p.extension
-                                                                    ? undefined
+                                                                    ? p.extension
                                                                     : p.extension,
                                                                 system: p["system"],
                                                                 version: p["version"],
@@ -821,21 +880,22 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                 valueBoolean: p["valueBoolean"],
                                                 valueInteger: p["valueInteger"],
                                                 valueRange: !p.valueRange
-                                                    ? undefined
+                                                    ? p.valueRange
                                                     : {
                                                         id: p.valueRange?.["id"],
                                                         extension: !p.valueRange
                                                             ?.extension
-                                                            ? undefined
+                                                            ? p.valueRange?.extension
                                                             : p.valueRange
                                                                 ?.extension,
                                                         low: !p.valueRange?.low
-                                                            ? undefined
+                                                            ? p.valueRange?.low
                                                             : {
                                                                 id: p.valueRange?.low?.["id"],
                                                                 extension: !p.valueRange
                                                                     ?.low?.extension
-                                                                    ? undefined
+                                                                    ? p.valueRange?.low
+                                                                        ?.extension
                                                                     : p.valueRange?.low
                                                                         ?.extension,
                                                                 value: p.valueRange?.low?.["value"],
@@ -845,12 +905,13 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                 code: p.valueRange?.low?.["code"],
                                                             },
                                                         high: !p.valueRange?.high
-                                                            ? undefined
+                                                            ? p.valueRange?.high
                                                             : {
                                                                 id: p.valueRange?.high?.["id"],
                                                                 extension: !p.valueRange
                                                                     ?.high?.extension
-                                                                    ? undefined
+                                                                    ? p.valueRange?.high
+                                                                        ?.extension
                                                                     : p.valueRange?.high
                                                                         ?.extension,
                                                                 value: p.valueRange?.high?.["value"],
@@ -861,23 +922,24 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                             },
                                                     },
                                                 valueRatio: !p.valueRatio
-                                                    ? undefined
+                                                    ? p.valueRatio
                                                     : {
                                                         id: p.valueRatio?.["id"],
                                                         extension: !p.valueRatio
                                                             ?.extension
-                                                            ? undefined
+                                                            ? p.valueRatio?.extension
                                                             : p.valueRatio
                                                                 ?.extension,
                                                         numerator: !p.valueRatio
                                                             ?.numerator
-                                                            ? undefined
+                                                            ? p.valueRatio?.numerator
                                                             : {
                                                                 id: p.valueRatio
                                                                     ?.numerator?.["id"],
                                                                 extension: !p.valueRatio
                                                                     ?.numerator?.extension
-                                                                    ? undefined
+                                                                    ? p.valueRatio?.numerator
+                                                                        ?.extension
                                                                     : p.valueRatio?.numerator
                                                                         ?.extension,
                                                                 value: p.valueRatio?.numerator?.["value"],
@@ -890,13 +952,15 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                             },
                                                         denominator: !p.valueRatio
                                                             ?.denominator
-                                                            ? undefined
+                                                            ? p.valueRatio?.denominator
                                                             : {
                                                                 id: p.valueRatio
                                                                     ?.denominator?.["id"],
                                                                 extension: !p.valueRatio
                                                                     ?.denominator?.extension
-                                                                    ? undefined
+                                                                    ? p.valueRatio
+                                                                        ?.denominator
+                                                                        ?.extension
                                                                     : p.valueRatio
                                                                         ?.denominator
                                                                         ?.extension,
@@ -913,19 +977,20 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                             },
                                                     },
                                                 valueSampledData: !p.valueSampledData
-                                                    ? undefined
+                                                    ? p.valueSampledData
                                                     : {
                                                         id: p.valueSampledData?.["id"],
                                                         extension: !p.valueSampledData
                                                             ?.extension
-                                                            ? undefined
+                                                            ? p.valueSampledData?.extension
                                                             : p.valueSampledData
                                                                 ?.extension,
                                                         origin: {
                                                             id: p.valueSampledData?.origin["id"],
                                                             extension: !p.valueSampledData
                                                                 ?.origin.extension
-                                                                ? undefined
+                                                                ? p.valueSampledData?.origin
+                                                                    .extension
                                                                 : p.valueSampledData?.origin
                                                                     .extension,
                                                             value: p.valueSampledData?.origin["value"],
@@ -946,37 +1011,39 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                 valueTime: p["valueTime"]?.toTimeString(),
                                                 valueDateTime: p["valueDateTime"],
                                                 valuePeriod: !p.valuePeriod
-                                                    ? undefined
+                                                    ? p.valuePeriod
                                                     : {
                                                         id: p.valuePeriod?.["id"],
                                                         extension: !p.valuePeriod
                                                             ?.extension
-                                                            ? undefined
+                                                            ? p.valuePeriod?.extension
                                                             : p.valuePeriod
                                                                 ?.extension,
                                                         start: p.valuePeriod?.["start"],
                                                         end: p.valuePeriod?.["end"],
                                                     },
                                                 valueReference: !p.valueReference
-                                                    ? undefined
+                                                    ? p.valueReference
                                                     : {
                                                         id: p.valueReference?.["id"],
                                                         extension: !p.valueReference
                                                             ?.extension
-                                                            ? undefined
+                                                            ? p.valueReference?.extension
                                                             : p.valueReference
                                                                 ?.extension,
                                                         reference: p.valueReference?.["reference"],
                                                         type: p.valueReference?.["type"],
                                                         identifier: !p.valueReference
                                                             ?.identifier
-                                                            ? undefined
+                                                            ? p.valueReference?.identifier
                                                             : {
                                                                 id: p.valueReference
                                                                     ?.identifier?.["id"],
                                                                 extension: !p.valueReference
                                                                     ?.identifier?.extension
-                                                                    ? undefined
+                                                                    ? p.valueReference
+                                                                        ?.identifier
+                                                                        ?.extension
                                                                     : p.valueReference
                                                                         ?.identifier
                                                                         ?.extension,
@@ -984,7 +1051,8 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     ?.identifier?.["use"],
                                                                 type: !p.valueReference
                                                                     ?.identifier?.type
-                                                                    ? undefined
+                                                                    ? p.valueReference
+                                                                        ?.identifier?.type
                                                                     : {
                                                                         id: p.valueReference
                                                                             ?.identifier
@@ -993,7 +1061,10 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             .valueReference
                                                                             ?.identifier?.type
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueReference
+                                                                                ?.identifier
+                                                                                ?.type
+                                                                                ?.extension
                                                                             : p.valueReference
                                                                                 ?.identifier
                                                                                 ?.type
@@ -1007,7 +1078,7 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             : p.valueReference?.identifier?.type?.["coding"].map((p) => ({
                                                                                 id: p["id"],
                                                                                 extension: !p.extension
-                                                                                    ? undefined
+                                                                                    ? p.extension
                                                                                     : p.extension,
                                                                                 system: p["system"],
                                                                                 version: p["version"],
@@ -1024,7 +1095,8 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     ?.identifier?.["value"],
                                                                 period: !p.valueReference
                                                                     ?.identifier?.period
-                                                                    ? undefined
+                                                                    ? p.valueReference
+                                                                        ?.identifier?.period
                                                                     : {
                                                                         id: p.valueReference
                                                                             ?.identifier
@@ -1033,7 +1105,10 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             .valueReference
                                                                             ?.identifier?.period
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueReference
+                                                                                ?.identifier
+                                                                                ?.period
+                                                                                ?.extension
                                                                             : p.valueReference
                                                                                 ?.identifier
                                                                                 ?.period
@@ -1047,7 +1122,8 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     },
                                                                 assigner: !p.valueReference
                                                                     ?.identifier?.assigner
-                                                                    ? undefined
+                                                                    ? p.valueReference
+                                                                        ?.identifier?.assigner
                                                                     : p.valueReference
                                                                         ?.identifier
                                                                         ?.assigner,
@@ -1056,7 +1132,7 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                     },
                                             })),
                                         code: !p.code
-                                            ? undefined
+                                            ? p.code
                                             : {
                                                 id: p.code?.["id"],
                                                 extension: p.code?.["extension"] === undefined
@@ -1064,16 +1140,17 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                     : p.code?.["extension"].map((p) => ({
                                                         id: p["id"],
                                                         extension: !p.extension
-                                                            ? undefined
+                                                            ? p.extension
                                                             : p.extension,
                                                         url: p["url"],
                                                         valueQuantity: !p.valueQuantity
-                                                            ? undefined
+                                                            ? p.valueQuantity
                                                             : {
                                                                 id: p.valueQuantity?.["id"],
                                                                 extension: !p.valueQuantity
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueQuantity
+                                                                        ?.extension
                                                                     : p.valueQuantity
                                                                         ?.extension,
                                                                 value: p.valueQuantity?.["value"],
@@ -1083,29 +1160,30 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                 code: p.valueQuantity?.["code"],
                                                             },
                                                         valueCodeableConcept: !p.valueCodeableConcept
-                                                            ? undefined
+                                                            ? p.valueCodeableConcept
                                                             : p.valueCodeableConcept,
                                                         valueString: p["valueString"],
                                                         valueBoolean: p["valueBoolean"],
                                                         valueInteger: p["valueInteger"],
                                                         valueRange: !p.valueRange
-                                                            ? undefined
+                                                            ? p.valueRange
                                                             : {
                                                                 id: p.valueRange?.["id"],
                                                                 extension: !p.valueRange
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueRange?.extension
                                                                     : p.valueRange
                                                                         ?.extension,
                                                                 low: !p.valueRange?.low
-                                                                    ? undefined
+                                                                    ? p.valueRange?.low
                                                                     : {
                                                                         id: p.valueRange
                                                                             ?.low?.["id"],
                                                                         extension: !p
                                                                             .valueRange?.low
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueRange?.low
+                                                                                ?.extension
                                                                             : p.valueRange?.low
                                                                                 ?.extension,
                                                                         value: p.valueRange?.low?.["value"],
@@ -1117,14 +1195,15 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             ?.low?.["code"],
                                                                     },
                                                                 high: !p.valueRange?.high
-                                                                    ? undefined
+                                                                    ? p.valueRange?.high
                                                                     : {
                                                                         id: p.valueRange
                                                                             ?.high?.["id"],
                                                                         extension: !p
                                                                             .valueRange?.high
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueRange?.high
+                                                                                ?.extension
                                                                             : p.valueRange
                                                                                 ?.high
                                                                                 ?.extension,
@@ -1141,17 +1220,17 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     },
                                                             },
                                                         valueRatio: !p.valueRatio
-                                                            ? undefined
+                                                            ? p.valueRatio
                                                             : {
                                                                 id: p.valueRatio?.["id"],
                                                                 extension: !p.valueRatio
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueRatio?.extension
                                                                     : p.valueRatio
                                                                         ?.extension,
                                                                 numerator: !p.valueRatio
                                                                     ?.numerator
-                                                                    ? undefined
+                                                                    ? p.valueRatio?.numerator
                                                                     : {
                                                                         id: p.valueRatio
                                                                             ?.numerator?.["id"],
@@ -1159,7 +1238,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             .valueRatio
                                                                             ?.numerator
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueRatio
+                                                                                ?.numerator
+                                                                                ?.extension
                                                                             : p.valueRatio
                                                                                 ?.numerator
                                                                                 ?.extension,
@@ -1176,7 +1257,8 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     },
                                                                 denominator: !p.valueRatio
                                                                     ?.denominator
-                                                                    ? undefined
+                                                                    ? p.valueRatio
+                                                                        ?.denominator
                                                                     : {
                                                                         id: p.valueRatio
                                                                             ?.denominator?.["id"],
@@ -1184,7 +1266,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             .valueRatio
                                                                             ?.denominator
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueRatio
+                                                                                ?.denominator
+                                                                                ?.extension
                                                                             : p.valueRatio
                                                                                 ?.denominator
                                                                                 ?.extension,
@@ -1201,13 +1285,14 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     },
                                                             },
                                                         valueSampledData: !p.valueSampledData
-                                                            ? undefined
+                                                            ? p.valueSampledData
                                                             : {
                                                                 id: p.valueSampledData?.["id"],
                                                                 extension: !p
                                                                     .valueSampledData
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueSampledData
+                                                                        ?.extension
                                                                     : p.valueSampledData
                                                                         ?.extension,
                                                                 origin: {
@@ -1216,7 +1301,8 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                     extension: !p
                                                                         .valueSampledData
                                                                         ?.origin.extension
-                                                                        ? undefined
+                                                                        ? p.valueSampledData
+                                                                            ?.origin.extension
                                                                         : p.valueSampledData
                                                                             ?.origin
                                                                             .extension,
@@ -1242,24 +1328,25 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                         valueTime: p["valueTime"]?.toTimeString(),
                                                         valueDateTime: p["valueDateTime"],
                                                         valuePeriod: !p.valuePeriod
-                                                            ? undefined
+                                                            ? p.valuePeriod
                                                             : {
                                                                 id: p.valuePeriod?.["id"],
                                                                 extension: !p.valuePeriod
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valuePeriod?.extension
                                                                     : p.valuePeriod
                                                                         ?.extension,
                                                                 start: p.valuePeriod?.["start"],
                                                                 end: p.valuePeriod?.["end"],
                                                             },
                                                         valueReference: !p.valueReference
-                                                            ? undefined
+                                                            ? p.valueReference
                                                             : {
                                                                 id: p.valueReference?.["id"],
                                                                 extension: !p.valueReference
                                                                     ?.extension
-                                                                    ? undefined
+                                                                    ? p.valueReference
+                                                                        ?.extension
                                                                     : p.valueReference
                                                                         ?.extension,
                                                                 reference: p.valueReference?.["reference"],
@@ -1267,7 +1354,8 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                 identifier: !p
                                                                     .valueReference
                                                                     ?.identifier
-                                                                    ? undefined
+                                                                    ? p.valueReference
+                                                                        ?.identifier
                                                                     : {
                                                                         id: p.valueReference
                                                                             ?.identifier?.["id"],
@@ -1275,7 +1363,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             .valueReference
                                                                             ?.identifier
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueReference
+                                                                                ?.identifier
+                                                                                ?.extension
                                                                             : p.valueReference
                                                                                 ?.identifier
                                                                                 ?.extension,
@@ -1284,7 +1374,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                         type: !p
                                                                             .valueReference
                                                                             ?.identifier?.type
-                                                                            ? undefined
+                                                                            ? p.valueReference
+                                                                                ?.identifier
+                                                                                ?.type
                                                                             : p.valueReference
                                                                                 ?.identifier
                                                                                 ?.type,
@@ -1295,7 +1387,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                         period: !p
                                                                             .valueReference
                                                                             ?.identifier?.period
-                                                                            ? undefined
+                                                                            ? p.valueReference
+                                                                                ?.identifier
+                                                                                ?.period
                                                                             : {
                                                                                 id: p
                                                                                     .valueReference
@@ -1306,7 +1400,11 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                     ?.identifier
                                                                                     ?.period
                                                                                     ?.extension
-                                                                                    ? undefined
+                                                                                    ? p
+                                                                                        .valueReference
+                                                                                        ?.identifier
+                                                                                        ?.period
+                                                                                        ?.extension
                                                                                     : p
                                                                                         .valueReference
                                                                                         ?.identifier
@@ -1325,7 +1423,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             .valueReference
                                                                             ?.identifier
                                                                             ?.assigner
-                                                                            ? undefined
+                                                                            ? p.valueReference
+                                                                                ?.identifier
+                                                                                ?.assigner
                                                                             : p.valueReference
                                                                                 ?.identifier
                                                                                 ?.assigner,
@@ -1342,18 +1442,20 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                             : p["extension"].map((p) => ({
                                                                 id: p["id"],
                                                                 extension: !p.extension
-                                                                    ? undefined
+                                                                    ? p.extension
                                                                     : p.extension,
                                                                 url: p["url"],
                                                                 valueQuantity: !p.valueQuantity
-                                                                    ? undefined
+                                                                    ? p.valueQuantity
                                                                     : {
                                                                         id: p
                                                                             .valueQuantity?.["id"],
                                                                         extension: !p
                                                                             .valueQuantity
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p
+                                                                                .valueQuantity
+                                                                                ?.extension
                                                                             : p
                                                                                 .valueQuantity
                                                                                 ?.extension,
@@ -1369,24 +1471,26 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             .valueQuantity?.["code"],
                                                                     },
                                                                 valueCodeableConcept: !p.valueCodeableConcept
-                                                                    ? undefined
+                                                                    ? p.valueCodeableConcept
                                                                     : p.valueCodeableConcept,
                                                                 valueString: p["valueString"],
                                                                 valueBoolean: p["valueBoolean"],
                                                                 valueInteger: p["valueInteger"],
                                                                 valueRange: !p.valueRange
-                                                                    ? undefined
+                                                                    ? p.valueRange
                                                                     : {
                                                                         id: p.valueRange?.["id"],
                                                                         extension: !p
                                                                             .valueRange
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueRange
+                                                                                ?.extension
                                                                             : p.valueRange
                                                                                 ?.extension,
                                                                         low: !p.valueRange
                                                                             ?.low
-                                                                            ? undefined
+                                                                            ? p.valueRange
+                                                                                ?.low
                                                                             : {
                                                                                 id: p
                                                                                     .valueRange
@@ -1395,7 +1499,10 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                     .valueRange
                                                                                     ?.low
                                                                                     ?.extension
-                                                                                    ? undefined
+                                                                                    ? p
+                                                                                        .valueRange
+                                                                                        ?.low
+                                                                                        ?.extension
                                                                                     : p
                                                                                         .valueRange
                                                                                         ?.low
@@ -1415,7 +1522,8 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             },
                                                                         high: !p.valueRange
                                                                             ?.high
-                                                                            ? undefined
+                                                                            ? p.valueRange
+                                                                                ?.high
                                                                             : {
                                                                                 id: p
                                                                                     .valueRange
@@ -1424,7 +1532,10 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                     .valueRange
                                                                                     ?.high
                                                                                     ?.extension
-                                                                                    ? undefined
+                                                                                    ? p
+                                                                                        .valueRange
+                                                                                        ?.high
+                                                                                        ?.extension
                                                                                     : p
                                                                                         .valueRange
                                                                                         ?.high
@@ -1444,19 +1555,21 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             },
                                                                     },
                                                                 valueRatio: !p.valueRatio
-                                                                    ? undefined
+                                                                    ? p.valueRatio
                                                                     : {
                                                                         id: p.valueRatio?.["id"],
                                                                         extension: !p
                                                                             .valueRatio
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valueRatio
+                                                                                ?.extension
                                                                             : p.valueRatio
                                                                                 ?.extension,
                                                                         numerator: !p
                                                                             .valueRatio
                                                                             ?.numerator
-                                                                            ? undefined
+                                                                            ? p.valueRatio
+                                                                                ?.numerator
                                                                             : {
                                                                                 id: p
                                                                                     .valueRatio
@@ -1465,7 +1578,10 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                     .valueRatio
                                                                                     ?.numerator
                                                                                     ?.extension
-                                                                                    ? undefined
+                                                                                    ? p
+                                                                                        .valueRatio
+                                                                                        ?.numerator
+                                                                                        ?.extension
                                                                                     : p
                                                                                         .valueRatio
                                                                                         ?.numerator
@@ -1486,7 +1602,8 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                         denominator: !p
                                                                             .valueRatio
                                                                             ?.denominator
-                                                                            ? undefined
+                                                                            ? p.valueRatio
+                                                                                ?.denominator
                                                                             : {
                                                                                 id: p
                                                                                     .valueRatio
@@ -1495,7 +1612,10 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                     .valueRatio
                                                                                     ?.denominator
                                                                                     ?.extension
-                                                                                    ? undefined
+                                                                                    ? p
+                                                                                        .valueRatio
+                                                                                        ?.denominator
+                                                                                        ?.extension
                                                                                     : p
                                                                                         .valueRatio
                                                                                         ?.denominator
@@ -1515,14 +1635,16 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             },
                                                                     },
                                                                 valueSampledData: !p.valueSampledData
-                                                                    ? undefined
+                                                                    ? p.valueSampledData
                                                                     : {
                                                                         id: p
                                                                             .valueSampledData?.["id"],
                                                                         extension: !p
                                                                             .valueSampledData
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p
+                                                                                .valueSampledData
+                                                                                ?.extension
                                                                             : p
                                                                                 .valueSampledData
                                                                                 ?.extension,
@@ -1534,7 +1656,10 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                 .valueSampledData
                                                                                 ?.origin
                                                                                 .extension
-                                                                                ? undefined
+                                                                                ? p
+                                                                                    .valueSampledData
+                                                                                    ?.origin
+                                                                                    .extension
                                                                                 : p
                                                                                     .valueSampledData
                                                                                     ?.origin
@@ -1571,14 +1696,15 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                 valueTime: p["valueTime"]?.toTimeString(),
                                                                 valueDateTime: p["valueDateTime"],
                                                                 valuePeriod: !p.valuePeriod
-                                                                    ? undefined
+                                                                    ? p.valuePeriod
                                                                     : {
                                                                         id: p
                                                                             .valuePeriod?.["id"],
                                                                         extension: !p
                                                                             .valuePeriod
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p.valuePeriod
+                                                                                ?.extension
                                                                             : p.valuePeriod
                                                                                 ?.extension,
                                                                         start: p.valuePeriod?.["start"],
@@ -1586,14 +1712,16 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                             .valuePeriod?.["end"],
                                                                     },
                                                                 valueReference: !p.valueReference
-                                                                    ? undefined
+                                                                    ? p.valueReference
                                                                     : {
                                                                         id: p
                                                                             .valueReference?.["id"],
                                                                         extension: !p
                                                                             .valueReference
                                                                             ?.extension
-                                                                            ? undefined
+                                                                            ? p
+                                                                                .valueReference
+                                                                                ?.extension
                                                                             : p
                                                                                 .valueReference
                                                                                 ?.extension,
@@ -1604,7 +1732,9 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                         identifier: !p
                                                                             .valueReference
                                                                             ?.identifier
-                                                                            ? undefined
+                                                                            ? p
+                                                                                .valueReference
+                                                                                ?.identifier
                                                                             : {
                                                                                 id: p
                                                                                     .valueReference
@@ -1613,7 +1743,10 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                     .valueReference
                                                                                     ?.identifier
                                                                                     ?.extension
-                                                                                    ? undefined
+                                                                                    ? p
+                                                                                        .valueReference
+                                                                                        ?.identifier
+                                                                                        ?.extension
                                                                                     : p
                                                                                         .valueReference
                                                                                         ?.identifier
@@ -1625,7 +1758,10 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                     .valueReference
                                                                                     ?.identifier
                                                                                     ?.type
-                                                                                    ? undefined
+                                                                                    ? p
+                                                                                        .valueReference
+                                                                                        ?.identifier
+                                                                                        ?.type
                                                                                     : p
                                                                                         .valueReference
                                                                                         ?.identifier
@@ -1640,7 +1776,10 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                     .valueReference
                                                                                     ?.identifier
                                                                                     ?.period
-                                                                                    ? undefined
+                                                                                    ? p
+                                                                                        .valueReference
+                                                                                        ?.identifier
+                                                                                        ?.period
                                                                                     : {
                                                                                         id: p
                                                                                             .valueReference
@@ -1651,7 +1790,11 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                             ?.identifier
                                                                                             ?.period
                                                                                             ?.extension
-                                                                                            ? undefined
+                                                                                            ? p
+                                                                                                .valueReference
+                                                                                                ?.identifier
+                                                                                                ?.period
+                                                                                                ?.extension
                                                                                             : p
                                                                                                 .valueReference
                                                                                                 ?.identifier
@@ -1670,7 +1813,10 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                                                                     .valueReference
                                                                                     ?.identifier
                                                                                     ?.assigner
-                                                                                    ? undefined
+                                                                                    ? p
+                                                                                        .valueReference
+                                                                                        ?.identifier
+                                                                                        ?.assigner
                                                                                     : p
                                                                                         .valueReference
                                                                                         ?.identifier
@@ -1698,17 +1844,18 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                     })),
             })),
             configuration: !body.configuration
-                ? undefined
+                ? body.configuration
                 : {
                     verbose: body.configuration?.["verbose"],
                     includeEvidence: body.configuration?.["includeEvidence"],
                     inferenceTypes: body.configuration?.["inferenceTypes"],
                     inferenceOptions: !body.configuration?.inferenceOptions
-                        ? undefined
+                        ? body.configuration?.inferenceOptions
                         : {
                             followupRecommendation: !body.configuration
                                 ?.inferenceOptions?.followupRecommendation
-                                ? undefined
+                                ? body.configuration?.inferenceOptions
+                                    ?.followupRecommendation
                                 : {
                                     includeRecommendationsWithNoSpecifiedModality: body.configuration?.inferenceOptions
                                         ?.followupRecommendation?.["includeRecommendationsWithNoSpecifiedModality"],
@@ -1718,7 +1865,7 @@ export function _inferRadiologyInsightsSend(context, body, options = { requestOp
                                         ?.followupRecommendation?.["provideFocusedSentenceEvidence"],
                                 },
                             finding: !body.configuration?.inferenceOptions?.finding
-                                ? undefined
+                                ? body.configuration?.inferenceOptions?.finding
                                 : {
                                     provideFocusedSentenceEvidence: body.configuration?.inferenceOptions?.finding?.["provideFocusedSentenceEvidence"],
                                 },
