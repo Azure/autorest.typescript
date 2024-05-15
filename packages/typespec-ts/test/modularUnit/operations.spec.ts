@@ -76,7 +76,10 @@ describe("operations", () => {
     it("should throw exception if property type as void", async () => {
       try {
         const tspContent = `
-        op read(param: void): {};
+        model Foo {
+          param: void;
+        }
+        op read(...Foo): {};
           `;
 
         await emitModularOperationsFromTypeSpec(tspContent);
