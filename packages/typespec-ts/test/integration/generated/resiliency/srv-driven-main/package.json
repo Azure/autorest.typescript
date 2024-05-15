@@ -1,7 +1,7 @@
 {
-  "name": "@msinternal/srv-driven-1",
+  "name": "@msinternal/srv-driven-main",
   "version": "1.0.0",
-  "description": "Srv Driven 1 Test Service",
+  "description": "Srv Driven Main Test Service",
   "engines": {
     "node": ">=18.0.0"
   },
