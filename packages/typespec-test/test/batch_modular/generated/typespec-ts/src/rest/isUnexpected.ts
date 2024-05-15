@@ -110,7 +110,7 @@ import {
   ListSubTasksDefaultResponse,
   TerminateTask204Response,
   TerminateTaskDefaultResponse,
-  ReactivateTask200Response,
+  ReactivateTask204Response,
   ReactivateTaskDefaultResponse,
   DeleteTaskFile200Response,
   DeleteTaskFileDefaultResponse,
@@ -215,7 +215,7 @@ const responseMap: Record<string, string[]> = {
   "PUT /jobs/{jobId}/tasks/{taskId}": ["200"],
   "GET /jobs/{jobId}/tasks/{taskId}/subtasksinfo": ["200"],
   "POST /jobs/{jobId}/tasks/{taskId}/terminate": ["204"],
-  "POST /jobs/{jobId}/tasks/{taskId}/reactivate": ["200"],
+  "POST /jobs/{jobId}/tasks/{taskId}/reactivate": ["204"],
   "DELETE /jobs/{jobId}/tasks/{taskId}/files/{filePath}": ["200"],
   "GET /jobs/{jobId}/tasks/{taskId}/files/{filePath}": ["200"],
   "HEAD /jobs/{jobId}/tasks/{taskId}/files/{filePath}": ["200"],
@@ -424,7 +424,7 @@ export function isUnexpected(
   response: TerminateTask204Response | TerminateTaskDefaultResponse,
 ): response is TerminateTaskDefaultResponse;
 export function isUnexpected(
-  response: ReactivateTask200Response | ReactivateTaskDefaultResponse,
+  response: ReactivateTask204Response | ReactivateTaskDefaultResponse,
 ): response is ReactivateTaskDefaultResponse;
 export function isUnexpected(
   response: DeleteTaskFile200Response | DeleteTaskFileDefaultResponse,
@@ -614,7 +614,7 @@ export function isUnexpected(
     | ListSubTasksDefaultResponse
     | TerminateTask204Response
     | TerminateTaskDefaultResponse
-    | ReactivateTask200Response
+    | ReactivateTask204Response
     | ReactivateTaskDefaultResponse
     | DeleteTaskFile200Response
     | DeleteTaskFileDefaultResponse

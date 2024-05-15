@@ -1065,7 +1065,7 @@ active if you decide that you want to continue using the Certificate.
       })
       $select?: string[];
     },
-    BatchResponseHeaders & BatchCertificate,
+    { @bodyRoot _:  BatchResponseHeaders & BatchCertificate},
     {},
     BatchError
   >;
@@ -1658,6 +1658,8 @@ will fail if the Job has completed (or is terminating or deleting).
       @header("DataServiceId")
       @doc("The OData ID of the resource to which the request applied.")
       DataServiceId: string;
+
+      @statusCode _: 204;
     },
     {},
     BatchError

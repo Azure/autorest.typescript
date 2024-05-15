@@ -8,13 +8,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { SchemaContext } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Type } from "@typespec/compiler";
-import {
-  createMetadataInfo,
-  getHttpOperation,
-  getServers,
-  HttpOperation,
-  Visibility
-} from "@typespec/http";
+import { getHttpOperation, getServers, HttpOperation } from "@typespec/http";
 import {
   getSchemaForType,
   includeDerivedModel,
@@ -94,16 +88,10 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
           }
         }
         const respModel = resps?.body?.type;
-        if (!respModel || !resps) {
+        if (!respModel) {
           continue;
         }
-        const metadataInfo = createMetadataInfo(program, {
-          canonicalVisibility: Visibility.Read
-        });
-        getGeneratedModels(
-          metadataInfo.getEffectivePayloadType(respModel, Visibility.Read),
-          SchemaContext.Output
-        );
+        getGeneratedModels(respModel, SchemaContext.Output);
       }
     }
   }

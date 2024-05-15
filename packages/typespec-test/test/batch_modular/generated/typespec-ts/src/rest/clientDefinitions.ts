@@ -188,7 +188,7 @@ import {
   ListSubTasksDefaultResponse,
   TerminateTask204Response,
   TerminateTaskDefaultResponse,
-  ReactivateTask200Response,
+  ReactivateTask204Response,
   ReactivateTaskDefaultResponse,
   DeleteTaskFile200Response,
   DeleteTaskFileDefaultResponse,
@@ -845,7 +845,7 @@ export interface ReactivateTask {
   post(
     options?: ReactivateTaskParameters,
   ): StreamableMethod<
-    ReactivateTask200Response | ReactivateTaskDefaultResponse
+    ReactivateTask204Response | ReactivateTaskDefaultResponse
   >;
 }
 

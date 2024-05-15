@@ -27,8 +27,6 @@ import {
   BatchJobScheduleCreateOptions,
   BatchJobScheduleListResult,
   BatchCertificate,
-  CertificateState,
-  DeleteCertificateError,
   CertificateListResult,
   BatchJob,
   BatchJobUpdateOptions,
@@ -181,7 +179,7 @@ import {
   PoolExists200Response,
   PoolExists404Response,
   PoolExistsDefaultResponse,
-  ReactivateTask200Response,
+  ReactivateTask204Response,
   ReactivateTaskDefaultResponse,
   RebootNode202Response,
   RebootNodeDefaultResponse,
@@ -9690,17 +9688,7 @@ export function _getCertificateSend(
 
 export async function _getCertificateDeserialize(
   result: GetCertificate200Response | GetCertificateDefaultResponse,
-): Promise<{
-  thumbprint: string;
-  thumbprintAlgorithm: string;
-  url?: string;
-  state?: CertificateState;
-  stateTransitionTime?: Date;
-  previousState?: CertificateState;
-  previousStateTransitionTime?: Date;
-  publicData?: Uint8Array;
-  deleteCertificateError?: DeleteCertificateError;
-}> {
+): Promise<BatchCertificate> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -9736,6 +9724,12 @@ export async function _getCertificateDeserialize(
                   value: p["value"],
                 })),
         },
+    data:
+      typeof result.body["data"] === "string"
+        ? stringToUint8Array(result.body["data"], "base64")
+        : result.body["data"],
+    certificateFormat: result.body["certificateFormat"],
+    password: result.body["password"],
   };
 }
 
@@ -9745,17 +9739,7 @@ export async function getCertificate(
   thumbprintAlgorithm: string,
   thumbprint: string,
   options: GetCertificateOptionalParams = { requestOptions: {} },
-): Promise<{
-  thumbprint: string;
-  thumbprintAlgorithm: string;
-  url?: string;
-  state?: CertificateState;
-  stateTransitionTime?: Date;
-  previousState?: CertificateState;
-  previousStateTransitionTime?: Date;
-  publicData?: Uint8Array;
-  deleteCertificateError?: DeleteCertificateError;
-}> {
+): Promise<BatchCertificate> {
   const result = await _getCertificateSend(
     context,
     thumbprintAlgorithm,
@@ -17907,7 +17891,7 @@ export function _reactivateTaskSend(
   jobId: string,
   taskId: string,
   options: ReactivateTaskOptionalParams = { requestOptions: {} },
-): StreamableMethod<ReactivateTask200Response | ReactivateTaskDefaultResponse> {
+): StreamableMethod<ReactivateTask204Response | ReactivateTaskDefaultResponse> {
   return context
     .path("/jobs/{jobId}/tasks/{taskId}/reactivate", jobId, taskId)
     .post({
@@ -17934,7 +17918,7 @@ export function _reactivateTaskSend(
 }
 
 export async function _reactivateTaskDeserialize(
-  result: ReactivateTask200Response | ReactivateTaskDefaultResponse,
+  result: ReactivateTask204Response | ReactivateTaskDefaultResponse,
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
