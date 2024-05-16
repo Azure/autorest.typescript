@@ -107,6 +107,24 @@ describe("Responses.ts", () => {
   });
 
   describe("body generation", () => {
+    it("void as response body should be omitted", async () => {
+      const parameters = await emitResponsesFromTypeSpec(`
+      @post op read(): {@body body: void; @statusCode _: 204; };
+      `);
+      assert.ok(parameters);
+      await assertEqualContent(
+        parameters?.content!,
+        `
+        import { HttpResponse } from "@azure-rest/core-client";
+    
+        /** There is no content to send for this request, but the headers may be useful. */
+        export interface Read204Response extends HttpResponse {
+          status: "204";
+        }
+      `
+      );
+    });
+
     it("unknown array response generation", async () => {
       const parameters = await emitResponsesFromTypeSpec(`
       @post op read():  unknown[];
