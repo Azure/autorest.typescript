@@ -1227,6 +1227,36 @@
         "b64_json"
       ]
     },
+    "ImageSize": {
+      "type": "string",
+      "description": "The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024.",
+      "enum": [
+        "256x256",
+        "512x512",
+        "1024x1024"
+      ],
+      "x-ms-enum": {
+        "name": "ImageSize",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "Size256x256",
+            "value": "256x256",
+            "description": "Image size of 256x256."
+          },
+          {
+            "name": "Size512x512",
+            "value": "512x512",
+            "description": "Image size of 512x512."
+          },
+          {
+            "name": "Size1024x1024",
+            "value": "1024x1024",
+            "description": "Image size of 1024x1024."
+          }
+        ]
+      }
+    },
     "PromptFilterResult": {
       "type": "object",
       "description": "Content filtering results for a single prompt in the request.",

@@ -1149,6 +1149,30 @@
         "arguments"
       ]
     },
+    "FunctionCallPreset": {
+      "type": "string",
+      "description": "The collection of predefined behaviors for handling request-provided function information in a chat completions\noperation.",
+      "enum": [
+        "auto",
+        "none"
+      ],
+      "x-ms-enum": {
+        "name": "FunctionCallPreset",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "auto",
+            "value": "auto",
+            "description": "Specifies that the model may either use any of the functions provided in this chat completions request or\ninstead return a standard chat completions response as if no functions were provided."
+          },
+          {
+            "name": "none",
+            "value": "none",
+            "description": "Specifies that the model should not respond with a function call and should instead provide a standard chat\ncompletions response. Response content may still be influenced by the provided function information."
+          }
+        ]
+      }
+    },
     "FunctionDefinition": {
       "type": "object",
       "description": "The definition of a caller-specified function that chat completions may invoke in response to matching user input.",
@@ -1310,6 +1334,36 @@
       "required": [
         "b64_json"
       ]
+    },
+    "ImageSize": {
+      "type": "string",
+      "description": "The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024.",
+      "enum": [
+        "256x256",
+        "512x512",
+        "1024x1024"
+      ],
+      "x-ms-enum": {
+        "name": "ImageSize",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "Size256x256",
+            "value": "256x256",
+            "description": "Image size of 256x256."
+          },
+          {
+            "name": "Size512x512",
+            "value": "512x512",
+            "description": "Image size of 512x512."
+          },
+          {
+            "name": "Size1024x1024",
+            "value": "1024x1024",
+            "description": "Image size of 1024x1024."
+          }
+        ]
+      }
     },
     "PromptFilterResult": {
       "type": "object",

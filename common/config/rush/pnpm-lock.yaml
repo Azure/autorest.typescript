@@ -191,7 +191,7 @@ importers:
 
   ../../packages/typespec-test:
     specifiers:
-      '@azure-tools/typespec-autorest': '>=0.42.0 <1.0.0'
+      '@azure-tools/typespec-autorest': '>=0.42.1 <1.0.0'
       '@azure-tools/typespec-azure-core': '>=0.42.0 <1.0.0'
       '@azure-tools/typespec-client-generator-core': '>=0.42 <1.0.0'
       '@azure-tools/typespec-ts': workspace:^0.28.0
@@ -207,7 +207,7 @@ importers:
       ts-node: ^8.5.2
       typescript: ~5.4.5
     dependencies:
-      '@azure-tools/typespec-autorest': 0.42.0_uq7okz7y7euyby54kwkjmqmywq
+      '@azure-tools/typespec-autorest': 0.42.1_uq7okz7y7euyby54kwkjmqmywq
       '@azure-tools/typespec-azure-core': 0.42.0_vh6ubjfznouqbteha4a2uzvejq
       '@azure-tools/typespec-client-generator-core': 0.42.2_pltw6jvksz75whntgvodyimazu
       '@azure-tools/typespec-ts': link:../typespec-ts
@@ -505,8 +505,8 @@ packages:
       - supports-color
     dev: true
 
-  /@azure-tools/typespec-autorest/0.42.0_uq7okz7y7euyby54kwkjmqmywq:
-    resolution: {integrity: sha512-3cB5SiIbRDvGXpadnxwqsNhQ4A9pteGTHIpVlKpENpvzIoWU9phe+uBmGJDiQ/9CQPiLk7JncER95XYVOvn/vA==}
+  /@azure-tools/typespec-autorest/0.42.1_uq7okz7y7euyby54kwkjmqmywq:
+    resolution: {integrity: sha512-egWR2Ljxde5PvyDwuVu/8Rq8cSW6FW+qMbvwHfzrtm/sULdSnA6k+VnGD/PQ+dk+1SmFeKG1b+0MlaFuBVz1Hw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@azure-tools/typespec-azure-core': ~0.42.0
