@@ -231,7 +231,10 @@ export function getSchemaForType(
   }
   reportDiagnostic(program, {
     code: "invalid-schema",
-    format: { type: type.kind },
+    format: {
+      type: type.kind,
+      property: options?.relevantProperty?.name ?? ""
+    },
     target: type
   });
   return undefined;

@@ -95,7 +95,11 @@ describe("Input/output model type", () => {
         await verifyPropertyType(tspType, typeScriptType);
         assert.fail("Should throw exception");
       } catch (err: any) {
-        assert.equal(err[0].message, "Couldn't get schema for type Intrinsic");
+        assert.equal(
+          err[0].message,
+          "Couldn't get schema for type Intrinsic with property prop"
+        );
+        assert.equal(err[0]?.target?.name, "void");
       }
     });
   });

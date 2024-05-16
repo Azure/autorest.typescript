@@ -86,7 +86,11 @@ describe("operations", () => {
         assert.fail("Should throw diagnostic errors");
       } catch (e: any) {
         assert.equal(e[0]?.code, "@azure-tools/typespec-ts/invalid-schema");
-        assert.equal(e[0]?.message, "Couldn't get schema for type Intrinsic");
+        assert.equal(
+          e[0]?.message,
+          "Couldn't get schema for type Intrinsic with property param"
+        );
+        assert.equal(e[0]?.target?.name, "void");
       }
     });
   });
