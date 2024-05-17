@@ -1898,3 +1898,71 @@ describe("spread record", () => {
     );
   });
 });
+
+describe("model property as type", () => {
+  it("should be used as body/path/query/header params", async () => {
+    const tspContent = `model A {
+      id: string;
+    }
+    op read(@path pathParam: A.id, @query queryParam: A.id, @header headerParam: A.id, @body body: A.id): {
+      @header headerParam: A.id,
+      @body body: A.id;
+    };
+    `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.isUndefined(
+      modelFile?.getFullText(),
+      "no models should be generated"
+    );
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.equal(operationFiles?.length, 1);
+    await assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
+
+      export function _readSend(context: Client, pathParam: string, queryParam: string, headerParam: string, body: string, options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod<Read200Response> {
+        return context.path("/{pathParam}",  pathParam).post({...operationOptionsToRequestParameters(options), 
+        headers: {"header-param": headerParam},
+        queryParameters: {"queryParam": queryParam},
+        body: body});
+      }
+
+      export async function _readDeserialize(result: Read200Response): Promise<string> {
+        if(result.status !== "200"){
+          throw createRestError(result);
+        }
+
+        return result.body
+      }
+
+      export async function read(context: Client, pathParam: string, queryParam: string, headerParam: string, body: string, options: ReadOptionalParams = { requestOptions: {} }): Promise<string> {
+        const result = await _readSend(context, pathParam, queryParam, headerParam, body, options);
+        return _readDeserialize(result);
+      }`
+    );
+  });
+
+  it("should be used as model property", async () => {
+    const tspContent = `model Foo {
+      name: string | null;
+    }
+    model A {
+      id: Foo.name;
+    }
+    op read(
+      @body body: Foo,
+    ): {
+      @body body: Foo;
+    };
+    `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+    await assertEqualContent(
+      modelFile?.getFullText()!,
+      `export interface Foo {
+        "name": (string | null);
+      }`
+    );
+  });
+});

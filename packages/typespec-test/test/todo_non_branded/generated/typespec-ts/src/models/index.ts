@@ -1,6 +1,5 @@
 // Licensed under the MIT license.
 
-export { TodoClient, TodoClientOptions } from "./todoClient.js";
 export {
   TodoPage,
   TodoItem,
@@ -16,6 +15,8 @@ export {
   InvalidUserResponse,
   TodoLabel,
   TodoAttachment,
+} from "./models.js";
+export {
   UsersCreateOptionalParams,
   UsersValidateOptionalParams,
   UsersLoginOptionalParams,
@@ -31,9 +32,4 @@ export {
   TodoItemsAttachmentsListOptionalParams,
   TodoItemsAttachmentsCreateUrlAttachmentOptionalParams,
   TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
-} from "./models/index.js";
-export {
-  TodoItemsOperations,
-  UsersOperations,
-  TodoItemsAttachmentsOperations,
-} from "./classic/index.js";
+} from "./options.js";

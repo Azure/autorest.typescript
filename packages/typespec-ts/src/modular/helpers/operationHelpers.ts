@@ -171,7 +171,7 @@ export function getDeserializePrivateFunction(
       statements.push(
         `if(${validStatus
           .map((s) => `result.status !== "${s}"`)
-          .join(" || ")}){`,
+          .join(" && ")}){`,
         `throw createRestError(result);`,
         "}"
       );

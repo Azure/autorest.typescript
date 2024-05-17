@@ -1,44 +1,34 @@
 // Licensed under the MIT license.
 
-import { getClient, ClientOptions } from "@typespec/ts-http-runtime";
 import { KeyCredential } from "@typespec/ts-http-runtime";
-import { TodoClient } from "./clientDefinitions.js";
+import { Pipeline } from "@typespec/ts-http-runtime";
+import { getUsersOperations, UsersOperations } from "./classic/users/index.js";
+import {
+  getTodoItemsOperations,
+  TodoItemsOperations,
+} from "./classic/todoItems/index.js";
+import { createTodo, TodoClientOptions, TodoContext } from "./api/index.js";
 
-/**
- * Initialize a new instance of `TodoClient`
- * @param endpointParam - The parameter endpointParam
- * @param credentials - uniquely identify client credential
- * @param options - the parameter for all optional parameters
- */
-export default function createClient(
-  endpointParam: string,
-  credentials: KeyCredential,
-  options: ClientOptions = {},
-): TodoClient {
-  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
+export { TodoClientOptions } from "./api/todoContext.js";
 
-  const userAgentInfo = `azsdk-js-todo-non-branded-rest/1.0.0-beta.1`;
-  const userAgentPrefix =
-    options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-      ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
-      : `${userAgentInfo}`;
-  options = {
-    ...options,
-    userAgentOptions: {
-      userAgentPrefix,
-    },
-  };
+export class TodoClient {
+  private _client: TodoContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
-  const client = getClient(endpointUrl, options) as TodoClient;
+  constructor(
+    endpoint: string,
+    credential: KeyCredential,
+    options: TodoClientOptions = {},
+  ) {
+    this._client = createTodo(endpoint, credential, options);
+    this.pipeline = this._client.pipeline;
+    this.users = getUsersOperations(this._client);
+    this.todoItems = getTodoItemsOperations(this._client);
+  }
 
-  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-
-  client.pipeline.addPolicy({
-    name: "customKeyCredentialPolicy",
-    async sendRequest(request, next) {
-      request.headers.set("Authorization", "bearer " + credentials.key);
-      return next(request);
-    },
-  });
-  return client;
+  /** The operation groups for Users */
+  public readonly users: UsersOperations;
+  /** The operation groups for TodoItems */
+  public readonly todoItems: TodoItemsOperations;
 }
