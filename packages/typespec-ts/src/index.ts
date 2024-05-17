@@ -128,28 +128,6 @@ export async function $onEmit(context: EmitContext) {
     };
   }
 
-  function createContextWithDefaultOptions(
-    context: EmitContext<Record<string, any>>
-  ): SdkContext {
-    const tcgcSettings = {
-      "generate-protocol-methods": true,
-      "generate-convenience-methods": true,
-      "flatten-union-as-enum": false,
-      emitters: [
-        {
-          main: "@azure-tools/typespec-ts",
-          metadata: { name: "@azure-tools/typespec-ts" }
-        }
-      ]
-    };
-    context.options = {
-      ...context.options,
-      ...tcgcSettings
-    };
-
-    return createSdkContext(context) as SdkContext;
-  }
-
   async function clearSrcFolder() {
     await fsextra.emptyDir(
       dpgContext.generationPathDetail?.modularSourcesDir ??
@@ -346,4 +324,26 @@ export async function $onEmit(context: EmitContext) {
       );
     }
   }
+}
+
+export function createContextWithDefaultOptions(
+  context: EmitContext<Record<string, any>>
+): SdkContext {
+  const tcgcSettings = {
+    "generate-protocol-methods": true,
+    "generate-convenience-methods": true,
+    "flatten-union-as-enum": false,
+    emitters: [
+      {
+        main: "@azure-tools/typespec-ts",
+        metadata: { name: "@azure-tools/typespec-ts" }
+      }
+    ]
+  };
+  context.options = {
+    ...context.options,
+    ...tcgcSettings
+  };
+
+  return createSdkContext(context) as SdkContext;
 }

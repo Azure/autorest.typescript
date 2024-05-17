@@ -245,17 +245,12 @@ export function getEffectiveModelFromType(program: Program, type: Type): Type {
    * set of properties when non-schema properties are excluded.
    */
   if (type.kind === "Model" && type.name === "") {
-    const effective = getEffectiveModelType(program, type, isSchemaProperty);
+    const effective = getEffectiveModelType(program, type, (property) =>
+      isSchemaProperty(program, property)
+    );
     if (effective.name) {
       return effective;
     }
-  }
-  function isSchemaProperty(property: ModelProperty) {
-    const headerInfo = getHeaderFieldName(program, property);
-    const queryInfo = getQueryParamName(program, property);
-    const pathInfo = getPathParamName(program, property);
-    const statusCodeInfo = isStatusCode(program, property);
-    return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
   }
   return type;
 }
@@ -557,19 +552,6 @@ function validateDiscriminator(
   }
   return retVals.every((v) => v);
 }
-/**
- * A "schema property" here is a property that is emitted to OpenAPI schema.
- *
- * Headers, parameters, status codes are not schema properties even they are
- * represented as properties in typespec.
- */
-function isSchemaProperty(program: Program, property: ModelProperty) {
-  const headerInfo = getHeaderFieldName(program, property);
-  const queryInfo = getQueryParamName(program, property);
-  const pathInfo = getPathParamName(program, property);
-  const statusCodeinfo = isStatusCode(program, property);
-  return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
-}
 
 function getSchemaForModel(
   dpgContext: SdkContext,
@@ -620,7 +602,7 @@ function getSchemaForModel(
 
   const isMultipartBody = isMediaTypeMultipartFormData(contentTypes ?? []);
 
-  const isCoreModel = isAzureCoreErrorType(model);
+  const isCoreModel = isAzureCoreErrorType(program, model);
   const modelSchema: ObjectSchema = {
     name: isCoreModel
       ? name
@@ -1590,21 +1572,26 @@ export function trimUsage(model: any) {
   return ordered;
 }
 
-export function buildCoreTypeInfo(t?: Type) {
-  return isAzureCoreErrorType(t)
+export function buildCoreTypeInfo(program: Program, t?: Type) {
+  return isAzureCoreErrorType(program, t)
     ? "ErrorType"
     : isAzureCoreLroType(t)
       ? "LroType"
       : undefined;
 }
 
-export function isAzureCoreErrorType(t?: Type): boolean {
+export function isAzureCoreErrorType(program: Program, t?: Type): boolean {
+  if (!t || t.kind !== "Model") {
+    return false;
+  }
+  const effective = getEffectiveSchemaType(program, t);
   if (
-    t?.kind !== "Model" ||
-    !["error", "errorresponse", "innererror"].includes(t.name.toLowerCase())
+    !["error", "errorresponse", "innererror"].includes(
+      effective.name.toLowerCase()
+    )
   )
     return false;
-  return isAzureCoreFoundationsNamespace(t);
+  return isAzureCoreFoundationsNamespace(effective);
 }
 
 // Check if the type in the Azure.Core.Foundations has an LRO type in core
@@ -1725,4 +1712,51 @@ function getMultipartInlineSignature(
     .join(" | ");
 
   return `FormData | Array<${types}>`;
+}
+
+/**
+ * A "schema property" here is a property that is emitted to OpenAPI schema.
+ *
+ * Headers, parameters, status codes are not schema properties even they are
+ * represented as properties in typespec.
+ */
+export function isSchemaProperty(
+  program: Program,
+  property: ModelProperty
+): boolean {
+  const headerInfo = getHeaderFieldName(program, property);
+  const queryInfo = getQueryParamName(program, property);
+  const pathInfo = getPathParamName(program, property);
+  const statusCodeInfo = isStatusCode(program, property);
+  return !(headerInfo || queryInfo || pathInfo || statusCodeInfo);
+}
+
+export function getEffectiveSchemaType(
+  program: Program,
+  type: Model | Union
+): Model {
+  // If type is an anonymous model, tries to find a named model that has the same properties
+  let effective: Model | undefined = undefined;
+  if (type.kind === "Union") {
+    const nonNullOptions = [...type.variants.values()]
+      .map((x) => x.type)
+      .filter((t) => !isNullType(t));
+    if (
+      nonNullOptions.length === 1 &&
+      nonNullOptions[0]?.kind === "Model" &&
+      nonNullOptions[0]?.name === ""
+    ) {
+      effective = getEffectiveModelType(program, nonNullOptions[0]);
+    }
+    return type as any;
+  } else if (type.name === "") {
+    effective = getEffectiveModelType(program, type, (property) =>
+      isSchemaProperty(program, property)
+    );
+  }
+
+  if (effective?.name) {
+    return effective;
+  }
+  return type as Model;
 }

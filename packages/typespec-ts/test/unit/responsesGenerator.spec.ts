@@ -7,11 +7,12 @@ import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Responses.ts", () => {
   describe("property name generation", () => {
-    it("should generate property name with custome name", async () => {
+    it("should generate property name with custom name", async () => {
       const responses = await emitResponsesFromTypeSpec(`
         model SimpleModel {}
         @doc("Metadata for long running operation status monitor locations")
         model LongRunningStatusLocation {
+            @statusCode _: 204;
             @doc("The location for monitoring the operation state.")
             @header("Operation-Location")
             operationLocation: ResourceLocation<SimpleModel>;
@@ -38,11 +39,12 @@ describe("Responses.ts", () => {
       );
     });
 
-    it("should generate property name without custome name", async () => {
+    it("should generate property name without custom name", async () => {
       const responses = await emitResponsesFromTypeSpec(`
         model SimpleModel {}
         @doc("Metadata for long running operation status monitor locations")
         model LongRunningStatusLocation {
+            @statusCode _: 204;
             @doc("The location for monitoring the operation state.")
             @header
             operationLocation: ResourceLocation<SimpleModel>;
@@ -71,7 +73,7 @@ describe("Responses.ts", () => {
   });
 
   describe("statusCode generation", () => {
-    it("should generate property name with custome name", async () => {
+    it("should generate property name with custom name", async () => {
       const responses = await emitResponsesFromTypeSpec(`
       @doc("Error")
       @error

@@ -130,7 +130,7 @@ describe("header parameters", () => {
         op get(
           @header("test-header") testHeader: SchemaContentTypeValues,
           @body body: string,
-        ): { @header("test-header") testHeader: SchemaContentTypeValues };
+        ): { @header("test-header") testHeader: SchemaContentTypeValues; @statusCode _: 204; };
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
@@ -307,7 +307,7 @@ describe("header parameters", () => {
         op get(
           @header("test-header") testHeader: "A" | "B",
           @body body: string,
-        ): { @header("test-header") testHeader: "A" | "B" };
+        ): { @header("test-header") testHeader: "A" | "B"; @statusCode _: 204; };
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,
@@ -386,7 +386,7 @@ describe("header parameters", () => {
         op get(
           @header("test-header") testHeader: "A" | "B" | string,
           @body body: string,
-        ): { @header("test-header") testHeader: "A" | "B" | string };
+        ): { @header("test-header") testHeader: "A" | "B" | string; @statusCode _: 204; };
         `;
         const schemaOutput = await emitModularModelsFromTypeSpec(
           tspDefinition,

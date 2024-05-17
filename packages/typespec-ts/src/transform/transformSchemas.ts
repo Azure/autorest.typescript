@@ -27,9 +27,9 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
     SchemaContext[]
   >();
   const schemaMap: Map<any, any> = new Map<any, any>();
+  const usageMap = new Map<Type, SchemaContext[]>();
   const requestBodySet = new Set<Type>();
   const contentTypeMap = new Map<Type, KnownMediaType[]>();
-  const modelKey = Symbol("typescript-models-" + client.name);
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
@@ -77,7 +77,7 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
       getGeneratedModels(bodyModel, SchemaContext.Input);
     }
     for (const resp of route.responses) {
-      if (isAzureCoreErrorType(resp.type)) {
+      if (isAzureCoreErrorType(dpgContext.program, resp.type)) {
         continue;
       }
       for (const resps of resp.responses) {
@@ -87,12 +87,11 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
             getGeneratedModels(value, SchemaContext.Output);
           }
         }
-
-        const respModel = resps.body;
+        const respModel = resps?.body?.type;
         if (!respModel) {
           continue;
         }
-        getGeneratedModels(respModel.type, SchemaContext.Output);
+        getGeneratedModels(respModel, SchemaContext.Output);
       }
     }
   }
@@ -112,7 +111,7 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
     }
   }
   transformHostParameters();
-  program.stateMap(modelKey).forEach((context, tspModel) => {
+  usageMap.forEach((context, tspModel) => {
     const model = getSchemaForType(dpgContext, tspModel, {
       usage: context,
       isRequestBody: requestBodySet.has(tspModel),
@@ -127,22 +126,19 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
     }
     const pureModel = JSON.stringify(trimUsage(model));
     schemaMap.set(pureModel, model);
-    let usage = schemas.get(pureModel) ?? [];
-    if (!usage?.includes(context)) {
-      usage = usage.concat(context as SchemaContext[]);
-    }
-    schemas.set(pureModel, usage);
+    const usageSet = new Set((schemas.get(pureModel) ?? []).concat(context));
+    schemas.set(pureModel, Array.from(usageSet));
   });
 
   function setModelMap(type: Type, schemaContext: SchemaContext) {
-    if (program.stateMap(modelKey).get(type)) {
-      const context = program.stateMap(modelKey).get(type);
+    if (usageMap.get(type)) {
+      const context = usageMap.get(type);
       if (context && context.indexOf(schemaContext) === -1) {
         context.push(schemaContext);
-        program.stateMap(modelKey).set(type, context);
+        usageMap.set(type, context);
       }
     } else {
-      program.stateMap(modelKey).set(type, [schemaContext]);
+      usageMap.set(type, [schemaContext]);
     }
   }
   function getGeneratedModels(model: Type, context: SchemaContext) {
@@ -151,21 +147,18 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
       const indexer = (model as Model).indexer;
       if (
         indexer?.value &&
-        (!program.stateMap(modelKey).get(indexer?.value) ||
-          !program
-            .stateMap(modelKey)
-            .get(indexer?.value)
-            ?.includes(context))
+        (!usageMap.get(indexer?.value) ||
+          !usageMap.get(indexer?.value)?.includes(context))
       ) {
         getGeneratedModels(indexer.value, context);
       }
       for (const prop of model.properties) {
         const [, propType] = prop;
-        if (program.stateMap(modelKey).get(propType.type)?.includes(context)) {
+        if (usageMap.get(propType.type)?.includes(context)) {
           continue;
         }
         if (propType.type.kind === "Model") {
-          if (isAzureCoreErrorType(propType.type)) {
+          if (isAzureCoreErrorType(dpgContext.program, propType.type)) {
             continue;
           }
           getGeneratedModels(propType.type, context);
@@ -176,11 +169,8 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
               (variant.type.kind === "Model" ||
                 variant.type.kind === "Union" ||
                 variant.type.kind === "Enum") &&
-              (!program.stateMap(modelKey).get(variant.type) ||
-                !program
-                  .stateMap(modelKey)
-                  .get(variant.type)
-                  ?.includes(context))
+              (!usageMap.get(variant.type) ||
+                !usageMap.get(variant.type)?.includes(context))
             ) {
               getGeneratedModels(variant.type, context);
             }
@@ -197,8 +187,8 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
       if (
         baseModel &&
         baseModel.kind === "Model" &&
-        (!program.stateMap(modelKey).get(baseModel) ||
-          !program.stateMap(modelKey).get(baseModel)?.includes(context))
+        (!usageMap.get(baseModel) ||
+          !usageMap.get(baseModel)?.includes(context))
       ) {
         getGeneratedModels(baseModel, context);
       }
@@ -210,8 +200,7 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
       for (const child of derivedModels) {
         if (
           child.kind === "Model" &&
-          (!program.stateMap(modelKey).get(child) ||
-            !program.stateMap(modelKey).get(child)?.includes(context))
+          (!usageMap.get(child) || !usageMap.get(child)?.includes(context))
         ) {
           getGeneratedModels(child, context);
         }
@@ -221,8 +210,8 @@ export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
       for (const variant of variants) {
         if (
           (variant.type.kind === "Model" || variant.type.kind === "Union") &&
-          (!program.stateMap(modelKey).get(variant.type) ||
-            !program.stateMap(modelKey).get(variant.type)?.includes(context))
+          (!usageMap.get(variant.type) ||
+            !usageMap.get(variant.type)?.includes(context))
         ) {
           getGeneratedModels(variant.type, context);
         }
