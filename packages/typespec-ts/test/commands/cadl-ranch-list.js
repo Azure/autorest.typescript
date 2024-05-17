@@ -238,6 +238,30 @@ export const rlcTsps = [
   {
     outputPath: "parameters/basic",
     inputPath: "parameters/basic"
+  },
+  {
+    outputPath: "versioning/added",
+    inputPath: "versioning/added"
+  },
+  {
+    outputPath: "versioning/madeOptional",
+    inputPath: "versioning/madeOptional"
+  },
+  {
+    outputPath: "versioning/removed",
+    inputPath: "versioning/removed"
+  },
+  {
+    outputPath: "versioning/renamedFrom",
+    inputPath: "versioning/renamedFrom"
+  },
+  {
+    outputPath: "versioning/returnTypeChangedFrom",
+    inputPath: "versioning/returnTypeChangedFrom"
+  },
+  {
+    outputPath: "versioning/typeChangedFrom",
+    inputPath: "versioning/typeChangedFrom"
   }
 ];
 
@@ -434,6 +458,30 @@ export const modularTsps = [
   {
     outputPath: "parameters/basic",
     inputPath: "parameters/basic"
+  },
+  {
+    outputPath: "versioning/added",
+    inputPath: "versioning/added"
+  },
+  {
+    outputPath: "versioning/madeOptional",
+    inputPath: "versioning/madeOptional"
+  },
+  {
+    outputPath: "versioning/removed",
+    inputPath: "versioning/removed"
+  },
+  {
+    outputPath: "versioning/renamedFrom",
+    inputPath: "versioning/renamedFrom"
+  },
+  {
+    outputPath: "versioning/returnTypeChangedFrom",
+    inputPath: "versioning/returnTypeChangedFrom"
+  },
+  {
+    outputPath: "versioning/typeChangedFrom",
+    inputPath: "versioning/typeChangedFrom"
   }
 ];
 
