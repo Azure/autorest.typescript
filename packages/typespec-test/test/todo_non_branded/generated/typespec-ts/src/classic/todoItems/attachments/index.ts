@@ -1,16 +1,14 @@
 // Licensed under the MIT license.
 
 import { TodoContext } from "../../../api/todoContext.js";
-import { TodoUrlAttachment, TodoAttachment } from "../../../models/models.js";
+import { TodoAttachment } from "../../../models/models.js";
 import {
   list,
-  createUrlAttachment,
-  createFileAttachment,
+  createAttachment,
 } from "../../../api/todoItems/attachments/index.js";
 import {
   TodoItemsAttachmentsListOptionalParams,
-  TodoItemsAttachmentsCreateUrlAttachmentOptionalParams,
-  TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+  TodoItemsAttachmentsCreateAttachmentOptionalParams,
 } from "../../../models/options.js";
 
 export interface TodoItemsAttachmentsOperations {
@@ -18,15 +16,10 @@ export interface TodoItemsAttachmentsOperations {
     itemId: number,
     options?: TodoItemsAttachmentsListOptionalParams,
   ) => Promise<TodoAttachment[]>;
-  createUrlAttachment: (
+  createAttachment: (
     itemId: number,
-    contents: TodoUrlAttachment,
-    options?: TodoItemsAttachmentsCreateUrlAttachmentOptionalParams,
-  ) => Promise<void>;
-  createFileAttachment: (
-    itemId: number,
-    contents: Uint8Array,
-    options?: TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
+    contents: TodoAttachment,
+    options?: TodoItemsAttachmentsCreateAttachmentOptionalParams,
   ) => Promise<void>;
 }
 
@@ -34,16 +27,11 @@ export function getTodoItemsAttachments(context: TodoContext) {
   return {
     list: (itemId: number, options?: TodoItemsAttachmentsListOptionalParams) =>
       list(context, itemId, options),
-    createUrlAttachment: (
+    createAttachment: (
       itemId: number,
-      contents: TodoUrlAttachment,
-      options?: TodoItemsAttachmentsCreateUrlAttachmentOptionalParams,
-    ) => createUrlAttachment(context, itemId, contents, options),
-    createFileAttachment: (
-      itemId: number,
-      contents: Uint8Array,
-      options?: TodoItemsAttachmentsCreateFileAttachmentOptionalParams,
-    ) => createFileAttachment(context, itemId, contents, options),
+      contents: TodoAttachment,
+      options?: TodoItemsAttachmentsCreateAttachmentOptionalParams,
+    ) => createAttachment(context, itemId, contents, options),
   };
 }
 

@@ -1,29 +1,20 @@
 // Licensed under the MIT license.
 
 import { OperationOptions } from "@typespec/ts-http-runtime";
-import { TodoUrlAttachment } from "./models.js";
+import { TodoAttachment } from "./models.js";
 
 export interface UsersCreateOptionalParams extends OperationOptions {}
 
-export interface UsersValidateOptionalParams extends OperationOptions {}
-
-export interface UsersLoginOptionalParams extends OperationOptions {}
-
-export interface UsersLogoutOptionalParams extends OperationOptions {}
-
-export interface UsersForgotPasswordOptionalParams extends OperationOptions {}
-
-export interface UsersResetPasswordOptionalParams extends OperationOptions {}
-
-export interface TodoItemsListOptionalParams extends OperationOptions {}
-
-export interface TodoItemsCreateJsonOptionalParams extends OperationOptions {
-  contentType?: string;
+export interface TodoItemsListOptionalParams extends OperationOptions {
+  /** The limit to the number of items */
+  limit?: number;
+  /** The offset to start paginating at */
+  offset?: number;
 }
 
-export interface TodoItemsCreateFormOptionalParams extends OperationOptions {
+export interface TodoItemsCreateOptionalParams extends OperationOptions {
   contentType?: string;
-  attachments?: (TodoUrlAttachment | Uint8Array)[];
+  attachments?: TodoAttachment[];
 }
 
 export interface TodoItemsGetOptionalParams extends OperationOptions {}
@@ -37,12 +28,5 @@ export interface TodoItemsDeleteOptionalParams extends OperationOptions {}
 export interface TodoItemsAttachmentsListOptionalParams
   extends OperationOptions {}
 
-export interface TodoItemsAttachmentsCreateUrlAttachmentOptionalParams
-  extends OperationOptions {
-  contentType?: string;
-}
-
-export interface TodoItemsAttachmentsCreateFileAttachmentOptionalParams
-  extends OperationOptions {
-  contentType?: string;
-}
+export interface TodoItemsAttachmentsCreateAttachmentOptionalParams
+  extends OperationOptions {}

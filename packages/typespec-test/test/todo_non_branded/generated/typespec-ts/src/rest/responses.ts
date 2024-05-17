@@ -2,11 +2,12 @@
 
 import { HttpResponse } from "@typespec/ts-http-runtime";
 import {
-  UserCreatedResponseOutput,
+  Standard4XXResponseOutput,
   UserExistsResponseOutput,
   InvalidUserResponseOutput,
+  Standard5XXResponseOutput,
   TodoPageOutput,
-  TodoItemOutput,
+  TodoLabelsOutput,
   InvalidTodoItemOutput,
   TodoAttachmentOutput,
 } from "./outputModels.js";
@@ -14,7 +15,13 @@ import {
 /** The request has succeeded. */
 export interface UsersCreate200Response extends HttpResponse {
   status: "200";
-  body: UserCreatedResponseOutput;
+  body: { id: number; username: string; email: string; token: string };
+}
+
+/** Client error */
+export interface UsersCreate400Response extends HttpResponse {
+  status: "400";
+  body: Standard4XXResponseOutput;
 }
 
 /** The request conflicts with the current state of the server. */
@@ -29,50 +36,10 @@ export interface UsersCreate422Response extends HttpResponse {
   body: InvalidUserResponseOutput;
 }
 
-/** The request has succeeded. */
-export interface UsersValidate200Response extends HttpResponse {
-  status: "200";
-}
-
-/** Client error */
-export interface UsersValidate422Response extends HttpResponse {
-  status: "422";
-  body: InvalidUserResponseOutput;
-}
-
-/** The request has succeeded. */
-export interface UsersLogin200Response extends HttpResponse {
-  status: "200";
-}
-
-/** Access is unauthorized. */
-export interface UsersLogin401Response extends HttpResponse {
-  status: "401";
-}
-
-/** The request has succeeded. */
-export interface UsersLogout200Response extends HttpResponse {
-  status: "200";
-}
-
-/** The request has succeeded. */
-export interface UsersForgotPassword200Response extends HttpResponse {
-  status: "200";
-}
-
-/** The server cannot find the requested resource. */
-export interface UsersForgotPassword404Response extends HttpResponse {
-  status: "404";
-}
-
-/** The request has succeeded. */
-export interface UsersResetPassword200Response extends HttpResponse {
-  status: "200";
-}
-
-/** The server cannot find the requested resource. */
-export interface UsersResetPassword404Response extends HttpResponse {
-  status: "404";
+/** Server error */
+export interface UsersCreate500Response extends HttpResponse {
+  status: "500";
+  body: Standard5XXResponseOutput;
 }
 
 /** The request has succeeded. */
@@ -81,34 +48,68 @@ export interface TodoItemsList200Response extends HttpResponse {
   body: TodoPageOutput;
 }
 
+/** Client error */
+export interface TodoItemsList400Response extends HttpResponse {
+  status: "400";
+  body: Standard4XXResponseOutput;
+}
+
+/** Server error */
+export interface TodoItemsList500Response extends HttpResponse {
+  status: "500";
+  body: Standard5XXResponseOutput;
+}
+
 /** The request has succeeded. */
-export interface TodoItemsCreateJson200Response extends HttpResponse {
+export interface TodoItemsCreate200Response extends HttpResponse {
   status: "200";
-  body: TodoItemOutput;
+  body: {
+    id: number;
+    title: string;
+    createdBy: number;
+    assignedTo?: number;
+    description?: string;
+    status: "NotStarted" | "InProgress" | "Completed";
+    createdAt: string;
+    updatedAt: string;
+    completedAt?: string;
+    labels?: TodoLabelsOutput;
+  };
 }
 
 /** Client error */
-export interface TodoItemsCreateJson422Response extends HttpResponse {
+export interface TodoItemsCreate400Response extends HttpResponse {
+  status: "400";
+  body: Standard4XXResponseOutput;
+}
+
+/** Client error */
+export interface TodoItemsCreate422Response extends HttpResponse {
   status: "422";
   body: InvalidTodoItemOutput;
 }
 
-/** The request has succeeded. */
-export interface TodoItemsCreateForm200Response extends HttpResponse {
-  status: "200";
-  body: TodoItemOutput;
-}
-
-/** Client error */
-export interface TodoItemsCreateForm422Response extends HttpResponse {
-  status: "422";
-  body: InvalidTodoItemOutput;
+/** Server error */
+export interface TodoItemsCreate500Response extends HttpResponse {
+  status: "500";
+  body: Standard5XXResponseOutput;
 }
 
 /** The request has succeeded. */
 export interface TodoItemsGet200Response extends HttpResponse {
   status: "200";
-  body: TodoItemOutput;
+  body: {
+    id: number;
+    title: string;
+    createdBy: number;
+    assignedTo?: number;
+    description?: string;
+    status: "NotStarted" | "InProgress" | "Completed";
+    createdAt: string;
+    updatedAt: string;
+    completedAt?: string;
+    labels?: TodoLabelsOutput;
+  };
 }
 
 /** The server cannot find the requested resource. */
@@ -119,17 +120,40 @@ export interface TodoItemsGet404Response extends HttpResponse {
 /** The request has succeeded. */
 export interface TodoItemsUpdate200Response extends HttpResponse {
   status: "200";
-  body: TodoItemOutput;
+  body: {
+    id: number;
+    title: string;
+    createdBy: number;
+    assignedTo?: number;
+    description?: string;
+    status: "NotStarted" | "InProgress" | "Completed";
+    createdAt: string;
+    updatedAt: string;
+    completedAt?: string;
+    labels?: TodoLabelsOutput;
+  };
 }
 
-/** The request has succeeded. */
-export interface TodoItemsDelete200Response extends HttpResponse {
-  status: "200";
+/** There is no content to send for this request, but the headers may be useful. */
+export interface TodoItemsDelete204Response extends HttpResponse {
+  status: "204";
+}
+
+/** Client error */
+export interface TodoItemsDelete400Response extends HttpResponse {
+  status: "400";
+  body: Standard4XXResponseOutput;
 }
 
 /** The server cannot find the requested resource. */
 export interface TodoItemsDelete404Response extends HttpResponse {
   status: "404";
+}
+
+/** Server error */
+export interface TodoItemsDelete500Response extends HttpResponse {
+  status: "500";
+  body: Standard5XXResponseOutput;
 }
 
 /** The request has succeeded. */
@@ -138,31 +162,45 @@ export interface TodoItemsAttachmentsList200Response extends HttpResponse {
   body: TodoAttachmentOutput[];
 }
 
+/** Client error */
+export interface TodoItemsAttachmentsList400Response extends HttpResponse {
+  status: "400";
+  body: Standard4XXResponseOutput;
+}
+
 /** The server cannot find the requested resource. */
 export interface TodoItemsAttachmentsList404Response extends HttpResponse {
   status: "404";
 }
 
-/** The request has succeeded. */
-export interface TodoItemsAttachmentsCreateUrlAttachment200Response
+/** Server error */
+export interface TodoItemsAttachmentsList500Response extends HttpResponse {
+  status: "500";
+  body: Standard5XXResponseOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface TodoItemsAttachmentsCreateAttachment204Response
   extends HttpResponse {
-  status: "200";
+  status: "204";
+}
+
+/** Client error */
+export interface TodoItemsAttachmentsCreateAttachment400Response
+  extends HttpResponse {
+  status: "400";
+  body: Standard4XXResponseOutput;
 }
 
 /** The server cannot find the requested resource. */
-export interface TodoItemsAttachmentsCreateUrlAttachment404Response
+export interface TodoItemsAttachmentsCreateAttachment404Response
   extends HttpResponse {
   status: "404";
 }
 
-/** The request has succeeded. */
-export interface TodoItemsAttachmentsCreateFileAttachment200Response
+/** Server error */
+export interface TodoItemsAttachmentsCreateAttachment500Response
   extends HttpResponse {
-  status: "200";
-}
-
-/** The server cannot find the requested resource. */
-export interface TodoItemsAttachmentsCreateFileAttachment404Response
-  extends HttpResponse {
-  status: "404";
+  status: "500";
+  body: Standard5XXResponseOutput;
 }

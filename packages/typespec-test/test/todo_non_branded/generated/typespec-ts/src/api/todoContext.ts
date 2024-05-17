@@ -11,7 +11,7 @@ export { TodoContext } from "../rest/index.js";
 
 export function createTodo(
   endpoint: string,
-  credential: KeyCredential,
+  credential: KeyCredential | KeyCredential,
   options: TodoClientOptions = {},
 ): TodoContext {
   const clientContext = getClient(endpoint, credential, options);

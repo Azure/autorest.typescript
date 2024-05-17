@@ -1,18 +1,15 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@typespec/ts-http-runtime";
-import { KeyCredential } from "@typespec/ts-http-runtime";
 import { TodoContext } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `TodoContext`
  * @param endpointParam - The parameter endpointParam
- * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,
-  credentials: KeyCredential,
   options: ClientOptions = {},
 ): TodoContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
@@ -33,12 +30,5 @@ export default function createClient(
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
-  client.pipeline.addPolicy({
-    name: "customKeyCredentialPolicy",
-    async sendRequest(request, next) {
-      request.headers.set("Authorization", "bearer " + credentials.key);
-      return next(request);
-    },
-  });
   return client;
 }
