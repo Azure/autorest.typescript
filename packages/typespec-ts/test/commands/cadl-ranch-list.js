@@ -132,11 +132,11 @@ export const rlcTsps = [
     inputPath: "type/model/empty"
   },
   {
-    outputPath: "resiliency/srv-driven1",
+    outputPath: "resiliency/srv-driven-old",
     inputPath: "resiliency/srv-driven/old.tsp"
   },
   {
-    outputPath: "resiliency/srv-driven2",
+    outputPath: "resiliency/srv-driven-main",
     inputPath: "resiliency/srv-driven/main.tsp"
   },
   {

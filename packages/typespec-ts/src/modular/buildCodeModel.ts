@@ -37,7 +37,8 @@ import {
   isNullType,
   getEncode,
   isTemplateDeclarationOrInstance,
-  UsageFlags
+  UsageFlags,
+  isVoidType
 } from "@typespec/compiler";
 import {
   getAuthentication,
@@ -633,9 +634,11 @@ function emitResponse(
           ? undefined
           : getType(context, metadata.finalResult);
     } else {
-      type = getType(context, innerResponse.body.type, {
-        usage: UsageFlags.Output
-      });
+      type = isVoidType(innerResponse.body.type)
+        ? undefined
+        : getType(context, innerResponse.body.type, {
+            usage: UsageFlags.Output
+          });
     }
   }
   const statusCodes: (number | "default")[] = [];
@@ -845,7 +848,10 @@ function emitBasicOperation(
   }
 
   let bodyParameter: any | undefined;
-  if (httpOperation.parameters.body === undefined) {
+  if (
+    httpOperation.parameters.body === undefined ||
+    isVoidType(httpOperation.parameters.body.type)
+  ) {
     bodyParameter = undefined;
   } else {
     bodyParameter = emitBodyParameter(context, httpOperation);

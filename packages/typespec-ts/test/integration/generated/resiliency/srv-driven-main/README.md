@@ -15,7 +15,7 @@ We test the following configurations from this service spec:
 
 Key links:
 
-- [Package (NPM)](https://www.npmjs.com/package/@msinternal/srv-driven-2)
+- [Package (NPM)](https://www.npmjs.com/package/@msinternal/srv-driven-main)
 
 ## Getting started
 
@@ -27,12 +27,12 @@ Key links:
 
 - You must have an [Azure subscription](https://azure.microsoft.com/free/) to use this package.
 
-### Install the `@msinternal/srv-driven-2` package
+### Install the `@msinternal/srv-driven-main` package
 
 Install the ServiceDrivenNew REST client REST client library for JavaScript with `npm`:
 
 ```bash
-npm install @msinternal/srv-driven-2
+npm install @msinternal/srv-driven-main
 ```
 
 ### Create and authenticate a `ServiceDrivenNewClient`

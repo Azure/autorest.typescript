@@ -15,7 +15,7 @@ import {
   getLroLogicalResponseName,
   Imports
 } from "@azure-tools/rlc-common";
-import { getDoc, ignoreDiagnostics } from "@typespec/compiler";
+import { getDoc, ignoreDiagnostics, isVoidType } from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
@@ -174,7 +174,7 @@ function transformBody(
   let fromCore = false;
   for (const data of response.responses) {
     const body = data?.body;
-    if (!body) {
+    if (!body || isVoidType(body.type)) {
       continue;
     }
     const hasBinaryContent = body.contentTypes.some((contentType) =>

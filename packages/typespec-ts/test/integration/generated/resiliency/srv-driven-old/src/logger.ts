@@ -2,4 +2,4 @@
 // Licensed under the MIT license.
 
 import { createClientLogger } from "@azure/logger";
-export const logger = createClientLogger("srv-driven-1");
+export const logger = createClientLogger("srv-driven-old");
