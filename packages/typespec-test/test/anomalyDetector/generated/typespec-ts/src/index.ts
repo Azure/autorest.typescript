@@ -16,7 +16,6 @@ export {
   MultivariateAnomalyValue,
   MultivariateAnomalyInterpretation,
   MultivariateCorrelationChanges,
-  MultivariateResponseError,
   MultivariateModelInfo,
   DataSchema,
   MultivariateAlignPolicy,

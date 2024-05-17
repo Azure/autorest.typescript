@@ -1,4 +1,4 @@
-import { Program } from "@typespec/compiler";
+import { EmitContext, Program } from "@typespec/compiler";
 import { createTestHost } from "@typespec/compiler/testing";
 import { TestHost } from "@typespec/compiler/testing";
 import { RestTestLibrary } from "@typespec/rest/testing";
@@ -10,6 +10,7 @@ import { SdkContext } from "../../src/utils/interfaces.js";
 import { assert } from "chai";
 import { format } from "prettier";
 import { prettierTypeScriptOptions } from "../../src/lib.js";
+import { createContextWithDefaultOptions } from "../../src/index.js";
 
 export async function createRLCEmitterTestHost() {
   return createTestHost({
@@ -75,23 +76,13 @@ export function createDpgContextTestHelper(
   program: Program,
   enableModelNamespace = false
 ): SdkContext {
-  const defaultOptions = {
-    generateProtocolMethods: true,
-    generateConvenienceMethods: true,
-    flattenUnionAsEnum: false,
-    emitters: [
-      {
-        main: "@azure-tools/typespec-ts",
-        metadata: { name: "@azure-tools/typespec-ts" }
-      }
-    ]
-  };
-  const resolvedOptions = { ...defaultOptions };
-  program.emitters = resolvedOptions.emitters as any;
+  const context = createContextWithDefaultOptions({
+    program
+  } as EmitContext);
+
   return {
-    program: program,
-    generateProtocolMethods: resolvedOptions.generateProtocolMethods,
-    generateConvenienceMethods: resolvedOptions.generateConvenienceMethods,
+    ...context,
+    program,
     rlcOptions: { flavor: "azure", enableModelNamespace },
     generationPathDetail: {},
     emitterName: "@azure-tools/typespec-ts",
