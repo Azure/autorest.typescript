@@ -211,12 +211,6 @@ export interface MultivariateOperations {
     trainMultivariateModel: (modelInfo: MultivariateModelInfo, options?: MultivariateTrainMultivariateModelOptionalParams) => Promise<MultivariateAnomalyDetectionModel>;
 }
 
-// @public
-export interface MultivariateResponseError {
-    code: string;
-    message: string;
-}
-
 // @public (undocumented)
 export interface MultivariateTrainMultivariateModelOptionalParams extends OperationOptions {
 }

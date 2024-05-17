@@ -1,4 +1,4 @@
-import { UsageClient } from "./generated/models/usage/generated/src/index.js";
+import { UsageClient } from "./generated/type/model/usage/generated/src/index.js";
 import { assert } from "chai";
 import {
   UsageContext,
@@ -6,7 +6,7 @@ import {
   input,
   inputAndOutput,
   output
-} from "./generated/models/usage/generated/src/api/index.js";
+} from "./generated/type/model/usage/generated/src/api/index.js";
 const EXPECTED_VALUE = "example-value";
 describe("UsageContext Classical Client", () => {
   let client: UsageClient;

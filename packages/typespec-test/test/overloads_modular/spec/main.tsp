@@ -55,9 +55,9 @@ model JpegImage {
 interface FooOperations {
   @route("/avatar")
   @sharedRoute
-  op getAvatarAsPng is Azure.Core.RpcOperation<PngImage, {@header accept: "image/png"}>;
+  op getAvatarAsPng is Azure.Core.RpcOperation<PngImage, {@header accept: "image/png"; @statusCode _ : "204"; }>;
   
   @route("/avatar")
   @sharedRoute
-  op getAvatarAsJpeg is Azure.Core.RpcOperation<JpegImage, {@header accept: "image/jpeg"}>;
+  op getAvatarAsJpeg is Azure.Core.RpcOperation<JpegImage, {@header accept: "image/jpeg"; @statusCode _ : "204"; }>;
 }

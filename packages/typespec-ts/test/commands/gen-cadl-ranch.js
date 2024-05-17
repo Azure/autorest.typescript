@@ -5,6 +5,7 @@ import {
   rlcTsps
 } from "./cadl-ranch-list.js";
 import { runTypespec } from "./run.js";
+import os from "os";
 
 async function generateTypeSpecs(tag = "rlc", isDebugging) {
   let list = rlcTsps;
@@ -27,17 +28,24 @@ async function generateTypeSpecs(tag = "rlc", isDebugging) {
       break;
   }
 
-  const generatePromises = [];
-
+  const maxConcurrentWorkers = os.cpus().length;
+  let generatePromises = [];
+  let count = 0;
   for (const tsp of list) {
     if (isDebugging === true && tsp.debug !== true) {
       continue;
     }
     const generatePromise = runTypespec(tsp, tag);
     generatePromises.push(generatePromise);
+    count++;
+    if (count % maxConcurrentWorkers === 0) {
+      await Promise.allSettled(generatePromises);
+      generatePromises = [];
+    }
   }
-
-  await Promise.allSettled(generatePromises);
+  if (generatePromises.length > 0) {
+    await Promise.allSettled(generatePromises);
+  }
 }
 
 async function main() {

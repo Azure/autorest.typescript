@@ -152,7 +152,7 @@ const libDef = {
     "invalid-schema": {
       severity: "error",
       messages: {
-        default: paramMessage`Couldn't get schema for type ${"type"}`
+        default: paramMessage`Couldn't get schema for type ${"type"} with property ${"property"}`
       }
     },
     "union-null": {

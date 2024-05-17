@@ -6,11 +6,13 @@ import {
   ISO8601DurationProperty,
   Int32SecondsDurationProperty,
   FloatSecondsDurationProperty,
+  Float64SecondsDurationProperty,
   FloatSecondsDurationArrayProperty,
 } from "../../models/models.js";
 import {
   DurationContext as Client,
   PropertyDefault200Response,
+  PropertyFloat64Seconds200Response,
   PropertyFloatSeconds200Response,
   PropertyFloatSecondsArray200Response,
   PropertyInt32Seconds200Response,
@@ -26,6 +28,7 @@ import {
   PropertyIso8601OptionalParams,
   PropertyInt32SecondsOptionalParams,
   PropertyFloatSecondsOptionalParams,
+  PropertyFloat64SecondsOptionalParams,
   PropertyFloatSecondsArrayOptionalParams,
 } from "../../models/options.js";
 
@@ -163,6 +166,40 @@ export async function propertyFloatSeconds(
 ): Promise<FloatSecondsDurationProperty> {
   const result = await _propertyFloatSecondsSend(context, body, options);
   return _propertyFloatSecondsDeserialize(result);
+}
+
+export function _propertyFloat64SecondsSend(
+  context: Client,
+  body: Float64SecondsDurationProperty,
+  options: PropertyFloat64SecondsOptionalParams = { requestOptions: {} },
+): StreamableMethod<PropertyFloat64Seconds200Response> {
+  return context
+    .path("/encode/duration/property/float64-seconds")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      body: { value: body["value"] },
+    });
+}
+
+export async function _propertyFloat64SecondsDeserialize(
+  result: PropertyFloat64Seconds200Response,
+): Promise<Float64SecondsDurationProperty> {
+  if (result.status !== "200") {
+    throw createRestError(result);
+  }
+
+  return {
+    value: result.body["value"],
+  };
+}
+
+export async function propertyFloat64Seconds(
+  context: Client,
+  body: Float64SecondsDurationProperty,
+  options: PropertyFloat64SecondsOptionalParams = { requestOptions: {} },
+): Promise<Float64SecondsDurationProperty> {
+  const result = await _propertyFloat64SecondsSend(context, body, options);
+  return _propertyFloat64SecondsDeserialize(result);
 }
 
 export function _propertyFloatSecondsArraySend(

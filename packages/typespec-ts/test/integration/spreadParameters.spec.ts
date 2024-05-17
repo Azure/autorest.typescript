@@ -24,6 +24,67 @@ describe("HelloClient Rest Client", () => {
     }
   });
 
+  it("should spread model composite request only with body param", async () => {
+    try {
+      const result = await client
+        .path("/parameters/spread/model/composite-request-only-with-body")
+        .put({
+          body: {
+            name: "foo"
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should spread model composite request without body param", async () => {
+    try {
+      const result = await client
+        .path(
+          "/parameters/spread/model/composite-request-without-body/{name}",
+          "foo"
+        )
+        .put({ headers: { "test-header": "bar" } });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should spread model composite request", async () => {
+    try {
+      const result = await client
+        .path("/parameters/spread/model/composite-request/{name}", "foo")
+        .put({
+          headers: { "test-header": "bar" },
+          body: {
+            name: "foo"
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should spread model composite request mix", async () => {
+    try {
+      const result = await client
+        .path("/parameters/spread/model/composite-request-mix/{name}", "foo")
+        .put({
+          headers: { "test-header": "bar" },
+          body: {
+            prop: "foo"
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
   it("should spread alias with only body param", async () => {
     try {
       const result = await client

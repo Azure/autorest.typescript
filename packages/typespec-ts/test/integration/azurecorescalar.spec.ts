@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import AzureCoreScalarClientFactory, {
   AzureCoreScalarClient
-} from "./generated/azure/core-scalar/src/index.js";
+} from "./generated/azure/core/scalar/src/index.js";
 describe("Azure Core Saclar Rest Client", () => {
   let client: AzureCoreScalarClient;
 
