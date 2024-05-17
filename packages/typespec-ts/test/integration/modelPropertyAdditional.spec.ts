@@ -2,7 +2,7 @@ import { assert } from "chai";
 import AdditionalPropertiesClientFactory, {
   AdditionalPropertiesClient
 } from "./generated/type/property/additional-properties/src/index.js";
-describe.only("ModelsPropertyAdditional Rest Client", () => {
+describe("ModelsPropertyAdditional Rest Client", () => {
   let client: AdditionalPropertiesClient;
 
   beforeEach(() => {
