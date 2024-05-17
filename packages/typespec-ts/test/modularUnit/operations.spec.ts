@@ -54,12 +54,12 @@ describe("operations", () => {
         import { TestingContext as Client } from "../rest/index.js";
         import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
-        export function _readSend(context: Client, options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod<Read204Response> {
+        export function _readSend(context: Client, options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod<Read200Response> {
           return context.path("/", ).get({...operationOptionsToRequestParameters(options)})  ;
         }
 
-        export async function _readDeserialize(result: Read204Response): Promise<void> {
-          if(result.status !== "204"){
+        export async function _readDeserialize(result: Read200Response): Promise<void> {
+          if(result.status !== "200"){
             throw createRestError(result);
           }
       
