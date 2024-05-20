@@ -2,21 +2,18 @@
 // Licensed under the MIT license.
 
 import { HttpResponse } from "@azure-rest/core-client";
-import { EmptyOutputOutput, EmptyInputOutputOutput } from "./outputModels.js";
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface PutEmpty204Response extends HttpResponse {
   status: "204";
 }
 
-/** The request has succeeded. */
+/** Empty model used in operation return type */
 export interface GetEmpty200Response extends HttpResponse {
   status: "200";
-  body: EmptyOutputOutput;
 }
 
-/** The request has succeeded. */
+/** Empty model used in both parameter and return type */
 export interface PostRoundTripEmpty200Response extends HttpResponse {
   status: "200";
-  body: EmptyInputOutputOutput;
 }

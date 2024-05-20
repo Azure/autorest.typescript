@@ -8,7 +8,7 @@ import {
 } from "../models/models.js";
 import {
   HeaderRequest204Response,
-  HeaderResponse204Response,
+  HeaderResponse200Response,
   NamingContext as Client,
   Operation204Response,
   Parameter204Response,
@@ -221,16 +221,16 @@ export async function request(
 export function _responseSend(
   context: Client,
   options: ResponseOptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderResponse204Response> {
+): StreamableMethod<HeaderResponse200Response> {
   return context
     .path("/client/naming/header")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _responseDeserialize(
-  result: HeaderResponse204Response,
+  result: HeaderResponse200Response,
 ): Promise<void> {
-  if (result.status !== "204") {
+  if (result.status !== "200") {
     throw createRestError(result);
   }
 

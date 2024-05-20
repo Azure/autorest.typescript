@@ -9,29 +9,6 @@ export interface ModelSpreadAsRequestBody204Response extends HttpResponse {
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface ModelSpreadCompositeRequestOnlyWithBody204Response
-  extends HttpResponse {
-  status: "204";
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface ModelSpreadCompositeRequestWithoutBody204Response
-  extends HttpResponse {
-  status: "204";
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface ModelSpreadCompositeRequest204Response extends HttpResponse {
-  status: "204";
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface ModelSpreadCompositeRequestMix204Response
-  extends HttpResponse {
-  status: "204";
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
 export interface AliasSpreadAsRequestBody204Response extends HttpResponse {
   status: "204";
 }

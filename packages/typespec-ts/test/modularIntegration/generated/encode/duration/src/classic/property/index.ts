@@ -7,7 +7,6 @@ import {
   ISO8601DurationProperty,
   Int32SecondsDurationProperty,
   FloatSecondsDurationProperty,
-  Float64SecondsDurationProperty,
   FloatSecondsDurationArrayProperty,
 } from "../../models/models.js";
 import {
@@ -15,7 +14,6 @@ import {
   propertyIso8601,
   propertyInt32Seconds,
   propertyFloatSeconds,
-  propertyFloat64Seconds,
   propertyFloatSecondsArray,
 } from "../../api/property/index.js";
 import {
@@ -23,7 +21,6 @@ import {
   PropertyIso8601OptionalParams,
   PropertyInt32SecondsOptionalParams,
   PropertyFloatSecondsOptionalParams,
-  PropertyFloat64SecondsOptionalParams,
   PropertyFloatSecondsArrayOptionalParams,
 } from "../../models/options.js";
 
@@ -44,10 +41,6 @@ export interface PropertyOperations {
     body: FloatSecondsDurationProperty,
     options?: PropertyFloatSecondsOptionalParams,
   ) => Promise<FloatSecondsDurationProperty>;
-  float64Seconds: (
-    body: Float64SecondsDurationProperty,
-    options?: PropertyFloat64SecondsOptionalParams,
-  ) => Promise<Float64SecondsDurationProperty>;
   floatSecondsArray: (
     body: FloatSecondsDurationArrayProperty,
     options?: PropertyFloatSecondsArrayOptionalParams,
@@ -72,10 +65,6 @@ export function getProperty(context: DurationContext) {
       body: FloatSecondsDurationProperty,
       options?: PropertyFloatSecondsOptionalParams,
     ) => propertyFloatSeconds(context, body, options),
-    float64Seconds: (
-      body: Float64SecondsDurationProperty,
-      options?: PropertyFloat64SecondsOptionalParams,
-    ) => propertyFloat64Seconds(context, body, options),
     floatSecondsArray: (
       body: FloatSecondsDurationArrayProperty,
       options?: PropertyFloatSecondsArrayOptionalParams,

@@ -4,7 +4,6 @@
 import {
   DurationContext as Client,
   QueryDefault204Response,
-  QueryFloat64Seconds204Response,
   QueryFloatSeconds204Response,
   QueryInt32Seconds204Response,
   QueryInt32SecondsArray204Response,
@@ -20,7 +19,6 @@ import {
   QueryIso8601OptionalParams,
   QueryInt32SecondsOptionalParams,
   QueryFloatSecondsOptionalParams,
-  QueryFloat64SecondsOptionalParams,
   QueryInt32SecondsArrayOptionalParams,
 } from "../../models/options.js";
 
@@ -150,38 +148,6 @@ export async function queryFloatSeconds(
 ): Promise<void> {
   const result = await _queryFloatSecondsSend(context, input, options);
   return _queryFloatSecondsDeserialize(result);
-}
-
-export function _queryFloat64SecondsSend(
-  context: Client,
-  input: number,
-  options: QueryFloat64SecondsOptionalParams = { requestOptions: {} },
-): StreamableMethod<QueryFloat64Seconds204Response> {
-  return context
-    .path("/encode/duration/query/float64-seconds")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { input: input },
-    });
-}
-
-export async function _queryFloat64SecondsDeserialize(
-  result: QueryFloat64Seconds204Response,
-): Promise<void> {
-  if (result.status !== "204") {
-    throw createRestError(result);
-  }
-
-  return;
-}
-
-export async function queryFloat64Seconds(
-  context: Client,
-  input: number,
-  options: QueryFloat64SecondsOptionalParams = { requestOptions: {} },
-): Promise<void> {
-  const result = await _queryFloat64SecondsSend(context, input, options);
-  return _queryFloat64SecondsDeserialize(result);
 }
 
 export function _queryInt32SecondsArraySend(

@@ -4,7 +4,6 @@
 export { EmptyClient, EmptyClientOptions } from "./emptyClient.js";
 export {
   EmptyInput,
-  EmptyOutput,
   EmptyInputOutput,
   PutEmptyOptionalParams,
   GetEmptyOptionalParams,

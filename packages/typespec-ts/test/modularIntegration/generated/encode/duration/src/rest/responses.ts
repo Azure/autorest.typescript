@@ -7,7 +7,6 @@ import {
   ISO8601DurationPropertyOutput,
   Int32SecondsDurationPropertyOutput,
   FloatSecondsDurationPropertyOutput,
-  Float64SecondsDurationPropertyOutput,
   FloatSecondsDurationArrayPropertyOutput,
 } from "./outputModels.js";
 
@@ -28,11 +27,6 @@ export interface QueryInt32Seconds204Response extends HttpResponse {
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface QueryFloatSeconds204Response extends HttpResponse {
-  status: "204";
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface QueryFloat64Seconds204Response extends HttpResponse {
   status: "204";
 }
 
@@ -66,12 +60,6 @@ export interface PropertyFloatSeconds200Response extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface PropertyFloat64Seconds200Response extends HttpResponse {
-  status: "200";
-  body: Float64SecondsDurationPropertyOutput;
-}
-
-/** The request has succeeded. */
 export interface PropertyFloatSecondsArray200Response extends HttpResponse {
   status: "200";
   body: FloatSecondsDurationArrayPropertyOutput;
@@ -99,10 +87,5 @@ export interface HeaderInt32Seconds204Response extends HttpResponse {
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface HeaderFloatSeconds204Response extends HttpResponse {
-  status: "204";
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface HeaderFloat64Seconds204Response extends HttpResponse {
   status: "204";
 }

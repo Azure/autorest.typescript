@@ -5,7 +5,6 @@ import {
   buildCsvCollection,
   DurationContext as Client,
   HeaderDefault204Response,
-  HeaderFloat64Seconds204Response,
   HeaderFloatSeconds204Response,
   HeaderInt32Seconds204Response,
   HeaderIso8601204Response,
@@ -22,7 +21,6 @@ import {
   HeaderIso8601ArrayOptionalParams,
   HeaderInt32SecondsOptionalParams,
   HeaderFloatSecondsOptionalParams,
-  HeaderFloat64SecondsOptionalParams,
 } from "../../models/options.js";
 
 export function _headerDefaultSend(
@@ -183,36 +181,4 @@ export async function headerFloatSeconds(
 ): Promise<void> {
   const result = await _headerFloatSecondsSend(context, duration, options);
   return _headerFloatSecondsDeserialize(result);
-}
-
-export function _headerFloat64SecondsSend(
-  context: Client,
-  duration: number,
-  options: HeaderFloat64SecondsOptionalParams = { requestOptions: {} },
-): StreamableMethod<HeaderFloat64Seconds204Response> {
-  return context
-    .path("/encode/duration/header/float64-seconds")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { duration: duration },
-    });
-}
-
-export async function _headerFloat64SecondsDeserialize(
-  result: HeaderFloat64Seconds204Response,
-): Promise<void> {
-  if (result.status !== "204") {
-    throw createRestError(result);
-  }
-
-  return;
-}
-
-export async function headerFloat64Seconds(
-  context: Client,
-  duration: number,
-  options: HeaderFloat64SecondsOptionalParams = { requestOptions: {} },
-): Promise<void> {
-  const result = await _headerFloat64SecondsSend(context, duration, options);
-  return _headerFloat64SecondsDeserialize(result);
 }

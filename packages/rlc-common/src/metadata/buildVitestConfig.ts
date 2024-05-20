@@ -33,7 +33,9 @@ const nodeConfig = `export default defineConfig({
 
 const browserConfig = (options: {
   isAzureSdkForJs: boolean;
-}) => `export default defineConfig({
+}) => `process.env.RECORDINGS_RELATIVE_PATH = relativeRecordingsPath();
+
+export default defineConfig({
     "define": {
       "process.env": process.env
     },

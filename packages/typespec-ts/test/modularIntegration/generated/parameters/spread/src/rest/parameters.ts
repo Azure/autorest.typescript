@@ -3,7 +3,7 @@
 
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
-import { BodyParameter, CompositeRequestMix } from "./models.js";
+import { BodyParameter } from "./models.js";
 
 export interface ModelSpreadAsRequestBodyBodyParam {
   body?: BodyParameter;
@@ -11,58 +11,6 @@ export interface ModelSpreadAsRequestBodyBodyParam {
 
 export type ModelSpreadAsRequestBodyParameters =
   ModelSpreadAsRequestBodyBodyParam & RequestParameters;
-
-export interface ModelSpreadCompositeRequestOnlyWithBodyBodyParam {
-  body: BodyParameter;
-}
-
-export type ModelSpreadCompositeRequestOnlyWithBodyParameters =
-  ModelSpreadCompositeRequestOnlyWithBodyBodyParam & RequestParameters;
-
-export interface ModelSpreadCompositeRequestWithoutBodyHeaders {
-  "test-header": string;
-}
-
-export interface ModelSpreadCompositeRequestWithoutBodyHeaderParam {
-  headers: RawHttpHeadersInput & ModelSpreadCompositeRequestWithoutBodyHeaders;
-}
-
-export type ModelSpreadCompositeRequestWithoutBodyParameters =
-  ModelSpreadCompositeRequestWithoutBodyHeaderParam & RequestParameters;
-
-export interface ModelSpreadCompositeRequestHeaders {
-  "test-header": string;
-}
-
-export interface ModelSpreadCompositeRequestBodyParam {
-  body: BodyParameter;
-}
-
-export interface ModelSpreadCompositeRequestHeaderParam {
-  headers: RawHttpHeadersInput & ModelSpreadCompositeRequestHeaders;
-}
-
-export type ModelSpreadCompositeRequestParameters =
-  ModelSpreadCompositeRequestHeaderParam &
-    ModelSpreadCompositeRequestBodyParam &
-    RequestParameters;
-
-export interface ModelSpreadCompositeRequestMixHeaders {
-  "test-header": string;
-}
-
-export interface ModelSpreadCompositeRequestMixBodyParam {
-  body?: CompositeRequestMix;
-}
-
-export interface ModelSpreadCompositeRequestMixHeaderParam {
-  headers: RawHttpHeadersInput & ModelSpreadCompositeRequestMixHeaders;
-}
-
-export type ModelSpreadCompositeRequestMixParameters =
-  ModelSpreadCompositeRequestMixHeaderParam &
-    ModelSpreadCompositeRequestMixBodyParam &
-    RequestParameters;
 
 export interface AliasSpreadAsRequestBodyBodyParam {
   body?: { name: string };

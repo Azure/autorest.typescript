@@ -3,20 +3,12 @@
 
 import {
   ModelSpreadAsRequestBodyParameters,
-  ModelSpreadCompositeRequestOnlyWithBodyParameters,
-  ModelSpreadCompositeRequestWithoutBodyParameters,
-  ModelSpreadCompositeRequestParameters,
-  ModelSpreadCompositeRequestMixParameters,
   AliasSpreadAsRequestBodyParameters,
   AliasSpreadAsRequestParameterParameters,
   AliasSpreadWithMultipleParametersParameters,
 } from "./parameters.js";
 import {
   ModelSpreadAsRequestBody204Response,
-  ModelSpreadCompositeRequestOnlyWithBody204Response,
-  ModelSpreadCompositeRequestWithoutBody204Response,
-  ModelSpreadCompositeRequest204Response,
-  ModelSpreadCompositeRequestMix204Response,
   AliasSpreadAsRequestBody204Response,
   AliasSpreadAsRequestParameter204Response,
   AliasSpreadWithMultipleParameters204Response,
@@ -27,30 +19,6 @@ export interface ModelSpreadAsRequestBody {
   put(
     options?: ModelSpreadAsRequestBodyParameters,
   ): StreamableMethod<ModelSpreadAsRequestBody204Response>;
-}
-
-export interface ModelSpreadCompositeRequestOnlyWithBody {
-  put(
-    options: ModelSpreadCompositeRequestOnlyWithBodyParameters,
-  ): StreamableMethod<ModelSpreadCompositeRequestOnlyWithBody204Response>;
-}
-
-export interface ModelSpreadCompositeRequestWithoutBody {
-  put(
-    options: ModelSpreadCompositeRequestWithoutBodyParameters,
-  ): StreamableMethod<ModelSpreadCompositeRequestWithoutBody204Response>;
-}
-
-export interface ModelSpreadCompositeRequest {
-  put(
-    options: ModelSpreadCompositeRequestParameters,
-  ): StreamableMethod<ModelSpreadCompositeRequest204Response>;
-}
-
-export interface ModelSpreadCompositeRequestMix {
-  put(
-    options: ModelSpreadCompositeRequestMixParameters,
-  ): StreamableMethod<ModelSpreadCompositeRequestMix204Response>;
 }
 
 export interface AliasSpreadAsRequestBody {
@@ -74,25 +42,6 @@ export interface AliasSpreadWithMultipleParameters {
 export interface Routes {
   /** Resource for '/parameters/spread/model/request-body' has methods for the following verbs: put */
   (path: "/parameters/spread/model/request-body"): ModelSpreadAsRequestBody;
-  /** Resource for '/parameters/spread/model/composite-request-only-with-body' has methods for the following verbs: put */
-  (
-    path: "/parameters/spread/model/composite-request-only-with-body",
-  ): ModelSpreadCompositeRequestOnlyWithBody;
-  /** Resource for '/parameters/spread/model/composite-request-without-body/\{name\}' has methods for the following verbs: put */
-  (
-    path: "/parameters/spread/model/composite-request-without-body/{name}",
-    name: string,
-  ): ModelSpreadCompositeRequestWithoutBody;
-  /** Resource for '/parameters/spread/model/composite-request/\{name\}' has methods for the following verbs: put */
-  (
-    path: "/parameters/spread/model/composite-request/{name}",
-    name: string,
-  ): ModelSpreadCompositeRequest;
-  /** Resource for '/parameters/spread/model/composite-request-mix/\{name\}' has methods for the following verbs: put */
-  (
-    path: "/parameters/spread/model/composite-request-mix/{name}",
-    name: string,
-  ): ModelSpreadCompositeRequestMix;
   /** Resource for '/parameters/spread/alias/request-body' has methods for the following verbs: put */
   (path: "/parameters/spread/alias/request-body"): AliasSpreadAsRequestBody;
   /** Resource for '/parameters/spread/alias/request-parameter/\{id\}' has methods for the following verbs: put */

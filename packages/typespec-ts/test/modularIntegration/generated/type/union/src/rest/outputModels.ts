@@ -43,8 +43,6 @@ export interface MixedTypesCasesOutput {
   int: CatOutput | "a" | number | boolean;
   /** This should be receive/send the boolean variant */
   boolean: CatOutput | "a" | number | boolean;
-  /** This should be receive/send 4 element with Cat, "a", int, and boolean */
-  array: (CatOutput | "a" | number | boolean)[];
 }
 
 /** Alias for StringExtensibleNamedUnionOutput */

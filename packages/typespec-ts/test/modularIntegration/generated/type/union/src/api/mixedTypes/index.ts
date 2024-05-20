@@ -39,7 +39,6 @@ export async function _mixedTypesGetDeserialize(
       literal: result.body.prop["literal"],
       int: result.body.prop["int"],
       boolean: result.body.prop["boolean"],
-      array: result.body.prop["array"],
     },
   };
 }
@@ -67,7 +66,6 @@ export function _mixedTypesSendSend(
           literal: prop["literal"],
           int: prop["int"],
           boolean: prop["boolean"],
-          array: prop["array"],
         },
       },
     });

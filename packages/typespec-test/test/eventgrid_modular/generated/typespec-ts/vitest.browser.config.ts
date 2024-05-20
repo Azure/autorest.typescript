@@ -3,6 +3,8 @@
 
 import { defineConfig } from "vitest/config";
 
+process.env.RECORDINGS_RELATIVE_PATH = relativeRecordingsPath();
+
 export default defineConfig({
   define: {
     "process.env": process.env,

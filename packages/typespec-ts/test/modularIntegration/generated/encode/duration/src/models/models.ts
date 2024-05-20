@@ -17,10 +17,6 @@ export interface FloatSecondsDurationProperty {
   value: number;
 }
 
-export interface Float64SecondsDurationProperty {
-  value: number;
-}
-
 export interface FloatSecondsDurationArrayProperty {
   value: number[];
 }

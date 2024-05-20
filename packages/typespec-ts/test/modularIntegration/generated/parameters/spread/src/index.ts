@@ -4,12 +4,7 @@
 export { SpreadClient, SpreadClientOptions } from "./spreadClient.js";
 export {
   BodyParameter,
-  CompositeRequestMix,
   ModelSpreadAsRequestBodyOptionalParams,
-  ModelSpreadCompositeRequestOnlyWithBodyOptionalParams,
-  ModelSpreadCompositeRequestWithoutBodyOptionalParams,
-  ModelSpreadCompositeRequestOptionalParams,
-  ModelSpreadCompositeRequestMixOptionalParams,
   AliasSpreadAsRequestBodyOptionalParams,
   AliasSpreadAsRequestParameterOptionalParams,
   AliasSpreadWithMultipleParametersOptionalParams,
