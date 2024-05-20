@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { EmptyInput, EmptyInputOutput } from "./models/models.js";
+import { EmptyInput, EmptyOutput, EmptyInputOutput } from "./models/models.js";
 import {
   PutEmptyOptionalParams,
   GetEmptyOptionalParams,
@@ -39,14 +39,14 @@ export class EmptyClient {
 
   getEmpty(
     options: GetEmptyOptionalParams = { requestOptions: {} },
-  ): Promise<void> {
+  ): Promise<EmptyOutput> {
     return getEmpty(this._client, options);
   }
 
   postRoundTripEmpty(
     body: EmptyInputOutput,
     options: PostRoundTripEmptyOptionalParams = { requestOptions: {} },
-  ): Promise<void> {
+  ): Promise<EmptyInputOutput> {
     return postRoundTripEmpty(this._client, body, options);
   }
 }

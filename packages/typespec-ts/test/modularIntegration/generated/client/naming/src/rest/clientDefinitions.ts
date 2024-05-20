@@ -21,7 +21,7 @@ import {
   PropertyLanguage204Response,
   PropertyCompatibleWithEncodedName204Response,
   HeaderRequest204Response,
-  HeaderResponse200Response,
+  HeaderResponse204Response,
   ModelClient204Response,
   ModelLanguage204Response,
   UnionEnumUnionEnumName204Response,
@@ -61,7 +61,7 @@ export interface HeaderRequest {
   ): StreamableMethod<HeaderRequest204Response>;
   get(
     options?: HeaderResponseParameters,
-  ): StreamableMethod<HeaderResponse200Response>;
+  ): StreamableMethod<HeaderResponse204Response>;
 }
 
 export interface ModelClient {

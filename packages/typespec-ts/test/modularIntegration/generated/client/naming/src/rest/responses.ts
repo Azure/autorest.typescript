@@ -35,14 +35,14 @@ export interface HeaderRequest204Response extends HttpResponse {
   status: "204";
 }
 
-export interface HeaderResponse200Headers {
+export interface HeaderResponse204Headers {
   "default-name": string;
 }
 
-/** The request has succeeded. */
-export interface HeaderResponse200Response extends HttpResponse {
-  status: "200";
-  headers: RawHttpHeaders & HeaderResponse200Headers;
+/** There is no content to send for this request, but the headers may be useful. */
+export interface HeaderResponse204Response extends HttpResponse {
+  status: "204";
+  headers: RawHttpHeaders & HeaderResponse204Headers;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */

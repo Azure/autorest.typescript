@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { EmptyInput, EmptyInputOutput } from "../models/models.js";
+import { EmptyInput, EmptyOutput, EmptyInputOutput } from "../models/models.js";
 import {
   EmptyContext as Client,
   GetEmpty200Response,
@@ -59,18 +59,18 @@ export function _getEmptySend(
 
 export async function _getEmptyDeserialize(
   result: GetEmpty200Response,
-): Promise<void> {
+): Promise<EmptyOutput> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
 
-  return;
+  return result.body;
 }
 
 export async function getEmpty(
   context: Client,
   options: GetEmptyOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<EmptyOutput> {
   const result = await _getEmptySend(context, options);
   return _getEmptyDeserialize(result);
 }
@@ -87,19 +87,19 @@ export function _postRoundTripEmptySend(
 
 export async function _postRoundTripEmptyDeserialize(
   result: PostRoundTripEmpty200Response,
-): Promise<void> {
+): Promise<EmptyInputOutput> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
 
-  return;
+  return result.body;
 }
 
 export async function postRoundTripEmpty(
   context: Client,
   body: EmptyInputOutput,
   options: PostRoundTripEmptyOptionalParams = { requestOptions: {} },
-): Promise<void> {
+): Promise<EmptyInputOutput> {
   const result = await _postRoundTripEmptySend(context, body, options);
   return _postRoundTripEmptyDeserialize(result);
 }

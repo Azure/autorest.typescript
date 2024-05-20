@@ -11,6 +11,8 @@ export interface QueryInt32SecondsOptionalParams extends OperationOptions {}
 
 export interface QueryFloatSecondsOptionalParams extends OperationOptions {}
 
+export interface QueryFloat64SecondsOptionalParams extends OperationOptions {}
+
 export interface QueryInt32SecondsArrayOptionalParams
   extends OperationOptions {}
 
@@ -21,6 +23,9 @@ export interface PropertyIso8601OptionalParams extends OperationOptions {}
 export interface PropertyInt32SecondsOptionalParams extends OperationOptions {}
 
 export interface PropertyFloatSecondsOptionalParams extends OperationOptions {}
+
+export interface PropertyFloat64SecondsOptionalParams
+  extends OperationOptions {}
 
 export interface PropertyFloatSecondsArrayOptionalParams
   extends OperationOptions {}
@@ -34,3 +39,5 @@ export interface HeaderIso8601ArrayOptionalParams extends OperationOptions {}
 export interface HeaderInt32SecondsOptionalParams extends OperationOptions {}
 
 export interface HeaderFloatSecondsOptionalParams extends OperationOptions {}
+
+export interface HeaderFloat64SecondsOptionalParams extends OperationOptions {}
