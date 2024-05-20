@@ -12,7 +12,7 @@ const esLintConfig = {
     "@azure/azure-sdk/ts-apiextractor-json-types": "warn",
     "@azure/azure-sdk/ts-package-json-types": "warn",
     "@azure/azure-sdk/ts-package-json-engine-is-present": "warn",
-    "tsdoc/syntax": "warn",
+    "tsdoc/syntax": "warn"
   }
 };
 
@@ -22,10 +22,15 @@ export function buildEsLintConfig(model: RLCModel) {
   }
   const project = new Project();
   const filePath = ".eslintrc.json";
-  if(model.options?.moduleKind == "esm"){
-   (esLintConfig.rules as any)["@azure/azure-sdk/ts-package-json-module"] ="off";
-   (esLintConfig.rules as any)["@azure/azure-sdk/ts-package-json-files-required"] ="off";
-   (esLintConfig.rules as any)["@azure/azure-sdk/ts-package-json-main-is-cjs"] ="off";
+  if (model.options?.moduleKind == "esm") {
+    (esLintConfig.rules as any)["@azure/azure-sdk/ts-package-json-module"] =
+      "off";
+    (esLintConfig.rules as any)[
+      "@azure/azure-sdk/ts-package-json-files-required"
+    ] = "off";
+    (esLintConfig.rules as any)[
+      "@azure/azure-sdk/ts-package-json-main-is-cjs"
+    ] = "off";
   }
   const configFile = project.createSourceFile(
     ".eslintrc.json",
