@@ -20,8 +20,6 @@ import {
   buildPaginateHelper as buildRLCPaginateHelper,
   buildEsLintConfig,
   buildKarmaConfigFile,
-  buildEnvFile,
-  buildEnvBrowserFile,
   buildRecordedClientFile,
   buildSampleTest,
   buildReadmeFile,
@@ -314,8 +312,6 @@ export async function $onEmit(context: EmitContext) {
         program,
         [
           buildKarmaConfigFile,
-          buildEnvFile,
-          buildEnvBrowserFile,
           buildRecordedClientFile,
           buildSampleTest
         ],
