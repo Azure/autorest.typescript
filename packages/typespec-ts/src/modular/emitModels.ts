@@ -195,9 +195,6 @@ export function buildModels(
       const enumAlias = buildEnumModel(model);
       modelsFile.addTypeAlias(enumAlias);
     } else {
-      if (model.name === "UserAssignedIdentities") {
-        model;
-      }
       const modelInterface = buildModelInterface(model, {
         coreClientTypes,
         coreLroTypes
