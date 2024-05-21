@@ -4,7 +4,7 @@
 import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 
-const esLintConfig = {
+const esLintConfig: Record<string, any>= {
   plugins: ["@azure/azure-sdk"],
   extends: ["plugin:@azure/azure-sdk/azure-sdk-base"],
   rules: {
@@ -23,12 +23,12 @@ export function buildEsLintConfig(model: RLCModel) {
   const project = new Project();
   const filePath = ".eslintrc.json";
   if (model.options?.moduleKind == "esm") {
-    (esLintConfig.rules as any)["@azure/azure-sdk/ts-package-json-module"] =
+    esLintConfig.rules["@azure/azure-sdk/ts-package-json-module"] =
       "off";
-    (esLintConfig.rules as any)[
+    esLintConfig.rules[
       "@azure/azure-sdk/ts-package-json-files-required"
     ] = "off";
-    (esLintConfig.rules as any)[
+    esLintConfig.rules[
       "@azure/azure-sdk/ts-package-json-main-is-cjs"
     ] = "off";
   }
