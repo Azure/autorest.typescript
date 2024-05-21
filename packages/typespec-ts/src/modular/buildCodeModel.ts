@@ -306,9 +306,6 @@ function getType(
   options: { disableEffectiveModel?: boolean; usage?: UsageFlags } = {}
 ): any {
   // don't cache simple type(string, int, etc) since decorators may change the result
-  if (type.kind === "Model" && type.name === "ManagedServiceIdentity") {
-    type;
-  }
   const enableCache = !isSimpleType(context.program, type);
   const effectiveModel =
     !options.disableEffectiveModel &&
