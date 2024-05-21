@@ -106,8 +106,5 @@
     "nyc": "^15.1.0",
     "ts-node": "^10.0.0"
   },
-  "type": "module",
-  "browser": {
-    "./dist-esm/test/public/utils/env.js": "./dist-esm/test/public/utils/env.browser.js"
-  }
+  "type": "module"
 }
