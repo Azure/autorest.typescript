@@ -310,11 +310,7 @@ export async function $onEmit(context: EmitContext) {
     if (option.generateTest && isAzureFlavor) {
       await emitContentByBuilder(
         program,
-        [
-          buildKarmaConfigFile,
-          buildRecordedClientFile,
-          buildSampleTest
-        ],
+        [buildKarmaConfigFile, buildRecordedClientFile, buildSampleTest],
         rlcClient,
         dpgContext.generationPathDetail?.metadataDir
       );
