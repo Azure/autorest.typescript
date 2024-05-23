@@ -1,10 +1,10 @@
+import {
+  NameType,
+  normalizeName,
+  ReservedModelNames
+} from "@azure-tools/rlc-common";
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 import { Client, Operation, OperationGroup } from "../modularCodeModel.js";
-import {
-  ReservedModelNames,
-  NameType,
-  normalizeName
-} from "@azure-tools/rlc-common";
 
 export function getClientName(client: Client) {
   return client.name.replace(/Client$/, "");

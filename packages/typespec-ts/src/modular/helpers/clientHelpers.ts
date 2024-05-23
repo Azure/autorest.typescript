@@ -1,13 +1,15 @@
 import {
+  getImportSpecifier,
+  Imports as RuntimeImports
+} from "@azure-tools/rlc-common";
+import {
   OptionalKind,
   ParameterDeclarationStructure,
   SourceFile
 } from "ts-morph";
 import { Client } from "../modularCodeModel.js";
-import { getType } from "./typeHelpers.js";
 import { getClientName } from "./namingHelpers.js";
-import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
-import { getImportSpecifier } from "@azure-tools/rlc-common";
+import { getType } from "./typeHelpers.js";
 
 export function getClientParameters(
   client: Client

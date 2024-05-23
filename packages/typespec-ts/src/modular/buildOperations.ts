@@ -1,25 +1,26 @@
-import { Project, SourceFile } from "ts-morph";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
-import { buildType } from "./helpers/typeHelpers.js";
 import {
-  getOperationFunction,
-  getSendPrivateFunction,
+  addImportsToFiles,
+  clearImportSets,
+  getImportSpecifier,
+  NameType,
+  normalizeName
+} from "@azure-tools/rlc-common";
+import { Project, SourceFile } from "ts-morph";
+import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
+import { SdkContext } from "../utils/interfaces.js";
+import { importLroCoreDependencies } from "./buildLroFiles.js";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
+import { getOperationName } from "./helpers/namingHelpers.js";
+import {
   getDeserializePrivateFunction,
+  getOperationFunction,
   getOperationOptionsName,
+  getSendPrivateFunction,
   isLroOnlyOperation
 } from "./helpers/operationHelpers.js";
-import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
-import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
-import { getDocsFromDescription } from "./helpers/docsHelpers.js";
-import { SdkContext } from "../utils/interfaces.js";
-import {
-  getImportSpecifier,
-  addImportsToFiles,
-  clearImportSets
-} from "@azure-tools/rlc-common";
-import { importLroCoreDependencies } from "./buildLroFiles.js";
+import { buildType } from "./helpers/typeHelpers.js";
 import { OperationPathAndDeserDetails } from "./interfaces.js";
-import { getOperationName } from "./helpers/namingHelpers.js";
+import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 
 /**
  * This function creates a file under /api for each operation group.

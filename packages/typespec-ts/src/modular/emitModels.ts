@@ -1,15 +1,15 @@
+import { getImportSpecifier } from "@azure-tools/rlc-common";
+import * as path from "path";
 import {
   InterfaceDeclarationStructure,
   OptionalKind,
   SourceFile,
   TypeAliasDeclarationStructure
 } from "ts-morph";
+import { buildOperationOptions } from "./buildOperations.js";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getType } from "./helpers/typeHelpers.js";
 import { Client, ModularCodeModel, Type } from "./modularCodeModel.js";
-import * as path from "path";
-import { getDocsFromDescription } from "./helpers/docsHelpers.js";
-import { buildOperationOptions } from "./buildOperations.js";
-import { getImportSpecifier } from "@azure-tools/rlc-common";
 
 // ====== UTILITIES ======
 

@@ -1,6 +1,9 @@
-import { Imports } from "@azure-tools/rlc-common";
-import { HelperFunctionDetails } from "@azure-tools/rlc-common";
-import { OperationResponse, RLCOptions } from "@azure-tools/rlc-common";
+import {
+  HelperFunctionDetails,
+  Imports,
+  OperationResponse,
+  RLCOptions
+} from "@azure-tools/rlc-common";
 import { UsageFlags } from "@typespec/compiler";
 import { Project } from "ts-morph";
 

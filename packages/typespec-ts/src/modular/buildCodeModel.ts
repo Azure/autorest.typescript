@@ -1,84 +1,84 @@
 import {
-  getPagedResult,
-  getLroMetadata
+  buildRuntimeImports,
+  getClientName,
+  NameType,
+  normalizeName,
+  RLCModel
+} from "@azure-tools/rlc-common";
+import {
+  getLroMetadata,
+  getPagedResult
 } from "@azure-tools/typespec-azure-core";
 import {
+  getAllModels,
+  getClientNamespaceString,
+  getDefaultApiVersion,
+  getLibraryName,
+  getSdkBuiltInType,
+  getSdkUnion,
+  getWireName,
+  isApiVersion,
+  listClients,
+  listOperationGroups,
+  listOperationsInOperationGroup,
+  SdkBuiltInType,
+  SdkClient,
+  SdkEnumValueType
+} from "@azure-tools/typespec-client-generator-core";
+import {
   Enum,
+  getDiscriminator,
   getDoc,
+  getEncode,
   getFriendlyName,
+  getMaxItems,
   getMaxLength,
   getMaxValue,
+  getMinItems,
   getMinLength,
   getMinValue,
   getPattern,
+  getPropertyType,
   getSummary,
   getVisibility,
   ignoreDiagnostics,
+  IntrinsicScalarName,
+  IntrinsicType,
   isErrorModel,
   isNeverType,
+  isNullType,
+  isNumericType,
+  isStringType,
+  isTemplateDeclarationOrInstance,
+  isVoidType,
+  listServices,
   Model,
   ModelProperty,
   Namespace,
-  Program,
-  getDiscriminator,
   Operation,
+  Program,
   Scalar,
-  IntrinsicScalarName,
-  isStringType,
-  getPropertyType,
-  isNumericType,
-  getMinItems,
-  getMaxItems,
-  listServices,
-  Union,
   Type,
-  IntrinsicType,
-  isNullType,
-  getEncode,
-  isTemplateDeclarationOrInstance,
-  UsageFlags,
-  isVoidType
+  Union,
+  UsageFlags
 } from "@typespec/compiler";
 import {
   getAuthentication,
+  getHttpOperation,
   getServers,
   HttpAuth,
+  HttpOperation,
   HttpOperationParameter,
   HttpOperationResponse,
   HttpOperationResponseContent,
   HttpServer,
-  HttpOperation,
-  getHttpOperation,
   isSharedRoute
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
-import {
-  SdkClient,
-  listClients,
-  listOperationGroups,
-  listOperationsInOperationGroup,
-  isApiVersion,
-  getDefaultApiVersion,
-  getClientNamespaceString,
-  getSdkUnion,
-  getAllModels,
-  SdkBuiltInType,
-  getSdkBuiltInType,
-  SdkEnumValueType,
-  getLibraryName,
-  getWireName
-} from "@azure-tools/typespec-client-generator-core";
-import {
-  ModularCodeModel,
-  Client as HrlcClient,
-  Parameter,
-  Operation as HrlcOperation,
-  OperationGroup,
-  Response,
-  Type as HrlcType,
-  Header,
-  Property
-} from "./modularCodeModel.js";
+import { Project } from "ts-morph";
+import { reportDiagnostic } from "../lib.js";
+import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
+import { SdkContext } from "../utils/interfaces.js";
 import {
   buildCoreTypeInfo,
   getBodyType,
@@ -87,13 +87,7 @@ import {
   isAzureCoreErrorType,
   isSchemaProperty
 } from "../utils/modelUtils.js";
-import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
-import {
-  RLCModel,
-  getClientName,
-  NameType,
-  normalizeName
-} from "@azure-tools/rlc-common";
+import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 import {
   getOperationGroupName,
   getOperationName,
@@ -103,13 +97,19 @@ import {
   parseItemName,
   parseNextLinkName
 } from "../utils/operationUtil.js";
-import { SdkContext } from "../utils/interfaces.js";
-import { Project } from "ts-morph";
-import { buildRuntimeImports } from "@azure-tools/rlc-common";
-import { getModelNamespaceName } from "../utils/namespaceUtils.js";
-import { reportDiagnostic } from "../lib.js";
-import { getType as getTypeName } from "./helpers/typeHelpers.js";
 import { isModelWithAdditionalProperties } from "./emitModels.js";
+import { getType as getTypeName } from "./helpers/typeHelpers.js";
+import {
+  Client as HrlcClient,
+  Header,
+  ModularCodeModel,
+  Operation as HrlcOperation,
+  OperationGroup,
+  Parameter,
+  Property,
+  Response,
+  Type as HrlcType
+} from "./modularCodeModel.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
