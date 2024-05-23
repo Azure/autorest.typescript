@@ -153,7 +153,7 @@ export function getAzurePackageDevDependencies(config: AzurePackageInfoConfig) {
 
   const testDevDependencies = {
     "@azure/core-util": "^1.0.0",
-    "@azure-tools/test-credential": "^1.0.0",
+    "@azure-tools/test-credential": "^1.1.0",
     "@azure/identity": "^4.0.1",
     "@azure-tools/test-recorder": "^3.0.0"
   };

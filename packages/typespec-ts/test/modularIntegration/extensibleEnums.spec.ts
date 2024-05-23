@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { ExtensibleClient } from "./generated/enums/extensible/src/index.js";
+import { ExtensibleClient } from "./generated/type/enum/extensible/src/index.js";
 describe("ExtensibleEnums Rest Client", () => {
   let client: ExtensibleClient;
 

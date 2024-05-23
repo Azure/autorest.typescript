@@ -4,6 +4,96 @@ import { assertEqualContent } from "../util/testUtil.js";
 import { Diagnostic } from "@typespec/compiler";
 
 describe("operations", () => {
+  describe("void parameter/return type", () => {
+    it("void request body should be omitted", async () => {
+      const tspContent = `
+        op read(@body param: void): void;
+          `;
+
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
+      assert.ok(operationFiles);
+      assert.equal(operationFiles?.length, 1);
+      await assertEqualContent(
+        operationFiles?.[0]?.getFullText()!,
+        `
+        import { TestingContext as Client } from "../rest/index.js";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
+
+        export function _readSend(context: Client, options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod<Read204Response> {
+          return context.path("/", ).post({...operationOptionsToRequestParameters(options)})  ;
+        }
+
+        export async function _readDeserialize(result: Read204Response): Promise<void> {
+          if(result.status !== "204"){
+            throw createRestError(result);
+          }
+      
+          return;
+        }
+        
+        export async function read(context: Client, options: ReadOptionalParams = { requestOptions: {} }): Promise<void> {
+            const result = await _readSend(context, options);
+            return _readDeserialize(result);
+        }`
+      );
+    });
+
+    it("void response body should be omitted", async () => {
+      const tspContent = `
+        op read(): { @body _: void;};
+          `;
+
+      const operationFiles =
+        await emitModularOperationsFromTypeSpec(tspContent);
+      assert.ok(operationFiles);
+      assert.equal(operationFiles?.length, 1);
+      await assertEqualContent(
+        operationFiles?.[0]?.getFullText()!,
+        `
+        import { TestingContext as Client } from "../rest/index.js";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
+
+        export function _readSend(context: Client, options: ReadOptionalParams = { requestOptions: {} }): StreamableMethod<Read200Response> {
+          return context.path("/", ).get({...operationOptionsToRequestParameters(options)})  ;
+        }
+
+        export async function _readDeserialize(result: Read200Response): Promise<void> {
+          if(result.status !== "200"){
+            throw createRestError(result);
+          }
+      
+          return;
+        }
+        
+        export async function read(context: Client, options: ReadOptionalParams = { requestOptions: {} }): Promise<void> {
+            const result = await _readSend(context, options);
+            return _readDeserialize(result);
+        }`
+      );
+    });
+
+    it("should throw exception if property type as void", async () => {
+      try {
+        const tspContent = `
+        model Foo {
+          param: void;
+        }
+        op read(...Foo): {};
+          `;
+
+        await emitModularOperationsFromTypeSpec(tspContent);
+        assert.fail("Should throw diagnostic errors");
+      } catch (e: any) {
+        assert.equal(e[0]?.code, "@azure-tools/typespec-ts/invalid-schema");
+        assert.equal(
+          e[0]?.message,
+          "Couldn't get schema for type Intrinsic with property param"
+        );
+        assert.equal(e[0]?.target?.name, "void");
+      }
+    });
+  });
   describe("nullable header", () => {
     it("required & optional & nullable headers", async () => {
       const tspContent = `

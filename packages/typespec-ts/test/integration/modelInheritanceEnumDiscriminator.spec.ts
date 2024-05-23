@@ -2,7 +2,7 @@ import EnumDiscriminatorClientFactory, {
   EnumDiscriminatorClient,
   Golden,
   Snake
-} from "./generated/models/inheritance-enum-discriminator/src/index.js";
+} from "./generated/type/model/inheritance/enum-discriminator/src/index.js";
 import { assert } from "chai";
 
 describe("EnumDiscriminatorClient Rest Client", () => {
@@ -20,7 +20,7 @@ describe("EnumDiscriminatorClient Rest Client", () => {
   };
   const validFixedEnumBody: Snake = {
     length: 10,
-    kind: "cobra",
+    kind: "cobra"
   };
   it("should get extensible enum", async () => {
     try {

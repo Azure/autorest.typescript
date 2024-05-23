@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { AdditionalPropertiesClient } from "./generated/models/propertyAdditional/src/index.js";
+import { AdditionalPropertiesClient } from "./generated/type/property/additional-properties/src/index.js";
 describe("ModelPropertyAdditional Client", () => {
   let client: AdditionalPropertiesClient;
 
@@ -19,7 +19,7 @@ describe("ModelPropertyAdditional Client", () => {
       assert.deepEqual(result, {
         name: "abc",
         prop: 43.125,
-        derivedProp: 43.125,
+        derivedProp: 43.125
       });
     } catch (err) {
       assert.fail(err as string);
@@ -28,11 +28,10 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put extends Different Spread Float value", async () => {
     try {
-      const result = await client.extendsDifferentSpreadFloat.put(
-      {
+      const result = await client.extendsDifferentSpreadFloat.put({
         name: "abc",
         prop: 43.125,
-        derivedProp: 43.125,
+        derivedProp: 43.125
       });
       assert.equal(result, undefined);
     } catch (err) {
@@ -46,7 +45,7 @@ describe("ModelPropertyAdditional Client", () => {
       assert.deepEqual(result, {
         knownProp: "abc",
         prop: { state: "ok" },
-        derivedProp: { state: "ok" },
+        derivedProp: { state: "ok" }
       });
     } catch (err) {
       assert.fail(err as string);
@@ -55,11 +54,10 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put extends Different Spread Model value", async () => {
     try {
-      const result = await client.extendsDifferentSpreadModel.put(
-      {
+      const result = await client.extendsDifferentSpreadModel.put({
         knownProp: "abc",
         prop: { state: "ok" },
-        derivedProp: { state: "ok" },
+        derivedProp: { state: "ok" }
       });
       assert.equal(result, undefined);
     } catch (err) {
@@ -73,7 +71,7 @@ describe("ModelPropertyAdditional Client", () => {
       assert.deepEqual(result, {
         knownProp: "abc",
         prop: [{ state: "ok" }, { state: "ok" }],
-        derivedProp: [{ state: "ok" }, { state: "ok" }],
+        derivedProp: [{ state: "ok" }, { state: "ok" }]
       });
     } catch (err) {
       assert.fail(err as string);
@@ -82,11 +80,10 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put extends Different Spread Model Array value", async () => {
     try {
-      const result = await client.extendsDifferentSpreadModelArray.put(
-      {
+      const result = await client.extendsDifferentSpreadModelArray.put({
         knownProp: "abc",
         prop: [{ state: "ok" }, { state: "ok" }],
-        derivedProp: [{ state: "ok" }, { state: "ok" }],
+        derivedProp: [{ state: "ok" }, { state: "ok" }]
       });
       assert.equal(result, undefined);
     } catch (err) {
@@ -100,7 +97,7 @@ describe("ModelPropertyAdditional Client", () => {
       assert.deepEqual(result, {
         id: 43.125,
         prop: "abc",
-        derivedProp: "abc",
+        derivedProp: "abc"
       });
     } catch (err) {
       assert.fail(err as string);
@@ -109,11 +106,10 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put extends Different Spread String value", async () => {
     try {
-      const result = await client.extendsDifferentSpreadString.put(
-      {
+      const result = await client.extendsDifferentSpreadString.put({
         id: 43.125,
         prop: "abc",
-        derivedProp: "abc",
+        derivedProp: "abc"
       });
       assert.equal(result, undefined);
     } catch (err) {
@@ -126,7 +122,7 @@ describe("ModelPropertyAdditional Client", () => {
       const result = await client.extendsFloat.get();
       assert.deepEqual(result, {
         id: 43.125,
-        prop: 43.125,
+        prop: 43.125
       });
     } catch (err) {
       assert.fail(err as string);
@@ -135,10 +131,9 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put extends Float value", async () => {
     try {
-      const result = await client.extendsFloat.put(
-      {
+      const result = await client.extendsFloat.put({
         id: 43.125,
-        prop: 43.125,
+        prop: 43.125
       });
       assert.equal(result, undefined);
     } catch (err) {
@@ -151,7 +146,7 @@ describe("ModelPropertyAdditional Client", () => {
       const result = await client.extendsModel.get();
       assert.deepEqual(result, {
         knownProp: { state: "ok" },
-        prop: { state: "ok" },
+        prop: { state: "ok" }
       });
     } catch (err) {
       assert.fail(err as string);
@@ -160,10 +155,9 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put extends Model value", async () => {
     try {
-      const result = await client.extendsModel.put(
-      {
+      const result = await client.extendsModel.put({
         knownProp: { state: "ok" },
-        prop: { state: "ok" },
+        prop: { state: "ok" }
       });
       assert.equal(result, undefined);
     } catch (err) {
@@ -176,7 +170,7 @@ describe("ModelPropertyAdditional Client", () => {
       const result = await client.extendsModelArray.get();
       assert.deepEqual(result, {
         knownProp: [{ state: "ok" }, { state: "ok" }],
-        prop: [{ state: "ok" }, { state: "ok" }],
+        prop: [{ state: "ok" }, { state: "ok" }]
       });
     } catch (err) {
       assert.fail(err as string);
@@ -185,10 +179,9 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put extends Model Array value", async () => {
     try {
-      const result = await client.extendsModelArray.put(
-      {
+      const result = await client.extendsModelArray.put({
         knownProp: [{ state: "ok" }, { state: "ok" }],
-        prop: [{ state: "ok" }, { state: "ok" }],
+        prop: [{ state: "ok" }, { state: "ok" }]
       });
       assert.equal(result, undefined);
     } catch (err) {
@@ -201,7 +194,7 @@ describe("ModelPropertyAdditional Client", () => {
       const result = await client.extendsString.get();
       assert.deepEqual(result, {
         name: "ExtendsStringAdditionalProperties",
-        prop: "abc",
+        prop: "abc"
       });
     } catch (err) {
       assert.fail(err as string);
@@ -210,10 +203,9 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put extends String value", async () => {
     try {
-      const result = await client.extendsString.put(
-      {
+      const result = await client.extendsString.put({
         name: "ExtendsStringAdditionalProperties",
-        prop: "abc",
+        prop: "abc"
       });
       assert.equal(result, undefined);
     } catch (err) {
@@ -228,7 +220,7 @@ describe("ModelPropertyAdditional Client", () => {
         name: "ExtendsUnknownAdditionalProperties",
         prop1: 32,
         prop2: true,
-        prop3: "abc",
+        prop3: "abc"
       });
     } catch (err) {
       assert.fail(err as string);
@@ -237,12 +229,11 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put extends Unknown value", async () => {
     try {
-      const result = await client.extendsUnknown.put(
-      {
+      const result = await client.extendsUnknown.put({
         name: "ExtendsUnknownAdditionalProperties",
         prop1: 32,
         prop2: true,
-        prop3: "abc",
+        prop3: "abc"
       });
       assert.equal(result, undefined);
     } catch (err) {
@@ -259,7 +250,7 @@ describe("ModelPropertyAdditional Client", () => {
         age: 2.71828,
         prop1: 32,
         prop2: true,
-        prop3: "abc",
+        prop3: "abc"
       });
     } catch (err) {
       assert.fail(err as string);
@@ -268,14 +259,13 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put extends Unknown Derived value", async () => {
     try {
-      const result = await client.extendsUnknownDerived.put(
-      {
+      const result = await client.extendsUnknownDerived.put({
         name: "ExtendsUnknownAdditionalProperties",
         index: 314,
         age: 2.71828,
         prop1: 32,
         prop2: true,
-        prop3: "abc",
+        prop3: "abc"
       });
       assert.equal(result, undefined);
     } catch (err) {
@@ -293,7 +283,7 @@ describe("ModelPropertyAdditional Client", () => {
         age: 2.71828,
         prop1: 32,
         prop2: true,
-        prop3: "abc",
+        prop3: "abc"
       });
     } catch (err) {
       assert.fail(err as string);
@@ -302,15 +292,14 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put extends Unknown Discriminated value", async () => {
     try {
-      const result = await client.extendsUnknownDiscriminated.put(
-      {
+      const result = await client.extendsUnknownDiscriminated.put({
         kind: "derived",
         name: "Derived",
         index: 314,
         age: 2.71828,
         prop1: 32,
         prop2: true,
-        prop3: "abc",
+        prop3: "abc"
       });
       assert.equal(result, undefined);
     } catch (err) {
@@ -323,7 +312,7 @@ describe("ModelPropertyAdditional Client", () => {
       const result = await client.isFloat.get();
       assert.deepEqual(result, {
         id: 43.125,
-        prop: 43.125,
+        prop: 43.125
       });
     } catch (err) {
       assert.fail(err as string);
@@ -332,10 +321,9 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put is Float value", async () => {
     try {
-      const result = await client.isFloat.put(
-      {
+      const result = await client.isFloat.put({
         id: 43.125,
-        prop: 43.125,
+        prop: 43.125
       });
       assert.equal(result, undefined);
     } catch (err) {
@@ -348,7 +336,7 @@ describe("ModelPropertyAdditional Client", () => {
       const result = await client.isModel.get();
       assert.deepEqual(result, {
         knownProp: { state: "ok" },
-        prop: { state: "ok" },
+        prop: { state: "ok" }
       });
     } catch (err) {
       assert.fail(err as string);
@@ -357,23 +345,22 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put is Model value", async () => {
     try {
-      const result = await client.isModel.put(
-      {
+      const result = await client.isModel.put({
         knownProp: { state: "ok" },
-        prop: { state: "ok" },
+        prop: { state: "ok" }
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-  
+
   it("should get is Model Array value", async () => {
     try {
       const result = await client.isModelArray.get();
       assert.deepEqual(result, {
         knownProp: [{ state: "ok" }, { state: "ok" }],
-        prop: [{ state: "ok" }, { state: "ok" }],
+        prop: [{ state: "ok" }, { state: "ok" }]
       });
     } catch (err) {
       assert.fail(err as string);
@@ -382,23 +369,22 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put is Model Array value", async () => {
     try {
-      const result = await client.isModelArray.put(
-      {
+      const result = await client.isModelArray.put({
         knownProp: [{ state: "ok" }, { state: "ok" }],
-        prop: [{ state: "ok" }, { state: "ok" }],
+        prop: [{ state: "ok" }, { state: "ok" }]
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-  
+
   it("should get is String value", async () => {
     try {
       const result = await client.isString.get();
       assert.deepEqual(result, {
         name: "IsStringAdditionalProperties",
-        prop: "abc",
+        prop: "abc"
       });
     } catch (err) {
       assert.fail(err as string);
@@ -407,17 +393,16 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put is String value", async () => {
     try {
-      const result = await client.isString.put(
-      {
+      const result = await client.isString.put({
         name: "IsStringAdditionalProperties",
-        prop: "abc",
+        prop: "abc"
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-  
+
   it("should get is Unknown value", async () => {
     try {
       const result = await client.isUnknown.get();
@@ -425,7 +410,7 @@ describe("ModelPropertyAdditional Client", () => {
         name: "IsUnknownAdditionalProperties",
         prop1: 32,
         prop2: true,
-        prop3: "abc",
+        prop3: "abc"
       });
     } catch (err) {
       assert.fail(err as string);
@@ -434,19 +419,18 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put isUnknown value", async () => {
     try {
-      const result = await client.isUnknown.put(
-      {
+      const result = await client.isUnknown.put({
         name: "IsUnknownAdditionalProperties",
         prop1: 32,
         prop2: true,
-        prop3: "abc",
+        prop3: "abc"
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-  
+
   it("should get is Unknown Derived value", async () => {
     try {
       const result = await client.isUnknownDerived.get();
@@ -456,7 +440,7 @@ describe("ModelPropertyAdditional Client", () => {
         age: 2.71828,
         prop1: 32,
         prop2: true,
-        prop3: "abc",
+        prop3: "abc"
       });
     } catch (err) {
       assert.fail(err as string);
@@ -465,21 +449,20 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put is Unknown Derived value", async () => {
     try {
-      const result = await client.isUnknownDerived.put(
-      {
+      const result = await client.isUnknownDerived.put({
         name: "IsUnknownAdditionalProperties",
         index: 314,
         age: 2.71828,
         prop1: 32,
         prop2: true,
-        prop3: "abc",
+        prop3: "abc"
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-  
+
   it("should get is Unknown Discriminated value", async () => {
     try {
       const result = await client.isUnknownDiscriminated.get();
@@ -490,7 +473,7 @@ describe("ModelPropertyAdditional Client", () => {
         age: 2.71828,
         prop1: 32,
         prop2: true,
-        prop3: "abc",
+        prop3: "abc"
       });
     } catch (err) {
       assert.fail(err as string);
@@ -499,29 +482,28 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put is Unknown Discriminated value", async () => {
     try {
-      const result = await client.isUnknownDiscriminated.put(
-      {
+      const result = await client.isUnknownDiscriminated.put({
         kind: "derived",
         name: "Derived",
         index: 314,
         age: 2.71828,
         prop1: 32,
         prop2: true,
-        prop3: "abc",
+        prop3: "abc"
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-  
+
   it("should get multiple Spread value", async () => {
     try {
       const result = await client.multipleSpread.get();
       assert.deepEqual(result, {
         flag: true,
         prop1: "abc",
-        prop2: 43.125,
+        prop2: 43.125
       });
     } catch (err) {
       assert.fail(err as string);
@@ -530,24 +512,23 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put multiple Spread value", async () => {
     try {
-      const result = await client.multipleSpread.put(
-      {
+      const result = await client.multipleSpread.put({
         flag: true,
         prop1: "abc",
-        prop2: 43.125,
+        prop2: 43.125
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-    
+
   it("should get spread Different Float value", async () => {
     try {
       const result = await client.spreadDifferentFloat.get();
       assert.deepEqual(result, {
         name: "abc",
-        prop: 43.125,
+        prop: 43.125
       });
     } catch (err) {
       assert.fail(err as string);
@@ -556,23 +537,22 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put spread Different Float value", async () => {
     try {
-      const result = await client.spreadDifferentFloat.put(
-      {
+      const result = await client.spreadDifferentFloat.put({
         name: "abc",
-        prop: 43.125,
+        prop: 43.125
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-    
+
   it("should get spread Different Model value", async () => {
     try {
       const result = await client.spreadDifferentModel.get();
       assert.deepEqual(result, {
         knownProp: "abc",
-        prop: { state: "ok" },
+        prop: { state: "ok" }
       });
     } catch (err) {
       assert.fail(err as string);
@@ -581,23 +561,22 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put spread Different Model value", async () => {
     try {
-      const result = await client.spreadDifferentModel.put(
-      {
+      const result = await client.spreadDifferentModel.put({
         knownProp: "abc",
-        prop: { state: "ok" },
+        prop: { state: "ok" }
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-    
+
   it("should get spread Different Model Array value", async () => {
     try {
       const result = await client.spreadDifferentModelArray.get();
       assert.deepEqual(result, {
         knownProp: "abc",
-        prop: [{ state: "ok" }, { state: "ok" }],
+        prop: [{ state: "ok" }, { state: "ok" }]
       });
     } catch (err) {
       assert.fail(err as string);
@@ -606,23 +585,22 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put spread Different Model Array value", async () => {
     try {
-      const result = await client.spreadDifferentModelArray.put(
-      {
+      const result = await client.spreadDifferentModelArray.put({
         knownProp: "abc",
-        prop: [{ state: "ok" }, { state: "ok" }],
+        prop: [{ state: "ok" }, { state: "ok" }]
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-    
+
   it("should get spread Different String value", async () => {
     try {
       const result = await client.spreadDifferentString.get();
       assert.deepEqual(result, {
         id: 43.125,
-        prop: "abc",
+        prop: "abc"
       });
     } catch (err) {
       assert.fail(err as string);
@@ -631,23 +609,22 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put spread Different String value", async () => {
     try {
-      const result = await client.spreadDifferentString.put(
-      {
+      const result = await client.spreadDifferentString.put({
         id: 43.125,
-        prop: "abc",
+        prop: "abc"
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-    
+
   it("should get spread Float value", async () => {
     try {
       const result = await client.spreadFloat.get();
       assert.deepEqual(result, {
         id: 43.125,
-        prop: 43.125,
+        prop: 43.125
       });
     } catch (err) {
       assert.fail(err as string);
@@ -656,23 +633,22 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put spread Float value", async () => {
     try {
-      const result = await client.spreadFloat.put(
-      {
+      const result = await client.spreadFloat.put({
         id: 43.125,
-        prop: 43.125,
+        prop: 43.125
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-    
+
   it("should get spread Model value", async () => {
     try {
       const result = await client.spreadModel.get();
       assert.deepEqual(result, {
         knownProp: { state: "ok" },
-        prop: { state: "ok" },
+        prop: { state: "ok" }
       });
     } catch (err) {
       assert.fail(err as string);
@@ -681,23 +657,22 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put spread Model value", async () => {
     try {
-      const result = await client.spreadModel.put(
-      {
+      const result = await client.spreadModel.put({
         knownProp: { state: "ok" },
-        prop: { state: "ok" },
+        prop: { state: "ok" }
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-    
+
   it("should get spread Model Array value", async () => {
     try {
       const result = await client.spreadModelArray.get();
       assert.deepEqual(result, {
         knownProp: [{ state: "ok" }, { state: "ok" }],
-        prop: [{ state: "ok" }, { state: "ok" }],
+        prop: [{ state: "ok" }, { state: "ok" }]
       });
     } catch (err) {
       assert.fail(err as string);
@@ -706,17 +681,16 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put spread Model Array value", async () => {
     try {
-      const result = await client.spreadModelArray.put(
-      {
+      const result = await client.spreadModelArray.put({
         knownProp: [{ state: "ok" }, { state: "ok" }],
-        prop: [{ state: "ok" }, { state: "ok" }],
+        prop: [{ state: "ok" }, { state: "ok" }]
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-    
+
   it("should get spread Record Discriminated Union value", async () => {
     try {
       const result = await client.spreadRecordDiscriminatedUnion.get();
@@ -724,13 +698,13 @@ describe("ModelPropertyAdditional Client", () => {
         name: "abc",
         prop1: {
           kind: "kind0",
-          fooProp: "abc",
+          fooProp: "abc"
         },
         prop2: {
           kind: "kind1",
           start: "2021-01-01T00:00:00Z",
-          end: "2021-01-02T00:00:00Z",
-        },
+          end: "2021-01-02T00:00:00Z"
+        }
       });
     } catch (err) {
       assert.fail(err as string);
@@ -739,25 +713,24 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put spread Record Discriminated Union value", async () => {
     try {
-      const result = await client.spreadRecordDiscriminatedUnion.put(
-      {
+      const result = await client.spreadRecordDiscriminatedUnion.put({
         name: "abc",
         prop1: {
           kind: "kind0",
-          fooProp: "abc",
+          fooProp: "abc"
         },
         prop2: {
           kind: "kind1",
           start: "2021-01-01T00:00:00Z",
-          end: "2021-01-02T00:00:00Z",
-        },
+          end: "2021-01-02T00:00:00Z"
+        }
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-    
+
   it("should get spread Record NonDiscriminated Union value", async () => {
     try {
       const result = await client.spreadRecordNonDiscriminatedUnion.get();
@@ -765,13 +738,13 @@ describe("ModelPropertyAdditional Client", () => {
         name: "abc",
         prop1: {
           kind: "kind0",
-          fooProp: "abc",
+          fooProp: "abc"
         },
         prop2: {
           kind: "kind1",
           start: "2021-01-01T00:00:00Z",
-          end: "2021-01-02T00:00:00Z",
-        },
+          end: "2021-01-02T00:00:00Z"
+        }
       });
     } catch (err) {
       assert.fail(err as string);
@@ -780,25 +753,24 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put spread Record NonDiscriminated Union value", async () => {
     try {
-      const result = await client.spreadRecordNonDiscriminatedUnion.put(
-      {
+      const result = await client.spreadRecordNonDiscriminatedUnion.put({
         name: "abc",
         prop1: {
           kind: "kind0",
-          fooProp: "abc",
+          fooProp: "abc"
         },
         prop2: {
           kind: "kind1",
           start: "2021-01-01T00:00:00Z",
-          end: "2021-01-02T00:00:00Z",
-        },
+          end: "2021-01-02T00:00:00Z"
+        }
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-    
+
   it("should get spread Record NonDiscriminated Union2 value", async () => {
     try {
       const result = await client.spreadRecordNonDiscriminatedUnion2.get();
@@ -806,13 +778,13 @@ describe("ModelPropertyAdditional Client", () => {
         name: "abc",
         prop1: {
           kind: "kind1",
-          start: "2021-01-01T00:00:00Z",
+          start: "2021-01-01T00:00:00Z"
         },
         prop2: {
           kind: "kind1",
           start: "2021-01-01T00:00:00Z",
-          end: "2021-01-02T00:00:00Z",
-        },
+          end: "2021-01-02T00:00:00Z"
+        }
       });
     } catch (err) {
       assert.fail(err as string);
@@ -821,25 +793,24 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put spread Record NonDiscriminated Union2 value", async () => {
     try {
-      const result = await client.spreadRecordNonDiscriminatedUnion2.put(
-      {
+      const result = await client.spreadRecordNonDiscriminatedUnion2.put({
         name: "abc",
         prop1: {
           kind: "kind1",
-          start: "2021-01-01T00:00:00Z",
+          start: "2021-01-01T00:00:00Z"
         },
         prop2: {
           kind: "kind1",
           start: "2021-01-01T00:00:00Z",
-          end: "2021-01-02T00:00:00Z",
-        },
+          end: "2021-01-02T00:00:00Z"
+        }
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-    
+
   it("should get spread Record NonDiscriminated Union3 value", async () => {
     try {
       const result = await client.spreadRecordNonDiscriminatedUnion3.get();
@@ -848,18 +819,18 @@ describe("ModelPropertyAdditional Client", () => {
         prop1: [
           {
             kind: "kind1",
-            start: "2021-01-01T00:00:00Z",
+            start: "2021-01-01T00:00:00Z"
           },
           {
             kind: "kind1",
-            start: "2021-01-01T00:00:00Z",
-          },
+            start: "2021-01-01T00:00:00Z"
+          }
         ],
         prop2: {
           kind: "kind1",
           start: "2021-01-01T00:00:00Z",
-          end: "2021-01-02T00:00:00Z",
-        },
+          end: "2021-01-02T00:00:00Z"
+        }
       });
     } catch (err) {
       assert.fail(err as string);
@@ -868,38 +839,37 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put spread Record NonDiscriminated Union3 value", async () => {
     try {
-      const result = await client.spreadRecordNonDiscriminatedUnion3.put(
-      {
+      const result = await client.spreadRecordNonDiscriminatedUnion3.put({
         name: "abc",
         prop1: [
           {
             kind: "kind1",
-            start: "2021-01-01T00:00:00Z",
+            start: "2021-01-01T00:00:00Z"
           },
           {
             kind: "kind1",
-            start: "2021-01-01T00:00:00Z",
-          },
+            start: "2021-01-01T00:00:00Z"
+          }
         ],
         prop2: {
           kind: "kind1",
           start: "2021-01-01T00:00:00Z",
-          end: "2021-01-02T00:00:00Z",
-        },
+          end: "2021-01-02T00:00:00Z"
+        }
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-    
+
   it("should get spread Record Union value", async () => {
     try {
       const result = await client.spreadRecordUnion.get();
       assert.deepEqual(result, {
         flag: true,
         prop1: "abc",
-        prop2: 43.125,
+        prop2: 43.125
       });
     } catch (err) {
       assert.fail(err as string);
@@ -908,24 +878,23 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put spread Record Union value", async () => {
     try {
-      const result = await client.spreadRecordUnion.put(
-      {
+      const result = await client.spreadRecordUnion.put({
         flag: true,
         prop1: "abc",
-        prop2: 43.125,
+        prop2: 43.125
       });
       assert.equal(result, undefined);
     } catch (err) {
       assert.fail(err as string);
     }
   });
-    
+
   it("should get spread String value", async () => {
     try {
       const result = await client.spreadString.get();
       assert.deepEqual(result, {
         name: "SpreadSpringRecord",
-        prop: "abc",
+        prop: "abc"
       });
     } catch (err) {
       assert.fail(err as string);
@@ -934,10 +903,9 @@ describe("ModelPropertyAdditional Client", () => {
 
   it("should put spread String value", async () => {
     try {
-      const result = await client.spreadString.put(
-      {
+      const result = await client.spreadString.put({
         name: "SpreadSpringRecord",
-        prop: "abc",
+        prop: "abc"
       });
       assert.equal(result, undefined);
     } catch (err) {

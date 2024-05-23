@@ -56,7 +56,7 @@ describe("Input/output model type", () => {
     #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
     @route("/models")
     @get
-    op getModel(@body input: InputOutputModel): InputOutputModel;`,
+    op getModel(@bodyRoot input: InputOutputModel): InputOutputModel;`,
       needAzureCore,
       needTCGC
     );
@@ -86,6 +86,23 @@ describe("Input/output model type", () => {
     ${additionalOutputContent}`
     );
   }
+
+  describe("void generation", async () => {
+    it("should throw exception for property with void type", async () => {
+      try {
+        const tspType = "void";
+        const typeScriptType = "void";
+        await verifyPropertyType(tspType, typeScriptType);
+        assert.fail("Should throw exception");
+      } catch (err: any) {
+        assert.equal(
+          err[0].message,
+          "Couldn't get schema for type Intrinsic with property prop"
+        );
+        assert.equal(err[0]?.target?.name, "void");
+      }
+    });
+  });
 
   describe("null generation", async () => {
     it("should generate null only", async () => {
@@ -1658,7 +1675,7 @@ describe("Input/output model type", () => {
       assert.ok(schemaOutput);
       const { inputModelFile } = schemaOutput!;
       assert.ok(inputModelFile);
-      assert.strictEqual(inputModelFile?.path, "models.ts");
+      assert.isTrue(inputModelFile?.path?.endsWith("models.ts"));
       await assertEqualContent(
         inputModelFile?.content!,
         `
@@ -3524,7 +3541,7 @@ describe("Input/output model type", () => {
       op get(
         @header("test-header") testHeader: SchemaContentTypeValues,
         @body body: string,
-      ): { @header("test-header") testHeader: SchemaContentTypeValues };
+      ): { @header("test-header") testHeader: SchemaContentTypeValues; @statusCode _: 204; };
       `;
       const schemaOutput = await emitModelsFromTypeSpec(
         tspDefinition,
@@ -3634,7 +3651,7 @@ describe("Input/output model type", () => {
       op get(
         @header("test-header") testHeader: "A" | "B",
         @body body: string,
-      ): { @header("test-header") testHeader: "A" | "B" };
+      ): { @header("test-header") testHeader: "A" | "B"; @statusCode _: 204; };
       `;
       const schemaOutput = await emitModelsFromTypeSpec(
         tspDefinition,

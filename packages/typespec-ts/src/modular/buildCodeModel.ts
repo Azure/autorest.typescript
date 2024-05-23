@@ -20,7 +20,6 @@ import {
   ModelProperty,
   Namespace,
   Program,
-  getEffectiveModelType,
   getDiscriminator,
   Operation,
   Scalar,
@@ -37,20 +36,17 @@ import {
   isNullType,
   getEncode,
   isTemplateDeclarationOrInstance,
-  UsageFlags
+  UsageFlags,
+  isVoidType
 } from "@typespec/compiler";
 import {
   getAuthentication,
-  getHeaderFieldName,
-  getPathParamName,
-  getQueryParamName,
   getServers,
   HttpAuth,
   HttpOperationParameter,
   HttpOperationResponse,
   HttpOperationResponseContent,
   HttpServer,
-  isStatusCode,
   HttpOperation,
   getHttpOperation,
   isSharedRoute
@@ -87,7 +83,9 @@ import {
   buildCoreTypeInfo,
   getBodyType,
   getDefaultApiVersionString,
-  isAzureCoreErrorType
+  getEffectiveSchemaType,
+  isAzureCoreErrorType,
+  isSchemaProperty
 } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
 import {
@@ -238,47 +236,6 @@ function handleDiscriminator(
     return discriminatorInfo;
   }
   return undefined;
-}
-
-function isSchemaProperty(program: Program, property: ModelProperty): boolean {
-  const headerInfo = getHeaderFieldName(program, property);
-  const queryInfo = getQueryParamName(program, property);
-  const pathInfo = getPathParamName(program, property);
-  const statusCodeinfo = isStatusCode(program, property);
-  return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
-}
-
-function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
-  function isSchemaProperty(property: ModelProperty): boolean {
-    const headerInfo = getHeaderFieldName(program, property);
-    const queryInfo = getQueryParamName(program, property);
-    const pathInfo = getPathParamName(program, property);
-    const statusCodeinfo = isStatusCode(program, property);
-    return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
-  }
-
-  // If type is an anonymous model, tries to find a named model that has the same properties
-  let effective: Model | undefined = undefined;
-  if (type.kind === "Union") {
-    const nonNullOptions = [...type.variants.values()]
-      .map((x) => x.type)
-      .filter((t) => !isNullType(t));
-    if (
-      nonNullOptions.length === 1 &&
-      nonNullOptions[0]?.kind === "Model" &&
-      nonNullOptions[0]?.name === ""
-    ) {
-      effective = getEffectiveModelType(program, nonNullOptions[0]);
-    }
-    return type as any;
-  } else if (type.name === "") {
-    effective = getEffectiveModelType(program, type, isSchemaProperty);
-  }
-
-  if (effective?.name) {
-    return effective;
-  }
-  return type as Model;
 }
 
 function processModelProperties(
@@ -611,7 +568,7 @@ function emitResponse(
   let type = undefined;
   if (
     innerResponse.body?.type &&
-    !isAzureCoreErrorType(innerResponse.body?.type)
+    !isAzureCoreErrorType(context.program, innerResponse.body?.type)
   ) {
     // temporary logic. It can be removed after compiler optimize the response
     const candidate = [
@@ -633,9 +590,11 @@ function emitResponse(
           ? undefined
           : getType(context, metadata.finalResult);
     } else {
-      type = getType(context, innerResponse.body.type, {
-        usage: UsageFlags.Output
-      });
+      type = isVoidType(innerResponse.body.type)
+        ? undefined
+        : getType(context, innerResponse.body.type, {
+            usage: UsageFlags.Output
+          });
     }
   }
   const statusCodes: (number | "default")[] = [];
@@ -845,7 +804,10 @@ function emitBasicOperation(
   }
 
   let bodyParameter: any | undefined;
-  if (httpOperation.parameters.body === undefined) {
+  if (
+    httpOperation.parameters.body === undefined ||
+    isVoidType(httpOperation.parameters.body.type)
+  ) {
     bodyParameter = undefined;
   } else {
     bodyParameter = emitBodyParameter(context, httpOperation);
@@ -1057,7 +1019,7 @@ function emitModel(
       ? applyCasing(modelName, { casing: CASING })
       : modelName,
     base: modelName === "" ? "json" : "dpg",
-    coreTypeInfo: buildCoreTypeInfo(type),
+    coreTypeInfo: buildCoreTypeInfo(context.program, type),
     usage
   };
 }
@@ -1094,7 +1056,7 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
     isFixed: true,
-    coreTypeInfo: buildCoreTypeInfo(type)
+    coreTypeInfo: buildCoreTypeInfo(program, type)
   };
 }
 

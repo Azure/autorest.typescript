@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import TypeModelEmptyClientFactory, {
   EmptyClient
-} from "./generated/models/empty/src/index.js";
+} from "./generated/type/model/empty/src/index.js";
 describe("TypeModelEmptyClient Rest Client", () => {
   let client: EmptyClient;
 

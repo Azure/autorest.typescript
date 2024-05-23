@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import TypePropertyNullableClientFactory, {
   NullableClient
-} from "./generated/models/propertyNullable/src/index.js";
+} from "./generated/type/property/nullable/src/index.js";
 import { matrix } from "../util/matrix.js";
 
 interface TypeDetail {

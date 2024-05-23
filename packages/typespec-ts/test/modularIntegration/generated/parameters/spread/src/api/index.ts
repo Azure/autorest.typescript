@@ -11,4 +11,10 @@ export {
   aliasSpreadAsRequestParameter,
   aliasSpreadWithMultipleParameters,
 } from "./alias/index.js";
-export { modelSpreadAsRequestBody } from "./model/index.js";
+export {
+  modelSpreadAsRequestBody,
+  modelSpreadCompositeRequestOnlyWithBody,
+  modelSpreadCompositeRequestWithoutBody,
+  modelSpreadCompositeRequest,
+  modelSpreadCompositeRequestMix,
+} from "./model/index.js";

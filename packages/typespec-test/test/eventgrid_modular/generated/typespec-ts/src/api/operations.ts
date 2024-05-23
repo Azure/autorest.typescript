@@ -3,6 +3,7 @@
 
 import {
   CloudEvent,
+  PublishResult,
   ReceiveResult,
   AcknowledgeOptions,
   AcknowledgeResult,
@@ -81,7 +82,7 @@ export function _publishCloudEventSend(
 
 export async function _publishCloudEventDeserialize(
   result: PublishCloudEvent200Response | PublishCloudEventDefaultResponse,
-): Promise<Record<string, any>> {
+): Promise<PublishResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -95,7 +96,7 @@ export async function publishCloudEvent(
   topicName: string,
   event: CloudEvent,
   options: PublishCloudEventOptionalParams = { requestOptions: {} },
-): Promise<Record<string, any>> {
+): Promise<PublishResult> {
   const result = await _publishCloudEventSend(
     context,
     topicName,
@@ -142,7 +143,7 @@ export function _publishCloudEventsSend(
 
 export async function _publishCloudEventsDeserialize(
   result: PublishCloudEvents200Response | PublishCloudEventsDefaultResponse,
-): Promise<Record<string, any>> {
+): Promise<PublishResult> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
@@ -156,7 +157,7 @@ export async function publishCloudEvents(
   topicName: string,
   events: CloudEvent[],
   options: PublishCloudEventsOptionalParams = { requestOptions: {} },
-): Promise<Record<string, any>> {
+): Promise<PublishResult> {
   const result = await _publishCloudEventsSend(
     context,
     topicName,

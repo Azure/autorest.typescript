@@ -253,14 +253,6 @@ export interface MultivariateCorrelationChangesOutput {
   changedVariables?: string[];
 }
 
-/** Error response */
-export interface MultivariateResponseErrorOutput {
-  /** The error code. */
-  code: string;
-  /** The message explaining the error reported by the service. */
-  message: string;
-}
-
 /**
  * Training result of a model including its status, errors and diagnostics
  * information.

@@ -50,8 +50,8 @@ export class EventGridClient {
     constructor(endpointParam: string, credential: KeyCredential, options?: EventGridClientOptions);
     acknowledgeCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: AcknowledgeOptions, options?: AcknowledgeCloudEventsOptionalParams): Promise<AcknowledgeResult>;
     readonly pipeline: Pipeline;
-    publishCloudEvent(topicName: string, event: CloudEvent, options?: PublishCloudEventOptionalParams): Promise<Record<string, any>>;
-    publishCloudEvents(topicName: string, events: CloudEvent[], options?: PublishCloudEventsOptionalParams): Promise<Record<string, any>>;
+    publishCloudEvent(topicName: string, event: CloudEvent, options?: PublishCloudEventOptionalParams): Promise<PublishResult>;
+    publishCloudEvents(topicName: string, events: CloudEvent[], options?: PublishCloudEventsOptionalParams): Promise<PublishResult>;
     receiveCloudEvents(topicName: string, eventSubscriptionName: string, options?: ReceiveCloudEventsOptionalParams): Promise<ReceiveResult>;
     rejectCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: RejectOptions, options?: RejectCloudEventsOptionalParams): Promise<RejectResult>;
     releaseCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: ReleaseOptions, options?: ReleaseCloudEventsOptionalParams): Promise<ReleaseResult>;
@@ -77,6 +77,10 @@ export interface PublishCloudEventOptionalParams extends OperationOptions {
 // @public (undocumented)
 export interface PublishCloudEventsOptionalParams extends OperationOptions {
     contentType?: string;
+}
+
+// @public
+export interface PublishResult {
 }
 
 // @public (undocumented)

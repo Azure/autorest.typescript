@@ -143,7 +143,7 @@ namespace Users {
   @post
   op create(
     user: User,
-  ): UserCreatedResponse | UserExistsResponse | InvalidUserResponse;
+  ): { @bodyRoot _ : UserCreatedResponse; } | UserExistsResponse | InvalidUserResponse;
 
   @route("validate")
   @get

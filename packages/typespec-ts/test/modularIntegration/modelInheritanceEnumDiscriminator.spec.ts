@@ -2,7 +2,7 @@ import {
   EnumDiscriminatorClient,
   Snake,
   Golden
-} from "./generated/models/inheritance/enum-discriminator/src/index.js";
+} from "./generated/type/model/inheritance/enum-discriminator/src/index.js";
 import { assert } from "chai";
 
 describe("EnumDiscriminatorClient Rest Client", () => {
