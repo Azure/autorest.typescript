@@ -65,6 +65,7 @@
     "@azure/logger": "^1.0.4",
     "@types/chai": "^4.3.1",
     "@types/fs-extra": "^9.0.13",
+    "@types/lodash": "^4.17.4",
     "@types/mocha": "^10.0.6",
     "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
@@ -98,6 +99,7 @@
   "dependencies": {
     "@azure-tools/rlc-common": "workspace:^0.28.0",
     "fs-extra": "^11.1.0",
+    "lodash": "^4.17.21",
     "prettier": "^3.1.0",
     "ts-morph": "^15.1.0",
     "tslib": "^2.3.1"
