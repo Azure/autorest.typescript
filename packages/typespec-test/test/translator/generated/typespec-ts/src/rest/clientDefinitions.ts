@@ -98,6 +98,6 @@ export interface Routes {
   (path: "/dictionary/examples"): DictionaryExamples;
 }
 
-export type TranslatorClient = Client & {
+export type TranslatorContext = Client & {
   path: Routes;
 };

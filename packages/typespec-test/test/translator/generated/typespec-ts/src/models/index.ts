@@ -2,10 +2,6 @@
 // Licensed under the MIT license.
 
 export {
-  TranslatorClient,
-  TranslatorClientOptions,
-} from "./translatorClient.js";
-export {
   GetLanguagesResult,
   TranslationLanguage,
   TransliterationLanguage,
@@ -37,6 +33,8 @@ export {
   DictionaryExampleElement,
   Example,
   APIVersion,
+} from "./models.js";
+export {
   TextTranslationGetLanguagesOptionalParams,
   TextTranslationTranslateOptionalParams,
   TextTranslationTransliterateOptionalParams,
@@ -44,5 +42,4 @@ export {
   TextTranslationBreakSentenceOptionalParams,
   TextTranslationDictionaryLookupOptionalParams,
   TextTranslationDictionaryExamplesOptionalParams,
-} from "./models/index.js";
-export { TextTranslationOperations } from "./classic/index.js";
+} from "./options.js";

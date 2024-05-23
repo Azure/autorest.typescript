@@ -8,6 +8,12 @@ import {
   CreateImageVariationRequest,
 } from "../../models/models.js";
 import {
+  serializeCreateImageRequest,
+  deserializeImagesResponse,
+  serializeCreateImageEditRequest,
+  serializeCreateImageVariationRequest,
+} from "../../utils/serializeUtil.js";
+import {
   ImagesCreate200Response,
   ImagesCreateDefaultResponse,
   ImagesCreateEdit200Response,
@@ -22,7 +28,6 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
 import {
   ImagesCreateOptionalParams,
   ImagesCreateEditOptionalParams,
@@ -38,13 +43,7 @@ export function _createSend(
     .path("/images/generations")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        prompt: image["prompt"],
-        n: image["n"],
-        size: image["size"],
-        response_format: image["responseFormat"],
-        user: image["user"],
-      },
+      body: serializeCreateImageRequest(image),
     });
 }
 
@@ -55,16 +54,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => ({
-      url: p["url"],
-      b64Json:
-        typeof p["b64_json"] === "string"
-          ? stringToUint8Array(p["b64_json"], "base64")
-          : p["b64_json"],
-    })),
-  };
+  return deserializeImagesResponse(result.body);
 }
 
 export async function create(
@@ -88,18 +78,7 @@ export function _createEditSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        prompt: image["prompt"],
-        image: uint8ArrayToString(image["image"], "base64"),
-        mask:
-          image["mask"] !== undefined
-            ? uint8ArrayToString(image["mask"], "base64")
-            : undefined,
-        n: image["n"],
-        size: image["size"],
-        response_format: image["responseFormat"],
-        user: image["user"],
-      },
+      body: serializeCreateImageEditRequest(image),
     });
 }
 
@@ -110,16 +89,7 @@ export async function _createEditDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => ({
-      url: p["url"],
-      b64Json:
-        typeof p["b64_json"] === "string"
-          ? stringToUint8Array(p["b64_json"], "base64")
-          : p["b64_json"],
-    })),
-  };
+  return deserializeImagesResponse(result.body);
 }
 
 export async function createEdit(
@@ -143,13 +113,7 @@ export function _createVariationSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        image: uint8ArrayToString(image["image"], "base64"),
-        n: image["n"],
-        size: image["size"],
-        response_format: image["responseFormat"],
-        user: image["user"],
-      },
+      body: serializeCreateImageVariationRequest(image),
     });
 }
 
@@ -162,16 +126,7 @@ export async function _createVariationDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => ({
-      url: p["url"],
-      b64Json:
-        typeof p["b64_json"] === "string"
-          ? stringToUint8Array(p["b64_json"], "base64")
-          : p["b64_json"],
-    })),
-  };
+  return deserializeImagesResponse(result.body);
 }
 
 export async function createVariation(

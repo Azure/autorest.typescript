@@ -7,6 +7,11 @@ import {
   DeleteModelResponse,
 } from "../../models/models.js";
 import {
+  deserializeListModelsResponse,
+  deserializeModel,
+  deserializeDeleteModelResponse,
+} from "../../utils/serializeUtil.js";
+import {
   isUnexpected,
   ModelsDelete200Response,
   ModelsDeleteDefaultResponse,
@@ -43,15 +48,7 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      created: new Date(p["created"]),
-      ownedBy: p["owned_by"],
-    })),
-  };
+  return deserializeListModelsResponse(result.body);
 }
 
 export async function list(
@@ -79,12 +76,7 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    created: new Date(result.body["created"]),
-    ownedBy: result.body["owned_by"],
-  };
+  return deserializeModel(result.body);
 }
 
 export async function retrieve(
@@ -113,11 +105,7 @@ export async function _$deleteDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    deleted: result.body["deleted"],
-  };
+  return deserializeDeleteModelResponse(result.body);
 }
 
 /**

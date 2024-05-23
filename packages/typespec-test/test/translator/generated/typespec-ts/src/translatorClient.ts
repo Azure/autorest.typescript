@@ -1,38 +1,49 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger.js";
-import { TranslatorClient } from "./clientDefinitions.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import {
+  getTextTranslationOperations,
+  TextTranslationOperations,
+} from "./classic/textTranslation/index.js";
+import {
+  createTranslator,
+  TranslatorClientOptions,
+  TranslatorContext,
+} from "./api/index.js";
 
-/**
- * Initialize a new instance of `TranslatorClient`
- * @param endpointParam - Supported Text Translation endpoints (protocol and hostname, for example:
- *     https://api.cognitive.microsofttranslator.com).
- * @param options - the parameter for all optional parameters
- */
-export default function createClient(
-  endpointParam: string,
-  options: ClientOptions = {},
-): TranslatorClient {
-  const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-  options.apiVersion = options.apiVersion ?? "3.0";
-  const userAgentInfo = `azsdk-js-cognitiveservices-translator-rest/1.0.0-beta.1`;
-  const userAgentPrefix =
-    options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-      ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
-      : `${userAgentInfo}`;
-  options = {
-    ...options,
-    userAgentOptions: {
-      userAgentPrefix,
-    },
-    loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info,
-    },
-  };
+export { TranslatorClientOptions } from "./api/translatorContext.js";
 
-  const client = getClient(endpointUrl, options) as TranslatorClient;
+export class TranslatorClient {
+  private _client: TranslatorContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
-  return client;
+  /**
+   * Text translation is a cloud-based REST API feature of the Translator service that uses neural
+   * machine translation technology to enable quick and accurate source-to-target text translation
+   * in real time across all supported languages.
+   *
+   * The following methods are supported by the Text Translation feature:
+   *
+   * Languages. Returns a list of languages supported by Translate, Transliterate, and Dictionary Lookup operations.
+   *
+   * Translate. Renders single source-language text to multiple target-language texts with a single request.
+   *
+   * Transliterate. Converts characters or letters of a source language to the corresponding characters or letters of a target language.
+   *
+   * Detect. Returns the source code language code and a boolean variable denoting whether the detected language is supported for text translation and transliteration.
+   *
+   * Dictionary lookup. Returns equivalent words for the source term in the target language.
+   *
+   * Dictionary example Returns grammatical structure and context examples for the source term and target term pair.
+   */
+  constructor(endpointParam: string, options: TranslatorClientOptions = {}) {
+    this._client = createTranslator(endpointParam, options);
+    this.pipeline = this._client.pipeline;
+    this.textTranslation = getTextTranslationOperations(this._client);
+  }
+
+  /** The operation groups for TextTranslation */
+  public readonly textTranslation: TextTranslationOperations;
 }

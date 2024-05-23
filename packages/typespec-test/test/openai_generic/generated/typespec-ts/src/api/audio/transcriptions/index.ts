@@ -6,6 +6,10 @@ import {
   CreateTranscriptionResponse,
 } from "../../../models/models.js";
 import {
+  serializeCreateTranscriptionRequest,
+  deserializeCreateTranscriptionResponse,
+} from "../../../utils/serializeUtil.js";
+import {
   AudioTranscriptionsCreate200Response,
   AudioTranscriptionsCreateDefaultResponse,
   isUnexpected,
@@ -16,7 +20,6 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import { AudioTranscriptionsCreateOptionalParams } from "../../../models/options.js";
 
 export function _createSend(
@@ -32,14 +35,7 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(audio["file"], "base64"),
-        model: audio["model"],
-        prompt: audio["prompt"],
-        response_format: audio["responseFormat"],
-        temperature: audio["temperature"],
-        language: audio["language"],
-      },
+      body: serializeCreateTranscriptionRequest(audio),
     });
 }
 
@@ -52,9 +48,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    text: result.body["text"],
-  };
+  return deserializeCreateTranscriptionResponse(result.body);
 }
 
 export async function create(

@@ -8,6 +8,12 @@ import {
   ListFineTuningJobEventsResponse,
 } from "../../../models/models.js";
 import {
+  serializeCreateFineTuningJobRequest,
+  deserializeFineTuningJob,
+  deserializeListPaginatedFineTuningJobsResponse,
+  deserializeListFineTuningJobEventsResponse,
+} from "../../../utils/serializeUtil.js";
+import {
   FineTuningJobsCancel200Response,
   FineTuningJobsCancelDefaultResponse,
   FineTuningJobsCreate200Response,
@@ -45,15 +51,7 @@ export function _createSend(
     .path("/fine_tuning/jobs")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: {
-        training_file: job["trainingFile"],
-        validation_file: job["validationFile"],
-        model: job["model"],
-        hyperparameters: !job.hyperparameters
-          ? undefined
-          : { n_epochs: job.hyperparameters?.["nEpochs"] },
-        suffix: job["suffix"],
-      },
+      body: serializeCreateFineTuningJobRequest(job),
     });
 }
 
@@ -64,32 +62,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    createdAt: new Date(result.body["created_at"]),
-    finishedAt:
-      result.body["finished_at"] === null
-        ? null
-        : new Date(result.body["finished_at"]),
-    model: result.body["model"],
-    fineTunedModel: result.body["fine_tuned_model"],
-    organizationId: result.body["organization_id"],
-    status: result.body["status"],
-    hyperparameters: { nEpochs: result.body.hyperparameters["n_epochs"] },
-    trainingFile: result.body["training_file"],
-    validationFile: result.body["validation_file"],
-    resultFiles: result.body["result_files"],
-    trainedTokens: result.body["trained_tokens"],
-    error:
-      result.body.error === null
-        ? null
-        : {
-            message: result.body.error["message"],
-            code: result.body.error["code"],
-            param: result.body.error["param"],
-          },
-  };
+  return deserializeFineTuningJob(result.body);
 }
 
 /**
@@ -119,7 +92,8 @@ export function _listSend(
     .path("/fine_tuning/jobs")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { after: options?.after, limit: options?.limit },
+      queryParameters: options?.after,
+      queryParameters: options?.limit,
     });
 }
 
@@ -130,33 +104,7 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      createdAt: new Date(p["created_at"]),
-      finishedAt: p["finished_at"] === null ? null : new Date(p["finished_at"]),
-      model: p["model"],
-      fineTunedModel: p["fine_tuned_model"],
-      organizationId: p["organization_id"],
-      status: p["status"],
-      hyperparameters: { nEpochs: p.hyperparameters["n_epochs"] },
-      trainingFile: p["training_file"],
-      validationFile: p["validation_file"],
-      resultFiles: p["result_files"],
-      trainedTokens: p["trained_tokens"],
-      error:
-        p.error === null
-          ? null
-          : {
-              message: p.error["message"],
-              code: p.error["code"],
-              param: p.error["param"],
-            },
-    })),
-    hasMore: result.body["has_more"],
-  };
+  return deserializeListPaginatedFineTuningJobsResponse(result.body);
 }
 
 export async function list(
@@ -188,32 +136,7 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    createdAt: new Date(result.body["created_at"]),
-    finishedAt:
-      result.body["finished_at"] === null
-        ? null
-        : new Date(result.body["finished_at"]),
-    model: result.body["model"],
-    fineTunedModel: result.body["fine_tuned_model"],
-    organizationId: result.body["organization_id"],
-    status: result.body["status"],
-    hyperparameters: { nEpochs: result.body.hyperparameters["n_epochs"] },
-    trainingFile: result.body["training_file"],
-    validationFile: result.body["validation_file"],
-    resultFiles: result.body["result_files"],
-    trainedTokens: result.body["trained_tokens"],
-    error:
-      result.body.error === null
-        ? null
-        : {
-            message: result.body.error["message"],
-            code: result.body.error["code"],
-            param: result.body.error["param"],
-          },
-  };
+  return deserializeFineTuningJob(result.body);
 }
 
 export async function retrieve(
@@ -236,7 +159,8 @@ export function _listEventsSend(
     .path("/fine_tuning/jobs/{fine_tuning_job_id}/events", fineTuningJobId)
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { after: options?.after, limit: options?.limit },
+      queryParameters: options?.after,
+      queryParameters: options?.limit,
     });
 }
 
@@ -249,16 +173,7 @@ export async function _listEventsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      createdAt: new Date(p["created_at"]),
-      level: p["level"],
-      message: p["message"],
-    })),
-  };
+  return deserializeListFineTuningJobEventsResponse(result.body);
 }
 
 export async function listEvents(
@@ -289,32 +204,7 @@ export async function _cancelDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    createdAt: new Date(result.body["created_at"]),
-    finishedAt:
-      result.body["finished_at"] === null
-        ? null
-        : new Date(result.body["finished_at"]),
-    model: result.body["model"],
-    fineTunedModel: result.body["fine_tuned_model"],
-    organizationId: result.body["organization_id"],
-    status: result.body["status"],
-    hyperparameters: { nEpochs: result.body.hyperparameters["n_epochs"] },
-    trainingFile: result.body["training_file"],
-    validationFile: result.body["validation_file"],
-    resultFiles: result.body["result_files"],
-    trainedTokens: result.body["trained_tokens"],
-    error:
-      result.body.error === null
-        ? null
-        : {
-            message: result.body.error["message"],
-            code: result.body.error["code"],
-            param: result.body.error["param"],
-          },
-  };
+  return deserializeFineTuningJob(result.body);
 }
 
 export async function cancel(

@@ -8,6 +8,12 @@ import {
   DeleteFileResponse,
 } from "../../models/models.js";
 import {
+  deserializeOpenAIFile,
+  deserializeListFilesResponse,
+  serializeCreateFileRequest,
+  deserializeDeleteFileResponse,
+} from "../../utils/serializeUtil.js";
+import {
   FilesCreate200Response,
   FilesCreateDefaultResponse,
   FilesDelete200Response,
@@ -26,7 +32,6 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import {
   FilesListOptionalParams,
   FilesCreateOptionalParams,
@@ -51,19 +56,7 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"],
-      statusDetails: p["status_details"],
-    })),
-  };
+  return deserializeListFilesResponse(result.body);
 }
 
 export async function list(
@@ -84,10 +77,7 @@ export function _createSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(file["file"], "base64"),
-        purpose: file["purpose"],
-      },
+      body: serializeCreateFileRequest(file),
     });
 }
 
@@ -98,16 +88,7 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    bytes: result.body["bytes"],
-    createdAt: new Date(result.body["createdAt"]),
-    filename: result.body["filename"],
-    purpose: result.body["purpose"],
-    status: result.body["status"],
-    statusDetails: result.body["status_details"],
-  };
+  return deserializeOpenAIFile(result.body);
 }
 
 export async function create(
@@ -136,16 +117,7 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    bytes: result.body["bytes"],
-    createdAt: new Date(result.body["createdAt"]),
-    filename: result.body["filename"],
-    purpose: result.body["purpose"],
-    status: result.body["status"],
-    statusDetails: result.body["status_details"],
-  };
+  return deserializeOpenAIFile(result.body);
 }
 
 export async function retrieve(
@@ -174,11 +146,7 @@ export async function _$deleteDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    deleted: result.body["deleted"],
-  };
+  return deserializeDeleteFileResponse(result.body);
 }
 
 /**
