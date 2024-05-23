@@ -30,7 +30,7 @@ const simpleTypeMap: Record<string, TypeMetadata> = {
   "byte-array": { name: "Uint8Array" },
   string: { name: "string" },
   any: { name: "Record<string, any>" },
-  unknown: { name: "unknown" }
+  unknown: { name: "any" }
 };
 
 function handleAnomymousModelName(type: Type) {
