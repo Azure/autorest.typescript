@@ -63,8 +63,8 @@ interface SwaggerInfo {
 const versionToleranceTests: VersionToleranceTest[] = [
   {
     name: "rlcClient",
-    initialSwagger: { input: "dpg_initial.json", output: "rlc-initial" },
-    updatedSwagger: { input: "dpg_update1.json", output: "rlc-updated" }
+    initialSwagger: { input: "dpg-initial.json", output: "rlc-initial" },
+    updatedSwagger: { input: "dpg-update1.json", output: "rlc-updated" }
   }
 ];
 
