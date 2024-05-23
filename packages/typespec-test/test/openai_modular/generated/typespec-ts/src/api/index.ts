@@ -7,6 +7,7 @@ export {
   OpenAIContext,
 } from "./openAIContext.js";
 export {
+  getAudioSpeech,
   getAudioTranscriptionAsPlainText,
   getAudioTranscriptionAsResponseObject,
   getAudioTranslationAsPlainText,
@@ -14,6 +15,5 @@ export {
   getCompletions,
   getChatCompletions,
   getImageGenerations,
-  getAudioSpeech,
   getEmbeddings,
 } from "./operations.js";

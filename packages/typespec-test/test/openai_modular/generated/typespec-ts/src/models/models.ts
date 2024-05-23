@@ -3,6 +3,31 @@
 
 import { ErrorModel } from "@azure-rest/core-client";
 
+/** The available voices for text-to-speech. */
+/** */
+export type AudioSpeechVoice =
+  | "alloy"
+  | "echo"
+  | "fable"
+  | "onyx"
+  | "nova"
+  | "shimmer";
+/** The supported audio output formats for text-to-speech. */
+/** */
+export type AudioSpeechOutputFormat = "mp3" | "opus" | "aac" | "flac";
+
+/** A representation of the request options that control the behavior of a text-to-speech operation. */
+export interface AudioSpeechOptions {
+  /** The text to generate audio for. The maximum length is 4096 characters. */
+  input: string;
+  /** The voice to use for text-to-speech. */
+  voice: AudioSpeechVoice;
+  /** The audio output format for the spoken text. By default, the MP3 format will be used. */
+  responseFormat?: AudioSpeechOutputFormat;
+  /** The speed of speech for generated audio. Values are valid in the range from 0.25 to 4.0, with 1.0 the default and higher values corresponding to faster speech. */
+  speed?: number;
+}
+
 /** Defines available options for the underlying response format of output transcription information. */
 /** */
 export type AudioTranscriptionFormat =
@@ -1654,31 +1679,6 @@ export interface ImageGenerationData {
    * Only provided with dall-3-models and only when revisions were made to the prompt.
    */
   revisedPrompt?: string;
-}
-
-/** The available voices for text-to-speech. */
-/** */
-export type AudioSpeechVoice =
-  | "alloy"
-  | "echo"
-  | "fable"
-  | "onyx"
-  | "nova"
-  | "shimmer";
-/** The supported audio output formats for text-to-speech. */
-/** */
-export type AudioSpeechOutputFormat = "mp3" | "opus" | "aac" | "flac";
-
-/** A representation of the request options that control the behavior of a text-to-speech operation. */
-export interface AudioSpeechOptions {
-  /** The text to generate audio for. The maximum length is 4096 characters. */
-  input: string;
-  /** The voice to use for text-to-speech. */
-  voice: AudioSpeechVoice;
-  /** The audio output format for the spoken text. By default, the MP3 format will be used. */
-  responseFormat?: AudioSpeechOutputFormat;
-  /** The speed of speech for generated audio. Values are valid in the range from 0.25 to 4.0, with 1.0 the default and higher values corresponding to faster speech. */
-  speed?: number;
 }
 
 /**

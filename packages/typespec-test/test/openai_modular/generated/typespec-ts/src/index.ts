@@ -3,6 +3,9 @@
 
 export { OpenAIClient, OpenAIClientOptions } from "./openAIClient.js";
 export {
+  AudioSpeechVoice,
+  AudioSpeechOutputFormat,
+  AudioSpeechOptions,
   AudioTranscriptionFormat,
   AudioTranscriptionOptions,
   AudioTranscription,
@@ -112,9 +115,6 @@ export {
   ImageGenerationOptions,
   ImageGenerations,
   ImageGenerationData,
-  AudioSpeechVoice,
-  AudioSpeechOutputFormat,
-  AudioSpeechOptions,
   EmbeddingsOptions,
   Embeddings,
   EmbeddingItem,
@@ -130,6 +130,7 @@ export {
   ChatCompletionsToolDefinitionUnion,
   ChatCompletionsNamedToolSelectionUnion,
   ChatFinishDetailsUnion,
+  GetAudioSpeechOptionalParams,
   GetAudioTranscriptionAsPlainTextOptionalParams,
   GetAudioTranscriptionAsResponseObjectOptionalParams,
   GetAudioTranslationAsPlainTextOptionalParams,
@@ -137,6 +138,5 @@ export {
   GetCompletionsOptionalParams,
   GetChatCompletionsOptionalParams,
   GetImageGenerationsOptionalParams,
-  GetAudioSpeechOptionalParams,
   GetEmbeddingsOptionalParams,
 } from "./models/index.js";

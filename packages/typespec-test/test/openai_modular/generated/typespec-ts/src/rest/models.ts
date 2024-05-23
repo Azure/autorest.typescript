@@ -1,6 +1,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** A representation of the request options that control the behavior of a text-to-speech operation. */
+export interface AudioSpeechOptions {
+  /** The text to generate audio for. The maximum length is 4096 characters. */
+  input: string;
+  /** The voice to use for text-to-speech. */
+  voice: AudioSpeechVoice;
+  /** The audio output format for the spoken text. By default, the MP3 format will be used. */
+  response_format?: AudioSpeechOutputFormat;
+  /** The speed of speech for generated audio. Values are valid in the range from 0.25 to 4.0, with 1.0 the default and higher values corresponding to faster speech. */
+  speed?: number;
+}
+
 /** The configuration information for an audio transcription request. */
 export interface AudioTranscriptionOptions {
   /**
@@ -964,18 +976,6 @@ export interface ImageGenerationOptions {
   user?: string;
 }
 
-/** A representation of the request options that control the behavior of a text-to-speech operation. */
-export interface AudioSpeechOptions {
-  /** The text to generate audio for. The maximum length is 4096 characters. */
-  input: string;
-  /** The voice to use for text-to-speech. */
-  voice: AudioSpeechVoice;
-  /** The audio output format for the spoken text. By default, the MP3 format will be used. */
-  response_format?: AudioSpeechOutputFormat;
-  /** The speed of speech for generated audio. Values are valid in the range from 0.25 to 4.0, with 1.0 the default and higher values corresponding to faster speech. */
-  speed?: number;
-}
-
 /**
  * The configuration information for an embeddings request.
  * Embeddings measure the relatedness of text strings and are commonly used for search, clustering,
@@ -1069,6 +1069,16 @@ export type ChatCompletionsToolDefinition =
 export type ChatCompletionsNamedToolSelection =
   | ChatCompletionsNamedToolSelectionParent
   | ChatCompletionsNamedFunctionToolSelection;
+/** The available voices for text-to-speech. */
+export type AudioSpeechVoice =
+  | "alloy"
+  | "echo"
+  | "fable"
+  | "onyx"
+  | "nova"
+  | "shimmer";
+/** The supported audio output formats for text-to-speech. */
+export type AudioSpeechOutputFormat = "mp3" | "opus" | "aac" | "flac";
 /** Defines available options for the underlying response format of output transcription information. */
 export type AudioTranscriptionFormat =
   | "json"
@@ -1150,13 +1160,3 @@ export type ImageGenerationQuality = "standard" | "hd";
  * Only configurable with dall-e-3 models.
  */
 export type ImageGenerationStyle = "natural" | "vivid";
-/** The available voices for text-to-speech. */
-export type AudioSpeechVoice =
-  | "alloy"
-  | "echo"
-  | "fable"
-  | "onyx"
-  | "nova"
-  | "shimmer";
-/** The supported audio output formats for text-to-speech. */
-export type AudioSpeechOutputFormat = "mp3" | "opus" | "aac" | "flac";

@@ -13,6 +13,24 @@ import {
 } from "./outputModels.js";
 
 /** The request has succeeded. */
+export interface GetAudioSpeech200Response extends HttpResponse {
+  status: "200";
+  /** Value may contain any sequence of octets */
+  body: Uint8Array;
+}
+
+export interface GetAudioSpeechDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface GetAudioSpeechDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+  headers: RawHttpHeaders & GetAudioSpeechDefaultHeaders;
+}
+
+/** The request has succeeded. */
 export interface GetAudioTranscriptionAsPlainText200Response
   extends HttpResponse {
   status: "200";
@@ -137,24 +155,6 @@ export interface GetImageGenerationsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & GetImageGenerationsDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface GetAudioSpeech200Response extends HttpResponse {
-  status: "200";
-  /** Value may contain any sequence of octets */
-  body: Uint8Array;
-}
-
-export interface GetAudioSpeechDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface GetAudioSpeechDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & GetAudioSpeechDefaultHeaders;
 }
 
 /** The request has succeeded. */
