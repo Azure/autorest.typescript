@@ -21,6 +21,7 @@ import {
 import { buildType } from "./helpers/typeHelpers.js";
 import { OperationPathAndDeserDetails } from "./interfaces.js";
 import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
+import { SerializerMap } from "./serialization/util.js";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -31,9 +32,14 @@ export function buildOperationFiles(
   client: Client,
   dpgContext: SdkContext,
   codeModel: ModularCodeModel,
-  needUnexpectedHelper: boolean = true
+  needUnexpectedHelper: boolean = true,
+  serializerMap: SerializerMap | undefined
 ) {
   const operationFiles = [];
+  const isMultiEndpoint = isRLCMultiEndpoint(dpgContext);
+  const clientType = isMultiEndpoint
+    ? `Client.${client.rlcClientName}`
+    : "Client";
   for (const operationGroup of client.operationGroups) {
     clearImportSets(codeModel.runtimeImports);
     const operationFileName =
@@ -100,10 +106,8 @@ export function buildOperationFiles(
     );
 
     const namedImports: string[] = [];
-    let clientType = "Client";
-    if (isRLCMultiEndpoint(dpgContext)) {
+    if (isMultiEndpoint) {
       namedImports.push(`Client`);
-      clientType = `Client.${client.rlcClientName}`;
       if (needUnexpectedHelper) {
         namedImports.push("UnexpectedHelper");
       }
@@ -138,13 +142,16 @@ export function buildOperationFiles(
         dpgContext,
         o,
         clientType,
+        serializerMap,
         codeModel.runtimeImports
       );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
+        dpgContext,
         o,
-        isRLCMultiEndpoint(dpgContext),
+        isMultiEndpoint,
         needUnexpectedHelper,
-        codeModel.runtimeImports
+        codeModel.runtimeImports,
+        serializerMap
       );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
