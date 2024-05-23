@@ -1,14 +1,14 @@
+import { NameType } from "@azure-tools/rlc-common";
+import { SourceFile } from "ts-morph";
+import { importLroCoreDependencies } from "./buildLroFiles.js";
+import { importModels, importPagingDependencies } from "./buildOperations.js";
+import { getClassicalOperation } from "./helpers/classicalOperationHelpers.js";
+import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
 import {
   Client,
   ModularCodeModel,
   OperationGroup
 } from "./modularCodeModel.js";
-import { NameType } from "@azure-tools/rlc-common";
-import { getClassicalOperation } from "./helpers/classicalOperationHelpers.js";
-import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
-import { SourceFile } from "ts-morph";
-import { importModels, importPagingDependencies } from "./buildOperations.js";
-import { importLroCoreDependencies } from "./buildLroFiles.js";
 
 export function buildClassicOperationFiles(
   codeModel: ModularCodeModel,

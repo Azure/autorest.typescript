@@ -1,3 +1,4 @@
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import {
   FunctionDeclarationStructure,
   OptionalKind,
@@ -7,7 +8,6 @@ import {
 } from "ts-morph";
 import { Client, OperationGroup } from "../modularCodeModel.js";
 import { getClassicalLayerPrefix, getClientName } from "./namingHelpers.js";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { getOperationFunction } from "./operationHelpers.js";
 
 export function getClassicalOperation(

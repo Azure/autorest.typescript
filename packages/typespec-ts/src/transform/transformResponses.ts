@@ -2,40 +2,40 @@
 // Licensed under the MIT License.
 
 import {
-  SdkClient,
-  listOperationGroups,
-  listOperationsInOperationGroup
-} from "@azure-tools/typespec-client-generator-core";
-import {
-  ResponseHeaderSchema,
+  getLroLogicalResponseName,
+  Imports,
   OperationResponse,
+  ResponseHeaderSchema,
   ResponseMetadata,
   Schema,
-  SchemaContext,
-  getLroLogicalResponseName,
-  Imports
+  SchemaContext
 } from "@azure-tools/rlc-common";
+import {
+  listOperationGroups,
+  listOperationsInOperationGroup,
+  SdkClient
+} from "@azure-tools/typespec-client-generator-core";
 import { getDoc, ignoreDiagnostics, isVoidType } from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
   HttpOperationResponse
 } from "@typespec/http";
+import { SdkContext } from "../utils/interfaces.js";
 import {
+  getBinaryType,
   getImportedModelName,
-  getTypeName,
   getSchemaForType,
-  getBinaryType
+  getTypeName
 } from "../utils/modelUtils.js";
 import {
   getOperationGroupName,
-  getOperationStatuscode,
-  isBinaryPayload,
   getOperationLroOverload,
   getOperationName,
+  getOperationStatuscode,
+  isBinaryPayload,
   sortedOperationResponses
 } from "../utils/operationUtil.js";
-import { SdkContext } from "../utils/interfaces.js";
 
 export function transformToResponseTypes(
   client: SdkClient,

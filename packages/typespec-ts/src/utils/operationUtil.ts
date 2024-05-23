@@ -2,14 +2,28 @@
 // Licensed under the MIT License.
 
 import {
-  NameType,
-  Paths,
-  ResponseMetadata,
-  ResponseTypes,
   getLroLogicalResponseName,
   getResponseTypeName,
-  normalizeName
+  NameType,
+  normalizeName,
+  OperationLroDetail,
+  OPERATION_LRO_HIGH_PRIORITY,
+  OPERATION_LRO_LOW_PRIORITY,
+  Paths,
+  ResponseMetadata,
+  ResponseTypes
 } from "@azure-tools/rlc-common";
+import {
+  getLroMetadata,
+  getPagedResult,
+  PagedResultMetadata
+} from "@azure-tools/typespec-azure-core";
+import {
+  getWireName,
+  listOperationGroups,
+  listOperationsInOperationGroup,
+  SdkClient
+} from "@azure-tools/typespec-client-generator-core";
 import {
   ignoreDiagnostics,
   Model,
@@ -18,32 +32,16 @@ import {
   Type
 } from "@typespec/compiler";
 import {
+  getHttpOperation,
   HttpOperation,
   HttpOperationParameter,
   HttpOperationResponse,
-  HttpStatusCodesEntry,
-  getHttpOperation
+  HttpStatusCodesEntry
 } from "@typespec/http";
-import {
-  getLroMetadata,
-  getPagedResult,
-  PagedResultMetadata
-} from "@azure-tools/typespec-azure-core";
-import {
-  SdkClient,
-  getWireName,
-  listOperationGroups,
-  listOperationsInOperationGroup
-} from "@azure-tools/typespec-client-generator-core";
-import {
-  OperationLroDetail,
-  OPERATION_LRO_LOW_PRIORITY,
-  OPERATION_LRO_HIGH_PRIORITY
-} from "@azure-tools/rlc-common";
-import { isByteOrByteUnion } from "./modelUtils.js";
 import { SdkContext } from "./interfaces.js";
-import { getOperationNamespaceInterfaceName } from "./namespaceUtils.js";
 import { KnownMediaType, knownMediaType } from "./mediaTypes.js";
+import { isByteOrByteUnion } from "./modelUtils.js";
+import { getOperationNamespaceInterfaceName } from "./namespaceUtils.js";
 
 // Sorts the responses by status code
 export function sortedOperationResponses(responses: HttpOperationResponse[]) {
