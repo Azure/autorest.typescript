@@ -47,10 +47,14 @@ export interface ChatCompletionFunctionCallOption {
 }
 
 // @public (undocumented)
+export interface ChatCompletionFunctionParameters extends Record<string, any> {
+}
+
+// @public (undocumented)
 export interface ChatCompletionFunctions {
     description?: string;
     name: string;
-    parameters: Record<string, any>;
+    parameters: ChatCompletionFunctionParameters;
 }
 
 // @public (undocumented)

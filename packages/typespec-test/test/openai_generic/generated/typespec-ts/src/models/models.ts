@@ -770,8 +770,10 @@ export interface ChatCompletionFunctions {
    * about the format.\n\nTo describe a function that accepts no parameters, provide the value
    * `{\"type\": \"object\", \"properties\": {}}`.
    */
-  parameters: Record<string, any>;
+  parameters: ChatCompletionFunctionParameters;
 }
+
+export interface ChatCompletionFunctionParameters extends Record<string, any> {}
 
 export interface ChatCompletionFunctionCallOption {
   /** The name of the function to call. */
