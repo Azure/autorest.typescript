@@ -14,7 +14,7 @@ importers:
       '@azure-tools/codegen': ^2.9.1
       '@azure-tools/rlc-common': workspace:^0.29.0
       '@azure-tools/test-recorder': ^3.0.0
-      '@azure/abort-controller': ^1.0.1
+      '@azure/abort-controller': ^2.1.2
       '@azure/core-auth': ^1.6.0
       '@azure/core-client': ^1.6.1
       '@azure/core-http': ^3.0.0
@@ -100,7 +100,7 @@ importers:
       ts-morph: 15.1.0
     devDependencies:
       '@azure-tools/test-recorder': 3.0.0
-      '@azure/abort-controller': 1.1.0
+      '@azure/abort-controller': 2.1.2
       '@azure/core-util': 1.5.0
       '@azure/core-xml': 1.3.4
       '@microsoft.azure/autorest.testserver': 3.3.48
@@ -349,7 +349,7 @@ packages:
     resolution: {integrity: sha512-ozTDPBVUDR5eOnMIwhggbnVmOrka4fXCs8n8mvUo4WLLc38kki6bAOByDoVZZPz/pZy2jMt2kwfpvy/UjALj6w==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@azure/abort-controller': 2.0.0
+      '@azure/abort-controller': 2.1.2
       '@azure/core-auth': 1.6.0
       '@azure/core-rest-pipeline': 1.14.0
       '@azure/core-tracing': 1.0.1
@@ -363,7 +363,7 @@ packages:
     resolution: {integrity: sha512-MXduH8EZCeH3Z4rMYgTlcI0O+iU9g6R0JKO9CyHni6gWulgBw+jFDB5vv3N1NbQ+xr1AvGjv//nYrqLTMvcSFg==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@azure/abort-controller': 2.0.0
+      '@azure/abort-controller': 2.1.2
       '@azure/core-auth': 1.6.0
       '@azure/core-rest-pipeline': 1.14.0
       '@azure/core-tracing': 1.0.1
@@ -620,12 +620,19 @@ packages:
     engines: {node: '>=18.0.0'}
     dependencies:
       tslib: 2.6.2
+    dev: true
+
+  /@azure/abort-controller/2.1.2:
+    resolution: {integrity: sha512-nBrLsEWm4J2u5LpAPjxADTlq3trDgVZZXHNKabeXZtpq3d3AbN/KGO82R87rdDz5/lYB024rtEf10/q0urNgsA==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      tslib: 2.6.2
 
   /@azure/core-auth/1.6.0:
     resolution: {integrity: sha512-3X9wzaaGgRaBCwhLQZDtFp5uLIXCPrGbwJNWPPugvL4xbIGgScv77YzzxToKGLAKvG9amDoofMoP+9hsH1vs1w==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@azure/abort-controller': 2.0.0
+      '@azure/abort-controller': 2.1.2
       '@azure/core-util': 1.5.0
       tslib: 2.6.2
 
@@ -688,7 +695,7 @@ packages:
     resolution: {integrity: sha512-KbkVHWhLnlDQRtIZGCPQFB6y2xgeL7p5iICRYTCDjHBpWX9W/I3HkkvbvK4SordNsKwWbLKfPLrOJKJdsJocEQ==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@azure/abort-controller': 2.0.0
+      '@azure/abort-controller': 2.1.2
       '@azure/core-util': 1.5.0
       '@azure/logger': 1.0.4
       tslib: 2.6.2
@@ -704,7 +711,7 @@ packages:
     resolution: {integrity: sha512-Tp4M6NsjCmn9L5p7HsW98eSOS7A0ibl3e5ntZglozT0XuD/0y6i36iW829ZbBq0qihlGgfaeFpkLjZ418KDm1Q==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@azure/abort-controller': 2.0.0
+      '@azure/abort-controller': 2.1.2
       '@azure/core-auth': 1.6.0
       '@azure/core-tracing': 1.0.1
       '@azure/core-util': 1.5.0
