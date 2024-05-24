@@ -50,7 +50,7 @@ export interface ChatCompletionFunctionCallOption {
 export interface ChatCompletionFunctions {
     description?: string;
     name: string;
-    parameters: Record<string, unknown>;
+    parameters: Record<string, any>;
 }
 
 // @public (undocumented)

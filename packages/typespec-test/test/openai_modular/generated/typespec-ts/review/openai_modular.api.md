@@ -689,7 +689,7 @@ export type FunctionCallPreset = "auto" | "none";
 export interface FunctionDefinition {
     description?: string;
     name: string;
-    parameters?: unknown;
+    parameters?: any;
 }
 
 // @public
