@@ -232,7 +232,7 @@ function handleDictType(type: Type): TypeMetadata {
   if (!type.elementType) {
     throw new Error("Unable to process dict without elemetType info");
   }
-  if (type.name && type.properties && type.properties.length > 0) {
+  if (type.name && type.name !== "Record") {
     return {
       name: type.name
     };

@@ -85,7 +85,8 @@ function extractRLCOptions(
     sourceFrom: "TypeSpec",
     enableOperationGroup,
     enableModelNamespace,
-    hierarchyClient
+    hierarchyClient,
+    azureArm: dpgContext.arm
   };
 }
 
@@ -128,6 +129,14 @@ function processAuth(program: Program) {
               code: "no-credential-scopes",
               target: NoTarget
             });
+          }
+          // ignore the user_impersonation scope
+          if (
+            flow.scopes.length === 1 &&
+            flow.scopes[0] &&
+            flow.scopes[0].value.toLowerCase() === "user_impersonation"
+          ) {
+            return securityInfo;
           }
           securityInfo.credentialScopes.push(
             ...flow.scopes.map((item) => {
