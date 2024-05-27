@@ -772,8 +772,7 @@ export interface ChatCompletionFunctions {
   parameters: ChatCompletionFunctionParameters;
 }
 
-export interface ChatCompletionFunctionParameters
-  extends Record<string, unknown> {}
+export interface ChatCompletionFunctionParameters extends Record<string, any> {}
 
 export interface ChatCompletionFunctionCallOption {
   /** The name of the function to call. */

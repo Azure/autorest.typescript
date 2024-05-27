@@ -220,7 +220,7 @@ export interface IsUnknownAdditionalPropertiesDerived
 
 /** The model extends from Record<unknown> with a discriminator. */
 export interface ExtendsUnknownAdditionalPropertiesDiscriminated
-  extends Record<string, unknown> {
+  extends Record<string, any> {
   /** The name property */
   name: string;
   /** the discriminator possible values: derived */
@@ -239,7 +239,7 @@ export interface ExtendsUnknownAdditionalPropertiesDiscriminatedDerived
 
 /** The model extends from Record<unknown> type. */
 export interface ExtendsUnknownAdditionalProperties
-  extends Record<string, unknown> {
+  extends Record<string, any> {
   /** The name property */
   name: string;
 }

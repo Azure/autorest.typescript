@@ -660,7 +660,7 @@ export interface FunctionDefinition {
    */
   description?: string;
   /** The parameters the function accepts, described as a JSON Schema object. */
-  parameters?: unknown;
+  parameters?: any;
 }
 
 /**

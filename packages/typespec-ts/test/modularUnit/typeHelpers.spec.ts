@@ -497,10 +497,10 @@ describe("typeHelpers", () => {
       expect(result.name).to.equal("number");
     });
 
-    it("should return `unknown` for unknown types", () => {
+    it("should return `any` for unknown types", () => {
       const type: Type = { type: "unknown" as any }; // Forcing an unknown type.
       const result = getType(type);
-      expect(result.name).to.equal("unknown");
+      expect(result.name).to.equal("any");
     });
 
     it("should handle polymorphism base", () => {
