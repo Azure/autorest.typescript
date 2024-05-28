@@ -30,5 +30,8 @@ export default function createClient(options: ClientOptions = {}): BytesClient {
   const client = getClient(endpointUrl, options) as BytesClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning("API Version Policy is not supported at client level, please set it at operation level.");
+  }
   return client;
 }
