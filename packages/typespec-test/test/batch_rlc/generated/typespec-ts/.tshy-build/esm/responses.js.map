@@ -1,1 +1,0 @@
-{"version":3,"file":"responses.js","sourceRoot":"","sources":["../../src/responses.ts"],"names":[],"mappings":"AAAA,uCAAuC;AACvC,kCAAkC","sourcesContent":["// Copyright (c) Microsoft Corporation.\n// Licensed under the MIT license.\n\nimport { HttpResponse } from \"@azure-rest/core-client\";\n"]}

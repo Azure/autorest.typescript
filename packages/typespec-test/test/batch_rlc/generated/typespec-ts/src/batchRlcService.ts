@@ -18,7 +18,7 @@ export default function createClient(
   options: ClientOptions = {},
 ): BatchRlcServiceClient {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
+  options.apiVersion = options.apiVersion ?? "2024-02-01.19.0";
   const userAgentInfo = `azsdk-js-batch-rlc-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -32,6 +32,11 @@ export default function createClient(
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info,
     },
+    telemetryOptions: {
+      clientRequestIdHeaderName:
+        options.telemetryOptions?.clientRequestIdHeaderName ??
+        "client-request-id",
+    },
     credentials: {
       scopes: options.credentials?.scopes ?? [
         "https://batch.core.windows.net//.default",
@@ -44,8 +49,6 @@ export default function createClient(
     credentials,
     options,
   ) as BatchRlcServiceClient;
-
-  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }
