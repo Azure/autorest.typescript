@@ -212,8 +212,11 @@ const buildPathReturn_WithDefault = () => {
     const client = getClient(endpointUrl, options) as testClient;
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  
-    return client;          
+    if (options.apiVersion) {
+      logger.warning("API Version Policy is not supported at client level, please set it at operation level.");
+    }
+    
+    return client;       
   }`;
 };
 
@@ -255,8 +258,11 @@ const buildPathReturn_WithoutDefault = () => {
     const client = getClient(endpointUrl, options) as testClient;
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  
-    return client;          
+    if (options.apiVersion) {
+      logger.warning("API Version Policy is not supported at client level, please set it at operation level.");
+    }
+
+    return client;       
   }`;
 };
 

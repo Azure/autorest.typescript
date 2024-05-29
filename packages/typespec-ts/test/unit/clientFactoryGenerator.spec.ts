@@ -47,7 +47,10 @@ describe("Client Factory generation", () => {
         const client = getClient(endpointUrl, options) as testClient;
 
         client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-        
+        if (options.apiVersion) {
+          logger.warning("API Version Policy is not supported at client level, please set it at operation level.");
+        }
+
         return client;
     }
     `
@@ -104,7 +107,10 @@ describe("Client Factory generation", () => {
             const client = getClient(endpointUrl, options) as testClient;
 
             client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-          
+            if (options.apiVersion) {
+              logger.warning("API Version Policy is not supported at client level, please set it at operation level.");
+            }
+    
             return client;
         }
         `
@@ -176,7 +182,10 @@ describe("Client Factory generation", () => {
               const client = getClient(endpointUrl, options) as testClient;
 
               client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-            
+              if (options.apiVersion) {
+                logger.warning("API Version Policy is not supported at client level, please set it at operation level.");
+              }
+      
               return client;
           }
           `
@@ -246,7 +255,10 @@ describe("Client Factory generation", () => {
               const client = getClient(endpointUrl, options) as testClient;
 
               client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-            
+              if (options.apiVersion) {
+                logger.warning("API Version Policy is not supported at client level, please set it at operation level.");
+              }
+      
               return client;
           }
           `
@@ -320,7 +332,10 @@ describe("Client Factory generation", () => {
               const client = getClient(endpointUrl, options) as testClient;
               
               client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-            
+              if (options.apiVersion) {
+                logger.warning("API Version Policy is not supported at client level, please set it at operation level.");
+              }
+      
               return client;
           }
           `
@@ -368,7 +383,10 @@ describe("Client Factory generation", () => {
         const client = getClient(endpointUrl, options) as testClient;
 
         client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-        
+        if (options.apiVersion) {
+          logger.warning("API Version Policy is not supported at client level, please set it at operation level.");
+        }
+
         return client;
     }
     `
@@ -457,6 +475,9 @@ describe("Client Factory generation", () => {
         const client = getClient(endpointUrl, credentials, options) as testClient;
 
         client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+        if (options.apiVersion) {
+          logger.warning("API Version Policy is not supported at client level, please set it at operation level.");
+        }
 
         return client;
       }
@@ -516,7 +537,10 @@ describe("Client Factory generation", () => {
         const client = getClient(endpointUrl, credentials, options) as testClient;
 
         client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-        
+        if (options.apiVersion) {
+          logger.warning("API Version Policy is not supported at client level, please set it at operation level.");
+        }
+
         return client;
     }
     `
