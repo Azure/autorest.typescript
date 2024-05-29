@@ -3,6 +3,11 @@ import "./main.tsp";
 
 using Azure.ClientGenerator.Core;
 
+@@client(Azure.Batch.Batch, {
+  name: "BatchClient",
+  service: Azure.Batch.Batch,
+});
+
 // operation overrides
 @@access(Azure.Batch.ListOperation, Access.internal, "java");
 @@access(Azure.Batch.ReadOperation, Access.internal, "java");
