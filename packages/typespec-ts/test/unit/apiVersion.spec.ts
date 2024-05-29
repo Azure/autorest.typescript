@@ -213,7 +213,7 @@ const buildPathReturn_WithDefault = () => {
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
     if (options.apiVersion) {
-      logger.warning("API Version Policy is not supported at client level, please set it at operation level.");
+      logger.warning("This client does not support client api-version, please change it at the operation level");
     }
     
     return client;       
@@ -259,7 +259,7 @@ const buildPathReturn_WithoutDefault = () => {
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
     if (options.apiVersion) {
-      logger.warning("API Version Policy is not supported at client level, please set it at operation level.");
+      logger.warning("This client does not support client api-version, please change it at the operation level");
     }
 
     return client;       
