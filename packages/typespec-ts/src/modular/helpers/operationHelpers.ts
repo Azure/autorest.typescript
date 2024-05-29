@@ -515,7 +515,11 @@ function getRequestParameters(
       param.location === "body"
     ) {
       parametersImplementation[param.location].push({
-        paramMap: getParameterMap(param, runtimeImports),
+        paramMap: getParameterMap(
+          param,
+          runtimeImports,
+          param.location === "header"
+        ),
         param
       });
     }
@@ -675,10 +679,11 @@ function getEncodingFormat(type: { format?: string }) {
  */
 export function getParameterMap(
   param: Parameter | Property,
-  runtimeImports: RuntimeImports
+  runtimeImports: RuntimeImports,
+  isHeader: boolean = false
 ): string {
   if (isConstant(param)) {
-    return getConstantValue(param);
+    return getConstantValue(param, isHeader);
   }
 
   if (hasCollectionFormatInfo((param as any).location, (param as any).format)) {
@@ -687,11 +692,11 @@ export function getParameterMap(
 
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
-    return getOptional(param, runtimeImports);
+    return getOptional(param, runtimeImports, isHeader);
   }
 
   if (isRequired(param)) {
-    return getRequired(param, runtimeImports);
+    return getRequired(param, runtimeImports, isHeader);
   }
 
   throw new Error(`Parameter ${param.clientName} is not supported`);
@@ -759,16 +764,28 @@ function isRequired(param: Parameter | Property): param is RequiredType {
   return !param.optional;
 }
 
-function getRequired(param: RequiredType, runtimeImports: RuntimeImports) {
+function getRequired(
+  param: RequiredType,
+  runtimeImports: RuntimeImports,
+  isHeader: boolean = false
+) {
+  const headerRequestOptionPrefix = isHeader
+    ? `options.requestOptions?.headers?.["${param.restApiName}"] ?? `
+    : "";
+  const headerRequestOptionSuffix = isHeader ? " as any" : "";
   if (param.type.type === "model") {
-    return `"${param.restApiName}": {${getRequestModelMapping(
+    return `"${
+      param.restApiName
+    }": ${headerRequestOptionPrefix}{${getRequestModelMapping(
       param.type,
       param.clientName,
       runtimeImports,
       [param.type]
-    ).join(",")}}`;
+    ).join(",")}}${headerRequestOptionSuffix}`;
   }
-  return `"${param.restApiName}": ${serializeRequestValue(
+  return `"${
+    param.restApiName
+  }": ${headerRequestOptionPrefix}${serializeRequestValue(
     param.type,
     param.clientName,
     runtimeImports,
@@ -779,14 +796,14 @@ function getRequired(param: RequiredType, runtimeImports: RuntimeImports) {
       param.type.type === "datetime"
       ? "headerDefault"
       : param.format
-  )}`;
+  )}${headerRequestOptionSuffix}`;
 }
 
 type ConstantType = (Parameter | Property) & {
   type: { type: "constant"; value: string };
 };
 
-function getConstantValue(param: ConstantType) {
+function getConstantValue(param: ConstantType, isHeader: boolean = false) {
   const defaultValue =
     param.clientDefaultValue ?? param.type.clientDefaultValue;
 
@@ -795,8 +812,11 @@ function getConstantValue(param: ConstantType) {
       `Constant ${param.clientName} does not have a default value`
     );
   }
-
-  return `"${param.restApiName}": "${defaultValue}"`;
+  const headerRequestOptionPrefix = isHeader
+    ? `options.requestOptions?.headers?.["${param.restApiName}"] ?? `
+    : "";
+  const headerRequestOptionSuffix = isHeader ? " as any" : "";
+  return `"${param.restApiName}": ${headerRequestOptionPrefix}"${defaultValue}"${headerRequestOptionSuffix}`;
 }
 
 function isConstant(param: Parameter | Property): param is ConstantType {
@@ -813,26 +833,38 @@ function isOptional(param: Parameter | Property): param is OptionalType {
   return Boolean(param.optional);
 }
 
-function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
+function getOptional(
+  param: OptionalType,
+  runtimeImports: RuntimeImports,
+  isHeader: boolean = false
+) {
+  const headerRequestOptionPrefix = isHeader
+    ? `options.requestOptions?.headers?.["${param.restApiName}"] ?? `
+    : "";
+  const headerRequestOptionSuffix = isHeader ? " as any" : "";
   if (param.type.type === "model") {
-    return `"${param.restApiName}": {${getRequestModelMapping(
+    return `"${
+      param.restApiName
+    }": ${headerRequestOptionPrefix}{${getRequestModelMapping(
       param.type,
       "options?." + param.clientName + "?",
       runtimeImports,
       [param.type]
-    ).join(", ")}}`;
+    ).join(", ")}}${headerRequestOptionSuffix}`;
   }
   if (
     param.restApiName === "api-version" &&
     (param as any).location === "query"
   ) {
-    return `"${param.restApiName}": ${
+    return `"${param.restApiName}": ${headerRequestOptionPrefix}${
       param.clientDefaultValue
         ? `options?.${param.clientName} ?? "${param.clientDefaultValue}"`
         : `options?.${param.clientName}`
-    }`;
+    }${headerRequestOptionSuffix}`;
   }
-  return `"${param.restApiName}": ${serializeRequestValue(
+  return `"${
+    param.restApiName
+  }": ${headerRequestOptionPrefix}${serializeRequestValue(
     param.type,
     `options?.${param.clientName}`,
     runtimeImports,
@@ -843,7 +875,7 @@ function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
       param.type.type === "datetime"
       ? "headerDefault"
       : param.format
-  )}`;
+  )}${headerRequestOptionSuffix}`;
 }
 
 /**
