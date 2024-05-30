@@ -410,8 +410,13 @@ export function getClientFactoryBody(
 
   let apiVersionPolicyStatement = "";
   if (model.apiVersionInfo?.definedPosition !== "query") {
-    apiVersionPolicyStatement =
-      "client.pipeline.removePolicy({name: 'ApiVersionPolicy'})";
+    apiVersionPolicyStatement = `client.pipeline.removePolicy({name: 'ApiVersionPolicy'});`;
+    if (flavor === "azure") {
+      apiVersionPolicyStatement += `
+      if (options.apiVersion) {
+        logger.warning("This client does not support client api-version, please change it at the operation level");
+      }`;
+    }
   }
   let returnStatement = `return client;`;
 
