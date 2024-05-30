@@ -1,3 +1,14 @@
+## 0.29.0 (2024-05-30)
+
+- [Feature] Treat typespec unknown as any in Modular. Please refer to [#2546](https://github.com/Azure/autorest.typescript/pull/2546).
+- [Feature] Support void type in request and response body. Please refer to [#2521](https://github.com/Azure/autorest.typescript/pull/2521).
+- [Feature] Upgrade typespec compiler version to 0.56.x. Please refer to [#2503](https://github.com/Azure/autorest.typescript/pull/2503)
+- [Feature] Additional properties for Modular legacy client support. Please refer to [#2469](https://github.com/Azure/autorest.typescript/pull/2469).
+- [Feature] Support new long running operation generation in Modular. Please refer to [#2473](https://github.com/Azure/autorest.typescript/pull/2473).
+- [Feature] Upgrade test-recorder dependency verison to support DefaultAzureCredential. Please refer to [#2518](https://github.com/Azure/autorest.typescript/pull/2518).
+- [Bugfix] Fix uber parent for multiple parents inheritance issue. Please refer to [#2527](https://github.com/Azure/autorest.typescript/pull/2527).
+- [Bugfix] Fix empty named model generation issue. Please refer to [#2536](https://github.com/Azure/autorest.typescript/pull/2536).
+
 ## 0.28.0 (2024-04-30)
 
 - [Feature] Generate types for new multipart/form-data design in RLC. Please refer to [#2455](https://github.com/Azure/autorest.typescript/pull/2455).
