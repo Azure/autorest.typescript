@@ -6,6 +6,7 @@
 - [Feature] Additional properties for Modular legacy client support. Please refer to [#2469](https://github.com/Azure/autorest.typescript/pull/2469).
 - [Feature] Support new long running operation generation in Modular. Please refer to [#2473](https://github.com/Azure/autorest.typescript/pull/2473).
 - [Feature] Upgrade test-recorder dependency verison to support DefaultAzureCredential. Please refer to [#2518](https://github.com/Azure/autorest.typescript/pull/2518).
+- [Feature] log warning if client level apiVersion is not supported. Please refer to [#2549](ttps://github.com/Azure/autorest.typescript/pull/2549).
 - [Bugfix] Fix uber parent for multiple parents inheritance issue. Please refer to [#2527](https://github.com/Azure/autorest.typescript/pull/2527).
 - [Bugfix] Fix empty named model generation issue. Please refer to [#2536](https://github.com/Azure/autorest.typescript/pull/2536).
 
