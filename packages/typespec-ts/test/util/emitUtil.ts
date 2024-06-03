@@ -256,14 +256,18 @@ export async function emitResponsesFromTypeSpec(
   tspContent: string,
   needAzureCore: boolean = false,
   withRawContent: boolean = false,
-  needTCGC: boolean = false
+  needTCGC: boolean = false,
+  withVersionedApiVersion: boolean = false,
+  needArmTemplate: boolean = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
     true,
     needAzureCore,
     needTCGC,
-    withRawContent
+    withRawContent,
+    withVersionedApiVersion,
+    needArmTemplate
   );
   const dpgContext = createDpgContextTestHelper(context.program);
   const importSet = initInternalImports();
