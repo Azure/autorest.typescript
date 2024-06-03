@@ -123,7 +123,7 @@ function transformHeaders(
     return;
   }
 
-  const rlcHeaders = [];
+  const rlcHeaders: Map<string, ResponseHeaderSchema> = new Map();
   // Current RLC client can't represent different headers per content type.
   // So we merge headers here, and report any duplicates.
   // It may be possible in principle to not error for identically declared
@@ -152,11 +152,11 @@ function transformHeaders(
         required: !value?.optional,
         description: getDoc(dpgContext.program, value!)
       };
-      rlcHeaders.push(header);
+      rlcHeaders.set(header.name, header);
     }
   }
 
-  return rlcHeaders.length ? rlcHeaders : undefined;
+  return rlcHeaders.size ? Array.from(rlcHeaders.values()) : undefined;
 }
 
 function transformBody(
