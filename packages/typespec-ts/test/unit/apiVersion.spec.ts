@@ -126,7 +126,12 @@ const buildDefaultReturn = (
       : ""
     : `options.apiVersion = options.apiVersion ?? "2022-05-15-preview";`;
   const apiVersionDef = !hasQueryDefinition
-    ? `\n    client.pipeline.removePolicy({ name: "ApiVersionPolicy" });\n    \n`
+    ? `\n    client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+             if (options.apiVersion) {
+             logger.warning(
+               "This client does not support client api-version, please change it at the operation level",
+                );
+             }\n    \n`
     : ``;
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
@@ -212,8 +217,11 @@ const buildPathReturn_WithDefault = () => {
     const client = getClient(endpointUrl, options) as testClient;
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  
-    return client;          
+    if (options.apiVersion) {
+      logger.warning("This client does not support client api-version, please change it at the operation level");
+    }
+    
+    return client;       
   }`;
 };
 
@@ -255,8 +263,11 @@ const buildPathReturn_WithoutDefault = () => {
     const client = getClient(endpointUrl, options) as testClient;
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  
-    return client;          
+    if (options.apiVersion) {
+      logger.warning("This client does not support client api-version, please change it at the operation level");
+    }
+
+    return client;       
   }`;
 };
 

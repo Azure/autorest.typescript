@@ -47,6 +47,11 @@ export default function createClient(
   const client = getClient(endpointUrl, credentials, options) as BatchContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
 
   return client;
 }

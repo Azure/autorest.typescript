@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-ts",
-  "version": "0.28.0",
+  "version": "0.29.0",
   "description": "An experimental TypeSpec emitter for TypeScript RLC",
   "main": "dist/src/index.js",
   "type": "module",
@@ -81,6 +81,9 @@
     "@typespec/ts-http-runtime": "1.0.0-alpha.20240314.2",
     "@azure-tools/typespec-azure-core": ">=0.42.0 <1.0.0",
     "@azure-tools/typespec-client-generator-core": ">=0.42.2 <1.0.0",
+    "@azure-tools/typespec-azure-resource-manager": ">=0.42.1 <1.0.0",
+    "@azure-tools/typespec-autorest": ">=0.42.1 <1.0.0",
+    "@typespec/openapi": ">=0.56.0, <1.0.0",
     "@typespec/compiler": ">=0.56.0 <1.0.0",
     "@typespec/http": ">=0.56.0 <1.0.0",
     "@typespec/rest": ">=0.56.0 <1.0.0",
@@ -98,7 +101,7 @@
   "dependencies": {
     "prettier": "^3.1.0",
     "tslib": "^2.3.1",
-    "@azure-tools/rlc-common": "workspace:^0.28.0",
+    "@azure-tools/rlc-common": "workspace:^0.29.0",
     "ts-morph": "^15.1.0",
     "fs-extra": "^11.1.0"
   },
