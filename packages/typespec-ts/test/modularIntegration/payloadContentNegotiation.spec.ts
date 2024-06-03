@@ -53,4 +53,14 @@ describe("Payload Content Negotiation Client", () => {
       pngFile.toString()
     );
   });
+
+  it("should get application/json for different body in content negotiation", async () => {
+    const result = await client.differentBody.getAvatarAsAny({
+      accept: "wrongType" 
+    });
+    assert.strictEqual(
+      uint8ArrayToString(result.content, "utf-8"),
+      pngFile.toString()
+    );
+  });
 });
