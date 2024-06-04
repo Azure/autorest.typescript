@@ -30,7 +30,7 @@ const simpleTypeMap: Record<string, TypeMetadata> = {
   "byte-array": { name: "Uint8Array" },
   string: { name: "string" },
   any: { name: "Record<string, any>" },
-  unknown: { name: "unknown" }
+  unknown: { name: "any" }
 };
 
 function handleAnomymousModelName(type: Type) {
@@ -232,7 +232,7 @@ function handleDictType(type: Type): TypeMetadata {
   if (!type.elementType) {
     throw new Error("Unable to process dict without elemetType info");
   }
-  if (type.name && type.properties && type.properties.length > 0) {
+  if (type.name && type.name !== "Record") {
     return {
       name: type.name
     };

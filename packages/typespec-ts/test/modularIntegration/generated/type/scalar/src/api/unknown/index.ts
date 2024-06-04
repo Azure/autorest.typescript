@@ -27,7 +27,7 @@ export function _unknownGetSend(
 
 export async function _unknownGetDeserialize(
   result: UnknownGet200Response,
-): Promise<unknown> {
+): Promise<any> {
   if (result.status !== "200") {
     throw createRestError(result);
   }
@@ -39,14 +39,14 @@ export async function _unknownGetDeserialize(
 export async function unknownGet(
   context: Client,
   options: UnknownGetOptionalParams = { requestOptions: {} },
-): Promise<unknown> {
+): Promise<any> {
   const result = await _unknownGetSend(context, options);
   return _unknownGetDeserialize(result);
 }
 
 export function _unknownPutSend(
   context: Client,
-  body: unknown,
+  body: any,
   options: UnknownPutOptionalParams = { requestOptions: {} },
 ): StreamableMethod<UnknownPut204Response> {
   return context
@@ -67,7 +67,7 @@ export async function _unknownPutDeserialize(
 /** put unknown value */
 export async function unknownPut(
   context: Client,
-  body: unknown,
+  body: any,
   options: UnknownPutOptionalParams = { requestOptions: {} },
 ): Promise<void> {
   const result = await _unknownPutSend(context, body, options);

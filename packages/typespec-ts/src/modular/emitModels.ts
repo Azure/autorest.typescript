@@ -36,7 +36,7 @@ function isAnonymousModel(t: Type) {
 }
 
 export function isModelWithAdditionalProperties(t: Type) {
-  return t.type === "dict" && t.properties?.length && t.properties.length > 0;
+  return t.type === "dict" && t.name !== "Record";
 }
 
 function getCoreClientErrorType(name: string, coreClientTypes: Set<string>) {
@@ -254,12 +254,13 @@ function addExtendedDictInfo(
   compatibilityMode: boolean = false
 ) {
   if (
-    model.properties &&
-    model.properties.length > 0 &&
-    model.elementType &&
-    model.properties?.every((p) => {
-      return getType(model.elementType!)?.name.includes(getType(p.type).name);
-    })
+    (model.properties &&
+      model.properties.length > 0 &&
+      model.elementType &&
+      model.properties?.every((p) => {
+        return getType(model.elementType!)?.name.includes(getType(p.type).name);
+      })) ||
+    (model.properties?.length === 0 && model.elementType)
   ) {
     modelInterface.extends.push(
       `Record<string, ${getType(model.elementType!).name ?? "any"}>`

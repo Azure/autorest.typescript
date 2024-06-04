@@ -56,25 +56,25 @@ export interface StringLiteralProperty {
 /** Model with a property unknown, and the data is an array. */
 export interface UnknownArrayProperty {
   /** Property */
-  property: unknown;
+  property: any;
 }
 
 /** Model with a property unknown, and the data is a dictionnary. */
 export interface UnknownDictProperty {
   /** Property */
-  property: unknown;
+  property: any;
 }
 
 /** Model with a property unknown, and the data is a int32. */
 export interface UnknownIntProperty {
   /** Property */
-  property: unknown;
+  property: any;
 }
 
 /** Model with a property unknown, and the data is a string. */
 export interface UnknownStringProperty {
   /** Property */
-  property: unknown;
+  property: any;
 }
 
 /** Model with a property never. (This property should not be included). */

@@ -63,9 +63,7 @@ export function transformObject(
     description: metadata.description || undefined,
     schema,
     properties: schema.properties
-      ? schema.properties.map((prop) =>
-          transformProperty(prop)
-        )
+      ? schema.properties.map((prop) => transformProperty(prop))
       : []
   };
 
@@ -246,15 +244,28 @@ function transformPolymorphicObject(
   let uberParent: ObjectSchema | undefined = objectDetails.schema;
   const allParents = getSchemaParents(schema);
   if (allParents && allParents.length) {
-    const uberParentSchema = allParents.find((p) => {
-      // TODO: Reconsider names to reduce issues with normalization, can we switch to serialized?
-      const name = normalizeName(
-        getLanguageMetadata(p.language).name,
-        NameType.Interface,
-        true /** shouldGuard */
-      );
-      return uberParents.some((up) => up.name === name);
-    });
+    const uberParentSchema =
+      allParents.find((p) => {
+        // TODO: Reconsider names to reduce issues with normalization, can we switch to serialized?
+        const name = normalizeName(
+          getLanguageMetadata(p.language).name,
+          NameType.Interface,
+          true /** shouldGuard */
+        );
+        return (
+          (p as ObjectSchema).discriminator &&
+          uberParents.some((up) => up.name === name)
+        );
+      }) ||
+      allParents.find((p) => {
+        // TODO: Reconsider names to reduce issues with normalization, can we switch to serialized?
+        const name = normalizeName(
+          getLanguageMetadata(p.language).name,
+          NameType.Interface,
+          true /** shouldGuard */
+        );
+        return uberParents.some((up) => up.name === name);
+      });
 
     if (!uberParentSchema) {
       const upn = uberParents.map((u) => u.name);
@@ -271,7 +282,9 @@ function transformPolymorphicObject(
   }
 
   if (schema !== uberParent && objectDetails.schema.parents?.immediate[0]) {
-    uberParent = objectDetails.schema.parents?.immediate[0] as ObjectSchema;
+    uberParent = (objectDetails.schema.parents?.immediate.find(
+      (im) => (im as ObjectSchema).discriminator
+    ) || objectDetails.schema.parents?.immediate[0]) as ObjectSchema;
   }
   const uberParentName = getLanguageMetadata(uberParent.language).name;
   const unionName = `${normalizeName(uberParentName, NameType.Interface)}Union`;

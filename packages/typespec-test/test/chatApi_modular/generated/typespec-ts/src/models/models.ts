@@ -13,7 +13,7 @@ export interface ChatMessage {
    * sends a new one. The data in this field can be used to implement stateful services, such as remembering previous
    * conversations or user preferences.
    */
-  sessionState?: unknown;
+  sessionState?: any;
 }
 
 /** A representation of the intended purpose of a message. */
@@ -32,12 +32,12 @@ export interface StreamingChatCompletionOptionsRecord {
    * sends a new one. The data in this field can be used to implement stateful services, such as remembering previous
    * conversations or user preferences.
    */
-  sessionState?: unknown;
+  sessionState?: any;
   /**
    * Context allows the chat app to receive extra parameters from the client, such as temperature, functions, or
    * customer_info. These parameters are specific to the chat app and not understood by the generic clients.
    */
-  context?: Record<string, unknown>;
+  context?: Record<string, any>;
 }
 
 /** A single response to a streaming completion request. */
@@ -58,12 +58,12 @@ export interface ChoiceDeltaRecord {
    * sends a new one. The data in this field can be used to implement stateful services, such as remembering previous
    * conversations or user preferences.
    */
-  sessionState?: unknown;
+  sessionState?: any;
   /**
    * Context allows the chat app to receive extra parameters from the client, such as temperature, functions, or
    * customer_info. These parameters are specific to the chat app and not understood by the generic clients.
    */
-  context?: Record<string, unknown>;
+  context?: Record<string, any>;
   /** The reason this chat completion completed its generation. */
   finishReason?: FinishReason;
 }
@@ -80,7 +80,7 @@ export interface ChatMessageDelta {
    * sends a new one. The data in this field can be used to implement stateful services, such as remembering previous
    * conversations or user preferences.
    */
-  sessionState?: unknown;
+  sessionState?: any;
 }
 
 /** Representation of the reason why a chat session has finished processing. */
@@ -99,12 +99,12 @@ export interface ChatCompletionOptionsRecord {
    * sends a new one. The data in this field can be used to implement stateful services, such as remembering previous
    * conversations or user preferences.
    */
-  sessionState?: unknown;
+  sessionState?: any;
   /**
    * Context allows the chat app to receive extra parameters from the client, such as temperature, functions, or
    * customer_info. These parameters are specific to the chat app and not understood by the generic clients.
    */
-  context?: Record<string, unknown>;
+  context?: Record<string, any>;
 }
 
 /** Representation of the response to a chat completion request. */
@@ -125,12 +125,12 @@ export interface ChatChoiceRecord {
    * sends a new one. The data in this field can be used to implement stateful services, such as remembering previous
    * conversations or user preferences.
    */
-  sessionState?: unknown;
+  sessionState?: any;
   /**
    * Context allows the chat app to receive extra parameters from the client, such as temperature, functions, or
    * customer_info. These parameters are specific to the chat app and not understood by the generic clients.
    */
-  context?: Record<string, unknown>;
+  context?: Record<string, any>;
   /** The reason this chat completion completed its generation. */
   finishReason: FinishReason;
 }
