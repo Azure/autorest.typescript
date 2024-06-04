@@ -24,10 +24,7 @@ export function _getAvatarAsPngSend(
     .path("/content-negotiation/same-body")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept:
-          options.requestOptions?.headers?.["accept"] ?? ("image/png" as any),
-      },
+      headers: { accept: "image/png" },
     }) as StreamableMethod<SameBodyGetAvatarAsPng200Response>;
 }
 
@@ -57,10 +54,7 @@ export function _getAvatarAsJpegSend(
     .path("/content-negotiation/same-body")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept:
-          options.requestOptions?.headers?.["accept"] ?? ("image/jpeg" as any),
-      },
+      headers: { accept: "image/jpeg" },
     }) as StreamableMethod<SameBodyGetAvatarAsJpeg200Response>;
 }
 

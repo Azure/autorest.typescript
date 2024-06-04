@@ -26,10 +26,7 @@ export function _getAvatarAsPngSend(
     .path("/content-negotiation/different-body")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept:
-          options.requestOptions?.headers?.["accept"] ?? ("image/png" as any),
-      },
+      headers: { accept: "image/png" },
     }) as StreamableMethod<DifferentBodyGetAvatarAsPng200Response>;
 }
 
@@ -59,12 +56,9 @@ export function _getAvatarAsJsonSend(
     .path("/content-negotiation/different-body")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept:
-          options.requestOptions?.headers?.["accept"] ??
-          ("application/json" as any),
-      },
-    }) as unknown as StreamableMethod<DifferentBodyGetAvatarAsJson200Response>;
+      headers: { accept: "application/json" },
+    }) as StreamableMethod<DifferentBodyGetAvatarAsJson200Response>;
+}
 
 export async function _getAvatarAsJsonDeserialize(
   result: DifferentBodyGetAvatarAsJson200Response,
