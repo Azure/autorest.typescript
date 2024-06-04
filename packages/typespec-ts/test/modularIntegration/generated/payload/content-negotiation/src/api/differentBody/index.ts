@@ -4,7 +4,6 @@
 import { PngImageAsJson } from "../../models/models.js";
 import {
   ContentNegotiationContext as Client,
-  DifferentBodyGetAvatarAsAny200Response,
   DifferentBodyGetAvatarAsJson200Response,
   DifferentBodyGetAvatarAsPng200Response,
 } from "../../rest/index.js";
@@ -28,7 +27,8 @@ export function _getAvatarAsPngSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        accept:"image/png",
+        accept:
+          options.requestOptions?.headers?.["accept"] ?? ("image/png" as any),
       },
     }) as StreamableMethod<DifferentBodyGetAvatarAsPng200Response>;
 }
@@ -60,10 +60,11 @@ export function _getAvatarAsJsonSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        accept: "application/json",
+        accept:
+          options.requestOptions?.headers?.["accept"] ??
+          ("application/json" as any),
       },
-    }) as StreamableMethod<DifferentBodyGetAvatarAsJson200Response>;
-}
+    }) as unknown as StreamableMethod<DifferentBodyGetAvatarAsJson200Response>;
 
 export async function _getAvatarAsJsonDeserialize(
   result: DifferentBodyGetAvatarAsJson200Response,
@@ -87,35 +88,3 @@ export async function getAvatarAsJson(
   const result = await _getAvatarAsJsonSend(context, options);
   return _getAvatarAsJsonDeserialize(result);
 }
-
-export function _getAvatarAsAnySend(
-  context: Client,
-  options: DifferentBodyGetAvatarAsJsonOptionalParams = { requestOptions: {} },
-): StreamableMethod<DifferentBodyGetAvatarAsAny200Response> {
-  return context
-    .path("/content-negotiation/different-body")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: {
-        accept: options.requestOptions?.headers?.["accept"] as any,
-      },
-    }) as StreamableMethod<DifferentBodyGetAvatarAsAny200Response>;
-}
-
-export async function getAvatarAsAny(
-  context: Client,
-  options: DifferentBodyGetAvatarAsJsonOptionalParams = { requestOptions: {} },
-): Promise<any> {
-  const result = await _getAvatarAsAnySend(context, options);
-  return _getAvatarAsAnyDeserialize(result);
-}
-
-export async function _getAvatarAsAnyDeserialize(
-  result: DifferentBodyGetAvatarAsAny200Response,
-): Promise<any> {
-  if (result.status !== "200") {
-    throw createRestError(result);
-  }
-
-  return result.body;
-} 

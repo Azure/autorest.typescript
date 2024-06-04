@@ -6,14 +6,12 @@ import {
   SameBodyGetAvatarAsJpegParameters,
   DifferentBodyGetAvatarAsPngParameters,
   DifferentBodyGetAvatarAsJsonParameters,
-  DifferentBodyGetAvatarAsAnyParameters,
 } from "./parameters.js";
 import {
   SameBodyGetAvatarAsPng200Response,
   SameBodyGetAvatarAsJpeg200Response,
   DifferentBodyGetAvatarAsPng200Response,
   DifferentBodyGetAvatarAsJson200Response,
-  DifferentBodyGetAvatarAsAny200Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -28,14 +26,11 @@ export interface SameBodyGetAvatarAsPng {
 
 export interface DifferentBodyGetAvatarAsPng {
   get(
-    options: DifferentBodyGetAvatarAsJsonParameters,
-  ): StreamableMethod<DifferentBodyGetAvatarAsJson200Response>;
-  get(
     options: DifferentBodyGetAvatarAsPngParameters,
   ): StreamableMethod<DifferentBodyGetAvatarAsPng200Response>;
   get(
-    options: DifferentBodyGetAvatarAsAnyParameters,
-  ): StreamableMethod<DifferentBodyGetAvatarAsAny200Response>;
+    options: DifferentBodyGetAvatarAsJsonParameters,
+  ): StreamableMethod<DifferentBodyGetAvatarAsJson200Response>;
 }
 
 export interface Routes {

@@ -30,9 +30,3 @@ export interface DifferentBodyGetAvatarAsJson200Response extends HttpResponse {
   status: "200";
   body: PngImageAsJsonOutput;
 }
-
-export interface DifferentBodyGetAvatarAsAny200Response extends HttpResponse {
-  status: "200";
-  /** Value may contain any sequence of octets */
-  body: any;
-}

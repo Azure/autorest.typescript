@@ -47,14 +47,3 @@ export interface DifferentBodyGetAvatarAsJsonHeaderParam {
 
 export type DifferentBodyGetAvatarAsJsonParameters =
   DifferentBodyGetAvatarAsJsonHeaderParam & RequestParameters;
-
-export interface DifferentBodyGetAvatarAsAnyHeaders {
-  accept: any;
-}
-
-export interface DifferentBodyGetAvatarAsAnyHeaderParam {
-  headers: RawHttpHeadersInput & DifferentBodyGetAvatarAsAnyHeaders;
-}
-
-export type DifferentBodyGetAvatarAsAnyParameters =
-  DifferentBodyGetAvatarAsAnyHeaderParam & RequestParameters;

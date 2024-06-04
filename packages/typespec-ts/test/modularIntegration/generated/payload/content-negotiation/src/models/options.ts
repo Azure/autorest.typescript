@@ -21,8 +21,3 @@ export interface DifferentBodyGetAvatarAsJsonOptionalParams
   extends OperationOptions {
   accept?: "application/json";
 }
-
-export interface DifferentBodyGetAvatarAsAnyOptionalParams
-  extends OperationOptions {
-  accept?: any;
-}

@@ -6,12 +6,10 @@ import { PngImageAsJson } from "../../models/models.js";
 import {
   getAvatarAsPng,
   getAvatarAsJson,
-  getAvatarAsAny,
 } from "../../api/differentBody/index.js";
 import {
   DifferentBodyGetAvatarAsPngOptionalParams,
   DifferentBodyGetAvatarAsJsonOptionalParams,
-  DifferentBodyGetAvatarAsAnyOptionalParams,
 } from "../../models/options.js";
 
 export interface DifferentBodyOperations {
@@ -21,9 +19,6 @@ export interface DifferentBodyOperations {
   getAvatarAsJson: (
     options?: DifferentBodyGetAvatarAsJsonOptionalParams,
   ) => Promise<PngImageAsJson>;
-  getAvatarAsAny: (
-    options?: DifferentBodyGetAvatarAsAnyOptionalParams,
-  ) => Promise<any>;
 }
 
 export function getDifferentBody(context: ContentNegotiationContext) {
@@ -32,8 +27,6 @@ export function getDifferentBody(context: ContentNegotiationContext) {
       getAvatarAsPng(context, options),
     getAvatarAsJson: (options?: DifferentBodyGetAvatarAsJsonOptionalParams) =>
       getAvatarAsJson(context, options),
-    getAvatarAsAny: (options: DifferentBodyGetAvatarAsAnyOptionalParams) =>
-      getAvatarAsAny(context, options),
   };
 }
 
