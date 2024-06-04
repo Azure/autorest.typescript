@@ -6,7 +6,7 @@ import {
   deserializeResponseValue,
   getAllAncestors
 } from "./helpers/operationHelpers.js";
-import { ModularCodeModel, Type } from "./modularCodeModel.js";
+import { Client, ModularCodeModel, Type } from "./modularCodeModel.js";
 import {
   FunctionDeclarationStructure,
   SourceFile,
@@ -19,11 +19,12 @@ import {
   clearImportSets
 } from "@azure-tools/rlc-common";
 import { UsageFlags } from "@typespec/compiler";
+import path from "path";
 
 /**
  * This function creates serialize and deserialize utils for special unions and that are used in the operation.
  */
-export function buildSerializeUtils(model: ModularCodeModel) {
+export function buildSerializeUtils(client: Client, model: ModularCodeModel) {
   const serializeUtilFiles = [];
   for (const serializeType of ["serialize", "deserialize"]) {
     const usageCondition =
@@ -35,9 +36,12 @@ export function buildSerializeUtils(model: ModularCodeModel) {
       continue;
     }
     clearImportSets(model.runtimeImports);
-    const utilsFile = model.project.createSourceFile(
-      `${model.modularOptions.sourceRoot}/utils/${serializeType}Util.ts`
+    const filePath = path.join(
+      model.modularOptions.sourceRoot,
+      client.subfolder ?? "",
+      `utils/${serializeType}Util.ts`
     );
+    const utilsFile = model.project.createSourceFile(filePath);
 
     specialUnions.forEach((su) => {
       let types = su.types;
@@ -106,7 +110,7 @@ export function buildSerializeUtils(model: ModularCodeModel) {
       }
     });
     addImportsToFiles(model.runtimeImports, utilsFile, {
-      rlcIndex: "../rest/index.js",
+      rlcIndex: `../${client.subfolder ? "../" : ""}rest/index.js`,
       modularModel: "../models/models.js"
     });
     serializeUtilFiles.push(utilsFile);

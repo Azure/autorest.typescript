@@ -195,7 +195,7 @@ export async function $onEmit(context: EmitContext) {
         buildModelsOptions(subClient, modularCodeModel);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
-        buildSerializeUtils(modularCodeModel);
+        buildSerializeUtils(subClient, modularCodeModel);
         // build paging files
         buildPagingTypes(subClient, modularCodeModel);
         buildModularPagingHelpers(
