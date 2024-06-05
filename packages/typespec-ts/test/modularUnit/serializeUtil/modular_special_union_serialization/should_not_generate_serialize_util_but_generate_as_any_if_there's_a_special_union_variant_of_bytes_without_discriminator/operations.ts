@@ -1,41 +1,71 @@
-import { TestingContext as Client } from "../rest/index.js";
 import {
-  StreamableMethod,
-  operationOptionsToRequestParameters,
-  createRestError
-} from "@azure-rest/core-client";
+  Widget1,
+  WidgetData0,
+  Widget,
+  WidgetColor,
+  Widget1Data
+} from "../models/models.js";
+import {
+  Widget1 as Widget1Rest,
+  WidgetData0 as WidgetData0Rest,
+  Widget as WidgetRest,
+  WidgetColor as WidgetColorRest
+} from "../index.js";
 
-export function _customGet1Send(
-  context: Client,
-  body: Widget1,
-  options: CustomGet1OptionalParams = { requestOptions: {} }
-): StreamableMethod<CustomGet1204Response> {
-  return context.path("/customGet1").get({
-    ...operationOptionsToRequestParameters(options),
-    body: {
-      id: body["id"],
-      weight: body["weight"],
-      color: body["color"],
-      data: body["data"] as any
-    }
-  });
+export function serializeWidget1(o: Widget1): Widget1Rest {
+  return { ...o, ...serializeWidget(o), data: serializeWidget1Data(o["data"]) };
 }
 
-export async function _customGet1Deserialize(
-  result: CustomGet1204Response
-): Promise<void> {
-  if (result.status !== "204") {
-    throw createRestError(result);
-  }
-
-  return;
+export function deserializeWidget1(o: Widget1Rest): Widget1 {
+  return {
+    ...o,
+    ...deserializeWidget(o),
+    data: deserializeWidget1Data(o["data"])
+  };
 }
 
-export async function customGet1(
-  context: Client,
-  body: Widget1,
-  options: CustomGet1OptionalParams = { requestOptions: {} }
-): Promise<void> {
-  const result = await _customGet1Send(context, body, options);
-  return _customGet1Deserialize(result);
+export function serializeWidgetData0(o: WidgetData0): WidgetData0Rest {
+  return { ...o, fooProp: o["fooProp"] };
+}
+
+export function deserializeWidgetData0(o: WidgetData0Rest): WidgetData0 {
+  return { ...o, fooProp: o["fooProp"] };
+}
+
+export function serializeWidget(o: Widget): WidgetRest {
+  return {
+    ...o,
+    id: o["id"],
+    weight: o["weight"],
+    color: serializeWidgetColor(o["color"])
+  };
+}
+
+export function deserializeWidget(o: WidgetRest): Widget {
+  return {
+    ...o,
+    id: o["id"],
+    weight: o["weight"],
+    color: deserializeWidgetColor(o["color"])
+  };
+}
+
+export function serializeWidgetColor(o: WidgetColor): WidgetColorRest {
+  return o;
+}
+
+export function deserializeWidgetColor(o: WidgetColorRest): WidgetColor {
+  return o;
+}
+
+export function serializeWidget1Data(o: Widget1Data): any {
+  return (() => {
+    throw Error("Not implemented.");
+  })();
+}
+
+export function deserializeWidget1Data(o: any): Widget1Data {
+  return (() => {
+    throw Error("Not implemented.");
+  })();
 }

@@ -28,11 +28,10 @@ import {
   buildModels,
   buildModelsOptions
 } from "../../src/modular/emitModels.js";
-import { buildOperationFiles } from "../../src/modular/buildOperations.js";
-import { buildSerializeUtils } from "../../src/modular/buildSerializeUtils.js";
 import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { buildClassicalClient } from "../../src/modular/buildClassicalClient.js";
 import { Project } from "ts-morph";
+import { buildSerializers } from "../../src/modular/serialization/index.js";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,
@@ -343,7 +342,7 @@ export async function emitModularModelsFromTypeSpec(
           modularCodeModel
         );
       } else {
-        modelFile =  buildModels(modularCodeModel.clients[0], modularCodeModel);
+        modelFile = buildModels(modularCodeModel.clients[0], modularCodeModel);
       }
     }
   }
@@ -377,13 +376,15 @@ export async function emitModularSerializeUtilsFromTypeSpec(
         casing: "camel"
       }
     );
-    if (
-      modularCodeModel &&
-      modularCodeModel.clients &&
-      modularCodeModel.clients.length > 0 &&
-      modularCodeModel.clients[0]
-    ) {
-      return buildSerializeUtils(modularCodeModel);
+    if (modularCodeModel.clients[0]) {
+      buildSerializers(
+        dpgContext,
+        modularCodeModel,
+        modularCodeModel.clients[0]
+      );
+      return modularCodeModel.project
+        .getSourceFiles()
+        .filter((sf) => sf.getFilePath().endsWith("serializeUtil.ts"));
     }
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
@@ -426,18 +427,15 @@ export async function emitModularOperationsFromTypeSpec(
         casing: "camel"
       }
     );
-    if (
-      modularCodeModel &&
-      modularCodeModel.clients &&
-      modularCodeModel.clients.length > 0 &&
-      modularCodeModel.clients[0]
-    ) {
-      const res = buildOperationFiles(
-        modularCodeModel.clients[0],
+    if (modularCodeModel.clients[0]) {
+      buildSerializers(
         dpgContext,
         modularCodeModel,
-        false
+        modularCodeModel.clients[0]
       );
+      const res = modularCodeModel.project
+        .getSourceFiles()
+        .filter((sf) => sf.getFilePath().endsWith("serializeUtil.ts"));
       if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
         throw dpgContext.program.diagnostics;
       }

@@ -1,35 +1,69 @@
-import { PetUnion, Gold, DogUnion } from "../models/models.js";
-import { PetOutput, GoldOutput, DogOutput } from "../rest/index.js";
+import { Pet, Cat, Dog, Gold } from "../models/models.js";
+import {
+  PetOutput as PetRest,
+  CatOutput as CatRest,
+  DogOutput as DogRest,
+  GoldOutput as GoldRest
+} from "../index.js";
 
-/** deserialize function for PetOutput */
-export function deserializePetUnion(obj: PetOutput): PetUnion {
-  switch (obj.kind) {
-    case "dog":
-      return deserializeDogUnion(obj as DogUnion);
-    default:
-      return obj;
-  }
-}
-
-/** deserialize function for Gold */
-function deserializeGold(obj: GoldOutput): Gold {
+export function serializePet(o: Pet): PetRest {
   return {
-    kind: obj["kind"],
-    type: obj["type"],
-    bark: obj["bark"],
-    name: obj["name"],
-    weight: obj["weight"],
-    friends: obj["friends"].map((p) => deserializePetUnion(p)),
-    birthDay: new Date(obj["birthDay"])
+    ...o,
+    ...(o["weight"] === undefined ? {} : { weight: o["weight"] })
   };
 }
 
-/** deserialize function for DogOutput */
-export function deserializeDogUnion(obj: DogOutput): DogUnion {
-  switch (obj.type) {
-    case "gold":
-      return deserializeGold(obj as Gold);
-    default:
-      return obj;
-  }
+export function deserializePet(o: PetRest): Pet {
+  return {
+    ...o,
+    ...(o["weight"] === undefined ? {} : { weight: o["weight"] })
+  };
+}
+
+export function serializeCat(o: Cat): CatRest {
+  return { ...o, ...serializePet(o), kind: o["kind"], meow: o["meow"] };
+}
+
+export function deserializeCat(o: CatRest): Cat {
+  return { ...o, ...deserializePet(o), kind: o["kind"], meow: o["meow"] };
+}
+
+export function serializeDog(o: Dog): DogRest {
+  return {
+    ...o,
+    ...serializePet(o),
+    kind: o["kind"],
+    type: o["type"],
+    bark: o["bark"]
+  };
+}
+
+export function deserializeDog(o: DogRest): Dog {
+  return {
+    ...o,
+    ...deserializePet(o),
+    kind: o["kind"],
+    type: o["type"],
+    bark: o["bark"]
+  };
+}
+
+export function serializeGold(o: Gold): GoldRest {
+  return {
+    ...o,
+    ...serializeDog(o),
+    type: o["type"],
+    friends: o["friends"].map(serializePet),
+    birthDay: o["birthDay"].toISOString()
+  };
+}
+
+export function deserializeGold(o: GoldRest): Gold {
+  return {
+    ...o,
+    ...deserializeDog(o),
+    type: o["type"],
+    friends: o["friends"].map(deserializePet),
+    birthDay: new Date(o["birthDay"])
+  };
 }
