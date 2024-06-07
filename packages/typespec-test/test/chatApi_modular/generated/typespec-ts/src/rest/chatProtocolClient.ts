@@ -6,6 +6,10 @@ import { logger } from "../logger.js";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { ChatProtocolContext } from "./clientDefinitions.js";
 
+export interface ChatProtocolContextOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `ChatProtocolContext`
  * @param endpointParam - A sequence of textual characters.
@@ -15,7 +19,7 @@ import { ChatProtocolContext } from "./clientDefinitions.js";
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential | KeyCredential,
-  options: ClientOptions = {},
+  options: ChatProtocolContextOptions = {},
 ): ChatProtocolContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
 

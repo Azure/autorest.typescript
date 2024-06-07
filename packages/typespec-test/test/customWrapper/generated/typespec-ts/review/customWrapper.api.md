@@ -18,8 +18,14 @@ export type AuthoringClient = Client & {
     path: Routes;
 };
 
+// @public (undocumented)
+export interface AuthoringClientOptions extends ClientOptions {
+    // (undocumented)
+    apiVersion?: string;
+}
+
 // @public
-function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): AuthoringClient;
+function createClient(endpointParam: string, credentials: KeyCredential, options?: AuthoringClientOptions): AuthoringClient;
 export default createClient;
 
 // @public

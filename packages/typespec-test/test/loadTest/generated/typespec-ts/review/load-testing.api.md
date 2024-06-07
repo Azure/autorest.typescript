@@ -49,6 +49,12 @@ export type AzureLoadTestingClient = Client & {
     path: Routes;
 };
 
+// @public (undocumented)
+export interface AzureLoadTestingClientOptions extends ClientOptions {
+    // (undocumented)
+    apiVersion?: string;
+}
+
 // @public
 export interface CertificateMetadata {
     name?: string;
@@ -70,7 +76,7 @@ export type CertificateType = "AKV_CERT_URI";
 export type CertificateTypeOutput = "AKV_CERT_URI";
 
 // @public
-function createClient(endpointParam: string, credentials: TokenCredential, options?: ClientOptions): AzureLoadTestingClient;
+function createClient(endpointParam: string, credentials: TokenCredential, options?: AzureLoadTestingClientOptions): AzureLoadTestingClient;
 export default createClient;
 
 // @public

@@ -5,6 +5,10 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { WidgetServiceContext } from "./clientDefinitions.js";
 
+export interface WidgetServiceContextOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `WidgetServiceContext`
  * @param endpointParam - The parameter endpointParam
@@ -12,7 +16,7 @@ import { WidgetServiceContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   endpointParam: string,
-  options: ClientOptions = {},
+  options: WidgetServiceContextOptions = {},
 ): WidgetServiceContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
 

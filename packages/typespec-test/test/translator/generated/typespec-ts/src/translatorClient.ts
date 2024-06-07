@@ -5,6 +5,10 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { TranslatorClient } from "./clientDefinitions.js";
 
+export interface TranslatorClientOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `TranslatorClient`
  * @param endpointParam - Supported Text Translation endpoints (protocol and hostname, for example:
@@ -13,7 +17,7 @@ import { TranslatorClient } from "./clientDefinitions.js";
  */
 export default function createClient(
   endpointParam: string,
-  options: ClientOptions = {},
+  options: TranslatorClientOptions = {},
 ): TranslatorClient {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
 

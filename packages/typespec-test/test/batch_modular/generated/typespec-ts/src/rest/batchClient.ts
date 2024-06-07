@@ -6,6 +6,10 @@ import { logger } from "../logger.js";
 import { TokenCredential } from "@azure/core-auth";
 import { BatchContext } from "./clientDefinitions.js";
 
+export interface BatchContextOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `BatchContext`
  * @param endpointParam - Batch account endpoint (for example: https://batchaccount.eastus2.batch.azure.com).
@@ -15,7 +19,7 @@ import { BatchContext } from "./clientDefinitions.js";
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential,
-  options: ClientOptions = {},
+  options: BatchContextOptions = {},
 ): BatchContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
 

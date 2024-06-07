@@ -6,6 +6,10 @@ import { logger } from "./logger.js";
 import { TokenCredential } from "@azure/core-auth";
 import { ConfidentialLedgerClient } from "./clientDefinitions.js";
 
+export interface ConfidentialLedgerClientOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `ConfidentialLedgerClient`
  * @param ledgerUri - Represent a URL string as described by https://url.spec.whatwg.org/
@@ -15,7 +19,7 @@ import { ConfidentialLedgerClient } from "./clientDefinitions.js";
 export default function createClient(
   ledgerUri: string,
   credentials: TokenCredential,
-  options: ClientOptions = {},
+  options: ConfidentialLedgerClientOptions = {},
 ): ConfidentialLedgerClient {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${ledgerUri}`;
 

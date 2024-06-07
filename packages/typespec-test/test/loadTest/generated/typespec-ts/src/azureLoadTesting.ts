@@ -6,6 +6,10 @@ import { logger } from "./logger.js";
 import { TokenCredential } from "@azure/core-auth";
 import { AzureLoadTestingClient } from "./clientDefinitions.js";
 
+export interface AzureLoadTestingClientOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `AzureLoadTestingClient`
  * @param endpointParam - A sequence of textual characters.
@@ -15,7 +19,7 @@ import { AzureLoadTestingClient } from "./clientDefinitions.js";
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential,
-  options: ClientOptions = {},
+  options: AzureLoadTestingClientOptions = {},
 ): AzureLoadTestingClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://${endpointParam}`;

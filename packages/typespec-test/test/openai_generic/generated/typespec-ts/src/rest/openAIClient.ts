@@ -6,6 +6,10 @@ import { logger } from "../logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { OpenAIContext } from "./clientDefinitions.js";
 
+export interface OpenAIContextOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `OpenAIContext`
  * @param credentials - uniquely identify client credential
@@ -13,7 +17,7 @@ import { OpenAIContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: OpenAIContextOptions = {},
 ): OpenAIContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://api.openai.com/v1`;

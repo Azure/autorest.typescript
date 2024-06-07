@@ -237,7 +237,7 @@ export interface ContentFilterResultsOutput {
 export type ContentFilterSeverityOutput = "safe" | "low" | "medium" | "high";
 
 // @public
-function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, options?: ClientOptions): OpenAIClient;
+function createClient(endpointParam: string, credentials: TokenCredential | KeyCredential, options?: OpenAIClientOptions): OpenAIClient;
 export default createClient;
 
 // @public
@@ -527,6 +527,12 @@ export function isUnexpected(response: BeginAzureBatchImageGeneration202Response
 export type OpenAIClient = Client & {
     path: Routes;
 };
+
+// @public (undocumented)
+export interface OpenAIClientOptions extends ClientOptions {
+    // (undocumented)
+    apiVersion?: string;
+}
 
 // @public
 export interface PromptFilterResultOutput {

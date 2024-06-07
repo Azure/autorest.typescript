@@ -5,6 +5,10 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { WidgetManagerClient } from "./clientDefinitions.js";
 
+export interface WidgetManagerClientOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `WidgetManagerClient`
  * @param endpointParam - The parameter endpointParam
@@ -12,7 +16,7 @@ import { WidgetManagerClient } from "./clientDefinitions.js";
  */
 export default function createClient(
   endpointParam: string,
-  options: ClientOptions = {},
+  options: WidgetManagerClientOptions = {},
 ): WidgetManagerClient {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
 

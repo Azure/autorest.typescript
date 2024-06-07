@@ -109,7 +109,7 @@ export interface CommonScriptModelOutput {
 }
 
 // @public
-function createClient(endpointParam: string, options?: ClientOptions): TranslatorClient;
+function createClient(endpointParam: string, options?: TranslatorClientOptions): TranslatorClient;
 export default createClient;
 
 // @public (undocumented)
@@ -615,6 +615,12 @@ export interface TranslationOutput {
 export type TranslatorClient = Client & {
     path: Routes;
 };
+
+// @public (undocumented)
+export interface TranslatorClientOptions extends ClientOptions {
+    // (undocumented)
+    apiVersion?: string;
+}
 
 // @public
 export interface TransliterableScriptOutput extends CommonScriptModelOutput {

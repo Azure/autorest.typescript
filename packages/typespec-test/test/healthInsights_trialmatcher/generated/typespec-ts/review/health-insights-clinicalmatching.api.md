@@ -191,7 +191,7 @@ export interface ContactDetailsOutput {
 }
 
 // @public
-function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): HealthInsightsClinicalMatchingClient;
+function createClient(endpointParam: string, credentials: KeyCredential, options?: HealthInsightsClinicalMatchingClientOptions): HealthInsightsClinicalMatchingClient;
 export default createClient;
 
 // @public (undocumented)
@@ -349,6 +349,12 @@ export function getLongRunningPoller<TResult extends CreateJobLogicalResponse | 
 export type HealthInsightsClinicalMatchingClient = Client & {
     path: Routes;
 };
+
+// @public (undocumented)
+export interface HealthInsightsClinicalMatchingClientOptions extends ClientOptions {
+    // (undocumented)
+    apiVersion?: string;
+}
 
 // @public (undocumented)
 export function isUnexpected(response: GetJob200Response | GetJobDefaultResponse): response is GetJobDefaultResponse;

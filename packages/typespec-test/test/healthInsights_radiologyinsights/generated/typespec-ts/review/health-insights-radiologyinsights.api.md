@@ -48,6 +48,12 @@ export type AzureHealthInsightsClient = Client & {
     path: Routes;
 };
 
+// @public (undocumented)
+export interface AzureHealthInsightsClientOptions extends ClientOptions {
+    // (undocumented)
+    apiVersion?: string;
+}
+
 // @public
 export type ClinicalDocumentType = "consultation" | "dischargeSummary" | "historyAndPhysical" | "radiologyReport" | "procedure" | "progress" | "laboratory" | "pathologyReport";
 
@@ -202,7 +208,7 @@ export type ContactPointUse = "home" | "work" | "temp" | "old" | "mobile";
 export type ContactPointUseOutput = "home" | "work" | "temp" | "old" | "mobile";
 
 // @public
-function createClient(endpointParam: string, credentials: KeyCredential, options?: ClientOptions): AzureHealthInsightsClient;
+function createClient(endpointParam: string, credentials: KeyCredential, options?: AzureHealthInsightsClientOptions): AzureHealthInsightsClient;
 export default createClient;
 
 // @public (undocumented)

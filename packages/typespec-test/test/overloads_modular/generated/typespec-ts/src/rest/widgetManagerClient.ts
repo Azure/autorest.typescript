@@ -6,6 +6,10 @@ import { logger } from "../logger.js";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { WidgetManagerContext } from "./clientDefinitions.js";
 
+export interface WidgetManagerContextOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `WidgetManagerContext`
  * @param endpointParam - Supported Widget Services endpoints (protocol and hostname, for example:
@@ -16,7 +20,7 @@ import { WidgetManagerContext } from "./clientDefinitions.js";
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential | KeyCredential,
-  options: ClientOptions = {},
+  options: WidgetManagerContextOptions = {},
 ): WidgetManagerContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/widget`;

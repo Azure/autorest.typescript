@@ -4,6 +4,10 @@ import { getClient, ClientOptions } from "@typespec/ts-http-runtime";
 import { KeyCredential } from "@typespec/ts-http-runtime";
 import { TodoClient } from "./clientDefinitions.js";
 
+export interface TodoClientOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `TodoClient`
  * @param endpointParam - The parameter endpointParam
@@ -13,7 +17,7 @@ import { TodoClient } from "./clientDefinitions.js";
 export default function createClient(
   endpointParam: string,
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: TodoClientOptions = {},
 ): TodoClient {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
 

@@ -26,21 +26,25 @@ function getClientOptionsInterface(
   clientName: string,
   optionalUrlParameters?: PathParameter[]
 ): OptionalKind<InterfaceDeclarationStructure> | undefined {
-  if (!optionalUrlParameters || optionalUrlParameters.length === 0) {
+  if (
+    (!optionalUrlParameters || optionalUrlParameters.length === 0) &&
+    !model.apiVersionInfo
+  ) {
     return undefined;
   }
 
-  const properties = optionalUrlParameters.map((param) => {
-    return {
-      name: param.name,
-      type: param.type,
-      hasQuestionToken: true,
-      description: param.description
-    };
-  });
+  const properties =
+    optionalUrlParameters?.map((param) => {
+      return {
+        name: param.name,
+        type: param.type,
+        hasQuestionToken: true,
+        description: param.description
+      };
+    }) ?? [];
 
   if (
-    model.apiVersionInfo?.definedPosition === "query" &&
+    model.apiVersionInfo &&
     !properties.find((p) => p.name === "apiVersion")
   ) {
     properties.push({

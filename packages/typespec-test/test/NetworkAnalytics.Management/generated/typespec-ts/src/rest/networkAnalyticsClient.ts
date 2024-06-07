@@ -6,6 +6,10 @@ import { logger } from "../logger.js";
 import { TokenCredential } from "@azure/core-auth";
 import { NetworkAnalyticsContext } from "./clientDefinitions.js";
 
+export interface NetworkAnalyticsContextOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `NetworkAnalyticsContext`
  * @param credentials - uniquely identify client credential
@@ -13,7 +17,7 @@ import { NetworkAnalyticsContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: TokenCredential,
-  options: ClientOptions = {},
+  options: NetworkAnalyticsContextOptions = {},
 ): NetworkAnalyticsContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://management.azure.com`;

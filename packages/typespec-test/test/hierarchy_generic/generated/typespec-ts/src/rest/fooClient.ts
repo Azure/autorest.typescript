@@ -5,6 +5,10 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { FooContext } from "./clientDefinitions.js";
 
+export interface FooContextOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `FooContext`
  * @param endpointParam - The parameter endpointParam
@@ -12,7 +16,7 @@ import { FooContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   endpointParam: string,
-  options: ClientOptions = {},
+  options: FooContextOptions = {},
 ): FooContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
 

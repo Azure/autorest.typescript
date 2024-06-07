@@ -21,7 +21,7 @@ import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
-function createClient(endpointParam: string, options?: ClientOptions): WidgetManagerClient;
+function createClient(endpointParam: string, options?: WidgetManagerClientOptions): WidgetManagerClient;
 export default createClient;
 
 // @public (undocumented)
@@ -342,6 +342,12 @@ export interface Widget {
 export type WidgetManagerClient = Client & {
     path: Routes;
 };
+
+// @public (undocumented)
+export interface WidgetManagerClientOptions extends ClientOptions {
+    // (undocumented)
+    apiVersion?: string;
+}
 
 // @public
 export interface WidgetOutput {

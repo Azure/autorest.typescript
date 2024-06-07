@@ -6,6 +6,10 @@ import { logger } from "../logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { EventGridContext } from "./clientDefinitions.js";
 
+export interface EventGridContextOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `EventGridContext`
  * @param endpointParam - The host name of the namespace, e.g. namespaceName1.westus-1.eventgrid.azure.net
@@ -15,7 +19,7 @@ import { EventGridContext } from "./clientDefinitions.js";
 export default function createClient(
   endpointParam: string,
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: EventGridContextOptions = {},
 ): EventGridContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
 

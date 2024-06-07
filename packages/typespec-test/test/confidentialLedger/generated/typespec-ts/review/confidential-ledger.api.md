@@ -25,8 +25,14 @@ export type ConfidentialLedgerClient = Client & {
     path: Routes;
 };
 
+// @public (undocumented)
+export interface ConfidentialLedgerClientOptions extends ClientOptions {
+    // (undocumented)
+    apiVersion?: string;
+}
+
 // @public
-function createClient(ledgerUri: string, credentials: TokenCredential, options?: ClientOptions): ConfidentialLedgerClient;
+function createClient(ledgerUri: string, credentials: TokenCredential, options?: ConfidentialLedgerClientOptions): ConfidentialLedgerClient;
 export default createClient;
 
 // @public (undocumented)

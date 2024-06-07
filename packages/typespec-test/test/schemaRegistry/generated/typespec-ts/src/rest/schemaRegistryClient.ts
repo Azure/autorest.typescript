@@ -6,6 +6,10 @@ import { logger } from "../logger.js";
 import { TokenCredential } from "@azure/core-auth";
 import { SchemaRegistryContext } from "./clientDefinitions.js";
 
+export interface SchemaRegistryContextOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `SchemaRegistryContext`
  * @param fullyQualifiedNamespace - The Schema Registry service endpoint, for example 'my-namespace.servicebus.windows.net'.
@@ -15,7 +19,7 @@ import { SchemaRegistryContext } from "./clientDefinitions.js";
 export default function createClient(
   fullyQualifiedNamespace: string,
   credentials: TokenCredential,
-  options: ClientOptions = {},
+  options: SchemaRegistryContextOptions = {},
 ): SchemaRegistryContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${fullyQualifiedNamespace}`;

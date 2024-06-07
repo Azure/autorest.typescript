@@ -6,6 +6,10 @@ import { logger } from "../logger.js";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { ContentSafetyContext } from "./clientDefinitions.js";
 
+export interface ContentSafetyContextOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `ContentSafetyContext`
  * @param endpointParam - Supported Cognitive Services endpoints (protocol and hostname, for example:
@@ -16,7 +20,7 @@ import { ContentSafetyContext } from "./clientDefinitions.js";
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential | KeyCredential,
-  options: ClientOptions = {},
+  options: ContentSafetyContextOptions = {},
 ): ContentSafetyContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/contentsafety`;

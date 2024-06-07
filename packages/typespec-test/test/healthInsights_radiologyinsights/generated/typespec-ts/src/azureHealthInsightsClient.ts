@@ -6,6 +6,10 @@ import { logger } from "./logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { AzureHealthInsightsClient } from "./clientDefinitions.js";
 
+export interface AzureHealthInsightsClientOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `AzureHealthInsightsClient`
  * @param endpointParam - Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus2.api.cognitive.microsoft.com).
@@ -15,7 +19,7 @@ import { AzureHealthInsightsClient } from "./clientDefinitions.js";
 export default function createClient(
   endpointParam: string,
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: AzureHealthInsightsClientOptions = {},
 ): AzureHealthInsightsClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/health-insights`;
