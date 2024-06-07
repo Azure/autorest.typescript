@@ -19,7 +19,10 @@ export default function createClient(
 ): AzureLoadTestingContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://${endpointParam}`;
-  options.apiVersion = options.apiVersion ?? "2022-11-01";
+
+  const apiVersion = options.apiVersion ?? "2022-11-01";
+  delete options.apiVersion;
+
   const userAgentInfo = `azsdk-js-load-testing-rest/1.0.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -46,5 +49,20 @@ export default function createClient(
     options,
   ) as AzureLoadTestingContext;
 
+  client.pipeline.addPolicy({
+    name: "ClientApiVersionPolicy",
+    sendRequest: (req, next) => {
+      // Use the apiVesion defined in request url directly
+      // Append one if there is no apiVesion and we have one at client options
+      const url = new URL(req.url);
+      if (!url.searchParams.get("api-version") && apiVersion) {
+        req.url = `${req.url}${
+          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+        }api-version=${apiVersion}`;
+      }
+
+      return next(req);
+    },
+  });
   return client;
 }

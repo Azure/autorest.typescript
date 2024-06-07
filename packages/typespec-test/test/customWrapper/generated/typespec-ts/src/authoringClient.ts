@@ -19,7 +19,10 @@ export default function createClient(
 ): AuthoringClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/language`;
-  options.apiVersion = options.apiVersion ?? "2022-05-15-preview";
+
+  const apiVersion = options.apiVersion ?? "2022-05-15-preview";
+  delete options.apiVersion;
+
   const userAgentInfo = `azsdk-js-customWrapper-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -44,6 +47,22 @@ export default function createClient(
     credentials,
     options,
   ) as AuthoringClient;
+
+  client.pipeline.addPolicy({
+    name: "ClientApiVersionPolicy",
+    sendRequest: (req, next) => {
+      // Use the apiVesion defined in request url directly
+      // Append one if there is no apiVesion and we have one at client options
+      const url = new URL(req.url);
+      if (!url.searchParams.get("api-version") && apiVersion) {
+        req.url = `${req.url}${
+          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+        }api-version=${apiVersion}`;
+      }
+
+      return next(req);
+    },
+  });
 
   return client;
 }

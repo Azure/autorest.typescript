@@ -22,6 +22,7 @@ import {
 import { getImportSpecifier } from "./helpers/importsUtil.js";
 
 function getClientOptionsInterface(
+  model: RLCModel,
   clientName: string,
   optionalUrlParameters?: PathParameter[]
 ): OptionalKind<InterfaceDeclarationStructure> | undefined {
@@ -33,10 +34,22 @@ function getClientOptionsInterface(
     return {
       name: param.name,
       type: param.type,
-      hasQuestionToken: true
+      hasQuestionToken: true,
+      description: param.description
     };
   });
 
+  if (
+    model.apiVersionInfo?.definedPosition === "query" &&
+    !properties.find((p) => p.name === "apiVersion")
+  ) {
+    properties.push({
+      name: "apiVersion",
+      type: "string",
+      hasQuestionToken: true,
+      description: "The api version to use for the request"
+    });
+  }
   return {
     name: `${clientName}Options`,
     extends: ["ClientOptions"],
@@ -69,6 +82,7 @@ export function buildClient(model: RLCModel): File | undefined {
   );
 
   const clientOptionsInterface = getClientOptionsInterface(
+    model,
     clientInterfaceName,
     optionalUrlParameters
   );
@@ -300,17 +314,6 @@ export function getClientFactoryBody(
   } else {
     endpointUrl = `options.endpoint ?? options.baseUrl ?? "${endpoint}"`;
   }
-
-  let apiVersionStatement: string = "";
-  // Set the default api-version when we have a default AND its position is query
-  if (
-    model.apiVersionInfo?.definedPosition === "query" &&
-    !!model.apiVersionInfo?.defaultValue
-  ) {
-    apiVersionStatement = `options.apiVersion = options.apiVersion ?? "${model.apiVersionInfo?.defaultValue}"`;
-  } else if (model.apiVersionInfo?.definedPosition === "query") {
-    apiVersionStatement = `options.apiVersion = options.apiVersion ?? apiVersion`;
-  }
   if (!clientPackageName.endsWith("-rest")) {
     clientPackageName = clientPackageName + "-rest";
   }
@@ -378,6 +381,21 @@ export function getClientFactoryBody(
         }${loggerOptions}${customHeaderOptions}${credentialsOptions}
       }`;
 
+  let apiVersionStatement: string = "";
+  // Set the default api-version when we have a default AND its position is query
+  if (
+    model.apiVersionInfo?.definedPosition === "query" &&
+    !!model.apiVersionInfo?.defaultValue
+  ) {
+    apiVersionStatement = `
+    const apiVersion = options.apiVersion ?? "${model.apiVersionInfo?.defaultValue}";
+    delete options.apiVersion;
+    `;
+  } else if (model.apiVersionInfo?.definedPosition === "query") {
+    apiVersionStatement = `
+    const apiVersion = options.apiVersion ?? apiVersion;
+    delete options.apiVersion;`;
+  }
   const getClient = `const client = getClient(
         endpointUrl, ${credentialsOptions ? "credentials," : ""} options
       ) as ${clientTypeName};
@@ -410,13 +428,30 @@ export function getClientFactoryBody(
 
   let apiVersionPolicyStatement = "";
   if (model.apiVersionInfo?.definedPosition !== "query") {
-    apiVersionPolicyStatement = `client.pipeline.removePolicy({name: 'ApiVersionPolicy'});`;
+    apiVersionPolicyStatement = `client.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
     if (flavor === "azure") {
       apiVersionPolicyStatement += `
       if (options.apiVersion) {
         logger.warning("This client does not support client api-version, please change it at the operation level");
       }`;
     }
+  } else {
+    apiVersionPolicyStatement = `
+      client.pipeline.addPolicy({
+        name: 'ClientApiVersionPolicy',
+        sendRequest: (req, next) => {
+          // Use the apiVesion defined in request url directly
+          // Append one if there is no apiVesion and we have one at client options
+          const url = new URL(req.url);
+          if (!url.searchParams.get("api-version") && apiVersion) {
+            req.url = \`\${req.url}\${
+              Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+            }api-version=\${apiVersion}\`;
+          }
+    
+          return next(req);
+        },
+      });`;
   }
   let returnStatement = `return client;`;
 
