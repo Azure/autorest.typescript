@@ -183,7 +183,7 @@ export function getDeserializePrivateFunction(
 
   let deserializedType = isLroOnly
     ? operation?.lroMetadata?.finalResult
-    : response.type;
+    : response?.type ?? "void"; // Is setting void here correct? We are handling the case where no response above but here we are
   let hasLroSubPath = operation?.lroMetadata?.finalResultPath !== undefined;
   let deserializedRoot = hasLroSubPath
     ? `result.body.${operation?.lroMetadata?.finalResultPath}`
@@ -218,6 +218,8 @@ export function getDeserializePrivateFunction(
         runtimeImports
       )}`
     );
+  } else if (returnType.type === "void") {
+    statements.push("return");
   } else {
     statements.push(`return result.body`);
   }
@@ -227,7 +229,7 @@ export function getDeserializePrivateFunction(
   };
 }
 
-function getOperationSignatureParameters(
+export function getOperationSignatureParameters(
   operation: Operation,
   clientType: string
 ): OptionalKind<ParameterDeclarationStructure>[] {
@@ -368,7 +370,7 @@ function getLroOnlyOperationFunction(operation: Operation, clientType: string) {
   };
 }
 
-function buildLroReturnType(operation: Operation) {
+export function buildLroReturnType(operation: Operation) {
   const metadata = operation.lroMetadata;
   if (metadata !== undefined && metadata.finalResult !== undefined) {
     const type = metadata.finalResult;
@@ -377,7 +379,7 @@ function buildLroReturnType(operation: Operation) {
   return { name: "", type: "void" };
 }
 
-function getPagingOnlyOperationFunction(
+export function getPagingOnlyOperationFunction(
   operation: Operation,
   clientType: string
 ) {
@@ -386,9 +388,9 @@ function getPagingOnlyOperationFunction(
     getOperationSignatureParameters(operation, clientType);
 
   // TODO: Support operation overloads
-  const response = operation.responses[0]!;
+  const response = operation.responses[0];
   let returnType = { name: "", type: "void" };
-  if (response.type?.type) {
+  if (response?.type?.type) {
     const type =
       extractPagingType(response.type, operation.itemName) ?? response.type;
     returnType = buildType(type.name, type, type.format);
