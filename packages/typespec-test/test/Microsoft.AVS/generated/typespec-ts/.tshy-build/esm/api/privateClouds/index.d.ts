@@ -1,0 +1,48 @@
+import { PollerLike, OperationState } from "@azure/core-lro";
+import { PrivateCloudListResult, PrivateCloud, PrivateCloudUpdate, AdminCredentials } from "../../models/models.js";
+import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
+import { AVSContext as Client, PrivateCloudsCreateOrUpdate200Response, PrivateCloudsCreateOrUpdate201Response, PrivateCloudsCreateOrUpdateDefaultResponse, PrivateCloudsCreateOrUpdateLogicalResponse, PrivateCloudsDelete200Response, PrivateCloudsDelete202Response, PrivateCloudsDelete204Response, PrivateCloudsDeleteDefaultResponse, PrivateCloudsDeleteLogicalResponse, PrivateCloudsGet200Response, PrivateCloudsGetDefaultResponse, PrivateCloudsListAdminCredentials200Response, PrivateCloudsListAdminCredentialsDefaultResponse, PrivateCloudsListByResourceGroup200Response, PrivateCloudsListByResourceGroupDefaultResponse, PrivateCloudsListInSubscription200Response, PrivateCloudsListInSubscriptionDefaultResponse, PrivateCloudsRotateNsxtPassword202Response, PrivateCloudsRotateNsxtPassword204Response, PrivateCloudsRotateNsxtPasswordDefaultResponse, PrivateCloudsRotateNsxtPasswordLogicalResponse, PrivateCloudsRotateVcenterPassword202Response, PrivateCloudsRotateVcenterPassword204Response, PrivateCloudsRotateVcenterPasswordDefaultResponse, PrivateCloudsRotateVcenterPasswordLogicalResponse, PrivateCloudsUpdate200Response, PrivateCloudsUpdate201Response, PrivateCloudsUpdateDefaultResponse } from "../../rest/index.js";
+import { StreamableMethod } from "@azure-rest/core-client";
+import { PrivateCloudsListByResourceGroupOptionalParams, PrivateCloudsListInSubscriptionOptionalParams, PrivateCloudsGetOptionalParams, PrivateCloudsCreateOrUpdateOptionalParams, PrivateCloudsUpdateOptionalParams, PrivateCloudsDeleteOptionalParams, PrivateCloudsRotateVcenterPasswordOptionalParams, PrivateCloudsRotateNsxtPasswordOptionalParams, PrivateCloudsListAdminCredentialsOptionalParams } from "../../models/options.js";
+export declare function _listByResourceGroupSend(context: Client, subscriptionId: string, resourceGroupName: string, options?: PrivateCloudsListByResourceGroupOptionalParams): StreamableMethod<PrivateCloudsListByResourceGroup200Response | PrivateCloudsListByResourceGroupDefaultResponse>;
+export declare function _listByResourceGroupDeserialize(result: PrivateCloudsListByResourceGroup200Response | PrivateCloudsListByResourceGroupDefaultResponse): Promise<PrivateCloudListResult>;
+/** List PrivateCloud resources by resource group */
+export declare function listByResourceGroup(context: Client, subscriptionId: string, resourceGroupName: string, options?: PrivateCloudsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<PrivateCloud>;
+export declare function _listInSubscriptionSend(context: Client, subscriptionId: string, options?: PrivateCloudsListInSubscriptionOptionalParams): StreamableMethod<PrivateCloudsListInSubscription200Response | PrivateCloudsListInSubscriptionDefaultResponse>;
+export declare function _listInSubscriptionDeserialize(result: PrivateCloudsListInSubscription200Response | PrivateCloudsListInSubscriptionDefaultResponse): Promise<PrivateCloudListResult>;
+/** List PrivateCloud resources by subscription ID */
+export declare function listInSubscription(context: Client, subscriptionId: string, options?: PrivateCloudsListInSubscriptionOptionalParams): PagedAsyncIterableIterator<PrivateCloud>;
+export declare function _getSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: PrivateCloudsGetOptionalParams): StreamableMethod<PrivateCloudsGet200Response | PrivateCloudsGetDefaultResponse>;
+export declare function _getDeserialize(result: PrivateCloudsGet200Response | PrivateCloudsGetDefaultResponse): Promise<PrivateCloud>;
+/** Get a PrivateCloud */
+export declare function get(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: PrivateCloudsGetOptionalParams): Promise<PrivateCloud>;
+export declare function _createOrUpdateSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, privateCloud: PrivateCloud, options?: PrivateCloudsCreateOrUpdateOptionalParams): StreamableMethod<PrivateCloudsCreateOrUpdate200Response | PrivateCloudsCreateOrUpdate201Response | PrivateCloudsCreateOrUpdateDefaultResponse | PrivateCloudsCreateOrUpdateLogicalResponse>;
+export declare function _createOrUpdateDeserialize(result: PrivateCloudsCreateOrUpdate200Response | PrivateCloudsCreateOrUpdate201Response | PrivateCloudsCreateOrUpdateDefaultResponse | PrivateCloudsCreateOrUpdateLogicalResponse): Promise<PrivateCloud>;
+/** Create a PrivateCloud */
+export declare function createOrUpdate(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, privateCloud: PrivateCloud, options?: PrivateCloudsCreateOrUpdateOptionalParams): PollerLike<OperationState<PrivateCloud>, PrivateCloud>;
+export declare function _updateSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, privateCloudUpdate: PrivateCloudUpdate, options?: PrivateCloudsUpdateOptionalParams): StreamableMethod<PrivateCloudsUpdate200Response | PrivateCloudsUpdate201Response | PrivateCloudsUpdateDefaultResponse>;
+export declare function _updateDeserialize(result: PrivateCloudsUpdate200Response | PrivateCloudsUpdate201Response | PrivateCloudsUpdateDefaultResponse): Promise<PrivateCloud>;
+/** Update a PrivateCloud */
+export declare function update(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, privateCloudUpdate: PrivateCloudUpdate, options?: PrivateCloudsUpdateOptionalParams): Promise<PrivateCloud>;
+export declare function _$deleteSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: PrivateCloudsDeleteOptionalParams): StreamableMethod<PrivateCloudsDelete200Response | PrivateCloudsDelete202Response | PrivateCloudsDelete204Response | PrivateCloudsDeleteDefaultResponse | PrivateCloudsDeleteLogicalResponse>;
+export declare function _$deleteDeserialize(result: PrivateCloudsDelete200Response | PrivateCloudsDelete202Response | PrivateCloudsDelete204Response | PrivateCloudsDeleteDefaultResponse | PrivateCloudsDeleteLogicalResponse): Promise<void>;
+/** Delete a PrivateCloud */
+/**
+ *  @fixme delete is a reserved word that cannot be used as an operation name.
+ *         Please add @clientName("clientName") or @clientName("<JS-Specific-Name>", "javascript")
+ *         to the operation to override the generated name.
+ */
+export declare function $delete(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: PrivateCloudsDeleteOptionalParams): PollerLike<OperationState<void>, void>;
+export declare function _rotateVcenterPasswordSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: PrivateCloudsRotateVcenterPasswordOptionalParams): StreamableMethod<PrivateCloudsRotateVcenterPassword202Response | PrivateCloudsRotateVcenterPassword204Response | PrivateCloudsRotateVcenterPasswordDefaultResponse | PrivateCloudsRotateVcenterPasswordLogicalResponse>;
+export declare function _rotateVcenterPasswordDeserialize(result: PrivateCloudsRotateVcenterPassword202Response | PrivateCloudsRotateVcenterPassword204Response | PrivateCloudsRotateVcenterPasswordDefaultResponse | PrivateCloudsRotateVcenterPasswordLogicalResponse): Promise<void>;
+/** Rotate the vCenter password */
+export declare function rotateVcenterPassword(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: PrivateCloudsRotateVcenterPasswordOptionalParams): PollerLike<OperationState<void>, void>;
+export declare function _rotateNsxtPasswordSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: PrivateCloudsRotateNsxtPasswordOptionalParams): StreamableMethod<PrivateCloudsRotateNsxtPassword202Response | PrivateCloudsRotateNsxtPassword204Response | PrivateCloudsRotateNsxtPasswordDefaultResponse | PrivateCloudsRotateNsxtPasswordLogicalResponse>;
+export declare function _rotateNsxtPasswordDeserialize(result: PrivateCloudsRotateNsxtPassword202Response | PrivateCloudsRotateNsxtPassword204Response | PrivateCloudsRotateNsxtPasswordDefaultResponse | PrivateCloudsRotateNsxtPasswordLogicalResponse): Promise<void>;
+/** Rotate the NSX-T Manager password */
+export declare function rotateNsxtPassword(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: PrivateCloudsRotateNsxtPasswordOptionalParams): PollerLike<OperationState<void>, void>;
+export declare function _listAdminCredentialsSend(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: PrivateCloudsListAdminCredentialsOptionalParams): StreamableMethod<PrivateCloudsListAdminCredentials200Response | PrivateCloudsListAdminCredentialsDefaultResponse>;
+export declare function _listAdminCredentialsDeserialize(result: PrivateCloudsListAdminCredentials200Response | PrivateCloudsListAdminCredentialsDefaultResponse): Promise<AdminCredentials>;
+/** List the admin credentials for the private cloud */
+export declare function listAdminCredentials(context: Client, subscriptionId: string, resourceGroupName: string, privateCloudName: string, options?: PrivateCloudsListAdminCredentialsOptionalParams): Promise<AdminCredentials>;
+//# sourceMappingURL=index.d.ts.map
