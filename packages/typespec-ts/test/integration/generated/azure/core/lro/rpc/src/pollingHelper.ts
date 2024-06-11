@@ -6,7 +6,7 @@ import { AbortSignalLike } from "@azure/abort-controller";
 import {
   CancelOnProgress,
   CreateHttpPollerOptions,
-  LongRunningOperation,
+  RunningOperation,
   OperationResponse,
   OperationState,
   createHttpPoller,
@@ -28,10 +28,6 @@ export interface SimplePollerLike<
    * Returns true if the poller has finished polling.
    */
   isDone(): boolean;
-  /**
-   * Returns true if the poller is stopped.
-   */
-  isStopped(): boolean;
   /**
    * Returns the state of the operation.
    */
@@ -84,6 +80,12 @@ export interface SimplePollerLike<
    * @deprecated Use abortSignal to stop polling instead.
    */
   stopPolling(): void;
+
+  /**
+   * Returns true if the poller is stopped.
+   * @deprecated Use abortSignal status to track this instead.
+   */
+  isStopped(): boolean;
 }
 
 /**
@@ -106,7 +108,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
   options: CreateHttpPollerOptions<TResult, OperationState<TResult>> = {},
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>> {
   const abortController = new AbortController();
-  const poller: LongRunningOperation<TResult> = {
+  const poller: RunningOperation<TResult> = {
     sendInitialRequest: async () => {
       // In the case of Rest Clients we are building the LRO poller object from a response that's the reason
       // we are not triggering the initial request here, just extracting the information from the
@@ -114,7 +116,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
       return getLroResponse(initialResponse);
     },
     sendPollRequest: async (
-      path,
+      path: string,
       options?: { abortSignal?: AbortSignalLike },
     ) => {
       // This is the callback that is going to be called to poll the service
@@ -155,7 +157,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
       return httpPoller.isDone;
     },
     isStopped() {
-      return httpPoller.isStopped;
+      return abortController.signal.aborted;
     },
     getOperationState() {
       if (!httpPoller.operationState) {
