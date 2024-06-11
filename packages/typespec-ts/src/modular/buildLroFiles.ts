@@ -1,10 +1,10 @@
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import path from "path";
 import { SourceFile } from "ts-morph";
+import { buildLroDeserDetailMap } from "./buildOperations.js";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { isLroOnlyOperation } from "./helpers/operationHelpers.js";
-import { ModularCodeModel, Client } from "./modularCodeModel.js";
-import path from "path";
-import { buildLroDeserDetailMap } from "./buildOperations.js";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { Client, ModularCodeModel } from "./modularCodeModel.js";
 
 /**
  * Always import LRO dependencies and remember to remove if unused.

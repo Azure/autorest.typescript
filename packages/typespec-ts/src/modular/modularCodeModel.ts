@@ -1,6 +1,13 @@
-import { Imports } from "@azure-tools/rlc-common";
-import { HelperFunctionDetails } from "@azure-tools/rlc-common";
-import { OperationResponse, RLCOptions } from "@azure-tools/rlc-common";
+import {
+  HelperFunctionDetails,
+  Imports,
+  OperationResponse,
+  RLCOptions
+} from "@azure-tools/rlc-common";
+import {
+  SdkBodyParameter,
+  SdkType
+} from "@azure-tools/typespec-client-generator-core";
 import { UsageFlags } from "@typespec/compiler";
 import { Project } from "ts-morph";
 
@@ -46,6 +53,7 @@ export interface BodyParameter {
   clientName: string;
   inOverload: boolean;
   isBinaryPayload: boolean;
+  tcgcType: SdkBodyParameter;
 }
 
 export interface OperationGroup {
@@ -109,6 +117,7 @@ export interface Type {
   discriminator?: string;
   discriminatorValue?: string;
   isPolymorphicBaseModel?: boolean;
+  tcgcType?: SdkType;
 }
 
 export interface Client {
@@ -151,6 +160,7 @@ export interface Parameter {
   inOverriden?: boolean;
   isApiVersion?: boolean;
   format?: string;
+  tcgcType?: SdkType;
 }
 
 export interface Response {

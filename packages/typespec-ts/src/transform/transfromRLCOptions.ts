@@ -7,6 +7,10 @@ import {
   ServiceInfo
 } from "@azure-tools/rlc-common";
 import {
+  listOperationGroups,
+  listOperationsInOperationGroup
+} from "@azure-tools/typespec-client-generator-core";
+import {
   getDoc,
   ignoreDiagnostics,
   NoTarget,
@@ -14,15 +18,11 @@ import {
 } from "@typespec/compiler";
 import { getAuthentication, getHttpOperation } from "@typespec/http";
 import { EmitterOptions, reportDiagnostic } from "../lib.js";
-import { getDefaultService } from "../utils/modelUtils.js";
 import { getRLCClients } from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
-import {
-  listOperationGroups,
-  listOperationsInOperationGroup
-} from "@azure-tools/typespec-client-generator-core";
-import { getOperationName } from "../utils/operationUtil.js";
+import { getDefaultService } from "../utils/modelUtils.js";
 import { detectModelConflicts } from "../utils/namespaceUtils.js";
+import { getOperationName } from "../utils/operationUtil.js";
 
 export function transformRLCOptions(
   emitterOptions: EmitterOptions,

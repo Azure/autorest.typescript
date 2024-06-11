@@ -33,6 +33,8 @@ import { buildSerializeUtils } from "../../src/modular/buildSerializeUtils.js";
 import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { buildClassicalClient } from "../../src/modular/buildClassicalClient.js";
 import { Project } from "ts-morph";
+import { buildSerializers } from "../../src/modular/serialization/index.js";
+import { env } from "process";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,
@@ -347,7 +349,7 @@ export async function emitModularModelsFromTypeSpec(
           modularCodeModel
         );
       } else {
-        modelFile =  buildModels(modularCodeModel.clients[0], modularCodeModel);
+        modelFile = buildModels(modularCodeModel.clients[0], modularCodeModel);
       }
     }
   }
@@ -440,7 +442,14 @@ export async function emitModularOperationsFromTypeSpec(
         modularCodeModel.clients[0],
         dpgContext,
         modularCodeModel,
-        false
+        false,
+        env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"]
+          ? buildSerializers(
+              dpgContext,
+              modularCodeModel,
+              modularCodeModel.clients[0]
+            )
+          : undefined
       );
       if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
         throw dpgContext.program.diagnostics;

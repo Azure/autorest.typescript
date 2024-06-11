@@ -1,9 +1,9 @@
 import path from "path";
-import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import {
   hasPagingOnlyOperation,
   isPagingOnlyOperation
 } from "./helpers/operationHelpers.js";
+import { Client, ModularCodeModel } from "./modularCodeModel.js";
 
 export function buildPagingTypes(client: Client, codeModel: ModularCodeModel) {
   if (!hasPagingOnlyOperation(client)) {
