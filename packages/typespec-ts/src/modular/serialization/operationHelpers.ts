@@ -40,7 +40,7 @@ import { Parameter } from "../modularCodeModel.js";
 import { serializeType } from "../serialization/serializers.js";
 import { SerializerMap } from "../serialization/util.js";
 
-function getRLCResponseType(rlcResponse?: OperationResponse) {
+export function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
     return;
   }
@@ -57,7 +57,7 @@ function getRLCResponseType(rlcResponse?: OperationResponse) {
     .join(" | ");
 }
 
-function getRLCLroLogicalResponse(rlcResponse?: OperationResponse) {
+export function getRLCLroLogicalResponse(rlcResponse?: OperationResponse) {
   const logicalResponse = (rlcResponse?.responses ?? []).filter(
     (r) => r.predefinedName && r.predefinedName.endsWith(`LogicalResponse`)
   );

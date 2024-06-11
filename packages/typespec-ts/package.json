@@ -5,6 +5,8 @@
   "main": "dist/src/index.js",
   "type": "module",
   "scripts": {
+    "test-next": "vitest ./test-next",
+    "test-next:coverage": "vitest ./test-next --coverage",
     "clean": "rimraf ./dist ./typespec-output",
     "build": "tsc -p .",
     "test": "npm run unit-test && npm run integration-test-ci",
@@ -89,7 +91,10 @@
     "prettier": "^3.1.0",
     "rimraf": "^5.0.0",
     "ts-node": "~10.9.1",
-    "typescript": "~5.4.5"
+    "typescript": "~5.4.5",
+    "vitest": "~1.6.0",
+    "@vitest/coverage-v8": "~1.6.0",
+    "@vitest/coverage-istanbul": "~1.6.0"
   },
   "peerDependencies": {
     "@azure-tools/typespec-azure-core": ">=0.42.0 <1.0.0",
