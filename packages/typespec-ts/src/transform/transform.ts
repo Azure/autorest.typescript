@@ -21,7 +21,7 @@ import {
 import { SdkClient } from "@azure-tools/typespec-client-generator-core";
 import { getDoc } from "@typespec/compiler";
 import { getServers } from "@typespec/http";
-import { join } from "path";
+import * as path from "path";
 import { SdkContext } from "../utils/interfaces.js";
 import {
   getDefaultService,
@@ -46,7 +46,7 @@ export async function transformRLCModel(
 ): Promise<RLCModel> {
   const program = dpgContext.program;
   const options: RLCOptions = dpgContext.rlcOptions!;
-  const srcPath = join(
+  const srcPath = path.join(
     dpgContext.generationPathDetail?.rlcSourcesDir ?? "",
     options.batch && options.batch.length > 1
       ? normalizeName(client.name.replace("Client", ""), NameType.File)

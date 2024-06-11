@@ -35,6 +35,7 @@ import { EmitContext, Program } from "@typespec/compiler";
 import { existsSync } from "fs";
 import * as fsextra from "fs-extra";
 import { join } from "path";
+import { env } from "process";
 import { Project } from "ts-morph";
 import { EmitterOptions } from "./lib.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
@@ -59,6 +60,7 @@ import { buildSerializeUtils } from "./modular/buildSerializeUtils.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import { buildModels, buildModelsOptions } from "./modular/emitModels.js";
 import { ModularCodeModel } from "./modular/modularCodeModel.js";
+import { buildSerializers } from "./modular/serialization/index.js";
 import { transformRLCModel } from "./transform/transform.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { getRLCClients } from "./utils/clientUtils.js";
@@ -195,7 +197,8 @@ export async function $onEmit(context: EmitContext) {
         buildModelsOptions(subClient, modularCodeModel);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
-        buildSerializeUtils(modularCodeModel);
+        if (!env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"])
+          buildSerializeUtils(modularCodeModel);
         // build paging files
         buildPagingTypes(subClient, modularCodeModel);
         buildModularPagingHelpers(
@@ -205,11 +208,15 @@ export async function $onEmit(context: EmitContext) {
           isMultiClients
         );
         // build operation files
+        const serializerMap = env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"]
+          ? buildSerializers(dpgContext, modularCodeModel, subClient)
+          : undefined;
         buildOperationFiles(
           subClient,
           dpgContext,
           modularCodeModel,
-          hasClientUnexpectedHelper
+          hasClientUnexpectedHelper,
+          serializerMap
         );
         buildClientContext(subClient, dpgContext, modularCodeModel);
         buildSubpathIndexFile(subClient, modularCodeModel, "models");

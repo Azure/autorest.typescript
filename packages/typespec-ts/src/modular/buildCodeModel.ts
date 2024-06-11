@@ -12,6 +12,7 @@ import {
 import {
   getAllModels,
   getClientNamespaceString,
+  getClientType,
   getDefaultApiVersion,
   getLibraryName,
   getSdkBuiltInType,
@@ -23,7 +24,8 @@ import {
   listOperationsInOperationGroup,
   SdkBuiltInType,
   SdkClient,
-  SdkEnumValueType
+  SdkEnumValueType,
+  SdkType
 } from "@azure-tools/typespec-client-generator-core";
 import {
   Enum,
@@ -370,6 +372,9 @@ function getType(
       target: type
     });
   }
+  if (!["Credential", "CredentialTypeUnion"].includes(type.kind)) {
+    newValue.tcgcType = getClientType(context, type as Type);
+  }
   return newValue;
 }
 
@@ -386,6 +391,7 @@ type ParamBase = {
   restApiName: string;
   inOverload: boolean;
   format?: string;
+  tcgcType: SdkType;
 };
 function emitParamBase(
   context: SdkContext,
@@ -425,7 +431,8 @@ function emitParamBase(
     clientName: applyCasing(name, { casing: CASING }),
     restApiName,
     inOverload: false,
-    format
+    format,
+    tcgcType: getClientType(context, parameter)
   };
 }
 
@@ -481,7 +488,7 @@ function emitParameter(
     clientDefaultValue = type["value"];
     type = type["valueType"];
   }
-  const paramMap: any = {
+  const paramMap = {
     restApiName: parameter.name,
     location: parameter.type,
     type: base.format ? { ...type, format: base.format } : type,
@@ -503,7 +510,7 @@ function emitParameter(
       getServiceNamespace(context.program)
     );
     paramMap.implementation = implementation;
-    paramMap.in_docstring = false;
+    (paramMap as any).in_docstring = false;
     if (defaultApiVersion) {
       clientDefaultValue = defaultApiVersion.value;
     }
@@ -511,7 +518,7 @@ function emitParameter(
       clientDefaultValue = getDefaultApiVersionString(context);
     }
     if (clientDefaultValue !== undefined) {
-      paramMap.optional = true;
+      (paramMap as any).optional = true;
     }
   }
   return { clientDefaultValue, ...base, ...paramMap };
@@ -1360,7 +1367,8 @@ function emitUnion(
       aliasType:
         unionName === "" || unionName === undefined
           ? undefined
-          : variantTypes.map((x) => getTypeName(x).name).join(" | ")
+          : variantTypes.map((x) => getTypeName(x).name).join(" | "),
+      tcgcType: sdkType
     };
   } else if (sdkType.kind === "enum") {
     let typeName = getLibraryName(context, type)
@@ -1830,7 +1838,6 @@ export function emitCodeModel(
   for (const model of allModels) {
     getType(dpgContext, model.__raw!, { usage: model.usage as UsageFlags });
   }
-
   for (const namespace of getNamespaces(dpgContext)) {
     if (namespace === clientNamespaceString) {
       codeModel.clients = emitClients(dpgContext, namespace, rlcModelsMap);

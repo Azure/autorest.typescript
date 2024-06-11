@@ -5,6 +5,7 @@ import {
   NameType,
   normalizeName
 } from "@azure-tools/rlc-common";
+import { env } from "process";
 import { Project, SourceFile } from "ts-morph";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
@@ -21,6 +22,11 @@ import {
 import { buildType } from "./helpers/typeHelpers.js";
 import { OperationPathAndDeserDetails } from "./interfaces.js";
 import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
+import {
+  getDeserializePrivateFunction as experimentalGetDeserializePrivateFunction,
+  getSendPrivateFunction as experimentalGetSendPrivateFunction
+} from "./serialization/operationHelpers.js";
+import { SerializerMap } from "./serialization/util.js";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -31,9 +37,14 @@ export function buildOperationFiles(
   client: Client,
   dpgContext: SdkContext,
   codeModel: ModularCodeModel,
-  needUnexpectedHelper: boolean = true
+  needUnexpectedHelper: boolean = true,
+  serializerMap?: SerializerMap
 ) {
   const operationFiles = [];
+  const isMultiEndpoint = isRLCMultiEndpoint(dpgContext);
+  const clientType = isMultiEndpoint
+    ? `Client.${client.rlcClientName}`
+    : "Client";
   for (const operationGroup of client.operationGroups) {
     clearImportSets(codeModel.runtimeImports);
     const operationFileName =
@@ -100,10 +111,8 @@ export function buildOperationFiles(
     );
 
     const namedImports: string[] = [];
-    let clientType = "Client";
-    if (isRLCMultiEndpoint(dpgContext)) {
+    if (isMultiEndpoint) {
       namedImports.push(`Client`);
-      clientType = `Client.${client.rlcClientName}`;
       if (needUnexpectedHelper) {
         namedImports.push("UnexpectedHelper");
       }
@@ -134,18 +143,39 @@ export function buildOperationFiles(
     }
     operationGroup.operations.forEach((o) => {
       const operationDeclaration = getOperationFunction(o, clientType);
-      const sendOperationDeclaration = getSendPrivateFunction(
-        dpgContext,
-        o,
-        clientType,
-        codeModel.runtimeImports
-      );
-      const deserializeOperationDeclaration = getDeserializePrivateFunction(
-        o,
-        isRLCMultiEndpoint(dpgContext),
-        needUnexpectedHelper,
-        codeModel.runtimeImports
-      );
+      const sendOperationDeclaration = env[
+        "EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"
+      ]
+        ? experimentalGetSendPrivateFunction(
+            dpgContext,
+            o,
+            clientType,
+            serializerMap,
+            codeModel.runtimeImports
+          )
+        : getSendPrivateFunction(
+            dpgContext,
+            o,
+            clientType,
+            codeModel.runtimeImports
+          );
+      const deserializeOperationDeclaration = env[
+        "EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"
+      ]
+        ? experimentalGetDeserializePrivateFunction(
+            dpgContext,
+            o,
+            isMultiEndpoint,
+            needUnexpectedHelper,
+            codeModel.runtimeImports,
+            serializerMap
+          )
+        : getDeserializePrivateFunction(
+            o,
+            isMultiEndpoint,
+            needUnexpectedHelper,
+            codeModel.runtimeImports
+          );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
         deserializeOperationDeclaration,
