@@ -1,7 +1,9 @@
 import { ImportType } from "@azure-tools/rlc-common";
 import {
+  SdkArrayType,
   SdkConstantType,
   SdkContext,
+  SdkDatetimeType,
   SdkEnumType,
   SdkModelPropertyType,
   SdkModelType,
@@ -13,8 +15,11 @@ import { getDiscriminator, UsageFlags } from "@typespec/compiler";
 import _ from "lodash";
 import * as Reify from "../../reify/index.js";
 import {
+  getEncodingFormat,
+  getModularTypeId,
   getParameterTypePropertyName,
   getReturnTypePropertyName,
+  getRLCTypeId,
   SerializerMap,
   SerializerOutput
 } from "./util.js";
@@ -111,30 +116,120 @@ function getSerializeHandler<TCGCType extends SdkType | SdkModelPropertyType>(
     >;
 
   const handlers: SerializeHandlerMap = {
-    array: placeholder,
-    bytes: placeholder,
-    dict: placeholder,
-    duration: placeholder,
-    enumvalue: placeholder,
-    model: placeholder,
-    offsetDateTime: placeholder,
-    plainDate: placeholder,
-    plainTime: placeholder,
-    property: placeholder,
-    tuple: placeholder,
-    union: placeholder,
-    utcDateTime: placeholder,
+    array: serializeArray,
+    bytes: serializeByteArray,
+    enumvalue: (options) =>
+      serializeType({ ...options, type: options.type.valueType }),
+    model: serializeModelPropertiesInline,
+    offsetDateTime: serializeDatetime,
+    plainDate: ({ valueExpr }) => `(${valueExpr}).toDateString()`,
+    plainTime: ({ valueExpr }) => `(${valueExpr}).toTimeString()`,
+    property: serializeModelProperty,
+    // TODO: This is the function that emits the body of a function meant to serialize a type union.
+    // It's implemented as a switch statement. This is fine for a function body. However,
+    // `getSerializeHandler` is designed to always return something that can go in expression
+    // position. We may or may not decide to emit a function to serialize anonymous unions using the
+    // TCGC generated name as its identifier. If we don't, a copy of this function will need to be
+    // adapted to expression position (e.g. nested ternary statements). As it stands, this function
+    // should never actually be dispatched, and should be removed if we find it to be unnecessary.
+    union: serializeUnionInline,
+    utcDateTime: serializeDatetime,
 
-    body: placeholder,
+    duration: placeholder,
+    tuple: placeholder,
+    dict: placeholder,
     credential: placeholder,
+
     endpoint: placeholder,
-    header: placeholder,
     method: placeholder,
+    query: placeholder,
     path: placeholder,
-    query: placeholder
+    body: placeholder,
+    header: placeholder
   };
   const handler = handlers[kind];
   return handler as any;
+}
+
+function serializeByteArray(
+  options: SerializeTypeOptions<SdkType & { kind: "bytes" }>
+): string {
+  const { functionType, type, valueExpr, importCallback } = options;
+
+  if (type.encode === "binary") {
+    return valueExpr;
+  }
+
+  const format = getEncodingFormat(functionType, type);
+  const args = [valueExpr, `"${format}"`].join(", ");
+
+  if (functionType === UsageFlags.Input) {
+    importCallback("coreUtil", "uint8ArrayToString");
+    return `uint8ArrayToString(${args})`;
+  }
+  importCallback("coreUtil", "stringToUint8Array");
+  return `(typeof (${valueExpr}) === 'string')
+      ? (stringToUint8Array(${args}))
+      : (${valueExpr})`;
+}
+
+function serializeDatetime(
+  options: SerializeTypeOptions<SdkDatetimeType>
+): string {
+  const { functionType, type, valueExpr } = options;
+  if (functionType === UsageFlags.Input) {
+    switch (type.encode) {
+      case "rfc7231":
+        return `(${valueExpr}).toUTCString()`;
+      case "unixTimestamp":
+        return `(${valueExpr}).getTime()`;
+      case "rfc3339":
+      default:
+        return `(${valueExpr}).toISOString()`;
+    }
+  } else {
+    return `new Date(${valueExpr})`;
+  }
+}
+
+function serializeArray(
+  options: SerializeTypeOptions<SdkArrayType>
+): SerializerOutput {
+  const { dpgContext, functionType, serializerMap, type, valueExpr } = options;
+  const valueType = type.valueType as SdkType & { name?: string };
+  const mapParameterId = "e";
+  const elementTypeName =
+    valueType.name &&
+    (functionType === UsageFlags.Input
+      ? getModularTypeId(valueType)
+      : getRLCTypeId(dpgContext, valueType));
+  const serializedChildExpr = serializeType({
+    ...options,
+    type: valueType,
+    valueExpr: mapParameterId
+  });
+
+  if (serializedChildExpr === mapParameterId) {
+    // mapping over identity function, so map is unnecessary
+    // arr.map((e) => e) -> arr
+    return valueExpr;
+  }
+
+  // arr.map((e) => f(e)) -> arr.map(f)
+  const unaryFunctionInvocation =
+    /(?<functionName>\w+)\((?<childArgExpr>\w+)\)/;
+  const { functionName, childArgExpr } =
+    serializedChildExpr.match(unaryFunctionInvocation)?.groups ?? {};
+  const mapArg =
+    elementTypeName && serializerMap?.[elementTypeName]
+      ? mapParameterId
+      : `${mapParameterId}: ${elementTypeName}`;
+  const mapFunction =
+    childArgExpr === mapParameterId
+      ? functionName
+      : `(${mapArg})=>(${serializedChildExpr})`;
+
+  return `${valueExpr}.map(${mapFunction})`;
 }
 
 export function serializeModelPropertiesInline(
