@@ -5,13 +5,13 @@ import { OperationOptions } from "@azure-rest/core-client";
 
 export interface OperationsListOptionalParams extends OperationOptions {}
 
-export interface DataProductsCatalogsGetOptionalParams
+export interface DataProductsCatalogsOperationsGetOptionalParams
   extends OperationOptions {}
 
-export interface DataProductsCatalogsListByResourceGroupOptionalParams
+export interface DataProductsCatalogsOperationsListByResourceGroupOptionalParams
   extends OperationOptions {}
 
-export interface DataProductsCatalogsListBySubscriptionOptionalParams
+export interface DataProductsCatalogsOperationsListBySubscriptionOptionalParams
   extends OperationOptions {}
 
 export interface DataTypesCreateOptionalParams extends OperationOptions {

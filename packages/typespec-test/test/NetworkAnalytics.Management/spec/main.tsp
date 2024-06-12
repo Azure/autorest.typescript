@@ -4,6 +4,7 @@ import "@azure-tools/typespec-azure-resource-manager";
 import "@azure-tools/typespec-autorest";
 import "@typespec/versioning";
 import "@typespec/openapi";
+import "@azure-tools/typespec-client-generator-core";
 
 using TypeSpec.Versioning;
 using TypeSpec.Http;
@@ -11,6 +12,7 @@ using TypeSpec.Rest;
 using Azure.ResourceManager;
 using Autorest;
 using OpenAPI;
+using Azure.ClientGenerator.Core;
 
 @armProviderNamespace
 @service({
@@ -516,6 +518,7 @@ model DataProductVersion {
 @doc("Operations on data catalog resource.")
 @added(Versions.v2023_11_15)
 @armResourceOperations
+@clientName("DataProductsCatalogsOperations")
 interface DataProductsCatalogs {
   @doc("Retrieve data type resource.")
   get is ArmResourceRead<DataProductsCatalog>;

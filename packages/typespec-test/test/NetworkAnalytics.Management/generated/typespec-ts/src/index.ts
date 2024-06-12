@@ -63,9 +63,9 @@ export {
   ActionType,
   Versions,
   OperationsListOptionalParams,
-  DataProductsCatalogsGetOptionalParams,
-  DataProductsCatalogsListByResourceGroupOptionalParams,
-  DataProductsCatalogsListBySubscriptionOptionalParams,
+  DataProductsCatalogsOperationsGetOptionalParams,
+  DataProductsCatalogsOperationsListByResourceGroupOptionalParams,
+  DataProductsCatalogsOperationsListBySubscriptionOptionalParams,
   DataTypesCreateOptionalParams,
   DataTypesGetOptionalParams,
   DataTypesUpdateOptionalParams,
@@ -90,7 +90,7 @@ export {
 } from "./models/index.js";
 export {
   DataProductsOperations,
-  DataProductsCatalogsOperations,
+  DataProductsCatalogsOperationsOperations,
   DataTypesOperations,
   OperationsOperations,
 } from "./classic/index.js";

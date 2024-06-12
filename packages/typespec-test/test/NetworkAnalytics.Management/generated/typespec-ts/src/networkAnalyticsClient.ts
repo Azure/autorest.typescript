@@ -8,9 +8,9 @@ import {
   OperationsOperations,
 } from "./classic/operations/index.js";
 import {
-  getDataProductsCatalogsOperations,
-  DataProductsCatalogsOperations,
-} from "./classic/dataProductsCatalogs/index.js";
+  getDataProductsCatalogsOperationsOperations,
+  DataProductsCatalogsOperationsOperations,
+} from "./classic/dataProductsCatalogsOperations/index.js";
 import {
   getDataTypesOperations,
   DataTypesOperations,
@@ -39,15 +39,16 @@ export class NetworkAnalyticsClient {
     this._client = createNetworkAnalytics(credential, options);
     this.pipeline = this._client.pipeline;
     this.operations = getOperationsOperations(this._client);
-    this.dataProductsCatalogs = getDataProductsCatalogsOperations(this._client);
+    this.dataProductsCatalogsOperations =
+      getDataProductsCatalogsOperationsOperations(this._client);
     this.dataTypes = getDataTypesOperations(this._client);
     this.dataProducts = getDataProductsOperations(this._client);
   }
 
   /** The operation groups for Operations */
   public readonly operations: OperationsOperations;
-  /** The operation groups for DataProductsCatalogs */
-  public readonly dataProductsCatalogs: DataProductsCatalogsOperations;
+  /** The operation groups for DataProductsCatalogsOperations */
+  public readonly dataProductsCatalogsOperations: DataProductsCatalogsOperationsOperations;
   /** The operation groups for DataTypes */
   public readonly dataTypes: DataTypesOperations;
   /** The operation groups for DataProducts */

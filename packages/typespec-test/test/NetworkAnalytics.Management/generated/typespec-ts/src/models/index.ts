@@ -60,9 +60,9 @@ export {
 } from "./models.js";
 export {
   OperationsListOptionalParams,
-  DataProductsCatalogsGetOptionalParams,
-  DataProductsCatalogsListByResourceGroupOptionalParams,
-  DataProductsCatalogsListBySubscriptionOptionalParams,
+  DataProductsCatalogsOperationsGetOptionalParams,
+  DataProductsCatalogsOperationsListByResourceGroupOptionalParams,
+  DataProductsCatalogsOperationsListBySubscriptionOptionalParams,
   DataTypesCreateOptionalParams,
   DataTypesGetOptionalParams,
   DataTypesUpdateOptionalParams,

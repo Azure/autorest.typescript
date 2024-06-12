@@ -7,55 +7,57 @@ import {
   get,
   listByResourceGroup,
   listBySubscription,
-} from "../../api/dataProductsCatalogs/index.js";
+} from "../../api/dataProductsCatalogsOperations/index.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import {
-  DataProductsCatalogsGetOptionalParams,
-  DataProductsCatalogsListByResourceGroupOptionalParams,
-  DataProductsCatalogsListBySubscriptionOptionalParams,
+  DataProductsCatalogsOperationsGetOptionalParams,
+  DataProductsCatalogsOperationsListByResourceGroupOptionalParams,
+  DataProductsCatalogsOperationsListBySubscriptionOptionalParams,
 } from "../../models/options.js";
 
-export interface DataProductsCatalogsOperations {
+export interface DataProductsCatalogsOperationsOperations {
   get: (
     subscriptionId: string,
     resourceGroupName: string,
-    options?: DataProductsCatalogsGetOptionalParams,
+    options?: DataProductsCatalogsOperationsGetOptionalParams,
   ) => Promise<DataProductsCatalog>;
   listByResourceGroup: (
     subscriptionId: string,
     resourceGroupName: string,
-    options?: DataProductsCatalogsListByResourceGroupOptionalParams,
+    options?: DataProductsCatalogsOperationsListByResourceGroupOptionalParams,
   ) => PagedAsyncIterableIterator<DataProductsCatalog>;
   listBySubscription: (
     subscriptionId: string,
-    options?: DataProductsCatalogsListBySubscriptionOptionalParams,
+    options?: DataProductsCatalogsOperationsListBySubscriptionOptionalParams,
   ) => PagedAsyncIterableIterator<DataProductsCatalog>;
-}
-
-export function getDataProductsCatalogs(context: NetworkAnalyticsContext) {
-  return {
-    get: (
-      subscriptionId: string,
-      resourceGroupName: string,
-      options?: DataProductsCatalogsGetOptionalParams,
-    ) => get(context, subscriptionId, resourceGroupName, options),
-    listByResourceGroup: (
-      subscriptionId: string,
-      resourceGroupName: string,
-      options?: DataProductsCatalogsListByResourceGroupOptionalParams,
-    ) =>
-      listByResourceGroup(context, subscriptionId, resourceGroupName, options),
-    listBySubscription: (
-      subscriptionId: string,
-      options?: DataProductsCatalogsListBySubscriptionOptionalParams,
-    ) => listBySubscription(context, subscriptionId, options),
-  };
 }
 
 export function getDataProductsCatalogsOperations(
   context: NetworkAnalyticsContext,
-): DataProductsCatalogsOperations {
+) {
   return {
-    ...getDataProductsCatalogs(context),
+    get: (
+      subscriptionId: string,
+      resourceGroupName: string,
+      options?: DataProductsCatalogsOperationsGetOptionalParams,
+    ) => get(context, subscriptionId, resourceGroupName, options),
+    listByResourceGroup: (
+      subscriptionId: string,
+      resourceGroupName: string,
+      options?: DataProductsCatalogsOperationsListByResourceGroupOptionalParams,
+    ) =>
+      listByResourceGroup(context, subscriptionId, resourceGroupName, options),
+    listBySubscription: (
+      subscriptionId: string,
+      options?: DataProductsCatalogsOperationsListBySubscriptionOptionalParams,
+    ) => listBySubscription(context, subscriptionId, options),
+  };
+}
+
+export function getDataProductsCatalogsOperationsOperations(
+  context: NetworkAnalyticsContext,
+): DataProductsCatalogsOperationsOperations {
+  return {
+    ...getDataProductsCatalogsOperations(context),
   };
 }

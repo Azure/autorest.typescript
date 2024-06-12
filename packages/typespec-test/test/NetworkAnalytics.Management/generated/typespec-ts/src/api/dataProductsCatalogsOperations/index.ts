@@ -23,16 +23,18 @@ import {
   createRestError,
 } from "@azure-rest/core-client";
 import {
-  DataProductsCatalogsGetOptionalParams,
-  DataProductsCatalogsListByResourceGroupOptionalParams,
-  DataProductsCatalogsListBySubscriptionOptionalParams,
+  DataProductsCatalogsOperationsGetOptionalParams,
+  DataProductsCatalogsOperationsListByResourceGroupOptionalParams,
+  DataProductsCatalogsOperationsListBySubscriptionOptionalParams,
 } from "../../models/options.js";
 
 export function _getSend(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
-  options: DataProductsCatalogsGetOptionalParams = { requestOptions: {} },
+  options: DataProductsCatalogsOperationsGetOptionalParams = {
+    requestOptions: {},
+  },
 ): StreamableMethod<
   DataProductsCatalogsGet200Response | DataProductsCatalogsGetDefaultResponse
 > {
@@ -97,7 +99,9 @@ export async function get(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
-  options: DataProductsCatalogsGetOptionalParams = { requestOptions: {} },
+  options: DataProductsCatalogsOperationsGetOptionalParams = {
+    requestOptions: {},
+  },
 ): Promise<DataProductsCatalog> {
   const result = await _getSend(
     context,
@@ -112,7 +116,7 @@ export function _listByResourceGroupSend(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
-  options: DataProductsCatalogsListByResourceGroupOptionalParams = {
+  options: DataProductsCatalogsOperationsListByResourceGroupOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod<
@@ -183,7 +187,7 @@ export function listByResourceGroup(
   context: Client,
   subscriptionId: string,
   resourceGroupName: string,
-  options: DataProductsCatalogsListByResourceGroupOptionalParams = {
+  options: DataProductsCatalogsOperationsListByResourceGroupOptionalParams = {
     requestOptions: {},
   },
 ): PagedAsyncIterableIterator<DataProductsCatalog> {
@@ -204,7 +208,7 @@ export function listByResourceGroup(
 export function _listBySubscriptionSend(
   context: Client,
   subscriptionId: string,
-  options: DataProductsCatalogsListBySubscriptionOptionalParams = {
+  options: DataProductsCatalogsOperationsListBySubscriptionOptionalParams = {
     requestOptions: {},
   },
 ): StreamableMethod<
@@ -273,7 +277,7 @@ export async function _listBySubscriptionDeserialize(
 export function listBySubscription(
   context: Client,
   subscriptionId: string,
-  options: DataProductsCatalogsListBySubscriptionOptionalParams = {
+  options: DataProductsCatalogsOperationsListBySubscriptionOptionalParams = {
     requestOptions: {},
   },
 ): PagedAsyncIterableIterator<DataProductsCatalog> {
