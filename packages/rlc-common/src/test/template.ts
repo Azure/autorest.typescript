@@ -1,15 +1,3 @@
-export const envContent = `
-import * as dotenv from "dotenv";
-
-dotenv.config();
-`;
-
-export const envBrowserContent = `
-import * as dotenv from "dotenv";
-
-dotenv.config();
-`;
-
 export const karmaConfig = `
 // https://github.com/karma-runner/karma-chrome-launcher
 process.env.CHROME_BIN = require("puppeteer").executablePath();
@@ -141,7 +129,6 @@ module.exports = function (config) {
 export const recordedClientContent = `
 import { Context } from "mocha";
 import { Recorder, RecorderStartOptions } from "@azure-tools/test-recorder";
-import "./env";
 
 const envSetupForPlayback: Record<string, string> = {
   ENDPOINT: "https://endpoint",

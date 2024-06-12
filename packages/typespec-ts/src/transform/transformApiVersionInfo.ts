@@ -1,25 +1,25 @@
 import {
-  SdkClient,
+  ApiVersionInfo,
+  ApiVersionPosition,
+  extractDefinedPosition,
+  extractPathApiVersion,
+  SchemaContext,
+  UrlInfo
+} from "@azure-tools/rlc-common";
+import {
   isApiVersion,
   listOperationGroups,
-  listOperationsInOperationGroup
+  listOperationsInOperationGroup,
+  SdkClient
 } from "@azure-tools/typespec-client-generator-core";
 import { ignoreDiagnostics } from "@typespec/compiler";
-import {
-  ApiVersionInfo,
-  UrlInfo,
-  extractPathApiVersion,
-  extractDefinedPosition,
-  SchemaContext,
-  ApiVersionPosition
-} from "@azure-tools/rlc-common";
 import { getHttpOperation } from "@typespec/http";
+import { SdkContext } from "../utils/interfaces.js";
 import {
   getDefaultApiVersionString,
   getSchemaForType,
   trimUsage
 } from "../utils/modelUtils.js";
-import { SdkContext } from "../utils/interfaces.js";
 
 export function transformApiVersionInfo(
   client: SdkClient,

@@ -35,6 +35,11 @@ export default function createClient(
   const client = getClient(endpointUrl, options) as CustomContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  if (options.apiVersion) {
+    logger.warning(
+      "This client does not support client api-version, please change it at the operation level",
+    );
+  }
 
   client.pipeline.addPolicy({
     name: "customKeyCredentialPolicy",

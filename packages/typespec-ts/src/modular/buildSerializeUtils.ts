@@ -1,24 +1,24 @@
-import { toPascalCase } from "../utils/casingUtils.js";
 import {
-  getResponseMapping,
-  getRequestModelMapping,
-  serializeRequestValue,
-  deserializeResponseValue,
-  getAllAncestors
-} from "./helpers/operationHelpers.js";
-import { ModularCodeModel, Type } from "./modularCodeModel.js";
+  addImportsToFiles,
+  addImportToSpecifier,
+  clearImportSets,
+  Imports as RuntimeImports
+} from "@azure-tools/rlc-common";
+import { UsageFlags } from "@typespec/compiler";
 import {
   FunctionDeclarationStructure,
   SourceFile,
   StructureKind
 } from "ts-morph";
+import { toPascalCase } from "../utils/casingUtils.js";
 import {
-  Imports as RuntimeImports,
-  addImportToSpecifier,
-  addImportsToFiles,
-  clearImportSets
-} from "@azure-tools/rlc-common";
-import { UsageFlags } from "@typespec/compiler";
+  deserializeResponseValue,
+  getAllAncestors,
+  getRequestModelMapping,
+  getResponseMapping,
+  serializeRequestValue
+} from "./helpers/operationHelpers.js";
+import { ModularCodeModel, Type } from "./modularCodeModel.js";
 
 /**
  * This function creates serialize and deserialize utils for special unions and that are used in the operation.

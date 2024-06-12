@@ -1,9 +1,31 @@
 import {
+  addImportToSpecifier,
+  getResponseBaseName,
+  getResponseTypeName,
+  Imports as RuntimeImports,
+  NameType,
+  OperationResponse
+} from "@azure-tools/rlc-common";
+import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import { NoTarget, Program } from "@typespec/compiler";
+import {
   FunctionDeclarationStructure,
   OptionalKind,
   ParameterDeclarationStructure
 } from "ts-morph";
+import { reportDiagnostic } from "../../lib.js";
 import { toPascalCase } from "../../utils/casingUtils.js";
+import {
+  getCollectionFormatHelper,
+  hasCollectionFormatInfo
+} from "../../utils/operationUtil.js";
+import {
+  getDeserializeFunctionName,
+  isNormalUnion,
+  isPolymorphicUnion,
+  isSpecialHandledUnion,
+  isSpecialUnionVariant
+} from "../buildSerializeUtils.js";
 import {
   BodyParameter,
   Client,
@@ -13,34 +35,12 @@ import {
   Property,
   Type
 } from "../modularCodeModel.js";
-import { buildType } from "./typeHelpers.js";
 import {
-  Imports as RuntimeImports,
-  NameType,
-  OperationResponse,
-  getResponseBaseName,
-  getResponseTypeName
-} from "@azure-tools/rlc-common";
-import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
-import {
-  getFixmeForMultilineDocs,
-  getDocsFromDescription
+  getDocsFromDescription,
+  getFixmeForMultilineDocs
 } from "./docsHelpers.js";
-import {
-  getDeserializeFunctionName,
-  isNormalUnion,
-  isPolymorphicUnion,
-  isSpecialHandledUnion,
-  isSpecialUnionVariant
-} from "../buildSerializeUtils.js";
-import {
-  getCollectionFormatHelper,
-  hasCollectionFormatInfo
-} from "../../utils/operationUtil.js";
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
-import { Program, NoTarget } from "@typespec/compiler";
-import { reportDiagnostic } from "../../lib.js";
-import { addImportToSpecifier } from "@azure-tools/rlc-common";
+import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
+import { buildType } from "./typeHelpers.js";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {

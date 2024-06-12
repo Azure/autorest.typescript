@@ -1,10 +1,19 @@
-import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
-import { Client, Operation, OperationGroup } from "../modularCodeModel.js";
 import {
-  ReservedModelNames,
   NameType,
-  normalizeName
+  normalizeName,
+  ReservedModelNames
 } from "@azure-tools/rlc-common";
+import { SdkClient } from "@azure-tools/typespec-client-generator-core";
+import { isDefined } from "@azure/core-util";
+import * as path from "path";
+import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
+import { SdkContext } from "../../utils/interfaces.js";
+import {
+  Client,
+  ModularCodeModel,
+  Operation,
+  OperationGroup
+} from "../modularCodeModel.js";
 
 export function getClientName(client: Client) {
   return client.name.replace(/Client$/, "");
@@ -66,4 +75,50 @@ export function getClassicalLayerPrefix(
     );
   }
   return prefix.join(separator);
+}
+
+export function getRLCIndexFilePath(
+  dpgContext: SdkContext,
+  client: Client | SdkClient,
+  ext: "js" | "ts" = "ts"
+): string {
+  return path.join(
+    ...[
+      dpgContext.generationPathDetail?.rlcSourcesDir,
+      getSubfolder(client, dpgContext),
+      `index.${ext}`
+    ].filter(isDefined)
+  );
+}
+
+export function getModularModelFilePath(
+  codeModel: ModularCodeModel,
+  client: Client | SdkClient,
+  ext: "js" | "ts" = "ts"
+): string {
+  return path.join(
+    ...[
+      codeModel.modularOptions.sourceRoot,
+      getSubfolder(client),
+      "models",
+      `models.${ext}`
+    ].filter(isDefined)
+  );
+}
+
+function getSubfolder(client: Client): string | undefined;
+function getSubfolder(
+  client: Client | SdkClient,
+  dpgContext?: SdkContext
+): string | undefined;
+function getSubfolder(
+  client: Client | SdkClient,
+  dpgContext?: SdkContext
+): string | undefined {
+  return (
+    (client as Client).subfolder ??
+    (dpgContext?.rlcOptions!.batch && dpgContext?.rlcOptions!.batch?.length > 1
+      ? normalizeName(client.name.replace("Client", ""), NameType.File)
+      : undefined)
+  );
 }

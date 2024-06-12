@@ -1,13 +1,13 @@
 import { TelemetryInfo } from "@azure-tools/rlc-common";
 import {
-  SdkClient,
-  SdkContext,
   listOperationGroups,
-  listOperationsInOperationGroup
+  listOperationsInOperationGroup,
+  SdkClient,
+  SdkContext
 } from "@azure-tools/typespec-client-generator-core";
 import { ignoreDiagnostics } from "@typespec/compiler";
-import { getCustomRequestHeaderNameForOperation } from "../utils/operationUtil.js";
 import { getHttpOperation } from "@typespec/http";
+import { getCustomRequestHeaderNameForOperation } from "../utils/operationUtil.js";
 
 export function transformTelemetryInfo(
   client: SdkClient,

@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  paramMessage,
-  createTypeSpecLibrary,
-  JSONSchemaType
-} from "@typespec/compiler";
 import { RLCOptions } from "@azure-tools/rlc-common";
+import {
+  createTypeSpecLibrary,
+  JSONSchemaType,
+  paramMessage
+} from "@typespec/compiler";
 import { Options } from "prettier";
 
 export interface EmitterOptions extends RLCOptions {

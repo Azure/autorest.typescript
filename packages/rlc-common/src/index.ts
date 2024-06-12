@@ -19,7 +19,6 @@ export * from "./buildIndexFile.js";
 export * from "./buildPaginateHelper.js";
 export * from "./buildPollingHelper.js";
 export * from "./test/buildKarmaConfig.js";
-export * from "./test/buildEnvFile.js";
 export * from "./test/buildRecordedClient.js";
 export * from "./test/buildSampleTest.js";
 export * from "./metadata/buildReadmeFile.js";

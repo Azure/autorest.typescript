@@ -1,24 +1,24 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  SdkClient,
-  listOperationGroups,
-  listOperationsInOperationGroup
-} from "@azure-tools/typespec-client-generator-core";
 import { SchemaContext } from "@azure-tools/rlc-common";
+import {
+  listOperationGroups,
+  listOperationsInOperationGroup,
+  SdkClient
+} from "@azure-tools/typespec-client-generator-core";
 import { ignoreDiagnostics, Model, Type } from "@typespec/compiler";
 import { getHttpOperation, getServers, HttpOperation } from "@typespec/http";
+import { SdkContext } from "../utils/interfaces.js";
+import { extractMediaTypes, KnownMediaType } from "../utils/mediaTypes.js";
 import {
+  getBodyType,
+  getDefaultService,
   getSchemaForType,
   includeDerivedModel,
-  getBodyType,
-  trimUsage,
   isAzureCoreErrorType,
-  getDefaultService
+  trimUsage
 } from "../utils/modelUtils.js";
-import { SdkContext } from "../utils/interfaces.js";
-import { KnownMediaType, extractMediaTypes } from "../utils/mediaTypes.js";
 
 export function transformSchemas(client: SdkClient, dpgContext: SdkContext) {
   const program = dpgContext.program;

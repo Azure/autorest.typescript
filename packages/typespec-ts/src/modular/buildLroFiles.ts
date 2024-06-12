@@ -1,10 +1,10 @@
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import path from "path";
 import { SourceFile } from "ts-morph";
+import { buildLroDeserDetailMap } from "./buildOperations.js";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { isLroOnlyOperation } from "./helpers/operationHelpers.js";
-import { ModularCodeModel, Client } from "./modularCodeModel.js";
-import path from "path";
-import { buildLroDeserDetailMap } from "./buildOperations.js";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { Client, ModularCodeModel } from "./modularCodeModel.js";
 
 /**
  * Always import LRO dependencies and remember to remove if unused.
@@ -18,7 +18,7 @@ export function importLroCoreDependencies(clientFile: SourceFile) {
       "OperationState",
       "deserializeState",
       "ResourceLocationConfig",
-      "LongRunningOperation",
+      "RunningOperation",
       "createHttpPoller",
       "OperationResponse"
     ]
@@ -77,7 +77,7 @@ export function buildRestorePollerHelper(
         */
         abortSignal?: AbortSignalLike;
         /** Deserialization function for raw response body */
-        processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
+        processResponseBody?: (result: TResponse) => Promise<TResult>;
       }
       
       /**
@@ -94,8 +94,8 @@ export function buildRestorePollerHelper(
         options?: RestorePollerOptions<TResult>
       ): PollerLike<OperationState<TResult>, TResult> {
         const pollerConfig = deserializeState(serializedState).config;
-        const { initialUrl, requestMethod, metadata } = pollerConfig;
-        if (!initialUrl || !requestMethod) {
+        const { initialRequestUrl, requestMethod, metadata } = pollerConfig;
+        if (!initialRequestUrl || !requestMethod) {
           throw new Error(
             \`Invalid serialized state: \${serializedState} for sourceOperation \${sourceOperation?.name}\`
           );
@@ -105,7 +105,7 @@ export function buildRestorePollerHelper(
           | undefined;
         const deserializeHelper =
           options?.processResponseBody ??
-          getDeserializationHelper(initialUrl, requestMethod);
+          getDeserializationHelper(initialRequestUrl, requestMethod);
         if (!deserializeHelper) {
           throw new Error(
             \`Please ensure the operation is in this client! We can't find its deserializeHelper for \${sourceOperation?.name}.\`
@@ -113,13 +113,13 @@ export function buildRestorePollerHelper(
         }
         return getLongRunningPoller(
           (client as any)["_client"] ?? client,
-          deserializeHelper as (result: TResponse) => PromiseLike<TResult>,
+          deserializeHelper as (result: TResponse) => Promise<TResult>,
           {
             updateIntervalInMs: options?.updateIntervalInMs,
             abortSignal: options?.abortSignal,
             resourceLocationConfig,
             restoreFrom: serializedState,
-            initialUrl
+            initialRequestUrl
           }
         );
       }
@@ -131,7 +131,7 @@ export function buildRestorePollerHelper(
       function getDeserializationHelper(
         urlStr: string,
         method: string
-      ): ((result: unknown) => PromiseLike<unknown>) | undefined {
+      ): ((result: unknown) => Promise<unknown>) | undefined {
         const path = new URL(urlStr).pathname;
         const pathParts = path.split("/");
       
@@ -139,7 +139,7 @@ export function buildRestorePollerHelper(
         // matchedLen: the length of candidate path
         // matchedValue: the matched status code array
         let matchedLen = -1,
-          matchedValue: ((result: unknown) => PromiseLike<unknown>) | undefined;
+          matchedValue: ((result: unknown) => Promise<unknown>) | undefined;
       
         // Iterate the responseMap to find a match
         for (const [key, value] of Object.entries(deserializeMap)) {
@@ -193,7 +193,7 @@ export function buildRestorePollerHelper(
           // Update the matched value if and only if we found the longer pattern
           if (found && candidatePath.length > matchedLen) {
             matchedLen = candidatePath.length;
-            matchedValue = value as (result: unknown) => PromiseLike<unknown>;
+            matchedValue = value as (result: unknown) => Promise<unknown>;
           }
         }
       
@@ -314,7 +314,7 @@ export function buildGetPollerHelper(
      * The original url of the LRO
      * Should not be null when restoreFrom is set
      */
-    initialUrl?: string;
+    initialRequestUrl?: string;
     /**
      * A serialized poller which can be used to resume an existing paused Long-Running-Operation.
      */
@@ -329,7 +329,7 @@ export function buildGetPollerHelper(
     TResult = void
   >(
     client: Client,
-    processResponseBody: (result: TResponse) => PromiseLike<TResult>,
+    processResponseBody: (result: TResponse) => Promise<TResult>,
     options: GetLongRunningPollerOptions<TResponse>
   ): PollerLike<OperationState<TResult>, TResult> {
     const { restoreFrom, getInitialResponse } = options;
@@ -340,7 +340,7 @@ export function buildGetPollerHelper(
     }
     let initialResponse: TResponse | undefined = undefined;
     const pollAbortController = new AbortController();
-    const poller: LongRunningOperation<TResponse> = {
+    const poller: RunningOperation<TResponse> = {
       sendInitialRequest: async () => {
         if (!getInitialResponse) {
           throw new Error(
@@ -380,9 +380,9 @@ export function buildGetPollerHelper(
           options.abortSignal?.removeEventListener("abort", abortListener);
           pollOptions?.abortSignal?.removeEventListener("abort", abortListener);
         }
-        if (options.initialUrl || initialResponse) {
+        if (options.initialRequestUrl || initialResponse) {
           response.headers["x-ms-original-url"] =
-            options.initialUrl ?? initialResponse!.request.url;
+            options.initialRequestUrl ?? initialResponse!.request.url;
         }
 
         return getLroResponse(response as TResponse);
@@ -393,7 +393,7 @@ export function buildGetPollerHelper(
       resourceLocationConfig: options?.resourceLocationConfig,
       restoreFrom: options?.restoreFrom,
       processResult: (result: unknown) => {
-        return processResponseBody(result as TResponse) as TResult;
+        return processResponseBody(result as TResponse);
       }
     });
   }
