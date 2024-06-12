@@ -4,6 +4,16 @@
   "description": "An experimental TypeSpec emitter for TypeScript RLC",
   "main": "dist/src/index.js",
   "type": "module",
+  "exports": {
+    ".": {
+      "default": "./dist/src/index.js",
+      "types": "./dist/src/index.d.ts"
+    },
+    "./testing": {
+      "default": "./dist/src/testing/index.js",
+      "types": "./dist/src/testing/index.d.ts"
+    }
+  },
   "scripts": {
     "test-next": "vitest ./test-next",
     "test-next:coverage": "vitest ./test-next --coverage",

@@ -5,6 +5,7 @@ import {
   SdkContext,
   SdkDatetimeType,
   SdkEnumType,
+  SdkHeaderParameter,
   SdkModelPropertyType,
   SdkModelType,
   SdkType,
@@ -24,7 +25,7 @@ import {
   SerializerOutput
 } from "./util.js";
 
-interface SerializeTypeOptions<
+export interface SerializeTypeOptions<
   TCGCType extends SdkType | SdkModelPropertyType
 > {
   dpgContext: SdkContext;
@@ -145,7 +146,12 @@ function getSerializeHandler<TCGCType extends SdkType | SdkModelPropertyType>(
     query: placeholder,
     path: placeholder,
     body: placeholder,
-    header: placeholder
+    header: (options) => {
+      const { type, valueExpr } = options;
+      //  "multi" | "csv" | "ssv" | "tsv" | "pipes"
+      type.collectionFormat;
+      throw Error("Not implemented.");
+    }
   };
   const handler = handlers[kind];
   return handler as any;

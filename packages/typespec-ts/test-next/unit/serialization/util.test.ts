@@ -5,7 +5,7 @@ import {
   getParameterTypePropertyName,
   getRLCTypeId,
   getReturnTypePropertyName
-} from "../../src/modular/serialization/util.js";
+} from "../../../src/modular/serialization/util.js";
 import { UsageFlags } from "@typespec/compiler";
 import {
   describe,
