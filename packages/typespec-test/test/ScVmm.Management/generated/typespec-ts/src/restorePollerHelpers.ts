@@ -1,0 +1,242 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+import {
+  PollerLike,
+  OperationState,
+  deserializeState,
+  ResourceLocationConfig,
+} from "@azure/core-lro";
+import { ScVmmContext } from "./api/scVmmContext.js";
+import { ScVmmClient } from "./scVmmClient.js";
+import { getLongRunningPoller } from "./api/pollingHelpers.js";
+import {
+  _createOrUpdateDeserialize,
+  _updateDeserialize,
+  _$deleteDeserialize,
+} from "./api/vmmServers/index.js";
+import {
+  _createOrUpdateDeserialize as _createOrUpdateDeserializeClouds,
+  _updateDeserialize as _updateDeserializeClouds,
+  _$deleteDeserialize as _$deleteDeserializeClouds,
+} from "./api/clouds/index.js";
+import {
+  _createOrUpdateDeserialize as _createOrUpdateDeserializeVirtualNetworks,
+  _updateDeserialize as _updateDeserializeVirtualNetworks,
+  _$deleteDeserialize as _$deleteDeserializeVirtualNetworks,
+} from "./api/virtualNetworks/index.js";
+import {
+  _createOrUpdateDeserialize as _createOrUpdateDeserializeVirtualMachineTemplates,
+  _updateDeserialize as _updateDeserializeVirtualMachineTemplates,
+  _$deleteDeserialize as _$deleteDeserializeVirtualMachineTemplates,
+} from "./api/virtualMachineTemplates/index.js";
+import {
+  _createOrUpdateDeserialize as _createOrUpdateDeserializeAvailabilitySets,
+  _updateDeserialize as _updateDeserializeAvailabilitySets,
+  _$deleteDeserialize as _$deleteDeserializeAvailabilitySets,
+} from "./api/availabilitySets/index.js";
+import {
+  _createOrUpdateDeserialize as _createOrUpdateDeserializeVirtualMachineInstances,
+  _updateDeserialize as _updateDeserializeVirtualMachineInstances,
+  _$deleteDeserialize as _$deleteDeserializeVirtualMachineInstances,
+  _stopDeserialize,
+  _startDeserialize,
+  _restartDeserialize,
+  _createCheckpointDeserialize,
+  _deleteCheckpointDeserialize,
+  _restoreCheckpointDeserialize,
+} from "./api/virtualMachineInstances/index.js";
+import { _createDeserialize } from "./api/guestAgents/index.js";
+import {
+  PathUncheckedResponse,
+  OperationOptions,
+} from "@azure-rest/core-client";
+import { AbortSignalLike } from "@azure/abort-controller";
+
+export interface RestorePollerOptions<
+  TResult,
+  TResponse extends PathUncheckedResponse = PathUncheckedResponse,
+> extends OperationOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /**
+   * The signal which can be used to abort requests.
+   */
+  abortSignal?: AbortSignalLike;
+  /** Deserialization function for raw response body */
+  processResponseBody?: (result: TResponse) => Promise<TResult>;
+}
+
+/**
+ * Creates a poller from the serialized state of another poller. This can be
+ * useful when you want to create pollers on a different host or a poller
+ * needs to be constructed after the original one is not in scope.
+ */
+export function restorePoller<TResponse extends PathUncheckedResponse, TResult>(
+  client: ScVmmContext | ScVmmClient,
+  serializedState: string,
+  sourceOperation: (
+    ...args: any[]
+  ) => PollerLike<OperationState<TResult>, TResult>,
+  options?: RestorePollerOptions<TResult>,
+): PollerLike<OperationState<TResult>, TResult> {
+  const pollerConfig = deserializeState(serializedState).config;
+  const { initialRequestUrl, requestMethod, metadata } = pollerConfig;
+  if (!initialRequestUrl || !requestMethod) {
+    throw new Error(
+      `Invalid serialized state: ${serializedState} for sourceOperation ${sourceOperation?.name}`,
+    );
+  }
+  const resourceLocationConfig = metadata?.["resourceLocationConfig"] as
+    | ResourceLocationConfig
+    | undefined;
+  const deserializeHelper =
+    options?.processResponseBody ??
+    getDeserializationHelper(initialRequestUrl, requestMethod);
+  if (!deserializeHelper) {
+    throw new Error(
+      `Please ensure the operation is in this client! We can't find its deserializeHelper for ${sourceOperation?.name}.`,
+    );
+  }
+  return getLongRunningPoller(
+    (client as any)["_client"] ?? client,
+    deserializeHelper as (result: TResponse) => Promise<TResult>,
+    {
+      updateIntervalInMs: options?.updateIntervalInMs,
+      abortSignal: options?.abortSignal,
+      resourceLocationConfig,
+      restoreFrom: serializedState,
+      initialRequestUrl,
+    },
+  );
+}
+
+const deserializeMap: Record<string, Function> = {
+  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}":
+    _createOrUpdateDeserialize,
+  "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}":
+    _updateDeserialize,
+  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/vmmServers/{vmmServerName}":
+    _$deleteDeserialize,
+  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/clouds/{cloudResourceName}":
+    _createOrUpdateDeserializeClouds,
+  "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/clouds/{cloudResourceName}":
+    _updateDeserializeClouds,
+  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/clouds/{cloudResourceName}":
+    _$deleteDeserializeClouds,
+  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualNetworks/{virtualNetworkName}":
+    _createOrUpdateDeserializeVirtualNetworks,
+  "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualNetworks/{virtualNetworkName}":
+    _updateDeserializeVirtualNetworks,
+  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualNetworks/{virtualNetworkName}":
+    _$deleteDeserializeVirtualNetworks,
+  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachineTemplates/{virtualMachineTemplateName}":
+    _createOrUpdateDeserializeVirtualMachineTemplates,
+  "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachineTemplates/{virtualMachineTemplateName}":
+    _updateDeserializeVirtualMachineTemplates,
+  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/virtualMachineTemplates/{virtualMachineTemplateName}":
+    _$deleteDeserializeVirtualMachineTemplates,
+  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/availabilitySets/{availabilitySetResourceName}":
+    _createOrUpdateDeserializeAvailabilitySets,
+  "PATCH /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/availabilitySets/{availabilitySetResourceName}":
+    _updateDeserializeAvailabilitySets,
+  "DELETE /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/availabilitySets/{availabilitySetResourceName}":
+    _$deleteDeserializeAvailabilitySets,
+  "PUT /{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default":
+    _createOrUpdateDeserializeVirtualMachineInstances,
+  "PATCH /{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default":
+    _updateDeserializeVirtualMachineInstances,
+  "DELETE /{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default":
+    _$deleteDeserializeVirtualMachineInstances,
+  "POST /{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default/stop":
+    _stopDeserialize,
+  "POST /{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default/start":
+    _startDeserialize,
+  "POST /{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default/restart":
+    _restartDeserialize,
+  "POST /{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default/createCheckpoint":
+    _createCheckpointDeserialize,
+  "POST /{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default/deleteCheckpoint":
+    _deleteCheckpointDeserialize,
+  "POST /{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default/restoreCheckpoint":
+    _restoreCheckpointDeserialize,
+  "PUT /{resourceUri}/providers/Microsoft.ScVmm/virtualMachineInstances/default/guestAgents/default":
+    _createDeserialize,
+};
+
+function getDeserializationHelper(
+  urlStr: string,
+  method: string,
+): ((result: unknown) => Promise<unknown>) | undefined {
+  const path = new URL(urlStr).pathname;
+  const pathParts = path.split("/");
+
+  // Traverse list to match the longest candidate
+  // matchedLen: the length of candidate path
+  // matchedValue: the matched status code array
+  let matchedLen = -1,
+    matchedValue: ((result: unknown) => Promise<unknown>) | undefined;
+
+  // Iterate the responseMap to find a match
+  for (const [key, value] of Object.entries(deserializeMap)) {
+    // Extracting the path from the map key which is in format
+    // GET /path/foo
+    if (!key.startsWith(method)) {
+      continue;
+    }
+    const candidatePath = getPathFromMapKey(key);
+    // Get each part of the url path
+    const candidateParts = candidatePath.split("/");
+
+    // track if we have found a match to return the values found.
+    let found = true;
+    for (
+      let i = candidateParts.length - 1, j = pathParts.length - 1;
+      i >= 1 && j >= 1;
+      i--, j--
+    ) {
+      if (
+        candidateParts[i]?.startsWith("{") &&
+        candidateParts[i]?.indexOf("}") !== -1
+      ) {
+        const start = candidateParts[i]!.indexOf("}") + 1,
+          end = candidateParts[i]?.length;
+        // If the current part of the candidate is a "template" part
+        // Try to use the suffix of pattern to match the path
+        // {guid} ==> $
+        // {guid}:export ==> :export$
+        const isMatched = new RegExp(
+          `${candidateParts[i]?.slice(start, end)}`,
+        ).test(pathParts[j] || "");
+
+        if (!isMatched) {
+          found = false;
+          break;
+        }
+        continue;
+      }
+
+      // If the candidate part is not a template and
+      // the parts don't match mark the candidate as not found
+      // to move on with the next candidate path.
+      if (candidateParts[i] !== pathParts[j]) {
+        found = false;
+        break;
+      }
+    }
+
+    // We finished evaluating the current candidate parts
+    // Update the matched value if and only if we found the longer pattern
+    if (found && candidatePath.length > matchedLen) {
+      matchedLen = candidatePath.length;
+      matchedValue = value as (result: unknown) => Promise<unknown>;
+    }
+  }
+
+  return matchedValue;
+}
+
+function getPathFromMapKey(mapKey: string): string {
+  const pathStart = mapKey.indexOf("/");
+  return mapKey.slice(pathStart);
+}
