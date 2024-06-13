@@ -237,7 +237,7 @@ importers:
       '@azure-tools/typespec-azure-core': '>=0.42.0 <1.0.0'
       '@azure-tools/typespec-azure-resource-manager': '>=0.42.1 <1.0.0'
       '@azure-tools/typespec-client-generator-core': '>=0.42.2 <1.0.0'
-      '@azure/abort-controller': ^2.0.0
+      '@azure/abort-controller': ^2.1.2
       '@azure/core-auth': ^1.6.0
       '@azure/core-lro': 3.0.0-beta.2
       '@azure/core-paging': ^1.5.0
@@ -292,7 +292,7 @@ importers:
       '@azure-tools/typespec-azure-core': 0.42.0_vh6ubjfznouqbteha4a2uzvejq
       '@azure-tools/typespec-azure-resource-manager': 0.42.1_uhmhlf4rrtw6krq4zomqwzdgo4
       '@azure-tools/typespec-client-generator-core': 0.42.2_pltw6jvksz75whntgvodyimazu
-      '@azure/abort-controller': 2.0.0
+      '@azure/abort-controller': 2.1.2
       '@azure/core-auth': 1.6.0
       '@azure/core-lro': 3.0.0-beta.2
       '@azure/core-paging': 1.5.0
@@ -632,13 +632,6 @@ packages:
     engines: {node: '>=12.0.0'}
     dependencies:
       tslib: 2.6.2
-
-  /@azure/abort-controller/2.0.0:
-    resolution: {integrity: sha512-RP/mR/WJchR+g+nQFJGOec+nzeN/VvjlwbinccoqfhTsTHbb8X5+mLDp48kHT0ueyum0BNSwGm0kX0UZuIqTGg==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      tslib: 2.6.2
-    dev: true
 
   /@azure/abort-controller/2.1.2:
     resolution: {integrity: sha512-nBrLsEWm4J2u5LpAPjxADTlq3trDgVZZXHNKabeXZtpq3d3AbN/KGO82R87rdDz5/lYB024rtEf10/q0urNgsA==}
