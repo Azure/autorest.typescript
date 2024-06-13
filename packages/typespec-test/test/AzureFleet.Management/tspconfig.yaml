@@ -1,0 +1,12 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    azureSdkForJs: false
+    isModularLibrary: true
+    hierarchyClient: false
+    generateOrphanModels: true
+    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    packageDetails:
+      name: "@azure/arm_azurefleet"
+      description: "Azure Fleet Service"
