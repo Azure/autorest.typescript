@@ -1,5 +1,5 @@
 import {
-  camelCase,
+  pascalCase,
   NameType,
   normalizeName,
   PackageDetails,
@@ -107,7 +107,13 @@ function processAuth(program: Program) {
         case "http":
           securityInfo.addCredentials = true;
           securityInfo.customHttpAuthHeaderName = "Authorization";
-          securityInfo.customHttpAuthSharedKeyPrefix = camelCase(auth.scheme);
+          // If it is basic or bearer auth we should generate it as Basic or Bearer
+          securityInfo.customHttpAuthSharedKeyPrefix = [
+            "basic",
+            "bearer"
+          ].includes(auth.scheme.toLowerCase())
+            ? pascalCase(auth.scheme)
+            : auth.scheme;
           break;
         case "apiKey":
           if (auth.in === "cookie") {
