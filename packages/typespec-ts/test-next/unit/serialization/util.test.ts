@@ -8,6 +8,7 @@ import {
 } from "../../../src/modular/serialization/util.js";
 import { UsageFlags } from "@typespec/compiler";
 import { describe, it, afterEach, vi } from "vitest";
+import { SdkModelType } from "@azure-tools/typespec-client-generator-core";
 
 // Mock the module
 vi.mock("@azure-tools/typespec-client-generator-core", async () => {
@@ -45,7 +46,10 @@ describe("serialization utils", () => {
 
   describe("getModularTypeId", () => {
     it("should return the name of the type", () => {
-      const type = { name: "myType" } as SdkType;
+      const type: SdkModelType = {
+        name: "myType",
+        kind: "model"
+      } as SdkModelType;
       const result = getModularTypeId(type);
       assert.equal(result, "myType");
     });
@@ -131,7 +135,7 @@ describe("serialization utils", () => {
   describe("getRLCTypeId", () => {
     it("should return the type name for input", async () => {
       const dpgContext = {} as any;
-      const type = { name: "myType" } as SdkType;
+      const type = { name: "myType", kind: "model" } as SdkType;
       const result = getRLCTypeId(dpgContext, type);
       assert.equal(result, "myType");
     });

@@ -1,6 +1,5 @@
 import { ImportType } from "@azure-tools/rlc-common";
 import {
-  SdkArrayType,
   SdkConstantType,
   SdkContext,
   SdkDatetimeType,
@@ -16,14 +15,13 @@ import _ from "lodash";
 import * as Reify from "../../reify/index.js";
 import {
   getEncodingFormat,
-  getModularTypeId,
   getParameterTypePropertyName,
   getReturnTypePropertyName,
-  getRLCTypeId,
   SerializerMap,
   SerializerOutput
 } from "./util.js";
 import { serializeHeader } from "./serializeHeaders.js";
+import { serializeArray } from "./serializeArray.js";
 
 export interface SerializeTypeOptions<
   TCGCType extends SdkType | SdkModelPropertyType
@@ -191,46 +189,6 @@ function serializeDatetime(
   } else {
     return `new Date(${valueExpr})`;
   }
-}
-
-export function serializeArray(
-  options: SerializeTypeOptions<SdkArrayType>
-): SerializerOutput {
-  const { dpgContext, functionType, serializerMap, type, valueExpr } = options;
-  const valueType = type.valueType as SdkType & { name?: string };
-  const mapParameterId = "e";
-  const elementTypeName =
-    valueType.name &&
-    (functionType === UsageFlags.Input
-      ? getModularTypeId(valueType)
-      : getRLCTypeId(dpgContext, valueType));
-  const serializedChildExpr = serializeType({
-    ...options,
-    type: valueType,
-    valueExpr: mapParameterId
-  });
-
-  if (serializedChildExpr === mapParameterId) {
-    // mapping over identity function, so map is unnecessary
-    // arr.map((e) => e) -> arr
-    return valueExpr;
-  }
-
-  // arr.map((e) => f(e)) -> arr.map(f)
-  const unaryFunctionInvocation =
-    /(?<functionName>\w+)\((?<childArgExpr>\w+)\)/;
-  const { functionName, childArgExpr } =
-    serializedChildExpr.match(unaryFunctionInvocation)?.groups ?? {};
-  const mapArg =
-    elementTypeName && serializerMap?.[elementTypeName]
-      ? mapParameterId
-      : `${mapParameterId}: ${elementTypeName}`;
-  const mapFunction =
-    childArgExpr === mapParameterId
-      ? functionName
-      : `(${mapArg})=>(${serializedChildExpr})`;
-
-  return `${valueExpr}.map(${mapFunction})`;
 }
 
 export function serializeModelPropertiesInline(

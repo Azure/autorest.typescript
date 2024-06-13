@@ -1,11 +1,8 @@
 import { SdkHeaderParameter } from "@azure-tools/typespec-client-generator-core";
-import {
-  SerializeTypeOptions,
-  serializeArray,
-  serializeType
-} from "./serializers.js";
+import { SerializeTypeOptions, serializeType } from "./serializers.js";
 import { SerializerOutput } from "./util.js";
 import { getCollectionSeparator } from "./collectionUtils.js";
+import { serializeArray } from "./serializeArray.js";
 
 export function serializeHeader(
   options: SerializeTypeOptions<

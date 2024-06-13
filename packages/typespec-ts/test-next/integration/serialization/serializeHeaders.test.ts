@@ -51,8 +51,7 @@ describe("headerSerializer", () => {
     assert.equal(result, `param.join(",")`);
   });
 
-  // Enable when parameter typename is fixed
-  it.skip("should handle a datetime array header", async () => {
+  it("should handle a datetime array header", async () => {
     const headerParam = await getSdkHeader(
       `@header({format: "csv"}) param: utcDateTime[]`,
       runner
