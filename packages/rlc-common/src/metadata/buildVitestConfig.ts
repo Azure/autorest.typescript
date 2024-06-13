@@ -104,7 +104,12 @@ export function buildVitestConfig(
     moduleSpecifier: "vitest/config",
     namedImports: ["defineConfig"]
   });
-
+  
+  configFile.addImportDeclaration({
+    moduleSpecifier: "@azure-tools/test-recorder",
+    namedImports: ["relativeRecordingsPath"]
+  });
+  
   return {
     path: filePath,
     content: configFile.getFullText()
