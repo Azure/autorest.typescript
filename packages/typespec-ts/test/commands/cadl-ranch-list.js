@@ -456,6 +456,10 @@ export const modularTsps = [
     inputPath: "type/property/additional-properties"
   },
   {
+    outputPath: "payload/content-negotiation",
+    inputPath: "payload/content-negotiation"
+  },
+  {
     outputPath: "parameters/basic",
     inputPath: "parameters/basic"
   },

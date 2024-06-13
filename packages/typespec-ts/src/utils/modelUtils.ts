@@ -2,12 +2,31 @@
 // Licensed under the MIT License.
 
 import {
+  ArraySchema,
+  DictionarySchema,
+  isArraySchema,
+  NameType,
+  normalizeName,
+  ObjectSchema,
+  Schema,
+  SchemaContext
+} from "@azure-tools/rlc-common";
+import { getPagedResult } from "@azure-tools/typespec-azure-core";
+import {
+  getDefaultApiVersion,
+  getWireName,
+  isApiVersion
+} from "@azure-tools/typespec-client-generator-core";
+import {
+  BooleanLiteral,
   Discriminator,
+  EncodeData,
   Enum,
   EnumMember,
   getDiscriminator,
   getDoc,
   getEffectiveModelType,
+  getEncode,
   getFormat,
   getFriendlyName,
   getMaxLength,
@@ -19,65 +38,46 @@ import {
   getPropertyType,
   getSummary,
   getVisibility,
+  isArrayModelType,
   isNeverType,
+  isNullType,
   isNumericType,
+  isRecordModelType,
   isSecret,
   isStringType,
   isTemplateDeclaration,
   isUnknownType,
+  listServices,
   Model,
   ModelProperty,
-  Type,
-  Union,
-  isNullType,
-  Scalar,
-  UnionVariant,
-  StringLiteral,
-  BooleanLiteral,
   NoTarget,
   NumericLiteral,
-  Service,
-  listServices,
   Program,
-  getEncode,
-  EncodeData,
-  isRecordModelType,
-  isArrayModelType
+  Scalar,
+  Service,
+  StringLiteral,
+  Type,
+  Union,
+  UnionVariant
 } from "@typespec/compiler";
-import { reportDiagnostic } from "../lib.js";
 import {
-  ArraySchema,
-  DictionarySchema,
-  NameType,
-  normalizeName,
-  ObjectSchema,
-  Schema,
-  SchemaContext,
-  isArraySchema
-} from "@azure-tools/rlc-common";
-import {
+  createMetadataInfo,
   getHeaderFieldName,
   getPathParamName,
   getQueryParamName,
-  isStatusCode,
   HttpOperation,
-  createMetadataInfo,
+  isStatusCode,
   Visibility
 } from "@typespec/http";
-import { getPagedResult } from "@azure-tools/typespec-azure-core";
-import { extractPagedMetadataNested } from "./operationUtil.js";
-import {
-  getDefaultApiVersion,
-  getWireName,
-  isApiVersion
-} from "@azure-tools/typespec-client-generator-core";
+import { reportDiagnostic } from "../lib.js";
 import { GetSchemaOptions, SdkContext } from "./interfaces.js";
-import { getModelNamespaceName } from "./namespaceUtils.js";
 import {
-  KnownMediaType,
   hasMediaType,
-  isMediaTypeMultipartFormData
+  isMediaTypeMultipartFormData,
+  KnownMediaType
 } from "./mediaTypes.js";
+import { getModelNamespaceName } from "./namespaceUtils.js";
+import { extractPagedMetadataNested } from "./operationUtil.js";
 
 export const BINARY_TYPE_UNION =
   "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
