@@ -13,18 +13,18 @@ export interface NetworkAnalyticsContextOptions extends ClientOptions {
 /**
  * Initialize a new instance of `NetworkAnalyticsContext`
  * @param credentials - uniquely identify client credential
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "2023-11-15", ...options} - the parameter for all optional parameters
  */
 export default function createClient(
   credentials: TokenCredential,
-  options: NetworkAnalyticsContextOptions = {},
+  {
+    apiVersion = "2023-11-15",
+    ...options
+  }: NetworkAnalyticsContextOptions = {},
 ): NetworkAnalyticsContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://management.azure.com`;
-
-  const apiVersion = options.apiVersion ?? "2023-11-15";
-  delete options.apiVersion;
-
   const userAgentInfo = `azsdk-js-arm-networkanalytics-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

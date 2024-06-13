@@ -21,7 +21,7 @@ import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
-function createClient(endpointParam: string, options?: WidgetManagerClientOptions): WidgetManagerClient;
+function createClient(endpointParam: string, { apiVersion, ...options }?: WidgetManagerClientOptions): WidgetManagerClient;
 export default createClient;
 
 // @public (undocumented)

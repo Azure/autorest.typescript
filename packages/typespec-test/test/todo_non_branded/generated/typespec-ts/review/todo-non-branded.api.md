@@ -54,8 +54,6 @@ export type TodoClient = Client & {
 
 // @public (undocumented)
 export interface TodoClientOptions extends ClientOptions {
-    // (undocumented)
-    apiVersion?: string;
 }
 
 // @public (undocumented)

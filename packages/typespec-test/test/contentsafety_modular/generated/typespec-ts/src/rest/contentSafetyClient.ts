@@ -15,19 +15,16 @@ export interface ContentSafetyContextOptions extends ClientOptions {
  * @param endpointParam - Supported Cognitive Services endpoints (protocol and hostname, for example:
  * https://<resource-name>.cognitiveservices.azure.com).
  * @param credentials - uniquely identify client credential
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "2023-10-01", ...options} - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential | KeyCredential,
-  options: ContentSafetyContextOptions = {},
+  { apiVersion = "2023-10-01", ...options }: ContentSafetyContextOptions = {},
 ): ContentSafetyContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/contentsafety`;
-
-  const apiVersion = options.apiVersion ?? "2023-10-01";
-  delete options.apiVersion;
-
   const userAgentInfo = `azsdk-js-ai-content-safety-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

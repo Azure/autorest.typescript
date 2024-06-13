@@ -14,19 +14,19 @@ export interface AuthoringClientOptions extends ClientOptions {
  * Initialize a new instance of `AuthoringClient`
  * @param endpointParam - The endpoint to use.
  * @param credentials - uniquely identify client credential
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "2022-05-15-preview", ...options} - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,
   credentials: KeyCredential,
-  options: AuthoringClientOptions = {},
+  {
+    apiVersion = "2022-05-15-preview",
+    ...options
+  }: AuthoringClientOptions = {},
 ): AuthoringClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/language`;
-
-  const apiVersion = options.apiVersion ?? "2022-05-15-preview";
-  delete options.apiVersion;
-
   const userAgentInfo = `azsdk-js-customWrapper-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

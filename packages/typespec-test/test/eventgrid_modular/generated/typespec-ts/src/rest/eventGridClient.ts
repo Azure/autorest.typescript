@@ -14,18 +14,18 @@ export interface EventGridContextOptions extends ClientOptions {
  * Initialize a new instance of `EventGridContext`
  * @param endpointParam - The host name of the namespace, e.g. namespaceName1.westus-1.eventgrid.azure.net
  * @param credentials - uniquely identify client credential
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "2023-06-01-preview", ...options} - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,
   credentials: KeyCredential,
-  options: EventGridContextOptions = {},
+  {
+    apiVersion = "2023-06-01-preview",
+    ...options
+  }: EventGridContextOptions = {},
 ): EventGridContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
-  const apiVersion = options.apiVersion ?? "2023-06-01-preview";
-  delete options.apiVersion;
-
   const userAgentInfo = `azsdk-js-eventgrid-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

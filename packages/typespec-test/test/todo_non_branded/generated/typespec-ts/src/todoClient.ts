@@ -4,9 +4,7 @@ import { getClient, ClientOptions } from "@typespec/ts-http-runtime";
 import { KeyCredential } from "@typespec/ts-http-runtime";
 import { TodoClient } from "./clientDefinitions.js";
 
-export interface TodoClientOptions extends ClientOptions {
-  apiVersion?: string;
-}
+export interface TodoClientOptions extends ClientOptions {}
 
 /**
  * Initialize a new instance of `TodoClient`
@@ -20,7 +18,6 @@ export default function createClient(
   options: TodoClientOptions = {},
 ): TodoClient {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
   const userAgentInfo = `azsdk-js-todo-non-branded-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

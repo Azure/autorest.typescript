@@ -28,7 +28,6 @@ export default function createClient(
     options.endpoint ??
     options.baseUrl ??
     `${endpointParam}/face/${apiVersion}`;
-
   const userAgentInfo = `azsdk-js-ai-face-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

@@ -6,9 +6,7 @@ import { logger } from "../logger.js";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { ChatProtocolContext } from "./clientDefinitions.js";
 
-export interface ChatProtocolContextOptions extends ClientOptions {
-  apiVersion?: string;
-}
+export interface ChatProtocolContextOptions extends ClientOptions {}
 
 /**
  * Initialize a new instance of `ChatProtocolContext`
@@ -22,7 +20,6 @@ export default function createClient(
   options: ChatProtocolContextOptions = {},
 ): ChatProtocolContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
   const userAgentInfo = `azsdk-js-ai-chat-protocol-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

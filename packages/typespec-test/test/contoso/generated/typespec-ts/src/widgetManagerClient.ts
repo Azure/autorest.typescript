@@ -12,17 +12,17 @@ export interface WidgetManagerClientOptions extends ClientOptions {
 /**
  * Initialize a new instance of `WidgetManagerClient`
  * @param endpointParam - The parameter endpointParam
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "2022-11-01-preview", ...options} - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,
-  options: WidgetManagerClientOptions = {},
+  {
+    apiVersion = "2022-11-01-preview",
+    ...options
+  }: WidgetManagerClientOptions = {},
 ): WidgetManagerClient {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
-  const apiVersion = options.apiVersion ?? "2022-11-01-preview";
-  delete options.apiVersion;
-
   const userAgentInfo = `azsdk-js-contosowidgetmanager-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

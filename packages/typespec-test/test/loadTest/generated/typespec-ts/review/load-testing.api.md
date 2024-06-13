@@ -76,7 +76,7 @@ export type CertificateType = "AKV_CERT_URI";
 export type CertificateTypeOutput = "AKV_CERT_URI";
 
 // @public
-function createClient(endpointParam: string, credentials: TokenCredential, options?: AzureLoadTestingClientOptions): AzureLoadTestingClient;
+function createClient(endpointParam: string, credentials: TokenCredential, { apiVersion, ...options }?: AzureLoadTestingClientOptions): AzureLoadTestingClient;
 export default createClient;
 
 // @public

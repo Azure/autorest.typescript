@@ -208,7 +208,7 @@ export type ContactPointUse = "home" | "work" | "temp" | "old" | "mobile";
 export type ContactPointUseOutput = "home" | "work" | "temp" | "old" | "mobile";
 
 // @public
-function createClient(endpointParam: string, credentials: KeyCredential, options?: AzureHealthInsightsClientOptions): AzureHealthInsightsClient;
+function createClient(endpointParam: string, credentials: KeyCredential, { apiVersion, ...options }?: AzureHealthInsightsClientOptions): AzureHealthInsightsClient;
 export default createClient;
 
 // @public (undocumented)

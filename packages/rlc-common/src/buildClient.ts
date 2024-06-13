@@ -44,7 +44,7 @@ function getClientOptionsInterface(
     }) ?? [];
 
   if (
-    model.apiVersionInfo &&
+    model.apiVersionInfo?.isCrossedVersion === false &&
     !properties.find((p) => p.name === "apiVersion")
   ) {
     properties.push({
@@ -131,10 +131,26 @@ export function buildClient(model: RLCModel): File | undefined {
         ])
   ];
 
+  let apiVersionStatement: string = "";
+  // Set the default api-version when we have a default AND its position is query
+  if (
+    model.apiVersionInfo?.definedPosition === "query" &&
+    !!model.apiVersionInfo?.defaultValue
+  ) {
+    apiVersionStatement = `
+    apiVersion = "${model.apiVersionInfo?.defaultValue}"`;
+  } else if (model.apiVersionInfo?.isCrossedVersion === false) {
+    apiVersionStatement = `
+    apiVersion = apiVersionParam`;
+  }
+
   const allClientParams = [
     ...commonClientParams,
     {
-      name: "options",
+      name:
+        apiVersionStatement === ""
+          ? "options"
+          : `{${apiVersionStatement}, ...options}`,
       type: `${clientOptionsInterface?.name ?? "ClientOptions"} = {}`,
       description: "the parameter for all optional parameters"
     }
@@ -384,22 +400,6 @@ export function getClientFactoryBody(
           userAgentPrefix
         }${loggerOptions}${customHeaderOptions}${credentialsOptions}
       }`;
-
-  let apiVersionStatement: string = "";
-  // Set the default api-version when we have a default AND its position is query
-  if (
-    model.apiVersionInfo?.definedPosition === "query" &&
-    !!model.apiVersionInfo?.defaultValue
-  ) {
-    apiVersionStatement = `
-    const apiVersion = options.apiVersion ?? "${model.apiVersionInfo?.defaultValue}";
-    delete options.apiVersion;
-    `;
-  } else if (model.apiVersionInfo?.definedPosition === "query") {
-    apiVersionStatement = `
-    const apiVersion = options.apiVersion ?? apiVersion;
-    delete options.apiVersion;`;
-  }
   const getClient = `const client = getClient(
         endpointUrl, ${credentialsOptions ? "credentials," : ""} options
       ) as ${clientTypeName};
@@ -477,7 +477,6 @@ export function getClientFactoryBody(
   return [
     ...optionalUrlParameters,
     endpointUrlStatement,
-    apiVersionStatement,
     userAgentInfoStatement,
     userAgentStatement,
     overrideOptionsStatement,

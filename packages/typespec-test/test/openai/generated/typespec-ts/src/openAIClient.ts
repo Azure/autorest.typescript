@@ -15,19 +15,16 @@ export interface OpenAIClientOptions extends ClientOptions {
  * @param endpointParam - Supported Cognitive Services endpoints (protocol and hostname, for example:
  * https://westus.api.cognitive.microsoft.com).
  * @param credentials - uniquely identify client credential
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "2023-08-01-preview", ...options} - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential | KeyCredential,
-  options: OpenAIClientOptions = {},
+  { apiVersion = "2023-08-01-preview", ...options }: OpenAIClientOptions = {},
 ): OpenAIClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/openai`;
-
-  const apiVersion = options.apiVersion ?? "2023-08-01-preview";
-  delete options.apiVersion;
-
   const userAgentInfo = `azsdk-js-openai-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

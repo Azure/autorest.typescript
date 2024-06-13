@@ -14,19 +14,16 @@ export interface AzureLoadTestingClientOptions extends ClientOptions {
  * Initialize a new instance of `AzureLoadTestingClient`
  * @param endpointParam - A sequence of textual characters.
  * @param credentials - uniquely identify client credential
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "2022-11-01", ...options} - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential,
-  options: AzureLoadTestingClientOptions = {},
+  { apiVersion = "2022-11-01", ...options }: AzureLoadTestingClientOptions = {},
 ): AzureLoadTestingClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://${endpointParam}`;
-
-  const apiVersion = options.apiVersion ?? "2022-11-01";
-  delete options.apiVersion;
-
   const userAgentInfo = `azsdk-js-load-testing-rest/1.0.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

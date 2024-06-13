@@ -4,9 +4,7 @@ import { getClient, ClientOptions } from "@typespec/ts-http-runtime";
 import { KeyCredential } from "@typespec/ts-http-runtime";
 import { OpenAIContext } from "./clientDefinitions.js";
 
-export interface OpenAIContextOptions extends ClientOptions {
-  apiVersion?: string;
-}
+export interface OpenAIContextOptions extends ClientOptions {}
 
 /**
  * Initialize a new instance of `OpenAIContext`

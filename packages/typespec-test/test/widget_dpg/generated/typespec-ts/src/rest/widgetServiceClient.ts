@@ -5,9 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { WidgetServiceContext } from "./clientDefinitions.js";
 
-export interface WidgetServiceContextOptions extends ClientOptions {
-  apiVersion?: string;
-}
+export interface WidgetServiceContextOptions extends ClientOptions {}
 
 /**
  * Initialize a new instance of `WidgetServiceContext`
@@ -19,7 +17,6 @@ export default function createClient(
   options: WidgetServiceContextOptions = {},
 ): WidgetServiceContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
   const userAgentInfo = `azsdk-js-widget_dpg-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

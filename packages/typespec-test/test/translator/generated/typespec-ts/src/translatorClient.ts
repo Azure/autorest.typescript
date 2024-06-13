@@ -13,17 +13,14 @@ export interface TranslatorClientOptions extends ClientOptions {
  * Initialize a new instance of `TranslatorClient`
  * @param endpointParam - Supported Text Translation endpoints (protocol and hostname, for example:
  *     https://api.cognitive.microsofttranslator.com).
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "3.0", ...options} - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,
-  options: TranslatorClientOptions = {},
+  { apiVersion = "3.0", ...options }: TranslatorClientOptions = {},
 ): TranslatorClient {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
-  const apiVersion = options.apiVersion ?? "3.0";
-  delete options.apiVersion;
-
   const userAgentInfo = `azsdk-js-cognitiveservices-translator-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

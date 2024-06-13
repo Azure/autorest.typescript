@@ -15,19 +15,16 @@ export interface WidgetManagerContextOptions extends ClientOptions {
  * @param endpointParam - Supported Widget Services endpoints (protocol and hostname, for example:
  * https://westus.api.widget.contoso.com).
  * @param credentials - uniquely identify client credential
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "2022-08-30", ...options} - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential | KeyCredential,
-  options: WidgetManagerContextOptions = {},
+  { apiVersion = "2022-08-30", ...options }: WidgetManagerContextOptions = {},
 ): WidgetManagerContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `${endpointParam}/widget`;
-
-  const apiVersion = options.apiVersion ?? "2022-08-30";
-  delete options.apiVersion;
-
   const userAgentInfo = `azsdk-js-overload_modular-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

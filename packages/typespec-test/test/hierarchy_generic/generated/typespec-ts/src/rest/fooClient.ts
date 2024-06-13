@@ -5,9 +5,7 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { FooContext } from "./clientDefinitions.js";
 
-export interface FooContextOptions extends ClientOptions {
-  apiVersion?: string;
-}
+export interface FooContextOptions extends ClientOptions {}
 
 /**
  * Initialize a new instance of `FooContext`
@@ -19,7 +17,6 @@ export default function createClient(
   options: FooContextOptions = {},
 ): FooContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
   const userAgentInfo = `azsdk-js-hierarchy-generic-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

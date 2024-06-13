@@ -6,9 +6,7 @@ import { logger } from "../logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { OpenAIContext } from "./clientDefinitions.js";
 
-export interface OpenAIContextOptions extends ClientOptions {
-  apiVersion?: string;
-}
+export interface OpenAIContextOptions extends ClientOptions {}
 
 /**
  * Initialize a new instance of `OpenAIContext`
