@@ -5,19 +5,9 @@ import {
   getParameterTypePropertyName,
   getRLCTypeId,
   getReturnTypePropertyName
-} from "../../src/modular/serialization/util.js";
+} from "../../../src/modular/serialization/util.js";
 import { UsageFlags } from "@typespec/compiler";
-import {
-  describe,
-  it,
-  afterEach,
-  vi,
-  MockedObject,
-  MockedFunction,
-  Mock
-} from "vitest";
-import { getLibraryName } from "@azure-tools/typespec-client-generator-core";
-import { beforeEach } from "node:test";
+import { describe, it, afterEach, vi } from "vitest";
 
 // Mock the module
 vi.mock("@azure-tools/typespec-client-generator-core", async () => {

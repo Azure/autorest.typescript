@@ -23,8 +23,9 @@ import {
   SerializerMap,
   SerializerOutput
 } from "./util.js";
+import { serializeHeader } from "./serializeHeaders.js";
 
-interface SerializeTypeOptions<
+export interface SerializeTypeOptions<
   TCGCType extends SdkType | SdkModelPropertyType
 > {
   dpgContext: SdkContext;
@@ -145,7 +146,7 @@ function getSerializeHandler<TCGCType extends SdkType | SdkModelPropertyType>(
     query: placeholder,
     path: placeholder,
     body: placeholder,
-    header: placeholder
+    header: serializeHeader
   };
   const handler = handlers[kind];
   return handler as any;
@@ -192,7 +193,7 @@ function serializeDatetime(
   }
 }
 
-function serializeArray(
+export function serializeArray(
   options: SerializeTypeOptions<SdkArrayType>
 ): SerializerOutput {
   const { dpgContext, functionType, serializerMap, type, valueExpr } = options;

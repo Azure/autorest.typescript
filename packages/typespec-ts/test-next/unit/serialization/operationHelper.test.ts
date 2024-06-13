@@ -9,23 +9,21 @@ import {
   getRLCLroLogicalResponse,
   getRLCResponseType,
   getSendPrivateFunction
-} from "../../src/modular/serialization/operationHelpers.js";
+} from "../../../src/modular/serialization/operationHelpers.js";
 import {
   Imports as RuntimeImports,
   OperationResponse
 } from "@azure-tools/rlc-common";
-import { SerializerMap } from "../../src/modular/serialization/util.js";
+import { SerializerMap } from "../../../src/modular/serialization/util.js";
 import {
   Operation,
   Parameter,
   Response
-} from "../../src/modular/modularCodeModel.js";
+} from "../../../src/modular/modularCodeModel.js";
 import {
   SdkModelType,
-  SdkType,
   UsageFlags
 } from "@azure-tools/typespec-client-generator-core";
-import { a } from "vitest/dist/suite-IbNSsUWN.js";
 
 describe("Operation Helpers", () => {
   describe("getRLCResponseType", () => {
@@ -373,8 +371,7 @@ describe("Operation Helpers", () => {
         "if(isUnexpected(result)){",
         "throw createRestError(result);",
         "}",
-        //TODO: Update when this is implemented
-        'return (()=>{throw Error("Not implemented.")})()'
+        "return {...(result.body)}"
       ]);
     });
 
