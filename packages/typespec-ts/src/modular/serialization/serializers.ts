@@ -2,7 +2,6 @@ import { ImportType } from "@azure-tools/rlc-common";
 import {
   SdkConstantType,
   SdkContext,
-  SdkDatetimeType,
   SdkEnumType,
   SdkModelPropertyType,
   SdkModelType,
@@ -22,6 +21,7 @@ import {
 } from "./util.js";
 import { serializeHeader } from "./serializeHeaders.js";
 import { serializeArray } from "./serializeArray.js";
+import { serializeDatetime } from "./serializeDateTime.js";
 
 export interface SerializeTypeOptions<
   TCGCType extends SdkType | SdkModelPropertyType
@@ -170,25 +170,6 @@ function serializeByteArray(
   return `(typeof (${valueExpr}) === 'string')
       ? (stringToUint8Array(${args}))
       : (${valueExpr})`;
-}
-
-function serializeDatetime(
-  options: SerializeTypeOptions<SdkDatetimeType>
-): string {
-  const { functionType, type, valueExpr } = options;
-  if (functionType === UsageFlags.Input) {
-    switch (type.encode) {
-      case "rfc7231":
-        return `(${valueExpr}).toUTCString()`;
-      case "unixTimestamp":
-        return `(${valueExpr}).getTime()`;
-      case "rfc3339":
-      default:
-        return `(${valueExpr}).toISOString()`;
-    }
-  } else {
-    return `new Date(${valueExpr})`;
-  }
 }
 
 export function serializeModelPropertiesInline(
