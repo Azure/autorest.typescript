@@ -13,7 +13,7 @@ import { OpenAIContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: ClientOptions = {}
 ): OpenAIContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://api.openai.com/v1`;
@@ -37,14 +37,14 @@ export default function createClient(
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   if (options.apiVersion) {
     logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
+      "This client does not support client api-version, please change it at the operation level"
     );
   }
 
   client.pipeline.addPolicy({
     name: "customKeyCredentialPolicy",
     async sendRequest(request, next) {
-      request.headers.set("Authorization", "bearer " + credentials.key);
+      request.headers.set("Authorization", "Bearer " + credentials.key);
       return next(request);
     },
   });
