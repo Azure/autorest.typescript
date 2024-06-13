@@ -12,10 +12,12 @@ export function serializeArray(
   const { dpgContext, functionType, serializerMap, type, valueExpr } = options;
   const valueType = type.valueType as SdkType & { name?: string };
   const mapParameterId = "e";
+
   const elementTypeName =
     functionType === UsageFlags.Input
       ? getModularTypeId(valueType)
       : getRLCTypeId(dpgContext, valueType);
+
   const serializedChildExpr = serializeType({
     ...options,
     type: valueType,
@@ -31,12 +33,15 @@ export function serializeArray(
   // arr.map((e) => f(e)) -> arr.map(f)
   const unaryFunctionInvocation =
     /(?<functionName>\w+)\((?<childArgExpr>\w+)\)/;
+
   const { functionName, childArgExpr } =
     serializedChildExpr.match(unaryFunctionInvocation)?.groups ?? {};
+
   const mapArg =
     elementTypeName && serializerMap?.[elementTypeName]
       ? mapParameterId
       : `${mapParameterId}: ${elementTypeName}`;
+
   const mapFunction =
     childArgExpr === mapParameterId
       ? functionName
