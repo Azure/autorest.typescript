@@ -15,8 +15,8 @@
     }
   },
   "scripts": {
-    "test-next": "vitest ./test-next",
-    "test-next:coverage": "vitest ./test-next --coverage",
+    "test-next": "vitest run ./test-next",
+    "test-next:coverage": "vitest run ./test-next --coverage",
     "clean": "rimraf ./dist ./typespec-output",
     "build": "tsc -p .",
     "test": "npm run unit-test && npm run integration-test-ci",
