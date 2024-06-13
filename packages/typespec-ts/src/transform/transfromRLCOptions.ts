@@ -1,4 +1,5 @@
 import {
+  camelCase,
   NameType,
   normalizeName,
   PackageDetails,
@@ -106,7 +107,7 @@ function processAuth(program: Program) {
         case "http":
           securityInfo.addCredentials = true;
           securityInfo.customHttpAuthHeaderName = "Authorization";
-          securityInfo.customHttpAuthSharedKeyPrefix = auth.scheme;
+          securityInfo.customHttpAuthSharedKeyPrefix = camelCase(auth.scheme);
           break;
         case "apiKey":
           if (auth.in === "cookie") {
