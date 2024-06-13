@@ -9,6 +9,7 @@ import { EmitContext, UsageFlags } from "@typespec/compiler";
 import { BasicTestRunner } from "@typespec/compiler/testing";
 import { SerializeTypeOptions } from "../../../src/modular/serialization/serializers.js";
 import { format } from "prettier";
+import { SerializerMap } from "../../../src/modular/serialization/util.js";
 
 describe("serializeArray", () => {
   let runner: BasicTestRunner;
@@ -51,9 +52,12 @@ describe("serializeArray", () => {
       expect(result).to.equal("myArray.map((e: Date)=>((e).toISOString()))");
     });
 
-    it("should handle a model array", async () => {
+    it("should handle a model array inline", async () => {
       const { modelArray } = testArrays;
-      const result = serializeArray(modelArray);
+      const result = serializeArray({
+        ...modelArray,
+        serializerMap: undefined
+      });
 
       const expected = await format(
         `myArray.map((e: Foo)=>({...(e),
@@ -68,17 +72,46 @@ describe("serializeArray", () => {
       expect(actual).to.equal(expected);
     });
 
-    // Handle cyclic models
-    it.skip("should handle a cyclic array", async () => {
+    it("should handle a model array ", async () => {
+      const { modelArray } = testArrays;
+      const result = serializeArray(modelArray);
+
+      const expected = await format(`myArray.map((e) => serializeFoo(e));;`, {
+        parser: "typescript"
+      });
+
+      const actual = await format(result, { parser: "typescript" });
+
+      expect(actual).to.equal(expected);
+    });
+
+    it("should handle a cyclic array", async () => {
       const { cyclicArray } = testArrays;
       const result = serializeArray(cyclicArray);
 
-      expect(result).to.equal("myArray");
+      expect(result).to.equal("myArray.map((e)=>(serializeTest((e))))");
     });
 
     it("should handle an optional properties array", async () => {
       const { optionalPropertiesArray } = testArrays;
       const result = serializeArray(optionalPropertiesArray);
+
+      const expected = await format(
+        "myArray.map((e) => serializeOptionalFoo(e));",
+        { parser: "typescript" }
+      );
+
+      const actual = await format(result, { parser: "typescript" });
+
+      expect(actual).to.equal(expected);
+    });
+
+    it("should handle an optional properties array inline", async () => {
+      const { optionalPropertiesArray } = testArrays;
+      const result = serializeArray({
+        ...optionalPropertiesArray,
+        serializerMap: undefined
+      });
 
       const expected = await format(
         `myArray.map((e: OptionalFoo) => ({
@@ -136,9 +169,12 @@ describe("serializeArray", () => {
       expect(result).to.equal("myArray.map(Date)");
     });
 
-    it("should handle a model array", async () => {
+    it("should handle a model array inline", async () => {
       const { modelArray } = testArrays;
-      const result = serializeArray(modelArray);
+      const result = serializeArray({
+        ...modelArray,
+        serializerMap: undefined
+      });
 
       const expected = await format(
         `myArray.map((e: Foo)=>({...(e),
@@ -153,17 +189,47 @@ describe("serializeArray", () => {
       expect(actual).to.equal(expected);
     });
 
+    it("should handle a model array", async () => {
+      const { modelArray } = testArrays;
+      const result = serializeArray(modelArray);
+
+      const expected = await format(`myArray.map((e) => deserializeFoo(e));`, {
+        parser: "typescript"
+      });
+
+      const actual = await format(result, { parser: "typescript" });
+
+      expect(actual).to.equal(expected);
+    });
+
     // Handle cyclic models
-    it.skip("should handle a cyclic array", async () => {
+    it("should handle a cyclic array", async () => {
       const { cyclicArray } = testArrays;
       const result = serializeArray(cyclicArray);
 
-      expect(result).to.equal("myArray");
+      expect(result).to.equal("myArray.map((e)=>(deserializeTest((e))))");
     });
 
     it("should handle an optional properties array", async () => {
       const { optionalPropertiesArray } = testArrays;
       const result = serializeArray(optionalPropertiesArray);
+
+      const expected = await format(
+        "myArray.map((e) => deserializeOptionalFoo(e));",
+        { parser: "typescript" }
+      );
+
+      const actual = await format(result, { parser: "typescript" });
+
+      expect(actual).to.equal(expected);
+    });
+
+    it("should handle an optional properties array inline", async () => {
+      const { optionalPropertiesArray } = testArrays;
+      const result = serializeArray({
+        ...optionalPropertiesArray,
+        serializerMap: undefined
+      });
 
       const expected = await format(
         `myArray.map((e: OptionalFoo) => ({
@@ -286,16 +352,90 @@ async function getSdkArrays(
       (p) => p.name === "optionalPropertiesArray"
     )?.type as unknown as SdkArrayType;
 
+  const serializerMap: SerializerMap = {
+    Test: {
+      type: sdkContext.experimental_sdkPackage.models.find(
+        (m) => m.name === "Test"
+      ) as any,
+      rlcTypeAlias: "TestRest",
+      rlcTypeName: "Test",
+      deserializerFunctionName: "deserializeTest",
+      serializerFunctionName: "serializeTest"
+    },
+    Foo: {
+      type: sdkContext.experimental_sdkPackage.models.find(
+        (m) => m.name === "Foo"
+      ) as any,
+      rlcTypeAlias: "FooRest",
+      rlcTypeName: "Foo",
+      deserializerFunctionName: "deserializeFoo",
+      serializerFunctionName: "serializeFoo"
+    },
+    Bar: {
+      type: sdkContext.experimental_sdkPackage.models.find(
+        (m) => m.name === "Bar"
+      ) as any,
+      rlcTypeAlias: "BarRest",
+      rlcTypeName: "Bar",
+      deserializerFunctionName: "deserializeBar",
+      serializerFunctionName: "serializeBar"
+    },
+    Baz: {
+      type: sdkContext.experimental_sdkPackage.models.find(
+        (m) => m.name === "Baz"
+      ) as any,
+      rlcTypeAlias: "BazRest",
+      rlcTypeName: "Baz",
+      deserializerFunctionName: "deserializeBaz",
+      serializerFunctionName: "serializeBaz"
+    },
+    OptionalFoo: {
+      type: sdkContext.experimental_sdkPackage.models.find(
+        (m) => m.name === "OptionalFoo"
+      ) as any,
+      rlcTypeAlias: "OptionalFooRest",
+      rlcTypeName: "OptionalFoo",
+      deserializerFunctionName: "deserializeOptionalFoo",
+      serializerFunctionName: "serializeOptionalFoo"
+    }
+  };
+
   return {
-    booleanArray: getSerializeOptions(booleanArray, sdkContext, mode),
-    cyclicArray: getSerializeOptions(cyclicArray, sdkContext, mode),
-    dateArray: getSerializeOptions(dateArray, sdkContext, mode),
-    modelArray: getSerializeOptions(modelArray, sdkContext, mode),
-    numericArray: getSerializeOptions(numericArray, sdkContext, mode),
-    stringArray: getSerializeOptions(stringArray, sdkContext, mode),
+    booleanArray: getSerializeOptions(
+      booleanArray,
+      sdkContext,
+      serializerMap,
+      mode
+    ),
+    cyclicArray: getSerializeOptions(
+      cyclicArray,
+      sdkContext,
+      serializerMap,
+      mode
+    ),
+    dateArray: getSerializeOptions(dateArray, sdkContext, serializerMap, mode),
+    modelArray: getSerializeOptions(
+      modelArray,
+      sdkContext,
+      serializerMap,
+      mode
+    ),
+    numericArray: getSerializeOptions(
+      numericArray,
+      sdkContext,
+      serializerMap,
+      mode
+    ),
+    stringArray: getSerializeOptions(
+      stringArray,
+      sdkContext,
+      serializerMap,
+      mode
+    ),
     optionalPropertiesArray: getSerializeOptions(
       optionalPropertiesArray,
       sdkContext,
+      serializerMap,
       mode
     )
   };
@@ -304,6 +444,7 @@ async function getSdkArrays(
 function getSerializeOptions<T>(
   type: T,
   context: SdkContext,
+  serializerMap: SerializerMap,
   mode: "serialize" | "deserialize"
 ) {
   const functionType =
@@ -313,6 +454,7 @@ function getSerializeOptions<T>(
     dpgContext: context,
     type,
     valueExpr: "myArray",
-    functionType
+    functionType,
+    serializerMap
   } as any;
 }
