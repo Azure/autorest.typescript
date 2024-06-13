@@ -99,6 +99,8 @@ function getAzurePackageCjsDevDependencies({
     return {};
   }
   const testDevDependencies = {
+    "@azure-tools/test-credential": "^1.1.0",
+    "@azure-tools/test-recorder": "^3.0.0",
     nyc: "^15.1.0",
     mocha: "^10.0.0",
     "@types/mocha": "^10.0.0",
@@ -140,7 +142,9 @@ function getAzurePackageEsmDevDependencies({
       "@vitest/browser": "^1.3.1",
       "@vitest/coverage-istanbul": "^1.3.1",
       playwright: "^1.41.2",
-      vitest: "^1.3.1"
+      vitest: "^1.3.1",
+      "@azure-tools/test-credential": "^2.0.0",
+      "@azure-tools/test-recorder": "^4.0.0"
     };
   }
 
@@ -153,9 +157,7 @@ export function getAzurePackageDevDependencies(config: AzurePackageInfoConfig) {
 
   const testDevDependencies = {
     "@azure/core-util": "^1.0.0",
-    "@azure-tools/test-credential": "^1.1.0",
-    "@azure/identity": "^4.0.1",
-    "@azure-tools/test-recorder": "^3.0.0"
+    "@azure/identity": "^4.0.1"
   };
 
   return {
