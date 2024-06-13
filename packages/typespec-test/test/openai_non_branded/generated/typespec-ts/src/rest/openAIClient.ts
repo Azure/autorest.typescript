@@ -11,7 +11,7 @@ import { OpenAIContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: ClientOptions = {}
 ): OpenAIContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://api.openai.com/v1`;
@@ -34,7 +34,7 @@ export default function createClient(
   client.pipeline.addPolicy({
     name: "customKeyCredentialPolicy",
     async sendRequest(request, next) {
-      request.headers.set("Authorization", "bearer " + credentials.key);
+      request.headers.set("Authorization", "Bearer " + credentials.key);
       return next(request);
     },
   });
