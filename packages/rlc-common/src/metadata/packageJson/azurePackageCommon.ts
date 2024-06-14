@@ -157,7 +157,7 @@ export function getAzurePackageDevDependencies(config: AzurePackageInfoConfig) {
 
   const testDevDependencies = {
     "@azure/core-util": "^1.0.0",
-    "@azure/identity": "^4.0.1"
+    "@azure/identity": "^4.2.1"
   };
 
   return {
