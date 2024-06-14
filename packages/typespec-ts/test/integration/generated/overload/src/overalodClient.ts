@@ -5,6 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { OveralodClient } from "./clientDefinitions.js";
 
+export interface OveralodClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `OveralodClient`
  * @param $host - A sequence of textual characters.
@@ -12,10 +14,9 @@ import { OveralodClient } from "./clientDefinitions.js";
  */
 export default function createClient(
   $host: string,
-  options: ClientOptions = {},
+  options: OveralodClientOptions = {},
 ): OveralodClient {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${$host}`;
-
   const userAgentInfo = `azsdk-js-media-types-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

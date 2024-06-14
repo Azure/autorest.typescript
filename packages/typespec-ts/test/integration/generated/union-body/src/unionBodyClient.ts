@@ -5,6 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { UnionBodyClient } from "./clientDefinitions.js";
 
+export interface UnionBodyClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `UnionBodyClient`
  * @param endpointParam - The parameter endpointParam
@@ -12,10 +14,9 @@ import { UnionBodyClient } from "./clientDefinitions.js";
  */
 export default function createClient(
   endpointParam: string,
-  options: ClientOptions = {},
+  options: UnionBodyClientOptions = {},
 ): UnionBodyClient {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
   const userAgentInfo = `azsdk-js-union-body-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

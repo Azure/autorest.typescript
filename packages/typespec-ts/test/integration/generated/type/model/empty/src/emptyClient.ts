@@ -5,11 +5,15 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { EmptyClient } from "./clientDefinitions.js";
 
+export interface EmptyClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `EmptyClient`
  * @param options - the parameter for all optional parameters
  */
-export default function createClient(options: ClientOptions = {}): EmptyClient {
+export default function createClient(
+  options: EmptyClientOptions = {},
+): EmptyClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-empty-model-rest/1.0.0-beta.1`;

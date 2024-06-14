@@ -5,14 +5,21 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { RpcContext } from "./clientDefinitions.js";
 
+export interface RpcContextOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `RpcContext`
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "2022-12-01-preview", ...options} - the parameter for all optional parameters
  */
-export default function createClient(options: ClientOptions = {}): RpcContext {
+export default function createClient({
+  apiVersion = "2022-12-01-preview",
+  ...options
+}: RpcContextOptions = {}): RpcContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
-  options.apiVersion = options.apiVersion ?? "2022-12-01-preview";
   const userAgentInfo = `azsdk-js-modular-lro-rpc-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -30,5 +37,20 @@ export default function createClient(options: ClientOptions = {}): RpcContext {
 
   const client = getClient(endpointUrl, options) as RpcContext;
 
+  client.pipeline.addPolicy({
+    name: "ClientApiVersionPolicy",
+    sendRequest: (req, next) => {
+      // Use the apiVesion defined in request url directly
+      // Append one if there is no apiVesion and we have one at client options
+      const url = new URL(req.url);
+      if (!url.searchParams.get("api-version") && apiVersion) {
+        req.url = `${req.url}${
+          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+        }api-version=${apiVersion}`;
+      }
+
+      return next(req);
+    },
+  });
   return client;
 }

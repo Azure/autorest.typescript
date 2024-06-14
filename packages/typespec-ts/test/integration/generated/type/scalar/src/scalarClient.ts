@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { ScalarClient } from "./clientDefinitions.js";
 
+export interface ScalarClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `ScalarClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: ScalarClientOptions = {},
 ): ScalarClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

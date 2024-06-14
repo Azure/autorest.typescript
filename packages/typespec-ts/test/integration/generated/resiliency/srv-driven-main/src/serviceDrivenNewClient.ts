@@ -25,7 +25,6 @@ export default function createClient(
     options.endpoint ??
     options.baseUrl ??
     `${endpointParam}/resiliency/service-driven/client:v2/service:${serviceDeploymentVersion}/api-version:${apiVersion}`;
-
   const userAgentInfo = `azsdk-js-srv-driven-main-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

@@ -6,6 +6,8 @@ import { logger } from "../logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { ApiKeyContext } from "./clientDefinitions.js";
 
+export interface ApiKeyContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `ApiKeyContext`
  * @param credentials - uniquely identify client credential
@@ -13,7 +15,7 @@ import { ApiKeyContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: ApiKeyContextOptions = {},
 ): ApiKeyContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

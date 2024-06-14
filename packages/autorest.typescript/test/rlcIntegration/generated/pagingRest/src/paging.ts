@@ -5,13 +5,19 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { PagingClient } from "./clientDefinitions";
 
+export interface PagingClientOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `PagingClient`
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = apiVersionParam, ...options} - the parameter for all optional parameters
  */
-export default function createClient(
-  options: ClientOptions = {},
-): PagingClient {
+export default function createClient({
+  apiVersion = apiVersionParam,
+  ...options
+}: PagingClientOptions = {}): PagingClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-paging-service-rest/1.0.0-preview1`;

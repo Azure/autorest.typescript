@@ -6,6 +6,8 @@ import { logger } from "./logger";
 import { TokenCredential } from "@azure/core-auth";
 import { MultipleUrlParameterRestClient } from "./clientDefinitions";
 
+export interface MultipleUrlParameterRestClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `MultipleUrlParameterRestClient`
  * @param endpoint - The catalog endpoint of your Purview account. Example: https://{accountName}.purview.azure.com
@@ -17,13 +19,12 @@ export default function createClient(
   endpoint: string,
   serviceVersion: "v2" | "v1",
   credentials: TokenCredential,
-  options: ClientOptions = {},
+  options: MultipleUrlParameterRestClientOptions = {},
 ): MultipleUrlParameterRestClient {
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
     `${endpoint}/catalog/api/atlas/${serviceVersion}/{accountName}`;
-
   const userAgentInfo = `azsdk-js-multiple-url-parameter-rest/1.0.0-preview1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

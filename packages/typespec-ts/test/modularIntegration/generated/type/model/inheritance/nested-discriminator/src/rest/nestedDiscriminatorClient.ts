@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { NestedDiscriminatorContext } from "./clientDefinitions.js";
 
+export interface NestedDiscriminatorContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `NestedDiscriminatorContext`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: NestedDiscriminatorContextOptions = {},
 ): NestedDiscriminatorContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

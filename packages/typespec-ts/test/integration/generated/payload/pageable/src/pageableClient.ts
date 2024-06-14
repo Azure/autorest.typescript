@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { PageableClient } from "./clientDefinitions.js";
 
+export interface PageableClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `PageableClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: PageableClientOptions = {},
 ): PageableClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { BodyFormDataClient } from "./clientDefinitions";
 
+export interface BodyFormDataClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `BodyFormDataClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: BodyFormDataClientOptions = {},
 ): BodyFormDataClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

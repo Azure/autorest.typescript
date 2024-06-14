@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { HttpInfrastructureRestClient } from "./clientDefinitions";
 
+export interface HttpInfrastructureRestClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `HttpInfrastructureRestClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: HttpInfrastructureRestClientOptions = {},
 ): HttpInfrastructureRestClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

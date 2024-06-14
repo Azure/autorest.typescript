@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { ContentNegotiationClient } from "./clientDefinitions.js";
 
+export interface ContentNegotiationClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `ContentNegotiationClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: ContentNegotiationClientOptions = {},
 ): ContentNegotiationClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

@@ -5,12 +5,15 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { SerializationEncodedNameJsonClient } from "./clientDefinitions.js";
 
+export interface SerializationEncodedNameJsonClientOptions
+  extends ClientOptions {}
+
 /**
  * Initialize a new instance of `SerializationEncodedNameJsonClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: SerializationEncodedNameJsonClientOptions = {},
 ): SerializationEncodedNameJsonClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

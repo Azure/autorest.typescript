@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { BytesContext } from "./clientDefinitions.js";
 
+export interface BytesContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `BytesContext`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: BytesContextOptions = {},
 ): BytesContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { NullableClient } from "./clientDefinitions.js";
 
+export interface NullableClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `NullableClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: NullableClientOptions = {},
 ): NullableClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

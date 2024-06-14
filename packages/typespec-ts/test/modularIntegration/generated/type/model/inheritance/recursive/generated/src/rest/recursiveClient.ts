@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { RecursiveContext } from "./clientDefinitions.js";
 
+export interface RecursiveContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `RecursiveContext`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: RecursiveContextOptions = {},
 ): RecursiveContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

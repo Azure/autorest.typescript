@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { ArrayContext } from "./clientDefinitions.js";
 
+export interface ArrayContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `ArrayContext`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: ArrayContextOptions = {},
 ): ArrayContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

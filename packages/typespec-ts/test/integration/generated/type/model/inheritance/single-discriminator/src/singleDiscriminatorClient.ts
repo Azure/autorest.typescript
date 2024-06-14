@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { SingleDiscriminatorClient } from "./clientDefinitions.js";
 
+export interface SingleDiscriminatorClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `SingleDiscriminatorClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: SingleDiscriminatorClientOptions = {},
 ): SingleDiscriminatorClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

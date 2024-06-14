@@ -5,6 +5,9 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { VersionedParamInServerVersionsClient } from "./clientDefinitions.js";
 
+export interface VersionedParamInServerVersionsClientOptions
+  extends ClientOptions {}
+
 /**
  * Initialize a new instance of `VersionedParamInServerVersionsClient`
  * @param endpointParam - Need to be set as 'http://localhost:3000' in client.
@@ -12,10 +15,9 @@ import { VersionedParamInServerVersionsClient } from "./clientDefinitions.js";
  */
 export default function createClient(
   endpointParam: string,
-  options: ClientOptions = {},
+  options: VersionedParamInServerVersionsClientOptions = {},
 ): VersionedParamInServerVersionsClient {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
   const userAgentInfo = `azsdk-js-versioned-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

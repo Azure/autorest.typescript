@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { NotDiscriminatedClient } from "./clientDefinitions.js";
 
+export interface NotDiscriminatedClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `NotDiscriminatedClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: NotDiscriminatedClientOptions = {},
 ): NotDiscriminatedClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

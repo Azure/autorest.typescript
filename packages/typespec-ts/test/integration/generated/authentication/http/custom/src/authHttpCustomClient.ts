@@ -6,6 +6,8 @@ import { logger } from "./logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { AuthHttpCustomClient } from "./clientDefinitions.js";
 
+export interface AuthHttpCustomClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `AuthHttpCustomClient`
  * @param credentials - uniquely identify client credential
@@ -13,7 +15,7 @@ import { AuthHttpCustomClient } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: AuthHttpCustomClientOptions = {},
 ): AuthHttpCustomClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { SpreadClient } from "./clientDefinitions.js";
 
+export interface SpreadClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `SpreadClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: SpreadClientOptions = {},
 ): SpreadClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

@@ -120,11 +120,6 @@ const buildDefaultReturn = (
   hasQueryDefinition: boolean,
   hasApiVersionInClient: boolean = false
 ) => {
-  const defaultDef = !hasDefault
-    ? hasApiVersionInClient
-      ? `options.apiVersion = options.apiVersion ?? apiVersion;`
-      : ""
-    : `options.apiVersion = options.apiVersion ?? "2022-05-15-preview";`;
   const apiVersionDef = !hasQueryDefinition
     ? `\n    client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
              if (options.apiVersion) {
@@ -138,6 +133,15 @@ const buildDefaultReturn = (
   import { logger } from "./logger.js";
   import { testClient } from "./clientDefinitions.js";
   
+  
+  export interface testClientOptions extends ClientOptions ${
+    hasQueryDefinition
+      ? `{
+    apiVersion?: string;
+  }`
+      : "{}"
+  }
+
   /**
    * Initialize a new instance of \`testClient\`
    * @param endpointParam - The endpoint to use.${
@@ -145,16 +149,29 @@ const buildDefaultReturn = (
        ? "\n   * @param apiVersion - The parameter apiVersion"
        : ""
    }
-   * @param options - the parameter for all optional parameters
+   * @param ${
+     !hasQueryDefinition
+       ? "options - the parameter for all optional parameters"
+       : `{
+   *     apiVersion = ${
+     hasDefault ? `"2022-05-15-preview"` : "apiVersionParam"
+   }, ...options} - the parameter for all optional parameters`
+   }
    */
   export default function createClient(
     endpointParam: string,${
       hasApiVersionInClient && !hasDefault ? "\napiVersion: string," : ""
     }
-    options: ClientOptions = {}
+    ${
+      !hasQueryDefinition
+        ? "options"
+        : `{
+    apiVersion = ${
+      hasDefault ? `"2022-05-15-preview"` : "apiVersionParam"
+    }, ...options} `
+    }: testClientOptions = {}
   ): testClient {
     const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/language\`;
-    ${defaultDef}
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -171,7 +188,28 @@ const buildDefaultReturn = (
     };
   
     const client = getClient(endpointUrl, options) as testClient;
-    ${apiVersionDef}
+    
+    ${
+      hasQueryDefinition
+        ? `client.pipeline.addPolicy({
+      name: "ClientApiVersionPolicy",
+      sendRequest: (req, next) => {
+        // Use the apiVesion defined in request url directly
+        // Append one if there is no apiVesion and we have one at client options
+        const url = new URL(req.url);
+        if (!url.searchParams.get("api-version") && apiVersion) {
+          req.url = \`\${req.url}\${
+            Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+          }api-version=\${apiVersion}\`;
+        }
+
+        return next(req);
+      },
+    });`
+        : `${apiVersionDef}`
+    }
+    
+
     return client;
   }`;
 };
@@ -198,7 +236,6 @@ const buildPathReturn_WithDefault = () => {
   ): testClient {
     const apiVersion = options.apiVersion ?? "2022-05-15-preview";
     const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/anomalydetector/\${apiVersion}\`;
-
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -244,7 +281,6 @@ const buildPathReturn_WithoutDefault = () => {
     options: ClientOptions = {}
   ): testClient {
     const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/anomalydetector/\${apiVersion}\`;
-
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix

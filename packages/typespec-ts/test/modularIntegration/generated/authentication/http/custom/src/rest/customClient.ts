@@ -6,6 +6,8 @@ import { logger } from "../logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { CustomContext } from "./clientDefinitions.js";
 
+export interface CustomContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `CustomContext`
  * @param credentials - uniquely identify client credential
@@ -13,7 +15,7 @@ import { CustomContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: CustomContextOptions = {},
 ): CustomContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

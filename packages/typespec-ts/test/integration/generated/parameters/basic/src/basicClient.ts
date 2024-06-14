@@ -5,11 +5,15 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { BasicClient } from "./clientDefinitions.js";
 
+export interface BasicClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `BasicClient`
  * @param options - the parameter for all optional parameters
  */
-export default function createClient(options: ClientOptions = {}): BasicClient {
+export default function createClient(
+  options: BasicClientOptions = {},
+): BasicClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-parameterBasic-rest/1.0.0-beta.1`;

@@ -6,6 +6,8 @@ import { logger } from "./logger";
 import { TokenCredential } from "@azure/core-auth";
 import { SecurityAADRestClient } from "./clientDefinitions";
 
+export interface SecurityAADRestClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `SecurityAADRestClient`
  * @param credentials - uniquely identify client credential
@@ -13,7 +15,7 @@ import { SecurityAADRestClient } from "./clientDefinitions";
  */
 export default function createClient(
   credentials: TokenCredential,
-  options: ClientOptions = {},
+  options: SecurityAADRestClientOptions = {},
 ): SecurityAADRestClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

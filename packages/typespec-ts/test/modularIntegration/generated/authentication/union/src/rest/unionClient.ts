@@ -6,6 +6,8 @@ import { logger } from "../logger.js";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { UnionContext } from "./clientDefinitions.js";
 
+export interface UnionContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `UnionContext`
  * @param credentials - uniquely identify client credential
@@ -13,7 +15,7 @@ import { UnionContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: TokenCredential | KeyCredential,
-  options: ClientOptions = {},
+  options: UnionContextOptions = {},
 ): UnionContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

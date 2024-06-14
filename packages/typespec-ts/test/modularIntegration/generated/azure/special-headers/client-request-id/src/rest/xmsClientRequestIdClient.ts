@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { XmsRequestIdClientContext } from "./clientDefinitions.js";
 
+export interface XmsRequestIdClientContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `XmsRequestIdClientContext`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: XmsRequestIdClientContextOptions = {},
 ): XmsRequestIdClientContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

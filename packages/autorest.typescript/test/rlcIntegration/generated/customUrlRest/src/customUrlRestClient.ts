@@ -5,6 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { CustomUrlRestClient } from "./clientDefinitions";
 
+export interface CustomUrlRestClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `CustomUrlRestClient`
  * @param host - A string value that is used as a global part of the parameterized host
@@ -12,7 +14,7 @@ import { CustomUrlRestClient } from "./clientDefinitions";
  */
 export default function createClient(
   host: string,
-  options: ClientOptions = {},
+  options: CustomUrlRestClientOptions = {},
 ): CustomUrlRestClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://{accountName}${host}`;

@@ -5,13 +5,19 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { BodyComplexRestClient } from "./clientDefinitions";
 
+export interface BodyComplexRestClientOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `BodyComplexRestClient`
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = apiVersionParam, ...options} - the parameter for all optional parameters
  */
-export default function createClient(
-  options: ClientOptions = {},
-): BodyComplexRestClient {
+export default function createClient({
+  apiVersion = apiVersionParam,
+  ...options
+}: BodyComplexRestClientOptions = {}): BodyComplexRestClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-body-complex-rest/1.0.0-preview1`;

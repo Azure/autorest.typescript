@@ -42,15 +42,20 @@ describe("Parameters.ts", () => {
           import { logger } from "./logger.js";
           import { testClient } from "./clientDefinitions.js";
           
+          export interface testClientOptions extends ClientOptions {
+            apiVersion?: string;
+          }
+
           /**
            * Initialize a new instance of \`testClient\`
            * @param endpointParam - The parameter endpointParam
            * @param apiVersion - The parameter apiVersion
-           * @param options - the parameter for all optional parameters
+           * @param {
+           *     apiVersion = apiVersionParam, ...options} - the parameter for all optional parameters
            */
-          export default function createClient(endpointParam: string, apiVersion: string, options: ClientOptions = {}): testClient {
+          export default function createClient(endpointParam: string, apiVersion: string, {
+            apiVersion = apiVersionParam, ...options}: testClientOptions = {}): testClient {
           const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`;
-          options.apiVersion = options.apiVersion ?? apiVersion;
           const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
           const userAgentPrefix =
               options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -67,7 +72,23 @@ describe("Parameters.ts", () => {
           };
           
           const client = getClient(endpointUrl, options) as testClient;
-          
+
+          client.pipeline.addPolicy({
+            name: 'ClientApiVersionPolicy',
+            sendRequest: (req, next) => {
+              // Use the apiVesion defined in request url directly
+              // Append one if there is no apiVesion and we have one at client options
+              const url = new URL(req.url);
+              if (!url.searchParams.get("api-version") && apiVersion) {
+                req.url = \`\${req.url}\${
+                  Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+                }api-version=\${apiVersion}\`;
+              }
+
+              return next(req);
+            },
+          });
+
           return client;
       }
       `

@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { RepeatabilityClient } from "./clientDefinitions.js";
 
+export interface RepeatabilityClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `RepeatabilityClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: RepeatabilityClientOptions = {},
 ): RepeatabilityClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

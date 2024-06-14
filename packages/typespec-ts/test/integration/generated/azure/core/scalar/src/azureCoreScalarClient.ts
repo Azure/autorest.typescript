@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { AzureCoreScalarClient } from "./clientDefinitions.js";
 
+export interface AzureCoreScalarClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `AzureCoreScalarClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: AzureCoreScalarClientOptions = {},
 ): AzureCoreScalarClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

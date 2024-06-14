@@ -6,6 +6,8 @@ import { logger } from "../logger.js";
 import { TokenCredential } from "@azure/core-auth";
 import { OAuth2Context } from "./clientDefinitions.js";
 
+export interface OAuth2ContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `OAuth2Context`
  * @param credentials - uniquely identify client credential
@@ -13,7 +15,7 @@ import { OAuth2Context } from "./clientDefinitions.js";
  */
 export default function createClient(
   credentials: TokenCredential,
-  options: ClientOptions = {},
+  options: OAuth2ContextOptions = {},
 ): OAuth2Context {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { DatetimeContext } from "./clientDefinitions.js";
 
+export interface DatetimeContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `DatetimeContext`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: DatetimeContextOptions = {},
 ): DatetimeContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

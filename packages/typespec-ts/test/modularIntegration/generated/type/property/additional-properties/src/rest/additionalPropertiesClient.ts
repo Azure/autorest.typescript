@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { AdditionalPropertiesContext } from "./clientDefinitions.js";
 
+export interface AdditionalPropertiesContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `AdditionalPropertiesContext`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: AdditionalPropertiesContextOptions = {},
 ): AdditionalPropertiesContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

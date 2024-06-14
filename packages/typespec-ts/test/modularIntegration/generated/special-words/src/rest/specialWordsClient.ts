@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { SpecialWordsContext } from "./clientDefinitions.js";
 
+export interface SpecialWordsContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `SpecialWordsContext`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: SpecialWordsContextOptions = {},
 ): SpecialWordsContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

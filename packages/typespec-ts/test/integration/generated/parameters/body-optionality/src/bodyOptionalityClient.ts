@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { BodyOptionalityClient } from "./clientDefinitions.js";
 
+export interface BodyOptionalityClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `BodyOptionalityClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: BodyOptionalityClientOptions = {},
 ): BodyOptionalityClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

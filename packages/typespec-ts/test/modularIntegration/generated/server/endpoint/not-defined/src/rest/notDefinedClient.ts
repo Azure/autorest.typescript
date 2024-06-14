@@ -5,6 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { NotDefinedContext } from "./clientDefinitions.js";
 
+export interface NotDefinedContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `NotDefinedContext`
  * @param endpointParam - The parameter endpointParam
@@ -12,10 +14,9 @@ import { NotDefinedContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   endpointParam: string,
-  options: ClientOptions = {},
+  options: NotDefinedContextOptions = {},
 ): NotDefinedContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
   const userAgentInfo = `azsdk-js-notdefinedparam-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

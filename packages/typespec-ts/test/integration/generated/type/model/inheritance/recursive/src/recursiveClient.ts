@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { RecursiveClient } from "./clientDefinitions.js";
 
+export interface RecursiveClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `RecursiveClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: RecursiveClientOptions = {},
 ): RecursiveClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

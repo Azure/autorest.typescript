@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { MediaTypesClient } from "./clientDefinitions";
 
+export interface MediaTypesClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `MediaTypesClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: MediaTypesClientOptions = {},
 ): MediaTypesClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

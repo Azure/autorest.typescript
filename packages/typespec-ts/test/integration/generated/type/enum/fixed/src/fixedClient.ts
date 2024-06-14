@@ -5,11 +5,15 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { FixedClient } from "./clientDefinitions.js";
 
+export interface FixedClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `FixedClient`
  * @param options - the parameter for all optional parameters
  */
-export default function createClient(options: ClientOptions = {}): FixedClient {
+export default function createClient(
+  options: FixedClientOptions = {},
+): FixedClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-extensible-fixed-rest/1.0.0`;

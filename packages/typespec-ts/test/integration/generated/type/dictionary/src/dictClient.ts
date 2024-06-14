@@ -5,11 +5,15 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { DictClient } from "./clientDefinitions.js";
 
+export interface DictClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `DictClient`
  * @param options - the parameter for all optional parameters
  */
-export default function createClient(options: ClientOptions = {}): DictClient {
+export default function createClient(
+  options: DictClientOptions = {},
+): DictClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-dictionary-rest/1.0.0`;

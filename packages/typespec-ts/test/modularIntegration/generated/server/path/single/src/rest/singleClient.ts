@@ -5,6 +5,8 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { SingleContext } from "./clientDefinitions.js";
 
+export interface SingleContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `SingleContext`
  * @param endpointParam - Need to be set as 'http://localhost:3000' in client.
@@ -12,10 +14,9 @@ import { SingleContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   endpointParam: string,
-  options: ClientOptions = {},
+  options: SingleContextOptions = {},
 ): SingleContext {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpointParam}`;
-
   const userAgentInfo = `azsdk-js-singleparam-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

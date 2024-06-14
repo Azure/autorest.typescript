@@ -6,6 +6,8 @@ import { logger } from "./logger.js";
 import { VersioningAddedClient } from "./clientDefinitions.js";
 import { Versions } from "./models.js";
 
+export interface VersioningAddedClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `VersioningAddedClient`
  * @param endpointParam - Need to be set as 'http://localhost:3000' in client.
@@ -15,13 +17,12 @@ import { Versions } from "./models.js";
 export default function createClient(
   endpointParam: string,
   version: Versions,
-  options: ClientOptions = {},
+  options: VersioningAddedClientOptions = {},
 ): VersioningAddedClient {
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
     `${endpointParam}/versioning/added/api-version:${version}`;
-
   const userAgentInfo = `azsdk-js-versioning-added-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

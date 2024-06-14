@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { EnumDiscriminatorContext } from "./clientDefinitions.js";
 
+export interface EnumDiscriminatorContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `EnumDiscriminatorContext`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: EnumDiscriminatorContextOptions = {},
 ): EnumDiscriminatorContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

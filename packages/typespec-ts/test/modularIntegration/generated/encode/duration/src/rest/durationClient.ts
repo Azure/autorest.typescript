@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { DurationContext } from "./clientDefinitions.js";
 
+export interface DurationContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `DurationContext`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: DurationContextOptions = {},
 ): DurationContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;

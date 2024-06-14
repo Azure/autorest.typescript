@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger.js";
 import { AccessClient } from "./clientDefinitions.js";
 
+export interface AccessClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `AccessClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: AccessClientOptions = {},
 ): AccessClient {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
