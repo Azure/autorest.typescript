@@ -12,6 +12,7 @@ export {
   Ud,
   Dog,
   StringExtensibleNamedUnion,
+  KnownStringExtensibleNamedUnion,
   StringsOnlyGetOptionalParams,
   StringsOnlySendOptionalParams,
   StringExtensibleGetOptionalParams,

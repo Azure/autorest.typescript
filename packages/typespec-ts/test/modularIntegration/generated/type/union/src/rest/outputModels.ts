@@ -48,8 +48,13 @@ export interface MixedTypesCasesOutput {
 }
 
 /** Alias for StringExtensibleNamedUnionOutput */
-export type StringExtensibleNamedUnionOutput = string | "b" | "c";
+export type StringExtensibleNamedUnionOutput = string;
 /** Alias for LrOutput */
 export type LrOutput = "left" | "right";
 /** Alias for UdOutput */
 export type UdOutput = "up" | "down";
+
+export enum KnownStringExtensibleNamedUnionOutput {
+  b = "b",
+  c = "c",
+}

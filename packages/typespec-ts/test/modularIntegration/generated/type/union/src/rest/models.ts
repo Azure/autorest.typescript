@@ -48,8 +48,13 @@ export interface MixedTypesCases {
 }
 
 /** Alias for StringExtensibleNamedUnion */
-export type StringExtensibleNamedUnion = string | "b" | "c";
+export type StringExtensibleNamedUnion = string;
 /** Alias for Lr */
 export type Lr = "left" | "right";
 /** Alias for Ud */
 export type Ud = "up" | "down";
+
+export enum KnownStringExtensibleNamedUnion {
+  b = "b",
+  c = "c",
+}

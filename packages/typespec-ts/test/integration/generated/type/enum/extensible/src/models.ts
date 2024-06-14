@@ -3,7 +3,6 @@
 
 /** Alias for DaysOfWeekExtensibleEnum */
 export type DaysOfWeekExtensibleEnum =
-  | string
   | "Monday"
   | "Tuesday"
   | "Wednesday"

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import {
+  EnumDeclarationStructure,
   InterfaceDeclarationStructure,
   OptionalKind,
   PropertySignatureStructure,
@@ -12,6 +13,7 @@ import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import {
   isArraySchema,
   isDictionarySchema,
+  isNonExhaustiveSchema,
   isObjectSchema
 } from "./helpers/schemaHelpers.js";
 import {
@@ -181,9 +183,12 @@ export function buildObjectAliases(
         kind: StructureKind.TypeAlias,
         ...(description && { docs: [{ description }] }),
         name: modelName,
-        type: schemaUsage.includes(SchemaContext.Input)
-          ? `${objectSchema.alias}`
-          : `${objectSchema.outputAlias}`,
+        type:
+          objectSchema.isNonExhaustive && objectSchema.nonExhaustiveValueType
+            ? objectSchema.nonExhaustiveValueType
+            : schemaUsage.includes(SchemaContext.Input)
+              ? `${objectSchema.alias}`
+              : `${objectSchema.outputAlias}`,
         isExported: true,
         docs: [description ?? "Alias for " + modelName]
       });
@@ -221,6 +226,34 @@ export function buildPolymorphicAliases(
   return objectAliases;
 }
 
+export function buildEnums(
+  model: RLCModel,
+  importedModels: Set<string>,
+  schemaUsage: SchemaContext[]
+) {
+  const enumSchemas: Schema[] = (model.schemas ?? []).filter(
+    (o) =>
+      isNonExhaustiveSchema(o) &&
+      (o as Schema).usage?.some((u) => schemaUsage.includes(u))
+  );
+  const enums: EnumDeclarationStructure[] = [];
+  enumSchemas.forEach((enumSchema) => {
+    const enumValues = enumSchema.enum ?? [];
+    const modelName = schemaUsage.includes(SchemaContext.Input)
+      ? `${enumSchema.typeName}`
+      : `${enumSchema.outputTypeName}`;
+    enums.push({
+      kind: StructureKind.Enum,
+      name: `Known${modelName}`,
+      isExported: true,
+      members: enumValues.map((value) => ({
+        name: value.type.replace(/"/g, ""),
+        value: value.type.replace(/"/g, "")
+      }))
+    });
+  });
+  return enums;
+}
 /**
  * Gets a base name for an object schema this is tipically used with suffixes when building interface or type names
  */

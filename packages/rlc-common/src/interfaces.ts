@@ -241,6 +241,7 @@ export interface RLCOptions {
   enableModelNamespace?: boolean;
   hierarchyClient?: boolean;
   compatibilityMode?: boolean;
+  experimentalExtensibleEnums?: boolean;
 }
 
 export interface ServiceInfo {
@@ -282,6 +283,8 @@ export interface Schema {
   fromCore?: boolean;
   enum?: any[];
   isConstant?: boolean;
+  isNonExhaustive?: boolean;
+  nonExhaustiveValueType?: string;
 }
 
 export interface ObjectSchema extends Schema {
