@@ -126,7 +126,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
       function abortListener(): void {
         abortController.abort();
       }
-      const inputAbortSignal = options?.abortSignal;
+      const inputAbortSignal = pollOptions?.abortSignal;
       const abortSignal = abortController.signal;
       if (inputAbortSignal?.aborted) {
         abortController.abort();
