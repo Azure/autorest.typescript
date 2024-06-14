@@ -181,20 +181,13 @@ export function getDeserializePrivateFunction(
     }
   }
 
-  let deserializedType = isLroOnly
+  const deserializedType = isLroOnly
     ? operation?.lroMetadata?.finalResult
     : response?.type ?? "void"; // Is setting void here correct? We are handling the case where no response above but here we are
-  let hasLroSubPath = operation?.lroMetadata?.finalResultPath !== undefined;
-  let deserializedRoot = hasLroSubPath
+  const hasLroSubPath = operation?.lroMetadata?.finalResultPath !== undefined;
+  const deserializedRoot = hasLroSubPath
     ? `result.body.${operation?.lroMetadata?.finalResultPath}`
     : "result.body";
-  // TODO: Hard-coded for LRO PATCH case for now
-  // https://github.com/Azure/autorest.typescript/issues/2314
-  if (isLroOnly && operation.method.toLowerCase() === "patch") {
-    deserializedType = response.type;
-    hasLroSubPath = false;
-    deserializedRoot = "result.body";
-  }
   if (isLroOnly) {
     const lroLogicalResponse = getRLCLroLogicalResponse(operation.rlcResponse);
     statements.push(`result = result as ${lroLogicalResponse};`);
