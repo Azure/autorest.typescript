@@ -117,7 +117,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
     },
     sendPollRequest: async (
       path: string,
-      options?: { abortSignal?: AbortSignalLike },
+      pollOptions?: { abortSignal?: AbortSignalLike },
     ) => {
       // This is the callback that is going to be called to poll the service
       // to get the latest status. We use the client provided and the polling path
