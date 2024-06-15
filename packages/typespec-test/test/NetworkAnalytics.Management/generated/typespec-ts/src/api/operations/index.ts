@@ -1,12 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  PagedOperation,
-  Operation,
-  Origin,
-  ActionType,
-} from "../../models/models.js";
+import { PagedOperation, Operation } from "../../models/models.js";
 import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
@@ -50,8 +45,8 @@ export async function _listDeserialize(
             operation: p.display?.["operation"],
             description: p.display?.["description"],
           },
-      origin: p["origin"] as Origin,
-      actionType: p["actionType"] as ActionType,
+      origin: p["origin"],
+      actionType: p["actionType"],
     })),
     nextLink: result.body["nextLink"],
   };

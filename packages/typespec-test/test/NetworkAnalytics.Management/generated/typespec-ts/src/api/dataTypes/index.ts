@@ -4,10 +4,7 @@
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
-  CreatedByType,
-  ProvisioningState,
   DataType,
-  DataTypeState,
   DataTypeUpdate,
   ContainerSaS,
   ContainerSasToken,
@@ -115,17 +112,13 @@ export async function _createDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.[
-            "createdByType"
-          ] as CreatedByType,
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.[
-            "lastModifiedByType"
-          ] as CreatedByType,
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -134,10 +127,8 @@ export async function _createDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.[
-            "provisioningState"
-          ] as ProvisioningState,
-          state: result.body.properties?.["state"] as DataTypeState,
+          provisioningState: result.body.properties?.["provisioningState"],
+          state: result.body.properties?.["state"],
           stateReason: result.body.properties?.["stateReason"],
           storageOutputRetention:
             result.body.properties?.["storageOutputRetention"],
@@ -209,17 +200,13 @@ export async function _getDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.[
-            "createdByType"
-          ] as CreatedByType,
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.[
-            "lastModifiedByType"
-          ] as CreatedByType,
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -228,10 +215,8 @@ export async function _getDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.[
-            "provisioningState"
-          ] as ProvisioningState,
-          state: result.body.properties?.["state"] as DataTypeState,
+          provisioningState: result.body.properties?.["provisioningState"],
+          state: result.body.properties?.["state"],
           stateReason: result.body.properties?.["stateReason"],
           storageOutputRetention:
             result.body.properties?.["storageOutputRetention"],
@@ -322,17 +307,13 @@ export async function _updateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.[
-            "createdByType"
-          ] as CreatedByType,
+          createdByType: result.body.systemData?.["createdByType"],
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.[
-            "lastModifiedByType"
-          ] as CreatedByType,
+          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -341,10 +322,8 @@ export async function _updateDeserialize(
     properties: !result.body.properties
       ? undefined
       : {
-          provisioningState: result.body.properties?.[
-            "provisioningState"
-          ] as ProvisioningState,
-          state: result.body.properties?.["state"] as DataTypeState,
+          provisioningState: result.body.properties?.["provisioningState"],
+          state: result.body.properties?.["state"],
           stateReason: result.body.properties?.["stateReason"],
           storageOutputRetention:
             result.body.properties?.["storageOutputRetention"],
@@ -624,15 +603,13 @@ export async function _listByDataProductDeserialize(
         ? undefined
         : {
             createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"] as CreatedByType,
+            createdByType: p.systemData?.["createdByType"],
             createdAt:
               p.systemData?.["createdAt"] !== undefined
                 ? new Date(p.systemData?.["createdAt"])
                 : undefined,
             lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.[
-              "lastModifiedByType"
-            ] as CreatedByType,
+            lastModifiedByType: p.systemData?.["lastModifiedByType"],
             lastModifiedAt:
               p.systemData?.["lastModifiedAt"] !== undefined
                 ? new Date(p.systemData?.["lastModifiedAt"])
@@ -641,10 +618,8 @@ export async function _listByDataProductDeserialize(
       properties: !p.properties
         ? undefined
         : {
-            provisioningState: p.properties?.[
-              "provisioningState"
-            ] as ProvisioningState,
-            state: p.properties?.["state"] as DataTypeState,
+            provisioningState: p.properties?.["provisioningState"],
+            state: p.properties?.["state"],
             stateReason: p.properties?.["stateReason"],
             storageOutputRetention: p.properties?.["storageOutputRetention"],
             databaseCacheRetention: p.properties?.["databaseCacheRetention"],

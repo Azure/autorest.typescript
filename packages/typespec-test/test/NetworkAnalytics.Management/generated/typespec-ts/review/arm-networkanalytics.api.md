@@ -31,8 +31,8 @@ export interface AccountSasToken {
     storageAccountSasToken: string;
 }
 
-// @public (undocumented)
-export type ActionType = "Internal";
+// @public
+export type ActionType = string;
 
 // @public
 export interface ArmOperationStatus {
@@ -71,11 +71,11 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public (undocumented)
-export type ControlState = "Enabled" | "Disabled";
+// @public
+export type ControlState = string;
 
-// @public (undocumented)
-export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
+// @public
+export type CreatedByType = string;
 
 // @public
 export interface DataProduct extends TrackedResource {
@@ -257,8 +257,8 @@ export interface DataProductUpdateProperties {
     purviewCollection?: string;
 }
 
-// @public (undocumented)
-export type DataProductUserRole = "Reader" | "SensitiveReader";
+// @public
+export type DataProductUserRole = string;
 
 // @public
 export interface DataProductVersion {
@@ -332,8 +332,8 @@ export interface DataTypesOperations {
     update: (subscriptionId: string, resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataTypeUpdate, options?: DataTypesUpdateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
 }
 
-// @public (undocumented)
-export type DataTypeState = "Stopped" | "Running";
+// @public
+export type DataTypeState = string;
 
 // @public (undocumented)
 export interface DataTypesUpdateOptionalParams extends OperationOptions {
@@ -354,8 +354,8 @@ export interface DataTypeUpdateProperties {
     storageOutputRetention?: number;
 }
 
-// @public (undocumented)
-export type DefaultAction = "Allow" | "Deny";
+// @public
+export type DefaultAction = string;
 
 // @public
 export interface EncryptionKeyDetails {
@@ -395,6 +395,106 @@ export interface KeyVaultInfo {
     keyVaultUrl: string;
 }
 
+// @public (undocumented)
+export enum KnownActionType {
+    // (undocumented)
+    Internal = "Internal"
+}
+
+// @public (undocumented)
+export enum KnownControlState {
+    // (undocumented)
+    Disabled = "Disabled",
+    // (undocumented)
+    Enabled = "Enabled"
+}
+
+// @public (undocumented)
+export enum KnownCreatedByType {
+    // (undocumented)
+    Application = "Application",
+    // (undocumented)
+    Key = "Key",
+    // (undocumented)
+    ManagedIdentity = "ManagedIdentity",
+    // (undocumented)
+    User = "User"
+}
+
+// @public (undocumented)
+export enum KnownDataProductUserRole {
+    // (undocumented)
+    Reader = "Reader",
+    // (undocumented)
+    SensitiveReader = "SensitiveReader"
+}
+
+// @public (undocumented)
+export enum KnownDataTypeState {
+    // (undocumented)
+    Running = "Running",
+    // (undocumented)
+    Stopped = "Stopped"
+}
+
+// @public (undocumented)
+export enum KnownDefaultAction {
+    // (undocumented)
+    Allow = "Allow",
+    // (undocumented)
+    Deny = "Deny"
+}
+
+// @public (undocumented)
+export enum KnownManagedServiceIdentityType {
+    // (undocumented)
+    "SystemAssigned, UserAssigned" = "SystemAssigned, UserAssigned",
+    // (undocumented)
+    None = "None",
+    // (undocumented)
+    SystemAssigned = "SystemAssigned",
+    // (undocumented)
+    UserAssigned = "UserAssigned"
+}
+
+// @public (undocumented)
+export enum KnownOrigin {
+    // (undocumented)
+    "user,system" = "user,system",
+    // (undocumented)
+    system = "system",
+    // (undocumented)
+    user = "user"
+}
+
+// @public (undocumented)
+export enum KnownProvisioningState {
+    // (undocumented)
+    Accepted = "Accepted",
+    // (undocumented)
+    Canceled = "Canceled",
+    // (undocumented)
+    Deleting = "Deleting",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    Provisioning = "Provisioning",
+    // (undocumented)
+    Succeeded = "Succeeded",
+    // (undocumented)
+    Updating = "Updating"
+}
+
+// @public (undocumented)
+export enum KnownResourceProvisioningState {
+    // (undocumented)
+    Canceled = "Canceled",
+    // (undocumented)
+    Failed = "Failed",
+    // (undocumented)
+    Succeeded = "Succeeded"
+}
+
 // @public
 export interface ListRoleAssignments {
     count: number;
@@ -415,8 +515,8 @@ export interface ManagedServiceIdentity {
     userAssignedIdentities?: UserAssignedIdentities;
 }
 
-// @public (undocumented)
-export type ManagedServiceIdentityType = "None" | "SystemAssigned" | "UserAssigned" | "SystemAssigned, UserAssigned";
+// @public
+export type ManagedServiceIdentityType = string;
 
 // @public (undocumented)
 export class NetworkAnalyticsClient {
@@ -460,8 +560,8 @@ export interface OperationsOperations {
     list: (options?: OperationsListOptionalParams) => PagedAsyncIterableIterator<Operation>;
 }
 
-// @public (undocumented)
-export type Origin = "user" | "system" | "user,system";
+// @public
+export type Origin = string;
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
@@ -481,8 +581,8 @@ export interface PageSettings {
     continuationToken?: string;
 }
 
-// @public (undocumented)
-export type ProvisioningState = "Succeeded" | "Failed" | "Canceled" | "Provisioning" | "Updating" | "Deleting" | "Accepted";
+// @public
+export type ProvisioningState = string;
 
 // @public
 export interface ProxyResource extends Resource {
@@ -502,8 +602,8 @@ export interface Resource {
     readonly type?: string;
 }
 
-// @public (undocumented)
-export type ResourceProvisioningState = "Succeeded" | "Failed" | "Canceled";
+// @public
+export type ResourceProvisioningState = string;
 
 // Warning: (ae-forgotten-export) The symbol "NetworkAnalyticsContext" needs to be exported by the entry point index.d.ts
 //
