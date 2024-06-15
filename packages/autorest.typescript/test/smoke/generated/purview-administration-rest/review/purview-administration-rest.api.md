@@ -557,11 +557,15 @@ interface ComplexReplacerConfigOutput {
     typeName?: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "PurviewMetadataPoliciesClientOptions" needs to be exported by the entry point index.d.ts
+//
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): PurviewMetadataPoliciesClient;
+function createClient(endpoint: string, credentials: KeyCredential, { apiVersion, ...options }?: PurviewMetadataPoliciesClientOptions): PurviewMetadataPoliciesClient;
 
+// Warning: (ae-forgotten-export) The symbol "PurviewAccountClientOptions" needs to be exported by the entry point index.d.ts
+//
 // @public
-function createClient_2(endpoint: string, credentials: TokenCredential, options?: ClientOptions): PurviewAccountClient;
+function createClient_2(endpoint: string, credentials: TokenCredential, { apiVersion, ...options }?: PurviewAccountClientOptions): PurviewAccountClient;
 
 // @public
 interface DataPlaneAccountUpdateParameters {

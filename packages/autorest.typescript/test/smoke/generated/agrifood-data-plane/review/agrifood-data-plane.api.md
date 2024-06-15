@@ -478,6 +478,12 @@ export type AzureAgriFoodPlatformDataPlaneServiceClient = Client & {
     path: Routes;
 };
 
+// @public (undocumented)
+export interface AzureAgriFoodPlatformDataPlaneServiceClientOptions extends ClientOptions {
+    // (undocumented)
+    apiVersion?: string;
+}
+
 // @public
 export interface BoundariesCreateCascadeDeleteJob202Response extends HttpResponse {
     // (undocumented)
@@ -876,7 +882,7 @@ export interface CascadeDeleteJobOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): AzureAgriFoodPlatformDataPlaneServiceClient;
+function createClient(endpoint: string, credentials: KeyCredential, { apiVersion, ...options }?: AzureAgriFoodPlatformDataPlaneServiceClientOptions): AzureAgriFoodPlatformDataPlaneServiceClient;
 export default createClient;
 
 // @public

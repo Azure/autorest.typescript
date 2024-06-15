@@ -12,10 +12,10 @@ export interface PagingClientOptions extends ClientOptions {
 /**
  * Initialize a new instance of `PagingClient`
  * @param {
- *     apiVersion = apiVersionParam, ...options} - the parameter for all optional parameters
+ *     apiVersion = "1.0.0", ...options} - the parameter for all optional parameters
  */
 export default function createClient({
-  apiVersion = apiVersionParam,
+  apiVersion = "1.0.0",
   ...options
 }: PagingClientOptions = {}): PagingClient {
   const endpointUrl =
@@ -37,12 +37,20 @@ export default function createClient({
 
   const client = getClient(endpointUrl, options) as PagingClient;
 
-  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  if (options.apiVersion) {
-    logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
-    );
-  }
+  client.pipeline.addPolicy({
+    name: "ClientApiVersionPolicy",
+    sendRequest: (req, next) => {
+      // Use the apiVesion defined in request url directly
+      // Append one if there is no apiVesion and we have one at client options
+      const url = new URL(req.url);
+      if (!url.searchParams.get("api-version") && apiVersion) {
+        req.url = `${req.url}${
+          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+        }api-version=${apiVersion}`;
+      }
 
+      return next(req);
+    },
+  });
   return client;
 }

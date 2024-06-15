@@ -6,19 +6,27 @@ import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { AzureAgriFoodPlatformDataPlaneServiceClient } from "./clientDefinitions";
 
+export interface AzureAgriFoodPlatformDataPlaneServiceClientOptions
+  extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `AzureAgriFoodPlatformDataPlaneServiceClient`
  * @param endpoint - The endpoint of your FarmBeats resource (protocol and hostname, for example: https://{resourceName}.farmbeats.azure.net).
  * @param credentials - uniquely identify client credential
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "2021-03-31-preview", ...options} - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  {
+    apiVersion = "2021-03-31-preview",
+    ...options
+  }: AzureAgriFoodPlatformDataPlaneServiceClientOptions = {},
 ): AzureAgriFoodPlatformDataPlaneServiceClient {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
-
   const userAgentInfo = `azsdk-js-agrifood-data-plane-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -44,12 +52,21 @@ export default function createClient(
     options,
   ) as AzureAgriFoodPlatformDataPlaneServiceClient;
 
-  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  if (options.apiVersion) {
-    logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
-    );
-  }
+  client.pipeline.addPolicy({
+    name: "ClientApiVersionPolicy",
+    sendRequest: (req, next) => {
+      // Use the apiVesion defined in request url directly
+      // Append one if there is no apiVesion and we have one at client options
+      const url = new URL(req.url);
+      if (!url.searchParams.get("api-version") && apiVersion) {
+        req.url = `${req.url}${
+          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+        }api-version=${apiVersion}`;
+      }
+
+      return next(req);
+    },
+  });
 
   return client;
 }

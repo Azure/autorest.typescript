@@ -6,19 +6,26 @@ import { logger } from "./logger";
 import { TokenCredential } from "@azure/core-auth";
 import { SynapseArtifactsClient } from "./clientDefinitions";
 
+export interface SynapseArtifactsClientOptions extends ClientOptions {
+  apiVersion?: string;
+}
+
 /**
  * Initialize a new instance of `SynapseArtifactsClient`
  * @param endpoint - The workspace development endpoint, for example https://myworkspace.dev.azuresynapse.net.
  * @param credentials - uniquely identify client credential
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "2021-11-01-preview", ...options} - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
   credentials: TokenCredential,
-  options: ClientOptions = {},
+  {
+    apiVersion = "2021-11-01-preview",
+    ...options
+  }: SynapseArtifactsClientOptions = {},
 ): SynapseArtifactsClient {
   const endpointUrl = options.endpoint ?? options.baseUrl ?? `${endpoint}`;
-
   const userAgentInfo = `azsdk-js-synapse-artifacts-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -45,12 +52,21 @@ export default function createClient(
     options,
   ) as SynapseArtifactsClient;
 
-  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  if (options.apiVersion) {
-    logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
-    );
-  }
+  client.pipeline.addPolicy({
+    name: "ClientApiVersionPolicy",
+    sendRequest: (req, next) => {
+      // Use the apiVesion defined in request url directly
+      // Append one if there is no apiVesion and we have one at client options
+      const url = new URL(req.url);
+      if (!url.searchParams.get("api-version") && apiVersion) {
+        req.url = `${req.url}${
+          Array.from(url.searchParams.keys()).length > 0 ? "&" : "?"
+        }api-version=${apiVersion}`;
+      }
+
+      return next(req);
+    },
+  });
 
   return {
     ...client,

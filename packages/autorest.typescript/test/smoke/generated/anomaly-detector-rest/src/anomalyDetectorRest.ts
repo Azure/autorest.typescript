@@ -6,6 +6,8 @@ import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { AnomalyDetectorRestClient } from "./clientDefinitions";
 
+export interface AnomalyDetectorRestClientOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `AnomalyDetectorRestClient`
  * @param endpoint - Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus2.api.cognitive.microsoft.com).
@@ -17,13 +19,12 @@ export default function createClient(
   endpoint: string,
   apiVersion: string,
   credentials: KeyCredential,
-  options: ClientOptions = {},
+  options: AnomalyDetectorRestClientOptions = {},
 ): AnomalyDetectorRestClient {
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
     `${endpoint}/anomalydetector/${apiVersion}`;
-
   const userAgentInfo = `azsdk-js-anomaly-detector-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

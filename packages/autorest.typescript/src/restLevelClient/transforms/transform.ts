@@ -112,7 +112,7 @@ function getOperationQueryApiVersion(
 
   if (apiVersionParam && isConstantSchema(apiVersionParam.schema)) {
     return {
-      definedPosition: "path",
+      definedPosition: "query",
       isCrossedVersion: false,
       defaultValue: apiVersionParam.schema.value.value.toString()
     };
