@@ -41,7 +41,7 @@ describe("ExtensibleEnums Rest Client", () => {
 
   it("should put unknown value and receives 500", async () => {
     try {
-      const result = await client.string.putUnknownValue("Weekend", {
+      const result = await client.string.putUnknownValue("Weekend" as any, {
         requestOptions: { headers: { "content-type": "text/plain" } }
       });
       assert.isUndefined(result);

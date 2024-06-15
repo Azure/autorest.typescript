@@ -283,8 +283,6 @@ export interface Schema {
   fromCore?: boolean;
   enum?: any[];
   isConstant?: boolean;
-  isNonExhaustive?: boolean;
-  nonExhaustiveValueType?: string;
 }
 
 export interface ObjectSchema extends Schema {

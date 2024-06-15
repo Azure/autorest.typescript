@@ -38,13 +38,6 @@ export function isObjectSchema(schema: Schema) {
   return false;
 }
 
-export function isNonExhaustiveSchema(schema: Schema) {
-  if (schema.isNonExhaustive && schema.nonExhaustiveValueType) {
-    return true;
-  }
-  return false;
-}
-
 export function isConstantSchema(schema: Schema) {
   if (schema.type === "constant") {
     return true;

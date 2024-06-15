@@ -53,8 +53,3 @@ export type StringExtensibleNamedUnion = string;
 export type Lr = "left" | "right";
 /** Alias for Ud */
 export type Ud = "up" | "down";
-
-export enum KnownStringExtensibleNamedUnion {
-  b = "b",
-  c = "c",
-}

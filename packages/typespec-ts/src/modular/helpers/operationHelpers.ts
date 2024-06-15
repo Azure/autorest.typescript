@@ -150,6 +150,10 @@ export function getDeserializePrivateFunction(
     parameters,
     returnType: `Promise<${returnType.type}>`
   };
+
+  if (returnType.type === "DogUnion") {
+    returnType;
+  }
   const statements: string[] = [];
   if (needUnexpectedHelper) {
     statements.push(
@@ -215,11 +219,14 @@ export function getDeserializePrivateFunction(
     deserializedType?.type === "dict" ||
     (deserializedType?.type === "model" &&
       allParents.some((p) => p.type === "dict")) ||
-    response.isBinaryPayload ||
-    deserializedType?.aliasType
+    response.isBinaryPayload
   ) {
     statements.push(`return result.body`);
-  } else if (deserializedType && properties.length > 0) {
+  } else if (
+    deserializedType &&
+    properties.length > 0 &&
+    !deserializedType.aliasType
+  ) {
     statements.push(
       `return {`,
       getResponseMapping(
@@ -1117,6 +1124,9 @@ export function deserializeResponseValue(
   typeStack: Type[] = [],
   format?: string
 ): string {
+  if (type.name === "DogUnion") {
+    type;
+  }
   const requiredPrefix = required === false ? `${restValue} === undefined` : "";
   const nullablePrefix = type.nullable ? `${restValue} === null` : "";
   const requiredOrNullablePrefix =
@@ -1191,6 +1201,25 @@ export function deserializeResponseValue(
       } else {
         return `${restValue} as any`;
       }
+    case "enum":
+      if (!type.isFixed && !type.isNonExhaustive) {
+        return `${restValue} as ${type.name}`;
+      }
+      return restValue;
+    case "model":
+      if (type.discriminator) {
+        const discriminatorProp = type.properties?.filter(
+          (p) => p.restApiName === type.discriminator
+        );
+        if (
+          discriminatorProp?.length === 1 &&
+          discriminatorProp[0]?.type.isFixed === false &&
+          discriminatorProp[0].type.isNonExhaustive === false
+        ) {
+          return `${restValue} as ${type.name}`;
+        }
+      }
+      return restValue;
     default:
       return restValue;
   }

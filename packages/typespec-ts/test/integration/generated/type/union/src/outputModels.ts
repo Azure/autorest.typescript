@@ -53,8 +53,3 @@ export type StringExtensibleNamedUnionOutput = string;
 export type LrOutput = "left" | "right";
 /** Alias for UdOutput */
 export type UdOutput = "up" | "down";
-
-export enum KnownStringExtensibleNamedUnionOutput {
-  b = "b",
-  c = "c",
-}

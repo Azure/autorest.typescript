@@ -4,7 +4,6 @@
 import { Project } from "ts-morph";
 import * as path from "path";
 import {
-  buildEnums,
   buildObjectAliases,
   buildObjectInterfaces,
   buildPolymorphicAliases
@@ -52,12 +51,10 @@ export function generateModelFiles(
     schemaContext
   );
 
-  const enums = buildEnums(model, importedModels, schemaContext);
   if (
     objectTypeAliases.length ||
     objectsDefinitions.length ||
-    objectAliases.length ||
-    enums.length
+    objectAliases.length
   ) {
     const modelsFile = project.createSourceFile(filePath, undefined, {
       overwrite: true
@@ -66,7 +63,6 @@ export function generateModelFiles(
     modelsFile.addInterfaces(objectsDefinitions);
     modelsFile.addTypeAliases(objectTypeAliases);
     modelsFile.addTypeAliases(objectAliases);
-    modelsFile.addEnums(enums);
     if (importedModels.has("Paged")) {
       modelsFile.addImportDeclarations([
         {

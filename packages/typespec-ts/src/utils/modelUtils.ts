@@ -406,15 +406,23 @@ function getSchemaForUnion(
   }
   const schema: any = {};
   if (values.length > 0) {
-    const isNonExhaustive =
-      dpgContext.rlcOptions?.experimentalExtensibleEnums && asEnum?.open;
     schema.enum = values;
-    const unionAlias = values
-      .map((item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`)
-      .join(" | ");
-    const outputUnionAlias = values
-      .map((item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`)
-      .join(" | ");
+    const unionAlias =
+      asEnum?.open && asEnum?.kind
+        ? asEnum.kind
+        : values
+            .map(
+              (item) => `${getTypeName(item, [SchemaContext.Input]) ?? item}`
+            )
+            .join(" | ");
+    const outputUnionAlias =
+      asEnum?.open && asEnum?.kind
+        ? asEnum.kind
+        : values
+            .map(
+              (item) => `${getTypeName(item, [SchemaContext.Output]) ?? item}`
+            )
+            .join(" | ");
     if (!union.expression) {
       const unionName = union.name
         ? normalizeName(union.name, NameType.Interface)
@@ -435,10 +443,6 @@ function getSchemaForUnion(
       schema.outputTypeName = union.name
         ? union.name + "Output"
         : outputUnionAlias;
-    }
-    if (isNonExhaustive) {
-      schema.isNonExhaustive = true;
-      schema.nonExhaustiveValueType = asEnum.kind;
     }
   }
 

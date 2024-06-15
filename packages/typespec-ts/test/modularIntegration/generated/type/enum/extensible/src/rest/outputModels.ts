@@ -2,11 +2,4 @@
 // Licensed under the MIT license.
 
 /** Alias for DaysOfWeekExtensibleEnumOutput */
-export type DaysOfWeekExtensibleEnumOutput =
-  | "Monday"
-  | "Tuesday"
-  | "Wednesday"
-  | "Thursday"
-  | "Friday"
-  | "Saturday"
-  | "Sunday";
+export type DaysOfWeekExtensibleEnumOutput = string;
