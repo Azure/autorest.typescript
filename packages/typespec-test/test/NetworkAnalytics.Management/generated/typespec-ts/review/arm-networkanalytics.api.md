@@ -31,8 +31,8 @@ export interface AccountSasToken {
     storageAccountSasToken: string;
 }
 
-// @public
-export type ActionType = string;
+// @public (undocumented)
+export type ActionType = "Internal";
 
 // @public
 export interface ArmOperationStatus {
@@ -71,11 +71,11 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public
-export type ControlState = string;
+// @public (undocumented)
+export type ControlState = "Enabled" | "Disabled";
 
-// @public
-export type CreatedByType = string;
+// @public (undocumented)
+export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
 
 // @public
 export interface DataProduct extends TrackedResource {
@@ -257,8 +257,8 @@ export interface DataProductUpdateProperties {
     purviewCollection?: string;
 }
 
-// @public
-export type DataProductUserRole = string;
+// @public (undocumented)
+export type DataProductUserRole = "Reader" | "SensitiveReader";
 
 // @public
 export interface DataProductVersion {
@@ -332,8 +332,8 @@ export interface DataTypesOperations {
     update: (subscriptionId: string, resourceGroupName: string, dataProductName: string, dataTypeName: string, properties: DataTypeUpdate, options?: DataTypesUpdateOptionalParams) => PollerLike<OperationState<DataType>, DataType>;
 }
 
-// @public
-export type DataTypeState = string;
+// @public (undocumented)
+export type DataTypeState = "Stopped" | "Running";
 
 // @public (undocumented)
 export interface DataTypesUpdateOptionalParams extends OperationOptions {
@@ -354,8 +354,8 @@ export interface DataTypeUpdateProperties {
     storageOutputRetention?: number;
 }
 
-// @public
-export type DefaultAction = string;
+// @public (undocumented)
+export type DefaultAction = "Allow" | "Deny";
 
 // @public
 export interface EncryptionKeyDetails {
@@ -415,8 +415,8 @@ export interface ManagedServiceIdentity {
     userAssignedIdentities?: UserAssignedIdentities;
 }
 
-// @public
-export type ManagedServiceIdentityType = string;
+// @public (undocumented)
+export type ManagedServiceIdentityType = "None" | "SystemAssigned" | "UserAssigned" | "SystemAssigned, UserAssigned";
 
 // @public (undocumented)
 export class NetworkAnalyticsClient {
@@ -460,8 +460,8 @@ export interface OperationsOperations {
     list: (options?: OperationsListOptionalParams) => PagedAsyncIterableIterator<Operation>;
 }
 
-// @public
-export type Origin = string;
+// @public (undocumented)
+export type Origin = "user" | "system" | "user,system";
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
@@ -481,8 +481,8 @@ export interface PageSettings {
     continuationToken?: string;
 }
 
-// @public
-export type ProvisioningState = string;
+// @public (undocumented)
+export type ProvisioningState = "Succeeded" | "Failed" | "Canceled" | "Provisioning" | "Updating" | "Deleting" | "Accepted";
 
 // @public
 export interface ProxyResource extends Resource {
@@ -502,8 +502,8 @@ export interface Resource {
     readonly type?: string;
 }
 
-// @public
-export type ResourceProvisioningState = string;
+// @public (undocumented)
+export type ResourceProvisioningState = "Succeeded" | "Failed" | "Canceled";
 
 // Warning: (ae-forgotten-export) The symbol "NetworkAnalyticsContext" needs to be exported by the entry point index.d.ts
 //

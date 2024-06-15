@@ -4,12 +4,18 @@
 import { getLongRunningPoller } from "../pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
+  CreatedByType,
   DataProduct,
+  ProvisioningState,
+  ControlState,
+  DefaultAction,
+  ManagedServiceIdentityType,
   DataProductUpdate,
   AccountSas,
   AccountSasToken,
   KeyVaultInfo,
   RoleAssignmentCommonProperties,
+  DataProductUserRole,
   RoleAssignmentDetail,
   ListRoleAssignments,
   DataProductListResult,
@@ -186,13 +192,17 @@ export async function _createDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -202,18 +212,25 @@ export async function _createDeserialize(
       ? undefined
       : {
           resourceGuid: result.body.properties?.["resourceGuid"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as ProvisioningState,
           publisher: result.body.properties?.["publisher"],
           product: result.body.properties?.["product"],
           majorVersion: result.body.properties?.["majorVersion"],
           owners: result.body.properties?.["owners"],
-          redundancy: result.body.properties?.["redundancy"],
+          redundancy: result.body.properties?.["redundancy"] as ControlState,
           purviewAccount: result.body.properties?.["purviewAccount"],
           purviewCollection: result.body.properties?.["purviewCollection"],
-          privateLinksEnabled: result.body.properties?.["privateLinksEnabled"],
-          publicNetworkAccess: result.body.properties?.["publicNetworkAccess"],
-          customerManagedKeyEncryptionEnabled:
-            result.body.properties?.["customerManagedKeyEncryptionEnabled"],
+          privateLinksEnabled: result.body.properties?.[
+            "privateLinksEnabled"
+          ] as ControlState,
+          publicNetworkAccess: result.body.properties?.[
+            "publicNetworkAccess"
+          ] as ControlState,
+          customerManagedKeyEncryptionEnabled: result.body.properties?.[
+            "customerManagedKeyEncryptionEnabled"
+          ] as ControlState,
           customerEncryptionKey: !result.body.properties?.customerEncryptionKey
             ? undefined
             : {
@@ -243,8 +260,9 @@ export async function _createDeserialize(
                   result.body.properties?.networkacls?.[
                     "allowedQueryIpRangeList"
                   ],
-                defaultAction:
-                  result.body.properties?.networkacls?.["defaultAction"],
+                defaultAction: result.body.properties?.networkacls?.[
+                  "defaultAction"
+                ] as DefaultAction,
               },
           managedResourceGroupConfiguration: !result.body.properties
             ?.managedResourceGroupConfiguration
@@ -294,7 +312,7 @@ export async function _createDeserialize(
       : {
           tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
-          type: result.body.identity?.["type"],
+          type: result.body.identity?.["type"] as ManagedServiceIdentityType,
           userAssignedIdentities:
             result.body.identity?.["userAssignedIdentities"],
         },
@@ -361,13 +379,17 @@ export async function _getDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -377,18 +399,25 @@ export async function _getDeserialize(
       ? undefined
       : {
           resourceGuid: result.body.properties?.["resourceGuid"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as ProvisioningState,
           publisher: result.body.properties?.["publisher"],
           product: result.body.properties?.["product"],
           majorVersion: result.body.properties?.["majorVersion"],
           owners: result.body.properties?.["owners"],
-          redundancy: result.body.properties?.["redundancy"],
+          redundancy: result.body.properties?.["redundancy"] as ControlState,
           purviewAccount: result.body.properties?.["purviewAccount"],
           purviewCollection: result.body.properties?.["purviewCollection"],
-          privateLinksEnabled: result.body.properties?.["privateLinksEnabled"],
-          publicNetworkAccess: result.body.properties?.["publicNetworkAccess"],
-          customerManagedKeyEncryptionEnabled:
-            result.body.properties?.["customerManagedKeyEncryptionEnabled"],
+          privateLinksEnabled: result.body.properties?.[
+            "privateLinksEnabled"
+          ] as ControlState,
+          publicNetworkAccess: result.body.properties?.[
+            "publicNetworkAccess"
+          ] as ControlState,
+          customerManagedKeyEncryptionEnabled: result.body.properties?.[
+            "customerManagedKeyEncryptionEnabled"
+          ] as ControlState,
           customerEncryptionKey: !result.body.properties?.customerEncryptionKey
             ? undefined
             : {
@@ -418,8 +447,9 @@ export async function _getDeserialize(
                   result.body.properties?.networkacls?.[
                     "allowedQueryIpRangeList"
                   ],
-                defaultAction:
-                  result.body.properties?.networkacls?.["defaultAction"],
+                defaultAction: result.body.properties?.networkacls?.[
+                  "defaultAction"
+                ] as DefaultAction,
               },
           managedResourceGroupConfiguration: !result.body.properties
             ?.managedResourceGroupConfiguration
@@ -469,7 +499,7 @@ export async function _getDeserialize(
       : {
           tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
-          type: result.body.identity?.["type"],
+          type: result.body.identity?.["type"] as ManagedServiceIdentityType,
           userAssignedIdentities:
             result.body.identity?.["userAssignedIdentities"],
         },
@@ -562,13 +592,17 @@ export async function _updateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -578,18 +612,25 @@ export async function _updateDeserialize(
       ? undefined
       : {
           resourceGuid: result.body.properties?.["resourceGuid"],
-          provisioningState: result.body.properties?.["provisioningState"],
+          provisioningState: result.body.properties?.[
+            "provisioningState"
+          ] as ProvisioningState,
           publisher: result.body.properties?.["publisher"],
           product: result.body.properties?.["product"],
           majorVersion: result.body.properties?.["majorVersion"],
           owners: result.body.properties?.["owners"],
-          redundancy: result.body.properties?.["redundancy"],
+          redundancy: result.body.properties?.["redundancy"] as ControlState,
           purviewAccount: result.body.properties?.["purviewAccount"],
           purviewCollection: result.body.properties?.["purviewCollection"],
-          privateLinksEnabled: result.body.properties?.["privateLinksEnabled"],
-          publicNetworkAccess: result.body.properties?.["publicNetworkAccess"],
-          customerManagedKeyEncryptionEnabled:
-            result.body.properties?.["customerManagedKeyEncryptionEnabled"],
+          privateLinksEnabled: result.body.properties?.[
+            "privateLinksEnabled"
+          ] as ControlState,
+          publicNetworkAccess: result.body.properties?.[
+            "publicNetworkAccess"
+          ] as ControlState,
+          customerManagedKeyEncryptionEnabled: result.body.properties?.[
+            "customerManagedKeyEncryptionEnabled"
+          ] as ControlState,
           customerEncryptionKey: !result.body.properties?.customerEncryptionKey
             ? undefined
             : {
@@ -619,8 +660,9 @@ export async function _updateDeserialize(
                   result.body.properties?.networkacls?.[
                     "allowedQueryIpRangeList"
                   ],
-                defaultAction:
-                  result.body.properties?.networkacls?.["defaultAction"],
+                defaultAction: result.body.properties?.networkacls?.[
+                  "defaultAction"
+                ] as DefaultAction,
               },
           managedResourceGroupConfiguration: !result.body.properties
             ?.managedResourceGroupConfiguration
@@ -670,7 +712,7 @@ export async function _updateDeserialize(
       : {
           tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
-          type: result.body.identity?.["type"],
+          type: result.body.identity?.["type"] as ManagedServiceIdentityType,
           userAssignedIdentities:
             result.body.identity?.["userAssignedIdentities"],
         },
@@ -931,7 +973,7 @@ export async function _addUserRoleDeserialize(
     userName: result.body["userName"],
     dataTypeScope: result.body["dataTypeScope"],
     principalType: result.body["principalType"],
-    role: result.body["role"],
+    role: result.body["role"] as DataProductUserRole,
     roleAssignmentId: result.body["roleAssignmentId"],
   };
 }
@@ -1060,7 +1102,7 @@ export async function _listRolesAssignmentsDeserialize(
       userName: p["userName"],
       dataTypeScope: p["dataTypeScope"],
       principalType: p["principalType"],
-      role: p["role"],
+      role: p["role"] as DataProductUserRole,
       roleAssignmentId: p["roleAssignmentId"],
     })),
   };
@@ -1128,13 +1170,15 @@ export async function _listByResourceGroupDeserialize(
         ? undefined
         : {
             createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
+            createdByType: p.systemData?.["createdByType"] as CreatedByType,
             createdAt:
               p.systemData?.["createdAt"] !== undefined
                 ? new Date(p.systemData?.["createdAt"])
                 : undefined,
             lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
+            lastModifiedByType: p.systemData?.[
+              "lastModifiedByType"
+            ] as CreatedByType,
             lastModifiedAt:
               p.systemData?.["lastModifiedAt"] !== undefined
                 ? new Date(p.systemData?.["lastModifiedAt"])
@@ -1144,18 +1188,25 @@ export async function _listByResourceGroupDeserialize(
         ? undefined
         : {
             resourceGuid: p.properties?.["resourceGuid"],
-            provisioningState: p.properties?.["provisioningState"],
+            provisioningState: p.properties?.[
+              "provisioningState"
+            ] as ProvisioningState,
             publisher: p.properties?.["publisher"],
             product: p.properties?.["product"],
             majorVersion: p.properties?.["majorVersion"],
             owners: p.properties?.["owners"],
-            redundancy: p.properties?.["redundancy"],
+            redundancy: p.properties?.["redundancy"] as ControlState,
             purviewAccount: p.properties?.["purviewAccount"],
             purviewCollection: p.properties?.["purviewCollection"],
-            privateLinksEnabled: p.properties?.["privateLinksEnabled"],
-            publicNetworkAccess: p.properties?.["publicNetworkAccess"],
-            customerManagedKeyEncryptionEnabled:
-              p.properties?.["customerManagedKeyEncryptionEnabled"],
+            privateLinksEnabled: p.properties?.[
+              "privateLinksEnabled"
+            ] as ControlState,
+            publicNetworkAccess: p.properties?.[
+              "publicNetworkAccess"
+            ] as ControlState,
+            customerManagedKeyEncryptionEnabled: p.properties?.[
+              "customerManagedKeyEncryptionEnabled"
+            ] as ControlState,
             customerEncryptionKey: !p.properties?.customerEncryptionKey
               ? undefined
               : {
@@ -1181,7 +1232,9 @@ export async function _listByResourceGroupDeserialize(
                   })),
                   allowedQueryIpRangeList:
                     p.properties?.networkacls?.["allowedQueryIpRangeList"],
-                  defaultAction: p.properties?.networkacls?.["defaultAction"],
+                  defaultAction: p.properties?.networkacls?.[
+                    "defaultAction"
+                  ] as DefaultAction,
                 },
             managedResourceGroupConfiguration: !p.properties
               ?.managedResourceGroupConfiguration
@@ -1222,7 +1275,7 @@ export async function _listByResourceGroupDeserialize(
         : {
             tenantId: p.identity?.["tenantId"],
             principalId: p.identity?.["principalId"],
-            type: p.identity?.["type"],
+            type: p.identity?.["type"] as ManagedServiceIdentityType,
             userAssignedIdentities: p.identity?.["userAssignedIdentities"],
           },
     })),
@@ -1291,13 +1344,15 @@ export async function _listBySubscriptionDeserialize(
         ? undefined
         : {
             createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
+            createdByType: p.systemData?.["createdByType"] as CreatedByType,
             createdAt:
               p.systemData?.["createdAt"] !== undefined
                 ? new Date(p.systemData?.["createdAt"])
                 : undefined,
             lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
+            lastModifiedByType: p.systemData?.[
+              "lastModifiedByType"
+            ] as CreatedByType,
             lastModifiedAt:
               p.systemData?.["lastModifiedAt"] !== undefined
                 ? new Date(p.systemData?.["lastModifiedAt"])
@@ -1307,18 +1362,25 @@ export async function _listBySubscriptionDeserialize(
         ? undefined
         : {
             resourceGuid: p.properties?.["resourceGuid"],
-            provisioningState: p.properties?.["provisioningState"],
+            provisioningState: p.properties?.[
+              "provisioningState"
+            ] as ProvisioningState,
             publisher: p.properties?.["publisher"],
             product: p.properties?.["product"],
             majorVersion: p.properties?.["majorVersion"],
             owners: p.properties?.["owners"],
-            redundancy: p.properties?.["redundancy"],
+            redundancy: p.properties?.["redundancy"] as ControlState,
             purviewAccount: p.properties?.["purviewAccount"],
             purviewCollection: p.properties?.["purviewCollection"],
-            privateLinksEnabled: p.properties?.["privateLinksEnabled"],
-            publicNetworkAccess: p.properties?.["publicNetworkAccess"],
-            customerManagedKeyEncryptionEnabled:
-              p.properties?.["customerManagedKeyEncryptionEnabled"],
+            privateLinksEnabled: p.properties?.[
+              "privateLinksEnabled"
+            ] as ControlState,
+            publicNetworkAccess: p.properties?.[
+              "publicNetworkAccess"
+            ] as ControlState,
+            customerManagedKeyEncryptionEnabled: p.properties?.[
+              "customerManagedKeyEncryptionEnabled"
+            ] as ControlState,
             customerEncryptionKey: !p.properties?.customerEncryptionKey
               ? undefined
               : {
@@ -1344,7 +1406,9 @@ export async function _listBySubscriptionDeserialize(
                   })),
                   allowedQueryIpRangeList:
                     p.properties?.networkacls?.["allowedQueryIpRangeList"],
-                  defaultAction: p.properties?.networkacls?.["defaultAction"],
+                  defaultAction: p.properties?.networkacls?.[
+                    "defaultAction"
+                  ] as DefaultAction,
                 },
             managedResourceGroupConfiguration: !p.properties
               ?.managedResourceGroupConfiguration
@@ -1385,7 +1449,7 @@ export async function _listBySubscriptionDeserialize(
         : {
             tenantId: p.identity?.["tenantId"],
             principalId: p.identity?.["principalId"],
-            type: p.identity?.["type"],
+            type: p.identity?.["type"] as ManagedServiceIdentityType,
             userAssignedIdentities: p.identity?.["userAssignedIdentities"],
           },
     })),
