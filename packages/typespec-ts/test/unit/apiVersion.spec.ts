@@ -245,13 +245,13 @@ const buildPathReturn_WithDefault = () => {
   /**
    * Initialize a new instance of \`testClient\`
    * @param endpointParam - The endpoint to use.
-   * @param options - the parameter for all optional parameters
+   * @param {
+   *    apiVersion = "2022-05-15-preview", ...options} - the parameter for all optional parameters
    */
   export default function createClient(
     endpointParam: string,
-    options: testClientOptions = {}
+    { apiVersion = "2022-05-15-preview", ...options}: testClientOptions = {}
   ): testClient {
-    const apiVersion = options.apiVersion ?? "2022-05-15-preview";
     const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/anomalydetector/\${apiVersion}\`;
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
@@ -271,10 +271,6 @@ const buildPathReturn_WithDefault = () => {
     const client = getClient(endpointUrl, options) as testClient;
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-    if (options.apiVersion) {
-      logger.warning("This client does not support client api-version, please change it at the operation level");
-    }
-    
     return client;       
   }`;
 };
@@ -285,7 +281,7 @@ const buildPathReturn_WithoutDefault = () => {
   import { logger } from "./logger.js";
   import { testClient } from "./clientDefinitions.js";
   import { Versions } from "./models.js";
-  
+  export interface testClientOptions extends ClientOptions {}
   /**
    * Initialize a new instance of \`testClient\`
    * @param endpointParam - The endpoint to use.
@@ -295,7 +291,7 @@ const buildPathReturn_WithoutDefault = () => {
   export default function createClient(
     endpointParam: string,
     apiVersion: Versions,
-    options: ClientOptions = {}
+    options: testClientOptions = {}
   ): testClient {
     const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}/anomalydetector/\${apiVersion}\`;
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
@@ -317,7 +313,7 @@ const buildPathReturn_WithoutDefault = () => {
 
     client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
     if (options.apiVersion) {
-      logger.warning("This client does not support client api-version, please change it at the operation level");
+      logger.warning("This client does not support to set api-version in options, please change it at positional argument");
     }
 
     return client;       

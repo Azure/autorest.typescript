@@ -16,16 +16,16 @@ export interface ParametrizedHostContextOptions extends ClientOptions {
 /**
  * Initialize a new instance of `ParametrizedHostContext`
  * @param credentials - uniquely identify client credential
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "v1", ...options} - the parameter for all optional parameters
  */
 export default function createClient(
   credentials: TokenCredential,
-  options: ParametrizedHostContextOptions = {},
+  { apiVersion = "v1", ...options }: ParametrizedHostContextOptions = {},
 ): ParametrizedHostContext {
   const host = options.host ?? "one";
   const subdomain = options.subdomain ?? "two";
   const sufix = options.sufix ?? "three";
-  const apiVersion = options.apiVersion ?? "v1";
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
@@ -56,11 +56,6 @@ export default function createClient(
   ) as ParametrizedHostContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  if (options.apiVersion) {
-    logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
-    );
-  }
 
   return client;
 }

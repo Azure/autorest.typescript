@@ -13,14 +13,14 @@ export interface ServiceDrivenOldClientOptions extends ClientOptions {
  * Initialize a new instance of `ServiceDrivenOldClient`
  * @param endpointParam - Need to be set as 'http://localhost:3000' in client.
  * @param serviceDeploymentVersion - Pass in either 'v1' or 'v2'. This represents a version of the service deployment in history. 'v1' is for the deployment when the service had only one api version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'.
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "v1", ...options} - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,
   serviceDeploymentVersion: string,
-  options: ServiceDrivenOldClientOptions = {},
+  { apiVersion = "v1", ...options }: ServiceDrivenOldClientOptions = {},
 ): ServiceDrivenOldClient {
-  const apiVersion = options.apiVersion ?? "v1";
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
@@ -42,11 +42,6 @@ export default function createClient(
   const client = getClient(endpointUrl, options) as ServiceDrivenOldClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  if (options.apiVersion) {
-    logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
-    );
-  }
 
   return client;
 }

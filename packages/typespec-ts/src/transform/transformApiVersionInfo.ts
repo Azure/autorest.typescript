@@ -29,7 +29,12 @@ export function transformApiVersionInfo(
   const queryVersionDetail = getOperationApiVersion(client, dpgContext);
   const pathVersionDetail = extractPathApiVersion(urlInfo);
   const isCrossedVersion =
-    pathVersionDetail?.isCrossedVersion || queryVersionDetail?.isCrossedVersion;
+    queryVersionDetail || pathVersionDetail
+      ? Boolean(
+          pathVersionDetail?.isCrossedVersion ||
+            queryVersionDetail?.isCrossedVersion
+        )
+      : undefined;
   const defaultValue =
     (pathVersionDetail || queryVersionDetail) && !isCrossedVersion
       ? getDefaultApiVersionString(dpgContext) ??
@@ -131,7 +136,11 @@ export function getOperationApiVersion(
         const typeString = JSON.stringify(trimUsage(type));
         apiVersionTypes.add(typeString);
       });
-      if (apiVersionTypes.size > 1 || !dpgContext.hasApiVersionInClient || required.size > 1) {
+      if (
+        apiVersionTypes.size > 1 ||
+        !dpgContext.hasApiVersionInClient ||
+        required.size > 1
+      ) {
         break;
       }
       if (params.length === 1) {

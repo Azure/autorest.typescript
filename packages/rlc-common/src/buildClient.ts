@@ -44,9 +44,9 @@ function getClientOptionsInterface(
     }) ?? [];
 
   if (
-    model.apiVersionInfo?.isCrossedVersion === false &&
-    !model.urlInfo?.urlParameters?.find((p) => p.name === "apiVersion") &&
-    !(!model.apiVersionInfo.defaultValue && model.apiVersionInfo?.required)
+    (model.apiVersionInfo?.isCrossedVersion === false &&
+      !model.urlInfo?.urlParameters?.find((p) => p.name === "apiVersion") &&
+      (model.apiVersionInfo.defaultValue || !model.apiVersionInfo?.required))
   ) {
     properties.push({
       name: "apiVersion",
@@ -315,6 +315,9 @@ export function getClientFactoryBody(
   const optionalUrlParameters: string[] = [];
 
   for (const param of urlParameters ?? []) {
+    if (param.name === "apiVersion") {
+      continue;
+    }
     if (param.value) {
       const value =
         typeof param.value === "string" ? `"${param.value}"` : param.value;

@@ -13,13 +13,13 @@ export interface MultipleContextOptions extends ClientOptions {
 /**
  * Initialize a new instance of `MultipleContext`
  * @param endpointParam - Pass in http://localhost:3000 for endpoint.
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "v1.0", ...options} - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,
-  options: MultipleContextOptions = {},
+  { apiVersion = "v1.0", ...options }: MultipleContextOptions = {},
 ): MultipleContext {
-  const apiVersion = options.apiVersion ?? "v1.0";
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
@@ -41,11 +41,6 @@ export default function createClient(
   const client = getClient(endpointUrl, options) as MultipleContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  if (options.apiVersion) {
-    logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
-    );
-  }
 
   return client;
 }

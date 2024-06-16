@@ -164,11 +164,9 @@ export function transformUrlInfo(
   if (importedModels.size > 0) {
     importDetails.rlcClientFactory.importsSet = importedModels;
   }
-  let hasApiVersionInUrl = false;
   if (endpoint && urlParameters.length > 0) {
     for (const param of urlParameters) {
       if (param.oriName === "apiVersion") {
-        hasApiVersionInUrl = true;
         dpgContext.hasApiVersionInClient = true;
       }
       if (param.oriName) {
@@ -185,9 +183,10 @@ export function transformUrlInfo(
       type: "string"
     });
   }
-  const apiVersionInfo = !hasApiVersionInUrl
-    ? transformApiVersionInfo(client, dpgContext, { endpoint, urlParameters })
-    : undefined;
+  const apiVersionInfo = transformApiVersionInfo(client, dpgContext, {
+    endpoint,
+    urlParameters
+  });
   if (
     apiVersionInfo &&
     urlParameters &&

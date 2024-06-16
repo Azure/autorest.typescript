@@ -16,14 +16,14 @@ export interface FaceClientOptions extends ClientOptions {
  * @param endpointParam - Supported Cognitive Services endpoints (protocol and hostname, for example:
  * https://{resource-name}.cognitiveservices.azure.com).
  * @param credentials - uniquely identify client credential
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "v1.1-preview.1", ...options} - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,
   credentials: TokenCredential | KeyCredential,
-  options: FaceClientOptions = {},
+  { apiVersion = "v1.1-preview.1", ...options }: FaceClientOptions = {},
 ): FaceClient {
-  const apiVersion = options.apiVersion ?? "v1.1-preview.1";
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
@@ -52,11 +52,6 @@ export default function createClient(
   const client = getClient(endpointUrl, credentials, options) as FaceClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  if (options.apiVersion) {
-    logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
-    );
-  }
 
   return client;
 }
