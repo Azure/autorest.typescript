@@ -44,9 +44,9 @@ function getClientOptionsInterface(
     }) ?? [];
 
   if (
-    (model.apiVersionInfo?.isCrossedVersion === false &&
-      !model.urlInfo?.urlParameters?.find((p) => p.name === "apiVersion") &&
-      (model.apiVersionInfo.defaultValue || !model.apiVersionInfo?.required))
+    model.apiVersionInfo?.isCrossedVersion === false &&
+    !model.urlInfo?.urlParameters?.find((p) => p.name === "apiVersion") &&
+    (model.apiVersionInfo.defaultValue || !model.apiVersionInfo?.required)
   ) {
     properties.push({
       name: "apiVersion",
