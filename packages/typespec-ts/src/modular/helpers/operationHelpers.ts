@@ -150,10 +150,6 @@ export function getDeserializePrivateFunction(
     parameters,
     returnType: `Promise<${returnType.type}>`
   };
-
-  if (returnType.type === "DogUnion") {
-    returnType;
-  }
   const statements: string[] = [];
   if (needUnexpectedHelper) {
     statements.push(
