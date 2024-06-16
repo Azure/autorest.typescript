@@ -42,19 +42,15 @@ describe("Parameters.ts", () => {
           import { logger } from "./logger.js";
           import { testClient } from "./clientDefinitions.js";
           
-          export interface testClientOptions extends ClientOptions {
-            apiVersion?: string;
-          }
+          export interface testClientOptions extends ClientOptions {}
 
           /**
            * Initialize a new instance of \`testClient\`
            * @param endpointParam - The parameter endpointParam
            * @param apiVersion - The parameter apiVersion
-           * @param {
-           *     apiVersion = apiVersionParam, ...options} - the parameter for all optional parameters
+           * @param options - the parameter for all optional parameters
            */
-          export default function createClient(endpointParam: string, apiVersion: string, {
-            apiVersion = apiVersionParam, ...options}: testClientOptions = {}): testClient {
+          export default function createClient(endpointParam: string, apiVersion: string, options: testClientOptions = {}): testClient {
           const endpointUrl = options.endpoint ?? options.baseUrl ?? \`\${endpointParam}\`;
           const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
           const userAgentPrefix =
@@ -70,9 +66,14 @@ describe("Parameters.ts", () => {
                 logger: options.loggingOptions?.logger ?? logger.info
               },
           };
-          
           const client = getClient(endpointUrl, options) as testClient;
 
+          client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+          if (options.apiVersion) {
+            logger.warning(
+              "This client does not support to set api-version in options, please change it at positional argument",
+            );
+          }
           client.pipeline.addPolicy({
             name: 'ClientApiVersionPolicy',
             sendRequest: (req, next) => {

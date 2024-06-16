@@ -109,6 +109,7 @@ export interface ApiVersionInfo {
   definedPosition?: ApiVersionPosition;
   defaultValue?: string;
   isCrossedVersion?: boolean;
+  required?: boolean;
 }
 
 export type ApiVersionPosition =

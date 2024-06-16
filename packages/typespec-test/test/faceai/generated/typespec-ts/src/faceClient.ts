@@ -49,7 +49,6 @@ export default function createClient(
         options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
     },
   };
-
   const client = getClient(endpointUrl, credentials, options) as FaceClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

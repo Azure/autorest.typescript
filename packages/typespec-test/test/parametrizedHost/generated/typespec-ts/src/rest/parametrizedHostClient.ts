@@ -49,7 +49,6 @@ export default function createClient(
       ],
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,

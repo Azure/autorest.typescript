@@ -44,13 +44,13 @@ export function createClient(
       apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "CustomAuth",
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,
     options,
   ) as PurviewMetadataPoliciesClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   client.pipeline.addPolicy({
     name: "ClientApiVersionPolicy",
     sendRequest: (req, next) => {

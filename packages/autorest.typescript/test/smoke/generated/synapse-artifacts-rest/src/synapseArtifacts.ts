@@ -45,13 +45,13 @@ export default function createClient(
       ],
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,
     options,
   ) as SynapseArtifactsClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   client.pipeline.addPolicy({
     name: "ClientApiVersionPolicy",
     sendRequest: (req, next) => {

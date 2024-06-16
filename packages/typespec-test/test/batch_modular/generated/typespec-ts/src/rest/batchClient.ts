@@ -44,7 +44,6 @@ export default function createClient(
       ],
     },
   };
-
   const client = getClient(endpointUrl, credentials, options) as BatchContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

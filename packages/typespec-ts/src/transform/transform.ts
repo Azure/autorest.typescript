@@ -196,7 +196,8 @@ export function transformUrlInfo(
     !apiVersionInfo.defaultValue
   ) {
     urlParameters.push({
-      name: "api-version",
+      oriName: "api-version",
+      name: "apiVersion",
       type: "string"
     });
   }

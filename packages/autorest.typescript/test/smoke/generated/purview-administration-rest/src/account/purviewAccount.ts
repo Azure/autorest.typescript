@@ -45,13 +45,13 @@ export function createClient(
       ],
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,
     options,
   ) as PurviewAccountClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   client.pipeline.addPolicy({
     name: "ClientApiVersionPolicy",
     sendRequest: (req, next) => {

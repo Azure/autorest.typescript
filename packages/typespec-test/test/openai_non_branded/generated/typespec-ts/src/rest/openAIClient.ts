@@ -28,7 +28,6 @@ export default function createClient(
       userAgentPrefix,
     },
   };
-
   const client = getClient(endpointUrl, options) as OpenAIContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

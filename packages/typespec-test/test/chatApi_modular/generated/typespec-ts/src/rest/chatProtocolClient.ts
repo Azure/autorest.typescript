@@ -38,7 +38,6 @@ export default function createClient(
       apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "api-key",
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,

@@ -29,7 +29,6 @@ export default function createClient(
       userAgentPrefix,
     },
   };
-
   const client = getClient(endpointUrl, options) as TodoClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

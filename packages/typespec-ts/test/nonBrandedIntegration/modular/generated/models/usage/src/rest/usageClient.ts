@@ -25,7 +25,6 @@ export default function createClient(
       userAgentPrefix,
     },
   };
-
   const client = getClient(endpointUrl, options) as UsageContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

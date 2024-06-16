@@ -42,13 +42,13 @@ export default function createClient(
       scopes: options.credentials?.scopes ?? [`${endpointUrl}/.default`],
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,
     options,
   ) as NetworkAnalyticsContext;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   client.pipeline.addPolicy({
     name: "ClientApiVersionPolicy",
     sendRequest: (req, next) => {

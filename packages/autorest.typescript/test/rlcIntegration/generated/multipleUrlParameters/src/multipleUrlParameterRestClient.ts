@@ -42,7 +42,6 @@ export default function createClient(
       scopes: options.credentials?.scopes ?? ["user_impersonation"],
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,

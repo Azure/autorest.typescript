@@ -39,7 +39,6 @@ export default function createClient(
       apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "x-ms-api-key",
     },
   };
-
   const client = getClient(endpointUrl, credentials, options) as UnionContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

@@ -45,13 +45,13 @@ export default function createClient(
         options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,
     options,
   ) as AuthoringClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   client.pipeline.addPolicy({
     name: "ClientApiVersionPolicy",
     sendRequest: (req, next) => {

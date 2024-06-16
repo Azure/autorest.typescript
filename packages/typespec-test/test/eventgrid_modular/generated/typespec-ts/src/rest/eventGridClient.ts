@@ -44,13 +44,13 @@ export default function createClient(
         options.credentials?.apiKeyHeaderName ?? "SharedAccessKey",
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,
     options,
   ) as EventGridContext;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   client.pipeline.addPolicy({
     name: "ClientApiVersionPolicy",
     sendRequest: (req, next) => {

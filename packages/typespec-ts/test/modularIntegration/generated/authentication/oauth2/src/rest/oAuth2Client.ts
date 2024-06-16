@@ -38,7 +38,6 @@ export default function createClient(
       ],
     },
   };
-
   const client = getClient(endpointUrl, credentials, options) as OAuth2Context;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

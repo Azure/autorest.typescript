@@ -45,7 +45,8 @@ function getClientOptionsInterface(
 
   if (
     model.apiVersionInfo?.isCrossedVersion === false &&
-    !properties.find((p) => p.name === "apiVersion")
+    !model.urlInfo?.urlParameters?.find((p) => p.name === "apiVersion") &&
+    !(!model.apiVersionInfo.defaultValue && model.apiVersionInfo?.required)
   ) {
     properties.push({
       name: "apiVersion",
@@ -134,14 +135,17 @@ export function buildClient(model: RLCModel): File | undefined {
   let apiVersionStatement: string = "";
   // Set the default api-version when we have a default AND its position is query
   if (
-    model.apiVersionInfo?.definedPosition === "query" &&
+    model.apiVersionInfo?.isCrossedVersion === false &&
     !!model.apiVersionInfo?.defaultValue
   ) {
     apiVersionStatement = `
     apiVersion = "${model.apiVersionInfo?.defaultValue}"`;
-  } else if (model.apiVersionInfo?.isCrossedVersion === false) {
+  } else if (
+    model.apiVersionInfo?.isCrossedVersion === false &&
+    !model.apiVersionInfo.required
+  ) {
     apiVersionStatement = `
-    apiVersion = apiVersionParam`;
+    apiVersion`;
   }
 
   const allClientParams = [
@@ -162,7 +166,7 @@ export function buildClient(model: RLCModel): File | undefined {
     docs: [
       {
         description:
-          `Initialize a new instance of \`${clientInterfaceName}\` \n` +
+          `Initialize a new instance of \`${clientInterfaceName}\`\n` +
           allClientParams
             .map((param) => {
               return `@param ${param.name} - ${
@@ -315,7 +319,7 @@ export function getClientFactoryBody(
       const value =
         typeof param.value === "string" ? `"${param.value}"` : param.value;
       optionalUrlParameters.push(
-        `const ${param.name} = options.${param.name} ?? ${value}`
+        `const ${param.name} = options.${param.name} ?? ${value};`
       );
     }
   }
@@ -399,7 +403,7 @@ export function getClientFactoryBody(
         userAgentOptions: {
           userAgentPrefix
         }${loggerOptions}${customHeaderOptions}${credentialsOptions}
-      }`;
+      };`;
   const getClient = `const client = getClient(
         endpointUrl, ${credentialsOptions ? "credentials," : ""} options
       ) as ${clientTypeName};
@@ -430,17 +434,27 @@ export function getClientFactoryBody(
     }
   }
 
-  let apiVersionPolicyStatement = "";
-  if (model.apiVersionInfo?.definedPosition !== "query") {
-    apiVersionPolicyStatement = `client.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
-    if (flavor === "azure") {
-      apiVersionPolicyStatement += `
+  let apiVersionPolicyStatement = `client.pipeline.removePolicy({ name: "ApiVersionPolicy" });`;
+  if (flavor === "azure" && model.apiVersionInfo?.isCrossedVersion !== false) {
+    apiVersionPolicyStatement += `
       if (options.apiVersion) {
         logger.warning("This client does not support client api-version, please change it at the operation level");
       }`;
-    }
-  } else {
-    apiVersionPolicyStatement = `
+  } else if (
+    flavor === "azure" &&
+    !model.apiVersionInfo?.defaultValue &&
+    model.apiVersionInfo?.required
+  ) {
+    apiVersionPolicyStatement += `
+      if (options.apiVersion) {
+        logger.warning("This client does not support to set api-version in options, please change it at positional argument");
+      }`;
+  }
+  if (
+    model.apiVersionInfo?.isCrossedVersion === false &&
+    model.apiVersionInfo?.definedPosition === "query"
+  ) {
+    apiVersionPolicyStatement += `
       client.pipeline.addPolicy({
         name: 'ClientApiVersionPolicy',
         sendRequest: (req, next) => {

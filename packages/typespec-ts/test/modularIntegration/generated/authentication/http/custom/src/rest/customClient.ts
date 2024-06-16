@@ -33,7 +33,6 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as CustomContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });

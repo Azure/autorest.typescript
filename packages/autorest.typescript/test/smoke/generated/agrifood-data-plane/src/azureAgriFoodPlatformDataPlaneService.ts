@@ -45,13 +45,13 @@ export default function createClient(
         options.credentials?.apiKeyHeaderName ?? "Authorization",
     },
   };
-
   const client = getClient(
     endpointUrl,
     credentials,
     options,
   ) as AzureAgriFoodPlatformDataPlaneServiceClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   client.pipeline.addPolicy({
     name: "ClientApiVersionPolicy",
     sendRequest: (req, next) => {

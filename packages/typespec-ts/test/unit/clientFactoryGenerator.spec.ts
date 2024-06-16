@@ -44,7 +44,6 @@ describe("Client Factory generation", () => {
               logger: options.loggingOptions?.logger ?? logger.info
             },
         };
-        
         const client = getClient(endpointUrl, options) as testClient;
 
         client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
@@ -105,7 +104,6 @@ describe("Client Factory generation", () => {
                 logger: options.loggingOptions?.logger ?? logger.info
               },
             };
-          
             const client = getClient(endpointUrl, options) as testClient;
 
             client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
@@ -181,7 +179,6 @@ describe("Client Factory generation", () => {
                   logger: options.loggingOptions?.logger ?? logger.info
                 },
               };
-            
               const client = getClient(endpointUrl, options) as testClient;
 
               client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
@@ -255,7 +252,6 @@ describe("Client Factory generation", () => {
                   logger: options.loggingOptions?.logger ?? logger.info
                 },
               };
-            
               const client = getClient(endpointUrl, options) as testClient;
 
               client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
@@ -331,7 +327,6 @@ describe("Client Factory generation", () => {
                   logger: options.loggingOptions?.logger ?? logger.info
                 },
               };
-            
               const client = getClient(endpointUrl, options) as testClient;
               
               client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
@@ -383,7 +378,6 @@ describe("Client Factory generation", () => {
               logger: options.loggingOptions?.logger ?? logger.info
             },
         };
-        
         const client = getClient(endpointUrl, options) as testClient;
 
         client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
@@ -476,7 +470,6 @@ describe("Client Factory generation", () => {
               scopes: options.credentials?.scopes ?? [\`\${endpointUrl}/.default\`],
             },
         };
-
         const client = getClient(endpointUrl, credentials, options) as testClient;
 
         client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
@@ -539,7 +532,6 @@ describe("Client Factory generation", () => {
               apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "apiKey",
             },
         };
-        
         const client = getClient(endpointUrl, credentials, options) as testClient;
 
         client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
