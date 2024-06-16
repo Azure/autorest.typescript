@@ -14,14 +14,14 @@ export interface AnomalyDetectorMVClientOptions extends ClientOptions {
  * Initialize a new instance of `AnomalyDetectorMVClient`
  * @param endpoint - Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus2.api.cognitive.microsoft.com).
  * @param credentials - uniquely identify client credential
- * @param options - the parameter for all optional parameters
+ * @param {
+ *     apiVersion = "v1.1", ...options} - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
   credentials: KeyCredential,
-  options: AnomalyDetectorMVClientOptions = {},
+  { apiVersion = "v1.1", ...options }: AnomalyDetectorMVClientOptions = {},
 ): AnomalyDetectorMVClient {
-  const apiVersion = options.apiVersion ?? "v1.1";
   const endpointUrl =
     options.endpoint ??
     options.baseUrl ??
@@ -51,11 +51,6 @@ export default function createClient(
   ) as AnomalyDetectorMVClient;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
-  if (options.apiVersion) {
-    logger.warning(
-      "This client does not support client api-version, please change it at the operation level",
-    );
-  }
 
   return client;
 }
