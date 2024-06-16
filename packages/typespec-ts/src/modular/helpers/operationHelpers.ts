@@ -1120,9 +1120,6 @@ export function deserializeResponseValue(
   typeStack: Type[] = [],
   format?: string
 ): string {
-  if (type.name === "DogUnion") {
-    type;
-  }
   const requiredPrefix = required === false ? `${restValue} === undefined` : "";
   const nullablePrefix = type.nullable ? `${restValue} === null` : "";
   const requiredOrNullablePrefix =
