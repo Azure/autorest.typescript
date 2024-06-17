@@ -43,85 +43,76 @@ import {
 
 export interface DataProductsOperations {
   create: (
-    subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
     resource: DataProduct,
-    options?: DataProductsCreateOptionalParams,
+    options?: DataProductsCreateOptionalParams
   ) => PollerLike<OperationState<DataProduct>, DataProduct>;
   get: (
-    subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
-    options?: DataProductsGetOptionalParams,
+    options?: DataProductsGetOptionalParams
   ) => Promise<DataProduct>;
   update: (
-    subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
     properties: DataProductUpdate,
-    options?: DataProductsUpdateOptionalParams,
+    options?: DataProductsUpdateOptionalParams
   ) => PollerLike<OperationState<DataProduct>, DataProduct>;
   delete: (
-    subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
-    options?: DataProductsDeleteOptionalParams,
+    options?: DataProductsDeleteOptionalParams
   ) => PollerLike<OperationState<void>, void>;
   generateStorageAccountSasToken: (
-    subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
     body: AccountSas,
-    options?: DataProductsGenerateStorageAccountSasTokenOptionalParams,
+    options?: DataProductsGenerateStorageAccountSasTokenOptionalParams
   ) => Promise<AccountSasToken>;
   rotateKey: (
-    subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
     body: KeyVaultInfo,
-    options?: DataProductsRotateKeyOptionalParams,
+    options?: DataProductsRotateKeyOptionalParams
   ) => Promise<void>;
   addUserRole: (
-    subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
     body: RoleAssignmentCommonProperties,
-    options?: DataProductsAddUserRoleOptionalParams,
+    options?: DataProductsAddUserRoleOptionalParams
   ) => Promise<RoleAssignmentDetail>;
   removeUserRole: (
-    subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
     body: RoleAssignmentDetail,
-    options?: DataProductsRemoveUserRoleOptionalParams,
+    options?: DataProductsRemoveUserRoleOptionalParams
   ) => Promise<void>;
   listRolesAssignments: (
-    subscriptionId: string,
     resourceGroupName: string,
     dataProductName: string,
     body: Record<string, any>,
-    options?: DataProductsListRolesAssignmentsOptionalParams,
+    options?: DataProductsListRolesAssignmentsOptionalParams
   ) => Promise<ListRoleAssignments>;
   listByResourceGroup: (
-    subscriptionId: string,
     resourceGroupName: string,
-    options?: DataProductsListByResourceGroupOptionalParams,
+    options?: DataProductsListByResourceGroupOptionalParams
   ) => PagedAsyncIterableIterator<DataProduct>;
   listBySubscription: (
-    subscriptionId: string,
-    options?: DataProductsListBySubscriptionOptionalParams,
+    options?: DataProductsListBySubscriptionOptionalParams
   ) => PagedAsyncIterableIterator<DataProduct>;
 }
 
-export function getDataProducts(context: NetworkAnalyticsContext) {
+export function getDataProducts(
+  context: NetworkAnalyticsContext,
+  subscriptionId: string
+) {
   return {
     create: (
-      subscriptionId: string,
       resourceGroupName: string,
       dataProductName: string,
       resource: DataProduct,
-      options?: DataProductsCreateOptionalParams,
+      options?: DataProductsCreateOptionalParams
     ) =>
       create(
         context,
@@ -129,21 +120,19 @@ export function getDataProducts(context: NetworkAnalyticsContext) {
         resourceGroupName,
         dataProductName,
         resource,
-        options,
+        options
       ),
     get: (
-      subscriptionId: string,
       resourceGroupName: string,
       dataProductName: string,
-      options?: DataProductsGetOptionalParams,
+      options?: DataProductsGetOptionalParams
     ) =>
       get(context, subscriptionId, resourceGroupName, dataProductName, options),
     update: (
-      subscriptionId: string,
       resourceGroupName: string,
       dataProductName: string,
       properties: DataProductUpdate,
-      options?: DataProductsUpdateOptionalParams,
+      options?: DataProductsUpdateOptionalParams
     ) =>
       update(
         context,
@@ -151,27 +140,25 @@ export function getDataProducts(context: NetworkAnalyticsContext) {
         resourceGroupName,
         dataProductName,
         properties,
-        options,
+        options
       ),
     delete: (
-      subscriptionId: string,
       resourceGroupName: string,
       dataProductName: string,
-      options?: DataProductsDeleteOptionalParams,
+      options?: DataProductsDeleteOptionalParams
     ) =>
       $delete(
         context,
         subscriptionId,
         resourceGroupName,
         dataProductName,
-        options,
+        options
       ),
     generateStorageAccountSasToken: (
-      subscriptionId: string,
       resourceGroupName: string,
       dataProductName: string,
       body: AccountSas,
-      options?: DataProductsGenerateStorageAccountSasTokenOptionalParams,
+      options?: DataProductsGenerateStorageAccountSasTokenOptionalParams
     ) =>
       generateStorageAccountSasToken(
         context,
@@ -179,14 +166,13 @@ export function getDataProducts(context: NetworkAnalyticsContext) {
         resourceGroupName,
         dataProductName,
         body,
-        options,
+        options
       ),
     rotateKey: (
-      subscriptionId: string,
       resourceGroupName: string,
       dataProductName: string,
       body: KeyVaultInfo,
-      options?: DataProductsRotateKeyOptionalParams,
+      options?: DataProductsRotateKeyOptionalParams
     ) =>
       rotateKey(
         context,
@@ -194,14 +180,13 @@ export function getDataProducts(context: NetworkAnalyticsContext) {
         resourceGroupName,
         dataProductName,
         body,
-        options,
+        options
       ),
     addUserRole: (
-      subscriptionId: string,
       resourceGroupName: string,
       dataProductName: string,
       body: RoleAssignmentCommonProperties,
-      options?: DataProductsAddUserRoleOptionalParams,
+      options?: DataProductsAddUserRoleOptionalParams
     ) =>
       addUserRole(
         context,
@@ -209,14 +194,13 @@ export function getDataProducts(context: NetworkAnalyticsContext) {
         resourceGroupName,
         dataProductName,
         body,
-        options,
+        options
       ),
     removeUserRole: (
-      subscriptionId: string,
       resourceGroupName: string,
       dataProductName: string,
       body: RoleAssignmentDetail,
-      options?: DataProductsRemoveUserRoleOptionalParams,
+      options?: DataProductsRemoveUserRoleOptionalParams
     ) =>
       removeUserRole(
         context,
@@ -224,14 +208,13 @@ export function getDataProducts(context: NetworkAnalyticsContext) {
         resourceGroupName,
         dataProductName,
         body,
-        options,
+        options
       ),
     listRolesAssignments: (
-      subscriptionId: string,
       resourceGroupName: string,
       dataProductName: string,
       body: Record<string, any>,
-      options?: DataProductsListRolesAssignmentsOptionalParams,
+      options?: DataProductsListRolesAssignmentsOptionalParams
     ) =>
       listRolesAssignments(
         context,
@@ -239,25 +222,24 @@ export function getDataProducts(context: NetworkAnalyticsContext) {
         resourceGroupName,
         dataProductName,
         body,
-        options,
+        options
       ),
     listByResourceGroup: (
-      subscriptionId: string,
       resourceGroupName: string,
-      options?: DataProductsListByResourceGroupOptionalParams,
+      options?: DataProductsListByResourceGroupOptionalParams
     ) =>
       listByResourceGroup(context, subscriptionId, resourceGroupName, options),
     listBySubscription: (
-      subscriptionId: string,
-      options?: DataProductsListBySubscriptionOptionalParams,
+      options?: DataProductsListBySubscriptionOptionalParams
     ) => listBySubscription(context, subscriptionId, options),
   };
 }
 
 export function getDataProductsOperations(
   context: NetworkAnalyticsContext,
+  subscriptionId: string
 ): DataProductsOperations {
   return {
-    ...getDataProducts(context),
+    ...getDataProducts(context, subscriptionId),
   };
 }
