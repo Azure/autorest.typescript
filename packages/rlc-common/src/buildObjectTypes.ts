@@ -12,7 +12,9 @@ import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import {
   isArraySchema,
   isDictionarySchema,
-  isObjectSchema
+  isObjectSchema,
+  isPolymorphicParent,
+  isValidUsageObjectSchema
 } from "./helpers/schemaHelpers.js";
 import {
   ArraySchema,
@@ -23,7 +25,11 @@ import {
   Schema,
   SchemaContext
 } from "./interfaces.js";
-import { getMultipartPartTypeName } from "./helpers/nameConstructors.js";
+import {
+  getMultipartPartTypeName,
+  getObjectInterfaceDeclarationName,
+  getPolymorphicTypeAliasName
+} from "./helpers/nameConstructors.js";
 
 /**
  * Generates interfaces for ObjectSchemas
@@ -33,10 +39,8 @@ export function buildObjectInterfaces(
   importedModels: Set<string>,
   schemaUsage: SchemaContext[]
 ): InterfaceDeclarationStructure[] {
-  const objectSchemas: ObjectSchema[] = (model.schemas ?? []).filter(
-    (o) =>
-      isObjectSchema(o) &&
-      (o as ObjectSchema).usage?.some((u) => schemaUsage.includes(u))
+  const objectSchemas: ObjectSchema[] = (model.schemas ?? []).filter((o) =>
+    isValidUsageObjectSchema(o, schemaUsage)
   );
   const objectInterfaces: InterfaceDeclarationStructure[] = [];
 
@@ -61,10 +65,8 @@ export function buildObjectInterfaces(
       continue;
     }
 
-    const baseName = getObjectBaseName(objectSchema, schemaUsage);
     const interfaceDeclaration = getObjectInterfaceDeclaration(
       model,
-      baseName,
       objectSchema,
       schemaUsage,
       importedModels
@@ -140,10 +142,8 @@ export function buildObjectAliases(
   importedModels: Set<string>,
   schemaUsage: SchemaContext[]
 ) {
-  const objectSchemas: ObjectSchema[] = (model.schemas ?? []).filter(
-    (o) =>
-      isObjectSchema(o) &&
-      (o as ObjectSchema).usage?.some((u) => schemaUsage.includes(u))
+  const objectSchemas: ObjectSchema[] = (model.schemas ?? []).filter((o) =>
+    isValidUsageObjectSchema(o, schemaUsage)
   );
   const objectAliases: TypeAliasDeclarationStructure[] = [];
 
@@ -201,18 +201,11 @@ export function buildPolymorphicAliases(
 ) {
   // We'll add aliases for polymorphic objects
   const objectAliases: TypeAliasDeclarationStructure[] = [];
-  const objectSchemas: ObjectSchema[] = (model.schemas ?? []).filter(
-    (o) =>
-      isObjectSchema(o) &&
-      (o as ObjectSchema).usage?.some((u) => schemaUsage.includes(u))
+  const objectSchemas: ObjectSchema[] = (model.schemas ?? []).filter((o) =>
+    isValidUsageObjectSchema(o, schemaUsage)
   );
   for (const objectSchema of objectSchemas) {
-    const baseName = getObjectBaseName(objectSchema, schemaUsage);
-    const typeAlias = getPolymorphicTypeAlias(
-      baseName,
-      objectSchema,
-      schemaUsage
-    );
+    const typeAlias = getPolymorphicTypeAlias(objectSchema, schemaUsage);
     if (typeAlias) {
       objectAliases.push(typeAlias);
     }
@@ -222,28 +215,10 @@ export function buildPolymorphicAliases(
 }
 
 /**
- * Gets a base name for an object schema this is tipically used with suffixes when building interface or type names
- */
-function getObjectBaseName(
-  objectSchema: ObjectSchema,
-  schemaUsage: SchemaContext[]
-) {
-  const nameSuffix = schemaUsage.includes(SchemaContext.Output) ? "Output" : "";
-  const name = normalizeName(
-    objectSchema.name,
-    NameType.Interface,
-    true /** guard name */
-  );
-
-  return `${name}${nameSuffix}`;
-}
-
-/**
  * If the current object is a Polymorphic parent, we need to create
  * a type alias with the union of its children to enable polymorphism
  */
 function getPolymorphicTypeAlias(
-  baseName: string,
   objectSchema: ObjectSchema,
   schemaUsage: SchemaContext[]
 ): TypeAliasDeclarationStructure | undefined {
@@ -255,7 +230,25 @@ function getPolymorphicTypeAlias(
 
   // If the object itself has a discriminatorValue add its base to the union
   if (objectSchema.discriminatorValue) {
-    unionTypes.push(`${baseName}Parent`);
+    const parentSchema = objectSchema.parents?.immediate?.[0];
+    if (!parentSchema) {
+      // regression
+      throw Error("Regression");
+    }
+    const parentName = getObjectInterfaceDeclarationName(
+      parentSchema,
+      schemaUsage
+    );
+    if (
+      parentName !==
+      `${normalizeName(objectSchema.name, NameType.Interface, true)}${
+        schemaUsage.includes(SchemaContext.Output) ? "Output" : ""
+      }`
+    ) {
+      // TODO: remove this check once behavior is confirmed
+      throw Error("Regression");
+    }
+    unionTypes.push(parentName);
   }
 
   for (const child of objectSchema.children?.all ?? []) {
@@ -276,7 +269,7 @@ function getPolymorphicTypeAlias(
   return {
     kind: StructureKind.TypeAlias,
     ...(description && { docs: [{ description }] }),
-    name: `${baseName}`,
+    name: getPolymorphicTypeAliasName(objectSchema, schemaUsage)!,
     type: unionTypes.join(" | "),
     isExported: true
   };
@@ -288,16 +281,10 @@ function getPolymorphicTypeAlias(
  */
 function getObjectInterfaceDeclaration(
   model: RLCModel,
-  baseName: string,
   objectSchema: ObjectSchema,
   schemaUsage: SchemaContext[],
   importedModels: Set<string>
 ): InterfaceDeclarationStructure {
-  let interfaceName = `${baseName}`;
-  if (isPolymorphicParent(objectSchema)) {
-    interfaceName = `${baseName}Parent`;
-  }
-
   const properties = objectSchema.properties ?? {};
 
   let propertySignatures = getPropertySignatures(
@@ -321,15 +308,11 @@ function getObjectInterfaceDeclaration(
   return {
     kind: StructureKind.Interface,
     ...(description && { docs: [{ description }] }),
-    name: interfaceName,
+    name: getObjectInterfaceDeclarationName(objectSchema, schemaUsage)!,
     isExported: true,
     properties: propertySignatures,
     ...(extendFrom && { extends: extendFrom })
   };
-}
-
-function isPolymorphicParent(objectSchema: ObjectSchema) {
-  return objectSchema.isPolyParent ? true : false;
 }
 
 function addDiscriminatorProperty(

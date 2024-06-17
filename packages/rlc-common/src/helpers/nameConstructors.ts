@@ -1,8 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RLCModel } from "../interfaces.js";
+import { ObjectSchema, RLCModel, SchemaContext } from "../interfaces.js";
 import { NameType, normalizeName } from "./nameUtils.js";
+import {
+  isPolymorphicParent,
+  isValidUsageObjectSchema
+} from "./schemaHelpers.js";
 
 /**
  * Get the response type name by baseName or operatioName & statusCode
@@ -143,4 +147,45 @@ export function getMultipartPartTypeName(schemaName: string, partName: string) {
     `${bodyParamName}_${name}_PartDescriptor`,
     NameType.Interface
   );
+}
+
+export function getObjectInterfaceDeclarationName(
+  objectSchema: ObjectSchema,
+  schemaUsage: SchemaContext[]
+) {
+  if (!isValidUsageObjectSchema(objectSchema, schemaUsage)) {
+    return;
+  }
+  const baseName = getObjectBaseName(objectSchema, schemaUsage);
+  return isPolymorphicParent(objectSchema) ? `${baseName}Parent` : baseName;
+}
+
+export function getPolymorphicTypeAliasName(
+  objectSchema: ObjectSchema,
+  schemaUsage: SchemaContext[]
+) {
+  if (
+    !isValidUsageObjectSchema(objectSchema, schemaUsage) ||
+    !isPolymorphicParent(objectSchema)
+  ) {
+    return;
+  }
+  return getObjectBaseName(objectSchema, schemaUsage);
+}
+
+/**
+ * Gets a base name for an object schema this is typically used with suffixes when building interface or type names
+ */
+function getObjectBaseName(
+  objectSchema: ObjectSchema,
+  schemaUsage: SchemaContext[]
+) {
+  const nameSuffix = schemaUsage.includes(SchemaContext.Output) ? "Output" : "";
+  const name = normalizeName(
+    objectSchema.name,
+    NameType.Interface,
+    true /** guard name */
+  );
+
+  return `${name}${nameSuffix}`;
 }

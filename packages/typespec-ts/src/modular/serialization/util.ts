@@ -82,19 +82,19 @@ const dispatch: {
   offsetDateTime: (_) => "Date",
   duration: (_) => "FIXME",
   array: (type) => {
-    const valueTypeId = getModularTypeId(type.valueType);
+    const valueTypeId = getModularTypeName(type.valueType);
     return valueTypeId ? `Array<${valueTypeId}>` : undefined;
   },
   tuple: (type) => {
-    const elementIds = type.values.map(getModularTypeId);
+    const elementIds = type.values.map(getModularTypeName);
     if (!type.values.length || elementIds.some((id) => !id)) {
       return;
     }
     return `[${elementIds.join(", ")}]`;
   },
   dict: (type) => {
-    const keyId = getModularTypeId(type.keyType);
-    const valueId = getModularTypeId(type.valueType);
+    const keyId = getModularTypeName(type.keyType);
+    const valueId = getModularTypeName(type.valueType);
     if (!keyId || !valueId) {
       return;
     }
@@ -112,6 +112,11 @@ export function getModularTypeId<T extends SdkType>(
 ): string | undefined {
   const callback = dispatch[type.kind] as (type: T) => string | undefined;
   return callback(type);
+}
+
+export function getModularTypeName(type: SdkType) {
+  // TODO: It still isn't clear whether or not this is supposed to be an identifier or declaration.
+  return (type as { name?: string }).name;
 }
 
 export function getParameterTypePropertyName(
@@ -138,7 +143,7 @@ export function getRLCTypeId(
   dpgContext: SdkContext,
   type: SdkType & { name?: string }
 ) {
-  const modularTypeId = getModularTypeId(type);
+  const modularTypeId = getModularTypeName(type);
   const usage = getUsage(dpgContext, type);
   const useOutputModel =
     usage & UsageFlags.Output && !(usage & UsageFlags.Input);

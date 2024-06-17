@@ -1,13 +1,16 @@
 import {
   addImportsToFiles,
   addImportToSpecifier,
-  Imports as RuntimeImports
+  getObjectInterfaceDeclarationName,
+  Imports as RuntimeImports,
+  isValidUsageObjectSchema,
+  Schema,
+  SchemaContext
 } from "@azure-tools/rlc-common";
 import {
   getAllModels,
   SdkType,
-  SdkUnionType,
-  UsageFlags as TCGCUsageFlags
+  SdkUnionType
 } from "@azure-tools/typespec-client-generator-core";
 import { isDefined } from "@azure/core-util";
 import { UsageFlags } from "@typespec/compiler";
@@ -15,6 +18,7 @@ import * as path from "path";
 import { FunctionDeclarationStructure, OptionalKind } from "ts-morph";
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 import { SdkContext } from "../../utils/interfaces.js";
+import { getSchemaForType } from "../../utils/modelUtils.js";
 import {
   getModularModelFilePath,
   getRLCIndexFilePath
@@ -28,8 +32,8 @@ import {
 } from "./serializers.js";
 import {
   getUsage,
-  SerializeFunctionType,
-  SerializationContext
+  SerializationContext,
+  SerializeFunctionType
 } from "./util.js";
 
 export function buildSerializers(
@@ -128,13 +132,20 @@ function createSerializationContext(
 
   const serializers = Object.fromEntries(
     typesWithSerializers.map((type) => {
-      const serializerType = type as { usage?: TCGCUsageFlags };
-      const rlcTypeName =
-        serializerType.usage && serializerType.usage & TCGCUsageFlags.Output
-          ? toPascalCase(`${type.name} Output`)
-          : serializerType.usage && serializerType.usage & TCGCUsageFlags.Input
-            ? type.name
-            : undefined;
+      const schema: Schema = getSchemaForType(dpgContext, type.__raw!, {
+        needRef: true
+      });
+      const schemaUsageForType =
+        [
+          [SchemaContext.Input],
+          [SchemaContext.Output, SchemaContext.Exception]
+        ].find((schemaUsage) =>
+          isValidUsageObjectSchema(schema, schemaUsage)
+        ) ?? [];
+      const rlcTypeName = getObjectInterfaceDeclarationName(
+        schema,
+        schemaUsageForType
+      );
       const rlcTypeAlias = rlcTypeName
         ? toPascalCase(`${type.name} Rest`)
         : undefined;

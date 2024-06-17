@@ -31,7 +31,7 @@ export function isDictionarySchema(
   return false;
 }
 
-export function isObjectSchema(schema: Schema) {
+export function isObjectSchema(schema: Schema): schema is ObjectSchema {
   if (schema.type === "object") {
     return true;
   }
@@ -58,4 +58,17 @@ export function buildSchemaObjectMap(model: RLCModel) {
   });
 
   return map;
+}
+
+export function isValidUsageObjectSchema(
+  schema: Schema,
+  schemaUsage: SchemaContext[]
+): schema is ObjectSchema {
+  return Boolean(
+    isObjectSchema(schema) && schema.usage?.some((u) => schemaUsage.includes(u))
+  );
+}
+
+export function isPolymorphicParent(objectSchema: ObjectSchema) {
+  return Boolean(objectSchema.isPolyParent);
 }
