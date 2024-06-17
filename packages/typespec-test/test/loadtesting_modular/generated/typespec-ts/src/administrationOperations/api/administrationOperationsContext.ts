@@ -3,7 +3,7 @@
 
 import { TokenCredential } from "@azure/core-auth";
 import { ClientOptions } from "@azure-rest/core-client";
-import { AzureLoadTestingContext } from "../../rest/index.js";
+import { LoadTestServiceContext } from "../../rest/index.js";
 import getClient from "../../rest/index.js";
 
 export interface AdministrationOperationsClientOptions extends ClientOptions {
@@ -11,13 +11,13 @@ export interface AdministrationOperationsClientOptions extends ClientOptions {
   apiVersion?: string;
 }
 
-export { AzureLoadTestingContext } from "../../rest/index.js";
+export { LoadTestServiceContext } from "../../rest/index.js";
 
 export function createAdministrationOperations(
   endpointParam: string,
   credential: TokenCredential,
   options: AdministrationOperationsClientOptions = {},
-): AzureLoadTestingContext {
+): LoadTestServiceContext {
   const clientContext = getClient(endpointParam, credential, options);
   return clientContext;
 }

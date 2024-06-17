@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import AzureLoadTestingClient from "./azureLoadTestingClient.js";
+import LoadTestServiceClient from "./loadTestServiceClient.js";
 
-export * from "./azureLoadTestingClient.js";
+export * from "./loadTestServiceClient.js";
 export * from "./parameters.js";
 export * from "./responses.js";
 export * from "./clientDefinitions.js";
@@ -11,6 +11,5 @@ export * from "./isUnexpected.js";
 export * from "./models.js";
 export * from "./outputModels.js";
 export * from "./paginateHelper.js";
-export * from "./pollingHelper.js";
 
-export default AzureLoadTestingClient;
+export default LoadTestServiceClient;

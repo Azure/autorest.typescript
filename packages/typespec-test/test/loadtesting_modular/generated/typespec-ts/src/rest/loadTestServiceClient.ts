@@ -4,10 +4,10 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { TokenCredential } from "@azure/core-auth";
-import { AzureLoadTestingContext } from "./clientDefinitions.js";
+import { LoadTestServiceContext } from "./clientDefinitions.js";
 
 /**
- * Initialize a new instance of `AzureLoadTestingContext`
+ * Initialize a new instance of `LoadTestServiceContext`
  * @param endpointParam - A sequence of textual characters.
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
@@ -16,10 +16,10 @@ export default function createClient(
   endpointParam: string,
   credentials: TokenCredential,
   options: ClientOptions = {},
-): AzureLoadTestingContext {
+): LoadTestServiceContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `https://${endpointParam}`;
-  options.apiVersion = options.apiVersion ?? "2022-11-01";
+  options.apiVersion = options.apiVersion ?? "2023-04-01-preview";
   const userAgentInfo = `azsdk-js-load-testing-rest/1.0.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -44,7 +44,7 @@ export default function createClient(
     endpointUrl,
     credentials,
     options,
-  ) as AzureLoadTestingContext;
+  ) as LoadTestServiceContext;
 
   return client;
 }

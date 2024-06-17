@@ -178,6 +178,7 @@ interface Budgets {
     op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User>;
 
     // the patch case for lro
-    @route("/widgets/createOrUpdate")
-    op createOrUpdate is ResourceOperations.LongRunningResourceCreateOrUpdate<User>;
+    // DPG patch LRO has issue but no real case met yet 
+    // @route("/widgets/createOrUpdate")
+    // op createOrUpdate is ResourceOperations.LongRunningResourceCreateOrUpdate<User>;
 }

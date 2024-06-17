@@ -29,20 +29,19 @@ import {
   LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse,
   LoadTestAdministrationGetServerMetricsConfig200Response,
   LoadTestAdministrationGetServerMetricsConfigDefaultResponse,
-  LoadTestRunDeleteTestRun204Response,
-  LoadTestRunDeleteTestRunDefaultResponse,
-  LoadTestRunCreateOrUpdateTestRun200Response,
-  LoadTestRunCreateOrUpdateTestRun201Response,
-  LoadTestRunCreateOrUpdateTestRunLogicalResponse,
-  LoadTestRunCreateOrUpdateTestRunDefaultResponse,
   LoadTestRunGetTestRun200Response,
   LoadTestRunGetTestRunDefaultResponse,
-  LoadTestRunGetTestRunFile200Response,
-  LoadTestRunGetTestRunFileDefaultResponse,
+  LoadTestRunCreateOrUpdateTestRun200Response,
+  LoadTestRunCreateOrUpdateTestRun201Response,
+  LoadTestRunCreateOrUpdateTestRunDefaultResponse,
+  LoadTestRunDeleteTestRun204Response,
+  LoadTestRunDeleteTestRunDefaultResponse,
   LoadTestRunListTestRuns200Response,
   LoadTestRunListTestRunsDefaultResponse,
-  LoadTestRunStopTestRun200Response,
-  LoadTestRunStopTestRunDefaultResponse,
+  LoadTestRunGetTestRunFile200Response,
+  LoadTestRunGetTestRunFileDefaultResponse,
+  LoadTestRunStop200Response,
+  LoadTestRunStopDefaultResponse,
   LoadTestRunListMetricNamespaces200Response,
   LoadTestRunListMetricNamespacesDefaultResponse,
   LoadTestRunListMetricDefinitions200Response,
@@ -59,8 +58,8 @@ import {
   LoadTestRunCreateOrUpdateServerMetricsConfig200Response,
   LoadTestRunCreateOrUpdateServerMetricsConfig201Response,
   LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse,
-  LoadTestRunTestRunListServerMetricsConfig200Response,
-  LoadTestRunTestRunListServerMetricsConfigDefaultResponse,
+  LoadTestRunGetServerMetricsConfig200Response,
+  LoadTestRunGetServerMetricsConfigDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
@@ -76,11 +75,11 @@ const responseMap: Record<string, string[]> = {
   "GET /tests/{testId}/app-components": ["200"],
   "PATCH /tests/{testId}/server-metrics-config": ["200", "201"],
   "GET /tests/{testId}/server-metrics-config": ["200"],
-  "DELETE /test-runs/{testRunId}": ["204"],
   "GET /test-runs/{testRunId}": ["200"],
   "PATCH /test-runs/{testRunId}": ["200", "201"],
-  "GET /test-runs/{testRunId}/files/{fileName}": ["200"],
+  "DELETE /test-runs/{testRunId}": ["204"],
   "GET /test-runs": ["200"],
+  "GET /test-runs/{testRunId}/files/{fileName}": ["200"],
   "POST /test-runs/{testRunId}:stop": ["200"],
   "GET /test-runs/{testRunId}/metric-namespaces": ["200"],
   "GET /test-runs/{testRunId}/metric-definitions": ["200"],
@@ -157,26 +156,20 @@ export function isUnexpected(
 ): response is LoadTestAdministrationGetServerMetricsConfigDefaultResponse;
 export function isUnexpected(
   response:
-    | LoadTestRunDeleteTestRun204Response
-    | LoadTestRunDeleteTestRunDefaultResponse,
-): response is LoadTestRunDeleteTestRunDefaultResponse;
-export function isUnexpected(
-  response:
-    | LoadTestRunCreateOrUpdateTestRun200Response
-    | LoadTestRunCreateOrUpdateTestRun201Response
-    | LoadTestRunCreateOrUpdateTestRunLogicalResponse
-    | LoadTestRunCreateOrUpdateTestRunDefaultResponse,
-): response is LoadTestRunCreateOrUpdateTestRunDefaultResponse;
-export function isUnexpected(
-  response:
     | LoadTestRunGetTestRun200Response
     | LoadTestRunGetTestRunDefaultResponse,
 ): response is LoadTestRunGetTestRunDefaultResponse;
 export function isUnexpected(
   response:
-    | LoadTestRunGetTestRunFile200Response
-    | LoadTestRunGetTestRunFileDefaultResponse,
-): response is LoadTestRunGetTestRunFileDefaultResponse;
+    | LoadTestRunCreateOrUpdateTestRun200Response
+    | LoadTestRunCreateOrUpdateTestRun201Response
+    | LoadTestRunCreateOrUpdateTestRunDefaultResponse,
+): response is LoadTestRunCreateOrUpdateTestRunDefaultResponse;
+export function isUnexpected(
+  response:
+    | LoadTestRunDeleteTestRun204Response
+    | LoadTestRunDeleteTestRunDefaultResponse,
+): response is LoadTestRunDeleteTestRunDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestRunListTestRuns200Response
@@ -184,9 +177,12 @@ export function isUnexpected(
 ): response is LoadTestRunListTestRunsDefaultResponse;
 export function isUnexpected(
   response:
-    | LoadTestRunStopTestRun200Response
-    | LoadTestRunStopTestRunDefaultResponse,
-): response is LoadTestRunStopTestRunDefaultResponse;
+    | LoadTestRunGetTestRunFile200Response
+    | LoadTestRunGetTestRunFileDefaultResponse,
+): response is LoadTestRunGetTestRunFileDefaultResponse;
+export function isUnexpected(
+  response: LoadTestRunStop200Response | LoadTestRunStopDefaultResponse,
+): response is LoadTestRunStopDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestRunListMetricNamespaces200Response
@@ -226,9 +222,9 @@ export function isUnexpected(
 ): response is LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse;
 export function isUnexpected(
   response:
-    | LoadTestRunTestRunListServerMetricsConfig200Response
-    | LoadTestRunTestRunListServerMetricsConfigDefaultResponse,
-): response is LoadTestRunTestRunListServerMetricsConfigDefaultResponse;
+    | LoadTestRunGetServerMetricsConfig200Response
+    | LoadTestRunGetServerMetricsConfigDefaultResponse,
+): response is LoadTestRunGetServerMetricsConfigDefaultResponse;
 export function isUnexpected(
   response:
     | LoadTestAdministrationCreateOrUpdateTest200Response
@@ -258,20 +254,19 @@ export function isUnexpected(
     | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse
     | LoadTestAdministrationGetServerMetricsConfig200Response
     | LoadTestAdministrationGetServerMetricsConfigDefaultResponse
-    | LoadTestRunDeleteTestRun204Response
-    | LoadTestRunDeleteTestRunDefaultResponse
-    | LoadTestRunCreateOrUpdateTestRun200Response
-    | LoadTestRunCreateOrUpdateTestRun201Response
-    | LoadTestRunCreateOrUpdateTestRunLogicalResponse
-    | LoadTestRunCreateOrUpdateTestRunDefaultResponse
     | LoadTestRunGetTestRun200Response
     | LoadTestRunGetTestRunDefaultResponse
-    | LoadTestRunGetTestRunFile200Response
-    | LoadTestRunGetTestRunFileDefaultResponse
+    | LoadTestRunCreateOrUpdateTestRun200Response
+    | LoadTestRunCreateOrUpdateTestRun201Response
+    | LoadTestRunCreateOrUpdateTestRunDefaultResponse
+    | LoadTestRunDeleteTestRun204Response
+    | LoadTestRunDeleteTestRunDefaultResponse
     | LoadTestRunListTestRuns200Response
     | LoadTestRunListTestRunsDefaultResponse
-    | LoadTestRunStopTestRun200Response
-    | LoadTestRunStopTestRunDefaultResponse
+    | LoadTestRunGetTestRunFile200Response
+    | LoadTestRunGetTestRunFileDefaultResponse
+    | LoadTestRunStop200Response
+    | LoadTestRunStopDefaultResponse
     | LoadTestRunListMetricNamespaces200Response
     | LoadTestRunListMetricNamespacesDefaultResponse
     | LoadTestRunListMetricDefinitions200Response
@@ -288,8 +283,8 @@ export function isUnexpected(
     | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
     | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
     | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
-    | LoadTestRunTestRunListServerMetricsConfig200Response
-    | LoadTestRunTestRunListServerMetricsConfigDefaultResponse,
+    | LoadTestRunGetServerMetricsConfig200Response
+    | LoadTestRunGetServerMetricsConfigDefaultResponse,
 ): response is
   | LoadTestAdministrationCreateOrUpdateTestDefaultResponse
   | LoadTestAdministrationDeleteTestDefaultResponse
@@ -303,12 +298,12 @@ export function isUnexpected(
   | LoadTestAdministrationGetAppComponentsDefaultResponse
   | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse
   | LoadTestAdministrationGetServerMetricsConfigDefaultResponse
-  | LoadTestRunDeleteTestRunDefaultResponse
-  | LoadTestRunCreateOrUpdateTestRunDefaultResponse
   | LoadTestRunGetTestRunDefaultResponse
-  | LoadTestRunGetTestRunFileDefaultResponse
+  | LoadTestRunCreateOrUpdateTestRunDefaultResponse
+  | LoadTestRunDeleteTestRunDefaultResponse
   | LoadTestRunListTestRunsDefaultResponse
-  | LoadTestRunStopTestRunDefaultResponse
+  | LoadTestRunGetTestRunFileDefaultResponse
+  | LoadTestRunStopDefaultResponse
   | LoadTestRunListMetricNamespacesDefaultResponse
   | LoadTestRunListMetricDefinitionsDefaultResponse
   | LoadTestRunListMetricsDefaultResponse
@@ -316,7 +311,7 @@ export function isUnexpected(
   | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
   | LoadTestRunGetAppComponentsDefaultResponse
   | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
-  | LoadTestRunTestRunListServerMetricsConfigDefaultResponse {
+  | LoadTestRunGetServerMetricsConfigDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

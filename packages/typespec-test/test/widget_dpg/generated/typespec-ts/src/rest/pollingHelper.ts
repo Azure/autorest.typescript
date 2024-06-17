@@ -20,10 +20,6 @@ import {
   BudgetsCreateOrReplace201Response,
   BudgetsCreateOrReplaceDefaultResponse,
   BudgetsCreateOrReplaceLogicalResponse,
-  BudgetsCreateOrUpdate200Response,
-  BudgetsCreateOrUpdate201Response,
-  BudgetsCreateOrUpdateDefaultResponse,
-  BudgetsCreateOrUpdateLogicalResponse,
 } from "./responses.js";
 
 /**
@@ -104,18 +100,6 @@ export interface SimplePollerLike<
  * @param options - Options to set a resume state or custom polling interval.
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
-export async function getLongRunningPoller<
-  TResult extends
-    | BudgetsCreateOrUpdateLogicalResponse
-    | BudgetsCreateOrUpdateDefaultResponse,
->(
-  client: Client,
-  initialResponse:
-    | BudgetsCreateOrUpdate200Response
-    | BudgetsCreateOrUpdate201Response
-    | BudgetsCreateOrUpdateDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>,
-): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<
   TResult extends
     | WidgetsCreateOrReplaceLogicalResponse

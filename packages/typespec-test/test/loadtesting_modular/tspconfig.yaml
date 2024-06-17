@@ -3,6 +3,7 @@ emit:
   # Uncomment this line and add "@azure-tools/typespec-python" to your package.json to generate Python code
   # - "@azure-tools/typespec-python"
   - "@azure-tools/typespec-ts"
+  - "@typespec/openapi3"
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
@@ -16,3 +17,6 @@ options:
       name: "@azure/load-testing"
       description: This package contains Microsoft Azure LoadTestingClient client library.
       version: 1.0.1
+  "@typespec/openapi3":
+    "emitter-output-dir": "{project-root}/generated/openapi"
+    "file-type": "json"

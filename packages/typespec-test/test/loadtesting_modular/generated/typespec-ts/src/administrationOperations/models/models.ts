@@ -1,10 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** Load test model */
+/** Load test model. */
 export interface Test {
   /** Pass fail criteria for a test. */
   passFailCriteria?: PassFailCriteria;
+  /** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
+  autoStopCriteria?: AutoStopCriteria;
   /**
    * Secrets can be stored in an Azure Key Vault or any other secret store. If the
    * secret is stored in an Azure Key Vault, the value should be the secret
@@ -13,32 +15,38 @@ export interface Test {
    * SECRET_VALUE.
    */
   secrets?: Record<string, Secret>;
-  /** Certificates metadata */
+  /** Certificates metadata. */
   certificate?: CertificateMetadata;
   /** Environment variables which are defined as a set of <name,value> pairs. */
   environmentVariables?: Record<string, string>;
   /** The load test configuration. */
   loadTestConfiguration?: LoadTestConfiguration;
+  /** Id of the test run to be marked as baseline to view trends of client-side metrics from recent test runs */
+  baselineTestRunId?: string;
   /** The input artifacts for the test. */
   readonly inputArtifacts?: TestInputArtifacts;
-  /** Unique test name as identifier. */
-  readonly testId?: string;
+  /** Unique test identifier for the load test, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
+  readonly testId: string;
   /** The test description. */
   description?: string;
   /** Display name of a test. */
   displayName?: string;
   /** Subnet ID on which the load test instances should run. */
   subnetId?: string;
+  /** Kind of test. */
+  kind?: TestKind;
+  /** Inject load test engines without deploying public IP for outbound access */
+  publicIPDisabled?: boolean;
   /** Type of the managed identity referencing the Key vault. */
   keyvaultReferenceIdentityType?: string;
   /** Resource Id of the managed identity referencing the Key vault. */
   keyvaultReferenceIdentityId?: string;
-  /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: string;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -77,28 +85,28 @@ export interface PassFailMetric {
   readonly result?: PFResult;
 }
 
-/** */
-export type PFMetrics =
-  | "response_time_ms"
-  | "latency"
-  | "error"
-  | "requests"
-  | "requests_per_sec";
-/** */
-export type PFAgFunc =
-  | "count"
-  | "percentage"
-  | "avg"
-  | "p50"
-  | "p90"
-  | "p95"
-  | "p99"
-  | "min"
-  | "max";
-/** */
-export type PFAction = "continue" | "stop";
-/** */
-export type PFResult = "passed" | "undetermined" | "failed";
+/** Metrics for pass/fail criteria. */
+/** "response_time_ms", "latency", "error", "requests", "requests_per_sec" */
+export type PFMetrics = string;
+/** Aggregation functions for pass/fail criteria. */
+/** "count", "percentage", "avg", "p50", "p90", "p95", "p99", "min", "max" */
+export type PFAgFunc = string;
+/** Action to take on failure of pass/fail criteria. */
+/** "continue", "stop" */
+export type PFAction = string;
+/** Pass/fail criteria result. */
+/** "passed", "undetermined", "failed" */
+export type PFResult = string;
+
+/** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
+export interface AutoStopCriteria {
+  /** Whether auto-stop should be disabled. The default value is false. */
+  autoStopDisabled?: boolean;
+  /** Threshold percentage of errors on which test run should be automatically stopped. Allowed values are in range of 0.0-100.0 */
+  errorRate?: number;
+  /** Time window during which the error percentage should be evaluated in seconds. */
+  errorRateTimeWindowInSeconds?: number;
+}
 
 /** Secret */
 export interface Secret {
@@ -108,8 +116,9 @@ export interface Secret {
   type?: SecretType;
 }
 
-/** */
-export type SecretType = "AKV_SECRET_URI" | "SECRET_VALUE";
+/** Types of secrets supported. */
+/** "AKV_SECRET_URI", "SECRET_VALUE" */
+export type SecretType = string;
 
 /** Certificates metadata */
 export interface CertificateMetadata {
@@ -121,15 +130,13 @@ export interface CertificateMetadata {
   name?: string;
 }
 
-/** */
-export type CertificateType = "AKV_CERT_URI";
+/** Types of certificates supported. */
+/** "AKV_CERT_URI" */
+export type CertificateType = string;
 
-/** The load test configuration. */
+/** Configurations for the load test. */
 export interface LoadTestConfiguration {
-  /**
-   * The number of engine instances to execute load test. Supported values are in
-   * range of 1-45. Required for creating a new test.
-   */
+  /** The number of engine instances to execute load test. Supported values are in range of 1-400. Required for creating a new test. */
   engineInstances?: number;
   /**
    * If false, Azure Load Testing copies and processes your input files unmodified
@@ -143,66 +150,69 @@ export interface LoadTestConfiguration {
    * not required to upload.
    */
   quickStartTest?: boolean;
-  /** Optional load test config */
+  /** Configuration for quick load test */
   optionalLoadTestConfig?: OptionalLoadTestConfig;
 }
 
-/** Optional load test config */
+/** Configuration for quick load test */
 export interface OptionalLoadTestConfig {
-  /**
-   * Test URL. Provide the complete HTTP URL. For example,
-   * http://contoso-app.azurewebsites.net/login
-   */
+  /** Test URL. Provide the complete HTTP URL. For example, https://contoso-app.azurewebsites.net/login */
   endpointUrl?: string;
-  /** No of concurrent virtual users */
+  /** Target throughput (requests per second). This may not be necessarily achieved. The actual throughput will be lower if the application is not capable of handling it. */
+  requestsPerSecond?: number;
+  /** Maximum response time in milliseconds of the API/endpoint. */
+  maxResponseTimeInMs?: number;
+  /** No of concurrent virtual users. */
   virtualUsers?: number;
-  /** Ramp up time */
+  /** Ramp up time in seconds. */
   rampUpTime?: number;
-  /** Test run duration */
+  /** Test run duration in seconds. */
   duration?: number;
 }
 
 /** The input artifacts for the test. */
 export interface TestInputArtifacts {
   /** File info */
-  configFileInfo?: FileInfo;
+  configFileInfo?: TestFileInfo;
   /** File info */
-  testScriptFileInfo?: FileInfo;
+  testScriptFileInfo?: TestFileInfo;
   /** File info */
-  userPropFileInfo?: FileInfo;
+  userPropFileInfo?: TestFileInfo;
   /** File info */
-  inputArtifactsZipFileInfo?: FileInfo;
+  inputArtifactsZipFileInfo?: TestFileInfo;
+  /** The config json file for url based test */
+  urlTestConfigFileInfo?: TestFileInfo;
   /** Additional supported files for the test run */
-  readonly additionalFileInfo?: FileInfo[];
+  readonly additionalFileInfo?: TestFileInfo[];
 }
 
-/** File info */
-export interface FileInfo {
-  /** File URL. */
-  url?: string;
+/** Test file info. */
+export interface TestFileInfo {
   /** Name of the file. */
-  fileName?: string;
+  fileName: string;
+  /** File URL. */
+  readonly url?: string;
   /** File type */
-  fileType?: FileType;
-  /** Expiry time of the file (ISO 8601 literal format) */
-  expireDateTime?: string;
+  readonly fileType?: FileType;
+  /** Expiry time of the file (RFC 3339 literal format) */
+  readonly expireDateTime?: Date;
   /** Validation status of the file */
-  validationStatus?: FileStatus;
+  readonly validationStatus?: FileStatus;
   /** Validation failure error details */
-  validationFailureDetails?: string;
+  readonly validationFailureDetails?: string;
 }
 
-/** */
-export type FileType = "JMX_FILE" | "USER_PROPERTIES" | "ADDITIONAL_ARTIFACTS";
-/** */
-export type FileStatus =
-  | "NOT_VALIDATED"
-  | "VALIDATION_SUCCESS"
-  | "VALIDATION_FAILURE"
-  | "VALIDATION_INITIATED"
-  | "VALIDATION_NOT_REQUIRED";
+/** Types of file supported. */
+/** "JMX_FILE", "USER_PROPERTIES", "ADDITIONAL_ARTIFACTS", "ZIPPED_ARTIFACTS", "URL_TEST_CONFIG_JSON" */
+export type FileType = string;
+/** File status. */
+/** "NOT_VALIDATED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE", "VALIDATION_INITIATED", "VALIDATION_NOT_REQUIRED" */
+export type FileStatus = string;
+/** Test kind */
+/** "URL", "JMX" */
+export type TestKind = string;
 
-/** Test app component */
+/** Test app components */
 export interface TestAppComponents {
   /**
    * Azure resource collection { resource id (fully qualified resource Id e.g
@@ -212,30 +222,24 @@ export interface TestAppComponents {
   components: Record<string, AppComponent>;
   /** Test identifier */
   readonly testId?: string;
-  /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: string;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
 
-/**
- * An Azure resource object (Refer azure generic resource model :
- * https://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id#genericresource)
- */
+/** An Azure resource object (Refer azure generic resource model :https://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id#genericresource) */
 export interface AppComponent {
-  /**
-   * fully qualified resource Id e.g
-   * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}
-   */
-  readonly resourceId?: string;
+  /** fully qualified resource Id e.g subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName} */
+  readonly resourceId: string;
   /** Azure resource name, required while creating the app component. */
-  resourceName?: string;
+  resourceName: string;
   /** Azure resource type, required while creating the app component. */
-  resourceType?: string;
+  resourceType: string;
   /** Azure resource display name */
   displayName?: string;
   /** Resource group name of the Azure resource */
@@ -255,13 +259,13 @@ export interface TestServerMetricConfig {
    * https://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition
    * for metric id).
    */
-  metrics?: Record<string, ResourceMetric>;
-  /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: string;
+  metrics: Record<string, ResourceMetric>;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -290,31 +294,18 @@ export interface ResourceMetric {
   resourceType: string;
 }
 
-/** Collection of files. */
-export interface PagedFileInfo {
-  /** The FileInfo items on this page */
-  value: FileInfo[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-/** Collection of tests */
-export interface PagedTest {
-  /** The Test items on this page */
-  value: Test[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
+/** Azure Load Testing API versions. */
 /** */
-export type APIVersions = "2022-11-01";
+export type APIVersions = "2022-11-01" | "2023-04-01-preview";
 
 /** Load test run model */
 export interface TestRun {
-  /** Unique test run name as identifier */
+  /** Unique test run identifier for the load test run, must contain only lower-case alphabetic, numeric, underscore or hyphen characters. */
   readonly testRunId: string;
   /** Pass fail criteria for a test. */
   passFailCriteria?: PassFailCriteria;
+  /** Auto stop criteria for a test. This will automatically stop a load test if the error percentage is high for a certain time window. */
+  autoStopCriteria?: AutoStopCriteria;
   /**
    * Secrets can be stored in an Azure Key Vault or any other secret store. If the
    * secret is stored in an Azure Key Vault, the value should be the secret
@@ -347,24 +338,28 @@ export interface TestRun {
   description?: string;
   /** The test run status. */
   readonly status?: Status;
-  /** The test run start DateTime(ISO 8601 literal format). */
-  readonly startDateTime?: string;
-  /** The test run end DateTime(ISO 8601 literal format). */
-  readonly endDateTime?: string;
+  /** The test run start DateTime(RFC 3339 literal format). */
+  readonly startDateTime?: Date;
+  /** The test run end DateTime(RFC 3339 literal format). */
+  readonly endDateTime?: Date;
   /** Test run initiated time. */
-  readonly executedDateTime?: string;
+  readonly executedDateTime?: Date;
   /** Portal url. */
   readonly portalUrl?: string;
   /** Test run duration in milliseconds. */
   readonly duration?: number;
   /** Subnet ID on which the load test instances should run. */
   readonly subnetId?: string;
-  /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: string;
+  /** Type of test. */
+  readonly kind?: TestKind;
+  /** Inject load test engines without deploying public IP for outbound access */
+  readonly publicIPDisabled?: boolean;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -418,45 +413,59 @@ export interface TestRunArtifacts {
 /** The input artifacts for the test run. */
 export interface TestRunInputArtifacts {
   /** File info */
-  configFileInfo?: FileInfo;
+  configFileInfo?: TestRunFileInfo;
   /** File info */
-  testScriptFileInfo?: FileInfo;
+  testScriptFileInfo?: TestRunFileInfo;
   /** File info */
-  userPropFileInfo?: FileInfo;
+  userPropFileInfo?: TestRunFileInfo;
   /** File info */
-  inputArtifactsZipFileInfo?: FileInfo;
+  inputArtifactsZipFileInfo?: TestRunFileInfo;
+  /** The config json file for url based test */
+  urlTestConfigFileInfo?: TestRunFileInfo;
   /** Additional supported files for the test run */
-  readonly additionalFileInfo?: FileInfo[];
+  readonly additionalFileInfo?: TestRunFileInfo[];
+}
+
+/** Test run file info. */
+export interface TestRunFileInfo {
+  /** Name of the file. */
+  fileName: string;
+  /** File URL. */
+  readonly url?: string;
+  /** File type */
+  readonly fileType?: FileType;
+  /** Expiry time of the file (RFC 3339 literal format) */
+  readonly expireDateTime?: Date;
+  /** Validation status of the file */
+  readonly validationStatus?: FileStatus;
+  /** Validation failure error details */
+  readonly validationFailureDetails?: string;
 }
 
 /** The output artifacts for the test run. */
 export interface TestRunOutputArtifacts {
   /** File info */
-  resultFileInfo?: FileInfo;
+  resultFileInfo?: TestRunFileInfo;
   /** File info */
-  logsFileInfo?: FileInfo;
+  logsFileInfo?: TestRunFileInfo;
+  /** The container for test run artifacts. */
+  artifactsContainerInfo?: ArtifactsContainerInfo;
 }
 
-/** */
-export type PFTestResult = "PASSED" | "NOT_APPLICABLE" | "FAILED";
-/** */
-export type Status =
-  | "ACCEPTED"
-  | "NOTSTARTED"
-  | "PROVISIONING"
-  | "PROVISIONED"
-  | "CONFIGURING"
-  | "CONFIGURED"
-  | "EXECUTING"
-  | "EXECUTED"
-  | "DEPROVISIONING"
-  | "DEPROVISIONED"
-  | "DONE"
-  | "CANCELLING"
-  | "CANCELLED"
-  | "FAILED"
-  | "VALIDATION_SUCCESS"
-  | "VALIDATION_FAILURE";
+/** Artifacts container info. */
+export interface ArtifactsContainerInfo {
+  /** This is a SAS URI to an Azure Storage Container that contains the test run artifacts. */
+  url?: string;
+  /** Expiry time of the container (RFC 3339 literal format) */
+  expireDateTime?: Date;
+}
+
+/** Test result based on pass/fail criteria. */
+/** "PASSED", "NOT_APPLICABLE", "FAILED" */
+export type PFTestResult = string;
+/** Test run status. */
+/** "ACCEPTED", "NOTSTARTED", "PROVISIONING", "PROVISIONED", "CONFIGURING", "CONFIGURED", "EXECUTING", "EXECUTED", "DEPROVISIONING", "DEPROVISIONED", "DONE", "CANCELLING", "CANCELLED", "FAILED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE" */
+export type Status = string;
 
 /** Test run app component */
 export interface TestRunAppComponents {
@@ -468,12 +477,12 @@ export interface TestRunAppComponents {
   components: Record<string, AppComponent>;
   /** Test run identifier */
   readonly testRunId?: string;
-  /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: string;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -488,21 +497,28 @@ export interface TestRunServerMetricConfig {
    * for metric id).
    */
   metrics?: Record<string, ResourceMetric>;
-  /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: string;
+  /** The creation datetime(RFC 3339 literal format). */
+  readonly createdDateTime?: Date;
   /** The user that created. */
   readonly createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: string;
+  /** The last Modified datetime(RFC 3339 literal format). */
+  readonly lastModifiedDateTime?: Date;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
 
-/** */
-export type Interval = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
+/** Time Grain */
+/** "PT5S", "PT10S", "PT1M", "PT5M", "PT1H" */
+export type TimeGrain = string;
 
+/** Metrics dimension values. */
 export interface DimensionValueList {
-  value: string[];
+  /** The dimension name */
+  readonly name?: string;
+  /** The dimension value */
+  value?: string[];
+  /** Link for the next set of values in case of paginated results, if applicable. */
+  nextLink?: string;
 }
 
 /** Represents collection of metric definitions. */
@@ -542,25 +558,12 @@ export interface NameAndDesc {
   name?: string;
 }
 
-/** */
-export type AggregationType =
-  | "Average"
-  | "Count"
-  | "None"
-  | "Total"
-  | "Percentile90"
-  | "Percentile95"
-  | "Percentile99";
-/** */
-export type MetricUnit =
-  | "NotSpecified"
-  | "Percent"
-  | "Count"
-  | "Seconds"
-  | "Milliseconds"
-  | "Bytes"
-  | "BytesPerSecond"
-  | "CountPerSecond";
+/** Aggregation type. */
+/** "Average", "Count", "None", "Total", "Percentile90", "Percentile95", "Percentile99" */
+export type AggregationType = string;
+/** Metric unit. */
+/** "NotSpecified", "Percent", "Count", "Seconds", "Milliseconds", "Bytes", "BytesPerSecond", "CountPerSecond" */
+export type MetricUnit = string;
 
 /** Metric availability specifies the time grain (aggregation interval or frequency) */
 export interface MetricAvailability {
@@ -570,9 +573,6 @@ export interface MetricAvailability {
    */
   timeGrain?: TimeGrain;
 }
-
-/** */
-export type TimeGrain = "PT5S" | "PT10S" | "PT1M" | "PT5M" | "PT1H";
 
 /** Represents collection of metric namespaces. */
 export interface MetricNamespaceCollection {
@@ -588,7 +588,7 @@ export interface MetricNamespace {
   name?: string;
 }
 
-/** Filters to fetch the set of metric */
+/** Filters to fetch the set of metric. */
 export interface MetricRequestPayload {
   /**
    * Get metrics for specific dimension values. Example: Metric contains dimension
@@ -608,7 +608,7 @@ export interface DimensionFilter {
 }
 
 /** The response to a metrics query. */
-export interface PagedTimeSeriesElement {
+export interface Metrics {
   /** The TimeSeriesElement items on this page */
   value: TimeSeriesElement[];
   /** The link to the next page of items */
@@ -625,8 +625,8 @@ export interface TimeSeriesElement {
 
 /** Represents a metric value. */
 export interface MetricValue {
-  /** The timestamp for the metric value in ISO 8601 format. */
-  timestamp?: string;
+  /** The timestamp for the metric value in RFC 3339 format. */
+  timestamp?: Date;
   /** The metric value. */
   value?: number;
 }
@@ -639,18 +639,26 @@ export interface DimensionValue {
   value?: string;
 }
 
-/** Collection of test runs */
-export interface PagedTestRun {
-  /** The TestRun items on this page */
-  value: TestRun[];
+/** Paged collection of TestFileInfo items */
+export interface PagedTestFileInfo {
+  /** The TestFileInfo items on this page */
+  value: TestFileInfo[];
   /** The link to the next page of items */
   nextLink?: string;
 }
 
-/** Paged collection of DimensionValueList items */
-export interface PagedDimensionValueList {
-  /** The DimensionValueList items on this page */
-  value: DimensionValueList[];
+/** Paged collection of Test items */
+export interface PagedTest {
+  /** The Test items on this page */
+  value: Test[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** Paged collection of TestRun items */
+export interface PagedTestRun {
+  /** The TestRun items on this page */
+  value: TestRun[];
   /** The link to the next page of items */
   nextLink?: string;
 }

@@ -23,7 +23,6 @@ export {
   WidgetsDeleteWidgetOptionalParams,
   WidgetsAnalyzeWidgetOptionalParams,
   BudgetsCreateOrReplaceOptionalParams,
-  BudgetsCreateOrUpdateOptionalParams,
 } from "./options.js";
 export {
   PageSettings,
