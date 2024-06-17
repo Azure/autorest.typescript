@@ -5,7 +5,9 @@ import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   Test,
-  FileInfo,
+  TestFileInfo,
+  FileType,
+  FileStatus,
   TestAppComponents,
   TestServerMetricConfig,
 } from "./models/models.js";
@@ -27,7 +29,7 @@ import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createAdministrationOperations,
   AdministrationOperationsClientOptions,
-  AzureLoadTestingContext,
+  LoadTestServiceContext,
   createOrUpdateTest,
   createOrUpdateAppComponents,
   createOrUpdateServerMetricsConfig,
@@ -45,7 +47,7 @@ import {
 export { AdministrationOperationsClientOptions } from "./api/administrationOperationsContext.js";
 
 export class AdministrationOperationsClient {
-  private _client: AzureLoadTestingContext;
+  private _client: LoadTestServiceContext;
   /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
@@ -62,7 +64,7 @@ export class AdministrationOperationsClient {
     this.pipeline = this._client.pipeline;
   }
 
-  /** Create a new test or update an existing test. */
+  /** Create a new test or update an existing test by providing the test Id. */
   createOrUpdateTest(
     testId: string,
     body: Test,
@@ -71,7 +73,7 @@ export class AdministrationOperationsClient {
     return createOrUpdateTest(this._client, testId, body, options);
   }
 
-  /** Associate an app component (collection of azure resources) to a test */
+  /** Add an app component to a test by providing the resource Id, name and type. */
   createOrUpdateAppComponents(
     testId: string,
     body: TestAppComponents,
@@ -112,7 +114,7 @@ export class AdministrationOperationsClient {
     return getServerMetricsConfig(this._client, testId, options);
   }
 
-  /** Get load test details by test name */
+  /** Get load test details by test Id */
   getTest(
     testId: string,
     options: GetTestOptionalParams = { requestOptions: {} },
@@ -120,12 +122,18 @@ export class AdministrationOperationsClient {
     return getTest(this._client, testId, options);
   }
 
-  /** Get test file by the file name. */
+  /** Get all the files that are associated with a test. */
   getTestFile(
     testId: string,
     fileName: string,
     options: GetTestFileOptionalParams = { requestOptions: {} },
-  ): Promise<FileInfo> {
+  ): Promise<{
+    url?: string;
+    fileType?: FileType;
+    expireDateTime?: Date;
+    validationStatus?: FileStatus;
+    validationFailureDetails?: string;
+  }> {
     return getTestFile(this._client, testId, fileName, options);
   }
 
@@ -133,7 +141,7 @@ export class AdministrationOperationsClient {
   listTestFiles(
     testId: string,
     options: ListTestFilesOptionalParams = { requestOptions: {} },
-  ): PagedAsyncIterableIterator<FileInfo> {
+  ): PagedAsyncIterableIterator<TestFileInfo> {
     return listTestFiles(this._client, testId, options);
   }
 
@@ -148,7 +156,7 @@ export class AdministrationOperationsClient {
   }
 
   /**
-   * Upload input file for a given test name. File size can't be more than 50 MB.
+   * Upload input file for a given test Id. File size can't be more than 50 MB.
    * Existing file with same name for the given test will be overwritten. File
    * should be provided in the request body as application/octet-stream.
    */
@@ -157,7 +165,13 @@ export class AdministrationOperationsClient {
     fileName: string,
     body: Uint8Array,
     options: UploadTestFileOptionalParams = { requestOptions: {} },
-  ): Promise<FileInfo> {
+  ): Promise<{
+    url?: string;
+    fileType?: FileType;
+    expireDateTime?: Date;
+    validationStatus?: FileStatus;
+    validationFailureDetails?: string;
+  }> {
     return uploadTestFile(this._client, testId, fileName, body, options);
   }
 
@@ -170,7 +184,7 @@ export class AdministrationOperationsClient {
     return deleteTestFile(this._client, testId, fileName, options);
   }
 
-  /** Delete a test by its name. */
+  /** Delete a test by its test Id. */
   deleteTest(
     testId: string,
     options: DeleteTestOptionalParams = { requestOptions: {} },
