@@ -7,6 +7,8 @@ export interface SdkContext extends TCGCSdkContext {
   rlcOptions?: RLCOptions;
   generationPathDetail?: GenerationDirDetail;
   hasApiVersionInClient?: boolean;
+  hasSubIdInClient?: boolean;
+  promotedClientParams?: string[];
 }
 
 export interface GenerationDirDetail {

@@ -779,7 +779,12 @@ function emitBasicOperation(
     if (isIgnoredHeaderParam(param)) {
       continue;
     }
-    const emittedParam = emitParameter(context, param, "Method");
+    const implementation =
+      // Move the subscriptionId parameter to the client if hasSubIdInClient is true
+      param.name.toLowerCase() === "subscriptionid" && context.hasSubIdInClient
+        ? "Client"
+        : "Method";
+    const emittedParam = emitParameter(context, param, implementation);
     if (isApiVersion(context, param)) {
       emittedParam.isApiVersion = true;
       methodApiVersionParam = emittedParam;
@@ -1706,6 +1711,23 @@ function emitCredentialParam(
   }
   return undefined;
 }
+// TODO: remove this hard-coded logic for subscriptionId when TCGC is ready
+function emitSubscriptionId(context: SdkContext): Parameter | undefined {
+  if (context.arm && context.hasSubIdInClient) {
+    return {
+      type: { type: "string" },
+      optional: false,
+      description: "The ID of the target subscription.",
+      clientName: "subscriptionId",
+      location: "path",
+      restApiName: "subscriptionId",
+      implementation: "Client",
+      skipUrlEncoding: true,
+      inOverload: false
+    };
+  }
+  return undefined;
+}
 
 function emitGlobalParameters(
   context: SdkContext,
@@ -1715,6 +1737,10 @@ function emitGlobalParameters(
   const credentialParam = emitCredentialParam(context, namespace);
   if (credentialParam) {
     clientParameters.push(credentialParam);
+  }
+  const subscriptionId = emitSubscriptionId(context);
+  if (subscriptionId) {
+    clientParameters.push(subscriptionId);
   }
   return clientParameters;
 }

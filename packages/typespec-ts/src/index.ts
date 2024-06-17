@@ -96,6 +96,8 @@ export async function $onEmit(context: EmitContext) {
     const generationPathDetail: GenerationDirDetail =
       await calculateGenerationDir();
     dpgContext.generationPathDetail = generationPathDetail;
+    // TODO: here to add logic for sub id in client
+    dpgContext.hasSubIdInClient = dpgContext.arm;
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
     const hasTestFolder = await fsextra.pathExists(
       join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
