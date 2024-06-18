@@ -34,7 +34,6 @@ import {
 } from "../modularCodeModel.js";
 
 import { isDefined } from "@azure/core-util";
-import { UsageFlags } from "@typespec/compiler";
 import _ from "lodash";
 import { Parameter } from "../modularCodeModel.js";
 import { serializeType } from "../serialization/serializers.js";
@@ -506,7 +505,7 @@ function getRequestParameters(
           paramList!.map((i) => {
             const initializer = serializeType({
               dpgContext,
-              functionType: UsageFlags.Input,
+              functionType: "serialize",
               serializerMap,
               type: i.tcgcType!,
               valueExpr:
@@ -602,7 +601,7 @@ function deserializeResponseValue(
 ): string {
   return serializeType({
     dpgContext,
-    functionType: UsageFlags.Output,
+    functionType: "deserialize",
     serializerMap,
     type: type.tcgcType!,
     valueExpr: restValue,

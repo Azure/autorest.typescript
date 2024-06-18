@@ -50,7 +50,7 @@ export function buildSerializers(
       serializerFunctionName
         ? createSerializerFunctionStructure(
             dpgContext,
-            UsageFlags.Input,
+            "serialize",
             serializers,
             type,
             codeModel.runtimeImports
@@ -59,7 +59,7 @@ export function buildSerializers(
       deserializerFunctionName
         ? createSerializerFunctionStructure(
             dpgContext,
-            UsageFlags.Output,
+            "deserialize",
             serializers,
             type,
             codeModel.runtimeImports
@@ -138,12 +138,12 @@ function createSerializerMetadata(
       const usage = getUsage(dpgContext, type);
       const [serializerFunctionName, deserializerFunctionName] = (
         [UsageFlags.Input, UsageFlags.Output] as const
-      ).map((functionType) =>
-        functionType & usage
+      ).map((flag) =>
+        flag & usage
           ? toCamelCase(
-              `${
-                functionType === UsageFlags.Input ? "serialize" : "deserialize"
-              } ${type.name}`
+              `${flag === UsageFlags.Input ? "serialize" : "deserialize"} ${
+                type.name
+              }`
             )
           : undefined
       );
@@ -166,7 +166,7 @@ function createSerializerMetadata(
 
 function createSerializerFunctionStructure(
   dpgContext: SdkContext,
-  functionType: UsageFlags,
+  functionType: "serialize" | "deserialize",
   serializerMap: SerializerMap,
   type: SerializeFunctionType,
   runtimeImports: RuntimeImports
@@ -175,7 +175,7 @@ function createSerializerFunctionStructure(
   const serializerMetadata = serializerMap[modularTypeName];
 
   const functionName =
-    functionType === UsageFlags.Input
+    functionType === "serialize"
       ? serializerMetadata?.serializerFunctionName ?? "FIXMYNAME"
       : serializerMetadata?.deserializerFunctionName ?? "FIXMYNAME";
 
@@ -184,7 +184,7 @@ function createSerializerFunctionStructure(
     ? ["any", "any"]
     : [modularTypeName, serializerMetadata?.rlcTypeAlias ?? "FIXMYNAME"];
   const [paramType, returnType] =
-    functionType === UsageFlags.Input ? types : types.reverse();
+    functionType === "serialize" ? types : types.reverse();
   const parameters = [{ name: paramName, type: paramType }];
   const statements = [];
   switch (true) {

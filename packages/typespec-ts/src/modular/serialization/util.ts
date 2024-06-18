@@ -27,10 +27,10 @@ interface SerializerMetadata {
 
 const supportedFormats = ["base64url", "base64", "byte"];
 export function getEncodingFormat(
-  functionType: UsageFlags,
+  functionType: "serialize" | "deserialize",
   type: SdkType & { kind: "bytes" }
 ) {
-  if (functionType === UsageFlags.Output) {
+  if (functionType === "deserialize") {
     return type.encode;
   }
 
@@ -116,20 +116,20 @@ export function getModularTypeId<T extends SdkType>(
 
 export function getParameterTypePropertyName(
   dpgContext: SdkContext,
-  functionType: UsageFlags,
+  functionType: "serialize" | "deserialize",
   p: SdkModelPropertyType
 ): string {
-  return functionType === UsageFlags.Output
+  return functionType === "deserialize"
     ? getWireName(dpgContext, p.__raw!)
     : getLibraryName(dpgContext, p.__raw!);
 }
 
 export function getReturnTypePropertyName(
   dpgContext: SdkContext,
-  functionType: UsageFlags,
+  functionType: "serialize" | "deserialize",
   p: SdkModelPropertyType
 ): string {
-  return functionType === UsageFlags.Output
+  return functionType === "deserialize"
     ? getLibraryName(dpgContext, p.__raw!)
     : getWireName(dpgContext, p.__raw!);
 }

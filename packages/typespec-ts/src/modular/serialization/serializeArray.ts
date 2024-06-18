@@ -2,7 +2,6 @@ import {
   SdkArrayType,
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
-import { UsageFlags } from "@typespec/compiler";
 import { serializeType, SerializeTypeOptions } from "./serializers.js";
 import { getModularTypeId, getRLCTypeId, SerializerOutput } from "./util.js";
 
@@ -14,7 +13,7 @@ export function serializeArray(
   const mapParameterId = "e";
 
   const elementTypeName =
-    functionType === UsageFlags.Input
+    functionType === "serialize"
       ? getModularTypeId(valueType)
       : getRLCTypeId(dpgContext, valueType);
 

@@ -1,7 +1,4 @@
-import {
-  SdkHeaderParameter,
-  UsageFlags
-} from "@azure-tools/typespec-client-generator-core";
+import { SdkHeaderParameter } from "@azure-tools/typespec-client-generator-core";
 import { isNumericTypeKind } from "../helpers/typeHelpers.js";
 import { getCollectionSeparator } from "./collectionUtils.js";
 import { serializeArray } from "./serializeArray.js";
@@ -24,7 +21,7 @@ export function serializeHeader(
       getCollectionSeparator(type.collectionFormat)
     );
 
-    if (functionType === UsageFlags.Input) {
+    if (functionType === "serialize") {
       // Serialization
       // Here we need to turn an array into a string with a separator.
       // We can use the serializeArray function to do this.

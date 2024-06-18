@@ -9,7 +9,7 @@ import {
   SdkUnionType
 } from "@azure-tools/typespec-client-generator-core";
 import { isDefined } from "@azure/core-util";
-import { getDiscriminator, UsageFlags } from "@typespec/compiler";
+import { getDiscriminator } from "@typespec/compiler";
 import _ from "lodash";
 import * as Reify from "../../reify/index.js";
 import { serializeArray } from "./serializeArray.js";
@@ -27,7 +27,7 @@ export interface SerializeTypeOptions<
   TCGCType extends SdkType | SdkModelPropertyType
 > {
   dpgContext: SdkContext;
-  functionType: UsageFlags;
+  functionType: "serialize" | "deserialize";
   serializerMap?: SerializerMap;
   type: TCGCType;
   valueExpr: string;
@@ -48,13 +48,13 @@ export function serializeType<TCGCType extends SdkType | SdkModelPropertyType>(
 
   if (serializerMetadata) {
     const functionName =
-      functionType === UsageFlags.Input
+      functionType === "serialize"
         ? serializerMetadata?.serializerFunctionName
         : serializerMetadata?.deserializerFunctionName;
 
     return `${
       functionName ??
-      (functionType === UsageFlags.Input
+      (functionType === "serialize"
         ? "MISSING_SERIALIZER"
         : "MISSING_DESERIALIZER")
     }((${valueExpr}))`;
@@ -162,7 +162,7 @@ function serializeByteArray(
   const format = getEncodingFormat(functionType, type);
   const args = [valueExpr, `"${format}"`].join(", ");
 
-  if (functionType === UsageFlags.Input) {
+  if (functionType === "serialize") {
     importCallback("coreUtil", "uint8ArrayToString");
     return `uint8ArrayToString(${args})`;
   }
