@@ -1,9 +1,9 @@
 import {
-  pascalCase,
   NameType,
   normalizeName,
   PackageDetails,
   PackageFlavor,
+  pascalCase,
   RLCOptions,
   ServiceInfo
 } from "@azure-tools/rlc-common";

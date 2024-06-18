@@ -2,11 +2,11 @@ import {
   SdkHeaderParameter,
   UsageFlags
 } from "@azure-tools/typespec-client-generator-core";
-import { SerializeTypeOptions, serializeType } from "./serializers.js";
-import { SerializerOutput } from "./util.js";
+import { isNumericTypeKind } from "../helpers/typeHelpers.js";
 import { getCollectionSeparator } from "./collectionUtils.js";
 import { serializeArray } from "./serializeArray.js";
-import { isNumericTypeKind } from "../helpers/typeHelpers.js";
+import { serializeType, SerializeTypeOptions } from "./serializers.js";
+import { SerializerOutput } from "./util.js";
 
 export function serializeHeader(
   options: SerializeTypeOptions<

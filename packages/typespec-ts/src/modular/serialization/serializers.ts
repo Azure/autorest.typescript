@@ -12,6 +12,9 @@ import { isDefined } from "@azure/core-util";
 import { getDiscriminator, UsageFlags } from "@typespec/compiler";
 import _ from "lodash";
 import * as Reify from "../../reify/index.js";
+import { serializeArray } from "./serializeArray.js";
+import { serializeDatetime } from "./serializeDateTime.js";
+import { serializeHeader } from "./serializeHeaders.js";
 import {
   getEncodingFormat,
   getParameterTypePropertyName,
@@ -19,9 +22,6 @@ import {
   SerializerMap,
   SerializerOutput
 } from "./util.js";
-import { serializeHeader } from "./serializeHeaders.js";
-import { serializeArray } from "./serializeArray.js";
-import { serializeDatetime } from "./serializeDateTime.js";
 
 export interface SerializeTypeOptions<
   TCGCType extends SdkType | SdkModelPropertyType

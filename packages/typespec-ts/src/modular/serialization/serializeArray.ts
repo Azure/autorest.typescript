@@ -3,8 +3,8 @@ import {
   SdkType
 } from "@azure-tools/typespec-client-generator-core";
 import { UsageFlags } from "@typespec/compiler";
-import { SerializeTypeOptions, serializeType } from "./serializers.js";
-import { SerializerOutput, getModularTypeId, getRLCTypeId } from "./util.js";
+import { serializeType, SerializeTypeOptions } from "./serializers.js";
+import { getModularTypeId, getRLCTypeId, SerializerOutput } from "./util.js";
 
 export function serializeArray(
   options: SerializeTypeOptions<SdkArrayType>
