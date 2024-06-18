@@ -8,7 +8,8 @@ import { getModularTypeId, getRLCTypeId, SerializerOutput } from "./util.js";
 export function serializeArray(
   options: SerializeTypeOptions<SdkArrayType>
 ): SerializerOutput {
-  const { dpgContext, functionType, serializerMap, type, valueExpr } = options;
+  const { dpgContext, functionType, serializationContext, type, valueExpr } =
+    options;
   const valueType = type.valueType as SdkType & { name?: string };
   const mapParameterId = "e";
 
@@ -37,7 +38,7 @@ export function serializeArray(
     serializedChildExpr.match(unaryFunctionInvocation)?.groups ?? {};
 
   const mapArg =
-    elementTypeName && serializerMap?.[elementTypeName]
+    elementTypeName && serializationContext?.[elementTypeName]
       ? mapParameterId
       : `${mapParameterId}: ${elementTypeName}`;
 

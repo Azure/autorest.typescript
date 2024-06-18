@@ -26,18 +26,22 @@ import {
   serializeType,
   serializeUnionInline
 } from "./serializers.js";
-import { getUsage, SerializeFunctionType, SerializerMap } from "./util.js";
+import {
+  getUsage,
+  SerializeFunctionType,
+  SerializationContext
+} from "./util.js";
 
 export function buildSerializers(
   dpgContext: SdkContext,
   codeModel: ModularCodeModel,
   client: Client
-): SerializerMap {
+): SerializationContext {
   // Root for changes associated with EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION flag
   const unions = codeModel.types
     .filter((type) => type.type === "combined" && isDefined(type.tcgcType))
     .map((type) => type.tcgcType as SdkUnionType);
-  const serializers = createSerializerMetadata(dpgContext, unions);
+  const serializers = createSerializationContext(dpgContext, unions);
   const entries = Object.entries(serializers).map(
     ([modularTypeName, meta]) => ({
       ...meta,
@@ -113,10 +117,10 @@ export function buildSerializers(
   return serializers;
 }
 
-function createSerializerMetadata(
+function createSerializationContext(
   dpgContext: SdkContext,
   unions: SdkUnionType[]
-): SerializerMap {
+): SerializationContext {
   const allModels = getAllModels(dpgContext);
   const typesWithSerializers = [...allModels, ...unions].filter(
     hasSerializeFunction
@@ -167,12 +171,12 @@ function createSerializerMetadata(
 function createSerializerFunctionStructure(
   dpgContext: SdkContext,
   functionType: "serialize" | "deserialize",
-  serializerMap: SerializerMap,
+  serializationContext: SerializationContext,
   type: SerializeFunctionType,
   runtimeImports: RuntimeImports
 ): OptionalKind<FunctionDeclarationStructure> {
   const modularTypeName = type.name;
-  const serializerMetadata = serializerMap[modularTypeName];
+  const serializerMetadata = serializationContext[modularTypeName];
 
   const functionName =
     functionType === "serialize"
@@ -193,7 +197,7 @@ function createSerializerFunctionStructure(
         `return ${serializeType({
           dpgContext,
           functionType,
-          serializerMap,
+          serializationContext,
           type,
           valueExpr: paramName,
           importCallback: (importType, importedName) =>
@@ -207,7 +211,7 @@ function createSerializerFunctionStructure(
         `return ${serializeModelPropertiesInline({
           dpgContext,
           functionType,
-          serializerMap,
+          serializationContext,
           type,
           valueExpr: paramName,
           importCallback: (importType, importedName) =>
@@ -221,7 +225,7 @@ function createSerializerFunctionStructure(
         `return ${serializeUnionInline({
           dpgContext,
           functionType,
-          serializerMap,
+          serializationContext,
           type,
           valueExpr: paramName,
           importCallback: (importType, importedName) =>
@@ -235,7 +239,7 @@ function createSerializerFunctionStructure(
         serializeEnumFunctionBody({
           dpgContext,
           functionType,
-          serializerMap,
+          serializationContext,
           type,
           valueExpr: paramName,
           importCallback: (importType, importedName) =>

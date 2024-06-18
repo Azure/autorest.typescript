@@ -37,7 +37,7 @@ import { isDefined } from "@azure/core-util";
 import _ from "lodash";
 import { Parameter } from "../modularCodeModel.js";
 import { serializeType } from "../serialization/serializers.js";
-import { SerializerMap } from "../serialization/util.js";
+import { SerializationContext } from "../serialization/util.js";
 
 export function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -69,7 +69,7 @@ export function getSendPrivateFunction(
   dpgContext: SdkContext,
   operation: Operation,
   clientType: string,
-  serializerMap: SerializerMap | undefined,
+  serializationContext: SerializationContext | undefined,
   runtimeImports: RuntimeImports
 ): OptionalKind<FunctionDeclarationStructure> {
   const parameters = getOperationSignatureParameters(operation, clientType);
@@ -99,7 +99,7 @@ export function getSendPrivateFunction(
     )}).${operationMethod}({...operationOptionsToRequestParameters(${optionalParamName}), ${getRequestParameters(
       dpgContext,
       operation,
-      serializerMap!,
+      serializationContext!,
       runtimeImports
     )}}) ${operation.isOverload ? `as ${returnType}` : ``} ;`
   );
@@ -116,7 +116,7 @@ export function getDeserializePrivateFunction(
   needSubClient: boolean,
   needUnexpectedHelper: boolean,
   runtimeImports: RuntimeImports,
-  serializerMap: SerializerMap | undefined
+  serializationContext: SerializationContext | undefined
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
@@ -211,7 +211,7 @@ export function getDeserializePrivateFunction(
     statements.push(
       `return ${deserializeResponseValue(
         dpgContext,
-        serializerMap!,
+        serializationContext!,
         deserializedType,
         deserializedRoot,
         runtimeImports
@@ -465,7 +465,7 @@ export function getOperationOptionsName(
 function getRequestParameters(
   dpgContext: SdkContext,
   operation: Operation,
-  serializerMap: SerializerMap,
+  serializationContext: SerializationContext,
   runtimeImports: RuntimeImports
 ): string {
   if (!operation.parameters) {
@@ -506,7 +506,7 @@ function getRequestParameters(
             const initializer = serializeType({
               dpgContext,
               functionType: "serialize",
-              serializerMap,
+              serializationContext,
               type: i.tcgcType!,
               valueExpr:
                 id === "body" ? i.clientName : `options?.${i.clientName}`,
@@ -594,7 +594,7 @@ function getPathParameters(operation: Operation) {
  */
 function deserializeResponseValue(
   dpgContext: SdkContext,
-  serializerMap: SerializerMap,
+  serializationContext: SerializationContext,
   type: Type,
   restValue: string,
   runtimeImports: RuntimeImports
@@ -602,7 +602,7 @@ function deserializeResponseValue(
   return serializeType({
     dpgContext,
     functionType: "deserialize",
-    serializerMap,
+    serializationContext,
     type: type.tcgcType!,
     valueExpr: restValue,
     importCallback: (importType, importedName) =>

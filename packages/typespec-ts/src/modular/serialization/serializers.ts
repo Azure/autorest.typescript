@@ -19,7 +19,7 @@ import {
   getEncodingFormat,
   getParameterTypePropertyName,
   getReturnTypePropertyName,
-  SerializerMap,
+  SerializationContext,
   SerializerOutput
 } from "./util.js";
 
@@ -28,7 +28,7 @@ export interface SerializeTypeOptions<
 > {
   dpgContext: SdkContext;
   functionType: "serialize" | "deserialize";
-  serializerMap?: SerializerMap;
+  serializationContext?: SerializationContext;
   type: TCGCType;
   valueExpr: string;
   importCallback: (importType: ImportType, importedName: string) => void;
@@ -41,10 +41,10 @@ const placeholder = <T>(_?: T) => {
 export function serializeType<TCGCType extends SdkType | SdkModelPropertyType>(
   options: SerializeTypeOptions<TCGCType>
 ): SerializerOutput {
-  const { functionType, serializerMap, type, valueExpr } = options;
+  const { functionType, serializationContext, type, valueExpr } = options;
   const modularTypeName = (type as { name?: string }).name;
   const serializerMetadata =
-    isDefined(modularTypeName) && serializerMap?.[modularTypeName];
+    isDefined(modularTypeName) && serializationContext?.[modularTypeName];
 
   if (serializerMetadata) {
     const functionName =

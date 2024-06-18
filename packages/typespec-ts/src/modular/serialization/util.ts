@@ -14,10 +14,10 @@ import { SdkContext } from "../../utils/interfaces.js";
 
 type ModularTypeName = string;
 export type SerializeFunctionType = SdkModelType | SdkUnionType | SdkEnumType;
-export type SerializerMap = Record<ModularTypeName, SerializerMetadata>;
+export type SerializationContext = Record<ModularTypeName, SerializerContext>;
 export type SerializerOutput = string;
 
-interface SerializerMetadata {
+interface SerializerContext {
   rlcTypeName?: string;
   rlcTypeAlias?: string;
   type: SerializeFunctionType;

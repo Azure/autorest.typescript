@@ -26,7 +26,7 @@ import {
   getDeserializePrivateFunction as experimentalGetDeserializePrivateFunction,
   getSendPrivateFunction as experimentalGetSendPrivateFunction
 } from "./serialization/operationHelpers.js";
-import { SerializerMap } from "./serialization/util.js";
+import { SerializationContext } from "./serialization/util.js";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -38,7 +38,7 @@ export function buildOperationFiles(
   dpgContext: SdkContext,
   codeModel: ModularCodeModel,
   needUnexpectedHelper: boolean = true,
-  serializerMap?: SerializerMap
+  serializationContext?: SerializationContext
 ) {
   const operationFiles = [];
   const isMultiEndpoint = isRLCMultiEndpoint(dpgContext);
@@ -150,7 +150,7 @@ export function buildOperationFiles(
             dpgContext,
             o,
             clientType,
-            serializerMap,
+            serializationContext,
             codeModel.runtimeImports
           )
         : getSendPrivateFunction(
@@ -168,7 +168,7 @@ export function buildOperationFiles(
             isMultiEndpoint,
             needUnexpectedHelper,
             codeModel.runtimeImports,
-            serializerMap
+            serializationContext
           )
         : getDeserializePrivateFunction(
             o,

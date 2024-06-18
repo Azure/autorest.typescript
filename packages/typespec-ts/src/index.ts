@@ -208,7 +208,9 @@ export async function $onEmit(context: EmitContext) {
           isMultiClients
         );
         // build operation files
-        const serializerMap = env["EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"]
+        const serializationContext = env[
+          "EXPERIMENTAL_TYPESPEC_TS_SERIALIZATION"
+        ]
           ? buildSerializers(dpgContext, modularCodeModel, subClient)
           : undefined;
         buildOperationFiles(
@@ -216,7 +218,7 @@ export async function $onEmit(context: EmitContext) {
           dpgContext,
           modularCodeModel,
           hasClientUnexpectedHelper,
-          serializerMap
+          serializationContext
         );
         buildClientContext(subClient, dpgContext, modularCodeModel);
         buildSubpathIndexFile(subClient, modularCodeModel, "models");
