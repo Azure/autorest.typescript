@@ -153,6 +153,144 @@ describe("header parameters", () => {
       });
     });
     describe("extensible", async () => {
+      it("union with string as extensible enum is exhaustive", async () => {
+        const tspDefinition = `
+        import "@typespec/http";
+        import "@typespec/rest";
+    
+        @service({
+          title: "Widget Service",
+        })
+        namespace DemoService;
+        
+        using TypeSpec.Http;
+        using TypeSpec.Rest;
+        
+        union SchemaContentTypeValues {
+          custom: "text/plain; charset=utf-8",
+          protobuf: "text/vnd.ms.protobuf",
+          others: string,
+        }
+        
+        op get(
+          @header("test-header") testHeader: SchemaContentTypeValues,
+          @body body: string,
+        ): NoContentResponse;
+        `;
+        const schemaOutput = await emitModularModelsFromTypeSpec(
+          tspDefinition,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        await assertEqualContent(
+          schemaOutput?.getFullText()!,
+          `
+          /** Type of SchemaContentTypeValues */
+          /** */
+          export type SchemaContentTypeValues = 
+            | "text/plain; charset=utf-8"
+            | "text/vnd.ms.protobuf";
+          `
+        );
+      });
+      it("union contains union with string element", async () => {
+        const tspDefinition = `
+        import "@typespec/http";
+        import "@typespec/rest";
+    
+        @service({
+          title: "Widget Service",
+        })
+        namespace DemoService;
+        
+        using TypeSpec.Http;
+        using TypeSpec.Rest;
+
+        union JsonContentType {
+          avro: "application/json; serialization=Avro",
+          json: "application/json; serialization=json",
+        }
+        
+        union SchemaContentTypeValues {
+          JsonContentType,
+          custom: "text/plain; charset=utf-8",
+          protobuf: "text/vnd.ms.protobuf",
+          others: string,
+        }
+        
+        op get(
+          @header("test-header") testHeader: SchemaContentTypeValues,
+          @body body: string,
+        ): NoContentResponse;
+        `;
+        const schemaOutput = await emitModularModelsFromTypeSpec(
+          tspDefinition,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        await assertEqualContent(
+          schemaOutput?.getFullText()!,
+          `
+          /** Type of JsonContentType */
+          /** */
+          export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
+          /** Alias for SchemaContentTypeValues */
+          export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
+          `
+        );
+      });
+      it("union contains enum with string element", async () => {
+        const tspDefinition = `
+        import "@typespec/http";
+        import "@typespec/rest";
+    
+        @service({
+          title: "Widget Service",
+        })
+        namespace DemoService;
+        
+        using TypeSpec.Http;
+        using TypeSpec.Rest;
+
+        enum JsonContentType {
+          avro: "application/json; serialization=Avro",
+          json: "application/json; serialization=json",
+        }
+        
+        union SchemaContentTypeValues {
+          JsonContentType,
+          custom: "text/plain; charset=utf-8",
+          protobuf: "text/vnd.ms.protobuf",
+          others: string,
+        }
+        
+        op get(
+          @header("test-header") testHeader: SchemaContentTypeValues,
+          @body body: string,
+        ): NoContentResponse;
+        `;
+        const schemaOutput = await emitModularModelsFromTypeSpec(
+          tspDefinition,
+          false,
+          true
+        );
+
+        assert.ok(schemaOutput);
+        await assertEqualContent(
+          schemaOutput?.getFullText()!,
+          `
+          /** */
+          export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
+          /** Alias for SchemaContentTypeValues */
+          export type SchemaContentTypeValues = JsonContentType | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf" | string;
+          `
+        );
+      });
+    });
+
+    describe("extensible", async () => {
       it("union with string as extensible enum", async () => {
         const tspDefinition = `
         import "@typespec/http";
@@ -187,8 +325,10 @@ describe("header parameters", () => {
           schemaOutput?.getFullText()!,
           `
           /** Type of SchemaContentTypeValues */
-          /** "text/plain; charset=utf-8", "text/vnd.ms.protobuf" */
-          export type SchemaContentTypeValues = string;
+          /** */
+          export type SchemaContentTypeValues = 
+            | "text/plain; charset=utf-8"
+            | "text/vnd.ms.protobuf";
           `
         );
       });
@@ -577,8 +717,8 @@ describe("header parameters", () => {
         schemaOutput?.getFullText()!,
         `
         /** Type of EnumTest */
-        /** 1, 2, 3, 4 */
-        export type EnumTest = number;
+        /** */
+        export type EnumTest = 1 | 2 | 3 | 4;
 `
       );
     });

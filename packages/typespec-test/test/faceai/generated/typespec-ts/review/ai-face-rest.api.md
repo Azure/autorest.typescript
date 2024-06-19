@@ -26,7 +26,7 @@ export interface AccessoryItemOutput {
 }
 
 // @public
-export type AccessoryTypeOutput = string | "headwear" | "glasses" | "mask";
+export type AccessoryTypeOutput = string;
 
 // @public
 export interface AddFaceListFace200Response extends HttpResponse {
@@ -582,7 +582,7 @@ export interface AddPersonGroupPersonFaceQueryParamProperties {
 }
 
 // @public
-export type BlurLevelOutput = string | "low" | "medium" | "high";
+export type BlurLevelOutput = string;
 
 // @public
 export interface BlurPropertiesOutput {
@@ -1672,7 +1672,7 @@ export interface DetectFromUrlQueryParamProperties {
 }
 
 // @public
-export type DetectionModel = string | "detection_01" | "detection_02" | "detection_03";
+export type DetectionModel = string;
 
 // @public (undocumented)
 export interface DetectMediaTypesParam {
@@ -1707,7 +1707,7 @@ export interface DynamicPersonGroupOutput {
 }
 
 // @public
-export type ExposureLevelOutput = string | "underExposure" | "goodExposure" | "overExposure";
+export type ExposureLevelOutput = string;
 
 // @public
 export interface ExposurePropertiesOutput {
@@ -1733,7 +1733,7 @@ export interface FaceAttributesOutput {
 }
 
 // @public
-export type FaceAttributeType = string | "headPose" | "glasses" | "occlusion" | "accessories" | "blur" | "exposure" | "noise" | "mask" | "qualityForRecognition" | "age" | "smile" | "facialHair" | "hair";
+export type FaceAttributeType = string;
 
 // @public (undocumented)
 export type FaceClient = Client & {
@@ -1829,7 +1829,7 @@ export interface FaceRectangleOutput {
 }
 
 // @public
-export type FaceSessionStatusOutput = string | "NotStarted" | "Started" | "ResultAvailable";
+export type FaceSessionStatusOutput = string;
 
 // @public
 export interface FacialHairOutput {
@@ -1954,7 +1954,7 @@ export interface FindSimilarFromLargeFaceListDefaultResponse extends HttpRespons
 export type FindSimilarFromLargeFaceListParameters = FindSimilarFromLargeFaceListBodyParam & RequestParameters;
 
 // @public
-export type FindSimilarMatchMode = string | "matchPerson" | "matchFace";
+export type FindSimilarMatchMode = string;
 
 // @public (undocumented)
 export type FindSimilarParameters = FindSimilarBodyParam & RequestParameters;
@@ -3172,7 +3172,7 @@ export interface GetPersonsQueryParamProperties {
 }
 
 // @public
-export type GlassesTypeOutput = string | "noGlasses" | "readingGlasses" | "sunglasses" | "swimmingGoggles";
+export type GlassesTypeOutput = string;
 
 // @public (undocumented)
 export interface Group {
@@ -3226,7 +3226,7 @@ export interface HairColorOutput {
 }
 
 // @public
-export type HairColorTypeOutput = string | "unknown" | "white" | "gray" | "blond" | "brown" | "red" | "black" | "other";
+export type HairColorTypeOutput = string;
 
 // @public
 export interface HairPropertiesOutput {
@@ -3411,7 +3411,7 @@ export interface IdentifyFromPersonGroupDefaultResponse extends HttpResponse {
 export type IdentifyFromPersonGroupParameters = IdentifyFromPersonGroupBodyParam & RequestParameters;
 
 // @public
-export type ImageTypeOutput = string | "Color" | "Infrared" | "Depth";
+export type ImageTypeOutput = string;
 
 // @public (undocumented)
 export function isUnexpected(response: GetOperationResult200Response | GetOperationResultDefaultResponse): response is GetOperationResultDefaultResponse;
@@ -3775,13 +3775,13 @@ export interface ListPersonResultOutput {
 }
 
 // @public
-export type LivenessDecisionOutput = string | "uncertain" | "realface" | "spoofface";
+export type LivenessDecisionOutput = string;
 
 // @public
-export type LivenessModelOutput = string | "2020-02-15-preview.01" | "2021-11-12-preview.03" | "2022-10-15-preview.04" | "2023-03-02-preview.05";
+export type LivenessModelOutput = string;
 
 // @public
-export type LivenessOperationMode = string | "Passive";
+export type LivenessOperationMode = string;
 
 // @public
 export interface LivenessOutputsTargetOutput {
@@ -3919,10 +3919,10 @@ export interface MaskPropertiesOutput {
 }
 
 // @public
-export type MaskTypeOutput = string | "faceMask" | "noMask" | "otherMaskOrOcclusion" | "uncertain";
+export type MaskTypeOutput = string;
 
 // @public
-export type NoiseLevelOutput = string | "low" | "medium" | "high";
+export type NoiseLevelOutput = string;
 
 // @public
 export interface NoisePropertiesOutput {
@@ -3948,7 +3948,7 @@ export interface OperationResultOutput {
 }
 
 // @public
-export type OperationStatusOutput = string | "notStarted" | "running" | "succeeded" | "failed";
+export type OperationStatusOutput = string;
 
 // @public
 export interface PersonDirectoryFaceOutput {
@@ -3986,13 +3986,13 @@ export interface PersonGroupPersonOutput {
 }
 
 // @public
-export type QualityForRecognitionOutput = string | "low" | "medium" | "high";
+export type QualityForRecognitionOutput = string;
 
 // @public
-export type RecognitionModel = string | "recognition_01" | "recognition_02" | "recognition_03" | "recognition_04";
+export type RecognitionModel = string;
 
 // @public
-export type RecognitionModelOutput = string | "recognition_01" | "recognition_02" | "recognition_03" | "recognition_04";
+export type RecognitionModelOutput = string;
 
 // @public (undocumented)
 export interface Routes {
