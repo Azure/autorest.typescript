@@ -307,11 +307,11 @@ describe("Package file generation", () => {
       );
       expect(packageFile.scripts).to.have.property(
         "unit-test:browser",
-        "npm run build:test && dev-tool run test:vitest --no-test-proxy --browser"
+        "npm run build:test && dev-tool run test:vitest --browser"
       );
       expect(packageFile.scripts).to.have.property(
         "unit-test:node",
-        "dev-tool run test:vitest --no-test-proxy"
+        "dev-tool run test:vitest"
       );
       expect(packageFile.scripts).to.have.property(
         "clean",
