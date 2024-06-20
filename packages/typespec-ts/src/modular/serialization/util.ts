@@ -105,7 +105,7 @@ const dispatch: {
   constant: (_) => "FIXME",
   credential: (_) => "FIXME",
   endpoint: (_) => "string",
-  nullable: (_) => "null",
+  nullable: (_) => "null"
 };
 
 export function getModularTypeId<T extends SdkType>(
