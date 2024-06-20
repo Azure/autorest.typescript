@@ -13,8 +13,7 @@ export interface MultipleContextOptions extends ClientOptions {
 /**
  * Initialize a new instance of `MultipleContext`
  * @param endpointParam - Pass in http://localhost:3000 for endpoint.
- * @param {
- *     apiVersion = "v1.0", ...options} - the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpointParam: string,

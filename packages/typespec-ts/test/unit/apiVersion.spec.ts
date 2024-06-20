@@ -157,7 +157,7 @@ const buildDefaultReturn = (
        : ""
    }
    * @param ${
-     (!hasDefault && apiVersionRequired) || !hasApiVersionInClient
+     (!hasDefault && apiVersionRequired) || hasApiVersionInClient
        ? "options - the parameter for all optional parameters"
        : `{
    *     ${
@@ -211,8 +211,8 @@ const buildDefaultReturn = (
         ? `client.pipeline.addPolicy({
       name: "ClientApiVersionPolicy",
       sendRequest: (req, next) => {
-        // Use the apiVesion defined in request url directly
-        // Append one if there is no apiVesion and we have one at client options
+        // Use the apiVersion defined in request url directly
+        // Append one if there is no apiVersion and we have one at client options
         const url = new URL(req.url);
         if (!url.searchParams.get("api-version") && apiVersion) {
           req.url = \`\${req.url}\${
@@ -245,8 +245,7 @@ const buildPathReturn_WithDefault = () => {
   /**
    * Initialize a new instance of \`testClient\`
    * @param endpointParam - The endpoint to use.
-   * @param {
-   *    apiVersion = "2022-05-15-preview", ...options} - the parameter for all optional parameters
+   * @param options - the parameter for all optional parameters
    */
   export default function createClient(
     endpointParam: string,
