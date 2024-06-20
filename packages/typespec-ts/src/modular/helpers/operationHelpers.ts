@@ -14,7 +14,7 @@ import {
   ParameterDeclarationStructure
 } from "ts-morph";
 import { reportDiagnostic } from "../../lib.js";
-import { toPascalCase } from "../../utils/casingUtils.js";
+import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo
@@ -961,19 +961,24 @@ export function getRequestModelMapping(
         );
         definition = `"${property.restApiName}": ${nullOrUndefinedPrefix}${deserializeFunctionName}(${propertyFullName})`;
       } else {
-        definition = `"${property.restApiName}": ${getNullableCheck(
-          propertyFullName,
-          property.type
-        )} ${
-          !property.optional ? "" : `!${propertyFullName} ? undefined :`
-        } {${getRequestModelMapping(
-          property.type,
-          `${propertyPath}.${property.clientName}${
-            property.optional ? "?" : ""
-          }`,
-          runtimeImports,
-          [...typeStack, property.type]
-        )}}`;
+        if (property.type.name) {
+          const serializerName = `${toCamelCase(property.type.name)}Serializer`;
+          definition = `"${property.restApiName}": ${serializerName}(${propertyPath}.${property.clientName})`;
+        } else {
+          definition = `"${property.restApiName}": ${getNullableCheck(
+            propertyFullName,
+            property.type
+          )} ${
+            !property.optional ? "" : `!${propertyFullName} ? undefined :`
+          } {${getRequestModelMapping(
+            property.type,
+            `${propertyPath}.${property.clientName}${
+              property.optional ? "?" : ""
+            }`,
+            runtimeImports,
+            [...typeStack, property.type]
+          )}}`;
+        }
       }
 
       props.push(definition);
@@ -1260,12 +1265,20 @@ export function serializeRequestValue(
           ? `${clientValue}`
           : `${requiredOrNullablePrefix}? ${clientValue}: ${clientValue}`;
       if (type.elementType?.type === "model" && !type.elementType.aliasType) {
-        return `${prefix}.map(p => ({${getRequestModelMapping(
-          type.elementType,
-          "p",
-          runtimeImports,
-          [...typeStack, type.elementType]
-        )}}))`;
+        if (!type.elementType.name) {
+          // If it is an anonymous model we need to serialize inline
+          return `${prefix}.map(p => ({${getRequestModelMapping(
+            type.elementType,
+            "p",
+            runtimeImports,
+            [...typeStack, type.elementType]
+          )}}))`;
+        } else {
+          // When it is not anonymous we can hand it off to the serializer function
+          return `${prefix}.map(${toCamelCase(
+            type.elementType.name + "Serializer"
+          )})`;
+        }
       } else if (
         needsDeserialize(type.elementType) &&
         !type.elementType?.aliasType

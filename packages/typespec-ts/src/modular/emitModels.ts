@@ -1,4 +1,4 @@
-import { getImportSpecifier } from "@azure-tools/rlc-common";
+import { addImportsToFiles, getImportSpecifier } from "@azure-tools/rlc-common";
 import * as path from "path";
 import {
   InterfaceDeclarationStructure,
@@ -16,6 +16,7 @@ import {
   Type as ModularType
 } from "./modularCodeModel.js";
 import { useContext } from "../contextManager.js";
+import { buildModelSerializer } from "./serialization/buildSerializerFunction.js";
 
 // ====== UTILITIES ======
 
@@ -231,8 +232,22 @@ export function buildModels(
         );
       }
       modelsFile.addInterface(modelInterface);
+
+      // Generate a serializer function next to each model
+      const serializerFunction = buildModelSerializer(
+        model,
+        codeModel.runtimeImports
+      );
+
+      if (serializerFunction) {
+        modelsFile.addStatements(serializerFunction);
+      }
     }
   }
+
+  addImportsToFiles(codeModel.runtimeImports, modelsFile, {
+    rlcIndex: "../rest/index.js"
+  });
 
   if (coreClientTypes.size > 0) {
     modelsFile.addImportDeclarations([
