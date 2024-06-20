@@ -30,8 +30,8 @@ export interface SystemData {
 }
 
 /** The kind of entity that created the resource. */
-/** "User", "Application", "ManagedIdentity", "Key" */
-export type CreatedByType = string;
+/** */
+export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
 export interface TrackedResource extends Resource {
@@ -68,8 +68,8 @@ export interface FleetProperties {
 }
 
 /** The provisioning state of a resource type. */
-/** "Succeeded", "Failed", "Canceled" */
-export type ResourceProvisioningState = string;
+/** */
+export type ResourceProvisioningState = "Succeeded" | "Failed" | "Canceled";
 
 /** Configuration Options for Spot instances in Compute Fleet. */
 export interface SpotPriorityProfile {
@@ -93,11 +93,14 @@ export interface SpotPriorityProfile {
 }
 
 /** Different kind of eviction policies */
-/** "Delete", "Deallocate" */
-export type EvictionPolicy = string;
+/** */
+export type EvictionPolicy = "Delete" | "Deallocate";
 /** Spot allocation strategy types for Compute Fleet */
-/** "PriceCapacityOptimized", "LowestPrice", "CapacityOptimized" */
-export type SpotAllocationStrategy = string;
+/** */
+export type SpotAllocationStrategy =
+  | "PriceCapacityOptimized"
+  | "LowestPrice"
+  | "CapacityOptimized";
 
 /** Configuration Options for Regular instances in Compute Fleet. */
 export interface RegularPriorityProfile {
@@ -110,8 +113,8 @@ export interface RegularPriorityProfile {
 }
 
 /** Regular VM Allocation strategy types for Compute Fleet */
-/** "LowestPrice", "Prioritized" */
-export type RegularPriorityAllocationStrategy = string;
+/** */
+export type RegularPriorityAllocationStrategy = "LowestPrice" | "Prioritized";
 
 /** Specifications about a VM Size. This will also contain the corresponding rank and weight in future. */
 export interface VmSizeProfile {
@@ -159,8 +162,12 @@ export interface ManagedServiceIdentity {
 }
 
 /** The kind of managed identity assigned to this resource. */
-/** "None", "SystemAssigned", "UserAssigned", "SystemAssigned, UserAssigned" */
-export type ManagedServiceIdentityType = string;
+/** */
+export type ManagedServiceIdentityType =
+  | "None"
+  | "SystemAssigned"
+  | "UserAssigned"
+  | "SystemAssigned, UserAssigned";
 
 /** A managed identity assigned by the user. */
 export interface UserAssignedIdentity {
@@ -335,11 +342,11 @@ export interface OperationDisplay {
 }
 
 /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-/** "user", "system", "user,system" */
-export type Origin = string;
+/** */
+export type Origin = "user" | "system" | "user,system";
 /** Extensible enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-/** "Internal" */
-export type ActionType = string;
+/** */
+export type ActionType = "Internal";
 /** Api versions */
 /** */
 export type Versions = "2023-11-01-preview" | "2024-05-01-preview";

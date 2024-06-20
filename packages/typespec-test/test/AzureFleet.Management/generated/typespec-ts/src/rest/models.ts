@@ -224,54 +224,20 @@ export interface ResourcePlanUpdate {
 }
 
 /** Alias for ResourceProvisioningState */
-export type ResourceProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | string;
+export type ResourceProvisioningState = string;
 /** Alias for ProvisioningState */
-export type ProvisioningState =
-  | string
-  | ResourceProvisioningState
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Migrating";
+export type ProvisioningState = string;
 /** Alias for EvictionPolicy */
-export type EvictionPolicy = string | "Delete" | "Deallocate";
+export type EvictionPolicy = string;
 /** Alias for SpotAllocationStrategy */
-export type SpotAllocationStrategy =
-  | string
-  | "PriceCapacityOptimized"
-  | "LowestPrice"
-  | "CapacityOptimized";
+export type SpotAllocationStrategy = string;
 /** Alias for RegularPriorityAllocationStrategy */
-export type RegularPriorityAllocationStrategy =
-  | string
-  | "LowestPrice"
-  | "Prioritized";
+export type RegularPriorityAllocationStrategy = string;
 /** Alias for ManagedServiceIdentityType */
-export type ManagedServiceIdentityType =
-  | "None"
-  | "SystemAssigned"
-  | "UserAssigned"
-  | "SystemAssigned, UserAssigned"
-  | string;
+export type ManagedServiceIdentityType = string;
 /** Alias for CreatedByType */
-export type CreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key"
-  | string;
+export type CreatedByType = string;
 /** Alias for PrivateEndpointServiceConnectionStatus */
-export type PrivateEndpointServiceConnectionStatus =
-  | "Pending"
-  | "Approved"
-  | "Rejected"
-  | string;
+export type PrivateEndpointServiceConnectionStatus = string;
 /** Alias for PrivateEndpointConnectionProvisioningState */
-export type PrivateEndpointConnectionProvisioningState =
-  | ResourceProvisioningState
-  | "Creating"
-  | "Deleting";
+export type PrivateEndpointConnectionProvisioningState = string;

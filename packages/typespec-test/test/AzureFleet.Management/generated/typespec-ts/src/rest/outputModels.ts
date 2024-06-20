@@ -311,60 +311,26 @@ export interface ApiErrorOutput {}
 /** A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of results. */
 export type PagedOperationOutput = Paged<OperationOutput>;
 /** Alias for OriginOutput */
-export type OriginOutput = "user" | "system" | "user,system" | string;
+export type OriginOutput = string;
 /** Alias for ActionTypeOutput */
-export type ActionTypeOutput = "Internal" | string;
+export type ActionTypeOutput = string;
 /** Alias for ResourceProvisioningStateOutput */
-export type ResourceProvisioningStateOutput =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | string;
+export type ResourceProvisioningStateOutput = string;
 /** Alias for ProvisioningStateOutput */
-export type ProvisioningStateOutput =
-  | string
-  | ResourceProvisioningStateOutput
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Migrating";
+export type ProvisioningStateOutput = string;
 /** Alias for EvictionPolicyOutput */
-export type EvictionPolicyOutput = string | "Delete" | "Deallocate";
+export type EvictionPolicyOutput = string;
 /** Alias for SpotAllocationStrategyOutput */
-export type SpotAllocationStrategyOutput =
-  | string
-  | "PriceCapacityOptimized"
-  | "LowestPrice"
-  | "CapacityOptimized";
+export type SpotAllocationStrategyOutput = string;
 /** Alias for RegularPriorityAllocationStrategyOutput */
-export type RegularPriorityAllocationStrategyOutput =
-  | string
-  | "LowestPrice"
-  | "Prioritized";
+export type RegularPriorityAllocationStrategyOutput = string;
 /** Alias for ManagedServiceIdentityTypeOutput */
-export type ManagedServiceIdentityTypeOutput =
-  | "None"
-  | "SystemAssigned"
-  | "UserAssigned"
-  | "SystemAssigned, UserAssigned"
-  | string;
+export type ManagedServiceIdentityTypeOutput = string;
 /** Alias for CreatedByTypeOutput */
-export type CreatedByTypeOutput =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key"
-  | string;
+export type CreatedByTypeOutput = string;
 /** Alias for PrivateEndpointServiceConnectionStatusOutput */
-export type PrivateEndpointServiceConnectionStatusOutput =
-  | "Pending"
-  | "Approved"
-  | "Rejected"
-  | string;
+export type PrivateEndpointServiceConnectionStatusOutput = string;
 /** Alias for PrivateEndpointConnectionProvisioningStateOutput */
-export type PrivateEndpointConnectionProvisioningStateOutput =
-  | ResourceProvisioningStateOutput
-  | "Creating"
-  | "Deleting";
+export type PrivateEndpointConnectionProvisioningStateOutput = string;
 /** The response of a Fleet list operation. */
 export type FleetListResultOutput = Paged<FleetOutput>;

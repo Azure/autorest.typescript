@@ -19,8 +19,8 @@ import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public
-export type ActionType = string;
+// @public (undocumented)
+export type ActionType = "Internal";
 
 // @public
 export interface ApiError {
@@ -71,8 +71,8 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
     continuationToken?: string;
 };
 
-// @public
-export type CreatedByType = string;
+// @public (undocumented)
+export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
 
 // @public (undocumented)
 export interface CreateOrUpdateOptionalParams extends OperationOptions {
@@ -104,8 +104,8 @@ export interface ErrorResponse {
     error?: ErrorDetail;
 }
 
-// @public
-export type EvictionPolicy = string;
+// @public (undocumented)
+export type EvictionPolicy = "Delete" | "Deallocate";
 
 // @public
 export interface Fleet extends TrackedResource {
@@ -166,8 +166,8 @@ export interface ManagedServiceIdentity {
     userAssignedIdentities?: UserAssignedIdentities;
 }
 
-// @public
-export type ManagedServiceIdentityType = string;
+// @public (undocumented)
+export type ManagedServiceIdentityType = "None" | "SystemAssigned" | "UserAssigned" | "SystemAssigned, UserAssigned";
 
 // @public
 export interface ManagedServiceIdentityUpdate {
@@ -192,8 +192,8 @@ export interface OperationDisplay {
     resource?: string;
 }
 
-// @public
-export type Origin = string;
+// @public (undocumented)
+export type Origin = "user" | "system" | "user,system";
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings extends PageSettings = PageSettings> {
@@ -225,8 +225,8 @@ export interface Plan {
 // @public
 export type ProvisioningState = string | ResourceProvisioningState | "Creating" | "Updating" | "Deleting" | "Migrating";
 
-// @public
-export type RegularPriorityAllocationStrategy = string;
+// @public (undocumented)
+export type RegularPriorityAllocationStrategy = "LowestPrice" | "Prioritized";
 
 // @public
 export interface RegularPriorityProfile {
@@ -252,8 +252,8 @@ export interface ResourcePlanUpdate {
     version?: string;
 }
 
-// @public
-export type ResourceProvisioningState = string;
+// @public (undocumented)
+export type ResourceProvisioningState = "Succeeded" | "Failed" | "Canceled";
 
 // Warning: (ae-forgotten-export) The symbol "AzureFleetContext" needs to be exported by the entry point index.d.ts
 //
@@ -267,8 +267,8 @@ export interface RestorePollerOptions<TResult, TResponse extends PathUncheckedRe
     updateIntervalInMs?: number;
 }
 
-// @public
-export type SpotAllocationStrategy = string;
+// @public (undocumented)
+export type SpotAllocationStrategy = "PriceCapacityOptimized" | "LowestPrice" | "CapacityOptimized";
 
 // @public
 export interface SpotPriorityProfile {

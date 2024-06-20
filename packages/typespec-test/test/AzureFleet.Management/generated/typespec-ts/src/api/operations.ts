@@ -4,12 +4,19 @@
 import { getLongRunningPoller } from "./pollingHelpers.js";
 import { PollerLike, OperationState } from "@azure/core-lro";
 import {
+  CreatedByType,
   Fleet,
+  EvictionPolicy,
+  SpotAllocationStrategy,
+  RegularPriorityAllocationStrategy,
+  ManagedServiceIdentityType,
   FleetUpdate,
   FleetListResult,
   VirtualMachineScaleSetListResult,
   PagedOperation,
   Operation,
+  Origin,
+  ActionType,
 } from "../models/models.js";
 import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
 import { buildPagedAsyncIterator } from "./pagingHelpers.js";
@@ -83,8 +90,8 @@ export async function _listDeserialize(
             operation: p.display?.["operation"],
             description: p.display?.["description"],
           },
-      origin: p["origin"],
-      actionType: p["actionType"],
+      origin: p["origin"] as Origin,
+      actionType: p["actionType"] as ActionType,
     })),
     nextLink: result.body["nextLink"],
   };
@@ -137,13 +144,17 @@ export async function _getDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -164,14 +175,13 @@ export async function _getDeserialize(
                   result.body.properties?.spotPriorityProfile?.[
                     "maxPricePerVM"
                   ],
-                evictionPolicy:
-                  result.body.properties?.spotPriorityProfile?.[
-                    "evictionPolicy"
-                  ],
-                allocationStrategy:
-                  result.body.properties?.spotPriorityProfile?.[
-                    "allocationStrategy"
-                  ],
+                evictionPolicy: result.body.properties?.spotPriorityProfile?.[
+                  "evictionPolicy"
+                ] as EvictionPolicy,
+                allocationStrategy: result.body.properties
+                  ?.spotPriorityProfile?.[
+                  "allocationStrategy"
+                ] as SpotAllocationStrategy,
                 maintain:
                   result.body.properties?.spotPriorityProfile?.["maintain"],
               },
@@ -185,10 +195,10 @@ export async function _getDeserialize(
                   result.body.properties?.regularPriorityProfile?.[
                     "minCapacity"
                   ],
-                allocationStrategy:
-                  result.body.properties?.regularPriorityProfile?.[
-                    "allocationStrategy"
-                  ],
+                allocationStrategy: result.body.properties
+                  ?.regularPriorityProfile?.[
+                  "allocationStrategy"
+                ] as RegularPriorityAllocationStrategy,
               },
           vmSizesProfile: result.body.properties?.["vmSizesProfile"].map(
             (p) => ({ name: p["name"], rank: p["rank"] }),
@@ -209,7 +219,7 @@ export async function _getDeserialize(
       : {
           tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
-          type: result.body.identity?.["type"],
+          type: result.body.identity?.["type"] as ManagedServiceIdentityType,
           userAssignedIdentities:
             result.body.identity?.["userAssignedIdentities"],
         },
@@ -364,13 +374,17 @@ export async function _createOrUpdateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -391,14 +405,13 @@ export async function _createOrUpdateDeserialize(
                   result.body.properties?.spotPriorityProfile?.[
                     "maxPricePerVM"
                   ],
-                evictionPolicy:
-                  result.body.properties?.spotPriorityProfile?.[
-                    "evictionPolicy"
-                  ],
-                allocationStrategy:
-                  result.body.properties?.spotPriorityProfile?.[
-                    "allocationStrategy"
-                  ],
+                evictionPolicy: result.body.properties?.spotPriorityProfile?.[
+                  "evictionPolicy"
+                ] as EvictionPolicy,
+                allocationStrategy: result.body.properties
+                  ?.spotPriorityProfile?.[
+                  "allocationStrategy"
+                ] as SpotAllocationStrategy,
                 maintain:
                   result.body.properties?.spotPriorityProfile?.["maintain"],
               },
@@ -412,10 +425,10 @@ export async function _createOrUpdateDeserialize(
                   result.body.properties?.regularPriorityProfile?.[
                     "minCapacity"
                   ],
-                allocationStrategy:
-                  result.body.properties?.regularPriorityProfile?.[
-                    "allocationStrategy"
-                  ],
+                allocationStrategy: result.body.properties
+                  ?.regularPriorityProfile?.[
+                  "allocationStrategy"
+                ] as RegularPriorityAllocationStrategy,
               },
           vmSizesProfile: result.body.properties?.["vmSizesProfile"].map(
             (p) => ({ name: p["name"], rank: p["rank"] }),
@@ -436,7 +449,7 @@ export async function _createOrUpdateDeserialize(
       : {
           tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
-          type: result.body.identity?.["type"],
+          type: result.body.identity?.["type"] as ManagedServiceIdentityType,
           userAssignedIdentities:
             result.body.identity?.["userAssignedIdentities"],
         },
@@ -599,13 +612,17 @@ export async function _updateDeserialize(
       ? undefined
       : {
           createdBy: result.body.systemData?.["createdBy"],
-          createdByType: result.body.systemData?.["createdByType"],
+          createdByType: result.body.systemData?.[
+            "createdByType"
+          ] as CreatedByType,
           createdAt:
             result.body.systemData?.["createdAt"] !== undefined
               ? new Date(result.body.systemData?.["createdAt"])
               : undefined,
           lastModifiedBy: result.body.systemData?.["lastModifiedBy"],
-          lastModifiedByType: result.body.systemData?.["lastModifiedByType"],
+          lastModifiedByType: result.body.systemData?.[
+            "lastModifiedByType"
+          ] as CreatedByType,
           lastModifiedAt:
             result.body.systemData?.["lastModifiedAt"] !== undefined
               ? new Date(result.body.systemData?.["lastModifiedAt"])
@@ -626,14 +643,13 @@ export async function _updateDeserialize(
                   result.body.properties?.spotPriorityProfile?.[
                     "maxPricePerVM"
                   ],
-                evictionPolicy:
-                  result.body.properties?.spotPriorityProfile?.[
-                    "evictionPolicy"
-                  ],
-                allocationStrategy:
-                  result.body.properties?.spotPriorityProfile?.[
-                    "allocationStrategy"
-                  ],
+                evictionPolicy: result.body.properties?.spotPriorityProfile?.[
+                  "evictionPolicy"
+                ] as EvictionPolicy,
+                allocationStrategy: result.body.properties
+                  ?.spotPriorityProfile?.[
+                  "allocationStrategy"
+                ] as SpotAllocationStrategy,
                 maintain:
                   result.body.properties?.spotPriorityProfile?.["maintain"],
               },
@@ -647,10 +663,10 @@ export async function _updateDeserialize(
                   result.body.properties?.regularPriorityProfile?.[
                     "minCapacity"
                   ],
-                allocationStrategy:
-                  result.body.properties?.regularPriorityProfile?.[
-                    "allocationStrategy"
-                  ],
+                allocationStrategy: result.body.properties
+                  ?.regularPriorityProfile?.[
+                  "allocationStrategy"
+                ] as RegularPriorityAllocationStrategy,
               },
           vmSizesProfile: result.body.properties?.["vmSizesProfile"].map(
             (p) => ({ name: p["name"], rank: p["rank"] }),
@@ -671,7 +687,7 @@ export async function _updateDeserialize(
       : {
           tenantId: result.body.identity?.["tenantId"],
           principalId: result.body.identity?.["principalId"],
-          type: result.body.identity?.["type"],
+          type: result.body.identity?.["type"] as ManagedServiceIdentityType,
           userAssignedIdentities:
             result.body.identity?.["userAssignedIdentities"],
         },
@@ -810,13 +826,15 @@ export async function _listByResourceGroupDeserialize(
         ? undefined
         : {
             createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
+            createdByType: p.systemData?.["createdByType"] as CreatedByType,
             createdAt:
               p.systemData?.["createdAt"] !== undefined
                 ? new Date(p.systemData?.["createdAt"])
                 : undefined,
             lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
+            lastModifiedByType: p.systemData?.[
+              "lastModifiedByType"
+            ] as CreatedByType,
             lastModifiedAt:
               p.systemData?.["lastModifiedAt"] !== undefined
                 ? new Date(p.systemData?.["lastModifiedAt"])
@@ -834,10 +852,12 @@ export async function _listByResourceGroupDeserialize(
                     p.properties?.spotPriorityProfile?.["minCapacity"],
                   maxPricePerVM:
                     p.properties?.spotPriorityProfile?.["maxPricePerVM"],
-                  evictionPolicy:
-                    p.properties?.spotPriorityProfile?.["evictionPolicy"],
-                  allocationStrategy:
-                    p.properties?.spotPriorityProfile?.["allocationStrategy"],
+                  evictionPolicy: p.properties?.spotPriorityProfile?.[
+                    "evictionPolicy"
+                  ] as EvictionPolicy,
+                  allocationStrategy: p.properties?.spotPriorityProfile?.[
+                    "allocationStrategy"
+                  ] as SpotAllocationStrategy,
                   maintain: p.properties?.spotPriorityProfile?.["maintain"],
                 },
             regularPriorityProfile: !p.properties?.regularPriorityProfile
@@ -846,10 +866,9 @@ export async function _listByResourceGroupDeserialize(
                   capacity: p.properties?.regularPriorityProfile?.["capacity"],
                   minCapacity:
                     p.properties?.regularPriorityProfile?.["minCapacity"],
-                  allocationStrategy:
-                    p.properties?.regularPriorityProfile?.[
-                      "allocationStrategy"
-                    ],
+                  allocationStrategy: p.properties?.regularPriorityProfile?.[
+                    "allocationStrategy"
+                  ] as RegularPriorityAllocationStrategy,
                 },
             vmSizesProfile: p.properties?.["vmSizesProfile"].map((p) => ({
               name: p["name"],
@@ -869,7 +888,7 @@ export async function _listByResourceGroupDeserialize(
         : {
             tenantId: p.identity?.["tenantId"],
             principalId: p.identity?.["principalId"],
-            type: p.identity?.["type"],
+            type: p.identity?.["type"] as ManagedServiceIdentityType,
             userAssignedIdentities: p.identity?.["userAssignedIdentities"],
           },
       plan: !p.plan
@@ -940,13 +959,15 @@ export async function _listBySubscriptionDeserialize(
         ? undefined
         : {
             createdBy: p.systemData?.["createdBy"],
-            createdByType: p.systemData?.["createdByType"],
+            createdByType: p.systemData?.["createdByType"] as CreatedByType,
             createdAt:
               p.systemData?.["createdAt"] !== undefined
                 ? new Date(p.systemData?.["createdAt"])
                 : undefined,
             lastModifiedBy: p.systemData?.["lastModifiedBy"],
-            lastModifiedByType: p.systemData?.["lastModifiedByType"],
+            lastModifiedByType: p.systemData?.[
+              "lastModifiedByType"
+            ] as CreatedByType,
             lastModifiedAt:
               p.systemData?.["lastModifiedAt"] !== undefined
                 ? new Date(p.systemData?.["lastModifiedAt"])
@@ -964,10 +985,12 @@ export async function _listBySubscriptionDeserialize(
                     p.properties?.spotPriorityProfile?.["minCapacity"],
                   maxPricePerVM:
                     p.properties?.spotPriorityProfile?.["maxPricePerVM"],
-                  evictionPolicy:
-                    p.properties?.spotPriorityProfile?.["evictionPolicy"],
-                  allocationStrategy:
-                    p.properties?.spotPriorityProfile?.["allocationStrategy"],
+                  evictionPolicy: p.properties?.spotPriorityProfile?.[
+                    "evictionPolicy"
+                  ] as EvictionPolicy,
+                  allocationStrategy: p.properties?.spotPriorityProfile?.[
+                    "allocationStrategy"
+                  ] as SpotAllocationStrategy,
                   maintain: p.properties?.spotPriorityProfile?.["maintain"],
                 },
             regularPriorityProfile: !p.properties?.regularPriorityProfile
@@ -976,10 +999,9 @@ export async function _listBySubscriptionDeserialize(
                   capacity: p.properties?.regularPriorityProfile?.["capacity"],
                   minCapacity:
                     p.properties?.regularPriorityProfile?.["minCapacity"],
-                  allocationStrategy:
-                    p.properties?.regularPriorityProfile?.[
-                      "allocationStrategy"
-                    ],
+                  allocationStrategy: p.properties?.regularPriorityProfile?.[
+                    "allocationStrategy"
+                  ] as RegularPriorityAllocationStrategy,
                 },
             vmSizesProfile: p.properties?.["vmSizesProfile"].map((p) => ({
               name: p["name"],
@@ -999,7 +1021,7 @@ export async function _listBySubscriptionDeserialize(
         : {
             tenantId: p.identity?.["tenantId"],
             principalId: p.identity?.["principalId"],
-            type: p.identity?.["type"],
+            type: p.identity?.["type"] as ManagedServiceIdentityType,
             userAssignedIdentities: p.identity?.["userAssignedIdentities"],
           },
       plan: !p.plan
