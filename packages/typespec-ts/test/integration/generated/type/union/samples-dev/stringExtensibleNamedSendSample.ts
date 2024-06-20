@@ -15,7 +15,7 @@ async function stringExtensibleNamedSendSample() {
   const client = createUnionsClient();
   const result = await client
     .path("/type/union/string-extensible-named")
-    .post({ body: { prop: "{Your prop}" } });
+    .post({ body: { prop: "b" } });
   console.log(result);
 }
 

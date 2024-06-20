@@ -30,8 +30,8 @@ export interface ListItemInputBody {
 }
 
 /** An extensible enum input parameter. */
-/** "First", "Second" */
-export type ListItemInputExtensibleEnum = string;
+/** */
+export type ListItemInputExtensibleEnum = "First" | "Second";
 
 export interface UserListResults {
   /** List of items. */
