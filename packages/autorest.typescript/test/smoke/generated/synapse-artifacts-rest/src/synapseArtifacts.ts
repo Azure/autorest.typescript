@@ -14,8 +14,7 @@ export interface SynapseArtifactsClientOptions extends ClientOptions {
  * Initialize a new instance of `SynapseArtifactsClient`
  * @param endpoint - The workspace development endpoint, for example https://myworkspace.dev.azuresynapse.net.
  * @param credentials - uniquely identify client credential
- * @param {
- *     apiVersion = "2021-11-01-preview", ...options} - the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
@@ -55,8 +54,8 @@ export default function createClient(
   client.pipeline.addPolicy({
     name: "ClientApiVersionPolicy",
     sendRequest: (req, next) => {
-      // Use the apiVesion defined in request url directly
-      // Append one if there is no apiVesion and we have one at client options
+      // Use the apiVersion defined in request url directly
+      // Append one if there is no apiVersion and we have one at client options
       const url = new URL(req.url);
       if (!url.searchParams.get("api-version") && apiVersion) {
         req.url = `${req.url}${

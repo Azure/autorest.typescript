@@ -557,13 +557,9 @@ interface ComplexReplacerConfigOutput {
     typeName?: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "PurviewMetadataPoliciesClientOptions" needs to be exported by the entry point index.d.ts
-//
 // @public
 function createClient(endpoint: string, credentials: KeyCredential, { apiVersion, ...options }?: PurviewMetadataPoliciesClientOptions): PurviewMetadataPoliciesClient;
 
-// Warning: (ae-forgotten-export) The symbol "PurviewAccountClientOptions" needs to be exported by the entry point index.d.ts
-//
 // @public
 function createClient_2(endpoint: string, credentials: TokenCredential, { apiVersion, ...options }?: PurviewAccountClientOptions): PurviewAccountClient;
 
@@ -1316,6 +1312,7 @@ interface PrivateLinkServiceConnectionStateOutput {
 declare namespace PurviewAccount {
     export {
         createClient_2 as createClient,
+        PurviewAccountClientOptions,
         Parameters_3 as Parameters,
         Responses_2 as Responses,
         Client_3 as Client,
@@ -1332,9 +1329,16 @@ type PurviewAccountClient = Client & {
     path: Routes_2;
 };
 
+// @public (undocumented)
+interface PurviewAccountClientOptions extends ClientOptions {
+    // (undocumented)
+    apiVersion?: string;
+}
+
 declare namespace PurviewMetadataPolicies {
     export {
         createClient,
+        PurviewMetadataPoliciesClientOptions,
         Parameters_2 as Parameters,
         Responses,
         Client_2 as Client,
@@ -1350,6 +1354,12 @@ export { PurviewMetadataPolicies }
 type PurviewMetadataPoliciesClient = Client & {
     path: Routes;
 };
+
+// @public (undocumented)
+interface PurviewMetadataPoliciesClientOptions extends ClientOptions {
+    // (undocumented)
+    apiVersion?: string;
+}
 
 // @public (undocumented)
 interface RegexReplacer {
