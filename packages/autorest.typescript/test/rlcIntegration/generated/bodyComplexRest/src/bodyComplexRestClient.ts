@@ -11,8 +11,7 @@ export interface BodyComplexRestClientOptions extends ClientOptions {
 
 /**
  * Initialize a new instance of `BodyComplexRestClient`
- * @param {
- *     apiVersion = "2016-02-29", ...options} - the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient({
   apiVersion = "2016-02-29",
@@ -40,8 +39,8 @@ export default function createClient({
   client.pipeline.addPolicy({
     name: "ClientApiVersionPolicy",
     sendRequest: (req, next) => {
-      // Use the apiVesion defined in request url directly
-      // Append one if there is no apiVesion and we have one at client options
+      // Use the apiVersion defined in request url directly
+      // Append one if there is no apiVersion and we have one at client options
       const url = new URL(req.url);
       if (!url.searchParams.get("api-version") && apiVersion) {
         req.url = `${req.url}${

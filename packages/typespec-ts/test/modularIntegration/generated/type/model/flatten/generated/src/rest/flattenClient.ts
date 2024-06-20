@@ -5,12 +5,14 @@ import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
 import { FlattenContext } from "./clientDefinitions.js";
 
+export interface FlattenContextOptions extends ClientOptions {}
+
 /**
  * Initialize a new instance of `FlattenContext`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {},
+  options: FlattenContextOptions = {},
 ): FlattenContext {
   const endpointUrl =
     options.endpoint ?? options.baseUrl ?? `http://localhost:3000`;
@@ -28,7 +30,6 @@ export default function createClient(
       logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
-
   const client = getClient(endpointUrl, options) as FlattenContext;
 
   client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
