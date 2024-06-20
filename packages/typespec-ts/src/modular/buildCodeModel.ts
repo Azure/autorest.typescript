@@ -1490,7 +1490,6 @@ function emitType(
       return emitEnum(context, type);
     case "EnumMember":
       return emitEnumMember(context, type);
-      case ""
     default:
       throw Error(`Not supported ${type.kind}`);
   }
