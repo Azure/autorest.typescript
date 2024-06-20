@@ -14,7 +14,7 @@ import {
   _createOrUpdateDeserialize,
   _updateDeserialize,
   _$deleteDeserialize,
-} from "./api/operations.js";
+} from "./api/fleets/index.js";
 import {
   PathUncheckedResponse,
   OperationOptions,

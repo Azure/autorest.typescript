@@ -39,15 +39,9 @@ export interface ArmOperationStatus {
 // @public (undocumented)
 export class AzureFleetClient {
     constructor(credential: TokenCredential, options?: AzureFleetClientOptions);
-    createOrUpdate(subscriptionId: string, resourceGroupName: string, fleetName: string, resource: Fleet, options?: CreateOrUpdateOptionalParams): PollerLike<OperationState<Fleet>, Fleet>;
-    delete(subscriptionId: string, resourceGroupName: string, fleetName: string, options?: DeleteOptionalParams): PollerLike<OperationState<void>, void>;
-    get(subscriptionId: string, resourceGroupName: string, fleetName: string, options?: GetOptionalParams): Promise<Fleet>;
-    list(options?: ListOptionalParams): PagedAsyncIterableIterator<Operation>;
-    listByResourceGroup(subscriptionId: string, resourceGroupName: string, options?: ListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Fleet>;
-    listBySubscription(subscriptionId: string, options?: ListBySubscriptionOptionalParams): PagedAsyncIterableIterator<Fleet>;
-    listVirtualMachineScaleSets(subscriptionId: string, resourceGroupName: string, name: string, options?: ListVirtualMachineScaleSetsOptionalParams): Promise<VirtualMachineScaleSetListResult>;
+    readonly fleets: FleetsOperations;
+    readonly operations: OperationsOperations;
     readonly pipeline: Pipeline;
-    update(subscriptionId: string, resourceGroupName: string, fleetName: string, properties: FleetUpdate, options?: UpdateOptionalParams): PollerLike<OperationState<Fleet>, Fleet>;
 }
 
 // @public (undocumented)
@@ -73,16 +67,6 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 
 // @public (undocumented)
 export type CreatedByType = "User" | "Application" | "ManagedIdentity" | "Key";
-
-// @public (undocumented)
-export interface CreateOrUpdateOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
-}
-
-// @public (undocumented)
-export interface DeleteOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
-}
 
 // @public
 export interface ErrorAdditionalInfo {
@@ -130,32 +114,61 @@ export interface FleetProperties {
     vmSizesProfile: VmSizeProfile[];
 }
 
+// @public (undocumented)
+export interface FleetsCreateOrUpdateOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public (undocumented)
+export interface FleetsDeleteOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
+// @public (undocumented)
+export interface FleetsGetOptionalParams extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FleetsListByResourceGroupOptionalParams extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FleetsListBySubscriptionOptionalParams extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FleetsListVirtualMachineScaleSetsOptionalParams extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FleetsOperations {
+    // (undocumented)
+    createOrUpdate: (subscriptionId: string, resourceGroupName: string, fleetName: string, resource: Fleet, options?: FleetsCreateOrUpdateOptionalParams) => PollerLike<OperationState<Fleet>, Fleet>;
+    // (undocumented)
+    delete: (subscriptionId: string, resourceGroupName: string, fleetName: string, options?: FleetsDeleteOptionalParams) => PollerLike<OperationState<void>, void>;
+    // (undocumented)
+    get: (subscriptionId: string, resourceGroupName: string, fleetName: string, options?: FleetsGetOptionalParams) => Promise<Fleet>;
+    // (undocumented)
+    listByResourceGroup: (subscriptionId: string, resourceGroupName: string, options?: FleetsListByResourceGroupOptionalParams) => PagedAsyncIterableIterator<Fleet>;
+    // (undocumented)
+    listBySubscription: (subscriptionId: string, options?: FleetsListBySubscriptionOptionalParams) => PagedAsyncIterableIterator<Fleet>;
+    // (undocumented)
+    listVirtualMachineScaleSets: (subscriptionId: string, resourceGroupName: string, name: string, options?: FleetsListVirtualMachineScaleSetsOptionalParams) => Promise<VirtualMachineScaleSetListResult>;
+    // (undocumented)
+    update: (subscriptionId: string, resourceGroupName: string, fleetName: string, properties: FleetUpdate, options?: FleetsUpdateOptionalParams) => PollerLike<OperationState<Fleet>, Fleet>;
+}
+
+// @public (undocumented)
+export interface FleetsUpdateOptionalParams extends OperationOptions {
+    updateIntervalInMs?: number;
+}
+
 // @public
 export interface FleetUpdate {
     identity?: ManagedServiceIdentityUpdate;
     plan?: ResourcePlanUpdate;
     properties?: FleetProperties;
     tags?: Record<string, string>;
-}
-
-// @public (undocumented)
-export interface GetOptionalParams extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface ListByResourceGroupOptionalParams extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface ListBySubscriptionOptionalParams extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface ListOptionalParams extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface ListVirtualMachineScaleSetsOptionalParams extends OperationOptions {
 }
 
 // @public
@@ -190,6 +203,16 @@ export interface OperationDisplay {
     operation?: string;
     provider?: string;
     resource?: string;
+}
+
+// @public (undocumented)
+export interface OperationsListOptionalParams extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface OperationsOperations {
+    // (undocumented)
+    list: (options?: OperationsListOptionalParams) => PagedAsyncIterableIterator<Operation>;
 }
 
 // @public (undocumented)
@@ -294,11 +317,6 @@ export interface SystemData {
 export interface TrackedResource extends Resource {
     location: string;
     tags?: Record<string, string>;
-}
-
-// @public (undocumented)
-export interface UpdateOptionalParams extends OperationOptions {
-    updateIntervalInMs?: number;
 }
 
 // @public

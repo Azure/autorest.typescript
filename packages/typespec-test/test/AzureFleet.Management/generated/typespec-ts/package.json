@@ -12,7 +12,9 @@
       "./package.json": "./package.json",
       ".": "./src/index.ts",
       "./api": "./src/api/index.ts",
-      "./models": "./src/models/index.ts"
+      "./models": "./src/models/index.ts",
+      "./api/operations": "./src/api/operations/index.ts",
+      "./api/fleets": "./src/api/fleets/index.ts"
     },
     "dialects": [
       "esm",
@@ -143,6 +145,42 @@
       "require": {
         "types": "./dist/commonjs/models/index.d.ts",
         "default": "./dist/commonjs/models/index.js"
+      }
+    },
+    "./api/operations": {
+      "browser": {
+        "types": "./dist/browser/api/operations/index.d.ts",
+        "default": "./dist/browser/api/operations/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/operations/index.d.ts",
+        "default": "./dist/react-native/api/operations/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/operations/index.d.ts",
+        "default": "./dist/esm/api/operations/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/operations/index.d.ts",
+        "default": "./dist/commonjs/api/operations/index.js"
+      }
+    },
+    "./api/fleets": {
+      "browser": {
+        "types": "./dist/browser/api/fleets/index.d.ts",
+        "default": "./dist/browser/api/fleets/index.js"
+      },
+      "react-native": {
+        "types": "./dist/react-native/api/fleets/index.d.ts",
+        "default": "./dist/react-native/api/fleets/index.js"
+      },
+      "import": {
+        "types": "./dist/esm/api/fleets/index.d.ts",
+        "default": "./dist/esm/api/fleets/index.js"
+      },
+      "require": {
+        "types": "./dist/commonjs/api/fleets/index.d.ts",
+        "default": "./dist/commonjs/api/fleets/index.js"
       }
     }
   },

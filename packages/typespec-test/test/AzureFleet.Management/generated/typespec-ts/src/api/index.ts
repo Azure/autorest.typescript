@@ -6,13 +6,3 @@ export {
   AzureFleetClientOptions,
   AzureFleetContext,
 } from "./azureFleetContext.js";
-export {
-  list,
-  get,
-  createOrUpdate,
-  update,
-  $delete,
-  listByResourceGroup,
-  listBySubscription,
-  listVirtualMachineScaleSets,
-} from "./operations.js";
