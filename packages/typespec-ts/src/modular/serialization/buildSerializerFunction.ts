@@ -5,6 +5,7 @@ import { useContext } from "../../contextManager.js";
 
 import {
   Imports as RuntimeImports,
+  SchemaContext,
   addImportToSpecifier
 } from "@azure-tools/rlc-common";
 import { UsageFlags } from "@typespec/compiler";
@@ -25,24 +26,31 @@ export function buildModelSerializer(
 
   const serializerName = `${toCamelCase(type.name)}Serializer`;
 
-  const restModelName = rlcMetadata.get(type.__raw!)?.rlcType.name;
+  const restModel = rlcMetadata.get(type.__raw!);
+  const restModelName = restModel?.rlcType.name;
 
-  if (!restModelName) {
-    throw new Error(`Could not find rest model name for type ${type.name}`);
+  let serializerReturnType = "";
+
+  // There are some situations where the type is not present in the REST API,
+  // this can happen when client.tsp overrides visibility to public on an orphan model
+  // In this case we just let TypeScript infer the return type.
+  if (restModelName && restModel.rlcType.usage?.includes(SchemaContext.Input)) {
+    console.log(restModel.rlcType.usage);
+    const restModelNameAlias = `${restModelName}Rest`;
+    addImportToSpecifier(
+      "rlcIndex",
+      runtimeImports,
+      `${restModelName} as ${restModelNameAlias}`
+    );
+
+    serializerReturnType = `: ${restModelNameAlias}`;
   }
-
-  const restModelNameAlias = `${restModelName}Rest`;
-  addImportToSpecifier(
-    "rlcIndex",
-    runtimeImports,
-    `${restModelName} as ${restModelNameAlias}`
-  );
 
   if (type.type === "model") {
     return `
   export function ${serializerName}(item: ${toPascalCase(
     type.name
-  )}): ${restModelNameAlias} {
+  )})${serializerReturnType} {
     return {
         ${getRequestModelMapping(type, "item", runtimeImports).join(",\n")}
     }
@@ -54,7 +62,7 @@ export function buildModelSerializer(
     return `
     export function ${serializerName}(item: ${toPascalCase(
       type.name
-    )}): ${restModelNameAlias} {
+    )})${serializerReturnType} {
       return item;
     }
     `;
