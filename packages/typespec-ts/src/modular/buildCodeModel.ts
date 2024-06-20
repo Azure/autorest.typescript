@@ -112,6 +112,7 @@ import {
   Response,
   Type as HrlcType
 } from "./modularCodeModel.js";
+import { useContext } from "../contextManager.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -307,6 +308,8 @@ function getType(
   type: EmitterType,
   options: { disableEffectiveModel?: boolean; usage?: UsageFlags } = {}
 ): any {
+  const modularMetatree = useContext("modularMetaTree");
+
   // don't cache simple type(string, int, etc) since decorators may change the result
   const enableCache = !isSimpleType(context.program, type);
   const effectiveModel =
@@ -372,10 +375,20 @@ function getType(
       target: type
     });
   }
-  if (!["Credential", "CredentialTypeUnion"].includes(type.kind)) {
-    newValue.tcgcType = getClientType(context, type as Type);
+
+  if (isTypespecType(type)) {
+    newValue.tcgcType = getClientType(context, type);
+    newValue.__raw = type;
   }
+  if (isTypespecType(type)) {
+    modularMetatree.set(type, newValue);
+  }
+
   return newValue;
+}
+
+function isTypespecType(type: EmitterType): type is Type {
+  return type.kind !== "Credential" && type.kind !== "CredentialTypeUnion";
 }
 
 // To pass the yaml dump

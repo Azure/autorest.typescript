@@ -10,11 +10,16 @@ import { buildOperationOptions } from "./buildOperations.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { getModularModelFilePath } from "./helpers/namingHelpers.js";
 import { getType } from "./helpers/typeHelpers.js";
-import { Client, ModularCodeModel, Type } from "./modularCodeModel.js";
+import {
+  Client,
+  ModularCodeModel,
+  Type as ModularType
+} from "./modularCodeModel.js";
+import { useContext } from "../contextManager.js";
 
 // ====== UTILITIES ======
 
-function isAzureCoreErrorSdkType(t: Type) {
+function isAzureCoreErrorSdkType(t: ModularType) {
   return (
     t.name &&
     ["error", "errormodel", "innererror", "errorresponse"].includes(
@@ -24,7 +29,7 @@ function isAzureCoreErrorSdkType(t: Type) {
   );
 }
 
-function isAzureCoreLroSdkType(t: Type) {
+function isAzureCoreLroSdkType(t: ModularType) {
   return (
     t.name &&
     ["operationstate"].includes(t.name.toLowerCase()) &&
@@ -32,11 +37,11 @@ function isAzureCoreLroSdkType(t: Type) {
   );
 }
 
-function isAnonymousModel(t: Type) {
+function isAnonymousModel(t: ModularType) {
   return t.type === "model" && t.name === "";
 }
 
-export function isModelWithAdditionalProperties(t: Type) {
+export function isModelWithAdditionalProperties(t: ModularType) {
   return t.type === "dict" && t.name !== "Record";
 }
 
@@ -54,7 +59,7 @@ function getCoreLroType(name: string, coreLroTypes: Set<string>) {
 
 // ====== TYPE EXTRACTION ======
 
-function extractModels(codeModel: ModularCodeModel): Type[] {
+function extractModels(codeModel: ModularCodeModel): ModularType[] {
   const models = codeModel.types.filter(
     (t) =>
       ((t.type === "model" || t.type === "enum") &&
@@ -81,7 +86,7 @@ function extractModels(codeModel: ModularCodeModel): Type[] {
  * 1. alias from polymorphic base model, where we need to use typescript union to combine all the sub models
  * 2. alias from unions, where we also need to use typescript union to combine all the union variants
  */
-export function extractAliases(codeModel: ModularCodeModel): Type[] {
+export function extractAliases(codeModel: ModularCodeModel): ModularType[] {
   const models = codeModel.types.filter(
     (t) =>
       ((t.type === "model" || t.type === "combined") &&
@@ -93,7 +98,7 @@ export function extractAliases(codeModel: ModularCodeModel): Type[] {
 }
 // ====== TYPE BUILDERS ======
 function buildEnumModel(
-  model: Type
+  model: ModularType
 ): OptionalKind<TypeAliasDeclarationStructure> {
   const valueType = model.valueType?.type === "string" ? "string" : "number";
   return {
@@ -131,7 +136,7 @@ type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
 };
 
 export function buildModelInterface(
-  model: Type,
+  model: ModularType,
   cache: { coreClientTypes: Set<string>; coreLroTypes: Set<string> }
 ): InterfaceStructure {
   const modelProperties = model.properties ?? [];
@@ -187,8 +192,10 @@ export function buildModels(
   const modelsFile = codeModel.project.createSourceFile(
     getModularModelFilePath(codeModel, subClient)
   );
-
+  const context = useContext("rlcMetaTree");
   for (const model of models) {
+    const rlcModel = model.__raw && context.get(model.__raw);
+    console.log(`RlcModel is: `, rlcModel?.rlcType.outputTypeName);
     if (model.type === "enum") {
       if (modelsFile.getTypeAlias(model.name!)) {
         // If the enum is already defined, we don't need to do anything
@@ -262,7 +269,7 @@ export function buildModels(
 }
 
 function addExtendedDictInfo(
-  model: Type,
+  model: ModularType,
   modelInterface: InterfaceStructure,
   compatibilityMode: boolean = false
 ) {
@@ -291,7 +298,7 @@ function addExtendedDictInfo(
   }
 }
 
-export function buildModelTypeAlias(model: Type) {
+export function buildModelTypeAlias(model: ModularType) {
   return {
     name: model.name!,
     isExported: true,

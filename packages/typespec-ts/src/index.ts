@@ -66,6 +66,7 @@ import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { getRLCClients } from "./utils/clientUtils.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
+import { provideContext } from "./contextManager.js";
 
 export * from "./lib.js";
 
@@ -79,6 +80,8 @@ export async function $onEmit(context: EmitContext) {
     string,
     RLCModel
   >();
+  provideContext("rlcMetaTree", new Map());
+  provideContext("modularMetaTree", new Map());
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;
   // 1. Enrich the dpg context with path detail and common options
