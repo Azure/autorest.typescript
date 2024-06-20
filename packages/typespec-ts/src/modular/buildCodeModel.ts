@@ -1061,13 +1061,17 @@ function emitEnum(context: SdkContext, type: Enum): Record<string, any> {
     });
   }
 
+  const name = normalizeName(
+    getLibraryName(context, type) ? getLibraryName(context, type) : type.name,
+    NameType.Interface
+  );
   return {
     type: "enum",
-    name: normalizeName(
-      getLibraryName(context, type) ? getLibraryName(context, type) : type.name,
-      NameType.Interface
-    ),
-    description: getDocStr(program, type),
+    name,
+    description:
+      getDocStr(program, type) === ""
+        ? `Type of ${name}`
+        : getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,
     isFixed: true,
@@ -1361,7 +1365,7 @@ function emitUnion(
       ? normalizeName(unionName, NameType.Interface)
       : undefined;
     return {
-      nullable: isNullType(sdkType.__raw!),
+      nullable: false,
       name: unionTypeName,
       description: `Type of ${unionTypeName}`,
       internal: true,
@@ -1389,7 +1393,7 @@ function emitUnion(
       : undefined;
     return {
       name: typeName,
-      nullable: isNullType(sdkType.__raw!),
+      nullable: false,
       description: sdkType.description || `Type of ${typeName}`,
       internal: true,
       type: sdkType.kind,
@@ -1403,12 +1407,12 @@ function emitUnion(
   } else if (nonNullOptions.length === 1 && nonNullOptions[0]) {
     return {
       ...emitType(context, nonNullOptions[0], usage),
-      nullable: isNullType(sdkType.__raw!)
+      nullable: sdkType.kind === "nullable"
     };
   } else {
     return {
       ...emitType(context, sdkType.__raw!, usage),
-      nullable: isNullType(sdkType.__raw!)
+      nullable: sdkType.kind === "nullable"
     };
   }
 }

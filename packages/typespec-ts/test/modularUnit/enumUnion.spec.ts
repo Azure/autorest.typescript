@@ -281,6 +281,7 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
+          /** Type of JsonContentType */
           /** */
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
@@ -419,6 +420,7 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
+          /** Type of JsonContentType */
           /** */
           export type JsonContentType = "application/json; serialization=Avro" | "application/json; serialization=json";
           /** Alias for SchemaContentTypeValues */
@@ -629,6 +631,7 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
+          /** Type of SchemaContentTypeValues */
           /** */
           export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";`
         );
@@ -671,6 +674,7 @@ describe("header parameters", () => {
         await assertEqualContent(
           schemaOutput?.getFullText()!,
           `
+          /** Type of SchemaContentTypeValues */
           /** */
           export type SchemaContentTypeValues = "application/json; serialization=Avro" | "application/json; serialization=json" | "text/plain; charset=utf-8" | "text/vnd.ms.protobuf";`
         );
@@ -770,6 +774,7 @@ describe("header parameters", () => {
       await assertEqualContent(
         schemaOutput?.getFullText()!,
         `
+        /** Type of EnumTest */
         /** */
         export type EnumTest = 1 | 2 | 3 | 4;
         
@@ -822,6 +827,7 @@ describe("model type", () => {
           color: "red";
         }
 
+        /** Type of Color */
         /** */
         export type Color = "red" | "blue";  
         `
@@ -900,6 +906,7 @@ describe("model type", () => {
           color: 1;
         }
 
+        /** Type of Color */
         /** */
         export type Color = 1 | 2;
         `
@@ -988,8 +995,10 @@ describe("model type", () => {
           color: Lr | Ud;
         }
 
+        /** Type of Lr */
         /** */
         export type Lr = "left" | "right";
+        /** Type of Ud */
         /** */
         export type Ud = "up" | "down";
         `
@@ -1022,6 +1031,7 @@ describe("model type", () => {
         /** Type of LeftAndRight */
         /** */
         export type LeftAndRight = "left" | "right";
+        /** Type of UpAndDown */
         /** */
         export type UpAndDown = "up" | "down";
         `
