@@ -48,7 +48,7 @@ export interface MixedTypesCasesOutput {
 }
 
 /** Alias for StringExtensibleNamedUnionOutput */
-export type StringExtensibleNamedUnionOutput = string | "b" | "c";
+export type StringExtensibleNamedUnionOutput = string;
 /** Alias for LrOutput */
 export type LrOutput = "left" | "right";
 /** Alias for UdOutput */

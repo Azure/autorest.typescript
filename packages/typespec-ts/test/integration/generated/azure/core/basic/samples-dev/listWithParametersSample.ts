@@ -17,7 +17,7 @@ async function listWithParametersSample() {
     .path("/azure/core/basic/parameters")
     .get({
       body: { inputName: "{Your inputName}" },
-      queryParameters: { another: "{Your another}" },
+      queryParameters: { another: "First" },
     });
   const pageData = paginate(client, initialResponse);
   const result = [];

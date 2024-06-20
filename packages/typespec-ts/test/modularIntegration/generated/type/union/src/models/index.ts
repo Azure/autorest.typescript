@@ -11,6 +11,7 @@ export {
   Ud,
   Dog,
   StringExtensibleNamedUnion,
+  KnownStringExtensibleNamedUnion,
 } from "./models.js";
 export {
   StringsOnlyGetOptionalParams,

@@ -45,7 +45,7 @@ export async function _getExtensibleModelDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as DogUnion;
 }
 
 /** Receive model with extensible enum discriminator type. */
@@ -107,7 +107,7 @@ export async function _getExtensibleModelMissingDiscriminatorDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as DogUnion;
 }
 
 /** Get a model omitting the discriminator. */
@@ -144,7 +144,7 @@ export async function _getExtensibleModelWrongDiscriminatorDeserialize(
     throw createRestError(result);
   }
 
-  return result.body;
+  return result.body as DogUnion;
 }
 
 /** Get a model containing discriminator value never defined. */

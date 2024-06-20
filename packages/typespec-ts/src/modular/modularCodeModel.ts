@@ -14,6 +14,7 @@ import { Project } from "ts-morph";
 export interface ModularOptions {
   sourceRoot: string;
   compatibilityMode: boolean;
+  experimentalExtensibleEnums: boolean;
 }
 export interface ModularCodeModel {
   options: RLCOptions;
@@ -103,6 +104,7 @@ export interface Type {
   value?: string;
   values?: EnumValue[];
   isFixed?: boolean;
+  isNonExhaustive?: boolean;
   valueType?: Type;
   elementType?: Type;
   parents?: Type[];
